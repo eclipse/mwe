@@ -34,7 +34,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addError(final WorkflowComponent ctx, final String msg) {
-		addError(ctx, msg, null, null, Collections.EMPTY_LIST);
+		addError(ctx, msg, null, null, Collections.emptyList());
 	}
 
 	public void addError(final String msg, final Object element) {
@@ -54,7 +54,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addWarning(final WorkflowComponent ctx, final String msg) {
-		addWarning(ctx, msg, null, null, Collections.EMPTY_LIST);
+		addWarning(ctx, msg, null, null, Collections.emptyList());
 	}
 
 	public void addWarning(final String msg, final Object element) {
@@ -79,7 +79,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addInfo(final WorkflowComponent ctx, final String msg) {
-		addInfo(ctx, msg, null, null, Collections.EMPTY_LIST);
+		addInfo(ctx, msg, null, null, Collections.emptyList());
 	}
 
 	public void addInfo(final String msg, final Object element) {
@@ -144,7 +144,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	private static MWEDiagnostic createInfo(String msg, Object element) {
-		return createWarning(null, msg, element, null, Collections.EMPTY_LIST);
+		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 
 	private static MWEDiagnostic createWarning(WorkflowComponent ctx,
@@ -156,7 +156,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	private static MWEDiagnostic createWarning(String msg, Object element) {
-		return createWarning(null, msg, element, null, Collections.EMPTY_LIST);
+		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 
 	private static MWEDiagnostic createError(WorkflowComponent ctx, String msg,
@@ -167,7 +167,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	private static MWEDiagnostic createError(String msg, Object element) {
-		return createWarning(null, msg, element, null, Collections.EMPTY_LIST);
+		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 	
 	private Diagnostic[] filterIssues(int severity) {

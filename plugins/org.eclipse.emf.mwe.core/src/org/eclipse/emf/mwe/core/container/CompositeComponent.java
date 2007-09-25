@@ -274,7 +274,8 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		addComponent(comp);
 	}
 	
-	public void addBean(final Object obj) {
+	public void addBean(@SuppressWarnings("unused")
+	final Object obj) {
 		// noop
 	}
 
