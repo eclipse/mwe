@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Emfutils Plug-in
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.mwe.utils
 Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.emf.mwe.core,
@@ -9,3 +9,5 @@ Require-Bundle: org.eclipse.emf.mwe.core,
  org.eclipse.emf.ecore.xmi
 Export-Package: org.eclipse.emf.mwe.internal.utils;x-internal:=true,
  org.eclipse.emf.mwe.utils
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
