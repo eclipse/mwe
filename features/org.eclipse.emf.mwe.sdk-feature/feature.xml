@@ -32,7 +32,7 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.mwe.doc"
+         id="org.eclipse.emf.mwe.ui"
          version="0.0.0"/>
 
    <includes
@@ -40,7 +40,11 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.mwe.ui"
+         id="org.eclipse.emf.mwe.source"
+         version="0.0.0"/>
+
+   <includes
+         id="org.eclipse.emf.mwe.doc"
          version="0.0.0"/>
 
    <requires>
