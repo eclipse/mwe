@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<workflow>
+
+	<component class="test.res.Component">
+		<type file="test::res::complex::aComp" p="${prop}"/>
+		<bean idRef="myBean"/>
+	</component>
+		
+</workflow>

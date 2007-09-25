@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin >
+   <extension-point id="debugHandlers" name="Debugger Handlers" schema="schema/handlers.exsd"/>
+   <extension-point id="debugAdapters" name="Debugger Adapters" schema="schema/adapters.exsd"/>
+
+	<extension
+         point="org.eclipse.team.core.fileTypes">
+      <fileTypes
+            type="text"
+            extension="oaw">
+      </fileTypes>
+      <fileTypes
+            extension="mwe"
+            type="text">
+      </fileTypes>
+   </extension>
+   
+
+<!-- ================================================================================ -->
+<!-- wizard                                                                          -->
+<!-- ================================================================================ -->
+   
+	<extension
+	      point = "org.eclipse.ui.newWizards">
+		<category 
+		   id = "org.eclipse.emf.mwe.ui.newWizards"
+		   name="Modeling Workflow Engine">
+	</category>
+		 <wizard
+         category="org.eclipse.emf.mwe.ui.newWizards"
+         class="org.eclipse.emf.mwe.internal.ui.wizard.NewWorkflowFileWizard"
+         icon="icons/workflowfile.gif"
+         id="org.eclipse.emf.mwe.internal.ui.wizard.NewWorkflowFileWizard"
+         name="Workflow File"
+         >
+	       <description>Create a new MWE Workflow File</description>
+		   <selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
+
+<!-- ================================================================================ -->
+<!-- debugger                                                                         -->
+<!-- ================================================================================ -->
+   
+   <!-- breakpoint handling -->
+   <extension
+         point="org.eclipse.core.resources.markers"
+         id="breakpointMarker">
+      <super
+            type="org.eclipse.debug.core.lineBreakpointMarker">
+      </super>
+      <persistent
+            value="true">
+      </persistent>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            markerType="org.eclipse.emf.mwe.ui.breakpointMarker"
+            class="org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint"
+            id="breakpoint">
+      </breakpoint>
+   </extension>
+
+   <!-- launchConfiguration -->
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="org.eclipse.emf.mwe.ui.MWELaunchConfigType"
+            modes="run, debug"
+            name="MWE Workflow"
+            delegate="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchDelegate"
+            sourceLocatorId="org.eclipse.emf.mwe.ui.debug.sourceLookupDirector"
+            sourcePathComputerId="org.eclipse.emf.mwe.ui.debug.sourcePathComputer"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.emf.mwe.internal.ui.debug.launching.ui.MWELaunchConfigTabGroup"
+            id="org.eclipse.emf.mwe.ui.MWELaunchConfigTabGroup"
+            type="org.eclipse.emf.mwe.ui.MWELaunchConfigType"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.emf.mwe.ui.MWELaunchConfigType"
+            icon="icons/oawlaunch.gif"
+            id="org.eclipse.emf.mwe.ui.debug.MWELaunchConfigTypeImage"/>
+   </extension>
+
+   <!-- launch shortcut -->
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="MWE Workflow"
+            icon="icons/oawlaunch.gif"
+            category="org.eclipse.ui.externaltools"
+            class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
+            modes="run, debug"
+            id="org.eclipse.emf.mwe.ui.debug.launching.shortcut">
+        <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate>
+                 <or>
+                    <test
+                          property="org.eclipse.debug.ui.matchesPattern"
+                          value="*.oaw">
+                    </test>
+                    <test
+                          property="org.eclipse.debug.ui.matchesPattern"
+                          value="*.mwe">
+                    </test>
+                 </or>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+         	  mode="run"
+         	  label="MWE Workflow"/>
+          <contextLabel
+         	  mode="debug"
+         	  label="MWE Workflow"/>
+  		 </contextualLaunch>
+      </shortcut>
+   </extension>
+
+   <!-- source lookup -->
+   <extension
+         point="org.eclipse.debug.core.sourceLocators">
+      <sourceLocator
+            id="org.eclipse.emf.mwe.ui.debug.sourceLookupDirector"
+            name="MWE debug Source Lookup Director"
+            class="org.eclipse.emf.mwe.internal.ui.debug.sourcelookup.MWESourceLookupDirector"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.core.sourcePathComputers">
+      <sourcePathComputer
+            id="org.eclipse.emf.mwe.ui.debug.sourcePathComputer"
+            class="org.eclipse.emf.mwe.internal.ui.debug.sourcelookup.MWESourcePathComputerDelegate"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="org.eclipse.emf.mwe.internal.ui.debug.model.ui.DebugModelPresentation"
+            id="org.eclipse.emf.mwe.debug.model">
+      </debugModelPresentation>
+   </extension>
+   
+   <extension
+         point="org.eclipse.emf.mwe.ui.debugHandlers">
+     <handler
+           name="Variables Handlers"
+           pluginClass="org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.VariablesPluginHandler"
+           runtimeClass="org.eclipse.emf.mwe.internal.core.debug.processing.handlers.VariablesRuntimeHandler"
+           type="variablesHandler"/>
+      <handler
+            name="Breakpoint Handlers"
+            pluginClass="org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.BreakpointPluginHandler"
+            runtimeClass="org.eclipse.emf.mwe.internal.core.debug.processing.handlers.BreakpointRuntimeHandler"
+            type="breakpointHandler"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.emf.mwe.ui.debugAdapters">
+      <adapter
+            name="Workflow Adapters"
+            pluginClass="org.eclipse.emf.mwe.internal.ui.workflow.debug.MWEPluginAdapter"
+            runtimeClass="org.eclipse.emf.mwe.internal.core.debug.mwe.WorkflowElementAdapter"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,8 @@
+<workflow>
+	<property name="id" value="foo"/>
+	<bean1 id="${id}" value="test"/>
+	<bean2 idRef="${id}"/>
+	<bean3 id="${id}1" test="x" foo="bar"/>
+	<bean4 idRef="${id}1"/>
+	<cartridge file="${path}/testSimple.oaw" path="${path}"/>
+</workflow>

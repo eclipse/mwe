@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<workflow>
+  <component class="test.res.Component">
+	<stringParam value="${test}"/>
+	<bean idRef="myBean"/>
+  </component>
+</workflow>

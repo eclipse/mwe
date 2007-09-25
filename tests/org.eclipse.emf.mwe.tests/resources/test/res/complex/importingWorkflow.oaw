@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<workflow>
+	<bean class="java.util.HashMap" id="myMap" name="foo_bar"/>
+	
+	<bean file="test/res/complex/aBean.oaw" id="myBean">
+		<stringParam value="foo"/>
+		<aBean1 idRef="myMap"/>
+		<aBean2 class="java.util.HashMap" name="bar_foo"/>
+	</bean>
+	
+	<component class="test.res.Component">
+		<type file="test/res/complex/aComp.oaw" p="foobar"/>
+	</component>
+	
+	<component file="test/res/complex/aCartridge.oaw">
+		<prop value="barfoo"/>
+		<myBean idRef="myBean"/>
+	</component>
+	
+</workflow>

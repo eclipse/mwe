@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<bean class="java.util.HashMap" id="myMap" name="${stringParam}">
+	<b1 idRef="aBean1"/>
+	<b2 idRef="aBean2"/>
+</bean>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SimpleEditor Plug-in
+Bundle-SymbolicName: org.eclipse.emf.mwe.ui.simpleEditor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.emf.mwe.ui,
+ org.eclipse.ui,
+ org.eclipse.ui.editors,
+ org.eclipse.jface.text,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.views

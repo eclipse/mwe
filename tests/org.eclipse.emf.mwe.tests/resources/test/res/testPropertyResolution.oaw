@@ -1,0 +1,14 @@
+<workflow>
+	<property name="foo" value="foo"/>
+	<property file="${path}testPropertyResolution.properties"/>
+	<component class="test.res.Component" stringParam="${test}"/>
+	<component class="test.res.Component">
+		<property name="test1" value="${test}foo"/>
+		<stringParam value="${test1}"/>
+		<type>
+			<property name="test2" value="${test1}bar"/>
+			<stringParam value="${test2}"/>
+		</type>
+	</component>
+	<component class="test.res.Component" stringParam="${test}"/>
+</workflow>

@@ -1,0 +1,2 @@
+<?xml version="1.0"?>
+<bean class="test.res.Component" stringParam="${p}"/>

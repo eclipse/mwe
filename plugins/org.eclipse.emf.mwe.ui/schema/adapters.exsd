@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.emf.mwe.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.emf.mwe.ui" id="adapters" name="MWE Debugger Adapters"/>
+      </appInfo>
+      <documentation>
+         A plugin-in implementing an extension for this extension point can provide additional functionality to the openArchitectureWare debugger.&lt;br&gt;
+&lt;br&gt;
+Adapters can translate specific behavior of a syntax element into the neutral common format that is required by the debugger. E.g. variable names and content depend in most cases on the concrete application.&lt;br&gt;
+There are two types of adapters: &lt;code&gt;IElementAdapter&lt;/code&gt; and &lt;code&gt;IPluginAdapter&lt;/code&gt;. Normally there should be always one pair of these for each component with debug behavior.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="adapter" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the descriptor of the extension
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  an optional identifier of the extension instance
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  an optional name of the extension instance
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="adapter">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="name"/>
+         </appInfo>
+      </annotation>
+      <complexType>
+         <attribute name="runtimeClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of an IElementAdapter implementation. This class will be instantiated in the runtime VM and be registered in the debugger monitor.&lt;br&gt;
+It is responsible to provide component specific information in a neutral way. It creates name and sourcefile information of an element (one &quot;step&quot; or &quot;Unit of work&quot;), provides name and string representation of variables, converts a breakpoint&apos;s resource and line information into the corresponding sytax element.&lt;br&gt;
+More functionality can be implemented to support additional user defined handlers.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.core.debug.processing.IElementAdapter"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="pluginClass" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of an IPluginAdapter implementation. This class will be instantiated in the eclipse VM. It is responsible to handle component specific issues on the eclipse side.&lt;br&gt;
+It can provide the correct editor Id of an element type for source lookup, breakpoint definition (what is a &quot;Unit of work&quot;) and element type specific image that is shown in the Launch view.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.IPluginAdapter"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  an optional name of the adapter instance
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         4.2
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;pre&gt;&lt;extension
+      point=&quot;org.openarchitectureware.debug.adapters&quot;&gt;
+   &lt;adapter
+         name=&quot;Workflow Adapter&quot;
+         pluginClass=&quot;org.openarchitectureware.debug.model.adapters.WorkflowPluginAdapter&quot;
+         runtimeClass=&quot;org.openarchitectureware.debug.model.adapters.WorkflowElementAdapter&quot;/&gt;
+&lt;/extension&gt;&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         &lt;br&gt;&lt;b&gt;runtimeClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the &lt;code&gt;IElementAdapter&lt;/code&gt; interface.&lt;br&gt;
+&lt;b&gt;pluginClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the &lt;code&gt;IPluginAdapter&lt;/code&gt;interface.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         &lt;ul&gt;
+&lt;li&gt;WorkflowRuntimeAdapter, WorkflowPluginAdapter&lt;/li&gt;
+&lt;/ul&gt;
+Other modules of the openArchitecture framework implement more adapters:
+&lt;ul&gt;&lt;li&gt;XpandRuntimeAdapter, XpandPluginAdapter&lt;/li&gt;
+&lt;li&gt;ExpressionRuntimeAdapter, ExpressionPluginAdapter&lt;/li&gt;
+&lt;/ul&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2007 committers of openArchitectureWare and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>

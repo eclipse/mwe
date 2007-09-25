@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<workflow>
+    <property name="another" value="${another=true}"/>
+	<property file="org/openarchitectureware/workflow/container/workflow.properties"/>
+	<component class="org.openarchitectureware.workflow.container.Component">
+		<stringParam value="${myString}"/>
+		<type class="org.openarchitectureware.workflow.container.ComplexType">
+			<prop value="${another}"/>
+			<type class="org.openarchitectureware.workflow.container.ComplexType"/>
+		</type>
+	</component>
+</workflow>

@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.emf.mwe.ui">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.emf.mwe.ui" id="handlers" name="Debugger Handlers"/>
+      </appInfo>
+      <documentation>
+         A plugin-in implementing an extension for this extension point can provide additional functionality to the openArchitectureWare debugger.&lt;br&gt;&lt;br&gt;
+An MWE debugger process is started in an extra Virtual Machine as in Java. The communication between the runtime VM and the Eclipse VM happens via a socket of the localHost.&lt;br&gt;
+There are two types of handlers: &lt;code&gt;IRuntimeHandler&lt;/code&gt; and &lt;code&gt;IPluginHandler&lt;/code&gt;. Normally there should be always a pair of these, that communicate with each other.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <complexType>
+         <sequence>
+            <element ref="handler" minOccurs="1" maxOccurs="unbounded"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  the descriptor of the extension
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  an optional identifier of the extension instance
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  an optional name of the extension instance
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="handler">
+      <annotation>
+         <appInfo>
+            <meta.element labelAttribute="name"/>
+         </appInfo>
+      </annotation>
+      <complexType>
+         <attribute name="runtimeClass" type="string">
+            <annotation>
+               <documentation>
+                  The name of an IRuntimeHandler implementation. This class will be instantiated in the runtime VM, that has normally no direct access to the Eclipse session.&lt;br&gt;
+In the &lt;code&gt;init(...)&lt;/code&gt; method it can register itself in the &lt;code&gt;DebugMonitor&lt;/code&gt; and can that way send commands or react to events to/from the monitor.&lt;br&gt;
+If the handler must listen for communication events from eclipse it is reasonable to do it in an extra thread. This thread can be started in the &lt;code&gt;startListener()&lt;/code&gt; method.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.core.debug.processing.IRuntimeHandler"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="pluginClass" type="string">
+            <annotation>
+               <documentation>
+                  The name of an IPluginHandler implementation. This class will be instantiated in the eclipse VM. It is responsible to handle commands and events on the eclipse side.&lt;br&gt;
+It can send commands through the socket to the runtime side and assumes a corresponding runtime handler that reacts on these commands there.&lt;br&gt;
+It can also listen for events on the socket that where sent by a corresponding runtime handler and distribute them to the debug element model (through the &lt;code&gt;DebugModelManager&lt;/code&gt;) or to any other class that provides additional functionality to the Eclipse framwork.
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.IPluginHandler"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="type">
+            <annotation>
+               <documentation>
+                  an optional handlerType name of the pluginHandler instance. The handler is registered under that name in the &lt;code&gt;DebugModelManager&lt;/code&gt;.&lt;br&gt;
+&quot;other&quot; handlers will get a reference to the &lt;code&gt;DebugModelManager&lt;/code&gt;, bu are not registered there.
+               </documentation>
+            </annotation>
+            <simpleType>
+               <restriction base="string">
+                  <enumeration value="variablesHandler">
+                  </enumeration>
+                  <enumeration value="breakpointHandler">
+                  </enumeration>
+                  <enumeration value="other">
+                  </enumeration>
+               </restriction>
+            </simpleType>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  an optional name of the handler instance
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         4.2
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         &lt;pre&gt;
+   &lt;extension
+         point=&quot;org.openarchitectureware.workflow.debugHandlers&quot;&gt;
+     &lt;handler
+           name=&quot;Variables Handler&quot;
+           pluginClass=&quot;org.openarchitectureware.debug.processing.handlers.VariablesPluginHandler&quot;
+           runtimeClass=&quot;org.openarchitectureware.debug.processing.handlers.VariablesRuntimeHandler&quot;
+           type=&quot;variablesHandler&quot;/&gt;
+   &lt;/extension&gt;
+&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         &lt;br&gt;&lt;b&gt;runtimeClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.openarchitectureware.debug.processing;
+public interface IRuntimeHandler {
+    public void init(DebugMonitor monitor, Connection connection);
+    public void startListener();
+}&lt;/pre&gt;
+
+&lt;b&gt;pluginClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.openarchitectureware.debug.processing;
+public interface IPluginHandler {
+    public void setConnection(Connection connection);
+}&lt;/pre&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         &lt;ul&gt;
+&lt;li&gt;VariablesRuntimeHandler, VariablesPluginHandler&lt;/li&gt;
+&lt;li&gt;BreakpointRuntimeHandler, BreakpointPluginHandler&lt;/li&gt;
+&lt;/ul&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+      </documentation>
+   </annotation>
+
+</schema>
