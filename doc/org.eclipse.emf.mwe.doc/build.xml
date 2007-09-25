@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse._PROJECTNAMESPACE_.doc" default="build.jars" basedir=".">
+<project name="org.eclipse.emf.mwe.doc" default="build.jars" basedir=".">
 	
 	<property name="pluginVersion" value="2.3.0"/>
-	<property name="projectName" value="_SHORTNAME_"/>
+	<property name="projectName" value="mwe"/>
 	
 	<property name="basews" value="${ws}"/>
 	<property name="baseos" value="${os}"/>

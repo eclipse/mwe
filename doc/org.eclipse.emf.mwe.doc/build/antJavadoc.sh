@@ -3,11 +3,11 @@
 # BEGIN CUSTOMIZATIONS
 
 # The plugin name
-pluginName="org.eclipse._PROJECTNAMESPACE_"; 
+pluginName="org.eclipse.emf.mwe"; 
 
 # string labels for javadoc content
-windowTitle="_SHORTNAME_ Javadoc";
-groupTitle="_SHORTNAME_";
+windowTitle="mwe Javadoc";
+groupTitle="mwe";
 
 # files to exclude from javadoc process - use Ant syntax
 javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
