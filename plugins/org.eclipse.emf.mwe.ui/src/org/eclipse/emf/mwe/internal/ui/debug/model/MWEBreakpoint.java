@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.internal.ui.workflow.util.PluginConfigurationElementU
 /**
  * A line- and in-text breakpoint that supports the MWE debug model
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWEBreakpoint extends LineBreakpoint {
 

@@ -32,9 +32,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.VariablesPlugin
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 
-/**
- * @author Clemens Kadura (zAJKa)
- */
 public class DebugModelManager implements IDebugEventSetListener {
 	private DebugTarget target;
 

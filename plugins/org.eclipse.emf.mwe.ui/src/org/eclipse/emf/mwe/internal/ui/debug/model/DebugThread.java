@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
  * MWE Debug Thread implementation<br>
  * For Info: A debug thread handles the stepping commands and holds the DebugStackFrames
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugThread extends DebugElement implements IThread {
 

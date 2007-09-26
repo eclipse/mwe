@@ -17,7 +17,6 @@ import java.io.IOException;
 /**
  * Transfer object class for syntax element description in a normalized form.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class SyntaxElement {
 

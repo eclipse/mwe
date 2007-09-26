@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.internal.core.debug.model.NameValuePair;
  * side.<br>
  * That is process specific decisions and syntax element and variable normalisation.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface ElementAdapter {
 

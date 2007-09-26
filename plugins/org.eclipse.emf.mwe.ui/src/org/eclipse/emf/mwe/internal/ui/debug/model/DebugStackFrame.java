@@ -29,7 +29,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.ui.VariableSorter;
  * <br>
  * For Info: In the MWE debug model all processing methods are delegated either to DebugTarget or DebugThread.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugStackFrame extends DebugElement implements IStackFrame {
 

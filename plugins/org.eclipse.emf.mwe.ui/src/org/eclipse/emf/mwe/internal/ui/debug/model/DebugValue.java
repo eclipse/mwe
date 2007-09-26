@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.ui.VariableSorter;
  * MWE Debug Value implementation<br>
  * A DebugValue has (beside it's own String representation) a list of sub-variables.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugValue extends DebugElement implements IValue {
 

@@ -18,7 +18,6 @@ import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
  * MWE Debug Variable implementation<br>
  * A variable has (beside the name) a <code>DebugValue</code>, that holds potential sub-variables.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugVariable extends DebugElement implements IVariable {
 

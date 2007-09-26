@@ -20,7 +20,6 @@ import org.eclipse.swt.graphics.Image;
  * An adapter to the MWE debug model that handle all element type specific activities on the Eclipse side.<br>
  * That is breakpoint handling and assignment of the right editor for source lookup.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface PluginAdapter {
 

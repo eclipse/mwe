@@ -21,7 +21,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 /**
  * Common functions for all classes inheriting from this class, that represent the debug model.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public abstract class DebugElement extends PlatformObject implements IDebugElement {
 	protected DebugTarget target;

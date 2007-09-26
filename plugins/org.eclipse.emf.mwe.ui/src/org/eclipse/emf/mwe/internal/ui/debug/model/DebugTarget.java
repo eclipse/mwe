@@ -40,7 +40,6 @@ import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
  * <br>
  * For Info: A debug target handles the suspend, resume, terminate commands and the breakpoint handling.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugTarget extends DebugElement implements IDebugTarget {
 

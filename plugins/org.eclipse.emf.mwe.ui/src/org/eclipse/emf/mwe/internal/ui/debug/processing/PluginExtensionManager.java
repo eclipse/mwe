@@ -37,7 +37,6 @@ import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
  * during init, since they depend on the existence of a DebugModelManager.<br>
  * Since there is a new DebugModelManager for every debugger run, the init method will be called multiple times.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class PluginExtensionManager {
 
