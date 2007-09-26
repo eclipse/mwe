@@ -6,8 +6,8 @@
 pluginName="org.eclipse.emf.mwe"; 
 
 # string labels for javadoc content
-windowTitle="mwe Javadoc";
-groupTitle="mwe";
+windowTitle="Modeling Workflow Engine Javadoc";
+groupTitle="Modeling Workflow Engine";
 
 # files to exclude from javadoc process - use Ant syntax
 javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
