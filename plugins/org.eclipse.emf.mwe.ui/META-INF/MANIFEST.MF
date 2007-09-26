@@ -14,7 +14,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.editors,
  org.eclipse.emf.mwe.core,
  org.eclipse.ui.ide
-Provide-Package: org.eclipse.emf.mwe.internal.ui.eclipse.launch
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-LazyStart: true
@@ -30,5 +29,6 @@ Export-Package: org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions;x-frien
  org.eclipse.emf.mwe.internal.ui.wizard;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.workflow;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.workflow.debug;x-internal:=true,
- org.eclipse.emf.mwe.internal.ui.workflow.util;x-internal:=true
+ org.eclipse.emf.mwe.internal.ui.workflow.util;x-internal:=true,
+ org.eclipse.emf.mwe.internal.ui.eclipse.launch;x-internal:=true
 
