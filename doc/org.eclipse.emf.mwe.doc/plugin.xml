@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.2"?>
 <plugin>
+
   <!-- ====================================================================== -->
   <!-- Define primary TOC                                                     -->
   <!-- ====================================================================== -->
+  
   <extension point="org.eclipse.help.toc">
     <toc file="toc.xml" primary="true"/>
-	<index path="index"/>
   </extension>
 
   <!-- ====================================================================== -->
@@ -22,9 +23,14 @@
 <!-- ============================================================================= -->
    <extension point="org.eclipse.pde.core.javadoc">
        <javadoc path="doc.zip!/references/javadoc" archive="true">
-          <!-- @pluginIDs@ -->
-          <!-- list plugin IDs here, eg. <plugin id="org.eclipse.foo.bar"/> <plugin id="org.eclipse.foo.baz"/> -->
+          <plugin id="org.eclipse.emf.mwe.core"/>
+          <plugin id="org.eclipse.emf.mwe.utils"/>
+          <plugin id="org.eclipse.emf.mwe.ui"/>
+          <plugin id="org.eclipse.emf.mwe.ui.simpleEditor"/>
+          <plugin id="org.eclipse.emf.mwe.ui.wtpEditor"/>
        </javadoc>
    </extension>
+
+
 
 </plugin>
