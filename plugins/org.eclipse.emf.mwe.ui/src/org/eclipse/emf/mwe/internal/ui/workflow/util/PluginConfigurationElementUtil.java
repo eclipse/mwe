@@ -31,8 +31,7 @@ public class PluginConfigurationElementUtil {
 	}
 	
 	public static IConfigurationElement[] getConfigElements(String path) {
-		 // "aaa/bbb[xx=yy]/ccc" or "aaa/bbb/ccc";
-		Pattern p = Pattern.compile("(.+)/(.+?)(\\[(.+)=(.+)\\])?");
+		Pattern p = Pattern.compile("(.+)/(.+?)(\\[(.+)=(.+)\\])?/(.+)");
 		Matcher m = p.matcher(path);
 		if (!m.find())
 			return null;

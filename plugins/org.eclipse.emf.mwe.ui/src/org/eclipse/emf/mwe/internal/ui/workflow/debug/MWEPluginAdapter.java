@@ -78,7 +78,7 @@ public class MWEPluginAdapter implements PluginAdapter {
 	}
 
 	public String getEditorId() {
-		IConfigurationElement[] configElements = PluginConfigurationElementUtil.getConfigElements("org.eclipse.ui.editors/" + "editor[extensions=mwe, oaw]");
+		IConfigurationElement[] configElements = PluginConfigurationElementUtil.getConfigElements("org.eclipse.ui.editors/" + "editor[extensions=mwe, oaw]/id");
 		for (IConfigurationElement element : configElements) {
 			if (element.getAttribute("default").equalsIgnoreCase("true")) {
 				return element.getAttribute("id");
