@@ -21,8 +21,6 @@ import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 /**
  * The packet to communicate variable values for a specific reference id. Corresponds with
  * <code>RequireVarPacket</code>.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class VarDataPacket extends AbstractPacket {
 

@@ -16,8 +16,6 @@ import java.io.IOException;
 
 /**
  * The packet to communicate an event from the runtime process.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class EventPacket extends AbstractPacket {
 

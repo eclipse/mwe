@@ -26,8 +26,6 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
  * This class handles the communication of Breakpoints on the runtime side. It listens in an extra thread for set
  * and removal of breakpoints. The <code>DebugMonitor</code> uses this class to suspend the runtime process at
  * breakpoints.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler, Runnable {
 

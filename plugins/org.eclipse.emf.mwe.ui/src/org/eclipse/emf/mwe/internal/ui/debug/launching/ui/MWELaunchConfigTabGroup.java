@@ -23,7 +23,6 @@ import org.eclipse.jdt.debug.ui.launchConfigurations.JavaClasspathTab;
  * Carried over from Java are JavaArgumentsTab, JavaClasspathTab and CommonTab.<br>
  * There are no JavaJRETab, SourceLookupTab and EnvironmentTab.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWELaunchConfigTabGroup extends AbstractLaunchConfigurationTabGroup {
 

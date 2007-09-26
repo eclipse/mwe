@@ -11,7 +11,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
 /**
  * Test for {@link AbstractWorkflowComponent}.
- * @author kthoms
  */
 public class AbstractWorkflowComponentTest extends TestCase {
 	private AbstractWorkflowComponent comp = new AbstractWorkflowComponent() {

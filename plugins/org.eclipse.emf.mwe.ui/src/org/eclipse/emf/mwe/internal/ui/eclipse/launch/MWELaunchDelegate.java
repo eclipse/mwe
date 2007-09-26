@@ -43,7 +43,6 @@ import org.eclipse.jdt.launching.VMRunnerConfiguration;
  * This launch delegate decides in which mode to run the workflow execution process (run or debug) and redirects
  * to the JavaLaunchDelegate or delegates to the WorkflowDebuggerLauncher.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 

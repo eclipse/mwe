@@ -18,7 +18,6 @@ import java.io.IOException;
  * The base class for all types of packets. It has the id and refId. Inheriting classes must call setNextId to get
  * a valid id.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public abstract class AbstractPacket {
 	protected int id;

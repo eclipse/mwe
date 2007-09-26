@@ -32,8 +32,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
  * The heart of the debug process on the runtime side. It has callback methods that are called by the syntax
  * element implementations before and after a process step.<br>
  * It works closely together with handlers and adapters that must be registered at startup.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugMonitor implements ProgressMonitor {
 

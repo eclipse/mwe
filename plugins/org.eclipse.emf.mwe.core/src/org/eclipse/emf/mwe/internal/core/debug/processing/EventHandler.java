@@ -15,8 +15,6 @@ import java.io.IOException;
 /**
  * Interface to handle events from the <code>DebugMonitor</code>.<br>
  * See DebugMonitor to understand when an event is fired.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface EventHandler {
 

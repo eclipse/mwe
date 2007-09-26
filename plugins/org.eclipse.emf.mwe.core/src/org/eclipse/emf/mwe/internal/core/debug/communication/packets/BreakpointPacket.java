@@ -18,8 +18,6 @@ import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 
 /**
  * The packet to communicate set and delete of breakpoints.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class BreakpointPacket extends AbstractPacket {
 

@@ -21,9 +21,6 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 
 /**
  * Default {@link WorkflowContext} implementation.
- * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class WorkflowContextDefaultImpl implements WorkflowContext {
 

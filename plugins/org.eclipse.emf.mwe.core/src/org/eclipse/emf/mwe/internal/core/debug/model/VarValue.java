@@ -16,8 +16,6 @@ import java.util.Set;
 /**
  * A wrapper class for caching of variable values together with a specific id and remember where this value is
  * used and which member valuess it has.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class VarValue {
 

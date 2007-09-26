@@ -36,8 +36,6 @@ import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 /**
  * A composite <tt>WorkflowComponent</tt>.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
- * 
  */
 public class CompositeComponent implements WorkflowComponentWithID {
 	protected static final Log log = LogFactory.getLog(CompositeComponent.class);

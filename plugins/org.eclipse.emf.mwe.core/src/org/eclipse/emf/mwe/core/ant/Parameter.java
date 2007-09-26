@@ -17,8 +17,6 @@ package org.eclipse.emf.mwe.core.ant;
 /**
  * Simple bean that holds a name/value pair.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class Parameter {
     private String name;

@@ -12,8 +12,6 @@ package org.eclipse.emf.mwe.internal.core.debug.processing;
 
 /**
  * Interface that is used by the DebugMonitor to decide several operational steps.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface ProcessHandler {
 	public static final int SHALL_HANDLE = 1;

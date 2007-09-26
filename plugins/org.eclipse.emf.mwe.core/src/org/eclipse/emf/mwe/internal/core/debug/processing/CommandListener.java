@@ -14,8 +14,6 @@ import java.io.IOException;
 
 /**
  * Interface to listen for regular process commands from the debug server (e.g. eclipse).
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface CommandListener {
 

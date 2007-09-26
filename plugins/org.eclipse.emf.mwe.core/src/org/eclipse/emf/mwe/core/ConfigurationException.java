@@ -16,9 +16,6 @@ package org.eclipse.emf.mwe.core;
 
 /**
  * Thrown if the workflow configuration is invalid.
- * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class ConfigurationException extends RuntimeException {
 

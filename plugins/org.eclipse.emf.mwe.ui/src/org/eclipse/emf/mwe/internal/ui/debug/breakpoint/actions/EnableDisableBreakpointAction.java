@@ -34,7 +34,6 @@ public class EnableDisableBreakpointAction extends Action {
 	/**
 	 * Enable/Disable breakpoint action that can be used both at vertical ruler and editor context menu.
 	 * 
-	 * @author Clemens Kadura (zAJKa)
 	 */
 	protected EnableDisableBreakpointAction(TextEditor editor, BreakpointActionGroup group) {
 		this.editor = editor;

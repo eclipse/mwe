@@ -26,8 +26,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.HandshakePa
  * This class implements a socket connection model. "Packets" (units of information) can be transfered between two
  * different virtual machines. During the initialisation of a socket connection a reader and a writer thread are
  * established. This class can be used both on the sender and receiver side.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class Connection {
 

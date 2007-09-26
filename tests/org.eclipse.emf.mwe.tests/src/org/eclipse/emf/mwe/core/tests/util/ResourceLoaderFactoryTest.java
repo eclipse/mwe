@@ -24,8 +24,6 @@ import junit.framework.TestCase;
  * Unittest for class
  * {@link org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory}.
  * 
- * @author Karsten Thoms [karsten.thoms@itemis.de]
- * 
  */
 public class ResourceLoaderFactoryTest extends TestCase {
 

@@ -19,8 +19,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 /**
  * Empty implementation of {@link ProgressMonitor}.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class NullProgressMonitor implements ProgressMonitor {
 

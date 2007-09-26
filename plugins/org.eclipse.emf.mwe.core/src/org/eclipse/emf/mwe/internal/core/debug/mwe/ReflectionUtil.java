@@ -18,8 +18,6 @@ import java.util.Map;
 
 /**
  * Provides static helper methods to deal with element fields using reflection.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class ReflectionUtil {
 

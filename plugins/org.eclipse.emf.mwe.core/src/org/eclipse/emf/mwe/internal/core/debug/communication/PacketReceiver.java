@@ -21,8 +21,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPac
 /**
  * This Runnable listens for incoming packets asynchroniously and keeps them, until they are required by
  * customers.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class PacketReceiver implements Runnable {
 	private ArrayList<AbstractPacket> receivedPackets;

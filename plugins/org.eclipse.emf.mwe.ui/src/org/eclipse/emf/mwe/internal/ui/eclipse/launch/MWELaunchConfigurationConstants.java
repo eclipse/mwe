@@ -14,7 +14,6 @@ package org.eclipse.emf.mwe.internal.ui.eclipse.launch;
  * Launch configuration constants that are used in addition to the <code>IJavaLaunchConfigurationConstants</code>
  * ones.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface MWELaunchConfigurationConstants {
 

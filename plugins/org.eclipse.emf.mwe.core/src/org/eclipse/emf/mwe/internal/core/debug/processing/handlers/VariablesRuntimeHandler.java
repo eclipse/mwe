@@ -31,8 +31,6 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 /**
  * This class handles the communication of variable names and values with the debug server.<br>
  * It caches variable values with it's id and handles also cleanup of this cache if values are no longer used.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Runnable {
 

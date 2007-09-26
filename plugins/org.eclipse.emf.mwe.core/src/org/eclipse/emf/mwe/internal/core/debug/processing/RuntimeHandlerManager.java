@@ -22,8 +22,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.RegisterPac
 /**
  * This manager class listens for requests from the debug server to instantiate handlers or adapters.<br>
  * It initiates the handlers and registers adapters at the <code>DebugMonitor</code> instance.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class RuntimeHandlerManager implements Runnable {
 

@@ -17,8 +17,6 @@ package org.eclipse.emf.mwe.core;
 /**
  * This is a workflow component that has an ID, so that it can be output in the
  * logger.
- * 
- * @author Markus Voelter
  */
 public interface WorkflowComponentWithID extends WorkflowComponent {
 

@@ -25,8 +25,6 @@ import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 
 /**
  * The IElementAdapter implementation for WorkflowComponents.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class WorkflowElementAdapter implements ElementAdapter {
 

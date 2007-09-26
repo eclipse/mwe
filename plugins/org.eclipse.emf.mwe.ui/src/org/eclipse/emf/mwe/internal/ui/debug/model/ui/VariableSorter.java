@@ -18,7 +18,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.DebugVariable;
 /**
  * Sorter for debug variables by it's name. It sorts upper case names at first and lower case afterwards.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class VariableSorter {
 

@@ -30,8 +30,6 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
  * The <code>ICommandListener</code> and <code>IProcessHandler</code> methods are the active ones that
  * communicate with the debug server.<br>
  * The <code>IEventHandler</code> methods react only internally on events.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, ProcessHandler, EventHandler, Runnable {
 

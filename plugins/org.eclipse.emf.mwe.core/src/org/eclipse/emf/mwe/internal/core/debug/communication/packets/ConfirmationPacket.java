@@ -16,8 +16,6 @@ import java.io.IOException;
 
 /**
  * The packet to communicate the confirmation of a specific packet reference id.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class ConfirmationPacket extends AbstractPacket {
 

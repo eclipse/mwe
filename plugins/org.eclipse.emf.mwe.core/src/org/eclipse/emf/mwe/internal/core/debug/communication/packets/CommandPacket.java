@@ -16,8 +16,6 @@ import java.io.IOException;
 
 /**
  * The packet to communicate a process or direct command to the runtime process.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class CommandPacket extends AbstractPacket {
 

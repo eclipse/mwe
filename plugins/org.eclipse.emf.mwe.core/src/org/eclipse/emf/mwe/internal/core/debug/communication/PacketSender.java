@@ -20,8 +20,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPac
 
 /**
  * This Runnable sends packets out asynchroniously as they arrive from customers.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class PacketSender implements Runnable {
 

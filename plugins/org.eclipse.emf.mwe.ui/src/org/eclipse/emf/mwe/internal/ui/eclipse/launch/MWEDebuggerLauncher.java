@@ -37,7 +37,6 @@ import org.eclipse.jdt.launching.VMRunnerConfiguration;
  * It establishes the socket connection for communication between the runtime VM and the debugger framework.<br>
  * It instantiates the debug model representation.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWEDebuggerLauncher extends AbstractVMRunner {
 	private IVMInstall vm;

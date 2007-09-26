@@ -16,8 +16,6 @@ import java.io.IOException;
 
 /**
  * The packet to communicate a request for variable from a specific frame and variable id.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class RequireVarPacket extends AbstractPacket {
 

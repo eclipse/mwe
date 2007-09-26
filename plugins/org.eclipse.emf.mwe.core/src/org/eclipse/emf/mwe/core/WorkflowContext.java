@@ -17,8 +17,6 @@ package org.eclipse.emf.mwe.core;
 /**
  * A WorkflowContext is a container for models and other objects.
  * 
- * @author Sven Efftige
-
  */
 public interface WorkflowContext {
     /** Identifier of the default slot. */

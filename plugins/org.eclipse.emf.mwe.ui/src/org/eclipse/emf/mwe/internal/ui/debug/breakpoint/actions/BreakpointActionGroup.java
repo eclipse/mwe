@@ -28,7 +28,6 @@ import org.eclipse.ui.editors.text.TextEditor;
  * Despite of usual breakpoint actions these actions can be used not only for vertical ruler context menu (incl.
  * double click), but also for editor context menu. That way "in line" breakpoints can be handled.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class BreakpointActionGroup extends ActionGroup {
 

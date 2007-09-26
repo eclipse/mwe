@@ -15,8 +15,6 @@ import java.io.DataOutputStream;
 
 /**
  * The packet to communicate a first handshake. There are no data to be communicated.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class HandshakePacket extends AbstractPacket {
 

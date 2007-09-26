@@ -48,7 +48,6 @@ import org.eclipse.swt.widgets.Display;
 /**
  * The IPluginAdapter implementation for WorkflowComponents.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWEPluginAdapter implements PluginAdapter {
 

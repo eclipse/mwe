@@ -18,8 +18,6 @@ import org.eclipse.jdt.core.JavaCore;
  * This ResourceLoader is capable of loading resources from a specific Java project within the workspace.
  * Typical use is when invoking a workflow from within a plugin.
  *  
- * @author Axel Terfloth (axel.terfloth@itemis.de)
- * @author Karsten Thoms (karsten.thoms@itemis.de)
  */
 public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
     private ClassLoader projectCL;

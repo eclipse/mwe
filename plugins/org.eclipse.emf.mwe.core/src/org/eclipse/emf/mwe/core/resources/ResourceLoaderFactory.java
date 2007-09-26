@@ -26,8 +26,6 @@ import org.eclipse.emf.mwe.internal.core.resources.ResourceLoaderDefaultImpl;
  * system property to get the <tt>ResourceLoader</tt> implementation class
  * name. Set this property to specify an alternative implementation.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class ResourceLoaderFactory {
     public final static String PARAM_RESOURCELOADER_CLASS = "org.eclipse.emf.mwe.core.resources.ResourceLoader";

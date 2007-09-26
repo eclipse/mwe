@@ -24,7 +24,6 @@ import org.eclipse.ui.editors.text.TextEditor;
 /**
  * Toggle breakpoint action that can be used both at vertical ruler and editor context menu.
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class ToggleBreakpointAction extends Action {
 

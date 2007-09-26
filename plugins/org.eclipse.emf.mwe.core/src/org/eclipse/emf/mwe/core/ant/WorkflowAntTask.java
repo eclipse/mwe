@@ -27,8 +27,6 @@ import org.eclipse.emf.mwe.core.WorkflowRunner;
  * <p>
  * This task specializes the <tt>Java</tt> task.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class WorkflowAntTask extends Java {
     private String file;

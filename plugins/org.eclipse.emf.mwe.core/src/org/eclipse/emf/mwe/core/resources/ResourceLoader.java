@@ -18,11 +18,6 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Enumeration;
 
-/**
- * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
- */
 public interface ResourceLoader {
 
     /**

@@ -39,8 +39,6 @@ import org.eclipse.emf.mwe.internal.core.ast.util.converter.StringConverter;
  * {@link org.eclipse.emf.mwe.core.WorkflowComponent WorkflowComponents}
  * from a workflow configuration.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
-
  */
 public class WorkflowFactory {
 

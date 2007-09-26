@@ -15,8 +15,6 @@ import java.io.IOException;
 /**
  * A RuntimeException that is thrown when an exception is thrown during debugging or if the user terminates the
  * process
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebuggerInterruptedException extends RuntimeException {
 

@@ -27,7 +27,6 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
  * {@link #invoke(WorkflowContext, ProgressMonitor)} method at the appropriate
  * time to execute the component's service.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
  */
 public interface WorkflowComponent {
 

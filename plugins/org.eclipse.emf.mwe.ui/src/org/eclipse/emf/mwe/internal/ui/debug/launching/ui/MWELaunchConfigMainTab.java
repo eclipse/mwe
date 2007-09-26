@@ -50,7 +50,6 @@ import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
  * There is an additional <code>javaDebugCheckbox</code> to be able to select the debug process (MWE debug or
  * Java debug)
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class MWELaunchConfigMainTab extends JavaLaunchTab {
 

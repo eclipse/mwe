@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 /**
  * Dummy implementation of {@link ResourceLoader}.
  * 
- * @author Karsten Thoms [karsten.thoms@itemis.de]
  */
 public class DummyResourceLoader implements ResourceLoader {
     /** Empty */

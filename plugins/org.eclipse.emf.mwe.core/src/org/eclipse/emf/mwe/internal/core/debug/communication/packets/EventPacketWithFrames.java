@@ -20,8 +20,6 @@ import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 
 /**
  * The packet to communicate an event from the runtime process together with the current stack frame information.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class EventPacketWithFrames extends EventPacket {
 

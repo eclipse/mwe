@@ -47,8 +47,6 @@ import org.eclipse.ui.IEditorPart;
  * It creates a launchConfiguration if there is non already for the specified workflow file, stores it and
  * starts it in the resp. mode
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
- * @author Clemens Kadura (zAJKa) - adapted for debugger
  */
 public class MWELaunchShortcut implements ILaunchShortcut {
 

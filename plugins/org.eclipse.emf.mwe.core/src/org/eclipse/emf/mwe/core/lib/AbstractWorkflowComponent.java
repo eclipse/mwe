@@ -22,9 +22,6 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 /**
  * Base class useful for implementing custom WorkflowComponents.
  * 
- * @author Markus Voelter (impl)
- * @author Karsten Thoms (doc)
-
  */
 public abstract class AbstractWorkflowComponent implements WorkflowComponentWithID {
 	

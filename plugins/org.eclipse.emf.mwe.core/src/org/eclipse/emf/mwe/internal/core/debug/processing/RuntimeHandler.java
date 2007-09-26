@@ -14,8 +14,6 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 
 /**
  * base interface for handlers that support the debugger runtime process
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public interface RuntimeHandler {
 

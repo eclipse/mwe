@@ -22,9 +22,6 @@ import org.eclipse.emf.mwe.core.WorkflowComponent;
 /**
  * Collects information about workflow configuration.
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
- * @author Bernd Kolb
- * 
  */
 public interface Issues {
 

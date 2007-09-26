@@ -18,8 +18,6 @@ import java.util.List;
 
 /**
  * The packet to communicate handlers or adapter class names to be registered in the runtime process.
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class RegisterPacket extends AbstractPacket {
 

@@ -26,8 +26,6 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 /**
  * This class handles the communication of debug events on the runtime side.<br>
  * It sends them out (together with addition syntax element information, if required).
- * 
- * @author Clemens Kadura (zAJKa)
  */
 public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	public static final int STARTED = 1;

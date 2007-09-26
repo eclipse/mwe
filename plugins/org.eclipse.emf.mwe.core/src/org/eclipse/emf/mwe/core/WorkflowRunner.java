@@ -49,9 +49,6 @@ import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
  * <li>optional runtime properties that override those in workflow files
  * </ul>
  * 
- * @author Sven Efftinge (http://www.efftinge.de)
- * @author Clemens Kadura (zAJKa) - adapted for debugger handling (since 4.2)
- * 
  */
 public class WorkflowRunner {
 	private static final String PARAM = "p";
@@ -365,7 +362,6 @@ public class WorkflowRunner {
 	 * version is read from the attribute 'Bundle-Version'.
 	 * 
 	 * @return The build version string, format "4.1.1, Build 200609291913"
-	 * @author Karsten Thoms
 	 */
 	private String getVersion() {
 		String version = null;

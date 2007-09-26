@@ -31,7 +31,6 @@ import org.eclipse.ui.part.FileEditorInput;
  * Renders debug elements for display in several views; compare to
  * org.eclipse.jdt.internal.debug.ui.JDIModelPresentation
  * 
- * @author Clemens Kadura (zAJKa)
  */
 public class DebugModelPresentation extends LabelProvider implements IDebugModelPresentation {
 
