@@ -66,8 +66,8 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 
 	private final Throwable throwable;
 
-	public MWEDiagnostic(int severity, String msg, Object element, Throwable t,
-			List<Object> additionalData, WorkflowComponent ctx) {
+	public MWEDiagnostic(final int severity, final String msg, final Object element, final Throwable t,
+			final List<Object> additionalData, final WorkflowComponent ctx) {
 		throwable = t;
 		message = msg;
 		setSeverity(severity);
@@ -87,7 +87,7 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		}
 	}
 
-	protected void setSeverity(int severity) {
+	protected void setSeverity(final int severity) {
 		this.severity = severity;
 	}
 
@@ -110,7 +110,7 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		return Collections.unmodifiableList(children);
 	}
 
-	protected void setSource(String source) {
+	protected void setSource(final String source) {
 		this.source = source;
 	}
 
@@ -118,7 +118,7 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		return source;
 	}
 
-	protected void setCode(int code) {
+	protected void setCode(final int code) {
 		this.code = code;
 	}
 
@@ -126,7 +126,7 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		return code;
 	}
 
-	public void add(Diagnostic diagnostic) {
+	public void add(final Diagnostic diagnostic) {
 		if (children == null) {
 			children = new BasicEList<Diagnostic>();
 		}
@@ -138,13 +138,13 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		}
 	}
 
-	public void addAll(Diagnostic diagnostic) {
+	public void addAll(final Diagnostic diagnostic) {
 		for (Diagnostic child : diagnostic.getChildren()) {
 			add(child);
 		}
 	}
 
-	public void merge(Diagnostic diagnostic) {
+	public void merge(final Diagnostic diagnostic) {
 		if (diagnostic.getChildren().isEmpty()) {
 			add(diagnostic);
 		} else {
@@ -229,8 +229,9 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		if (element instanceof EObject) {
 			EObject eo = (EObject) element;
 			String name = getEName(eo);
-			if (name == null)
+			if (name == null) {
 				return eo.toString();
+			}
 			StringBuffer qfn = new StringBuffer();
 			qfn.append(name);
 			while (eo.eContainer() != null) {
@@ -245,10 +246,11 @@ public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
 		return element.toString();
 	}
 
-	private String getEName(EObject eo) {
+	private String getEName(final EObject eo) {
 		EStructuralFeature f = eo.eClass().getEStructuralFeature("name");
-		if (f == null)
+		if (f == null) {
 			return null;
+		}
 		return (String) eo.eGet(f);
 	}
 

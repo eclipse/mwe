@@ -20,9 +20,9 @@ import org.eclipse.jdt.core.JavaCore;
  *  
  */
 public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
-    private ClassLoader projectCL;
+    private final ClassLoader projectCL;
     
-	public ProjectIncludingResourceLoader(IProject project) throws CoreException {
+	public ProjectIncludingResourceLoader(final IProject project) throws CoreException {
 		super();
 		projectCL = createClassLoader(project);
 	}
@@ -32,23 +32,24 @@ public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
 	 * @param project An Eclipse project
 	 * @throws CoreException
 	 */
-	public ClassLoader createClassLoader (IProject project) throws CoreException {
+	public ClassLoader createClassLoader (final IProject project) throws CoreException {
 		IJavaProject jp = JavaCore.create(project);
 		
 		IClasspathEntry[] javacp = jp.getResolvedClasspath(true);		
 		URL[] url = new URL[javacp.length];
 
-		for (int i=0; i<javacp.length; i++)
+		for (int i=0; i<javacp.length; i++) {
 			try {
 				url[i] = javacp[i].getPath().toFile().toURL();
 			} catch (MalformedURLException e) {
 				Activator.logError(e);
 			}
+		}
 		return new URLClassLoader(url);
 	}
 
 	@Override
-	protected URL internalGetResource(String path) {
+	protected URL internalGetResource(final String path) {
 		URL resource = projectCL.getResource(path);
 		if ( resource == null ) {
 			resource = super.internalGetResource(path);
@@ -57,7 +58,7 @@ public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
 	}
 
 	@Override
-	protected InputStream internalGetResourceAsStream(String path) {
+	protected InputStream internalGetResourceAsStream(final String path) {
 		URL url = internalGetResource(path);
 		try {
 			return url != null ? url.openStream() : null;

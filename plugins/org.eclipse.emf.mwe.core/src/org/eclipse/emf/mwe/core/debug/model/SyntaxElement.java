@@ -40,7 +40,7 @@ public class SyntaxElement {
 	
 	// -------------------------------------------------------------------------
 
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		resource = in.readUTF();
 		start = in.readInt();
 		end = in.readInt();
@@ -52,7 +52,7 @@ public class SyntaxElement {
 		visible = in.readBoolean();
 	}
 
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeUTF(resource);
 		out.writeInt(start);
 		out.writeInt(end);
@@ -64,8 +64,8 @@ public class SyntaxElement {
 		out.writeBoolean(visible);
 	}
 
-	public boolean equalsBP(SyntaxElement se){
-		return resource.equals(se.resource) && line == se.line && start == se.start;
+	public boolean equalsBP(final SyntaxElement se){
+		return resource.equals(se.resource) && (line == se.line) && (start == se.start);
 	}
 	
 }

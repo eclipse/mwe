@@ -29,7 +29,7 @@ public class VarDataPacket extends AbstractPacket {
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		refId = in.readInt();
 		int noOfValues = in.readInt();
 		for (int i = 0; i < noOfValues; i++) {
@@ -40,18 +40,20 @@ public class VarDataPacket extends AbstractPacket {
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(refId);
 		out.writeInt(valueList.size());
-		for (VarValueTO var : valueList)
+		for (VarValueTO var : valueList) {
 			var.writeContent(out);
+		}
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(super.toString() + " [");
-		for (VarValueTO var : valueList)
+		for (VarValueTO var : valueList) {
 			sb.append(var.name + " ");
+		}
 		sb.append("]");
 		return sb.toString();
 	}

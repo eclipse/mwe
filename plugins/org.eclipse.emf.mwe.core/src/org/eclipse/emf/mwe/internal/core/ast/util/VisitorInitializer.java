@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.internal.core.ast.util;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -59,11 +58,10 @@ public class VisitorInitializer extends VisitorBase {
 	private Map<String, String> props = null;
 
 	private void traverseChildren(final ComponentAST c) {
-		for (final Iterator<?> iter = c.getChildren().iterator(); iter
-				.hasNext();) {
-			final AbstractASTBase element = (AbstractASTBase) iter.next();
-			element.accept(cloneThis());
-		}
+		for (Object name : c.getChildren()) {
+final AbstractASTBase element = (AbstractASTBase) name;
+element.accept(cloneThis());
+}
 	}
 
 	@Override
@@ -94,20 +92,18 @@ public class VisitorInitializer extends VisitorBase {
 			params.putAll(this.props);
 			paramBeans.putAll(this.beans);
 		}
-		for (final Iterator<?> iter = comp.getChildren().iterator(); iter
-				.hasNext();) {
-			final Object o = iter.next();
-			if (o instanceof SimpleParamAST) {
-				final SimpleParamAST p = (SimpleParamAST) o;
-				params.put(p.getName(), p.getValue());
-			} else if (o instanceof ComponentAST) {
-				final ComponentAST p = (ComponentAST) o;
-				paramBeans.put(p.getName(), p);
-			} else if (o instanceof ReferenceAST) {
-				final ReferenceAST ref = (ReferenceAST) o;
-				paramBeans.put(ref.getName(), ref.getReference());
-			}
-		}
+		for (Object o : comp.getChildren()) {
+if (o instanceof SimpleParamAST) {
+		final SimpleParamAST p = (SimpleParamAST) o;
+		params.put(p.getName(), p.getValue());
+} else if (o instanceof ComponentAST) {
+		final ComponentAST p = (ComponentAST) o;
+		paramBeans.put(p.getName(), p);
+} else if (o instanceof ReferenceAST) {
+		final ReferenceAST ref = (ReferenceAST) o;
+		paramBeans.put(ref.getName(), ref.getReference());
+}
+}
 		comp.setPassedBeans(paramBeans);
 		comp.setPassedProperties(params);
 		if (comp.getFile() != null) {
@@ -143,7 +139,7 @@ public class VisitorInitializer extends VisitorBase {
 		return comp;
 	}
 
-	private String translateFileURI(String file, String extension) {
+	private String translateFileURI(String file, final String extension) {
 		if (file.indexOf("::") != -1) {
 			file = file.replaceAll("::", "/");
 		}
@@ -196,19 +192,18 @@ public class VisitorInitializer extends VisitorBase {
 			issues.addError("Couldn't resolve properties file!", propFile);
 			return new HashMap<Object, Object>();
 		}
-		for (final Iterator<String> iter = propFile.getPropertyNames(loader)
-				.iterator(); iter.hasNext();) {
-			final String name = replaceProperties(iter.next(), propFile);
-			final String val = replaceProperties((String) properties.get(name),
-					propFile);
-			if (!props.containsKey(name)) {
-				props.put(name, val);
-			} else {
-				if (!declaredPropertyNames.add(name)) {
-					issues.addError("Duplicate property " + name, propFile);
-				}
-			}
+		for (String string : propFile.getPropertyNames(loader)) {
+final String name = replaceProperties(string, propFile);
+final String val = replaceProperties((String) properties.get(name),
+			propFile);
+if (!props.containsKey(name)) {
+		props.put(name, val);
+} else {
+		if (!declaredPropertyNames.add(name)) {
+			issues.addError("Duplicate property " + name, propFile);
 		}
+}
+}
 		return props;
 	}
 
@@ -216,16 +211,17 @@ public class VisitorInitializer extends VisitorBase {
 			.compile("\\$\\{([\\w_\\.-]+)\\}");
 
 	protected String replaceProperties(final String toResolve,
-			AbstractASTBase ast) {
+			final AbstractASTBase ast) {
 		return replaceProperties(toResolve, true, ast);
 	}
 
 	private final Stack<String> currentProp = new Stack<String>();
 
 	protected String replaceProperties(final String toResolve,
-			final boolean logIssues, AbstractASTBase ast) {
-		if (toResolve == null)
+			final boolean logIssues, final AbstractASTBase ast) {
+		if (toResolve == null) {
 			return null;
+		}
 		// if (currentProp.contains(toResolve)) {
 		// issues.addError("property "+toResolve+" not found!");
 		// return null;
@@ -240,10 +236,11 @@ public class VisitorInitializer extends VisitorBase {
 			final String varName = m.group(1);
 			String propValue = props.get(varName);
 			if (propValue == null) {
-				if (logIssues)
+				if (logIssues) {
 					issues.addError("property " + varName
 							+ " not specified. Dereferenced at "
 							+ ast.getLocation().toString());
+				}
 
 				return null;
 			}

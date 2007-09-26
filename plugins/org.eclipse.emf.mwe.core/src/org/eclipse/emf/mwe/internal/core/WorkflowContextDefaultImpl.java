@@ -37,10 +37,12 @@ public class WorkflowContextDefaultImpl implements WorkflowContext {
      * @see WorkflowContext#set(String, Object)
      */
     public void set(final String slotName, final Object model) {
-        if (slotName == null)
-            throw new IllegalArgumentException("slotName must not be null!");
-        if (!slotName.matches("[\\w_]+"))
-            throw new IllegalArgumentException("slotName '" + slotName + "' contains invalid characters!");
+        if (slotName == null) {
+			throw new IllegalArgumentException("slotName must not be null!");
+		}
+        if (!slotName.matches("[\\w_]+")) {
+			throw new IllegalArgumentException("slotName '" + slotName + "' contains invalid characters!");
+		}
         if (model == null) {
             models.remove(slotName);
         }

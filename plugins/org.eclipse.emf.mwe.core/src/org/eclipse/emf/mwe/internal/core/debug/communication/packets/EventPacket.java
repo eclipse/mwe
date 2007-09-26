@@ -23,7 +23,7 @@ public class EventPacket extends AbstractPacket {
 
 	// -------------------------------------------------------------------------
 
-	public EventPacket(int event) {
+	public EventPacket(final int event) {
 		this.event = event;
 		setNextId();
 	}
@@ -31,14 +31,14 @@ public class EventPacket extends AbstractPacket {
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		id = in.readInt();
 		event = in.readInt();
 
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(id);
 		out.writeInt(event);
 	}

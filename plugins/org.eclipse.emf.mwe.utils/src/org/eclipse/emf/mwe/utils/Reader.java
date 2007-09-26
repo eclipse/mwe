@@ -20,34 +20,38 @@ public class Reader extends AbstractEMFWorkflowComponent {
 
 	private boolean firstElementOnly = true;
 
-	public void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
-			Issues issues) {
+	@Override
+	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor,
+			final Issues issues) {
 		ctx.set(this.getModelSlot(), load(resourceSet, uri, firstElementOnly));
 		if (makeEPackagesGlobal) {
 			for (String k : resourceSet.getPackageRegistry()
-					.keySet())
+					.keySet()) {
 				EPackage.Registry.INSTANCE.put(k, resourceSet
 						.getPackageRegistry().get(k));
+			}
 		}
 	}
 
 	@Override
-	public void checkConfiguration(Issues issues) {
+	public void checkConfiguration(final Issues issues) {
 		super.checkConfiguration(issues);
 		if (uri == null) {
 			issues.addError("URI not set");
 		}
 	}
 
-	public static Object load(ResourceSet resourceSet, String uri,
-			boolean firstElementOnly) {
+	public static Object load(final ResourceSet resourceSet, final String uri,
+			final boolean firstElementOnly) {
 		Resource res = resourceSet.getResource(URI.createURI(uri), true);
-		if (res == null)
+		if (res == null) {
 			throw new WorkflowInterruptedException(
 					"Couldn't find resource under " + uri);
+		}
 		try {
-			if (!res.isLoaded())
+			if (!res.isLoaded()) {
 				res.load(Collections.EMPTY_MAP);
+			}
 		} catch (IOException e) {
 			throw new WorkflowInterruptedException(
 					"Couldn't find resource under " + uri + " : "
@@ -55,18 +59,19 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		}
 		EList result = res.getContents();
 		if (firstElementOnly) {
-			if (result.isEmpty())
+			if (result.isEmpty()) {
 				return null;
+			}
 			return result.iterator().next();
 		}
 		return result;
 	}
 
-	public void setFirstElementOnly(boolean firstElementOnly) {
+	public void setFirstElementOnly(final boolean firstElementOnly) {
 		this.firstElementOnly = firstElementOnly;
 	}
 
-	public void setMakeEPackagesGlobal(boolean makeEPackagesGlobal) {
+	public void setMakeEPackagesGlobal(final boolean makeEPackagesGlobal) {
 		this.makeEPackagesGlobal = makeEPackagesGlobal;
 	}
 

@@ -16,7 +16,6 @@ package org.eclipse.emf.mwe.internal.core.ast.util;
 
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -47,8 +46,9 @@ public class WorkflowFactory {
 	@SuppressWarnings("unchecked")
 	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter> converter, final Issues issues) {
 		final InputStream in = loader.getResourceAsStream(fileName);
-		if (in == null)
+		if (in == null) {
 			throw new IllegalArgumentException("Couldn't load file " + fileName);
+		}
 		return parseInitAndCreate(in, fileName, params, converter, issues);
 	}
 
@@ -62,22 +62,23 @@ public class WorkflowFactory {
 					.addError("This workflow file is abstract and cannot be run directly. It must be called from another workflow, passing in the required parameters.");
 			return null;
 		}
-		if (issues.hasErrors())
+		if (issues.hasErrors()) {
 			return null;
+		}
 		final WorkflowContainer wc = new WorkflowContainer();
 		wfast.accept(new VisitorAnalyzer(issues, converters, wc.getClass()));
-		if (issues.hasErrors())
+		if (issues.hasErrors()) {
 			return null;
+		}
 		wfast.accept(new VisitorCreator(issues, converters, wc));
 		Workflow wfRoot = (Workflow) wc.getRoot();
 		return wfRoot;
 	}
 
-	private boolean isAbstract(AbstractASTBase wfast) {
+	private boolean isAbstract(final AbstractASTBase wfast) {
 		if (wfast instanceof ComponentAST) {
 			ComponentAST ca = (ComponentAST) wfast;
-			for (Iterator<AbstractASTBase> iter = ca.getChildren().iterator(); iter.hasNext();) {
-				AbstractASTBase child = iter.next();
+			for (AbstractASTBase child : ca.getChildren()) {
 				if (child instanceof SimpleParamAST) {
 					SimpleParamAST spa = (SimpleParamAST) child;
 					if (spa.getName().toLowerCase().equals("abstract") && spa.getValue().toLowerCase().equals("true")) {

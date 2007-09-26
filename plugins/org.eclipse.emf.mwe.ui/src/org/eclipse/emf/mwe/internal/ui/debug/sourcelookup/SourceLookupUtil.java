@@ -45,7 +45,7 @@ public class SourceLookupUtil {
 	/**
 	 * Translates the given runtime classpath entries into associated source containers.
 	 */
-	public static ISourceContainer[] translate(IRuntimeClasspathEntry[] entries) {
+	public static ISourceContainer[] translate(final IRuntimeClasspathEntry[] entries) {
 		List<ISourceContainer> containers = new ArrayList<ISourceContainer>(entries.length);
 		for (IRuntimeClasspathEntry entry : entries) {
 			ISourceContainer container = null;
@@ -57,38 +57,41 @@ public class SourceLookupUtil {
 					File file = new File(path);
 					if (file.isDirectory()) {
 						IResource resource = entry.getResource();
-						if (resource instanceof IContainer)
+						if (resource instanceof IContainer) {
 							container = new FolderSourceContainer((IContainer) resource, false);
-						else
+						} else {
 							container = new DirectorySourceContainer(file, false);
-					} else
+						}
+					} else {
 						container = new ExternalArchiveSourceContainer(path, true);
+					}
 				} else {
 					container = new PackageFragmentRootContainer(root);
 				}
 				break;
 			case IRuntimeClasspathEntry.PROJECT:
 				IResource resource = entry.getResource();
-				if (resource != null && resource.getType() == IResource.PROJECT) {
+				if ((resource != null) && (resource.getType() == IResource.PROJECT)) {
 					IJavaProject javaProject = JavaCore.create((IProject) resource);
-					if (javaProject.exists())
+					if (javaProject.exists()) {
 						container = new SourceFolderSourceContainer(javaProject);
-					else if (resource.exists())
+					} else if (resource.exists()) {
 						container = new ProjectSourceContainer((IProject) resource, false);
+					}
 				}
 				break;
 			default:
 				// no other classpath types are valid in a resolved path
 				break;
 			}
-			if (container != null && !containers.contains(container)) {
+			if ((container != null) && !containers.contains(container)) {
 				containers.add(container);
 			}
 		}
 		return containers.toArray(new ISourceContainer[containers.size()]);
 	}
 
-	private static IPackageFragmentRoot getPackageFragmentRoot(IRuntimeClasspathEntry entry) {
+	private static IPackageFragmentRoot getPackageFragmentRoot(final IRuntimeClasspathEntry entry) {
 		IResource resource = entry.getResource();
 
 		if (resource != null) {
@@ -101,17 +104,21 @@ public class SourceLookupUtil {
 			}
 		}
 
-		if (model == null)
+		if (model == null) {
 			model = JavaCore.create(ResourcesPlugin.getWorkspace().getRoot());
+		}
 
 		// ... or external jars, that are registered in one of the open projects at runtime
 		IPath reqPath = (resource == null ? new Path(entry.getLocation()) : entry.getPath());
 		try {
 			for (IJavaProject jp : model.getJavaProjects()) {
-				if (jp.getProject().isOpen())
-					for (IPackageFragmentRoot root : jp.getPackageFragmentRoots())
-						if (root.isExternal() && root.getPath().equals(reqPath))
+				if (jp.getProject().isOpen()) {
+					for (IPackageFragmentRoot root : jp.getPackageFragmentRoots()) {
+						if (root.isExternal() && root.getPath().equals(reqPath)) {
 							return root;
+						}
+					}
+				}
 			}
 		} catch (JavaModelException e) {
 			Activator.logError(e); // should not occur

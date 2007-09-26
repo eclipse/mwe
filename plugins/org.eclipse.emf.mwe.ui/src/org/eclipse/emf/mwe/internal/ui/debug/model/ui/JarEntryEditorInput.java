@@ -14,7 +14,7 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 
 	private IStorage fJarEntryFile;
 
-	public JarEntryEditorInput(IStorage jarEntryFile) {
+	public JarEntryEditorInput(final IStorage jarEntryFile) {
 		super(jarEntryFile);
 	}
 
@@ -23,6 +23,7 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 	}
 
 
+	@Override
 	public String getToolTipText() {
 		//TODO: ER: add corresponding plugin to the text
 		// as it is for Files; This would be new, since it is also
@@ -30,6 +31,7 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 		return fJarEntryFile.getFullPath().makeRelative().toString();
 	}
 
+	@Override
 	public ImageDescriptor getImageDescriptor() {
 		IEditorRegistry registry = PlatformUI.getWorkbench()
 				.getEditorRegistry();
@@ -37,8 +39,9 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 				.getFileExtension());
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter(final Class adapter) {
 		if (adapter == IStorage.class) {
 			return fJarEntryFile;
 		}

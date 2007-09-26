@@ -6,7 +6,7 @@ public class GlobalConfigurationHolder {
 
 	private static ConfigurationModel configModel = null;
 
-	public static void setConfigurationModel( ConfigurationModel cm, Issues issues ) {
+	public static void setConfigurationModel( final ConfigurationModel cm, final Issues issues ) {
 		if ( configModel != null ) {
 			if ( !configModel.equals(cm)) {
 				issues.addError("configuration model already set!");

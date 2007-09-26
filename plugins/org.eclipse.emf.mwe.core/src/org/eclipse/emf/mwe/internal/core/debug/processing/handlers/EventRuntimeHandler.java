@@ -40,7 +40,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 	private DebugMonitor monitor;
 
-	private Stack<Frame> stackFrames = new Stack<Frame>();
+	private final Stack<Frame> stackFrames = new Stack<Frame>();
 
 	private int cleanStackLevel = 0;
 
@@ -52,7 +52,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
 	 *      org.openarchitectureware.debug.communication.Connection)
 	 */
-	public void init(DebugMonitor monitor, Connection connection) {
+	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
 		monitor.addEventHandler(this);
@@ -82,7 +82,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
 	 */
-	public void preTask(Object element, Object context, int state) {
+	public void preTask(final Object element, final Object context, final int state) {
 		stackFrames.push(new Frame(element, context, state));
 	}
 
@@ -91,9 +91,10 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
-	public void postTask(Object context) {
-		if (cleanStackLevel >= stackFrames.size())
+	public void postTask(final Object context) {
+		if (cleanStackLevel >= stackFrames.size()) {
 			cleanStackLevel--;
+		}
 		stackFrames.pop();
 	}
 
@@ -113,10 +114,11 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 			SyntaxElement to;
 			ElementAdapter adapter = monitor.getAdapter(frame.element);
 			adapter.setContext(frame.context);
-			if (frame.state == NORMAL_FRAME)
+			if (frame.state == NORMAL_FRAME) {
 				to = adapter.createElementTO(frame.element);
-			else
+			} else {
 				to = adapter.createEndElementTO(frame.element);
+			}
 			to.type = adapter.getAdapterType();
 			to.frameId = i;
 			event.frames.add(to);
@@ -147,12 +149,12 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 	// -------------------------------------------------------------------------
 
-	private void sendEvent(int type) throws IOException {
+	private void sendEvent(final int type) throws IOException {
 		EventPacket event = new EventPacket(type);
 		sendAndConfirm(event);
 	}
 
-	private void sendAndConfirm(EventPacket event) throws IOException {
+	private void sendAndConfirm(final EventPacket event) throws IOException {
 		int refId = connection.sendPacket(event);
 		connection.listenForPacket(ConfirmationPacket.class, refId);
 	}
@@ -165,7 +167,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 		final Object context;
 
-		private Frame(Object element, Object context, int state) {
+		private Frame(final Object element, final Object context, final int state) {
 			this.element = element;
 			this.context = context;
 			this.state = state;

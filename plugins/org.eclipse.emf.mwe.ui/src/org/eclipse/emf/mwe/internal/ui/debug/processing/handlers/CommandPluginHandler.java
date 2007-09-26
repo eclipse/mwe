@@ -33,7 +33,7 @@ public class CommandPluginHandler {
 
 	// -------------------------------------------------------------------------
 
-	public void setConnection(Connection connection) {
+	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
@@ -65,7 +65,7 @@ public class CommandPluginHandler {
 
 	// -------------------------------------------------------------------------
 
-	private void sendCommand(int type) throws DebugException {
+	private void sendCommand(final int type) throws DebugException {
 		try {
 			connection.sendPacket(new CommandPacket(type));
 		} catch (IOException e) {

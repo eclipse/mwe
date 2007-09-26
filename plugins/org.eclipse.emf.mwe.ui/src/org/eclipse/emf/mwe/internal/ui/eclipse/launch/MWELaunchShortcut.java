@@ -52,7 +52,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 
 	private IFile currFile;
 
-	private ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
+	private final ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 
 	public void launch(final ISelection selection, final String mode) {
 		if (selection instanceof IStructuredSelection) {
@@ -85,13 +85,15 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 		ILaunchConfiguration config = null;
 		try {
 			configs = launchManager.getLaunchConfigurations();
-			for (ILaunchConfiguration configuration : configs)
+			for (ILaunchConfiguration configuration : configs) {
 				if (info.configEquals(configuration)) {
 					config = configuration;
 					break;
 				}
-			if (config == null)
+			}
+			if (config == null) {
 				config = createConfiguration(info);
+			}
 			DebugUITools.launch(config, mode);
 			currFile.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 		} catch (CoreException e) {
@@ -102,13 +104,14 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	}
 
 	private void locateWfRunner(final IResource resource) throws CoreException {
-		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName()))
+		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName())) {
 			throw new DebugException(Activator.createErrorStatus(
 					"Can't execute.\n MWE release jars are required in the project's classpath! --> aborting",
 					null));
+		}
 	}
 
-	private boolean checkClasspathEntries(final IResource resource, String classNameToFind) throws CoreException {
+	private boolean checkClasspathEntries(final IResource resource, final String classNameToFind) throws CoreException {
 		// TODO: ER: put required MWE packages always to the classpath
 		final IJavaProject project = JavaCore.create(resource.getProject());
 		final SearchPattern pattern = SearchPattern
@@ -161,13 +164,13 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	}
 
 	private class LaunchConfigurationInfo {
-		private String name;
+		private final String name;
 
-		private String project;
+		private final String project;
 
-		private String wfFile;
+		private final String wfFile;
 
-		private LaunchConfigurationInfo(IFile file) {
+		private LaunchConfigurationInfo(final IFile file) {
 			name = file.getName();
 			project = file.getProject().getName();
 			wfFile = file.getFullPath().toString();

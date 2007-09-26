@@ -23,11 +23,11 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPac
  * customers.
  */
 public class PacketReceiver implements Runnable {
-	private ArrayList<AbstractPacket> receivedPackets;
+	private final ArrayList<AbstractPacket> receivedPackets;
 	
 	private static final Log logger = LogFactory.getLog(PacketReceiver.class);
 
-	private Connection connection;
+	private final Connection connection;
 
 	private boolean interrupt = false;
 
@@ -39,7 +39,7 @@ public class PacketReceiver implements Runnable {
 	 * @param connection the <code>Connection</code> that controls this data receiver.
 	 * @return the instance
 	 */
-	public static PacketReceiver newPacketReceiver(Connection connection) {
+	public static PacketReceiver newPacketReceiver(final Connection connection) {
 		PacketReceiver receiver = new PacketReceiver(connection);
 		Thread thread = new Thread(receiver, "PacketReceiver");
 		thread.setDaemon(true);
@@ -47,7 +47,7 @@ public class PacketReceiver implements Runnable {
 		return receiver;
 	}
 
-	private PacketReceiver(Connection connection) {
+	private PacketReceiver(final Connection connection) {
 		this.connection = connection;
 		receivedPackets = new ArrayList<AbstractPacket>();
 	}
@@ -61,7 +61,7 @@ public class PacketReceiver implements Runnable {
 	 * @return the received packet
 	 * @throws InterruptedIOException
 	 */
-	public AbstractPacket getPacket(Class<? extends AbstractPacket> type, long timeToWait) throws InterruptedIOException {
+	public AbstractPacket getPacket(final Class<? extends AbstractPacket> type, final long timeToWait) throws InterruptedIOException {
 		return getPacket(type, 0, timeToWait);
 	}
 
@@ -76,7 +76,7 @@ public class PacketReceiver implements Runnable {
 	 * @throws InterruptedIOException
 	 * @throws InterruptedIOException
 	 */
-	public AbstractPacket getPacket(Class<? extends AbstractPacket> type, int refId, long timeToWait) throws InterruptedIOException {
+	public AbstractPacket getPacket(final Class<? extends AbstractPacket> type, final int refId, final long timeToWait) throws InterruptedIOException {
 		AbstractPacket packet = null;
 
 		//sync to be able to wait
@@ -85,8 +85,8 @@ public class PacketReceiver implements Runnable {
 			long timeBeforeWait;
 
 			// Wait until type is available.
-			while ((packet = popReceivedPacket(type, refId)) == null && connection.isConnected() && !interrupt
-					&& (timeToWait < 0 || remainingTime > 0)) {
+			while (((packet = popReceivedPacket(type, refId)) == null) && connection.isConnected() && !interrupt
+					&& ((timeToWait < 0) || (remainingTime > 0))) {
 				timeBeforeWait = System.currentTimeMillis();
 				try {
 					waitForPacketAvailable(remainingTime);
@@ -108,10 +108,10 @@ public class PacketReceiver implements Runnable {
 		}
 	}
 
-	private void waitForPacketAvailable(long timeToWait) throws InterruptedException {
-		if (timeToWait == 0)
+	private void waitForPacketAvailable(final long timeToWait) throws InterruptedException {
+		if (timeToWait == 0) {
 			return;
-		else if (timeToWait < 0) {
+		} else if (timeToWait < 0) {
 			receivedPackets.wait();
 		} else {
 			receivedPackets.wait(timeToWait);
@@ -121,26 +121,31 @@ public class PacketReceiver implements Runnable {
 	/**
 	 * Returns the first packet of the specified type and removes from the packet list.
 	 */
-	private synchronized AbstractPacket popReceivedPacket(Class<? extends AbstractPacket> type, int refId) {
+	private synchronized AbstractPacket popReceivedPacket(final Class<? extends AbstractPacket> type, final int refId) {
 		for (AbstractPacket packet : receivedPackets) {
-			if (!type.isInstance(packet) || (refId != 0 && packet.refId != refId))
+			if (!type.isInstance(packet) || ((refId != 0) && (packet.refId != refId))) {
 				continue;
+			}
 			receivedPackets.remove(packet);
 			return packet;
 		}
 		return null;
 	}
 
-	private void checkForException(AbstractPacket packet) throws InterruptedIOException {
-		if (packet != null)
+	private void checkForException(final AbstractPacket packet) throws InterruptedIOException {
+		if (packet != null) {
 			return;
-		if (exception != null && !(exception instanceof IOException))
+		}
+		if ((exception != null) && !(exception instanceof IOException)) {
 			// print stack trace if it is not an IOException
 			logger.error(exception.getMessage(), exception);
-		if (interrupt)
+		}
+		if (interrupt) {
 			throw new InterruptedIOException("packet receiver is going to close");
-		if (exception != null)
+		}
+		if (exception != null) {
 			throw new InterruptedIOException(exception.getMessage());
+		}
 		throw new InterruptedIOException("timeout reading a packet");
 	}
 
@@ -164,7 +169,7 @@ public class PacketReceiver implements Runnable {
 		addPacketToList(connection.readPacket());
 	}
 
-	private void addPacketToList(AbstractPacket packet) {
+	private void addPacketToList(final AbstractPacket packet) {
 		synchronized (receivedPackets) {
 			receivedPackets.add(packet);
 			receivedPackets.notifyAll();

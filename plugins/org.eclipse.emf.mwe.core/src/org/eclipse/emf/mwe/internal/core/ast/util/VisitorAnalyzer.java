@@ -11,7 +11,6 @@
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.core.customizer.CustomizationException;
@@ -48,8 +47,9 @@ public class VisitorAnalyzer extends VisitorBase {
 	public VisitorAnalyzer(final Issues issues,
 			final Map<Class<?>, Converter> converter,
 			final Class<?> currentComponentClass) {
-		if (currentComponentClass == null)
+		if (currentComponentClass == null) {
 			throw new NullPointerException("currentComponentClass");
+		}
 		this.issues = issues;
 		this.converter = converter;
 		this.currentComponentClass = currentComponentClass;
@@ -88,10 +88,9 @@ public class VisitorAnalyzer extends VisitorBase {
 			}
 			componentAST.setAnalyzedType(expected);
 			final VisitorAnalyzer v = cloneWithCurrentClass(expected);
-			for (final Iterator<?> iter = componentAST.getChildren().iterator(); iter
-					.hasNext();) {
-				((AbstractASTBase) iter.next()).accept(v);
-			}
+			for (Object name : componentAST.getChildren()) {
+((AbstractASTBase) name).accept(v);
+}
 		}
 		return expected;
 	}
@@ -117,7 +116,7 @@ public class VisitorAnalyzer extends VisitorBase {
 					+ " not resolved!", ele);
 		} else {
 			final Class<?> c = (Class<?>) ele.getReference().getAnalyzedType();
-			if (c != null && !expected.isAssignableFrom(c)) {
+			if ((c != null) && !expected.isAssignableFrom(c)) {
 				issues.addWarning("The type of the refered bean ("
 						+ c.getName() + ") is nat assignable to "
 						+ expected.getName());
@@ -157,8 +156,9 @@ public class VisitorAnalyzer extends VisitorBase {
 		if (currentComponentClass != null) {
 			final Injector inj = InjectorFactory.getInjector(
 					currentComponentClass, name);
-			if (inj != null)
+			if (inj != null) {
 				return inj.getRequiredType();
+			}
 		}
 		return null;
 	}

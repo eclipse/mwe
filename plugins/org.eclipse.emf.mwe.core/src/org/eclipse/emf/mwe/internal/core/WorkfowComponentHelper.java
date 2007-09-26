@@ -33,10 +33,12 @@ public class WorkfowComponentHelper {
 	 */
 	public static boolean isLegalFile(final String filename) {
 		final File f = new File(filename);
-		if (!f.exists())
+		if (!f.exists()) {
 			return false;
-		if (f.isDirectory())
+		}
+		if (f.isDirectory()) {
 			return false;
+		}
 		return true;
 	}
 
@@ -50,10 +52,12 @@ public class WorkfowComponentHelper {
 	 */
 	public static boolean isLegalDir(final String dirname) {
 		final File f = new File(dirname);
-		if (!f.exists())
+		if (!f.exists()) {
 			return false;
-		if (f.isFile())
+		}
+		if (f.isFile()) {
 			return false;
+		}
 		return true;
 	}
 
@@ -67,8 +71,9 @@ public class WorkfowComponentHelper {
 	 *         <tt>false</tt>.
 	 */
 	public static boolean isLegalURL(final String url) {
-		if (url == null || url.trim().length() == 0)
+		if ((url == null) || (url.trim().length() == 0)) {
 			return false;
+		}
 
 		try {
 			final URL u = new URL(url);
@@ -120,8 +125,9 @@ public class WorkfowComponentHelper {
 	 */
 	public static boolean isResource(final String uri,
 			final String contextClassName) {
-		if (!isLoadableClass(contextClassName))
+		if (!isLoadableClass(contextClassName)) {
 			return false;
+		}
 		try {
 			final Class<?> context = Class.forName(contextClassName);
 			final URL u = context.getResource(uri);

@@ -15,7 +15,6 @@ import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.jar.Manifest;
 
@@ -129,19 +128,22 @@ public class WorkflowRunner {
 					final Class<?> clazz = ResourceLoaderFactory
 							.createResourceLoader().loadClass(
 									monitorOptValues[0]);
-					if (clazz == null)
+					if (clazz == null) {
 						throw new ClassNotFoundException("Didn't find class "
 								+ monitorOptValues[0]);
+					}
 					monitor = (ProgressMonitor) clazz.newInstance();
 					Method method = monitor.getClass().getMethod("init",
 							new Class[] { String[].class });
-					if (method != null)
+					if (method != null) {
 						method.invoke(monitor,
 								new Object[] { monitorOptValues });
+					}
 				} catch (final Exception e) {
 					logger.error(e.getMessage(), e);
-					if (line.hasOption(ANT))
+					if (line.hasOption(ANT)) {
 						System.exit(1);
+					}
 					return;
 				}
 			}
@@ -161,18 +163,20 @@ public class WorkflowRunner {
 				wfUrl = Thread.currentThread().getContextClassLoader().getResource(wfFile);
 				if (wfUrl == null) {
 					index = wfFile.indexOf('/');
-					if (index >= 0)
+					if (index >= 0) {
 						wfFile = wfFile.substring(index + 1);
+					}
 				}
-			} while (wfUrl == null && index >= 0);
+			} while ((wfUrl == null) && (index >= 0));
 
 			WorkflowRunner runner = new WorkflowRunner();
 
 			if (wfUrl == null) {
 				runner.logger.error("can't find the workflow file '"
 						+ line.getArgs()[0] + "' in the current class path");
-				if (line.hasOption(ANT))
+				if (line.hasOption(ANT)) {
 					System.exit(1);
+				}
 				return;
 			}
 
@@ -193,13 +197,15 @@ public class WorkflowRunner {
 	 */
 	private static Map<String, String> resolveParams(final String[] args) {
 		final Map<String, String> params = new HashMap<String, String>();
-		if (args == null)
+		if (args == null) {
 			return params;
-		for (int i = 0; i < args.length; i++) {
-			final String[] string = args[i].split("=");
-			if (string.length != 2)
+		}
+		for (String element : args) {
+			final String[] string = element.split("=");
+			if (string.length != 2) {
 				throw new IllegalArgumentException(
-						"wrong param syntax (-pkey=value). was : " + args[i]);
+						"wrong param syntax (-pkey=value). was : " + element);
+			}
 			params.put(string[0], string[1]);
 		}
 		return params;
@@ -231,21 +237,24 @@ public class WorkflowRunner {
 			final Map<String, ?> externalSlotContents) {
 		final boolean configOK = prepare(workFlowFile, theMonitor, theParams);
 		final Issues issues = new IssuesImpl();
-		if (configOK)
+		if (configOK) {
 			return executeWorkflow(externalSlotContents, issues);
+		}
 		return false;
 	}
 
 	public boolean prepare(final String workFlowFile,
 			final ProgressMonitor theMonitor,
 			final Map<String, String> theParams) {
-		if (workFlowFile == null)
+		if (workFlowFile == null) {
 			throw new NullPointerException("workflowFile is null");
+		}
 
-		if (theMonitor == null)
+		if (theMonitor == null) {
 			monitor = new NullProgressMonitor();
-		else
+		} else {
 			monitor = theMonitor;
+		}
 		params = theParams;
 
 		logger
@@ -284,8 +293,9 @@ public class WorkflowRunner {
 						.error("Workflow interrupted because of configuration errors.");
 				return false;
 			}
-			if (workflow != null)
+			if (workflow != null) {
 				workflow.checkConfiguration(issues);
+			}
 			logIssues(logger, issues);
 			if (issues.hasErrors()) {
 				logger
@@ -313,14 +323,16 @@ public class WorkflowRunner {
 			monitor.finished(workflow, wfContext);
 			final long duration = System.currentTimeMillis() - time;
 			logger.info("workflow completed in " + duration + "ms!");
-			if (issues.getErrors().length > 0)
+			if (issues.getErrors().length > 0) {
 				return false;
+			}
 			return true;
 		} catch (final Exception e) {
-			if (e.getClass().getName().indexOf("Interrupt") > -1)
+			if (e.getClass().getName().indexOf("Interrupt") > -1) {
 				logger.error("Workflow interrupted. Reason: " + e.getMessage());
-			else
+			} else {
 				logger.error(e.getMessage(), e);
+			}
 		} finally {
 			logIssues(logger, issues);
 		}
@@ -328,20 +340,19 @@ public class WorkflowRunner {
 	}
 
 	private void addExternalSlotContents(final Map<?, ?> slotContents) {
-		if (slotContents == null)
+		if (slotContents == null) {
 			return;
-		for (final Iterator<?> iter = slotContents.keySet().iterator(); iter
-				.hasNext();) {
-			final String key = (String) iter.next();
-			wfContext.set(key, slotContents.get(key));
 		}
+		for (Object name : slotContents.keySet()) {
+final String key = (String) name;
+wfContext.set(key, slotContents.get(key));
+}
 	}
 
 	private void logIssues(final Log logger, final Issues issues) {
 		// log any configuration warning messages
 		Diagnostic[] issueArray = issues.getIssues();
-		for (int i = 0; i < issueArray.length; i++) {
-			final Diagnostic issue = issueArray[i];
+		for (final Diagnostic issue : issueArray) {
 			if (issue.getSeverity() == Diagnostic.ERROR) {
 				logger.error(issue.toString());
 			}

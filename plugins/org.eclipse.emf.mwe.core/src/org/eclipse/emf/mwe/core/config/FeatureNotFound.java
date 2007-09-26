@@ -7,7 +7,7 @@ public class FeatureNotFound extends Exception {
 		super();
 	}
 	
-	public FeatureNotFound(String message) {
+	public FeatureNotFound(final String message) {
 		super(message);
 	}
 	

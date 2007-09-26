@@ -34,7 +34,7 @@ import org.eclipse.ui.part.FileEditorInput;
  */
 public class DebugModelPresentation extends LabelProvider implements IDebugModelPresentation {
 
-	public void setAttribute(String attribute, Object value) {
+	public void setAttribute(final String attribute, final Object value) {
 		// we don't set attributes in our debug model
 	}
 
@@ -42,12 +42,13 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 	// if we don't cover it here, the DefaultLabelProvider uses the default debug labels
 	// Hint: for ILaunch and IProcess the method is not called, so we don't have a chance to customize them
 	@Override
-	public Image getImage(Object element) {
+	public Image getImage(final Object element) {
 		if (element instanceof DebugStackFrame) {
 			DebugStackFrame frame = (DebugStackFrame) element;
 			PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByType(frame.getType());
-			if (adapter != null)
+			if (adapter != null) {
 				return adapter.getIcon();
+			}
 		}
 		return null;
 	}
@@ -56,19 +57,20 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 	// Hint: we return null by intension, so that the DefaultLabelProvider calls getName() on the debug elements
 	// For breakpoints the default is too Java related, so we implement our own presentation.
 	@Override
-	public String getText(Object element) {
-		if (element instanceof MWEBreakpoint)
+	public String getText(final Object element) {
+		if (element instanceof MWEBreakpoint) {
 			return ((MWEBreakpoint) element).getName();
+		}
 		return null;
 	}
 
-	public void computeDetail(IValue value, IValueDetailListener listener) {
+	public void computeDetail(final IValue value, final IValueDetailListener listener) {
 		String detail = ((DebugValue) value).getDetailRep();
 		listener.detailComputed(value, detail);
 	}
 
 	// called to get the right source editor input for a resource
-	public IEditorInput getEditorInput(Object element) {
+	public IEditorInput getEditorInput(final Object element) {
 		if (element instanceof IFile) {
 			return new FileEditorInput((IFile) element);
 		}
@@ -83,16 +85,17 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 	}
 
 	// called at source editor display to show the source in the right editor type
-	public String getEditorId(IEditorInput input, Object element) {
+	public String getEditorId(final IEditorInput input, final Object element) {
 		String ext = "";
-		if ((element instanceof IFile || element instanceof ILineBreakpoint) && input instanceof IFileEditorInput) {
+		if (((element instanceof IFile) || (element instanceof ILineBreakpoint)) && (input instanceof IFileEditorInput)) {
 			ext = ((IFileEditorInput) input).getFile().getFileExtension();
-		} else if (element instanceof IStorage && input instanceof JarEntryEditorInput) {
+		} else if ((element instanceof IStorage) && (input instanceof JarEntryEditorInput)) {
 			ext = ((JarEntryEditorInput) input).getContentType();
 		}
 		PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(ext);
-		if (adapter != null)
+		if (adapter != null) {
 			return adapter.getEditorId();
+		}
 		return "org.eclipse.ui.DefaultTextEditor";
 	}
 }

@@ -47,15 +47,15 @@ public class DebugMonitor implements ProgressMonitor {
 
 	private static final int TERMINATED = 6;
 
-	private Connection connection = new Connection();
+	private final Connection connection = new Connection();
 
 	private CommandListener commandListener;
 
-	private Set<ProcessHandler> processHandlers = new HashSet<ProcessHandler>();
+	private final Set<ProcessHandler> processHandlers = new HashSet<ProcessHandler>();
 
-	private Set<EventHandler> eventHandlers = new HashSet<EventHandler>();
+	private final Set<EventHandler> eventHandlers = new HashSet<EventHandler>();
 
-	private Set<ElementAdapter> elementAdapters = new HashSet<ElementAdapter>();
+	private final Set<ElementAdapter> elementAdapters = new HashSet<ElementAdapter>();
 
 	private boolean missingAdapterReported;
 
@@ -70,7 +70,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * @param args arg[1] must be the port to be connected with
 	 * @throws IOException
 	 */
-	public void init(String[] args) throws IOException {
+	public void init(final String[] args) throws IOException {
 		// args[0] is the class name
 		int port = new Integer(args[1]);
 		try {
@@ -84,36 +84,39 @@ public class DebugMonitor implements ProgressMonitor {
 			handler.startListener();
 		} catch (Exception e) {
 			connection.close();
-			if (e instanceof RuntimeException)
+			if (e instanceof RuntimeException) {
 				throw (RuntimeException) e;
+			}
 			throw (IOException) e;
 		}
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void setCommandListener(CommandListener commandListener) {
+	public void setCommandListener(final CommandListener commandListener) {
 		this.commandListener = commandListener;
 	}
 
-	public void addProcessHandler(ProcessHandler handler) {
+	public void addProcessHandler(final ProcessHandler handler) {
 		processHandlers.add(handler);
 	}
 
-	public void addEventHandler(EventHandler handler) {
+	public void addEventHandler(final EventHandler handler) {
 		eventHandlers.add(handler);
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void addAdapter(ElementAdapter adapter) {
+	public void addAdapter(final ElementAdapter adapter) {
 		elementAdapters.add(adapter);
 	}
 
-	public ElementAdapter getAdapter(Object element) {
-		for (ElementAdapter adapter : elementAdapters)
-			if (adapter.canHandle(element))
+	public ElementAdapter getAdapter(final Object element) {
+		for (ElementAdapter adapter : elementAdapters) {
+			if (adapter.canHandle(element)) {
 				return adapter;
+			}
+		}
 		if (!missingAdapterReported) {
 			System.out.println("Warning: Element can't be debugged.\nDidn't find an adapter for element of type "
 					+ element.getClass().getSimpleName());
@@ -129,7 +132,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#started(java.lang.Object, java.lang.Object)
 	 */
-	public void started(Object element, Object context) {
+	public void started(final Object element, final Object context) {
 		fireEvent(STARTED);
 	}
 
@@ -139,15 +142,17 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#preTask(java.lang.Object, java.lang.Object)
 	 */
-	public void preTask(Object element, Object context) {
+	public void preTask(final Object element, final Object context) {
 		this.context = context;
 		ElementAdapter adapter = getAdapter(element);
-		if (adapter == null)
+		if (adapter == null) {
 			return;
+		}
 		adapter.setContext(context);
 
-		if (!ask(SHALL_HANDLE, element, PUSH))
+		if (!ask(SHALL_HANDLE, element, PUSH)) {
 			return;
+		}
 
 		fireEvent(PRE_TASK, element, NORMAL_FRAME);
 		checkInterrupt();
@@ -170,18 +175,20 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#postTask(java.lang.Object, java.lang.Object)
 	 */
-	public void postTask(Object element, Object context) {
+	public void postTask(final Object element, final Object context) {
 		this.context = context;
 		ElementAdapter adapter = getAdapter(element);
-		if (adapter == null)
+		if (adapter == null) {
 			return;
+		}
 		adapter.setContext(context);
 
-		if (!ask(SHALL_HANDLE, element, POP))
+		if (!ask(SHALL_HANDLE, element, POP)) {
 			return;
+		}
 
 		try {
-			if (adapter.isSurroundingElement(element))
+			if (adapter.isSurroundingElement(element)) {
 				if (ask(SUSPEND, element, END_FRAME)) {
 					// if we are at the end of a "subroutine" and going to stop at the next lower level task
 					// anyway
@@ -193,6 +200,7 @@ public class DebugMonitor implements ProgressMonitor {
 					fireEvent(RESUMED);
 					fireEvent(POST_TASK);
 				}
+			}
 			fireEvent(POST_TASK);
 		} catch (IOException e) {
 			throw new DebuggerInterruptedException(e);
@@ -204,7 +212,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#finished(java.lang.Object, java.lang.Object)
 	 */
-	public void finished(Object element, Object context) {
+	public void finished(final Object element, final Object context) {
 		getAdapter(element).setContext(context);
 		fireEvent(PRE_TASK, element, END_FRAME);
 		fireEvent(SUSPENDED);
@@ -215,67 +223,73 @@ public class DebugMonitor implements ProgressMonitor {
 	// -------------------------------------------------------------------------
 
 	private void checkInterrupt() {
-		if (ask(INTERRUPT, null, 0))
+		if (ask(INTERRUPT, null, 0)) {
 			// we throw an exception since the preTask() method is called
 			// iteratively and we want to come back to the most outer loop
 			throw new DebuggerInterruptedException("User interrupt");
+		}
 	}
 
 	// -------------------------------------------------------------------------
 
-	private void fireEvent(int event) {
+	private void fireEvent(final int event) {
 		fireEvent(event, null, 0);
 	}
 
-	private void fireEvent(int event, Object element, int state) {
+	private void fireEvent(final int event, final Object element, final int state) {
 		for (EventHandler handler : eventHandlers) {
 			try {
-				if (event == PRE_TASK)
+				if (event == PRE_TASK) {
 					handler.preTask(element, context, state);
-				else if (event == POST_TASK)
+				} else if (event == POST_TASK) {
 					handler.postTask(context);
-				else if (event == STARTED)
+				} else if (event == STARTED) {
 					handler.started();
-				else if (event == SUSPENDED)
+				} else if (event == SUSPENDED) {
 					handler.suspended();
-				else if (event == RESUMED)
+				} else if (event == RESUMED) {
 					handler.resumed();
-				else if (event == TERMINATED)
+				} else if (event == TERMINATED) {
 					handler.terminated();
+				}
 			} catch (IOException e) {
 				throw new DebuggerInterruptedException(e);
 			}
 		}
 	}
 
-	private boolean ask(int event, Object element, int state) {
+	private boolean ask(final int event, final Object element, final int state) {
 		boolean result = false;
 		ProcessHandler lastHandler = null;
 
-		for (ProcessHandler handler : processHandlers)
-			if (handler.isLastCall())
+		for (ProcessHandler handler : processHandlers) {
+			if (handler.isLastCall()) {
 				lastHandler = handler;
-			else
+			} else {
 				result = ask(event, element, state, result, handler);
-		if(lastHandler != null)
+			}
+		}
+		if(lastHandler != null) {
 			result = ask(event, element, state, result, lastHandler);
+		}
 		return result;
 	}
 
-	private boolean ask(int event, Object element, int state, boolean lastState, ProcessHandler handler) {
+	private boolean ask(final int event, final Object element, final int state, final boolean lastState, final ProcessHandler handler) {
 		boolean result = lastState;
-		if (event == SHALL_HANDLE)
+		if (event == SHALL_HANDLE) {
 			result = handler.shallHandle(result, element, state);
-		else if (event == SUSPEND)
+		} else if (event == SUSPEND) {
 			result = handler.shallSuspend(result, element, state);
-		else if (event == INTERRUPT)
+		} else if (event == INTERRUPT) {
 			result = handler.shallInterrupt(result);
+		}
 		return result;
 	}
 
 	 // ************************** unused Progress Monitor implementation methods
 
-	public void beginTask(String name, int totalWork) {
+	public void beginTask(final String name, final int totalWork) {
 		//
 	}
 
@@ -283,7 +297,7 @@ public class DebugMonitor implements ProgressMonitor {
 		//
 	}
 
-	public void internalWorked(double work) {
+	public void internalWorked(final double work) {
 		//
 	}
 
@@ -291,19 +305,19 @@ public class DebugMonitor implements ProgressMonitor {
 		return false;
 	}
 
-	public void setCanceled(boolean value) {
+	public void setCanceled(final boolean value) {
 		//
 	}
 
-	public void setTaskName(String name) {
+	public void setTaskName(final String name) {
 		//
 	}
 
-	public void subTask(String name) {
+	public void subTask(final String name) {
 		//
 	}
 
-	public void worked(int work) {
+	public void worked(final int work) {
 		//
 	}
 	
@@ -311,7 +325,7 @@ public class DebugMonitor implements ProgressMonitor {
 		//
 	}
 	
-	public void setBlocked(Diagnostic reason) {
+	public void setBlocked(final Diagnostic reason) {
 		//
 	}
 

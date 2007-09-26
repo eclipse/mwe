@@ -23,11 +23,11 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPac
  */
 public class PacketSender implements Runnable {
 
-	private ArrayList<AbstractPacket> outgoingPackets;
+	private final ArrayList<AbstractPacket> outgoingPackets;
 	
 	private static final Log logger = LogFactory.getLog(PacketSender.class);
 
-	private Connection connection;
+	private final Connection connection;
 
 	private boolean interrupt = false;
 
@@ -37,7 +37,7 @@ public class PacketSender implements Runnable {
 	 * @param connection the <code>Connection</code> that controls this data receiver.
 	 * @return the instance
 	 */
-	public static PacketSender newPacketSender(Connection connection) {
+	public static PacketSender newPacketSender(final Connection connection) {
 		PacketSender sender = new PacketSender(connection);
 		Thread thread = new Thread(sender, "PacketSender");
 		thread.setDaemon(true);
@@ -45,7 +45,7 @@ public class PacketSender implements Runnable {
 		return sender;
 	}
 
-	private PacketSender(Connection connection) {
+	private PacketSender(final Connection connection) {
 		this.connection = connection;
 		outgoingPackets = new ArrayList<AbstractPacket>();
 	}
@@ -57,10 +57,11 @@ public class PacketSender implements Runnable {
 	 * @return the packet id after it was sent
 	 * @throws InterruptedIOException
 	 */
-	public int sendPacket(AbstractPacket packet) throws InterruptedIOException {
-		if (!connection.isConnected())
+	public int sendPacket(final AbstractPacket packet) throws InterruptedIOException {
+		if (!connection.isConnected()) {
 			throw new InterruptedIOException();
 		// log.debug("send: " + packet);
+		}
 
 		synchronized (outgoingPackets) {
 			outgoingPackets.add(packet);
@@ -85,14 +86,16 @@ public class PacketSender implements Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
-		while (!interrupt && connection.isConnected())
+		while (!interrupt && connection.isConnected()) {
 			try {
 				sendAvailablePackets();
 			} catch (Exception e) {
-				if (!(e instanceof IOException))
+				if (!(e instanceof IOException)) {
 					logger.error(e.getMessage(), e);
+				}
 				interrupt = true;
 			}
+		}
 		connection.close();
 	}
 

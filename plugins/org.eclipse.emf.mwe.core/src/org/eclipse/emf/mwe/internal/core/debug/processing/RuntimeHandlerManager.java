@@ -27,19 +27,19 @@ public class RuntimeHandlerManager implements Runnable {
 
 	private Connection connection;
 
-	private DebugMonitor monitor;
+	private final DebugMonitor monitor;
 	
 	private static final Log logger = LogFactory.getLog(RuntimeHandlerManager.class);
 
 	// -------------------------------------------------------------------------
 
-	public RuntimeHandlerManager(DebugMonitor monitor) {
+	public RuntimeHandlerManager(final DebugMonitor monitor) {
 		this.monitor = monitor;
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void setConnection(Connection connection) {
+	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
@@ -63,8 +63,9 @@ public class RuntimeHandlerManager implements Runnable {
 				listenAndRegisterClasses();
 			}
 		} catch (Exception e) {
-			if (!(e instanceof IOException))
+			if (!(e instanceof IOException)) {
 				logger.error(e.getMessage(), e);
+			}
 		}
 	}
 

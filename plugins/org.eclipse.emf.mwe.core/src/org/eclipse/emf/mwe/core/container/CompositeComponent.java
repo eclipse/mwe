@@ -16,7 +16,6 @@ package org.eclipse.emf.mwe.core.container;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -40,7 +39,7 @@ import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 public class CompositeComponent implements WorkflowComponentWithID {
 	protected static final Log log = LogFactory.getLog(CompositeComponent.class);
 
-	private String name;
+	private final String name;
 
 	private String resource;
 
@@ -67,7 +66,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(final String id) {
 		this.id = id;
 	}
 
@@ -85,71 +84,68 @@ public class CompositeComponent implements WorkflowComponentWithID {
 
 	private void internalInvoke(final WorkflowContext model,
 			final ProgressMonitor monitor, final Issues issues) {
-		for (final Iterator<WorkflowComponent> iter = components.iterator(); iter
-				.hasNext();) {
-			final WorkflowComponent comp = iter.next();
-			if ((!(comp instanceof AbstractWorkflowAdvice))) {
-				comp.setContainer(this);
-				if (monitor != null)
-					monitor.preTask(comp, model);
-				log.info(ComponentPrinter.getString(comp));
-				comp.invoke(model, monitor, issues);
-				if (monitor != null)
-					monitor.postTask(comp, model);
-			}
+		for (WorkflowComponent comp : components) {
+if ((!(comp instanceof AbstractWorkflowAdvice))) {
+		comp.setContainer(this);
+		if (monitor != null) {
+			monitor.preTask(comp, model);
 		}
+		log.info(ComponentPrinter.getString(comp));
+		comp.invoke(model, monitor, issues);
+		if (monitor != null) {
+			monitor.postTask(comp, model);
+		}
+}
+}
 	}
 
 	public void checkConfiguration(final Issues issues)
 			throws ConfigurationException {
-		for (final Iterator<WorkflowComponent> iter = components.iterator(); iter
-				.hasNext();) {
-			final WorkflowComponent comp = iter.next();
-			if (comp instanceof AbstractWorkflowAdvice) {
-				AbstractWorkflowAdvice advice = (AbstractWorkflowAdvice) comp;
-				String adviceTargetID = advice.getAdviceTarget();
-				if (adviceTargetID == null) {
-					issues.addError(advice, "No 'adviceTarget' given.");
-					continue;
-				}
-				// log.info("Weaving Advice: " +
-				// ComponentPrinter.getString(comp));
-				Collection<WorkflowComponent> targetComponents = findComponentByID(adviceTargetID);
-				if (targetComponents.size() == 0) {
-					issues.addWarning(advice, "No component with ID '"
-							+ adviceTargetID + "' found.");
-				}
-				if (targetComponents.size() > 1) {
-					issues.addWarning(advice,
-							"More than on component with ID '" + adviceTargetID
-									+ "' found.");
-				}
-				if (needsToWeave(comp, issues)) {
-					for (WorkflowComponent c : targetComponents) {
-						((AbstractWorkflowAdvice) comp).weave(c, issues);
-					}
-				}
+		for (WorkflowComponent comp : components) {
+if (comp instanceof AbstractWorkflowAdvice) {
+		AbstractWorkflowAdvice advice = (AbstractWorkflowAdvice) comp;
+		String adviceTargetID = advice.getAdviceTarget();
+		if (adviceTargetID == null) {
+			issues.addError(advice, "No 'adviceTarget' given.");
+			continue;
+		}
+		// log.info("Weaving Advice: " +
+		// ComponentPrinter.getString(comp));
+		Collection<WorkflowComponent> targetComponents = findComponentByID(adviceTargetID);
+		if (targetComponents.size() == 0) {
+			issues.addWarning(advice, "No component with ID '"
+					+ adviceTargetID + "' found.");
+		}
+		if (targetComponents.size() > 1) {
+			issues.addWarning(advice,
+					"More than on component with ID '" + adviceTargetID
+							+ "' found.");
+		}
+		if (needsToWeave(comp, issues)) {
+			for (WorkflowComponent c : targetComponents) {
+				((AbstractWorkflowAdvice) comp).weave(c, issues);
 			}
 		}
-		for (final Iterator<WorkflowComponent> iter = components.iterator(); iter
-				.hasNext();) {
-			final WorkflowComponent comp = iter.next();
-			if ((!(comp instanceof AbstractWorkflowAdvice))) {
-				log.debug("Checking configuration of: "
-						+ ComponentPrinter.getString(comp));
-				comp.checkConfiguration(issues);
-			}
-		}
+}
+}
+		for (WorkflowComponent comp : components) {
+if ((!(comp instanceof AbstractWorkflowAdvice))) {
+		log.debug("Checking configuration of: "
+				+ ComponentPrinter.getString(comp));
+		comp.checkConfiguration(issues);
+}
+}
 	}
 
-	private boolean needsToWeave(WorkflowComponent comp, Issues issues) {
+	private boolean needsToWeave(final WorkflowComponent comp, final Issues issues) {
 		try {
 			WorkflowComponent current = comp;
 			while (current != null) {
 				if (current instanceof WorkflowConditional) {
 					WorkflowConditional cond = (WorkflowConditional) current;
-					if (!cond.evaluate())
+					if (!cond.evaluate()) {
 						return false;
+					}
 				}
 				current = current.getContainer();
 			}
@@ -161,22 +157,24 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	}
 
 	private Collection<WorkflowComponent> findComponentByID(
-			String adviceTargetID) {
+			final String adviceTargetID) {
 		List<WorkflowComponent> hits = new ArrayList<WorkflowComponent>();
 		WorkflowComponent c = this;
-		while (c.getContainer() != null)
+		while (c.getContainer() != null) {
 			c = c.getContainer();
+		}
 		((CompositeComponent) c).resolveComponentByID(adviceTargetID, hits);
 		return hits;
 	}
 
-	private void resolveComponentByID(String adviceTargetID,
-			List<WorkflowComponent> hits) {
+	private void resolveComponentByID(final String adviceTargetID,
+			final List<WorkflowComponent> hits) {
 		for (WorkflowComponent component : components) {
 			if (component instanceof WorkflowComponentWithID) {
 				if (adviceTargetID.equals(((WorkflowComponentWithID) component)
-						.getId()))
+						.getId())) {
 					hits.add(component);
+				}
 			}
 		}
 		for (WorkflowComponent component : components) {
@@ -215,7 +213,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	}
 
 	// locations are set from VisitorCreator by reflection
-	public void setOwnLocation(Location endLocation) {
+	public void setOwnLocation(final Location endLocation) {
 		this.ownLocation = endLocation;
 	}
 
@@ -263,12 +261,13 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		return container;
 	}
 
-	public void setContainer(CompositeComponent container) {
+	public void setContainer(final CompositeComponent container) {
 		this.container = container;
 	}
 
 	public void put(@SuppressWarnings("unused")
-	String name, WorkflowComponent comp) {
+	final
+	String name, final WorkflowComponent comp) {
 		addComponent(comp);
 	}
 	

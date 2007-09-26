@@ -23,7 +23,7 @@ import org.eclipse.ui.editors.text.TextEditor;
 
 public class WorkflowEditor extends TextEditor {
 
-    private ColorManager colorManager;
+    private final ColorManager colorManager;
 
 	private BreakpointActionGroup actionGroup;
 
@@ -47,7 +47,7 @@ public class WorkflowEditor extends TextEditor {
 	}
 	
 	@Override
-	protected void editorContextMenuAboutToShow(IMenuManager menu) {
+	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe"));
 		super.editorContextMenuAboutToShow(menu);
 
@@ -55,7 +55,7 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	@Override
-	protected void rulerContextMenuAboutToShow(IMenuManager menu) {
+	protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe")); //$NON-NLS-1$
 		super.rulerContextMenuAboutToShow(menu);
 

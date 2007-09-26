@@ -33,7 +33,7 @@ import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 
 public class DebugModelManager implements IDebugEventSetListener {
-	private DebugTarget target;
+	private final DebugTarget target;
 
 	private PluginExtensionManager extensionManager;
 
@@ -43,7 +43,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 
 	private BreakpointPluginHandler bpHandler;
 
-	public static DebugModelManager newDebugModelManager(DebugTarget target, Connection connection)
+	public static DebugModelManager newDebugModelManager(final DebugTarget target, final Connection connection)
 			throws DebugException {
 		DebugModelManager dmm = new DebugModelManager(target);
 		dmm.extensionManager = PluginExtensionManager.getDefault();
@@ -51,27 +51,27 @@ public class DebugModelManager implements IDebugEventSetListener {
 		return dmm;
 	}
 
-	private DebugModelManager(DebugTarget target) {
+	private DebugModelManager(final DebugTarget target) {
 		this.target = target;
 		DebugPlugin.getDefault().addDebugEventListener(this);
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void setCmdHandler(CommandPluginHandler cmdHandler) {
+	public void setCmdHandler(final CommandPluginHandler cmdHandler) {
 		this.cmdHandler = cmdHandler;
 	}
 
-	public void setVariablesHandler(VariablesPluginHandler varHandler) {
+	public void setVariablesHandler(final VariablesPluginHandler varHandler) {
 		this.varHandler = varHandler;
 	}
 
-	public void setBreakpointHandler(BreakpointPluginHandler bpHandler) {
+	public void setBreakpointHandler(final BreakpointPluginHandler bpHandler) {
 		this.bpHandler = bpHandler;
 	}
 
 	public boolean hasRequiredHandlers() {
-		return cmdHandler != null && varHandler != null && bpHandler != null;
+		return (cmdHandler != null) && (varHandler != null) && (bpHandler != null);
 	}
 
 	// -------------------------------------------------------------------------
@@ -87,14 +87,15 @@ public class DebugModelManager implements IDebugEventSetListener {
 	// ********************************************************** event handling
 
 	public void debuggerStarted() throws DebugException {
-		if (shallStopInMain())
+		if (shallStopInMain()) {
 			cmdHandler.sendSuspendCommand();
+		}
 		target.setSuspended(false);
 		target.installDeferredBreakpoints();
 		fireCreationEvent();
 	}
 
-	public void adaptStackFrames(int cleanStackLevel, List<SyntaxElement> frames) {
+	public void adaptStackFrames(final int cleanStackLevel, final List<SyntaxElement> frames) {
 		getThread().clearStack(cleanStackLevel);
 		getThread().pushStackFrames(frames);
 		target.setVariablesDirty();
@@ -139,9 +140,8 @@ public class DebugModelManager implements IDebugEventSetListener {
 	 * 
 	 * @see org.eclipse.debug.core.IDebugEventSetListener#handleDebugEvents(org.eclipse.debug.core.DebugEvent[])
 	 */
-	public void handleDebugEvents(DebugEvent[] events) {
-		for (int i = 0; i < events.length; i++) {
-			DebugEvent event = events[i];
+	public void handleDebugEvents(final DebugEvent[] events) {
+		for (DebugEvent event : events) {
 			if (event.getKind() == DebugEvent.TERMINATE) {
 				DebugPlugin.getDefault().removeDebugEventListener(this);
 				DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(target);
@@ -206,7 +206,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 
 	// -------------------------------------------------------------------------
 
-	public List<VarValueTO> requireVariables(int frameId) throws DebugException {
+	public List<VarValueTO> requireVariables(final int frameId) throws DebugException {
 		try {
 			List<VarValueTO> vars = varHandler.sendRequireVariables(frameId);
 			target.updateDebugValues(vars);
@@ -220,7 +220,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 	// we send the frame id and the var id; the frame id is used to get the correct adapter
 	// example: an object could occur in a workflow slot (which is handled by the workflow adapter
 	// later in the execution context the string representation may be rendered differently by another adapter
-	public List<VarValueTO> requireSubVariables(int varId) throws DebugException {
+	public List<VarValueTO> requireSubVariables(final int varId) throws DebugException {
 		int frameId = target.getThread().getVarFrameId();
 		try {
 			List<VarValueTO> vars = varHandler.sendRequireSubVariables(frameId, varId);
@@ -232,7 +232,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 		}
 	}
 
-	public void requireSetBreakpoint(MWEBreakpoint bp) throws DebugException {
+	public void requireSetBreakpoint(final MWEBreakpoint bp) throws DebugException {
 		try {
 			bpHandler.sendSetBreakpoint(bp);
 		} catch (IOException e) {
@@ -240,7 +240,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 		}
 	}
 
-	public void requireRemoveBreakpoint(MWEBreakpoint bp) throws DebugException {
+	public void requireRemoveBreakpoint(final MWEBreakpoint bp) throws DebugException {
 		try {
 			bpHandler.sendRemoveBreakpoint(bp);
 		} catch (IOException e) {
@@ -248,7 +248,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 		}
 	}
 
-	public void handleIOProblem(Exception e) throws DebugException {
+	public void handleIOProblem(final Exception e) throws DebugException {
 		throw new DebugException(Activator.createErrorStatus(
 				"lost connection to debugger runtime process --> aborting", e));
 	}
@@ -259,11 +259,11 @@ public class DebugModelManager implements IDebugEventSetListener {
 		fireEvent(new DebugEvent(target, DebugEvent.CREATE));
 	}
 
-	private void fireResumeEvent(int detail) {
+	private void fireResumeEvent(final int detail) {
 		fireEvent(new DebugEvent(getThread(), DebugEvent.RESUME, detail));
 	}
 
-	private void fireSuspendEvent(int detail) {
+	private void fireSuspendEvent(final int detail) {
 		fireEvent(new DebugEvent(getThread(), DebugEvent.SUSPEND, detail));
 	}
 
@@ -271,7 +271,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 		fireEvent(new DebugEvent(target, DebugEvent.TERMINATE));
 	}
 
-	private void fireEvent(DebugEvent event) {
+	private void fireEvent(final DebugEvent event) {
 		DebugPlugin.getDefault().fireDebugEventSet(new DebugEvent[] { event });
 	}
 

@@ -39,9 +39,9 @@ import org.eclipse.jdt.launching.VMRunnerConfiguration;
  * 
  */
 public class MWEDebuggerLauncher extends AbstractVMRunner {
-	private IVMInstall vm;
+	private final IVMInstall vm;
 
-	public MWEDebuggerLauncher(IVMInstall vmInstance) {
+	public MWEDebuggerLauncher(final IVMInstall vmInstance) {
 		vm = vmInstance;
 	}
 
@@ -51,7 +51,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 	}
 
 	@SuppressWarnings("null")
-	public void run(VMRunnerConfiguration config, ILaunch launch, IProgressMonitor monitor) throws CoreException {
+	public void run(final VMRunnerConfiguration config, final ILaunch launch, final IProgressMonitor monitor) throws CoreException {
 
 		// port for communication between runtime VM and Eclipse
 		int commPort = SocketUtil.findFreePort();
@@ -97,8 +97,9 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 					runnable.cancel();
 				}
 				try {
-					if (p.exitValue() != 0)
+					if (p.exitValue() != 0) {
 						runnable.cancel();
+					}
 				} catch (IllegalThreadStateException e) {
 					// occurs in normal process (p is still running)
 				}
@@ -108,31 +109,35 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 				}
 			}
 			Exception e = runnable.getException();
-			if (e != null || process.isTerminated()) {
-				if (runnable.isRunning())
+			if ((e != null) || process.isTerminated()) {
+				if (runnable.isRunning()) {
 					runnable.cancel();
+				}
 				throw new DebugException(Activator.createErrorStatus(
 						"Debugger runtime process didn't respond properly --> aborting", null));
 			}
 			DebugTarget.newDebugTarget(launch, process, connection);
 		} catch (CoreException e) {
-			if (p != null)
+			if (p != null) {
 				p.destroy();
+			}
 			connection.close();
 			throw e;
 		}
 	}
 
-	private String[] renderCommandLine(VMRunnerConfiguration config, int commPort) throws CoreException {
+	private String[] renderCommandLine(final VMRunnerConfiguration config, final int commPort) throws CoreException {
 		// program string
 		List<String> arguments = new ArrayList<String>();
 		arguments.add(findJavaExecutable());
 
 		// VM arguments
 		String[] vmArgs = config.getVMArguments();
-		if (vmArgs != null)
-			for (int i = 0; i < vmArgs.length; i++)
-				arguments.add(vmArgs[i]);
+		if (vmArgs != null) {
+			for (String element : vmArgs) {
+				arguments.add(element);
+			}
+		}
 
 		// classpath
 		String[] cp = config.getClassPath();
@@ -152,8 +157,9 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 
 		// programArgs
 		String[] progArgs = config.getProgramArguments();
-		for (int i = 0; i < progArgs.length; i++)
-			arguments.add(progArgs[i]);
+		for (String element : progArgs) {
+			arguments.add(element);
+		}
 
 		arguments.add("" + commPort);
 
@@ -171,8 +177,8 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 				"bin" + fgSeparator + "java.exe", "jre" + fgSeparator + "bin" + fgSeparator + "java",
 				"jre" + fgSeparator + "bin" + fgSeparator + "java.exe" };
 		File vmInstallLocation = vm.getInstallLocation();
-		for (int i = 0; i < fgCandidateJavaLocations.length; i++) {
-			File javaFile = new File(vmInstallLocation, fgCandidateJavaLocations[i]);
+		for (String element : fgCandidateJavaLocations) {
+			File javaFile = new File(vmInstallLocation, element);
 			if (javaFile.isFile()) {
 				return javaFile.getAbsolutePath();
 			}
@@ -181,7 +187,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 				+ " --> aborting", null));
 	}
 
-	private static String renderProcessLabel(String command) {
+	private static String renderProcessLabel(final String command) {
 		String timestamp = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM).format(
 				new Date(System.currentTimeMillis()));
 		return command + " (" + timestamp + ")";
@@ -189,7 +195,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 
 	/** ************************************************************************* */
 
-	private ConnectRunnable startListeningThread(Connection connector) {
+	private ConnectRunnable startListeningThread(final Connection connector) {
 		ConnectRunnable runnable = new ConnectRunnable(connector);
 		Thread connectThread = new Thread(runnable, "Listening Connector");
 		runnable.setThread(connectThread);
@@ -205,7 +211,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 
 		private Thread thread = null;
 
-		public ConnectRunnable(Connection connector) {
+		public ConnectRunnable(final Connection connector) {
 			fConnector = connector;
 		}
 
@@ -226,7 +232,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 			return fException;
 		}
 
-		public void setThread(Thread thread) {
+		public void setThread(final Thread thread) {
 			this.thread = thread;
 		}
 

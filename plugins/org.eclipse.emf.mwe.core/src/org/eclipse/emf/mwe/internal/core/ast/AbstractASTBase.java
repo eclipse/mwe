@@ -24,7 +24,7 @@ public abstract class AbstractASTBase {
         return location;
     }
 
-	public void setLocation(Location location) {
+	public void setLocation(final Location location) {
 		this.location = location;
 	}
 

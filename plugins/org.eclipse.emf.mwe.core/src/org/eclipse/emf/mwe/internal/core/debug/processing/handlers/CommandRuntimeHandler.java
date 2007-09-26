@@ -57,7 +57,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	private boolean interrupt = false;
 
-	private Stack<Boolean> stackFrames = new Stack<Boolean>();
+	private final Stack<Boolean> stackFrames = new Stack<Boolean>();
 
 	private int iterationLevel = 0;
 
@@ -65,7 +65,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	private boolean continueOperation = false;
 
-	private Object[] syncObject = new Object[0];
+	private final Object[] syncObject = new Object[0];
 
 	// -------------------------------------------------------------------------
 
@@ -75,7 +75,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
 	 *      org.openarchitectureware.debug.communication.Connection)
 	 */
-	public void init(DebugMonitor monitor, Connection connection) {
+	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
 		if (monitor != null) {
@@ -115,7 +115,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 		dispatch(((CommandPacket) connection.listenForPacket(CommandPacket.class)).command);
 	}
 
-	private void dispatch(int cmd) {
+	private void dispatch(final int cmd) {
 		switch (cmd) {
 		case STEP_INTO:
 		case STEP_OVER:
@@ -138,7 +138,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	// -------------------------------------------------------------------------
 
-	private void doStep(int cmd) {
+	private void doStep(final int cmd) {
 		stepping = true;
 		switch (cmd) {
 		case STEP_INTO:
@@ -186,14 +186,15 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean, java.lang.Object, int)
 	 */
-	public boolean shallHandle(boolean lastState, Object element, int flag) {
+	public boolean shallHandle(final boolean lastState, final Object element, final int flag) {
 		boolean result;
 		if (flag == PUSH) {
 			result = monitor.getAdapter(element).shallHandle(element);
 			stackFrames.push(result);
-		} else
+		} else {
 			// POP
 			result = stackFrames.pop();
+		}
 		return lastState || result;
 	}
 
@@ -202,8 +203,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean, java.lang.Object, int)
 	 */
-	public boolean shallSuspend(boolean lastState, Object element, int flag) {
-		boolean shallSuspend = lastState || forceSuspend || stepping && (suspendBaseLevel - (flag == NORMAL_FRAME ? 0 : 1) >= iterationLevel);
+	public boolean shallSuspend(final boolean lastState, final Object element, final int flag) {
+		boolean shallSuspend = lastState || forceSuspend || (stepping && (suspendBaseLevel - (flag == NORMAL_FRAME ? 0 : 1) >= iterationLevel));
 		if (!monitor.getAdapter(element).shallSuspend(element, flag) && shallSuspend) {
 			suspendBaseLevel++;
 			return false;
@@ -216,7 +217,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallInterrupt(boolean)
 	 */
-	public boolean shallInterrupt(boolean lastState) {
+	public boolean shallInterrupt(final boolean lastState) {
 		return lastState || interrupt || !connection.isConnected();
 	}
 
@@ -236,7 +237,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
 	 */
-	public void preTask(Object element, Object context, int state) {
+	public void preTask(final Object element, final Object context, final int state) {
 		iterationLevel++;
 	}
 
@@ -245,7 +246,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
 	 */
-	public void postTask(Object context) {
+	public void postTask(final Object context) {
 		iterationLevel--;
 	}
 
@@ -283,7 +284,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.openarchitectureware.debug.processing.ICommandListener#listenCommand()
 	 */
 	public void listenCommand() {
-		if (!continueOperation)
+		if (!continueOperation) {
 			synchronized (syncObject) {
 				try {
 					syncObject.wait();
@@ -291,6 +292,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 					//
 				}
 			}
+		}
 		continueOperation = false;
 	}
 

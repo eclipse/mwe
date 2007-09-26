@@ -26,7 +26,7 @@ import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
  */
 public class DebugThread extends DebugElement implements IThread {
 
-	private Stack<DebugStackFrame> frames = new Stack<DebugStackFrame>();
+	private final Stack<DebugStackFrame> frames = new Stack<DebugStackFrame>();
 
 	private MWEBreakpoint bp;
 
@@ -35,7 +35,7 @@ public class DebugThread extends DebugElement implements IThread {
 	// id of last frame that was used to get variables from
 	private int varFrameId;
 
-	public DebugThread(DebugTarget target) {
+	public DebugThread(final DebugTarget target) {
 		super(target);
 	}
 
@@ -51,8 +51,9 @@ public class DebugThread extends DebugElement implements IThread {
 			int size = frames.size();
 			for (int i = size - 1; i >= 0; i--) {
 				DebugStackFrame frame = frames.get(i);
-				if (frame.isVisible())
+				if (frame.isVisible()) {
 					result.push(frame);
+				}
 			}
 			return result.toArray(new IStackFrame[0]);
 		}
@@ -70,7 +71,7 @@ public class DebugThread extends DebugElement implements IThread {
 		return frames.peek();
 	}
 
-	public int getSetVarFrameId(DebugStackFrame frame) {
+	public int getSetVarFrameId(final DebugStackFrame frame) {
 		varFrameId = frame.getFrameId();
 		return varFrameId;
 	}
@@ -79,19 +80,22 @@ public class DebugThread extends DebugElement implements IThread {
 		return varFrameId;
 	}
 
-	public void clearStack(int cleanStackLevel) {
-		for (int i = frames.size(); i > cleanStackLevel; i--)
+	public void clearStack(final int cleanStackLevel) {
+		for (int i = frames.size(); i > cleanStackLevel; i--) {
 			frames.pop();
+		}
 	}
 
-	public void pushStackFrames(List<SyntaxElement> list) {
-		for (SyntaxElement se : list)
+	public void pushStackFrames(final List<SyntaxElement> list) {
+		for (SyntaxElement se : list) {
 			frames.push(new DebugStackFrame(this, se));
+		}
 	}
 
 	public void setVariablesDirty() {
-		for (DebugStackFrame frame : frames)
+		for (DebugStackFrame frame : frames) {
 			frame.setVariablesDirty();
+		}
 	}
 
 	// ***************************************************** Breakpoint handling
@@ -105,7 +109,7 @@ public class DebugThread extends DebugElement implements IThread {
 	}
 
 	// a BP will be set by the DebugModelManager, when it is hit
-	public void setBreakpoint(MWEBreakpoint bp) {
+	public void setBreakpoint(final MWEBreakpoint bp) {
 		this.bp = bp;
 	}
 
@@ -133,7 +137,7 @@ public class DebugThread extends DebugElement implements IThread {
 		return fStepping;
 	}
 
-	public void setStepping(boolean stepping) {
+	public void setStepping(final boolean stepping) {
 		fStepping = stepping;
 	}
 

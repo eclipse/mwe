@@ -34,13 +34,13 @@ public class VarValueTO {
 	public VarValueTO() {
 	}
 
-	public VarValueTO(String name) {
+	public VarValueTO(final String name) {
 		this.name = name;
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeUTF(name);
 		out.writeInt(valueId);
 		out.writeUTF(stringRep);
@@ -52,7 +52,7 @@ public class VarValueTO {
 		out.writeBoolean(hasMembers);
 	}
 
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		name = in.readUTF();
 		valueId = in.readInt();
 		stringRep = in.readUTF();

@@ -15,7 +15,7 @@ import java.net.URL;
 
 public class ResourceLoaderImpl extends ResourceLoaderDefaultImpl {
 
-	private ClassLoader loader;
+	private final ClassLoader loader;
 
 	public ResourceLoaderImpl(final ClassLoader l ) {
 		loader = l;

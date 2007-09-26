@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core.container;
 
-import java.util.Iterator;
 
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.core.WorkflowContext;
@@ -23,7 +22,7 @@ public abstract class ConditionalComponent extends CompositeComponent implements
 
     private WorkflowComponent elseComp;
 
-	public ConditionalComponent( String name ) {
+	public ConditionalComponent( final String name ) {
         super(name);
     }
 
@@ -42,8 +41,7 @@ public abstract class ConditionalComponent extends CompositeComponent implements
     private void internalInvoke(final WorkflowContext model, final ProgressMonitor monitor, final Issues issues) {
     	try {
 	        if (evaluate()) {
-	            for (final Iterator<WorkflowComponent> iter = components.iterator(); iter.hasNext();) {
-	                final WorkflowComponent comp = iter.next();
+	            for (WorkflowComponent comp : components) {
 	                try {
 	                    log.info(ComponentPrinter.getString(comp));
 	                } catch (final WorkflowInterruptedException wfi) {

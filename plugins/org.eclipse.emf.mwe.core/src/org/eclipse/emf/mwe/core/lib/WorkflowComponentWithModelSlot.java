@@ -25,8 +25,9 @@ public abstract class WorkflowComponentWithModelSlot extends AbstractWorkflowCom
     }
 
     public void checkConfiguration(final Issues issues) {
-        if (modelSlot == null)
-            issues.addError(this, "modelSlot not specified.");
+        if (modelSlot == null) {
+			issues.addError(this, "modelSlot not specified.");
+		}
     }
 
 }

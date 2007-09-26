@@ -30,21 +30,21 @@ public class BreakpointPluginHandler implements PluginHandler {
 
 	// -------------------------------------------------------------------------
 
-	public void setConnection(Connection connection) {
+	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
-	public void setDebugModelManager(DebugModelManager dmm) {
+	public void setDebugModelManager(final DebugModelManager dmm) {
 		// don't need it
 	}
 	
 	// -------------------------------------------------------------------------
 
-	public void sendSetBreakpoint(MWEBreakpoint bp) throws IOException {
+	public void sendSetBreakpoint(final MWEBreakpoint bp) throws IOException {
 		connection.sendPacket(new BreakpointPacket(SET, bp.createTO()));
 	}
 
-	public void sendRemoveBreakpoint(MWEBreakpoint bp) throws IOException {
+	public void sendRemoveBreakpoint(final MWEBreakpoint bp) throws IOException {
 		connection.sendPacket(new BreakpointPacket(REMOVE, bp.createTO()));
 	}
 

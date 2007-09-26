@@ -90,8 +90,8 @@ public class MWEBreakpoint extends LineBreakpoint {
 		return se;
 	}
 
-	public boolean equals(int start, String resource) {
-		return getOffset() == start && getResource().endsWith(resource);
+	public boolean equals(final int start, final String resource) {
+		return (getOffset() == start) && getResource().endsWith(resource);
 	}
 
 	private String getMarkerId() {

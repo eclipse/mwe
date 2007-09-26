@@ -31,22 +31,22 @@ public abstract class VisitorBase {
 
 	public final Object visit(final AbstractASTBase ele) {
 		Object result = visitAbstractASTBase(ele);
-		if (result == null && ele instanceof InclusionAST) {
+		if ((result == null) && (ele instanceof InclusionAST)) {
 			result = visitInclusionAST((InclusionAST) ele);
 		}
-		if (result == null && ele instanceof ComponentAST) {
+		if ((result == null) && (ele instanceof ComponentAST)) {
 			result = visitComponentAST((ComponentAST) ele);
 		}
-		if (result == null && ele instanceof DeclaredPropertyAST) {
+		if ((result == null) && (ele instanceof DeclaredPropertyAST)) {
 			result = visitDeclaredPropertyAST((DeclaredPropertyAST) ele);
 		}
-		if (result == null && ele instanceof DeclaredPropertyFileAST) {
+		if ((result == null) && (ele instanceof DeclaredPropertyFileAST)) {
 			result = visitDeclaredPropertyFileAST((DeclaredPropertyFileAST) ele);
 		}
-		if (result == null && ele instanceof ReferenceAST) {
+		if ((result == null) && (ele instanceof ReferenceAST)) {
 			result = visitReferenceAST((ReferenceAST) ele);
 		}
-		if (result == null && ele instanceof SimpleParamAST) {
+		if ((result == null) && (ele instanceof SimpleParamAST)) {
 			result = visitSimpleParamAST((SimpleParamAST) ele);
 		}
 		return result;

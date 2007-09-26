@@ -52,13 +52,15 @@ public class BreakpointActionGroup extends ActionGroup {
 
 		// Note: We don't want to define a new "IOurOwnTextEditor" interface, so we do it via Reflection
 		Object obj = getterMethod("getSourceViewer", editor);
-		if (obj == null)
+		if (obj == null) {
 			return;
+		}
 		textWidget = ((ISourceViewer) obj).getTextWidget();
 
 		obj = getterMethod("getVerticalRuler", editor);
-		if (obj == null)
+		if (obj == null) {
 			return;
+		}
 		verticalRuler = (IVerticalRuler) obj;
 
 		enableAction = new EnableDisableBreakpointAction(editor, this);
@@ -67,9 +69,10 @@ public class BreakpointActionGroup extends ActionGroup {
 		// set lastSelectedLine if RightMouseClick on text
 		textWidget.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseDown(MouseEvent e) {
-				if (e.button == 3)
+			public void mouseDown(final MouseEvent e) {
+				if (e.button == 3) {
 					updateLastSelectedOffset(e.x, e.y);
+				}
 			}
 
 		});
@@ -77,14 +80,15 @@ public class BreakpointActionGroup extends ActionGroup {
 		// set lastSelectedLine if RightMouseClick or DoubleClick on vertical ruler
 		verticalRuler.getControl().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseDown(MouseEvent e) {
-				if (e.button == 3)
+			public void mouseDown(final MouseEvent e) {
+				if (e.button == 3) {
 					updateLastSelectedLine(e.y);
+				}
 
 			}
 
 			@Override
-			public void mouseDoubleClick(MouseEvent e) {
+			public void mouseDoubleClick(final MouseEvent e) {
 				updateLastSelectedLine(e.y);
 				// see note below for why we call it here
 				toggleAction.run();
@@ -93,7 +97,7 @@ public class BreakpointActionGroup extends ActionGroup {
 		});
 	}
 
-	private void updateLastSelectedLine(int y) {
+	private void updateLastSelectedLine(final int y) {
 		// Note: we use our own "lastSelectedLine mechanism" (not the ruler's one) because of sequencing problems
 		// our action mouseHandler would be called after the ruler mouseHandler, so for doubleClick the
 		// lastSelectedLine value may not be correct
@@ -103,7 +107,7 @@ public class BreakpointActionGroup extends ActionGroup {
 			lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
 	}
 
-	private void updateLastSelectedOffset(int x, int y) {
+	private void updateLastSelectedOffset(final int x, final int y) {
 		rulerSelected = false;
 		lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
 		lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(x, y));
@@ -123,14 +127,14 @@ public class BreakpointActionGroup extends ActionGroup {
 		return lastSelectedOffset;
 	}
 
-	public int getOffsetAtLine(int line) {
+	public int getOffsetAtLine(final int line) {
 		return textWidget.getOffsetAtLine(line);
 	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void fillContextMenu(IMenuManager manager) {
+	public void fillContextMenu(final IMenuManager manager) {
 		toggleAction.updateText();
 		manager.appendToGroup("mwe", toggleAction);
 		enableAction.updateText();
@@ -144,7 +148,7 @@ public class BreakpointActionGroup extends ActionGroup {
 		super.dispose();
 	}
 
-	private Object getterMethod(String name, Object element) {
+	private Object getterMethod(final String name, final Object element) {
 		try {
 			Method m = findMethod(name, element.getClass());
 			if (m != null) {
@@ -157,12 +161,14 @@ public class BreakpointActionGroup extends ActionGroup {
 		return null;
 	}
 
-	private Method findMethod(String name, Class<?> clazz) {
+	private Method findMethod(final String name, final Class<?> clazz) {
 		if (!Object.class.equals(clazz)) {
 			Method[] methods = clazz.getDeclaredMethods();
-			for (Method method : methods)
-				if (method.getName().equals(name))
+			for (Method method : methods) {
+				if (method.getName().equals(name)) {
 					return method;
+				}
+			}
 			return findMethod(name, clazz.getSuperclass());
 		}
 		return null;

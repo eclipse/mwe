@@ -42,7 +42,7 @@ public class ResourceLoaderFactory {
         final String name = System.getProperty(PARAM_RESOURCELOADER_CLASS, ResourceLoaderDefaultImpl.class.getName());
         // enable changing implementations at runtime.
         // preliminary implemented for the unittest of this class
-        if (resourceLoaderImpl == null || (name != null && !name.equals(resourceLoaderImpl.getName()))) {
+        if ((resourceLoaderImpl == null) || ((name != null) && !name.equals(resourceLoaderImpl.getName()))) {
             try {
                 resourceLoaderImpl = Class.forName(name);
             } catch (final ClassNotFoundException e) {
@@ -59,8 +59,9 @@ public class ResourceLoaderFactory {
      *             In any case that an instance could not be created.
      */
     public static ResourceLoader createResourceLoader() throws RuntimeException {
-        if (current.get() != null)
-            return current.get();
+        if (current.get() != null) {
+			return current.get();
+		}
         initResourceLoaderClass();
         try {
             return (ResourceLoader) resourceLoaderImpl.newInstance();

@@ -67,7 +67,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 * @param container
 	 *            The containing component
 	 */
-	public void setContainer(CompositeComponent container) {
+	public void setContainer(final CompositeComponent container) {
 		this.container = container;
 	}
 
@@ -106,7 +106,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 * @param issues
 	 *            The Issues instance.
 	 */
-	public void checkRequiredConfigProperty(String configPropertyName, Object configPropertyValue, Issues issues) {
+	public void checkRequiredConfigProperty(final String configPropertyName, final Object configPropertyValue, final Issues issues) {
 		boolean isError = false;
 		if (configPropertyValue == null) {
 			isError = true;
@@ -114,12 +114,13 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 			isError = true;
 		}
 
-		if (isError)
+		if (isError) {
 			issues.addError("'" + configPropertyName + "' not specified.");
+		}
 	}
 
-	private boolean isBlank(String string) {
-		if (string == null || string.trim().equals("")) {
+	private boolean isBlank(final String string) {
+		if ((string == null) || string.trim().equals("")) {
 			return true;
 		}
 		return false;

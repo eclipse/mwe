@@ -40,7 +40,7 @@ public class ReflectionUtil {
 	 * @param element the element
 	 * @return the string representation
 	 */
-	public static String getSimpleName(Object element) {
+	public static String getSimpleName(final Object element) {
 		return (element == null ? "null" : (element instanceof String) ? (String) element : getSimpleClassName(element));
 	}
 
@@ -49,7 +49,7 @@ public class ReflectionUtil {
 	 * @param element the element
 	 * @return the string representation
 	 */
-	public static String getNameToString(Object element) {
+	public static String getNameToString(final Object element) {
 		return (element == null ? "null" : element.toString());
 	}
 
@@ -59,11 +59,13 @@ public class ReflectionUtil {
 	 * @param element the element
 	 * @return yes or no
 	 */
-	public static boolean checkFields(Object element) {
-		if (element == null || element instanceof String)
+	public static boolean checkFields(final Object element) {
+		if ((element == null) || (element instanceof String)) {
 			return false;
-		if (Object[].class.isAssignableFrom(element.getClass()))
+		}
+		if (Object[].class.isAssignableFrom(element.getClass())) {
 			return ((Object[]) element).length > 0;
+		}
 		Map<String, Field> fields = getFieldMap(element.getClass());
 		return !fields.isEmpty();
 	}
@@ -75,13 +77,15 @@ public class ReflectionUtil {
 	 * @param element
 	 * @return
 	 */
-	public static List<String> getFieldNames(Object element) {
+	public static List<String> getFieldNames(final Object element) {
 		List<String> result = new ArrayList<String>();
-		if (element instanceof Object[])
-			for (int i = 0; i < ((Object[]) element).length; i++)
+		if (element instanceof Object[]) {
+			for (int i = 0; i < ((Object[]) element).length; i++) {
 				result.add("[" + i + "]");
-		else
+			}
+		} else {
 			result.addAll(getFieldMap(element.getClass()).keySet());
+		}
 		return result;
 	}
 
@@ -94,12 +98,13 @@ public class ReflectionUtil {
 	 * @param name the name of the field
 	 * @return the value
 	 */
-	public static Object getFieldValue(Object object, String name) {
+	public static Object getFieldValue(final Object object, final String name) {
 		try {
 			Field field = getField(object, name);
 			Class<?> type = field.getType();
-			if (type.isPrimitive() || (type == String.class))
+			if (type.isPrimitive() || (type == String.class)) {
 				return field.get(object).toString();
+			}
 			return field.get(object);
 		} catch (Exception e) {
 			// IllegalAccessException and NullPointerException
@@ -110,15 +115,16 @@ public class ReflectionUtil {
 	// -------------------------------------------------------------------------
 
 	// similar to getClass().getSimpleName(), but handles arrays differently
-	private static String getSimpleClassName(Object element) {
+	private static String getSimpleClassName(final Object element) {
 		String fqn = element.getClass().getName();
 		int index = fqn.lastIndexOf('.');
-		if (element instanceof Object[])
+		if (element instanceof Object[]) {
 			return fqn.substring(index + 1, fqn.length() - 1) + "[" + ((Object[]) element).length + "]";
+		}
 		return fqn.substring(index + 1);
 	}
 
-	private static Field getField(Object object, String name) {
+	private static Field getField(final Object object, final String name) {
 		try {
 			return getFieldMap(object.getClass()).get(name);
 		} catch (Exception e) {
@@ -135,12 +141,12 @@ public class ReflectionUtil {
 			Class<?> clazz = cls;
 			while (!Object.class.equals(clazz)) {
 				Field[] fields = cls.getDeclaredFields();
-				for (int i = 0; i < fields.length; i++) {
-					Field field = fields[i];
+				for (Field field : fields) {
 					field.setAccessible(true);
 					// super class fields are not considered if the same name was already in an inheriting class
-					if (!fieldMap.containsKey(field.getName()))
+					if (!fieldMap.containsKey(field.getName())) {
 						fieldMap.put(field.getName(), field);
+					}
 				}
 				clazz = clazz.getSuperclass();
 			}

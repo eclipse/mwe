@@ -23,16 +23,17 @@ public class VariableSorter {
 
 	static VarComparator inst;
 
-	public static void sort(List<DebugVariable> variables) {
-		if (inst == null)
+	public static void sort(final List<DebugVariable> variables) {
+		if (inst == null) {
 			inst = new VariableSorter().new VarComparator();
+		}
 		Collections.sort(variables, inst);
 	}
 
 	class VarComparator implements java.util.Comparator<DebugVariable> {
 
 		// we assume names exist and are not empty, -> is not checked here (Problem?)
-		public int compare(DebugVariable o1, DebugVariable o2) {
+		public int compare(final DebugVariable o1, final DebugVariable o2) {
 			return o1.getName().compareTo(o2.getName());
 		}
 	}

@@ -34,7 +34,8 @@ public class DirectoryCleaner extends AbstractWorkflowComponent {
         this.directories = directories;
     }
     
-    public String getLogMessage() {
+    @Override
+	public String getLogMessage() {
     	return "cleaning directory '"+directories+"'";
     }
 
@@ -48,8 +49,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent {
                 if (f.exists() && f.isDirectory()) {
                     logger.info("Cleaning " + f.getAbsolutePath());
                     final File[] contents = f.listFiles();
-                    for (int j = 0; j < contents.length; j++) {
-                        final File file = contents[j];
+                    for (final File file : contents) {
                         if (!delete(file)) {
                             logger.error("Couldn't delete " + file.getAbsolutePath());
                         }
@@ -72,10 +72,11 @@ public class DirectoryCleaner extends AbstractWorkflowComponent {
     public boolean delete(final File file) {
         if (file.isDirectory()) {
             final String[] children = file.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = delete(new File(file, children[i]));
-                if (!success)
-                    return false;
+            for (String element : children) {
+                boolean success = delete(new File(file, element));
+                if (!success) {
+					return false;
+				}
             }
         }
 
@@ -87,6 +88,9 @@ public class DirectoryCleaner extends AbstractWorkflowComponent {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
+ * Revision 1.2  2007/09/26 13:26:57  bkolb
+ * cleanUP
+ *
  * Revision 1.1  2007/09/25 18:09:24  bkolb
  * initial check-in
  *  * restructured projects

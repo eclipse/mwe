@@ -50,11 +50,12 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 
 	private String wfFileName;
 
-	public void launch(ILaunchConfiguration configuration, String mode, ILaunch launch, IProgressMonitor monitor)
+	public void launch(final ILaunchConfiguration configuration, final String mode, final ILaunch launch, final IProgressMonitor monitor)
 			throws CoreException {
 
-		if (monitor.isCanceled())
+		if (monitor.isCanceled()) {
 			return;
+		}
 
 		monitor.beginTask("Launching VM...", 3);
 		monitor.worked(1);
@@ -71,8 +72,9 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 
 		// add abs. path because ResourceListSelectionDialog creates it relative
 		// to the WS-root
-		if (wfFileName.startsWith("/"))
+		if (wfFileName.startsWith("/")) {
 			wfFileName = file.getLocation().toString();
+		}
 
 		// check if file exist
 		if (!file.exists()) {
@@ -113,7 +115,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			do {
 				autoBuildJobs = Job.getJobManager().find(ResourcesPlugin.FAMILY_AUTO_BUILD);
 				manBuildJobs = Job.getJobManager().find(ResourcesPlugin.FAMILY_MANUAL_BUILD);
-			} while (autoBuildJobs.length > 0 || manBuildJobs.length > 0);
+			} while ((autoBuildJobs.length > 0) || (manBuildJobs.length > 0));
 
 			getLaunchManager().removeLaunch(launch);
 
@@ -165,13 +167,12 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 	 * @see org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate#handleDebugEvents(org.eclipse.debug.core.DebugEvent[])
 	 */
 	@Override
-	public void handleDebugEvents(DebugEvent[] events) {
-		for (int i = 0; i < events.length; i++) {
-			DebugEvent event = events[i];
+	public void handleDebugEvents(final DebugEvent[] events) {
+		for (DebugEvent event : events) {
 			if (event.getKind() == DebugEvent.TERMINATE) {
 				new Job("refresh resources") {
 					@Override
-					protected IStatus run(IProgressMonitor monitor) {
+					protected IStatus run(final IProgressMonitor monitor) {
 						try {
 							ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE,
 									monitor);

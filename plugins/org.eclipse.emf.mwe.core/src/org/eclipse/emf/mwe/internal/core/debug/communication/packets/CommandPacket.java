@@ -23,20 +23,20 @@ public class CommandPacket extends AbstractPacket {
 
 	// -------------------------------------------------------------------------
 
-	public CommandPacket(int command) {
+	public CommandPacket(final int command) {
 		this.command = command;
 	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		command = in.readInt();
 
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(command);
 	}
 

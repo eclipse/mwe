@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.SimpleMarkerAnnotation;
 
 public class EnableDisableBreakpointAction extends Action {
 
-	private TextEditor editor;
+	private final TextEditor editor;
 
 	private final BreakpointActionGroup group;
 
@@ -35,7 +35,7 @@ public class EnableDisableBreakpointAction extends Action {
 	 * Enable/Disable breakpoint action that can be used both at vertical ruler and editor context menu.
 	 * 
 	 */
-	protected EnableDisableBreakpointAction(TextEditor editor, BreakpointActionGroup group) {
+	protected EnableDisableBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
 		setToolTipText("enable or disable breakpoint");
@@ -89,13 +89,14 @@ public class EnableDisableBreakpointAction extends Action {
 						if (marker.isSubtypeOf(IBreakpoint.BREAKPOINT_MARKER)) {
 							Position position = annotationModel.getPosition(markerAnnotation);
 							int line = document.getLineOfOffset(position.offset);
-							if (isRulerSelected && line == selectedLine || !isRulerSelected
-									&& selectedOffset >= position.offset
-									&& selectedOffset <= position.offset + position.length) {
+							if ((isRulerSelected && (line == selectedLine)) || (!isRulerSelected
+									&& (selectedOffset >= position.offset)
+									&& (selectedOffset <= position.offset + position.length))) {
 								IBreakpoint breakpoint = DebugPlugin.getDefault().getBreakpointManager()
 										.getBreakpoint(marker);
-								if (breakpoint != null)
+								if (breakpoint != null) {
 									return breakpoint;
+								}
 							}
 						}
 					} catch (CoreException e) {

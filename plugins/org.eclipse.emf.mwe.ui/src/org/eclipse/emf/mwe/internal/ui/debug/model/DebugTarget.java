@@ -43,15 +43,15 @@ import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
  */
 public class DebugTarget extends DebugElement implements IDebugTarget {
 
-	private IProcess fProcess;
+	private final IProcess fProcess;
 
-	private ILaunch fLaunch;
+	private final ILaunch fLaunch;
 
 	private DebugThread fThread;
 
-	private DebugModelManager dmm;
+	private final DebugModelManager dmm;
 
-	private Map<Integer, DebugValue> valueCache = new HashMap<Integer, DebugValue>();
+	private final Map<Integer, DebugValue> valueCache = new HashMap<Integer, DebugValue>();
 
 	protected boolean suspended;
 
@@ -75,7 +75,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return target[0];
 	}
 
-	private DebugTarget(ILaunch launch, IProcess process, Connection conn) throws DebugException {
+	private DebugTarget(final ILaunch launch, final IProcess process, final Connection conn) throws DebugException {
 		super(null);
 		fLaunch = launch;
 		target = this;
@@ -128,14 +128,14 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return dmm;
 	}
 
-	public DebugValue getDebugValue(VarValueTO varTO) {
+	public DebugValue getDebugValue(final VarValueTO varTO) {
 		DebugValue value = null;
 		int valueId = varTO.valueId;
 
-		if (valueId == 0)
+		if (valueId == 0) {
 			// don't cache primitives
 			value = new DebugValue(this, varTO);
-		else {
+		} else {
 			value = valueCache.get(valueId);
 			if (value == null) {
 				value = new DebugValue(this, varTO);
@@ -145,10 +145,10 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return value;
 	}
 
-	public void updateDebugValues(List<VarValueTO> vars) {
+	public void updateDebugValues(final List<VarValueTO> vars) {
 		for (VarValueTO varTO : vars) {
 			DebugValue value = valueCache.get(varTO.valueId);
-			if (value != null && value.isDirty()) {
+			if ((value != null) && value.isDirty()) {
 				value.setVarTO(varTO);
 			}
 		}
@@ -176,14 +176,16 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		dmm.requireSuspend();
 	}
 
-	public void setSuspended(boolean value) {
+	public void setSuspended(final boolean value) {
 		suspended = value;
 	}
 
 	public void setVariablesDirty() {
-		for (DebugValue entry : valueCache.values())
-			if (entry != null)
+		for (DebugValue entry : valueCache.values()) {
+			if (entry != null) {
 				entry.setDirty(true);
+			}
+		}
 	}
 
 	// ***************** Breakpoint handling, IBreakpointListener implementation
@@ -191,35 +193,38 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 	public void installDeferredBreakpoints() {
 		IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints(
 				MWEBreakpoint.DEBUG_MODEL_ID);
-		for (int i = 0; i < breakpoints.length; i++) {
-			breakpointAdded(breakpoints[i]);
+		for (IBreakpoint element : breakpoints) {
+			breakpointAdded(element);
 		}
 	}
 
-	public boolean supportsBreakpoint(IBreakpoint breakpoint) {
+	public boolean supportsBreakpoint(final IBreakpoint breakpoint) {
 		return breakpoint.getModelIdentifier().equals(MWEBreakpoint.DEBUG_MODEL_ID);
 	}
 
-	public void breakpointAdded(IBreakpoint breakpoint) {
-		if (supportsBreakpoint(breakpoint))
+	public void breakpointAdded(final IBreakpoint breakpoint) {
+		if (supportsBreakpoint(breakpoint)) {
 			try {
-				if (breakpoint.isEnabled())
+				if (breakpoint.isEnabled()) {
 					dmm.requireSetBreakpoint((MWEBreakpoint) breakpoint);
+				}
 			} catch (CoreException e) {
 				// in case connection broke
 			}
+		}
 	}
 
-	public void breakpointRemoved(IBreakpoint breakpoint, IMarkerDelta delta) {
-		if (supportsBreakpoint(breakpoint))
+	public void breakpointRemoved(final IBreakpoint breakpoint, final IMarkerDelta delta) {
+		if (supportsBreakpoint(breakpoint)) {
 			try {
 				dmm.requireRemoveBreakpoint((MWEBreakpoint) breakpoint);
 			} catch (CoreException e) {
 				// in case connection broke
 			}
+		}
 	}
 
-	public void breakpointChanged(IBreakpoint breakpoint, IMarkerDelta delta) {
+	public void breakpointChanged(final IBreakpoint breakpoint, final IMarkerDelta delta) {
 		if (supportsBreakpoint(breakpoint)) {
 			try {
 				if (breakpoint.isEnabled()) {
@@ -267,7 +272,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return false;
 	}
 
-	public IMemoryBlock getMemoryBlock(long startAddress, long length) {
+	public IMemoryBlock getMemoryBlock(final long startAddress, final long length) {
 		return null;
 	}
 

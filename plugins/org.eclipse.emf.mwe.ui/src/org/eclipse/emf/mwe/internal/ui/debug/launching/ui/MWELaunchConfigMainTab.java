@@ -53,7 +53,7 @@ import org.eclipse.ui.dialogs.ResourceListSelectionDialog;
  */
 public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
-	private WidgetListener fListener = new WidgetListener();
+	private final WidgetListener fListener = new WidgetListener();
 
 	private Text projText;
 
@@ -75,7 +75,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		return "Main";
 	}
 
-	public void createControl(Composite parent) {
+	public void createControl(final Composite parent) {
 		Font font = parent.getFont();
 
 		Composite comp = new Composite(parent, SWT.NONE);
@@ -99,7 +99,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 				javaDebugCheckbox });
 	}
 
-	private Text createGroup(Composite comp, String title, Button searchButton, Button[] checkButtons) {
+	private Text createGroup(final Composite comp, final String title, final Button searchButton, final Button[] checkButtons) {
 		Font font = comp.getFont();
 		Group group = new Group(comp, SWT.NONE);
 		group.setText(title);
@@ -114,7 +114,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		text.addModifyListener(fListener);
 		searchButton.setParent(group);
 		searchButton.addSelectionListener(fListener);
-		if (checkButtons != null)
+		if (checkButtons != null) {
 			for (Button button : checkButtons) {
 				button.setParent(group);
 				GridData gd = new GridData();
@@ -122,18 +122,19 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 				button.setLayoutData(gd);
 				button.addSelectionListener(fListener);
 			}
+		}
 		return text;
 	}
 
 	// *********************************************************** data handling
 
-	public void setDefaults(ILaunchConfigurationWorkingCopy config) {
+	public void setDefaults(final ILaunchConfigurationWorkingCopy config) {
 		// is called when a new LauchConfig is created
 		// nothing to do
 	}
 
 	@Override
-	public void initializeFrom(ILaunchConfiguration config) {
+	public void initializeFrom(final ILaunchConfiguration config) {
 		super.initializeFrom(config);
 
 		try {
@@ -148,17 +149,18 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		}
 	}
 
-	private void setWfText(String fullName) {
+	private void setWfText(final String fullName) {
 		wfPath = new Path(fullName);
 		String projectName = projText.getText().trim();
 		int pos = fullName.indexOf(projectName);
-		if (projectName.length() > 0 && pos >= 0) {
+		if ((projectName.length() > 0) && (pos >= 0)) {
 			wfText.setText(fullName.substring(pos + projectName.length() + 1));
-		} else
+		} else {
 			wfText.setText(fullName);
+		}
 	}
 
-	public void performApply(ILaunchConfigurationWorkingCopy config) {
+	public void performApply(final ILaunchConfigurationWorkingCopy config) {
 		config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME, projText.getText().trim());
 		config.setAttribute(MWELaunchConfigurationConstants.ATTR_MWE_WORKFLOW_FILE, wfPath.toString());
 		config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_STOP_IN_MAIN, stopInMainCheckbox
@@ -168,7 +170,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 	}
 
 	@Override
-	public boolean isValid(ILaunchConfiguration launchConfig) {
+	public boolean isValid(final ILaunchConfiguration launchConfig) {
 		String text = wfText.getText().trim();
 		if (text.length() > 0) {
 			if (getWorkspaceRoot().findMember(wfPath) == null) {
@@ -185,22 +187,23 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
 	private class WidgetListener implements ModifyListener, SelectionListener {
 
-		public void modifyText(ModifyEvent e) {
+		public void modifyText(final ModifyEvent e) {
 			updateLaunchConfigurationDialog();
 		}
 
-		public void widgetDefaultSelected(SelectionEvent e) {
+		public void widgetDefaultSelected(final SelectionEvent e) {
 			// do nothing
 		}
 
-		public void widgetSelected(SelectionEvent e) {
+		public void widgetSelected(final SelectionEvent e) {
 			Object source = e.getSource();
-			if (source == projButton)
+			if (source == projButton) {
 				handleProjectButtonSelected();
-			else if (source == wfButton)
+			} else if (source == wfButton) {
 				handleWfButtonSelected();
-			else
+			} else {
 				updateLaunchConfigurationDialog();
+			}
 		}
 	}
 
@@ -218,8 +221,9 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
 	private void handleProjectButtonSelected() {
 		IJavaProject project = chooseJavaProject();
-		if (project == null)
+		if (project == null) {
 			return;
+		}
 		String projectName = project.getElementName();
 		projText.setText(projectName);
 	}

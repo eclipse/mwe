@@ -19,11 +19,11 @@ import java.io.DataOutputStream;
 public class HandshakePacket extends AbstractPacket {
 
 	@Override
-	public void readContent(DataInputStream in) {
+	public void readContent(final DataInputStream in) {
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) {
+	public void writeContent(final DataOutputStream out) {
 	}
 
 }

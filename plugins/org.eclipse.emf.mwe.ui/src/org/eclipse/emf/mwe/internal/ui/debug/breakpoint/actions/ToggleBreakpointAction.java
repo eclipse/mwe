@@ -27,11 +27,11 @@ import org.eclipse.ui.editors.text.TextEditor;
  */
 public class ToggleBreakpointAction extends Action {
 
-	private TextEditor editor;
+	private final TextEditor editor;
 
 	private final BreakpointActionGroup group;
 
-	public ToggleBreakpointAction(TextEditor editor, BreakpointActionGroup group) {
+	public ToggleBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
 		setText("Toggle Breakpoint");
@@ -42,16 +42,18 @@ public class ToggleBreakpointAction extends Action {
 		IResource resource = (IResource) editor.getEditorInput().getAdapter(IResource.class);
 
 		PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(resource.getFileExtension());
-		if (adapter == null)
+		if (adapter == null) {
 			return;
+		}
 
 		int line = group.getLastSelectedLine() + 1;
 		int start = group.getLastSelectedOffset();
 		int end = group.isRulerSelected() ? group.getOffsetAtLine(line) : start;
-		if (group.isRulerSelected())
+		if (group.isRulerSelected()) {
 			setEnabled(true);
-		else
+		} else {
 			setEnabled(adapter.isToggleBpEnabled(resource, start, end, line));
+		}
 	}
 
 	@Override
@@ -70,8 +72,9 @@ public class ToggleBreakpointAction extends Action {
 		int start = group.getLastSelectedOffset();
 
 		PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(resource.getFileExtension());
-		if (adapter == null)
+		if (adapter == null) {
 			return;
+		}
 
 		// check if a BP already exists on that line and remove it
 		boolean isRulerSelected = group.isRulerSelected();

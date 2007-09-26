@@ -29,7 +29,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	private Page mainPage;
 
-	private String extension = "mwe";
+	private final String extension = "mwe";
 
 	String initialContents = "";
 	/*
@@ -38,7 +38,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	@Override
 	public void addPages() {
 		super.addPages();
-		mainPage = new Page(getSelection());//$NON-NLS-1$
+		mainPage = new Page(getSelection());
 		addPage(mainPage);
 	}
 
@@ -47,7 +47,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	 */
 
 	@Override
-	public void init(IWorkbench workbench, IStructuredSelection currentSelection) {
+	public void init(final IWorkbench workbench, final IStructuredSelection currentSelection) {
 		super.init(workbench, currentSelection);
 		setWindowTitle("New File");
 		setNeedsProgressMonitor(true);
@@ -95,7 +95,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 
 	class Page extends WizardNewFileCreationPage {
 
-		public Page(IStructuredSelection selection) {
+		public Page(final IStructuredSelection selection) {
 			super("newFilePage1", selection);
 			setFileName("newWorkflowFile." + extension);
 			setTitle("New Workflow File");
@@ -104,8 +104,9 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 
 		@Override
 		public String getErrorMessage() {
-			if (!getFileName().endsWith("." + extension))
+			if (!getFileName().endsWith("." + extension)) {
 				return "file extension must be ." + extension;
+			}
 			return null;
 		}
 

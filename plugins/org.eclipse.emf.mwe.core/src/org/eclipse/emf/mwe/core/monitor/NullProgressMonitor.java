@@ -88,23 +88,23 @@ public class NullProgressMonitor implements ProgressMonitor {
     public void worked(final int work) {
     }
 
-	public void started(Object element, Object context){
+	public void started(final Object element, final Object context){
 	}
 
-	public void finished(Object element, Object context){
+	public void finished(final Object element, final Object context){
 		
 	}
 
-	public void postTask(Object element, Object context) {
+	public void postTask(final Object element, final Object context) {
 	}
 
-	public void preTask(Object element, Object context) {
+	public void preTask(final Object element, final Object context) {
 	}
 
 	public void clearBlocked() {
 	}
 
-	public void setBlocked(Diagnostic reason) {
+	public void setBlocked(final Diagnostic reason) {
 	}
 
 }

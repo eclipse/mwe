@@ -7,7 +7,7 @@ public class ConditionEvaluationException extends RuntimeException {
 		super();
 	}
 	
-	public ConditionEvaluationException( String message ) {
+	public ConditionEvaluationException( final String message ) {
 		super( message );
 	}
 	

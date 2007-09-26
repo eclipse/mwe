@@ -55,20 +55,23 @@ public abstract class AbstractPacket {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder(getClass().getSimpleName() + " ");
-		if (id != 0)
+		if (id != 0) {
 			sb.append(" id=" + id);
-		if (refId != 0)
+		}
+		if (refId != 0) {
 			sb.append(" refId=" + refId);
+		}
 		return sb.toString();
 	}
 
 	// -------------------------------------------------------------------------
 
 	protected void setNextId() {
-		if (nextId == Integer.MAX_VALUE)
+		if (nextId == Integer.MAX_VALUE) {
 			nextId = 1;
-		else
+		} else {
 			id = ++nextId;
+		}
 	}
 
 }

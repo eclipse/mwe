@@ -16,7 +16,7 @@ public class ParseException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1943730836608506785L;
-	private Location location;
+	private final Location location;
 
     public ParseException(final String string, final Location location) {
         super(string);

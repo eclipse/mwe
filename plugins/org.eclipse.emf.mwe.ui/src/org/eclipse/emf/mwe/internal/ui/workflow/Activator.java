@@ -28,7 +28,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void start(BundleContext context) throws Exception {
+	public void start(final BundleContext context) throws Exception {
 		super.start(context);
 	}
 
@@ -38,7 +38,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
 	 */
 	@Override
-	public void stop(BundleContext context) throws Exception {
+	public void stop(final BundleContext context) throws Exception {
 		plugin = null;
 		super.stop(context);
 	}
@@ -52,19 +52,19 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public static void logError(Exception e) {
+	public static void logError(final Exception e) {
 		logError(e.getMessage(), e);
 	}
 
-	public static void logError(String msg, Exception e) {
+	public static void logError(final String msg, final Exception e) {
 		logError(createErrorStatus(msg, e));
 	}
 
-	public static void logError(IStatus status) {
+	public static void logError(final IStatus status) {
 		getDefault().getLog().log(status);
 	}
 	
-	public static IStatus createErrorStatus(String msg, Exception e) {
+	public static IStatus createErrorStatus(final String msg, final Exception e) {
 		return new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, e);
 	}
 	

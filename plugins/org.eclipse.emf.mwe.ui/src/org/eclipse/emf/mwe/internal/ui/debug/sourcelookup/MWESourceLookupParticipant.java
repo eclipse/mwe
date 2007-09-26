@@ -19,7 +19,7 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.DebugStackFrame;
  */
 public class MWESourceLookupParticipant extends AbstractSourceLookupParticipant {
 
-	public String getSourceName(Object object) throws CoreException {
+	public String getSourceName(final Object object) throws CoreException {
 		if (object instanceof DebugStackFrame) {
 			return ((DebugStackFrame) object).getResource();
 		}

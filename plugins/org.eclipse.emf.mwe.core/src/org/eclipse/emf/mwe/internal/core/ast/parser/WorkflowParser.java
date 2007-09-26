@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.internal.core.ast.parser;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 import java.util.Stack;
 
@@ -86,7 +85,7 @@ public class WorkflowParser extends DefaultHandler implements ContentHandler {
     }
 
     @Override
-    public void setDocumentLocator (Locator locator){
+    public void setDocumentLocator (final Locator locator){
     	this.locator = locator;
     }
 
@@ -131,7 +130,7 @@ public class WorkflowParser extends DefaultHandler implements ContentHandler {
         } else if (attributes.getValue(IDREF) != null) {
             validateAttributes("reference " + name, attributes, new String[] { IDREF }, new String[0]);
             return new ReferenceAST(getLocation(), name, attributes.getValue(IDREF));
-        } else if (attributes.getValue(VALUE) != null && attributes.getValue(NAME) == null) {
+        } else if ((attributes.getValue(VALUE) != null) && (attributes.getValue(NAME) == null)) {
             validateAttributes("simpleparam " + name, attributes, new String[] { VALUE }, new String[] {});
             return new SimpleParamAST(getLocation(), name, attributes.getValue(VALUE));
         } else {
@@ -167,18 +166,18 @@ public class WorkflowParser extends DefaultHandler implements ContentHandler {
         final Set<String> mandatoryFound = new HashSet<String>();
         for (int i = 0; i < attributes.getLength(); i++) {
             final String name = attributes.getQName(i);
-            if (name != null && !name.trim().equals("")) {
+            if ((name != null) && !name.trim().equals("")) {
                 if (!(mandatorySet.contains(name) || optionalSet.contains(name))) {
                     issues.addError("Unkown attribute " + name + " for element " + eleName, getLocation());
                 }
             }
-            if (mandatorySet.contains(name))
-                mandatoryFound.add(name);
+            if (mandatorySet.contains(name)) {
+				mandatoryFound.add(name);
+			}
         }
         mandatorySet.removeAll(mandatoryFound);
         if (!mandatorySet.isEmpty()) {
-            for (final Iterator<String> iter = mandatorySet.iterator(); iter.hasNext();) {
-                final String name = iter.next();
+            for (String name : mandatorySet) {
                 issues.addError("Attribute " + name + " is mandatory for element " + eleName, getLocation());
             }
         }

@@ -32,19 +32,21 @@ public class RegisterPacket extends AbstractPacket {
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		type = in.readInt();
 		int noOfHandlers = in.readInt();
-		for (int i = 0; i < noOfHandlers; i++)
+		for (int i = 0; i < noOfHandlers; i++) {
 			classNames.add(in.readUTF());
+		}
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(type);
 		out.writeInt(classNames.size());
-		for (String name : classNames)
+		for (String name : classNames) {
 			out.writeUTF(name);
+		}
 	}
 
 	@Override

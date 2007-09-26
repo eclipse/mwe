@@ -13,20 +13,21 @@ public abstract class AbstractEMFWorkflowComponent extends
 		new StandaloneSetup();
 	}
 
-	public void setUseSingleGlobalResourceSet( boolean b ) {
-		if (b)
+	public void setUseSingleGlobalResourceSet( final boolean b ) {
+		if (b) {
 			resourceSet = SingleGlobalResourceSet.get();
+		}
 	}
 	
 	protected ResourceSet resourceSet = new ResourceSetImpl();
 	
 	protected String uri;
 
-	public void setResourceSet(ResourceSet resourceSet) {
+	public void setResourceSet(final ResourceSet resourceSet) {
 		this.resourceSet = resourceSet;
 	}
 
-	public void setUri(String uri) {
+	public void setUri(final String uri) {
 		this.uri = uri;
 	}
 	

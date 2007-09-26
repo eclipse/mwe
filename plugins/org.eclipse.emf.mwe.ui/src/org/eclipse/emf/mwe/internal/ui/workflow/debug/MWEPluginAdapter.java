@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Display;
  */
 public class MWEPluginAdapter implements PluginAdapter {
 
-	private XmlLocationAnalyser locationAnalyser;
+	private final XmlLocationAnalyser locationAnalyser;
 	private static Set<String> extensions = new HashSet<String>();
 	
 	static {
@@ -65,11 +65,11 @@ public class MWEPluginAdapter implements PluginAdapter {
 		this.locationAnalyser = new XmlLocationAnalyser();
 	}
 
-	public boolean canHandleResourceExtension(String ext) {
+	public boolean canHandleResourceExtension(final String ext) {
 		return getRequiredExtension().contains(ext);
 	}
 
-	public boolean canHandleType(String type) {
+	public boolean canHandleType(final String type) {
 		return TYPE.equals(type);
 	}
 
@@ -87,36 +87,39 @@ public class MWEPluginAdapter implements PluginAdapter {
 		return configElements.length != 0?configElements[0].getAttribute("id"):null;
 	}
 
-	public boolean isToggleBpEnabled(IResource resource, int start, int end, int line) {
+	public boolean isToggleBpEnabled(final IResource resource, final int start, final int end, final int line) {
 		return getComponentAstAtLine(resource, line) != null;
 	}
 
-	public MWEBreakpoint createBreakpoint(IResource resource, int start, int end, int line) throws CoreException {
+	public MWEBreakpoint createBreakpoint(final IResource resource, final int start, final int end, final int line) throws CoreException {
 		// TODO: ER: allow BP on file's end tag (e.g. </workflow> )
 		ComponentAST comp = getComponentAstAtLine(resource, line);
-		if (comp == null)
+		if (comp == null) {
 			return null;
+		}
 		// get the correct start and end of the tag
 		return new MWEBreakpoint(resource, getElementName(comp), comp.getLineNumber(), comp.getOffset(), comp.getLength());
 	}
 
-	public IBreakpoint checkBreakpoints(IBreakpoint[] bps, IResource resource, int start, int end, int line) throws CoreException {
+	public IBreakpoint checkBreakpoints(final IBreakpoint[] bps, final IResource resource, final int start, final int end, final int line) throws CoreException {
 		ComponentAST comp = getComponentAstAtLine(resource, line);
-		if (comp == null)
+		if (comp == null) {
 			return null;
+		}
 
 		Location loc = locationAnalyser.adapt(comp.getLocation());
 		for (IBreakpoint bp1 : bps) {
 			MWEBreakpoint bp = (MWEBreakpoint) bp1;
-			if (bp.getResource().equals(resource.getFullPath().toString()) && bp.getLine() == loc.getLineNumber()
-					&& bp.getCharStart() == loc.getNameStart() && bp.getCharEnd() == loc.getNameEnd())
+			if (bp.getResource().equals(resource.getFullPath().toString()) && (bp.getLine() == loc.getLineNumber())
+					&& (bp.getCharStart() == loc.getNameStart()) && (bp.getCharEnd() == loc.getNameEnd())) {
 				return bp;
+			}
 		}
 		return null;
 	}
 
 	// get the closest ComponentAst that surrounds the lineNumber
-	private ComponentAST getComponentAstAtLine(IResource resource, int lineNumber) {
+	private ComponentAST getComponentAstAtLine(final IResource resource, final int lineNumber) {
 		IPath path = resource.getFullPath();
 		IFile file = ResourcesPlugin.getWorkspace().getRoot().getFile(path);
 		String wfFileName = file.getLocation().toString();
@@ -126,7 +129,7 @@ public class MWEPluginAdapter implements PluginAdapter {
 		final Map<String, String> params = new HashMap<String, String>();
 
 		AbstractASTBase wfAST = factory.parseAndInitialize(wfFileName, issues, params);
-		if (wfAST != null && wfAST instanceof ComponentAST) {
+		if ((wfAST != null) && (wfAST instanceof ComponentAST)) {
 			List<AbstractASTBase> candidates = ((ComponentAST) wfAST).getChildren();
 
 			AbstractASTBase candidate = null;
@@ -135,33 +138,39 @@ public class MWEPluginAdapter implements PluginAdapter {
 				loc = locationAnalyser.adapt(next.getLocation());
 				next.setLocation(loc);
 				if (loc.getLineNumber() > lineNumber) {
-					if (candidate instanceof ComponentAST)
+					if (candidate instanceof ComponentAST) {
 						return (ComponentAST) candidate;
+					}
 				}
 				candidate = next;
 			}
-			if (candidate instanceof ComponentAST)
+			if (candidate instanceof ComponentAST) {
 				return (ComponentAST) candidate;
+			}
 		}
 		return null;
 	}
 
-	private String getElementName(ComponentAST ast) {
-		if (ast.getId() != null)
+	private String getElementName(final ComponentAST ast) {
+		if (ast.getId() != null) {
 			return ast.getId();
-		if (ast instanceof InclusionAST)
+		}
+		if (ast instanceof InclusionAST) {
 			return ((InclusionAST) ast).getFile();
+		}
 		String clazz = new Path(ast.getClazz()).getFileExtension();
-		if (clazz != null)
+		if (clazz != null) {
 			return clazz;
+		}
 		return ast.getClazz();
 	}
 
 	private Image icon = null;
 
 	public Image getIcon() {
-		if (icon != null)
+		if (icon != null) {
 			return icon;
+		}
 		IPath path = new Path("/icons/workflowfile.gif");
 		InputStream is = null;
 		try {

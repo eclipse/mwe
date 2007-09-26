@@ -27,7 +27,8 @@ public class IfComponent extends ConditionalComponent {
 		return Boolean.valueOf(condition).booleanValue();
 	}
 	
-    public String getLogMessage() {
+    @Override
+	public String getLogMessage() {
     	return "if ( "+condition+" ): "+evaluate();
     }
 

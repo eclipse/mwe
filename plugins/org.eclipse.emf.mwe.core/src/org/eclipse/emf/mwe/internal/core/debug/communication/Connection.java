@@ -44,17 +44,18 @@ public class Connection {
 	// -------------------------------------------------------------------------
 	// *the* main operation methods
 
-	public AbstractPacket listenForPacket(Class<? extends AbstractPacket> type) throws InterruptedIOException {
+	public AbstractPacket listenForPacket(final Class<? extends AbstractPacket> type) throws InterruptedIOException {
 		return receiver.getPacket(type, -1);
 	}
 
-	public AbstractPacket listenForPacket(Class<? extends AbstractPacket> type, int refId) throws InterruptedIOException {
+	public AbstractPacket listenForPacket(final Class<? extends AbstractPacket> type, final int refId) throws InterruptedIOException {
 		return receiver.getPacket(type, refId, -1);
 	}
 
-	public int sendPacket(AbstractPacket packet) throws IOException {
-		if (sender == null)
+	public int sendPacket(final AbstractPacket packet) throws IOException {
+		if (sender == null) {
 			return -1;
+		}
 		return sender.sendPacket(packet);
 	}
 
@@ -67,7 +68,7 @@ public class Connection {
 	 * @param port the communication port
 	 * @throws IOException
 	 */
-	public void startListeningSocket(int port) throws IOException {
+	public void startListeningSocket(final int port) throws IOException {
 		ssocket = new ServerSocket(port);
 	}
 
@@ -78,13 +79,14 @@ public class Connection {
 	 * @param timeout
 	 * @throws IOException
 	 */
-	public void accept(int timeout) throws IOException {
+	public void accept(final int timeout) throws IOException {
 		ssocket.setSoTimeout(timeout);
 		// will throw SocketTimeoutException, if nobody connects
 		socket = ssocket.accept();
 		establishReaderAndWriter();
-		if (!writeHandshake())
+		if (!writeHandshake()) {
 			throw new IOException("handshake failed");
+		}
 	}
 
 	/**
@@ -94,7 +96,7 @@ public class Connection {
 	 * @param port
 	 * @throws IOException
 	 */
-	public void connect(int port) throws IOException {
+	public void connect(final int port) throws IOException {
 		socket = new Socket("localhost", port);
 		establishReaderAndWriter();
 		replyHandshake();
@@ -104,7 +106,7 @@ public class Connection {
 	 * @return if the socket connection is still active
 	 */
 	public boolean isConnected() {
-		return socket != null && !socket.isClosed();
+		return (socket != null) && !socket.isClosed();
 	}
 
 	/**
@@ -112,8 +114,9 @@ public class Connection {
 	 */
 	public void close() {
 		try {
-			if (sender != null)
+			if (sender != null) {
 				sender.close();
+			}
 			if (socket != null) {
 				out.close();
 				in.close();
@@ -142,7 +145,7 @@ public class Connection {
 	}
 
 	@SuppressWarnings("unchecked")
-	private AbstractPacket instantiatePacket(String className) throws IOException {
+	private AbstractPacket instantiatePacket(final String className) throws IOException {
 		Class<? extends AbstractPacket> packetClass = null;
 		AbstractPacket packet = null;
 		String msg = null;
@@ -156,9 +159,11 @@ public class Connection {
 			Constructor c = packetClass.getConstructors()[0];
 			Class[] parmTypes = c.getParameterTypes();
 			Object[] initargs = new Object[parmTypes.length];
-			for (int i = 0; i < parmTypes.length; i++)
-				if (parmTypes[i] == int.class)
+			for (int i = 0; i < parmTypes.length; i++) {
+				if (parmTypes[i] == int.class) {
 					initargs[i] = 0;
+				}
+			}
 			try {
 				packet = (AbstractPacket) c.newInstance(initargs);
 			} catch (IllegalArgumentException e) {
@@ -179,7 +184,7 @@ public class Connection {
 		return packet;
 	}
 
-	protected void writePacket(AbstractPacket packet) throws IOException {
+	protected void writePacket(final AbstractPacket packet) throws IOException {
 		out.writeUTF(packet.getClass().getName());
 		packet.writeContent(out);
 		// System.out.println(Thread.currentThread().getName() + "-SENT-----: " + packet);
@@ -204,10 +209,11 @@ public class Connection {
 	}
 
 	private void replyHandshake() throws IOException {
-		if (listenForPacket(HandshakePacket.class).getClass().equals(HandshakePacket.class))
+		if (listenForPacket(HandshakePacket.class).getClass().equals(HandshakePacket.class)) {
 			sendPacket(new HandshakePacket());
-		else
+		} else {
 			throw new IOException("handshake failed");
+		}
 	}
 
 }

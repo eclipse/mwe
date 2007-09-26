@@ -29,23 +29,23 @@ public class VariablesPluginHandler implements PluginHandler {
 
 	// -------------------------------------------------------------------------
 
-	public void setConnection(Connection connection) {
+	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
-	public void setDebugModelManager(DebugModelManager dmm) {
+	public void setDebugModelManager(final DebugModelManager dmm) {
 		// don't need it
 	}
 
 	// -------------------------------------------------------------------------
 
-	public List<VarValueTO> sendRequireVariables(int frameId) throws IOException {
+	public List<VarValueTO> sendRequireVariables(final int frameId) throws IOException {
 		RequireVarPacket packet = new RequireVarPacket(frameId, 0);
 		int refId = connection.sendPacket(packet);
 		return ((VarDataPacket) connection.listenForPacket(VarDataPacket.class, refId)).valueList;
 	}
 
-	public List<VarValueTO> sendRequireSubVariables(int frameId, int varId) throws IOException {
+	public List<VarValueTO> sendRequireSubVariables(final int frameId, final int varId) throws IOException {
 		RequireVarPacket packet = new RequireVarPacket(frameId, varId);
 		int refId = connection.sendPacket(packet);
 		return ((VarDataPacket) connection.listenForPacket(VarDataPacket.class, refId)).valueList;

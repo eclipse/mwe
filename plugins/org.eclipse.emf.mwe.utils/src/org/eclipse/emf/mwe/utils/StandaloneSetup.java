@@ -59,26 +59,28 @@ public class StandaloneSetup {
 	 * @param pathToPlatform
 	 */
 	@SuppressWarnings("unchecked")
-	public void setPlatformUri(String pathToPlatform) {
+	public void setPlatformUri(final String pathToPlatform) {
 		File f = new File(pathToPlatform);
-		if (!f.exists())
+		if (!f.exists()) {
 			throw new ConfigurationException("The platformUri location '"
 					+ pathToPlatform + "' does not exist");
-		if (!f.isDirectory())
+		}
+		if (!f.isDirectory()) {
 			throw new ConfigurationException(
 					"The platformUri location must point to a directory");
+		}
 		String path = f.getAbsolutePath();
 		try {
 			path = f.getCanonicalPath();
 		} catch (IOException e) {
 			log.error("Error when registering platform location", e);
 		}
-		if (platformRootPath == null || !platformRootPath.equals(path)) {
+		if ((platformRootPath == null) || !platformRootPath.equals(path)) {
 			platformRootPath = path;
 			log.info("Registering platform uri '" + path + "'");
 			if (f.exists()) {
 				for (File subdir : f.listFiles(new FileFilter() {
-					public boolean accept(File arg0) {
+					public boolean accept(final File arg0) {
 						return arg0.exists() && arg0.isDirectory()
 								&& !arg0.getName().startsWith(".");
 					}
@@ -137,23 +139,25 @@ public class StandaloneSetup {
 			// locate the factory class of the extension
 			Class factoryClass = ResourceLoaderFactory.createResourceLoader()
 					.loadClass(m.getTo());
-			if (factoryClass == null)
+			if (factoryClass == null) {
 				throw new ConfigurationException("cannot find class "
 						+ m.getTo() + " for extension " + m.getFrom());
+			}
 			Object factoryInstance = null;
 			if (factoryClass.isInterface()) {
 				final Class[] innerClasses = factoryClass.getDeclaredClasses();
 				factoryClass = null;
-				for (int j = 0; j < innerClasses.length; j++) {
+				for (Class element : innerClasses) {
 					if (Resource.Factory.class
-							.isAssignableFrom(innerClasses[j])) {
-						factoryClass = innerClasses[j];
+							.isAssignableFrom(element)) {
+						factoryClass = element;
 					}
 				}
-				if (factoryClass == null)
+				if (factoryClass == null) {
 					throw new ConfigurationException(
 							"cannot find inner factory class " + m.getTo()
 									+ " for extension " + m.getFrom());
+				}
 				final Field instanceField = factoryClass.getField("INSTANCE");
 				factoryInstance = instanceField.get(null);
 			} else {
@@ -166,7 +170,7 @@ public class StandaloneSetup {
 		}
 	}
 
-	public void addRegisterGeneratedEPackage(String interfacename) {
+	public void addRegisterGeneratedEPackage(final String interfacename) {
 		Class clazz = ResourceLoaderFactory.createResourceLoader().loadClass(
 				interfacename);
 		if (clazz == null) {
@@ -190,24 +194,25 @@ public class StandaloneSetup {
 	protected ResourceSet resourceSet = new ResourceSetImpl();
 	protected Registry registry = EPackage.Registry.INSTANCE;
 
-	public void setResourceSet(ResourceSet resourceSet) {
+	public void setResourceSet(final ResourceSet resourceSet) {
 		log
 				.info("Using resourceSet registry. The registered Packages will not be registered in the global EPackage.Registry.INSTANCE!");
 		this.resourceSet = resourceSet;
 		this.registry = resourceSet.getPackageRegistry();
 	}
 
-	public void setResourceSetImpl(ResourceSetImpl resourceSet) {
+	public void setResourceSetImpl(final ResourceSetImpl resourceSet) {
 		this.setResourceSet(resourceSet);
 	}
 
-	public void addRegisterEcoreFile(String fileName)
+	public void addRegisterEcoreFile(final String fileName)
 			throws IllegalArgumentException, SecurityException,
 			IllegalAccessException, NoSuchFieldException {
 		Resource res = resourceSet.getResource(URI.createURI(fileName), true);
-		if (res == null)
+		if (res == null) {
 			throw new ConfigurationException("Couldn't find resource under  "
 					+ fileName);
+		}
 		if (!res.isLoaded()) {
 			try {
 				res.load(null);
@@ -233,7 +238,7 @@ public class StandaloneSetup {
 		}
 	}
 
-	public EPackage getPackage(String nsUri) {
+	public EPackage getPackage(final String nsUri) {
 		return (EPackage) registry.get(nsUri);
 	}
 

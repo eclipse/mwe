@@ -37,7 +37,7 @@ public class EventPluginHandler implements Runnable {
 
 	private DebugModelManager dmm;
 
-	private Class<? extends AbstractPacket> typeToListen = EventPacket.class;
+	private final Class<? extends AbstractPacket> typeToListen = EventPacket.class;
 
 	// -------------------------------------------------------------------------
 
@@ -46,7 +46,7 @@ public class EventPluginHandler implements Runnable {
 
 	// -------------------------------------------------------------------------
 
-	public void setDmm(DebugModelManager dmm) {
+	public void setDmm(final DebugModelManager dmm) {
 		this.dmm = dmm;
 	}
 
@@ -54,7 +54,7 @@ public class EventPluginHandler implements Runnable {
 		return typeToListen;
 	}
 
-	public void setConnection(Connection connection) {
+	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
@@ -68,14 +68,15 @@ public class EventPluginHandler implements Runnable {
 
 	public void run() {
 		try {
-			while (true)
+			while (true) {
 				dispatch((EventPacket) connection.listenForPacket(typeToListen));
+			}
 		} catch (Exception e) {
 			connection.close();
 		}
 	}
 
-	private void dispatch(EventPacket packet) throws DebugException {
+	private void dispatch(final EventPacket packet) throws DebugException {
 		dmm.getThread().setBreakpoint(null);
 
 		switch (packet.event) {
@@ -106,7 +107,7 @@ public class EventPluginHandler implements Runnable {
 		}
 	}
 
-	private void adaptStackFrames(EventPacket sp) {
+	private void adaptStackFrames(final EventPacket sp) {
 		EventPacketWithFrames packet = (EventPacketWithFrames) sp;
 		dmm.adaptStackFrames(packet.cleanStackLevel, packet.frames);
 	}

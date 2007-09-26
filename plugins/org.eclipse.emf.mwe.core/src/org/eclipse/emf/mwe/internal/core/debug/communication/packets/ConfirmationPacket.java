@@ -21,19 +21,19 @@ public class ConfirmationPacket extends AbstractPacket {
 
 	// -------------------------------------------------------------------------
 
-	public ConfirmationPacket(int packId) {
+	public ConfirmationPacket(final int packId) {
 		refId = packId;
 	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		refId = in.readInt();
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(refId);
 	}
 

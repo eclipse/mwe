@@ -42,7 +42,7 @@ public class PluginExtensionManager {
 
 	private static PluginExtensionManager singleton;
 
-	private Set<PluginAdapter> pluginAdapters = new HashSet<PluginAdapter>();
+	private final Set<PluginAdapter> pluginAdapters = new HashSet<PluginAdapter>();
 
 	private boolean missingAdapterReported;
 
@@ -53,8 +53,9 @@ public class PluginExtensionManager {
 	// -------------------------------------------------------------------------
 
 	public static PluginExtensionManager getDefault() {
-		if (singleton == null)
+		if (singleton == null) {
 			singleton = new PluginExtensionManager();
+		}
 		return singleton;
 	}
 
@@ -64,7 +65,7 @@ public class PluginExtensionManager {
 
 	// -------------------------------------------------------------------------
 
-	public void init(DebugModelManager dmm, Connection connection) throws DebugException {
+	public void init(final DebugModelManager dmm, final Connection connection) throws DebugException {
 		this.dmm = dmm;
 		this.connection = connection;
 		try {
@@ -78,10 +79,12 @@ public class PluginExtensionManager {
 
 	// -------------------------------------------------------------------------
 
-	public PluginAdapter getAdapterByResourceExtension(String ext) {
-		for (PluginAdapter adapter : pluginAdapters)
-			if (adapter.canHandleResourceExtension(ext))
+	public PluginAdapter getAdapterByResourceExtension(final String ext) {
+		for (PluginAdapter adapter : pluginAdapters) {
+			if (adapter.canHandleResourceExtension(ext)) {
 				return adapter;
+			}
+		}
 		if (!missingAdapterReported) {
 			String msg = "Warning: Debug system initialization problem.\nDidn't find a plugin adapter for the file extension: '"
 					+ ext + "'";
@@ -92,10 +95,12 @@ public class PluginExtensionManager {
 		return null;
 	}
 
-	public PluginAdapter getAdapterByType(String type) {
-		for (PluginAdapter adapter : pluginAdapters)
-			if (adapter.canHandleType(type))
+	public PluginAdapter getAdapterByType(final String type) {
+		for (PluginAdapter adapter : pluginAdapters) {
+			if (adapter.canHandleType(type)) {
 				return adapter;
+			}
+		}
 		if (!missingAdapterReported) {
 			String msg = "Warning: Debug system initialization problem.\nDidn't find a plugin adapter for type: '"
 					+ type + "'";
@@ -136,26 +141,29 @@ public class PluginExtensionManager {
 			if (elem.getName().equals("handler")) {
 
 				String className = elem.getAttribute("runtimeClass");
-				if (className != null)
+				if (className != null) {
 					packet.classNames.add(className);
+				}
 
 				PluginHandler handler = null;
 				className = elem.getAttribute("pluginClass");
-				if (className != null)
+				if (className != null) {
 					try {
 						handler = (PluginHandler) elem.createExecutableExtension("pluginClass");
 					} catch (CoreException e) {
 						Activator.logError("Internal configuration error.\nCouldn't instantiate "
 								+ elem.getAttribute("pluginClass"), e);
 					}
+				}
 				if (handler != null) {
 					handler.setConnection(connection);
-					if ("variablesHandler".equals(elem.getAttribute("type")))
+					if ("variablesHandler".equals(elem.getAttribute("type"))) {
 						dmm.setVariablesHandler((VariablesPluginHandler) handler);
-					else if ("breakpointHandler".equals(elem.getAttribute("type")))
+					} else if ("breakpointHandler".equals(elem.getAttribute("type"))) {
 						dmm.setBreakpointHandler((BreakpointPluginHandler) handler);
-					else
+					} else {
 						handler.setDebugModelManager(dmm);
+					}
 				}
 			}
 		}
@@ -175,12 +183,14 @@ public class PluginExtensionManager {
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] elems = reg
 				.getConfigurationElementsFor("org.eclipse.emf.mwe.ui.debugAdapters");
-		for (IConfigurationElement elem : elems)
+		for (IConfigurationElement elem : elems) {
 			if (elem.getName().equals("adapter")) {
 				String className = elem.getAttribute("runtimeClass");
-				if (className != null)
+				if (className != null) {
 					packet.classNames.add(className);
+				}
 			}
+		}
 		connection.sendPacket(packet);
 
 	}
@@ -193,15 +203,17 @@ public class PluginExtensionManager {
 			if (elem.getName().equals("adapter")) {
 				PluginAdapter adapter = null;
 				String className = elem.getAttribute("pluginClass");
-				if (className != null)
+				if (className != null) {
 					try {
 						adapter = (PluginAdapter) elem.createExecutableExtension("pluginClass");
 					} catch (CoreException e) {
 						Activator.logError("Internal configuration error.\nCouldn't instantiate "
 								+ elem.getAttribute("pluginClass"), e);
 					}
-				if (adapter != null)
+				}
+				if (adapter != null) {
 					pluginAdapters.add(adapter);
+				}
 			}
 		}
 	}

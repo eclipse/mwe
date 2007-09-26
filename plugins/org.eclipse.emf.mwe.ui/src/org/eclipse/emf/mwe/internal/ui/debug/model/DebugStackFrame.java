@@ -32,17 +32,17 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.ui.VariableSorter;
  */
 public class DebugStackFrame extends DebugElement implements IStackFrame {
 
-	private DebugThread thread;
+	private final DebugThread thread;
 
-	private SyntaxElement frameValues;
+	private final SyntaxElement frameValues;
 
-	private List<DebugVariable> variables = new ArrayList<DebugVariable>();
+	private final List<DebugVariable> variables = new ArrayList<DebugVariable>();
 
 	private boolean variablesChecked;
 
 	// -------------------------------------------------------------------------
 
-	public DebugStackFrame(DebugThread thread, SyntaxElement to) {
+	public DebugStackFrame(final DebugThread thread, final SyntaxElement to) {
 		super(thread.getDebugTarget0());
 		this.thread = thread;
 		this.frameValues = to;

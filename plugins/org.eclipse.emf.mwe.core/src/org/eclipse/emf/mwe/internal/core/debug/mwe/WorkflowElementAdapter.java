@@ -34,7 +34,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 
 	private CompositeComponent root;
 
-	private XmlLocationAnalyser locationAnalyser;
+	private final XmlLocationAnalyser locationAnalyser;
 
 	// -------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return context;
 	}
 
-	public void setContext(Object context) {
+	public void setContext(final Object context) {
 		this.context = context;
 	}
 
@@ -58,10 +58,11 @@ public class WorkflowElementAdapter implements ElementAdapter {
 
 	// -------------------------------------------------------------------------
 
-	public boolean canHandle(Object element) {
+	public boolean canHandle(final Object element) {
 		if (element instanceof WorkflowComponent) {
-			if (root == null)
+			if (root == null) {
 				root = ((WorkflowComponent) element).getContainer();
+			}
 			return true;
 		}
 		if (element instanceof SyntaxElement) {
@@ -72,21 +73,21 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return false;
 	}
 
-	public boolean shallHandle(Object element) {
+	public boolean shallHandle(final Object element) {
 		// no special treatment for workflow components
 		return true;
 	}
 
-	public boolean shallSuspend(Object element, int flag) {
+	public boolean shallSuspend(final Object element, final int flag) {
 		// no special treatment for workflow components
 		return true;
 	}
 
-	public boolean isSurroundingElement(Object element) {
+	public boolean isSurroundingElement(final Object element) {
 		return CompositeComponent.class.isAssignableFrom(element.getClass());
 	}
 
-	public SyntaxElement createElementTO(Object element) {
+	public SyntaxElement createElementTO(final Object element) {
 		WorkflowComponent comp = (WorkflowComponent) element;
 		SyntaxElement se = new SyntaxElement();
 		Location loc = comp.getLocation();
@@ -101,13 +102,14 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
-	public SyntaxElement createEndElementTO(Object element) {
+	public SyntaxElement createEndElementTO(final Object element) {
 		CompositeComponent comp = (CompositeComponent) element;
 		SyntaxElement se = new SyntaxElement();
 		Location loc = comp.getOwnLocation();
-		if (loc == null)
+		if (loc == null) {
 			// for root
 			loc = comp.getLocation();
+		}
 		loc = initializeEndLocation(loc);
 		se.containerName = ComponentPrinter.getElementName(comp);
 		se.elementName = "end of cartridge";
@@ -120,7 +122,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
-	public List<NameValuePair> getVariables(Object element) {
+	public List<NameValuePair> getVariables(final Object element) {
 		List<NameValuePair> list = new ArrayList<NameValuePair>();
 
 		if (element instanceof WorkflowComponent) {
@@ -137,61 +139,71 @@ public class WorkflowElementAdapter implements ElementAdapter {
 			for (String name : ReflectionUtil.getFieldNames(element)) {
 				Object childElement;
 				// ReflectionUtil returns a name format "[" + i + "]" for arrays, therefore we can't use name here
-				if (element instanceof Object[])
+				if (element instanceof Object[]) {
 					childElement = ((Object[]) element)[i++];
-				else
+				} else {
 					childElement = ReflectionUtil.getFieldValue(element, name);
+				}
 				list.add(new NameValuePair(name, childElement));
 			}
 		}
 		return list;
 	}
 
-	public String getVariableDetailRep(Object element) {
+	public String getVariableDetailRep(final Object element) {
 		return ReflectionUtil.getNameToString(element);
 	}
 
-	public String getVariableSimpleRep(Object element) {
+	public String getVariableSimpleRep(final Object element) {
 		return ReflectionUtil.getSimpleName(element);
 	}
 
-	public boolean checkVariableHasMembers(Object element) {
+	public boolean checkVariableHasMembers(final Object element) {
 		return ReflectionUtil.checkFields(element);
 	}
 
-	public Object findElement(SyntaxElement se, Object actual, int flag) {
-		if (root == null)
+	public Object findElement(final SyntaxElement se, final Object actual, final int flag) {
+		if (root == null) {
 			return null;
+		}
 		return findComponent(root, se.resource, se.line);
 	}
 
-	private Object findComponent(CompositeComponent parent, String resource, int lineNo) {
+	private Object findComponent(final CompositeComponent parent, final String resource, final int lineNo) {
 		Location loc = parent.getOwnLocation();
-		if (loc == null)
+		if (loc == null) {
 			loc = parent.getLocation();
-		if (resource.endsWith(loc.getResource()))
-			for (WorkflowComponent comp : parent.getComponents())
-				if (comp.getLocation().getLineNumber() == lineNo)
+		}
+		if (resource.endsWith(loc.getResource())) {
+			for (WorkflowComponent comp : parent.getComponents()) {
+				if (comp.getLocation().getLineNumber() == lineNo) {
 					return comp;
-		for (WorkflowComponent comp : parent.getComponents())
+				}
+			}
+		}
+		for (WorkflowComponent comp : parent.getComponents()) {
 			if (comp instanceof CompositeComponent) {
 				CompositeComponent child = (CompositeComponent) comp;
 				Object found = findComponent(child, resource, lineNo);
-				if (found != null)
+				if (found != null) {
 					return found;
+				}
 			}
+		}
 		return null;
 	}
 
-	private Location initialize(Location loc) {
-		if (loc.getResource() == null)
+	private Location initialize(final Location loc) {
+		if (loc.getResource() == null) {
 			return null;
+		}
 		return locationAnalyser.adapt(loc);
 	}
 
-	private Location initializeEndLocation(Location loc) {
-		if (loc.getResource() == null)
+	private Location initializeEndLocation(final Location loc) {
+		if (loc.getResource() == null) {
 			return null;
+		}
 		return locationAnalyser.adaptEnd(loc);
 	}
 

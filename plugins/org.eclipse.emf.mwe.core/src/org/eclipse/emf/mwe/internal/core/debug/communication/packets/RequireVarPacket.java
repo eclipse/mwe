@@ -25,7 +25,7 @@ public class RequireVarPacket extends AbstractPacket {
 
 	// -------------------------------------------------------------------------
 
-	public RequireVarPacket(int frameId, int varId) {
+	public RequireVarPacket(final int frameId, final int varId) {
 		setNextId();
 		this.frameId = frameId;
 		this.varId = varId;
@@ -34,14 +34,14 @@ public class RequireVarPacket extends AbstractPacket {
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		id = in.readInt();
 		frameId = in.readInt();
 		varId = in.readInt();
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(id);
 		out.writeInt(frameId);
 		out.writeInt(varId);

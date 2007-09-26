@@ -38,11 +38,11 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 
 	private DebugMonitor monitor;
 
-	private Stack<Frame> stackFrames = new Stack<Frame>();
+	private final Stack<Frame> stackFrames = new Stack<Frame>();
 
-	private List<VarValue> frameCache = new ArrayList<VarValue>();
+	private final List<VarValue> frameCache = new ArrayList<VarValue>();
 
-	private List<VarValue> varCache = new ArrayList<VarValue>();
+	private final List<VarValue> varCache = new ArrayList<VarValue>();
 
 	private int nextId = 0;
 
@@ -54,11 +54,12 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
 	 *      org.openarchitectureware.debug.communication.Connection)
 	 */
-	public void init(DebugMonitor monitor, Connection connection) {
+	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
-		if (monitor != null)
+		if (monitor != null) {
 			monitor.addEventHandler(this);
+		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -81,21 +82,24 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 */
 	public void run() {
 		try {
-			while (true)
+			while (true) {
 				handle((RequireVarPacket) connection.listenForPacket(RequireVarPacket.class));
+			}
 		} catch (IOException e) {
 		}
 	}
 
-	private void handle(RequireVarPacket packet) throws IOException {
+	private void handle(final RequireVarPacket packet) throws IOException {
 		List<VarValueTO> values;
-		if (packet.varId == 0)
+		if (packet.varId == 0) {
 			values = getFrameVariables(packet.frameId);
-		else
+		} else {
 			values = getSubVariables(packet.frameId, packet.varId);
+		}
 		VarDataPacket varPacket = new VarDataPacket();
-		if (values != null)
+		if (values != null) {
 			varPacket.valueList = values;
+		}
 		varPacket.refId = packet.getId();
 		connection.sendPacket(varPacket);
 	}
@@ -104,7 +108,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	// It depends on the element adapter, which variables will be reported.
 	// The syntaxElement is also registered in the frameCache to find out later if variable values are still in
 	// use.
-	private List<VarValueTO> getFrameVariables(int frameId) {
+	private List<VarValueTO> getFrameVariables(final int frameId) {
 		if (frameId >= stackFrames.size()) {
 			return null;
 		}
@@ -123,15 +127,17 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	// In case both frameId and varId are delivered the sub variables of to var with the varId will be collected.
 	// The adapter that suits for the element will be used. That means that there can be different variables
 	// delivered because of different adapters for two frames although the underlying java elements are the same.
-	private List<VarValueTO> getSubVariables(int frameId, int varId) {
-		if (stackFrames.size() <= frameId)
+	private List<VarValueTO> getSubVariables(final int frameId, final int varId) {
+		if (stackFrames.size() <= frameId) {
 			return null;
+		}
 		Frame frame = stackFrames.get(frameId);
 		ElementAdapter adapter = monitor.getAdapter(frame.element);
 		adapter.setContext(frame.context);
 		VarValue value = findVarValueById(varId);
-		if (value == null)
+		if (value == null) {
 			return null;
+		}
 		return getVariableTOs(value.element, value, adapter);
 	}
 
@@ -143,7 +149,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	// If such a "removed" element is no longer used in any other element, it will be also removed from the
 	// cache and can be garbage collected.
 	// 
-	private List<VarValueTO> getVariableTOs(Object hostElement, VarValue hostValue, ElementAdapter adapter) {
+	private List<VarValueTO> getVariableTOs(final Object hostElement, final VarValue hostValue, final ElementAdapter adapter) {
 		List<VarValueTO> list = new ArrayList<VarValueTO>();
 
 		Set<VarValue> oldMembers = new HashSet<VarValue>();
@@ -184,7 +190,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 		return list;
 	}
 
-	private VarValue findOrCreateVarValue(Object element) {
+	private VarValue findOrCreateVarValue(final Object element) {
 		VarValue value = findVarValueByElement(element);
 		if (value == null) {
 			value = new VarValue(element, ++nextId);
@@ -193,17 +199,21 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 		return value;
 	}
 
-	private VarValue findVarValueByElement(Object element) {
-		for (VarValue cacheEntry : varCache)
-			if (element == cacheEntry.element)
+	private VarValue findVarValueByElement(final Object element) {
+		for (VarValue cacheEntry : varCache) {
+			if (element == cacheEntry.element) {
 				return cacheEntry;
+			}
+		}
 		return null;
 	}
 
-	private VarValue findVarValueById(int id) {
-		for (VarValue cacheEntry : varCache)
-			if (id == cacheEntry.id)
+	private VarValue findVarValueById(final int id) {
+		for (VarValue cacheEntry : varCache) {
+			if (id == cacheEntry.id) {
 				return cacheEntry;
+			}
+		}
 		return null;
 	}
 
@@ -215,15 +225,17 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 		Set<VarValue> oldFrameValues = new HashSet<VarValue>();
 		oldFrameValues.addAll(frameCache);
 
-		for (VarValue value : oldFrameValues)
+		for (VarValue value : oldFrameValues) {
 			if (!stackFrames.contains(value.element)) {
 				frameCache.remove(value);
 				for (VarValue member : value.members) {
 					member.usedIn.remove(value);
-					if (member.usedIn.isEmpty())
+					if (member.usedIn.isEmpty()) {
 						varCache.remove(member);
+					}
 				}
 			}
+		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -234,7 +246,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
 	 */
-	public void preTask(Object element, Object context, int state) {
+	public void preTask(final Object element, final Object context, final int state) {
 		stackFrames.push(new Frame(element, context));
 	}
 
@@ -243,7 +255,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
-	public void postTask(Object context) {
+	public void postTask(final Object context) {
 		stackFrames.pop();
 	}
 
@@ -285,7 +297,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 
 		final Object context;
 
-		private Frame(Object element, Object context) {
+		private Frame(final Object element, final Object context) {
 			this.element = element;
 			this.context = context;
 		}

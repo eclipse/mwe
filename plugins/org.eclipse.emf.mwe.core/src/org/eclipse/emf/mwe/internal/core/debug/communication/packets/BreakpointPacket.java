@@ -27,7 +27,7 @@ public class BreakpointPacket extends AbstractPacket {
 
 	// -------------------------------------------------------------------------
 
-	public BreakpointPacket(int type, SyntaxElement se) {
+	public BreakpointPacket(final int type, final SyntaxElement se) {
 		super();
 		this.type = type;
 		this.se = se;
@@ -36,7 +36,7 @@ public class BreakpointPacket extends AbstractPacket {
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		type = in.readInt();
 		se = new SyntaxElement();
 		se.readContent(in);
@@ -44,7 +44,7 @@ public class BreakpointPacket extends AbstractPacket {
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(type);
 		se.writeContent(out);
 	}

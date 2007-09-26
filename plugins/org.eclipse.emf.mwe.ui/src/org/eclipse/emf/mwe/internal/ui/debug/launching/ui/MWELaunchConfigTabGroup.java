@@ -26,7 +26,7 @@ import org.eclipse.jdt.debug.ui.launchConfigurations.JavaClasspathTab;
  */
 public class MWELaunchConfigTabGroup extends AbstractLaunchConfigurationTabGroup {
 
-	public void createTabs(ILaunchConfigurationDialog dialog, String mode) {
+	public void createTabs(final ILaunchConfigurationDialog dialog, final String mode) {
 		setTabs(new ILaunchConfigurationTab[] { new MWELaunchConfigMainTab(), new JavaArgumentsTab(), new JavaClasspathTab(), new CommonTab() });
 	}
 

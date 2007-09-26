@@ -30,18 +30,18 @@ public class DebugValue extends DebugElement implements IValue {
 
 	private boolean dirty;
 
-	private List<DebugVariable> variables = new ArrayList<DebugVariable>();
+	private final List<DebugVariable> variables = new ArrayList<DebugVariable>();
 
 	// -------------------------------------------------------------------------
 
-	public DebugValue(DebugTarget target, VarValueTO varTO) {
+	public DebugValue(final DebugTarget target, final VarValueTO varTO) {
 		super(target);
 		this.varTO = varTO;
 	}
 
 	// -------------------------------------------------------------------------
 
-	public void setVarTO(VarValueTO varTO) {
+	public void setVarTO(final VarValueTO varTO) {
 		this.varTO = varTO;
 	}
 
@@ -53,7 +53,7 @@ public class DebugValue extends DebugElement implements IValue {
 		return dirty;
 	}
 
-	public void setDirty(boolean dirty) {
+	public void setDirty(final boolean dirty) {
 		this.dirty = dirty;
 	}
 
@@ -79,7 +79,7 @@ public class DebugValue extends DebugElement implements IValue {
 	}
 
 	public synchronized IVariable[] getVariables() throws DebugException {
-		if (varTO.hasMembers && variables.isEmpty() || dirty) {
+		if ((varTO.hasMembers && variables.isEmpty()) || dirty) {
 			// require variable value information from runtime process for the first time and after one step
 			List<VarValueTO> vars = getDebugModelManager().requireSubVariables(varTO.valueId);
 			if (dirty) {
@@ -91,15 +91,16 @@ public class DebugValue extends DebugElement implements IValue {
 					for (DebugVariable var : variables) {
 						if (var.getName().equals(varTO.name)) {
 							varFound = true;
-							if (varTO.valueId == 0)
+							if (varTO.valueId == 0) {
 								// update value for primitives
 								var.getValue0().setVarTO(varTO);
-							else if (var.getValue0().getVarTOId() != varTO.valueId) {
+							} else if (var.getValue0().getVarTOId() != varTO.valueId) {
 								// update value information
 								var.setValue(varTO);
-							} else
+							} else {
 								// still up2date
 								oldVars.remove(var);
+							}
 							break;
 						}
 					}
@@ -108,15 +109,17 @@ public class DebugValue extends DebugElement implements IValue {
 						variables.add(var);
 					}
 				}
-				for (DebugVariable var : oldVars)
+				for (DebugVariable var : oldVars) {
 					// remove remaining obsolete vars
 					variables.remove(var);
-			} else
+				}
+			} else {
 				// first time: create new variables
 				for (VarValueTO varTO : vars) {
 					DebugVariable var = new DebugVariable(getDebugTarget0(), varTO);
 					variables.add(var);
 				}
+			}
 			dirty = false;
 			VariableSorter.sort(variables);
 

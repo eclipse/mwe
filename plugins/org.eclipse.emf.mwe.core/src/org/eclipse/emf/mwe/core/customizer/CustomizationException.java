@@ -7,7 +7,7 @@ public class CustomizationException extends RuntimeException {
 		super();
 	}
 	
-	public CustomizationException( String message ) {
+	public CustomizationException( final String message ) {
 		super(message);
 	}
 	

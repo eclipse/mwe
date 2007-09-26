@@ -22,14 +22,15 @@ public abstract class AbstractWorkflowAdvice extends AbstractWorkflowComponent {
 
 	private String target;
 
-	public final void invokeInternal(WorkflowContext ctx,
-			ProgressMonitor monitor, Issues issues) {
+	@Override
+	public final void invokeInternal(final WorkflowContext ctx,
+			final ProgressMonitor monitor, final Issues issues) {
 	}
 
-	public void checkConfiguration(Issues issues) {
+	public void checkConfiguration(final Issues issues) {
 	}
 
-	public void setAdviceTarget(String adviceTarget) {
+	public void setAdviceTarget(final String adviceTarget) {
 		this.target = adviceTarget;
 	}
 
@@ -39,12 +40,13 @@ public abstract class AbstractWorkflowAdvice extends AbstractWorkflowComponent {
 
 	public abstract void weave(WorkflowComponent c, Issues issues);
 
-	protected String buildList(List<String> list) {
+	protected String buildList(final List<String> list) {
 		StringBuilder b = new StringBuilder();
 		boolean firstTime = true;
 		for (String s : list) {
-			if (!firstTime)
+			if (!firstTime) {
 				b.append(", ");
+			}
 			b.append(s);
 			firstTime = false;
 		}

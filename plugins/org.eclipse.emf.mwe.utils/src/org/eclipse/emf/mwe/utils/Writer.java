@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMIResource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
@@ -21,7 +21,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	private boolean OPTION_SCHEMA_LOCATION = true;
 
-	public void setOPTION_SCHEMA_LOCATION(boolean option_schema_location) {
+	public void setOPTION_SCHEMA_LOCATION(final boolean option_schema_location) {
 		OPTION_SCHEMA_LOCATION = option_schema_location;
 	}
 
@@ -31,29 +31,30 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	
 	private boolean cloneSlotContents = false;
 	
-	public void setMultipleResourcesInCaseOfList( boolean b ) {
+	public void setMultipleResourcesInCaseOfList( final boolean b ) {
 		multipleResourcesInCaseOfList = b;
 	}
 	
-	public void setCloneSlotContents( boolean b ) {
+	public void setCloneSlotContents( final boolean b ) {
 		this.cloneSlotContents = b;
 	}
 	
 
 	public void setOPTION_SCHEMA_LOCATION_IMPLEMENTATION(
-			boolean option_schema_location_implementation) {
+			final boolean option_schema_location_implementation) {
 		OPTION_SCHEMA_LOCATION_IMPLEMENTATION = option_schema_location_implementation;
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
-	public void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor,
-			Issues issues) {
+	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor,
+			final Issues issues) {
 		Object slotContent = ctx.get(getModelSlot());
 		if (slotContent == null) {
 			issues.addError(this, "slot '" + getModelSlot() + "' is empty.");
 			return;
 		}
-		if (!(slotContent instanceof Collection<?> || slotContent instanceof EObject)) {
+		if (!((slotContent instanceof Collection<?>) || (slotContent instanceof EObject))) {
 			issues
 					.addError(this, "slot '" + getModelSlot()
 							+ "' neither contains an EList nor an EObject",
@@ -112,22 +113,24 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		}
 	}
 
-	private String createResourceName(EObject eo) {
+	private String createResourceName(final EObject eo) {
 		return getUri()+(getUri().endsWith("/")? "": "/")+getName(eo)+".ecore";
 	}
 
-	private String getName(EObject model) {
+	private String getName(final EObject model) {
 		return (String) model.eGet(model.eClass().getEStructuralFeature("name"));
 	}
 	
-	private void write(Resource r) {
+	private void write(final Resource r) {
 		try {
 			Map<String, Object> options = new HashMap<String, Object>();
-			if (OPTION_SCHEMA_LOCATION)
-				options.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
-			if (OPTION_SCHEMA_LOCATION_IMPLEMENTATION)
-				options.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION,
+			if (OPTION_SCHEMA_LOCATION) {
+				options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+			}
+			if (OPTION_SCHEMA_LOCATION_IMPLEMENTATION) {
+				options.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION,
 						Boolean.TRUE);
+			}
 			r.save(options);
 		} catch (final IOException e) {
 			throw new WorkflowInterruptedException(

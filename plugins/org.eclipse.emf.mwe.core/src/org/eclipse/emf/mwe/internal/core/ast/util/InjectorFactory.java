@@ -30,13 +30,13 @@ public class InjectorFactory {
     private final static Injector getInjector1(final Class<?> c, final String name) {
         final String adderName = "add" + firstUpper(name);
         final Method[] ms = c.getMethods();
-        for (int i = 0; i < ms.length; i++) {
-            final Method method = ms[i];
+        for (final Method method : ms) {
             final int mod = method.getModifiers();
-            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && method.getParameterTypes().length == 1) {
+            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && (method.getParameterTypes().length == 1)) {
                 final String mn = method.getName();
-                if (mn.equals(adderName))
-                    return new InjectorSimple(method, name);
+                if (mn.equals(adderName)) {
+					return new InjectorSimple(method, name);
+				}
             }
         }
         return null;
@@ -45,13 +45,13 @@ public class InjectorFactory {
     private final static Injector getInjector2(final Class<?> c, final String name) {
         final String getterName = "get" + firstUpper(name);
         final Method[] ms = c.getMethods();
-        for (int i = 0; i < ms.length; i++) {
-            final Method method = ms[i];
+        for (final Method method : ms) {
             final int mod = method.getModifiers();
-            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && method.getParameterTypes().length == 0) {
+            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && (method.getParameterTypes().length == 0)) {
                 final String mn = method.getName();
-                if (mn.equals(getterName) && List.class.isAssignableFrom(method.getReturnType()))
-                    return new InjectorList(method, name);
+                if (mn.equals(getterName) && List.class.isAssignableFrom(method.getReturnType())) {
+					return new InjectorList(method, name);
+				}
             }
         }
         return null;
@@ -60,13 +60,13 @@ public class InjectorFactory {
     private final static Injector getInjector3(final Class<?> c, final String name) {
         final String setterName = "set" + firstUpper(name);
         final Method[] ms = c.getMethods();
-        for (int i = 0; i < ms.length; i++) {
-            final Method method = ms[i];
+        for (final Method method : ms) {
             final int mod = method.getModifiers();
-            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && method.getParameterTypes().length == 1) {
+            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && (method.getParameterTypes().length == 1)) {
                 final String mn = method.getName();
-                if (mn.equals(setterName) && !List.class.isAssignableFrom(method.getParameterTypes()[0]))
-                    return new InjectorSimple(method, name);
+                if (mn.equals(setterName) && !List.class.isAssignableFrom(method.getParameterTypes()[0])) {
+					return new InjectorSimple(method, name);
+				}
             }
         }
         return null;
@@ -74,13 +74,13 @@ public class InjectorFactory {
 
     private final static Injector getInjector4(final Class<?> c, final String name) {
         final Method[] ms = c.getMethods();
-        for (int i = 0; i < ms.length; i++) {
-            final Method method = ms[i];
+        for (final Method method : ms) {
             final int mod = method.getModifiers();
-            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && method.getParameterTypes().length == 2) {
+            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && (method.getParameterTypes().length == 2)) {
                 final String mn = method.getName();
-                if (mn.equals("put") && method.getParameterTypes()[0].isAssignableFrom(String.class))
-                    return new InjectorPut(method, name);
+                if (mn.equals("put") && method.getParameterTypes()[0].isAssignableFrom(String.class)) {
+					return new InjectorPut(method, name);
+				}
             }
         }
         return null;
@@ -89,19 +89,19 @@ public class InjectorFactory {
     private final static Injector getInjector5(final Class<?> c, final String name) {
         final String setterName = "addComponent";
         final Method[] ms = c.getMethods();
-        for (int i = 0; i < ms.length; i++) {
-            final Method method = ms[i];
+        for (final Method method : ms) {
             final int mod = method.getModifiers();
-            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && method.getParameterTypes().length == 1) {
+            if (Modifier.isPublic(mod) && !Modifier.isStatic(mod) && (method.getParameterTypes().length == 1)) {
                 final String mn = method.getName();
-                if (mn.equals(setterName) && !WorkflowComponent.class.isAssignableFrom(method.getParameterTypes()[0]))
-                    return new InjectorSimple(method, name);
+                if (mn.equals(setterName) && !WorkflowComponent.class.isAssignableFrom(method.getParameterTypes()[0])) {
+					return new InjectorSimple(method, name);
+				}
             }
         }
         return null;
     }
     
-    public static String firstUpper(String str) {
+    public static String firstUpper(final String str) {
 		return str.substring(0, 1).toUpperCase().concat(str.substring(1));
 	}
 

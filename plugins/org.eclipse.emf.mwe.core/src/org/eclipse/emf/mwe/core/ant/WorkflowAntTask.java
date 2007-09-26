@@ -15,7 +15,6 @@
 package org.eclipse.emf.mwe.core.ant;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.apache.tools.ant.BuildException;
@@ -46,8 +45,7 @@ public class WorkflowAntTask extends Java {
      */
     @Override
     public void execute() throws BuildException {
-        for (final Iterator<Parameter> iter = params.iterator(); iter.hasNext();) {
-            final Parameter param = iter.next();
+        for (Parameter param : params) {
             if (param != null) {
                 final String paramString = "-p" + param.getName() + "=" + param.getValue();
                 super.createArg().setValue(paramString);

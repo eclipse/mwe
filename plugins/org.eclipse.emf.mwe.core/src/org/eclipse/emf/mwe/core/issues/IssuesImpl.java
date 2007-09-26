@@ -29,7 +29,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addError(final WorkflowComponent ctx, final String msg,
-			final Object element, Throwable t, List<Object> additionalData) {
+			final Object element, final Throwable t, final List<Object> additionalData) {
 		add(createError(ctx, msg, element, t, additionalData));
 	}
 
@@ -62,7 +62,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addWarning(final WorkflowComponent ctx, final String msg,
-			final Object element, Throwable t, List<Object> additionalData) {
+			final Object element, final Throwable t, final List<Object> additionalData) {
 		add(createWarning(ctx, msg, element, t, additionalData));
 	}
 
@@ -87,7 +87,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addInfo(final WorkflowComponent ctx, final String msg,
-			final Object element, Throwable t, List<Object> additionalData) {
+			final Object element, final Throwable t, final List<Object> additionalData) {
 		add(createInfo(ctx, msg, element, t, additionalData));
 	}
 
@@ -107,18 +107,15 @@ public class IssuesImpl implements Issues {
 	public String toString() {
 		final StringBuffer buff = new StringBuffer();
 		Diagnostic[] issues = getInfos();
-		for (int i = 0; i < issues.length; i++) {
-			final Diagnostic issue = issues[i];
+		for (final Diagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		issues = getWarnings();
-		for (int i = 0; i < issues.length; i++) {
-			final Diagnostic issue = issues[i];
+		for (final Diagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		issues = getErrors();
-		for (int i = 0; i < issues.length; i++) {
-			final Diagnostic issue = issues[i];
+		for (final Diagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		return buff.toString();
@@ -128,49 +125,49 @@ public class IssuesImpl implements Issues {
 		issues.clear();
 	}
 
-	private static MWEDiagnostic createDiagnostic(int severity,
-			WorkflowComponent ctx, String msg, Object element, Throwable t,
-			List<Object> additionalData) {
+	private static MWEDiagnostic createDiagnostic(final int severity,
+			final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
+			final List<Object> additionalData) {
 		MWEDiagnostic diagnostic = new MWEDiagnostic(severity, msg, element, t,
 				additionalData, ctx);
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createInfo(WorkflowComponent ctx, String msg,
-			Object element, Throwable t, List<Object> additionalData) {
+	private static MWEDiagnostic createInfo(final WorkflowComponent ctx, final String msg,
+			final Object element, final Throwable t, final List<Object> additionalData) {
 		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.INFO, ctx, msg,
 				element, t, additionalData);
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createInfo(String msg, Object element) {
+	private static MWEDiagnostic createInfo(final String msg, final Object element) {
 		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 
-	private static MWEDiagnostic createWarning(WorkflowComponent ctx,
-			String msg, Object element, Throwable t, List<Object> additionalData) {
+	private static MWEDiagnostic createWarning(final WorkflowComponent ctx,
+			final String msg, final Object element, final Throwable t, final List<Object> additionalData) {
 		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.WARNING, ctx,
 				msg, element, t, additionalData);
 		;
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createWarning(String msg, Object element) {
+	private static MWEDiagnostic createWarning(final String msg, final Object element) {
 		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 
-	private static MWEDiagnostic createError(WorkflowComponent ctx, String msg,
-			Object element, Throwable t, List<Object> additionalData) {
+	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg,
+			final Object element, final Throwable t, final List<Object> additionalData) {
 		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.ERROR, ctx, msg,
 				element, t, additionalData);
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createError(String msg, Object element) {
+	private static MWEDiagnostic createError(final String msg, final Object element) {
 		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 	
-	private Diagnostic[] filterIssues(int severity) {
+	private Diagnostic[] filterIssues(final int severity) {
 		List<Diagnostic>result = new ArrayList<Diagnostic>();
 		for (Diagnostic diagnostic : issues) {
 			if ( diagnostic.getSeverity()==severity){

@@ -61,9 +61,10 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 		try {
 			return internalLoadClass(clazzName);
 		} catch (final Exception e) {
-			if (clazzName.startsWith("mwe"))
+			if (clazzName.startsWith("mwe")) {
 				return loadClass(clazzName.replaceFirst("mwe",
 						"org.eclipse.emf.mwe"));
+			}
 			return null;
 		}
 	}
@@ -82,8 +83,9 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 					path = FILE_PREFIX + path;
 				}
 				url = new URL(path);
-				if (url.getContent() == null)
+				if (url.getContent() == null) {
 					return null;
+				}
 			} catch (final MalformedURLException e) {
 				return null;
 			} catch (final IOException e) {
@@ -97,7 +99,7 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 		return Thread.currentThread().getContextClassLoader().getResource(path);
 	}
 
-	public Enumeration<URL> getResources(String uri) {
+	public Enumeration<URL> getResources(final String uri) {
 		try {
 			return Thread.currentThread().getContextClassLoader().getResources(
 					uri);

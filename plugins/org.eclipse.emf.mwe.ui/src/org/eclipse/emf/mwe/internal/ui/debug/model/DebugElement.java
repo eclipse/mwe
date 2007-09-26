@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 public abstract class DebugElement extends PlatformObject implements IDebugElement {
 	protected DebugTarget target;
 
-	public DebugElement(DebugTarget target) {
+	public DebugElement(final DebugTarget target) {
 		this.target = target;
 	}
 
@@ -47,7 +47,7 @@ public abstract class DebugElement extends PlatformObject implements IDebugEleme
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object getAdapter(Class adapter) {
+	public Object getAdapter(final Class adapter) {
 		if (adapter == IDebugElement.class) {
 			return this;
 		}

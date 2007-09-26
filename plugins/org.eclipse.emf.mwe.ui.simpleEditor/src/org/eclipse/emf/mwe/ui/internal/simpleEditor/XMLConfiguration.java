@@ -31,7 +31,7 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 
     private XMLScanner scanner;
 
-    private ColorManager colorManager;
+    private final ColorManager colorManager;
 
     public XMLConfiguration(final ColorManager colorManager) {
         this.colorManager = colorManager;
@@ -45,8 +45,9 @@ public class XMLConfiguration extends SourceViewerConfiguration {
 
     @Override
     public ITextDoubleClickStrategy getDoubleClickStrategy(final ISourceViewer sourceViewer, final String contentType) {
-        if (doubleClickStrategy == null)
-            doubleClickStrategy = new XMLDoubleClickStrategy();
+        if (doubleClickStrategy == null) {
+			doubleClickStrategy = new XMLDoubleClickStrategy();
+		}
         return doubleClickStrategy;
     }
 

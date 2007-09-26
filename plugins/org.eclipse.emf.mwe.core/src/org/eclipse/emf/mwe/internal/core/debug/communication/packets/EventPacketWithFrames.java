@@ -29,14 +29,14 @@ public class EventPacketWithFrames extends EventPacket {
 
 	// -------------------------------------------------------------------------
 
-	public EventPacketWithFrames(int event) {
+	public EventPacketWithFrames(final int event) {
 		super(event);
 	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
-	public void readContent(DataInputStream in) throws IOException {
+	public void readContent(final DataInputStream in) throws IOException {
 		super.readContent(in);
 		cleanStackLevel = in.readInt();
 		int noOfFrames = in.readInt();
@@ -48,12 +48,13 @@ public class EventPacketWithFrames extends EventPacket {
 	}
 
 	@Override
-	public void writeContent(DataOutputStream out) throws IOException {
+	public void writeContent(final DataOutputStream out) throws IOException {
 		super.writeContent(out);
 		out.writeInt(cleanStackLevel);
 		out.writeInt(frames.size());
-		for (SyntaxElement frame : frames)
+		for (SyntaxElement frame : frames) {
 			frame.writeContent(out);
+		}
 	}
 
 	@Override

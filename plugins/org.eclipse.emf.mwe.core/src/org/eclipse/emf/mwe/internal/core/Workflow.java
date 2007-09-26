@@ -20,7 +20,7 @@ public class Workflow extends CompositeComponent {
         super("workflow");
     }
 
-    public void setAbstract( boolean b ) {
+    public void setAbstract( final boolean b ) {
     	isAbstract = b;
     }
     
