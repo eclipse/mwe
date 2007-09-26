@@ -155,8 +155,10 @@ public class WorkflowRunner {
 			URL wfUrl;
 			int index = 0;
 			do {
-				wfUrl = ResourceLoaderFactory.createResourceLoader()
-						.getResource(wfFile);
+				// TODO BK change to resource loader factory
+//				wfUrl = ResourceLoaderFactory.createResourceLoader()
+//						.getResource(wfFile);
+				wfUrl = Thread.currentThread().getContextClassLoader().getResource(wfFile);
 				if (wfUrl == null) {
 					index = wfFile.indexOf('/');
 					if (index >= 0)
