@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.BreakpointPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.BreakpointPackage;
 import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
 import org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
@@ -85,10 +85,10 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	}
 
 	private void listenAndDispatchCommand() throws IOException {
-		handle((BreakpointPacket) connection.listenForPacket(BreakpointPacket.class));
+		handle((BreakpointPackage) connection.listenForPackage(BreakpointPackage.class));
 	}
 
-	private void handle(final BreakpointPacket packet) {
+	private void handle(final BreakpointPackage packet) {
 		switch (packet.type) {
 		case SET:
 			doSet(packet.se, null, 0);

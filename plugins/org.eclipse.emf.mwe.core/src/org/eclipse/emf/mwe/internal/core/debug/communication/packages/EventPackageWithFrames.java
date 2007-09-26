@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 /**
  * The packet to communicate an event from the runtime process together with the current stack frame information.
  */
-public class EventPacketWithFrames extends EventPacket {
+public class EventPackageWithFrames extends EventPackage {
 
 	public int cleanStackLevel;
 
@@ -29,7 +29,7 @@ public class EventPacketWithFrames extends EventPacket {
 
 	// -------------------------------------------------------------------------
 
-	public EventPacketWithFrames(final int event) {
+	public EventPackageWithFrames(final int event) {
 		super(event);
 	}
 

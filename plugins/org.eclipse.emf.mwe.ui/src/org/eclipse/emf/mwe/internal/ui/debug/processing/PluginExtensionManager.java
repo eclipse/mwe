@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.RegisterPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RegisterPackage;
 import org.eclipse.emf.mwe.internal.core.debug.processing.handlers.CommandRuntimeHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.handlers.EventRuntimeHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.BreakpointPluginHandler;
@@ -114,8 +114,8 @@ public class PluginExtensionManager {
 	// -------------------------------------------------------------------------
 
 	private void collectInitialCommunicationHandlers() throws IOException {
-		RegisterPacket packet = new RegisterPacket();
-		packet.type = RegisterPacket.HANDLERS;
+		RegisterPackage packet = new RegisterPackage();
+		packet.type = RegisterPackage.HANDLERS;
 
 		CommandPluginHandler cHandler = new CommandPluginHandler();
 		cHandler.setConnection(connection);
@@ -128,12 +128,12 @@ public class PluginExtensionManager {
 		eHandler.setDmm(dmm);
 		packet.classNames.add(EventRuntimeHandler.class.getName());
 
-		connection.sendPacket(packet);
+		connection.sendPackage(packet);
 	}
 
 	private void collectHandlersFromExtensions() throws IOException {
-		RegisterPacket packet = new RegisterPacket();
-		packet.type = RegisterPacket.HANDLERS;
+		RegisterPackage packet = new RegisterPackage();
+		packet.type = RegisterPackage.HANDLERS;
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] elems = reg
 				.getConfigurationElementsFor("org.eclipse.emf.mwe.ui.debugHandlers");
@@ -174,12 +174,12 @@ public class PluginExtensionManager {
 		}
 		// TODO: CK: test: what happens when a handler is not there? Exception? to be tested and corrected if necessary
 
-		connection.sendPacket(packet);
+		connection.sendPackage(packet);
 	}
 
 	private void collectRuntimeAdaptersFromExtensions() throws IOException {
-		RegisterPacket packet = new RegisterPacket();
-		packet.type = RegisterPacket.ADAPTERS;
+		RegisterPackage packet = new RegisterPackage();
+		packet.type = RegisterPackage.ADAPTERS;
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] elems = reg
 				.getConfigurationElementsFor("org.eclipse.emf.mwe.ui.debugAdapters");
@@ -191,7 +191,7 @@ public class PluginExtensionManager {
 				}
 			}
 		}
-		connection.sendPacket(packet);
+		connection.sendPackage(packet);
 
 	}
 

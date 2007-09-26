@@ -8,49 +8,50 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-
-import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * The packet to communicate set and delete of breakpoints.
+ * The packet to communicate handlers or adapter class names to be registered in the runtime process.
  */
-public class BreakpointPacket extends AbstractPacket {
+public class RegisterPackage extends AbstractPackage {
+
+	public static final int HANDLERS = 1;
+
+	public static final int ADAPTERS = 2;
 
 	public int type;
 
-	public SyntaxElement se;
-
-	// -------------------------------------------------------------------------
-
-	public BreakpointPacket(final int type, final SyntaxElement se) {
-		super();
-		this.type = type;
-		this.se = se;
-	}
+	public List<String> classNames = new ArrayList<String>();
 
 	// -------------------------------------------------------------------------
 
 	@Override
 	public void readContent(final DataInputStream in) throws IOException {
 		type = in.readInt();
-		se = new SyntaxElement();
-		se.readContent(in);
-
+		int noOfHandlers = in.readInt();
+		for (int i = 0; i < noOfHandlers; i++) {
+			classNames.add(in.readUTF());
+		}
 	}
 
 	@Override
 	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(type);
-		se.writeContent(out);
+		out.writeInt(classNames.size());
+		for (String name : classNames) {
+			out.writeUTF(name);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + " type=" + type + " resource=" + se.resource + " line=" + se.line;
+		return getClass().getSimpleName() + " type=" + type + " " + classNames;
 	}
+
 }

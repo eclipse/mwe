@@ -14,8 +14,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.RequireVarPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.VarDataPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RequireVarPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.VarDataPackage;
 import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.PluginHandler;
@@ -40,15 +40,15 @@ public class VariablesPluginHandler implements PluginHandler {
 	// -------------------------------------------------------------------------
 
 	public List<VarValueTO> sendRequireVariables(final int frameId) throws IOException {
-		RequireVarPacket packet = new RequireVarPacket(frameId, 0);
-		int refId = connection.sendPacket(packet);
-		return ((VarDataPacket) connection.listenForPacket(VarDataPacket.class, refId)).valueList;
+		RequireVarPackage packet = new RequireVarPackage(frameId, 0);
+		int refId = connection.sendPackage(packet);
+		return ((VarDataPackage) connection.listenForPackage(VarDataPackage.class, refId)).valueList;
 	}
 
 	public List<VarValueTO> sendRequireSubVariables(final int frameId, final int varId) throws IOException {
-		RequireVarPacket packet = new RequireVarPacket(frameId, varId);
-		int refId = connection.sendPacket(packet);
-		return ((VarDataPacket) connection.listenForPacket(VarDataPacket.class, refId)).valueList;
+		RequireVarPackage packet = new RequireVarPackage(frameId, varId);
+		int refId = connection.sendPackage(packet);
+		return ((VarDataPackage) connection.listenForPackage(VarDataPackage.class, refId)).valueList;
 	}
 
 }

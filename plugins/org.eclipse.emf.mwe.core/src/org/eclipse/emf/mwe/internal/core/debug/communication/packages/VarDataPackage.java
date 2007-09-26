@@ -8,44 +8,54 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 
 /**
- * The packet to communicate an event from the runtime process.
+ * The packet to communicate variable values for a specific reference id. Corresponds with
+ * <code>RequireVarPackage</code>.
  */
-public class EventPacket extends AbstractPacket {
+public class VarDataPackage extends AbstractPackage {
 
-	public int event;
-
-	// -------------------------------------------------------------------------
-
-	public EventPacket(final int event) {
-		this.event = event;
-		setNextId();
-	}
+	public List<VarValueTO> valueList = new ArrayList<VarValueTO>();
 
 	// -------------------------------------------------------------------------
 
 	@Override
 	public void readContent(final DataInputStream in) throws IOException {
-		id = in.readInt();
-		event = in.readInt();
-
+		refId = in.readInt();
+		int noOfValues = in.readInt();
+		for (int i = 0; i < noOfValues; i++) {
+			VarValueTO var = new VarValueTO();
+			var.readContent(in);
+			valueList.add(var);
+		}
 	}
 
 	@Override
 	public void writeContent(final DataOutputStream out) throws IOException {
-		out.writeInt(id);
-		out.writeInt(event);
+		out.writeInt(refId);
+		out.writeInt(valueList.size());
+		for (VarValueTO var : valueList) {
+			var.writeContent(out);
+		}
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + " event=" + event;
+		StringBuilder sb = new StringBuilder(super.toString() + " [");
+		for (VarValueTO var : valueList) {
+			sb.append(var.name + " ");
+		}
+		sb.append("]");
+		return sb.toString();
 	}
 
 }

@@ -19,8 +19,8 @@ import java.util.Stack;
 
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.RequireVarPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.VarDataPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RequireVarPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.VarDataPackage;
 import org.eclipse.emf.mwe.internal.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.internal.core.debug.model.VarValue;
 import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
@@ -83,25 +83,25 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	public void run() {
 		try {
 			while (true) {
-				handle((RequireVarPacket) connection.listenForPacket(RequireVarPacket.class));
+				handle((RequireVarPackage) connection.listenForPackage(RequireVarPackage.class));
 			}
 		} catch (IOException e) {
 		}
 	}
 
-	private void handle(final RequireVarPacket packet) throws IOException {
+	private void handle(final RequireVarPackage packet) throws IOException {
 		List<VarValueTO> values;
 		if (packet.varId == 0) {
 			values = getFrameVariables(packet.frameId);
 		} else {
 			values = getSubVariables(packet.frameId, packet.varId);
 		}
-		VarDataPacket varPacket = new VarDataPacket();
+		VarDataPackage varPackage = new VarDataPackage();
 		if (values != null) {
-			varPacket.valueList = values;
+			varPackage.valueList = values;
 		}
-		varPacket.refId = packet.getId();
-		connection.sendPacket(varPacket);
+		varPackage.refId = packet.getId();
+		connection.sendPackage(varPackage);
 	}
 
 	// In case there is no varId in the request the top level variables will be collected.

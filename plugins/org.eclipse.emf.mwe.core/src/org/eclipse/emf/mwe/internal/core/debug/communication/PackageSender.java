@@ -16,16 +16,16 @@ import java.util.ArrayList;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPackage;
 
 /**
- * This Runnable sends packets out asynchroniously as they arrive from customers.
+ * This Runnable sends packages out asynchroniously as they arrive from customers.
  */
-public class PacketSender implements Runnable {
+public class PackageSender implements Runnable {
 
-	private final ArrayList<AbstractPacket> outgoingPackets;
+	private final ArrayList<AbstractPackage> outgoingPackages;
 	
-	private static final Log logger = LogFactory.getLog(PacketSender.class);
+	private static final Log logger = LogFactory.getLog(PackageSender.class);
 
 	private final Connection connection;
 
@@ -37,17 +37,17 @@ public class PacketSender implements Runnable {
 	 * @param connection the <code>Connection</code> that controls this data receiver.
 	 * @return the instance
 	 */
-	public static PacketSender newPacketSender(final Connection connection) {
-		PacketSender sender = new PacketSender(connection);
-		Thread thread = new Thread(sender, "PacketSender");
+	public static PackageSender newPackageSender(final Connection connection) {
+		PackageSender sender = new PackageSender(connection);
+		Thread thread = new Thread(sender, "PackageSender");
 		thread.setDaemon(true);
 		thread.start();
 		return sender;
 	}
 
-	private PacketSender(final Connection connection) {
+	private PackageSender(final Connection connection) {
 		this.connection = connection;
-		outgoingPackets = new ArrayList<AbstractPacket>();
+		outgoingPackages = new ArrayList<AbstractPackage>();
 	}
 
 	/**
@@ -57,15 +57,15 @@ public class PacketSender implements Runnable {
 	 * @return the packet id after it was sent
 	 * @throws InterruptedIOException
 	 */
-	public int sendPacket(final AbstractPacket packet) throws InterruptedIOException {
+	public int sendPackage(final AbstractPackage packet) throws InterruptedIOException {
 		if (!connection.isConnected()) {
 			throw new InterruptedIOException();
 		// log.debug("send: " + packet);
 		}
 
-		synchronized (outgoingPackets) {
-			outgoingPackets.add(packet);
-			outgoingPackets.notifyAll();
+		synchronized (outgoingPackages) {
+			outgoingPackages.add(packet);
+			outgoingPackages.notifyAll();
 		}
 		return packet.getId();
 	}
@@ -75,8 +75,8 @@ public class PacketSender implements Runnable {
 	 */
 	public void close() {
 		interrupt = true;
-		synchronized (outgoingPackets) {
-			outgoingPackets.notifyAll();
+		synchronized (outgoingPackages) {
+			outgoingPackages.notifyAll();
 		}
 	}
 
@@ -88,7 +88,7 @@ public class PacketSender implements Runnable {
 	public void run() {
 		while (!interrupt && connection.isConnected()) {
 			try {
-				sendAvailablePackets();
+				sendAvailablePackages();
 			} catch (Exception e) {
 				if (!(e instanceof IOException)) {
 					logger.error(e.getMessage(), e);
@@ -99,21 +99,21 @@ public class PacketSender implements Runnable {
 		connection.close();
 	}
 
-	private void sendAvailablePackets() throws IOException {
-		ArrayList<AbstractPacket> packetsToSend = new ArrayList<AbstractPacket>();
-		synchronized (outgoingPackets) {
-			while (!interrupt && outgoingPackets.isEmpty()) {
+	private void sendAvailablePackages() throws IOException {
+		ArrayList<AbstractPackage> packagesToSend = new ArrayList<AbstractPackage>();
+		synchronized (outgoingPackages) {
+			while (!interrupt && outgoingPackages.isEmpty()) {
 				try {
-					outgoingPackets.wait();
+					outgoingPackages.wait();
 				} catch (InterruptedException e) {
 				}
 			}
-			packetsToSend.addAll(outgoingPackets);
-			outgoingPackets.clear();
+			packagesToSend.addAll(outgoingPackages);
+			outgoingPackages.clear();
 		}
 
-		for (AbstractPacket packet : packetsToSend) {
-			connection.writePacket(packet);
+		for (AbstractPackage packet : packagesToSend) {
+			connection.writePackage(packet);
 		}
 	}
 

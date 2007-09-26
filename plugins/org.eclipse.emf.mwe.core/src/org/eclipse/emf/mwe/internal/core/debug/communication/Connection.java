@@ -19,11 +19,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.HandshakePacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.HandshakePackage;
 
 /**
- * This class implements a socket connection model. "Packets" (units of information) can be transfered between two
+ * This class implements a socket connection model. "Packages" (units of information) can be transfered between two
  * different virtual machines. During the initialisation of a socket connection a reader and a writer thread are
  * established. This class can be used both on the sender and receiver side.
  */
@@ -37,26 +37,26 @@ public class Connection {
 
 	private DataInputStream in;
 
-	private PacketSender sender;
+	private PackageSender sender;
 
-	private PacketReceiver receiver;
+	private PackageReceiver receiver;
 
 	// -------------------------------------------------------------------------
 	// *the* main operation methods
 
-	public AbstractPacket listenForPacket(final Class<? extends AbstractPacket> type) throws InterruptedIOException {
-		return receiver.getPacket(type, -1);
+	public AbstractPackage listenForPackage(final Class<? extends AbstractPackage> type) throws InterruptedIOException {
+		return receiver.getPackage(type, -1);
 	}
 
-	public AbstractPacket listenForPacket(final Class<? extends AbstractPacket> type, final int refId) throws InterruptedIOException {
-		return receiver.getPacket(type, refId, -1);
+	public AbstractPackage listenForPackage(final Class<? extends AbstractPackage> type, final int refId) throws InterruptedIOException {
+		return receiver.getPackage(type, refId, -1);
 	}
 
-	public int sendPacket(final AbstractPacket packet) throws IOException {
+	public int sendPackage(final AbstractPackage packet) throws IOException {
 		if (sender == null) {
 			return -1;
 		}
-		return sender.sendPacket(packet);
+		return sender.sendPackage(packet);
 	}
 
 	// -------------------------------------------------------------------------
@@ -134,23 +134,23 @@ public class Connection {
 	}
 
 	// -------------------------------------------------------------------------
-	// the real sending and receiving of packets to be called from PacketReceiver and PacketSender only
+	// the real sending and receiving of packages to be called from PackageReceiver and PackageSender only
 
-	protected AbstractPacket readPacket() throws IOException {
+	protected AbstractPackage readPackage() throws IOException {
 		String className = in.readUTF();
-		AbstractPacket packet = instantiatePacket(className);
+		AbstractPackage packet = instantiatePackage(className);
 		packet.readContent(in);
 		// System.out.println(Thread.currentThread().getName() + "-RECEIVED-: " + packet);
 		return packet;
 	}
 
 	@SuppressWarnings("unchecked")
-	private AbstractPacket instantiatePacket(final String className) throws IOException {
-		Class<? extends AbstractPacket> packetClass = null;
-		AbstractPacket packet = null;
+	private AbstractPackage instantiatePackage(final String className) throws IOException {
+		Class<? extends AbstractPackage> packetClass = null;
+		AbstractPackage packet = null;
 		String msg = null;
 		try {
-			packetClass = (Class<? extends AbstractPacket>) Class.forName(className);
+			packetClass = (Class<? extends AbstractPackage>) Class.forName(className);
 		} catch (ClassNotFoundException e) {
 			msg = "Couldn't find " + className + " in the classpath.";
 		}
@@ -165,7 +165,7 @@ public class Connection {
 				}
 			}
 			try {
-				packet = (AbstractPacket) c.newInstance(initargs);
+				packet = (AbstractPackage) c.newInstance(initargs);
 			} catch (IllegalArgumentException e) {
 				msg = "Couldn't instantiate " + c + " : " + e;
 			} catch (InstantiationException e) {
@@ -184,7 +184,7 @@ public class Connection {
 		return packet;
 	}
 
-	protected void writePacket(final AbstractPacket packet) throws IOException {
+	protected void writePackage(final AbstractPackage packet) throws IOException {
 		out.writeUTF(packet.getClass().getName());
 		packet.writeContent(out);
 		// System.out.println(Thread.currentThread().getName() + "-SENT-----: " + packet);
@@ -197,20 +197,20 @@ public class Connection {
 		in = new DataInputStream(socket.getInputStream());
 
 		// start receiver and sender in extra threads
-		receiver = PacketReceiver.newPacketReceiver(this);
-		sender = PacketSender.newPacketSender(this);
+		receiver = PackageReceiver.newPackageReceiver(this);
+		sender = PackageSender.newPackageSender(this);
 
 	}
 
 	private boolean writeHandshake() throws IOException {
-		AbstractPacket packet = new HandshakePacket();
-		sendPacket(packet);
-		return listenForPacket(HandshakePacket.class).getClass().equals(HandshakePacket.class);
+		AbstractPackage packet = new HandshakePackage();
+		sendPackage(packet);
+		return listenForPackage(HandshakePackage.class).getClass().equals(HandshakePackage.class);
 	}
 
 	private void replyHandshake() throws IOException {
-		if (listenForPacket(HandshakePacket.class).getClass().equals(HandshakePacket.class)) {
-			sendPacket(new HandshakePacket());
+		if (listenForPackage(HandshakePackage.class).getClass().equals(HandshakePackage.class)) {
+			sendPackage(new HandshakePackage());
 		} else {
 			throw new IOException("handshake failed");
 		}

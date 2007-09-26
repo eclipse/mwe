@@ -8,50 +8,48 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * The packet to communicate handlers or adapter class names to be registered in the runtime process.
+ * The packet to communicate a request for variable from a specific frame and variable id.
  */
-public class RegisterPacket extends AbstractPacket {
+public class RequireVarPackage extends AbstractPackage {
 
-	public static final int HANDLERS = 1;
+	public int frameId;
 
-	public static final int ADAPTERS = 2;
+	public int varId;
 
-	public int type;
+	// -------------------------------------------------------------------------
 
-	public List<String> classNames = new ArrayList<String>();
+	public RequireVarPackage(final int frameId, final int varId) {
+		setNextId();
+		this.frameId = frameId;
+		this.varId = varId;
+	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
 	public void readContent(final DataInputStream in) throws IOException {
-		type = in.readInt();
-		int noOfHandlers = in.readInt();
-		for (int i = 0; i < noOfHandlers; i++) {
-			classNames.add(in.readUTF());
-		}
+		id = in.readInt();
+		frameId = in.readInt();
+		varId = in.readInt();
 	}
 
 	@Override
 	public void writeContent(final DataOutputStream out) throws IOException {
-		out.writeInt(type);
-		out.writeInt(classNames.size());
-		for (String name : classNames) {
-			out.writeUTF(name);
-		}
+		out.writeInt(id);
+		out.writeInt(frameId);
+		out.writeInt(varId);
 	}
 
 	@Override
 	public String toString() {
-		return getClass().getSimpleName() + " type=" + type + " " + classNames;
+		return super.toString() + " frameId=" + frameId + (varId != 0 ? " varId=" + varId : "");
 	}
 
 }

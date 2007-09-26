@@ -8,18 +8,18 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * The base class for all types of packets. It has the id and refId. Inheriting classes must call setNextId to get
+ * The base class for all types of packages. It has the id and refId. Inheriting classes must call setNextId to get
  * a valid id.
  * 
  */
-public abstract class AbstractPacket {
+public abstract class AbstractPackage {
 	protected int id;
 
 	public int refId;

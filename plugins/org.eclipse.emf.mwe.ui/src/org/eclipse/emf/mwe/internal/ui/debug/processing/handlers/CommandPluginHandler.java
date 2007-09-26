@@ -21,7 +21,7 @@ import java.io.IOException;
 
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.CommandPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.CommandPackage;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 
 /**
@@ -67,7 +67,7 @@ public class CommandPluginHandler {
 
 	private void sendCommand(final int type) throws DebugException {
 		try {
-			connection.sendPacket(new CommandPacket(type));
+			connection.sendPackage(new CommandPackage(type));
 		} catch (IOException e) {
 			throw new DebugException(Activator
 					.createErrorStatus("lost connection to debugger runtime process", e));

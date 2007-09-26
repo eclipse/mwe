@@ -8,40 +8,33 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * The packet to communicate a process or direct command to the runtime process.
+ * The packet to communicate the confirmation of a specific packet reference id.
  */
-public class CommandPacket extends AbstractPacket {
-
-	public int command;
+public class ConfirmationPackage extends AbstractPackage {
 
 	// -------------------------------------------------------------------------
 
-	public CommandPacket(final int command) {
-		this.command = command;
+	public ConfirmationPackage(final int packId) {
+		refId = packId;
 	}
 
 	// -------------------------------------------------------------------------
 
 	@Override
 	public void readContent(final DataInputStream in) throws IOException {
-		command = in.readInt();
-
+		refId = in.readInt();
 	}
 
 	@Override
 	public void writeContent(final DataOutputStream out) throws IOException {
-		out.writeInt(command);
+		out.writeInt(refId);
 	}
 
-	@Override
-	public String toString() {
-		return super.toString() + " type=" + command;
-	}
 }

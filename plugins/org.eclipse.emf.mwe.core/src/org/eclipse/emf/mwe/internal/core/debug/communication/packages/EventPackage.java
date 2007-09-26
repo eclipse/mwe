@@ -8,27 +8,24 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
- * The packet to communicate a request for variable from a specific frame and variable id.
+ * The packet to communicate an event from the runtime process.
  */
-public class RequireVarPacket extends AbstractPacket {
+public class EventPackage extends AbstractPackage {
 
-	public int frameId;
-
-	public int varId;
+	public int event;
 
 	// -------------------------------------------------------------------------
 
-	public RequireVarPacket(final int frameId, final int varId) {
+	public EventPackage(final int event) {
+		this.event = event;
 		setNextId();
-		this.frameId = frameId;
-		this.varId = varId;
 	}
 
 	// -------------------------------------------------------------------------
@@ -36,20 +33,19 @@ public class RequireVarPacket extends AbstractPacket {
 	@Override
 	public void readContent(final DataInputStream in) throws IOException {
 		id = in.readInt();
-		frameId = in.readInt();
-		varId = in.readInt();
+		event = in.readInt();
+
 	}
 
 	@Override
 	public void writeContent(final DataOutputStream out) throws IOException {
 		out.writeInt(id);
-		out.writeInt(frameId);
-		out.writeInt(varId);
+		out.writeInt(event);
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + " frameId=" + frameId + (varId != 0 ? " varId=" + varId : "");
+		return super.toString() + " event=" + event;
 	}
 
 }

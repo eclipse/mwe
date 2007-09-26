@@ -16,9 +16,9 @@ import java.util.Stack;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.ConfirmationPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.EventPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.EventPacketWithFrames;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.ConfirmationPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackageWithFrames;
 import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
 import org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
@@ -106,7 +106,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
 	 */
 	public void suspended() throws IOException {
-		EventPacketWithFrames event = new EventPacketWithFrames(SUSPENDED);
+		EventPackageWithFrames event = new EventPackageWithFrames(SUSPENDED);
 		event.cleanStackLevel = cleanStackLevel;
 
 		for (int i = cleanStackLevel; i < stackFrames.size(); i++) {
@@ -150,13 +150,13 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	// -------------------------------------------------------------------------
 
 	private void sendEvent(final int type) throws IOException {
-		EventPacket event = new EventPacket(type);
+		EventPackage event = new EventPackage(type);
 		sendAndConfirm(event);
 	}
 
-	private void sendAndConfirm(final EventPacket event) throws IOException {
-		int refId = connection.sendPacket(event);
-		connection.listenForPacket(ConfirmationPacket.class, refId);
+	private void sendAndConfirm(final EventPackage event) throws IOException {
+		int refId = connection.sendPackage(event);
+		connection.listenForPackage(ConfirmationPackage.class, refId);
 	}
 
 	// -------------------------------------------------------------------------

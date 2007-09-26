@@ -19,10 +19,10 @@ import java.io.IOException;
 
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.AbstractPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.ConfirmationPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.EventPacket;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.EventPacketWithFrames;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.ConfirmationPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackage;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackageWithFrames;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 
@@ -37,7 +37,7 @@ public class EventPluginHandler implements Runnable {
 
 	private DebugModelManager dmm;
 
-	private final Class<? extends AbstractPacket> typeToListen = EventPacket.class;
+	private final Class<? extends AbstractPackage> typeToListen = EventPackage.class;
 
 	// -------------------------------------------------------------------------
 
@@ -50,7 +50,7 @@ public class EventPluginHandler implements Runnable {
 		this.dmm = dmm;
 	}
 
-	public Class<? extends AbstractPacket> getPacketType() {
+	public Class<? extends AbstractPackage> getPackageType() {
 		return typeToListen;
 	}
 
@@ -69,14 +69,14 @@ public class EventPluginHandler implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				dispatch((EventPacket) connection.listenForPacket(typeToListen));
+				dispatch((EventPackage) connection.listenForPackage(typeToListen));
 			}
 		} catch (Exception e) {
 			connection.close();
 		}
 	}
 
-	private void dispatch(final EventPacket packet) throws DebugException {
+	private void dispatch(final EventPackage packet) throws DebugException {
 		dmm.getThread().setBreakpoint(null);
 
 		switch (packet.event) {
@@ -98,17 +98,17 @@ public class EventPluginHandler implements Runnable {
 			return;
 		}
 
-		ConfirmationPacket conf = new ConfirmationPacket(packet.getId());
+		ConfirmationPackage conf = new ConfirmationPackage(packet.getId());
 		try {
-			connection.sendPacket(conf);
+			connection.sendPackage(conf);
 		} catch (IOException e) {
 			throw new DebugException(Activator.createErrorStatus(
 					"lost connection to debugger runtime process --> aborting", e));
 		}
 	}
 
-	private void adaptStackFrames(final EventPacket sp) {
-		EventPacketWithFrames packet = (EventPacketWithFrames) sp;
+	private void adaptStackFrames(final EventPackage sp) {
+		EventPackageWithFrames packet = (EventPackageWithFrames) sp;
 		dmm.adaptStackFrames(packet.cleanStackLevel, packet.frames);
 	}
 

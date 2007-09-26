@@ -17,7 +17,7 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
-import org.eclipse.emf.mwe.internal.core.debug.communication.packets.RegisterPacket;
+import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RegisterPackage;
 
 /**
  * This manager class listens for requests from the debug server to instantiate handlers or adapters.<br>
@@ -71,11 +71,11 @@ public class RuntimeHandlerManager implements Runnable {
 
 	private void listenAndRegisterClasses() throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
 
-		RegisterPacket packet = (RegisterPacket) connection.listenForPacket(RegisterPacket.class);
+		RegisterPackage packet = (RegisterPackage) connection.listenForPackage(RegisterPackage.class);
 
 		String msg = null;
 
-		if (packet.type == RegisterPacket.HANDLERS) {
+		if (packet.type == RegisterPackage.HANDLERS) {
 			RuntimeHandler handler = null;
 			for (String className : packet.classNames) {
 				final Class<?> clazz = ResourceLoaderFactory.createResourceLoader().loadClass(className);

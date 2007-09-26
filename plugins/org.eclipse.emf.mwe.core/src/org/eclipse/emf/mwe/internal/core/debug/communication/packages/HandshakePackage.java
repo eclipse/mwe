@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.communication.packets;
+package org.eclipse.emf.mwe.internal.core.debug.communication.packages;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -16,7 +16,7 @@ import java.io.DataOutputStream;
 /**
  * The packet to communicate a first handshake. There are no data to be communicated.
  */
-public class HandshakePacket extends AbstractPacket {
+public class HandshakePackage extends AbstractPackage {
 
 	@Override
 	public void readContent(final DataInputStream in) {
