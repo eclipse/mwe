@@ -3,7 +3,7 @@
 # BEGIN CUSTOMIZATIONS
 
 # The plugin name
-pluginName="org.eclipse.emf.mwe"; 
+pluginName="org.eclipse.emf.mwe.core"; 
 
 # string labels for javadoc content
 windowTitle="Modeling Workflow Engine Javadoc";
