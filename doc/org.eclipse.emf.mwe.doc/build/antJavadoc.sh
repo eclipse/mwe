@@ -7,7 +7,7 @@ pluginName="org.eclipse.emf.mwe.core";
 
 # string labels for javadoc content
 windowTitle="Modeling Workflow Engine Javadoc";
-groupTitle="Modeling Workflow Engine";
+groupTitle="Modeling Workflow Engine Compare";
 
 # files to exclude from javadoc process - use Ant syntax
 javadocExclusions="<exclude name=\"**/internal/**\"/> <exclude name=\"**/examples/**\"/> <exclude name=\"**/tests/**\"/>";
@@ -71,6 +71,8 @@ if [ $debug -gt 0 ]; then
 	for pluginDir in $pluginDirs; do echo "[antJd]   "$pluginDir; done
 fi
 
+### TODO?: missing emf/sdo/xsd plugins in $eclipseDir - need to copy them over or reference source so that all classes/packages (and thus @links) can be resolved
+
 # All the jars in the plugins directory
 classpath="."`find $eclipseDir/plugins -name "*.jar" -printf ":%p"`; if [ $debug -gt 0 ]; then echo "[antJd] classpath: "$classpath; fi
 
@@ -128,7 +130,7 @@ rm -f $antScript $antScript.template.tmp $antScript.template.tmp2;
 
 # Generate topics_Reference.xml (replacement for doclet). 
 trXML=$currentPath"/../topics_Reference.xml";
-echo '<?xml version="1.0" encoding="UTF-8"?>' >> $trXML;
+echo '<?xml version="1.0" encoding="UTF-8"?>' > $trXML;
 echo '<?NLS TYPE="org.eclipse.help.toc"?>' >> $trXML;
 echo '<toc label="Reference">' >> $trXML;
 echo '  <topic label="API Reference" href="references/javadoc/overview-summary.html">' >> $trXML;
