@@ -5,12 +5,6 @@ Bundle-Name: %pluginName
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
-Export-Package: org.eclipse.emf.mwe.core.tests,
- org.eclipse.emf.mwe.core.tests.ast,
- org.eclipse.emf.mwe.core.tests.ast.parser,
- org.eclipse.emf.mwe.core.tests.ast.util,
- org.eclipse.emf.mwe.core.tests.lib,
- org.eclipse.emf.mwe.core.tests.util
 Require-Bundle: org.junit,
  org.apache.ant,
  org.eclipse.emf.mwe.core,
