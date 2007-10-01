@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.eclipse.emf.mwe.core.tests
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
+Bundle-ClassPath: .
 Require-Bundle: org.junit,
  org.apache.ant,
  org.eclipse.emf.mwe.core,
@@ -13,3 +14,4 @@ Require-Bundle: org.junit,
  org.eclipse.emf.common,
  org.apache.log4j,
  org.eclipse.emf.ecore
+Eclipse-LazyStart: true
