@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.mwe.core.tests"
-      label="%featureName"
+      label="%featureName (Incubation)"
       version="0.7.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
    <description>
-      %description
+      %description (Incubation)
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
@@ -57,9 +57,5 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-
-   <includes
-         id="org.eclipse.emf.mwe.core.tests.source"
-         version="0.0.0"/>
 
 </feature>
