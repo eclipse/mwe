@@ -27,10 +27,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <includes
-         id="org.eclipse.emf.mwe.core.tests.source"
-         version="0.0.0"/>
-
    <requires>
       <import plugin="org.eclipse.emf.mwe.core"/>
       <import plugin="org.junit"/>
@@ -61,5 +57,9 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
+   <includes
+         id="org.eclipse.emf.mwe.core.tests.source"
+         version="0.0.0"/>
 
 </feature>
