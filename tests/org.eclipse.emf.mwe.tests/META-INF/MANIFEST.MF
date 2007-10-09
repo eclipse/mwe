@@ -3,9 +3,10 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.mwe.tests
 Bundle-Version: 0.7.0.qualifier
-Bundle-Localization: plugin
-Bundle-Vendor: %providerName
 Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: org.eclipse.emf.mwe.tests
 Require-Bundle: org.junit,
  org.apache.ant,
  org.eclipse.emf.mwe.core,
@@ -14,4 +15,4 @@ Require-Bundle: org.junit,
  org.eclipse.emf.common,
  org.apache.log4j,
  org.eclipse.emf.ecore
-Eclipse-LazyStart: true
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
