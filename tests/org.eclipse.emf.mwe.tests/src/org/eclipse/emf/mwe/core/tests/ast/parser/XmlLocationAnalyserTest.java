@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.emf.mwe.core.tests.ast.parser;
+package org.eclipse.emf.mwe.tests.ast.parser;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.emf.mwe.core.tests.ast.util;
+package org.eclipse.emf.mwe.tests.ast.util;
 
 import java.util.Collections;
 import java.util.Map;

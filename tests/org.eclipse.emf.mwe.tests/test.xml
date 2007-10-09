@@ -6,7 +6,7 @@
   <property name="eclipse-home" value="${basedir}\..\.."/>
 
   <!-- sets the properties plugin-name, and library-file -->
-  <property name="plugin-name" value="org.eclipse.emf.mwe.core.tests"/>
+  <property name="plugin-name" value="org.eclipse.emf.mwe.tests"/>
   <property name="library-file" value="${eclipse-home}/plugins/org.eclipse.test/library.xml"/>
 
   <!-- This target holds all initialization code that needs to be done for -->
@@ -26,7 +26,7 @@
     <ant target="core-test" antfile="${library-file}" dir="${eclipse-home}">
       <property name="data-dir" value="${emf-folder}"/>
       <property name="plugin-name" value="${plugin-name}"/>
-      <property name="classname" value="org.eclipse.emf.mwe.core.tests.AllAllTests"/>
+      <property name="classname" value="org.eclipse.emf.mwe.tests.AllAllTests"/>
     </ant>
   </target>
 

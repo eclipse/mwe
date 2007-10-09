@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.core.tests.ast.util;
+package org.eclipse.emf.mwe.tests.ast.util;
 
 import java.util.HashMap;
 import java.util.Map;

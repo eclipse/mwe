@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.core.tests.ast;
+package org.eclipse.emf.mwe.tests.ast;
 
 import junit.framework.TestCase;
 

@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.emf.mwe.core.tests.util;
+package org.eclipse.emf.mwe.tests.util;
 
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;

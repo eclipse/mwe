@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.core.tests;
+package org.eclipse.emf.mwe.tests;
 
 import java.util.Collections;
 

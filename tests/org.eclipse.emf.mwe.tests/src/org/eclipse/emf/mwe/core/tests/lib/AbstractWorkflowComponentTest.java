@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.core.tests.lib;
+package org.eclipse.emf.mwe.tests.lib;
 
 import junit.framework.TestCase;
 
