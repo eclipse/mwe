@@ -3,7 +3,6 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.mwe.tests
 Bundle-Version: 0.7.0.qualifier
-Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.mwe.tests
