@@ -164,7 +164,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	private static MWEDiagnostic createError(final String msg, final Object element) {
-		return createWarning(null, msg, element, null, Collections.emptyList());
+		return createError(null, msg, element, null, Collections.emptyList());
 	}
 	
 	private Diagnostic[] filterIssues(final int severity) {
