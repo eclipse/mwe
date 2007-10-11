@@ -6,9 +6,9 @@
          <meta.schema plugin="org.eclipse.emf.mwe.ui" id="handlers" name="Debugger Handlers"/>
       </appInfo>
       <documentation>
-         A plugin-in implementing an extension for this extension point can provide additional functionality to the openArchitectureWare debugger.&lt;br&gt;&lt;br&gt;
+         A plugin-in implementing an extension for this extension point can provide additional functionality to the MWE debugger.&lt;br&gt;&lt;br&gt;
 An MWE debugger process is started in an extra Virtual Machine as in Java. The communication between the runtime VM and the Eclipse VM happens via a socket of the localHost.&lt;br&gt;
-There are two types of handlers: &lt;code&gt;IRuntimeHandler&lt;/code&gt; and &lt;code&gt;IPluginHandler&lt;/code&gt;. Normally there should be always a pair of these, that communicate with each other.
+There are two types of handlers: &lt;code&gt;RuntimeHandler&lt;/code&gt; and &lt;code&gt;PluginHandler&lt;/code&gt;. Normally there should be always a pair of these, that communicate with each other.
       </documentation>
    </annotation>
 
@@ -54,24 +54,24 @@ There are two types of handlers: &lt;code&gt;IRuntimeHandler&lt;/code&gt; and &l
          <attribute name="runtimeClass" type="string">
             <annotation>
                <documentation>
-                  The name of an IRuntimeHandler implementation. This class will be instantiated in the runtime VM, that has normally no direct access to the Eclipse session.&lt;br&gt;
+                  The name of an RuntimeHandler implementation. This class will be instantiated in the runtime VM, that has normally no direct access to the Eclipse session.&lt;br&gt;
 In the &lt;code&gt;init(...)&lt;/code&gt; method it can register itself in the &lt;code&gt;DebugMonitor&lt;/code&gt; and can that way send commands or react to events to/from the monitor.&lt;br&gt;
 If the handler must listen for communication events from eclipse it is reasonable to do it in an extra thread. This thread can be started in the &lt;code&gt;startListener()&lt;/code&gt; method.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.core.debug.processing.IRuntimeHandler"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler"/>
                </appInfo>
             </annotation>
          </attribute>
          <attribute name="pluginClass" type="string">
             <annotation>
                <documentation>
-                  The name of an IPluginHandler implementation. This class will be instantiated in the eclipse VM. It is responsible to handle commands and events on the eclipse side.&lt;br&gt;
+                  The name of an PluginHandler implementation. This class will be instantiated in the eclipse VM. It is responsible to handle commands and events on the eclipse side.&lt;br&gt;
 It can send commands through the socket to the runtime side and assumes a corresponding runtime handler that reacts on these commands there.&lt;br&gt;
 It can also listen for events on the socket that where sent by a corresponding runtime handler and distribute them to the debug element model (through the &lt;code&gt;DebugModelManager&lt;/code&gt;) or to any other class that provides additional functionality to the Eclipse framwork.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.IPluginHandler"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.PluginHandler"/>
                </appInfo>
             </annotation>
          </attribute>

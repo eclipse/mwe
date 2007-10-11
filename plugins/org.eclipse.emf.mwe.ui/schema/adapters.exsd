@@ -6,10 +6,10 @@
          <meta.schema plugin="org.eclipse.emf.mwe.ui" id="adapters" name="MWE Debugger Adapters"/>
       </appInfo>
       <documentation>
-         A plugin-in implementing an extension for this extension point can provide additional functionality to the openArchitectureWare debugger.&lt;br&gt;
+         A plugin-in implementing an extension for this extension point can provide additional functionality to the MWE debugger.&lt;br&gt;
 &lt;br&gt;
 Adapters can translate specific behavior of a syntax element into the neutral common format that is required by the debugger. E.g. variable names and content depend in most cases on the concrete application.&lt;br&gt;
-There are two types of adapters: &lt;code&gt;IElementAdapter&lt;/code&gt; and &lt;code&gt;IPluginAdapter&lt;/code&gt;. Normally there should be always one pair of these for each component with debug behavior.
+There are two types of adapters: &lt;code&gt;ElementAdapter&lt;/code&gt; and &lt;code&gt;PluginAdapter&lt;/code&gt;. Normally there should be always one pair of these for each component with debug behavior.
       </documentation>
    </annotation>
 
@@ -55,23 +55,23 @@ There are two types of adapters: &lt;code&gt;IElementAdapter&lt;/code&gt; and &l
          <attribute name="runtimeClass" type="string" use="required">
             <annotation>
                <documentation>
-                  The name of an IElementAdapter implementation. This class will be instantiated in the runtime VM and be registered in the debugger monitor.&lt;br&gt;
+                  The name of an ElementAdapter implementation. This class will be instantiated in the runtime VM and be registered in the debugger monitor.&lt;br&gt;
 It is responsible to provide component specific information in a neutral way. It creates name and sourcefile information of an element (one &quot;step&quot; or &quot;Unit of work&quot;), provides name and string representation of variables, converts a breakpoint&apos;s resource and line information into the corresponding sytax element.&lt;br&gt;
 More functionality can be implemented to support additional user defined handlers.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.core.debug.processing.IElementAdapter"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.core.debug.processing.ElementAdapter"/>
                </appInfo>
             </annotation>
          </attribute>
          <attribute name="pluginClass" type="string" use="required">
             <annotation>
                <documentation>
-                  The name of an IPluginAdapter implementation. This class will be instantiated in the eclipse VM. It is responsible to handle component specific issues on the eclipse side.&lt;br&gt;
+                  The name of an PluginAdapter implementation. This class will be instantiated in the eclipse VM. It is responsible to handle component specific issues on the eclipse side.&lt;br&gt;
 It can provide the correct editor Id of an element type for source lookup, breakpoint definition (what is a &quot;Unit of work&quot;) and element type specific image that is shown in the Launch view.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.IPluginAdapter"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.mwe.internal.ui.debug.processing.PluginAdapter"/>
                </appInfo>
             </annotation>
          </attribute>
