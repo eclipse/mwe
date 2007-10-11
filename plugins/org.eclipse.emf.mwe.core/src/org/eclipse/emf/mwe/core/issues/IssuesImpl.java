@@ -38,7 +38,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addError(final String msg, final Object element) {
-		add(createError(msg, element));
+		addError(null, msg, element, null, Collections.emptyList());
 	}
 
 	public void addError(final String msg) {
@@ -58,7 +58,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addWarning(final String msg, final Object element) {
-		add(createWarning(msg, element));
+		addWarning(null, msg, element, null, Collections.emptyList());
 	}
 
 	public void addWarning(final WorkflowComponent ctx, final String msg,
@@ -83,7 +83,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public void addInfo(final String msg, final Object element) {
-		add(createInfo(msg, element));
+		addInfo(null, msg, element, null, Collections.emptyList());
 	}
 
 	public void addInfo(final WorkflowComponent ctx, final String msg,
@@ -140,20 +140,12 @@ public class IssuesImpl implements Issues {
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createInfo(final String msg, final Object element) {
-		return createWarning(null, msg, element, null, Collections.emptyList());
-	}
-
 	private static MWEDiagnostic createWarning(final WorkflowComponent ctx,
 			final String msg, final Object element, final Throwable t, final List<Object> additionalData) {
 		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.WARNING, ctx,
 				msg, element, t, additionalData);
 		;
 		return diagnostic;
-	}
-
-	private static MWEDiagnostic createWarning(final String msg, final Object element) {
-		return createWarning(null, msg, element, null, Collections.emptyList());
 	}
 
 	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg,
@@ -163,10 +155,6 @@ public class IssuesImpl implements Issues {
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createError(final String msg, final Object element) {
-		return createError(null, msg, element, null, Collections.emptyList());
-	}
-	
 	private Diagnostic[] filterIssues(final int severity) {
 		List<Diagnostic>result = new ArrayList<Diagnostic>();
 		for (Diagnostic diagnostic : issues) {
