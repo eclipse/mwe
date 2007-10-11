@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: %pluginName (Incubation)
 Bundle-SymbolicName: org.eclipse.emf.mwe.examples
 Bundle-Version: 0.7.0.qualifier
 Bundle-Vendor: %providerName
