@@ -7,9 +7,10 @@ public class AllTests {
 
 	public static Test suite() {
 		TestSuite suite = new TestSuite(
-				"Test for org.eclipse.emf.mwe.tests");
+				"Test for org.eclipse.emf.mwe.core.tests");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(WorkflowRunnerTest.class);
+		suite.addTestSuite(IssuesTest.class);
 		//$JUnit-END$
 		return suite;
 	}
