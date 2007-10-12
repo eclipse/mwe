@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.eodm.doc" default="build.jars" basedir=".">
+<project name="org.eclipse.emf.mwe.doc" default="build.jars" basedir=".">
 
 	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
 	<property name="pluginVersion" value="0.7.0"/>
