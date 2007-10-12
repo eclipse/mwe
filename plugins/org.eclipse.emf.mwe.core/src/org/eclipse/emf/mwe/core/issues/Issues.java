@@ -57,6 +57,15 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addInfo(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
+	
+	/**
+	 * Adds an info message
+	 * 
+	 * @param compnent
+	 * @param string
+	 * @param obj
+	 */
+	public void addInfo(WorkflowComponent compnent, String msg, Object obj);
 
 	/**
 	 * Adds a info message.
@@ -99,6 +108,15 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addWarning(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
+	
+	/**
+	 * Adds an warn message
+	 * 
+	 * @param compnent
+	 * @param string
+	 * @param obj
+	 */
+	public void addWarning(WorkflowComponent compnent, String msg, Object obj);
 
 	/**
 	 * Adds a warn message.
@@ -141,6 +159,15 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addError(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
+	
+	/**
+	 * Adds an error message
+	 * 
+	 * @param compnent
+	 * @param string
+	 * @param obj
+	 */
+	public void addError(WorkflowComponent compnent, String msg, Object obj);
 
 	/**
 	 * Adds an error message.

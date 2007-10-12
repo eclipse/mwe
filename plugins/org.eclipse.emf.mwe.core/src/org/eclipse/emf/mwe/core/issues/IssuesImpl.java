@@ -44,6 +44,10 @@ public class IssuesImpl implements Issues {
 	public void addError(final String msg) {
 		addError(msg, (Object) null);
 	}
+	
+	public void addError(WorkflowComponent compnent, String msg, Object obj) {
+		addError(compnent,msg, obj, null, Collections.EMPTY_LIST);
+	}
 
 	public boolean hasErrors() {
 		return getErrors().length!=0;
@@ -69,6 +73,10 @@ public class IssuesImpl implements Issues {
 	public void addWarning(final String msg) {
 		addWarning(msg, null);
 	}
+	
+	public void addWarning(WorkflowComponent compnent, String msg, Object obj) {
+		addWarning(compnent,msg, obj, null, Collections.EMPTY_LIST);
+	}
 
 	public Diagnostic[] getWarnings() {
 		return filterIssues(Diagnostic.WARNING);
@@ -89,6 +97,10 @@ public class IssuesImpl implements Issues {
 	public void addInfo(final WorkflowComponent ctx, final String msg,
 			final Object element, final Throwable t, final List<Object> additionalData) {
 		add(createInfo(ctx, msg, element, t, additionalData));
+	}
+	
+	public void addInfo(WorkflowComponent compnent, String msg, Object obj) {
+		addInfo(compnent,msg, obj, null, Collections.EMPTY_LIST);
 	}
 
 	public void addInfo(final String msg) {
