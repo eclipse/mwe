@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ASCII"?>
+<nested:BaseType xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:nested="http://www.openarchitectureware.org/mm/test/nested" xsi:schemaLocation="http://www.openarchitectureware.org/mm/test/nested src/test.ecore#//nested"/>

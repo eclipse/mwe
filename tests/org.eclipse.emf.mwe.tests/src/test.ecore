@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test"
+    nsURI="http://www.openarchitectureware.org/mm/test" nsPrefix="test">
+  <eClassifiers xsi:type="ecore:EClass" name="AClass" eSuperTypes="#//nested/BaseType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="enum" eType="#//MyEnum"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="refToGenModel" eType="ecore:EClass http://www.eclipse.org/emf/2002/GenModel#//GenParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Action" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="anOtherAction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MyEnum">
+    <eLiterals name="ONE"/>
+    <eLiterals name="TWO" value="1"/>
+  </eClassifiers>
+  <eSubpackages name="nested" nsURI="http://www.openarchitectureware.org/mm/test/nested"
+      nsPrefix="nested">
+    <eClassifiers xsi:type="ecore:EClass" name="BaseType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//nested/BaseType"
+          eOpposite="#//nested/BaseType/children"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+          eType="#//nested/BaseType" containment="true" eOpposite="#//nested/BaseType/container"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="stuff" eType="ecore:EClass ref/referee.ecore#//Stuff"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

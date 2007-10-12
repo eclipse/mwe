@@ -17,7 +17,7 @@ public class ReaderTest extends TestCase {
 		Reader r = new Reader();
 		r.setFirstElementOnly(true);
 		r.setModelSlot("x");
-		r.setUri("platform:/resource/org.openarchitectureware.core.emftools.tests/testmodel.xmi");
+		r.setUri("platform:/resource/org.eclipse.emf.mwe.tests/testmodel.xmi");
 		new StandaloneSetup().setPlatformUri(new File("..").getAbsolutePath());
 		
 		WorkflowContext ctx = new WorkflowContextDefaultImpl();

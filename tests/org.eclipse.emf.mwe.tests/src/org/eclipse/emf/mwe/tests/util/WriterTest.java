@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe.utils.Writer;
 
 public class WriterTest extends TestCase {
 	private String relative = "testmodel.ecore";
-	private String tempfile = "platform:/resource/org.openarchitectureware.core.emftools.tests/"+relative;
+	private String tempfile = "platform:/resource/org.eclipse.emf.mwe.tests/"+relative;
 
 	
 	
