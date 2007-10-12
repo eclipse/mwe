@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.internal.utils;
+package org.eclipse.emf.mwe.utils;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;

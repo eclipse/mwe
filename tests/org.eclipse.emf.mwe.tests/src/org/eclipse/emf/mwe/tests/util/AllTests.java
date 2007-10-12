@@ -10,6 +10,8 @@ public class AllTests {
 				"Test for org.eclipse.emf.mwe.tests.util");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(ResourceLoaderFactoryTest.class);
+		suite.addTestSuite(ReaderTest.class);
+		suite.addTestSuite(WriterTest.class);
 		//$JUnit-END$
 		return suite;
 	}
