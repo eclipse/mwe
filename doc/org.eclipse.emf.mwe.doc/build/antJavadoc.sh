@@ -3,7 +3,7 @@
 # BEGIN CUSTOMIZATIONS
 
 # The plugin name
-pluginName="org.eclipse.emf.mwe.core"; 
+pluginName="org.eclipse.emf.mwe"; 
 
 # string labels for javadoc content
 windowTitle="MWE Javadoc";
