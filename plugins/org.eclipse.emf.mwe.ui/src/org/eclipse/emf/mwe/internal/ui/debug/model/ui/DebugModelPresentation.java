@@ -85,6 +85,7 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 	}
 
 	// called at source editor display to show the source in the right editor type
+	@SuppressWarnings("restriction")
 	public String getEditorId(final IEditorInput input, final Object element) {
 		String ext = "";
 		if (((element instanceof IFile) || (element instanceof ILineBreakpoint)) && (input instanceof IFileEditorInput)) {

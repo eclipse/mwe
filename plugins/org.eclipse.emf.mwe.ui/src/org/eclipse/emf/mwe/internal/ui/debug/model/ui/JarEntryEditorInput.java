@@ -10,6 +10,7 @@ import org.eclipse.ui.PlatformUI;
  * An EditorInput for a JarEntryFile.
  * copied from org.eclipse.jdt.internal.ui.javaeditor.JarEntryEditorInput 
  */
+@SuppressWarnings("restriction")
 public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.JarEntryEditorInput implements IStorageEditorInput {
 
 	private IStorage fJarEntryFile;
