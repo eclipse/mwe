@@ -25,11 +25,12 @@ import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 import org.eclipse.emf.mwe.internal.ui.debug.model.DebugStackFrame;
 import org.eclipse.emf.mwe.internal.ui.debug.model.DebugTarget;
 import org.eclipse.emf.mwe.internal.ui.debug.model.DebugThread;
-import org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.BreakpointPluginHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.CommandPluginHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.VariablesPluginHandler;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
+import org.eclipse.emf.mwe.ui.debug.processing.PluginExtensionManager;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 
 public class DebugModelManager implements IDebugEventSetListener {

@@ -13,11 +13,11 @@ package org.eclipse.emf.mwe.internal.core.debug.processing.handlers;
 import java.io.IOException;
 import java.util.Stack;
 
+import org.eclipse.emf.mwe.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.CommandPackage;
-import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
 import org.eclipse.emf.mwe.internal.core.debug.processing.CommandListener;
-import org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler;
+import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
 import org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 

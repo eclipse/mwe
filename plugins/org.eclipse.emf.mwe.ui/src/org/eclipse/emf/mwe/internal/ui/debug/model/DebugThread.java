@@ -18,6 +18,7 @@ import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.IStackFrame;
 import org.eclipse.debug.core.model.IThread;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 
 /**
  * MWE Debug Thread implementation<br>

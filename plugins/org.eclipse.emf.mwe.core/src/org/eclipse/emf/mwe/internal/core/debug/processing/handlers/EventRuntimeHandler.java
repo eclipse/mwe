@@ -15,12 +15,12 @@ import java.util.Stack;
 
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
+import org.eclipse.emf.mwe.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.ConfirmationPackage;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackage;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.EventPackageWithFrames;
 import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
-import org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 
 /**
@@ -100,7 +100,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 	/**
 	 * Send SUSPENDED event to the debug server together with the number of stack elements that are still the same
-	 * (cleanStackLevel) since the last suspend and all new SyntaxElementTOs.<br>
+	 * (cleanStackLevel) since the last suspend and all new SyntaxElements.<br>
 	 * Wait for a confirmation. In the meantime other threads could handle for instance variable requests.
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()

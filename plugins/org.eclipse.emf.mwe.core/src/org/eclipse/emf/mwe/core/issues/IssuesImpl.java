@@ -18,13 +18,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 
 public class IssuesImpl implements Issues {
-	private final List<Diagnostic> issues = new ArrayList<Diagnostic>();
+	private final List<MWEDiagnostic> issues = new ArrayList<MWEDiagnostic>();
 
-	public void add(final Diagnostic issue) {
+	public void add(final MWEDiagnostic issue) {
 			issues.add(issue);
 	}
 
@@ -53,8 +52,8 @@ public class IssuesImpl implements Issues {
 		return getErrors().length!=0;
 	}
 
-	public Diagnostic[] getErrors() {
-		return filterIssues(Diagnostic.ERROR);
+	public MWEDiagnostic[] getErrors() {
+		return filterIssues(MWEDiagnostic.ERROR);
 	}
 
 	public void addWarning(final WorkflowComponent ctx, final String msg) {
@@ -78,8 +77,8 @@ public class IssuesImpl implements Issues {
 		addWarning(compnent,msg, obj, null, Collections.EMPTY_LIST);
 	}
 
-	public Diagnostic[] getWarnings() {
-		return filterIssues(Diagnostic.WARNING);
+	public MWEDiagnostic[] getWarnings() {
+		return filterIssues(MWEDiagnostic.WARNING);
 	}
 
 	public boolean hasWarnings() {
@@ -107,8 +106,8 @@ public class IssuesImpl implements Issues {
 		addInfo(msg, null);
 	}
 
-	public Diagnostic[] getInfos() {
-		return filterIssues(Diagnostic.INFO);
+	public MWEDiagnostic[] getInfos() {
+		return filterIssues(MWEDiagnostic.INFO);
 	}
 
 	public boolean hasInfos() {
@@ -118,16 +117,16 @@ public class IssuesImpl implements Issues {
 	@Override
 	public String toString() {
 		final StringBuffer buff = new StringBuffer();
-		Diagnostic[] issues = getInfos();
-		for (final Diagnostic issue : issues) {
+		MWEDiagnostic[] issues = getInfos();
+		for (final MWEDiagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		issues = getWarnings();
-		for (final Diagnostic issue : issues) {
+		for (final MWEDiagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		issues = getErrors();
-		for (final Diagnostic issue : issues) {
+		for (final MWEDiagnostic issue : issues) {
 			buff.append("\n" + issue.toString());
 		}
 		return buff.toString();
@@ -147,14 +146,14 @@ public class IssuesImpl implements Issues {
 
 	private static MWEDiagnostic createInfo(final WorkflowComponent ctx, final String msg,
 			final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.INFO, ctx, msg,
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.INFO, ctx, msg,
 				element, t, additionalData);
 		return diagnostic;
 	}
 
 	private static MWEDiagnostic createWarning(final WorkflowComponent ctx,
 			final String msg, final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.WARNING, ctx,
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.WARNING, ctx,
 				msg, element, t, additionalData);
 		;
 		return diagnostic;
@@ -162,23 +161,23 @@ public class IssuesImpl implements Issues {
 
 	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg,
 			final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.ERROR, ctx, msg,
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.ERROR, ctx, msg,
 				element, t, additionalData);
 		return diagnostic;
 	}
 
-	private Diagnostic[] filterIssues(final int severity) {
-		List<Diagnostic>result = new ArrayList<Diagnostic>();
-		for (Diagnostic diagnostic : issues) {
+	private MWEDiagnostic[] filterIssues(final int severity) {
+		List<MWEDiagnostic>result = new ArrayList<MWEDiagnostic>();
+		for (MWEDiagnostic diagnostic : issues) {
 			if ( diagnostic.getSeverity()==severity){
 				result.add(diagnostic);
 			}
 		}
-		return result.toArray(new Diagnostic[result.size()]);
+		return result.toArray(new MWEDiagnostic[result.size()]);
 	}
 	
-	public Diagnostic[] getIssues() {
-		return issues.toArray(new Diagnostic[issues.size()]);
+	public MWEDiagnostic[] getIssues() {
+		return issues.toArray(new MWEDiagnostic[issues.size()]);
 	}
 
 }

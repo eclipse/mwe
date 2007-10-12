@@ -30,5 +30,6 @@ Export-Package: org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions;x-frien
  org.eclipse.emf.mwe.internal.ui.workflow;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.workflow.debug;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.workflow.util;x-internal:=true,
- org.eclipse.emf.mwe.internal.ui.eclipse.launch;x-internal:=true
+ org.eclipse.emf.mwe.ui.debug.model,
+ org.eclipse.emf.mwe.ui.debug.processing
 

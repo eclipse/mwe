@@ -8,12 +8,12 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.ui.debug.processing;
+package org.eclipse.emf.mwe.ui.debug.processing;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.model.IBreakpoint;
-import org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 import org.eclipse.swt.graphics.Image;
 
 /**

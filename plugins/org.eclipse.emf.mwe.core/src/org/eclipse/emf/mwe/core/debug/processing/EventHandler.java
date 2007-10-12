@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.processing;
+package org.eclipse.emf.mwe.core.debug.processing;
 
 import java.io.IOException;
 

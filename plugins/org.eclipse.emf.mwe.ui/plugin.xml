@@ -59,7 +59,7 @@
          point="org.eclipse.debug.core.breakpoints">
       <breakpoint
             markerType="org.eclipse.emf.mwe.ui.breakpointMarker"
-            class="org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint"
+            class="org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint"
             id="breakpoint">
       </breakpoint>
    </extension>

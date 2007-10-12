@@ -32,6 +32,7 @@ import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 import org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchConfigurationConstants;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 
 /**
  * MWE Debug Target implementation<br>

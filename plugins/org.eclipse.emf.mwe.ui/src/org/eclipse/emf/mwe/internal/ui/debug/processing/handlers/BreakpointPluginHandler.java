@@ -17,9 +17,9 @@ import java.io.IOException;
 
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.BreakpointPackage;
-import org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.PluginHandler;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 
 /**
  * This class handles the communication of breakpoints on the Eclipse side

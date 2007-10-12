@@ -16,11 +16,11 @@ import java.util.List;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
+import org.eclipse.emf.mwe.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.ast.parser.XmlLocationAnalyser;
-import org.eclipse.emf.mwe.internal.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 
 /**

@@ -110,7 +110,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 		}
 		Object element = adapter.findElement(se, actual, flag);
 		// breakpoints may be set before the syntax element structure is instantiated
-		// in this case we store the SyntaxElementTO and try it again during shallSuspend(...)
+		// in this case we store the SyntaxElement and try it again during shallSuspend(...)
 		if (element == null){
 			breakpointTOs.add(se);
 			for (SyntaxElement cand : toBeRemovedTOs) {

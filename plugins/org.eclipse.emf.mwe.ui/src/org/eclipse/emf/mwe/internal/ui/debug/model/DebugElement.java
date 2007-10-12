@@ -17,6 +17,7 @@ import org.eclipse.debug.core.model.IDebugElement;
 import org.eclipse.debug.core.model.IDebugTarget;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 
 /**
  * Common functions for all classes inheriting from this class, that represent the debug model.

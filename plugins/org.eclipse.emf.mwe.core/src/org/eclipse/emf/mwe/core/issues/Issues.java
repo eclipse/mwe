@@ -16,7 +16,6 @@ package org.eclipse.emf.mwe.core.issues;
 
 import java.util.List;
 
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 
 /**
@@ -26,13 +25,13 @@ import org.eclipse.emf.mwe.core.WorkflowComponent;
 public interface Issues {
 
 	/**
-	 * Adds a {@link Diagnostic}. Only {@link Diagnostic} with a severity of
-	 * {@link Diagnostic#INFO}, {@link Diagnostic#WARNING} and
-	 * {@link Diagnostic#ERROR} are allowed
+	 * Adds a {@link MWEDiagnostic}. Only {@link MWEDiagnostic} with a severity of
+	 * {@link MWEDiagnostic#INFO}, {@link MWEDiagnostic#WARNING} and
+	 * {@link MWEDiagnostic#ERROR} are allowed
 	 * 
 	 * @param issue
 	 */
-	public void add(Diagnostic issue);
+	public void add(MWEDiagnostic issue);
 
 	/**
 	 * Adds a info message.
@@ -83,7 +82,7 @@ public interface Issues {
 	/**
 	 * @return all infos in this container
 	 */
-	public Diagnostic[] getInfos();
+	public MWEDiagnostic[] getInfos();
 
 	/**
 	 * Adds a warn message.
@@ -134,7 +133,7 @@ public interface Issues {
 	/**
 	 * @return all warning in this container
 	 */
-	public Diagnostic[] getWarnings();
+	public MWEDiagnostic[] getWarnings();
 
 	/**
 	 * Adds an error message.
@@ -180,7 +179,7 @@ public interface Issues {
 	/**
 	 * @return all errors in this container
 	 */
-	public Diagnostic[] getErrors();
+	public MWEDiagnostic[] getErrors();
 
 	/**
 	 * @return
@@ -193,8 +192,8 @@ public interface Issues {
 	public void clear();
 	
 	/**
-	 * @return all {@link Diagnostic}s reported here
+	 * @return all {@link MWEDiagnostic}s reported here
 	 */
-	public Diagnostic[] getIssues();
+	public MWEDiagnostic[] getIssues();
 
 }

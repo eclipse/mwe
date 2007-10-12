@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.emf.mwe.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
+import org.eclipse.emf.mwe.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RequireVarPackage;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.VarDataPackage;
-import org.eclipse.emf.mwe.internal.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.internal.core.debug.model.VarValue;
 import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
 import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
-import org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 
 /**

@@ -10,8 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.internal.core.debug.processing;
 
-import static org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler.END_FRAME;
-import static org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler.NORMAL_FRAME;
+import static org.eclipse.emf.mwe.core.debug.processing.EventHandler.END_FRAME;
+import static org.eclipse.emf.mwe.core.debug.processing.EventHandler.NORMAL_FRAME;
 import static org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler.INTERRUPT;
 import static org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler.POP;
 import static org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler.PUSH;
@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
+import org.eclipse.emf.mwe.core.debug.processing.EventHandler;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 

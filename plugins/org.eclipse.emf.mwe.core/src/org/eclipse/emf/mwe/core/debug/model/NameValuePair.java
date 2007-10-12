@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.debug.model;
+package org.eclipse.emf.mwe.core.debug.model;
 
 /**
  * name / value utility class

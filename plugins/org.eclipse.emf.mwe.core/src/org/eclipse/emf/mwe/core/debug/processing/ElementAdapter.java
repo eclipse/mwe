@@ -12,8 +12,8 @@ package org.eclipse.emf.mwe.core.debug.processing;
 
 import java.util.List;
 
+import org.eclipse.emf.mwe.core.debug.model.NameValuePair;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
-import org.eclipse.emf.mwe.internal.core.debug.model.NameValuePair;
 
 /**
  * An adapter to the <code>DebugMonitor</code> that handle all element type specific activities on the runtime
@@ -57,14 +57,14 @@ public interface ElementAdapter {
 	public boolean shallSuspend(Object element, int flag);
 
 	/**
-	 * computes a SyntaxElementTO for a specific element type<br>
+	 * computes a SyntaxElement for a specific element type<br>
 	 * the containerName should be the name of the underlying file name<br>
 	 * the element name should be the name of the surrounding element (e.g. in Java we highlight the line to be
 	 * debugged, but show the surrounding method name in the Launch view)<br>
 	 * start, end and line should point to the text that shall be highlighted for the element
 	 * 
 	 * @param element the element that is going to be debugged
-	 * @return a SyntaxElementTO that contains the information to be shown in the debugger views in a common
+	 * @return a SyntaxElement that contains the information to be shown in the debugger views in a common
 	 *         neutral way
 	 */
 	public SyntaxElement createElementTO(Object element);
@@ -79,14 +79,14 @@ public interface ElementAdapter {
 	public boolean isSurroundingElement(Object element);
 
 	/**
-	 * computes a SyntaxElementTO for a surrounding element representing the end position to be highlighted before
+	 * computes a SyntaxElement for a surrounding element representing the end position to be highlighted before
 	 * returning<br>
 	 * the containerName should be the name of the file that holds the element<br>
 	 * the element name should be a description of the end element<br>
 	 * start, end and line should point to the end text to be highlighted
 	 * 
 	 * @param element the element that is going to be debugged
-	 * @return a SyntaxElementTO that contains the information to be shown in the debugger views in a common
+	 * @return a SyntaxElement that contains the information to be shown in the debugger views in a common
 	 *         neutral way
 	 */
 	public SyntaxElement createEndElementTO(Object element);

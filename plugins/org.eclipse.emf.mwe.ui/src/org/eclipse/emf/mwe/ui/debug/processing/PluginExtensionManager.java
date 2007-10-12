@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.ui.debug.processing;
+package org.eclipse.emf.mwe.ui.debug.processing;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -23,6 +23,8 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RegisterPackage;
 import org.eclipse.emf.mwe.internal.core.debug.processing.handlers.CommandRuntimeHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.handlers.EventRuntimeHandler;
+import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
+import org.eclipse.emf.mwe.internal.ui.debug.processing.PluginHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.BreakpointPluginHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.CommandPluginHandler;
 import org.eclipse.emf.mwe.internal.ui.debug.processing.handlers.EventPluginHandler;

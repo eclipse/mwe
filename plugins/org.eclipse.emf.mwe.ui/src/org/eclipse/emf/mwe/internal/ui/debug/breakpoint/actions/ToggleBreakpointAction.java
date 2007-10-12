@@ -15,9 +15,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IBreakpointManager;
 import org.eclipse.debug.core.model.IBreakpoint;
-import org.eclipse.emf.mwe.internal.ui.debug.model.MWEBreakpoint;
-import org.eclipse.emf.mwe.internal.ui.debug.processing.PluginAdapter;
-import org.eclipse.emf.mwe.internal.ui.debug.processing.PluginExtensionManager;
+import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
+import org.eclipse.emf.mwe.ui.debug.processing.PluginAdapter;
+import org.eclipse.emf.mwe.ui.debug.processing.PluginExtensionManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.ui.editors.text.TextEditor;
 

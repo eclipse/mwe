@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.ui.debug.model;
+package org.eclipse.emf.mwe.ui.debug.model;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;

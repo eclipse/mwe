@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.eclipse.emf.mwe.internal.core;
+package org.eclipse.emf.mwe.core;
 
 import java.io.File;
 import java.io.IOException;

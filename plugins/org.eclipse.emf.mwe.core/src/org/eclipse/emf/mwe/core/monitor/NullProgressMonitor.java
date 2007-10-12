@@ -25,7 +25,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#beginTask(java.lang.String,
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#beginTask(java.lang.String,
      *      int)
      */
     public void beginTask(final String name, final int totalWork) {
@@ -34,7 +34,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#done()
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#done()
      */
     public void done() {
     }
@@ -42,7 +42,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#internalWorked(double)
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#internalWorked(double)
      */
     public void internalWorked(final double work) {
     }
@@ -50,7 +50,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#isCanceled()
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#isCanceled()
      */
     public boolean isCanceled() {
         return false;
@@ -59,7 +59,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#setCanceled(boolean)
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setCanceled(boolean)
      */
     public void setCanceled(final boolean value) {
     }
@@ -67,7 +67,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#setTaskName(java.lang.String)
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setTaskName(java.lang.String)
      */
     public void setTaskName(final String name) {
     }
@@ -75,7 +75,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#subTask(java.lang.String)
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#subTask(java.lang.String)
      */
     public void subTask(final String name) {
     }
@@ -83,7 +83,7 @@ public class NullProgressMonitor implements ProgressMonitor {
     /*
      * (non-Javadoc)
      * 
-     * @see org.openarchitectureware.workflow.monitor.ProgressMonitor#worked(int)
+     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#worked(int)
      */
     public void worked(final int work) {
     }
