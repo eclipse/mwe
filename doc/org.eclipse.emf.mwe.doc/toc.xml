@@ -2,5 +2,7 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="MWE Table of Contents">
+ <topic href="references/workflow_core_reference.html" label="Reference Guide">
+ </topic>
 	<topic label="Javadoc" href="references/javadoc/index.html"/>
 </toc>
