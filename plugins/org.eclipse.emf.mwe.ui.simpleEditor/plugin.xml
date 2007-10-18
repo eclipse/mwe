@@ -9,7 +9,7 @@
             default="false"
             extensions="mwe, oaw"
             icon="icons/workflowfile.gif"
-            id="org.openarchitectureware.workflow.editors.WorkflowEditor"
+            id="org.eclipse.emf.mwe.ui.internal.simpleEditor.WorkflowEditor"
             name="MWE Workflow Editor (Simple)"/>
    </extension>
 
