@@ -64,7 +64,7 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 
 	public final Class<?> loadClass(final String clazzName) {
 		try {
-			MWEPlugin.loadClass(MWEPlugin.ID, clazzName);
+			return MWEPlugin.loadClass(MWEPlugin.ID, clazzName);
 		} catch (Exception e1) {
 			try {
 				return internalLoadClass(clazzName);
