@@ -45,7 +45,7 @@ public class IssuesImpl implements Issues {
 	}
 	
 	public void addError(WorkflowComponent compnent, String msg, Object obj) {
-		addError(compnent,msg, obj, null, Collections.EMPTY_LIST);
+		addError(compnent,msg, obj, null, Collections.emptyList());
 	}
 
 	public boolean hasErrors() {
@@ -74,7 +74,7 @@ public class IssuesImpl implements Issues {
 	}
 	
 	public void addWarning(WorkflowComponent compnent, String msg, Object obj) {
-		addWarning(compnent,msg, obj, null, Collections.EMPTY_LIST);
+		addWarning(compnent,msg, obj, null, Collections.emptyList());
 	}
 
 	public MWEDiagnostic[] getWarnings() {
@@ -99,7 +99,7 @@ public class IssuesImpl implements Issues {
 	}
 	
 	public void addInfo(WorkflowComponent compnent, String msg, Object obj) {
-		addInfo(compnent,msg, obj, null, Collections.EMPTY_LIST);
+		addInfo(compnent,msg, obj, null, Collections.emptyList());
 	}
 
 	public void addInfo(final String msg) {

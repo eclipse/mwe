@@ -3,173 +3,47 @@ package org.eclipse.emf.mwe.core.issues;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 
-public class MWEDiagnostic implements Diagnostic, DiagnosticChain {
+public class MWEDiagnostic extends BasicDiagnostic {
 
 	private static final String ID = "org.eclipse.emf.mwe.core";
-
-	/**
-	 * The severity.
-	 * 
-	 * @see #getSeverity
-	 */
-	protected int severity;
-
-	/**
-	 * The message.
-	 * 
-	 * @see #getMessage
-	 */
-	protected String message;
-
-	/**
-	 * The message.
-	 * 
-	 * @see #getMessage
-	 */
-	protected List<Diagnostic> children;
-
-	/**
-	 * The data.
-	 * 
-	 * @see #getData
-	 */
-	protected List<Object> data = new ArrayList<Object>();
-
-	/**
-	 * The source.
-	 * 
-	 * @see #getSource
-	 */
-	protected String source = ID;
-
-	/**
-	 * The code.
-	 * 
-	 * @see #getCode
-	 */
-	protected int code = Diagnostic.OK;
 
 	private final Object element;
 	private final WorkflowComponent ctx;
 
-	private final Throwable throwable;
-
-	public MWEDiagnostic(final int severity, final String msg, final Object element, final Throwable t,
+	public MWEDiagnostic(final int severity, final String msg,
+			final Object element, final Throwable t,
 			final List<Object> additionalData, final WorkflowComponent ctx) {
-		throwable = t;
-		message = msg;
-		setSeverity(severity);
+		super(severity, ID, Diagnostic.OK, msg, setup(element, t,
+				additionalData, ctx));
 		this.element = element;
 		this.ctx = ctx;
-		if (getElement() != null) {
+	}
+
+	private static Object[] setup(final Object element, final Throwable t,
+			final List<Object> additionalData, final WorkflowComponent ctx) {
+		List<Object> data = new ArrayList<Object>();
+		if (element != null) {
 			data.add(element);
 		}
-		if (getException() != null) {
-			data.add(getException());
+		if (t != null) {
+			data.add(t);
 		}
-		if (getContext() != null) {
-			data.add(getContext());
+		if (ctx != null) {
+			data.add(ctx);
 		}
 		if (additionalData != null) {
 			data.addAll(additionalData);
 		}
-	}
-
-	protected void setSeverity(final int severity) {
-		this.severity = severity;
-	}
-
-	public int getSeverity() {
-		return severity;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public List<?> getData() {
-		return data;
-	}
-
-	public List<Diagnostic> getChildren() {
-		if (children == null) {
-			return Collections.emptyList();
-		}
-		return Collections.unmodifiableList(children);
-	}
-
-	protected void setSource(final String source) {
-		this.source = source;
-	}
-
-	public String getSource() {
-		return source;
-	}
-
-	protected void setCode(final int code) {
-		this.code = code;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void add(final Diagnostic diagnostic) {
-		if (children == null) {
-			children = new BasicEList<Diagnostic>();
-		}
-
-		children.add(diagnostic);
-		int childSeverity = diagnostic.getSeverity();
-		if (childSeverity > getSeverity()) {
-			severity = childSeverity;
-		}
-	}
-
-	public void addAll(final Diagnostic diagnostic) {
-		for (Diagnostic child : diagnostic.getChildren()) {
-			add(child);
-		}
-	}
-
-	public void merge(final Diagnostic diagnostic) {
-		if (diagnostic.getChildren().isEmpty()) {
-			add(diagnostic);
-		} else {
-			addAll(diagnostic);
-		}
-	}
-
-	public int recomputeSeverity() {
-		if (children != null) {
-			severity = OK;
-			for (Diagnostic child : children) {
-				int childSeverity = child instanceof BasicDiagnostic ? ((BasicDiagnostic) child)
-						.recomputeSeverity()
-						: child.getSeverity();
-				if (childSeverity > severity) {
-					severity = childSeverity;
-				}
-			}
-		}
-
-		return severity;
-	}
-
-	public Throwable getException() {
-		return throwable;
+		return data.toArray();
 	}
 
 	public Object getElement() {
