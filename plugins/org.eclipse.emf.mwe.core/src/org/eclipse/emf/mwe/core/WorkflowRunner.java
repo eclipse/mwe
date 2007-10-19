@@ -377,6 +377,9 @@ wfContext.set(key, slotContents.get(key));
 	 * @return The build version string, format "4.1.1, Build 200609291913"
 	 */
 	private String getVersion() {
+		
+		// FIXME: Change getResources()
+		
 		String version = null;
 
 		// get all META-INF/MANIFEST.MF found in the classpath

@@ -25,6 +25,7 @@ import java.util.Enumeration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
+import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 
 public class ResourceLoaderDefaultImpl implements ResourceLoader {
 
@@ -34,22 +35,26 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 			.getLog(ResourceLoaderDefaultImpl.class);
 
 	public final InputStream getResourceAsStream(String path) {
-		InputStream in = internalGetResourceAsStream(path);
-		if (in == null) {
-			try {
-				in = new FileInputStream(path);
-			} catch (final FileNotFoundException e) {
-				if (!path.startsWith(FILE_PREFIX)) {
-					path = FILE_PREFIX + path;
-				}
+		try {
+			return new URL(MWEPlugin.INSTANCE.getBaseURL() + path).openStream();
+		} catch (Exception ex) {
+			InputStream in = internalGetResourceAsStream(path);
+			if (in == null) {
 				try {
 					in = new FileInputStream(path);
-				} catch (final Exception ex) {
-					return null;
+				} catch (final FileNotFoundException ex2) {
+					if (!path.startsWith(FILE_PREFIX)) {
+						path = FILE_PREFIX + path;
+					}
+					try {
+						in = new FileInputStream(path);
+					} catch (final Exception ex3) {
+						return null;
+					}
 				}
 			}
+			return in;
 		}
-		return in;
 	}
 
 	protected InputStream internalGetResourceAsStream(final String path) {
@@ -59,14 +64,18 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 
 	public final Class<?> loadClass(final String clazzName) {
 		try {
-			return internalLoadClass(clazzName);
-		} catch (final Exception e) {
-			if (clazzName.startsWith("mwe")) {
-				return loadClass(clazzName.replaceFirst("mwe",
-						"org.eclipse.emf.mwe"));
+			MWEPlugin.loadClass(MWEPlugin.ID, clazzName);
+		} catch (Exception e1) {
+			try {
+				return internalLoadClass(clazzName);
+			} catch (final Exception e2) {
+				if (clazzName.startsWith("mwe")) {
+					return loadClass(clazzName.replaceFirst("mwe",
+							"org.eclipse.emf.mwe"));
+				}
 			}
-			return null;
 		}
+		return null;
 	}
 
 	protected Class<?> internalLoadClass(final String clazzName)
@@ -76,7 +85,17 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 	}
 
 	public final URL getResource(String path) {
-		URL url = internalGetResource(path);
+		URL url = null;
+		try {
+			url = new URL(MWEPlugin.INSTANCE.getBaseURL() + path);
+			if ( url.getContent()== null) {
+				url = null;
+			}
+		} catch (Exception ex) {
+		}
+		if (url == null) {
+			url = internalGetResource(path);
+		}
 		if (url == null) {
 			try {
 				if (!path.startsWith(FILE_PREFIX)) {
