@@ -1,7 +1,5 @@
 package org.eclipse.emf.mwe.internal.ui.workflow.util;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -17,7 +15,8 @@ import org.eclipse.jdt.core.JavaCore;
 /**
  * This ResourceLoader is capable of loading resources from a specific Java project within the workspace.
  * Typical use is when invoking a workflow from within a plugin.
- *  
+ * 
+ * FIXME: Refactor this class to repect the EMFPlugin 
  */
 public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
     private final ClassLoader projectCL;
@@ -49,22 +48,12 @@ public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
 	}
 
 	@Override
-	protected URL internalGetResource(final String path) {
+	protected URL loadFromContextClassLoader(final String path) {
 		URL resource = projectCL.getResource(path);
 		if ( resource == null ) {
-			resource = super.internalGetResource(path);
+			resource = super.loadFromContextClassLoader(path);
 		}
 		return resource;
-	}
-
-	@Override
-	protected InputStream internalGetResourceAsStream(final String path) {
-		URL url = internalGetResource(path);
-		try {
-			return url != null ? url.openStream() : null;
-		} catch (IOException e) {
-			return null;
-		}
 	}
 
 }

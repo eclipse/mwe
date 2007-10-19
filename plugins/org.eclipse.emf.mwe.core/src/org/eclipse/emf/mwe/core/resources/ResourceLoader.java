@@ -16,7 +16,6 @@ package org.eclipse.emf.mwe.core.resources;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Enumeration;
 
 public interface ResourceLoader {
 
@@ -38,5 +37,4 @@ public interface ResourceLoader {
 
     public URL getResource(String uri);
     
-    public Enumeration<URL> getResources(String uri);
 }

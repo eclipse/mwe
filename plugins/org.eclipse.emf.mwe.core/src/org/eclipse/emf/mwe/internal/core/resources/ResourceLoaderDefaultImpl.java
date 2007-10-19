@@ -14,16 +14,10 @@
  */
 package org.eclipse.emf.mwe.internal.core.resources;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Enumeration;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 
@@ -31,35 +25,15 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 
 	private static final String FILE_PREFIX = "file:";
 
-	private static final Log log = LogFactory
-			.getLog(ResourceLoaderDefaultImpl.class);
-
 	public final InputStream getResourceAsStream(String path) {
-		try {
-			return new URL(MWEPlugin.INSTANCE.getBaseURL() + path).openStream();
-		} catch (Exception ex) {
-			InputStream in = internalGetResourceAsStream(path);
-			if (in == null) {
-				try {
-					in = new FileInputStream(path);
-				} catch (final FileNotFoundException ex2) {
-					if (!path.startsWith(FILE_PREFIX)) {
-						path = FILE_PREFIX + path;
-					}
-					try {
-						in = new FileInputStream(path);
-					} catch (final Exception ex3) {
-						return null;
-					}
-				}
+		URL resource = getResource(path);
+		if (resource != null) {
+			try {
+				return resource.openStream();
+			} catch (IOException ignore) {
 			}
-			return in;
 		}
-	}
-
-	protected InputStream internalGetResourceAsStream(final String path) {
-		return Thread.currentThread().getContextClassLoader()
-				.getResourceAsStream(path);
+		return null;
 	}
 
 	public final Class<?> loadClass(final String clazzName) {
@@ -85,55 +59,57 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 	}
 
 	public final URL getResource(String path) {
-		URL url = null;
-		try {
-			url = new URL(MWEPlugin.INSTANCE.getBaseURL() + path);
-			if ( url.getContent()== null) {
-				url = null;
-			}
-		} catch (Exception ex) {
+		URL url = loadDirectly(path);
+		if (url == null) {
+			url = loadFromBaseURL(path);
 		}
 		if (url == null) {
-			url = internalGetResource(path);
+			url = loadFromContextClassLoader(path);
 		}
 		if (url == null) {
-			try {
-				if (!path.startsWith(FILE_PREFIX)) {
-					path = FILE_PREFIX + path;
-				}
-				url = new URL(path);
-				if (url.getContent() == null) {
-					return null;
-				}
-			} catch (final MalformedURLException e) {
-				return null;
-			} catch (final IOException e) {
-				return null;
-			}
+			url = loadFromFile(path);
 		}
 		return url;
 	}
 
-	protected URL internalGetResource(final String path) {
-		return Thread.currentThread().getContextClassLoader().getResource(path);
+	private URL loadFromFile(String path) {
+		try {
+			if (!path.startsWith(FILE_PREFIX)) {
+				path = FILE_PREFIX + path;
+			}
+			URL url = new URL(path);
+			if (url.getContent() != null) {
+				return url;
+			}
+		} catch (final Exception e) {
+		}
+		return null;
 	}
 
-	public Enumeration<URL> getResources(final String uri) {
+	private URL loadFromBaseURL(String path) {
 		try {
-			return Thread.currentThread().getContextClassLoader().getResources(
-					uri);
-		} catch (IOException e) {
-			log.error(e.getMessage(), e);
-			return new Enumeration<URL>() {
-				public boolean hasMoreElements() {
-					return false;
-				}
-
-				public URL nextElement() {
-					return null;
-				}
-			};
+			URL url = new URL(MWEPlugin.INSTANCE.getBaseURL() + path);
+			if (url.getContent() != null) {
+				return url;
+			}
+		} catch (Exception ignore) {
 		}
+		return null;
+	}
+
+	private URL loadDirectly(String path) {
+		try {
+			URL url = new URL(path);
+			if (url.getContent() != null) {
+				return url;
+			}
+		} catch (Exception ignore) {
+		}
+		return null;
+	}
+
+	protected URL loadFromContextClassLoader(final String path) {
+		return Thread.currentThread().getContextClassLoader().getResource(path);
 	}
 
 }

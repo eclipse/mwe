@@ -16,7 +16,6 @@ package org.eclipse.emf.mwe.tests.util;
 
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Enumeration;
 
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 
@@ -38,9 +37,5 @@ public class DummyResourceLoader implements ResourceLoader {
     public URL getResource(final String uri) {
         return null;
     }
-
-	public Enumeration<URL> getResources(String uri) {
-		return null;
-	}
 
 }

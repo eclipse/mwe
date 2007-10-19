@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.core;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.Manifest;
@@ -158,9 +157,10 @@ public class WorkflowRunner {
 			int index = 0;
 			do {
 				// TODO BK change to resource loader factory
-//				wfUrl = ResourceLoaderFactory.createResourceLoader()
-//						.getResource(wfFile);
-				wfUrl = Thread.currentThread().getContextClassLoader().getResource(wfFile);
+				// wfUrl = ResourceLoaderFactory.createResourceLoader()
+				// .getResource(wfFile);
+				wfUrl = Thread.currentThread().getContextClassLoader()
+						.getResource(wfFile);
 				if (wfUrl == null) {
 					index = wfFile.indexOf('/');
 					if (index >= 0) {
@@ -344,9 +344,9 @@ public class WorkflowRunner {
 			return;
 		}
 		for (Object name : slotContents.keySet()) {
-final String key = (String) name;
-wfContext.set(key, slotContents.get(key));
-}
+			final String key = (String) name;
+			wfContext.set(key, slotContents.get(key));
+		}
 	}
 
 	private void logIssues(final Log logger, final Issues issues) {
@@ -377,36 +377,31 @@ wfContext.set(key, slotContents.get(key));
 	 * @return The build version string, format "4.1.1, Build 200609291913"
 	 */
 	private String getVersion() {
-		
-		// FIXME: Change getResources()
-		
+
 		String version = null;
 
 		// get all META-INF/MANIFEST.MF found in the classpath
-		Enumeration<URL> manifestURLs = null;
-		manifestURLs = ResourceLoaderFactory.createResourceLoader()
-				.getResources("META-INF/MANIFEST.MF");
-
-		while (manifestURLs.hasMoreElements()) {
-			URL url = manifestURLs.nextElement();
-			try {
-				Manifest manifest = new Manifest(url.openStream());
-				// identify the manifest from core.workflow plugin
-				if ("org.eclipse.emf.mwe.core".equals(manifest
-						.getMainAttributes().getValue("Bundle-SymbolicName"))) {
-					// Read bundle version an split it.
-					// Original value : "4.1.1.200609291913"
-					// Resulting value : "4.1.1, Build 200609291913"
-					version = manifest.getMainAttributes().getValue(
-							"Bundle-Version");
-					int lastPoint = version.lastIndexOf('.');
-					version = version.substring(0, lastPoint) + ", Build "
-							+ version.substring(lastPoint + 1);
-					return version;
-				}
-			} catch (IOException e) {
-				logger.debug("Failed to read Manifest file: " + url);
+		try {
+			Manifest manifest = new Manifest(ResourceLoaderFactory
+					.createResourceLoader().getResource("META-INF/MANIFEST.MF")
+					.openStream());
+			// identify the manifest from core.workflow plugin
+			String bundleName = manifest.getMainAttributes()
+					.getValue("Bundle-SymbolicName");
+			if (bundleName.startsWith("org.eclipse.emf.mwe.core")) {
+				// Read bundle version an split it.
+				// Original value : "4.1.1.200609291913"
+				// Resulting value : "4.1.1, Build 200609291913"
+				version = manifest.getMainAttributes().getValue(
+						"Bundle-Version");
+				int lastPoint = version.lastIndexOf('.');
+				version = version.substring(0, lastPoint) + ", Build "
+						+ version.substring(lastPoint + 1);
+				return version;
 			}
+		} catch (IOException e) {
+			logger
+					.debug("Failed to read Manifest file. Unable to retrieve version");
 		}
 		// build version not detected from manifest, fallback
 		// this will only occur in developer's workbench

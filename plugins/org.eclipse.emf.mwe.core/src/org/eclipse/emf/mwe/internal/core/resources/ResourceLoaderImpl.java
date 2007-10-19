@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.internal.core.resources;
 
-import java.io.InputStream;
 import java.net.URL;
 
 public class ResourceLoaderImpl extends ResourceLoaderDefaultImpl {
@@ -22,13 +21,8 @@ public class ResourceLoaderImpl extends ResourceLoaderDefaultImpl {
 	}
 	
 	@Override
-    protected URL internalGetResource(final String path) {
+    protected URL loadFromContextClassLoader(final String path) {
 		return loader.getResource(path);
-	}
-	
-	@Override
-    protected InputStream internalGetResourceAsStream(final String path) {
-		return loader.getResourceAsStream(path);
 	}
 	
 	@Override

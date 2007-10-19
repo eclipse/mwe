@@ -27,7 +27,7 @@ import test.res.SubComponent;
 
 @SuppressWarnings("unchecked")
 public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
-
+	
     String simpleWorkflow1 = "<workflow>                                                                             "
             + "   <property name='property' value='true'/>                                    "
             + "   <component class='test.res.Component' booleanParam='true' booleanObjectParam='true'>"
@@ -44,6 +44,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
             + "</workflow>                                                                            ";
 
 	public void testSimpleWorkflow() {
+		Component.INVOCATIONS = 0;
         final Workflow cont = parseWorkflow(new StringInputStream(simpleWorkflow1), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
