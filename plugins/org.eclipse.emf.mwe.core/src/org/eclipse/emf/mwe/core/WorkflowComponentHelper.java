@@ -21,7 +21,7 @@ import java.net.URL;
 
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 
-public class WorkfowComponentHelper {
+public class WorkflowComponentHelper {
 
 	/**
 	 * Proves if the filename points to a existent file (not directory!).
