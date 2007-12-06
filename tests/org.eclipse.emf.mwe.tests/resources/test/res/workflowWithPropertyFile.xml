@@ -2,11 +2,11 @@
 <workflow>
     <property name="another" value="${another=true}"/>
 	<property file="org/openarchitectureware/workflow/container/workflow.properties"/>
-	<component class="org.openarchitectureware.workflow.container.Component">
+	<component class="org.eclipse.xtend.workflow.container.Component">
 		<stringParam value="${myString}"/>
-		<type class="org.openarchitectureware.workflow.container.ComplexType">
+		<type class="org.eclipse.xtend.workflow.container.ComplexType">
 			<prop value="${another}"/>
-			<type class="org.openarchitectureware.workflow.container.ComplexType"/>
+			<type class="org.eclipse.xtend.workflow.container.ComplexType"/>
 		</type>
 	</component>
 </workflow>

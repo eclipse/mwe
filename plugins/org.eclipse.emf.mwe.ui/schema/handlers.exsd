@@ -119,11 +119,11 @@ It can also listen for events on the socket that where sent by a corresponding r
       <documentation>
          &lt;pre&gt;
    &lt;extension
-         point=&quot;org.openarchitectureware.workflow.debugHandlers&quot;&gt;
+         point=&quot;org.eclipse.emf.mwe.ui.debugHandlers&quot;&gt;
      &lt;handler
            name=&quot;Variables Handler&quot;
-           pluginClass=&quot;org.openarchitectureware.debug.processing.handlers.VariablesPluginHandler&quot;
-           runtimeClass=&quot;org.openarchitectureware.debug.processing.handlers.VariablesRuntimeHandler&quot;
+           pluginClass=&quot;org.eclipse.emf.mwe.core.debug.processing.handlers.VariablesPluginHandler&quot;
+           runtimeClass=&quot;;org.eclipse.emf.mwe.core.debug.processing.handlers.VariablesRuntimeHandler&quot;
            type=&quot;variablesHandler&quot;/&gt;
    &lt;/extension&gt;
 &lt;/pre&gt;
@@ -135,13 +135,13 @@ It can also listen for events on the socket that where sent by a corresponding r
          <meta.section type="apiInfo"/>
       </appInfo>
       <documentation>
-         &lt;br&gt;&lt;b&gt;runtimeClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.openarchitectureware.debug.processing;
+         &lt;br&gt;&lt;b&gt;runtimeClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.eclipse.emf.mwe.core.debug.processing;
 public interface IRuntimeHandler {
     public void init(DebugMonitor monitor, Connection connection);
     public void startListener();
 }&lt;/pre&gt;
 
-&lt;b&gt;pluginClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.openarchitectureware.debug.processing;
+&lt;b&gt;pluginClass&lt;/b&gt; must be a fully qualified name of a Java class that implements the interface&lt;pre&gt;package org.eclipse.emf.mew.core.debug.processing;
 public interface IPluginHandler {
     public void setConnection(Connection connection);
 }&lt;/pre&gt;

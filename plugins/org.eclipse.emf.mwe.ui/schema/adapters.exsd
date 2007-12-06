@@ -100,11 +100,11 @@ It can provide the correct editor Id of an element type for source lookup, break
       </appInfo>
       <documentation>
          &lt;pre&gt;&lt;extension
-      point=&quot;org.openarchitectureware.debug.adapters&quot;&gt;
+      point=&quot;org.eclipse.emf.mwe.ui.debug.adapters&quot;&gt;
    &lt;adapter
          name=&quot;Workflow Adapter&quot;
-         pluginClass=&quot;org.openarchitectureware.debug.model.adapters.WorkflowPluginAdapter&quot;
-         runtimeClass=&quot;org.openarchitectureware.debug.model.adapters.WorkflowElementAdapter&quot;/&gt;
+         pluginClass=&quot;org.eclipse.emf.mwe.core.debug.model.adapters.WorkflowPluginAdapter&quot;
+         runtimeClass=&quot;org.eclipse.emf.mwe.core.debug.model.adapters.WorkflowElementAdapter&quot;/&gt;
 &lt;/extension&gt;&lt;/pre&gt;
       </documentation>
    </annotation>

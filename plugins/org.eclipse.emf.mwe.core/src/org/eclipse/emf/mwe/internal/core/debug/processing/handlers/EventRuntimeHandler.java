@@ -46,12 +46,6 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 	// -------------------------------------------------------------------------
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
-	 *      org.openarchitectureware.debug.communication.Connection)
-	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;

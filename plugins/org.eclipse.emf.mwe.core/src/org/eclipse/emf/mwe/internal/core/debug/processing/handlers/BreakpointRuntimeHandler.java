@@ -45,12 +45,6 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 
 	// -------------------------------------------------------------------------
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
-	 *      org.openarchitectureware.debug.communication.Connection)
-	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -59,22 +53,12 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#startListener()
-	 */
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
 		thread.start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	public void run() {
 		try {
 			while (true) {

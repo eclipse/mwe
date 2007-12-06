@@ -69,12 +69,6 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	// -------------------------------------------------------------------------
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#init(org.openarchitectureware.debug.processing.DebugMonitor,
-	 *      org.openarchitectureware.debug.communication.Connection)
-	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -85,22 +79,12 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.IRuntimeHandler#startListener()
-	 */
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
 		thread.start();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.lang.Runnable#run()
-	 */
 	public void run() {
 		try {
 			while (true) {
@@ -278,11 +262,6 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	// -------------------------------------------------------------------------
 	// ICommandListener implementation
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.openarchitectureware.debug.processing.ICommandListener#listenCommand()
-	 */
 	public void listenCommand() {
 		if (!continueOperation) {
 			synchronized (syncObject) {
