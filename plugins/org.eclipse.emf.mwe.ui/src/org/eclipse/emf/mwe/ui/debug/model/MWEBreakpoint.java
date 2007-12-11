@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.debug.core.model.LineBreakpoint;
 import org.eclipse.emf.mwe.core.debug.model.SyntaxElement;
-import org.eclipse.emf.mwe.internal.ui.workflow.util.PluginConfigurationElementUtil;
+import org.eclipse.emf.mwe.ui.workflow.util.PluginConfigurationElementUtil;
 
 /**
  * A line- and in-text breakpoint that supports the MWE debug model

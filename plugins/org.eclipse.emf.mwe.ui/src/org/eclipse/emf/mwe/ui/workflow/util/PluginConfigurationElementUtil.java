@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.internal.ui.workflow.util;
+package org.eclipse.emf.mwe.ui.workflow.util;
 
 import java.util.ArrayList;
 import java.util.List;

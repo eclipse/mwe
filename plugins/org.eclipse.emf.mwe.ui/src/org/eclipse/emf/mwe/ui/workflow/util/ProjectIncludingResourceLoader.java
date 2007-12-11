@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.internal.ui.workflow.util;
+package org.eclipse.emf.mwe.ui.workflow.util;
 
 import java.net.MalformedURLException;
 import java.net.URL;
