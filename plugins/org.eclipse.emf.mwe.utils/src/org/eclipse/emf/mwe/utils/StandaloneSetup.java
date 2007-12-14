@@ -35,7 +35,7 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 /**
  * Initializes EMF support. Allows to register additional Packages.
  */
-@SuppressWarnings("unchecked")
+
 public class StandaloneSetup {
 
 	private static String platformRootPath = null;
@@ -58,7 +58,7 @@ public class StandaloneSetup {
 	 * 
 	 * @param pathToPlatform
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public void setPlatformUri(final String pathToPlatform) {
 		File f = new File(pathToPlatform);
 		if (!f.exists()) {
@@ -105,7 +105,7 @@ public class StandaloneSetup {
 	 * 
 	 * @param uriMap
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public void addUriMap(final Mapping uriMap) {
 		log.info("Adding URI mapping from '" + uriMap.getFrom() + "' to '"
 				+ uriMap.getTo() + "'");
@@ -131,7 +131,7 @@ public class StandaloneSetup {
 	 *             found
 	 *             </ul>
 	 */
-	@SuppressWarnings("unchecked")
+	
 	public void addExtensionMap(final Mapping m) throws ConfigurationException {
 		log.info("Adding Extension mapping from '" + m.getFrom() + "' to '"
 				+ m.getTo() + "'");

@@ -274,7 +274,6 @@ public class XmlLocationAnalyser {
 			return null; // no end tag found; can that occur?
 		}
 
-		@SuppressWarnings("null")
 		protected XmlTagValues findLine(final Location loc) {
 			if (values.isEmpty()) {
 				return null;

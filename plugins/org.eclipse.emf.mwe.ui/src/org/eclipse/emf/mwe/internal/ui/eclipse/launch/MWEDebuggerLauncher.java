@@ -50,7 +50,6 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 		return Activator.PLUGIN_ID;
 	}
 
-	@SuppressWarnings("null")
 	public void run(final VMRunnerConfiguration config, final ILaunch launch, final IProgressMonitor monitor) throws CoreException {
 
 		// port for communication between runtime VM and Eclipse

@@ -144,7 +144,7 @@ public class Connection {
 		return packet;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	private AbstractPackage instantiatePackage(final String className) throws IOException {
 		Class<? extends AbstractPackage> packetClass = null;
 		AbstractPackage packet = null;

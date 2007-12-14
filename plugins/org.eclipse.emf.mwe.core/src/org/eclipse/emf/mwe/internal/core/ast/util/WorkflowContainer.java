@@ -19,7 +19,7 @@ public class WorkflowContainer {
         root = workflow;
     }
 
-    public void put(@SuppressWarnings("unused")
+    public void put(
 	final String name, final Object value) {
         root = value;
     }

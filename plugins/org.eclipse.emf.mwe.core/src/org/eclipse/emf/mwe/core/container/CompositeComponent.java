@@ -1,17 +1,14 @@
-/*
- * <copyright>
- *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
- * All rights reserved.   This program and the accompanying materials
+/*******************************************************************************
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
- *
- * </copyright>
- */
+ *     committers of openArchitectureWare - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.emf.mwe.core.container;
 
 import java.util.ArrayList;
@@ -37,7 +34,8 @@ import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
  * 
  */
 public class CompositeComponent implements WorkflowComponentWithID {
-	protected static final Log log = LogFactory.getLog(CompositeComponent.class);
+	protected static final Log log = LogFactory
+			.getLog(CompositeComponent.class);
 
 	private final String name;
 
@@ -85,59 +83,60 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	private void internalInvoke(final WorkflowContext model,
 			final ProgressMonitor monitor, final Issues issues) {
 		for (WorkflowComponent comp : components) {
-if ((!(comp instanceof AbstractWorkflowAdvice))) {
-		comp.setContainer(this);
-		if (monitor != null) {
-			monitor.preTask(comp, model);
+			if ((!(comp instanceof AbstractWorkflowAdvice))) {
+				comp.setContainer(this);
+				if (monitor != null) {
+					monitor.preTask(comp, model);
+				}
+				log.info(ComponentPrinter.getString(comp));
+				comp.invoke(model, monitor, issues);
+				if (monitor != null) {
+					monitor.postTask(comp, model);
+				}
+			}
 		}
-		log.info(ComponentPrinter.getString(comp));
-		comp.invoke(model, monitor, issues);
-		if (monitor != null) {
-			monitor.postTask(comp, model);
-		}
-}
-}
 	}
 
 	public void checkConfiguration(final Issues issues)
 			throws ConfigurationException {
 		for (WorkflowComponent comp : components) {
-if (comp instanceof AbstractWorkflowAdvice) {
-		AbstractWorkflowAdvice advice = (AbstractWorkflowAdvice) comp;
-		String adviceTargetID = advice.getAdviceTarget();
-		if (adviceTargetID == null) {
-			issues.addError(advice, "No 'adviceTarget' given.");
-			continue;
-		}
-		// log.info("Weaving Advice: " +
-		// ComponentPrinter.getString(comp));
-		Collection<WorkflowComponent> targetComponents = findComponentByID(adviceTargetID);
-		if (targetComponents.size() == 0) {
-			issues.addWarning(advice, "No component with ID '"
-					+ adviceTargetID + "' found.");
-		}
-		if (targetComponents.size() > 1) {
-			issues.addWarning(advice,
-					"More than on component with ID '" + adviceTargetID
-							+ "' found.");
-		}
-		if (needsToWeave(comp, issues)) {
-			for (WorkflowComponent c : targetComponents) {
-				((AbstractWorkflowAdvice) comp).weave(c, issues);
+			if (comp instanceof AbstractWorkflowAdvice) {
+				AbstractWorkflowAdvice advice = (AbstractWorkflowAdvice) comp;
+				String adviceTargetID = advice.getAdviceTarget();
+				if (adviceTargetID == null) {
+					issues.addError(advice, "No 'adviceTarget' given.");
+					continue;
+				}
+				// log.info("Weaving Advice: " +
+				// ComponentPrinter.getString(comp));
+				Collection<WorkflowComponent> targetComponents = findComponentByID(adviceTargetID);
+				if (targetComponents.size() == 0) {
+					issues.addWarning(advice, "No component with ID '"
+							+ adviceTargetID + "' found.");
+				}
+				if (targetComponents.size() > 1) {
+					issues.addWarning(advice,
+							"More than on component with ID '" + adviceTargetID
+									+ "' found.");
+				}
+				if (needsToWeave(comp, issues)) {
+					for (WorkflowComponent c : targetComponents) {
+						((AbstractWorkflowAdvice) comp).weave(c, issues);
+					}
+				}
 			}
 		}
-}
-}
 		for (WorkflowComponent comp : components) {
-if ((!(comp instanceof AbstractWorkflowAdvice))) {
-		log.debug("Checking configuration of: "
-				+ ComponentPrinter.getString(comp));
-		comp.checkConfiguration(issues);
-}
-}
+			if ((!(comp instanceof AbstractWorkflowAdvice))) {
+				log.debug("Checking configuration of: "
+						+ ComponentPrinter.getString(comp));
+				comp.checkConfiguration(issues);
+			}
+		}
 	}
 
-	private boolean needsToWeave(final WorkflowComponent comp, final Issues issues) {
+	private boolean needsToWeave(final WorkflowComponent comp,
+			final Issues issues) {
 		try {
 			WorkflowComponent current = comp;
 			while (current != null) {
@@ -265,14 +264,11 @@ if ((!(comp instanceof AbstractWorkflowAdvice))) {
 		this.container = container;
 	}
 
-	public void put(@SuppressWarnings("unused")
-	final
-	String name, final WorkflowComponent comp) {
+	public void put(final String name, final WorkflowComponent comp) {
 		addComponent(comp);
 	}
-	
-	public void addBean(@SuppressWarnings("unused")
-	final Object obj) {
+
+	public void addBean(final Object obj) {
 		// noop
 	}
 

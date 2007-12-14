@@ -1,17 +1,14 @@
-/*
- * <copyright>
- *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
- * All rights reserved.   This program and the accompanying materials
+/*******************************************************************************
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *     Sven Efftinge (http://www.efftinge.de) - Initial API and implementation
- *
- * </copyright>
- */
+ *     committers of openArchitectureWare - initial API and implementation
+ *******************************************************************************/
+
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
 import java.io.InputStream;
@@ -43,7 +40,7 @@ public class WorkflowFactory {
 
 	private final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
-	@SuppressWarnings("unchecked")
+	
 	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter> converter, final Issues issues) {
 		final InputStream in = loader.getResourceAsStream(fileName);
 		if (in == null) {
@@ -52,7 +49,7 @@ public class WorkflowFactory {
 		return parseInitAndCreate(in, fileName, params, converter, issues);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public Workflow parseInitAndCreate(final InputStream in, final String resourceName, final Map<String, String> params,
 			final Map<Class<?>, Converter> converters, final Issues issues) {
 		final AbstractASTBase wfast = parseAndInitialize(in, resourceName, issues, params);
@@ -111,7 +108,7 @@ public class WorkflowFactory {
 		return wfast;
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public Set<?> parseInitAndAnalyze(final InputStream in, final String resourceName, final Issues issues, final Map<String, String> properties,
 			final Map<Class<?>, Converter> converter) {
 		final AbstractASTBase wf = parseAndInitialize(in, resourceName, issues, properties);
@@ -121,7 +118,7 @@ public class WorkflowFactory {
 		return (Set<?>) wf.accept(visitor);
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	public static Map<Class<?>, Converter> getDefaultConverter() {
 		final Map<Class<?>, Converter> m = new HashMap<Class<?>, Converter>();
 		m.put(Object.class, new StringConverter());

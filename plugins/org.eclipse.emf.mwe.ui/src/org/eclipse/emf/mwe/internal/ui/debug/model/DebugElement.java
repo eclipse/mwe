@@ -46,7 +46,7 @@ public abstract class DebugElement extends PlatformObject implements IDebugEleme
 		return getDebugTarget().getLaunch();
 	}
 
-	@SuppressWarnings("unchecked")
+	
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IDebugElement.class) {
