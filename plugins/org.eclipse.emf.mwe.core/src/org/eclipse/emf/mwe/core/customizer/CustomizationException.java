@@ -10,8 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core.customizer;
 
-@SuppressWarnings("serial")
 public class CustomizationException extends RuntimeException {
+
+	private static final long serialVersionUID = 4677510940769015447L;
 
 	public CustomizationException() {
 		super();
