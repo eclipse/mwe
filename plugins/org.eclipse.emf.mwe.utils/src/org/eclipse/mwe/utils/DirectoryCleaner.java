@@ -9,7 +9,7 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.emf.mwe.utils;
+package org.eclipse.mwe.utils;
 
 import java.io.File;
 import java.util.StringTokenizer;
@@ -85,6 +85,9 @@ public class DirectoryCleaner extends AbstractWorkflowComponent {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
+ * Revision 1.1  2008/01/03 09:50:12  sefftinge
+ * DirectoryCleaner is not specific to EMF
+ *
  * Revision 1.3  2007/12/14 21:22:57  bkolb
  * fixing copyrights, preparations for build
  *

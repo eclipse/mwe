@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.utils;
 
 import org.eclipse.emf.mwe.core.customizer.WorkflowCustomization;
+import org.eclipse.mwe.utils.DirectoryCleaner;
 
 public class StandartComponentMappingHelper {
 
