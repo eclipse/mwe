@@ -5,10 +5,10 @@ Bundle-SymbolicName: org.eclipse.emf.mwe.core;singleton:=true
 Bundle-Version: 0.7.0.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
-Require-Bundle: org.apache.commons.logging,
+Require-Bundle: org.apache.ant,
+ org.apache.commons.logging,
  org.eclipse.emf.ecore,
- org.eclipse.core.runtime,
- org.apache.ant;bundle-version="1.7.0";resolution:=optional
+ org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.emf.mwe.core,
