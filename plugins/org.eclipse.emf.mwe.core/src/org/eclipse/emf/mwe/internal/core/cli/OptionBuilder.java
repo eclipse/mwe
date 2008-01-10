@@ -1,7 +1,7 @@
 /*
- * $Header: /home/data/cvs/modeling/org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe.core/src/org/eclipse/emf/mwe/internal/core/cli/Attic/OptionBuilder.java,v 1.1 2008/01/09 20:17:53 bkolb Exp $
- * $Revision: 1.1 $
- * $Date: 2008/01/09 20:17:53 $
+ * $Header: /home/data/cvs/modeling/org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe.core/src/org/eclipse/emf/mwe/internal/core/cli/Attic/OptionBuilder.java,v 1.2 2008/01/10 08:55:08 bkolb Exp $
+ * $Revision: 1.2 $
+ * $Date: 2008/01/10 08:55:08 $
  *
  * ====================================================================
  *
@@ -119,7 +119,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withLongOpt( String longopt ) {
-        instance.longopt = longopt;
+        OptionBuilder.longopt = longopt;
         return instance;
     }
 
@@ -129,7 +129,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasArg( ) {
-        instance.numberOfArgs = 1;
+    	OptionBuilder.numberOfArgs = 1;
         return instance;
     }
 
@@ -141,7 +141,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasArg( boolean hasArg ) {
-        instance.numberOfArgs = ( hasArg == true ) ? 1 : Option.UNINITIALIZED;
+    	OptionBuilder.numberOfArgs = ( hasArg == true ) ? 1 : Option.UNINITIALIZED;
         return instance;
     }
 
@@ -153,7 +153,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withArgName( String name ) {
-        instance.argName = name;
+    	OptionBuilder.argName = name;
         return instance;
     }
 
@@ -163,7 +163,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder isRequired( ) {
-        instance.required = true;
+    	OptionBuilder.required = true;
         return instance;
     }
 
@@ -184,7 +184,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withValueSeparator( char sep ) {
-        instance.valuesep = sep;
+    	OptionBuilder.valuesep = sep;
         return instance;
     }
 
@@ -205,7 +205,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withValueSeparator( ) {
-        instance.valuesep = '=';
+    	OptionBuilder.valuesep = '=';
         return instance;
     }
 
@@ -217,7 +217,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder isRequired( boolean required ) {
-        instance.required = required;
+    	OptionBuilder.required = required;
         return instance;
     }
 
@@ -227,7 +227,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasArgs( ) {
-        instance.numberOfArgs = Option.UNLIMITED_VALUES;
+    	OptionBuilder.numberOfArgs = Option.UNLIMITED_VALUES;
         return instance;
     }
 
@@ -239,7 +239,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasArgs( int num ) {
-        instance.numberOfArgs = num;
+    	OptionBuilder.numberOfArgs = num;
         return instance;
     }
 
@@ -249,8 +249,8 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasOptionalArg( ) {
-        instance.numberOfArgs = 1;
-        instance.optionalArg = true;
+    	OptionBuilder.numberOfArgs = 1;
+    	OptionBuilder.optionalArg = true;
         return instance;
     }
 
@@ -261,8 +261,8 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasOptionalArgs( ) {
-        instance.numberOfArgs = Option.UNLIMITED_VALUES;
-        instance.optionalArg = true;
+    	OptionBuilder.numberOfArgs = Option.UNLIMITED_VALUES;
+    	OptionBuilder.optionalArg = true;
         return instance;
     }
 
@@ -275,8 +275,8 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder hasOptionalArgs( int numArgs ) {
-        instance.numberOfArgs = numArgs;
-        instance.optionalArg = true;
+    	OptionBuilder.numberOfArgs = numArgs;
+    	OptionBuilder.optionalArg = true;
         return instance;
     }
 
@@ -288,7 +288,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withType( Object type ) {
-        instance.type = type;
+    	OptionBuilder.type = type;
         return instance;
     }
 
@@ -299,7 +299,7 @@ public class OptionBuilder {
      * @return the OptionBuilder instance
      */
     public static OptionBuilder withDescription( String description ) {
-        instance.description = description;
+    	OptionBuilder.description = description;
         return instance;
     }
 
@@ -360,7 +360,7 @@ public class OptionBuilder {
         option.setValueSeparator( valuesep );
         option.setArgName( argName );
         // reset the OptionBuilder properties
-        instance.reset();
+        OptionBuilder.reset();
 
         // return the Option instance
         return option;

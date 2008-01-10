@@ -1,7 +1,7 @@
 /*
- * $Header: /home/data/cvs/modeling/org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe.core/src/org/eclipse/emf/mwe/internal/core/cli/Attic/PatternOptionBuilder.java,v 1.1 2008/01/09 20:17:52 bkolb Exp $
- * $Revision: 1.1 $
- * $Date: 2008/01/09 20:17:52 $
+ * $Header: /home/data/cvs/modeling/org.eclipse.emf/org.eclipse.emf.mwe/plugins/org.eclipse.emf.mwe.core/src/org/eclipse/emf/mwe/internal/core/cli/Attic/PatternOptionBuilder.java,v 1.2 2008/01/10 08:55:07 bkolb Exp $
+ * $Revision: 1.2 $
+ * $Date: 2008/01/10 08:55:07 $
  *
  * ====================================================================
  *
@@ -66,7 +66,7 @@ package org.eclipse.emf.mwe.internal.core.cli;
  *
  *
  * @author Henri Yandell (bayard @ generationjava.com)
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class PatternOptionBuilder {
 
@@ -155,7 +155,8 @@ public class PatternOptionBuilder {
      * @param pattern the pattern string
      * @return The {@link Options} instance
      */
-    public static Options parsePattern(String pattern) {
+    @SuppressWarnings("static-access")
+	public static Options parsePattern(String pattern) {
         int sz = pattern.length();
 
         char opt = ' ';
