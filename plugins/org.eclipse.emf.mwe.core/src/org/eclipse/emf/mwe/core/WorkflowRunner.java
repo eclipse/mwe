@@ -101,7 +101,7 @@ public class WorkflowRunner {
 				.withArgName("key=value")
 				.withDescription(
 						"external property that is handled as workflow property")
-				.hasArg().create(PARAM);
+				.hasArgs().create(PARAM);
 		paramOption.setLongOpt("param");
 		options.addOption(paramOption);
 
