@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<book xmlns="http://docbook.org/ns/docbook" version="5.0"
+      xmlns:xi="http://www.w3.org/2001/XInclude" >
+  <title>@TITLE@</title>
+
+  <xi:include href="bookinfo.xml" />
+  
+  <toc />
+  
+  <part id="reference">
+    <title>Reference</title>
+    <xi:include href="structure/workflow_reference_structure.xml"/>
+  </part>
+      
+  <index />
+</book>
+

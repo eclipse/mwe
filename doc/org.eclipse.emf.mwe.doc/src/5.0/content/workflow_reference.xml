@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<chapter id="workflow_reference" xreflabel="Workflow reference">
+  <title>Workflow Reference</title>
+
+  <section id="workflow_reference_introduction">
+    <title>Introduction</title>
+
+    <para>The oAW 4 workflow engine is a declarative configurable generator
+    engine. It provides a simple, XML-based configuration language with which
+    all kinds of generator workflows can be described. A generator workflow
+    consists of a number of so-called workflow components that are executed
+    sequentially in a single JVM.</para>
+  </section>
+
+  <section id="workflow_reference_workflow_components">
+    <title>Workflow components</title>
+
+    <para>At the heart of the workflow engine lies the
+    <classname>WorkflowComponent</classname>. A workflow component represents
+    a part of a generator process. Such parts are typically model parsers,
+    model validators, model transformers and code generators. oAW 4 ships with
+    different workflow components which should be used where suitable, but you
+    can also implement your own. The only thing you have to do is to implement
+    the
+    <classname>org.openarchitectureware.workflow.WorkflowComponent</classname>
+    interface:</para>
+
+    <programlisting>public interface WorkflowComponent {
+
+	/**
+	 * @param ctx
+	 * 		current workflow context
+	 * @param monitor
+	 * 		implementors should provide some feedback about the progress
+	 * 		using this monitor
+	 * @param issues
+	 */
+	public void invoke(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
+
+	/**
+	 * Is called by the container after configuration so the
+	 * component can validate the configuration before invocation.
+	 *
+	 * @param issues -
+	 * implementors should report configuration issues to this.
+	 */
+	 public void checkConfiguration(Issues issues);
+
+}</programlisting>
+
+    <para>The <methodname>invoke()</methodname> operation performs the actual
+    work of the component. <methodname>checkConfiguration</methodname> is used
+    to check whether the component is configured correctly before the workflow
+    starts. More on these two operations later.</para>
+
+    <para>A workflow description consists of a list of configured
+    WorkflowComponents. Here is an example:</para>
+
+    <programlisting>&lt;workflow&gt;
+	 &lt;component class="my.first.WorkflowComponent"&gt;
+			&lt;aProp value="test"/&gt;
+	 &lt;/component&gt;
+	 &lt;component class="my.second.WorkflowComponent"&gt;
+			&lt;anotherProp value="test2"/&gt;
+	 &lt;/component&gt;
+	 &lt;component class="my.third.WorkflowComponent"&gt;
+			&lt;prop value="test"/&gt;
+	 &lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+    <para>The workflow shown above consists of three different workflow
+    components. The order of the declaration is important! The workflow engine
+    will execute the components in the specified order. To allow the workflow
+    engine to instantiate the workflow component classes, WorkflowComponent
+    implementations must have a default constructor.</para>
+
+    <section id="workflow_reference_workflow">
+      <title>Workflow</title>
+
+      <para>A workflow is just a composite implementation of the
+      <classname>WorkflowComponent</classname> interface. The
+      <methodname>invoke</methodname> and
+      <methodname>checkConfiguration</methodname> methods delegate to the
+      contained workflow components.</para>
+
+      <para>The Workflow class declares an
+      <methodname>addComponent()</methodname> method:</para>
+
+      <programlisting>public void addComponent(WorkflowComponent comp)&lt;/para&gt;</programlisting>
+
+      <para>which is used by the workflow factory in order to wire up a
+      workflow (see next section <emphasis>Workflow
+      Configuration</emphasis>).</para>
+    </section>
+
+    <section id="workflow_reference_components_with_IDs">
+      <title>Workflow Components with IDs</title>
+
+      <para>If you want your workflow components to have an ID (so that you
+      can recognize its output in the log) you have to implement the interface
+      <classname>WorkflowComponentWithID</classname> and the
+      <methodname>setID()</methodname> and <methodname>getID()</methodname>
+      operations. Alternatively, you can also extend the base class
+      <classname>AbstractWorkflowComponent</classname>, which handles the ID
+      setter/getter for you.</para>
+    </section>
+
+    <section id="workflow_reference_convenience">
+      <title>More convenience</title>
+
+      <para>There is another base class for workflow components called
+      <classname>AbstractWorkflowComponent2</classname>. Its main feature is,
+      that it has a property called <property>skipOnErrors</property>. If set
+      to <literal>true</literal>, it will not execute if the workflow issues
+      collection contains errors. This is convenient, if you want to be able
+      to skip code generation when the preceding model verification finds
+      errors. Note that instead of implementing
+      <methodname>invoke(...)</methodname> and
+      <methodname>checkConfiguration(...)</methodname>, subclasses of
+      <classname>AbstractWorkflowComponent2</classname> have to implement
+      <methodname>invokeInternal(...)</methodname> and
+      <methodname>checkConfigurationInternal(...)</methodname>. This is
+      necessary to allow the framework to intercept the invocation and stop it
+      when there are errors in the workflow.</para>
+    </section>
+  </section>
+
+  <section id="workflow_reference_workflow_configuration">
+    <title>Workflow Configuration</title>
+
+    <para>A workflow is wired up using an XML configuration language based on
+    the dependency injection pattern (DI). Here is an example (not working,
+    just an example!):</para>
+
+    <programlisting>&lt;workflow&gt;
+	&lt;property name='genPath' value='/home/user/target'/&gt;
+	&lt;property name='model' value='/home/user/model.xmi'/&gt;
+	&lt;component class='oaw.emf.XmiReader'&gt;
+		&lt;model value='${model}'/&gt;
+	&lt;/component&gt;
+	&lt;component class='oaw.xpand2.Generator'&gt;
+		&lt;outlet&gt;
+			&lt;path value='${genPath}'/&gt;
+		&lt;/outlet&gt;
+	&lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+    <para>The root element is named <emphasis>workflow</emphasis>, then there
+    are some property declarations followed by the declaration of two
+    components.</para>
+
+    <para>Here is a tree representation of the resulting Java object
+    graph:</para>
+
+    <para><figure id="workflow_reference_java_object_graph">
+        <title>Java Object Graph</title>
+
+        <mediaobject>
+          <imageobject role="fo">
+            <imagedata
+              fileref="images/workflow_reference/java_object_graph_2.gif"
+              scale="80"/>
+          </imageobject>
+
+          <imageobject role="html">
+            <imagedata
+              fileref="images/workflow_reference/java_object_graph.gif"
+              scale="99"/>
+          </imageobject>
+        </mediaobject>
+      </figure> The configuration language expresses four different
+    concepts:</para>
+
+    <section id="workflow_reference_properties">
+      <title>Properties</title>
+
+      <para>Borrowing from Apache Ant, we use the concept of properties.
+      Properties can be declared anywhere in a workflow file. They will be
+      available after declaration.</para>
+
+      <para>We have two different kinds of properties</para>
+
+      <orderedlist>
+        <listitem>
+          <para>simple properties</para>
+        </listitem>
+
+        <listitem>
+          <para>property files</para>
+        </listitem>
+      </orderedlist>
+
+      <para>Here is an example:</para>
+
+      <programlisting>&lt;workflow&gt;
+	&lt;property name='baseDir' value='./'/&gt;
+	&lt;property file='${baseDir}/my.properties'/&gt;
+	&lt;component
+		class='my.Comp'
+		srcDir='${baseDir}'
+		modelName='${model}'
+		pathToModel='${pathToModel}'/&gt;
+&lt;/workflow&gt;</programlisting>
+
+      <para>First, there is a simple property <property>baseDir</property>
+      with the value "." defined. This property can be used in any attributes
+      in the workflow file. The second property statement imports a property
+      file. Property files use the well-known Java properties file syntax.
+      There is one feature we added: You can use previously declared
+      properties inside the properties file.</para>
+
+      <para>Example:</para>
+
+      <programlisting>model = myModel
+pathToModel = ${baseDir}/${model}.xmi</programlisting>
+
+      <section id="workflow_reference_components">
+        <title>Components</title>
+
+        <para>The wired up object graph consists of so called components (A
+        workflow component is a special kind of a component). A component is
+        declared by an XML element. The name represents the property of the
+        parent component holding this component.</para>
+
+        <para>Example:</para>
+
+        <programlisting>&lt;component class='MyBean'&gt;
+	&lt;bean class='MyBean'/&gt;
+&lt;/component&gt;</programlisting>
+
+        <para>The Java class MyBean needs to have a corresponding property
+        accessor. E.g.:</para>
+
+        <programlisting>public class MyBean {
+	...
+	public void setBean(MyBean b) {
+		bean = b;
+	}
+	...
+}</programlisting>
+
+        <para>There are currently the following possibilities for declaring
+        the property accessors:</para>
+
+        <section id="workflow_reference_accessors">
+          <title>Accessor methods</title>
+
+          <para>As we have seen, one possibility for declaring a dependency is
+          to declare a corresponding setter Method.</para>
+
+          <programlisting>public void set&lt;propertyname&gt;(&lt;PropertyType&gt;; e)</programlisting>
+
+          <para>If you want to set multiple multiple values for the same
+          property, you should define an adder method.</para>
+
+          <programlisting>public void add&lt;propertyname&gt;(&lt;PropertyType&gt; e)</programlisting>
+
+          <para>In some cases you may want to have key value pairs specified.
+          This is done by providing the following method:</para>
+
+          <programlisting>public void put(Object k,Object v)</programlisting>
+        </section>
+      </section>
+
+      <section id="workflow_reference_component_creation">
+        <title>Component creation</title>
+
+        <para>The corresponding Java class (specified using the class
+        attribute) needs to have a default constructor declared. If the class
+        attribute is omitted, the Java class determined from the accessor
+        method will be used. For the preceding example we could write</para>
+
+        <programlisting>&lt;component class='MyBean'&gt;
+	&lt;bean/&gt;
+&lt;/component&gt;</programlisting>
+
+        <para>because the setter method uses the <type>MyBean</type> type as
+        its parameter type. This is especially useful for more complex
+        configurations of workflow components.</para>
+
+        <para>Note that we will probably add factory support in the
+        future.</para>
+      </section>
+
+      <section id="workflow_reference_references">
+        <title>References</title>
+
+        <para>A component can have an attribute <varname>id</varname>. If this
+        is the case, we can refer to this component throughout the following
+        workflow configuration.</para>
+
+        <para>Example:</para>
+
+        <programlisting>&lt;workflow&gt;
+	&lt;component class='my.Checker'&gt;
+		&lt;metaModel id='mm' class='my.MetaModel'
+			metaModelPackage='org.oaw.metamodel'/&gt;
+	&lt;/component&gt;
+	&lt;component class='my.Generator'&gt;
+		&lt;metaModel idRef='mm'/&gt;
+	&lt;/component&gt;
+	...
+&lt;/workflow&gt;</programlisting>
+
+        <para>In this example, an object with the <property>id</property>
+        <emphasis>mm</emphasis> (an instance of
+        <emphasis>my.MetaModel</emphasis>), is first declared and then
+        referenced using the attribute <property>idRef</property>. Note that
+        this object will only be instantiated once and then reused. It is not
+        allowed to specify any other attributes besides
+        <property>idRef</property> for object references.</para>
+      </section>
+
+      <section id="workflow_reference_simple_parameters">
+        <title>Simple Parameters</title>
+
+        <para>Elements with only one attribute value are simple parameters.
+        Simple parameters may not have any child elements.</para>
+
+        <para>Example:</para>
+
+        <programlisting>&lt;workflow&gt;
+	&lt;component class='my.Checker' myParam='foo'&gt;
+		&lt;anotherParam value='bar'/&gt;
+	&lt;/component&gt;</programlisting>
+
+        <para>As you can see, there are two ways to specify a simple
+        paramter.</para>
+
+        <orderedlist>
+          <listitem>
+            <para>using an XML attribute</para>
+          </listitem>
+
+          <listitem>
+            <para>using a nested XML element with an attribute value</para>
+          </listitem>
+        </orderedlist>
+
+        <para>Both methods are equivalent, although declaring an attribute way
+        saves a few keystrokes. However, the attributes
+        <literal>class</literal>, <literal>id</literal>, and
+        <literal>file</literal> are reserved so they cannot be used.</para>
+
+        <para>Parameters are injected using the same accessor methods as
+        described for components. The only difference is, that they are not
+        instantiated using a default constructor, but instead, they are using
+        a so-called converter.</para>
+
+        <section id="workflow_reference_converters">
+          <title>Converters</title>
+
+          <para>There are currently converter implementations registered for
+          the following Java types:</para>
+
+          <orderedlist>
+            <listitem>
+              <para><classname>Object</classname></para>
+            </listitem>
+
+            <listitem>
+              <para><classname>String</classname></para>
+            </listitem>
+
+            <listitem>
+              <para><classname>String[]</classname> (uses
+              <methodname>s.split(',')</methodname>)</para>
+            </listitem>
+
+            <listitem>
+              <para><classname>Boolean</classname> (both primitive and
+              wrapper)</para>
+            </listitem>
+
+            <listitem>
+              <para><classname>Integer</classname> (both primitive and
+              wrapper)</para>
+            </listitem>
+          </orderedlist>
+        </section>
+      </section>
+
+      <section id="workflow_reference_including_other_workflows">
+        <title>Including other workflow files (also known as
+        <emphasis>cartridges</emphasis>)</title>
+
+        <para>If an element has a property <property>file</property>, it is
+        handled as an inclusion. Using an inclusion, one can inject a graph
+        described in another workflow file. Here is an example:</para>
+
+        <para>file 1: mybean.oaw</para>
+
+        <programlisting>&lt;anyname class='MyClass'/&gt;</programlisting>
+
+        <para>file 2: workflow.oaw</para>
+
+        <programlisting>&lt;comp class='MyBean'&gt;
+	&lt;bean file='mybean.oaw'/&gt;
+&lt;/comp&gt;</programlisting>
+
+        <para>One can pass properties and components into the included file in
+        the usual way.</para>
+
+        <para>file 1: mybean.oaw</para>
+
+        <programlisting>&lt;anyname class='MyClass' aProp='${myParam}'&gt;
+	&lt;bean idRef='myComponent'/&gt;
+&lt;/anyname&gt;</programlisting>
+
+        <para>file 2: workflow.oaw</para>
+
+        <programlisting>&lt;comp class='MyBean'&gt;
+	&lt;bean file='mybean.oaw'&gt;
+		&lt;myParam value='foo'/&gt;
+		&lt;myComponent class='MyBean'/&gt;
+	&lt;/bean&gt;
+&lt;/comp&gt;</programlisting>
+
+        <para>As you can see, simple parameters are mapped to properties in
+        the included workflow file, and components can be accessed using the
+        <property>idRef</property> attribute.</para>
+
+        <para>Properties defined in the included workflow description will be
+        overwritten by the passed properties.</para>
+
+        <para>The root element of a workflow description can have any name,
+        because there is no parent defining an accessor method. Additionally,
+        you have to specify the attribute class for a root element. There is
+        only one exception: If the root element is named workflow the engine
+        knows that it has to instantiate the type
+        <classname>org.openarchitectureware.Workflow</classname>. Of course
+        you can specify your own subtype of
+        <classname>org.openarchitectureware.Workflow</classname> using the
+        <property>class</property> attribute (if you need to for any
+        reason).</para>
+      </section>
+
+      <section id="workflow_reference_inheritall">
+        <title>InheritAll Feature</title>
+
+        <para>If you do not want to explicitely pass the parameters to an
+        included workflow description, you can use the
+        <property>inheritAll</property> attribute. This will make all the
+        properties and beans that are visible to the actual workflow file also
+        visible to the included workflow file.</para>
+
+        <programlisting>&lt;component file="my/included/workflow.oaw" inheritAll="true"/&gt;</programlisting>
+      </section>
+    </section>
+
+    <section id="workflow_reference_component_implementation">
+      <title>Component Implementation and Workflow Execution</title>
+
+      <para>This section describes how to implement workflow components, how
+      they can communicate with each other and how the workflow execution can
+      be controlled.</para>
+
+      <section id="workflow_reference_context">
+        <title>The Workflow Context</title>
+
+        <para>Workflow components have to communicate among each other. For
+        example, if an XMIReader component reads a model that a constraint
+        checker component wants to check, the model must be passed from the
+        reader to the checker. The way this happens is as follows: In the
+        <methodname>invoke</methodname> operation, a workflow component has
+        access to the so-called <emphasis>workflow context</emphasis>. This
+        context contains any number of named slots. In order to communicate,
+        two components agree on a slot name, the first component puts an
+        object into that slot and the second component takes it from there.
+        Basically, slots are named variables global to the workflow. The slot
+        names are configured from the workflow file. Here is an
+        example:</para>
+
+        <programlisting>&lt;?xml version="1.0" encoding="windows-1252"?&gt;
+&lt;workflow&gt;
+	&lt;property file="workflow.properties"/&gt;
+
+	&lt;component id="xmiParser"
+		class="org.openarchitectureware.emf.XmiReader"&gt;
+		&lt;outputSlot value="model"/&gt;
+	&lt;/component&gt;
+
+	&lt;component id="checker" class="datamodel.generator.Checker"&gt;
+		&lt;modelSlot value="model"/&gt;
+	&lt;/component&gt;
+&lt;/workflow&gt;</programlisting>
+
+        <para>As you can see, both these workflow components use the slot
+        named <emphasis>model</emphasis>. Below is the (abbreviated)
+        implementation of the <classname>XmiReader</classname>. It stores the
+        model data structure into the workflow context in the slot whose name
+        was configured in the workflow file.</para>
+
+        <programlisting>public class XmiReader implements WorkflowComponent {
+
+	private String outputSlot = null;
+
+	public void setOutputSlot(String outputSlot) {
+		this.outputSlot = outputSlot;
+	}
+
+	public void invoke(WorkflowContext ctx, ProgressMonitor monitor,
+		Issues issues) {
+		Object theModel = readModel();
+		ctx.put( outputSlot, theModel );
+	}
+
+}</programlisting>
+
+        <para>The checker component reads the model from that slot:</para>
+
+        <programlisting>public class Checker implements WorkflowComponent {
+
+	private String modelSlot;
+
+	public final void setModelSlot( String ms ) {
+		this.modelSlot = ms;
+	}
+
+	public final void invoke(WorkflowContext ctx,
+		ProgressMonitor monitor, Issues issues) {
+
+		Object model = ctx.get(modelSlot);
+		check(model);
+	}
+}</programlisting>
+      </section>
+
+      <section id="workflow_reference_issues">
+        <title>Issues</title>
+
+        <para>Issues provide a way to report errors and warnings. There are
+        two places, where issues are used in component implementations:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>Inside the checkConfiguration operation, you can report
+            errors or warnings. This operation is called before the workflow
+            starts running.</para>
+          </listitem>
+
+          <listitem>
+            <para>Inside the invoke operation, you can report errors or
+            warnings that occur during the execution of the workflow. Typical
+            examples are constraint violations.</para>
+          </listitem>
+        </orderedlist>
+
+        <para>The Issues API is pretty straightforward: you can call addError
+        and addWarning. The operations have three parameters: the reporting
+        component, a message as well as the model element that caused the
+        problem, if there is one. The operations are also available in a
+        two-parameter version, omitting the first (reporting component)
+        parameter.</para>
+      </section>
+
+      <section id="workflow_reference_controlling_workflow">
+        <title>Controlling the Workflow</title>
+
+        <para>There is an implicit way of controlling the workflow: if there
+        are errors reported from any of the checkConfiguration operations of
+        any workflow component, the workflow will not start running.</para>
+
+        <para>There is also an explicit way of terminating the execution of
+        the workflow: if any invoke operation throws a
+        <classname>WorkflowInterruptedException</classname> (a runtime
+        exception) the workflow will terminate immediately.</para>
+
+        <section>
+          <title>Using Aspect Orientation wih Workflows</title>
+
+          <para>It is sometimes necessary to enhance existing workflow
+          component declarations with additional properties. This is
+          exemplified in the Template AOP example. To implement such an advice
+          component, you have to extend the
+          <classname>AbstractWorkflowAdvice</classname> class. You have to
+          implement all the necessary getters and setters for the properties
+          you want to be able to specify for that advice; also you have to
+          implement the <methodname>weave()</methodname> operation. In this
+          operation, which takes the advised component as a parameter, you
+          have to set the advised parameters:</para>
+
+          <programlisting>public class GeneratorAdvice extends AbstractWorkflowAdvice {
+
+	private String advices;
+
+	public String getAdvices() {
+		return advices;
+	}
+
+	public void setAdvices(String advices) {
+		this.advices = advices;
+	}
+
+	@Override
+	public void weave(WorkflowComponent c) {
+		Generator gen = (Generator)c;
+		gen.setAdvices(advices);
+	}
+
+}</programlisting>
+
+          <para>In the workflow file, things are straight forward: You have to
+          specify the component class of the advice, and use the special
+          property <varname>adviceTarget</varname> to identify the target
+          component:</para>
+
+          <programlisting>&lt;workflow&gt;
+
+	&lt;cartridge file="workflow.oaw"/&gt;
+		&lt;component adviceTarget="generator"
+			class="oaw.xpand2.GeneratorAdvice"&gt;
+			&lt;advices value="templates::Advices"/&gt;
+		&lt;/component&gt;
+	&lt;/workflow&gt;</programlisting>
+        </section>
+      </section>
+    </section>
+
+    <section id="workflow_reference_invoking_a_workflow">
+      <title>Invoking a workflow</title>
+
+      <para>If you have described your generator process in a workflow file,
+      you might want to run it. There are different possibilities for doing
+      so.</para>
+
+      <section id="workflow_reference_workflowrunner">
+        <title>Starting the WorkflowRunner</title>
+
+        <para>The class
+        <classname>org.openarchitectureware.workflow.WorkflowRunner</classname>
+        is the main entry point if you want to run the workflow from the
+        command line. Take a look at the following example:</para>
+
+        <programlisting>java org.openarchitectureware.workflow.WorkflowRunner path/workflow.oaw</programlisting>
+
+        <para>You can override properties using the -p option:</para>
+
+        <programlisting>java org.openarchitectureware.workflow.WorkflowRunner -pbasedir=/base/ path/workflow.oaw</programlisting>
+      </section>
+
+      <section id="workflow_reference_starting_with_ant">
+        <title>Starting with Ant</title>
+
+        <para>We also have an Ant task. Here is an example:</para>
+
+        <programlisting>	&lt;target name='generate'&gt;
+		&lt;taskdef name="workflow" classname="org.openarchitectureware.workflow.ant.WorkflowAntTask"/&gt;
+			&lt;workflow file='path/workflow.oaw'&gt;
+				&lt;param name='baseDir' value='/base/'/&gt;
+			&lt;/workflow&gt;
+			...
+		&lt;/target&gt;</programlisting>
+
+        <para>The Workflow ant task extends the Java ant task. Therefore, you
+        have all the properties known from that task (classpath, etc.).</para>
+      </section>
+
+      <section id="workflow_reference_starting_from_your_own_code">
+        <title>Starting from you own code</title>
+
+        <para>You can also run the generator from your own application code.
+        Two things to note:</para>
+
+        <orderedlist>
+          <listitem>
+            <para>the contents of the properties map override the properties
+            defined in the workflow.</para>
+          </listitem>
+
+          <listitem>
+            <para>The slotContents map allows you to fill stuff into the
+            workflow from your application. This is a typical use case: you
+            run oAW from within your app because you already have a model in
+            memory.</para>
+          </listitem>
+        </orderedlist>
+
+        <programlisting>	String wfFile = "somePath\\workflow.oaw";
+	Map properties = new HashMap();
+	Map slotContents = new HashMap();
+	new WorkflowRunner().run(wfFile ,
+		new NullProgressMonitor(), properties, slotContents)</programlisting>
+      </section>
+
+      <section>
+        <title>Starting from Eclipse</title>
+
+        <para>You can also run a workflow file from within Eclipse if you have installed the
+          oAW plugins. Just right-click on the workflow file
+          (<filename>whatever.oaw</filename>) and select <menuchoice> <guimenu>Run
+          As</guimenu> <guimenuitem>oAW Workflow</guimenuitem> </menuchoice>. See
+          the section <emphasis><phrase condition="main"><xref
+            linkend="eclipse_integration_running_a_workflow"/></phrase> <phrase
+            condition="individual">Running a workflow</phrase></emphasis> in the
+          documentation of the Eclipse integration of oAW for details.</para>
+      </section>
+    </section>
+  </section>
+</chapter>

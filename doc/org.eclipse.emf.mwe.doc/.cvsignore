@@ -1,2 +1,4 @@
 bin
 *.jar
+build-docbook
+output

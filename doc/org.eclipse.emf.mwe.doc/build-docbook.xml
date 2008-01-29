@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<project name="Workflow documentation" default="build.all">
+
+	<property file="build-docbook.properties" />
+
+	<path id="fop">
+		<pathelement location="${tools.dir}/fop/fop.jar" />
+		<pathelement location="${tools.dir}/fop/avalon-framework-4.2.0.jar" />
+		<pathelement location="${tools.dir}/fop/batik-all-1.6.jar" />
+	</path>
+
+	<path id="saxon">
+		<pathelement location="${xerces.lib.path}" />
+		<pathelement location="${saxon.lib.path}" />
+	</path>
+
+	<tstamp>
+		<format property="date" pattern="yyyy-MM-dd" />
+		<format property="year" pattern="yyyy" />
+	</tstamp>
+
+	<taskdef name="fop" classname="org.apache.fop.tools.anttasks.Fop" classpathref="fop" />
+
+	<target name="build.all" depends="stage, build.doc.html, build.doc.eclipsehelp, build.doc.pdf, unstage" />
+
+	<target name="build.doc.html" depends="stage.html">
+		<delete dir="${html.output.dir}/contents" failonerror="false" />
+		<copy todir="${html.output.dir}/contents/images">
+			<fileset dir="${images.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy file="${css.file.path}" todir="${html.output.dir}" />
+		<java fork="true" dir="${html.output.dir}" failonerror="true" classname="com.icl.saxon.StyleSheet">
+			<classpath refid="saxon" />
+			<sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+			<sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+			<sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+			<arg value="${build.dir}/index.xml" />
+			<arg value="${build.dir}/${html.stylesheet}" />
+			<arg value='profile.condition="${document.type}"'>
+			</arg>
+		</java>
+	</target>
+
+	<target name="build.doc.eclipsehelp" depends="stage.eclipse">
+		<delete dir="${eclipse.output.dir}/contents" failonerror="false" />
+		<copy todir="${eclipse.output.dir}/contents/images">
+			<fileset dir="${images.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy file="${css.file.path}" todir="${eclipse.output.dir}" />
+		<java fork="true" dir="${eclipse.output.dir}" failonerror="true" classname="com.icl.saxon.StyleSheet">
+			<classpath refid="saxon" />
+			<sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+			<sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+			<sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+			<arg value="${build.dir}/index.xml" />
+			<arg value="${build.dir}/${eclipse.stylesheet}" />
+			<arg value="eclipse.plugin.id=${eclipse.plugin.id}" />
+			<arg value="eclipse.plugin.name=${eclipse.plugin.name}" />
+			<arg value="eclipse.plugin.provider=${eclipse.plugin.provider}" />
+			<arg value='profile.condition="${document.type}"'>
+			</arg>
+		</java>
+	</target>
+
+	<target name="build.doc.pdf" depends="stage.pdf">
+		<java fork="true" dir="${build.dir}" failonerror="true" classname="com.icl.saxon.StyleSheet">
+			<classpath refid="saxon" />
+			<sysproperty key="javax.xml.parsers.DocumentBuilderFactory" value="org.apache.xerces.jaxp.DocumentBuilderFactoryImpl"/>
+			<sysproperty key="javax.xml.parsers.SAXParserFactory" value="org.apache.xerces.jaxp.SAXParserFactoryImpl"/>
+			<sysproperty key="org.apache.xerces.xni.parser.XMLParserConfiguration" value="org.apache.xerces.parsers.XIncludeParserConfiguration"/>
+			<arg value="-o" />
+			<arg value="${build.dir}/${product.name.files}_documentation.fo" />
+			<arg value="${build.dir}/index.xml" />
+			<arg value="${pdf.stylesheet}" />
+			<arg value="draft.mode=no" />
+			<arg value="paper.type=A4" />
+			<arg value="l10n.gentext.language=en" />
+			<arg value='profile.condition="${document.type}"'>
+			</arg>
+		</java>
+
+		<mkdir dir="${pdf.output.dir}" />
+
+		<fop format="application/pdf" outdir="${pdf.output.dir}" basedir="${build.dir}" messagelevel="debug">
+			<fileset dir="${build.dir}">
+				<include name="**/*.fo" />
+			</fileset>
+		</fop>
+	</target>
+
+	<target name="stage" depends="unstage">
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/structure">
+			<fileset dir="${structure.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/content">
+			<fileset dir="${content.dir}">
+				<include name="**/*.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${build.dir}/content/images">
+			<fileset dir="${images.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy file="${tools.basedir}/shared/bookinfo.xml" todir="${build.dir}" />
+		<replace file="${build.dir}/index.xml" token="@DOCBOOKVERSION@"
+			value="${docbook.version}" casesensitive="true"/>
+        <replace file="${build.dir}/index.xml" token="@TITLE@"
+            value="${doc.title}" casesensitive="true"/>
+		<replace file="${build.dir}/bookinfo.xml" token="@VERSION@"
+			value="${product.version}" casesensitive="true"/>
+		<replace file="${build.dir}/bookinfo.xml" token="@DATE@"
+			value="${date}" casesensitive="true"/>
+	</target>
+
+	<target name="stage.pdf" depends="stage">
+		<copy file="${pdf.stylesheet.path}" todir="${build.dir}" />
+		<replace file="${build.dir}/${pdf.stylesheet}" token="@SHAREDIMAGESDIR@"
+			value="${shared.images.dir}" casesensitive="true"/>
+		<replace file="${build.dir}/${pdf.stylesheet}" token="@DOCBOOKDIR@"
+			value="${docbook.dir}" casesensitive="true" />
+		<replace file="${build.dir}/${pdf.stylesheet}" token="@TOOLSDIR@"
+			value="${tools.dir}" casesensitive="true"/>
+		<replace file="${build.dir}/${pdf.stylesheet}" token="@YEAR@"
+			value="${year}" casesensitive="true"/>
+	</target>
+
+	<target name="stage.html" depends="stage">
+		<copy file="${html.stylesheet.path}" todir="${build.dir}" />
+		<replace file="${build.dir}/${html.stylesheet}" token="@DOCBOOKDIR@"
+			value="${docbook.dir}" casesensitive="true" />
+	</target>
+
+	<target name="stage.eclipse" depends="stage">
+		<copy file="${eclipse.stylesheet.path}" todir="${build.dir}" />
+		<replace file="${build.dir}/${eclipse.stylesheet}" token="@DOCBOOKDIR@"
+			value="${docbook.dir}" casesensitive="true" />
+	</target>
+
+	<target name="unstage">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="clean" depends="unstage">
+		<delete dir="${output.dir}" />
+	</target>
+
+</project>
