@@ -9,7 +9,7 @@
   
   <part id="reference">
     <title>Reference</title>
-    <xi:include href="structure/workflow_reference_structure.xml"/>
+    <xi:include href="content/structure_workflow_reference.xml"/>
   </part>
       
   <index />
