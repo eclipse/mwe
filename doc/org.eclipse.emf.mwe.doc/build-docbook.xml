@@ -98,11 +98,6 @@
 				<include name="**/*.xml" />
 			</fileset>
 		</copy>
-		<copy todir="${build.dir}/structure">
-			<fileset dir="${structure.dir}">
-				<include name="**/*.xml" />
-			</fileset>
-		</copy>
 		<copy todir="${build.dir}/content">
 			<fileset dir="${content.dir}">
 				<include name="**/*.xml" />
