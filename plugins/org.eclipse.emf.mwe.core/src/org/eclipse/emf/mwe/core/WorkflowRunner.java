@@ -201,7 +201,7 @@ public class WorkflowRunner {
 			return params;
 		}
 		for (String element : args) {
-			final String[] string = element.split("=");
+			final String[] string = element.split("=", 2);
 			if (string.length != 2) {
 				throw new IllegalArgumentException(
 						"wrong param syntax (-pkey=value). was : " + element);
