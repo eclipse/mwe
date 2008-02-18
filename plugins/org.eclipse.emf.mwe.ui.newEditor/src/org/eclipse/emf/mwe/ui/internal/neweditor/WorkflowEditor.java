@@ -14,6 +14,9 @@ package org.eclipse.emf.mwe.ui.internal.neweditor;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
@@ -33,6 +36,8 @@ public class WorkflowEditor extends TextEditor {
     private Annotation[] oldAnnotations;
 
     private ProjectionSupport projectSupport;
+
+    private BreakpointActionGroup actionGroup;
 
     public WorkflowEditor() {
         super();
@@ -60,6 +65,14 @@ public class WorkflowEditor extends TextEditor {
         super.dispose();
     }
 
+    public ISourceViewer internalGetSourceViewer() {
+        return getSourceViewer();
+    }
+
+    public IVerticalRuler internalGetVerticalRuler() {
+        return getVerticalRuler();
+    }
+
     public void updateFoldingStructure(ArrayList positions) {
         Annotation[] annotations = new Annotation[positions.size()];
         HashMap newAnnotations = new HashMap();
@@ -76,6 +89,12 @@ public class WorkflowEditor extends TextEditor {
     }
 
     @Override
+    protected void createActions() {
+        super.createActions();
+        actionGroup = new BreakpointActionGroup(this);
+    }
+
+    @Override
     protected ISourceViewer createSourceViewer(Composite parent,
             IVerticalRuler ruler, int styles) {
         ISourceViewer viewer = new ProjectionViewer(parent, ruler,
@@ -85,4 +104,19 @@ public class WorkflowEditor extends TextEditor {
         return viewer;
     }
 
+    @Override
+    protected void editorContextMenuAboutToShow(final IMenuManager menu) {
+        menu.add(new Separator("mwe"));
+        super.editorContextMenuAboutToShow(menu);
+
+        actionGroup.fillContextMenu(menu);
+    }
+
+    @Override
+    protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
+        menu.add(new Separator("mwe")); //$NON-NLS-1$
+        super.rulerContextMenuAboutToShow(menu);
+
+        actionGroup.fillContextMenu(menu);
+    }
 }
