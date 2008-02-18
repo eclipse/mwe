@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.editors;
+package org.eclipse.emf.mwe.ui.internal.neweditor;
 
 import java.util.HashMap;
 import java.util.Iterator;

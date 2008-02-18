@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.editors;
+package org.eclipse.emf.mwe.ui.internal.neweditor;
 
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.rules.IRule;
@@ -19,20 +19,17 @@ import org.eclipse.jface.text.rules.SingleLineRule;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.rules.WhitespaceRule;
 
-public class WorkflowTagScanner extends RuleBasedScanner {
+public class WorkflowScanner extends RuleBasedScanner {
 
-    public WorkflowTagScanner(ColorManager manager) {
-        IToken string = new Token(new TextAttribute(manager
-                .getColor(IWorkflowColorConstants.STRING)));
+    public WorkflowScanner(ColorManager manager) {
+        IToken procInstr = new Token(new TextAttribute(manager
+                .getColor(IWorkflowColorConstants.PROC_INSTR)));
 
-        IRule[] rules = new IRule[3];
-
-        // Add rule for double quotes
-        rules[0] = new SingleLineRule("\"", "\"", string, '\\');
-        // Add a rule for single quotes
-        rules[1] = new SingleLineRule("'", "'", string, '\\');
+        IRule[] rules = new IRule[2];
+        // Add rule for processing instructions
+        rules[0] = new SingleLineRule("<?", "?>", procInstr);
         // Add generic whitespace rule.
-        rules[2] = new WhitespaceRule(new WorkflowWhitespaceDetector());
+        rules[1] = new WhitespaceRule(new WorkflowWhitespaceDetector());
 
         setRules(rules);
     }

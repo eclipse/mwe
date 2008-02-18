@@ -9,7 +9,7 @@
             extensions="mwe, oaw"
             icon="icons/workflowfile.gif"
             contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
-            class="org.eclipse.emf.mwe.ui.neweditor.editors.WorkflowEditor"
+            class="org.eclipse.emf.mwe.ui.internal.neweditor.WorkflowEditor"
             id="org.eclipse.emf.mwe.ui.neweditor.editors.WorkflowEditor">
       </editor>
    </extension>
