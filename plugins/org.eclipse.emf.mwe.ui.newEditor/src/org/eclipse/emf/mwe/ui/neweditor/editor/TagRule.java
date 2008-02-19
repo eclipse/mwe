@@ -17,14 +17,14 @@ import org.eclipse.jface.text.rules.MultiLineRule;
 
 public class TagRule extends MultiLineRule {
 
-    public TagRule(IToken token) {
+    public TagRule(final IToken token) {
         super("<", ">", token);
     }
 
     @Override
-    protected boolean sequenceDetected(ICharacterScanner scanner,
-            char[] sequence, boolean eofAllowed) {
-        int c = scanner.read();
+    protected boolean sequenceDetected(final ICharacterScanner scanner,
+            final char[] sequence, final boolean eofAllowed) {
+        final int c = scanner.read();
         if (sequence[0] == '<') {
             if (c == '?') {
                 // processing instruction - abort

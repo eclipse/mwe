@@ -21,11 +21,11 @@ import org.eclipse.jface.text.rules.WhitespaceRule;
 
 public class WorkflowScanner extends RuleBasedScanner {
 
-    public WorkflowScanner(ColorManager manager) {
-        IToken procInstr = new Token(new TextAttribute(manager
-                .getColor(IWorkflowColorConstants.PROC_INSTR)));
+    public WorkflowScanner(final ColorManager manager) {
+        final IToken procInstr = new Token(new TextAttribute(manager
+                .getColor(WorkflowColorConstants.PROC_INSTR)));
 
-        IRule[] rules = new IRule[2];
+        final IRule[] rules = new IRule[2];
         // Add rule for processing instructions
         rules[0] = new SingleLineRule("<?", "?>", procInstr);
         // Add generic whitespace rule.

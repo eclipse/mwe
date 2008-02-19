@@ -17,10 +17,20 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
-public class TypeUtils {
+public final class TypeUtils {
+    /**
+     * Constructor is hidden, since it is a utility class.
+     */
+    /**
+     * 
+     */
+    private TypeUtils() {
+        throw new UnsupportedOperationException();
+    }
+
     public static IType findType(final IJavaProject javaProject,
             final String typeName) {
         try {
@@ -31,7 +41,7 @@ public class TypeUtils {
                         "org.eclipse.emf.mwe"));
             }
             return type;
-        } catch (JavaModelException e) {
+        } catch (final JavaModelException e) {
             return null;
         }
     }

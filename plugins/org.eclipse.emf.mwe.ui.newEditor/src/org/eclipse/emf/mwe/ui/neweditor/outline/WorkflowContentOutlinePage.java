@@ -40,33 +40,23 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     }
 
     @Override
-    public void createControl(Composite parent) {
+    public void createControl(final Composite parent) {
         super.createControl(parent);
-        TreeViewer viewer = getTreeViewer();
+        final TreeViewer viewer = getTreeViewer();
         viewer.setLabelProvider(getLabelProvider());
         viewer.setContentProvider(getContentProvider());
         viewer.addSelectionChangedListener(this);
     }
 
     public void refresh() {
-        TreeViewer viewer = getTreeViewer();
+        final TreeViewer viewer = getTreeViewer();
 
         if (viewer != null) {
-            Control control = viewer.getControl();
+            final Control control = viewer.getControl();
 
             if ((control != null) && !control.isDisposed()) {
                 // TODO implement
-                // IXtendXpandResource res = null;
-                try {
-                    // res = parse();
-                } catch (RuntimeException re) {
-                    // ignore
-                    return;
-                }
                 control.setRedraw(false);
-                // if (res != null)
-                // res.refresh();
-                // viewer.setInput(res);
                 viewer.expandAll();
                 control.setRedraw(true);
             }
@@ -80,7 +70,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
      *            event object describing the change
      */
     @Override
-    public final void selectionChanged(SelectionChangedEvent anEvent) {
+    public final void selectionChanged(final SelectionChangedEvent anEvent) {
         super.selectionChanged(anEvent);
 
         this.selection = anEvent.getSelection();
@@ -104,25 +94,25 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                 // do nothing
             }
 
-            public Object[] getChildren(Object parentElement) {
+            public Object[] getChildren(final Object parentElement) {
                 return WorkflowContentOutlinePage.this
                         .getChildren(parentElement);
             }
 
-            public Object[] getElements(Object inputElement) {
+            public Object[] getElements(final Object inputElement) {
                 return getChildren(inputElement);
             }
 
-            public Object getParent(Object element) {
+            public Object getParent(final Object element) {
                 return null;
             }
 
-            public boolean hasChildren(Object element) {
+            public boolean hasChildren(final Object element) {
                 return getChildren(element).length > 0;
             }
 
-            public void inputChanged(Viewer viewer, Object oldInput,
-                    Object newInput) {
+            public void inputChanged(final Viewer viewer,
+                    final Object oldInput, final Object newInput) {
                 // do nothing
             }
         };
@@ -131,49 +121,50 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     private ILabelProvider getLabelProvider() {
         return new ILabelProvider() {
 
-            public void addListener(ILabelProviderListener listener) {
+            public void addListener(final ILabelProviderListener listener) {
             }
 
             public void dispose() {
             }
 
-            public Image getImage(Object element) {
+            public Image getImage(final Object element) {
                 if (element instanceof WorkflowOutlineElement)
                     return ((WorkflowOutlineElement) element).getImage();
                 return null;
             }
 
-            public String getText(Object element) {
+            public String getText(final Object element) {
                 if (element instanceof WorkflowOutlineElement)
                     return ((WorkflowOutlineElement) element).getLabel();
                 return null;
             }
 
-            public boolean isLabelProperty(Object element, String property) {
+            public boolean isLabelProperty(final Object element,
+                    final String property) {
                 return false;
             }
 
-            public void removeListener(ILabelProviderListener listener) {
+            public void removeListener(final ILabelProviderListener listener) {
             }
         };
     }
 
-    private final void updateHighlight() {
+    private void updateHighlight() {
         if (selection != null) {
             if (selection.isEmpty()) {
                 editor.resetHighlightRange();
             } else {
-                Object segment = ((IStructuredSelection) selection)
+                final Object segment = ((IStructuredSelection) selection)
                         .getFirstElement();
                 if (segment != null
                         && segment instanceof WorkflowOutlineElement) {
-                    WorkflowOutlineElement ext = (WorkflowOutlineElement) segment;
-                    int start = ext.getStart();
-                    int length = ext.getLength();
+                    final WorkflowOutlineElement ext = (WorkflowOutlineElement) segment;
+                    final int start = ext.getStart();
+                    final int length = ext.getLength();
                     if (start >= 0) {
                         try {
                             editor.setHighlightRange(start, length, true);
-                        } catch (IllegalArgumentException x) {
+                        } catch (final IllegalArgumentException x) {
                             editor.resetHighlightRange();
                         }
                     }

@@ -19,8 +19,8 @@ import org.eclipse.jface.text.ITextViewer;
 public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
     protected ITextViewer fText;
 
-    public void doubleClicked(ITextViewer part) {
-        int pos = part.getSelectedRange().x;
+    public void doubleClicked(final ITextViewer part) {
+        final int pos = part.getSelectedRange().x;
 
         if (pos < 0)
             return;
@@ -32,8 +32,8 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
         }
     }
 
-    protected boolean selectComment(int caretPos) {
-        IDocument doc = fText.getDocument();
+    protected boolean selectComment(final int caretPos) {
+        final IDocument doc = fText.getDocument();
         int startPos, endPos;
 
         try {
@@ -57,7 +57,7 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
             startPos = pos;
 
             pos = caretPos;
-            int length = doc.getLength();
+            final int length = doc.getLength();
             c = ' ';
 
             while (pos < length) {
@@ -71,19 +71,20 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
 
             endPos = pos;
 
-            int offset = startPos + 1;
-            int len = endPos - offset;
+            final int offset = startPos + 1;
+            final int len = endPos - offset;
             fText.setSelectedRange(offset, len);
             return true;
-        } catch (BadLocationException x) {
+        } catch (final BadLocationException x) {
+            // do nothing
         }
 
         return false;
     }
 
-    protected boolean selectWord(int caretPos) {
+    protected boolean selectWord(final int caretPos) {
 
-        IDocument doc = fText.getDocument();
+        final IDocument doc = fText.getDocument();
         int startPos, endPos;
 
         try {
@@ -101,7 +102,7 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
             startPos = pos;
 
             pos = caretPos;
-            int length = doc.getLength();
+            final int length = doc.getLength();
 
             while (pos < length) {
                 c = doc.getChar(pos);
@@ -114,15 +115,16 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
             selectRange(startPos, endPos);
             return true;
 
-        } catch (BadLocationException x) {
+        } catch (final BadLocationException x) {
+            // do nothing
         }
 
         return false;
     }
 
-    private void selectRange(int startPos, int stopPos) {
-        int offset = startPos + 1;
-        int length = stopPos - offset;
+    private void selectRange(final int startPos, final int stopPos) {
+        final int offset = startPos + 1;
+        final int length = stopPos - offset;
         fText.setSelectedRange(offset, length);
     }
 }

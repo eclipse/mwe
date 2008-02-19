@@ -24,12 +24,13 @@ public class ColorManager {
     protected Map fColorTable = new HashMap(10);
 
     public void dispose() {
-        Iterator e = fColorTable.values().iterator();
-        while (e.hasNext())
+        final Iterator e = fColorTable.values().iterator();
+        while (e.hasNext()) {
             ((Color) e.next()).dispose();
+        }
     }
 
-    public Color getColor(RGB rgb) {
+    public Color getColor(final RGB rgb) {
         Color color = (Color) fColorTable.get(rgb);
         if (color == null) {
             color = new Color(Display.getCurrent(), rgb);

@@ -20,10 +20,11 @@ import org.eclipse.ui.editors.text.FileDocumentProvider;
 public class WorkflowDocumentProvider extends FileDocumentProvider {
 
     @Override
-    protected IDocument createDocument(Object element) throws CoreException {
-        IDocument document = super.createDocument(element);
+    protected IDocument createDocument(final Object element)
+            throws CoreException {
+        final IDocument document = super.createDocument(element);
         if (document != null) {
-            IDocumentPartitioner partitioner = new FastPartitioner(
+            final IDocumentPartitioner partitioner = new FastPartitioner(
                     new WorkflowPartitionScanner(), new String[] {
                             WorkflowPartitionScanner.XML_TAG,
                             WorkflowPartitionScanner.XML_COMMENT });

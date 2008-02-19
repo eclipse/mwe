@@ -39,7 +39,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
     /**
      * Constructor for NonRuleBasedDamagerRepairer.
      */
-    public NonRuleBasedDamagerRepairer(TextAttribute defaultTextAttribute) {
+    public NonRuleBasedDamagerRepairer(final TextAttribute defaultTextAttribute) {
         Assert.isNotNull(defaultTextAttribute);
 
         fDefaultTextAttribute = defaultTextAttribute;
@@ -49,8 +49,8 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      * @see IPresentationRepairer#createPresentation(TextPresentation,
      *      ITypedRegion)
      */
-    public void createPresentation(TextPresentation presentation,
-            ITypedRegion region) {
+    public void createPresentation(final TextPresentation presentation,
+            final ITypedRegion region) {
         addRange(presentation, region.getOffset(), region.getLength(),
                 fDefaultTextAttribute);
     }
@@ -59,14 +59,15 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      * @see IPresentationDamager#getDamageRegion(ITypedRegion, DocumentEvent,
      *      boolean)
      */
-    public IRegion getDamageRegion(ITypedRegion partition,
-            DocumentEvent event, boolean documentPartitioningChanged) {
+    public IRegion getDamageRegion(final ITypedRegion partition,
+            final DocumentEvent event, boolean documentPartitioningChanged) {
         if (!documentPartitioningChanged) {
             try {
 
-                IRegion info = fDocument.getLineInformationOfOffset(event
+                final IRegion info = fDocument
+                        .getLineInformationOfOffset(event.getOffset());
+                final int start = Math.max(partition.getOffset(), info
                         .getOffset());
-                int start = Math.max(partition.getOffset(), info.getOffset());
 
                 int end = event.getOffset()
                         + (event.getText() == null ? event.getLength() : event
@@ -83,7 +84,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
                         end);
                 return new Region(start, end - start);
 
-            } catch (BadLocationException x) {
+            } catch (final BadLocationException x) {
                 // do nothing
             }
         }
@@ -94,7 +95,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
     /**
      * @see IPresentationRepairer#setDocument(IDocument)
      */
-    public void setDocument(IDocument document) {
+    public void setDocument(final IDocument document) {
         fDocument = document;
     }
 
@@ -110,8 +111,8 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      * @param attr
      *            the attribute describing the style of the range to be styled
      */
-    protected void addRange(TextPresentation presentation, int offset,
-            int length, TextAttribute attr) {
+    protected void addRange(final TextPresentation presentation,
+            final int offset, final int length, final TextAttribute attr) {
         if (attr != null)
             presentation.addStyleRange(new StyleRange(offset, length, attr
                     .getForeground(), attr.getBackground(), attr.getStyle()));
@@ -128,17 +129,17 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      * @exception BadLocationException
      *                if offset is invalid in the current document
      */
-    protected int endOfLineOf(int offset) throws BadLocationException {
+    protected int endOfLineOf(final int offset) throws BadLocationException {
 
         IRegion info = fDocument.getLineInformationOfOffset(offset);
         if (offset <= info.getOffset() + info.getLength())
             return info.getOffset() + info.getLength();
 
-        int line = fDocument.getLineOfOffset(offset);
+        final int line = fDocument.getLineOfOffset(offset);
         try {
             info = fDocument.getLineInformation(line + 1);
             return info.getOffset() + info.getLength();
-        } catch (BadLocationException x) {
+        } catch (final BadLocationException x) {
             return fDocument.getLength();
         }
     }

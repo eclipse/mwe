@@ -31,7 +31,7 @@ public class WorkflowEditor extends TextEditor {
 
     private ProjectionAnnotationModel annotationModel;
 
-    private ColorManager colorManager;
+    private final ColorManager colorManager;
 
     private Annotation[] oldAnnotations;
 
@@ -48,9 +48,9 @@ public class WorkflowEditor extends TextEditor {
     }
 
     @Override
-    public void createPartControl(Composite parent) {
+    public void createPartControl(final Composite parent) {
         super.createPartControl(parent);
-        ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
+        final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
 
         projectSupport = new ProjectionSupport(viewer, getAnnotationAccess(),
                 getSharedColors());
@@ -73,11 +73,11 @@ public class WorkflowEditor extends TextEditor {
         return getVerticalRuler();
     }
 
-    public void updateFoldingStructure(ArrayList positions) {
-        Annotation[] annotations = new Annotation[positions.size()];
-        HashMap newAnnotations = new HashMap();
+    public void updateFoldingStructure(final ArrayList positions) {
+        final Annotation[] annotations = new Annotation[positions.size()];
+        final HashMap newAnnotations = new HashMap();
         for (int i = 0; i < positions.size(); i++) {
-            ProjectionAnnotation annotation = new ProjectionAnnotation();
+            final ProjectionAnnotation annotation = new ProjectionAnnotation();
 
             newAnnotations.put(annotation, positions.get(i));
 
@@ -95,9 +95,9 @@ public class WorkflowEditor extends TextEditor {
     }
 
     @Override
-    protected ISourceViewer createSourceViewer(Composite parent,
-            IVerticalRuler ruler, int styles) {
-        ISourceViewer viewer = new ProjectionViewer(parent, ruler,
+    protected ISourceViewer createSourceViewer(final Composite parent,
+            final IVerticalRuler ruler, final int styles) {
+        final ISourceViewer viewer = new ProjectionViewer(parent, ruler,
                 getOverviewRuler(), isOverviewRulerVisible(), styles);
 
         getSourceViewerDecorationSupport(viewer);

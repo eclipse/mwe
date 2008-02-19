@@ -48,10 +48,10 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
      * next character position - used locally and only valid while
      * {@link #calculatePositions()} is in progress.
      */
-    protected int cNextPos = 0;
+    protected int cNextPos;
 
     /** number of newLines found by {@link #classifyTag()} */
-    protected int cNewLines = 0;
+    protected int cNewLines;
 
     protected char cLastNLChar = ' ';
 
@@ -82,34 +82,34 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
      * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.reconciler.DirtyRegion,
      *      org.eclipse.jface.text.IRegion)
      */
-    public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
+    public void reconcile(final DirtyRegion dirtyRegion,
+            final IRegion subRegion) {
         initialReconcile();
     }
 
     /**
      * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.IRegion)
      */
-    public void reconcile(IRegion partition) {
+    public void reconcile(final IRegion partition) {
         initialReconcile();
     }
 
     /**
      * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#setDocument(org.eclipse.jface.text.IDocument)
      */
-    public void setDocument(IDocument document) {
-        this.fDocument = document;
+    public void setDocument(final IDocument document) {
+        fDocument = document;
 
     }
 
-    public void setEditor(WorkflowEditor editor) {
+    public void setEditor(final WorkflowEditor editor) {
         this.editor = editor;
     }
 
     /**
      * @see org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension#setProgressMonitor(org.eclipse.core.runtime.IProgressMonitor)
      */
-    public void setProgressMonitor(IProgressMonitor monitor) {
-        // TODO Auto-generated method stub
+    public void setProgressMonitor(final IProgressMonitor monitor) {
 
     }
 
@@ -124,7 +124,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 
         try {
             recursiveTokens(0);
-        } catch (BadLocationException e) {
+        } catch (final BadLocationException e) {
             e.printStackTrace();
         }
         // Collections.sort(fPositions, new RangeTokenComparator());
@@ -155,6 +155,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
      * @return the tag classification
      */
     protected int classifyTag() {
+        int retVal = 0;
         try {
             char ch = fDocument.getChar(cNextPos++);
             cNewLines = 0;
@@ -164,22 +165,30 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                 boolean piFlag = false;
                 while (cNextPos < fRangeEnd) {
                     ch = fDocument.getChar(cNextPos++);
-                    if (('>' == ch) && piFlag)
-                        return PI_TAG;
+                    if (('>' == ch) && piFlag) {
+                        retVal = PI_TAG;
+                        break;
+                    }
                     piFlag = ('?' == ch);
                 }
-                return EOR_TAG;
+                if (retVal == 0)
+                    retVal = EOR_TAG;
             }
 
             // comment?
-            if ('!' == ch) {
-                cNextPos++; // must be '-' but we don't care if not
-                cNextPos++; // must be '-' but we don't care if not
+            if (retVal == 0 && '!' == ch) {
+                // must be '-' but we don't care if not
+                cNextPos++;
+                // must be '-' but we don't care if not
+                cNextPos++;
                 int commEnd = 0;
                 while (cNextPos < fRangeEnd) {
                     ch = fDocument.getChar(cNextPos++);
-                    if (('>' == ch) && (commEnd >= 2))
-                        return COMMENT_TAG;
+                    if (('>' == ch) && (commEnd >= 2)) {
+                        retVal = COMMENT_TAG;
+                        break;
+                    }
+
                     if (('\n' == ch) || ('\r' == ch)) {
                         if ((ch == cLastNLChar) || (' ' == cLastNLChar)) {
                             cNewLines++;
@@ -192,23 +201,29 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                         commEnd = 0;
                     }
                 }
-                return EOR_TAG;
+                if (retVal == 0)
+                    retVal = EOR_TAG;
             }
 
-            // consume whitespaces
-            while ((' ' == ch) || ('\t' == ch) || ('\n' == ch) || ('\r' == ch)) {
-                ch = fDocument.getChar(cNextPos++);
-                if (cNextPos > fRangeEnd)
-                    return EOR_TAG;
+            if (retVal == 0) {
+                // consume whitespaces
+                while ((' ' == ch) || ('\t' == ch) || ('\n' == ch)
+                        || ('\r' == ch)) {
+                    ch = fDocument.getChar(cNextPos++);
+                    if (cNextPos > fRangeEnd) {
+                        retVal = EOR_TAG;
+                        break;
+                    }
+                }
             }
 
             // end tag?
-            if ('/' == ch) {
+            if (retVal == 0 && '/' == ch) {
                 while (cNextPos < fRangeEnd) {
                     ch = fDocument.getChar(cNextPos++);
                     if ('>' == ch) {
                         cNewLines += eatToEndOfLine();
-                        return END_TAG;
+                        retVal = END_TAG;
                     }
                     if ('"' == ch) {
                         ch = fDocument.getChar(cNextPos++);
@@ -222,48 +237,61 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                         }
                     }
                 }
-                return EOR_TAG;
+                if (retVal == 0)
+                    retVal = EOR_TAG;
             }
 
-            // start tag or leaf tag?
-            while (cNextPos < fRangeEnd) {
-                ch = fDocument.getChar(cNextPos++);
-                // end tag?
-                s: switch (ch) {
-                    case '/':
-                        while (cNextPos < fRangeEnd) {
-                            ch = fDocument.getChar(cNextPos++);
-                            if ('>' == ch) {
-                                cNewLines += eatToEndOfLine();
-                                return LEAF_TAG;
+            if (retVal == 0) {
+                // start tag or leaf tag?
+                while (cNextPos < fRangeEnd) {
+                    ch = fDocument.getChar(cNextPos++);
+                    // end tag?
+                    s: switch (ch) {
+                        case '/':
+                            while (cNextPos < fRangeEnd) {
+                                ch = fDocument.getChar(cNextPos++);
+                                if ('>' == ch) {
+                                    cNewLines += eatToEndOfLine();
+                                    retVal = LEAF_TAG;
+                                    break;
+                                }
                             }
-                        }
-                        return EOR_TAG;
-                    case '"':
-                        while (cNextPos < fRangeEnd) {
-                            ch = fDocument.getChar(cNextPos++);
-                            if ('"' == ch)
-                                break s;
-                        }
-                        return EOR_TAG;
-                    case '\'':
-                        while (cNextPos < fRangeEnd) {
-                            ch = fDocument.getChar(cNextPos++);
-                            if ('\'' == ch)
-                                break s;
-                        }
-                        return EOR_TAG;
-                    case '>':
-                        cNewLines += eatToEndOfLine();
-                        return START_TAG;
-                    default:
-                        break;
+                            if (retVal == 0)
+                                retVal = EOR_TAG;
+
+                            break;
+                        case '"':
+                            while (cNextPos < fRangeEnd) {
+                                ch = fDocument.getChar(cNextPos++);
+                                if ('"' == ch)
+                                    break s;
+                            }
+                            retVal = EOR_TAG;
+                            break;
+                        case '\'':
+                            while (cNextPos < fRangeEnd) {
+                                ch = fDocument.getChar(cNextPos++);
+                                if ('\'' == ch)
+                                    break s;
+                            }
+                            retVal = EOR_TAG;
+                            break;
+
+                        case '>':
+                            cNewLines += eatToEndOfLine();
+                            retVal = START_TAG;
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
-
             }
-            return EOR_TAG;
+            if (retVal == 0)
+                retVal = EOR_TAG;
 
-        } catch (BadLocationException e) {
+            return retVal;
+        } catch (final BadLocationException e) {
             // should not happen, but we treat it as end of range
             return EOR_TAG;
         }
@@ -310,7 +338,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
         return 0;
     }
 
-    protected void emitPosition(int startOffset, int length) {
+    protected void emitPosition(final int startOffset, final int length) {
         fPositions.add(new Position(startOffset, length));
     }
 
@@ -320,18 +348,18 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
      * @return number of newLines
      * @throws BadLocationException
      */
-    protected int recursiveTokens(int depth) throws BadLocationException {
+    protected int recursiveTokens(final int depth) throws BadLocationException {
         int newLines = 0;
         while (cNextPos < fRangeEnd) {
             while (cNextPos < fRangeEnd) {
-                char ch = fDocument.getChar(cNextPos++);
+                final char ch = fDocument.getChar(cNextPos++);
                 switch (ch) {
                     case '<':
-                        int startOffset = cNextPos - 1;
-                        int startNewLines = newLines;
-                        int classification = classifyTag();
-                        String tagString = fDocument.get(startOffset, Math
-                                .min(cNextPos - startOffset, fRangeEnd
+                        final int startOffset = cNextPos - 1;
+                        final int startNewLines = newLines;
+                        final int classification = classifyTag();
+                        final String tagString = fDocument.get(startOffset,
+                                Math.min(cNextPos - startOffset, fRangeEnd
                                         - startOffset)); // this is to see
                         // where we are in
                         // the debugger

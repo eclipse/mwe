@@ -21,11 +21,11 @@ import org.eclipse.jface.text.rules.WhitespaceRule;
 
 public class WorkflowTagScanner extends RuleBasedScanner {
 
-    public WorkflowTagScanner(ColorManager manager) {
-        IToken string = new Token(new TextAttribute(manager
-                .getColor(IWorkflowColorConstants.STRING)));
+    public WorkflowTagScanner(final ColorManager manager) {
+        final IToken string = new Token(new TextAttribute(manager
+                .getColor(WorkflowColorConstants.STRING)));
 
-        IRule[] rules = new IRule[3];
+        final IRule[] rules = new IRule[3];
 
         // Add rule for double quotes
         rules[0] = new SingleLineRule("\"", "\"", string, '\\');

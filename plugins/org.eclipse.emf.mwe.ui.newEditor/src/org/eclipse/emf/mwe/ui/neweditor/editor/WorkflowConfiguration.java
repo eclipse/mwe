@@ -30,26 +30,25 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
 
     private WorkflowScanner scanner;
 
-    private ColorManager colorManager;
+    private final ColorManager colorManager;
 
-    private WorkflowEditor editor;
+    private final WorkflowEditor editor;
 
-    public WorkflowConfiguration(ColorManager colorManager,
-            WorkflowEditor editor) {
+    public WorkflowConfiguration(final ColorManager colorManager,
+            final WorkflowEditor editor) {
         this.colorManager = colorManager;
         this.editor = editor;
     }
 
     @Override
-    public String[] getConfiguredContentTypes(ISourceViewer sourceViewer) {
+    public String[] getConfiguredContentTypes(final ISourceViewer sourceViewer) {
         return new String[] { IDocument.DEFAULT_CONTENT_TYPE,
-                WorkflowPartitionScanner.XML_COMMENT,
                 WorkflowPartitionScanner.XML_TAG };
     }
 
     @Override
     public ITextDoubleClickStrategy getDoubleClickStrategy(
-            ISourceViewer sourceViewer, String contentType) {
+            final ISourceViewer sourceViewer, final String contentType) {
         if (doubleClickStrategy == null)
             doubleClickStrategy = new WorkflowDoubleClickStrategy();
         return doubleClickStrategy;
@@ -57,8 +56,8 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
 
     @Override
     public IPresentationReconciler getPresentationReconciler(
-            ISourceViewer sourceViewer) {
-        PresentationReconciler reconciler = new PresentationReconciler();
+            final ISourceViewer sourceViewer) {
+        final PresentationReconciler reconciler = new PresentationReconciler();
 
         DefaultDamagerRepairer dr = new DefaultDamagerRepairer(
                 getXMLTagScanner());
@@ -69,9 +68,9 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
         reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
-        NonRuleBasedDamagerRepairer ndr = new NonRuleBasedDamagerRepairer(
+        final NonRuleBasedDamagerRepairer ndr = new NonRuleBasedDamagerRepairer(
                 new TextAttribute(colorManager
-                        .getColor(IWorkflowColorConstants.XML_COMMENT)));
+                        .getColor(WorkflowColorConstants.XML_COMMENT)));
         reconciler.setDamager(ndr, WorkflowPartitionScanner.XML_COMMENT);
         reconciler.setRepairer(ndr, WorkflowPartitionScanner.XML_COMMENT);
 
@@ -79,10 +78,10 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
     }
 
     @Override
-    public IReconciler getReconciler(ISourceViewer sourceViewer) {
+    public IReconciler getReconciler(final ISourceViewer sourceViewer) {
         final WorkflowReconcilingStrategy strategy = new WorkflowReconcilingStrategy();
         strategy.setEditor(editor);
-        MonoReconciler reconciler = new MonoReconciler(strategy, false);
+        final MonoReconciler reconciler = new MonoReconciler(strategy, false);
         return reconciler;
 
     }
@@ -91,7 +90,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         if (scanner == null) {
             scanner = new WorkflowScanner(colorManager);
             scanner.setDefaultReturnToken(new Token(new TextAttribute(
-                    colorManager.getColor(IWorkflowColorConstants.DEFAULT))));
+                    colorManager.getColor(WorkflowColorConstants.DEFAULT))));
         }
         return scanner;
     }
@@ -100,7 +99,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         if (tagScanner == null) {
             tagScanner = new WorkflowTagScanner(colorManager);
             tagScanner.setDefaultReturnToken(new Token(new TextAttribute(
-                    colorManager.getColor(IWorkflowColorConstants.TAG))));
+                    colorManager.getColor(WorkflowColorConstants.TAG))));
         }
         return tagScanner;
     }
