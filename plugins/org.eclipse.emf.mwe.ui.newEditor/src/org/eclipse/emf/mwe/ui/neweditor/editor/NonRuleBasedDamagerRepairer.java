@@ -84,6 +84,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
                 return new Region(start, end - start);
 
             } catch (BadLocationException x) {
+                // do nothing
             }
         }
 
