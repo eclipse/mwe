@@ -17,20 +17,20 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class TypeUtils {
     public static IType findType(final IJavaProject javaProject,
             final String typeName) {
         try {
-            IType t = javaProject.findType(typeName);
-            if ((t == null)
+            IType type = javaProject.findType(typeName);
+            if ((type == null)
                     && (typeName != null && typeName.startsWith("mwe"))) {
-                t = javaProject.findType(typeName.replaceFirst("mwe",
+                type = javaProject.findType(typeName.replaceFirst("mwe",
                         "org.eclipse.emf.mwe"));
             }
-            return t;
+            return type;
         } catch (JavaModelException e) {
             return null;
         }
