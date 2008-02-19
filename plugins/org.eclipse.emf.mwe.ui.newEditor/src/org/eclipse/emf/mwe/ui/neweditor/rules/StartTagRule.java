@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.editor;
+package org.eclipse.emf.mwe.ui.neweditor.rules;
 
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
@@ -17,32 +17,35 @@ import org.eclipse.jface.text.rules.MultiLineRule;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
-public class TagRule extends MultiLineRule {
+public class StartTagRule extends MultiLineRule {
 
-    public TagRule(final IToken token) {
-        super("<", ">", token);
+    public StartTagRule(final IToken token) {
+        this(token, false);
+    }
+
+    protected StartTagRule(final IToken token, final boolean endAsWell) {
+        super("<", endAsWell ? "/>" : ">", token);
     }
 
     @Override
     protected boolean sequenceDetected(final ICharacterScanner scanner,
             final char[] sequence, final boolean eofAllowed) {
+        boolean breakState = false;
         final int c = scanner.read();
         if (sequence[0] == '<') {
             if (c == '?') {
-                // processing instruction - abort
                 scanner.unread();
-                return false;
-            }
-            if (c == '!') {
+                breakState = true;
+            } else if (c == '!') {
                 scanner.unread();
-                // comment - abort
-                return false;
+                breakState = true;
             }
         } else if (sequence[0] == '>') {
             scanner.unread();
         }
-        return super.sequenceDetected(scanner, sequence, eofAllowed);
+        return !breakState
+                && super.sequenceDetected(scanner, sequence, eofAllowed);
     }
 }

@@ -27,6 +27,10 @@ import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.editors.text.TextEditor;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.3 $
+ */
 public class WorkflowEditor extends TextEditor {
 
     private ProjectionAnnotationModel annotationModel;

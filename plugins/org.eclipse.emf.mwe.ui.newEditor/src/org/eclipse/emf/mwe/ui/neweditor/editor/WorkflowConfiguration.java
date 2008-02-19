@@ -11,6 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.editor;
 
+import org.eclipse.emf.mwe.ui.neweditor.scanners.WorkflowPartitionScanner;
+import org.eclipse.emf.mwe.ui.neweditor.scanners.WorkflowScanner;
+import org.eclipse.emf.mwe.ui.neweditor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.TextAttribute;
@@ -23,6 +26,10 @@ import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.3 $
+ */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowDoubleClickStrategy doubleClickStrategy;
 
@@ -43,7 +50,12 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
     @Override
     public String[] getConfiguredContentTypes(final ISourceViewer sourceViewer) {
         return new String[] { IDocument.DEFAULT_CONTENT_TYPE,
-                WorkflowPartitionScanner.XML_TAG };
+                WorkflowPartitionScanner.XML_START_TAG,
+                WorkflowPartitionScanner.XML_END_TAG,
+                WorkflowPartitionScanner.XML_PROCESS_INSTRUCTION,
+                WorkflowPartitionScanner.XML_DOCTYPE,
+                WorkflowPartitionScanner.XML_CDATA,
+                WorkflowPartitionScanner.XML_TEXT };
     }
 
     @Override
@@ -61,8 +73,8 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
 
         DefaultDamagerRepairer dr = new DefaultDamagerRepairer(
                 getXMLTagScanner());
-        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_TAG);
-        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_TAG);
+        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_START_TAG);
+        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_START_TAG);
 
         dr = new DefaultDamagerRepairer(getXMLScanner());
         reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);

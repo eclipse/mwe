@@ -19,6 +19,10 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.3 $
+ */
 public class ColorManager {
 
     protected Map fColorTable = new HashMap(10);

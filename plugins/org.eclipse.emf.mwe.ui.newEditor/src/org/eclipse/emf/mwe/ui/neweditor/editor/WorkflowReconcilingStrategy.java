@@ -23,6 +23,10 @@ import org.eclipse.jface.text.reconciler.IReconcilingStrategy;
 import org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension;
 import org.eclipse.swt.widgets.Display;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.3 $
+ */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
         IReconcilingStrategyExtension {
 
@@ -114,7 +118,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
     }
 
     /**
-     * uses {@link #fDocument}, {@link #fOffset} and {@link #fRangeEnd} to
+     * uses {@link #document}, {@link #fOffset} and {@link #fRangeEnd} to
      * calculate {@link #fPositions}. About syntax errors: this method is not a
      * validator, it is useful.
      */
@@ -166,13 +170,13 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                 while (cNextPos < fRangeEnd) {
                     ch = fDocument.getChar(cNextPos++);
                     if (('>' == ch) && piFlag) {
-                        retVal = PI_TAG;
+                        retVal = WorkflowReconcilingStrategy.PI_TAG;
                         break;
                     }
                     piFlag = ('?' == ch);
                 }
                 if (retVal == 0)
-                    retVal = EOR_TAG;
+                    retVal = WorkflowReconcilingStrategy.EOR_TAG;
             }
 
             // comment?
@@ -185,7 +189,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                 while (cNextPos < fRangeEnd) {
                     ch = fDocument.getChar(cNextPos++);
                     if (('>' == ch) && (commEnd >= 2)) {
-                        retVal = COMMENT_TAG;
+                        retVal = WorkflowReconcilingStrategy.COMMENT_TAG;
                         break;
                     }
 
@@ -202,7 +206,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                     }
                 }
                 if (retVal == 0)
-                    retVal = EOR_TAG;
+                    retVal = WorkflowReconcilingStrategy.EOR_TAG;
             }
 
             if (retVal == 0) {
@@ -211,7 +215,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                         || ('\r' == ch)) {
                     ch = fDocument.getChar(cNextPos++);
                     if (cNextPos > fRangeEnd) {
-                        retVal = EOR_TAG;
+                        retVal = WorkflowReconcilingStrategy.EOR_TAG;
                         break;
                     }
                 }
@@ -223,7 +227,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                     ch = fDocument.getChar(cNextPos++);
                     if ('>' == ch) {
                         cNewLines += eatToEndOfLine();
-                        retVal = END_TAG;
+                        retVal = WorkflowReconcilingStrategy.END_TAG;
                     }
                     if ('"' == ch) {
                         ch = fDocument.getChar(cNextPos++);
@@ -238,7 +242,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                     }
                 }
                 if (retVal == 0)
-                    retVal = EOR_TAG;
+                    retVal = WorkflowReconcilingStrategy.EOR_TAG;
             }
 
             if (retVal == 0) {
@@ -252,12 +256,12 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                                 ch = fDocument.getChar(cNextPos++);
                                 if ('>' == ch) {
                                     cNewLines += eatToEndOfLine();
-                                    retVal = LEAF_TAG;
+                                    retVal = WorkflowReconcilingStrategy.LEAF_TAG;
                                     break;
                                 }
                             }
                             if (retVal == 0)
-                                retVal = EOR_TAG;
+                                retVal = WorkflowReconcilingStrategy.EOR_TAG;
 
                             break;
                         case '"':
@@ -266,7 +270,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                                 if ('"' == ch)
                                     break s;
                             }
-                            retVal = EOR_TAG;
+                            retVal = WorkflowReconcilingStrategy.EOR_TAG;
                             break;
                         case '\'':
                             while (cNextPos < fRangeEnd) {
@@ -274,12 +278,12 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                                 if ('\'' == ch)
                                     break s;
                             }
-                            retVal = EOR_TAG;
+                            retVal = WorkflowReconcilingStrategy.EOR_TAG;
                             break;
 
                         case '>':
                             cNewLines += eatToEndOfLine();
-                            retVal = START_TAG;
+                            retVal = WorkflowReconcilingStrategy.START_TAG;
                             break;
                         default:
                             break;
@@ -288,12 +292,12 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
                 }
             }
             if (retVal == 0)
-                retVal = EOR_TAG;
+                retVal = WorkflowReconcilingStrategy.EOR_TAG;
 
             return retVal;
         } catch (final BadLocationException e) {
             // should not happen, but we treat it as end of range
-            return EOR_TAG;
+            return WorkflowReconcilingStrategy.EOR_TAG;
         }
     }
 

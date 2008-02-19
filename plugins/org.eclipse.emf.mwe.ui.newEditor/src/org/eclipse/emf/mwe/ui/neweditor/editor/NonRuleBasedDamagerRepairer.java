@@ -24,17 +24,21 @@ import org.eclipse.jface.text.presentation.IPresentationDamager;
 import org.eclipse.jface.text.presentation.IPresentationRepairer;
 import org.eclipse.swt.custom.StyleRange;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.4 $
+ */
 public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
         IPresentationRepairer {
 
     /** The document this object works on */
-    protected IDocument fDocument;
+    protected IDocument document;
 
     /**
      * The default text attribute if non is returned as data by the current
      * token
      */
-    protected TextAttribute fDefaultTextAttribute;
+    protected TextAttribute defaultTextAttribute;
 
     /**
      * Constructor for NonRuleBasedDamagerRepairer.
@@ -42,7 +46,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
     public NonRuleBasedDamagerRepairer(final TextAttribute defaultTextAttribute) {
         Assert.isNotNull(defaultTextAttribute);
 
-        fDefaultTextAttribute = defaultTextAttribute;
+        this.defaultTextAttribute = defaultTextAttribute;
     }
 
     /**
@@ -52,7 +56,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
     public void createPresentation(final TextPresentation presentation,
             final ITypedRegion region) {
         addRange(presentation, region.getOffset(), region.getLength(),
-                fDefaultTextAttribute);
+                defaultTextAttribute);
     }
 
     /**
@@ -64,8 +68,8 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
         if (!documentPartitioningChanged) {
             try {
 
-                final IRegion info = fDocument
-                        .getLineInformationOfOffset(event.getOffset());
+                final IRegion info = document.getLineInformationOfOffset(event
+                        .getOffset());
                 final int start = Math.max(partition.getOffset(), info
                         .getOffset());
 
@@ -96,7 +100,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      * @see IPresentationRepairer#setDocument(IDocument)
      */
     public void setDocument(final IDocument document) {
-        fDocument = document;
+        this.document = document;
     }
 
     /**
@@ -131,16 +135,16 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
      */
     protected int endOfLineOf(final int offset) throws BadLocationException {
 
-        IRegion info = fDocument.getLineInformationOfOffset(offset);
+        IRegion info = document.getLineInformationOfOffset(offset);
         if (offset <= info.getOffset() + info.getLength())
             return info.getOffset() + info.getLength();
 
-        final int line = fDocument.getLineOfOffset(offset);
+        final int line = document.getLineOfOffset(offset);
         try {
-            info = fDocument.getLineInformation(line + 1);
+            info = document.getLineInformation(line + 1);
             return info.getOffset() + info.getLength();
         } catch (final BadLocationException x) {
-            return fDocument.getLength();
+            return document.getLength();
         }
     }
 }

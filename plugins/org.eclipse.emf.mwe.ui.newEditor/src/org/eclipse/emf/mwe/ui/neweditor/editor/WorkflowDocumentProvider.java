@@ -12,11 +12,16 @@
 package org.eclipse.emf.mwe.ui.neweditor.editor;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.ui.neweditor.scanners.WorkflowPartitionScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IDocumentPartitioner;
 import org.eclipse.jface.text.rules.FastPartitioner;
 import org.eclipse.ui.editors.text.FileDocumentProvider;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.3 $
+ */
 public class WorkflowDocumentProvider extends FileDocumentProvider {
 
     @Override
@@ -26,7 +31,12 @@ public class WorkflowDocumentProvider extends FileDocumentProvider {
         if (document != null) {
             final IDocumentPartitioner partitioner = new FastPartitioner(
                     new WorkflowPartitionScanner(), new String[] {
-                            WorkflowPartitionScanner.XML_TAG,
+                            WorkflowPartitionScanner.XML_START_TAG,
+                            WorkflowPartitionScanner.XML_END_TAG,
+                            WorkflowPartitionScanner.XML_PROCESS_INSTRUCTION,
+                            WorkflowPartitionScanner.XML_DOCTYPE,
+                            WorkflowPartitionScanner.XML_CDATA,
+                            WorkflowPartitionScanner.XML_TEXT,
                             WorkflowPartitionScanner.XML_COMMENT });
             partitioner.connect(document);
             document.setDocumentPartitioner(partitioner);
