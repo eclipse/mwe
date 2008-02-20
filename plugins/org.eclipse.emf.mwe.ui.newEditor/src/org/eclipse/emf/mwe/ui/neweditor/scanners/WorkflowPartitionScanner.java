@@ -22,14 +22,14 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowPartitionScanner extends RuleBasedPartitionScanner {
     public static final String XML_START_TAG = "__xml_start_tag";
 
     public static final String XML_END_TAG = "__xml_end_tag";
 
-    public static final String XML_PROCESS_INSTRUCTION = "__xml_process_instruction";
+    public static final String XML_PROCESSING_INSTRUCTION = "__xml_processing_instruction";
 
     public static final String XML_DOCTYPE = "__xml_doctype";
 
@@ -44,7 +44,7 @@ public class WorkflowPartitionScanner extends RuleBasedPartitionScanner {
         final IToken xmlComment = new Token(
                 WorkflowPartitionScanner.XML_COMMENT);
         final IToken xmlProcessingInstruction = new Token(
-                WorkflowPartitionScanner.XML_PROCESS_INSTRUCTION);
+                WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
         final IToken startTag = new Token(
                 WorkflowPartitionScanner.XML_START_TAG);
         final IToken endTag = new Token(WorkflowPartitionScanner.XML_END_TAG);

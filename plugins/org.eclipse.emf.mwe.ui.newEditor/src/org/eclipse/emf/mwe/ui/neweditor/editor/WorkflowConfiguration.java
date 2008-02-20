@@ -28,7 +28,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowDoubleClickStrategy doubleClickStrategy;
@@ -52,7 +52,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         return new String[] { IDocument.DEFAULT_CONTENT_TYPE,
                 WorkflowPartitionScanner.XML_START_TAG,
                 WorkflowPartitionScanner.XML_END_TAG,
-                WorkflowPartitionScanner.XML_PROCESS_INSTRUCTION,
+                WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
                 WorkflowPartitionScanner.XML_DOCTYPE,
                 WorkflowPartitionScanner.XML_CDATA,
                 WorkflowPartitionScanner.XML_TEXT };
