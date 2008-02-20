@@ -28,7 +28,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowDoubleClickStrategy doubleClickStrategy;
@@ -72,11 +72,11 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         final PresentationReconciler reconciler = new PresentationReconciler();
 
         DefaultDamagerRepairer dr = new DefaultDamagerRepairer(
-                getXMLTagScanner());
+                getWorkflowTagScanner());
         reconciler.setDamager(dr, WorkflowPartitionScanner.XML_START_TAG);
         reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_START_TAG);
 
-        dr = new DefaultDamagerRepairer(getXMLScanner());
+        dr = new DefaultDamagerRepairer(getWorkflowScanner());
         reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
         reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
@@ -98,7 +98,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
 
     }
 
-    protected WorkflowScanner getXMLScanner() {
+    protected WorkflowScanner getWorkflowScanner() {
         if (scanner == null) {
             scanner = new WorkflowScanner(colorManager);
             scanner.setDefaultReturnToken(new Token(new TextAttribute(
@@ -107,7 +107,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         return scanner;
     }
 
-    protected WorkflowTagScanner getXMLTagScanner() {
+    protected WorkflowTagScanner getWorkflowTagScanner() {
         if (tagScanner == null) {
             tagScanner = new WorkflowTagScanner(colorManager);
             tagScanner.setDefaultReturnToken(new Token(new TextAttribute(
