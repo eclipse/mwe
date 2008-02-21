@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
+import org.eclipse.emf.mwe.ui.neweditor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -82,7 +83,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
         this.input = input;
     }
 
-    protected WorkflowOutlineElement[] getChildren(final Object parentElement) {
+    protected WorkflowElement[] getChildren(final Object parentElement) {
         // TODO Implement
         return null;
     }
@@ -128,14 +129,14 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
             }
 
             public Image getImage(final Object element) {
-                if (element instanceof WorkflowOutlineElement)
-                    return ((WorkflowOutlineElement) element).getImage();
+                if (element instanceof WorkflowElement)
+                    return ((WorkflowElement) element).getImage();
                 return null;
             }
 
             public String getText(final Object element) {
-                if (element instanceof WorkflowOutlineElement)
-                    return ((WorkflowOutlineElement) element).getLabel();
+                if (element instanceof WorkflowElement)
+                    return ((WorkflowElement) element).getLabel();
                 return null;
             }
 
@@ -157,8 +158,8 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                 final Object segment = ((IStructuredSelection) selection)
                         .getFirstElement();
                 if (segment != null
-                        && segment instanceof WorkflowOutlineElement) {
-                    final WorkflowOutlineElement ext = (WorkflowOutlineElement) segment;
+                        && segment instanceof WorkflowElement) {
+                    final WorkflowElement ext = (WorkflowElement) segment;
                     final int start = ext.getStart();
                     final int length = ext.getLength();
                     if (start >= 0) {

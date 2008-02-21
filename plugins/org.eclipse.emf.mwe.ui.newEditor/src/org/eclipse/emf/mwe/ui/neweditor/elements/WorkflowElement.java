@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.outline;
+package org.eclipse.emf.mwe.ui.neweditor.elements;
 
 import org.eclipse.swt.graphics.Image;
 
@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
  * @version $Revision: 1.1 $
  */
 
-public class WorkflowOutlineElement {
+public class WorkflowElement {
 
     private String label;
 
@@ -29,11 +29,11 @@ public class WorkflowOutlineElement {
 
     private Image image;
 
-    public WorkflowOutlineElement(final String label, final int start, final int length) {
+    public WorkflowElement(final String label, final int start, final int length) {
         this(label, start, length, null);
     }
 
-    public WorkflowOutlineElement(final String label, final int start,
+    public WorkflowElement(final String label, final int start,
             final int length, final Image image) {
         this.label = label;
         this.start = start;
