@@ -11,6 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.format;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.2 $
+ */
 public class DocTypeFormattingStrategy extends DefaultFormattingStrategy {
 
     @Override
