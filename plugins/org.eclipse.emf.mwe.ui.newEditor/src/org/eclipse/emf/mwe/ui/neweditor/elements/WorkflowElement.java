@@ -22,7 +22,7 @@ import org.eclipse.swt.graphics.Image;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowElement {
@@ -187,7 +187,8 @@ public class WorkflowElement {
     /**
      * Checks if the current element has any attributes attached.
      * 
-     * @return <code>true</code> if current elements has attributes.
+     * @return <code>true</code> if current elements has attributes, otherwise
+     *         <code>false</code>.
      */
     public boolean hasAttributes() {
         return (attributeCount() > 0);
@@ -206,7 +207,8 @@ public class WorkflowElement {
     /**
      * Checks if the current element is a leaf element.
      * 
-     * @return <code>true</code> if current element has no child elements.
+     * @return <code>true</code> if current element has no child elements,
+     *         otherwise <code>false</code>.
      */
     public boolean isLeaf() {
         return (childrenCount() == 0);
