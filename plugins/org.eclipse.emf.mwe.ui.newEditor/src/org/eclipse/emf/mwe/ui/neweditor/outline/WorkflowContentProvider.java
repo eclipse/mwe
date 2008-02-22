@@ -13,10 +13,11 @@ package org.eclipse.emf.mwe.ui.neweditor.outline;
 
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.ui.IEditorInput;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentProvider implements ITreeContentProvider {
 
@@ -55,4 +56,7 @@ public class WorkflowContentProvider implements ITreeContentProvider {
         // do nothing
     }
 
+    public void setInput(final IEditorInput input) {
+        // do nothing
+    }
 }
