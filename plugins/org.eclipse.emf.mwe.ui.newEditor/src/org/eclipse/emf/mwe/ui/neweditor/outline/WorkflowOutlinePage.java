@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
-public class WorkflowContentOutlinePage extends ContentOutlinePage {
+public class WorkflowOutlinePage extends ContentOutlinePage {
 
     private final TextEditor editor;
 
@@ -35,7 +35,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 
     private ISelection selection;
 
-    public WorkflowContentOutlinePage(final TextEditor editor) {
+    public WorkflowOutlinePage(final TextEditor editor) {
         super();
         this.editor = editor;
     }
@@ -74,9 +74,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     public final void selectionChanged(final SelectionChangedEvent anEvent) {
         super.selectionChanged(anEvent);
 
-        this.selection = anEvent.getSelection();
+        selection = anEvent.getSelection();
 
-        this.updateHighlight();
+        updateHighlight();
     }
 
     public void setInput(final IEditorInput input) {
@@ -96,8 +96,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
             }
 
             public Object[] getChildren(final Object parentElement) {
-                return WorkflowContentOutlinePage.this
-                        .getChildren(parentElement);
+                return WorkflowOutlinePage.this.getChildren(parentElement);
             }
 
             public Object[] getElements(final Object inputElement) {
@@ -155,10 +154,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
             if (selection.isEmpty()) {
                 editor.resetHighlightRange();
             } else {
-                final Object segment = ((IStructuredSelection) selection)
-                        .getFirstElement();
-                if (segment != null
-                        && segment instanceof WorkflowElement) {
+                final Object segment =
+                        ((IStructuredSelection) selection).getFirstElement();
+                if (segment != null && segment instanceof WorkflowElement) {
                     final WorkflowElement ext = (WorkflowElement) segment;
                     final int start = ext.getStart();
                     final int length = ext.getLength();
