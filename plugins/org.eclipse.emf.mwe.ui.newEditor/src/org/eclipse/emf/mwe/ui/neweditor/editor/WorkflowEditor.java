@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
+import org.eclipse.emf.mwe.ui.neweditor.outline.WorkflowOutlinePage;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.source.Annotation;
@@ -26,10 +27,11 @@ import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -42,6 +44,8 @@ public class WorkflowEditor extends TextEditor {
     private ProjectionSupport projectSupport;
 
     private BreakpointActionGroup actionGroup;
+
+    private WorkflowOutlinePage outlinePage;
 
     public WorkflowEditor() {
         super();
@@ -56,8 +60,9 @@ public class WorkflowEditor extends TextEditor {
         super.createPartControl(parent);
         final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
 
-        projectSupport = new ProjectionSupport(viewer, getAnnotationAccess(),
-                getSharedColors());
+        projectSupport =
+                new ProjectionSupport(viewer, getAnnotationAccess(),
+                        getSharedColors());
         projectSupport.install();
         viewer.doOperation(ProjectionViewer.TOGGLE);
         annotationModel = viewer.getProjectionAnnotationModel();
@@ -67,6 +72,24 @@ public class WorkflowEditor extends TextEditor {
     public void dispose() {
         colorManager.dispose();
         super.dispose();
+    }
+
+    /**
+     * This automatically generated method overrides the implementation of
+     * <code>getAdapter</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
+     */
+    @Override
+    public Object getAdapter(final Class adapter) {
+        if (IContentOutlinePage.class.equals(adapter)) {
+            if (outlinePage == null) {
+                outlinePage = new WorkflowOutlinePage(this);
+                outlinePage.setInput(getEditorInput());
+            }
+            return outlinePage;
+        }
+        return super.getAdapter(adapter);
     }
 
     public ISourceViewer internalGetSourceViewer() {
@@ -101,8 +124,9 @@ public class WorkflowEditor extends TextEditor {
     @Override
     protected ISourceViewer createSourceViewer(final Composite parent,
             final IVerticalRuler ruler, final int styles) {
-        final ISourceViewer viewer = new ProjectionViewer(parent, ruler,
-                getOverviewRuler(), isOverviewRulerVisible(), styles);
+        final ISourceViewer viewer =
+                new ProjectionViewer(parent, ruler, getOverviewRuler(),
+                        isOverviewRulerVisible(), styles);
 
         getSourceViewerDecorationSupport(viewer);
         return viewer;
