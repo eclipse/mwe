@@ -13,14 +13,11 @@ package org.eclipse.emf.mwe.ui.neweditor.outline;
 
 import org.eclipse.emf.mwe.ui.neweditor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
@@ -89,64 +86,11 @@ public class WorkflowOutlinePage extends ContentOutlinePage {
     }
 
     private ITreeContentProvider getContentProvider() {
-        return new ITreeContentProvider() {
-
-            public void dispose() {
-                // do nothing
-            }
-
-            public Object[] getChildren(final Object parentElement) {
-                return WorkflowOutlinePage.this.getChildren(parentElement);
-            }
-
-            public Object[] getElements(final Object inputElement) {
-                return getChildren(inputElement);
-            }
-
-            public Object getParent(final Object element) {
-                return null;
-            }
-
-            public boolean hasChildren(final Object element) {
-                return getChildren(element).length > 0;
-            }
-
-            public void inputChanged(final Viewer viewer,
-                    final Object oldInput, final Object newInput) {
-                // do nothing
-            }
-        };
+        return new WorkflowContentProvider(this, getTreeViewer());
     }
 
     private ILabelProvider getLabelProvider() {
-        return new ILabelProvider() {
-
-            public void addListener(final ILabelProviderListener listener) {
-            }
-
-            public void dispose() {
-            }
-
-            public Image getImage(final Object element) {
-                if (element instanceof WorkflowElement)
-                    return ((WorkflowElement) element).getImage();
-                return null;
-            }
-
-            public String getText(final Object element) {
-                if (element instanceof WorkflowElement)
-                    return ((WorkflowElement) element).getLabel();
-                return null;
-            }
-
-            public boolean isLabelProperty(final Object element,
-                    final String property) {
-                return false;
-            }
-
-            public void removeListener(final ILabelProviderListener listener) {
-            }
-        };
+        return new WorkflowLabelProvider();
     }
 
     private void updateHighlight() {
