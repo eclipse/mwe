@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowPackage.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowPackage.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow;
 
@@ -97,6 +97,43 @@ public interface WorkflowPackage extends EPackage {
     int WORKFLOW_FILE_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link workflow.impl.WorkflowElementImpl <em>Element</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see workflow.impl.WorkflowElementImpl
+     * @see workflow.impl.WorkflowPackageImpl#getWorkflowElement()
+     * @generated
+     */
+    int WORKFLOW_ELEMENT = 1;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_ELEMENT__OFFSET = 0;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_ELEMENT__LENGTH = 1;
+
+    /**
+     * The number of structural features of the '<em>Element</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_ELEMENT_FEATURE_COUNT = 2;
+
+    /**
      * The meta object id for the '{@link workflow.impl.PropertyImpl <em>Property</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -104,7 +141,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getProperty()
      * @generated
      */
-    int PROPERTY = 1;
+    int PROPERTY = 2;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__LENGTH = WORKFLOW_ELEMENT__LENGTH;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -113,7 +168,7 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PROPERTY_FEATURE_COUNT = 0;
+    int PROPERTY_FEATURE_COUNT = WORKFLOW_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link workflow.impl.SimplePropertyImpl <em>Simple Property</em>}' class.
@@ -123,7 +178,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getSimpleProperty()
      * @generated
      */
-    int SIMPLE_PROPERTY = 2;
+    int SIMPLE_PROPERTY = 3;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_PROPERTY__LENGTH = PROPERTY__LENGTH;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -160,7 +233,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getFileProperty()
      * @generated
      */
-    int FILE_PROPERTY = 3;
+    int FILE_PROPERTY = 4;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_PROPERTY__LENGTH = PROPERTY__LENGTH;
 
     /**
      * The feature id for the '<em><b>File</b></em>' attribute.
@@ -188,7 +279,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getAssignment()
      * @generated
      */
-    int ASSIGNMENT = 4;
+    int ASSIGNMENT = 5;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSIGNMENT__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSIGNMENT__LENGTH = WORKFLOW_ELEMENT__LENGTH;
 
     /**
      * The feature id for the '<em><b>To Assign To</b></em>' attribute.
@@ -197,7 +306,7 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSIGNMENT__TO_ASSIGN_TO = 0;
+    int ASSIGNMENT__TO_ASSIGN_TO = WORKFLOW_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -206,7 +315,7 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSIGNMENT__VALUE = 1;
+    int ASSIGNMENT__VALUE = WORKFLOW_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Assignment</em>' class.
@@ -215,7 +324,7 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ASSIGNMENT_FEATURE_COUNT = 2;
+    int ASSIGNMENT_FEATURE_COUNT = WORKFLOW_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link workflow.impl.AbstractValueImpl <em>Abstract Value</em>}' class.
@@ -225,7 +334,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getAbstractValue()
      * @generated
      */
-    int ABSTRACT_VALUE = 5;
+    int ABSTRACT_VALUE = 6;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_VALUE__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_VALUE__LENGTH = WORKFLOW_ELEMENT__LENGTH;
 
     /**
      * The number of structural features of the '<em>Abstract Value</em>' class.
@@ -234,7 +361,7 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int ABSTRACT_VALUE_FEATURE_COUNT = 0;
+    int ABSTRACT_VALUE_FEATURE_COUNT = WORKFLOW_ELEMENT_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link workflow.impl.ComplexValueImpl <em>Complex Value</em>}' class.
@@ -244,7 +371,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getComplexValue()
      * @generated
      */
-    int COMPLEX_VALUE = 6;
+    int COMPLEX_VALUE = 7;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPLEX_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPLEX_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -281,7 +426,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getSimpleValue()
      * @generated
      */
-    int SIMPLE_VALUE = 7;
+    int SIMPLE_VALUE = 8;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
 
     /**
      * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -309,7 +472,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getObjectValue()
      * @generated
      */
-    int OBJECT_VALUE = 8;
+    int OBJECT_VALUE = 9;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBJECT_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBJECT_VALUE__LENGTH = COMPLEX_VALUE__LENGTH;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -355,7 +536,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getReferencedValue()
      * @generated
      */
-    int REFERENCED_VALUE = 9;
+    int REFERENCED_VALUE = 10;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCED_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCED_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
 
     /**
      * The feature id for the '<em><b>Ref</b></em>' attribute.
@@ -383,7 +582,25 @@ public interface WorkflowPackage extends EPackage {
      * @see workflow.impl.WorkflowPackageImpl#getFileValue()
      * @generated
      */
-    int FILE_VALUE = 10;
+    int FILE_VALUE = 11;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Length</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_VALUE__LENGTH = COMPLEX_VALUE__LENGTH;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -453,6 +670,38 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      */
     EReference getWorkflowFile_Properties();
+
+    /**
+     * Returns the meta object for class '{@link workflow.WorkflowElement <em>Element</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Element</em>'.
+     * @see workflow.WorkflowElement
+     * @generated
+     */
+    EClass getWorkflowElement();
+
+    /**
+     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getOffset <em>Offset</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Offset</em>'.
+     * @see workflow.WorkflowElement#getOffset()
+     * @see #getWorkflowElement()
+     * @generated
+     */
+    EAttribute getWorkflowElement_Offset();
+
+    /**
+     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getLength <em>Length</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Length</em>'.
+     * @see workflow.WorkflowElement#getLength()
+     * @see #getWorkflowElement()
+     * @generated
+     */
+    EAttribute getWorkflowElement_Length();
 
     /**
      * Returns the meta object for class '{@link workflow.Property <em>Property</em>}'.
@@ -722,6 +971,32 @@ public interface WorkflowPackage extends EPackage {
          * @generated
          */
         EReference WORKFLOW_FILE__PROPERTIES = eINSTANCE.getWorkflowFile_Properties();
+
+        /**
+         * The meta object literal for the '{@link workflow.impl.WorkflowElementImpl <em>Element</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see workflow.impl.WorkflowElementImpl
+         * @see workflow.impl.WorkflowPackageImpl#getWorkflowElement()
+         * @generated
+         */
+        EClass WORKFLOW_ELEMENT = eINSTANCE.getWorkflowElement();
+
+        /**
+         * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute WORKFLOW_ELEMENT__OFFSET = eINSTANCE.getWorkflowElement_Offset();
+
+        /**
+         * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute WORKFLOW_ELEMENT__LENGTH = eINSTANCE.getWorkflowElement_Length();
 
         /**
          * The meta object literal for the '{@link workflow.impl.PropertyImpl <em>Property</em>}' class.

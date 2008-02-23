@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowPackageImpl.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowPackageImpl.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -23,6 +23,7 @@ import workflow.Property;
 import workflow.ReferencedValue;
 import workflow.SimpleProperty;
 import workflow.SimpleValue;
+import workflow.WorkflowElement;
 import workflow.WorkflowFactory;
 import workflow.WorkflowFile;
 import workflow.WorkflowPackage;
@@ -40,6 +41,13 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
      * @generated
      */
     private EClass workflowFileEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass workflowElementEClass = null;
 
     /**
      * <!-- begin-user-doc -->
@@ -204,6 +212,33 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
      */
     public EReference getWorkflowFile_Properties() {
         return (EReference)workflowFileEClass.getEStructuralFeatures().get(1);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getWorkflowElement() {
+        return workflowElementEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getWorkflowElement_Offset() {
+        return (EAttribute)workflowElementEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getWorkflowElement_Length() {
+        return (EAttribute)workflowElementEClass.getEStructuralFeatures().get(1);
     }
 
     /**
@@ -427,6 +462,10 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
         createEReference(workflowFileEClass, WORKFLOW_FILE__ASSIGNMENT);
         createEReference(workflowFileEClass, WORKFLOW_FILE__PROPERTIES);
 
+        workflowElementEClass = createEClass(WORKFLOW_ELEMENT);
+        createEAttribute(workflowElementEClass, WORKFLOW_ELEMENT__OFFSET);
+        createEAttribute(workflowElementEClass, WORKFLOW_ELEMENT__LENGTH);
+
         propertyEClass = createEClass(PROPERTY);
 
         simplePropertyEClass = createEClass(SIMPLE_PROPERTY);
@@ -487,8 +526,11 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
         // Set bounds for type parameters
 
         // Add supertypes to classes
+        propertyEClass.getESuperTypes().add(this.getWorkflowElement());
         simplePropertyEClass.getESuperTypes().add(this.getProperty());
         filePropertyEClass.getESuperTypes().add(this.getProperty());
+        assignmentEClass.getESuperTypes().add(this.getWorkflowElement());
+        abstractValueEClass.getESuperTypes().add(this.getWorkflowElement());
         complexValueEClass.getESuperTypes().add(this.getAbstractValue());
         simpleValueEClass.getESuperTypes().add(this.getAbstractValue());
         objectValueEClass.getESuperTypes().add(this.getComplexValue());
@@ -499,6 +541,10 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
         initEClass(workflowFileEClass, WorkflowFile.class, "WorkflowFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getWorkflowFile_Assignment(), this.getAssignment(), null, "assignment", null, 0, 1, WorkflowFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEReference(getWorkflowFile_Properties(), this.getProperty(), null, "properties", null, 0, -1, WorkflowFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(workflowElementEClass, WorkflowElement.class, "WorkflowElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getWorkflowElement_Offset(), ecorePackage.getEInt(), "offset", null, 0, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getWorkflowElement_Length(), ecorePackage.getEInt(), "length", null, 0, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

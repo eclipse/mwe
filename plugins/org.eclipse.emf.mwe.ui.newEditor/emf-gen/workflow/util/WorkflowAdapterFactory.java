@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowAdapterFactory.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowAdapterFactory.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.util;
 
@@ -76,6 +76,10 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
                 return createWorkflowFileAdapter();
             }
             @Override
+            public Adapter caseWorkflowElement(WorkflowElement object) {
+                return createWorkflowElementAdapter();
+            }
+            @Override
             public Adapter caseProperty(Property object) {
                 return createPropertyAdapter();
             }
@@ -146,6 +150,20 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createWorkflowFileAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link workflow.WorkflowElement <em>Element</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see workflow.WorkflowElement
+     * @generated
+     */
+    public Adapter createWorkflowElementAdapter() {
         return null;
     }
 

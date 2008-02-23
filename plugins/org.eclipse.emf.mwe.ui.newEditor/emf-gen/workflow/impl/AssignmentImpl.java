@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AssignmentImpl.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: AssignmentImpl.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import workflow.AbstractValue;
 import workflow.Assignment;
@@ -33,7 +32,7 @@ import workflow.WorkflowPackage;
  *
  * @generated
  */
-public class AssignmentImpl extends EObjectImpl implements Assignment {
+public class AssignmentImpl extends WorkflowElementImpl implements Assignment {
     /**
      * The default value of the '{@link #getToAssignTo() <em>To Assign To</em>}' attribute.
      * <!-- begin-user-doc -->

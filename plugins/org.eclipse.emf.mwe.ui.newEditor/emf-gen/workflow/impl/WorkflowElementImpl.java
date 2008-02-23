@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimplePropertyImpl.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: WorkflowElementImpl.java,v 1.1 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -11,71 +11,72 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import workflow.SimpleProperty;
+import workflow.WorkflowElement;
 import workflow.WorkflowPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Simple Property</b></em>'.
+ * An implementation of the model object '<em><b>Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link workflow.impl.SimplePropertyImpl#getName <em>Name</em>}</li>
- *   <li>{@link workflow.impl.SimplePropertyImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link workflow.impl.WorkflowElementImpl#getOffset <em>Offset</em>}</li>
+ *   <li>{@link workflow.impl.WorkflowElementImpl#getLength <em>Length</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
+public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement {
     /**
-     * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getOffset()
      * @generated
      * @ordered
      */
-    protected static final String NAME_EDEFAULT = null;
+    protected static final int OFFSET_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+     * The cached value of the '{@link #getOffset() <em>Offset</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getName()
+     * @see #getOffset()
      * @generated
      * @ordered
      */
-    protected String name = NAME_EDEFAULT;
+    protected int offset = OFFSET_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
+     * @see #getLength()
      * @generated
      * @ordered
      */
-    protected static final String VALUE_EDEFAULT = null;
+    protected static final int LENGTH_EDEFAULT = 0;
 
     /**
-     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getValue()
+     * @see #getLength()
      * @generated
      * @ordered
      */
-    protected String value = VALUE_EDEFAULT;
+    protected int length = LENGTH_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected SimplePropertyImpl() {
+    protected WorkflowElementImpl() {
         super();
     }
 
@@ -86,7 +87,7 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
      */
     @Override
     protected EClass eStaticClass() {
-        return WorkflowPackage.Literals.SIMPLE_PROPERTY;
+        return WorkflowPackage.Literals.WORKFLOW_ELEMENT;
     }
 
     /**
@@ -94,8 +95,8 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getName() {
-        return name;
+    public int getOffset() {
+        return offset;
     }
 
     /**
@@ -103,11 +104,11 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setName(String newName) {
-        String oldName = name;
-        name = newName;
+    public void setOffset(int newOffset) {
+        int oldOffset = offset;
+        offset = newOffset;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.SIMPLE_PROPERTY__NAME, oldName, name));
+            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__OFFSET, oldOffset, offset));
     }
 
     /**
@@ -115,8 +116,8 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
      * <!-- end-user-doc -->
      * @generated
      */
-    public String getValue() {
-        return value;
+    public int getLength() {
+        return length;
     }
 
     /**
@@ -124,11 +125,11 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setValue(String newValue) {
-        String oldValue = value;
-        value = newValue;
+    public void setLength(int newLength) {
+        int oldLength = length;
+        length = newLength;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.SIMPLE_PROPERTY__VALUE, oldValue, value));
+            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__LENGTH, oldLength, length));
     }
 
     /**
@@ -139,10 +140,10 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case WorkflowPackage.SIMPLE_PROPERTY__NAME:
-                return getName();
-            case WorkflowPackage.SIMPLE_PROPERTY__VALUE:
-                return getValue();
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                return new Integer(getOffset());
+            case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
+                return new Integer(getLength());
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -155,11 +156,11 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case WorkflowPackage.SIMPLE_PROPERTY__NAME:
-                setName((String)newValue);
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                setOffset(((Integer)newValue).intValue());
                 return;
-            case WorkflowPackage.SIMPLE_PROPERTY__VALUE:
-                setValue((String)newValue);
+            case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
+                setLength(((Integer)newValue).intValue());
                 return;
         }
         super.eSet(featureID, newValue);
@@ -173,11 +174,11 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case WorkflowPackage.SIMPLE_PROPERTY__NAME:
-                setName(NAME_EDEFAULT);
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                setOffset(OFFSET_EDEFAULT);
                 return;
-            case WorkflowPackage.SIMPLE_PROPERTY__VALUE:
-                setValue(VALUE_EDEFAULT);
+            case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
+                setLength(LENGTH_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -191,10 +192,10 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case WorkflowPackage.SIMPLE_PROPERTY__NAME:
-                return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-            case WorkflowPackage.SIMPLE_PROPERTY__VALUE:
-                return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                return offset != OFFSET_EDEFAULT;
+            case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
+                return length != LENGTH_EDEFAULT;
         }
         return super.eIsSet(featureID);
     }
@@ -209,12 +210,12 @@ public class SimplePropertyImpl extends PropertyImpl implements SimpleProperty {
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (name: ");
-        result.append(name);
-        result.append(", value: ");
-        result.append(value);
+        result.append(" (offset: ");
+        result.append(offset);
+        result.append(", length: ");
+        result.append(length);
         result.append(')');
         return result.toString();
     }
 
-} //SimplePropertyImpl
+} //WorkflowElementImpl

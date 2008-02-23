@@ -2,13 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AbstractValueImpl.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: AbstractValueImpl.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import workflow.AbstractValue;
 import workflow.WorkflowPackage;
@@ -22,7 +20,7 @@ import workflow.WorkflowPackage;
  *
  * @generated
  */
-public abstract class AbstractValueImpl extends EObjectImpl implements AbstractValue {
+public abstract class AbstractValueImpl extends WorkflowElementImpl implements AbstractValue {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

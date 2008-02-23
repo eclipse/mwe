@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Assignment.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: Assignment.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface Assignment extends EObject {
+public interface Assignment extends WorkflowElement {
     /**
      * Returns the value of the '<em><b>To Assign To</b></em>' attribute.
      * <!-- begin-user-doc -->

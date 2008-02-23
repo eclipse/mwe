@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowFactoryImpl.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowFactoryImpl.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -61,6 +61,7 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
     public EObject create(EClass eClass) {
         switch (eClass.getClassifierID()) {
             case WorkflowPackage.WORKFLOW_FILE: return createWorkflowFile();
+            case WorkflowPackage.WORKFLOW_ELEMENT: return createWorkflowElement();
             case WorkflowPackage.SIMPLE_PROPERTY: return createSimpleProperty();
             case WorkflowPackage.FILE_PROPERTY: return createFileProperty();
             case WorkflowPackage.ASSIGNMENT: return createAssignment();
@@ -81,6 +82,16 @@ public class WorkflowFactoryImpl extends EFactoryImpl implements WorkflowFactory
     public WorkflowFile createWorkflowFile() {
         WorkflowFileImpl workflowFile = new WorkflowFileImpl();
         return workflowFile;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public WorkflowElement createWorkflowElement() {
+        WorkflowElementImpl workflowElement = new WorkflowElementImpl();
+        return workflowElement;
     }
 
     /**

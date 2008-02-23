@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Property.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: Property.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow;
 
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,5 +17,5 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Property extends EObject {
+public interface Property extends WorkflowElement {
 } // Property

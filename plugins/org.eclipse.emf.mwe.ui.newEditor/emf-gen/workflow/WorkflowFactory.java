@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowFactory.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowFactory.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow;
 
@@ -33,6 +33,15 @@ public interface WorkflowFactory extends EFactory {
      * @generated
      */
     WorkflowFile createWorkflowFile();
+
+    /**
+     * Returns a new object of class '<em>Element</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Element</em>'.
+     * @generated
+     */
+    WorkflowElement createWorkflowElement();
 
     /**
      * Returns a new object of class '<em>Simple Property</em>'.

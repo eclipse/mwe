@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileProperty.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: FileProperty.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow;
 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowSwitch.java,v 1.1 2008/02/23 16:08:24 pschonbac Exp $
+ * $Id: WorkflowSwitch.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
  */
 package workflow.util;
 
@@ -93,9 +93,16 @@ public class WorkflowSwitch<T> {
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
+            case WorkflowPackage.WORKFLOW_ELEMENT: {
+                WorkflowElement workflowElement = (WorkflowElement)theEObject;
+                T result = caseWorkflowElement(workflowElement);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
             case WorkflowPackage.PROPERTY: {
                 Property property = (Property)theEObject;
                 T result = caseProperty(property);
+                if (result == null) result = caseWorkflowElement(property);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -103,6 +110,7 @@ public class WorkflowSwitch<T> {
                 SimpleProperty simpleProperty = (SimpleProperty)theEObject;
                 T result = caseSimpleProperty(simpleProperty);
                 if (result == null) result = caseProperty(simpleProperty);
+                if (result == null) result = caseWorkflowElement(simpleProperty);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -110,18 +118,21 @@ public class WorkflowSwitch<T> {
                 FileProperty fileProperty = (FileProperty)theEObject;
                 T result = caseFileProperty(fileProperty);
                 if (result == null) result = caseProperty(fileProperty);
+                if (result == null) result = caseWorkflowElement(fileProperty);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case WorkflowPackage.ASSIGNMENT: {
                 Assignment assignment = (Assignment)theEObject;
                 T result = caseAssignment(assignment);
+                if (result == null) result = caseWorkflowElement(assignment);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
             case WorkflowPackage.ABSTRACT_VALUE: {
                 AbstractValue abstractValue = (AbstractValue)theEObject;
                 T result = caseAbstractValue(abstractValue);
+                if (result == null) result = caseWorkflowElement(abstractValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -129,6 +140,7 @@ public class WorkflowSwitch<T> {
                 ComplexValue complexValue = (ComplexValue)theEObject;
                 T result = caseComplexValue(complexValue);
                 if (result == null) result = caseAbstractValue(complexValue);
+                if (result == null) result = caseWorkflowElement(complexValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -136,6 +148,7 @@ public class WorkflowSwitch<T> {
                 SimpleValue simpleValue = (SimpleValue)theEObject;
                 T result = caseSimpleValue(simpleValue);
                 if (result == null) result = caseAbstractValue(simpleValue);
+                if (result == null) result = caseWorkflowElement(simpleValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -144,6 +157,7 @@ public class WorkflowSwitch<T> {
                 T result = caseObjectValue(objectValue);
                 if (result == null) result = caseComplexValue(objectValue);
                 if (result == null) result = caseAbstractValue(objectValue);
+                if (result == null) result = caseWorkflowElement(objectValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -151,6 +165,7 @@ public class WorkflowSwitch<T> {
                 ReferencedValue referencedValue = (ReferencedValue)theEObject;
                 T result = caseReferencedValue(referencedValue);
                 if (result == null) result = caseAbstractValue(referencedValue);
+                if (result == null) result = caseWorkflowElement(referencedValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -159,6 +174,7 @@ public class WorkflowSwitch<T> {
                 T result = caseFileValue(fileValue);
                 if (result == null) result = caseComplexValue(fileValue);
                 if (result == null) result = caseAbstractValue(fileValue);
+                if (result == null) result = caseWorkflowElement(fileValue);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -178,6 +194,21 @@ public class WorkflowSwitch<T> {
      * @generated
      */
     public T caseWorkflowFile(WorkflowFile object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseWorkflowElement(WorkflowElement object) {
         return null;
     }
 
