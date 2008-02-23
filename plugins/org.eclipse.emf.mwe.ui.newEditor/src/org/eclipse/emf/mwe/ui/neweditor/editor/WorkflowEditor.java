@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
-import org.eclipse.emf.mwe.ui.neweditor.outline.WorkflowOutlinePage;
+import org.eclipse.emf.mwe.ui.neweditor.outline.WorkflowContentOutlinePage;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.source.Annotation;
@@ -31,7 +31,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -45,7 +45,7 @@ public class WorkflowEditor extends TextEditor {
 
     private BreakpointActionGroup actionGroup;
 
-    private WorkflowOutlinePage outlinePage;
+    private WorkflowContentOutlinePage outlinePage;
 
     public WorkflowEditor() {
         super();
@@ -84,7 +84,7 @@ public class WorkflowEditor extends TextEditor {
     public Object getAdapter(final Class adapter) {
         if (IContentOutlinePage.class.equals(adapter)) {
             if (outlinePage == null) {
-                outlinePage = new WorkflowOutlinePage(this);
+                outlinePage = new WorkflowContentOutlinePage(this);
                 outlinePage.setInput(getEditorInput());
             }
             return outlinePage;

@@ -4,6 +4,6 @@
         <file-match-pattern match-pattern="src\\.*?java$" include-pattern="true"/>
     </fileset>
     <fileset name="All generated files" enabled="true" check-config-name="No checks" local="false">
-        <file-match-pattern match-pattern="src-gen\\.*?java$" include-pattern="true"/>
+        <file-match-pattern match-pattern=".*-gen\\.*?java$" include-pattern="true"/>
     </fileset>
 </fileset-config>
