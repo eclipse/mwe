@@ -12,15 +12,15 @@
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
 import org.eclipse.emf.mwe.ui.neweditor.internal.images.EditorImages;
+import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
-import workflow.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowLabelProvider implements ILabelProvider {

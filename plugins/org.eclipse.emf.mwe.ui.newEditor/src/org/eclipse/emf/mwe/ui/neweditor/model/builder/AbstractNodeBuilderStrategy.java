@@ -16,19 +16,19 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowFactory;
 import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 
-import workflow.WorkflowFactory;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public abstract class AbstractNodeBuilderStrategy implements
         INodeBuilderStrategy {
 
-    protected static final String WORKFLOW_TAG = "workflow";
+    protected static final String WORKFLOW_TAG = "org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow";
 
     protected static final String COMPONENT_TAG = "component";
 

@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
+import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,7 +24,6 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
-import workflow.WorkflowElement;
 
 public class WorkflowContentOutlinePage extends ContentOutlinePage {
 
