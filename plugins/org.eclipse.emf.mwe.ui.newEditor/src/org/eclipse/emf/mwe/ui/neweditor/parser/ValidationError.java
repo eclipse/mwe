@@ -13,9 +13,10 @@ package org.eclipse.emf.mwe.ui.neweditor.parser;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ValidationError {
+
     private String errorMessage;
 
     private int lineNumber;

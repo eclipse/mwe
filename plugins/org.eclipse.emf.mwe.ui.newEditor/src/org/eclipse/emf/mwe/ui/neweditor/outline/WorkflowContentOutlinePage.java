@@ -11,7 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
-import org.eclipse.emf.mwe.ui.neweditor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,6 +22,8 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
+
+import workflow.WorkflowElement;
 
 public class WorkflowContentOutlinePage extends ContentOutlinePage {
 
@@ -102,7 +103,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                         ((IStructuredSelection) selection).getFirstElement();
                 if (segment != null && segment instanceof WorkflowElement) {
                     final WorkflowElement ext = (WorkflowElement) segment;
-                    final int start = ext.getStart();
+                    final int start = ext.getOffset();
                     final int length = ext.getLength();
                     if (start >= 0) {
                         try {

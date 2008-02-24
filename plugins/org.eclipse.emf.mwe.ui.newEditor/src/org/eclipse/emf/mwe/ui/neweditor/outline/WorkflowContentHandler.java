@@ -11,21 +11,36 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ui.neweditor.model.builder.NoSuchModelElement;
+import org.eclipse.emf.mwe.ui.neweditor.model.builder.NodeBuilder;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.BadPositionCategoryException;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import workflow.WorkflowFile;
+import workflow.WorkflowElement;
+import workflow.WorkflowFactory;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
-    private WorkflowFile root;
+    private EObject rootElement;
+
+    private EObject currentElement;
+
+    private Locator locator;
+
+    private IDocument document;
+
+    private String positionCategory;
 
     /**
      * This automatically generated method overrides the implementation of
@@ -35,8 +50,7 @@ public class WorkflowContentHandler extends DefaultHandler {
      */
     @Override
     public void endDocument() throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.endDocument();
+        assert (currentElement == rootElement);
     }
 
     /**
@@ -47,34 +61,35 @@ public class WorkflowContentHandler extends DefaultHandler {
      *      java.lang.String, java.lang.String)
      */
     @Override
-    public void endElement(final String arg0, final String arg1,
-            final String arg2) throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.endElement(arg0, arg1, arg2);
+    public void endElement(final String uri, final String localName,
+            final String qName) throws SAXException {
+
+        final int line = locator.getLineNumber();
+        final int endLine = getOffsetFromLine(line);
+        final WorkflowElement workflowElement =
+                (WorkflowElement) currentElement;
+        final int length = endLine - workflowElement.getOffset();
+        workflowElement.setLength(length);
+        currentElement = currentElement.eContainer();
     }
 
     /**
-     * This automatically generated method overrides the implementation of
-     * <code>error</code> inherited from the superclass.
+     * Returns the value of field <code>rootElement</code>.
      * 
-     * @see org.xml.sax.helpers.DefaultHandler#error(org.xml.sax.SAXParseException)
+     * @return value of <code>rootElement</code>.
      */
-    @Override
-    public void error(final SAXParseException arg0) throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.error(arg0);
+    public EObject getRootElement() {
+        return rootElement;
     }
 
     /**
-     * This automatically generated method overrides the implementation of
-     * <code>fatalError</code> inherited from the superclass.
+     * Sets a new value for field <code>document</code>.
      * 
-     * @see org.xml.sax.helpers.DefaultHandler#fatalError(org.xml.sax.SAXParseException)
+     * @param document
+     *            new value for <code>document</code>.
      */
-    @Override
-    public void fatalError(final SAXParseException arg0) throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.fatalError(arg0);
+    public void setDocument(final IDocument document) {
+        this.document = document;
     }
 
     /**
@@ -84,9 +99,18 @@ public class WorkflowContentHandler extends DefaultHandler {
      * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
      */
     @Override
-    public void setDocumentLocator(final Locator arg0) {
-        // TODO Automatically generated method stub. Review needed!
-        super.setDocumentLocator(arg0);
+    public void setDocumentLocator(final Locator locator) {
+        this.locator = locator;
+    }
+
+    /**
+     * Sets a new value for field <code>positionCategory</code>.
+     * 
+     * @param positionCategory
+     *            new value for <code>positionCategory</code>.
+     */
+    public void setPositionCategory(final String positionCategory) {
+        this.positionCategory = positionCategory;
     }
 
     /**
@@ -97,8 +121,9 @@ public class WorkflowContentHandler extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.startDocument();
+        final WorkflowFactory factory = WorkflowFactory.eINSTANCE;
+        rootElement = factory.createWorkflowFile();
+        currentElement = rootElement;
     }
 
     /**
@@ -109,10 +134,49 @@ public class WorkflowContentHandler extends DefaultHandler {
      *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
      */
     @Override
-    public void startElement(final String arg0, final String arg1,
-            final String arg2, final Attributes arg3) throws SAXException {
-        // TODO Automatically generated method stub. Review needed!
-        super.startElement(arg0, arg1, arg2, arg3);
+    public void startElement(final String uri, final String localName,
+            final String qName, final Attributes attributes)
+            throws SAXException {
+
+        assert (currentElement != null);
+        final int line = locator.getLineNumber() - 1;
+        final int startLine = getOffsetFromLine(line);
+        final Position position = new Position(startLine);
+
+        EObject element = null;
+
+        try {
+            element =
+                    NodeBuilder.create(localName, attributes, currentElement,
+                            position);
+        } catch (final NoSuchModelElement e) {
+            // TODO implement
+        }
+
+        currentElement.eContents().add(element);
+        currentElement = element;
     }
 
+    private void addPosition(final Position position) {
+        try {
+            document.addPosition(positionCategory, position);
+        } catch (final BadLocationException e) {
+            e.printStackTrace();
+        } catch (final BadPositionCategoryException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int getOffsetFromLine(final int lineNumber) {
+        int offset = 0;
+        try {
+            offset = document.getLineOffset(lineNumber);
+        } catch (final BadLocationException e) {
+            try {
+                offset = document.getLineOffset(lineNumber - 1);
+            } catch (final BadLocationException e1) {
+            }
+        }
+        return offset;
+    }
 }

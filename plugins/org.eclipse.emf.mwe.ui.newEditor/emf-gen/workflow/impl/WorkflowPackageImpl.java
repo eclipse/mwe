@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowPackageImpl.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
+ * $Id: WorkflowPackageImpl.java,v 1.4 2008/02/24 23:32:36 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -566,7 +566,7 @@ public class WorkflowPackageImpl extends EPackageImpl implements WorkflowPackage
         initEAttribute(getWorkflowElement_Label(), ecorePackage.getEString(), "label", null, 1, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getWorkflowElement_Length(), ecorePackage.getEInt(), "length", null, 1, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
         initEAttribute(getWorkflowElement_Offset(), ecorePackage.getEInt(), "offset", null, 1, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-        initEAttribute(getWorkflowElement_Image(), ecorePackage.getEJavaObject(), "image", null, 0, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+        initEAttribute(getWorkflowElement_Image(), ecorePackage.getEString(), "image", null, 0, 1, WorkflowElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -11,14 +11,16 @@
 
 package org.eclipse.emf.mwe.ui.neweditor.outline;
 
-import org.eclipse.emf.mwe.ui.neweditor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.neweditor.internal.images.EditorImages;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
+import workflow.WorkflowElement;
+
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowLabelProvider implements ILabelProvider {
@@ -30,7 +32,7 @@ public class WorkflowLabelProvider implements ILabelProvider {
 
     public Image getImage(final Object element) {
         if (element instanceof WorkflowElement)
-            return ((WorkflowElement) element).getImage();
+            return EditorImages.getImage((String) element);
         return null;
     }
 

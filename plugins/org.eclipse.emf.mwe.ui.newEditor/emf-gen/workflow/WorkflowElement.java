@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowElement.java,v 1.2 2008/02/24 00:54:52 pschonbac Exp $
+ * $Id: WorkflowElement.java,v 1.3 2008/02/24 23:32:35 pschonbac Exp $
  */
 package workflow;
 
@@ -115,12 +115,12 @@ public interface WorkflowElement extends EObject {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Image</em>' attribute.
-     * @see #setImage(Object)
+     * @see #setImage(String)
      * @see workflow.WorkflowPackage#getWorkflowElement_Image()
      * @model
      * @generated
      */
-    Object getImage();
+    String getImage();
 
     /**
      * Sets the value of the '{@link workflow.WorkflowElement#getImage <em>Image</em>}' attribute.
@@ -130,6 +130,6 @@ public interface WorkflowElement extends EObject {
      * @see #getImage()
      * @generated
      */
-    void setImage(Object value);
+    void setImage(String value);
 
 } // WorkflowElement

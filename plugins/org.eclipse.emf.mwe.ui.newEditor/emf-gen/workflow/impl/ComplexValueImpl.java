@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValueImpl.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
+ * $Id: ComplexValueImpl.java,v 1.4 2008/02/24 23:32:35 pschonbac Exp $
  */
 package workflow.impl;
 

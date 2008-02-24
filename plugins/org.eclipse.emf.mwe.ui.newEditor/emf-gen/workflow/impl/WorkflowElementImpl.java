@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowElementImpl.java,v 1.2 2008/02/24 00:54:52 pschonbac Exp $
+ * $Id: WorkflowElementImpl.java,v 1.3 2008/02/24 23:32:36 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -101,7 +101,7 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * @generated
      * @ordered
      */
-    protected static final Object IMAGE_EDEFAULT = null;
+    protected static final String IMAGE_EDEFAULT = null;
 
     /**
      * The cached value of the '{@link #getImage() <em>Image</em>}' attribute.
@@ -111,7 +111,7 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * @generated
      * @ordered
      */
-    protected Object image = IMAGE_EDEFAULT;
+    protected String image = IMAGE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -200,7 +200,7 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Object getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -209,8 +209,8 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setImage(Object newImage) {
-        Object oldImage = image;
+    public void setImage(String newImage) {
+        String oldImage = image;
         image = newImage;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__IMAGE, oldImage, image));
@@ -254,7 +254,7 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
                 setOffset(((Integer)newValue).intValue());
                 return;
             case WorkflowPackage.WORKFLOW_ELEMENT__IMAGE:
-                setImage(newValue);
+                setImage((String)newValue);
                 return;
         }
         super.eSet(featureID, newValue);

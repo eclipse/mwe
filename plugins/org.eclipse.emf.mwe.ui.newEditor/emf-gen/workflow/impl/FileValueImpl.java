@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileValueImpl.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
+ * $Id: FileValueImpl.java,v 1.4 2008/02/24 23:32:36 pschonbac Exp $
  */
 package workflow.impl;
 

@@ -28,7 +28,7 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class XMLParser {
 
@@ -39,18 +39,7 @@ public class XMLParser {
 
     private ContentHandler contentHandler;
 
-    public static void main(final String[] args) {
-        try {
-            final XMLParser parser = new XMLParser();
-            parser.setErrorHandler(new ValidationErrorHandler());
-            parser.doParse(new File(args[0]));
-        } catch (final RuntimeException e) {
-            e.printStackTrace();
-            System.exit(-1);
-        }
-    }
-
-    public void doParse(final File xmlFilePath) {
+    public void parse(final File xmlFilePath) {
 
         InputSource inputSource = null;
         try {
@@ -58,10 +47,10 @@ public class XMLParser {
         } catch (final FileNotFoundException e) {
             throw new RuntimeException(e);
         }
-        doParse(inputSource);
+        parse(inputSource);
     }
 
-    public void doParse(final InputSource inputSource) {
+    public void parse(final InputSource inputSource) {
         try {
             final XMLReader reader = new SAXParser();
             reader.setErrorHandler(errorHandler);
@@ -83,10 +72,10 @@ public class XMLParser {
         }
     }
 
-    public void doParse(final String xmlText) {
+    public void parse(final String xmlText) {
         final InputSource inputSource =
                 new InputSource(new StringReader(xmlText));
-        doParse(inputSource);
+        parse(inputSource);
     }
 
     public void setContentHandler(final ContentHandler contentHandler) {
