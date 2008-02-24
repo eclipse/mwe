@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleValue.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: SimpleValue.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -35,7 +35,7 @@ public interface SimpleValue extends AbstractValue {
      * @return the value of the '<em>Val</em>' attribute.
      * @see #setVal(String)
      * @see workflow.WorkflowPackage#getSimpleValue_Val()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getVal();

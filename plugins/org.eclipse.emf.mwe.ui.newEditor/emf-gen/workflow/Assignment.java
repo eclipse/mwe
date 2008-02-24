@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Assignment.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: Assignment.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -36,7 +36,7 @@ public interface Assignment extends WorkflowElement {
      * @return the value of the '<em>To Assign To</em>' attribute.
      * @see #setToAssignTo(String)
      * @see workflow.WorkflowPackage#getAssignment_ToAssignTo()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getToAssignTo();
@@ -62,7 +62,7 @@ public interface Assignment extends WorkflowElement {
      * @return the value of the '<em>Value</em>' containment reference.
      * @see #setValue(AbstractValue)
      * @see workflow.WorkflowPackage#getAssignment_Value()
-     * @model containment="true"
+     * @model containment="true" required="true"
      * @generated
      */
     AbstractValue getValue();

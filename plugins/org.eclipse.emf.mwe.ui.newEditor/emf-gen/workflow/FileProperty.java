@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileProperty.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: FileProperty.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -35,7 +35,7 @@ public interface FileProperty extends Property {
      * @return the value of the '<em>File</em>' attribute.
      * @see #setFile(String)
      * @see workflow.WorkflowPackage#getFileProperty_File()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getFile();

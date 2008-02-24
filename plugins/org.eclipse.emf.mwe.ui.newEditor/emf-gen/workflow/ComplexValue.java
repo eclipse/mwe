@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValue.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: ComplexValue.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -37,7 +37,7 @@ public interface ComplexValue extends AbstractValue {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see workflow.WorkflowPackage#getComplexValue_Name()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getName();
@@ -63,7 +63,7 @@ public interface ComplexValue extends AbstractValue {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Assignment</em>' containment reference list.
      * @see workflow.WorkflowPackage#getComplexValue_Assignment()
-     * @model containment="true"
+     * @model containment="true" required="true"
      * @generated
      */
     EList<Assignment> getAssignment();

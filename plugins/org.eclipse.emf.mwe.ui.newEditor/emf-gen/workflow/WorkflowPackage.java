@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowPackage.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: WorkflowPackage.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -107,13 +107,13 @@ public interface WorkflowPackage extends EPackage {
     int WORKFLOW_ELEMENT = 1;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int WORKFLOW_ELEMENT__OFFSET = 0;
+    int WORKFLOW_ELEMENT__LABEL = 0;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -125,13 +125,31 @@ public interface WorkflowPackage extends EPackage {
     int WORKFLOW_ELEMENT__LENGTH = 1;
 
     /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_ELEMENT__OFFSET = 2;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int WORKFLOW_ELEMENT__IMAGE = 3;
+
+    /**
      * The number of structural features of the '<em>Element</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int WORKFLOW_ELEMENT_FEATURE_COUNT = 2;
+    int WORKFLOW_ELEMENT_FEATURE_COUNT = 4;
 
     /**
      * The meta object id for the '{@link workflow.impl.PropertyImpl <em>Property</em>}' class.
@@ -144,13 +162,13 @@ public interface WorkflowPackage extends EPackage {
     int PROPERTY = 2;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PROPERTY__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+    int PROPERTY__LABEL = WORKFLOW_ELEMENT__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -160,6 +178,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int PROPERTY__LENGTH = WORKFLOW_ELEMENT__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PROPERTY__IMAGE = WORKFLOW_ELEMENT__IMAGE;
 
     /**
      * The number of structural features of the '<em>Property</em>' class.
@@ -181,13 +217,13 @@ public interface WorkflowPackage extends EPackage {
     int SIMPLE_PROPERTY = 3;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SIMPLE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+    int SIMPLE_PROPERTY__LABEL = PROPERTY__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -197,6 +233,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int SIMPLE_PROPERTY__LENGTH = PROPERTY__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_PROPERTY__IMAGE = PROPERTY__IMAGE;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -236,13 +290,13 @@ public interface WorkflowPackage extends EPackage {
     int FILE_PROPERTY = 4;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+    int FILE_PROPERTY__LABEL = PROPERTY__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -252,6 +306,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int FILE_PROPERTY__LENGTH = PROPERTY__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_PROPERTY__OFFSET = PROPERTY__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_PROPERTY__IMAGE = PROPERTY__IMAGE;
 
     /**
      * The feature id for the '<em><b>File</b></em>' attribute.
@@ -282,13 +354,13 @@ public interface WorkflowPackage extends EPackage {
     int ASSIGNMENT = 5;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ASSIGNMENT__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+    int ASSIGNMENT__LABEL = WORKFLOW_ELEMENT__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -298,6 +370,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int ASSIGNMENT__LENGTH = WORKFLOW_ELEMENT__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSIGNMENT__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ASSIGNMENT__IMAGE = WORKFLOW_ELEMENT__IMAGE;
 
     /**
      * The feature id for the '<em><b>To Assign To</b></em>' attribute.
@@ -337,13 +427,13 @@ public interface WorkflowPackage extends EPackage {
     int ABSTRACT_VALUE = 6;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int ABSTRACT_VALUE__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+    int ABSTRACT_VALUE__LABEL = WORKFLOW_ELEMENT__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -353,6 +443,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int ABSTRACT_VALUE__LENGTH = WORKFLOW_ELEMENT__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_VALUE__OFFSET = WORKFLOW_ELEMENT__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_VALUE__IMAGE = WORKFLOW_ELEMENT__IMAGE;
 
     /**
      * The number of structural features of the '<em>Abstract Value</em>' class.
@@ -374,13 +482,13 @@ public interface WorkflowPackage extends EPackage {
     int COMPLEX_VALUE = 7;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int COMPLEX_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+    int COMPLEX_VALUE__LABEL = ABSTRACT_VALUE__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -390,6 +498,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int COMPLEX_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPLEX_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int COMPLEX_VALUE__IMAGE = ABSTRACT_VALUE__IMAGE;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -429,13 +555,13 @@ public interface WorkflowPackage extends EPackage {
     int SIMPLE_VALUE = 8;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int SIMPLE_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+    int SIMPLE_VALUE__LABEL = ABSTRACT_VALUE__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -445,6 +571,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int SIMPLE_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SIMPLE_VALUE__IMAGE = ABSTRACT_VALUE__IMAGE;
 
     /**
      * The feature id for the '<em><b>Val</b></em>' attribute.
@@ -475,13 +619,13 @@ public interface WorkflowPackage extends EPackage {
     int OBJECT_VALUE = 9;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int OBJECT_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+    int OBJECT_VALUE__LABEL = COMPLEX_VALUE__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -491,6 +635,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int OBJECT_VALUE__LENGTH = COMPLEX_VALUE__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBJECT_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int OBJECT_VALUE__IMAGE = COMPLEX_VALUE__IMAGE;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -539,13 +701,13 @@ public interface WorkflowPackage extends EPackage {
     int REFERENCED_VALUE = 10;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int REFERENCED_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+    int REFERENCED_VALUE__LABEL = ABSTRACT_VALUE__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -555,6 +717,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int REFERENCED_VALUE__LENGTH = ABSTRACT_VALUE__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCED_VALUE__OFFSET = ABSTRACT_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int REFERENCED_VALUE__IMAGE = ABSTRACT_VALUE__IMAGE;
 
     /**
      * The feature id for the '<em><b>Ref</b></em>' attribute.
@@ -585,13 +765,13 @@ public interface WorkflowPackage extends EPackage {
     int FILE_VALUE = 11;
 
     /**
-     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * The feature id for the '<em><b>Label</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int FILE_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+    int FILE_VALUE__LABEL = COMPLEX_VALUE__LABEL;
 
     /**
      * The feature id for the '<em><b>Length</b></em>' attribute.
@@ -601,6 +781,24 @@ public interface WorkflowPackage extends EPackage {
      * @ordered
      */
     int FILE_VALUE__LENGTH = COMPLEX_VALUE__LENGTH;
+
+    /**
+     * The feature id for the '<em><b>Offset</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_VALUE__OFFSET = COMPLEX_VALUE__OFFSET;
+
+    /**
+     * The feature id for the '<em><b>Image</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int FILE_VALUE__IMAGE = COMPLEX_VALUE__IMAGE;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -682,15 +880,15 @@ public interface WorkflowPackage extends EPackage {
     EClass getWorkflowElement();
 
     /**
-     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getOffset <em>Offset</em>}'.
+     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getLabel <em>Label</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Offset</em>'.
-     * @see workflow.WorkflowElement#getOffset()
+     * @return the meta object for the attribute '<em>Label</em>'.
+     * @see workflow.WorkflowElement#getLabel()
      * @see #getWorkflowElement()
      * @generated
      */
-    EAttribute getWorkflowElement_Offset();
+    EAttribute getWorkflowElement_Label();
 
     /**
      * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getLength <em>Length</em>}'.
@@ -702,6 +900,28 @@ public interface WorkflowPackage extends EPackage {
      * @generated
      */
     EAttribute getWorkflowElement_Length();
+
+    /**
+     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getOffset <em>Offset</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Offset</em>'.
+     * @see workflow.WorkflowElement#getOffset()
+     * @see #getWorkflowElement()
+     * @generated
+     */
+    EAttribute getWorkflowElement_Offset();
+
+    /**
+     * Returns the meta object for the attribute '{@link workflow.WorkflowElement#getImage <em>Image</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Image</em>'.
+     * @see workflow.WorkflowElement#getImage()
+     * @see #getWorkflowElement()
+     * @generated
+     */
+    EAttribute getWorkflowElement_Image();
 
     /**
      * Returns the meta object for class '{@link workflow.Property <em>Property</em>}'.
@@ -983,12 +1203,12 @@ public interface WorkflowPackage extends EPackage {
         EClass WORKFLOW_ELEMENT = eINSTANCE.getWorkflowElement();
 
         /**
-         * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute WORKFLOW_ELEMENT__OFFSET = eINSTANCE.getWorkflowElement_Offset();
+        EAttribute WORKFLOW_ELEMENT__LABEL = eINSTANCE.getWorkflowElement_Label();
 
         /**
          * The meta object literal for the '<em><b>Length</b></em>' attribute feature.
@@ -997,6 +1217,22 @@ public interface WorkflowPackage extends EPackage {
          * @generated
          */
         EAttribute WORKFLOW_ELEMENT__LENGTH = eINSTANCE.getWorkflowElement_Length();
+
+        /**
+         * The meta object literal for the '<em><b>Offset</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute WORKFLOW_ELEMENT__OFFSET = eINSTANCE.getWorkflowElement_Offset();
+
+        /**
+         * The meta object literal for the '<em><b>Image</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute WORKFLOW_ELEMENT__IMAGE = eINSTANCE.getWorkflowElement_Image();
 
         /**
          * The meta object literal for the '{@link workflow.impl.PropertyImpl <em>Property</em>}' class.

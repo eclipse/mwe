@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ObjectValue.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: ObjectValue.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -35,7 +35,7 @@ public interface ObjectValue extends ComplexValue {
      * @return the value of the '<em>Clazz</em>' attribute.
      * @see #setClazz(String)
      * @see workflow.WorkflowPackage#getObjectValue_Clazz()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getClazz();

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowElementImpl.java,v 1.1 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: WorkflowElementImpl.java,v 1.2 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow.impl;
 
@@ -23,14 +23,56 @@ import workflow.WorkflowPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link workflow.impl.WorkflowElementImpl#getOffset <em>Offset</em>}</li>
+ *   <li>{@link workflow.impl.WorkflowElementImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link workflow.impl.WorkflowElementImpl#getLength <em>Length</em>}</li>
+ *   <li>{@link workflow.impl.WorkflowElementImpl#getOffset <em>Offset</em>}</li>
+ *   <li>{@link workflow.impl.WorkflowElementImpl#getImage <em>Image</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement {
+    /**
+     * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
+    protected static final String LABEL_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLabel()
+     * @generated
+     * @ordered
+     */
+    protected String label = LABEL_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLength()
+     * @generated
+     * @ordered
+     */
+    protected static final int LENGTH_EDEFAULT = 0;
+
+    /**
+     * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getLength()
+     * @generated
+     * @ordered
+     */
+    protected int length = LENGTH_EDEFAULT;
+
     /**
      * The default value of the '{@link #getOffset() <em>Offset</em>}' attribute.
      * <!-- begin-user-doc -->
@@ -52,24 +94,24 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
     protected int offset = OFFSET_EDEFAULT;
 
     /**
-     * The default value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * The default value of the '{@link #getImage() <em>Image</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLength()
+     * @see #getImage()
      * @generated
      * @ordered
      */
-    protected static final int LENGTH_EDEFAULT = 0;
+    protected static final Object IMAGE_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getLength() <em>Length</em>}' attribute.
+     * The cached value of the '{@link #getImage() <em>Image</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getLength()
+     * @see #getImage()
      * @generated
      * @ordered
      */
-    protected int length = LENGTH_EDEFAULT;
+    protected Object image = IMAGE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -95,8 +137,8 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * <!-- end-user-doc -->
      * @generated
      */
-    public int getOffset() {
-        return offset;
+    public String getLabel() {
+        return label;
     }
 
     /**
@@ -104,11 +146,11 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setOffset(int newOffset) {
-        int oldOffset = offset;
-        offset = newOffset;
+    public void setLabel(String newLabel) {
+        String oldLabel = label;
+        label = newLabel;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__OFFSET, oldOffset, offset));
+            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__LABEL, oldLabel, label));
     }
 
     /**
@@ -137,13 +179,59 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
      * <!-- end-user-doc -->
      * @generated
      */
+    public int getOffset() {
+        return offset;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOffset(int newOffset) {
+        int oldOffset = offset;
+        offset = newOffset;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__OFFSET, oldOffset, offset));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Object getImage() {
+        return image;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setImage(Object newImage) {
+        Object oldImage = image;
+        image = newImage;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_ELEMENT__IMAGE, oldImage, image));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
-                return new Integer(getOffset());
+            case WorkflowPackage.WORKFLOW_ELEMENT__LABEL:
+                return getLabel();
             case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
                 return new Integer(getLength());
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                return new Integer(getOffset());
+            case WorkflowPackage.WORKFLOW_ELEMENT__IMAGE:
+                return getImage();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -156,11 +244,17 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
-                setOffset(((Integer)newValue).intValue());
+            case WorkflowPackage.WORKFLOW_ELEMENT__LABEL:
+                setLabel((String)newValue);
                 return;
             case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
                 setLength(((Integer)newValue).intValue());
+                return;
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                setOffset(((Integer)newValue).intValue());
+                return;
+            case WorkflowPackage.WORKFLOW_ELEMENT__IMAGE:
+                setImage(newValue);
                 return;
         }
         super.eSet(featureID, newValue);
@@ -174,11 +268,17 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
-                setOffset(OFFSET_EDEFAULT);
+            case WorkflowPackage.WORKFLOW_ELEMENT__LABEL:
+                setLabel(LABEL_EDEFAULT);
                 return;
             case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
                 setLength(LENGTH_EDEFAULT);
+                return;
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                setOffset(OFFSET_EDEFAULT);
+                return;
+            case WorkflowPackage.WORKFLOW_ELEMENT__IMAGE:
+                setImage(IMAGE_EDEFAULT);
                 return;
         }
         super.eUnset(featureID);
@@ -192,10 +292,14 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
-                return offset != OFFSET_EDEFAULT;
+            case WorkflowPackage.WORKFLOW_ELEMENT__LABEL:
+                return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
             case WorkflowPackage.WORKFLOW_ELEMENT__LENGTH:
                 return length != LENGTH_EDEFAULT;
+            case WorkflowPackage.WORKFLOW_ELEMENT__OFFSET:
+                return offset != OFFSET_EDEFAULT;
+            case WorkflowPackage.WORKFLOW_ELEMENT__IMAGE:
+                return IMAGE_EDEFAULT == null ? image != null : !IMAGE_EDEFAULT.equals(image);
         }
         return super.eIsSet(featureID);
     }
@@ -210,10 +314,14 @@ public class WorkflowElementImpl extends EObjectImpl implements WorkflowElement 
         if (eIsProxy()) return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (offset: ");
-        result.append(offset);
+        result.append(" (label: ");
+        result.append(label);
         result.append(", length: ");
         result.append(length);
+        result.append(", offset: ");
+        result.append(offset);
+        result.append(", image: ");
+        result.append(image);
         result.append(')');
         return result.toString();
     }

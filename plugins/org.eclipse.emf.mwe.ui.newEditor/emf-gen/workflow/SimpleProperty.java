@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: SimpleProperty.java,v 1.2 2008/02/23 22:07:39 pschonbac Exp $
+ * $Id: SimpleProperty.java,v 1.3 2008/02/24 00:54:52 pschonbac Exp $
  */
 package workflow;
 
@@ -36,7 +36,7 @@ public interface SimpleProperty extends Property {
      * @return the value of the '<em>Name</em>' attribute.
      * @see #setName(String)
      * @see workflow.WorkflowPackage#getSimpleProperty_Name()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getName();
@@ -62,7 +62,7 @@ public interface SimpleProperty extends Property {
      * @return the value of the '<em>Value</em>' attribute.
      * @see #setValue(String)
      * @see workflow.WorkflowPackage#getSimpleProperty_Value()
-     * @model
+     * @model required="true"
      * @generated
      */
     String getValue();
