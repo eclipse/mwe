@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.neweditor.outline;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowElement;
 import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowFactory;
-import org.eclipse.emf.mwe.ui.neweditor.model.builder.NoSuchModelElement;
-import org.eclipse.emf.mwe.ui.neweditor.model.builder.NodeBuilder;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.NoSuchModelElement;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.NodeBuilder;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.IDocument;
@@ -28,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 

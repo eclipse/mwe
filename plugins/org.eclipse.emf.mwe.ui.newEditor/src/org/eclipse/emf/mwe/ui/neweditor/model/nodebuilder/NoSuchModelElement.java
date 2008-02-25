@@ -9,18 +9,27 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.model.builder;
-
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.text.Position;
-import org.xml.sax.Attributes;
+package org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder;
 
 /**
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
-public interface INodeBuilderStrategy {
+public class NoSuchModelElement extends Exception {
 
-    EObject create(String localName, Attributes attributes, EObject ctx,
-            Position position) throws NoSuchModelElement;
+    public NoSuchModelElement() {
+        super();
+    }
+
+    public NoSuchModelElement(final String arg0) {
+        super(arg0);
+    }
+
+    public NoSuchModelElement(final String arg0, final Throwable arg1) {
+        super(arg0, arg1);
+    }
+
+    public NoSuchModelElement(final Throwable arg0) {
+        super(arg0);
+    }
 }

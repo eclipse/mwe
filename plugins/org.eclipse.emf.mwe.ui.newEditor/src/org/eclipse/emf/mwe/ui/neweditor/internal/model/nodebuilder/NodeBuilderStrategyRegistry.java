@@ -9,14 +9,14 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.internal.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ui.neweditor.model.builder.INodeBuilderStrategy;
-import org.eclipse.emf.mwe.ui.neweditor.model.builder.NoSuchModelElement;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.INodeBuilderStrategy;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.NoSuchModelElement;
 import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 
@@ -36,7 +36,7 @@ public class NodeBuilderStrategyRegistry implements INodeBuilderStrategy {
      * This automatically generated method overrides the implementation of
      * <code>create</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.INodeBuilderStrategy#create(java.lang.String,
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.INodeBuilderStrategy#create(java.lang.String,
      *      org.xml.sax.Attributes, org.eclipse.emf.ecore.EObject, Position)
      */
     @Override

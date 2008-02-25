@@ -9,36 +9,48 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.internal.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ui.neweditor.internal.images.EditorImages;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy;
 
 /**
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
-public class SimplePropertyBuilderImpl extends PropertyBuilderImpl {
+public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
 
     /**
      * This automatically generated method overrides the implementation of
      * <code>createObject</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy#createObject()
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
      */
     @Override
     protected EObject createObject() {
-        return FACTORY.createSimpleProperty();
+        return FACTORY.createAssignment();
+    }
+
+    /**
+     * This automatically generated method overrides the implementation of
+     * <code>getImage</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#getImage()
+     */
+    @Override
+    protected String getImage() {
+        return EditorImages.ASSIGNMENT;
     }
 
     /**
      * This automatically generated method overrides the implementation of
      * <code>requiredAttributes</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy#requiredAttributes()
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#requiredAttributes()
      */
     @Override
     protected String[] requiredAttributes() {
-        return new String[] { "name", "value" };
+        return new String[] {};
     }
-
 }

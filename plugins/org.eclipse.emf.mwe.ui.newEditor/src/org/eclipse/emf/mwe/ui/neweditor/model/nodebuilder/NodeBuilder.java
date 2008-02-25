@@ -9,10 +9,10 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ui.neweditor.internal.model.builder.NodeBuilderStrategyRegistry;
+import org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder.NodeBuilderStrategyRegistry;
 import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 

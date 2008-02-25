@@ -9,10 +9,10 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.internal.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder;
 
 import org.eclipse.emf.mwe.ui.neweditor.internal.images.EditorImages;
-import org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy;
 
 /**
  * @author Patrick Schoenbach
@@ -24,7 +24,7 @@ public abstract class PropertyBuilderImpl extends AbstractNodeBuilderStrategy {
      * This automatically generated method overrides the implementation of
      * <code>getImage</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy#getImage()
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#getImage()
      */
     @Override
     protected String getImage() {

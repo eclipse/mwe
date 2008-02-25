@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.internal.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -17,27 +17,28 @@ import org.eclipse.emf.ecore.EObject;
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
-public class FilePropertyBuilderImpl extends PropertyBuilderImpl {
+public class SimplePropertyBuilderImpl extends PropertyBuilderImpl {
 
     /**
      * This automatically generated method overrides the implementation of
      * <code>createObject</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy#createObject()
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
      */
     @Override
     protected EObject createObject() {
-        return FACTORY.createFileProperty();
+        return FACTORY.createSimpleProperty();
     }
 
     /**
      * This automatically generated method overrides the implementation of
      * <code>requiredAttributes</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.AbstractNodeBuilderStrategy#requiredAttributes()
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#requiredAttributes()
      */
     @Override
     protected String[] requiredAttributes() {
-        return new String[] { "file" };
+        return new String[] { "name", "value" };
     }
+
 }

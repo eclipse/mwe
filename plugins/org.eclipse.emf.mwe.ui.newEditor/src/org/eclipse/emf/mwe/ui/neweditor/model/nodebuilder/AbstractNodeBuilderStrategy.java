@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.neweditor.model.builder;
+package org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -23,7 +23,7 @@ import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 public abstract class AbstractNodeBuilderStrategy implements
         INodeBuilderStrategy {
@@ -55,7 +55,7 @@ public abstract class AbstractNodeBuilderStrategy implements
      * This automatically generated method overrides the implementation of
      * <code>create</code> inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.neweditor.model.builder.INodeBuilderStrategy#create(java.lang.String,
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.INodeBuilderStrategy#create(java.lang.String,
      *      org.xml.sax.Attributes, org.eclipse.emf.ecore.EObject, Position)
      */
     @Override
