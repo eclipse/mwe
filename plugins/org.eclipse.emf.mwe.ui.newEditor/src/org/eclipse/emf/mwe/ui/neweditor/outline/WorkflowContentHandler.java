@@ -28,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -43,7 +43,7 @@ public class WorkflowContentHandler extends DefaultHandler {
     private String positionCategory;
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>endDocument</code> inherited from the superclass.
      * 
      * @see org.xml.sax.helpers.DefaultHandler#endDocument()
@@ -54,7 +54,7 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>endElement</code> inherited from the superclass.
      * 
      * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
@@ -93,7 +93,7 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>setDocumentLocator</code> inherited from the superclass.
      * 
      * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
@@ -114,7 +114,7 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>startDocument</code> inherited from the superclass.
      * 
      * @see org.xml.sax.helpers.DefaultHandler#startDocument()
@@ -127,7 +127,7 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>startElement</code> inherited from the superclass.
      * 
      * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,

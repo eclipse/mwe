@@ -16,12 +16,12 @@ import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStr
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public abstract class PropertyBuilderImpl extends AbstractNodeBuilderStrategy {
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>getImage</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#getImage()

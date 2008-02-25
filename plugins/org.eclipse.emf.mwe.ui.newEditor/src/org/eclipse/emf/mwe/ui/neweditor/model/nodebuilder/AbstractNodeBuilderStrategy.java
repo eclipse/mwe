@@ -20,15 +20,15 @@ import org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow.WorkflowFactory;
 import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 
-
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public abstract class AbstractNodeBuilderStrategy implements
         INodeBuilderStrategy {
 
-    protected static final String WORKFLOW_TAG = "org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow";
+    protected static final String WORKFLOW_TAG =
+            "org.eclipse.emf.mwe.ui.neweditor.internal.model.workflow";
 
     protected static final String COMPONENT_TAG = "component";
 
@@ -52,7 +52,7 @@ public abstract class AbstractNodeBuilderStrategy implements
     private static final String FILE_PROPERTY = "file";
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>create</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.INodeBuilderStrategy#create(java.lang.String,
@@ -63,8 +63,13 @@ public abstract class AbstractNodeBuilderStrategy implements
             final EObject ctx, final Position position) {
         EObject object = null;
 
-        if (canCreate(localName, attributes, ctx))
-            object = createObject();
+        if (ctx != null) {
+            if (canCreate(localName, attributes, ctx))
+                object = createObject();
+        } else {
+            if (isRootElement())
+                object = createObject();
+        }
 
         setParameters(object, attributes, position);
         setField(object, IMAGE_FIELD, getImage());
@@ -84,6 +89,11 @@ public abstract class AbstractNodeBuilderStrategy implements
     }
 
     protected abstract String getImage();
+
+    protected boolean isRootElement() {
+        // false by default
+        return false;
+    }
 
     protected abstract String[] requiredAttributes();
 

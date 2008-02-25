@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class FilePropertyBuilderImpl extends PropertyBuilderImpl {
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>createObject</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
@@ -31,7 +31,7 @@ public class FilePropertyBuilderImpl extends PropertyBuilderImpl {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>requiredAttributes</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#requiredAttributes()

@@ -12,22 +12,45 @@
 package org.eclipse.emf.mwe.ui.neweditor.internal.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
-public class SimplePropertyBuilderImpl extends PropertyBuilderImpl {
+public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
 
     /**
-     * This method overrides the implementation of
-     * <code>createObject</code> inherited from the superclass.
+     * This method overrides the implementation of <code>createObject</code>
+     * inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
      */
     @Override
     protected EObject createObject() {
-        return FACTORY.createSimpleProperty();
+        return FACTORY.createWorkflowFile();
+    }
+
+    /**
+     * This method overrides the implementation of <code>getImage</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#getImage()
+     */
+    @Override
+    protected String getImage() {
+        return null;
+    }
+
+    /**
+     * This method overrides the implementation of <code>isRootElement</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#isRootElement()
+     */
+    @Override
+    protected boolean isRootElement() {
+        return true;
     }
 
     /**
@@ -38,7 +61,7 @@ public class SimplePropertyBuilderImpl extends PropertyBuilderImpl {
      */
     @Override
     protected String[] requiredAttributes() {
-        return new String[] { "name", "value" };
+        return new String[] {};
     }
 
 }

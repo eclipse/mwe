@@ -22,7 +22,7 @@ import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class NodeBuilderStrategyRegistry implements INodeBuilderStrategy {
 
@@ -33,7 +33,7 @@ public class NodeBuilderStrategyRegistry implements INodeBuilderStrategy {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>create</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.INodeBuilderStrategy#create(java.lang.String,

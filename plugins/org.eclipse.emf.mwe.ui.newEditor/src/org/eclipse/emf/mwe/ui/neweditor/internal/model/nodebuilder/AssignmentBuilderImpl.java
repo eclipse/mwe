@@ -17,13 +17,13 @@ import org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStr
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
 
     /**
-     * This automatically generated method overrides the implementation of
-     * <code>createObject</code> inherited from the superclass.
+     * This method overrides the implementation of <code>createObject</code>
+     * inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
      */
@@ -33,8 +33,8 @@ public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
-     * <code>getImage</code> inherited from the superclass.
+     * This method overrides the implementation of <code>getImage</code>
+     * inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#getImage()
      */
@@ -44,7 +44,7 @@ public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>requiredAttributes</code> inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.neweditor.model.nodebuilder.AbstractNodeBuilderStrategy#requiredAttributes()

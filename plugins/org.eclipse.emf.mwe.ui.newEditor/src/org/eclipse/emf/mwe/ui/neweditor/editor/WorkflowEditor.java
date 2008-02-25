@@ -31,7 +31,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -75,7 +75,7 @@ public class WorkflowEditor extends TextEditor {
     }
 
     /**
-     * This automatically generated method overrides the implementation of
+     * This method overrides the implementation of
      * <code>getAdapter</code> inherited from the superclass.
      * 
      * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
