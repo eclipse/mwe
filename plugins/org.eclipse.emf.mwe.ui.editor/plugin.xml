@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.3"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            name="Modelling Workflow Editor"
+            extensions="mwe, oaw"
+            icon="icons/workflowfile.gif"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="org.eclipse.emf.mwe.ui.editor.editor.WorkflowEditor"
+            id="org.eclipse.emf.mwe.ui.neweditor.editors.WorkflowEditor">
+      </editor>
+   </extension>
+
+</plugin>
