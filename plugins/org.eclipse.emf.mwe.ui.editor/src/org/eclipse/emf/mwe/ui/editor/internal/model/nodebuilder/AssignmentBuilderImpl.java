@@ -17,10 +17,11 @@ import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Assignment;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.ComplexValue;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
 import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy;
+import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
 
@@ -63,6 +64,17 @@ public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
     @Override
     protected String getImage() {
         return EditorImages.ASSIGNMENT;
+    }
+
+    /**
+     * This method overrides the implementation of
+     * <code>internalIsProperty</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#internalIsProperty(org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean internalIsProperty(final Attributes attributes) {
+        return false;
     }
 
     /**

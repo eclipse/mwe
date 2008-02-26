@@ -12,22 +12,39 @@
 package org.eclipse.emf.mwe.ui.editor.internal.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
+import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class SimplePropertyBuilderImpl extends PropertyBuilderImpl {
 
+    private static final String NAME_PROPERTY = "name";
+
+    private static final String VALUE_PROPERTY = "value";
+
     /**
-     * This method overrides the implementation of
-     * <code>createObject</code> inherited from the superclass.
+     * This method overrides the implementation of <code>createObject</code>
+     * inherited from the superclass.
      * 
      * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#createObject()
      */
     @Override
     protected EObject createObject() {
         return FACTORY.createSimpleProperty();
+    }
+
+    /**
+     * This method overrides the implementation of
+     * <code>internalIsProperty</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#internalIsProperty(org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean internalIsProperty(final Attributes attributes) {
+        return hasAttribute(attributes, NAME_PROPERTY)
+                && hasAttribute(attributes, VALUE_PROPERTY);
     }
 
     /**

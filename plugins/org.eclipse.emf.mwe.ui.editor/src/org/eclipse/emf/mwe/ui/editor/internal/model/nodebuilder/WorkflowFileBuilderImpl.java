@@ -13,10 +13,11 @@ package org.eclipse.emf.mwe.ui.editor.internal.model.nodebuilder;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy;
+import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
 
@@ -52,6 +53,17 @@ public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
     @Override
     protected String getImage() {
         return null;
+    }
+
+    /**
+     * This method overrides the implementation of
+     * <code>internalIsProperty</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#internalIsProperty(org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean internalIsProperty(final Attributes attributes) {
+        return false;
     }
 
     /**

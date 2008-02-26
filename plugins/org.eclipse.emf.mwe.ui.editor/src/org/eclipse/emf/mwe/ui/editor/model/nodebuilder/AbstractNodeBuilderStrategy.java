@@ -21,7 +21,7 @@ import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public abstract class AbstractNodeBuilderStrategy implements
         INodeBuilderStrategy {
@@ -43,12 +43,6 @@ public abstract class AbstractNodeBuilderStrategy implements
     private static final String LENGTH_FIELD = "length";
 
     private static final String OFFSET_FIELD = "offset";
-
-    private static final String NAME_PROPERTY = "name";
-
-    private static final String VALUE_PROPERTY = "value";
-
-    private static final String FILE_PROPERTY = "file";
 
     /**
      * This method overrides the implementation of <code>create</code>
@@ -86,6 +80,21 @@ public abstract class AbstractNodeBuilderStrategy implements
 
     protected abstract String getImage();
 
+    protected boolean hasAttribute(final Attributes attributes,
+            final String name) {
+        boolean res = false;
+        for (int i = 0; i < attributes.getLength(); i++) {
+            final String attrName = attributes.getLocalName(i);
+            if (attrName.equals(name)) {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
+
+    protected abstract boolean internalIsProperty(Attributes attributes);
+
     protected boolean isRootElement() {
         // false by default
         return false;
@@ -109,18 +118,6 @@ public abstract class AbstractNodeBuilderStrategy implements
             final Attributes attributes, final EObject ctx) {
         return isFeatureMatch(localName, attributes)
                 && isAllowedInContext(ctx);
-    }
-
-    private boolean hasAttribute(final Attributes attributes, final String name) {
-        boolean res = false;
-        for (int i = 0; i < attributes.getLength(); i++) {
-            final String attrName = attributes.getLocalName(i);
-            if (attrName.equals(name)) {
-                res = true;
-                break;
-            }
-        }
-        return res;
     }
 
     private boolean hasFeature(final EObject ctx, final String featureName) {
@@ -164,9 +161,7 @@ public abstract class AbstractNodeBuilderStrategy implements
     private boolean isProperty(final String localName,
             final Attributes attributes) {
         return localName.equals(PROPERTY_TAG)
-                && ((hasAttribute(attributes, NAME_PROPERTY) && hasAttribute(
-                        attributes, VALUE_PROPERTY)) || hasAttribute(
-                        attributes, FILE_PROPERTY));
+                && internalIsProperty(attributes);
     }
 
     private boolean isValue(final String localName, final Attributes attributes) {
