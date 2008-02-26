@@ -17,9 +17,11 @@ import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
+
+    private static final String WORKFLOW_TAG = "workflow";
 
     /**
      * This method overrides the implementation of <code>addChild</code>
@@ -67,6 +69,19 @@ public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
     }
 
     /**
+     * This method overrides the implementation of <code>isFeatureMatch</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#isFeatureMatch(java.lang.String,
+     *      org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean isFeatureMatch(final String localName,
+            final Attributes attributes) {
+        return localName.equals(WORKFLOW_TAG);
+    }
+
+    /**
      * This method overrides the implementation of <code>isRootElement</code>
      * inherited from the superclass.
      * 
@@ -87,5 +102,4 @@ public class WorkflowFileBuilderImpl extends AbstractNodeBuilderStrategy {
     protected String[] requiredAttributes() {
         return new String[] {};
     }
-
 }

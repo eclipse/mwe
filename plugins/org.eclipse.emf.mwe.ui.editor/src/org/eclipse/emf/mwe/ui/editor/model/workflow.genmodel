@@ -16,6 +16,10 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//WorkflowElement/offset"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//WorkflowElement/image"/>
     </genClasses>
+    <genClasses ecoreClass="workflow.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Attribute/value"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="workflow.ecore#//Property"/>
     <genClasses ecoreClass="workflow.ecore#//SimpleProperty">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//SimpleProperty/name"/>
@@ -25,25 +29,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//FileProperty/file"/>
     </genClasses>
     <genClasses ecoreClass="workflow.ecore#//Assignment">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Assignment/toAssignTo"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Assignment/value"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="workflow.ecore#//AbstractValue"/>
-    <genClasses image="false" ecoreClass="workflow.ecore#//ComplexValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//ComplexValue/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//ComplexValue/assignments"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//SimpleValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//SimpleValue/val"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//ObjectValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//ObjectValue/clazz"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//ReferencedValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//ReferencedValue/ref"/>
-    </genClasses>
-    <genClasses ecoreClass="workflow.ecore#//FileValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//FileValue/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//Assignment/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//Assignment/atributes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workflow.ecore#//Assignment/assignments"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

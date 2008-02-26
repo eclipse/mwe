@@ -14,14 +14,13 @@ package org.eclipse.emf.mwe.ui.editor.internal.model.nodebuilder;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ui.editor.internal.images.EditorImages;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Assignment;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.ComplexValue;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
 import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy;
 import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
 
@@ -38,8 +37,8 @@ public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
         if (ctx instanceof WorkflowFile) {
             final WorkflowFile parent = (WorkflowFile) object;
             parent.getAssignments().add(child);
-        } else if (ctx instanceof ComplexValue) {
-            final ComplexValue parent = (ComplexValue) object;
+        } else if (ctx instanceof Assignment) {
+            final Assignment parent = (Assignment) object;
             parent.getAssignments().add(child);
         }
     }
@@ -75,6 +74,19 @@ public class AssignmentBuilderImpl extends AbstractNodeBuilderStrategy {
     @Override
     protected boolean internalIsProperty(final Attributes attributes) {
         return false;
+    }
+
+    /**
+     * This method overrides the implementation of <code>isFeatureMatch</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#isFeatureMatch(java.lang.String,
+     *      org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean isFeatureMatch(final String localName,
+            final Attributes attributes) {
+        return !isFeatureMatch(localName, attributes);
     }
 
     /**

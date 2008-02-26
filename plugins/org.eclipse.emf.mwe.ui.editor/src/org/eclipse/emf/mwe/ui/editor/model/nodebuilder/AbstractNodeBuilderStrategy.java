@@ -21,20 +21,12 @@ import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public abstract class AbstractNodeBuilderStrategy implements
         INodeBuilderStrategy {
 
-    protected static final String WORKFLOW_TAG =
-            "org.eclipse.emf.mwe.ui.editor.internal.model.workflow";
-
-    protected static final String COMPONENT_TAG = "component";
-
     protected static final String PROPERTY_TAG = "property";
-
-    protected static final String[] ASSIGNMENT_TAGS =
-            { WORKFLOW_TAG, COMPONENT_TAG };
 
     protected static final WorkflowFactory FACTORY = WorkflowFactory.eINSTANCE;
 
@@ -95,6 +87,15 @@ public abstract class AbstractNodeBuilderStrategy implements
 
     protected abstract boolean internalIsProperty(Attributes attributes);
 
+    protected abstract boolean isFeatureMatch(final String localName,
+            final Attributes attributes);
+
+    protected boolean isProperty(final String localName,
+            final Attributes attributes) {
+        return localName.equals(PROPERTY_TAG)
+                && internalIsProperty(attributes);
+    }
+
     protected boolean isRootElement() {
         // false by default
         return false;
@@ -142,40 +143,6 @@ public abstract class AbstractNodeBuilderStrategy implements
 
     private boolean isAllowedInContext(final EObject ctx) {
         return hasFeatureType(ctx);
-    }
-
-    private boolean isAssignment(final String localName) {
-        for (final String str : ASSIGNMENT_TAGS) {
-            if (str.equals(localName))
-                return true;
-        }
-        return false;
-    }
-
-    private boolean isFeatureMatch(final String localName,
-            final Attributes attributes) {
-        return isAssignment(localName) ^ isProperty(localName, attributes)
-                ^ isValue(localName, attributes);
-    }
-
-    private boolean isProperty(final String localName,
-            final Attributes attributes) {
-        return localName.equals(PROPERTY_TAG)
-                && internalIsProperty(attributes);
-    }
-
-    private boolean isValue(final String localName, final Attributes attributes) {
-        if (isProperty(localName, attributes))
-            return false;
-
-        boolean res = true;
-        for (final String name : requiredAttributes()) {
-            if (!hasAttribute(attributes, name)) {
-                res = false;
-                break;
-            }
-        }
-        return res;
     }
 
     private void setField(final EObject object, final String fieldName,

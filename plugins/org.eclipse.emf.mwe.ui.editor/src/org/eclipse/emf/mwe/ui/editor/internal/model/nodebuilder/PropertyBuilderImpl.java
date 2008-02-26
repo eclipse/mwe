@@ -17,10 +17,11 @@ import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Property;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
 import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy;
 import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.ModelStructureViolation;
+import org.xml.sax.Attributes;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public abstract class PropertyBuilderImpl extends AbstractNodeBuilderStrategy {
 
@@ -49,6 +50,19 @@ public abstract class PropertyBuilderImpl extends AbstractNodeBuilderStrategy {
     @Override
     protected String getImage() {
         return EditorImages.PROPERTY;
+    }
+
+    /**
+     * This method overrides the implementation of <code>isFeatureMatch</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.editor.model.nodebuilder.AbstractNodeBuilderStrategy#isFeatureMatch(java.lang.String,
+     *      org.xml.sax.Attributes)
+     */
+    @Override
+    protected boolean isFeatureMatch(final String localName,
+            final Attributes attributes) {
+        return isProperty(localName, attributes);
     }
 
 }
