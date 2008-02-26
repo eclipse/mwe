@@ -11,19 +11,14 @@
 
 package org.eclipse.emf.mwe.ui.editor.tests.model.nodebuilder;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.FileProperty;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Property;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.SimpleProperty;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
-import org.eclipse.emf.mwe.ui.editor.outline.WorkflowContentOutlineHandler;
-import org.eclipse.emf.mwe.ui.editor.parser.XMLParser;
-import org.eclipse.jface.text.Document;
 
-public class PropertyParserTest extends TestCase {
+public class PropertyParserTest extends ParserTest {
 
     private static final String WORKFLOW1 =
             "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
@@ -38,17 +33,6 @@ public class PropertyParserTest extends TestCase {
             "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
                     + "    <property file=\"foo\"/>\n"
                     + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
-
-    private XMLParser parser;
-
-    private WorkflowContentOutlineHandler contentHandler;
-
-    @Override
-    protected void setUp() throws Exception {
-        parser = new XMLParser();
-        contentHandler = new WorkflowContentOutlineHandler();
-        parser.setContentHandler(contentHandler);
-    }
 
     public void testParserSetup() {
         assertNotNull(parser);
@@ -83,12 +67,5 @@ public class PropertyParserTest extends TestCase {
         final FileProperty property = (FileProperty) properties.get(0);
         assertNotNull(property);
         assertEquals("foo", property.getFile());
-    }
-
-    // Helper methods
-
-    private void setUpDocument(final String content) {
-        final Document document = new Document(content);
-        contentHandler.setDocument(document);
     }
 }
