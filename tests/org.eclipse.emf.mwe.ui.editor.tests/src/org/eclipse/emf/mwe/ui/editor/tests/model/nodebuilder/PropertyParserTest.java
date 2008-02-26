@@ -15,6 +15,7 @@ import junit.framework.TestCase;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.FileProperty;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Property;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.SimpleProperty;
 import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
@@ -24,14 +25,14 @@ import org.eclipse.jface.text.Document;
 
 public class PropertyParserTest extends TestCase {
 
-    private static final String WORKFLOW1 =
-            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
-                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
+    private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
 
     private static final String WORKFLOW2 =
-            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\r\n"
-                    + "    <property name=\"foo\" value=\"bar\"/>\r\n"
-                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
+            "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
+                    + "</workflow>";
+
+    private static final String WORKFLOW3 =
+            "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
 
     private XMLParser parser;
 
@@ -66,6 +67,17 @@ public class PropertyParserTest extends TestCase {
         assertEquals("foo", property.getName());
         assertEquals("bar", property.getValue());
 
+    }
+
+    public void testFileProperty() {
+        setUpDocument(WORKFLOW3);
+        parser.parse(WORKFLOW3);
+        final WorkflowFile root = (WorkflowFile) parser.getRoot();
+        final EList<Property> properties = root.getProperties();
+        assertEquals(1, properties.size());
+        final FileProperty property = (FileProperty) properties.get(0);
+        assertNotNull(property);
+        assertEquals("foo", property.getFile());
     }
 
     // Helper methods
