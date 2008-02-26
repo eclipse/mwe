@@ -25,14 +25,19 @@ import org.eclipse.jface.text.Document;
 
 public class PropertyParserTest extends TestCase {
 
-    private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
+    private static final String WORKFLOW1 =
+            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
+                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
 
     private static final String WORKFLOW2 =
-            "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
-                    + "</workflow>";
+            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
+                    + "    <property name=\"foo\" value=\"bar\"/>\n"
+                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
 
     private static final String WORKFLOW3 =
-            "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
+            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
+                    + "    <property file=\"foo\"/>\n"
+                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
 
     private XMLParser parser;
 

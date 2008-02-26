@@ -1,12 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Test suite for org.eclipse.mwe.ui.newEditor
-Bundle-SymbolicName: org.eclipse.emf.mwe.ui.editor.tests
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.mwe.ui.editor.tests; singleton:=true
 Bundle-Version: 1.0.0
-Bundle-Vendor: eclipse.org
-Require-Bundle: org.eclipse.emf.mwe.ui.editor,
- org.eclipse.core.resources,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- org.eclipse.jface.text
-Bundle-Activator: org.eclipse.emf.mwe.ui.editor.Activator
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.mwe.ui.editor;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.jface.text;visibility:=reexport,
+ org.junit;visibility:=reexport
+Eclipse-LazyStart: true
