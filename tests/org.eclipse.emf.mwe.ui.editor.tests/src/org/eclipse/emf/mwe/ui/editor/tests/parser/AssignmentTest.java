@@ -58,5 +58,15 @@ public class AssignmentTest extends ParserTest {
         }
         assertEquals(1, properties);
         assertEquals(4, assignments);
+        assertTrue(root.getChild(0).isLeaf());
+        assertEquals(2, root.getChild(0).getAttributeCount());
+        assertEquals(2, root.getChild(1).getChildrenCount());
+        assertEquals(1, root.getChild(1).getAttributeCount());
+        assertEquals(2, root.getChild(2).getChildrenCount());
+        assertEquals(1, root.getChild(2).getAttributeCount());
+        assertEquals(3, root.getChild(3).getChildrenCount());
+        assertEquals(1, root.getChild(3).getAttributeCount());
+        assertEquals(2, root.getChild(4).getChildrenCount());
+        assertEquals(1, root.getChild(4).getAttributeCount());
     }
 }
