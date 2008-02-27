@@ -11,28 +11,18 @@
 
 package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.FileProperty;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.Property;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.SimpleProperty;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowFile;
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
 
 public class PropertyTest extends ParserTest {
 
-    private static final String WORKFLOW1 =
-            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
-                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
+    private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
 
     private static final String WORKFLOW2 =
-            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
-                    + "    <property name=\"foo\" value=\"bar\"/>\n"
-                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
+            "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
+                    + "</workflow>";
 
     private static final String WORKFLOW3 =
-            "<org.eclipse.emf.mwe.ui.editor.internal.model.workflow>\n"
-                    + "    <property file=\"foo\"/>\n"
-                    + "</org.eclipse.emf.mwe.ui.editor.internal.model.workflow>";
+            "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
 
     public void testParserSetup() {
         assertNotNull(parser);
@@ -41,31 +31,28 @@ public class PropertyTest extends ParserTest {
     public void testEmptyWorkflow() {
         setUpDocument(WORKFLOW1);
         parser.parse(WORKFLOW1);
-        final EObject root = parser.getRoot();
-        assertEquals("WorkflowFile", root.eClass().getName());
+        final WorkflowElement root = parser.getRoot();
+        assertTrue(root.isWorkflow());
     }
 
     public void testSimpleProperty() {
         setUpDocument(WORKFLOW2);
         parser.parse(WORKFLOW2);
-        final WorkflowFile root = (WorkflowFile) parser.getRoot();
-        final EList<Property> properties = root.getProperties();
-        assertEquals(1, properties.size());
-        final SimpleProperty property = (SimpleProperty) properties.get(0);
-        assertNotNull(property);
-        assertEquals("foo", property.getName());
-        assertEquals("bar", property.getValue());
-
+        final WorkflowElement root = parser.getRoot();
+        assertEquals(1, root.getChildrenCount());
+        final WorkflowElement property = root.getChild(0);
+        assertEquals(2, property.getAttributeCount());
+        assertEquals("foo", property.getAttributeValue("name"));
+        assertEquals("bar", property.getAttributeValue("value"));
     }
 
     public void testFileProperty() {
         setUpDocument(WORKFLOW3);
         parser.parse(WORKFLOW3);
-        final WorkflowFile root = (WorkflowFile) parser.getRoot();
-        final EList<Property> properties = root.getProperties();
-        assertEquals(1, properties.size());
-        final FileProperty property = (FileProperty) properties.get(0);
-        assertNotNull(property);
-        assertEquals("foo", property.getFile());
+        final WorkflowElement root = parser.getRoot();
+        assertEquals(1, root.getChildrenCount());
+        final WorkflowElement property = root.getChild(0);
+        assertEquals(1, property.getAttributeCount());
+        assertEquals("foo", property.getAttributeValue("file"));
     }
 }
