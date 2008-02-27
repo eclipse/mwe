@@ -11,10 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.editor.outline;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowElement;
-import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.NoSuchModelElement;
-import org.eclipse.emf.mwe.ui.editor.model.nodebuilder.NodeBuilder;
+import java.util.regex.Pattern;
+
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.editor.parser.WorkflowContentHandler;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
@@ -26,11 +26,13 @@ import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentOutlineHandler extends WorkflowContentHandler {
 
-    private EObject currentElement;
+    private static final String TAG_NAME_PATTERN = "[a-z0-9]+";
+
+    private WorkflowElement currentElement;
 
     private Locator locator;
 
@@ -63,13 +65,12 @@ public class WorkflowContentOutlineHandler extends WorkflowContentHandler {
         final int line = locator.getLineNumber();
         final int endLine = getOffsetFromLine(line);
 
-        if (currentElement instanceof WorkflowElement) {
-            final WorkflowElement workflowElement =
-                    (WorkflowElement) currentElement;
+        if (currentElement.hasParent()) {
+            final WorkflowElement workflowElement = currentElement;
             final int length = endLine - workflowElement.getOffset();
             workflowElement.setLength(length);
+            currentElement = currentElement.getParent();
         }
-        currentElement = currentElement.eContainer();
     }
 
     /**
@@ -127,20 +128,31 @@ public class WorkflowContentOutlineHandler extends WorkflowContentHandler {
             throws SAXException {
 
         final int line = locator.getLineNumber() - 1;
-        final int startLine = getOffsetFromLine(line);
-        final Position position = new Position(startLine);
+        final int offset = getOffsetFromLine(line);
 
-        EObject element = null;
-
-        try {
-            element =
-                    NodeBuilder.create(localName, attributes, currentElement,
-                            position);
-        } catch (final NoSuchModelElement e) {
-            // TODO implement
+        final WorkflowElement element = new WorkflowElement(localName);
+        if (isIllegalName(localName)) {
+            error(null, element);
         }
 
+        element.setOffset(offset);
+        for (int i = 0; i < attributes.getLength(); i++) {
+            final String attrName = attributes.getLocalName(i);
+            final String attrValue = attributes.getValue(i);
+            final WorkflowAttribute attr =
+                    new WorkflowAttribute(attrName, attrValue);
+            element.addAttribute(attr);
+        }
+
+        if (currentElement != null) {
+            if (element.isValidChildFor(currentElement)) {
+                currentElement.addChild(element);
+            } else {
+                error(currentElement, element);
+            }
+        }
         currentElement = element;
+
         if (rootElement == null)
             rootElement = element;
     }
@@ -155,6 +167,12 @@ public class WorkflowContentOutlineHandler extends WorkflowContentHandler {
         }
     }
 
+    private void error(final WorkflowElement parent,
+            final WorkflowElement child) {
+        // TODO Implement error handling. First, ValidationError has to
+        // be refactored
+    }
+
     private int getOffsetFromLine(final int lineNumber) {
         int offset = 0;
         try {
@@ -166,5 +184,10 @@ public class WorkflowContentOutlineHandler extends WorkflowContentHandler {
             }
         }
         return offset;
+    }
+
+    private boolean isIllegalName(final String localName) {
+        final boolean res = Pattern.matches(TAG_NAME_PATTERN, localName);
+        return res;
     }
 }

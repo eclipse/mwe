@@ -11,13 +11,14 @@
 
 package org.eclipse.emf.mwe.ui.editor.outline;
 
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorInput;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentProvider implements ITreeContentProvider {
 
@@ -25,8 +26,8 @@ public class WorkflowContentProvider implements ITreeContentProvider {
 
     private final Viewer viewer;
 
-    public WorkflowContentProvider(final WorkflowContentOutlinePage outlinePage,
-            final Viewer viewer) {
+    public WorkflowContentProvider(
+            final WorkflowContentOutlinePage outlinePage, final Viewer viewer) {
         this.outlinePage = outlinePage;
         this.viewer = viewer;
     }
@@ -35,8 +36,8 @@ public class WorkflowContentProvider implements ITreeContentProvider {
         // do nothing
     }
 
-    public Object[] getChildren(final Object parentElement) {
-        return outlinePage.getChildren(parentElement);
+    public WorkflowElement[] getChildren(final Object parentElement) {
+        return outlinePage.getChildren((WorkflowElement) parentElement);
     }
 
     public Object[] getElements(final Object inputElement) {

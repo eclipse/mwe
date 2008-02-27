@@ -24,13 +24,15 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class EditorImages {
 
     public static final String PROPERTY = "property.gif";
 
     public static final String ASSIGNMENT = "assignment.gif";
+
+    public static final String WORKFLOW = "workflow.gif";
 
     /**
      * The image registry containing <code>Image</code>s and

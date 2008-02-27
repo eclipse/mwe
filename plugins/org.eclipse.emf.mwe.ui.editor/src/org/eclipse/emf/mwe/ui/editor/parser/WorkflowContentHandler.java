@@ -11,23 +11,23 @@
 
 package org.eclipse.emf.mwe.ui.editor.parser;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
-    protected EObject rootElement;
+    protected WorkflowElement rootElement;
 
     /**
      * Returns the value of field <code>rootElement</code>.
      * 
      * @return value of <code>rootElement</code>.
      */
-    public EObject getRootElement() {
+    public WorkflowElement getRootElement() {
         return rootElement;
     }
 

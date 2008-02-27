@@ -11,7 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.editor.outline;
 
-import org.eclipse.emf.mwe.ui.editor.internal.model.workflow.WorkflowElement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -80,9 +83,12 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
         this.input = input;
     }
 
-    protected WorkflowElement[] getChildren(final Object parentElement) {
-        // TODO Implement
-        return null;
+    protected WorkflowElement[] getChildren(final WorkflowElement parentElement) {
+        final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
+        for (int i = 0; i < parentElement.getChildrenCount(); i++) {
+            list.add(parentElement.getChild(i));
+        }
+        return list.toArray(new WorkflowElement[0]);
     }
 
     private ITreeContentProvider getContentProvider() {
