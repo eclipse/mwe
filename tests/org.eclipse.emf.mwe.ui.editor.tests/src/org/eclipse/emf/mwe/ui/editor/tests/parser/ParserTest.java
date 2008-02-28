@@ -13,23 +13,23 @@ package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
 import junit.framework.TestCase;
 
-import org.eclipse.emf.mwe.ui.editor.outline.WorkflowContentOutlineHandler;
+import org.eclipse.emf.mwe.ui.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.editor.parser.XMLParser;
 import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ParserTest extends TestCase {
     protected XMLParser parser;
 
-    private WorkflowContentOutlineHandler contentHandler;
+    private WorkflowContentHandler contentHandler;
 
     @Override
     protected void setUp() throws Exception {
         parser = new XMLParser();
-        contentHandler = new WorkflowContentOutlineHandler();
+        contentHandler = new WorkflowContentHandler();
         parser.setContentHandler(contentHandler);
     }
 

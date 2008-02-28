@@ -11,16 +11,69 @@
 
 package org.eclipse.emf.mwe.ui.editor.parser;
 
+import java.util.regex.Pattern;
+
+import org.eclipse.emf.mwe.ui.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.BadPositionCategoryException;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.Position;
+import org.xml.sax.Attributes;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
-    protected WorkflowElement rootElement;
+    private static final String TAG_NAME_PATTERN = "[a-z0-9]+";
+
+    private WorkflowElement rootElement;
+
+    private WorkflowElement currentElement;
+
+    private Locator locator;
+
+    private IDocument document;
+
+    private String positionCategory;
+
+    /**
+     * This method overrides the implementation of <code>endDocument</code>
+     * inherited from the superclass.
+     * 
+     * @see org.xml.sax.helpers.DefaultHandler#endDocument()
+     */
+    @Override
+    public void endDocument() throws SAXException {
+        assert (currentElement == rootElement);
+    }
+
+    /**
+     * This method overrides the implementation of <code>endElement</code>
+     * inherited from the superclass.
+     * 
+     * @see org.xml.sax.helpers.DefaultHandler#endElement(java.lang.String,
+     *      java.lang.String, java.lang.String)
+     */
+    @Override
+    public void endElement(final String uri, final String localName,
+            final String qName) throws SAXException {
+
+        final int line = locator.getLineNumber();
+        final int endLine = getOffsetFromLine(line);
+
+        if (currentElement.hasParent()) {
+            final WorkflowElement workflowElement = currentElement;
+            final int length = endLine - workflowElement.getOffset();
+            workflowElement.setLength(length);
+            currentElement = currentElement.getParent();
+        }
+    }
 
     /**
      * Returns the value of field <code>rootElement</code>.
@@ -31,4 +84,121 @@ public class WorkflowContentHandler extends DefaultHandler {
         return rootElement;
     }
 
+    /**
+     * Sets a new value for field <code>document</code>.
+     * 
+     * @param document
+     *            new value for <code>document</code>.
+     */
+    public void setDocument(final IDocument document) {
+        this.document = document;
+    }
+
+    /**
+     * This method overrides the implementation of
+     * <code>setDocumentLocator</code> inherited from the superclass.
+     * 
+     * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
+     */
+    @Override
+    public void setDocumentLocator(final Locator locator) {
+        this.locator = locator;
+    }
+
+    /**
+     * Sets a new value for field <code>positionCategory</code>.
+     * 
+     * @param positionCategory
+     *            new value for <code>positionCategory</code>.
+     */
+    public void setPositionCategory(final String positionCategory) {
+        this.positionCategory = positionCategory;
+    }
+
+    /**
+     * This method overrides the implementation of <code>startDocument</code>
+     * inherited from the superclass.
+     * 
+     * @see org.xml.sax.helpers.DefaultHandler#startDocument()
+     */
+    @Override
+    public void startDocument() throws SAXException {
+
+    }
+
+    /**
+     * This method overrides the implementation of <code>startElement</code>
+     * inherited from the superclass.
+     * 
+     * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+     *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
+     */
+    @Override
+    public void startElement(final String uri, final String localName,
+            final String qName, final Attributes attributes)
+            throws SAXException {
+
+        final int line = locator.getLineNumber() - 1;
+        final int offset = getOffsetFromLine(line);
+
+        final WorkflowElement element = new WorkflowElement(localName);
+        if (isIllegalName(localName)) {
+            error(null, element);
+        }
+
+        element.setOffset(offset);
+        for (int i = 0; i < attributes.getLength(); i++) {
+            final String attrName = attributes.getLocalName(i);
+            final String attrValue = attributes.getValue(i);
+            final WorkflowAttribute attr =
+                    new WorkflowAttribute(attrName, attrValue);
+            element.addAttribute(attr);
+        }
+
+        if (currentElement != null) {
+            if (element.isValidChildFor(currentElement)) {
+                currentElement.addChild(element);
+            } else {
+                error(currentElement, element);
+            }
+        }
+        currentElement = element;
+
+        if (rootElement == null)
+            rootElement = element;
+    }
+
+    private void addPosition(final Position position) {
+        try {
+            document.addPosition(positionCategory, position);
+        } catch (final BadLocationException e) {
+            e.printStackTrace();
+        } catch (final BadPositionCategoryException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void error(final WorkflowElement parent,
+            final WorkflowElement child) {
+        // TODO Implement error handling. First, ValidationError has to
+        // be refactored
+    }
+
+    private int getOffsetFromLine(final int lineNumber) {
+        int offset = 0;
+        try {
+            offset = document.getLineOffset(lineNumber);
+        } catch (final BadLocationException e) {
+            try {
+                offset = document.getLineOffset(lineNumber - 1);
+            } catch (final BadLocationException e1) {
+            }
+        }
+        return offset;
+    }
+
+    private boolean isIllegalName(final String localName) {
+        final boolean res = Pattern.matches(TAG_NAME_PATTERN, localName);
+        return res;
+    }
 }
