@@ -26,9 +26,14 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
+
+    private static final String NO_VALID_CHILD_ELEMENT_MSG =
+            " is no valid child element for element ";
+
+    private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name: ";
 
     private static final String TAG_NAME_PATTERN = "[a-z0-9]+";
 
@@ -63,10 +68,12 @@ public class WorkflowContentHandler extends DefaultHandler {
     @Override
     public void endElement(final String uri, final String localName,
             final String qName) throws SAXException {
+        if (isIllegalName(localName))
+            throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
+                    + localName, true);
 
         final int line = locator.getLineNumber();
         final int endLine = getOffsetFromLine(line);
-
         if (currentElement.hasParent()) {
             final WorkflowElement workflowElement = currentElement;
             final int length = endLine - workflowElement.getOffset();
@@ -142,9 +149,9 @@ public class WorkflowContentHandler extends DefaultHandler {
         final int offset = getOffsetFromLine(line);
 
         final WorkflowElement element = new WorkflowElement(localName);
-        if (isIllegalName(localName)) {
-            error(null, element);
-        }
+        if (isIllegalName(localName))
+            throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
+                    + localName, true);
 
         element.setOffset(offset);
         for (int i = 0; i < attributes.getLength(); i++) {
@@ -158,9 +165,10 @@ public class WorkflowContentHandler extends DefaultHandler {
         if (currentElement != null) {
             if (element.isValidChildFor(currentElement)) {
                 currentElement.addChild(element);
-            } else {
-                error(currentElement, element);
-            }
+            } else
+                throw new ValidationException(locator, "'" + localName + "'"
+                        + NO_VALID_CHILD_ELEMENT_MSG + "'"
+                        + currentElement.getName() + "'", true);
         }
         currentElement = element;
 
@@ -176,12 +184,6 @@ public class WorkflowContentHandler extends DefaultHandler {
         } catch (final BadPositionCategoryException e) {
             e.printStackTrace();
         }
-    }
-
-    private void error(final WorkflowElement parent,
-            final WorkflowElement child) {
-        // TODO Implement error handling. First, ValidationError has to
-        // be refactored
     }
 
     private int getOffsetFromLine(final int lineNumber) {

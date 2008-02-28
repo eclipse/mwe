@@ -11,9 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.editor.parser;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import org.eclipse.emf.mwe.ui.editor.internal.logging.Log;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
@@ -21,30 +19,27 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ValidationErrorHandler extends DefaultHandler {
 
-    private final List errorList = new ArrayList();
-
     private Locator locator;
 
-    public ValidationErrorHandler() {
-    }
+    private boolean loggingStatus;
 
     @Override
     public void error(final SAXParseException e) throws SAXException {
-        handleError(e, false);
+        throw createException(e, false);
 
     }
 
     @Override
     public void fatalError(final SAXParseException e) throws SAXException {
-        handleError(e, true);
+        throw createException(e, true);
     }
 
-    public List getErrorList() {
-        return errorList;
+    public boolean isLogging() {
+        return loggingStatus;
     }
 
     @Override
@@ -52,32 +47,25 @@ public class ValidationErrorHandler extends DefaultHandler {
         this.locator = locator;
     }
 
-    protected ValidationError nextError(final SAXParseException e,
+    public void setLoggingStatus(final boolean loggingStatus) {
+        this.loggingStatus = loggingStatus;
+    }
+
+    protected ValidationException createException(final SAXParseException e,
             final boolean isFatal) {
         final String errorMessage = e.getMessage();
 
-        final int lineNumber = locator.getLineNumber();
-        final int columnNumber = locator.getColumnNumber();
+        final ValidationException validationException =
+                new ValidationException(locator, errorMessage, isFatal);
 
-        log(this, (isFatal ? "FATAL " : "Non-Fatal") + "Error on line "
-                + lineNumber + ", column " + columnNumber + ": "
-                + errorMessage);
+        if (isLogging())
+            log(validationException.getDetailedMessage(), validationException);
 
-        final ValidationError validationError = new ValidationError();
-        validationError.setLineNumber(lineNumber);
-        validationError.setColumnNumber(columnNumber);
-        validationError.setErrorMessage(errorMessage);
-        return validationError;
+        return validationException;
     }
 
-    private void handleError(final SAXParseException e, final boolean isFatal) {
-        final ValidationError validationError = nextError(e, isFatal);
-        errorList.add(validationError);
-        System.out.println(validationError.toString());
-
-    }
-
-    private void log(final ValidationErrorHandler handler, final String string) {
+    private void log(final String message, final Throwable cause) {
+        Log.logError(message, cause);
     }
 
 }
