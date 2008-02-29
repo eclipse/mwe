@@ -18,15 +18,15 @@ import org.eclipse.ui.IEditorInput;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
-public class WorkflowContentProvider implements ITreeContentProvider {
+public class OutlineContentProvider implements ITreeContentProvider {
 
     private final WorkflowContentOutlinePage outlinePage;
 
     private final Viewer viewer;
 
-    public WorkflowContentProvider(
+    public OutlineContentProvider(
             final WorkflowContentOutlinePage outlinePage, final Viewer viewer) {
         this.outlinePage = outlinePage;
         this.viewer = viewer;

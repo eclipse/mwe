@@ -92,11 +92,11 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     }
 
     private ITreeContentProvider getContentProvider() {
-        return new WorkflowContentProvider(this, getTreeViewer());
+        return new OutlineContentProvider(this, getTreeViewer());
     }
 
     private ILabelProvider getLabelProvider() {
-        return new WorkflowLabelProvider();
+        return new OutlineflowLabelProvider();
     }
 
     private void updateHighlight() {
