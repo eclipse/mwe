@@ -19,10 +19,14 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowLabelProvider implements ILabelProvider {
+    private static final String PROPERTY_FILE_LABEL = "property file:";
+
+    private static final String PROPERTY_LABEL = "property:";
+
     public void addListener(final ILabelProviderListener listener) {
     }
 
@@ -30,19 +34,43 @@ public class WorkflowLabelProvider implements ILabelProvider {
     }
 
     public Image getImage(final Object element) {
-        if (element instanceof WorkflowElement)
-            return EditorImages.getImage((String) element);
-        return null;
+        if (!(element instanceof WorkflowElement))
+            return null;
+
+        final WorkflowElement workflowElement = (WorkflowElement) element;
+        return EditorImages.getImage(workflowElement.getImage());
     }
 
     public String getText(final Object element) {
-        if (element instanceof WorkflowElement)
-            return ((WorkflowElement) element).getName();
-        return null;
+        if (!(element instanceof WorkflowElement))
+            return null;
+
+        final WorkflowElement workflowElement = (WorkflowElement) element;
+        String text = null;
+
+        if (workflowElement.isSimpleProperty()) {
+            text =
+                    PROPERTY_LABEL
+                            + " "
+                            + workflowElement
+                                    .getAttributeValue(WorkflowElement.NAME_ATTRIBUTE)
+                            + " = "
+                            + workflowElement
+                                    .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);
+        } else if (workflowElement.isFileProperty()) {
+            text =
+                    PROPERTY_FILE_LABEL
+                            + " "
+                            + workflowElement
+                                    .getAttributeValue(WorkflowElement.FILE_ATTRIBUTE);
+        } else {
+            text = workflowElement.getName();
+        }
+        return text;
     }
 
     public boolean isLabelProperty(final Object element, final String property) {
-        return false;
+        return true;
     }
 
     public void removeListener(final ILabelProviderListener listener) {

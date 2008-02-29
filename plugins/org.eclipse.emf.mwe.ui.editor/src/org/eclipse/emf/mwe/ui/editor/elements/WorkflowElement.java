@@ -22,18 +22,25 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowElement {
 
     protected enum WorkflowElementType {
-        WORKFLOW, PROPERTY, ASSIGNMENT, ASSIGNMENTPROPERTY
+        WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
+        ASSIGNMENTPROPERTY
     }
+
+    public static final String FILE_ATTRIBUTE = "file";
+
+    public static final String VALUE_ATTRIBUTE = "value";
+
+    public static final String NAME_ATTRIBUTE = "name";
 
     protected static final String PROPERTY_TAG = "property";
 
-    protected static final String WORKFLOW_TAG = "workflow";;
+    protected static final String WORKFLOW_TAG = "workflow";
 
     private final String name;
 
@@ -135,25 +142,16 @@ public class WorkflowElement {
      * @return name of image.
      */
     public String getImage() {
-        final WorkflowElementType type = getElementType();
         String imageName = null;
-        switch (type) {
-            case WORKFLOW:
-                imageName = EditorImages.WORKFLOW;
-                break;
-
-            case PROPERTY:
-            case ASSIGNMENTPROPERTY:
-                imageName = EditorImages.PROPERTY;
-                break;
-
-            case ASSIGNMENT:
-                imageName = EditorImages.ASSIGNMENT;
-                break;
-
-            default:
-                // should never occur
-                assert (false);
+        if (isWorkflow())
+            imageName = EditorImages.WORKFLOW;
+        else if (isProperty() || isAssignmentProperty())
+            imageName = EditorImages.PROPERTY;
+        else if (isAssignment())
+            imageName = EditorImages.ASSIGNMENT;
+        else {
+            // should never occur
+            assert (false);
         }
         return imageName;
     }
@@ -252,6 +250,16 @@ public class WorkflowElement {
     }
 
     /**
+     * Checks if the current element is a file property.
+     * 
+     * @return <code>true</code> if current element is a file property,
+     *         otherwise <code>false</code>.
+     */
+    public boolean isFileProperty() {
+        return (getElementType() == WorkflowElementType.FILE_PROPERTY);
+    }
+
+    /**
      * Checks if the current element is a leaf element.
      * 
      * @return <code>true</code> if current element has no child elements,
@@ -268,7 +276,17 @@ public class WorkflowElement {
      *         <code>false</code>.
      */
     public boolean isProperty() {
-        return (getElementType() == WorkflowElementType.PROPERTY);
+        return isSimpleProperty() || isFileProperty();
+    }
+
+    /**
+     * Checks if the current element is a simple property.
+     * 
+     * @return <code>true</code> if current element is a simple property,
+     *         otherwise <code>false</code>.
+     */
+    public boolean isSimpleProperty() {
+        return (getElementType() == WorkflowElementType.SIMPLE_PROPERTY);
     }
 
     public boolean isValidChildFor(final WorkflowElement parentElement) {
@@ -346,9 +364,13 @@ public class WorkflowElement {
         WorkflowElementType type = null;
         if (name.equals(WORKFLOW_TAG))
             type = WorkflowElementType.WORKFLOW;
-        else if (name.equals(PROPERTY_TAG))
-            type = WorkflowElementType.PROPERTY;
-        else if (!name.equals(PROPERTY_TAG) && isLeaf())
+        else if (name.equals(PROPERTY_TAG)) {
+            if (getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE)
+                    && hasAttribute(VALUE_ATTRIBUTE))
+                type = WorkflowElementType.SIMPLE_PROPERTY;
+            else if (getAttributeCount() == 1 && hasAttribute(FILE_ATTRIBUTE))
+                type = WorkflowElementType.FILE_PROPERTY;
+        } else if (!name.equals(PROPERTY_TAG) && isLeaf())
             type = WorkflowElementType.ASSIGNMENTPROPERTY;
         else
             type = WorkflowElementType.ASSIGNMENT;
