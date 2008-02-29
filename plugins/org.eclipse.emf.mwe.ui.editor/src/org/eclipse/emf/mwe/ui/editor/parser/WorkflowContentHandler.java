@@ -26,7 +26,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -76,7 +76,7 @@ public class WorkflowContentHandler extends DefaultHandler {
         final int endLine = getOffsetFromLine(line);
         if (currentElement.hasParent()) {
             final WorkflowElement workflowElement = currentElement;
-            final int length = endLine - workflowElement.getOffset();
+            final int length = endLine - workflowElement.getStartOffset();
             workflowElement.setLength(length);
             currentElement = currentElement.getParent();
         }

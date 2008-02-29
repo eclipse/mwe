@@ -22,7 +22,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowElement {
@@ -137,6 +137,24 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns a list containing all child elements.
+     * 
+     * @return list of child elements.
+     */
+    public List<WorkflowElement> getChildrenList() {
+        return children;
+    }
+
+    /**
+     * Returns the offset of the end line of the current element.
+     * 
+     * @return offset of end line.
+     */
+    public int getEndOffset() {
+        return getStartOffset() + getLength() - 1;
+    }
+
+    /**
      * Returns the name of the icon image of the current element.
      * 
      * @return name of image.
@@ -175,15 +193,6 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the offset of the current element.
-     * 
-     * @return start line of element.
-     */
-    public int getOffset() {
-        return position.getOffset();
-    }
-
-    /**
      * Returns the value of field <code>parent</code>.
      * 
      * @return value of <code>parent</code>.
@@ -199,6 +208,15 @@ public class WorkflowElement {
      */
     public Position getPosition() {
         return position;
+    }
+
+    /**
+     * Returns the offset of start line of the current element.
+     * 
+     * @return offset of start line.
+     */
+    public int getStartOffset() {
+        return position.getOffset();
     }
 
     public boolean hasAttribute(final String name) {
@@ -321,6 +339,12 @@ public class WorkflowElement {
         return (getElementType() == WorkflowElementType.WORKFLOW);
     }
 
+    /**
+     * Sets the length of the current element.
+     * 
+     * @param length
+     *            length of element.
+     */
     public void setLength(final int length) {
         createPosition();
         position.setLength(length);

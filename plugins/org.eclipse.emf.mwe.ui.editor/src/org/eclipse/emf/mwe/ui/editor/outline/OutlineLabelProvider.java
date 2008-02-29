@@ -22,7 +22,7 @@ import org.eclipse.swt.graphics.Image;
  * @version $Revision: 1.1 $
  */
 
-public class OutlineflowLabelProvider implements ILabelProvider {
+public class OutlineLabelProvider implements ILabelProvider {
     private static final String PROPERTY_FILE_LABEL = "property file:";
 
     private static final String PROPERTY_LABEL = "property:";

@@ -47,6 +47,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
         viewer.setLabelProvider(getLabelProvider());
         viewer.setContentProvider(getContentProvider());
         viewer.addSelectionChangedListener(this);
+
+        if (input != null)
+            setInput(input);
     }
 
     public void refresh() {
@@ -56,8 +59,8 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
             final Control control = viewer.getControl();
 
             if ((control != null) && !control.isDisposed()) {
-                // TODO implement
                 control.setRedraw(false);
+                viewer.setInput(input);
                 viewer.expandAll();
                 control.setRedraw(true);
             }
@@ -81,6 +84,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 
     public void setInput(final IEditorInput input) {
         this.input = input;
+        refresh();
     }
 
     protected WorkflowElement[] getChildren(final WorkflowElement parentElement) {
@@ -92,11 +96,12 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     }
 
     private ITreeContentProvider getContentProvider() {
-        return new OutlineContentProvider(this, getTreeViewer());
+        return new OutlineContentProvider(this, getTreeViewer(), editor
+                .getDocumentProvider());
     }
 
     private ILabelProvider getLabelProvider() {
-        return new OutlineflowLabelProvider();
+        return new OutlineLabelProvider();
     }
 
     private void updateHighlight() {
@@ -108,7 +113,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                         ((IStructuredSelection) selection).getFirstElement();
                 if (segment != null && segment instanceof WorkflowElement) {
                     final WorkflowElement ext = (WorkflowElement) segment;
-                    final int start = ext.getOffset();
+                    final int start = ext.getStartOffset();
                     final int length = ext.getLength();
                     if (start >= 0) {
                         try {
