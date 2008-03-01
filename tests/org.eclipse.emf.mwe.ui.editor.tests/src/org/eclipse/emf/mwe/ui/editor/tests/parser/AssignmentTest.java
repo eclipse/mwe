@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
-import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 public class AssignmentTest extends ParserTest {
 
@@ -45,7 +45,7 @@ public class AssignmentTest extends ParserTest {
     public void testCompleteWorkflow() {
         setUpDocument(WORKFLOW1);
         parser.parse(WORKFLOW1);
-        final WorkflowElement root = parser.getRoot();
+        final WorkflowElement root = parser.getRootElement();
         assertEquals(5, root.getChildrenCount());
         int properties = 0;
         int assignments = 0;

@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
-import org.eclipse.emf.mwe.ui.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 public class PropertyTest extends ParserTest {
 
@@ -31,14 +31,14 @@ public class PropertyTest extends ParserTest {
     public void testEmptyWorkflow() {
         setUpDocument(WORKFLOW1);
         parser.parse(WORKFLOW1);
-        final WorkflowElement root = parser.getRoot();
+        final WorkflowElement root = parser.getRootElement();
         assertTrue(root.isWorkflow());
     }
 
     public void testSimpleProperty() {
         setUpDocument(WORKFLOW2);
         parser.parse(WORKFLOW2);
-        final WorkflowElement root = parser.getRoot();
+        final WorkflowElement root = parser.getRootElement();
         assertEquals(1, root.getChildrenCount());
         final WorkflowElement property = root.getChild(0);
         assertEquals(2, property.getAttributeCount());
@@ -49,7 +49,7 @@ public class PropertyTest extends ParserTest {
     public void testFileProperty() {
         setUpDocument(WORKFLOW3);
         parser.parse(WORKFLOW3);
-        final WorkflowElement root = parser.getRoot();
+        final WorkflowElement root = parser.getRootElement();
         assertEquals(1, root.getChildrenCount());
         final WorkflowElement property = root.getChild(0);
         assertEquals(1, property.getAttributeCount());

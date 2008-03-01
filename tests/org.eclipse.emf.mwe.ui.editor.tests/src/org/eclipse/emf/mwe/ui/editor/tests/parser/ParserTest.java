@@ -13,13 +13,13 @@ package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
 import junit.framework.TestCase;
 
-import org.eclipse.emf.mwe.ui.editor.parser.WorkflowContentHandler;
-import org.eclipse.emf.mwe.ui.editor.parser.XMLParser;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ParserTest extends TestCase {
     protected XMLParser parser;

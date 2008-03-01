@@ -19,7 +19,7 @@ public class AllTests {
     public static Test suite() {
         TestSuite suite =
                 new TestSuite(
-                        "Test for org.eclipse.emf.mwe.ui.editor.tests.parser");
+                        "Test for org.eclipse.emf.mwe.ui.internal.editor.tests.parser");
         //$JUnit-BEGIN$
         suite.addTestSuite(PropertyTest.class);
         suite.addTestSuite(AssignmentTest.class);
