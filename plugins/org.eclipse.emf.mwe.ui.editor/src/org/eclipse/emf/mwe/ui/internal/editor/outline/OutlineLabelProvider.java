@@ -19,13 +19,11 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
-    private static final String PROPERTY_FILE_LABEL = "property file:";
-
-    private static final String PROPERTY_LABEL = "property:";
+    private static final String PROPERTY_FILE_LABEL = "file:";
 
     public void addListener(final ILabelProviderListener listener) {
     }
@@ -50,10 +48,8 @@ public class OutlineLabelProvider implements ILabelProvider {
 
         if (workflowElement.isSimpleProperty()) {
             text =
-                    PROPERTY_LABEL
-                            + " "
-                            + workflowElement
-                                    .getAttributeValue(WorkflowElement.NAME_ATTRIBUTE)
+                    workflowElement
+                            .getAttributeValue(WorkflowElement.NAME_ATTRIBUTE)
                             + " = "
                             + workflowElement
                                     .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);

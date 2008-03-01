@@ -26,7 +26,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -129,11 +129,9 @@ public class WorkflowContentHandler extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        final WorkflowElement root =
-                new WorkflowElement(WorkflowElement.WORKFLOWFILE_TAG);
-        currentElement = root;
-
-        root.setOffset(0);
+        rootElement = new WorkflowElement(WorkflowElement.WORKFLOWFILE_TAG);
+        currentElement = rootElement;
+        rootElement.setOffset(0);
     }
 
     /**

@@ -30,7 +30,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -43,7 +43,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
     private final Viewer viewer;
 
-    private WorkflowElement root;
+    private WorkflowElement rootElement;
 
     private IEditorInput input;
 
@@ -63,9 +63,10 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
     public Object[] getChildren(final Object parentElement) {
         if (parentElement == input) {
-            if (root == null)
+            if (rootElement == null)
                 return new Object[0];
-            final List<WorkflowElement> childList = root.getChildrenList();
+            final List<WorkflowElement> childList =
+                    rootElement.getChildrenList();
             if (childList != null)
                 return childList.toArray();
         } else {
@@ -115,7 +116,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
                 final WorkflowElement rootElement = parseRootElement(document);
                 if (rootElement != null) {
-                    root = rootElement;
+                    this.rootElement = rootElement;
                 }
             }
         }
