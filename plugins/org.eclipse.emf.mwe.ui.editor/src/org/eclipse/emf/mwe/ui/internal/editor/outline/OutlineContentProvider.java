@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.List;
 
+import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
@@ -29,7 +30,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -141,9 +142,10 @@ public class OutlineContentProvider implements ITreeContentProvider {
             contentHandler.setDocumentLocator(new LocatorImpl());
             xmlParser.setContentHandler(contentHandler);
             xmlParser.parse(text);
-            final WorkflowElement root = contentHandler.getRootElement();
+            final WorkflowElement root = xmlParser.getRootElement();
             return root;
         } catch (final ValidationException e) {
+            Activator.logDebug(e);
             return null;
         }
     }

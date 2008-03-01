@@ -21,7 +21,7 @@ import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class Activator extends AbstractUIPlugin {
 
@@ -78,6 +78,14 @@ public class Activator extends AbstractUIPlugin {
             display = Display.getDefault();
         }
         return display;
+    }
+
+    public static void logDebug(final String msg) {
+        System.err.println(msg);
+    }
+
+    public static void logDebug(final Throwable throwable) {
+        throwable.printStackTrace();
     }
 
     public static void logError(final Exception e) {

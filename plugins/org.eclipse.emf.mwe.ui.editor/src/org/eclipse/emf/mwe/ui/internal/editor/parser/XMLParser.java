@@ -28,7 +28,7 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class XMLParser {
 
@@ -39,7 +39,7 @@ public class XMLParser {
 
     private WorkflowContentHandler contentHandler;
 
-    public WorkflowElement getRoot() {
+    public WorkflowElement getRootElement() {
         WorkflowElement root = null;
         if (contentHandler != null)
             root = contentHandler.getRootElement();

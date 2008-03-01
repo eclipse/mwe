@@ -22,15 +22,17 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowElement {
 
     protected enum WorkflowElementType {
-        WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
+        WORKFLOWFILE, WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
         ASSIGNMENTPROPERTY
     }
+
+    public static final String WORKFLOWFILE_TAG = "workflowfile";
 
     public static final String FILE_ATTRIBUTE = "file";
 
@@ -167,10 +169,7 @@ public class WorkflowElement {
             imageName = EditorImages.PROPERTY;
         else if (isAssignment())
             imageName = EditorImages.ASSIGNMENT;
-        else {
-            // should never occur
-            assert (false);
-        }
+
         return imageName;
     }
 
@@ -308,25 +307,27 @@ public class WorkflowElement {
     }
 
     public boolean isValidChildFor(final WorkflowElement parentElement) {
+        boolean res = true;
+
         if (parentElement == null)
             throw new IllegalArgumentException();
 
-        if (isWorkflow() || parentElement.isProperty())
-            return false;
-
-        if (parentElement.isWorkflow()) {
+        if (parentElement.isWorkflowFile() && !isWorkflow()) {
+            res = false;
+        } else if (parentElement.isWorkflow()) {
             if (!parentElement.isLeaf() && isProperty()) {
                 final int lastElement = parentElement.getChildrenCount() - 1;
-                if (!parentElement.getChild(lastElement).isProperty())
-                    return false;
-
+                if (!parentElement.getChild(lastElement).isProperty()) {
+                    res = false;
+                }
             } else if (parentElement.isAssignment()
                     || parentElement.isAssignmentProperty()) {
-                if (isProperty())
-                    return false;
+                if (isProperty()) {
+                    res = false;
+                }
             }
         }
-        return true;
+        return res;
     }
 
     /**
@@ -337,6 +338,16 @@ public class WorkflowElement {
      */
     public boolean isWorkflow() {
         return (getElementType() == WorkflowElementType.WORKFLOW);
+    }
+
+    /**
+     * Checks if the current element is a workflow file container.
+     * 
+     * @return <code>true</code> if current element is a workflow file
+     *         container, otherwise <code>false</code>.
+     */
+    public boolean isWorkflowFile() {
+        return (getElementType() == WorkflowElementType.WORKFLOWFILE);
     }
 
     /**
@@ -386,6 +397,8 @@ public class WorkflowElement {
      */
     private WorkflowElementType getElementType() {
         WorkflowElementType type = null;
+        if (name.equals(WORKFLOWFILE_TAG))
+            type = WorkflowElementType.WORKFLOWFILE;
         if (name.equals(WORKFLOW_TAG))
             type = WorkflowElementType.WORKFLOW;
         else if (name.equals(PROPERTY_TAG)) {

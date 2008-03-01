@@ -26,7 +26,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -75,9 +75,8 @@ public class WorkflowContentHandler extends DefaultHandler {
         final int line = locator.getLineNumber();
         final int endLine = getOffsetFromLine(line);
         if (currentElement.hasParent()) {
-            final WorkflowElement workflowElement = currentElement;
-            final int length = endLine - workflowElement.getStartOffset();
-            workflowElement.setLength(length);
+            final int length = endLine - currentElement.getStartOffset();
+            currentElement.setLength(length);
             currentElement = currentElement.getParent();
         }
     }
@@ -130,7 +129,11 @@ public class WorkflowContentHandler extends DefaultHandler {
      */
     @Override
     public void startDocument() throws SAXException {
+        final WorkflowElement root =
+                new WorkflowElement(WorkflowElement.WORKFLOWFILE_TAG);
+        currentElement = root;
 
+        root.setOffset(0);
     }
 
     /**
@@ -162,18 +165,13 @@ public class WorkflowContentHandler extends DefaultHandler {
             element.addAttribute(attr);
         }
 
-        if (currentElement != null) {
-            if (element.isValidChildFor(currentElement)) {
-                currentElement.addChild(element);
-            } else
-                throw new ValidationException(locator, "'" + localName + "'"
-                        + NO_VALID_CHILD_ELEMENT_MSG + "'"
-                        + currentElement.getName() + "'", true);
-        }
+        if (element.isValidChildFor(currentElement)) {
+            currentElement.addChild(element);
+        } else
+            throw new ValidationException(locator, "'" + localName + "'"
+                    + NO_VALID_CHILD_ELEMENT_MSG + "'"
+                    + currentElement.getName() + "'", true);
         currentElement = element;
-
-        if (rootElement == null)
-            rootElement = element;
     }
 
     private void addPosition(final Position position) {
@@ -200,7 +198,6 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     private boolean isIllegalName(final String localName) {
-        final boolean res = Pattern.matches(TAG_NAME_PATTERN, localName);
-        return res;
+        return !Pattern.matches(TAG_NAME_PATTERN, localName);
     }
 }
