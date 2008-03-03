@@ -16,9 +16,11 @@ import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.ProcessingInstructionFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.TextFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.WorkflowFormattingStrategy;
+import org.eclipse.emf.mwe.ui.internal.editor.scanners.CDataScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowPartitionScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
+import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTextScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.TextAttribute;
@@ -35,7 +37,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowDoubleClickStrategy doubleClickStrategy;
@@ -43,6 +45,10 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowTagScanner tagScanner;
 
     private WorkflowScanner scanner;
+
+    private WorkflowTextScanner textScanner;
+
+    private CDataScanner cdataScanner;
 
     private final ColorManager colorManager;
 
@@ -119,17 +125,41 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         final PresentationReconciler reconciler = new PresentationReconciler();
 
         DefaultDamagerRepairer dr =
-                new DefaultDamagerRepairer(getWorkflowTagScanner());
+                new DefaultDamagerRepairer(getWorkflowScanner());
         reconciler.setDamager(dr, WorkflowPartitionScanner.XML_START_TAG);
         reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_START_TAG);
+
+        dr = new DefaultDamagerRepairer(getWorkflowTagScanner());
+        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_END_TAG);
+        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_END_TAG);
 
         dr = new DefaultDamagerRepairer(getWorkflowScanner());
         reconciler.setDamager(dr, IDocument.DEFAULT_CONTENT_TYPE);
         reconciler.setRepairer(dr, IDocument.DEFAULT_CONTENT_TYPE);
 
+        dr = new DefaultDamagerRepairer(getWorkflowScanner());
+        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_DOCTYPE);
+        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_DOCTYPE);
+
+        dr = new DefaultDamagerRepairer(getWorkflowScanner());
+        reconciler.setDamager(dr,
+                WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
+        reconciler.setRepairer(dr,
+                WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
+
+        dr = new DefaultDamagerRepairer(getWorkflowTextScanner());
+        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_TEXT);
+        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_TEXT);
+
+        dr = new DefaultDamagerRepairer(getCDataScanner());
+        reconciler.setDamager(dr, WorkflowPartitionScanner.XML_CDATA);
+        reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_CDATA);
+
+        final TextAttribute textAttribute =
+                new TextAttribute(colorManager
+                        .getColor(WorkflowColorConstants.XML_COMMENT));
         final NonRuleBasedDamagerRepairer ndr =
-                new NonRuleBasedDamagerRepairer(new TextAttribute(colorManager
-                        .getColor(WorkflowColorConstants.XML_COMMENT)));
+                new NonRuleBasedDamagerRepairer(textAttribute);
         reconciler.setDamager(ndr, WorkflowPartitionScanner.XML_COMMENT);
         reconciler.setRepairer(ndr, WorkflowPartitionScanner.XML_COMMENT);
 
@@ -144,6 +174,18 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         final MonoReconciler reconciler = new MonoReconciler(strategy, false);
         return reconciler;
 
+    }
+
+    protected CDataScanner getCDataScanner() {
+        if (cdataScanner == null) {
+            cdataScanner = new CDataScanner(colorManager);
+            cdataScanner
+                    .setDefaultReturnToken(new Token(
+                            new TextAttribute(
+                                    colorManager
+                                            .getColor(WorkflowColorConstants.CDATA_TEXT))));
+        }
+        return cdataScanner;
     }
 
     protected WorkflowScanner getWorkflowScanner() {
@@ -162,5 +204,14 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
                     colorManager.getColor(WorkflowColorConstants.TAG))));
         }
         return tagScanner;
+    }
+
+    protected WorkflowTextScanner getWorkflowTextScanner() {
+        if (textScanner == null) {
+            textScanner = new WorkflowTextScanner(colorManager);
+            textScanner.setDefaultReturnToken(new Token(new TextAttribute(
+                    colorManager.getColor(WorkflowColorConstants.DEFAULT))));
+        }
+        return textScanner;
     }
 }
