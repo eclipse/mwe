@@ -26,7 +26,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -35,7 +35,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 
     private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name: ";
 
-    private static final String TAG_NAME_PATTERN = "[a-z0-9]+";
+    private static final String TAG_NAME_PATTERN = "[a-zA-Z0-9]+";
 
     private WorkflowElement rootElement;
 
