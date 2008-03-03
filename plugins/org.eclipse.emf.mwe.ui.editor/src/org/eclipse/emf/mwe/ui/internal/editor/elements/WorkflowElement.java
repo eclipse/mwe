@@ -22,7 +22,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowElement {
@@ -402,8 +402,8 @@ public class WorkflowElement {
         if (name.equals(WORKFLOW_TAG))
             type = WorkflowElementType.WORKFLOW;
         else if (name.equals(PROPERTY_TAG)) {
-            if (getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE)
-                    && hasAttribute(VALUE_ATTRIBUTE))
+            if ((getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE) && hasAttribute(VALUE_ATTRIBUTE))
+                    || (getAttributeCount() == 1 && hasAttribute(NAME_ATTRIBUTE)))
                 type = WorkflowElementType.SIMPLE_PROPERTY;
             else if (getAttributeCount() == 1 && hasAttribute(FILE_ATTRIBUTE))
                 type = WorkflowElementType.FILE_PROPERTY;
