@@ -31,7 +31,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -75,8 +75,8 @@ public class WorkflowEditor extends TextEditor {
     }
 
     /**
-     * This method overrides the implementation of
-     * <code>getAdapter</code> inherited from the superclass.
+     * This method overrides the implementation of <code>getAdapter</code>
+     * inherited from the superclass.
      * 
      * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
      */
@@ -138,6 +138,14 @@ public class WorkflowEditor extends TextEditor {
         super.editorContextMenuAboutToShow(menu);
 
         actionGroup.fillContextMenu(menu);
+    }
+
+    @Override
+    protected void editorSaved() {
+        super.editorSaved();
+
+        if (outlinePage != null)
+            outlinePage.refresh();
     }
 
     @Override
