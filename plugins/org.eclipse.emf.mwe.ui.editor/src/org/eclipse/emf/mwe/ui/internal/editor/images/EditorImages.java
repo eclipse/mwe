@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class EditorImages {
 
@@ -54,6 +54,7 @@ public final class EditorImages {
      * Hidden because of utility class.
      */
     private EditorImages() {
+        throw new UnsupportedOperationException();
     }
 
     /**

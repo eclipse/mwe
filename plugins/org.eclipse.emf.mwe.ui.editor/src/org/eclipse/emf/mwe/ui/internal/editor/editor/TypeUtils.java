@@ -17,14 +17,12 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class TypeUtils {
+
     /**
      * Constructor is hidden, since it is a utility class.
-     */
-    /**
-     * 
      */
     private TypeUtils() {
         throw new UnsupportedOperationException();
@@ -36,8 +34,9 @@ public final class TypeUtils {
             IType type = javaProject.findType(typeName);
             if ((type == null)
                     && (typeName != null && typeName.startsWith("mwe"))) {
-                type = javaProject.findType(typeName.replaceFirst("mwe",
-                        "org.eclipse.emf.mwe"));
+                type =
+                        javaProject.findType(typeName.replaceFirst("mwe",
+                                "org.eclipse.emf.mwe"));
             }
             return type;
         } catch (final JavaModelException e) {
