@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class EditorImages {
 
@@ -40,7 +40,9 @@ public final class EditorImages {
      */
     private static ImageRegistry imageRegistry;
 
-    /* Declare Common paths */
+    /**
+     * The URL path to the icon folder.
+     */
     private static URL iconBaseURL;
 
     static {
