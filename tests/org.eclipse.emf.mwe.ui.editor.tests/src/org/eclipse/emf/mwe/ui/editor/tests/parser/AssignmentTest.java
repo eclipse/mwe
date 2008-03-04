@@ -50,16 +50,16 @@ public class AssignmentTest extends ParserBaseTest {
         final WorkflowElement workflow = root.getChild(0);
         assertEquals(5, workflow.getChildrenCount());
         int properties = 0;
-        int assignments = 0;
+        int components = 0;
         for (int i = 0; i < workflow.getChildrenCount(); i++) {
             final WorkflowElement element = workflow.getChild(i);
             if (element.isProperty())
                 properties++;
-            else if (element.isAssignment())
-                assignments++;
+            else if (element.isComponent())
+                components++;
         }
         assertEquals(1, properties);
-        assertEquals(4, assignments);
+        assertEquals(4, components);
         assertTrue(workflow.getChild(0).isLeaf());
         assertEquals(2, workflow.getChild(0).getAttributeCount());
         assertEquals(2, workflow.getChild(1).getChildrenCount());
