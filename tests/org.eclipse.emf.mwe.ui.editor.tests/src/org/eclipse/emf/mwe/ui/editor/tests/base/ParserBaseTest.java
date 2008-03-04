@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.editor.tests.parser;
+package org.eclipse.emf.mwe.ui.editor.tests.base;
 
 import junit.framework.TestCase;
 
@@ -19,9 +19,9 @@ import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
-public class ParserTest extends TestCase {
+public class ParserBaseTest extends TestCase {
     protected XMLParser parser;
 
     private WorkflowContentHandler contentHandler;

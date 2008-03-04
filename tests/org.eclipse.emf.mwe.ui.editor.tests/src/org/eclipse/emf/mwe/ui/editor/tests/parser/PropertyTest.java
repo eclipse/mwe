@@ -11,18 +11,18 @@
 
 package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
+import org.eclipse.emf.mwe.ui.editor.tests.base.ParserBaseTest;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
-public class PropertyTest extends ParserTest {
+public class PropertyTest extends ParserBaseTest {
 
     private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
 
-    private static final String WORKFLOW2 =
-            "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
-                    + "</workflow>";
+    private static final String WORKFLOW2 = "<workflow>\n"
+            + "    <property name=\"foo\" value=\"bar\"/>\n" + "</workflow>";
 
-    private static final String WORKFLOW3 =
-            "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
+    private static final String WORKFLOW3 = "<workflow>\n"
+            + "    <property file=\"foo\"/>\n" + "</workflow>";
 
     public void testParserSetup() {
         assertNotNull(parser);
@@ -32,7 +32,9 @@ public class PropertyTest extends ParserTest {
         setUpDocument(WORKFLOW1);
         parser.parse(WORKFLOW1);
         final WorkflowElement root = parser.getRootElement();
-        assertTrue(root.isWorkflow());
+        final WorkflowElement workflow = root.getChild(0);
+        assertTrue(root.isWorkflowFile());
+        assertTrue(workflow.isWorkflow());
     }
 
     public void testSimpleProperty() {
@@ -40,7 +42,9 @@ public class PropertyTest extends ParserTest {
         parser.parse(WORKFLOW2);
         final WorkflowElement root = parser.getRootElement();
         assertEquals(1, root.getChildrenCount());
-        final WorkflowElement property = root.getChild(0);
+        final WorkflowElement workflow = root.getChild(0);
+        assertEquals(1, workflow.getChildrenCount());
+        final WorkflowElement property = workflow.getChild(0);
         assertEquals(2, property.getAttributeCount());
         assertEquals("foo", property.getAttributeValue("name"));
         assertEquals("bar", property.getAttributeValue("value"));
@@ -51,7 +55,9 @@ public class PropertyTest extends ParserTest {
         parser.parse(WORKFLOW3);
         final WorkflowElement root = parser.getRootElement();
         assertEquals(1, root.getChildrenCount());
-        final WorkflowElement property = root.getChild(0);
+        final WorkflowElement workflow = root.getChild(0);
+        assertEquals(1, workflow.getChildrenCount());
+        final WorkflowElement property = workflow.getChild(0);
         assertEquals(1, property.getAttributeCount());
         assertEquals("foo", property.getAttributeValue("file"));
     }
