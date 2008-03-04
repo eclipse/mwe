@@ -22,14 +22,14 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class WorkflowElement {
 
     protected enum WorkflowElementType {
         WORKFLOWFILE, WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
-        ASSIGNMENTPROPERTY
+        ASSIGNMENTPROPERTY, COMPONENT
     }
 
     public static final String WORKFLOWFILE_TAG = "workflowfile";
@@ -43,6 +43,8 @@ public class WorkflowElement {
     protected static final String PROPERTY_TAG = "property";
 
     protected static final String WORKFLOW_TAG = "workflow";
+    
+    protected static final String COMPONENT_TAG = "component";
 
     private final String name;
 
@@ -157,27 +159,30 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the name of the icon image of the current element.
-     * 
-     * @return name of image.
-     */
-    public String getImage() {
-        String imageName = null;
-        if (isWorkflow())
-            imageName = EditorImages.WORKFLOW;
-        else if (isProperty() || isAssignmentProperty())
-            imageName = EditorImages.PROPERTY;
-        else if (isAssignment())
-            imageName = EditorImages.ASSIGNMENT;
+	 * Returns the name of the icon image of the current element.
+	 * 
+	 * @return name of image.
+	 */
+	public String getImage() {
+		String imageName = null;
+		if (isWorkflow()) {
+			imageName = EditorImages.WORKFLOW;
+		} else if (isComponent()) {
+			imageName = EditorImages.COMPONENT;
+		} else if (isProperty() || isAssignmentProperty()) {
+			imageName = EditorImages.PROPERTY;
+		} else if (isAssignment()) {
+			imageName = EditorImages.ASSIGNMENT;
+		}
 
-        return imageName;
-    }
+		return imageName;
+	}
 
     /**
-     * Returns the length of current element.
-     * 
-     * @return length of element.
-     */
+	 * Returns the length of current element.
+	 * 
+	 * @return length of element.
+	 */
     public int getLength() {
         return position.getLength();
     }
@@ -349,6 +354,10 @@ public class WorkflowElement {
     public boolean isWorkflowFile() {
         return (getElementType() == WorkflowElementType.WORKFLOWFILE);
     }
+    
+    public boolean isComponent() {
+    	return (WorkflowElementType.COMPONENT == getElementType());
+    }
 
     /**
      * Sets the length of the current element.
@@ -391,27 +400,31 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the type of the current workflow element.
-     * 
-     * @return type of current element.
-     */
-    private WorkflowElementType getElementType() {
-        WorkflowElementType type = null;
-        if (name.equals(WORKFLOWFILE_TAG))
-            type = WorkflowElementType.WORKFLOWFILE;
-        if (name.equals(WORKFLOW_TAG))
-            type = WorkflowElementType.WORKFLOW;
-        else if (name.equals(PROPERTY_TAG)) {
-            if ((getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE) && hasAttribute(VALUE_ATTRIBUTE))
-                    || (getAttributeCount() == 1 && hasAttribute(NAME_ATTRIBUTE)))
-                type = WorkflowElementType.SIMPLE_PROPERTY;
-            else if (getAttributeCount() == 1 && hasAttribute(FILE_ATTRIBUTE))
-                type = WorkflowElementType.FILE_PROPERTY;
-        } else if (!name.equals(PROPERTY_TAG) && isLeaf())
-            type = WorkflowElementType.ASSIGNMENTPROPERTY;
-        else
-            type = WorkflowElementType.ASSIGNMENT;
+	 * Returns the type of the current workflow element.
+	 * 
+	 * @return type of current element.
+	 */
+	private WorkflowElementType getElementType() {
+		WorkflowElementType type = null;
+		if (name.equals(COMPONENT_TAG)) {
+			type = WorkflowElementType.COMPONENT;
+		} else if (name.equals(WORKFLOWFILE_TAG)) {
+			type = WorkflowElementType.WORKFLOWFILE;
+		} else if (name.equals(WORKFLOW_TAG)) {
+			type = WorkflowElementType.WORKFLOW;
+		} else if (name.equals(PROPERTY_TAG)) {
+			if ((getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE) && hasAttribute(VALUE_ATTRIBUTE))
+					|| (getAttributeCount() == 1 && hasAttribute(NAME_ATTRIBUTE))) {
+				type = WorkflowElementType.SIMPLE_PROPERTY;
+			} else if (getAttributeCount() == 1 && hasAttribute(FILE_ATTRIBUTE)) {
+				type = WorkflowElementType.FILE_PROPERTY;
+			}
+		} else if (!name.equals(PROPERTY_TAG) && isLeaf()) {
+			type = WorkflowElementType.ASSIGNMENTPROPERTY;
+		} else {
+			type = WorkflowElementType.ASSIGNMENT;
+		}
 
-        return type;
-    }
+		return type;
+	}
 }

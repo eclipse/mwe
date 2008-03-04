@@ -19,7 +19,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
@@ -60,6 +60,14 @@ public class OutlineLabelProvider implements ILabelProvider {
                     + " "
                     + workflowElement
                             .getAttributeValue(WorkflowElement.FILE_ATTRIBUTE);
+		} else if (workflowElement.isComponent()) {
+			if (workflowElement.hasAttribute("class")) {
+				String classFQN = workflowElement.getAttributeValue("class");
+				int lastDot = classFQN.lastIndexOf('.');
+				text = classFQN.substring(lastDot + 1);
+			} else {
+				text = workflowElement.getName();
+			}
         } else {
             text = workflowElement.getName();
             if (workflowElement
