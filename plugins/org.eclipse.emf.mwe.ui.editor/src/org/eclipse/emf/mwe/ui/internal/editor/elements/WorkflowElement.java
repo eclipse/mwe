@@ -14,7 +14,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.jface.text.Position;
 
 /**
@@ -22,15 +21,10 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class WorkflowElement {
-
-    protected enum WorkflowElementType {
-        WORKFLOWFILE, WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
-        ASSIGNMENTPROPERTY, COMPONENT
-    }
 
     public static final String WORKFLOWFILE_TAG = "workflowfile";
 
@@ -40,10 +34,10 @@ public class WorkflowElement {
 
     public static final String NAME_ATTRIBUTE = "name";
 
-    protected static final String PROPERTY_TAG = "property";
+    public static final String PROPERTY_TAG = "property";
 
-    protected static final String WORKFLOW_TAG = "workflow";
-    
+    public static final String WORKFLOW_TAG = "workflow";
+
     protected static final String COMPONENT_TAG = "component";
 
     private final String name;
@@ -52,14 +46,19 @@ public class WorkflowElement {
 
     private WorkflowElement parent;
 
-    private final List<WorkflowElement> children =
-            new ArrayList<WorkflowElement>();
+    private WorkflowElementType type;
 
-    private final List<WorkflowAttribute> attributes =
-            new ArrayList<WorkflowAttribute>();
+    private String image;
+
+    private boolean recomputeTypeInfo;
+
+    private final List<WorkflowElement> children = new ArrayList<WorkflowElement>();
+
+    private final List<WorkflowAttribute> attributes = new ArrayList<WorkflowAttribute>();
 
     public WorkflowElement(final String name) {
         this.name = name;
+        recomputeTypeInfo = true;
     }
 
     /**
@@ -70,6 +69,7 @@ public class WorkflowElement {
      */
     public void addAttribute(final WorkflowAttribute attribute) {
         attributes.add(attribute);
+        recomputeTypeInfo = true;
     }
 
     /**
@@ -81,6 +81,7 @@ public class WorkflowElement {
     public void addChild(final WorkflowElement element) {
         element.setParent(this);
         children.add(element);
+        recomputeTypeInfo = true;
     }
 
     /**
@@ -159,30 +160,22 @@ public class WorkflowElement {
     }
 
     /**
-	 * Returns the name of the icon image of the current element.
-	 * 
-	 * @return name of image.
-	 */
-	public String getImage() {
-		String imageName = null;
-		if (isWorkflow()) {
-			imageName = EditorImages.WORKFLOW;
-		} else if (isComponent()) {
-			imageName = EditorImages.COMPONENT;
-		} else if (isProperty() || isAssignmentProperty()) {
-			imageName = EditorImages.PROPERTY;
-		} else if (isAssignment()) {
-			imageName = EditorImages.ASSIGNMENT;
-		}
+     * Returns the name of the icon image of the current element.
+     * 
+     * @return name of image.
+     */
+    public String getImage() {
+        if (recomputeTypeInfo)
+            computeTypeInfo();
 
-		return imageName;
-	}
+        return image;
+    }
 
     /**
-	 * Returns the length of current element.
-	 * 
-	 * @return length of element.
-	 */
+     * Returns the length of current element.
+     * 
+     * @return length of element.
+     */
     public int getLength() {
         return position.getLength();
     }
@@ -221,6 +214,10 @@ public class WorkflowElement {
      */
     public int getStartOffset() {
         return position.getOffset();
+    }
+
+    public WorkflowElementType getType() {
+        return type;
     }
 
     public boolean hasAttribute(final String name) {
@@ -354,7 +351,11 @@ public class WorkflowElement {
     public boolean isWorkflowFile() {
         return (getElementType() == WorkflowElementType.WORKFLOWFILE);
     }
-    
+
+    public void setImage(final String image) {
+        this.image = image;
+    }
+
     public boolean isComponent() {
     	return (WorkflowElementType.COMPONENT == getElementType());
     }
@@ -391,6 +392,18 @@ public class WorkflowElement {
         this.parent = parent;
     }
 
+    public void setType(final WorkflowElementType type) {
+        this.type = type;
+    }
+
+    /**
+     * Computes the type information for the current element.
+     */
+    private void computeTypeInfo() {
+        recomputeTypeInfo = false;
+        WorkflowElementTypeComputer.computeTypeInfo(this);
+    }
+
     /**
      * Creates a <code>position</code> object.
      */
@@ -400,31 +413,14 @@ public class WorkflowElement {
     }
 
     /**
-	 * Returns the type of the current workflow element.
-	 * 
-	 * @return type of current element.
-	 */
-	private WorkflowElementType getElementType() {
-		WorkflowElementType type = null;
-		if (name.equals(COMPONENT_TAG)) {
-			type = WorkflowElementType.COMPONENT;
-		} else if (name.equals(WORKFLOWFILE_TAG)) {
-			type = WorkflowElementType.WORKFLOWFILE;
-		} else if (name.equals(WORKFLOW_TAG)) {
-			type = WorkflowElementType.WORKFLOW;
-		} else if (name.equals(PROPERTY_TAG)) {
-			if ((getAttributeCount() == 2 && hasAttribute(NAME_ATTRIBUTE) && hasAttribute(VALUE_ATTRIBUTE))
-					|| (getAttributeCount() == 1 && hasAttribute(NAME_ATTRIBUTE))) {
-				type = WorkflowElementType.SIMPLE_PROPERTY;
-			} else if (getAttributeCount() == 1 && hasAttribute(FILE_ATTRIBUTE)) {
-				type = WorkflowElementType.FILE_PROPERTY;
-			}
-		} else if (!name.equals(PROPERTY_TAG) && isLeaf()) {
-			type = WorkflowElementType.ASSIGNMENTPROPERTY;
-		} else {
-			type = WorkflowElementType.ASSIGNMENT;
-		}
+     * Returns the type of the current workflow element.
+     * 
+     * @return type of current element.
+     */
+    private WorkflowElementType getElementType() {
+        if (recomputeTypeInfo)
+            computeTypeInfo();
 
-		return type;
-	}
+        return type;
+    }
 }
