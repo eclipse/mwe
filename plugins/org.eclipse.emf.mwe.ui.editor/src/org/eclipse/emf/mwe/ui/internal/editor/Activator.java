@@ -1,5 +1,3 @@
-package org.eclipse.emf.mwe.ui.internal.editor;
-
 /*
  * Copyright (c) 2008 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +9,11 @@ package org.eclipse.emf.mwe.ui.internal.editor;
  *    committers of openArchitectureWare - initial API and implementation
  */
 
+package org.eclipse.emf.mwe.ui.internal.editor;
+
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -21,21 +24,38 @@ import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class Activator extends AbstractUIPlugin {
 
-    // The plug-in ID
+    /**
+     * The plug-in ID
+     */
     public static final String PLUGIN_ID = "org.eclipse.emf.mwe.ui";
 
-    // The shared instance
+    private static final String PLUGIN_RESOURCES_PROPERTY = "org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPluginResources";
+
+    /**
+     * The shared instance
+     */
     private static Activator plugin;
+
+    /**
+     * The resource bundle
+     */
+    private ResourceBundle resourceBundle;
 
     /**
      * The constructor
      */
     public Activator() {
         plugin = this;
+        try {
+            resourceBundle = ResourceBundle
+                    .getBundle(PLUGIN_RESOURCES_PROPERTY);
+        } catch (final MissingResourceException x) {
+            resourceBundle = null;
+        }
     }
 
     public static IStatus createErrorStatus(final String msg, final Exception e) {
@@ -65,6 +85,23 @@ public class Activator extends AbstractUIPlugin {
      */
     public static ImageDescriptor getImageDescriptor(final String path) {
         return AbstractUIPlugin.imageDescriptorFromPlugin(getId(), path);
+    }
+
+    /**
+     * Returns the string from the plugin's resource bundle, or <code>key</code>
+     * if not found.
+     * 
+     * @return string from resource bundle, or <code>key</code> if no element
+     *         is found.
+     */
+    public static String getResourceString(final String key) {
+        final ResourceBundle bundle = Activator.getDefault()
+                .getResourceBundle();
+        try {
+            return (bundle != null) ? bundle.getString(key) : key;
+        } catch (final MissingResourceException e) {
+            return key;
+        }
     }
 
     /**
@@ -114,6 +151,15 @@ public class Activator extends AbstractUIPlugin {
 
     public static void showError(final String msg) {
         showError(createErrorStatus(msg, null));
+    }
+
+    /**
+     * Returns the plugin's resource bundle,
+     * 
+     * @return the resource bundle.
+     */
+    public ResourceBundle getResourceBundle() {
+        return resourceBundle;
     }
 
     /*

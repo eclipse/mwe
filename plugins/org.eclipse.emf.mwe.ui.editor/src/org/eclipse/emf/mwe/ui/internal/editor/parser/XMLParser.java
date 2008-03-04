@@ -28,12 +28,11 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class XMLParser {
 
-    public static final String VALIDATION_FEATURE =
-            "http://xml.org/sax/features/validation";
+    public static final String VALIDATION_FEATURE = "http://xml.org/sax/features/validation";
 
     private ErrorHandler errorHandler;
 
@@ -81,8 +80,8 @@ public class XMLParser {
     }
 
     public void parse(final String xmlText) {
-        final InputSource inputSource =
-                new InputSource(new StringReader(xmlText));
+        final InputSource inputSource = new InputSource(new StringReader(
+                xmlText));
         parse(inputSource);
     }
 
@@ -90,7 +89,7 @@ public class XMLParser {
         this.contentHandler = contentHandler;
     }
 
-    public void setErrorHandler(final ErrorHandler errorHandler) {
+    public void setErrorHandler(final WorkflowContentHandler errorHandler) {
         this.errorHandler = errorHandler;
     }
 }

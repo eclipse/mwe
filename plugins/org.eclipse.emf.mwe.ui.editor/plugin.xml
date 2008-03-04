@@ -8,7 +8,7 @@
             name="Modelling Workflow Editor (PATRICK)"
             extensions="mwe, oaw"
             icon="icons/workflow.gif"
-            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            contributorClass="org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditorContributor"
             class="org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor"
             id="org.eclipse.emf.mwe.ui.neweditor.editors.WorkflowEditor">
       </editor>
