@@ -13,9 +13,9 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
-enum WorkflowElementType {
+public enum WorkflowElementType {
     WORKFLOWFILE, WORKFLOW, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT,
     ASSIGNMENTPROPERTY, COMPONENT
 }
