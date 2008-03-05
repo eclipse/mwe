@@ -18,9 +18,7 @@ import java.util.ResourceBundle;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkingErrorHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
@@ -37,11 +35,10 @@ import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -189,18 +186,5 @@ public class WorkflowEditor extends TextEditor {
         super.rulerContextMenuAboutToShow(menu);
 
         actionGroup.fillContextMenu(menu);
-    }
-
-    protected void validateAndMark() {
-        final IDocument document = getInputDocument();
-        final String text = document.get();
-        final MarkingErrorHandler markingErrorHandler = new MarkingErrorHandler(
-                getInputFile(), document);
-        markingErrorHandler.setDocumentLocator(new LocatorImpl());
-        markingErrorHandler.removeExistingMarkers();
-
-        final XMLParser parser = new XMLParser();
-        parser.setErrorHandler(markingErrorHandler);
-        parser.parse(text);
     }
 }
