@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class WorkflowElement {
@@ -52,9 +52,11 @@ public class WorkflowElement {
 
     private boolean recomputeTypeInfo;
 
-    private final List<WorkflowElement> children = new ArrayList<WorkflowElement>();
+    private final List<WorkflowElement> children =
+            new ArrayList<WorkflowElement>();
 
-    private final List<WorkflowAttribute> attributes = new ArrayList<WorkflowAttribute>();
+    private final List<WorkflowAttribute> attributes =
+            new ArrayList<WorkflowAttribute>();
 
     public WorkflowElement(final String name) {
         this.name = name;
@@ -151,6 +153,24 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns the type of the current element.
+     * 
+     * @return type of current element.
+     */
+    public WorkflowElementType getElementType() {
+        return type;
+    }
+
+    /**
+     * Returns the type of the current element as a string.
+     * 
+     * @return string representation of the type of the current element.
+     */
+    public String getElementTypeString() {
+        return getElementType().toString();
+    }
+
+    /**
      * Returns the offset of the end line of the current element.
      * 
      * @return offset of end line.
@@ -216,10 +236,6 @@ public class WorkflowElement {
         return position.getOffset();
     }
 
-    public WorkflowElementType getType() {
-        return type;
-    }
-
     public boolean hasAttribute(final String name) {
         for (final WorkflowAttribute attr : attributes) {
             if (name.equals(attr.getName()))
@@ -255,7 +271,7 @@ public class WorkflowElement {
      *         otherwise <code>false</code>.
      */
     public boolean isAssignment() {
-        return (getElementType() == WorkflowElementType.ASSIGNMENT);
+        return (getComputedElementType() == WorkflowElementType.ASSIGNMENT);
     }
 
     /**
@@ -265,7 +281,17 @@ public class WorkflowElement {
      *         otherwise <code>false</code>.
      */
     public boolean isAssignmentProperty() {
-        return (getElementType() == WorkflowElementType.ASSIGNMENTPROPERTY);
+        return (getComputedElementType() == WorkflowElementType.ASSIGNMENTPROPERTY);
+    }
+
+    /**
+     * Checks if the current element is a component.
+     * 
+     * @return <code>true</code> if current element is a component, otherwise
+     *         <code>false</code>.
+     */
+    public boolean isComponent() {
+        return (WorkflowElementType.COMPONENT == getComputedElementType());
     }
 
     /**
@@ -275,7 +301,7 @@ public class WorkflowElement {
      *         otherwise <code>false</code>.
      */
     public boolean isFileProperty() {
-        return (getElementType() == WorkflowElementType.FILE_PROPERTY);
+        return (getComputedElementType() == WorkflowElementType.FILE_PROPERTY);
     }
 
     /**
@@ -305,9 +331,18 @@ public class WorkflowElement {
      *         otherwise <code>false</code>.
      */
     public boolean isSimpleProperty() {
-        return (getElementType() == WorkflowElementType.SIMPLE_PROPERTY);
+        return (getComputedElementType() == WorkflowElementType.SIMPLE_PROPERTY);
     }
 
+    /**
+     * Checks if the current element is a valid child element for
+     * <code>parentElement</code>.
+     * 
+     * @param parentElement
+     *            the potential parent element.
+     * @return <code>true</code> if the current element is a valid child for
+     *         <code>parentElement</code>, otherwise <code>false</code>.
+     */
     public boolean isValidChildFor(final WorkflowElement parentElement) {
         boolean res = true;
 
@@ -339,7 +374,7 @@ public class WorkflowElement {
      *         otherwise <code>false</code>.
      */
     public boolean isWorkflow() {
-        return (getElementType() == WorkflowElementType.WORKFLOW);
+        return (getComputedElementType() == WorkflowElementType.WORKFLOW);
     }
 
     /**
@@ -349,15 +384,17 @@ public class WorkflowElement {
      *         container, otherwise <code>false</code>.
      */
     public boolean isWorkflowFile() {
-        return (getElementType() == WorkflowElementType.WORKFLOWFILE);
+        return (getComputedElementType() == WorkflowElementType.WORKFLOWFILE);
     }
 
+    /**
+     * Sets the image of the current element.
+     * 
+     * @param image
+     *            the image.
+     */
     public void setImage(final String image) {
         this.image = image;
-    }
-
-    public boolean isComponent() {
-    	return (WorkflowElementType.COMPONENT == getElementType());
     }
 
     /**
@@ -392,6 +429,12 @@ public class WorkflowElement {
         this.parent = parent;
     }
 
+    /**
+     * Sets the type of the current element.
+     * 
+     * @param type
+     *            the type.
+     */
     public void setType(final WorkflowElementType type) {
         this.type = type;
     }
@@ -413,11 +456,11 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the type of the current workflow element.
+     * Returns the computed type of the current workflow element.
      * 
-     * @return type of current element.
+     * @return computed type of current element.
      */
-    private WorkflowElementType getElementType() {
+    private WorkflowElementType getComputedElementType() {
         if (recomputeTypeInfo)
             computeTypeInfo();
 
