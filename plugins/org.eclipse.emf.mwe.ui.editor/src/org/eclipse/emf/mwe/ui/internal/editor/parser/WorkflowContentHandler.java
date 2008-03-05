@@ -16,9 +16,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.Position;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -26,14 +24,14 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
     private static final String NO_VALID_CHILD_ELEMENT_MSG =
-            " is no valid child element for element ";
+            "is no valid child element for element";
 
-    private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name: ";
+    private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name:";
 
     private static final String TAG_NAME_PATTERN = "[a-zA-Z0-9]+";
 
@@ -44,8 +42,6 @@ public class WorkflowContentHandler extends DefaultHandler {
     private Locator locator;
 
     private IDocument document;
-
-    private String positionCategory;
 
     /**
      * This method overrides the implementation of <code>endDocument</code>
@@ -74,9 +70,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 
         final int line = locator.getLineNumber();
         final int endLine = getOffsetFromLine(line);
+        final int length = endLine - currentElement.getStartOffset();
+        currentElement.setLength(length);
+        currentElement.setEndColumn(locator.getColumnNumber());
         if (currentElement.hasParent()) {
-            final int length = endLine - currentElement.getStartOffset();
-            currentElement.setLength(length);
             currentElement = currentElement.getParent();
         }
     }
@@ -118,7 +115,6 @@ public class WorkflowContentHandler extends DefaultHandler {
      *            new value for <code>positionCategory</code>.
      */
     public void setPositionCategory(final String positionCategory) {
-        this.positionCategory = positionCategory;
     }
 
     /**
@@ -151,10 +147,11 @@ public class WorkflowContentHandler extends DefaultHandler {
 
         final WorkflowElement element = new WorkflowElement(localName);
         if (isIllegalName(localName))
-            throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
+            throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
                     + localName, true);
 
         element.setOffset(offset);
+        element.setStartColumn(locator.getColumnNumber());
         for (int i = 0; i < attributes.getLength(); i++) {
             final String attrName = attributes.getLocalName(i);
             final String attrValue = attributes.getValue(i);
@@ -167,19 +164,9 @@ public class WorkflowContentHandler extends DefaultHandler {
             currentElement.addChild(element);
         } else
             throw new ValidationException(locator, "'" + localName + "'"
-                    + NO_VALID_CHILD_ELEMENT_MSG + "'"
+                    + NO_VALID_CHILD_ELEMENT_MSG + " '"
                     + currentElement.getName() + "'", true);
         currentElement = element;
-    }
-
-    private void addPosition(final Position position) {
-        try {
-            document.addPosition(positionCategory, position);
-        } catch (final BadLocationException e) {
-            e.printStackTrace();
-        } catch (final BadPositionCategoryException e) {
-            e.printStackTrace();
-        }
     }
 
     private int getOffsetFromLine(final int lineNumber) {

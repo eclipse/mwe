@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class WorkflowElement {
@@ -43,6 +43,10 @@ public class WorkflowElement {
     private final String name;
 
     private Position position;
+
+    private int startColumn;
+
+    private int endColumn;
 
     private WorkflowElement parent;
 
@@ -171,6 +175,15 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns the value of field <code>endColumn</code>.
+     * 
+     * @return value of <code>endColumn</code>.
+     */
+    public int getEndColumn() {
+        return endColumn;
+    }
+
+    /**
      * Returns the offset of the end line of the current element.
      * 
      * @return offset of end line.
@@ -225,6 +238,15 @@ public class WorkflowElement {
      */
     public Position getPosition() {
         return position;
+    }
+
+    /**
+     * Returns the value of field <code>startColumn</code>.
+     * 
+     * @return value of <code>startColumn</code>.
+     */
+    public int getStartColumn() {
+        return startColumn;
     }
 
     /**
@@ -388,6 +410,16 @@ public class WorkflowElement {
     }
 
     /**
+     * Sets a new value for field <code>endColumn</code>.
+     * 
+     * @param endColumn
+     *            new value for <code>endColumn</code>.
+     */
+    public void setEndColumn(final int endColumn) {
+        this.endColumn = endColumn;
+    }
+
+    /**
      * Sets the image of the current element.
      * 
      * @param image
@@ -427,6 +459,16 @@ public class WorkflowElement {
      */
     public void setParent(final WorkflowElement parent) {
         this.parent = parent;
+    }
+
+    /**
+     * Sets a new value for field <code>startColumn</code>.
+     * 
+     * @param startColumn
+     *            new value for <code>startColumn</code>.
+     */
+    public void setStartColumn(final int startColumn) {
+        this.startColumn = startColumn;
     }
 
     /**
