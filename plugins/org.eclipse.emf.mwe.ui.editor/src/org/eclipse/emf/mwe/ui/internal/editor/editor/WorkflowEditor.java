@@ -41,7 +41,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -136,8 +136,8 @@ public class WorkflowEditor extends TextEditor {
         actionGroup = new BreakpointActionGroup(this);
         final ResourceBundle bundle = Activator.getDefault()
                 .getResourceBundle();
-        setAction("ContentFormatProposal", new TextOperationAction(bundle,
-                "ContentFormatProposal.", this, ISourceViewer.FORMAT));
+        setAction("QuickFormat", new TextOperationAction(bundle,
+                "QuickFormat.", this, ISourceViewer.FORMAT));
         setAction("ContentAssistProposal", new TextOperationAction(bundle,
                 "ContentAssistProposal.", this,
                 ISourceViewer.CONTENTASSIST_PROPOSALS));
