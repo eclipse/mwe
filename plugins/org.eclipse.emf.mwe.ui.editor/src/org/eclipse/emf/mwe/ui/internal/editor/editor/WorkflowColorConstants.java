@@ -15,7 +15,7 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class WorkflowColorConstants {
     public static final RGB XML_COMMENT = new RGB(128, 0, 0);
@@ -37,7 +37,7 @@ public final class WorkflowColorConstants {
     public static final RGB CDATA_TEXT = new RGB(255, 0, 0);
 
     /**
-     * Hidden because of utility class
+     * Hidden constructor because of utility class
      */
     private WorkflowColorConstants() {
         throw new UnsupportedOperationException();
