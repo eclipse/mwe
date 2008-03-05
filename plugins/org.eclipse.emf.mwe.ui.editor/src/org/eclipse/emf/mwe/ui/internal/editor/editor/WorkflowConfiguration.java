@@ -37,7 +37,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private WorkflowDoubleClickStrategy doubleClickStrategy;
@@ -125,7 +125,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         final PresentationReconciler reconciler = new PresentationReconciler();
 
         DefaultDamagerRepairer dr =
-                new DefaultDamagerRepairer(getWorkflowScanner());
+                new DefaultDamagerRepairer(getWorkflowTagScanner());
         reconciler.setDamager(dr, WorkflowPartitionScanner.XML_START_TAG);
         reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_START_TAG);
 
