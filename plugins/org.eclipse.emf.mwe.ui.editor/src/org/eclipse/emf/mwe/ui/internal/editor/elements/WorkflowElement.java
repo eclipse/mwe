@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class WorkflowElement {
@@ -96,6 +96,20 @@ public class WorkflowElement {
     public void clear() {
         children.clear();
         attributes.clear();
+    }
+
+    /**
+     * Returns the attribute at the position <code>index</code>.
+     * 
+     * @param index
+     *            index of attribute.
+     * @return the requested attribute.
+     */
+    public WorkflowAttribute getAttribute(final int index) {
+        if (index < 0 || index >= getAttributeCount())
+            throw new IllegalArgumentException();
+
+        return attributes.get(index);
     }
 
     /**
