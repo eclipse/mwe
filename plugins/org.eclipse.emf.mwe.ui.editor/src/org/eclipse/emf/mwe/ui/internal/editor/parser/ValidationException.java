@@ -15,24 +15,30 @@ import org.xml.sax.Locator;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ValidationException extends RuntimeException {
 
-    private int lineNumber;
+    private final int lineNumber;
 
-    private int columnNumber;
-
-    private final Locator locator;
+    private final int columnNumber;
 
     private final boolean isFatal;
+
+    public ValidationException(final int line, final int column,
+            final String errorMessage, final boolean isFatal) {
+        super(errorMessage);
+        lineNumber = line;
+        columnNumber = column;
+        this.isFatal = isFatal;
+    }
 
     public ValidationException(final Locator locator,
             final String errorMessage, final boolean isFatal) {
         super(errorMessage);
-        this.locator = locator;
+        lineNumber = locator.getLineNumber();
+        columnNumber = locator.getColumnNumber();
         this.isFatal = isFatal;
-        setPosition();
     }
 
     public int getColumnNumber() {
@@ -51,10 +57,5 @@ public class ValidationException extends RuntimeException {
 
     public boolean isFatal() {
         return isFatal;
-    }
-
-    private void setPosition() {
-        lineNumber = locator.getLineNumber();
-        columnNumber = locator.getColumnNumber();
     }
 }

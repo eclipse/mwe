@@ -29,7 +29,7 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class XMLParser {
 
@@ -90,7 +90,7 @@ public class XMLParser {
         this.contentHandler = contentHandler;
     }
 
-    public void setErrorHandler(final WorkflowOutlineContentHandler errorHandler) {
+    public void setErrorHandler(final WorkflowContentHandler errorHandler) {
         this.errorHandler = errorHandler;
     }
 }

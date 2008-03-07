@@ -16,18 +16,16 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.jface.text.BadLocationException;
-import org.eclipse.jface.text.IDocument;
 import org.xml.sax.Attributes;
-import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
-public class WorkflowOutlineContentHandler extends DefaultHandler {
+public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
 
     private static final String NO_VALID_CHILD_ELEMENT_MSG =
             "is no valid child element for element";
@@ -41,10 +39,6 @@ public class WorkflowOutlineContentHandler extends DefaultHandler {
     private WorkflowElement currentElement;
 
     private String positionCategory;
-
-    private Locator locator;
-
-    private IDocument document;
 
     /**
      * This method overrides the implementation of <code>endDocument</code>
@@ -97,27 +91,6 @@ public class WorkflowOutlineContentHandler extends DefaultHandler {
      */
     public WorkflowElement getRootElement() {
         return rootElement;
-    }
-
-    /**
-     * Sets a new value for field <code>document</code>.
-     * 
-     * @param document
-     *            new value for <code>document</code>.
-     */
-    public void setDocument(final IDocument document) {
-        this.document = document;
-    }
-
-    /**
-     * This method overrides the implementation of
-     * <code>setDocumentLocator</code> inherited from the superclass.
-     * 
-     * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
-     */
-    @Override
-    public void setDocumentLocator(final Locator locator) {
-        this.locator = locator;
     }
 
     /**
