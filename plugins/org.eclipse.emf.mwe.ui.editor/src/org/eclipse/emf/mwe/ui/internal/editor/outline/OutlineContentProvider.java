@@ -16,7 +16,6 @@ import java.util.List;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
@@ -30,7 +29,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -136,8 +135,8 @@ public class OutlineContentProvider implements ITreeContentProvider {
             final IDocument document) {
         try {
             final XMLParser xmlParser = new XMLParser();
-            final WorkflowContentHandler contentHandler =
-                    new WorkflowContentHandler();
+            final WorkflowOutlineContentHandler contentHandler =
+                    new WorkflowOutlineContentHandler();
             contentHandler.setDocument(document);
             contentHandler.setPositionCategory(TAG_POSITIONS);
             contentHandler.setDocumentLocator(new LocatorImpl());
@@ -150,5 +149,4 @@ public class OutlineContentProvider implements ITreeContentProvider {
             return null;
         }
     }
-
 }

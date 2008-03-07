@@ -9,12 +9,13 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.parser;
+package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.Attributes;
@@ -24,9 +25,9 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.1 $
  */
-public class WorkflowContentHandler extends DefaultHandler {
+public class WorkflowOutlineContentHandler extends DefaultHandler {
 
     private static final String NO_VALID_CHILD_ELEMENT_MSG =
             "is no valid child element for element";
@@ -38,6 +39,8 @@ public class WorkflowContentHandler extends DefaultHandler {
     private WorkflowElement rootElement;
 
     private WorkflowElement currentElement;
+
+    private String positionCategory;
 
     private Locator locator;
 
@@ -79,6 +82,15 @@ public class WorkflowContentHandler extends DefaultHandler {
     }
 
     /**
+     * Returns the value of field <code>positionCategory</code>.
+     * 
+     * @return value of <code>positionCategory</code>.
+     */
+    public String getPositionCategory() {
+        return positionCategory;
+    }
+
+    /**
      * Returns the value of field <code>rootElement</code>.
      * 
      * @return value of <code>rootElement</code>.
@@ -106,6 +118,16 @@ public class WorkflowContentHandler extends DefaultHandler {
     @Override
     public void setDocumentLocator(final Locator locator) {
         this.locator = locator;
+    }
+
+    /**
+     * Sets a new value for field <code>positionCategory</code>.
+     * 
+     * @param positionCategory
+     *            new value for <code>positionCategory</code>.
+     */
+    public void setPositionCategory(final String positionCategory) {
+        this.positionCategory = positionCategory;
     }
 
     /**
