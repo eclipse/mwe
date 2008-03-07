@@ -24,7 +24,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -106,15 +106,6 @@ public class WorkflowContentHandler extends DefaultHandler {
     @Override
     public void setDocumentLocator(final Locator locator) {
         this.locator = locator;
-    }
-
-    /**
-     * Sets a new value for field <code>positionCategory</code>.
-     * 
-     * @param positionCategory
-     *            new value for <code>positionCategory</code>.
-     */
-    public void setPositionCategory(final String positionCategory) {
     }
 
     /**
