@@ -117,8 +117,8 @@ public class VisitorAnalyzer extends VisitorBase {
 		} else {
 			final Class<?> c = (Class<?>) ele.getReference().getAnalyzedType();
 			if ((c != null) && !expected.isAssignableFrom(c)) {
-				issues.addWarning("The type of the refered bean ("
-						+ c.getName() + ") is nat assignable to "
+				issues.addWarning("The type of the referred bean ("
+						+ c.getName() + ") is not assignable to "
 						+ expected.getName());
 			}
 			return c;
