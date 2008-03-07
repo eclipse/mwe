@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class WorkflowElement {
@@ -380,27 +380,7 @@ public class WorkflowElement {
      *         <code>parentElement</code>, otherwise <code>false</code>.
      */
     public boolean isValidChildFor(final WorkflowElement parentElement) {
-        boolean res = true;
-
-        if (parentElement == null)
-            throw new IllegalArgumentException();
-
-        if (parentElement.isWorkflowFile() && !isWorkflow()) {
-            res = false;
-        } else if (parentElement.isWorkflow()) {
-            if (!parentElement.isLeaf() && isProperty()) {
-                final int lastElement = parentElement.getChildrenCount() - 1;
-                if (!parentElement.getChild(lastElement).isProperty()) {
-                    res = false;
-                }
-            } else if (parentElement.isAssignment()
-                    || parentElement.isAssignmentProperty()) {
-                if (isProperty()) {
-                    res = false;
-                }
-            }
-        }
-        return res;
+        return HierarchyChecker.checkChildValidity(parentElement, this);
     }
 
     /**
