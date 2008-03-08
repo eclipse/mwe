@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class WorkflowElement {
@@ -204,6 +204,24 @@ public class WorkflowElement {
      */
     public int getEndOffset() {
         return getStartOffset() + getLength() - 1;
+    }
+
+    /**
+     * Returns the name of the field in the workflow component that this element
+     * is mapped to.
+     * 
+     * @return name of field in component.
+     */
+    public String getFieldName() {
+        String fieldName;
+        if (isSimpleProperty()) {
+            fieldName = getAttributeValue(NAME_ATTRIBUTE);
+        } else if (isFileProperty()) {
+            fieldName = getAttributeValue(FILE_ATTRIBUTE);
+        } else {
+            fieldName = getName();
+        }
+        return fieldName;
     }
 
     /**
