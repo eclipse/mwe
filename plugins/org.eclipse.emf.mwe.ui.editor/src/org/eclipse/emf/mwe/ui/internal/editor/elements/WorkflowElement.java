@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Position;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class WorkflowElement {
@@ -43,6 +43,10 @@ public class WorkflowElement {
     private final String name;
 
     private Position position;
+
+    private int startLine;
+
+    private int endLine;
 
     private int startColumn;
 
@@ -198,6 +202,15 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns the value of field <code>endLine</code>.
+     * 
+     * @return value of <code>endLine</code>.
+     */
+    public int getEndLine() {
+        return endLine;
+    }
+
+    /**
      * Returns the offset of the end line of the current element.
      * 
      * @return offset of end line.
@@ -261,6 +274,15 @@ public class WorkflowElement {
      */
     public int getStartColumn() {
         return startColumn;
+    }
+
+    /**
+     * Returns the value of field <code>startLine</code>.
+     * 
+     * @return value of <code>startLine</code>.
+     */
+    public int getStartLine() {
+        return startLine;
     }
 
     /**
@@ -414,6 +436,16 @@ public class WorkflowElement {
     }
 
     /**
+     * Sets a new value for field <code>endLine</code>.
+     * 
+     * @param endLine
+     *            new value for <code>endLine</code>.
+     */
+    public void setEndLine(final int endLine) {
+        this.endLine = endLine;
+    }
+
+    /**
      * Sets the image of the current element.
      * 
      * @param image
@@ -463,6 +495,16 @@ public class WorkflowElement {
      */
     public void setStartColumn(final int startColumn) {
         this.startColumn = startColumn;
+    }
+
+    /**
+     * Sets a new value for field <code>startLine</code>.
+     * 
+     * @param startLine
+     *            new value for <code>startLine</code>.
+     */
+    public void setStartLine(final int startLine) {
+        this.startLine = startLine;
     }
 
     /**
