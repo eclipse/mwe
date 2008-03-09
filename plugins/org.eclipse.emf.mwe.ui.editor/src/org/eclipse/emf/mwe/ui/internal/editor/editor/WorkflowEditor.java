@@ -18,6 +18,8 @@ import java.util.ResourceBundle;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -30,7 +32,6 @@ import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.TextOperationAction;
@@ -38,7 +39,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -52,7 +53,7 @@ public class WorkflowEditor extends TextEditor {
 
     private WorkflowContentOutlinePage outlinePage;
 
-    private IEditorInput input;
+    private WorkflowElement rootElement;
 
     public WorkflowEditor() {
         super();
@@ -67,8 +68,9 @@ public class WorkflowEditor extends TextEditor {
         super.createPartControl(parent);
         final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
 
-        projectSupport = new ProjectionSupport(viewer, getAnnotationAccess(),
-                getSharedColors());
+        projectSupport =
+                new ProjectionSupport(viewer, getAnnotationAccess(),
+                        getSharedColors());
         projectSupport.install();
         viewer.doOperation(ProjectionViewer.TOGGLE);
         annotationModel = viewer.getProjectionAnnotationModel();
@@ -101,8 +103,13 @@ public class WorkflowEditor extends TextEditor {
         return super.getAdapter(adapter);
     }
 
-    public IEditorInput getInput() {
-        return input;
+    /**
+     * Returns the value of field <code>rootElement</code>.
+     * 
+     * @return value of <code>rootElement</code>.
+     */
+    public WorkflowElement getRootElement() {
+        return rootElement;
     }
 
     public ISourceViewer internalGetSourceViewer() {
@@ -111,6 +118,16 @@ public class WorkflowEditor extends TextEditor {
 
     public IVerticalRuler internalGetVerticalRuler() {
         return getVerticalRuler();
+    }
+
+    /**
+     * Sets a new value for field <code>rootElement</code>.
+     * 
+     * @param rootElement
+     *            new value for <code>rootElement</code>.
+     */
+    public void setRootElement(final WorkflowElement rootElement) {
+        this.rootElement = rootElement;
     }
 
     public void updateFoldingStructure(final ArrayList positions) {
@@ -127,12 +144,21 @@ public class WorkflowEditor extends TextEditor {
         annotationModel.modifyAnnotations(annotations, newAnnotations, null);
     }
 
+    public void validateAndMark() {
+        if (getRootElement() == null)
+            return;
+
+        final ElementIterator iterator =
+                new ElementIterator(getInputFile(), getInputDocument());
+        iterator.checkValidity(getRootElement());
+    }
+
     @Override
     protected void createActions() {
         super.createActions();
         actionGroup = new BreakpointActionGroup(this);
-        final ResourceBundle bundle = Activator.getDefault()
-                .getResourceBundle();
+        final ResourceBundle bundle =
+                Activator.getDefault().getResourceBundle();
         setAction("QuickFormat", new TextOperationAction(bundle,
                 "QuickFormat.", this, ISourceViewer.FORMAT));
         setAction("ContentAssistProposal", new TextOperationAction(bundle,
@@ -146,8 +172,9 @@ public class WorkflowEditor extends TextEditor {
     @Override
     protected ISourceViewer createSourceViewer(final Composite parent,
             final IVerticalRuler ruler, final int styles) {
-        final ISourceViewer viewer = new ProjectionViewer(parent, ruler,
-                getOverviewRuler(), isOverviewRulerVisible(), styles);
+        final ISourceViewer viewer =
+                new ProjectionViewer(parent, ruler, getOverviewRuler(),
+                        isOverviewRulerVisible(), styles);
 
         getSourceViewerDecorationSupport(viewer);
         return viewer;
@@ -167,15 +194,18 @@ public class WorkflowEditor extends TextEditor {
 
         if (outlinePage != null)
             outlinePage.refresh();
+
+        validateAndMark();
     }
 
     protected IDocument getInputDocument() {
-        final IDocument document = getDocumentProvider().getDocument(input);
+        final IDocument document =
+                getDocumentProvider().getDocument(getEditorInput());
         return document;
     }
 
     protected IFile getInputFile() {
-        final IFileEditorInput ife = (IFileEditorInput) input;
+        final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
         final IFile file = ife.getFile();
         return file;
     }

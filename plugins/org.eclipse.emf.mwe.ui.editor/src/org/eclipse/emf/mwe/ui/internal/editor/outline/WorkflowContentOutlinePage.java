@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementOffsetRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -62,6 +63,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
             if ((control != null) && !control.isDisposed()) {
                 control.setRedraw(false);
                 viewer.setInput(input);
+                ((WorkflowEditor) editor).validateAndMark();
                 viewer.expandAll();
                 control.setRedraw(true);
             }

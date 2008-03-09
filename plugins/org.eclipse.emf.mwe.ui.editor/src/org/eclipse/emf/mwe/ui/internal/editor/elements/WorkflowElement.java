@@ -19,7 +19,7 @@ import java.util.List;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public class WorkflowElement {
@@ -172,6 +172,10 @@ public class WorkflowElement {
      * @return type of current element.
      */
     public WorkflowElementType getElementType() {
+        if (recomputeTypeInfo) {
+            computeTypeInfo();
+        }
+
         return type;
     }
 
