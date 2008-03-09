@@ -27,7 +27,7 @@ import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
 
@@ -134,7 +134,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
             throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
                     + localName, true);
 
-        element.setEndElementRange(createPositionRange());
+        element.setStartElementRange(createPositionRange());
         for (int i = 0; i < attributes.getLength(); i++) {
             final String attrName = attributes.getLocalName(i);
             final String attrValue = attributes.getValue(i);
