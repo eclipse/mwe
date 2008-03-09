@@ -13,17 +13,21 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementOffsetRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IRegion;
+import org.eclipse.jface.text.ITypedRegion;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
 
@@ -49,6 +53,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
     @Override
     public void endDocument() throws SAXException {
         assert (currentElement == rootElement);
+        rootElement.setEndElementRange(createPositionRange());
     }
 
     /**
@@ -65,11 +70,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
             throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
                     + localName, true);
 
-        final int line = locator.getLineNumber();
-        final int endLine = getOffsetFromLine(line);
-        final int length = endLine - currentElement.getStartOffset();
-        currentElement.setLength(length);
-        currentElement.setEndColumn(locator.getColumnNumber());
+        currentElement.setEndElementRange(createPositionRange());
         if (currentElement.hasParent()) {
             currentElement = currentElement.getParent();
         }
@@ -113,7 +114,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
     public void startDocument() throws SAXException {
         rootElement = new WorkflowElement(WorkflowElement.WORKFLOWFILE_TAG);
         currentElement = rootElement;
-        rootElement.setOffset(0);
+        rootElement.setStartElementRange(createPositionRange());
     }
 
     /**
@@ -128,16 +129,12 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
             final String qName, final Attributes attributes)
             throws SAXException {
 
-        final int line = locator.getLineNumber() - 1;
-        final int offset = getOffsetFromLine(line);
-
         final WorkflowElement element = new WorkflowElement(localName);
         if (isIllegalName(localName))
             throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
                     + localName, true);
 
-        element.setOffset(offset);
-        element.setStartColumn(locator.getColumnNumber());
+        element.setEndElementRange(createPositionRange());
         for (int i = 0; i < attributes.getLength(); i++) {
             final String attrName = attributes.getLocalName(i);
             final String attrValue = attributes.getValue(i);
@@ -153,6 +150,60 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
                     + NO_VALID_CHILD_ELEMENT_MSG + " '"
                     + currentElement.getName() + "'", true);
         currentElement = element;
+    }
+
+    private ElementPositionRange createPositionRange() {
+        final int line = locator.getLineNumber() - 1;
+        final int offset = getOffsetFromLine(line);
+        final int startOffset = getCharStart(offset);
+        final int endOffset = getCharEnd(offset);
+        return new ElementPositionRange(document, startOffset, endOffset);
+    }
+
+    private Integer getCharEnd(final int offset) {
+        try {
+            final IRegion region = document.getLineInformationOfOffset(offset);
+            final int endChar = region.getOffset() + region.getLength();
+            return endChar;
+        } catch (final BadLocationException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private Integer getCharStart(final int offset) {
+        try {
+            final IRegion region = document.getLineInformationOfOffset(offset);
+            final int lineStartChar = region.getOffset();
+            final Integer charEnd = getCharEnd(offset);
+            if (charEnd != null) {
+                final ITypedRegion typedRegion =
+                        document.getPartition(charEnd.intValue() - 2);
+                final int partitionStartChar = typedRegion.getOffset();
+                return new Integer(partitionStartChar);
+            } else
+                return new Integer(lineStartChar);
+        } catch (final BadLocationException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private ElementOffsetRange getLineInformationFromOffset(final int offset) {
+        ElementOffsetRange range = null;
+        try {
+            final IRegion region = document.getLineInformationOfOffset(offset);
+            range = new ElementOffsetRange(region);
+        } catch (final BadLocationException e) {
+            // Do nothing
+        }
+
+        return range;
+    }
+
+    private ElementOffsetRange getLineRange(final int lineNumber) {
+        final int offset = getOffsetFromLine(lineNumber);
+        return getLineInformationFromOffset(offset);
     }
 
     private int getOffsetFromLine(final int lineNumber) {

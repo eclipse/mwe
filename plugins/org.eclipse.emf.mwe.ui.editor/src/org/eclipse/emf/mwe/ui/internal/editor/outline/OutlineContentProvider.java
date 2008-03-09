@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
@@ -24,12 +25,13 @@ import org.eclipse.jface.text.IPositionUpdater;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -48,12 +50,15 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
     private final IDocumentProvider documentProvider;
 
+    private final TextEditor editor;
+
     public OutlineContentProvider(
             final WorkflowContentOutlinePage outlinePage, final Viewer viewer,
-            final IDocumentProvider documentProvider) {
+            final TextEditor editor) {
         this.outlinePage = outlinePage;
         this.viewer = viewer;
-        this.documentProvider = documentProvider;
+        this.editor = editor;
+        documentProvider = editor.getDocumentProvider();
     }
 
     public void dispose() {
@@ -128,6 +133,8 @@ public class OutlineContentProvider implements ITreeContentProvider {
     private WorkflowElement parseRootElement(final IDocument document) {
         final String text = document.get();
         final WorkflowElement tagPositions = parseRootElements(text, document);
+        final WorkflowEditor wfEditor = (WorkflowEditor) editor;
+        wfEditor.setRootElement(tagPositions);
         return tagPositions;
     }
 

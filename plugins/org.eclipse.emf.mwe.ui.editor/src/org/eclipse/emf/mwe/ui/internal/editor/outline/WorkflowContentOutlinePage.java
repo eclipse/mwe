@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementOffsetRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -96,8 +97,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     }
 
     private ITreeContentProvider getContentProvider() {
-        return new OutlineContentProvider(this, getTreeViewer(), editor
-                .getDocumentProvider());
+        return new OutlineContentProvider(this, getTreeViewer(), editor);
     }
 
     private ILabelProvider getLabelProvider() {
@@ -113,8 +113,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                         ((IStructuredSelection) selection).getFirstElement();
                 if (segment != null && segment instanceof WorkflowElement) {
                     final WorkflowElement ext = (WorkflowElement) segment;
-                    final int start = ext.getStartOffset();
-                    final int length = ext.getLength();
+                    final ElementOffsetRange range = ext.getEndOffsetRange();
+                    final int start = range.getStartOffset();
+                    final int length = range.getLength();
                     if (start >= 0) {
                         try {
                             editor.setHighlightRange(start, length, true);

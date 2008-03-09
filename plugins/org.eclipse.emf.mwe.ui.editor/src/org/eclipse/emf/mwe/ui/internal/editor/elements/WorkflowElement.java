@@ -14,14 +14,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.text.Position;
-
 /**
  * This class defines the elements used in the outline view of the workflow
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class WorkflowElement {
@@ -42,15 +40,9 @@ public class WorkflowElement {
 
     private final String name;
 
-    private Position position;
+    private ElementPositionRange startElementRange;
 
-    private int startLine;
-
-    private int endLine;
-
-    private int startColumn;
-
-    private int endColumn;
+    private ElementPositionRange endElementRange;
 
     private WorkflowElement parent;
 
@@ -193,30 +185,21 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the value of field <code>endColumn</code>.
+     * Returns the value of field <code>endElementRange</code>.
      * 
-     * @return value of <code>endColumn</code>.
+     * @return value of <code>endElementRange</code>.
      */
-    public int getEndColumn() {
-        return endColumn;
+    public ElementPositionRange getEndElementRange() {
+        return endElementRange;
     }
 
     /**
-     * Returns the value of field <code>endLine</code>.
+     * Returns the offset range of the end element.
      * 
-     * @return value of <code>endLine</code>.
+     * @return offset range of end element
      */
-    public int getEndLine() {
-        return endLine;
-    }
-
-    /**
-     * Returns the offset of the end line of the current element.
-     * 
-     * @return offset of end line.
-     */
-    public int getEndOffset() {
-        return getStartOffset() + getLength() - 1;
+    public ElementOffsetRange getEndOffsetRange() {
+        return new ElementOffsetRange(endElementRange);
     }
 
     /**
@@ -232,21 +215,21 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the length of current element.
-     * 
-     * @return length of element.
-     */
-    public int getLength() {
-        return position.getLength();
-    }
-
-    /**
      * Returns the value of field <code>name</code>.
      * 
      * @return value of <code>name</code>.
      */
     public String getName() {
         return name;
+    }
+
+    /**
+     * Returns the offset range of the whole element.
+     * 
+     * @return offset range of whole element.
+     */
+    public ElementOffsetRange getOffsetRange() {
+        return new ElementOffsetRange(startElementRange, endElementRange);
     }
 
     /**
@@ -259,39 +242,21 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the value of field <code>position</code>.
+     * Returns the value of field <code>startElementRange</code>.
      * 
-     * @return value of <code>position</code>.
+     * @return value of <code>startElementRange</code>.
      */
-    public Position getPosition() {
-        return position;
+    public ElementPositionRange getStartElementRange() {
+        return startElementRange;
     }
 
     /**
-     * Returns the value of field <code>startColumn</code>.
+     * Returns the offset range of the start element.
      * 
-     * @return value of <code>startColumn</code>.
+     * @return offset range of start element.
      */
-    public int getStartColumn() {
-        return startColumn;
-    }
-
-    /**
-     * Returns the value of field <code>startLine</code>.
-     * 
-     * @return value of <code>startLine</code>.
-     */
-    public int getStartLine() {
-        return startLine;
-    }
-
-    /**
-     * Returns the offset of start line of the current element.
-     * 
-     * @return offset of start line.
-     */
-    public int getStartOffset() {
-        return position.getOffset();
+    public ElementOffsetRange getStartOffsetRange() {
+        return new ElementOffsetRange(startElementRange);
     }
 
     public boolean hasAttribute(final String name) {
@@ -426,23 +391,13 @@ public class WorkflowElement {
     }
 
     /**
-     * Sets a new value for field <code>endColumn</code>.
+     * Sets a new value for field <code>endElementRange</code>.
      * 
-     * @param endColumn
-     *            new value for <code>endColumn</code>.
+     * @param endElementRange
+     *            new value for <code>endElementRange</code>.
      */
-    public void setEndColumn(final int endColumn) {
-        this.endColumn = endColumn;
-    }
-
-    /**
-     * Sets a new value for field <code>endLine</code>.
-     * 
-     * @param endLine
-     *            new value for <code>endLine</code>.
-     */
-    public void setEndLine(final int endLine) {
-        this.endLine = endLine;
+    public void setEndElementRange(final ElementPositionRange endElementRange) {
+        this.endElementRange = endElementRange;
     }
 
     /**
@@ -456,28 +411,6 @@ public class WorkflowElement {
     }
 
     /**
-     * Sets the length of the current element.
-     * 
-     * @param length
-     *            length of element.
-     */
-    public void setLength(final int length) {
-        createPosition();
-        position.setLength(length);
-    }
-
-    /**
-     * Sets the offset of the current element.
-     * 
-     * @param offset
-     *            offset of current element.
-     */
-    public void setOffset(final int offset) {
-        createPosition();
-        position.setOffset(offset);
-    }
-
-    /**
      * Sets a new value for field <code>parent</code>.
      * 
      * @param parent
@@ -488,23 +421,14 @@ public class WorkflowElement {
     }
 
     /**
-     * Sets a new value for field <code>startColumn</code>.
+     * Sets a new value for field <code>startElementRange</code>.
      * 
-     * @param startColumn
-     *            new value for <code>startColumn</code>.
+     * @param startElementRange
+     *            new value for <code>startElementRange</code>.
      */
-    public void setStartColumn(final int startColumn) {
-        this.startColumn = startColumn;
-    }
-
-    /**
-     * Sets a new value for field <code>startLine</code>.
-     * 
-     * @param startLine
-     *            new value for <code>startLine</code>.
-     */
-    public void setStartLine(final int startLine) {
-        this.startLine = startLine;
+    public void setStartElementRange(
+            final ElementPositionRange startElementRange) {
+        this.startElementRange = startElementRange;
     }
 
     /**
@@ -523,14 +447,6 @@ public class WorkflowElement {
     private void computeTypeInfo() {
         recomputeTypeInfo = false;
         WorkflowElementTypeComputer.computeTypeInfo(this);
-    }
-
-    /**
-     * Creates a <code>position</code> object.
-     */
-    private void createPosition() {
-        if (position == null)
-            position = new Position(0);
     }
 
     /**
