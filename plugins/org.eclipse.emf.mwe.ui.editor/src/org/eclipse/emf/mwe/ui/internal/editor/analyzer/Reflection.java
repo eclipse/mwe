@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 final class Reflection {
 
@@ -33,7 +33,7 @@ final class Reflection {
     private static final String SETTER_PREFIX = "set";
 
     /**
-     * Hidden constructor because of utility class.
+     * Don't allow instantiation.
      */
     private Reflection() {
         throw new UnsupportedOperationException();

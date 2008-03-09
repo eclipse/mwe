@@ -13,12 +13,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class HierarchyChecker {
 
     /**
-     * Hidden constructor because of utility class.
+     * Don't allow instantiation.
      */
     private HierarchyChecker() {
         throw new UnsupportedOperationException();

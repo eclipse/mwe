@@ -23,14 +23,14 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 final class Marker {
 
     private static final String ERROR_MARKER_ID = "Workflow error";
 
     /**
-     * Hidden constructor because of utility class.
+     * Don't allow instantiation.
      */
     private Marker() {
         throw new UnsupportedOperationException();

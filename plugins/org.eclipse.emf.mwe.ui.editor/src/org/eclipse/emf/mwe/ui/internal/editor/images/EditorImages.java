@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class EditorImages {
 
@@ -33,7 +33,7 @@ public final class EditorImages {
     public static final String ASSIGNMENT = "assignment.gif";
 
     public static final String WORKFLOW = "workflow.gif";
-    
+
     public static final String COMPONENT = "component.gif";
 
     /**
@@ -55,7 +55,7 @@ public final class EditorImages {
     }
 
     /**
-     * Hidden constructor because of utility class.
+     * Don't allow instantiation.
      */
     private EditorImages() {
         throw new UnsupportedOperationException();
