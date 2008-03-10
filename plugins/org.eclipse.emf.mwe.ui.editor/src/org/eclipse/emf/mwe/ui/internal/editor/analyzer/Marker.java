@@ -24,7 +24,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 final class Marker {
 
@@ -46,8 +46,8 @@ final class Marker {
         MarkerUtilities.setMessage(map, message);
         map.put(IMarker.LOCATION, file.getFullPath().toString());
 
-        final int start = element.getStartElementRange().getStartOffset();
-        final int end = element.getStartElementRange().getEndOffset();
+        final int start = element.getFirstLineRange().getStartOffset();
+        final int end = element.getFirstLineRange().getEndOffset();
         map.put(IMarker.CHAR_START, start);
         map.put(IMarker.CHAR_END, end);
 
