@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -190,7 +190,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         final String mappedClassName = getMappedClassName(element);
         if (mappedClassName == null) {
             createMarker(element, MAPPING_ERROR_MSG + " '" + element.getName()
-                    + "'.");
+                    + "'");
             return null;
         }
 
