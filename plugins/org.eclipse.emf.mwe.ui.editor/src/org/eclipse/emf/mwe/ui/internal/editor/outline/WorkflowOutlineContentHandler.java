@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementOffsetRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -27,7 +26,7 @@ import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
 
@@ -112,7 +111,8 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
      */
     @Override
     public void startDocument() throws SAXException {
-        rootElement = new WorkflowElement(WorkflowElement.WORKFLOWFILE_TAG);
+        rootElement =
+                new WorkflowElement(document, WorkflowElement.WORKFLOWFILE_TAG);
         currentElement = rootElement;
         rootElement.setStartElementRange(createPositionRange());
     }
@@ -129,7 +129,8 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
             final String qName, final Attributes attributes)
             throws SAXException {
 
-        final WorkflowElement element = new WorkflowElement(localName);
+        final WorkflowElement element =
+                new WorkflowElement(document, localName);
         if (isIllegalName(localName))
             throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
                     + localName, true);
@@ -189,11 +190,11 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
         }
     }
 
-    private ElementOffsetRange getLineInformationFromOffset(final int offset) {
-        ElementOffsetRange range = null;
+    private ElementPositionRange getLineInformationFromOffset(final int offset) {
+        ElementPositionRange range = null;
         try {
             final IRegion region = document.getLineInformationOfOffset(offset);
-            range = new ElementOffsetRange(region);
+            range = new ElementPositionRange(document, region);
         } catch (final BadLocationException e) {
             // Do nothing
         }
@@ -201,7 +202,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
         return range;
     }
 
-    private ElementOffsetRange getLineRange(final int lineNumber) {
+    private ElementPositionRange getLineRange(final int lineNumber) {
         final int offset = getOffsetFromLine(lineNumber);
         return getLineInformationFromOffset(offset);
     }

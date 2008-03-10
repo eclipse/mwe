@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementOffsetRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -114,8 +114,10 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                 final Object segment =
                         ((IStructuredSelection) selection).getFirstElement();
                 if (segment != null && segment instanceof WorkflowElement) {
-                    final WorkflowElement ext = (WorkflowElement) segment;
-                    final ElementOffsetRange range = ext.getEndOffsetRange();
+                    final WorkflowElement wfElement =
+                            (WorkflowElement) segment;
+                    final ElementPositionRange range =
+                            wfElement.getEndElementRange();
                     final int start = range.getStartOffset();
                     final int length = range.getLength();
                     if (start >= 0) {

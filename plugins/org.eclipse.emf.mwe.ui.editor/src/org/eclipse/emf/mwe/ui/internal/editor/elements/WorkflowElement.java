@@ -14,12 +14,14 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.jface.text.IDocument;
+
 /**
  * This class defines the elements used in the outline view of the workflow
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class WorkflowElement {
@@ -37,6 +39,8 @@ public class WorkflowElement {
     public static final String WORKFLOW_TAG = "workflow";
 
     protected static final String COMPONENT_TAG = "component";
+
+    private final IDocument document;
 
     private final String name;
 
@@ -58,7 +62,19 @@ public class WorkflowElement {
     private final List<WorkflowAttribute> attributes =
             new ArrayList<WorkflowAttribute>();
 
-    public WorkflowElement(final String name) {
+    /**
+     * Creates a workflow element.
+     * 
+     * @param document
+     *            the containing document.
+     * @param name
+     *            the name of the element.
+     */
+    public WorkflowElement(final IDocument document, final String name) {
+        if (document == null || name == null || name.isEmpty())
+            throw new IllegalArgumentException();
+
+        this.document = document;
         this.name = name;
         recomputeTypeInfo = true;
     }
@@ -197,13 +213,8 @@ public class WorkflowElement {
         return endElementRange;
     }
 
-    /**
-     * Returns the offset range of the end element.
-     * 
-     * @return offset range of end element
-     */
-    public ElementOffsetRange getEndOffsetRange() {
-        return new ElementOffsetRange(endElementRange);
+    public ElementPositionRange getFirstLineRange() {
+        return startElementRange.getFirstLine();
     }
 
     /**
@@ -228,12 +239,13 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the offset range of the whole element.
+     * Returns the position range of the whole element.
      * 
-     * @return offset range of whole element.
+     * @return position range of whole element.
      */
-    public ElementOffsetRange getOffsetRange() {
-        return new ElementOffsetRange(startElementRange, endElementRange);
+    public ElementPositionRange getOffsetRange() {
+        return new ElementPositionRange(document, startElementRange,
+                endElementRange);
     }
 
     /**
@@ -252,15 +264,6 @@ public class WorkflowElement {
      */
     public ElementPositionRange getStartElementRange() {
         return startElementRange;
-    }
-
-    /**
-     * Returns the offset range of the start element.
-     * 
-     * @return offset range of start element.
-     */
-    public ElementOffsetRange getStartOffsetRange() {
-        return new ElementOffsetRange(startElementRange);
     }
 
     public boolean hasAttribute(final String name) {

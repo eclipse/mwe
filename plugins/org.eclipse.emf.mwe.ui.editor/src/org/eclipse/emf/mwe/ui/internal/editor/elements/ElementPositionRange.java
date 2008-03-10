@@ -13,18 +13,26 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ElementPositionRange {
+
     private final IDocument document;
 
     private int startOffset;
 
     private int endOffset;
 
+    /**
+     * Creates a position range with default values.
+     * 
+     * @param document
+     *            the containing document.
+     */
     public ElementPositionRange(final IDocument document) {
         if (document == null)
             throw new IllegalArgumentException();
@@ -32,14 +40,85 @@ public class ElementPositionRange {
         this.document = document;
     }
 
+    /**
+     * Creates a position range from a single <code>ElementPositionRange</code>
+     * object.
+     * 
+     * @param document
+     *            the containing document.
+     * @param position
+     *            the position range.
+     */
+    public ElementPositionRange(final IDocument document,
+            final ElementPositionRange position) {
+        if (document == null || position == null)
+            throw new IllegalArgumentException();
+
+        this.document = document;
+        setStartOffset(position.getStartOffset());
+        setEndOffset(position.getEndOffset());
+        checkOrder();
+    }
+
+    /**
+     * Creates a position range from two different
+     * <code>ElementPositionRange</code> objects.
+     * 
+     * @param document
+     *            the containing document.
+     * @param startPosition
+     *            the position range of the start element.
+     * @param endPosition
+     *            the position range of the end element.
+     */
+    public ElementPositionRange(final IDocument document,
+            final ElementPositionRange startPosition,
+            final ElementPositionRange endPosition) {
+        if (document == null || startPosition == null || endPosition == null)
+            throw new IllegalArgumentException();
+
+        this.document = document;
+        setStartOffset(startPosition.getStartOffset());
+        setEndOffset(endPosition.getEndOffset());
+        checkOrder();
+    }
+
+    /**
+     * Creates a position range from a start offset and an end offset.
+     * 
+     * @param document
+     *            the containing document.
+     * @param startOffset
+     *            the start offset.
+     * @param endOffset
+     *            the end offset.
+     */
     public ElementPositionRange(final IDocument document,
             final int startOffset, final int endOffset) {
         if (document == null)
             throw new IllegalArgumentException();
 
         this.document = document;
-        this.startOffset = startOffset;
-        this.endOffset = endOffset;
+        setStartOffset(startOffset);
+        setEndOffset(endOffset);
+        checkOrder();
+    }
+
+    /**
+     * Creates a position range from an <code>IRegion</code> object.
+     * 
+     * @param document
+     *            the containing component.
+     * @param region
+     *            the <code>Iregion</code> object.
+     */
+    public ElementPositionRange(final IDocument document, final IRegion region) {
+        if (document == null || region == null)
+            throw new IllegalArgumentException();
+
+        this.document = document;
+        setStartOffset(region.getOffset());
+        setEndOffset(startOffset + region.getLength() - 1);
     }
 
     public Integer getEndColumn() {
@@ -68,6 +147,21 @@ public class ElementPositionRange {
      */
     public int getEndOffset() {
         return endOffset;
+    }
+
+    public ElementPositionRange getFirstLine() {
+        try {
+            final IRegion region =
+                    document.getLineInformationOfOffset(getStartOffset());
+            return new ElementPositionRange(document, region);
+        } catch (final BadLocationException e) {
+            return null;
+        }
+
+    }
+
+    public int getLength() {
+        return Math.abs(endOffset - startOffset);
     }
 
     public Integer getStartColumn() {
@@ -105,6 +199,9 @@ public class ElementPositionRange {
      *            new value for <code>endOffset</code>.
      */
     public void setEndOffset(final int endOffset) {
+        if (endOffset < 0 || endOffset > document.getLength())
+            throw new IllegalArgumentException();
+
         this.endOffset = endOffset;
     }
 
@@ -115,6 +212,9 @@ public class ElementPositionRange {
      *            new value for <code>startOffset</code>.
      */
     public void setStartOffset(final int startOffset) {
+        if (startOffset < 0 || startOffset > document.getLength())
+            throw new IllegalArgumentException();
+
         this.startOffset = startOffset;
         checkOrder();
     }
