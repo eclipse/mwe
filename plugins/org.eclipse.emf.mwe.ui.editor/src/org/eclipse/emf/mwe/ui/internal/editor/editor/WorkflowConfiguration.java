@@ -22,6 +22,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTextScanner;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
@@ -36,9 +37,10 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
+    private WorkflowDoubleClickStrategy doubleClickStrategy;
 
     private WorkflowTagScanner tagScanner;
 
@@ -107,6 +109,14 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
                 WorkflowPartitionScanner.XML_END_TAG);
 
         return formatter;
+    }
+
+    @Override
+    public ITextDoubleClickStrategy getDoubleClickStrategy(
+            final ISourceViewer sourceViewer, final String contentType) {
+        if (doubleClickStrategy == null)
+            doubleClickStrategy = new WorkflowDoubleClickStrategy();
+        return doubleClickStrategy;
     }
 
     @Override

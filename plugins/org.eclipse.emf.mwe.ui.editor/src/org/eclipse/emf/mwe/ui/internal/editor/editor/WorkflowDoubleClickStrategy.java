@@ -16,6 +16,10 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.ITextViewer;
 
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.2 $
+ */
 public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
     protected ITextViewer fText;
 
@@ -34,11 +38,20 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
 
     protected boolean selectComment(final int caretPos) {
         final IDocument doc = fText.getDocument();
-        int startPos, endPos;
+        int startPos;
+        int endPos;
+        String delimiter = null;
+
+        try {
+            final int line = doc.getLineOfOffset(caretPos);
+            delimiter = doc.getLineDelimiter(line);
+        } catch (final BadLocationException e) {
+            return false;
+        }
 
         try {
             int pos = caretPos;
-            char c = ' ';
+            Character c = ' ';
 
             while (pos >= 0) {
                 c = doc.getChar(pos);
@@ -46,8 +59,9 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
                     pos -= 2;
                     continue;
                 }
-                if (c == Character.LINE_SEPARATOR || c == '\"')
+                if (delimiter.contains(c.toString()) || c == '\"')
                     break;
+
                 --pos;
             }
 
@@ -62,8 +76,9 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
 
             while (pos < length) {
                 c = doc.getChar(pos);
-                if (c == Character.LINE_SEPARATOR || c == '\"')
+                if (delimiter.contains(c.toString()) || c == '\"')
                     break;
+
                 ++pos;
             }
             if (c != '\"')
@@ -88,7 +103,6 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
         int startPos, endPos;
 
         try {
-
             int pos = caretPos;
             char c;
 
@@ -96,6 +110,7 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
                 c = doc.getChar(pos);
                 if (!Character.isJavaIdentifierPart(c))
                     break;
+
                 --pos;
             }
 
@@ -118,7 +133,6 @@ public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
         } catch (final BadLocationException x) {
             // do nothing
         }
-
         return false;
     }
 
