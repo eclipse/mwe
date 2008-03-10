@@ -17,8 +17,10 @@ import java.util.List;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
@@ -79,9 +81,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
     @Override
     public final void selectionChanged(final SelectionChangedEvent event) {
         super.selectionChanged(event);
-
         selection = event.getSelection();
-
         updateHighlight();
     }
 
@@ -117,12 +117,18 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                     final WorkflowElement wfElement =
                             (WorkflowElement) segment;
                     final ElementPositionRange range =
-                            wfElement.getEndElementRange();
+                            wfElement.getElementRange();
                     final int start = range.getStartOffset();
                     final int length = range.getLength();
                     if (start >= 0) {
                         try {
                             editor.setHighlightRange(start, length, true);
+                            final ISelectionProvider selectionProvider =
+                                    editor.getSelectionProvider();
+                            final ISelection selection =
+                                    new TextSelection(wfElement.getDocument(),
+                                            start, length);
+                            selectionProvider.setSelection(selection);
                         } catch (final IllegalArgumentException x) {
                             editor.resetHighlightRange();
                         }

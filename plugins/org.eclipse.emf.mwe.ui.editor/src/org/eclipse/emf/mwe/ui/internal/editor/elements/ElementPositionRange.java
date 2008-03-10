@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ElementPositionRange {
 
@@ -26,6 +26,8 @@ public class ElementPositionRange {
     private int startOffset;
 
     private int endOffset;
+
+    private final boolean isSetUp;
 
     /**
      * Creates a position range with default values.
@@ -38,6 +40,7 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
+        isSetUp = true;
     }
 
     /**
@@ -57,6 +60,7 @@ public class ElementPositionRange {
         this.document = document;
         setStartOffset(position.getStartOffset());
         setEndOffset(position.getEndOffset());
+        isSetUp = true;
         checkOrder();
     }
 
@@ -80,6 +84,7 @@ public class ElementPositionRange {
         this.document = document;
         setStartOffset(startPosition.getStartOffset());
         setEndOffset(endPosition.getEndOffset());
+        isSetUp = true;
         checkOrder();
     }
 
@@ -101,6 +106,7 @@ public class ElementPositionRange {
         this.document = document;
         setStartOffset(startOffset);
         setEndOffset(endOffset);
+        isSetUp = true;
         checkOrder();
     }
 
@@ -119,6 +125,8 @@ public class ElementPositionRange {
         this.document = document;
         setStartOffset(region.getOffset());
         setEndOffset(startOffset + region.getLength() - 1);
+        isSetUp = true;
+        checkOrder();
     }
 
     public Integer getEndColumn() {
@@ -220,7 +228,7 @@ public class ElementPositionRange {
     }
 
     private void checkOrder() {
-        if (endOffset < startOffset) {
+        if (isSetUp && endOffset < startOffset) {
             final int tmp = startOffset;
             startOffset = endOffset;
             endOffset = tmp;

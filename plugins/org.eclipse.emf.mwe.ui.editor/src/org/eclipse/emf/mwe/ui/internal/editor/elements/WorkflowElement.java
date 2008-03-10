@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 
 public class WorkflowElement {
@@ -183,6 +183,25 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns the value of field <code>document</code>.
+     * 
+     * @return value of <code>document</code>.
+     */
+    public IDocument getDocument() {
+        return document;
+    }
+
+    /**
+     * Returns the position range of the whole element.
+     * 
+     * @return position range of whole element.
+     */
+    public ElementPositionRange getElementRange() {
+        return new ElementPositionRange(document, startElementRange,
+                endElementRange);
+    }
+
+    /**
      * Returns the type of the current element.
      * 
      * @return type of current element.
@@ -236,16 +255,6 @@ public class WorkflowElement {
      */
     public String getName() {
         return name;
-    }
-
-    /**
-     * Returns the position range of the whole element.
-     * 
-     * @return position range of whole element.
-     */
-    public ElementPositionRange getOffsetRange() {
-        return new ElementPositionRange(document, startElementRange,
-                endElementRange);
     }
 
     /**
