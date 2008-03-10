@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ElementPositionRange {
 
@@ -159,9 +159,18 @@ public class ElementPositionRange {
 
     public ElementPositionRange getFirstLine() {
         try {
-            final IRegion region =
-                    document.getLineInformationOfOffset(getStartOffset());
-            return new ElementPositionRange(document, region);
+            final int line = document.getLineOfOffset(getStartOffset());
+            final int lineOffset = document.getLineOffset(line);
+            int offset = lineOffset;
+
+            while (Character.isWhitespace(document.getChar(offset))) {
+                offset++;
+            }
+
+            final int length =
+                    lineOffset + document.getLineLength(line) - offset;
+            final int end = offset + length;
+            return new ElementPositionRange(document, offset, end);
         } catch (final BadLocationException e) {
             return null;
         }

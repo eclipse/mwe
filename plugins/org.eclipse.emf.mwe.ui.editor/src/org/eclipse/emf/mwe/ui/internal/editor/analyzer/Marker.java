@@ -16,19 +16,20 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 final class Marker {
 
-    private static final String ERROR_MARKER_ID = "Workflow error";
+    private static final String ERROR_MARKER_ID =
+            "org.eclipse.emf.mwe.ui.editor.workflowerror";
 
     /**
      * Don't allow instantiation.
@@ -50,16 +51,6 @@ final class Marker {
         final int end = element.getFirstLineRange().getEndOffset();
         map.put(IMarker.CHAR_START, start);
         map.put(IMarker.CHAR_END, end);
-
-        try {
-            final int length = end - start + 1;
-            final String markedText = document.get(start, length);
-            System.out.println("Marked text:\n" + markedText + "\n\n");
-        } catch (final BadLocationException e) {
-            // TODO Delete whole try/catch, only for testing
-            e.printStackTrace();
-        }
-
         map.put(IMarker.SEVERITY, new Integer(IMarker.SEVERITY_ERROR));
 
         try {
@@ -69,4 +60,11 @@ final class Marker {
         }
     }
 
+    public static void deleteMarkers(final IFile file) {
+        try {
+            file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_ZERO);
+        } catch (final CoreException e) {
+            e.printStackTrace();
+        }
+    }
 }

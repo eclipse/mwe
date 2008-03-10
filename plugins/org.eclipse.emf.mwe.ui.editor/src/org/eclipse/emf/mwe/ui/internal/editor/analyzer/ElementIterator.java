@@ -15,14 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ElementIterator {
 
@@ -39,12 +37,7 @@ public class ElementIterator {
     }
 
     public void checkValidity(final WorkflowElement root) {
-        try {
-            file.deleteMarkers(null, true, IResource.DEPTH_ZERO);
-        } catch (final CoreException e) {
-            e.printStackTrace();
-            return;
-        }
+        Marker.deleteMarkers(file);
 
         final List<WorkflowElement> list = flatten(root);
         for (final WorkflowElement element : list) {
