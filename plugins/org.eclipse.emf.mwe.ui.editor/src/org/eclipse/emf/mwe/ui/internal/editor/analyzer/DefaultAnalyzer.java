@@ -24,14 +24,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
     protected static final String NAME_ATTRIBUTE = "name";
-
-    protected static final String NO_VALID_COMPONENT_MSG =
-            "The specified class is not a valid component";
 
     protected static final String VALUE_ATTRIBUTE = "value";
 
@@ -140,7 +137,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         }
 
         if (chosenMethod == null) {
-            createMarker(child, NO_VALID_COMPONENT_MSG);
+            createMarker(child, "Class '" + mappedClass.getCanonicalName()
+                    + "' is not a valid component");
         }
     }
 
@@ -162,9 +160,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
             final Class<?> clazz = getMappedClass(classValue);
             if (clazz != null) {
                 type = clazz;
-            } else {
-                createMarker(element, "Class '" + classValue
-                        + "' cannot be resolved");
             }
         } else {
             final String value = element.getAttributeValue(VALUE_ATTRIBUTE);
@@ -174,10 +169,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
                 } else {
                     type = String.class;
                 }
-            } else if (lookupTable.containsKey(element.getName())) {
-                type = lookupTable.get(element.getName());
             } else {
-                createMarker(element, "Type of component cannot be determined");
+                createMarker(element, "Type of component '"
+                        + element.getName() + "' cannot be determined");
             }
         }
         return type;
@@ -196,7 +190,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         final String mappedClassName = getMappedClassName(element);
         if (mappedClassName == null) {
             createMarker(element, MAPPING_ERROR_MSG + " '" + element.getName()
-                    + "'!");
+                    + "'.");
             return null;
         }
 
@@ -228,6 +222,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         String name = null;
         if (element.hasAttribute(CLASS_ATTRIBUTE)) {
             name = element.getAttributeValue(CLASS_ATTRIBUTE);
+        } else if (lookupTable.containsKey(element.getName())) {
+            name = lookupTable.get(element.getName()).getCanonicalName();
         } else {
             name = getDefaultName();
         }
