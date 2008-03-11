@@ -18,13 +18,16 @@ import java.lang.reflect.Modifier;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 final class Reflection {
+
+    private static final String COMPONENT_SUFFIX = "Component";
 
     private static final String ADDER_PREFIX = "add";
 
@@ -45,6 +48,10 @@ final class Reflection {
         Class<?> clazz = null;
         clazz = loader.loadClass(className);
         return clazz;
+    }
+
+    public static String getComponentName(final WorkflowElement element) {
+        return toUpperCaseFirst(element.getName()) + COMPONENT_SUFFIX;
     }
 
     public static Method getSetter(final Class<?> clazz, final String name,
@@ -71,26 +78,36 @@ final class Reflection {
         final Class<?>[] objectParam = new Class<?>[1];
         objectParam[0] = Object.class;
 
+        Method m = null;
+        if (type != null) {
+            m = getMethod(clazz, name, param);
+        }
+
+        if (m == null) {
+            m = getMethod(clazz, name, objectParam);
+        }
+
+        if (m != null) {
+            final int modifiers = m.getModifiers();
+            if (name.equals(m.getName()) && Modifier.isPublic(modifiers)
+                    && !Modifier.isAbstract(modifiers)) {
+                method = m;
+            }
+        }
+        return method;
+    }
+
+    private static Method getMethod(final Class<?> clazz, final String name,
+            final Class<?>[] param) {
         try {
-            Method m = clazz.getDeclaredMethod(name, param);
-
-            if (m == null) {
-                m = clazz.getDeclaredMethod(name, objectParam);
-            }
-
-            if (m != null) {
-                final int modifiers = m.getModifiers();
-                if (name.equals(m.getName()) && Modifier.isPublic(modifiers)
-                        && !Modifier.isAbstract(modifiers)) {
-                    method = m;
-                }
-            }
+            final Method m = clazz.getDeclaredMethod(name, param);
+            return m;
         } catch (final SecurityException e) {
             // Do nothing
         } catch (final NoSuchMethodException e) {
             // Do nothing
         }
-        return method;
+        return null;
     }
 
     private static boolean isConcrete(final Class<?> clazz) {

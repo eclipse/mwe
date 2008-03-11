@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -118,38 +118,17 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected Class<?> computeAttributeType(final WorkflowAttribute attribute) {
-        Class<?> type = null;
         final String value = attribute.getValue();
-        if (isBooleanValue(value)) {
-            type = Boolean.class;
-        } else {
-            type = String.class;
-        }
-        return type;
+        return getValueType(value);
     }
 
     protected Class<?> computeComponentType(final WorkflowElement element) {
-        Class<?> type = null;
-        final String classValue = element.getAttributeValue(CLASS_ATTRIBUTE);
-        if (classValue != null) {
-            final Class<?> clazz = getMappedClass(classValue);
-            if (clazz != null) {
-                type = clazz;
-            }
-        } else {
-            final String value = element.getAttributeValue(VALUE_ATTRIBUTE);
-            if (value != null) {
-                if (isBooleanValue(value)) {
-                    type = Boolean.class;
-                } else {
-                    type = String.class;
-                }
-            } else {
-                createMarker(element, "Type of component '"
-                        + element.getName() + "' cannot be determined");
-            }
-        }
-        return type;
+        if (!element.hasAttributes())
+            return null;
+
+        final WorkflowAttribute attribute = element.getAttribute(0);
+        final String value = attribute.getValue();
+        return getValueType(value);
     }
 
     protected void createMarker(final WorkflowElement element,
@@ -194,7 +173,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (element.hasAttribute(CLASS_ATTRIBUTE)) {
             name = element.getAttributeValue(CLASS_ATTRIBUTE);
         } else {
-            name = ClassLookupTable.getClassName(element);
+            name = Reflection.getComponentName(element);
         }
 
         if (name == null) {
@@ -202,5 +181,18 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         }
 
         return name;
+    }
+
+    private Class<?> getValueType(final String value) {
+        if (value == null)
+            return null;
+
+        Class<?> type = null;
+        if (isBooleanValue(value)) {
+            type = Boolean.class;
+        } else {
+            type = String.class;
+        }
+        return type;
     }
 }
