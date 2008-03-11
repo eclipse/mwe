@@ -14,8 +14,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -24,7 +22,7 @@ import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 final class Reflection {
 
@@ -49,60 +47,50 @@ final class Reflection {
         return clazz;
     }
 
-    public static Method getMatchingMethod(final Method[] methods,
+    public static Method getSetter(final Class<?> clazz, final String name,
             final Class<?> type) {
-        if (methods == null || methods.length == 0)
-            return null;
+        Method method = null;
 
-        for (final Method m : methods) {
-            final Class<?>[] parameters = m.getParameterTypes();
-            for (final Class<?> p : parameters) {
-
-                Class<?> cast = null;
-                try {
-                    cast = type.asSubclass(p);
-                } catch (final ClassCastException e) {
-                    // Do nothing
-                }
-
-                if (cast != null)
-                    return m;
-            }
-        }
-        return null;
-    }
-
-    public static Method[] getSetter(final Class<?> clazz, final String name) {
-        Method[] methods = null;
-
-        methods = getMethods(clazz, setterName(name));
-        if (methods == null) {
-            methods = getMethods(clazz, adderName(name));
+        method = getMethod(clazz, setterName(name), type);
+        if (method == null) {
+            method = getMethod(clazz, adderName(name), type);
         }
 
-        return methods;
+        return method;
     }
 
     private static String adderName(final String name) {
         return ADDER_PREFIX + toUpperCaseFirst(name);
     }
 
-    private static Method[] getMethods(final Class<?> clazz,
-            final String fieldName) {
-        final Method[] allMethods = clazz.getMethods();
-        final List<Method> methodList = new ArrayList<Method>();
-        for (final Method m : allMethods) {
-            final int modifiers = m.getModifiers();
-            if (fieldName.equals(m.getName()) && Modifier.isPublic(modifiers)
-                    && !Modifier.isAbstract(modifiers)) {
-                methodList.add(m);
-            }
-        }
+    private static Method getMethod(final Class<?> clazz, final String name,
+            final Class<?> type) {
+        Method method = null;
+        final Class<?>[] param = new Class<?>[1];
+        param[0] = type;
+        final Class<?>[] objectParam = new Class<?>[1];
+        objectParam[0] = Object.class;
 
-        final Method[] retArray =
-                (!methodList.isEmpty()) ? methodList.toArray(new Method[0])
-                        : null;
-        return retArray;
+        try {
+            Method m = clazz.getDeclaredMethod(name, param);
+
+            if (m == null) {
+                m = clazz.getDeclaredMethod(name, objectParam);
+            }
+
+            if (m != null) {
+                final int modifiers = m.getModifiers();
+                if (name.equals(m.getName()) && Modifier.isPublic(modifiers)
+                        && !Modifier.isAbstract(modifiers)) {
+                    method = m;
+                }
+            }
+        } catch (final SecurityException e) {
+            // Do nothing
+        } catch (final NoSuchMethodException e) {
+            // Do nothing
+        }
+        return method;
     }
 
     private static boolean isConcrete(final Class<?> clazz) {

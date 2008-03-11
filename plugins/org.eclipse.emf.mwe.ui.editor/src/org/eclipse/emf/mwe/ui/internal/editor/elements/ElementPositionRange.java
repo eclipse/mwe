@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ElementPositionRange {
 
@@ -26,8 +26,6 @@ public class ElementPositionRange {
     private int startOffset;
 
     private int endOffset;
-
-    private final boolean isSetUp;
 
     /**
      * Creates a position range with default values.
@@ -40,7 +38,6 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
-        isSetUp = true;
     }
 
     /**
@@ -58,9 +55,8 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
-        setStartOffset(position.getStartOffset());
-        setEndOffset(position.getEndOffset());
-        isSetUp = true;
+        startOffset = position.getStartOffset();
+        endOffset = position.getEndOffset();
         checkOrder();
     }
 
@@ -82,9 +78,8 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
-        setStartOffset(startPosition.getStartOffset());
-        setEndOffset(endPosition.getEndOffset());
-        isSetUp = true;
+        startOffset = startPosition.getStartOffset();
+        endOffset = endPosition.getEndOffset();
         checkOrder();
     }
 
@@ -104,9 +99,8 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
-        setStartOffset(startOffset);
-        setEndOffset(endOffset);
-        isSetUp = true;
+        this.startOffset = startOffset;
+        this.endOffset = endOffset;
         checkOrder();
     }
 
@@ -123,9 +117,8 @@ public class ElementPositionRange {
             throw new IllegalArgumentException();
 
         this.document = document;
-        setStartOffset(region.getOffset());
-        setEndOffset(startOffset + region.getLength() - 1);
-        isSetUp = true;
+        startOffset = region.getOffset();
+        endOffset = startOffset + region.getLength() - 1;
         checkOrder();
     }
 
@@ -237,7 +230,7 @@ public class ElementPositionRange {
     }
 
     private void checkOrder() {
-        if (isSetUp && endOffset < startOffset) {
+        if (endOffset < startOffset) {
             final int tmp = startOffset;
             startOffset = endOffset;
             endOffset = tmp;

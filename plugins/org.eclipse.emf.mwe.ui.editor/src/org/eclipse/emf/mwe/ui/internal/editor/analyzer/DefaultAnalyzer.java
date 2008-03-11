@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -93,15 +93,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     protected void checkAttributes(final Class<?> mappedClass,
             final WorkflowElement element, final WorkflowAttribute attribute) {
         final Class<? extends Object> type = computeAttributeType(attribute);
-        final Method[] methods =
-                Reflection.getSetter(mappedClass, attribute.getName());
-        Method chosenMethod = null;
-
-        if (methods != null) {
-            chosenMethod = Reflection.getMatchingMethod(methods, type);
-        }
-
-        if (chosenMethod == null) {
+        final Method method =
+                Reflection.getSetter(mappedClass, attribute.getName(), type);
+        if (method == null) {
             createMarker(element, "No attribute '" + attribute.getName()
                     + "' available in class '" + mappedClass.getSimpleName()
                     + "'");
@@ -113,23 +107,11 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (child.isProperty())
             return;
 
-        Method[] methods = null;
-        methods = Reflection.getSetter(mappedClass, child.getName());
+        final Class<? extends Object> type = computeComponentType(child);
+        final Method method =
+                Reflection.getSetter(mappedClass, child.getName(), type);
 
-        Method chosenMethod = null;
-        if (methods != null) {
-            final Class<? extends Object> type = computeComponentType(child);
-            if (type != null) {
-                chosenMethod = Reflection.getMatchingMethod(methods, type);
-            }
-
-            if (chosenMethod == null) {
-                chosenMethod =
-                        Reflection.getMatchingMethod(methods, Object.class);
-            }
-        }
-
-        if (chosenMethod == null) {
+        if (method == null) {
             createMarker(child, "Class '" + mappedClass.getCanonicalName()
                     + "' is not a valid component");
         }
