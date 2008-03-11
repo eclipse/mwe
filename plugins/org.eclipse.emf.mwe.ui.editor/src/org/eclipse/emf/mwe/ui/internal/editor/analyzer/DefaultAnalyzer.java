@@ -12,19 +12,16 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -45,13 +42,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
     protected final IDocument document;
 
-    protected Map<String, Class<?>> lookupTable;
-
     public DefaultAnalyzer(final IFile file, final IDocument document) {
         this.file = file;
         this.document = document;
-        lookupTable = new HashMap<String, Class<?>>();
-        initLookupTable();
     }
 
     /**
@@ -202,10 +195,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         return mappedClass;
     }
 
-    protected void initLookupTable() {
-        lookupTable.put("if", IfComponent.class);
-    }
-
     protected boolean isBooleanValue(final String value) {
         return value.equalsIgnoreCase(TRUE) ^ value.equalsIgnoreCase(FALSE);
     }
@@ -222,9 +211,11 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         String name = null;
         if (element.hasAttribute(CLASS_ATTRIBUTE)) {
             name = element.getAttributeValue(CLASS_ATTRIBUTE);
-        } else if (lookupTable.containsKey(element.getName())) {
-            name = lookupTable.get(element.getName()).getCanonicalName();
         } else {
+            name = ClassLookupTable.getClassName(element);
+        }
+
+        if (name == null) {
             name = getDefaultName();
         }
 
