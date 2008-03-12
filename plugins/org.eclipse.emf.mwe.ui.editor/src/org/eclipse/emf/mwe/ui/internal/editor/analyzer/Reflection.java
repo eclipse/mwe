@@ -18,16 +18,15 @@ import java.lang.reflect.Modifier;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 final class Reflection {
 
-    private static final String COMPONENT_SUFFIX = "Component";
+    public static final String COMPONENT_SUFFIX = "Component";
 
     private static final String ADDER_PREFIX = "add";
 
@@ -50,8 +49,8 @@ final class Reflection {
         return clazz;
     }
 
-    public static String getComponentName(final WorkflowElement element) {
-        return toUpperCaseFirst(element.getName()) + COMPONENT_SUFFIX;
+    public static String getComponentName(final String name) {
+        return toUpperCaseFirst(name) + COMPONENT_SUFFIX;
     }
 
     public static Method getSetter(final Class<?> clazz, final String name,

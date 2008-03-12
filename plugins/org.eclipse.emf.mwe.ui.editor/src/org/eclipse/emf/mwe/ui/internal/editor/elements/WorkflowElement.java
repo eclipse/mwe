@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 
 public class WorkflowElement {
@@ -180,6 +180,16 @@ public class WorkflowElement {
      */
     public List<WorkflowElement> getChildrenList() {
         return children;
+    }
+
+    /**
+     * Returns the default mapped class for this element if there is a default.
+     * 
+     * @return the default mapped class or <code>null</code> if there is no
+     *         default.
+     */
+    public Class<?> getDefaultClass() {
+        return WorkflowElementTypeComputer.getDefaultClass(this);
     }
 
     /**

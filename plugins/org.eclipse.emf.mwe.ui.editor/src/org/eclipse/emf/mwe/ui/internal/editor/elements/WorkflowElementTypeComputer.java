@@ -11,11 +11,13 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
+import org.eclipse.emf.mwe.core.WorkflowComponent;
+import org.eclipse.emf.mwe.core.container.CompositeComponent;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -29,6 +31,16 @@ public final class WorkflowElementTypeComputer {
     public static void computeTypeInfo(final WorkflowElement element) {
         computeElementType(element);
         computeElementImage(element);
+    }
+
+    public static Class<?> getDefaultClass(final WorkflowElement element) {
+        Class<?> clazz = null;
+        if (element.getElementType() == WorkflowElementType.WORKFLOW) {
+            clazz = CompositeComponent.class;
+        } else if (element.getElementType() == WorkflowElementType.COMPONENT) {
+            clazz = WorkflowComponent.class;
+        }
+        return clazz;
     }
 
     private static void computeElementImage(final WorkflowElement element) {
@@ -66,8 +78,9 @@ public final class WorkflowElementTypeComputer {
         } else if (!element.getName().equals(WorkflowElement.PROPERTY_TAG)
                 && element.isLeaf())
             type = WorkflowElementType.ASSIGNMENTPROPERTY;
-        else
+        else {
             type = WorkflowElementType.ASSIGNMENT;
+        }
 
         element.setType(type);
     }

@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -59,14 +59,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (mappedClass == null)
             return;
 
-        for (int i = 0; i < element.getAttributeCount(); i++) {
-            final WorkflowAttribute attr = element.getAttribute(i);
-
-            if ((!attr.getName().equals(CLASS_ATTRIBUTE))
-                    && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
-                checkAttributes(mappedClass, element, attr);
-            }
-        }
+        checkAttributes(element, mappedClass);
         for (int i = 0; i < element.getChildrenCount(); i++) {
             checkChildValidity(element.getChild(i), mappedClass);
         }
@@ -90,7 +83,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         return file;
     }
 
-    protected void checkAttributes(final Class<?> mappedClass,
+    protected void checkAttribute(final Class<?> mappedClass,
             final WorkflowElement element, final WorkflowAttribute attribute) {
         final Class<? extends Object> type = computeAttributeType(attribute);
         final Method method =
@@ -99,6 +92,18 @@ public class DefaultAnalyzer implements IElementAnalyzer {
             createMarker(element, "No attribute '" + attribute.getName()
                     + "' available in class '" + mappedClass.getSimpleName()
                     + "'");
+        }
+    }
+
+    protected void checkAttributes(final WorkflowElement element,
+            final Class<?> mappedClass) {
+        for (int i = 0; i < element.getAttributeCount(); i++) {
+            final WorkflowAttribute attr = element.getAttribute(i);
+
+            if ((!attr.getName().equals(CLASS_ATTRIBUTE))
+                    && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
+                checkAttribute(mappedClass, element, attr);
+            }
         }
     }
 
@@ -123,12 +128,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected Class<?> computeComponentType(final WorkflowElement element) {
-        if (!element.hasAttributes())
-            return null;
-
-        final WorkflowAttribute attribute = element.getAttribute(0);
-        final String value = attribute.getValue();
-        return getValueType(value);
+        final Class<?> clazz = getMappedClass(element);
+        return clazz;
     }
 
     protected void createMarker(final WorkflowElement element,
@@ -136,51 +137,36 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         Marker.createMarker(getFile(), getDocument(), element, message);
     }
 
-    protected String getDefaultName() {
-        return null;
-    }
-
     protected Class<?> getMappedClass(final WorkflowElement element) {
-        final String mappedClassName = getMappedClassName(element);
-        if (mappedClassName == null) {
-            createMarker(element, MAPPING_ERROR_MSG + " '" + element.getName()
-                    + "'");
-            return null;
+        Class<?> clazz = null;
+        final String name = element.getName();
+
+        clazz = getClass(name);
+
+        if (clazz == null && !name.equals(Reflection.COMPONENT_SUFFIX)) {
+            clazz = getClass(Reflection.getComponentName(name));
         }
 
-        final Class<?> mappedClass = getMappedClass(mappedClassName);
-        if (mappedClass == null) {
-            createMarker(element, "Class '" + mappedClassName
-                    + "' cannot be resolved");
+        if (clazz == null) {
+            clazz = element.getDefaultClass();
         }
-        return mappedClass;
+
+        if (clazz == null) {
+            createMarker(element, "Class '" + name + "' cannot be resolved");
+        }
+        return clazz;
     }
 
     protected boolean isBooleanValue(final String value) {
         return value.equalsIgnoreCase(TRUE) ^ value.equalsIgnoreCase(FALSE);
     }
 
-    private Class<?> getMappedClass(final String mappedClassName) {
+    private Class<?> getClass(final String mappedClassName) {
         try {
             return Reflection.getClass(getFile(), mappedClassName);
         } catch (final CoreException e) {
             return null;
         }
-    }
-
-    private String getMappedClassName(final WorkflowElement element) {
-        String name = null;
-        if (element.hasAttribute(CLASS_ATTRIBUTE)) {
-            name = element.getAttributeValue(CLASS_ATTRIBUTE);
-        } else {
-            name = Reflection.getComponentName(element);
-        }
-
-        if (name == null) {
-            name = getDefaultName();
-        }
-
-        return name;
     }
 
     private Class<?> getValueType(final String value) {

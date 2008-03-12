@@ -12,29 +12,30 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
-public class WorkflowAnalyzer extends DefaultAnalyzer {
+public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 
-    private static final String DEFAULT_NAME =
-            "org.eclipse.emf.mwe.core.container.CompositeComponent";
-
-    public WorkflowAnalyzer(final IFile file, final IDocument document) {
+    public AssignmentPropertyAnalyzer(final IFile file,
+            final IDocument document) {
         super(file, document);
     }
 
     /**
-     * This method overrides the implementation of <code>getDefaultName</code>
+     * This method overrides the implementation of <code>checkValidity</code>
      * inherited from the superclass.
      * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#getDefaultName()
+     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
      */
     @Override
-    protected String getDefaultName() {
-        return DEFAULT_NAME;
+    public void checkValidity(final WorkflowElement element) {
+        final Class<?> mappedClass = getMappedClass(element.getParent());
+        checkAttributes(element, mappedClass);
     }
+
 }
