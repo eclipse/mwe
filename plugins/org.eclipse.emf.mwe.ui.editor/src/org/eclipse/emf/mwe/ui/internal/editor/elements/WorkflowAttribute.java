@@ -11,24 +11,85 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
+
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowAttribute {
+
+    private final WorkflowElement element;
 
     private final String name;
 
     private final String value;
 
-    public WorkflowAttribute(final String name) {
-        this(name, null);
-    }
+    public WorkflowAttribute(final WorkflowElement element, final String name,
+            final String value) {
+        if (element == null || name == null || value == null
+                || name.length() == 0 || value.length() == 0)
+            throw new IllegalArgumentException();
 
-    public WorkflowAttribute(final String name, final String value) {
+        this.element = element;
         this.name = name;
         this.value = value;
+    }
+
+    /**
+     * Returns the value of field <code>attributeRange</code>.
+     * 
+     * @return value of <code>attributeRange</code>.
+     */
+    public ElementPositionRange getAttributeRange() {
+        final IDocument document = element.getDocument();
+        final int start = element.getStartElementRange().getStartOffset();
+        final int end = element.getStartElementRange().getEndOffset();
+        final int length = end - start + 1;
+        String text;
+        try {
+            text = document.get(start, length);
+        } catch (final BadLocationException e) {
+            Log.logError("Invalid document location", e);
+            return null;
+        }
+
+        final String pattern = name + "\\s*=\\s*" + '"' + value + '"';
+        final Pattern regexPattern = Pattern.compile(pattern);
+        final Matcher m = regexPattern.matcher(text);
+        final int attrStart = start + m.start();
+        final int attrEnd = start + m.end() - 1;
+        return new ElementPositionRange(document, attrStart, attrEnd);
+    }
+
+    public ElementPositionRange getAttributeValueRange() {
+        final IDocument document = element.getDocument();
+        int start = getAttributeRange().getStartOffset();
+        int end = getAttributeRange().getEndOffset();
+        // Exclude the closing double quote
+        end--;
+
+        try {
+            // Skip everything to the opening double quote
+            while (start <= end && document.getChar(start) != '"') {
+                start++;
+            }
+        } catch (final BadLocationException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        // Skip the opening double quote as well
+        start++;
+
+        return new ElementPositionRange(document, start, end);
+
     }
 
     /**
@@ -48,4 +109,5 @@ public class WorkflowAttribute {
     public String getValue() {
         return value;
     }
+
 }

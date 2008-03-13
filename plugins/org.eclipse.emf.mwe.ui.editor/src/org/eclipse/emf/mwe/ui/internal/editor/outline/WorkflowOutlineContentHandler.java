@@ -26,7 +26,7 @@ import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
 
@@ -140,7 +140,7 @@ public class WorkflowOutlineContentHandler extends WorkflowContentHandler {
             final String attrName = attributes.getLocalName(i);
             final String attrValue = attributes.getValue(i);
             final WorkflowAttribute attr =
-                    new WorkflowAttribute(attrName, attrValue);
+                    new WorkflowAttribute(element, attrName, attrValue);
             element.addAttribute(attr);
         }
 

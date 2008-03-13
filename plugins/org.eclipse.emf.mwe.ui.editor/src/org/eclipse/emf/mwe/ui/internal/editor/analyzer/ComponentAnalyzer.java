@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -86,9 +86,8 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
                 Reflection.getSetter(mappedClass, attribute.getName(),
                         attrType);
         if (method == null) {
-            createMarker(element, attributeIndex, "No attribute '"
-                    + attribute.getName() + "' in class '"
-                    + mappedClass.getCanonicalName() + "'");
+            createMarker(attribute, "No attribute '" + attribute.getName()
+                    + "' in class '" + mappedClass.getCanonicalName() + "'");
         }
     }
 

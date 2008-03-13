@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -140,14 +140,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         return clazz;
     }
 
-    protected void createMarker(final WorkflowElement element,
-            final int attributeIndex, final String message) {
-        if (attributeIndex < 0
-                || attributeIndex >= element.getAttributeCount())
+    protected void createMarker(final WorkflowAttribute attribute,
+            final String message) {
+        if (attribute == null || message == null || message.length() == 0)
             throw new IllegalArgumentException();
 
-        Marker.createMarker(getFile(), getDocument(), element, attributeIndex,
-                message, true, true);
+        Marker.createMarker(getFile(), getDocument(), attribute, message,
+                true, true);
     }
 
     protected void createMarker(final WorkflowElement element,
