@@ -15,9 +15,9 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public interface IElementAnalyzer {
 
-    void checkValidity(WorkflowElement element);
+    void checkValidity(final WorkflowElement element);
 }

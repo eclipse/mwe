@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 
 public class WorkflowElement {
@@ -71,7 +71,7 @@ public class WorkflowElement {
      *            the name of the element.
      */
     public WorkflowElement(final IDocument document, final String name) {
-        if (document == null || name == null || name.isEmpty())
+        if (document == null || name == null || name.length() == 0)
             throw new IllegalArgumentException();
 
         this.document = document;
@@ -208,7 +208,7 @@ public class WorkflowElement {
      */
     public ElementPositionRange getElementRange() {
         return new ElementPositionRange(document, startElementRange,
-                endElementRange);
+                endElementRange).trimWhitespace();
     }
 
     /**
@@ -243,7 +243,7 @@ public class WorkflowElement {
     }
 
     public ElementPositionRange getFirstLineRange() {
-        return startElementRange.getFirstLine();
+        return startElementRange.getFirstLine().trimWhitespace();
     }
 
     /**

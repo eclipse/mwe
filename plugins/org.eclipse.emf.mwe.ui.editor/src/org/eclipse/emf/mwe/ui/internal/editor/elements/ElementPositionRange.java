@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ElementPositionRange {
 
@@ -154,16 +154,8 @@ public class ElementPositionRange {
         try {
             final int line = document.getLineOfOffset(getStartOffset());
             final int lineOffset = document.getLineOffset(line);
-            int offset = lineOffset;
-
-            while (Character.isWhitespace(document.getChar(offset))) {
-                offset++;
-            }
-
-            final int length =
-                    lineOffset + document.getLineLength(line) - offset;
-            final int end = offset + length;
-            return new ElementPositionRange(document, offset, end);
+            final int end = lineOffset + document.getLineLength(line);
+            return new ElementPositionRange(document, lineOffset, end);
         } catch (final BadLocationException e) {
             return null;
         }
@@ -227,6 +219,27 @@ public class ElementPositionRange {
 
         this.startOffset = startOffset;
         checkOrder();
+    }
+
+    public ElementPositionRange trimWhitespace() {
+        try {
+            while (startOffset < document.getLength()
+                    && Character.isWhitespace(document.getChar(startOffset))) {
+                startOffset++;
+            }
+        } catch (final BadLocationException e) {
+            // Do nothing
+        }
+
+        try {
+            while (endOffset > 0 && endOffset > startOffset
+                    && Character.isWhitespace(document.getChar(endOffset))) {
+                endOffset--;
+            }
+        } catch (final BadLocationException e) {
+            // Do nothing
+        }
+        return this;
     }
 
     private void checkOrder() {

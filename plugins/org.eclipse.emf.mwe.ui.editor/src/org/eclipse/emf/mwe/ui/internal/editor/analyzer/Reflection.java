@@ -22,7 +22,7 @@ import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 final class Reflection {
 
@@ -130,7 +130,7 @@ final class Reflection {
     }
 
     private static String toUpperCaseFirst(final String name) {
-        if (name == null || name.isEmpty())
+        if (name == null || name.length() == 0)
             return name;
         else if (name.length() == 1)
             return name.toUpperCase();

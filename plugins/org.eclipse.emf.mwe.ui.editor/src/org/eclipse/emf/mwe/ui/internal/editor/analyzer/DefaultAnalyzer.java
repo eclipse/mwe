@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -30,6 +30,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     protected static final String VALUE_ATTRIBUTE = "value";
 
     protected static final String CLASS_ATTRIBUTE = "class";
+
+    protected static final String FILE_ATTRIBUTE = "file";
 
     protected static final String MAPPING_ERROR_MSG =
             "Could not determine a class mapping for element";
@@ -53,7 +55,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
      * 
      * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
      */
-    @Override
     public void checkValidity(final WorkflowElement element) {
         final Class<?> mappedClass = getMappedClass(element);
         if (mappedClass == null)
@@ -84,7 +85,14 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected void checkAttribute(final Class<?> mappedClass,
-            final WorkflowElement element, final WorkflowAttribute attribute) {
+            final WorkflowElement element, final int attributeIndex) {
+        if (attributeIndex < 0
+                || attributeIndex >= element.getAttributeCount())
+            throw new IllegalArgumentException();
+
+        final WorkflowAttribute attribute =
+                element.getAttribute(attributeIndex);
+
         final Class<? extends Object> type = computeAttributeType(attribute);
         final Method method =
                 Reflection.getSetter(mappedClass, attribute.getName(), type);
@@ -102,7 +110,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
             if ((!attr.getName().equals(CLASS_ATTRIBUTE))
                     && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
-                checkAttribute(mappedClass, element, attr);
+                checkAttribute(mappedClass, element, i);
             }
         }
     }
@@ -133,8 +141,26 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected void createMarker(final WorkflowElement element,
+            final int attributeIndex, final String message) {
+        if (attributeIndex < 0
+                || attributeIndex >= element.getAttributeCount())
+            throw new IllegalArgumentException();
+
+        Marker.createMarker(getFile(), getDocument(), element, attributeIndex,
+                message, true, true);
+    }
+
+    protected void createMarker(final WorkflowElement element,
             final String message) {
-        Marker.createMarker(getFile(), getDocument(), element, message);
+        Marker.createMarker(getFile(), getDocument(), element, message, true);
+    }
+
+    protected Class<?> getClass(final String mappedClassName) {
+        try {
+            return Reflection.getClass(getFile(), mappedClassName);
+        } catch (final CoreException e) {
+            return null;
+        }
     }
 
     protected Class<?> getMappedClass(final WorkflowElement element) {
@@ -157,19 +183,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         return clazz;
     }
 
-    protected boolean isBooleanValue(final String value) {
-        return value.equalsIgnoreCase(TRUE) ^ value.equalsIgnoreCase(FALSE);
-    }
-
-    private Class<?> getClass(final String mappedClassName) {
-        try {
-            return Reflection.getClass(getFile(), mappedClassName);
-        } catch (final CoreException e) {
-            return null;
-        }
-    }
-
-    private Class<?> getValueType(final String value) {
+    protected Class<?> getValueType(final String value) {
         if (value == null)
             return null;
 
@@ -180,5 +194,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
             type = String.class;
         }
         return type;
+    }
+
+    protected boolean isBooleanValue(final String value) {
+        return value.equalsIgnoreCase(TRUE) ^ value.equalsIgnoreCase(FALSE);
     }
 }
