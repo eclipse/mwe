@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowAttribute {
@@ -43,9 +43,9 @@ public class WorkflowAttribute {
     }
 
     /**
-     * Returns the value of field <code>attributeRange</code>.
+     * Returns the position range of the whole attribute.
      * 
-     * @return value of <code>attributeRange</code>.
+     * @return position range of attribute.
      */
     public ElementPositionRange getAttributeRange() {
         final IDocument document = element.getDocument();
@@ -68,6 +68,11 @@ public class WorkflowAttribute {
         return new ElementPositionRange(document, attrStart, attrEnd);
     }
 
+    /**
+     * Returns the position range of the attribute value.
+     * 
+     * @return position range of attribute value.
+     */
     public ElementPositionRange getAttributeValueRange() {
         final IDocument document = element.getDocument();
         int start = getAttributeRange().getStartOffset();
@@ -90,6 +95,15 @@ public class WorkflowAttribute {
 
         return new ElementPositionRange(document, start, end);
 
+    }
+
+    /**
+     * Returns the value of field <code>element</code>.
+     * 
+     * @return value of <code>element</code>.
+     */
+    public WorkflowElement getElement() {
+        return element;
     }
 
     /**

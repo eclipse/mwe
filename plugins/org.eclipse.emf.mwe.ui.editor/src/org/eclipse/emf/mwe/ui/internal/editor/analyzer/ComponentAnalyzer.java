@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -57,7 +57,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
                         + "' cannot be resolved");
             }
         } else if (element.hasAttribute(FILE_ATTRIBUTE)) {
-            getFileContent(element);
+            final WorkflowAttribute attribute =
+                    element.getAttribute(FILE_ATTRIBUTE);
+            final String content = getFileContent(attribute);
         } else {
             createMarker(element,
                     "A component must either have a 'class' or a 'file' attribute");
@@ -70,17 +72,14 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
      * 
      * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttribute(java.lang.Class,
      *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement,
-     *      int)
+     *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute)
      */
     @Override
     protected void checkAttribute(final Class<?> mappedClass,
-            final WorkflowElement element, final int attributeIndex) {
-        if (attributeIndex < 0
-                || attributeIndex >= element.getAttributeCount())
+            final WorkflowElement element, final WorkflowAttribute attribute) {
+        if (mappedClass == null || element == null || attribute == null)
             throw new IllegalArgumentException();
 
-        final WorkflowAttribute attribute =
-                element.getAttribute(attributeIndex);
         final Class<?> attrType = getValueType(attribute.getValue());
         final Method method =
                 Reflection.getSetter(mappedClass, attribute.getName(),
@@ -102,25 +101,25 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
     protected void checkAttributes(final WorkflowElement element,
             final Class<?> mappedClass) {
         for (int i = 0; i < element.getAttributeCount(); i++) {
-            checkAttribute(mappedClass, element, i);
+            for (final WorkflowAttribute attr : element.getAttributes()) {
+                checkAttribute(mappedClass, element, attr);
+            }
         }
     }
 
     protected void checkAttributes(final WorkflowElement element,
-            final String content) {
+            final String filePath, final String content) {
 
         // TODO implement
     }
 
-    private String getFileContent(final WorkflowElement element) {
-        if (!element.hasAttribute(FILE_ATTRIBUTE))
-            throw new IllegalArgumentException();
-
-        final String filePath = element.getAttributeValue(FILE_ATTRIBUTE);
+    protected String getFileContent(final WorkflowAttribute attribute) {
+        final String filePath = attribute.getValue();
         final InputStream stream =
                 Activator.class.getResourceAsStream(filePath);
         if (stream == null) {
-            createMarker(element, "File '" + filePath + "' could not be found");
+            createMarker(attribute.getElement(), "File '" + filePath
+                    + "' could not be found");
         } else {
             try {
                 final int length = stream.available();

@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -85,13 +85,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected void checkAttribute(final Class<?> mappedClass,
-            final WorkflowElement element, final int attributeIndex) {
-        if (attributeIndex < 0
-                || attributeIndex >= element.getAttributeCount())
+            final WorkflowElement element, final WorkflowAttribute attribute) {
+        if (mappedClass == null || element == null || attribute == null)
             throw new IllegalArgumentException();
-
-        final WorkflowAttribute attribute =
-                element.getAttribute(attributeIndex);
 
         final Class<? extends Object> type = computeAttributeType(attribute);
         final Method method =
@@ -105,12 +101,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
     protected void checkAttributes(final WorkflowElement element,
             final Class<?> mappedClass) {
-        for (int i = 0; i < element.getAttributeCount(); i++) {
-            final WorkflowAttribute attr = element.getAttribute(i);
-
+        for (final WorkflowAttribute attr : element.getAttributes()) {
             if ((!attr.getName().equals(CLASS_ATTRIBUTE))
                     && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
-                checkAttribute(mappedClass, element, i);
+                checkAttribute(mappedClass, element, attr);
             }
         }
     }

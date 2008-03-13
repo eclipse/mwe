@@ -12,7 +12,10 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jface.text.IDocument;
 
@@ -21,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 
 public class WorkflowElement {
@@ -59,8 +62,8 @@ public class WorkflowElement {
     private final List<WorkflowElement> children =
             new ArrayList<WorkflowElement>();
 
-    private final List<WorkflowAttribute> attributes =
-            new ArrayList<WorkflowAttribute>();
+    private final Map<String, WorkflowAttribute> attributes =
+            new HashMap<String, WorkflowAttribute>();
 
     /**
      * Creates a workflow element.
@@ -86,7 +89,7 @@ public class WorkflowElement {
      *            attribute added to current element.
      */
     public void addAttribute(final WorkflowAttribute attribute) {
-        attributes.add(attribute);
+        attributes.put(attribute.getName(), attribute);
         recomputeTypeInfo = true;
     }
 
@@ -111,17 +114,18 @@ public class WorkflowElement {
     }
 
     /**
-     * Returns the attribute at the position <code>index</code>.
+     * Returns the specified attribute of the current element.
      * 
-     * @param index
-     *            index of attribute.
-     * @return the requested attribute.
+     * @param name
+     *            name of the requested attribute.
+     * @return the requested attribute or <code>null</code>, if no attribute
+     *         with the specified name is found.
      */
-    public WorkflowAttribute getAttribute(final int index) {
-        if (index < 0 || index >= getAttributeCount())
+    public WorkflowAttribute getAttribute(final String name) {
+        if (name == null || name.length() == 0)
             throw new IllegalArgumentException();
 
-        return attributes.get(index);
+        return attributes.get(name);
     }
 
     /**
@@ -134,6 +138,17 @@ public class WorkflowElement {
     }
 
     /**
+     * Returns a collection containing all attributes of the currect element.
+     * Please notice that the order of attributes within the collection does not
+     * necessarily match the order in which the attributes were defined.
+     * 
+     * @return a collection of all attributes of current element.
+     */
+    public Collection<WorkflowAttribute> getAttributes() {
+        return attributes.values();
+    }
+
+    /**
      * Returns the value of an attribute of the current element.
      * 
      * @param name
@@ -142,10 +157,8 @@ public class WorkflowElement {
      *         the specified name is found.
      */
     public String getAttributeValue(final String name) {
-        for (final WorkflowAttribute attr : attributes) {
-            if (name.equals(attr.getName()))
-                return attr.getValue();
-        }
+        if (hasAttribute(name))
+            return attributes.get(name).getValue();
         return null;
     }
 
@@ -286,11 +299,7 @@ public class WorkflowElement {
     }
 
     public boolean hasAttribute(final String name) {
-        for (final WorkflowAttribute attr : attributes) {
-            if (name.equals(attr.getName()))
-                return true;
-        }
-        return false;
+        return attributes.containsKey(name);
     }
 
     /**
