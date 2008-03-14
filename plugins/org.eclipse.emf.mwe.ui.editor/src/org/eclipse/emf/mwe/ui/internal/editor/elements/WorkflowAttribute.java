@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class WorkflowAttribute {
@@ -34,7 +34,7 @@ public class WorkflowAttribute {
     public WorkflowAttribute(final WorkflowElement element, final String name,
             final String value) {
         if (element == null || name == null || value == null
-                || name.length() == 0 || value.length() == 0)
+                || name.length() == 0)
             throw new IllegalArgumentException();
 
         this.element = element;
