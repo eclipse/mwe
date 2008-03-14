@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ElementPositionRange {
 
@@ -163,7 +163,7 @@ public class ElementPositionRange {
     }
 
     public int getLength() {
-        return Math.abs(endOffset - startOffset);
+        return Math.abs(endOffset - startOffset) + 1;
     }
 
     public Integer getStartColumn() {
