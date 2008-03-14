@@ -16,11 +16,13 @@ import java.lang.reflect.Method;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.Marker;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.Reflection;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -55,14 +57,17 @@ public class DefaultAnalyzer implements IElementAnalyzer {
      * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
      */
     public void checkValidity(final WorkflowElement element) {
-        final Class<?> mappedClass = getMappedClass(element);
-        if (mappedClass == null)
+        if (!element.hasParent())
             return;
 
-        checkAttributes(element, mappedClass);
-        for (int i = 0; i < element.getChildrenCount(); i++) {
-            checkChildValidity(element.getChild(i), mappedClass);
+        final WorkflowElement parent = element.getParent();
+        final Class<?> parentClass = getMappedClass(parent);
+        if (parentClass == null) {
+            createMarker(parent, "Element '" + parent.getName()
+                    + "' could not be mapped");
+            return;
         }
+        checkAttributes(element, parentClass);
     }
 
     /**
@@ -88,7 +93,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (mappedClass == null || element == null || attribute == null)
             throw new IllegalArgumentException();
 
-        final Class<? extends Object> type = computeAttributeType(attribute);
+        final Class<?> type = computeAttributeType(attribute);
         final Method method =
                 Reflection.getSetter(mappedClass, attribute.getName(), type);
         if (method == null) {
@@ -105,21 +110,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
                     && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
                 checkAttribute(mappedClass, element, attr);
             }
-        }
-    }
-
-    protected void checkChildValidity(final WorkflowElement child,
-            final Class<?> mappedClass) {
-        if (child.isProperty())
-            return;
-
-        final Class<? extends Object> type = computeComponentType(child);
-        final Method method =
-                Reflection.getSetter(mappedClass, child.getName(), type);
-
-        if (method == null) {
-            createMarker(child, "Class '" + mappedClass.getCanonicalName()
-                    + "' is not a valid component");
         }
     }
 
@@ -166,7 +156,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
         clazz = getClass(name);
 
-        if (clazz == null && !name.equals(Reflection.COMPONENT_SUFFIX)) {
+        if (clazz == null
+                && !name.equalsIgnoreCase(Reflection.COMPONENT_SUFFIX)) {
             clazz = getClass(Reflection.getComponentName(name));
         }
 

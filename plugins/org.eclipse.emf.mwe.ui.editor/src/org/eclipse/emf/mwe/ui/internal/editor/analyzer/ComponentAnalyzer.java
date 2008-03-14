@@ -21,12 +21,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.Reflection;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 

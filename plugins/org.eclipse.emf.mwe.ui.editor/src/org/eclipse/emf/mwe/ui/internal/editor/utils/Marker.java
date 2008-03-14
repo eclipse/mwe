@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
+package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,9 +27,9 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.1 $
  */
-final class Marker {
+public final class Marker {
 
     private static final String ERROR_MARKER_ID =
             "org.eclipse.emf.mwe.ui.editor.workflowerror";

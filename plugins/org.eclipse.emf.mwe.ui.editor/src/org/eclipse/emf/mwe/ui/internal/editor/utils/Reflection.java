@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
+package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -23,11 +23,14 @@ import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.1 $
  */
-final class Reflection {
+public final class Reflection {
 
     public static final String COMPONENT_SUFFIX = "Component";
+
+    private static final String MWE_CONTAINER_PACKAGE =
+            "org.eclipse.emf.mwe.core.container";
 
     private static final String ADDER_PREFIX = "add";
 
@@ -60,7 +63,8 @@ final class Reflection {
     }
 
     public static String getComponentName(final String name) {
-        return toUpperCaseFirst(name) + COMPONENT_SUFFIX;
+        return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
+                + COMPONENT_SUFFIX;
     }
 
     public static ProjectIncludingResourceLoader getResourceLoader(
@@ -76,8 +80,8 @@ final class Reflection {
         return loader;
     }
 
-    public static Method getSetter(final Class<?> clazz, final String name,
-            final Class<?> type) {
+    public static Method getSetter(final Class<? extends Object> clazz,
+            final String name, final Class<?> type) {
         Method method = null;
 
         method = getMethod(clazz, setterName(name), type);

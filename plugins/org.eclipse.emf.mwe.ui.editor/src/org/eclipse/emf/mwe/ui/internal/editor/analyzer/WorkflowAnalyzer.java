@@ -17,12 +17,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.3 $
  */
-public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
+public class WorkflowAnalyzer extends DefaultAnalyzer {
 
-    public AssignmentPropertyAnalyzer(final IFile file,
-            final IDocument document) {
+    public WorkflowAnalyzer(final IFile file, final IDocument document) {
         super(file, document);
     }
 
@@ -34,8 +33,7 @@ public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
      */
     @Override
     public void checkValidity(final WorkflowElement element) {
-        final Class<?> mappedClass = getMappedClass(element.getParent());
+        final Class<?> mappedClass = element.getDefaultClass();
         checkAttributes(element, mappedClass);
     }
-
 }
