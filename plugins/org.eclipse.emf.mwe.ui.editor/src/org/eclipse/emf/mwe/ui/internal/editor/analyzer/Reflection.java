@@ -23,7 +23,7 @@ import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 final class Reflection {
 
@@ -33,6 +33,10 @@ final class Reflection {
 
     private static final String SETTER_PREFIX = "set";
 
+    private static ProjectIncludingResourceLoader loader;
+
+    private static IFile fileCache;
+
     /**
      * Don't allow instantiation.
      */
@@ -41,7 +45,11 @@ final class Reflection {
     }
 
     public static Class<?> getClass(final IFile file, final String className) {
-        final ProjectIncludingResourceLoader loader = getResourceLoader(file);
+        if (loader == null || !fileCache.equals(file)) {
+            fileCache = file;
+            loader = getResourceLoader(file);
+        }
+
         Class<?> clazz = null;
 
         if (loader != null) {
