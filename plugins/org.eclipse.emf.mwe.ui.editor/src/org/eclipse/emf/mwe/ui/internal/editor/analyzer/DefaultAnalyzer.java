@@ -14,14 +14,13 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -36,9 +35,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     protected static final String MAPPING_ERROR_MSG =
             "Could not determine a class mapping for element";
 
-    private static final String FALSE = "false";
+    protected static final String FALSE_VALUE = "false";
 
-    private static final String TRUE = "true";
+    protected static final String TRUE_VALUE = "true";
 
     protected final IFile file;
 
@@ -140,7 +139,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
             throw new IllegalArgumentException();
 
         Marker.createMarker(getFile(), getDocument(), attribute, message,
-                true, true);
+                false, true);
     }
 
     protected void createMarker(final WorkflowElement element,
@@ -148,12 +147,17 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         Marker.createMarker(getFile(), getDocument(), element, message, true);
     }
 
+    protected void createMarkerForValue(final WorkflowAttribute attribute,
+            final String message) {
+        if (attribute == null || message == null || message.length() == 0)
+            throw new IllegalArgumentException();
+
+        Marker.createMarker(getFile(), getDocument(), attribute, message,
+                true, true);
+    }
+
     protected Class<?> getClass(final String mappedClassName) {
-        try {
-            return Reflection.getClass(getFile(), mappedClassName);
-        } catch (final CoreException e) {
-            return null;
-        }
+        return Reflection.getClass(getFile(), mappedClassName);
     }
 
     protected Class<?> getMappedClass(final WorkflowElement element) {
@@ -190,6 +194,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     }
 
     protected boolean isBooleanValue(final String value) {
-        return value.equalsIgnoreCase(TRUE) ^ value.equalsIgnoreCase(FALSE);
+        return value.equalsIgnoreCase(TRUE_VALUE)
+                ^ value.equalsIgnoreCase(FALSE_VALUE);
     }
 }

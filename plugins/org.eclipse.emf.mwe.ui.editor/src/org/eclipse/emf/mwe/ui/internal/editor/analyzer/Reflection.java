@@ -18,11 +18,12 @@ import java.lang.reflect.Modifier;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 final class Reflection {
 
@@ -39,18 +40,32 @@ final class Reflection {
         throw new UnsupportedOperationException();
     }
 
-    public static Class<?> getClass(final IFile file, final String className)
-            throws CoreException {
-        final IProject project = file.getProject();
-        final ProjectIncludingResourceLoader loader =
-                new ProjectIncludingResourceLoader(project);
+    public static Class<?> getClass(final IFile file, final String className) {
+        final ProjectIncludingResourceLoader loader = getResourceLoader(file);
         Class<?> clazz = null;
-        clazz = loader.loadClass(className);
+
+        if (loader != null) {
+            clazz = loader.loadClass(className);
+        }
+
         return clazz;
     }
 
     public static String getComponentName(final String name) {
         return toUpperCaseFirst(name) + COMPONENT_SUFFIX;
+    }
+
+    public static ProjectIncludingResourceLoader getResourceLoader(
+            final IFile file) {
+        final IProject project = file.getProject();
+        ProjectIncludingResourceLoader loader = null;
+        try {
+            loader = new ProjectIncludingResourceLoader(project);
+        } catch (final CoreException e) {
+            Log.logError("Could not create resource loader", e);
+        }
+
+        return loader;
     }
 
     public static Method getSetter(final Class<?> clazz, final String name,
@@ -102,7 +117,7 @@ final class Reflection {
             final Method m = clazz.getDeclaredMethod(name, param);
             return m;
         } catch (final SecurityException e) {
-            // Do nothing
+            Log.logError("Security error", e);
         } catch (final NoSuchMethodException e) {
             // Do nothing
         }

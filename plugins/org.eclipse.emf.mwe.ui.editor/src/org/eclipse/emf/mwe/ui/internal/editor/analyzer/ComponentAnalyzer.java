@@ -14,22 +14,32 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
+    protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
+
+    protected static final String ABSTRACT_ATTRIBUTE = "abstract";
+
+    protected static final String WORKFLOW_TAG = "workflow";
+
     protected static final String FILE_AND_CLASS_MSG =
             "A component cannot have a 'class' and a 'file' attribute at the same time";
+
+    private boolean workflowAbstract;
 
     public ComponentAnalyzer(final IFile file, final IDocument document) {
         super(file, document);
@@ -43,6 +53,8 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
      */
     @Override
     public void checkValidity(final WorkflowElement element) {
+        workflowAbstract = isWorkflowAbstract(element);
+
         if (element.hasAttribute(CLASS_ATTRIBUTE)
                 && element.hasAttribute(FILE_ATTRIBUTE)) {
             createMarker(element, FILE_AND_CLASS_MSG);
@@ -56,10 +68,28 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
                         + element.getAttributeValue(CLASS_ATTRIBUTE)
                         + "' cannot be resolved");
             }
+            if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
+                final WorkflowAttribute inheritAttr =
+                        element.getAttribute(INHERIT_ALL_ATTRIBUTE);
+                createMarkerForValue(
+                        inheritAttr,
+                        "Attribute '"
+                                + INHERIT_ALL_ATTRIBUTE
+                                + "' is not allowed, if a 'class' attribute is specified");
+            }
         } else if (element.hasAttribute(FILE_ATTRIBUTE)) {
             final WorkflowAttribute attribute =
                     element.getAttribute(FILE_ATTRIBUTE);
             final String content = getFileContent(attribute);
+            if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
+                final WorkflowAttribute inheritAttr =
+                        element.getAttribute(INHERIT_ALL_ATTRIBUTE);
+                if (getValueType(inheritAttr.getValue()) != Boolean.class) {
+                    createMarkerForValue(inheritAttr, "Attribute '"
+                            + INHERIT_ALL_ATTRIBUTE
+                            + "' must have a boolean value");
+                }
+            }
         } else {
             createMarker(element,
                     "A component must either have a 'class' or a 'file' attribute");
@@ -90,6 +120,22 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
         }
     }
 
+    protected void checkAttribute(final WorkflowAttribute attribute,
+            final String filePath, final String content) {
+        if (attribute == null || filePath == null || content == null)
+            throw new IllegalArgumentException();
+
+        final String regex = createSubstitutorPattern(attribute.getName());
+        final Pattern pattern = Pattern.compile(regex);
+        final Matcher matcher = pattern.matcher(content);
+        if (!workflowAbstract && !matcher.matches()) {
+            createMarker(attribute, "File '" + filePath
+                    + "' does not contain an argument '" + attribute.getName()
+                    + "'");
+        }
+
+    }
+
     /**
      * This method overrides the implementation of <code>checkAttributes</code>
      * inherited from the superclass.
@@ -109,14 +155,27 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
     protected void checkAttributes(final WorkflowElement element,
             final String filePath, final String content) {
+        if (element == null || filePath == null || content == null)
+            throw new IllegalArgumentException();
 
-        // TODO implement
+        for (final WorkflowAttribute attr : element.getAttributes()) {
+            checkAttribute(attr, filePath, content);
+        }
+    }
+
+    protected String createSubstitutorPattern(final String name) {
+        return "\\$\\{" + name + "\\}";
     }
 
     protected String getFileContent(final WorkflowAttribute attribute) {
         final String filePath = attribute.getValue();
-        final InputStream stream =
-                Activator.class.getResourceAsStream(filePath);
+        final ProjectIncludingResourceLoader loader =
+                Reflection.getResourceLoader(file);
+
+        if (loader == null)
+            throw new RuntimeException("Could not obtain resource loader");
+
+        final InputStream stream = loader.getResourceAsStream(filePath);
         if (stream == null) {
             createMarker(attribute.getElement(), "File '" + filePath
                     + "' could not be found");
@@ -135,4 +194,20 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
         return null;
     }
 
+    protected boolean isWorkflowAbstract(final WorkflowElement element) {
+        boolean res = false;
+        WorkflowElement e = element;
+
+        while (e.hasParent() && !e.getName().equals(WORKFLOW_TAG)) {
+            e = e.getParent();
+        }
+
+        if (e.getName().equals(WORKFLOW_TAG)
+                && e.hasAttribute(ABSTRACT_ATTRIBUTE)
+                && e.getAttributeValue(ABSTRACT_ATTRIBUTE).equalsIgnoreCase(
+                        TRUE_VALUE)) {
+            res = true;
+        }
+        return res;
+    }
 }
