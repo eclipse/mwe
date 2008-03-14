@@ -17,6 +17,9 @@ import java.util.List;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.TextSelection;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -98,6 +101,26 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
         return list.toArray(new WorkflowElement[0]);
     }
 
+    private ElementPositionRange calculateTagRange(final IDocument document,
+            final ElementPositionRange range) {
+        int start = range.getStartOffset();
+        // skip '<'
+        start++;
+
+        int end = start;
+        try {
+            while (!Character.isWhitespace(document.getChar(end))) {
+                end++;
+            }
+
+            // Go to last character before whitespace
+            end--;
+        } catch (final BadLocationException e) {
+            Log.logError("Document location error", e);
+        }
+        return new ElementPositionRange(document, start, end);
+    }
+
     private ITreeContentProvider getContentProvider() {
         return new OutlineContentProvider(this, getTreeViewer(), editor);
     }
@@ -118,8 +141,10 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
                             (WorkflowElement) segment;
                     final ElementPositionRange range =
                             wfElement.getElementRange();
-                    final int start = range.getStartOffset();
-                    final int length = range.getLength();
+                    final ElementPositionRange tagRange =
+                            calculateTagRange(wfElement.getDocument(), range);
+                    final int start = tagRange.getStartOffset();
+                    final int length = tagRange.getLength();
                     if (start >= 0) {
                         try {
                             editor.setHighlightRange(start, length, true);
