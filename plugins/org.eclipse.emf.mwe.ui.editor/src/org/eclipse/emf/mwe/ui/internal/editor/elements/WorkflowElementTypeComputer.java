@@ -17,7 +17,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -61,7 +61,8 @@ public final class WorkflowElementTypeComputer {
         WorkflowElementType type = null;
         if (element.getName().equals(WorkflowElement.WORKFLOWFILE_TAG))
             type = WorkflowElementType.WORKFLOWFILE;
-        else if (element.getName().equals(WorkflowElement.COMPONENT_TAG))
+        else if (element.getName().equals(WorkflowElement.COMPONENT_TAG)
+                || element.getName().equals(WorkflowElement.IFCOMPONENT_TAG))
             type = WorkflowElementType.COMPONENT;
         else if (element.getName().equals(WorkflowElement.WORKFLOW_TAG))
             type = WorkflowElementType.WORKFLOW;

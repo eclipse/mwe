@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 
 public class WorkflowElement {
@@ -41,7 +41,9 @@ public class WorkflowElement {
 
     public static final String WORKFLOW_TAG = "workflow";
 
-    protected static final String COMPONENT_TAG = "component";
+    public static final String COMPONENT_TAG = "component";
+
+    public static final String IFCOMPONENT_TAG = "if";
 
     private final IDocument document;
 
