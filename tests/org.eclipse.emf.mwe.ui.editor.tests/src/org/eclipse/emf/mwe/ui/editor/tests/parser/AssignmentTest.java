@@ -13,36 +13,38 @@ package org.eclipse.emf.mwe.ui.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.editor.tests.base.ParserBaseTest;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.xml.sax.SAXException;
 
 public class AssignmentTest extends ParserBaseTest {
 
-    private static String WORKFLOW1 = "<?xml  version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"
-            + "<workflow>\n"
-            + "    \n"
-            + "    <property name=\"platformURI\" value=\"..\"/>\n"
-            + "    \n"
-            + "    <component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
-            + "        <modelFile value=\"${modelFile}\"/>\n"
-            + "        <outputSlot value=\"${outputSlot}\"/>\n"
-            + "    </component>\n"
-            + "    \n"
-            + "    <component class=\"oaw.xtend.XtendComponent\">\n"
-            + "       <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
-            + "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
-            + "    </component>\n"
-            + "    \n"
-            + "    <component class=\"oaw.xtext.CheckComponent2\">\n"
-            + "        <metaModel idRef=\"mm\"/>\n"
-            + "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
-            + "       <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n"
-            + "    </component>\n"
-            + "    \n"
-            + "    <component class=\"oaw.xtend.XtendComponent\">\n"
-            + "        <metaModel idRef=\"mm\"/>\n"
-            + "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
-            + "    </component>\n" + "    \n" + "</workflow>\n";
+    private static String WORKFLOW1 =
+            "<?xml  version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"
+                    + "<workflow>\n"
+                    + "    \n"
+                    + "    <property name=\"platformURI\" value=\"..\"/>\n"
+                    + "    \n"
+                    + "    <component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+                    + "        <modelFile value=\"${modelFile}\"/>\n"
+                    + "        <outputSlot value=\"${outputSlot}\"/>\n"
+                    + "    </component>\n"
+                    + "    \n"
+                    + "    <component class=\"oaw.xtend.XtendComponent\">\n"
+                    + "       <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
+                    + "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
+                    + "    </component>\n"
+                    + "    \n"
+                    + "    <component class=\"oaw.xtext.CheckComponent2\">\n"
+                    + "        <metaModel idRef=\"mm\"/>\n"
+                    + "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
+                    + "       <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n"
+                    + "    </component>\n"
+                    + "    \n"
+                    + "    <component class=\"oaw.xtend.XtendComponent\">\n"
+                    + "        <metaModel idRef=\"mm\"/>\n"
+                    + "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
+                    + "    </component>\n" + "    \n" + "</workflow>\n";
 
-    public void testCompleteWorkflow() {
+    public void testCompleteWorkflow() throws SAXException {
         setUpDocument(WORKFLOW1);
         parser.parse(WORKFLOW1);
         final WorkflowElement root = parser.getRootElement();
