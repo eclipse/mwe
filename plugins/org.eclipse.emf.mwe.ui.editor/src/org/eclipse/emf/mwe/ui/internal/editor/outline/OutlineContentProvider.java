@@ -13,11 +13,15 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.List;
 
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.Marker;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
 import org.eclipse.jface.text.IDocument;
@@ -25,13 +29,16 @@ import org.eclipse.jface.text.IPositionUpdater;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -130,6 +137,26 @@ public class OutlineContentProvider implements ITreeContentProvider {
         // do nothing
     }
 
+    private void createMarker(final IDocument document, final String msg,
+            final int line, final int column) {
+        try {
+            final IFileEditorInput ife = (IFileEditorInput) input;
+            final IFile file = ife.getFile();
+            final int lineOffset = document.getLineOffset(line);
+            final int start = lineOffset + column;
+            int end = start;
+            if (end < document.getLength()) {
+                end++;
+            }
+
+            final ElementPositionRange range =
+                    new ElementPositionRange(document, start, end);
+            Marker.createMarkerFromRange(file, document, msg, range, true);
+        } catch (final BadLocationException e) {
+            Log.logError("Document location error", e);
+        }
+    }
+
     private WorkflowElement parseRootElement(final IDocument document) {
         final String text = document.get();
         final WorkflowElement tagPositions = parseRootElements(text, document);
@@ -152,8 +179,19 @@ public class OutlineContentProvider implements ITreeContentProvider {
             final WorkflowElement root = xmlParser.getRootElement();
             return root;
         } catch (final ValidationException e) {
-            Activator.logDebug(e);
-            return null;
+            final int line = e.getLineNumber();
+            final int column = e.getColumnNumber();
+            final String msg = e.getDetailedMessage();
+            createMarker(document, msg, line, column);
+        } catch (final SAXException e) {
+            if (e instanceof SAXParseException) {
+                final SAXParseException ex = (SAXParseException) e;
+                final int line = ex.getLineNumber();
+                final int column = ex.getColumnNumber();
+                final String msg = ex.getMessage();
+                createMarker(document, msg, line, column);
+            }
         }
+        return null;
     }
 }

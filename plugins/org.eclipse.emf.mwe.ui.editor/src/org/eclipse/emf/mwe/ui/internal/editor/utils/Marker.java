@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class Marker {
 
@@ -68,7 +68,7 @@ public final class Marker {
         }
     }
 
-    private static void createMarkerFromRange(final IFile file,
+    public static void createMarkerFromRange(final IFile file,
             final IDocument document, final String message,
             final ElementPositionRange range, final boolean isError) {
         final Map map = new HashMap();

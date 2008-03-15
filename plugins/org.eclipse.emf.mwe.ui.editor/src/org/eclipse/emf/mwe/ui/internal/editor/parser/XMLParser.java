@@ -19,6 +19,7 @@ import java.io.StringReader;
 
 import org.apache.xerces.parsers.SAXParser;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
@@ -29,11 +30,12 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class XMLParser {
 
-    public static final String VALIDATION_FEATURE = "http://xml.org/sax/features/validation";
+    public static final String VALIDATION_FEATURE =
+            "http://xml.org/sax/features/validation";
 
     private ErrorHandler errorHandler;
 
@@ -47,18 +49,18 @@ public class XMLParser {
         return root;
     }
 
-    public void parse(final File xmlFilePath) {
+    public void parse(final File xmlFilePath) throws SAXException {
 
         InputSource inputSource = null;
         try {
             inputSource = new InputSource(new FileReader(xmlFilePath));
         } catch (final FileNotFoundException e) {
-            throw new RuntimeException(e);
+            Log.logError(e);
         }
         parse(inputSource);
     }
 
-    public void parse(final InputSource inputSource) {
+    public void parse(final InputSource inputSource) throws SAXException {
         try {
             final XMLReader reader = new SAXParser();
             reader.setErrorHandler(errorHandler);
@@ -66,27 +68,22 @@ public class XMLParser {
             reader.setFeature(VALIDATION_FEATURE, true);
             reader.parse(inputSource);
         } catch (final SAXNotRecognizedException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            Log.logError(e);
         } catch (final SAXNotSupportedException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            Log.logError(e);
         } catch (final IOException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (final SAXException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
+            Log.logError(e);
         }
     }
 
-    public void parse(final String xmlText) {
-        final InputSource inputSource = new InputSource(new StringReader(
-                xmlText));
+    public void parse(final String xmlText) throws SAXException {
+        final InputSource inputSource =
+                new InputSource(new StringReader(xmlText));
         parse(inputSource);
     }
 
-    public void setContentHandler(final WorkflowOutlineContentHandler contentHandler) {
+    public void setContentHandler(
+            final WorkflowOutlineContentHandler contentHandler) {
         this.contentHandler = contentHandler;
     }
 
