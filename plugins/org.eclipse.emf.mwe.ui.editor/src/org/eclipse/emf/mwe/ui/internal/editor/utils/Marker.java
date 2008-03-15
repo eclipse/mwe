@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class Marker {
 
@@ -72,7 +72,7 @@ public final class Marker {
             final IDocument document, final String message,
             final ElementPositionRange range, final boolean isError) {
         final Map map = new HashMap();
-        int lineNumber;
+        Integer lineNumber;
         try {
             lineNumber = document.getLineOfOffset(range.getStartOffset());
         } catch (final BadLocationException e) {
@@ -82,7 +82,7 @@ public final class Marker {
 
         MarkerUtilities.setLineNumber(map, lineNumber);
         MarkerUtilities.setMessage(map, message);
-        map.put(IMarker.LOCATION, file.getFullPath().toString());
+        map.put(IMarker.LOCATION, "line : " + (lineNumber + 1));
 
         map.put(IMarker.CHAR_START, range.getStartOffset());
         map.put(IMarker.CHAR_END, range.getEndOffset());

@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -158,7 +158,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
         if (clazz == null
                 && !name.equalsIgnoreCase(Reflection.COMPONENT_SUFFIX)) {
-            clazz = getClass(Reflection.getComponentName(name));
+            clazz = getClass(Reflection.getComponentName(name, false));
+        }
+
+        if (clazz == null
+                && !name.equalsIgnoreCase(Reflection.COMPONENT_SUFFIX)) {
+            clazz = getClass(Reflection.getComponentName(name, true));
         }
 
         if (clazz == null) {

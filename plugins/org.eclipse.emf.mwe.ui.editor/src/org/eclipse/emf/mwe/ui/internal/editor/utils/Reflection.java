@@ -14,16 +14,23 @@ package org.eclipse.emf.mwe.ui.internal.editor.utils;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class Reflection {
 
@@ -32,13 +39,12 @@ public final class Reflection {
     private static final String MWE_CONTAINER_PACKAGE =
             "org.eclipse.emf.mwe.core.container";
 
+    private static final String OAW_CONTAINER_PACKAGE =
+            "org.openarchitectureware.core.workflow.container";
+
     private static final String ADDER_PREFIX = "add";
 
     private static final String SETTER_PREFIX = "set";
-
-    private static ProjectIncludingResourceLoader loader;
-
-    private static IFile fileCache;
 
     /**
      * Don't allow instantiation.
@@ -48,23 +54,27 @@ public final class Reflection {
     }
 
     public static Class<?> getClass(final IFile file, final String className) {
-        if (loader == null || !fileCache.equals(file)) {
-            fileCache = file;
-            loader = getResourceLoader(file);
-        }
-
         Class<?> clazz = null;
-
-        if (loader != null) {
-            clazz = loader.loadClass(className);
+        try {
+            final ClassLoader loader = createClassLoader(file);
+            if (loader != null) {
+                clazz = loader.loadClass(className);
+            }
+        } catch (final CoreException e) {
+            Log.logError("Could not create class loader", e);
+        } catch (final ClassNotFoundException e) {
+            // Do nothing
         }
-
         return clazz;
     }
 
-    public static String getComponentName(final String name) {
-        return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-                + COMPONENT_SUFFIX;
+    public static String getComponentName(final String name, final boolean old) {
+        if (old)
+            return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
+                    + COMPONENT_SUFFIX;
+        else
+            return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
+                    + COMPONENT_SUFFIX;
     }
 
     public static ProjectIncludingResourceLoader getResourceLoader(
@@ -94,6 +104,34 @@ public final class Reflection {
 
     private static String adderName(final String name) {
         return ADDER_PREFIX + toUpperCaseFirst(name);
+    }
+
+    /**
+     * Builds a classloader for a Java project from the workspace.
+     * 
+     * @param project
+     *            An Eclipse project
+     * @throws CoreException
+     */
+    private static ClassLoader createClassLoader(final IFile file)
+            throws CoreException {
+        if (file == null)
+            throw new IllegalArgumentException();
+
+        final IProject project = file.getProject();
+        final IJavaProject jp = JavaCore.create(project);
+
+        final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
+        final URL[] url = new URL[javacp.length];
+
+        for (int i = 0; i < javacp.length; i++) {
+            try {
+                url[i] = javacp[i].getPath().toFile().toURL();
+            } catch (final MalformedURLException e) {
+                Activator.logError(e);
+            }
+        }
+        return new URLClassLoader(url);
     }
 
     private static Method getMethod(final Class<?> clazz, final String name,

@@ -11,13 +11,13 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
-import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
+import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -38,7 +38,7 @@ public final class WorkflowElementTypeComputer {
         if (element.getElementType() == WorkflowElementType.WORKFLOW) {
             clazz = CompositeComponent.class;
         } else if (element.getElementType() == WorkflowElementType.COMPONENT) {
-            clazz = WorkflowComponent.class;
+            clazz = AbstractWorkflowComponent.class;
         }
         return clazz;
     }

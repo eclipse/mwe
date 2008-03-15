@@ -21,13 +21,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.Reflection;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -60,13 +61,15 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
                 && element.hasAttribute(FILE_ATTRIBUTE)) {
             createMarker(element, FILE_AND_CLASS_MSG);
         } else if (element.hasAttribute(CLASS_ATTRIBUTE)) {
-            final Class<?> mappedClass =
-                    getClass(element.getAttributeValue(CLASS_ATTRIBUTE));
+            final String className =
+                    element.getAttributeValue(CLASS_ATTRIBUTE);
+            final String resolvedClassName =
+                    PackageShortcutResolver.resolve(className);
+            final Class<?> mappedClass = getClass(resolvedClassName);
             if (mappedClass != null) {
                 checkAttributes(element, mappedClass);
             } else {
-                createMarker(element, "Class '"
-                        + element.getAttributeValue(CLASS_ATTRIBUTE)
+                createMarker(element, "Class '" + className
                         + "' cannot be resolved");
             }
             if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
@@ -111,9 +114,13 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
         if (mappedClass == null || element == null || attribute == null)
             throw new IllegalArgumentException();
 
+        if (attribute.getName().equals(CLASS_ATTRIBUTE))
+            return;
+
+        final Class<?> elementClass = getMappedClass(element);
         final Class<?> attrType = getValueType(attribute.getValue());
         final Method method =
-                Reflection.getSetter(mappedClass, attribute.getName(),
+                Reflection.getSetter(elementClass, attribute.getName(),
                         attrType);
         if (method == null) {
             createMarker(attribute, "No attribute '" + attribute.getName()

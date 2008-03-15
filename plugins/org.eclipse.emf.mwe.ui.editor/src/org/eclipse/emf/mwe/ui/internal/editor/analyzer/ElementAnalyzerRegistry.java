@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -71,7 +71,7 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
                 document));
         map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
                 document));
-        map.put(WorkflowElementType.ASSIGNMENTPROPERTY, new DefaultAnalyzer(
-                file, document));
+        map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
+                new AssignmentPropertyAnalyzer(file, document));
     }
 }

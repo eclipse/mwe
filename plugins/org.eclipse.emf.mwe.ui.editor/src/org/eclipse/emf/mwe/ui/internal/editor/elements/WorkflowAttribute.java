@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class WorkflowAttribute {
@@ -60,13 +60,15 @@ public class WorkflowAttribute {
             return null;
         }
 
-        final String pattern =
-                name + "\\s*=\\s*" + "('|\")" + value + "('|\")";
+        final String pattern = name + "\\s*=\\s*\"" + value + "\"";
         final Pattern regexPattern = Pattern.compile(pattern);
         final Matcher m = regexPattern.matcher(text);
-        final int attrStart = start + m.start();
-        final int attrEnd = start + m.end() - 1;
-        return new ElementPositionRange(document, attrStart, attrEnd);
+        if (m.find()) {
+            final int attrStart = start + m.start();
+            final int attrEnd = start + m.end() - 1;
+            return new ElementPositionRange(document, attrStart, attrEnd);
+        }
+        return null;
     }
 
     /**
