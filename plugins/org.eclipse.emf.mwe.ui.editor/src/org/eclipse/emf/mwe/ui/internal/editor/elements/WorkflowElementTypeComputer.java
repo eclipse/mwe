@@ -12,12 +12,13 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
+import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -39,6 +40,8 @@ public final class WorkflowElementTypeComputer {
             clazz = CompositeComponent.class;
         } else if (element.getElementType() == WorkflowElementType.COMPONENT) {
             clazz = AbstractWorkflowComponent.class;
+        } else if (element.getElementType() == WorkflowElementType.IF_COMPONENT) {
+            clazz = IfComponent.class;
         }
         return clazz;
     }
@@ -61,9 +64,10 @@ public final class WorkflowElementTypeComputer {
         WorkflowElementType type = null;
         if (element.getName().equals(WorkflowElement.WORKFLOWFILE_TAG))
             type = WorkflowElementType.WORKFLOWFILE;
-        else if (element.getName().equals(WorkflowElement.COMPONENT_TAG)
-                || element.getName().equals(WorkflowElement.IFCOMPONENT_TAG))
+        else if (element.getName().equals(WorkflowElement.COMPONENT_TAG)) {
             type = WorkflowElementType.COMPONENT;
+        } else if (element.getName().equals(WorkflowElement.IF_COMPONENT_TAG))
+            type = WorkflowElementType.IF_COMPONENT;
         else if (element.getName().equals(WorkflowElement.WORKFLOW_TAG))
             type = WorkflowElementType.WORKFLOW;
         else if (element.getName().equals(WorkflowElement.PROPERTY_TAG)) {

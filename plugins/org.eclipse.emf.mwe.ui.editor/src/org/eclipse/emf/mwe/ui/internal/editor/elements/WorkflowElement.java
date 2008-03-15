@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 
 public class WorkflowElement {
@@ -43,7 +43,7 @@ public class WorkflowElement {
 
     public static final String COMPONENT_TAG = "component";
 
-    public static final String IFCOMPONENT_TAG = "if";
+    public static final String IF_COMPONENT_TAG = "if";
 
     private final IDocument document;
 
@@ -351,7 +351,7 @@ public class WorkflowElement {
      *         <code>false</code>.
      */
     public boolean isComponent() {
-        return (WorkflowElementType.COMPONENT == getComputedElementType());
+        return (getComputedElementType() == WorkflowElementType.COMPONENT || isIfComponent());
     }
 
     /**
@@ -362,6 +362,16 @@ public class WorkflowElement {
      */
     public boolean isFileProperty() {
         return (getComputedElementType() == WorkflowElementType.FILE_PROPERTY);
+    }
+
+    /**
+     * Checks if the current element is an if-component.
+     * 
+     * @return <code>true</code> if current element is an if-component,
+     *         otherwise <code>false</code>.
+     */
+    public boolean isIfComponent() {
+        return (getComputedElementType() == WorkflowElementType.IF_COMPONENT);
     }
 
     /**
