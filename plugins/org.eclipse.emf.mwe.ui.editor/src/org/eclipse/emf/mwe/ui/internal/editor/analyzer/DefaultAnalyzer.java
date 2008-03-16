@@ -16,13 +16,13 @@ import java.lang.reflect.Method;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.Marker;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.Reflection;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -95,7 +95,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
         final Class<?> type = computeAttributeType(attribute);
         final Method method =
-                Reflection.getSetter(mappedClass, attribute.getName(), type);
+                ReflectionManager.getSetter(mappedClass, attribute.getName(), type);
         if (method == null) {
             createMarker(element, "No attribute '" + attribute.getName()
                     + "' available in class '" + mappedClass.getSimpleName()
@@ -128,13 +128,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (attribute == null || message == null || message.length() == 0)
             throw new IllegalArgumentException();
 
-        Marker.createMarker(getFile(), getDocument(), attribute, message,
+        MarkerManager.createMarker(getFile(), getDocument(), attribute, message,
                 false, true);
     }
 
     protected void createMarker(final WorkflowElement element,
             final String message) {
-        Marker.createMarker(getFile(), getDocument(), element, message, true);
+        MarkerManager.createMarker(getFile(), getDocument(), element, message, true);
     }
 
     protected void createMarkerForValue(final WorkflowAttribute attribute,
@@ -142,12 +142,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (attribute == null || message == null || message.length() == 0)
             throw new IllegalArgumentException();
 
-        Marker.createMarker(getFile(), getDocument(), attribute, message,
+        MarkerManager.createMarker(getFile(), getDocument(), attribute, message,
                 true, true);
     }
 
     protected Class<?> getClass(final String mappedClassName) {
-        return Reflection.getClass(getFile(), mappedClassName);
+        return ReflectionManager.getClass(getFile(), mappedClassName);
     }
 
     protected Class<?> getMappedClass(final WorkflowElement element) {
@@ -157,13 +157,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         clazz = getClass(name);
 
         if (clazz == null
-                && !name.equalsIgnoreCase(Reflection.COMPONENT_SUFFIX)) {
-            clazz = getClass(Reflection.getComponentName(name, false));
+                && !name.equalsIgnoreCase(ReflectionManager.COMPONENT_SUFFIX)) {
+            clazz = getClass(ReflectionManager.getComponentName(name, false));
         }
 
         if (clazz == null
-                && !name.equalsIgnoreCase(Reflection.COMPONENT_SUFFIX)) {
-            clazz = getClass(Reflection.getComponentName(name, true));
+                && !name.equalsIgnoreCase(ReflectionManager.COMPONENT_SUFFIX)) {
+            clazz = getClass(ReflectionManager.getComponentName(name, true));
         }
 
         if (clazz == null) {

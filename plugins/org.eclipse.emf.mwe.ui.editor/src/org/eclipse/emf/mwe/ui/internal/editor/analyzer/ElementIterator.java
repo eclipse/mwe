@@ -16,12 +16,12 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.Marker;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ElementIterator {
 
@@ -38,7 +38,7 @@ public class ElementIterator {
     }
 
     public void checkValidity(final WorkflowElement root) {
-        Marker.deleteMarkers(file);
+        MarkerManager.deleteMarkers(file);
 
         final List<WorkflowElement> list = flatten(root);
         for (final WorkflowElement element : list) {

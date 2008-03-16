@@ -22,13 +22,13 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.Reflection;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -122,7 +122,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
         final Class<?> attrType = getValueType(value);
         final Method method =
-                Reflection.getSetter(mappedClass, name, attrType);
+                ReflectionManager.getSetter(mappedClass, name, attrType);
         if (method == null) {
             createMarker(attribute, "No attribute '" + name + "' in class '"
                     + mappedClass.getCanonicalName() + "'");
@@ -179,7 +179,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
     protected String getFileContent(final WorkflowAttribute attribute) {
         final String filePath = attribute.getValue();
         final ProjectIncludingResourceLoader loader =
-                Reflection.getResourceLoader(file);
+                ReflectionManager.getResourceLoader(file);
 
         if (loader == null)
             throw new RuntimeException("Could not obtain resource loader");

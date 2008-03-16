@@ -30,9 +30,9 @@ import org.eclipse.jdt.core.JavaCore;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
-public final class Reflection {
+public final class ReflectionManager {
 
     public static final String COMPONENT_SUFFIX = "Component";
 
@@ -49,7 +49,7 @@ public final class Reflection {
     /**
      * Don't allow instantiation.
      */
-    private Reflection() {
+    private ReflectionManager() {
         throw new UnsupportedOperationException();
     }
 

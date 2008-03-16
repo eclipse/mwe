@@ -18,9 +18,9 @@ import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.Marker;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
@@ -38,7 +38,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -151,7 +151,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
             final ElementPositionRange range =
                     new ElementPositionRange(document, start, end);
-            Marker.createMarkerFromRange(file, document, msg, range, true);
+            MarkerManager.createMarkerFromRange(file, document, msg, range, true);
         } catch (final BadLocationException e) {
             Log.logError("Document location error", e);
         }
