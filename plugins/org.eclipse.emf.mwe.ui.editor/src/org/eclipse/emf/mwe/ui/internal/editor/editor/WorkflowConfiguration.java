@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTextScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
+import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextViewerUndoManager;
@@ -41,7 +42,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private static final int UNDO_LEVELS = 100;
@@ -191,6 +192,19 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         final MonoReconciler reconciler = new MonoReconciler(strategy, false);
         return reconciler;
 
+    }
+
+    /**
+     * This method overrides the implementation of <code>getTextHover</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getTextHover(org.eclipse.jface.text.source.ISourceViewer,
+     *      java.lang.String)
+     */
+    @Override
+    public ITextHover getTextHover(final ISourceViewer sourceViewer,
+            final String contentType) {
+        return new ProblemHover(sourceViewer);
     }
 
     /**
