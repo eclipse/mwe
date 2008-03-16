@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -37,6 +37,10 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
     protected static final String ABSTRACT_ATTRIBUTE = "abstract";
 
     protected static final String WORKFLOW_TAG = "workflow";
+
+    protected static final String ID_ATTRIBUTE = "id";
+
+    protected static final String ID_REF_ATTRIBUTE = "idRef";
 
     protected static final String FILE_AND_CLASS_MSG =
             "A component cannot have a 'class' and a 'file' attribute at the same time";
@@ -71,6 +75,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
             } else {
                 createMarker(element, "Class '" + className
                         + "' cannot be resolved");
+                return;
             }
             if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
                 final WorkflowAttribute inheritAttr =
@@ -117,7 +122,8 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
         final String name = attribute.getName();
         final String value = attribute.getValue();
 
-        if (name.equals(CLASS_ATTRIBUTE))
+        if (name.equals(CLASS_ATTRIBUTE) || name.equals(ID_ATTRIBUTE)
+                || name.equals(ID_REF_ATTRIBUTE))
             return;
 
         final Class<?> attrType = getValueType(value);
