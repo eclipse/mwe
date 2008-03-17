@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class MarkerManager {
 
@@ -57,15 +57,7 @@ public final class MarkerManager {
             final IDocument document, final WorkflowElement element,
             final String message, final boolean isError) {
         createMarkerFromRange(file, document, message, element
-                .getStartElementRange(), isError);
-    }
-
-    public static void deleteMarkers(final IFile file) {
-        try {
-            file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_ZERO);
-        } catch (final CoreException e) {
-            e.printStackTrace();
-        }
+                .getFirstLineRange(), isError);
     }
 
     public static void createMarkerFromRange(final IFile file,
@@ -98,6 +90,14 @@ public final class MarkerManager {
             MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
         } catch (final CoreException ee) {
             ee.printStackTrace();
+        }
+    }
+
+    public static void deleteMarkers(final IFile file) {
+        try {
+            file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_ZERO);
+        } catch (final CoreException e) {
+            e.printStackTrace();
         }
     }
 }
