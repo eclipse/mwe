@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class MarkerManager {
 
@@ -74,7 +74,7 @@ public final class MarkerManager {
 
         MarkerUtilities.setLineNumber(map, lineNumber);
         MarkerUtilities.setMessage(map, message);
-        map.put(IMarker.LOCATION, "line : " + (lineNumber + 1));
+        map.put(IMarker.LOCATION, "line " + (lineNumber + 1));
 
         map.put(IMarker.CHAR_START, range.getStartOffset());
         map.put(IMarker.CHAR_END, range.getEndOffset());
