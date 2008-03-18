@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 
 public class WorkflowElement {
@@ -38,6 +38,10 @@ public class WorkflowElement {
     public static final String NAME_ATTRIBUTE = "name";
 
     public static final String CLASS_ATTRIBUTE = "class";
+
+    public static final String ID_REF_ATTRIBUTE = "idRef";
+
+    public static final String ID_ATTRIBUTE = "id";
 
     public static final String PROPERTY_TAG = "property";
 

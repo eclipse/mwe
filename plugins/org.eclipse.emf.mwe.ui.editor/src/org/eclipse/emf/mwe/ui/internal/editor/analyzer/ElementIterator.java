@@ -15,13 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ElementIterator {
 
@@ -44,6 +45,14 @@ public class ElementIterator {
         for (final WorkflowElement element : list) {
             analyzer.checkValidity(element);
         }
+
+        final ReferenceAnalyzer referenceAnalyzer =
+                new ReferenceAnalyzer(file, document, null);
+
+        for (final WorkflowElement element : list) {
+            referenceAnalyzer.analyzeElement(element);
+        }
+        referenceAnalyzer.markUnresolvedReferences();
     }
 
     private void addChild(final List<WorkflowElement> list,

@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -22,15 +24,18 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class ReflectionManager {
 
@@ -75,6 +80,32 @@ public final class ReflectionManager {
         else
             return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
                     + COMPONENT_SUFFIX;
+    }
+
+    public static String getFileContent(final IFile file,
+            final IDocument document, final WorkflowAttribute attribute) {
+        final String filePath = attribute.getValue();
+        final ProjectIncludingResourceLoader loader = getResourceLoader(file);
+
+        if (loader == null)
+            throw new RuntimeException("Could not obtain resource loader");
+
+        final InputStream stream = loader.getResourceAsStream(filePath);
+        if (stream == null) {
+            MarkerManager.createMarker(file, document, attribute.getElement(),
+                    "File '" + filePath + "' could not be found", true);
+        } else {
+            try {
+                final int length = stream.available();
+                final byte[] byteArray = new byte[length];
+                stream.read(byteArray);
+                final String content = byteArray.toString();
+                return content;
+            } catch (final IOException e) {
+                Log.logError("I/O error", e);
+            }
+        }
+        return null;
     }
 
     public static ProjectIncludingResourceLoader getResourceLoader(

@@ -11,8 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,15 +18,13 @@ import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
-import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -89,7 +85,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
         } else if (element.hasAttribute(FILE_ATTRIBUTE)) {
             final WorkflowAttribute attribute =
                     element.getAttribute(FILE_ATTRIBUTE);
-            final String content = getFileContent(attribute);
+            final String content =
+                    ReflectionManager
+                            .getFileContent(file, document, attribute);
             if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
                 final WorkflowAttribute inheritAttr =
                         element.getAttribute(INHERIT_ALL_ATTRIBUTE);
@@ -180,33 +178,6 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
     protected String createSubstitutorPattern(final String name) {
         return "\\$\\{" + name + "\\}";
-    }
-
-    protected String getFileContent(final WorkflowAttribute attribute) {
-        final String filePath = attribute.getValue();
-        final ProjectIncludingResourceLoader loader =
-                ReflectionManager.getResourceLoader(file);
-
-        if (loader == null)
-            throw new RuntimeException("Could not obtain resource loader");
-
-        final InputStream stream = loader.getResourceAsStream(filePath);
-        if (stream == null) {
-            createMarker(attribute.getElement(), "File '" + filePath
-                    + "' could not be found");
-        } else {
-            try {
-                final int length = stream.available();
-                final byte[] byteArray = new byte[length];
-                stream.read(byteArray);
-                final String content = byteArray.toString();
-                return content;
-
-            } catch (final IOException e) {
-                Log.logError("I/O error", e);
-            }
-        }
-        return null;
     }
 
     protected boolean isWorkflowAbstract(final WorkflowElement element) {
