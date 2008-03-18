@@ -17,7 +17,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class TypeUtils {
 
@@ -33,11 +33,16 @@ public final class TypeUtils {
         try {
             IType type = javaProject.findType(typeName);
             if ((type == null)
-                    && (typeName != null && typeName.startsWith("mwe"))) {
+                    || (typeName != null && typeName.startsWith("mwe"))) {
                 type =
                         javaProject.findType(typeName.replaceFirst("mwe",
                                 "org.eclipse.emf.mwe"));
+            } else if (typeName != null && typeName.startsWith("oaw")) {
+                type =
+                        javaProject.findType(typeName.replaceFirst("oaw",
+                                "org.openarchitectureware"));
             }
+
             return type;
         } catch (final JavaModelException e) {
             return null;
