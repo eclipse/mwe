@@ -17,12 +17,12 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class TypeUtils {
 
     /**
-     * Constructor is hidden, since it is a utility class.
+     * Don't allow instantiation.
      */
     private TypeUtils() {
         throw new UnsupportedOperationException();
