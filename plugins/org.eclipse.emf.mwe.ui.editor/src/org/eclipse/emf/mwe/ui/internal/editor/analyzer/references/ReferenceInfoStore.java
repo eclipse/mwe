@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ReferenceInfoStore {
 
@@ -104,6 +104,10 @@ public class ReferenceInfoStore {
                     "Unresolved reference '" + info.getReferenceValue() + "'",
                     true, false);
         }
+
+        // Since resolved references have been removed anyway, the remaining
+        // data is not really meaningful anymore, so delete it.
+        clear();
     }
 
     private ReferenceInfo createReferenceInfo(final WorkflowElement element) {
