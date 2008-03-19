@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ElementIterator {
 
@@ -35,7 +35,7 @@ public class ElementIterator {
     public ElementIterator(final IFile file, final IDocument document) {
         this.file = file;
         this.document = document;
-        analyzer = new ElementAnalyzerRegistry(file, document);
+        analyzer = new ElementAnalyzerRegistry(file, document, null);
     }
 
     public void checkValidity(final WorkflowElement root) {

@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
@@ -26,8 +26,9 @@ public class IfComponentAnalyzer extends ComponentAnalyzer {
 
     private static final String COND_ATTRIBUTE = "cond";
 
-    public IfComponentAnalyzer(final IFile file, final IDocument document) {
-        super(file, document);
+    public IfComponentAnalyzer(final IFile file, final IDocument document,
+            final PropertyStore propertyStore) {
+        super(file, document, propertyStore);
     }
 
     /**

@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -31,8 +31,9 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
     private final HashMap<WorkflowElementType, IElementAnalyzer> map =
             new HashMap<WorkflowElementType, IElementAnalyzer>();
 
-    public ElementAnalyzerRegistry(final IFile file, final IDocument document) {
-        super(file, document);
+    public ElementAnalyzerRegistry(final IFile file, final IDocument document,
+            final PropertyStore propertyStore) {
+        super(file, document, propertyStore);
         initRegistry();
     }
 
@@ -60,20 +61,20 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
     private void initRegistry() {
         map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
-                file, document));
+                file, document, propertyStore));
         map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
-                document));
+                document, propertyStore));
         map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
-                file, document));
+                file, document, propertyStore));
         map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file,
-                document));
+                document, propertyStore));
         map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file,
-                document));
+                document, propertyStore));
         map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(
-                file, document));
+                file, document, propertyStore));
         map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
-                document));
+                document, propertyStore));
         map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
-                new AssignmentPropertyAnalyzer(file, document));
+                new AssignmentPropertyAnalyzer(file, document, propertyStore));
     }
 }

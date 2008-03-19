@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -43,8 +43,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
     private boolean workflowAbstract;
 
-    public ComponentAnalyzer(final IFile file, final IDocument document) {
-        super(file, document);
+    public ComponentAnalyzer(final IFile file, final IDocument document,
+            final PropertyStore propertyStore) {
+        super(file, document, propertyStore);
     }
 
     /**

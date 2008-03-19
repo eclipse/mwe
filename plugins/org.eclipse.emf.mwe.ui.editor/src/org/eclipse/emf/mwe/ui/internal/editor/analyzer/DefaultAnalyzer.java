@@ -12,6 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.lang.reflect.Method;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
@@ -22,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -41,13 +43,23 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
     protected static final String TRUE_VALUE = "true";
 
+    static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
+
     protected final IFile file;
 
     protected final IDocument document;
 
-    public DefaultAnalyzer(final IFile file, final IDocument document) {
+    protected PropertyStore propertyStore;
+
+    public DefaultAnalyzer(final IFile file, final IDocument document,
+            final PropertyStore propertyStore) {
         this.file = file;
         this.document = document;
+        if (propertyStore == null) {
+            this.propertyStore = new PropertyStore();
+        } else {
+            this.propertyStore = propertyStore;
+        }
     }
 
     /**
@@ -95,11 +107,16 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
         final Class<?> type = computeAttributeType(attribute);
         final Method method =
-                ReflectionManager.getSetter(mappedClass, attribute.getName(), type);
+                ReflectionManager.getSetter(mappedClass, attribute.getName(),
+                        type);
         if (method == null) {
             createMarker(element, "No attribute '" + attribute.getName()
                     + "' available in class '" + mappedClass.getSimpleName()
                     + "'");
+            return;
+        }
+        if (isPropertyReference(attribute)) {
+            checkPropertyReference(attribute);
         }
     }
 
@@ -109,6 +126,19 @@ public class DefaultAnalyzer implements IElementAnalyzer {
             if ((!attr.getName().equals(CLASS_ATTRIBUTE))
                     && (!attr.getName().equals(VALUE_ATTRIBUTE))) {
                 checkAttribute(mappedClass, element, attr);
+            }
+        }
+    }
+
+    protected void checkPropertyReference(final WorkflowAttribute attribute) {
+        final String attrValue = attribute.getValue();
+        final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
+        final Matcher m = p.matcher(attrValue);
+        while (m.find()) {
+            final String value = m.group(1);
+            if (!propertyStore.contains(value)) {
+                createMarker(attribute, "Undefined property reference '"
+                        + value + "'");
             }
         }
     }
@@ -128,13 +158,14 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (attribute == null || message == null || message.length() == 0)
             throw new IllegalArgumentException();
 
-        MarkerManager.createMarker(getFile(), getDocument(), attribute, message,
-                false, true);
+        MarkerManager.createMarker(getFile(), getDocument(), attribute,
+                message, false, true);
     }
 
     protected void createMarker(final WorkflowElement element,
             final String message) {
-        MarkerManager.createMarker(getFile(), getDocument(), element, message, true);
+        MarkerManager.createMarker(getFile(), getDocument(), element, message,
+                true);
     }
 
     protected void createMarkerForValue(final WorkflowAttribute attribute,
@@ -142,8 +173,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         if (attribute == null || message == null || message.length() == 0)
             throw new IllegalArgumentException();
 
-        MarkerManager.createMarker(getFile(), getDocument(), attribute, message,
-                true, true);
+        MarkerManager.createMarker(getFile(), getDocument(), attribute,
+                message, true, true);
     }
 
     protected Class<?> getClass(final String mappedClassName) {
@@ -192,5 +223,11 @@ public class DefaultAnalyzer implements IElementAnalyzer {
     protected boolean isBooleanValue(final String value) {
         return value.equalsIgnoreCase(TRUE_VALUE)
                 ^ value.equalsIgnoreCase(FALSE_VALUE);
+    }
+
+    protected boolean isPropertyReference(final WorkflowAttribute attribute) {
+        final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
+        final Matcher m = p.matcher(attribute.getValue());
+        return m.matches();
     }
 }
