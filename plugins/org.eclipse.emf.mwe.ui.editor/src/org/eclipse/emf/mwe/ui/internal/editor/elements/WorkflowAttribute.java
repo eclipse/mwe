@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class WorkflowAttribute {
@@ -65,7 +65,7 @@ public class WorkflowAttribute {
         final Matcher m = regexPattern.matcher(text);
         if (m.find()) {
             final int attrStart = start + m.start();
-            final int attrEnd = start + m.end() - 1;
+            final int attrEnd = start + m.end();
             return new ElementPositionRange(document, attrStart, attrEnd);
         }
         return null;
