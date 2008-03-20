@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class WorkflowAttribute {
@@ -79,7 +79,7 @@ public class WorkflowAttribute {
     public ElementPositionRange getAttributeValueRange() {
         final IDocument document = element.getDocument();
         int start = getAttributeRange().getStartOffset();
-        final int end = getAttributeRange().getEndOffset();
+        int end = getAttributeRange().getEndOffset();
 
         try {
             // Skip everything to the opening double quote
@@ -93,6 +93,9 @@ public class WorkflowAttribute {
 
         // Skip the opening double quote as well
         start++;
+
+        // Skip the closing double quote
+        end--;
 
         return new ElementPositionRange(document, start, end);
 
