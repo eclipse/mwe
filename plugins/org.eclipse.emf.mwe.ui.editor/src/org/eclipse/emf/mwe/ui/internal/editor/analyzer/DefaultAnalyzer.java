@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -134,8 +134,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
         final String attrValue = attribute.getValue();
         final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
         final Matcher m = p.matcher(attrValue);
-        while (m.find()) {
-            final String value = m.group(1);
+        for (int i = 0; i < m.groupCount(); i++) {
+            final String value = m.group(i);
             if (!propertyStore.contains(value)) {
                 createMarker(attribute, "Undefined property reference '"
                         + value + "'");
