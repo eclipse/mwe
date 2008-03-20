@@ -11,6 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -19,9 +22,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
+
+    protected static final String PROPERTY_REGEX = "^(.*?)\\s*=\\s*.*$";
 
     private static final String INVALID_PROPERTY_MSG = "Property not valid";
 
@@ -55,18 +60,14 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
                 element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
         final String content =
                 ReflectionManager.getFileContent(file, document, attribute);
-        if (content == null) {
-            createMarker(attribute, "File '" + attribute.getValue()
-                    + "' could not be found");
+        if (content == null)
             return;
-        }
-        final String[] lines = content.split("\n");
-        for (final String line : lines) {
-            final int pos = line.indexOf('=');
-            if (pos < 0)
-                continue;
 
-            final String name = line.substring(0, pos);
+        final Pattern p = Pattern.compile(PROPERTY_REGEX, Pattern.MULTILINE);
+        final Matcher m = p.matcher(content);
+        while (m.find()) {
+            final String propertyName = m.group(1);
+            propertyStore.add(propertyName);
         }
     }
 }

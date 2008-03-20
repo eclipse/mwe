@@ -17,6 +17,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
@@ -27,10 +28,12 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class FileReferenceAnalyzerStrategy extends
         AbstractReferenceAnalyzerStrategy {
+
+    protected static final String PROPERTIES_EXTENSION = ".properties";
 
     public FileReferenceAnalyzerStrategy(final IFile file,
             final IDocument document, final ReferenceInfoStore store) {
@@ -71,29 +74,38 @@ public class FileReferenceAnalyzerStrategy extends
         final ProjectIncludingResourceLoader loader =
                 ReflectionManager.getResourceLoader(file);
         final URL fileURL = loader.getResource(attribute.getValue());
+        if (fileURL == null) {
+            MarkerManager.createMarker(file, document, attribute, "File '"
+                    + attribute.getValue() + "' could not be found", true,
+                    false);
+            return;
+        }
+
         final String fileURLString = fileURL.toExternalForm();
         if (store.containsFileName(fileURLString))
             return;
 
         store.addFileName(fileURLString);
-        final String referencedContent =
-                ReflectionManager.getFileContent(file, document, attribute);
 
-        final XMLParser parser = new XMLParser();
-        final WorkflowOutlineContentHandler contentHandler =
-                new WorkflowOutlineContentHandler();
-        contentHandler.setDocument(document);
-        contentHandler.setPositionCategory("dummy");
-        contentHandler.setDocumentLocator(new LocatorImpl());
-
-        try {
-            parser.parse(referencedContent);
-            final WorkflowElement root = parser.getRootElement();
-            final ReferenceAnalyzer analyzer =
-                    new ReferenceAnalyzer(file, document, store);
-            analyzer.analyzeElement(root);
-        } catch (final SAXException e) {
-            Log.logError("Parse error", e);
+        if (!attribute.getValue().endsWith(PROPERTIES_EXTENSION)) {
+            final String referencedContent =
+                    ReflectionManager
+                            .getFileContent(file, document, attribute);
+            final XMLParser parser = new XMLParser();
+            final WorkflowOutlineContentHandler contentHandler =
+                    new WorkflowOutlineContentHandler();
+            contentHandler.setDocument(document);
+            contentHandler.setPositionCategory("dummy");
+            contentHandler.setDocumentLocator(new LocatorImpl());
+            try {
+                parser.parse(referencedContent);
+                final WorkflowElement root = parser.getRootElement();
+                final ReferenceAnalyzer analyzer =
+                        new ReferenceAnalyzer(file, document, store);
+                analyzer.analyzeElement(root);
+            } catch (final SAXException e) {
+                Log.logError("Parse error", e);
+            }
         }
     }
 }

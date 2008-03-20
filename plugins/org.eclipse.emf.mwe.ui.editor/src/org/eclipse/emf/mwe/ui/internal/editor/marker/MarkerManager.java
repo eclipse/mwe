@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class MarkerManager {
 
@@ -49,8 +49,13 @@ public final class MarkerManager {
                 || message.length() == 0)
             throw new IllegalArgumentException();
 
-        createMarkerFromRange(file, document, message, attribute
-                .getAttributeValueRange(), true);
+        if (valueOnly) {
+            createMarkerFromRange(file, document, message, attribute
+                    .getAttributeValueRange(), true);
+        } else {
+            createMarkerFromRange(file, document, message, attribute
+                    .getAttributeRange(), true);
+        }
     }
 
     public static void createMarker(final IFile file,
@@ -74,7 +79,7 @@ public final class MarkerManager {
 
         MarkerUtilities.setLineNumber(map, lineNumber);
         MarkerUtilities.setMessage(map, message);
-        map.put(IMarker.LOCATION, "line " + (lineNumber + 1));
+        map.put(IMarker.LOCATION, "line : " + (lineNumber + 1));
 
         map.put(IMarker.CHAR_START, range.getStartOffset());
         map.put(IMarker.CHAR_END, range.getEndOffset());

@@ -26,7 +26,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
@@ -35,7 +34,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class ReflectionManager {
 
@@ -91,10 +90,7 @@ public final class ReflectionManager {
             throw new RuntimeException("Could not obtain resource loader");
 
         final InputStream stream = loader.getResourceAsStream(filePath);
-        if (stream == null) {
-            MarkerManager.createMarker(file, document, attribute.getElement(),
-                    "File '" + filePath + "' could not be found", true);
-        } else {
+        if (stream != null) {
             try {
                 final int length = stream.available();
                 final byte[] byteArray = new byte[length];
