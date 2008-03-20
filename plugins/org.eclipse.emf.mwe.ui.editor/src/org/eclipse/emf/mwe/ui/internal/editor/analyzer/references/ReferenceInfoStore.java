@@ -12,19 +12,18 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ReferenceInfoStore {
 
@@ -80,34 +79,17 @@ public class ReferenceInfoStore {
         return fileNameSet.contains(name);
     }
 
-    public boolean isDefined(final WorkflowElement element) {
-        if (element == null
-                || !element.hasAttribute(WorkflowElement.ID_ATTRIBUTE))
-            throw new IllegalArgumentException();
-
-        return definitionSet.contains(element);
+    public Iterator<ReferenceInfo> getReferenceIterator() {
+        return references.listIterator();
     }
 
-    public void markUnresolvedReferences() {
-        // Remove resolved references
-        for (final ListIterator<ReferenceInfo> it = references.listIterator(); it
-                .hasNext();) {
-            if (definitionSet.contains(it.next())) {
-                it.remove();
-            }
-        }
+    public boolean isDefined(final ReferenceInfo info) {
+        if (info == null
+                || !info.getElement().hasAttribute(
+                        WorkflowElement.ID_REF_ATTRIBUTE))
+            throw new IllegalArgumentException();
 
-        // Mark unresolved references
-        for (final ReferenceInfo info : references) {
-            MarkerManager.createMarker(info.getFile(), info.getElement()
-                    .getDocument(), info.getAttribute(),
-                    "Unresolved reference '" + info.getReferenceValue() + "'",
-                    true, false);
-        }
-
-        // Since resolved references have been removed anyway, the remaining
-        // data is not really meaningful anymore, so delete it.
-        clear();
+        return definitionSet.contains(info);
     }
 
     private ReferenceInfo createReferenceInfo(final WorkflowElement element) {

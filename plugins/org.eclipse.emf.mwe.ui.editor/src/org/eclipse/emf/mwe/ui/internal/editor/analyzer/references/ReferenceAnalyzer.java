@@ -12,15 +12,17 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
@@ -92,12 +94,17 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
                         .hasAttribute(WorkflowElement.ID_ATTRIBUTE));
     }
 
-    /**
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore#markUnresolvedReferences()
-     */
     public void markUnresolvedReferences() {
-        store.markUnresolvedReferences();
+        for (final Iterator<ReferenceInfo> it = store.getReferenceIterator(); it
+                .hasNext();) {
+            final ReferenceInfo info = it.next();
+            if (!store.isDefined(info)) {
+                MarkerManager.createMarker(info.getFile(), info.getElement()
+                        .getDocument(), info.getAttribute(),
+                        "Unresolved reference '" + info.getReferenceValue()
+                                + "'", true, false);
+            }
+        }
     }
 
     /**
