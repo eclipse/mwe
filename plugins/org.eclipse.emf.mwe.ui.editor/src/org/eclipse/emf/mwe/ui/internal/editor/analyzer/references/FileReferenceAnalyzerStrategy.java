@@ -21,14 +21,13 @@ import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
-import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class FileReferenceAnalyzerStrategy extends
         AbstractReferenceAnalyzerStrategy {
@@ -71,8 +70,7 @@ public class FileReferenceAnalyzerStrategy extends
     protected void doAnalyze(final WorkflowElement element) {
         final WorkflowAttribute attribute =
                 element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
-        final ProjectIncludingResourceLoader loader =
-                ReflectionManager.getResourceLoader(file);
+        final ClassLoader loader = ReflectionManager.getResourceLoader(file);
         final URL fileURL = loader.getResource(attribute.getValue());
         if (fileURL == null) {
             MarkerManager.createMarker(file, document, attribute, "File '"

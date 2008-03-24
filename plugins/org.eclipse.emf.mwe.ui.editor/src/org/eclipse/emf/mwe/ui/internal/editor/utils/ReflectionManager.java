@@ -11,8 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -22,6 +23,7 @@ import java.net.URLClassLoader;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
@@ -34,7 +36,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class ReflectionManager {
 
@@ -84,18 +86,26 @@ public final class ReflectionManager {
     public static String getFileContent(final IFile file,
             final IDocument document, final WorkflowAttribute attribute) {
         final String filePath = attribute.getValue();
-        final ProjectIncludingResourceLoader loader = getResourceLoader(file);
+        final ClassLoader loader = getResourceLoader(file);
 
         if (loader == null)
             throw new RuntimeException("Could not obtain resource loader");
 
-        final InputStream stream = loader.getResourceAsStream(filePath);
-        if (stream != null) {
+        final URL fileURL = loader.getResource(filePath);
+        final IResource resource = file.getProject().findMember(filePath);
+        if (resource != null) {
             try {
-                final int length = stream.available();
-                final byte[] byteArray = new byte[length];
-                stream.read(byteArray);
-                final String content = byteArray.toString();
+                final String fileToOpen = resource.getLocation().toString();
+                final BufferedReader reader =
+                        new BufferedReader(new FileReader(fileToOpen));
+
+                String content = new String();
+                String line = reader.readLine();
+                while (line != null) {
+                    content += line + "\n";
+                    line = reader.readLine();
+                }
+                reader.close();
                 return content;
             } catch (final IOException e) {
                 Log.logError("I/O error", e);
@@ -104,12 +114,13 @@ public final class ReflectionManager {
         return null;
     }
 
-    public static ProjectIncludingResourceLoader getResourceLoader(
-            final IFile file) {
+    public static ClassLoader getResourceLoader(final IFile file) {
         final IProject project = file.getProject();
-        ProjectIncludingResourceLoader loader = null;
+        ClassLoader loader = null;
         try {
-            loader = new ProjectIncludingResourceLoader(project);
+            final ProjectIncludingResourceLoader l =
+                    new ProjectIncludingResourceLoader(project);
+            loader = l.createClassLoader(project);
         } catch (final CoreException e) {
             Log.logError("Could not create resource loader", e);
         }
