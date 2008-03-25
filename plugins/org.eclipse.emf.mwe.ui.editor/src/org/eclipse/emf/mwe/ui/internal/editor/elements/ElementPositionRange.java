@@ -17,9 +17,9 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
-public class ElementPositionRange {
+public class ElementPositionRange implements IRangeCheck {
 
     private final IDocument document;
 
@@ -192,6 +192,10 @@ public class ElementPositionRange {
      */
     public int getStartOffset() {
         return startOffset;
+    }
+
+    public boolean isInRange(final int offset) {
+        return startOffset <= offset && offset <= endOffset;
     }
 
     /**

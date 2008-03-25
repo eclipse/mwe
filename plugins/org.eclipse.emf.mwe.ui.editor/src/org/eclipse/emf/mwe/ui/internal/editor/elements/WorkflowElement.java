@@ -24,10 +24,10 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 
-public class WorkflowElement {
+public class WorkflowElement implements IRangeCheck {
 
     public static final String WORKFLOWFILE_TAG = "workflowfile";
 
@@ -378,6 +378,16 @@ public class WorkflowElement {
      */
     public boolean isIfComponent() {
         return (getComputedElementType() == WorkflowElementType.IF_COMPONENT);
+    }
+
+    /**
+     * This method overrides the implementation of <code>isInRange</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
+     */
+    public boolean isInRange(final int offset) {
+        return getElementRange().isInRange(offset);
     }
 
     /**

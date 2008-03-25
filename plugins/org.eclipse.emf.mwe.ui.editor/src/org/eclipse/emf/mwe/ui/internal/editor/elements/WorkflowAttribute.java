@@ -20,10 +20,10 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
-public class WorkflowAttribute {
+public class WorkflowAttribute implements IRangeCheck {
 
     private final WorkflowElement element;
 
@@ -128,6 +128,16 @@ public class WorkflowAttribute {
         return value;
     }
 
+    /**
+     * This method overrides the implementation of <code>isInRange</code>
+     * inherited from the superclass.
+     * 
+     * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
+     */
+    public boolean isInRange(final int offset) {
+        return getAttributeValueRange().isInRange(offset);
+    }
+
     private String quote(final String value) {
         String res = new String();
         for (int i = 0; i < value.length(); i++) {
@@ -139,5 +149,4 @@ public class WorkflowAttribute {
         }
         return res;
     }
-
 }
