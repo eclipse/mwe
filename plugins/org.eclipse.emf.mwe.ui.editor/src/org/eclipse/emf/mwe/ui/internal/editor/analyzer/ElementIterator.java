@@ -12,17 +12,19 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ElementIterator {
 
@@ -33,6 +35,9 @@ public class ElementIterator {
     private final IElementAnalyzer analyzer;
 
     private List<WorkflowElement> elementList;
+
+    private final List<WorkflowAttribute> attributeList =
+            new ArrayList<WorkflowAttribute>();
 
     public ElementIterator(final IFile file, final IDocument document) {
         this.file = file;
@@ -58,6 +63,15 @@ public class ElementIterator {
     }
 
     /**
+     * Returns the value of field <code>attributeList</code>.
+     * 
+     * @return value of <code>attributeList</code>.
+     */
+    public List<WorkflowAttribute> getAttributeList() {
+        return attributeList;
+    }
+
+    /**
      * Returns the value of field <code>elementList</code>.
      * 
      * @return value of <code>elementList</code>.
@@ -72,7 +86,13 @@ public class ElementIterator {
     private void addChild(final List<WorkflowElement> list,
             final WorkflowElement element) {
         for (int i = 0; i < element.getChildrenCount(); i++) {
-            list.add(element.getChild(i));
+            final WorkflowElement child = element.getChild(i);
+            list.add(child);
+            final Collection<WorkflowAttribute> attributes =
+                    element.getAttributes();
+            for (final WorkflowAttribute attribute : attributes) {
+                attributeList.add(attribute);
+            }
         }
     }
 

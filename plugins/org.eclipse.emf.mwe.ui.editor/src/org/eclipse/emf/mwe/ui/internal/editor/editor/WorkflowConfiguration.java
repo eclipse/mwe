@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
+import org.eclipse.emf.mwe.ui.internal.editor.contentassist.ContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.ProcessingInstructionFormattingStrategy;
@@ -28,6 +29,8 @@ import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextViewerUndoManager;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
 import org.eclipse.jface.text.presentation.IPresentationReconciler;
@@ -42,7 +45,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class WorkflowConfiguration extends SourceViewerConfiguration {
     private static final int UNDO_LEVELS = 100;
@@ -87,6 +90,29 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
                 WorkflowPartitionScanner.XML_DOCTYPE,
                 WorkflowPartitionScanner.XML_CDATA,
                 WorkflowPartitionScanner.XML_TEXT };
+    }
+
+    /**
+     * This method overrides the implementation of
+     * <code>getContentAssistant</code> inherited from the superclass.
+     * 
+     * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getContentAssistant(org.eclipse.jface.text.source.ISourceViewer)
+     */
+    @Override
+    public IContentAssistant getContentAssistant(
+            final ISourceViewer sourceViewer) {
+        final ContentAssistant assistant = new ContentAssistant();
+
+        assistant.setContentAssistProcessor(new ContentAssistProcessor(editor,
+                getWorkflowTagScanner()),
+                WorkflowPartitionScanner.XML_START_TAG);
+        assistant.enableAutoActivation(true);
+        assistant.setAutoActivationDelay(500);
+        assistant
+                .setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+        assistant
+                .setContextInformationPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+        return assistant;
     }
 
     /**
@@ -256,4 +282,5 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
         }
         return textScanner;
     }
+
 }

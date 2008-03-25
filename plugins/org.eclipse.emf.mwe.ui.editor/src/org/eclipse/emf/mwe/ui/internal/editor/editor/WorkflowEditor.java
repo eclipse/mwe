@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.jface.action.IMenuManager;
@@ -40,7 +41,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -57,6 +58,8 @@ public class WorkflowEditor extends TextEditor {
     private WorkflowElement rootElement;
 
     private List<WorkflowElement> elementList;
+
+    private List<WorkflowAttribute> attributeList;
 
     public WorkflowEditor() {
         super();
@@ -104,6 +107,15 @@ public class WorkflowEditor extends TextEditor {
             return outlinePage;
         }
         return super.getAdapter(adapter);
+    }
+
+    /**
+     * Returns the value of field <code>attributeList</code>.
+     * 
+     * @return value of <code>attributeList</code>.
+     */
+    public List<WorkflowAttribute> getAttributeList() {
+        return attributeList;
     }
 
     /**
@@ -164,6 +176,7 @@ public class WorkflowEditor extends TextEditor {
                 new ElementIterator(getInputFile(), getInputDocument());
         iterator.checkValidity(getRootElement());
         elementList = iterator.getElementList();
+        attributeList = iterator.getAttributeList();
     }
 
     @Override
