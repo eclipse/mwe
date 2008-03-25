@@ -11,8 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
-import java.net.URL;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -27,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class FileReferenceAnalyzerStrategy extends
         AbstractReferenceAnalyzerStrategy {
@@ -71,24 +69,23 @@ public class FileReferenceAnalyzerStrategy extends
         final WorkflowAttribute attribute =
                 element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
         final ClassLoader loader = ReflectionManager.getResourceLoader(file);
-        final URL fileURL = loader.getResource(attribute.getValue());
-        if (fileURL == null) {
-            MarkerManager.createMarker(file, document, attribute, "File '"
-                    + attribute.getValue() + "' could not be found", true,
-                    false);
-            return;
-        }
-
-        final String fileURLString = fileURL.toExternalForm();
-        if (store.containsFileName(fileURLString))
+        final String fileName = attribute.getValue();
+        if (store.containsFileName(fileName))
             return;
 
-        store.addFileName(fileURLString);
+        store.addFileName(fileName);
 
-        if (!attribute.getValue().endsWith(PROPERTIES_EXTENSION)) {
+        if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
             final String referencedContent =
                     ReflectionManager
                             .getFileContent(file, document, attribute);
+            if (referencedContent == null) {
+                MarkerManager.createMarker(file, document, attribute, "File '"
+                        + attribute.getValue() + "' could not be found", true,
+                        false);
+                return;
+            }
+
             final XMLParser parser = new XMLParser();
             final WorkflowOutlineContentHandler contentHandler =
                     new WorkflowOutlineContentHandler();
