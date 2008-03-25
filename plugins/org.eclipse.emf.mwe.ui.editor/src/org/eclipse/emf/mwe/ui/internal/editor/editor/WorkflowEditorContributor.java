@@ -17,7 +17,7 @@ import org.eclipse.ui.texteditor.RetargetTextEditorAction;
  * Manages the installation and deinstallation of actions for the editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowEditorContributor extends
         BasicTextEditorActionContributor {
@@ -35,22 +35,22 @@ public class WorkflowEditorContributor extends
      */
     public WorkflowEditorContributor() {
         super();
-        final ResourceBundle bundle = Activator.getDefault()
-                .getResourceBundle();
+        final ResourceBundle bundle =
+                Activator.getDefault().getResourceBundle();
 
-        contentAssistProposal = new RetargetTextEditorAction(bundle,
-                "ContentAssistProposal.");
-        formatProposal = new RetargetTextEditorAction(bundle,
-                "ContentFormatProposal.");
-        contentAssistTip = new RetargetTextEditorAction(bundle,
-                "ContentAssistTip.");
+        contentAssistProposal =
+                new RetargetTextEditorAction(bundle, "ContentAssistProposal.");
+        formatProposal =
+                new RetargetTextEditorAction(bundle, "ContentFormatProposal.");
+        contentAssistTip =
+                new RetargetTextEditorAction(bundle, "ContentAssistTip.");
     }
 
     @Override
     public void contributeToMenu(final IMenuManager mm) {
         super.contributeToMenu(mm);
-        final IMenuManager editMenu = mm
-                .findMenuUsingPath(IWorkbenchActionConstants.M_EDIT);
+        final IMenuManager editMenu =
+                mm.findMenuUsingPath(IWorkbenchActionConstants.M_EDIT);
         if (editMenu != null) {
             editMenu.add(new Separator());
             editMenu.add(contentAssistProposal);
@@ -73,7 +73,6 @@ public class WorkflowEditorContributor extends
 
     @Override
     public void setActiveEditor(final IEditorPart part) {
-
         super.setActiveEditor(part);
 
         ITextEditor editor = null;
