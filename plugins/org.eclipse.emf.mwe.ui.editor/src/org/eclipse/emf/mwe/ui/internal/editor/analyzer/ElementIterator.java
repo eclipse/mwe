@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ElementIterator {
 
@@ -31,6 +31,8 @@ public class ElementIterator {
     private final IDocument document;
 
     private final IElementAnalyzer analyzer;
+
+    private List<WorkflowElement> elementList;
 
     public ElementIterator(final IFile file, final IDocument document) {
         this.file = file;
@@ -41,18 +43,30 @@ public class ElementIterator {
     public void checkValidity(final WorkflowElement root) {
         MarkerManager.deleteMarkers(file);
 
-        final List<WorkflowElement> list = flatten(root);
-        for (final WorkflowElement element : list) {
+        elementList = flatten(root);
+        for (final WorkflowElement element : elementList) {
             analyzer.checkValidity(element);
         }
 
         final ReferenceAnalyzer referenceAnalyzer =
                 new ReferenceAnalyzer(file, document, null);
 
-        for (final WorkflowElement element : list) {
+        for (final WorkflowElement element : elementList) {
             referenceAnalyzer.analyzeElement(element);
         }
         referenceAnalyzer.markUnresolvedReferences();
+    }
+
+    /**
+     * Returns the value of field <code>elementList</code>.
+     * 
+     * @return value of <code>elementList</code>.
+     */
+    public List<WorkflowElement> getElementList() {
+        if (elementList == null)
+            throw new IllegalStateException();
+
+        return elementList;
     }
 
     private void addChild(final List<WorkflowElement> list,

@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
@@ -39,7 +40,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -54,6 +55,8 @@ public class WorkflowEditor extends TextEditor {
     private WorkflowContentOutlinePage outlinePage;
 
     private WorkflowElement rootElement;
+
+    private List<WorkflowElement> elementList;
 
     public WorkflowEditor() {
         super();
@@ -104,6 +107,15 @@ public class WorkflowEditor extends TextEditor {
     }
 
     /**
+     * Returns the value of field <code>elementList</code>.
+     * 
+     * @return value of <code>elementList</code>.
+     */
+    public List<WorkflowElement> getElementList() {
+        return elementList;
+    }
+
+    /**
      * Returns the value of field <code>rootElement</code>.
      * 
      * @return value of <code>rootElement</code>.
@@ -151,6 +163,7 @@ public class WorkflowEditor extends TextEditor {
         final ElementIterator iterator =
                 new ElementIterator(getInputFile(), getInputDocument());
         iterator.checkValidity(getRootElement());
+        elementList = iterator.getElementList();
     }
 
     @Override
