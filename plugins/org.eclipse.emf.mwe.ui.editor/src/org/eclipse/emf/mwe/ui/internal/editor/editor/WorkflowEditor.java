@@ -23,6 +23,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
@@ -36,13 +37,13 @@ import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.texteditor.ContentAssistAction;
+import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -65,8 +66,8 @@ public class WorkflowEditor extends TextEditor {
     public WorkflowEditor() {
         super();
         colorManager = new ColorManager();
-        setSourceViewerConfiguration(new WorkflowConfiguration(colorManager,
-                this));
+        setSourceViewerConfiguration(new WorkflowEditorConfiguration(
+                colorManager, this));
         setDocumentProvider(new WorkflowDocumentProvider());
     }
 
@@ -188,11 +189,22 @@ public class WorkflowEditor extends TextEditor {
                 Activator.getDefault().getResourceBundle();
         setAction("QuickFormat", new TextOperationAction(bundle,
                 "QuickFormat.", this, ISourceViewer.FORMAT));
-        setAction("ContentAssistProposal", new ContentAssistAction(bundle,
-                "ContentAssistProposal.", this));
-        setAction("ContentAssistTip", new TextOperationAction(bundle,
-                "ContentAssistTip.", this,
-                ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION));
+
+        // content assist
+        IAction a =
+                new TextOperationAction(bundle, "ContentAssistProposal.",
+                        this, ISourceViewer.CONTENTASSIST_PROPOSALS);
+        a
+                .setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
+        setAction("ContentAssistProposal", a);
+
+        a =
+                new TextOperationAction(bundle, "ContentAssistTip.", this,
+                        ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION);
+        a
+                .setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
+        setAction("ContentAssistTip", a);
+
     }
 
     @Override

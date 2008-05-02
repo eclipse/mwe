@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
-import org.eclipse.emf.mwe.ui.internal.editor.contentassist.ContentAssistProcessor;
+import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.ProcessingInstructionFormattingStrategy;
@@ -45,9 +45,9 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.1 $
  */
-public class WorkflowConfiguration extends SourceViewerConfiguration {
+public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
     private static final int UNDO_LEVELS = 100;
 
     private WorkflowDoubleClickStrategy doubleClickStrategy;
@@ -64,7 +64,7 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
 
     private final WorkflowEditor editor;
 
-    public WorkflowConfiguration(final ColorManager colorManager,
+    public WorkflowEditorConfiguration(final ColorManager colorManager,
             final WorkflowEditor editor) {
         this.colorManager = colorManager;
         this.editor = editor;
@@ -103,9 +103,8 @@ public class WorkflowConfiguration extends SourceViewerConfiguration {
             final ISourceViewer sourceViewer) {
         final ContentAssistant assistant = new ContentAssistant();
 
-        assistant.setContentAssistProcessor(new ContentAssistProcessor(editor,
-                getWorkflowTagScanner()),
-                WorkflowPartitionScanner.XML_START_TAG);
+        assistant.setContentAssistProcessor(new TagContentAssistProcessor(
+                editor), WorkflowPartitionScanner.XML_START_TAG);
         assistant.enableAutoActivation(true);
         assistant.setAutoActivationDelay(500);
         assistant
