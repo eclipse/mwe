@@ -45,7 +45,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 	private static final int UNDO_LEVELS = 100;
@@ -104,7 +104,8 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 		final ContentAssistant assistant = new ContentAssistant();
 
 		assistant.setContentAssistProcessor(new TagContentAssistProcessor(
-				editor), WorkflowPartitionScanner.XML_START_TAG);
+				editor, new WorkflowTagScanner(colorManager)),
+				WorkflowPartitionScanner.XML_START_TAG);
 		assistant.enableAutoActivation(true);
 		assistant.setAutoActivationDelay(500);
 		assistant
