@@ -12,8 +12,11 @@
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -23,7 +26,6 @@ import java.net.URLClassLoader;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
@@ -36,7 +38,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class ReflectionManager {
 
@@ -91,14 +93,34 @@ public final class ReflectionManager {
 		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
 
+		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
-		final IResource resource = file.getProject().findMember(filePath);
-		if (resource != null) {
-			try {
-				final String fileToOpen = resource.getLocation().toString();
-				final BufferedReader reader =
-						new BufferedReader(new FileReader(fileToOpen));
+		try {
+			if (fileURL != null) {
+				final InputStream is = fileURL.openStream();
+				if (is != null) {
+					final InputStreamReader streamReader =
+							new InputStreamReader(is);
+					reader = new BufferedReader(streamReader);
+				}
+			} else {
+				final IProject project = file.getProject();
+				if (project != null) {
+					final File projectPath = project.getLocation().toFile();
+					final File foundFile = findFile(projectPath, filePath);
+					if (foundFile != null) {
+						final FileReader fileReader =
+								new FileReader(foundFile);
+						reader = new BufferedReader(fileReader);
+					}
+				}
+			}
+		} catch (final IOException e) {
+			return null;
+		}
 
+		if (reader != null) {
+			try {
 				String content = new String();
 				String line = reader.readLine();
 				while (line != null) {
@@ -170,6 +192,29 @@ public final class ReflectionManager {
 			}
 		}
 		return new URLClassLoader(url);
+	}
+
+	private static File findFile(final File rootPath, final String filePath) {
+		// FIXME Improve searching so that only source folders are considered.
+		final String fileNameToTest =
+				rootPath.getAbsoluteFile().getPath() + File.separator
+						+ filePath;
+		File testFile = new File(fileNameToTest);
+		if (testFile.exists())
+			return testFile;
+
+		final File[] files = rootPath.listFiles();
+		if (files != null) {
+			for (final File f : files) {
+				if (!f.isDirectory())
+					continue;
+
+				testFile = findFile(f, filePath);
+				if (testFile != null)
+					return testFile;
+			}
+		}
+		return null;
 	}
 
 	private static Method getMethod(final Class<?> clazz, final String name,
