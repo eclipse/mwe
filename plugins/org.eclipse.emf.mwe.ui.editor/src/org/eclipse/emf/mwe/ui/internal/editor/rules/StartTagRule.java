@@ -17,35 +17,35 @@ import org.eclipse.jface.text.rules.MultiLineRule;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class StartTagRule extends MultiLineRule {
 
-    public StartTagRule(final IToken token) {
-        this(token, false);
-    }
+	public StartTagRule(final IToken token) {
+		this(token, false);
+	}
 
-    protected StartTagRule(final IToken token, final boolean endAsWell) {
-        super("<", endAsWell ? "/>" : ">", token);
-    }
+	protected StartTagRule(final IToken token, final boolean endAsWell) {
+		super("<", endAsWell ? "/>" : ">", token);
+	}
 
-    @Override
-    protected boolean sequenceDetected(final ICharacterScanner scanner,
-            final char[] sequence, final boolean eofAllowed) {
-        boolean breakState = false;
-        final int c = scanner.read();
-        if (sequence[0] == '<') {
-            if (c == '?') {
-                scanner.unread();
-                breakState = true;
-            } else if (c == '!') {
-                scanner.unread();
-                breakState = true;
-            }
-        } else if (sequence[0] == '>') {
-            scanner.unread();
-        }
-        return !breakState
-                && super.sequenceDetected(scanner, sequence, eofAllowed);
-    }
+	@Override
+	protected boolean sequenceDetected(final ICharacterScanner scanner,
+			final char[] sequence, final boolean eofAllowed) {
+		boolean breakState = false;
+		final int c = scanner.read();
+		if (sequence[0] == '<') {
+			if (c == '?') {
+				scanner.unread();
+				breakState = true;
+			} else if (c == '!') {
+				scanner.unread();
+				breakState = true;
+			}
+		} else if (sequence[0] == '>') {
+			scanner.unread();
+		}
+		return !breakState
+				&& super.sequenceDetected(scanner, sequence, eofAllowed);
+	}
 }

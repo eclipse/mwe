@@ -19,40 +19,40 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ReferenceDefinitionAnalyzerStrategy extends
-        AbstractReferenceAnalyzerStrategy {
+		AbstractReferenceAnalyzerStrategy {
 
-    public ReferenceDefinitionAnalyzerStrategy(final IFile file,
-            final IDocument document, final ReferenceInfoStore store) {
-        super(file, document, store);
-    }
+	public ReferenceDefinitionAnalyzerStrategy(final IFile file,
+			final IDocument document, final ReferenceInfoStore store) {
+		super(file, document, store);
+	}
 
-    /**
-     * This method overrides the implementation of <code>isApplicable</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    public boolean isApplicable(final WorkflowElement element) {
-        return element.hasAttribute(WorkflowElement.ID_ATTRIBUTE);
-    }
+	/**
+	 * This method overrides the implementation of <code>isApplicable</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	public boolean isApplicable(final WorkflowElement element) {
+		return element.hasAttribute(WorkflowElement.ID_ATTRIBUTE);
+	}
 
-    /**
-     * This method overrides the implementation of <code>doAnalyze</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    protected void doAnalyze(final WorkflowElement element) {
-        if (store.addDefinition(element)) {
-            final WorkflowAttribute attribute =
-                    element.getAttribute(WorkflowElement.ID_ATTRIBUTE);
-            MarkerManager
-                    .createMarker(file, document, attribute, "Duplicate ID '"
-                            + attribute.getValue() + "'", true, false);
-        }
-    }
+	/**
+	 * This method overrides the implementation of <code>doAnalyze</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	protected void doAnalyze(final WorkflowElement element) {
+		if (store.addDefinition(element)) {
+			final WorkflowAttribute attribute =
+					element.getAttribute(WorkflowElement.ID_ATTRIBUTE);
+			MarkerManager
+					.createMarker(file, document, attribute, "Duplicate ID '"
+							+ attribute.getValue() + "'", true, false);
+		}
+	}
 }

@@ -17,37 +17,37 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
-    protected static final String COND_ONLY_MSG =
-            "The component 'if' only accepts an attribute 'cond'";
+	protected static final String COND_ONLY_MSG =
+			"The component 'if' only accepts an attribute 'cond'";
 
-    private static final String COND_ATTRIBUTE = "cond";
+	private static final String COND_ATTRIBUTE = "cond";
 
-    public IfComponentAnalyzer(final IFile file, final IDocument document,
-            final PropertyStore propertyStore) {
-        super(file, document, propertyStore);
-    }
+	public IfComponentAnalyzer(final IFile file, final IDocument document,
+			final PropertyStore propertyStore) {
+		super(file, document, propertyStore);
+	}
 
-    /**
-     * This method overrides the implementation of <code>checkValidity</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.ComponentAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    public void checkValidity(final WorkflowElement element) {
-        if (element.getAttributeCount() != 1
-                || !element.hasAttribute(COND_ATTRIBUTE)) {
-            createMarker(element, COND_ONLY_MSG);
-            return;
-        }
+	/**
+	 * This method overrides the implementation of <code>checkValidity</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.ComponentAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	public void checkValidity(final WorkflowElement element) {
+		if (element.getAttributeCount() != 1
+				|| !element.hasAttribute(COND_ATTRIBUTE)) {
+			createMarker(element, COND_ONLY_MSG);
+			return;
+		}
 
-        final Class<?> mappedClass = getMappedClass(element);
-        if (mappedClass == null) {
-            // Error message already created in getMappedClass()
-        }
-    }
+		final Class<?> mappedClass = getMappedClass(element);
+		if (mappedClass == null) {
+			// Error message already created in getMappedClass()
+		}
+	}
 }

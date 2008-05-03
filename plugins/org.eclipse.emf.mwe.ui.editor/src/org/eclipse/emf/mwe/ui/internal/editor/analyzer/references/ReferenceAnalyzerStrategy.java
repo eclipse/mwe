@@ -17,33 +17,34 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
-public class ReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
+public class ReferenceAnalyzerStrategy extends
+		AbstractReferenceAnalyzerStrategy {
 
-    public ReferenceAnalyzerStrategy(final IFile file, final IDocument document,
-            final ReferenceInfoStore store) {
-        super(file, document, store);
-    }
+	public ReferenceAnalyzerStrategy(final IFile file,
+			final IDocument document, final ReferenceInfoStore store) {
+		super(file, document, store);
+	}
 
-    /**
-     * This method overrides the implementation of <code>isApplicable</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    public boolean isApplicable(final WorkflowElement element) {
-        return element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE);
-    }
+	/**
+	 * This method overrides the implementation of <code>isApplicable</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	public boolean isApplicable(final WorkflowElement element) {
+		return element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE);
+	}
 
-    /**
-     * This method overrides the implementation of <code>doAnalyze</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    protected void doAnalyze(final WorkflowElement element) {
-        store.addReference(element);
-    }
+	/**
+	 * This method overrides the implementation of <code>doAnalyze</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	protected void doAnalyze(final WorkflowElement element) {
+		store.addReference(element);
+	}
 }

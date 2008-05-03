@@ -15,38 +15,38 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public interface IReferenceAnalyzerStrategy {
 
-    /**
-     * Analyzes <code>element</code> if it contains any references to other
-     * elements or files.
-     * 
-     * @param element
-     */
-    void analyzeElement(WorkflowElement element);
+	/**
+	 * Analyzes <code>element</code> if it contains any references to other
+	 * elements or files.
+	 * 
+	 * @param element
+	 */
+	void analyzeElement(WorkflowElement element);
 
-    /**
-     * Clear all cached information.
-     */
-    void clearCache();
+	/**
+	 * Clear all cached information.
+	 */
+	void clearCache();
 
-    /**
-     * Checks if <code>element</code> is applicable for the current analyzer.
-     * 
-     * @param element
-     *            the element.
-     * @return <code>true</code> if <code>element</code> is applicable,
-     *         otherwise <code>false</code>.
-     */
-    boolean isApplicable(WorkflowElement element);
+	/**
+	 * Checks if <code>element</code> is applicable for the current analyzer.
+	 * 
+	 * @param element
+	 *            the element.
+	 * @return <code>true</code> if <code>element</code> is applicable,
+	 *         otherwise <code>false</code>.
+	 */
+	boolean isApplicable(WorkflowElement element);
 
-    /**
-     * Sets the reference information store.
-     * 
-     * @param store
-     *            the store.
-     */
-    void setReferenceInfoStore(ReferenceInfoStore store);
+	/**
+	 * Sets the reference information store.
+	 * 
+	 * @param store
+	 *            the store.
+	 */
+	void setReferenceInfoStore(ReferenceInfoStore store);
 }

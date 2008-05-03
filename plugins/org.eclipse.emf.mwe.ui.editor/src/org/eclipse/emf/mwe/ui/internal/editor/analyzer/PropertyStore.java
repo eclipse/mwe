@@ -16,27 +16,27 @@ import java.util.Set;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class PropertyStore {
 
-    private final Set<String> propertyNames = new HashSet<String>();
+	private final Set<String> propertyNames = new HashSet<String>();
 
-    public void add(final String propertyName) {
-        if (propertyName == null || propertyName.length() == 0)
-            throw new IllegalArgumentException();
+	public void add(final String propertyName) {
+		if (propertyName == null || propertyName.length() == 0)
+			throw new IllegalArgumentException();
 
-        propertyNames.add(propertyName);
-    }
+		propertyNames.add(propertyName);
+	}
 
-    public void clear() {
-        propertyNames.clear();
-    }
+	public void clear() {
+		propertyNames.clear();
+	}
 
-    public boolean contains(final String propertyName) {
-        if (propertyName != null)
-            return propertyNames.contains(propertyName);
-        else
-            return false;
-    }
+	public boolean contains(final String propertyName) {
+		if (propertyName != null)
+			return propertyNames.contains(propertyName);
+		else
+			return false;
+	}
 }

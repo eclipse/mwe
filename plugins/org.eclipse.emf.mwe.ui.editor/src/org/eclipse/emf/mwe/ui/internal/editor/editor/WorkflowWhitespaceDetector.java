@@ -15,11 +15,11 @@ import org.eclipse.jface.text.rules.IWhitespaceDetector;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowWhitespaceDetector implements IWhitespaceDetector {
 
-    public boolean isWhitespace(final char c) {
-        return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
-    }
+	public boolean isWhitespace(final char c) {
+		return (c == ' ' || c == '\t' || c == '\n' || c == '\r');
+	}
 }

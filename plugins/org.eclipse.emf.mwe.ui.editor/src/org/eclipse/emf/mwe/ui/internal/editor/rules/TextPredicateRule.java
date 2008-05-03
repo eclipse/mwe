@@ -22,117 +22,117 @@ import org.eclipse.jface.text.rules.Token;
  */
 public class TextPredicateRule implements IPredicateRule {
 
-    boolean inCdata;
+	boolean inCdata;
 
-    private final IToken token;
+	private final IToken token;
 
-    private int charsRead;
+	private int charsRead;
 
-    private boolean whiteSpaceOnly;
+	private boolean whiteSpaceOnly;
 
-    public TextPredicateRule(final IToken text) {
-        this.token = text;
-    }
+	public TextPredicateRule(final IToken text) {
+		this.token = text;
+	}
 
-    public IToken evaluate(final ICharacterScanner scanner) {
+	public IToken evaluate(final ICharacterScanner scanner) {
 
-        reinit();
+		reinit();
 
-        int c = read(scanner);
+		int c = read(scanner);
 
-        while (isOK(c, scanner)) {
-            if (c == ICharacterScanner.EOF)
-                return Token.UNDEFINED;
+		while (isOK(c, scanner)) {
+			if (c == ICharacterScanner.EOF)
+				return Token.UNDEFINED;
 
-            whiteSpaceOnly = whiteSpaceOnly
-                    && (Character.isWhitespace((char) c));
-            c = read(scanner);
-        }
+			whiteSpaceOnly =
+					whiteSpaceOnly && (Character.isWhitespace((char) c));
+			c = read(scanner);
+		}
 
-        unread(scanner);
+		unread(scanner);
 
-        if (whiteSpaceOnly) {
-            rewind(scanner, charsRead);
-            return Token.UNDEFINED;
-        }
+		if (whiteSpaceOnly) {
+			rewind(scanner, charsRead);
+			return Token.UNDEFINED;
+		}
 
-        return token;
+		return token;
 
-    }
+	}
 
-    public IToken evaluate(final ICharacterScanner scanner,
-            final boolean resume) {
-        return evaluate(scanner);
-    }
+	public IToken evaluate(final ICharacterScanner scanner,
+			final boolean resume) {
+		return evaluate(scanner);
+	}
 
-    public IToken getSuccessToken() {
-        return token;
-    }
+	public IToken getSuccessToken() {
+		return token;
+	}
 
-    private boolean isOK(final int cc, final ICharacterScanner scanner) {
+	private boolean isOK(final int cc, final ICharacterScanner scanner) {
 
-        char c = (char) cc;
+		char c = (char) cc;
 
-        if (!inCdata) {
-            if (c == '<') {
+		if (!inCdata) {
+			if (c == '<') {
 
-                int cdataCharsRead = 0;
+				int cdataCharsRead = 0;
 
-                for (int i = 0; i < "![cData[".length(); i++) {
-                    c = (char) read(scanner);
-                    cdataCharsRead++;
+				for (int i = 0; i < "![cData[".length(); i++) {
+					c = (char) read(scanner);
+					cdataCharsRead++;
 
-                    if (c != "![cData[".charAt(i)) {
+					if (c != "![cData[".charAt(i)) {
 
-                        rewind(scanner, cdataCharsRead);
-                        inCdata = false;
-                        return false;
-                    }
-                }
+						rewind(scanner, cdataCharsRead);
+						inCdata = false;
+						return false;
+					}
+				}
 
-                inCdata = true;
-                return true;
-            }
-        } else {
+				inCdata = true;
+				return true;
+			}
+		} else {
 
-            if (c == ']') {
+			if (c == ']') {
 
-                for (int i = 0; i < "]>".length(); i++) {
+				for (int i = 0; i < "]>".length(); i++) {
 
-                    c = (char) read(scanner);
+					c = (char) read(scanner);
 
-                    if (c != "]>".charAt(i))
-                        return true;
-                }
+					if (c != "]>".charAt(i))
+						return true;
+				}
 
-                inCdata = false;
-                return true;
-            }
-        }
-        return true;
-    }
+				inCdata = false;
+				return true;
+			}
+		}
+		return true;
+	}
 
-    private int read(final ICharacterScanner scanner) {
-        final int c = scanner.read();
-        charsRead++;
-        return c;
-    }
+	private int read(final ICharacterScanner scanner) {
+		final int c = scanner.read();
+		charsRead++;
+		return c;
+	}
 
-    private void reinit() {
-        charsRead = 0;
-        whiteSpaceOnly = true;
-    }
+	private void reinit() {
+		charsRead = 0;
+		whiteSpaceOnly = true;
+	}
 
-    private void rewind(final ICharacterScanner scanner, final int theCharsRead) {
-        int c = theCharsRead;
-        while (c > 0) {
-            c--;
-            unread(scanner);
-        }
-    }
+	private void rewind(final ICharacterScanner scanner, final int theCharsRead) {
+		int c = theCharsRead;
+		while (c > 0) {
+			c--;
+			unread(scanner);
+		}
+	}
 
-    private void unread(final ICharacterScanner scanner) {
-        scanner.unread();
-        charsRead--;
-    }
+	private void unread(final ICharacterScanner scanner) {
+		scanner.unread();
+		charsRead--;
+	}
 }

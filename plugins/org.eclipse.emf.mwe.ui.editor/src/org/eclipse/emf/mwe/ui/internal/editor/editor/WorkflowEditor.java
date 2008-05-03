@@ -43,216 +43,216 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class WorkflowEditor extends TextEditor {
 
-    private ProjectionAnnotationModel annotationModel;
+	private ProjectionAnnotationModel annotationModel;
 
-    private final ColorManager colorManager;
+	private final ColorManager colorManager;
 
-    private ProjectionSupport projectSupport;
+	private ProjectionSupport projectSupport;
 
-    private BreakpointActionGroup actionGroup;
+	private BreakpointActionGroup actionGroup;
 
-    private WorkflowContentOutlinePage outlinePage;
+	private WorkflowContentOutlinePage outlinePage;
 
-    private WorkflowElement rootElement;
+	private WorkflowElement rootElement;
 
-    private List<WorkflowElement> elementList;
+	private List<WorkflowElement> elementList;
 
-    private List<WorkflowAttribute> attributeList;
+	private List<WorkflowAttribute> attributeList;
 
-    public WorkflowEditor() {
-        super();
-        colorManager = new ColorManager();
-        setSourceViewerConfiguration(new WorkflowEditorConfiguration(
-                colorManager, this));
-        setDocumentProvider(new WorkflowDocumentProvider());
-    }
+	public WorkflowEditor() {
+		super();
+		colorManager = new ColorManager();
+		setSourceViewerConfiguration(new WorkflowEditorConfiguration(
+				colorManager, this));
+		setDocumentProvider(new WorkflowDocumentProvider());
+	}
 
-    @Override
-    public void createPartControl(final Composite parent) {
-        super.createPartControl(parent);
-        final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
+	@Override
+	public void createPartControl(final Composite parent) {
+		super.createPartControl(parent);
+		final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
 
-        projectSupport =
-                new ProjectionSupport(viewer, getAnnotationAccess(),
-                        getSharedColors());
-        projectSupport.install();
-        viewer.doOperation(ProjectionViewer.TOGGLE);
-        annotationModel = viewer.getProjectionAnnotationModel();
-    }
+		projectSupport =
+				new ProjectionSupport(viewer, getAnnotationAccess(),
+						getSharedColors());
+		projectSupport.install();
+		viewer.doOperation(ProjectionViewer.TOGGLE);
+		annotationModel = viewer.getProjectionAnnotationModel();
+	}
 
-    @Override
-    public void dispose() {
-        colorManager.dispose();
-        if (outlinePage != null)
-            outlinePage.setInput(null);
+	@Override
+	public void dispose() {
+		colorManager.dispose();
+		if (outlinePage != null)
+			outlinePage.setInput(null);
 
-        super.dispose();
-    }
+		super.dispose();
+	}
 
-    /**
-     * This method overrides the implementation of <code>getAdapter</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
-     */
-    @Override
-    public Object getAdapter(final Class adapter) {
-        if (IContentOutlinePage.class.equals(adapter)) {
-            if (outlinePage == null) {
-                outlinePage = new WorkflowContentOutlinePage(this);
-                outlinePage.setInput(getEditorInput());
-            }
-            return outlinePage;
-        }
-        return super.getAdapter(adapter);
-    }
+	/**
+	 * This method overrides the implementation of <code>getAdapter</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
+	 */
+	@Override
+	public Object getAdapter(final Class adapter) {
+		if (IContentOutlinePage.class.equals(adapter)) {
+			if (outlinePage == null) {
+				outlinePage = new WorkflowContentOutlinePage(this);
+				outlinePage.setInput(getEditorInput());
+			}
+			return outlinePage;
+		}
+		return super.getAdapter(adapter);
+	}
 
-    /**
-     * Returns the value of field <code>attributeList</code>.
-     * 
-     * @return value of <code>attributeList</code>.
-     */
-    public List<WorkflowAttribute> getAttributeList() {
-        return attributeList;
-    }
+	/**
+	 * Returns the value of field <code>attributeList</code>.
+	 * 
+	 * @return value of <code>attributeList</code>.
+	 */
+	public List<WorkflowAttribute> getAttributeList() {
+		return attributeList;
+	}
 
-    /**
-     * Returns the value of field <code>elementList</code>.
-     * 
-     * @return value of <code>elementList</code>.
-     */
-    public List<WorkflowElement> getElementList() {
-        return elementList;
-    }
+	/**
+	 * Returns the value of field <code>elementList</code>.
+	 * 
+	 * @return value of <code>elementList</code>.
+	 */
+	public List<WorkflowElement> getElementList() {
+		return elementList;
+	}
 
-    /**
-     * Returns the value of field <code>rootElement</code>.
-     * 
-     * @return value of <code>rootElement</code>.
-     */
-    public WorkflowElement getRootElement() {
-        return rootElement;
-    }
+	/**
+	 * Returns the value of field <code>rootElement</code>.
+	 * 
+	 * @return value of <code>rootElement</code>.
+	 */
+	public WorkflowElement getRootElement() {
+		return rootElement;
+	}
 
-    public ISourceViewer internalGetSourceViewer() {
-        return getSourceViewer();
-    }
+	public ISourceViewer internalGetSourceViewer() {
+		return getSourceViewer();
+	}
 
-    public IVerticalRuler internalGetVerticalRuler() {
-        return getVerticalRuler();
-    }
+	public IVerticalRuler internalGetVerticalRuler() {
+		return getVerticalRuler();
+	}
 
-    /**
-     * Sets a new value for field <code>rootElement</code>.
-     * 
-     * @param rootElement
-     *            new value for <code>rootElement</code>.
-     */
-    public void setRootElement(final WorkflowElement rootElement) {
-        this.rootElement = rootElement;
-    }
+	/**
+	 * Sets a new value for field <code>rootElement</code>.
+	 * 
+	 * @param rootElement
+	 *            new value for <code>rootElement</code>.
+	 */
+	public void setRootElement(final WorkflowElement rootElement) {
+		this.rootElement = rootElement;
+	}
 
-    public void updateFoldingStructure(final ArrayList positions) {
-        final Annotation[] annotations = new Annotation[positions.size()];
-        final HashMap newAnnotations = new HashMap();
-        for (int i = 0; i < positions.size(); i++) {
-            final ProjectionAnnotation annotation = new ProjectionAnnotation();
+	public void updateFoldingStructure(final ArrayList positions) {
+		final Annotation[] annotations = new Annotation[positions.size()];
+		final HashMap newAnnotations = new HashMap();
+		for (int i = 0; i < positions.size(); i++) {
+			final ProjectionAnnotation annotation = new ProjectionAnnotation();
 
-            newAnnotations.put(annotation, positions.get(i));
+			newAnnotations.put(annotation, positions.get(i));
 
-            annotations[i] = annotation;
-        }
+			annotations[i] = annotation;
+		}
 
-        annotationModel.modifyAnnotations(annotations, newAnnotations, null);
-    }
+		annotationModel.modifyAnnotations(annotations, newAnnotations, null);
+	}
 
-    public void validateAndMark() {
-        if (getRootElement() == null)
-            return;
+	public void validateAndMark() {
+		if (getRootElement() == null)
+			return;
 
-        final ElementIterator iterator =
-                new ElementIterator(getInputFile(), getInputDocument());
-        iterator.checkValidity(getRootElement());
-        elementList = iterator.getElementList();
-        attributeList = iterator.getAttributeList();
-    }
+		final ElementIterator iterator =
+				new ElementIterator(getInputFile(), getInputDocument());
+		iterator.checkValidity(getRootElement());
+		elementList = iterator.getElementList();
+		attributeList = iterator.getAttributeList();
+	}
 
-    @Override
-    protected void createActions() {
-        super.createActions();
-        actionGroup = new BreakpointActionGroup(this);
-        final ResourceBundle bundle =
-                Activator.getDefault().getResourceBundle();
-        setAction("QuickFormat", new TextOperationAction(bundle,
-                "QuickFormat.", this, ISourceViewer.FORMAT));
+	@Override
+	protected void createActions() {
+		super.createActions();
+		actionGroup = new BreakpointActionGroup(this);
+		final ResourceBundle bundle =
+				Activator.getDefault().getResourceBundle();
+		setAction("QuickFormat", new TextOperationAction(bundle,
+				"QuickFormat.", this, ISourceViewer.FORMAT));
 
-        // content assist
-        IAction a =
-                new TextOperationAction(bundle, "ContentAssistProposal.",
-                        this, ISourceViewer.CONTENTASSIST_PROPOSALS);
-        a
-                .setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
-        setAction("ContentAssistProposal", a);
+		// content assist
+		IAction a =
+				new TextOperationAction(bundle, "ContentAssistProposal.",
+						this, ISourceViewer.CONTENTASSIST_PROPOSALS);
+		a
+				.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
+		setAction("ContentAssistProposal", a);
 
-        a =
-                new TextOperationAction(bundle, "ContentAssistTip.", this,
-                        ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION);
-        a
-                .setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
-        setAction("ContentAssistTip", a);
+		a =
+				new TextOperationAction(bundle, "ContentAssistTip.", this,
+						ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION);
+		a
+				.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
+		setAction("ContentAssistTip", a);
 
-    }
+	}
 
-    @Override
-    protected ISourceViewer createSourceViewer(final Composite parent,
-            final IVerticalRuler ruler, final int styles) {
-        final ISourceViewer viewer =
-                new ProjectionViewer(parent, ruler, getOverviewRuler(),
-                        isOverviewRulerVisible(), styles);
+	@Override
+	protected ISourceViewer createSourceViewer(final Composite parent,
+			final IVerticalRuler ruler, final int styles) {
+		final ISourceViewer viewer =
+				new ProjectionViewer(parent, ruler, getOverviewRuler(),
+						isOverviewRulerVisible(), styles);
 
-        getSourceViewerDecorationSupport(viewer);
-        return viewer;
-    }
+		getSourceViewerDecorationSupport(viewer);
+		return viewer;
+	}
 
-    @Override
-    protected void editorContextMenuAboutToShow(final IMenuManager menu) {
-        menu.add(new Separator("mwe"));
-        super.editorContextMenuAboutToShow(menu);
+	@Override
+	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
+		menu.add(new Separator("mwe"));
+		super.editorContextMenuAboutToShow(menu);
 
-        actionGroup.fillContextMenu(menu);
-    }
+		actionGroup.fillContextMenu(menu);
+	}
 
-    @Override
-    protected void editorSaved() {
-        super.editorSaved();
+	@Override
+	protected void editorSaved() {
+		super.editorSaved();
 
-        if (outlinePage != null)
-            outlinePage.refresh();
+		if (outlinePage != null)
+			outlinePage.refresh();
 
-        validateAndMark();
-    }
+		validateAndMark();
+	}
 
-    protected IDocument getInputDocument() {
-        final IDocument document =
-                getDocumentProvider().getDocument(getEditorInput());
-        return document;
-    }
+	protected IDocument getInputDocument() {
+		final IDocument document =
+				getDocumentProvider().getDocument(getEditorInput());
+		return document;
+	}
 
-    protected IFile getInputFile() {
-        final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
-        final IFile file = ife.getFile();
-        return file;
-    }
+	protected IFile getInputFile() {
+		final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
+		final IFile file = ife.getFile();
+		return file;
+	}
 
-    @Override
-    protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
-        menu.add(new Separator("mwe")); //$NON-NLS-1$
-        super.rulerContextMenuAboutToShow(menu);
+	@Override
+	protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
+		menu.add(new Separator("mwe")); //$NON-NLS-1$
+		super.rulerContextMenuAboutToShow(menu);
 
-        actionGroup.fillContextMenu(menu);
-    }
+		actionGroup.fillContextMenu(menu);
+	}
 }

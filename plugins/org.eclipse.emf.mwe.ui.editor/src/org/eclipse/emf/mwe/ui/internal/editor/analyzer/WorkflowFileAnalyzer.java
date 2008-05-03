@@ -17,23 +17,23 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowFileAnalyzer extends DefaultAnalyzer {
 
-    public WorkflowFileAnalyzer(final IFile file, final IDocument document,
-            final PropertyStore propertyStore) {
-        super(file, document, propertyStore);
-    }
+	public WorkflowFileAnalyzer(final IFile file, final IDocument document,
+			final PropertyStore propertyStore) {
+		super(file, document, propertyStore);
+	}
 
-    /**
-     * This method overrides the implementation of <code>checkValidity</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    public void checkValidity(final WorkflowElement element) {
-        // Do nothing
-    }
+	/**
+	 * This method overrides the implementation of <code>checkValidity</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	public void checkValidity(final WorkflowElement element) {
+		// Do nothing
+	}
 }

@@ -25,82 +25,82 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class FileReferenceAnalyzerStrategy extends
-        AbstractReferenceAnalyzerStrategy {
+		AbstractReferenceAnalyzerStrategy {
 
-    protected static final String PROPERTIES_EXTENSION = ".properties";
+	protected static final String PROPERTIES_EXTENSION = ".properties";
 
-    public FileReferenceAnalyzerStrategy(final IFile file,
-            final IDocument document, final ReferenceInfoStore store) {
-        super(file, document, store);
-    }
+	public FileReferenceAnalyzerStrategy(final IFile file,
+			final IDocument document, final ReferenceInfoStore store) {
+		super(file, document, store);
+	}
 
-    /**
-     * This method overrides the implementation of <code>clearCache</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#clearCache()
-     */
-    @Override
-    public void clearCache() {
-        super.clearCache();
-    }
+	/**
+	 * This method overrides the implementation of <code>clearCache</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#clearCache()
+	 */
+	@Override
+	public void clearCache() {
+		super.clearCache();
+	}
 
-    /**
-     * This method overrides the implementation of <code>isApplicable</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    public boolean isApplicable(final WorkflowElement element) {
-        return element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE);
-    }
+	/**
+	 * This method overrides the implementation of <code>isApplicable</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	public boolean isApplicable(final WorkflowElement element) {
+		return element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE);
+	}
 
-    /**
-     * This method overrides the implementation of <code>doAnalyze</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    protected void doAnalyze(final WorkflowElement element) {
-        final WorkflowAttribute attribute =
-                element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
-        final ClassLoader loader = ReflectionManager.getResourceLoader(file);
-        final String fileName = attribute.getValue();
-        if (store.containsFileName(fileName))
-            return;
+	/**
+	 * This method overrides the implementation of <code>doAnalyze</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	protected void doAnalyze(final WorkflowElement element) {
+		final WorkflowAttribute attribute =
+				element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
+		final ClassLoader loader = ReflectionManager.getResourceLoader(file);
+		final String fileName = attribute.getValue();
+		if (store.containsFileName(fileName))
+			return;
 
-        store.addFileName(fileName);
+		store.addFileName(fileName);
 
-        if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
-            final String referencedContent =
-                    ReflectionManager
-                            .getFileContent(file, document, attribute);
-            if (referencedContent == null) {
-                MarkerManager.createMarker(file, document, attribute, "File '"
-                        + attribute.getValue() + "' could not be found", true,
-                        false);
-                return;
-            }
+		if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
+			final String referencedContent =
+					ReflectionManager
+							.getFileContent(file, document, attribute);
+			if (referencedContent == null) {
+				MarkerManager.createMarker(file, document, attribute, "File '"
+						+ attribute.getValue() + "' could not be found", true,
+						false);
+				return;
+			}
 
-            final XMLParser parser = new XMLParser();
-            final WorkflowOutlineContentHandler contentHandler =
-                    new WorkflowOutlineContentHandler();
-            contentHandler.setDocument(document);
-            contentHandler.setPositionCategory("dummy");
-            contentHandler.setDocumentLocator(new LocatorImpl());
-            try {
-                parser.parse(referencedContent);
-                final WorkflowElement root = parser.getRootElement();
-                final ReferenceAnalyzer analyzer =
-                        new ReferenceAnalyzer(file, document, store);
-                analyzer.analyzeElement(root);
-            } catch (final SAXException e) {
-                Log.logError("Parse error", e);
-            }
-        }
-    }
+			final XMLParser parser = new XMLParser();
+			final WorkflowOutlineContentHandler contentHandler =
+					new WorkflowOutlineContentHandler();
+			contentHandler.setDocument(document);
+			contentHandler.setPositionCategory("dummy");
+			contentHandler.setDocumentLocator(new LocatorImpl());
+			try {
+				parser.parse(referencedContent);
+				final WorkflowElement root = parser.getRootElement();
+				final ReferenceAnalyzer analyzer =
+						new ReferenceAnalyzer(file, document, store);
+				analyzer.analyzeElement(root);
+			} catch (final SAXException e) {
+				Log.logError("Parse error", e);
+			}
+		}
+	}
 }

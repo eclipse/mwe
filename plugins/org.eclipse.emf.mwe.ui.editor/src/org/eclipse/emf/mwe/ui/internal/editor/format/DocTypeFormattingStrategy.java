@@ -13,14 +13,14 @@ package org.eclipse.emf.mwe.ui.internal.editor.format;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class DocTypeFormattingStrategy extends DefaultFormattingStrategy {
 
-    @Override
-    public String format(final String content, final boolean isLineStart,
-            final String indentation, final int[] positions) {
-        return DefaultFormattingStrategy.LINE_SEPARATOR + content;
-    }
+	@Override
+	public String format(final String content, final boolean isLineStart,
+			final String indentation, final int[] positions) {
+		return DefaultFormattingStrategy.LINE_SEPARATOR + content;
+	}
 
 }

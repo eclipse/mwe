@@ -21,60 +21,60 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
-    private static final String ERROR_MSG =
-            "No analyzer registered for element type";
+	private static final String ERROR_MSG =
+			"No analyzer registered for element type";
 
-    private final HashMap<WorkflowElementType, IElementAnalyzer> map =
-            new HashMap<WorkflowElementType, IElementAnalyzer>();
+	private final HashMap<WorkflowElementType, IElementAnalyzer> map =
+			new HashMap<WorkflowElementType, IElementAnalyzer>();
 
-    public ElementAnalyzerRegistry(final IFile file, final IDocument document,
-            final PropertyStore propertyStore) {
-        super(file, document, propertyStore);
-        initRegistry();
-    }
+	public ElementAnalyzerRegistry(final IFile file, final IDocument document,
+			final PropertyStore propertyStore) {
+		super(file, document, propertyStore);
+		initRegistry();
+	}
 
-    /**
-     * This method overrides the implementation of <code>checkValidity</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    public void checkValidity(final WorkflowElement element) {
-        if (element == null)
-            return;
+	/**
+	 * This method overrides the implementation of <code>checkValidity</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	public void checkValidity(final WorkflowElement element) {
+		if (element == null)
+			return;
 
-        final WorkflowElementType type = element.getElementType();
-        final IElementAnalyzer analyzer = map.get(type);
-        if (analyzer != null)
-            analyzer.checkValidity(element);
-        else
-            throw new ValidationException(element.getStartElementRange()
-                    .getStartLine(), element.getStartElementRange()
-                    .getStartColumn(), ERROR_MSG + " '"
-                    + element.getElementTypeString() + "'!", true);
-    }
+		final WorkflowElementType type = element.getElementType();
+		final IElementAnalyzer analyzer = map.get(type);
+		if (analyzer != null)
+			analyzer.checkValidity(element);
+		else
+			throw new ValidationException(element.getStartElementRange()
+					.getStartLine(), element.getStartElementRange()
+					.getStartColumn(), ERROR_MSG + " '"
+					+ element.getElementTypeString() + "'!", true);
+	}
 
-    private void initRegistry() {
-        map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
-                file, document, propertyStore));
-        map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
-                document, propertyStore));
-        map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
-                file, document, propertyStore));
-        map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file,
-                document, propertyStore));
-        map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file,
-                document, propertyStore));
-        map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(
-                file, document, propertyStore));
-        map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
-                document, propertyStore));
-        map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
-                new AssignmentPropertyAnalyzer(file, document, propertyStore));
-    }
+	private void initRegistry() {
+		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
+				new AssignmentPropertyAnalyzer(file, document, propertyStore));
+	}
 }

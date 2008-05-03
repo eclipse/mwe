@@ -19,47 +19,50 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
-    private static final String PROPERTY_FILE_LABEL = "file:";
+	private static final String PROPERTY_FILE_LABEL = "file:";
 
-    public void addListener(final ILabelProviderListener listener) {
-    }
+	public void addListener(final ILabelProviderListener listener) {
+	}
 
-    public void dispose() {
-    }
+	public void dispose() {
+	}
 
-    public Image getImage(final Object element) {
-        if (!(element instanceof WorkflowElement))
-            return null;
+	public Image getImage(final Object element) {
+		if (!(element instanceof WorkflowElement))
+			return null;
 
-        final WorkflowElement workflowElement = (WorkflowElement) element;
-        return EditorImages.getImage(workflowElement.getImage());
-    }
+		final WorkflowElement workflowElement = (WorkflowElement) element;
+		return EditorImages.getImage(workflowElement.getImage());
+	}
 
-    public String getText(final Object element) {
-        if (!(element instanceof WorkflowElement))
-            return null;
+	public String getText(final Object element) {
+		if (!(element instanceof WorkflowElement))
+			return null;
 
-        final WorkflowElement workflowElement = (WorkflowElement) element;
-        String text = null;
+		final WorkflowElement workflowElement = (WorkflowElement) element;
+		String text = null;
 
-        if (workflowElement.isSimpleProperty()) {
-            text = workflowElement
-                    .getAttributeValue(WorkflowElement.NAME_ATTRIBUTE);
-            if (workflowElement
-                    .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE) != null) {
-                text += " = "
-                        + workflowElement
-                                .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);
-            }
-        } else if (workflowElement.isFileProperty()) {
-            text = PROPERTY_FILE_LABEL
-                    + " "
-                    + workflowElement
-                            .getAttributeValue(WorkflowElement.FILE_ATTRIBUTE);
+		if (workflowElement.isSimpleProperty()) {
+			text =
+					workflowElement
+							.getAttributeValue(WorkflowElement.NAME_ATTRIBUTE);
+			if (workflowElement
+					.getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE) != null) {
+				text +=
+						" = "
+								+ workflowElement
+										.getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);
+			}
+		} else if (workflowElement.isFileProperty()) {
+			text =
+					PROPERTY_FILE_LABEL
+							+ " "
+							+ workflowElement
+									.getAttributeValue(WorkflowElement.FILE_ATTRIBUTE);
 		} else if (workflowElement.isComponent()) {
 			if (workflowElement.hasAttribute("class")) {
 				String classFQN = workflowElement.getAttributeValue("class");
@@ -68,22 +71,23 @@ public class OutlineLabelProvider implements ILabelProvider {
 			} else {
 				text = workflowElement.getName();
 			}
-        } else {
-            text = workflowElement.getName();
-            if (workflowElement
-                    .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE) != null) {
-                text += " = "
-                        + workflowElement
-                                .getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);
-            }
-        }
-        return text;
-    }
+		} else {
+			text = workflowElement.getName();
+			if (workflowElement
+					.getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE) != null) {
+				text +=
+						" = "
+								+ workflowElement
+										.getAttributeValue(WorkflowElement.VALUE_ATTRIBUTE);
+			}
+		}
+		return text;
+	}
 
-    public boolean isLabelProperty(final Object element, final String property) {
-        return true;
-    }
+	public boolean isLabelProperty(final Object element, final String property) {
+		return true;
+	}
 
-    public void removeListener(final ILabelProviderListener listener) {
-    }
+	public void removeListener(final ILabelProviderListener listener) {
+	}
 }

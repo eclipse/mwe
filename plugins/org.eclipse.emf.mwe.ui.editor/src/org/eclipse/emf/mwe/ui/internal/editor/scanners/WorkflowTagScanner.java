@@ -24,19 +24,20 @@ import org.eclipse.jface.text.rules.WhitespaceRule;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowTagScanner extends RuleBasedScanner {
 
-    public WorkflowTagScanner(final ColorManager manager) {
-        final IToken string = new Token(new TextAttribute(manager
-                .getColor(WorkflowColorConstants.STRING)));
+	public WorkflowTagScanner(final ColorManager manager) {
+		final IToken string =
+				new Token(new TextAttribute(manager
+						.getColor(WorkflowColorConstants.STRING)));
 
-        final IRule[] rules = new IRule[3];
-        rules[0] = new SingleLineRule("\"", "\"", string, '\\');
-        rules[1] = new SingleLineRule("'", "'", string, '\\');
-        rules[2] = new WhitespaceRule(new WorkflowWhitespaceDetector());
+		final IRule[] rules = new IRule[3];
+		rules[0] = new SingleLineRule("\"", "\"", string, '\\');
+		rules[1] = new SingleLineRule("'", "'", string, '\\');
+		rules[2] = new WhitespaceRule(new WorkflowWhitespaceDetector());
 
-        setRules(rules);
-    }
+		setRules(rules);
+	}
 }

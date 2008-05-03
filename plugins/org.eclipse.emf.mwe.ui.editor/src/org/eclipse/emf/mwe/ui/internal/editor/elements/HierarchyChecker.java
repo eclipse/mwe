@@ -13,40 +13,40 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class HierarchyChecker {
 
-    /**
-     * Don't allow instantiation.
-     */
-    private HierarchyChecker() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * Don't allow instantiation.
+	 */
+	private HierarchyChecker() {
+		throw new UnsupportedOperationException();
+	}
 
-    public static boolean checkChildValidity(
-            final WorkflowElement parentElement,
-            final WorkflowElement childElement) {
-        boolean res = true;
+	public static boolean checkChildValidity(
+			final WorkflowElement parentElement,
+			final WorkflowElement childElement) {
+		boolean res = true;
 
-        if (parentElement == null)
-            throw new IllegalArgumentException();
+		if (parentElement == null)
+			throw new IllegalArgumentException();
 
-        if (parentElement.isWorkflowFile() && !childElement.isWorkflow()) {
-            res = false;
-        } else if (parentElement.isWorkflow()) {
-            if (!parentElement.isLeaf() && childElement.isProperty()) {
-                final int lastElement = parentElement.getChildrenCount() - 1;
-                if (!parentElement.getChild(lastElement).isProperty()) {
-                    res = false;
-                }
-            } else if (parentElement.isAssignment()
-                    || parentElement.isAssignmentProperty()) {
-                if (childElement.isProperty()) {
-                    res = false;
-                }
-            }
-        }
-        return res;
-    }
+		if (parentElement.isWorkflowFile() && !childElement.isWorkflow()) {
+			res = false;
+		} else if (parentElement.isWorkflow()) {
+			if (!parentElement.isLeaf() && childElement.isProperty()) {
+				final int lastElement = parentElement.getChildrenCount() - 1;
+				if (!parentElement.getChild(lastElement).isProperty()) {
+					res = false;
+				}
+			} else if (parentElement.isAssignment()
+					|| parentElement.isAssignmentProperty()) {
+				if (childElement.isProperty()) {
+					res = false;
+				}
+			}
+		}
+		return res;
+	}
 }

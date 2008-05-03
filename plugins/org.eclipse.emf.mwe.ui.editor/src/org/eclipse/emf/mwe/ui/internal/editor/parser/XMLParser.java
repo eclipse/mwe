@@ -30,64 +30,64 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class XMLParser {
 
-    public static final String VALIDATION_FEATURE =
-            "http://xml.org/sax/features/validation";
+	public static final String VALIDATION_FEATURE =
+			"http://xml.org/sax/features/validation";
 
-    private ErrorHandler errorHandler;
+	private ErrorHandler errorHandler;
 
-    private WorkflowOutlineContentHandler contentHandler;
+	private WorkflowOutlineContentHandler contentHandler;
 
-    public WorkflowElement getRootElement() {
-        WorkflowElement root = null;
-        if (contentHandler != null)
-            root = contentHandler.getRootElement();
+	public WorkflowElement getRootElement() {
+		WorkflowElement root = null;
+		if (contentHandler != null)
+			root = contentHandler.getRootElement();
 
-        return root;
-    }
+		return root;
+	}
 
-    public void parse(final File xmlFilePath) throws SAXException {
+	public void parse(final File xmlFilePath) throws SAXException {
 
-        InputSource inputSource = null;
-        try {
-            inputSource = new InputSource(new FileReader(xmlFilePath));
-        } catch (final FileNotFoundException e) {
-            Log.logError(e);
-        }
-        parse(inputSource);
-    }
+		InputSource inputSource = null;
+		try {
+			inputSource = new InputSource(new FileReader(xmlFilePath));
+		} catch (final FileNotFoundException e) {
+			Log.logError(e);
+		}
+		parse(inputSource);
+	}
 
-    public void parse(final InputSource inputSource) throws SAXException {
-        try {
-            final XMLReader reader = new SAXParser();
-            reader.setErrorHandler(errorHandler);
-            reader.setContentHandler(contentHandler);
-            reader.setFeature(VALIDATION_FEATURE, true);
-            reader.parse(inputSource);
-        } catch (final SAXNotRecognizedException e) {
-            Log.logError(e);
-        } catch (final SAXNotSupportedException e) {
-            Log.logError(e);
-        } catch (final IOException e) {
-            Log.logError(e);
-        }
-    }
+	public void parse(final InputSource inputSource) throws SAXException {
+		try {
+			final XMLReader reader = new SAXParser();
+			reader.setErrorHandler(errorHandler);
+			reader.setContentHandler(contentHandler);
+			reader.setFeature(VALIDATION_FEATURE, true);
+			reader.parse(inputSource);
+		} catch (final SAXNotRecognizedException e) {
+			Log.logError(e);
+		} catch (final SAXNotSupportedException e) {
+			Log.logError(e);
+		} catch (final IOException e) {
+			Log.logError(e);
+		}
+	}
 
-    public void parse(final String xmlText) throws SAXException {
-        final InputSource inputSource =
-                new InputSource(new StringReader(xmlText));
-        parse(inputSource);
-    }
+	public void parse(final String xmlText) throws SAXException {
+		final InputSource inputSource =
+				new InputSource(new StringReader(xmlText));
+		parse(inputSource);
+	}
 
-    public void setContentHandler(
-            final WorkflowOutlineContentHandler contentHandler) {
-        this.contentHandler = contentHandler;
-    }
+	public void setContentHandler(
+			final WorkflowOutlineContentHandler contentHandler) {
+		this.contentHandler = contentHandler;
+	}
 
-    public void setErrorHandler(final WorkflowContentHandler errorHandler) {
-        this.errorHandler = errorHandler;
-    }
+	public void setErrorHandler(final WorkflowContentHandler errorHandler) {
+		this.errorHandler = errorHandler;
+	}
 }

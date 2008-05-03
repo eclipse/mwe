@@ -18,49 +18,49 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class EscapedCharRule implements IRule {
 
-    private final IToken token;
+	private final IToken token;
 
-    private final StringBuffer stringBuf = new StringBuffer();
+	private final StringBuffer stringBuf = new StringBuffer();
 
-    public EscapedCharRule(final IToken token) {
-        super();
-        this.token = token;
-    }
+	public EscapedCharRule(final IToken token) {
+		super();
+		this.token = token;
+	}
 
-    /*
-     * @see IRule#evaluate(ICharacterScanner)
-     */
-    public IToken evaluate(final ICharacterScanner scanner) {
-        stringBuf.setLength(0);
-        int c = read(scanner);
-        if (c == '&') {
-            int i = 0;
-            do {
-                c = read(scanner);
-                i++;
+	/*
+	 * @see IRule#evaluate(ICharacterScanner)
+	 */
+	public IToken evaluate(final ICharacterScanner scanner) {
+		stringBuf.setLength(0);
+		int c = read(scanner);
+		if (c == '&') {
+			int i = 0;
+			do {
+				c = read(scanner);
+				i++;
 
-                if (c == '<' || c == ']') {
-                    for (int j = i - 1; j > 0; j--) {
-                        scanner.unread();
-                    }
-                    return Token.UNDEFINED;
-                }
-            } while (c != ';');
-            return token;
-        }
+				if (c == '<' || c == ']') {
+					for (int j = i - 1; j > 0; j--) {
+						scanner.unread();
+					}
+					return Token.UNDEFINED;
+				}
+			} while (c != ';');
+			return token;
+		}
 
-        scanner.unread();
-        return Token.UNDEFINED;
-    }
+		scanner.unread();
+		return Token.UNDEFINED;
+	}
 
-    private int read(final ICharacterScanner scanner) {
-        final int c = scanner.read();
-        stringBuf.append((char) c);
-        return c;
-    }
+	private int read(final ICharacterScanner scanner) {
+		final int c = scanner.read();
+		stringBuf.append((char) c);
+		return c;
+	}
 
 }

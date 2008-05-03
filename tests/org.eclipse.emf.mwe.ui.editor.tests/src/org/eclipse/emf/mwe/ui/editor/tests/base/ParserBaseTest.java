@@ -19,24 +19,24 @@ import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ParserBaseTest extends TestCase {
-    protected XMLParser parser;
+	protected XMLParser parser;
 
-    private WorkflowOutlineContentHandler contentHandler;
+	private WorkflowOutlineContentHandler contentHandler;
 
-    @Override
-    protected void setUp() throws Exception {
-        parser = new XMLParser();
-        contentHandler = new WorkflowOutlineContentHandler();
-        parser.setContentHandler(contentHandler);
-    }
+	@Override
+	protected void setUp() throws Exception {
+		parser = new XMLParser();
+		contentHandler = new WorkflowOutlineContentHandler();
+		parser.setContentHandler(contentHandler);
+	}
 
-    // Helper methods
+	// Helper methods
 
-    protected void setUpDocument(final String content) {
-        final Document document = new Document(content);
-        contentHandler.setDocument(document);
-    }
+	protected void setUpDocument(final String content) {
+		final Document document = new Document(content);
+		contentHandler.setDocument(document);
+	}
 }

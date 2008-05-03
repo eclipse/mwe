@@ -15,24 +15,24 @@ import org.eclipse.jface.text.formatter.IFormattingStrategy;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class DefaultFormattingStrategy implements IFormattingStrategy {
-    protected static final String LINE_SEPARATOR = System
-            .getProperty("line.separator");
+	protected static final String LINE_SEPARATOR =
+			System.getProperty("line.separator");
 
-    public DefaultFormattingStrategy() {
-        super();
-    }
+	public DefaultFormattingStrategy() {
+		super();
+	}
 
-    public String format(final String content, final boolean isLineStart,
-            final String indentation, final int[] positions) {
-        return "";
-    }
+	public String format(final String content, final boolean isLineStart,
+			final String indentation, final int[] positions) {
+		return "";
+	}
 
-    public void formatterStarts(final String initialIndentation) {
-    }
+	public void formatterStarts(final String initialIndentation) {
+	}
 
-    public void formatterStops() {
-    }
+	public void formatterStops() {
+	}
 }

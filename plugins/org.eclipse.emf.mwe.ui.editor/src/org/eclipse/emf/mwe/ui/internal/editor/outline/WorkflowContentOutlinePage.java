@@ -36,130 +36,130 @@ import org.eclipse.ui.views.contentoutline.ContentOutlinePage;
 
 public class WorkflowContentOutlinePage extends ContentOutlinePage {
 
-    private final TextEditor editor;
+	private final TextEditor editor;
 
-    private IEditorInput input;
+	private IEditorInput input;
 
-    private ISelection selection;
+	private ISelection selection;
 
-    public WorkflowContentOutlinePage(final TextEditor editor) {
-        super();
-        this.editor = editor;
-    }
+	public WorkflowContentOutlinePage(final TextEditor editor) {
+		super();
+		this.editor = editor;
+	}
 
-    @Override
-    public void createControl(final Composite parent) {
-        super.createControl(parent);
-        final TreeViewer viewer = getTreeViewer();
-        viewer.setLabelProvider(getLabelProvider());
-        viewer.setContentProvider(getContentProvider());
-        viewer.addSelectionChangedListener(this);
+	@Override
+	public void createControl(final Composite parent) {
+		super.createControl(parent);
+		final TreeViewer viewer = getTreeViewer();
+		viewer.setLabelProvider(getLabelProvider());
+		viewer.setContentProvider(getContentProvider());
+		viewer.addSelectionChangedListener(this);
 
-        if (input != null)
-            setInput(input);
-    }
+		if (input != null)
+			setInput(input);
+	}
 
-    public void refresh() {
-        final TreeViewer viewer = getTreeViewer();
+	public void refresh() {
+		final TreeViewer viewer = getTreeViewer();
 
-        if (viewer != null) {
-            final Control control = viewer.getControl();
+		if (viewer != null) {
+			final Control control = viewer.getControl();
 
-            if ((control != null) && !control.isDisposed()) {
-                control.setRedraw(false);
-                viewer.setInput(input);
-                ((WorkflowEditor) editor).validateAndMark();
-                viewer.expandAll();
-                control.setRedraw(true);
-            }
-        }
-    }
+			if ((control != null) && !control.isDisposed()) {
+				control.setRedraw(false);
+				viewer.setInput(input);
+				((WorkflowEditor) editor).validateAndMark();
+				viewer.expandAll();
+				control.setRedraw(true);
+			}
+		}
+	}
 
-    /**
-     * Notifies that the selection has changed.
-     * 
-     * @param event
-     *            event object describing the change
-     */
-    @Override
-    public final void selectionChanged(final SelectionChangedEvent event) {
-        super.selectionChanged(event);
-        selection = event.getSelection();
-        updateHighlight();
-    }
+	/**
+	 * Notifies that the selection has changed.
+	 * 
+	 * @param event
+	 *            event object describing the change
+	 */
+	@Override
+	public final void selectionChanged(final SelectionChangedEvent event) {
+		super.selectionChanged(event);
+		selection = event.getSelection();
+		updateHighlight();
+	}
 
-    public void setInput(final IEditorInput input) {
-        this.input = input;
-        refresh();
-    }
+	public void setInput(final IEditorInput input) {
+		this.input = input;
+		refresh();
+	}
 
-    protected WorkflowElement[] getChildren(final WorkflowElement parentElement) {
-        final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
-        for (int i = 0; i < parentElement.getChildrenCount(); i++) {
-            list.add(parentElement.getChild(i));
-        }
-        return list.toArray(new WorkflowElement[0]);
-    }
+	protected WorkflowElement[] getChildren(final WorkflowElement parentElement) {
+		final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
+		for (int i = 0; i < parentElement.getChildrenCount(); i++) {
+			list.add(parentElement.getChild(i));
+		}
+		return list.toArray(new WorkflowElement[0]);
+	}
 
-    private ElementPositionRange calculateTagRange(final IDocument document,
-            final ElementPositionRange range) {
-        int start = range.getStartOffset();
-        // skip '<'
-        start++;
+	private ElementPositionRange calculateTagRange(final IDocument document,
+			final ElementPositionRange range) {
+		int start = range.getStartOffset();
+		// skip '<'
+		start++;
 
-        int end = start;
-        try {
-            while (!Character.isWhitespace(document.getChar(end))) {
-                end++;
-            }
+		int end = start;
+		try {
+			while (!Character.isWhitespace(document.getChar(end))) {
+				end++;
+			}
 
-            // Go to last character before whitespace
-            end--;
-        } catch (final BadLocationException e) {
-            Log.logError("Document location error", e);
-        }
-        return new ElementPositionRange(document, start, end);
-    }
+			// Go to last character before whitespace
+			end--;
+		} catch (final BadLocationException e) {
+			Log.logError("Document location error", e);
+		}
+		return new ElementPositionRange(document, start, end);
+	}
 
-    private ITreeContentProvider getContentProvider() {
-        return new OutlineContentProvider(this, getTreeViewer(), editor);
-    }
+	private ITreeContentProvider getContentProvider() {
+		return new OutlineContentProvider(this, getTreeViewer(), editor);
+	}
 
-    private ILabelProvider getLabelProvider() {
-        return new OutlineLabelProvider();
-    }
+	private ILabelProvider getLabelProvider() {
+		return new OutlineLabelProvider();
+	}
 
-    private void updateHighlight() {
-        if (selection != null) {
-            if (selection.isEmpty()) {
-                editor.resetHighlightRange();
-            } else {
-                final Object segment =
-                        ((IStructuredSelection) selection).getFirstElement();
-                if (segment != null && segment instanceof WorkflowElement) {
-                    final WorkflowElement wfElement =
-                            (WorkflowElement) segment;
-                    final ElementPositionRange range =
-                            wfElement.getElementRange();
-                    final ElementPositionRange tagRange =
-                            calculateTagRange(wfElement.getDocument(), range);
-                    final int start = tagRange.getStartOffset();
-                    final int length = tagRange.getLength();
-                    if (start >= 0) {
-                        try {
-                            editor.setHighlightRange(start, length, true);
-                            final ISelectionProvider selectionProvider =
-                                    editor.getSelectionProvider();
-                            final ISelection selection =
-                                    new TextSelection(wfElement.getDocument(),
-                                            start, length);
-                            selectionProvider.setSelection(selection);
-                        } catch (final IllegalArgumentException x) {
-                            editor.resetHighlightRange();
-                        }
-                    }
-                }
-            }
-        }
-    }
+	private void updateHighlight() {
+		if (selection != null) {
+			if (selection.isEmpty()) {
+				editor.resetHighlightRange();
+			} else {
+				final Object segment =
+						((IStructuredSelection) selection).getFirstElement();
+				if (segment != null && segment instanceof WorkflowElement) {
+					final WorkflowElement wfElement =
+							(WorkflowElement) segment;
+					final ElementPositionRange range =
+							wfElement.getElementRange();
+					final ElementPositionRange tagRange =
+							calculateTagRange(wfElement.getDocument(), range);
+					final int start = tagRange.getStartOffset();
+					final int length = tagRange.getLength();
+					if (start >= 0) {
+						try {
+							editor.setHighlightRange(start, length, true);
+							final ISelectionProvider selectionProvider =
+									editor.getSelectionProvider();
+							final ISelection selection =
+									new TextSelection(wfElement.getDocument(),
+											start, length);
+							selectionProvider.setSelection(selection);
+						} catch (final IllegalArgumentException x) {
+							editor.resetHighlightRange();
+						}
+					}
+				}
+			}
+		}
+	}
 }

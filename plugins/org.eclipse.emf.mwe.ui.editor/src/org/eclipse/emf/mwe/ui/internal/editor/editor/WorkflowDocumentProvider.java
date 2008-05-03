@@ -20,27 +20,29 @@ import org.eclipse.ui.editors.text.FileDocumentProvider;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowDocumentProvider extends FileDocumentProvider {
 
-    @Override
-    protected IDocument createDocument(final Object element)
-            throws CoreException {
-        final IDocument document = super.createDocument(element);
-        if (document != null) {
-            final IDocumentPartitioner partitioner = new FastPartitioner(
-                    new WorkflowPartitionScanner(), new String[] {
-                            WorkflowPartitionScanner.XML_START_TAG,
-                            WorkflowPartitionScanner.XML_END_TAG,
-                            WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
-                            WorkflowPartitionScanner.XML_DOCTYPE,
-                            WorkflowPartitionScanner.XML_CDATA,
-                            WorkflowPartitionScanner.XML_TEXT,
-                            WorkflowPartitionScanner.XML_COMMENT });
-            partitioner.connect(document);
-            document.setDocumentPartitioner(partitioner);
-        }
-        return document;
-    }
+	@Override
+	protected IDocument createDocument(final Object element)
+			throws CoreException {
+		final IDocument document = super.createDocument(element);
+		if (document != null) {
+			final IDocumentPartitioner partitioner =
+					new FastPartitioner(
+							new WorkflowPartitionScanner(),
+							new String[] {
+									WorkflowPartitionScanner.XML_START_TAG,
+									WorkflowPartitionScanner.XML_END_TAG,
+									WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
+									WorkflowPartitionScanner.XML_DOCTYPE,
+									WorkflowPartitionScanner.XML_CDATA,
+									WorkflowPartitionScanner.XML_TEXT,
+									WorkflowPartitionScanner.XML_COMMENT });
+			partitioner.connect(document);
+			document.setDocumentPartitioner(partitioner);
+		}
+		return document;
+	}
 }

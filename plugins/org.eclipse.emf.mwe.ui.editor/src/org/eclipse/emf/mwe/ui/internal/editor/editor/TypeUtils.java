@@ -17,35 +17,35 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public final class TypeUtils {
 
-    /**
-     * Don't allow instantiation.
-     */
-    private TypeUtils() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * Don't allow instantiation.
+	 */
+	private TypeUtils() {
+		throw new UnsupportedOperationException();
+	}
 
-    public static IType findType(final IJavaProject javaProject,
-            final String typeName) {
-        try {
-            IType type = javaProject.findType(typeName);
-            if ((type == null)
-                    || (typeName != null && typeName.startsWith("mwe"))) {
-                type =
-                        javaProject.findType(typeName.replaceFirst("mwe",
-                                "org.eclipse.emf.mwe"));
-            } else if (typeName != null && typeName.startsWith("oaw")) {
-                type =
-                        javaProject.findType(typeName.replaceFirst("oaw",
-                                "org.openarchitectureware"));
-            }
+	public static IType findType(final IJavaProject javaProject,
+			final String typeName) {
+		try {
+			IType type = javaProject.findType(typeName);
+			if ((type == null)
+					|| (typeName != null && typeName.startsWith("mwe"))) {
+				type =
+						javaProject.findType(typeName.replaceFirst("mwe",
+								"org.eclipse.emf.mwe"));
+			} else if (typeName != null && typeName.startsWith("oaw")) {
+				type =
+						javaProject.findType(typeName.replaceFirst("oaw",
+								"org.openarchitectureware"));
+			}
 
-            return type;
-        } catch (final JavaModelException e) {
-            return null;
-        }
-    }
+			return type;
+		} catch (final JavaModelException e) {
+			return null;
+		}
+	}
 }

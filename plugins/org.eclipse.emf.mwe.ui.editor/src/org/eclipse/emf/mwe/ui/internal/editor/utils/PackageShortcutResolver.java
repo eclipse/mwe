@@ -16,43 +16,43 @@ import java.util.Map;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class PackageShortcutResolver {
 
-    private static Map<String, String> dictionary;
+	private static Map<String, String> dictionary;
 
-    static {
-        dictionary = new HashMap<String, String>();
-        initDictionary();
-    }
+	static {
+		dictionary = new HashMap<String, String>();
+		initDictionary();
+	}
 
-    /**
-     * Don't allow instantiation.
-     */
-    private PackageShortcutResolver() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * Don't allow instantiation.
+	 */
+	private PackageShortcutResolver() {
+		throw new UnsupportedOperationException();
+	}
 
-    public static String resolve(final String name) {
-        final int dotPos = name.indexOf('.');
-        String resolvedString = name;
-        String lookupString;
+	public static String resolve(final String name) {
+		final int dotPos = name.indexOf('.');
+		String resolvedString = name;
+		String lookupString;
 
-        if (dotPos >= 0) {
-            lookupString = name.substring(0, dotPos);
-        } else
-            return resolvedString;
+		if (dotPos >= 0) {
+			lookupString = name.substring(0, dotPos);
+		} else
+			return resolvedString;
 
-        if (dictionary.containsKey(lookupString)) {
-            resolvedString =
-                    dictionary.get(lookupString) + name.substring(dotPos);
-        }
-        return resolvedString;
-    }
+		if (dictionary.containsKey(lookupString)) {
+			resolvedString =
+					dictionary.get(lookupString) + name.substring(dotPos);
+		}
+		return resolvedString;
+	}
 
-    private static void initDictionary() {
-        dictionary.put("oaw", "org.openarchitectureware");
-        dictionary.put("mwe", "org.eclipse.emf.mwe");
-    }
+	private static void initDictionary() {
+		dictionary.put("oaw", "org.openarchitectureware");
+		dictionary.put("mwe", "org.eclipse.emf.mwe");
+	}
 }

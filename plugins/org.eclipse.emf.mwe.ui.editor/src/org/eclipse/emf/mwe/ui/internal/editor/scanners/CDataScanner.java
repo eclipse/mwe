@@ -22,33 +22,34 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class CDataScanner extends RuleBasedScanner {
 
-    private final IToken cDataToken;
+	private final IToken cDataToken;
 
-    public CDataScanner(final ColorManager colorManager) {
+	public CDataScanner(final ColorManager colorManager) {
 
-        cDataToken = new Token(new TextAttribute(colorManager
-                .getColor(WorkflowColorConstants.CDATA)));
-        final IRule[] rules = new IRule[2];
-        rules[0] = new CDataRule(cDataToken, true);
-        rules[1] = new CDataRule(cDataToken, false);
-        setRules(rules);
-    }
+		cDataToken =
+				new Token(new TextAttribute(colorManager
+						.getColor(WorkflowColorConstants.CDATA)));
+		final IRule[] rules = new IRule[2];
+		rules[0] = new CDataRule(cDataToken, true);
+		rules[1] = new CDataRule(cDataToken, false);
+		setRules(rules);
+	}
 
-    /**
-     * Returns the value of field <code>cDataToken</code>.
-     * 
-     * @return value of <code>cDataToken</code>.
-     */
-    public IToken getCDataToken() {
-        return cDataToken;
-    }
+	/**
+	 * Returns the value of field <code>cDataToken</code>.
+	 * 
+	 * @return value of <code>cDataToken</code>.
+	 */
+	public IToken getCDataToken() {
+		return cDataToken;
+	}
 
-    @Override
-    public IToken nextToken() {
-        return super.nextToken();
-    }
+	@Override
+	public IToken nextToken() {
+		return super.nextToken();
+	}
 }

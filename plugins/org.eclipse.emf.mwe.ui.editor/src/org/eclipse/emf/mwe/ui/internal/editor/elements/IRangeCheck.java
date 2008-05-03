@@ -13,9 +13,9 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public interface IRangeCheck {
 
-    boolean isInRange(int offset);
+	boolean isInRange(int offset);
 }

@@ -36,208 +36,208 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public final class ReflectionManager {
 
-    public static final String COMPONENT_SUFFIX = "Component";
+	public static final String COMPONENT_SUFFIX = "Component";
 
-    private static final String MWE_CONTAINER_PACKAGE =
-            "org.eclipse.emf.mwe.core.container";
+	private static final String MWE_CONTAINER_PACKAGE =
+			"org.eclipse.emf.mwe.core.container";
 
-    private static final String OAW_CONTAINER_PACKAGE =
-            "org.openarchitectureware.core.workflow.container";
+	private static final String OAW_CONTAINER_PACKAGE =
+			"org.openarchitectureware.core.workflow.container";
 
-    private static final String ADDER_PREFIX = "add";
+	private static final String ADDER_PREFIX = "add";
 
-    private static final String SETTER_PREFIX = "set";
+	private static final String SETTER_PREFIX = "set";
 
-    /**
-     * Don't allow instantiation.
-     */
-    private ReflectionManager() {
-        throw new UnsupportedOperationException();
-    }
+	/**
+	 * Don't allow instantiation.
+	 */
+	private ReflectionManager() {
+		throw new UnsupportedOperationException();
+	}
 
-    public static Class<?> getClass(final IFile file, final String className) {
-        Class<?> clazz = null;
-        try {
-            final ClassLoader loader = createClassLoader(file);
-            if (loader != null) {
-                clazz = loader.loadClass(className);
-            }
-        } catch (final CoreException e) {
-            Log.logError("Could not create class loader", e);
-        } catch (final ClassNotFoundException e) {
-            // Do nothing
-        }
-        return clazz;
-    }
+	public static Class<?> getClass(final IFile file, final String className) {
+		Class<?> clazz = null;
+		try {
+			final ClassLoader loader = createClassLoader(file);
+			if (loader != null) {
+				clazz = loader.loadClass(className);
+			}
+		} catch (final CoreException e) {
+			Log.logError("Could not create class loader", e);
+		} catch (final ClassNotFoundException e) {
+			// Do nothing
+		}
+		return clazz;
+	}
 
-    public static String getComponentName(final String name, final boolean old) {
-        if (old)
-            return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-                    + COMPONENT_SUFFIX;
-        else
-            return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-                    + COMPONENT_SUFFIX;
-    }
+	public static String getComponentName(final String name, final boolean old) {
+		if (old)
+			return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
+					+ COMPONENT_SUFFIX;
+		else
+			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
+					+ COMPONENT_SUFFIX;
+	}
 
-    public static String getFileContent(final IFile file,
-            final IDocument document, final WorkflowAttribute attribute) {
-        final String filePath = attribute.getValue();
-        final ClassLoader loader = getResourceLoader(file);
+	public static String getFileContent(final IFile file,
+			final IDocument document, final WorkflowAttribute attribute) {
+		final String filePath = attribute.getValue();
+		final ClassLoader loader = getResourceLoader(file);
 
-        if (loader == null)
-            throw new RuntimeException("Could not obtain resource loader");
+		if (loader == null)
+			throw new RuntimeException("Could not obtain resource loader");
 
-        final URL fileURL = loader.getResource(filePath);
-        final IResource resource = file.getProject().findMember(filePath);
-        if (resource != null) {
-            try {
-                final String fileToOpen = resource.getLocation().toString();
-                final BufferedReader reader =
-                        new BufferedReader(new FileReader(fileToOpen));
+		final URL fileURL = loader.getResource(filePath);
+		final IResource resource = file.getProject().findMember(filePath);
+		if (resource != null) {
+			try {
+				final String fileToOpen = resource.getLocation().toString();
+				final BufferedReader reader =
+						new BufferedReader(new FileReader(fileToOpen));
 
-                String content = new String();
-                String line = reader.readLine();
-                while (line != null) {
-                    content += line + "\n";
-                    line = reader.readLine();
-                }
-                reader.close();
-                return content;
-            } catch (final IOException e) {
-                Log.logError("I/O error", e);
-            }
-        }
-        return null;
-    }
+				String content = new String();
+				String line = reader.readLine();
+				while (line != null) {
+					content += line + "\n";
+					line = reader.readLine();
+				}
+				reader.close();
+				return content;
+			} catch (final IOException e) {
+				Log.logError("I/O error", e);
+			}
+		}
+		return null;
+	}
 
-    public static ClassLoader getResourceLoader(final IFile file) {
-        final IProject project = file.getProject();
-        ClassLoader loader = null;
-        try {
-            final ProjectIncludingResourceLoader l =
-                    new ProjectIncludingResourceLoader(project);
-            loader = l.createClassLoader(project);
-        } catch (final CoreException e) {
-            Log.logError("Could not create resource loader", e);
-        }
+	public static ClassLoader getResourceLoader(final IFile file) {
+		final IProject project = file.getProject();
+		ClassLoader loader = null;
+		try {
+			final ProjectIncludingResourceLoader l =
+					new ProjectIncludingResourceLoader(project);
+			loader = l.createClassLoader(project);
+		} catch (final CoreException e) {
+			Log.logError("Could not create resource loader", e);
+		}
 
-        return loader;
-    }
+		return loader;
+	}
 
-    public static Method getSetter(final Class<? extends Object> clazz,
-            final String name, final Class<?> type) {
-        Method method = null;
+	public static Method getSetter(final Class<? extends Object> clazz,
+			final String name, final Class<?> type) {
+		Method method = null;
 
-        method = getMethod(clazz, setterName(name), type);
-        if (method == null) {
-            method = getMethod(clazz, adderName(name), type);
-        }
+		method = getMethod(clazz, setterName(name), type);
+		if (method == null) {
+			method = getMethod(clazz, adderName(name), type);
+		}
 
-        return method;
-    }
+		return method;
+	}
 
-    private static String adderName(final String name) {
-        return ADDER_PREFIX + toUpperCaseFirst(name);
-    }
+	private static String adderName(final String name) {
+		return ADDER_PREFIX + toUpperCaseFirst(name);
+	}
 
-    /**
-     * Builds a classloader for a Java project from the workspace.
-     * 
-     * @param project
-     *            An Eclipse project
-     * @throws CoreException
-     */
-    private static ClassLoader createClassLoader(final IFile file)
-            throws CoreException {
-        if (file == null)
-            throw new IllegalArgumentException();
+	/**
+	 * Builds a classloader for a Java project from the workspace.
+	 * 
+	 * @param project
+	 *            An Eclipse project
+	 * @throws CoreException
+	 */
+	private static ClassLoader createClassLoader(final IFile file)
+			throws CoreException {
+		if (file == null)
+			throw new IllegalArgumentException();
 
-        final IProject project = file.getProject();
-        final IJavaProject jp = JavaCore.create(project);
+		final IProject project = file.getProject();
+		final IJavaProject jp = JavaCore.create(project);
 
-        final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
-        final URL[] url = new URL[javacp.length];
+		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
+		final URL[] url = new URL[javacp.length];
 
-        for (int i = 0; i < javacp.length; i++) {
-            try {
-                url[i] = javacp[i].getPath().toFile().toURL();
-            } catch (final MalformedURLException e) {
-                Activator.logError(e);
-            }
-        }
-        return new URLClassLoader(url);
-    }
+		for (int i = 0; i < javacp.length; i++) {
+			try {
+				url[i] = javacp[i].getPath().toFile().toURL();
+			} catch (final MalformedURLException e) {
+				Activator.logError(e);
+			}
+		}
+		return new URLClassLoader(url);
+	}
 
-    private static Method getMethod(final Class<?> clazz, final String name,
-            final Class<?> type) {
-        Method method = null;
-        final Class<?>[] param = new Class<?>[1];
-        param[0] = type;
-        final Class<?>[] objectParam = new Class<?>[1];
-        objectParam[0] = Object.class;
+	private static Method getMethod(final Class<?> clazz, final String name,
+			final Class<?> type) {
+		Method method = null;
+		final Class<?>[] param = new Class<?>[1];
+		param[0] = type;
+		final Class<?>[] objectParam = new Class<?>[1];
+		objectParam[0] = Object.class;
 
-        Method m = null;
-        if (type != null) {
-            m = getMethod(clazz, name, param);
-        }
+		Method m = null;
+		if (type != null) {
+			m = getMethod(clazz, name, param);
+		}
 
-        if (m == null) {
-            m = getMethod(clazz, name, objectParam);
-        }
+		if (m == null) {
+			m = getMethod(clazz, name, objectParam);
+		}
 
-        if (m != null) {
-            final int modifiers = m.getModifiers();
-            if (name.equals(m.getName()) && Modifier.isPublic(modifiers)
-                    && !Modifier.isAbstract(modifiers)) {
-                method = m;
-            }
-        }
-        return method;
-    }
+		if (m != null) {
+			final int modifiers = m.getModifiers();
+			if (name.equals(m.getName()) && Modifier.isPublic(modifiers)
+					&& !Modifier.isAbstract(modifiers)) {
+				method = m;
+			}
+		}
+		return method;
+	}
 
-    private static Method getMethod(final Class<?> clazz, final String name,
-            final Class<?>[] param) {
-        try {
-            final Method m = clazz.getDeclaredMethod(name, param);
-            return m;
-        } catch (final SecurityException e) {
-            Log.logError("Security error", e);
-        } catch (final NoSuchMethodException e) {
-            // Do nothing
-        }
-        return null;
-    }
+	private static Method getMethod(final Class<?> clazz, final String name,
+			final Class<?>[] param) {
+		try {
+			final Method m = clazz.getDeclaredMethod(name, param);
+			return m;
+		} catch (final SecurityException e) {
+			Log.logError("Security error", e);
+		} catch (final NoSuchMethodException e) {
+			// Do nothing
+		}
+		return null;
+	}
 
-    private static boolean isConcrete(final Class<?> clazz) {
-        final int modifiers = clazz.getModifiers();
-        final Class<?>[] parameters = new Class[0];
-        Constructor<?> constructor = null;
-        try {
-            constructor = clazz.getConstructor(parameters);
-        } catch (final SecurityException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        } catch (final NoSuchMethodException e) {
-            // Do nothing
-        }
-        return !Modifier.isAbstract(modifiers)
-                && !Modifier.isInterface(modifiers) && (constructor != null);
-    }
+	private static boolean isConcrete(final Class<?> clazz) {
+		final int modifiers = clazz.getModifiers();
+		final Class<?>[] parameters = new Class[0];
+		Constructor<?> constructor = null;
+		try {
+			constructor = clazz.getConstructor(parameters);
+		} catch (final SecurityException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} catch (final NoSuchMethodException e) {
+			// Do nothing
+		}
+		return !Modifier.isAbstract(modifiers)
+				&& !Modifier.isInterface(modifiers) && (constructor != null);
+	}
 
-    private static String setterName(final String name) {
-        return SETTER_PREFIX + toUpperCaseFirst(name);
-    }
+	private static String setterName(final String name) {
+		return SETTER_PREFIX + toUpperCaseFirst(name);
+	}
 
-    private static String toUpperCaseFirst(final String name) {
-        if (name == null || name.length() == 0)
-            return name;
-        else if (name.length() == 1)
-            return name.toUpperCase();
+	private static String toUpperCaseFirst(final String name) {
+		if (name == null || name.length() == 0)
+			return name;
+		else if (name.length() == 1)
+			return name.toUpperCase();
 
-        return name.substring(0, 1).toUpperCase() + name.substring(1);
-    }
+		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
 }

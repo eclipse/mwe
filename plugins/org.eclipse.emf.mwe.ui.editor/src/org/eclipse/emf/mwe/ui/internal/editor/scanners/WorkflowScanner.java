@@ -24,18 +24,19 @@ import org.eclipse.jface.text.rules.WhitespaceRule;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class WorkflowScanner extends RuleBasedScanner {
 
-    public WorkflowScanner(final ColorManager manager) {
-        final IToken procInstr = new Token(new TextAttribute(manager
-                .getColor(WorkflowColorConstants.PROC_INSTR)));
+	public WorkflowScanner(final ColorManager manager) {
+		final IToken procInstr =
+				new Token(new TextAttribute(manager
+						.getColor(WorkflowColorConstants.PROC_INSTR)));
 
-        final IRule[] rules = new IRule[2];
-        rules[0] = new SingleLineRule("<?", "?>", procInstr);
-        rules[1] = new WhitespaceRule(new WorkflowWhitespaceDetector());
+		final IRule[] rules = new IRule[2];
+		rules[0] = new SingleLineRule("<?", "?>", procInstr);
+		rules[1] = new WhitespaceRule(new WorkflowWhitespaceDetector());
 
-        setRules(rules);
-    }
+		setRules(rules);
+	}
 }

@@ -22,52 +22,52 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
-    protected static final String PROPERTY_REGEX = "^(.*?)\\s*=\\s*.*$";
+	protected static final String PROPERTY_REGEX = "^(.*?)\\s*=\\s*.*$";
 
-    private static final String INVALID_PROPERTY_MSG = "Property not valid";
+	private static final String INVALID_PROPERTY_MSG = "Property not valid";
 
-    public PropertyAnalyzer(final IFile file, final IDocument document,
-            final PropertyStore propertyStore) {
-        super(file, document, propertyStore);
-    }
+	public PropertyAnalyzer(final IFile file, final IDocument document,
+			final PropertyStore propertyStore) {
+		super(file, document, propertyStore);
+	}
 
-    /**
-     * This method overrides the implementation of <code>checkValidity</code>
-     * inherited from the superclass.
-     * 
-     * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
-     */
-    @Override
-    public void checkValidity(final WorkflowElement element) {
-        if (element.getName().equals(WorkflowElement.PROPERTY_TAG)
-                && !element.isProperty()) {
-            createMarker(element, INVALID_PROPERTY_MSG);
-        }
-        if (element.isSimpleProperty()) {
-            propertyStore.add(element
-                    .getAttributeValue(WorkflowElement.NAME_ATTRIBUTE));
-        } else if (element.isFileProperty()) {
-            parseFileProperties(element);
-        }
-    }
+	/**
+	 * This method overrides the implementation of <code>checkValidity</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 */
+	@Override
+	public void checkValidity(final WorkflowElement element) {
+		if (element.getName().equals(WorkflowElement.PROPERTY_TAG)
+				&& !element.isProperty()) {
+			createMarker(element, INVALID_PROPERTY_MSG);
+		}
+		if (element.isSimpleProperty()) {
+			propertyStore.add(element
+					.getAttributeValue(WorkflowElement.NAME_ATTRIBUTE));
+		} else if (element.isFileProperty()) {
+			parseFileProperties(element);
+		}
+	}
 
-    private void parseFileProperties(final WorkflowElement element) {
-        final WorkflowAttribute attribute =
-                element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
-        final String content =
-                ReflectionManager.getFileContent(file, document, attribute);
-        if (content == null)
-            return;
+	private void parseFileProperties(final WorkflowElement element) {
+		final WorkflowAttribute attribute =
+				element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
+		final String content =
+				ReflectionManager.getFileContent(file, document, attribute);
+		if (content == null)
+			return;
 
-        final Pattern p = Pattern.compile(PROPERTY_REGEX, Pattern.MULTILINE);
-        final Matcher m = p.matcher(content);
-        while (m.find()) {
-            final String propertyName = m.group(1);
-            propertyStore.add(propertyName);
-        }
-    }
+		final Pattern p = Pattern.compile(PROPERTY_REGEX, Pattern.MULTILINE);
+		final Matcher m = p.matcher(content);
+		while (m.find()) {
+			final String propertyName = m.group(1);
+			propertyStore.add(propertyName);
+		}
+	}
 }
