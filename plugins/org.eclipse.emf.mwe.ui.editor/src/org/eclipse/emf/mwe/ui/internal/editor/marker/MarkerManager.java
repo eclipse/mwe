@@ -27,7 +27,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class MarkerManager {
 
@@ -68,6 +68,10 @@ public final class MarkerManager {
 	public static void createMarkerFromRange(final IFile file,
 			final IDocument document, final String message,
 			final ElementPositionRange range, final boolean isError) {
+		if (file == null || document == null || message == null
+				|| range == null)
+			throw new IllegalArgumentException();
+
 		final Map map = new HashMap();
 		Integer lineNumber;
 		try {
