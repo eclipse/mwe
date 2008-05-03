@@ -17,15 +17,23 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
+import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
@@ -35,17 +43,23 @@ import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class WorkflowEditor extends TextEditor {
+
+	public static final String TAG_POSITIONS = "__tag_positions";
 
 	private ProjectionAnnotationModel annotationModel;
 
@@ -146,6 +160,36 @@ public class WorkflowEditor extends TextEditor {
 		return getVerticalRuler();
 	}
 
+	public WorkflowElement parseRootElement(final IDocument document) {
+		final String text = document.get();
+		try {
+			final XMLParser xmlParser = new XMLParser();
+			final WorkflowOutlineContentHandler contentHandler =
+					new WorkflowOutlineContentHandler();
+			contentHandler.setDocument(document);
+			contentHandler.setPositionCategory(TAG_POSITIONS);
+			contentHandler.setDocumentLocator(new LocatorImpl());
+			xmlParser.setContentHandler(contentHandler);
+			xmlParser.parse(text);
+			final WorkflowElement root = xmlParser.getRootElement();
+			return root;
+		} catch (final ValidationException e) {
+			final int line = e.getLineNumber();
+			final int column = e.getColumnNumber();
+			final String msg = e.getDetailedMessage();
+			createMarker(document, msg, line, column);
+		} catch (final SAXException e) {
+			if (e instanceof SAXParseException) {
+				final SAXParseException ex = (SAXParseException) e;
+				final int line = ex.getLineNumber();
+				final int column = ex.getColumnNumber();
+				final String msg = ex.getMessage();
+				createMarker(document, msg, line, column);
+			}
+		}
+		return null;
+	}
+
 	/**
 	 * Sets a new value for field <code>rootElement</code>.
 	 * 
@@ -171,6 +215,9 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	public void validateAndMark() {
+		final IDocument document = getInputDocument();
+		setRootElement(parseRootElement(document));
+
 		if (getRootElement() == null)
 			return;
 
@@ -218,6 +265,18 @@ public class WorkflowEditor extends TextEditor {
 		return viewer;
 	}
 
+	/**
+	 * This method overrides the implementation of <code>doSetInput</code>
+	 * inherited from the superclass.
+	 * 
+	 * @see org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput)
+	 */
+	@Override
+	protected void doSetInput(final IEditorInput input) throws CoreException {
+		super.doSetInput(input);
+		validateAndMark();
+	}
+
 	@Override
 	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe"));
@@ -254,5 +313,25 @@ public class WorkflowEditor extends TextEditor {
 		super.rulerContextMenuAboutToShow(menu);
 
 		actionGroup.fillContextMenu(menu);
+	}
+
+	private void createMarker(final IDocument document, final String msg,
+			final int line, final int column) {
+		try {
+			final IFile file = getInputFile();
+			final int lineOffset = document.getLineOffset(line);
+			final int start = lineOffset + column;
+			int end = start;
+			if (end < document.getLength()) {
+				end++;
+			}
+
+			final ElementPositionRange range =
+					new ElementPositionRange(document, start, end);
+			MarkerManager.createMarkerFromRange(file, document, msg, range,
+					true);
+		} catch (final BadLocationException e) {
+			Log.logError("Document location error", e);
+		}
 	}
 }

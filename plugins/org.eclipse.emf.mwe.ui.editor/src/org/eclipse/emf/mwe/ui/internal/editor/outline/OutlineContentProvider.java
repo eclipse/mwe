@@ -13,15 +13,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
 import org.eclipse.jface.text.IDocument;
@@ -29,23 +22,16 @@ import org.eclipse.jface.text.IPositionUpdater;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
-	protected static final String TAG_POSITIONS = "__tag_positions";
-
-	protected IPositionUpdater positionUpdater =
-			new DefaultPositionUpdater(TAG_POSITIONS);
+	protected IPositionUpdater positionUpdater;
 
 	private final WorkflowContentOutlinePage outlinePage;
 
@@ -66,6 +52,8 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		this.viewer = viewer;
 		this.editor = editor;
 		documentProvider = editor.getDocumentProvider();
+		positionUpdater =
+				new DefaultPositionUpdater(WorkflowEditor.TAG_POSITIONS);
 	}
 
 	public void dispose() {
@@ -110,7 +98,8 @@ public class OutlineContentProvider implements ITreeContentProvider {
 			final IDocument document = documentProvider.getDocument(oldInput);
 			if (document != null) {
 				try {
-					document.removePositionCategory(TAG_POSITIONS);
+					document
+							.removePositionCategory(WorkflowEditor.TAG_POSITIONS);
 				} catch (final BadPositionCategoryException x) {
 				}
 				document.removePositionUpdater(positionUpdater);
@@ -122,10 +111,12 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (newInput != null) {
 			final IDocument document = documentProvider.getDocument(newInput);
 			if (document != null) {
-				document.addPositionCategory(TAG_POSITIONS);
+				document.addPositionCategory(WorkflowEditor.TAG_POSITIONS);
 				document.addPositionUpdater(positionUpdater);
 
-				final WorkflowElement rootElement = parseRootElement(document);
+				final WorkflowEditor wfEditor = (WorkflowEditor) editor;
+				final WorkflowElement rootElement =
+						wfEditor.parseRootElement(document);
 				if (rootElement != null) {
 					this.rootElement = rootElement;
 				}
@@ -135,64 +126,5 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
 	public void setInput(final IEditorInput input) {
 		// do nothing
-	}
-
-	private void createMarker(final IDocument document, final String msg,
-			final int line, final int column) {
-		try {
-			final IFileEditorInput ife = (IFileEditorInput) input;
-			final IFile file = ife.getFile();
-			final int lineOffset = document.getLineOffset(line);
-			final int start = lineOffset + column;
-			int end = start;
-			if (end < document.getLength()) {
-				end++;
-			}
-
-			final ElementPositionRange range =
-					new ElementPositionRange(document, start, end);
-			MarkerManager.createMarkerFromRange(file, document, msg, range,
-					true);
-		} catch (final BadLocationException e) {
-			Log.logError("Document location error", e);
-		}
-	}
-
-	private WorkflowElement parseRootElement(final IDocument document) {
-		final String text = document.get();
-		final WorkflowElement tagPositions = parseRootElements(text, document);
-		final WorkflowEditor wfEditor = (WorkflowEditor) editor;
-		wfEditor.setRootElement(tagPositions);
-		return tagPositions;
-	}
-
-	private WorkflowElement parseRootElements(final String text,
-			final IDocument document) {
-		try {
-			final XMLParser xmlParser = new XMLParser();
-			final WorkflowOutlineContentHandler contentHandler =
-					new WorkflowOutlineContentHandler();
-			contentHandler.setDocument(document);
-			contentHandler.setPositionCategory(TAG_POSITIONS);
-			contentHandler.setDocumentLocator(new LocatorImpl());
-			xmlParser.setContentHandler(contentHandler);
-			xmlParser.parse(text);
-			final WorkflowElement root = xmlParser.getRootElement();
-			return root;
-		} catch (final ValidationException e) {
-			final int line = e.getLineNumber();
-			final int column = e.getColumnNumber();
-			final String msg = e.getDetailedMessage();
-			createMarker(document, msg, line, column);
-		} catch (final SAXException e) {
-			if (e instanceof SAXParseException) {
-				final SAXParseException ex = (SAXParseException) e;
-				final int line = ex.getLineNumber();
-				final int column = ex.getColumnNumber();
-				final String msg = ex.getMessage();
-				createMarker(document, msg, line, column);
-			}
-		}
-		return null;
 	}
 }
