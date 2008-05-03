@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -34,7 +34,8 @@ public class ReferenceAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
 	 */
 	public boolean isApplicable(final WorkflowElement element) {
-		return element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE);
+		return element != null
+				&& element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE);
 	}
 
 	/**

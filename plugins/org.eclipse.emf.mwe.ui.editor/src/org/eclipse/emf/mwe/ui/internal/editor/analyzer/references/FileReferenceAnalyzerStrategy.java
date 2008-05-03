@@ -25,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -55,7 +55,8 @@ public class FileReferenceAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
 	 */
 	public boolean isApplicable(final WorkflowElement element) {
-		return element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE);
+		return element != null
+				&& element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE);
 	}
 
 	/**
