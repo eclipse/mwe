@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class WorkflowAttribute implements IRangeCheck {
@@ -94,8 +94,10 @@ public class WorkflowAttribute implements IRangeCheck {
 		int end = range.getEndOffset();
 
 		try {
-			// Skip everything to the opening double quote
-			while (start <= end && document.getChar(start) != '"') {
+			// Skip everything to the opening quote
+			while (start <= end
+					&& (document.getChar(start) != '"' && document
+							.getChar(start) != '\'')) {
 				start++;
 			}
 		} catch (final BadLocationException e) {
@@ -103,10 +105,10 @@ public class WorkflowAttribute implements IRangeCheck {
 			return null;
 		}
 
-		// Skip the opening double quote as well
+		// Skip the opening quote as well
 		start++;
 
-		// Skip the closing double quote
+		// Skip the closing quote
 		end--;
 
 		return new ElementPositionRange(document, start, end);
