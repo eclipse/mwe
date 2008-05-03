@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public class WorkflowAttribute implements IRangeCheck {
@@ -60,15 +60,23 @@ public class WorkflowAttribute implements IRangeCheck {
 			return null;
 		}
 
-		final String pattern = name + "\\s*=\\s*\"" + quote(value) + "\"";
-		final Pattern regexPattern = Pattern.compile(pattern);
-		final Matcher m = regexPattern.matcher(text);
-		if (m.find()) {
-			final int attrStart = start + m.start();
-			final int attrEnd = start + m.end();
-			return new ElementPositionRange(document, attrStart, attrEnd);
+		final String singleQuotepattern =
+				name + "\\s*=\\s*\'" + quote(value) + "\'";
+		final String doubleQuotepattern =
+				name + "\\s*=\\s*\"" + quote(value) + "\"";
+		final Pattern singleQuotePattern = Pattern.compile(singleQuotepattern);
+		final Pattern doubleQuotePattern = Pattern.compile(doubleQuotepattern);
+		final Matcher singleQuoteMatcher = singleQuotePattern.matcher(text);
+		final Matcher doubleQuoteMatcher = doubleQuotePattern.matcher(text);
+		ElementPositionRange range =
+				getElementPositionRange(singleQuoteMatcher, document, start);
+		if (range == null) {
+			range =
+					getElementPositionRange(doubleQuoteMatcher, document,
+							start);
 		}
-		return null;
+
+		return range;
 	}
 
 	/**
@@ -140,6 +148,16 @@ public class WorkflowAttribute implements IRangeCheck {
 	 */
 	public boolean isInRange(final int offset) {
 		return getAttributeValueRange().isInRange(offset);
+	}
+
+	private ElementPositionRange getElementPositionRange(
+			final Matcher matcher, final IDocument document, final int start) {
+		if (matcher.find()) {
+			final int attrStart = start + matcher.start();
+			final int attrEnd = start + matcher.end();
+			return new ElementPositionRange(document, attrStart, attrEnd);
+		}
+		return null;
 	}
 
 	private String quote(final String value) {
