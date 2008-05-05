@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
+import java.util.Collections;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -25,7 +26,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		IReconcilingStrategyExtension {
@@ -42,7 +43,9 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 
 	protected static final int PI_TAG = 6;
 
-	protected final ArrayList positions = new ArrayList();
+    protected static final int ATTR_STRING = 7;
+
+    protected final ArrayList positions = new ArrayList();
 
 	protected int offset;
 
@@ -131,7 +134,6 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		} catch (final BadLocationException e) {
 			e.printStackTrace();
 		}
-		// Collections.sort(positions, new RangeTokenComparator());
 
 		Display.getDefault().asyncExec(new Runnable() {
 			public void run() {
@@ -254,10 +256,10 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 				final char ch = document.getChar(nextPos++);
 				switch (ch) {
 					case '<':
-						final int startOffset = nextPos - 1;
-						final int startNewLines = newLines;
-						final int classification = classifyTag();
-						final String tagString =
+						int startOffset = nextPos - 1;
+						int startNewLines = newLines;
+						int classification = classifyTag();
+						String tagString =
 								document
 										.get(startOffset, Math.min(nextPos
 												- startOffset, rangeEnd
@@ -303,7 +305,29 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 						break;
 					default:
 						break;
-				}
+				case '"':
+				case '\'':
+                    startOffset = nextPos - 1;
+                    startNewLines = newLines;
+                    classification = ATTR_STRING;
+                    tagString =
+                            document
+                                    .get(startOffset, Math.min(nextPos
+                                            - startOffset, rangeEnd
+                                            - startOffset));
+                    newLines += newLines;
+                    nextPos++;
+                    while (nextPos < rangeEnd) {
+                        if (nextPos == '"' || nextPos == '\'')
+                            break;
+                        
+                        nextPos++;
+                    }
+                    
+                    if (nextPos == '"' || nextPos == '\'') {
+                        emitPosition(startOffset, nextPos - startOffset);
+                    }
+                }
 			}
 
 		}
