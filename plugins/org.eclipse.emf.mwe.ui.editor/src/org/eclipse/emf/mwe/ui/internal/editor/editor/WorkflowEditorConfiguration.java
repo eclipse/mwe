@@ -45,7 +45,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 	private static final int UNDO_LEVELS = 100;
@@ -88,7 +88,7 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 				WorkflowPartitionScanner.XML_END_TAG,
 				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
 				WorkflowPartitionScanner.XML_DOCTYPE,
-				WorkflowPartitionScanner.XML_CDATA,
+				WorkflowPartitionScanner.XML_STRING,
 				WorkflowPartitionScanner.XML_TEXT };
 	}
 
@@ -145,8 +145,6 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 				WorkflowPartitionScanner.XML_DOCTYPE);
 		formatter.setFormattingStrategy(processingInstructionStrategy,
 				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
-		formatter.setFormattingStrategy(textStrategy,
-				WorkflowPartitionScanner.XML_CDATA);
 		formatter.setFormattingStrategy(formattingStrategy,
 				WorkflowPartitionScanner.XML_START_TAG);
 		formatter.setFormattingStrategy(formattingStrategy,
@@ -196,8 +194,8 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_TEXT);
 
 		dr = new DefaultDamagerRepairer(getCDataScanner());
-		reconciler.setDamager(dr, WorkflowPartitionScanner.XML_CDATA);
-		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_CDATA);
+		reconciler.setDamager(dr, WorkflowPartitionScanner.XML_STRING);
+		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_STRING);
 
 		final TextAttribute textAttribute =
 				new TextAttribute(colorManager
