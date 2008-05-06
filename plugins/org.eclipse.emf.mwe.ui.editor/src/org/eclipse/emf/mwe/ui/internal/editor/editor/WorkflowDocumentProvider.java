@@ -20,7 +20,7 @@ import org.eclipse.ui.editors.text.FileDocumentProvider;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowDocumentProvider extends FileDocumentProvider {
 
@@ -37,7 +37,6 @@ public class WorkflowDocumentProvider extends FileDocumentProvider {
 									WorkflowPartitionScanner.XML_END_TAG,
 									WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
 									WorkflowPartitionScanner.XML_DOCTYPE,
-									WorkflowPartitionScanner.XML_STRING,
 									WorkflowPartitionScanner.XML_TEXT,
 									WorkflowPartitionScanner.XML_COMMENT });
 			partitioner.connect(document);
