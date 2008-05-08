@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -34,7 +34,22 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 	public ElementAnalyzerRegistry(final IFile file, final IDocument document,
 			final PropertyStore propertyStore) {
 		super(file, document, propertyStore);
-		initRegistry();
+		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(
+				file, document, propertyStore));
+		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
+				new AssignmentPropertyAnalyzer(file, document, propertyStore));
 	}
 
 	/**
@@ -57,24 +72,5 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 					.getStartLine(), element.getStartElementRange()
 					.getStartColumn(), ERROR_MSG + " '"
 					+ element.getElementTypeString() + "'!", true);
-	}
-
-	private void initRegistry() {
-		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
-				file, document, propertyStore));
-		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
-				document, propertyStore));
-		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
-				file, document, propertyStore));
-		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file,
-				document, propertyStore));
-		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file,
-				document, propertyStore));
-		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(
-				file, document, propertyStore));
-		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file,
-				document, propertyStore));
-		map.put(WorkflowElementType.ASSIGNMENTPROPERTY,
-				new AssignmentPropertyAnalyzer(file, document, propertyStore));
 	}
 }
