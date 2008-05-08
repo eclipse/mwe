@@ -21,13 +21,14 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public final class MarkerManager {
 
@@ -75,9 +76,13 @@ public final class MarkerManager {
 		final Map map = new HashMap();
 		Integer lineNumber;
 		try {
-			lineNumber = document.getLineOfOffset(range.getStartOffset());
+			if (range.getStartOffset() <= document.getLength()) {
+				lineNumber = document.getLineOfOffset(range.getStartOffset());
+			} else {
+				lineNumber = document.getNumberOfLines();
+			}
 		} catch (final BadLocationException e) {
-			e.printStackTrace();
+			Log.logError("Bad document location", e);
 			return;
 		}
 
