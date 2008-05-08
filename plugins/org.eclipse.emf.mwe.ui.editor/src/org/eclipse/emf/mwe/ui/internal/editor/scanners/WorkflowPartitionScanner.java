@@ -22,9 +22,10 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class WorkflowPartitionScanner extends RuleBasedPartitionScanner {
+
 	public static final String XML_START_TAG = "__xml_start_tag";
 
 	public static final String XML_END_TAG = "__xml_end_tag";
@@ -57,7 +58,7 @@ public class WorkflowPartitionScanner extends RuleBasedPartitionScanner {
 		rules[3] = new MultiLineRule("</", ">", endTag);
 		rules[4] = new StartTagRule(startTag);
 		rules[5] = new MultiLineRule("<!DOCTYPE", ">", docType);
-		rules[7] = new TextPredicateRule(text);
+		rules[6] = new TextPredicateRule(text);
 
 		setPredicateRules(rules);
 	}
