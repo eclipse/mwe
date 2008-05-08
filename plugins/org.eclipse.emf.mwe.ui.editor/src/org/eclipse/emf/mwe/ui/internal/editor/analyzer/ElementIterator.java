@@ -24,9 +24,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ElementIterator {
+
+	private static final String[] EXCLUDED_TAGS = { "workflowfile" };
 
 	private final IFile file;
 
@@ -98,7 +100,18 @@ public class ElementIterator {
 
 	private List<WorkflowElement> flatten(final WorkflowElement root) {
 		final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
-		list.add(root);
+		boolean isRootExcluded = false;
+		for (final String tag : EXCLUDED_TAGS) {
+			if (root.getName().equals(tag)) {
+				isRootExcluded = true;
+				break;
+			}
+		}
+
+		if (!isRootExcluded) {
+			list.add(root);
+		}
+
 		for (int i = 0; i < list.size(); i++) {
 			addChild(list, list.get(i));
 		}
