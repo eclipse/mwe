@@ -55,7 +55,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -181,8 +181,8 @@ public class WorkflowEditor extends TextEditor {
 		} catch (final SAXException e) {
 			if (e instanceof SAXParseException) {
 				final SAXParseException ex = (SAXParseException) e;
-				final int line = ex.getLineNumber();
-				final int column = ex.getColumnNumber();
+				final int line = ex.getLineNumber() - 1;
+				final int column = ex.getColumnNumber() - 1;
 				final String msg = ex.getMessage();
 				createMarker(document, msg, line, column);
 			}
