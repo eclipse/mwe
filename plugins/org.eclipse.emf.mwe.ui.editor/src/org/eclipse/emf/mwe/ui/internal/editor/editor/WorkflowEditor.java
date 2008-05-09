@@ -55,7 +55,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -76,6 +76,8 @@ public class WorkflowEditor extends TextEditor {
 	private List<WorkflowElement> elementList;
 
 	private List<WorkflowAttribute> attributeList;
+
+	private List<String> propertyNameList;
 
 	public WorkflowEditor() {
 		super();
@@ -141,6 +143,15 @@ public class WorkflowEditor extends TextEditor {
 	 */
 	public List<WorkflowElement> getElementList() {
 		return elementList;
+	}
+
+	/**
+	 * Returns the value of field <code>propertyNameList</code>.
+	 * 
+	 * @return value of <code>propertyNameList</code>.
+	 */
+	public List<String> getPropertyNameList() {
+		return propertyNameList;
 	}
 
 	/**
@@ -226,6 +237,7 @@ public class WorkflowEditor extends TextEditor {
 		iterator.checkValidity(getRootElement());
 		elementList = iterator.getElementList();
 		attributeList = iterator.getAttributeList();
+		propertyNameList = iterator.getPropertyNameList();
 	}
 
 	@Override

@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ElementIterator {
 
@@ -34,12 +34,14 @@ public class ElementIterator {
 
 	private final IDocument document;
 
-	private final IElementAnalyzer analyzer;
+	private final ElementAnalyzerRegistry analyzer;
 
 	private List<WorkflowElement> elementList;
 
 	private final List<WorkflowAttribute> attributeList =
 			new ArrayList<WorkflowAttribute>();
+
+	private List<String> propertyNameList;
 
 	public ElementIterator(final IFile file, final IDocument document) {
 		this.file = file;
@@ -61,6 +63,7 @@ public class ElementIterator {
 		for (final WorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
 		}
+		propertyNameList = analyzer.getPropertyNameList();
 		referenceAnalyzer.markUnresolvedReferences();
 	}
 
@@ -83,6 +86,15 @@ public class ElementIterator {
 			throw new IllegalStateException();
 
 		return elementList;
+	}
+
+	/**
+	 * Returns the value of field <code>propertyNameList</code>.
+	 * 
+	 * @return value of <code>propertyNameList</code>.
+	 */
+	public List<String> getPropertyNameList() {
+		return propertyNameList;
 	}
 
 	private void addChild(final List<WorkflowElement> list,

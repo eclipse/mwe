@@ -28,7 +28,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractContentProposalComputer implements
@@ -112,7 +112,9 @@ public abstract class AbstractContentProposalComputer implements
 						c = partitionText.charAt(start);
 					}
 				}
-				start++;
+				if (start < 0) {
+					start = 0;
+				}
 
 				int end = index;
 				c = partitionText.charAt(end);
@@ -175,19 +177,28 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected boolean isString(final int documentOffset,
 			final IDocument document) {
-		final boolean isString = false;
 		try {
 			final ITypedRegion region = document.getPartition(documentOffset);
-
 			final int partitionOffset = region.getOffset();
+			int offset = documentOffset - 1;
+			char quoteChar = 0;
+			int quoteCount = 0;
 
-			final int readLength = documentOffset - partitionOffset;
-			tagScanner.setRange(document, partitionOffset, readLength);
+			while (offset >= partitionOffset) {
+				final char ch = document.getChar(offset);
+				if (quoteChar > 0 && ch == quoteChar || quoteChar == 0
+						&& (ch == '"' || ch == '\'')) {
+					if (quoteChar == 0) {
+						quoteChar = ch;
+					}
+					quoteCount++;
+				}
+				if (ch == '<' || ch == ' ')
+					break;
 
-			final boolean textReached = false;
-
-			final IToken token = tagScanner.nextToken();
-			return token != Token.EOF && token instanceof TextAttribute;
+				offset--;
+			}
+			return quoteCount % 2 > 0;
 		} catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 		}

@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.util.HashMap;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -21,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -72,5 +73,9 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 					.getStartLine(), element.getStartElementRange()
 					.getStartColumn(), ERROR_MSG + " '"
 					+ element.getElementTypeString() + "'!", true);
+	}
+
+	public List<String> getPropertyNameList() {
+		return propertyStore.getNames();
 	}
 }

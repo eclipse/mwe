@@ -11,12 +11,14 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class PropertyStore {
 
@@ -38,5 +40,11 @@ public class PropertyStore {
 			return propertyNames.contains(propertyName);
 		else
 			return false;
+	}
+
+	public List<String> getNames() {
+		final List<String> nameList = new ArrayList<String>();
+		nameList.addAll(propertyNames);
+		return nameList;
 	}
 }
