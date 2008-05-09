@@ -17,15 +17,13 @@ import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class TagContentProposalComputer extends
@@ -87,24 +85,8 @@ public class TagContentProposalComputer extends
 		return resultSet;
 	}
 
-	private ExtendedCompletionProposal createProposal(final String text,
-			final int offset) {
-		int o = offset;
-		try {
-			if (o > 0 && document.getChar(o - 1) != '>') {
-				o--;
-			}
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
-		final TextInfo currentText = currentText(document, o);
-		return new ExtendedCompletionProposal(text, currentText
-				.getDocumentOffset(), currentText.getText().length(), text
-				.length());
-	}
-
-	private String createProposalText(final String name, final int offset) {
+	@Override
+	protected String createProposalText(final String name, final int offset) {
 		String text = null;
 		if (useContractedElementCompletion(offset, document)) {
 			text = name;
@@ -112,26 +94,5 @@ public class TagContentProposalComputer extends
 			text = "<" + name + ">";
 		}
 		return text;
-	}
-
-	private Set<ICompletionProposal> removeNonMatchingEntries(
-			final Set<ICompletionProposal> proposalSet, final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
-		try {
-			if (offset > 0 && document.getChar(offset - 1) != '>') {
-				final TextInfo currentText = currentText(document, offset - 1);
-				for (final ICompletionProposal p : proposalSet) {
-					if (p.getDisplayString().startsWith(currentText.getText())) {
-						resultSet.add(p);
-					}
-				}
-			} else
-				return proposalSet;
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
-		return resultSet;
 	}
 }

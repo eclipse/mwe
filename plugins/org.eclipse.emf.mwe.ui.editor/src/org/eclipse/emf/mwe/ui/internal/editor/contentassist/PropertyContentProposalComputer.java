@@ -21,7 +21,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -53,6 +53,17 @@ public class PropertyContentProposalComputer extends
 	 */
 	public boolean isApplicable(final int offset) {
 		return isString(offset, document);
+	}
+
+	@Override
+	protected String createProposalText(final String name, final int offset) {
+		String text = null;
+		if (useContractedElementCompletion(offset, document)) {
+			text = name;
+		} else {
+			text = "${" + name + "}";
+		}
+		return text;
 	}
 
 }

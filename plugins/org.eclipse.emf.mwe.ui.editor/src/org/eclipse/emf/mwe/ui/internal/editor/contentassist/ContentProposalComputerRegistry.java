@@ -47,4 +47,8 @@ public class ContentProposalComputerRegistry extends
 		return true;
 	}
 
+	protected String createProposalText(final String name, final int offset) {
+		return null;
+	}
+
 }

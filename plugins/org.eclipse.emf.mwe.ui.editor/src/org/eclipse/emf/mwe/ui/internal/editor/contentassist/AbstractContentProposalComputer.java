@@ -11,6 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -18,17 +21,26 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.TextAttribute;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public abstract class AbstractContentProposalComputer implements
 		IContentProposalComputer {
+
+	protected static Set<Character> terminalSet;
+
+	protected static Set<Character> extendedTerminalSet;
+
+	private static final char[] TERMINALS = { '"', '\'' };
+
+	private static final char[] EXTENDED_TERMINALS = { '<', '>' };
 
 	protected WorkflowEditor editor;
 
@@ -41,6 +53,34 @@ public abstract class AbstractContentProposalComputer implements
 		this.editor = editor;
 		this.document = document;
 		this.tagScanner = tagScanner;
+	}
+
+	protected ExtendedCompletionProposal createProposal(final String text,
+			final int offset) {
+		int o = offset;
+		try {
+			if (o > 0 && document.getChar(o - 1) != '>') {
+				o--;
+			}
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
+
+		final TextInfo currentText = currentText(document, o);
+		return new ExtendedCompletionProposal(text, currentText
+				.getDocumentOffset(), currentText.getText().length(), text
+				.length());
+	}
+
+	protected abstract String createProposalText(final String name,
+			final int offset);
+
+	protected Set<Character> createTerminalSet(final char[] charArray) {
+		final Set<Character> resultSet = new HashSet<Character>();
+		for (final Character c : charArray) {
+			resultSet.add(c);
+		}
+		return resultSet;
 	}
 
 	protected TextInfo currentText(final IDocument document,
@@ -57,8 +97,8 @@ public abstract class AbstractContentProposalComputer implements
 
 			char c = partitionText.charAt(index);
 
-			if (Character.isWhitespace(c)
-					|| Character.isWhitespace(partitionText.charAt(index - 1)))
+			if (Character.isWhitespace(c) || index > 0
+					&& Character.isWhitespace(partitionText.charAt(index - 1)))
 				return new TextInfo("", documentOffset, true);
 			else if (c == '<')
 				return new TextInfo("", documentOffset, true);
@@ -66,7 +106,7 @@ public abstract class AbstractContentProposalComputer implements
 				int start = index;
 				c = partitionText.charAt(start);
 
-				while (!Character.isWhitespace(c) && start >= 0) {
+				while (!isTerminal(terminalSet(), c) && start >= 0) {
 					start--;
 					if (start >= 0) {
 						c = partitionText.charAt(start);
@@ -77,7 +117,8 @@ public abstract class AbstractContentProposalComputer implements
 				int end = index;
 				c = partitionText.charAt(end);
 
-				while (!Character.isWhitespace(c) && end < partitionLength - 1) {
+				while (!isTerminal(terminalSet(), c)
+						&& end < partitionLength - 1) {
 					end++;
 					c = partitionText.charAt(end);
 				}
@@ -91,6 +132,15 @@ public abstract class AbstractContentProposalComputer implements
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	protected Set<Character> extendedTerminalSet() {
+		if (extendedTerminalSet == null) {
+			extendedTerminalSet = new HashSet<Character>();
+			extendedTerminalSet.addAll(terminalSet());
+			extendedTerminalSet.addAll(createTerminalSet(EXTENDED_TERMINALS));
+		}
+		return extendedTerminalSet;
 	}
 
 	protected boolean isAttribute(final int documentOffset,
@@ -142,6 +192,43 @@ public abstract class AbstractContentProposalComputer implements
 			Log.logError("Bad document location", e);
 		}
 		return false;
+	}
+
+	protected boolean isTerminal(final Set<Character> terminals, final char ch) {
+		if (terminals == null)
+			throw new IllegalArgumentException();
+
+		return terminals.contains(ch) || Character.isWhitespace(ch);
+	}
+
+	protected Set<ICompletionProposal> removeNonMatchingEntries(
+			final Set<ICompletionProposal> proposalSet, final int offset) {
+		final Set<ICompletionProposal> resultSet =
+				new HashSet<ICompletionProposal>();
+		try {
+			if (offset > 0
+					&& !isTerminal(extendedTerminalSet(), document
+							.getChar(offset - 1))) {
+				final TextInfo currentText = currentText(document, offset - 1);
+				for (final ICompletionProposal p : proposalSet) {
+					if (p.getDisplayString().startsWith(currentText.getText())) {
+						resultSet.add(p);
+					}
+				}
+			} else
+				return proposalSet;
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
+
+		return resultSet;
+	}
+
+	protected Set<Character> terminalSet() {
+		if (terminalSet == null) {
+			terminalSet = createTerminalSet(TERMINALS);
+		}
+		return terminalSet;
 	}
 
 	protected boolean useContractedElementCompletion(final int documentOffset,

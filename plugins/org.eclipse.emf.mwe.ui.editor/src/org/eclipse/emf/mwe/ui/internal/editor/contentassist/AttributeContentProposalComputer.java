@@ -23,7 +23,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -75,4 +75,8 @@ public class AttributeContentProposalComputer extends
 		return isAttribute(offset, document);
 	}
 
+	@Override
+	protected String createProposalText(final String name, final int offset) {
+		return name;
+	}
 }
