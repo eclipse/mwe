@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class ElementIterator {
 
@@ -41,12 +41,12 @@ public class ElementIterator {
 	private final List<WorkflowAttribute> attributeList =
 			new ArrayList<WorkflowAttribute>();
 
-	private List<String> propertyNameList;
+	private final PropertyStore propertyStore = new PropertyStore();
 
 	public ElementIterator(final IFile file, final IDocument document) {
 		this.file = file;
 		this.document = document;
-		analyzer = new ElementAnalyzerRegistry(file, document, null);
+		analyzer = new ElementAnalyzerRegistry(file, document, propertyStore);
 	}
 
 	public void checkValidity(final WorkflowElement root) {
@@ -63,7 +63,6 @@ public class ElementIterator {
 		for (final WorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
 		}
-		propertyNameList = analyzer.getPropertyNameList();
 		referenceAnalyzer.markUnresolvedReferences();
 	}
 
@@ -82,9 +81,6 @@ public class ElementIterator {
 	 * @return value of <code>elementList</code>.
 	 */
 	public List<WorkflowElement> getElementList() {
-		if (elementList == null)
-			throw new IllegalStateException();
-
 		return elementList;
 	}
 
@@ -94,7 +90,7 @@ public class ElementIterator {
 	 * @return value of <code>propertyNameList</code>.
 	 */
 	public List<String> getPropertyNameList() {
-		return propertyNameList;
+		return analyzer.getPropertyNameList();
 	}
 
 	private void addChild(final List<WorkflowElement> list,
@@ -122,6 +118,8 @@ public class ElementIterator {
 
 		if (!isRootExcluded) {
 			list.add(root);
+		} else {
+			list.add(root.getChild(0));
 		}
 
 		for (int i = 0; i < list.size(); i++) {

@@ -22,7 +22,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -59,7 +59,7 @@ public class PropertyContentProposalComputer extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
 	public boolean isApplicable(final int offset) {
-		return isString(offset, document);
+		return isString(offset);
 	}
 
 	@Override
@@ -71,6 +71,31 @@ public class PropertyContentProposalComputer extends
 			text = "${" + name + "}";
 		}
 		return text;
+	}
+
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>removeNonMatchingEntries</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#removeNonMatchingEntries(java.util.Set,
+	 *      int)
+	 */
+	@Override
+	protected Set<ICompletionProposal> removeNonMatchingEntries(
+			final Set<ICompletionProposal> proposalSet, final int offset) {
+		final Set<ICompletionProposal> resultSet =
+				new HashSet<ICompletionProposal>();
+		final int o = offset > 0 ? offset - 1 : offset;
+		final TextInfo currentText = currentText(document, o);
+		final String startText = currentText.getText();
+		for (final ICompletionProposal p : proposalSet) {
+			if ("".equals(startText)
+					|| p.getDisplayString().startsWith(startText)) {
+				resultSet.add(p);
+			}
+		}
+
+		return resultSet;
 	}
 
 }

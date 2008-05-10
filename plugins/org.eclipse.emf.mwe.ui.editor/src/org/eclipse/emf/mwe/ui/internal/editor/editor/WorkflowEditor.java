@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
@@ -35,6 +38,7 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
@@ -43,7 +47,6 @@ import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
@@ -55,7 +58,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -70,6 +73,8 @@ public class WorkflowEditor extends TextEditor {
 	private BreakpointActionGroup actionGroup;
 
 	private WorkflowContentOutlinePage outlinePage;
+
+	private Job job;
 
 	private WorkflowElement rootElement;
 
@@ -227,7 +232,11 @@ public class WorkflowEditor extends TextEditor {
 
 	public void validateAndMark() {
 		final IDocument document = getInputDocument();
-		setRootElement(parseRootElement(document));
+		final WorkflowElement newRootElement = parseRootElement(document);
+
+		if (newRootElement != null) {
+			setRootElement(newRootElement);
+		}
 
 		if (getRootElement() == null)
 			return;
@@ -246,11 +255,13 @@ public class WorkflowEditor extends TextEditor {
 		actionGroup = new BreakpointActionGroup(this);
 		final ResourceBundle bundle =
 				Activator.getDefault().getResourceBundle();
-		setAction("QuickFormat", new TextOperationAction(bundle,
-				"QuickFormat.", this, ISourceViewer.FORMAT));
+		IAction a =
+				new TextOperationAction(bundle, "QuickFormat.", this,
+						ISourceViewer.FORMAT);
+		setAction("QuickFormat", a);
 
 		// content assist
-		IAction a =
+		a =
 				new TextOperationAction(bundle, "ContentAssistProposal.",
 						this, ISourceViewer.CONTENTASSIST_PROPOSALS);
 		a
@@ -272,21 +283,29 @@ public class WorkflowEditor extends TextEditor {
 		final ISourceViewer viewer =
 				new ProjectionViewer(parent, ruler, getOverviewRuler(),
 						isOverviewRulerVisible(), styles);
-
 		getSourceViewerDecorationSupport(viewer);
-		return viewer;
-	}
+		job = new Job("parsing document") {
 
-	/**
-	 * This method overrides the implementation of <code>doSetInput</code>
-	 * inherited from the superclass.
-	 * 
-	 * @see org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput)
-	 */
-	@Override
-	protected void doSetInput(final IEditorInput input) throws CoreException {
-		super.doSetInput(input);
-		validateAndMark();
+			@Override
+			protected IStatus run(final IProgressMonitor monitor) {
+				validateAndMark();
+				return Status.OK_STATUS;
+			}
+		};
+		viewer.addTextListener(new ITextListener() {
+
+			public void textChanged(
+					final org.eclipse.jface.text.TextEvent event) {
+				if (event.getDocumentEvent() != null) {
+					job.cancel();
+					job.schedule();
+				}
+			}
+
+		});
+		job.cancel();
+		job.schedule();
+		return viewer;
 	}
 
 	@Override

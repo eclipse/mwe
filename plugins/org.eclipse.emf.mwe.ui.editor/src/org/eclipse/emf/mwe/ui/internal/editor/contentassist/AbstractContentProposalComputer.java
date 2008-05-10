@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
-import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
@@ -28,11 +27,15 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public abstract class AbstractContentProposalComputer implements
 		IContentProposalComputer {
+
+	private enum TextType {
+		TAG, ATTRIBUTE, STRING, UNDEFINED
+	};
 
 	protected static Set<Character> terminalSet;
 
@@ -53,6 +56,47 @@ public abstract class AbstractContentProposalComputer implements
 		this.editor = editor;
 		this.document = document;
 		this.tagScanner = tagScanner;
+	}
+
+	protected TextType computeType(final int offset) {
+		TextType type = TextType.UNDEFINED;
+		try {
+			final ITypedRegion region = document.getPartition(offset);
+			final int partitionOffset = region.getOffset();
+			if (offset > partitionOffset) {
+				char quoteChar = 0;
+				int quoteCount = 0;
+				int o = offset - 1;
+				char ch = 0;
+				while (o >= partitionOffset) {
+					ch = document.getChar(o);
+					if (quoteChar > 0 && ch == quoteChar || quoteChar == 0
+							&& (ch == '"' || ch == '\'')) {
+						if (quoteChar == 0) {
+							quoteChar = ch;
+						}
+						quoteCount++;
+					}
+					if (ch == '<' || Character.isWhitespace(ch))
+						break;
+
+					o--;
+				}
+
+				if (quoteCount % 2 > 0) {
+					type = TextType.STRING;
+				} else if (Character.isWhitespace(ch)) {
+					type = TextType.ATTRIBUTE;
+				} else if (ch == '<') {
+					type = TextType.TAG;
+				}
+			} else {
+				type = TextType.TAG;
+			}
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
+		return type;
 	}
 
 	protected ExtendedCompletionProposal createProposal(final String text,
@@ -106,21 +150,22 @@ public abstract class AbstractContentProposalComputer implements
 				int start = index;
 				c = partitionText.charAt(start);
 
+				boolean moved = false;
 				while (!isTerminal(terminalSet(), c) && start >= 0) {
+					moved = true;
 					start--;
 					if (start >= 0) {
 						c = partitionText.charAt(start);
 					}
 				}
-				if (start < 0) {
-					start = 0;
+				if (moved) {
+					start++;
 				}
 
 				int end = index;
 				c = partitionText.charAt(end);
 
-				while (!isTerminal(terminalSet(), c)
-						&& end < partitionLength - 1) {
+				while (!isTerminal(terminalSet(), c) && end < documentOffset) {
 					end++;
 					c = partitionText.charAt(end);
 				}
@@ -145,64 +190,16 @@ public abstract class AbstractContentProposalComputer implements
 		return extendedTerminalSet;
 	}
 
-	protected boolean isAttribute(final int documentOffset,
-			final IDocument document) {
-		boolean isAttribute = false;
-		try {
-			final ITypedRegion region = document.getPartition(documentOffset);
-
-			final int partitionOffset = region.getOffset();
-
-			final int readLength = documentOffset - partitionOffset;
-			tagScanner.setRange(document, partitionOffset, readLength);
-
-			boolean textReached = false;
-
-			IToken token = null;
-			while ((token = tagScanner.nextToken()) != Token.EOF) {
-				if (token.getData() instanceof TextAttribute) {
-					textReached = true;
-					continue;
-				}
-
-				if (textReached && token.isWhitespace()) {
-					isAttribute = true;
-				}
-			}
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-		return isAttribute;
+	protected boolean isAttribute(final int documentOffset) {
+		return computeType(documentOffset) == TextType.ATTRIBUTE;
 	}
 
-	protected boolean isString(final int documentOffset,
-			final IDocument document) {
-		try {
-			final ITypedRegion region = document.getPartition(documentOffset);
-			final int partitionOffset = region.getOffset();
-			int offset = documentOffset - 1;
-			char quoteChar = 0;
-			int quoteCount = 0;
+	protected boolean isString(final int documentOffset) {
+		return computeType(documentOffset) == TextType.STRING;
+	}
 
-			while (offset >= partitionOffset) {
-				final char ch = document.getChar(offset);
-				if (quoteChar > 0 && ch == quoteChar || quoteChar == 0
-						&& (ch == '"' || ch == '\'')) {
-					if (quoteChar == 0) {
-						quoteChar = ch;
-					}
-					quoteCount++;
-				}
-				if (ch == '<' || ch == ' ')
-					break;
-
-				offset--;
-			}
-			return quoteCount % 2 > 0;
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-		return false;
+	protected boolean isTag(final int documentOffset) {
+		return computeType(documentOffset) == TextType.TAG;
 	}
 
 	protected boolean isTerminal(final Set<Character> terminals, final char ch) {

@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -53,13 +53,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	public DefaultAnalyzer(final IFile file, final IDocument document,
 			final PropertyStore propertyStore) {
+		if (file == null || document == null || propertyStore == null)
+			throw new IllegalArgumentException();
+
 		this.file = file;
 		this.document = document;
-		if (propertyStore == null) {
-			this.propertyStore = new PropertyStore();
-		} else {
-			this.propertyStore = propertyStore;
-		}
+		this.propertyStore = propertyStore;
 	}
 
 	/**
@@ -123,8 +122,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	protected void checkAttributes(final WorkflowElement element,
 			final Class<?> mappedClass) {
 		for (final WorkflowAttribute attr : element.getAttributes()) {
-			if ((!attr.getName().equals(CLASS_ATTRIBUTE))
-					&& (!attr.getName().equals(VALUE_ATTRIBUTE))) {
+			if (!attr.getName().equals(CLASS_ATTRIBUTE)
+					&& !attr.getName().equals(VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedClass, element, attr);
 			}
 		}

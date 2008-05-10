@@ -23,7 +23,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class TagContentProposalComputer extends
@@ -70,7 +70,18 @@ public class TagContentProposalComputer extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
 	public boolean isApplicable(final int offset) {
-		return !isAttribute(offset, document) && !isString(offset, document);
+		return isTag(offset);
+	}
+
+	@Override
+	protected String createProposalText(final String name, final int offset) {
+		String text = null;
+		if (useContractedElementCompletion(offset, document)) {
+			text = name;
+		} else {
+			text = "<" + name + ">";
+		}
+		return text;
 	}
 
 	private Set<ICompletionProposal> createDefaultProposals(final int offset) {
@@ -83,16 +94,5 @@ public class TagContentProposalComputer extends
 			resultSet.add(proposal);
 		}
 		return resultSet;
-	}
-
-	@Override
-	protected String createProposalText(final String name, final int offset) {
-		String text = null;
-		if (useContractedElementCompletion(offset, document)) {
-			text = name;
-		} else {
-			text = "<" + name + ">";
-		}
-		return text;
 	}
 }
