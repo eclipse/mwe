@@ -11,6 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoEditStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
@@ -23,6 +27,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowPartitionScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTextScanner;
+import org.eclipse.jface.text.DefaultIndentLineAutoEditStrategy;
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.ITextHover;
@@ -45,7 +51,7 @@ import org.eclipse.jface.text.source.SourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 
@@ -80,6 +86,30 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 	@Override
 	public IAnnotationHover getAnnotationHover(final ISourceViewer sourceViewer) {
 		return new ProblemHover(sourceViewer);
+	}
+
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAutoEditStrategies</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getAutoEditStrategies(org.eclipse.jface.text.source.ISourceViewer,
+	 *      java.lang.String)
+	 */
+	@Override
+	public IAutoEditStrategy[] getAutoEditStrategies(
+			final ISourceViewer sourceViewer, final String contentType) {
+		final IAutoEditStrategy[] inheritedStrategies =
+				super.getAutoEditStrategies(sourceViewer, contentType);
+		final List<IAutoEditStrategy> strategies =
+				new LinkedList<IAutoEditStrategy>();
+		for (final IAutoEditStrategy s : inheritedStrategies) {
+			strategies.add(s);
+		}
+		strategies.add(new DefaultIndentLineAutoEditStrategy());
+		strategies.add(new WorkflowAutoEditStrategy());
+		final IAutoEditStrategy[] res =
+				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
+		return res;
 	}
 
 	@Override
