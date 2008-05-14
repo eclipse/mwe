@@ -17,7 +17,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.logging;
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.jdt.core.JavaModelException;
 
 public final class Log {
@@ -52,7 +52,7 @@ public final class Log {
 
 	private static IStatus createStatus(final int severity, final int code,
 			final String message, final Throwable exception) {
-		return new Status(severity, Activator.PLUGIN_ID, code, message != null
+		return new Status(severity, WorkflowEditorPlugin.PLUGIN_ID, code, message != null
 				? message : "", exception);
 	}
 
@@ -63,7 +63,7 @@ public final class Log {
 
 	private static void log(final IStatus status) {
 		if (log == null) {
-			log = Activator.getDefault().getLog();
+			log = WorkflowEditorPlugin.getDefault().getLog();
 		}
 		log.log(status);
 	}

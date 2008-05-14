@@ -2,7 +2,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
 import java.util.ResourceBundle;
 
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
@@ -17,7 +17,7 @@ import org.eclipse.ui.texteditor.RetargetTextEditorAction;
  * Manages the installation and deinstallation of actions for the editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class WorkflowEditorContributor extends
 		BasicTextEditorActionContributor {
@@ -36,7 +36,7 @@ public class WorkflowEditorContributor extends
 	public WorkflowEditorContributor() {
 		super();
 		final ResourceBundle bundle =
-				Activator.getDefault().getResourceBundle();
+				WorkflowEditorPlugin.getDefault().getResourceBundle();
 
 		contentAssistProposal =
 				new RetargetTextEditorAction(bundle, "ContentAssistProposal.");

@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
@@ -58,7 +58,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -87,7 +87,7 @@ public class WorkflowEditor extends TextEditor {
 	public WorkflowEditor() {
 		super();
 		colorManager = new ColorManager();
-		setSourceViewerConfiguration(new WorkflowEditorConfiguration(Activator
+		setSourceViewerConfiguration(new WorkflowEditorConfiguration(WorkflowEditorPlugin
 				.getDefault(), colorManager, this));
 		setDocumentProvider(new WorkflowDocumentProvider());
 	}
@@ -254,7 +254,7 @@ public class WorkflowEditor extends TextEditor {
 		super.createActions();
 		actionGroup = new BreakpointActionGroup(this);
 		final ResourceBundle bundle =
-				Activator.getDefault().getResourceBundle();
+				WorkflowEditorPlugin.getDefault().getResourceBundle();
 		IAction a =
 				new TextOperationAction(bundle, "QuickFormat.", this,
 						ISourceViewer.FORMAT);
@@ -378,7 +378,7 @@ public class WorkflowEditor extends TextEditor {
 		}
 	}
 
-	private Activator getPlugin() {
-		return Activator.getDefault();
+	private WorkflowEditorPlugin getPlugin() {
+		return WorkflowEditorPlugin.getDefault();
 	}
 }

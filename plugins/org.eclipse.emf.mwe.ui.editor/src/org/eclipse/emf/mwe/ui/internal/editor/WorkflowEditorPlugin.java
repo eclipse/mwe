@@ -27,9 +27,9 @@ import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
-public class Activator extends AbstractUIPlugin {
+public class WorkflowEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * The plug-in ID
@@ -42,7 +42,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The shared instance
 	 */
-	private static Activator plugin;
+	private static WorkflowEditorPlugin plugin;
 
 	private IPreferenceStore combinedPreferenceStore;
 
@@ -54,7 +54,7 @@ public class Activator extends AbstractUIPlugin {
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public WorkflowEditorPlugin() {
 		plugin = this;
 		try {
 			resourceBundle =
@@ -73,7 +73,7 @@ public class Activator extends AbstractUIPlugin {
 	 * 
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static WorkflowEditorPlugin getDefault() {
 		return plugin;
 	}
 
@@ -102,7 +102,7 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static String getResourceString(final String key) {
 		final ResourceBundle bundle =
-				Activator.getDefault().getResourceBundle();
+				WorkflowEditorPlugin.getDefault().getResourceBundle();
 		try {
 			return bundle != null ? bundle.getString(key) : key;
 		} catch (final MissingResourceException e) {

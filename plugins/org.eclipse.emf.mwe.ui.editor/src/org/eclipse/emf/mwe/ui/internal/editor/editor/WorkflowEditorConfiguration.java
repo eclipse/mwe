@@ -14,7 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoTagCompletionStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
@@ -52,7 +52,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -72,9 +72,9 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private final WorkflowEditor editor;
 
-	private final Activator plugin;
+	private final WorkflowEditorPlugin plugin;
 
-	public WorkflowEditorConfiguration(final Activator plugin,
+	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin,
 			final ColorManager colorManager, final WorkflowEditor editor) {
 		super(plugin.getCombinedPreferenceStore());
 		this.plugin = plugin;

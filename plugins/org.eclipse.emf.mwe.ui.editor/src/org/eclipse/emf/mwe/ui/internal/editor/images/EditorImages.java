@@ -16,7 +16,7 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -24,7 +24,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public final class EditorImages {
 
@@ -50,7 +50,7 @@ public final class EditorImages {
 	static {
 		final String pathSuffix = "icons/"; //$NON-NLS-1$
 		EditorImages.iconBaseURL =
-				Activator.getDefault().getBundle().getEntry(pathSuffix);
+				WorkflowEditorPlugin.getDefault().getBundle().getEntry(pathSuffix);
 		initializeImageRegistry();
 	}
 
@@ -108,7 +108,7 @@ public final class EditorImages {
 	 */
 	public static ImageRegistry initializeImageRegistry() {
 		EditorImages.imageRegistry =
-				new ImageRegistry(Activator.getStandardDisplay());
+				new ImageRegistry(WorkflowEditorPlugin.getStandardDisplay());
 		declareImages();
 		return EditorImages.imageRegistry;
 	}
