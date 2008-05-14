@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
+import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoIndentStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoTagCompletionStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
@@ -52,7 +53,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -112,6 +113,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		}
 		strategies.add(new DefaultIndentLineAutoEditStrategy());
 		strategies.add(new WorkflowAutoTagCompletionStrategy());
+		strategies.add(new WorkflowAutoIndentStrategy());
 		final IAutoEditStrategy[] res =
 				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
 		return res;
