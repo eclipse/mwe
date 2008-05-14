@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentCommand;
-import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 
 /**
@@ -26,11 +25,8 @@ import org.eclipse.jface.text.IDocument;
  * @version $Revision: 1.1 $
  */
 
-public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
-
-	private static final String END_TAG_PREFIX = "</";
-
-	private static final String LEAF_TAG_SUFFIX = "/>";
+public class WorkflowAutoTagCompletionStrategy extends
+		AbstractWorkflowAutoEditStrategy {
 
 	private static final String TRIGGER_STRING = END_TAG_PREFIX;
 
@@ -41,7 +37,7 @@ public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
 
 	private static String triggerBuffer;
 
-	public WorkflowAutoEditStrategy() {
+	public WorkflowAutoTagCompletionStrategy() {
 		resetBuffer();
 	}
 
@@ -56,7 +52,7 @@ public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
 			final DocumentCommand command) {
 		checkTrigger(command.text);
 		if (isTriggered()) {
-			final String tag = getTag(document, command.offset);
+			final String tag = getTagName(document, command.offset);
 			if (tag != null) {
 				fillInTag(command, tag);
 				resetBuffer();
@@ -88,7 +84,7 @@ public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
 		command.text = "/" + tag + ">";
 	}
 
-	private String getTag(final IDocument document, final int offset) {
+	private String getTagName(final IDocument document, final int offset) {
 		String previousText;
 		try {
 			previousText = document.get(0, offset - 1);
@@ -125,24 +121,6 @@ public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
 			return null;
 	}
 
-	private boolean isEndTag(final String fullTag) {
-		return fullTag.length() >= 4 && fullTag.startsWith(END_TAG_PREFIX);
-	}
-
-	private boolean isLeafTag(final String fullTag) {
-		return fullTag.length() >= 4 && fullTag.endsWith(LEAF_TAG_SUFFIX);
-	}
-
-	private boolean isStartTag(final String fullTag) {
-		return !isEndTag(fullTag) && !isLeafTag(fullTag);
-	}
-
-	private boolean isTag(final String fullTag) {
-		return fullTag != null && fullTag.length() >= 3
-				&& fullTag.charAt(0) == '<'
-				&& fullTag.charAt(fullTag.length() - 1) == '>';
-	}
-
 	private boolean isTriggered() {
 		return triggerBuffer.equals(TRIGGER_STRING);
 	}
@@ -150,10 +128,5 @@ public class WorkflowAutoEditStrategy implements IAutoEditStrategy {
 	private void resetBuffer() {
 		characterCount = 0;
 		triggerBuffer = "";
-	}
-
-	private String trimTag(final String fullTag) {
-		final String bareTag = fullTag.substring(1, fullTag.length() - 1);
-		return "<" + bareTag.trim() + ">";
 	}
 }
