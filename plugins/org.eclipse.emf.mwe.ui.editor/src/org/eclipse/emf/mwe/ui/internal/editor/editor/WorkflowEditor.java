@@ -58,7 +58,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -87,8 +87,8 @@ public class WorkflowEditor extends TextEditor {
 	public WorkflowEditor() {
 		super();
 		colorManager = new ColorManager();
-		setSourceViewerConfiguration(new WorkflowEditorConfiguration(
-				colorManager, this));
+		setSourceViewerConfiguration(new WorkflowEditorConfiguration(Activator
+				.getDefault(), colorManager, this));
 		setDocumentProvider(new WorkflowDocumentProvider());
 	}
 
@@ -338,6 +338,18 @@ public class WorkflowEditor extends TextEditor {
 		return file;
 	}
 
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>initializeEditor</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.ui.editors.text.TextEditor#initializeEditor()
+	 */
+	@Override
+	protected void initializeEditor() {
+		super.initializeEditor();
+		setPreferenceStore(getPlugin().getCombinedPreferenceStore());
+	}
+
 	@Override
 	protected void rulerContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe")); //$NON-NLS-1$
@@ -364,5 +376,9 @@ public class WorkflowEditor extends TextEditor {
 		} catch (final BadLocationException e) {
 			Log.logError("Document location error", e);
 		}
+	}
+
+	private Activator getPlugin() {
+		return Activator.getDefault();
 	}
 }

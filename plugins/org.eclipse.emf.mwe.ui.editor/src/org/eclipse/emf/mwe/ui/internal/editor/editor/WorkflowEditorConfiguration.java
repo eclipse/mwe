@@ -14,7 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoEditStrategy;
+import org.eclipse.emf.mwe.ui.internal.editor.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoTagCompletionStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
@@ -47,13 +48,13 @@ import org.eclipse.jface.text.rules.DefaultDamagerRepairer;
 import org.eclipse.jface.text.rules.Token;
 import org.eclipse.jface.text.source.IAnnotationHover;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.jface.text.source.SourceViewerConfiguration;
+import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
-public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
+public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private static final int UNDO_LEVELS = 100;
 
@@ -71,8 +72,12 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 
 	private final WorkflowEditor editor;
 
-	public WorkflowEditorConfiguration(final ColorManager colorManager,
-			final WorkflowEditor editor) {
+	private final Activator plugin;
+
+	public WorkflowEditorConfiguration(final Activator plugin,
+			final ColorManager colorManager, final WorkflowEditor editor) {
+		super(plugin.getCombinedPreferenceStore());
+		this.plugin = plugin;
 		this.colorManager = colorManager;
 		this.editor = editor;
 	}
@@ -106,7 +111,7 @@ public class WorkflowEditorConfiguration extends SourceViewerConfiguration {
 			strategies.add(s);
 		}
 		strategies.add(new DefaultIndentLineAutoEditStrategy());
-		strategies.add(new WorkflowAutoEditStrategy());
+		strategies.add(new WorkflowAutoTagCompletionStrategy());
 		final IAutoEditStrategy[] res =
 				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
 		return res;

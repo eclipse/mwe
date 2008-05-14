@@ -17,14 +17,17 @@ import java.util.ResourceBundle;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.ErrorDialog;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class Activator extends AbstractUIPlugin {
 
@@ -40,6 +43,8 @@ public class Activator extends AbstractUIPlugin {
 	 * The shared instance
 	 */
 	private static Activator plugin;
+
+	private IPreferenceStore combinedPreferenceStore;
 
 	/**
 	 * The resource bundle
@@ -99,7 +104,7 @@ public class Activator extends AbstractUIPlugin {
 		final ResourceBundle bundle =
 				Activator.getDefault().getResourceBundle();
 		try {
-			return (bundle != null) ? bundle.getString(key) : key;
+			return bundle != null ? bundle.getString(key) : key;
 		} catch (final MissingResourceException e) {
 			return key;
 		}
@@ -141,6 +146,7 @@ public class Activator extends AbstractUIPlugin {
 	public static void showError(final IStatus status) {
 		try {
 			Display.getDefault().asyncExec(new Runnable() {
+
 				public void run() {
 					ErrorDialog.openError(null, null, null, status);
 				}
@@ -152,6 +158,22 @@ public class Activator extends AbstractUIPlugin {
 
 	public static void showError(final String msg) {
 		showError(createErrorStatus(msg, null));
+	}
+
+	/**
+	 * Returns a combined preference store, this store is read-only.
+	 * 
+	 * @return the combined preference store
+	 */
+	public IPreferenceStore getCombinedPreferenceStore() {
+		if (combinedPreferenceStore == null) {
+			final IPreferenceStore generalTextStore =
+					EditorsUI.getPreferenceStore();
+			combinedPreferenceStore =
+					new ChainedPreferenceStore(new IPreferenceStore[] {
+							getPreferenceStore(), generalTextStore });
+		}
+		return combinedPreferenceStore;
 	}
 
 	/**
@@ -183,4 +205,5 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 	}
+
 }
