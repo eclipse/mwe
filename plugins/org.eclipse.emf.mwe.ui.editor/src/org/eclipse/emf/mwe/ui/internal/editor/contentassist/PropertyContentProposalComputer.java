@@ -22,11 +22,11 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class PropertyContentProposalComputer extends
-		AbstractContentProposalComputer {
+		AbstractStringContentProposalComputer {
 
 	public PropertyContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {

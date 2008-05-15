@@ -23,7 +23,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class TagContentProposalComputer extends
@@ -69,7 +69,6 @@ public class TagContentProposalComputer extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
-	@Override
 	public boolean isApplicable(final int offset) {
 		return isTag(offset);
 	}

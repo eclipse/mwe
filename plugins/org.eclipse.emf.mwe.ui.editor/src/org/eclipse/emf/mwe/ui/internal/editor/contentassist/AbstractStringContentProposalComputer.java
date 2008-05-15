@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public abstract class AbstractStringContentProposalComputer extends
@@ -28,4 +28,13 @@ public abstract class AbstractStringContentProposalComputer extends
 		super(editor, document, tagScanner);
 	}
 
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isApplicable</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
+	 */
+	public boolean isApplicable(final int offset) {
+		return isString(offset);
+	}
 }

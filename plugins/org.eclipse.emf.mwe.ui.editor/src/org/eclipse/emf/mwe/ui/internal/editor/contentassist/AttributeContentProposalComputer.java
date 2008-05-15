@@ -23,7 +23,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -72,7 +72,6 @@ public class AttributeContentProposalComputer extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
-	@Override
 	public boolean isApplicable(final int offset) {
 		return isAttribute(offset);
 	}
