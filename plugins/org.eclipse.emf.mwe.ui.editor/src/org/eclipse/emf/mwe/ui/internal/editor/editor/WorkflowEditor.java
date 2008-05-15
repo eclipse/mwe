@@ -12,8 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -58,7 +59,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -78,17 +79,19 @@ public class WorkflowEditor extends TextEditor {
 
 	private WorkflowElement rootElement;
 
-	private List<WorkflowElement> elementList;
+	private Collection<WorkflowElement> elements;
 
-	private List<WorkflowAttribute> attributeList;
+	private Collection<WorkflowAttribute> attributes;
 
-	private List<String> propertyNameList;
+	private Collection<String> propertyNames;
+
+	private Collection<ReferenceInfo> references;
 
 	public WorkflowEditor() {
 		super();
 		colorManager = new ColorManager();
-		setSourceViewerConfiguration(new WorkflowEditorConfiguration(WorkflowEditorPlugin
-				.getDefault(), colorManager, this));
+		setSourceViewerConfiguration(new WorkflowEditorConfiguration(
+				WorkflowEditorPlugin.getDefault(), colorManager, this));
 		setDocumentProvider(new WorkflowDocumentProvider());
 	}
 
@@ -133,30 +136,34 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	/**
-	 * Returns the value of field <code>attributeList</code>.
+	 * Returns the value of field <code>attributes</code>.
 	 * 
-	 * @return value of <code>attributeList</code>.
+	 * @return value of <code>attributes</code>.
 	 */
-	public List<WorkflowAttribute> getAttributeList() {
-		return attributeList;
+	public Collection<WorkflowAttribute> getAttributes() {
+		return attributes;
 	}
 
 	/**
-	 * Returns the value of field <code>elementList</code>.
+	 * Returns the value of field <code>elements</code>.
 	 * 
-	 * @return value of <code>elementList</code>.
+	 * @return value of <code>elements</code>.
 	 */
-	public List<WorkflowElement> getElementList() {
-		return elementList;
+	public Collection<WorkflowElement> getElements() {
+		return elements;
 	}
 
 	/**
-	 * Returns the value of field <code>propertyNameList</code>.
+	 * Returns the value of field <code>propertyNames</code>.
 	 * 
-	 * @return value of <code>propertyNameList</code>.
+	 * @return value of <code>propertyNames</code>.
 	 */
-	public List<String> getPropertyNameList() {
-		return propertyNameList;
+	public Collection<String> getPropertyNames() {
+		return propertyNames;
+	}
+
+	public Collection<ReferenceInfo> getReferences() {
+		return references;
 	}
 
 	/**
@@ -244,9 +251,10 @@ public class WorkflowEditor extends TextEditor {
 		final ElementIterator iterator =
 				new ElementIterator(getInputFile(), getInputDocument());
 		iterator.checkValidity(getRootElement());
-		elementList = iterator.getElementList();
-		attributeList = iterator.getAttributeList();
-		propertyNameList = iterator.getPropertyNameList();
+		elements = iterator.getElementList();
+		attributes = iterator.getAttributeList();
+		propertyNames = iterator.getPropertyNameList();
+		references = iterator.getReferences();
 	}
 
 	@Override

@@ -11,19 +11,19 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -42,13 +42,14 @@ public class AttributeContentProposalComputer extends
 	 */
 	public Set<ICompletionProposal> computeProposals(final int offset) {
 		final TextInfo currentText = currentText(document, offset);
-		final List allAttributes = editor.getAttributeList();
+		final Collection<WorkflowAttribute> allAttributes =
+				editor.getAttributes();
 
 		final Set<ICompletionProposal> result =
 				new HashSet<ICompletionProposal>();
 		final int i = 0;
-		for (final Iterator iter = allAttributes.iterator(); iter.hasNext();) {
-			final String name = (String) iter.next();
+		for (final WorkflowAttribute attr : allAttributes) {
+			final String name = attr.getName();
 
 			String text = null;
 
@@ -71,6 +72,7 @@ public class AttributeContentProposalComputer extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
+	@Override
 	public boolean isApplicable(final int offset) {
 		return isAttribute(offset);
 	}

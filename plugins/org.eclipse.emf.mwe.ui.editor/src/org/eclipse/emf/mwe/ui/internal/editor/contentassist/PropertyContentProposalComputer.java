@@ -11,8 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
@@ -22,7 +22,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -41,7 +41,7 @@ public class PropertyContentProposalComputer extends
 	 */
 	public Set<ICompletionProposal> computeProposals(final int offset) {
 		Set<ICompletionProposal> result = new HashSet<ICompletionProposal>();
-		final List<String> propertyNames = editor.getPropertyNameList();
+		final Collection<String> propertyNames = editor.getPropertyNames();
 		if (propertyNames != null) {
 			for (final String name : propertyNames) {
 				final String proposalText = createProposalText(name, offset);
@@ -50,16 +50,6 @@ public class PropertyContentProposalComputer extends
 			result = removeNonMatchingEntries(result, offset);
 		}
 		return result;
-	}
-
-	/**
-	 * This automatically generated method overrides the implementation of
-	 * <code>isApplicable</code> inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
-	 */
-	public boolean isApplicable(final int offset) {
-		return isString(offset);
 	}
 
 	@Override

@@ -11,8 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
@@ -23,7 +23,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class TagContentProposalComputer extends
@@ -44,7 +44,7 @@ public class TagContentProposalComputer extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
 	 */
 	public Set<ICompletionProposal> computeProposals(final int offset) {
-		final List<WorkflowElement> allElements = editor.getElementList();
+		final Collection<WorkflowElement> allElements = editor.getElements();
 
 		Set<ICompletionProposal> resultSet = createDefaultProposals(offset);
 
@@ -69,6 +69,7 @@ public class TagContentProposalComputer extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
+	@Override
 	public boolean isApplicable(final int offset) {
 		return isTag(offset);
 	}

@@ -17,6 +17,8 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
@@ -24,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class ElementIterator {
 
@@ -43,10 +45,13 @@ public class ElementIterator {
 
 	private final PropertyStore propertyStore = new PropertyStore();
 
+	private final ReferenceInfoStore referenceInfoStore;
+
 	public ElementIterator(final IFile file, final IDocument document) {
 		this.file = file;
 		this.document = document;
 		analyzer = new ElementAnalyzerRegistry(file, document, propertyStore);
+		referenceInfoStore = new ReferenceInfoStore(file);
 	}
 
 	public void checkValidity(final WorkflowElement root) {
@@ -91,6 +96,10 @@ public class ElementIterator {
 	 */
 	public List<String> getPropertyNameList() {
 		return analyzer.getPropertyNameList();
+	}
+
+	public Collection<ReferenceInfo> getReferences() {
+		return referenceInfoStore.getReferences();
 	}
 
 	private void addChild(final List<WorkflowElement> list,

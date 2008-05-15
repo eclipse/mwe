@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
@@ -22,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
@@ -36,13 +35,12 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
 	public ReferenceAnalyzer(final IFile file, final IDocument document,
 			final ReferenceInfoStore store) {
+		if (file == null || document == null || store == null)
+			throw new IllegalArgumentException();
+
 		this.file = file;
 		this.document = document;
-		if (store == null) {
-			this.store = new ReferenceInfoStore(file);
-		} else {
-			this.store = store;
-		}
+		this.store = store;
 
 		strategies = new LinkedList<IReferenceAnalyzerStrategy>();
 		init();
@@ -87,17 +85,15 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 	}
 
 	public boolean isValid(final WorkflowElement element) {
-		return (element == null)
-				|| (element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)
-						^ element
-								.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE) ^ element
-						.hasAttribute(WorkflowElement.ID_ATTRIBUTE));
+		return element == null
+				|| element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)
+				^ element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE)
+				^ element.hasAttribute(WorkflowElement.ID_ATTRIBUTE);
 	}
 
 	public void markUnresolvedReferences() {
-		for (final Iterator<ReferenceInfo> it = store.getReferenceIterator(); it
-				.hasNext();) {
-			final ReferenceInfo info = it.next();
+		final Collection<ReferenceInfo> references = store.getReferences();
+		for (final ReferenceInfo info : references) {
 			if (!store.isDefined(info)) {
 				MarkerManager.createMarker(info.getFile(), info.getElement()
 						.getDocument(), info.getAttribute(),

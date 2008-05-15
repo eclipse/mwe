@@ -27,7 +27,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public abstract class AbstractContentProposalComputer implements
@@ -289,5 +289,15 @@ public abstract class AbstractContentProposalComputer implements
 			return true;
 
 		return false;
+	}
+
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isApplicable</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
+	 */
+	public boolean isApplicable(final int offset) {
+		return isString(offset);
 	}
 }

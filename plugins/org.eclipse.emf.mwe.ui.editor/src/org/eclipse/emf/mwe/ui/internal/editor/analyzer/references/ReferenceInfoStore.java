@@ -11,8 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
+import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -23,7 +23,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ReferenceInfoStore {
 
@@ -79,8 +79,8 @@ public class ReferenceInfoStore {
 		return fileNameSet.contains(name);
 	}
 
-	public Iterator<ReferenceInfo> getReferenceIterator() {
-		return references.listIterator();
+	public Collection<ReferenceInfo> getReferences() {
+		return references;
 	}
 
 	public boolean isDefined(final ReferenceInfo info) {
