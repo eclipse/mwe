@@ -22,11 +22,15 @@ import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowAutoIndentStrategy extends
 		AbstractWorkflowAutoEditStrategy {
+
+	private enum IndentType {
+		INDENT, UNINDENT
+	}
 
 	private class LineInformation {
 
@@ -34,7 +38,7 @@ public class WorkflowAutoIndentStrategy extends
 
 		private final int lineLength;
 
-		private String text;
+		private final String text;
 
 		public LineInformation(final IDocument document,
 				final DocumentCommand command) throws BadLocationException {
@@ -43,8 +47,6 @@ public class WorkflowAutoIndentStrategy extends
 			final IRegion region = document.getLineInformation(lineNumber);
 			lineLength = region.getLength();
 			text = document.get(lineOffset, lineLength).trim();
-			final String delimiter = document.getLineDelimiter(lineNumber);
-			text += delimiter;
 		}
 
 		public int getLineLength() {
@@ -58,9 +60,7 @@ public class WorkflowAutoIndentStrategy extends
 		public String getText() {
 			return text;
 		}
-	}
-
-	private Integer currentIndentLevel;
+	};
 
 	/**
 	 * This automatically generated method overrides the implementation of
@@ -71,16 +71,7 @@ public class WorkflowAutoIndentStrategy extends
 	 */
 	public void customizeDocumentCommand(final IDocument document,
 			final DocumentCommand command) {
-		final String[] lineDelimiters = document.getLegalLineDelimiters();
-		boolean isLineEnd = false;
-		for (final String delimiter : lineDelimiters) {
-			if (command.text.startsWith(delimiter)) {
-				isLineEnd = true;
-				break;
-			}
-		}
-
-		if (!isLineEnd)
+		if (command.text.length() == 0 || !isCaretAtLineEnd(document, command))
 			return;
 
 		final int offset = command.offset;
@@ -93,12 +84,25 @@ public class WorkflowAutoIndentStrategy extends
 			return;
 		}
 
-		currentIndentLevel = getIndentLevel(document, command);
-		if (currentIndentLevel != null) {
-			final String tag = getTag(document, command);
-			changeIndent(document, command, tag);
-		}
+		final String tag = getTag(document, command);
+		changeIndent(document, command, tag);
+	}
 
+	private void changeCurrentLine(final IDocument document,
+			final DocumentCommand command, final IndentType indentType) {
+		try {
+			final int currentIndentLevel = getIndentLevel(document, command);
+			final LineInformation lineInfo =
+					new LineInformation(document, command);
+			final String tabs = generateIndent(currentIndentLevel, indentType);
+			command.offset = lineInfo.getLineOffset();
+			String changedLine = lineInfo.getText();
+			changedLine = tabs + changedLine + command.text;
+			command.text = changedLine;
+			command.length = lineInfo.getLineLength();
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
 	}
 
 	private void changeIndent(final IDocument document,
@@ -106,11 +110,55 @@ public class WorkflowAutoIndentStrategy extends
 		if (tag == null)
 			return;
 
-		if (isStartTag(tag)) {
-			indent(document, command);
-		} else if (isEndTag(tag)) {
-			unindent(document, command);
+		if (isStartTag(tag) && isLineDelimiter(document, command)) {
+			changeNextLine(document, command, IndentType.INDENT);
+		} else if (isEndTag(tag) && isTagAtLineStart(document, command)) {
+			changeCurrentLine(document, command, IndentType.UNINDENT);
 		}
+	}
+
+	private void changeNextLine(final IDocument document,
+			final DocumentCommand command, final IndentType indentType) {
+		try {
+			final int currentIndentLevel = getIndentLevel(document, command);
+			final LineInformation lineInfo =
+					new LineInformation(document, command);
+			final String currentLineTabs = generateTabs(currentIndentLevel);
+			final String nextLineTabs =
+					generateIndent(currentIndentLevel, indentType);
+			command.offset = lineInfo.getLineOffset();
+
+			while (command.text.endsWith("\t")) {
+				command.text =
+						command.text.substring(0, command.text.length() - 1);
+			}
+
+			final String changedLine =
+					currentLineTabs + lineInfo.getText() + command.text
+							+ nextLineTabs;
+			command.text = changedLine;
+			command.length = lineInfo.getLineLength();
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
+	}
+
+	private String generateIndent(final int currentIndentLevel,
+			final IndentType indentType) {
+		String tabs = null;
+		switch (indentType) {
+			case INDENT:
+				tabs = generateTabs(currentIndentLevel + 1);
+				break;
+
+			case UNINDENT:
+				tabs = generateTabs(currentIndentLevel - 1);
+				break;
+
+			default:
+				throw new IllegalStateException();
+		}
+		return tabs;
 	}
 
 	private String generateTabs(final Integer count) {
@@ -190,37 +238,51 @@ public class WorkflowAutoIndentStrategy extends
 		}
 	}
 
-	private void indent(final IDocument document, final DocumentCommand command) {
+	private boolean isCaretAtLineEnd(final IDocument document,
+			final DocumentCommand command) {
 		try {
-			final LineInformation lineInfo =
-					new LineInformation(document, command);
-			final String currentLineTabs = generateTabs(currentIndentLevel);
-			currentIndentLevel++;
-			final String nextLineTabs = generateTabs(currentIndentLevel);
-			command.offset = lineInfo.getLineOffset();
-			final String changedLine =
-					currentLineTabs + lineInfo.getText() + nextLineTabs;
-			command.text = changedLine;
-			command.length = lineInfo.getLineLength();
+			final int line = document.getLineOfOffset(command.offset);
+			final int lineOffset = document.getLineOffset(line);
+			final int lineLength = document.getLineLength(line);
+			final int endOffset = lineOffset + lineLength - 1;
+			return command.offset == endOffset;
 		} catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
+			return false;
 		}
 	}
 
-	private void unindent(final IDocument document,
+	private boolean isLineDelimiter(final IDocument document,
+			final DocumentCommand command) {
+		final String[] delimiters = document.getLegalLineDelimiters();
+		for (final String delimiter : delimiters) {
+			if (command.text.startsWith(delimiter))
+				return true;
+		}
+		return false;
+	}
+
+	private boolean isTagAtLineStart(final IDocument document,
 			final DocumentCommand command) {
 		try {
-			final LineInformation lineInfo =
-					new LineInformation(document, command);
-			currentIndentLevel--;
-			final String tabs = generateTabs(currentIndentLevel);
-			command.offset = lineInfo.getLineOffset();
-			String changedLine = lineInfo.getText();
-			changedLine = tabs + changedLine;
-			command.text = changedLine;
-			command.length = lineInfo.getLineLength();
+			final int line = document.getLineOfOffset(command.offset);
+			final int lineOffset = document.getLineOffset(line);
+			int offset = command.offset;
+			char ch = document.getChar(offset);
+			while (ch != '<') {
+				offset--;
+				ch = document.getChar(offset);
+			}
+			offset--;
+			ch = document.getChar(offset);
+			while (offset > lineOffset && Character.isWhitespace(ch)) {
+				offset--;
+				ch = document.getChar(offset);
+			}
+			return offset == lineOffset;
 		} catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
+			return false;
 		}
 	}
 
