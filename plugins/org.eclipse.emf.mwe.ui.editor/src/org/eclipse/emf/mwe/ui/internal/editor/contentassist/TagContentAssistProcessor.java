@@ -24,7 +24,7 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class TagContentAssistProcessor implements IContentAssistProcessor {
 
@@ -84,5 +84,4 @@ public class TagContentAssistProcessor implements IContentAssistProcessor {
 							tagScanner);
 		}
 	}
-
 }

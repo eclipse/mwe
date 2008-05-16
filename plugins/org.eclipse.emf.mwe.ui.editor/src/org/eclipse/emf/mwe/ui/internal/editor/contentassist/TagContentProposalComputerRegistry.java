@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class TagContentProposalComputerRegistry extends
@@ -26,11 +26,15 @@ public class TagContentProposalComputerRegistry extends
 	public TagContentProposalComputerRegistry(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(editor, document, tagScanner);
+		computers.add(new IDRefContentProposalComputer(editor, document,
+				tagScanner));
 		computers.add(new PropertyContentProposalComputer(editor, document,
 				tagScanner));
 		computers.add(new AttributeContentProposalComputer(editor, document,
 				tagScanner));
 		computers.add(new TagContentProposalComputer(editor, document,
+				tagScanner));
+		computers.add(new DefaultContentProposalComputer(editor, document,
 				tagScanner));
 	}
 

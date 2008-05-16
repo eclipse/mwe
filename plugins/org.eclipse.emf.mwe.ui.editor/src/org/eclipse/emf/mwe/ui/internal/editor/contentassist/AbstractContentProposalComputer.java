@@ -27,14 +27,14 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public abstract class AbstractContentProposalComputer implements
 		IContentProposalComputer {
 
 	private enum TextType {
-		TAG, ATTRIBUTE, STRING, UNDEFINED
+		TAG, ATTRIBUTE, STRING, OUTSIDE_TAG, UNDEFINED
 	};
 
 	protected static Set<Character> terminalSet;
@@ -58,11 +58,24 @@ public abstract class AbstractContentProposalComputer implements
 		this.tagScanner = tagScanner;
 	}
 
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>computeProposals</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
+	 */
+	public Set<ICompletionProposal> computeProposals(final int offset) {
+		Set<ICompletionProposal> resultSet = getProposalSet(offset);
+		resultSet = removeNonMatchingEntries(resultSet, offset);
+		return resultSet;
+	}
+
 	protected TextType computeType(final int offset) {
 		TextType type = TextType.UNDEFINED;
 		try {
 			final ITypedRegion region = document.getPartition(offset);
 			final int partitionOffset = region.getOffset();
+			boolean hasWhitespace = false;
 			if (offset > partitionOffset) {
 				char quoteChar = 0;
 				int quoteCount = 0;
@@ -77,7 +90,10 @@ public abstract class AbstractContentProposalComputer implements
 						}
 						quoteCount++;
 					}
-					if (ch == '<' || Character.isWhitespace(ch))
+
+					if (Character.isWhitespace(ch)) {
+						hasWhitespace = true;
+					} else if (ch == '<')
 						break;
 
 					o--;
@@ -85,13 +101,13 @@ public abstract class AbstractContentProposalComputer implements
 
 				if (quoteCount % 2 > 0) {
 					type = TextType.STRING;
-				} else if (Character.isWhitespace(ch)) {
+				} else if (o > partitionOffset && hasWhitespace) {
 					type = TextType.ATTRIBUTE;
 				} else if (ch == '<') {
 					type = TextType.TAG;
 				}
 			} else {
-				type = TextType.TAG;
+				type = TextType.OUTSIDE_TAG;
 			}
 		} catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
@@ -190,8 +206,14 @@ public abstract class AbstractContentProposalComputer implements
 		return extendedTerminalSet;
 	}
 
+	protected abstract Set<ICompletionProposal> getProposalSet(final int offset);
+
 	protected boolean isAttribute(final int documentOffset) {
 		return computeType(documentOffset) == TextType.ATTRIBUTE;
+	}
+
+	protected boolean isOutsideTag(final int documentOffset) {
+		return computeType(documentOffset) == TextType.OUTSIDE_TAG;
 	}
 
 	protected boolean isString(final int documentOffset) {

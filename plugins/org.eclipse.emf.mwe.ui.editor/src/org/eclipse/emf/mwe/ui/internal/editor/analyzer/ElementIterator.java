@@ -26,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class ElementIterator {
 
@@ -63,7 +63,7 @@ public class ElementIterator {
 		}
 
 		final ReferenceAnalyzer referenceAnalyzer =
-				new ReferenceAnalyzer(file, document, null);
+				new ReferenceAnalyzer(file, document, referenceInfoStore);
 
 		for (final WorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);

@@ -22,7 +22,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -31,25 +31,6 @@ public class PropertyContentProposalComputer extends
 	public PropertyContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(editor, document, tagScanner);
-	}
-
-	/**
-	 * This automatically generated method overrides the implementation of
-	 * <code>computeProposals</code> inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
-	 */
-	public Set<ICompletionProposal> computeProposals(final int offset) {
-		Set<ICompletionProposal> result = new HashSet<ICompletionProposal>();
-		final Collection<String> propertyNames = editor.getPropertyNames();
-		if (propertyNames != null) {
-			for (final String name : propertyNames) {
-				final String proposalText = createProposalText(name, offset);
-				result.add(createProposal(proposalText, offset));
-			}
-			result = removeNonMatchingEntries(result, offset);
-		}
-		return result;
 	}
 
 	@Override
@@ -61,6 +42,20 @@ public class PropertyContentProposalComputer extends
 			text = "${" + name + "}";
 		}
 		return text;
+	}
+
+	@Override
+	protected Set<ICompletionProposal> getProposalSet(final int offset) {
+		final Set<ICompletionProposal> result =
+				new HashSet<ICompletionProposal>();
+		final Collection<String> propertyNames = editor.getPropertyNames();
+		if (propertyNames != null) {
+			for (final String name : propertyNames) {
+				final String proposalText = createProposalText(name, offset);
+				result.add(createProposal(proposalText, offset));
+			}
+		}
+		return result;
 	}
 
 	/**

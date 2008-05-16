@@ -15,35 +15,39 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.1 $
  */
 
-public class AttributeContentProposalComputer extends
-		AbstractContentProposalComputer {
+public class IDRefContentProposalComputer extends
+		AbstractSpecializedStringContentProposalComputer {
 
-	public AttributeContentProposalComputer(final WorkflowEditor editor,
+	private static final String[] TRIGGER_ATTRIBUTES = { "idRef" };
+
+	public IDRefContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(editor, document, tagScanner);
 	}
 
-	/**
-	 * This automatically generated method overrides the implementation of
-	 * <code>isApplicable</code> inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
-	 */
-	public boolean isApplicable(final int offset) {
-		return isAttribute(offset);
+	@Override
+	public String[] getTriggerAttributeNames() {
+		return TRIGGER_ATTRIBUTES;
 	}
 
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>createProposalText</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#createProposalText(java.lang.String,
+	 *      int)
+	 */
 	@Override
 	protected String createProposalText(final String name, final int offset) {
 		return name;
@@ -51,30 +55,20 @@ public class AttributeContentProposalComputer extends
 
 	@Override
 	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		final Set<ICompletionProposal> result =
+		final Set<ICompletionProposal> resultSet =
 				new HashSet<ICompletionProposal>();
-		final Collection<WorkflowAttribute> allAttributes =
-				editor.getAttributes();
-		final TextInfo currentText = currentText(document, offset);
+		final Collection<ReferenceInfo> references = editor.getReferences();
 
-		if (allAttributes != null) {
-			final int i = 0;
-			for (final WorkflowAttribute attr : allAttributes) {
-				final String name = attr.getName();
-
-				String text = null;
-
-				if (currentText.isWhiteSpace()) {
-					text = name + "= \"\" ";
-				} else {
-					text = name;
-				}
-
-				result.add(new ExtendedCompletionProposal(text, currentText
-						.getDocumentOffset(), currentText.getText().length(),
-						text.length()));
+		if (references != null) {
+			for (final ReferenceInfo info : references) {
+				final String referenceID = info.getReferenceValue();
+				final String proposalText =
+						createProposalText(referenceID, offset);
+				final ExtendedCompletionProposal proposal =
+						createProposal(proposalText, offset);
 			}
 		}
-		return result;
+		return resultSet;
 	}
+
 }

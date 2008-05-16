@@ -11,48 +11,36 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
-public class ContentProposalComputerRegistry extends
-		AbstractContentProposalComputer {
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.1 $
+ */
 
-	protected final List<AbstractContentProposalComputer> computers =
-			new ArrayList<AbstractContentProposalComputer>();
+public class DefaultContentProposalComputer extends TagContentProposalComputer {
 
-	public ContentProposalComputerRegistry(final WorkflowEditor editor,
+	public DefaultContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(editor, document, tagScanner);
 	}
 
-	public Set<ICompletionProposal> computeProposals(final int offset) {
-		Set<ICompletionProposal> result = new HashSet<ICompletionProposal>();
-		for (final AbstractContentProposalComputer c : computers) {
-			if (c.isApplicable(offset)) {
-				result = c.computeProposals(offset);
-				break;
-			}
-		}
-		return result;
-	}
-
+	@Override
 	public boolean isApplicable(final int offset) {
-		return true;
+		return isOutsideTag(offset);
 	}
 
+	@Override
 	protected String createProposalText(final String name, final int offset) {
-		return null;
-	}
-
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		return null;
+		String text = null;
+		if (useContractedElementCompletion(offset, document)) {
+			text = name;
+		} else {
+			text = "<" + name + "></" + name + ">";
+		}
+		return text;
 	}
 
 }

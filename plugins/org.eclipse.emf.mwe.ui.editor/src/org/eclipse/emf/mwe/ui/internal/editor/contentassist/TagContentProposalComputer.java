@@ -23,44 +23,18 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class TagContentProposalComputer extends
 		AbstractContentProposalComputer {
 
-	private static final String[] DEFAULT_PROPOSALS =
+	protected static final String[] DEFAULT_PROPOSALS =
 			{ "workflow", "property", "component", "bean" };
 
 	public TagContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(editor, document, tagScanner);
-	}
-
-	/**
-	 * This automatically generated method overrides the implementation of
-	 * <code>computeProposals</code> inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
-	 */
-	public Set<ICompletionProposal> computeProposals(final int offset) {
-		final Collection<WorkflowElement> allElements = editor.getElements();
-
-		Set<ICompletionProposal> resultSet = createDefaultProposals(offset);
-
-		if (allElements != null) {
-			for (final Object el : allElements) {
-				final WorkflowElement element = (WorkflowElement) el;
-				final String name = element.getName();
-				final String text = createProposalText(name, offset);
-
-				final ExtendedCompletionProposal proposal =
-						createProposal(text, offset);
-				resultSet.add(proposal);
-			}
-		}
-		resultSet = removeNonMatchingEntries(resultSet, offset);
-		return resultSet;
 	}
 
 	/**
@@ -71,6 +45,18 @@ public class TagContentProposalComputer extends
 	 */
 	public boolean isApplicable(final int offset) {
 		return isTag(offset);
+	}
+
+	protected Set<ICompletionProposal> createDefaultProposals(final int offset) {
+		final Set<ICompletionProposal> resultSet =
+				new HashSet<ICompletionProposal>();
+		for (final String s : DEFAULT_PROPOSALS) {
+			final String proposalText = createProposalText(s, offset);
+			final ExtendedCompletionProposal proposal =
+					createProposal(proposalText, offset);
+			resultSet.add(proposal);
+		}
+		return resultSet;
 	}
 
 	@Override
@@ -84,14 +70,22 @@ public class TagContentProposalComputer extends
 		return text;
 	}
 
-	private Set<ICompletionProposal> createDefaultProposals(final int offset) {
+	@Override
+	protected Set<ICompletionProposal> getProposalSet(final int offset) {
 		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
-		for (final String s : DEFAULT_PROPOSALS) {
-			final String proposalText = createProposalText(s, offset);
-			final ExtendedCompletionProposal proposal =
-					createProposal(proposalText, offset);
-			resultSet.add(proposal);
+				createDefaultProposals(offset);
+		final Collection<WorkflowElement> allElements = editor.getElements();
+
+		if (allElements != null) {
+			for (final Object el : allElements) {
+				final WorkflowElement element = (WorkflowElement) el;
+				final String name = element.getName();
+				final String text = createProposalText(name, offset);
+
+				final ExtendedCompletionProposal proposal =
+						createProposal(text, offset);
+				resultSet.add(proposal);
+			}
 		}
 		return resultSet;
 	}

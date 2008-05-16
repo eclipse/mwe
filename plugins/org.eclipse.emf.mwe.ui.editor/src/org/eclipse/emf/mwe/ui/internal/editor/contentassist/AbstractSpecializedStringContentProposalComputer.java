@@ -19,7 +19,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public abstract class AbstractSpecializedStringContentProposalComputer extends
@@ -31,12 +31,12 @@ public abstract class AbstractSpecializedStringContentProposalComputer extends
 		super(editor, document, tagScanner);
 	}
 
-	public abstract String[] getAttributeNames();
+	public abstract String[] getTriggerAttributeNames();
 
 	@Override
 	public boolean isApplicable(final int offset) {
 		return super.isApplicable(offset)
-				&& hasAttributeName(getAttributeNames(), offset);
+				&& hasAttributeName(getTriggerAttributeNames(), offset);
 	}
 
 	private String getAttributeName(final int offset) {
@@ -60,12 +60,13 @@ public abstract class AbstractSpecializedStringContentProposalComputer extends
 
 			String name = "";
 			ch = document.getChar(o);
-			while (o >= 0 && !Character.isWhitespace(ch)) {
-				o--;
-				if (o >= 0) {
-					ch = document.getChar(o);
-				}
+			while (o >= 0) {
+				ch = document.getChar(o);
+				if (Character.isWhitespace(ch))
+					break;
+
 				name = ch.toString() + name;
+				o--;
 			}
 			return name;
 		} catch (final BadLocationException e) {

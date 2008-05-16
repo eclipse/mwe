@@ -59,7 +59,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -240,21 +240,22 @@ public class WorkflowEditor extends TextEditor {
 	public void validateAndMark() {
 		final IDocument document = getInputDocument();
 		final WorkflowElement newRootElement = parseRootElement(document);
+		final ElementIterator iterator =
+				new ElementIterator(getInputFile(), getInputDocument());
 
 		if (newRootElement != null) {
 			setRootElement(newRootElement);
 		}
 
+		propertyNames = iterator.getPropertyNameList();
+		references = iterator.getReferences();
+
 		if (getRootElement() == null)
 			return;
 
-		final ElementIterator iterator =
-				new ElementIterator(getInputFile(), getInputDocument());
 		iterator.checkValidity(getRootElement());
 		elements = iterator.getElementList();
 		attributes = iterator.getAttributeList();
-		propertyNames = iterator.getPropertyNameList();
-		references = iterator.getReferences();
 	}
 
 	@Override
