@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractStringContentProposalComputer extends
@@ -35,6 +35,6 @@ public abstract class AbstractStringContentProposalComputer extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
 	public boolean isApplicable(final int offset) {
-		return isString(offset);
+		return isString();
 	}
 }

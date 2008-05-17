@@ -19,7 +19,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractSpecializedStringContentProposalComputer extends
@@ -34,7 +34,7 @@ public abstract class AbstractSpecializedStringContentProposalComputer extends
 	public abstract String[] getTriggerAttributeNames();
 
 	@Override
-	public boolean isApplicable(final int offset) {
+	public boolean isApplicable(int offset) {
 		return super.isApplicable(offset)
 				&& hasAttributeName(getTriggerAttributeNames(), offset);
 	}

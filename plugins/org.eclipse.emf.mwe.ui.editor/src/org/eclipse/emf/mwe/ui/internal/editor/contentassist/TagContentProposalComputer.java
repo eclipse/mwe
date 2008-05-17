@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class TagContentProposalComputer extends
@@ -43,14 +43,13 @@ public class TagContentProposalComputer extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
 	public boolean isApplicable(final int offset) {
-		return isTag(offset);
+		return isTag();
 	}
 
 	protected Set<String> createDefaultProposals(final int offset) {
 		final Set<String> resultSet = new HashSet<String>();
 		for (final String s : DEFAULT_PROPOSALS) {
-			final String proposalText = createProposalText(s, offset);
-			resultSet.add(proposalText);
+			resultSet.add(s);
 		}
 		return resultSet;
 	}
@@ -75,8 +74,7 @@ public class TagContentProposalComputer extends
 			for (final Object el : allElements) {
 				final WorkflowElement element = (WorkflowElement) el;
 				final String name = element.getName();
-				final String proposalText = createProposalText(name, offset);
-				resultSet.add(proposalText);
+				resultSet.add(name);
 			}
 		}
 		return resultSet;

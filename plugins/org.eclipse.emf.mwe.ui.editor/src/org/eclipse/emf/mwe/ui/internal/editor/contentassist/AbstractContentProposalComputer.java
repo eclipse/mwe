@@ -27,15 +27,11 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public abstract class AbstractContentProposalComputer implements
 		IContentProposalComputer {
-
-	private enum TextType {
-		TAG, ATTRIBUTE, STRING, OUTSIDE_TAG, UNDEFINED
-	};
 
 	protected static Set<Character> terminalSet;
 
@@ -51,11 +47,14 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected final WorkflowTagScanner tagScanner;
 
+	protected TextType textType;
+
 	protected AbstractContentProposalComputer(final WorkflowEditor editor,
 			final IDocument document, final WorkflowTagScanner tagScanner) {
 		this.editor = editor;
 		this.document = document;
 		this.tagScanner = tagScanner;
+		textType = TextType.UNDEFINED;
 	}
 
 	/**
@@ -75,52 +74,16 @@ public abstract class AbstractContentProposalComputer implements
 			resultSet.add(proposal);
 		}
 		resultSet = removeNonMatchingEntries(resultSet, offset);
+
 		return resultSet;
 	}
 
-	protected TextType computeType(final int offset) {
-		TextType type = TextType.UNDEFINED;
-		try {
-			final ITypedRegion region = document.getPartition(offset);
-			final int partitionOffset = region.getOffset();
-			boolean hasWhitespace = false;
-			if (offset > partitionOffset) {
-				char quoteChar = 0;
-				int quoteCount = 0;
-				int o = offset - 1;
-				char ch = 0;
-				while (o >= partitionOffset) {
-					ch = document.getChar(o);
-					if (quoteChar > 0 && ch == quoteChar || quoteChar == 0
-							&& (ch == '"' || ch == '\'')) {
-						if (quoteChar == 0) {
-							quoteChar = ch;
-						}
-						quoteCount++;
-					}
+	public TextType getTextType() {
+		return textType;
+	}
 
-					if (Character.isWhitespace(ch)) {
-						hasWhitespace = true;
-					} else if (ch == '<')
-						break;
-
-					o--;
-				}
-
-				if (quoteCount % 2 > 0) {
-					type = TextType.STRING;
-				} else if (o > partitionOffset && hasWhitespace) {
-					type = TextType.ATTRIBUTE;
-				} else if (ch == '<') {
-					type = TextType.TAG;
-				}
-			} else {
-				type = TextType.OUTSIDE_TAG;
-			}
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-		return type;
+	public void setTextType(final TextType textType) {
+		this.textType = textType;
 	}
 
 	protected ExtendedCompletionProposal createProposal(final String text,
@@ -153,7 +116,6 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected TextInfo currentText(final IDocument document,
 			final int documentOffset) {
-
 		try {
 			final ITypedRegion region = document.getPartition(documentOffset);
 			final int partitionOffset = region.getOffset();
@@ -165,40 +127,31 @@ public abstract class AbstractContentProposalComputer implements
 
 			char c = partitionText.charAt(index);
 
-			if (Character.isWhitespace(c) || index > 0
-					&& Character.isWhitespace(partitionText.charAt(index - 1)))
-				return new TextInfo("", documentOffset, true);
-			else if (c == '<')
-				return new TextInfo("", documentOffset, true);
-			else {
-				int start = index;
-				c = partitionText.charAt(start);
+			int start = index;
+			c = partitionText.charAt(start);
 
-				boolean moved = false;
-				while (!isTerminal(terminalSet(), c) && start >= 0) {
-					moved = true;
-					start--;
-					if (start >= 0) {
-						c = partitionText.charAt(start);
-					}
+			boolean moved = false;
+			while (!isTerminal(terminalSet(), c) && start >= 0) {
+				moved = true;
+				start--;
+				if (start >= 0) {
+					c = partitionText.charAt(start);
 				}
-				if (moved) {
-					start++;
-				}
-
-				int end = index;
-				c = partitionText.charAt(end);
-
-				while (!isTerminal(terminalSet(), c) && end < documentOffset) {
-					end++;
-					c = partitionText.charAt(end);
-				}
-
-				final String substring = partitionText.substring(start, end);
-				return new TextInfo(substring, partitionOffset + start, false);
-
+			}
+			if (moved) {
+				start++;
 			}
 
+			int end = index;
+			c = partitionText.charAt(end);
+
+			while (!isTerminal(terminalSet(), c) && end < documentOffset) {
+				end++;
+				c = partitionText.charAt(end);
+			}
+
+			final String substring = partitionText.substring(start, end);
+			return new TextInfo(substring, partitionOffset + start, false);
 		} catch (final BadLocationException e) {
 			e.printStackTrace();
 		}
@@ -216,20 +169,20 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected abstract Set<String> getProposalSet(final int offset);
 
-	protected boolean isAttribute(final int documentOffset) {
-		return computeType(documentOffset) == TextType.ATTRIBUTE;
+	protected boolean isAttribute() {
+		return getTextType() == TextType.ATTRIBUTE;
 	}
 
-	protected boolean isOutsideTag(final int documentOffset) {
-		return computeType(documentOffset) == TextType.OUTSIDE_TAG;
+	protected boolean isOutsideTag() {
+		return getTextType() == TextType.OUTSIDE_TAG;
 	}
 
-	protected boolean isString(final int documentOffset) {
-		return computeType(documentOffset) == TextType.STRING;
+	protected boolean isString() {
+		return getTextType() == TextType.STRING;
 	}
 
-	protected boolean isTag(final int documentOffset) {
-		return computeType(documentOffset) == TextType.TAG;
+	protected boolean isTag() {
+		return getTextType() == TextType.TAG;
 	}
 
 	protected boolean isTerminal(final Set<Character> terminals, final char ch) {

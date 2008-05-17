@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class DefaultContentProposalComputer extends TagContentProposalComputer {
@@ -29,7 +29,7 @@ public class DefaultContentProposalComputer extends TagContentProposalComputer {
 
 	@Override
 	public boolean isApplicable(final int offset) {
-		return isOutsideTag(offset);
+		return isOutsideTag();
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class DefaultContentProposalComputer extends TagContentProposalComputer {
 		if (useContractedElementCompletion(offset, document)) {
 			text = name;
 		} else {
-			text = "<" + name + "></" + name + ">";
+			text = "\t<" + name + "></" + name + ">";
 		}
 		return text;
 	}

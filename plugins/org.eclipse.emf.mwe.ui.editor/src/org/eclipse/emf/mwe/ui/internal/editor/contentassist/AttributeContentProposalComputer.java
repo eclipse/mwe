@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -39,8 +39,8 @@ public class AttributeContentProposalComputer extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
 	 */
-	public boolean isApplicable(final int offset) {
-		return isAttribute(offset);
+	public boolean isApplicable(int offset) {
+		return isAttribute();
 	}
 
 	@Override

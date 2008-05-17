@@ -32,6 +32,7 @@ public class ContentProposalComputerRegistry extends
 		super(editor, document, tagScanner);
 	}
 
+	@Override
 	public Set<ICompletionProposal> computeProposals(final int offset) {
 		Set<ICompletionProposal> result = new HashSet<ICompletionProposal>();
 		for (final AbstractContentProposalComputer c : computers) {
@@ -43,14 +44,28 @@ public class ContentProposalComputerRegistry extends
 		return result;
 	}
 
-	public boolean isApplicable(final int offset) {
+	@Override
+	public TextType getTextType() {
+		throw new UnsupportedOperationException();
+	}
+
+	public boolean isApplicable(int offset) {
 		return true;
 	}
 
+	@Override
+	public void setTextType(final TextType textType) {
+		for (final AbstractContentProposalComputer c : computers) {
+			c.setTextType(textType);
+		}
+	}
+
+	@Override
 	protected String createProposalText(final String name, final int offset) {
 		return null;
 	}
 
+	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		return null;
 	}
