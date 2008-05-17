@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  */
 
 public class WorkflowElement implements IRangeCheck {
@@ -238,7 +238,7 @@ public class WorkflowElement implements IRangeCheck {
 	 * @return type of current element.
 	 */
 	public WorkflowElementType getElementType() {
-		if (recomputeTypeInfo) {
+		if (recomputeTypeInfo || type == null) {
 			computeTypeInfo();
 		}
 
@@ -317,7 +317,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         <code>false</code>.
 	 */
 	public boolean hasAttributes() {
-		return (getAttributeCount() > 0);
+		return getAttributeCount() > 0;
 	}
 
 	/**
@@ -327,7 +327,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         <code>null</code>.
 	 */
 	public boolean hasParent() {
-		return (parent != null);
+		return parent != null;
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isAssignment() {
-		return (getComputedElementType() == WorkflowElementType.ASSIGNMENT);
+		return getComputedElementType() == WorkflowElementType.ASSIGNMENT;
 	}
 
 	/**
@@ -347,7 +347,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isAssignmentProperty() {
-		return (getComputedElementType() == WorkflowElementType.ASSIGNMENTPROPERTY);
+		return getComputedElementType() == WorkflowElementType.ASSIGNMENTPROPERTY;
 	}
 
 	/**
@@ -357,7 +357,8 @@ public class WorkflowElement implements IRangeCheck {
 	 *         <code>false</code>.
 	 */
 	public boolean isComponent() {
-		return (getComputedElementType() == WorkflowElementType.COMPONENT || isIfComponent());
+		return getComputedElementType() == WorkflowElementType.COMPONENT
+				|| isIfComponent();
 	}
 
 	/**
@@ -367,7 +368,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isFileProperty() {
-		return (getComputedElementType() == WorkflowElementType.FILE_PROPERTY);
+		return getComputedElementType() == WorkflowElementType.FILE_PROPERTY;
 	}
 
 	/**
@@ -377,7 +378,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isIfComponent() {
-		return (getComputedElementType() == WorkflowElementType.IF_COMPONENT);
+		return getComputedElementType() == WorkflowElementType.IF_COMPONENT;
 	}
 
 	/**
@@ -397,7 +398,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isLeaf() {
-		return (getChildrenCount() == 0);
+		return getChildrenCount() == 0;
 	}
 
 	/**
@@ -417,7 +418,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isSimpleProperty() {
-		return (getComputedElementType() == WorkflowElementType.SIMPLE_PROPERTY);
+		return getComputedElementType() == WorkflowElementType.SIMPLE_PROPERTY;
 	}
 
 	/**
@@ -440,7 +441,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         otherwise <code>false</code>.
 	 */
 	public boolean isWorkflow() {
-		return (getComputedElementType() == WorkflowElementType.WORKFLOW);
+		return getComputedElementType() == WorkflowElementType.WORKFLOW;
 	}
 
 	/**
@@ -450,7 +451,7 @@ public class WorkflowElement implements IRangeCheck {
 	 *         container, otherwise <code>false</code>.
 	 */
 	public boolean isWorkflowFile() {
-		return (getComputedElementType() == WorkflowElementType.WORKFLOWFILE);
+		return getComputedElementType() == WorkflowElementType.WORKFLOWFILE;
 	}
 
 	/**
