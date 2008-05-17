@@ -23,7 +23,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ReferenceInfoStore {
 
@@ -79,6 +79,10 @@ public class ReferenceInfoStore {
 		return fileNameSet.contains(name);
 	}
 
+	public Collection<ReferenceInfo> getReferenceDefinitions() {
+		return definitionSet;
+	}
+
 	public Collection<ReferenceInfo> getReferences() {
 		return references;
 	}
@@ -102,7 +106,6 @@ public class ReferenceInfoStore {
 		if (attribute == null)
 			throw new IllegalArgumentException();
 
-		final String name = attribute.getValue();
 		return new ReferenceInfo(file, element, attribute);
 	}
 }

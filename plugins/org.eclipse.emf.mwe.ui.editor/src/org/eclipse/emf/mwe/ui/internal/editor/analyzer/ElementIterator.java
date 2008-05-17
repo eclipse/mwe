@@ -26,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class ElementIterator {
 
@@ -96,6 +96,10 @@ public class ElementIterator {
 	 */
 	public List<String> getPropertyNameList() {
 		return analyzer.getPropertyNameList();
+	}
+
+	public Collection<ReferenceInfo> getReferenceDefinitions() {
+		return referenceInfoStore.getReferenceDefinitions();
 	}
 
 	public Collection<ReferenceInfo> getReferences() {

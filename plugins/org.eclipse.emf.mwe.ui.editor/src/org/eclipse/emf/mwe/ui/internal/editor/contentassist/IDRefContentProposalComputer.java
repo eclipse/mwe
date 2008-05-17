@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class IDRefContentProposalComputer extends
@@ -49,20 +49,19 @@ public class IDRefContentProposalComputer extends
 	 */
 	@Override
 	protected String createProposalText(final String name, final int offset) {
-		return name;
+		return "'" + name + "'";
 	}
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = new HashSet<String>();
-		final Collection<ReferenceInfo> references = editor.getReferences();
+		final Collection<ReferenceInfo> referenceDefinitions =
+				editor.getReferenceDefinitions();
 
-		if (references != null) {
-			for (final ReferenceInfo info : references) {
+		if (referenceDefinitions != null) {
+			for (final ReferenceInfo info : referenceDefinitions) {
 				final String referenceID = info.getReferenceValue();
-				final String proposalText =
-						createProposalText(referenceID, offset);
-				resultSet.add(proposalText);
+				resultSet.add(referenceID);
 			}
 		}
 		return resultSet;

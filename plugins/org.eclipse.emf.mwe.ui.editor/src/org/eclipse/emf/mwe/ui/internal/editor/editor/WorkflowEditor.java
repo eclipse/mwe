@@ -59,7 +59,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -86,6 +86,8 @@ public class WorkflowEditor extends TextEditor {
 	private Collection<String> propertyNames;
 
 	private Collection<ReferenceInfo> references;
+
+	private Collection<ReferenceInfo> referenceDefinitions;
 
 	public WorkflowEditor() {
 		super();
@@ -160,6 +162,10 @@ public class WorkflowEditor extends TextEditor {
 	 */
 	public Collection<String> getPropertyNames() {
 		return propertyNames;
+	}
+
+	public Collection<ReferenceInfo> getReferenceDefinitions() {
+		return referenceDefinitions;
 	}
 
 	public Collection<ReferenceInfo> getReferences() {
@@ -247,15 +253,15 @@ public class WorkflowEditor extends TextEditor {
 			setRootElement(newRootElement);
 		}
 
-		propertyNames = iterator.getPropertyNameList();
-		references = iterator.getReferences();
-
 		if (getRootElement() == null)
 			return;
 
 		iterator.checkValidity(getRootElement());
 		elements = iterator.getElementList();
 		attributes = iterator.getAttributeList();
+		propertyNames = iterator.getPropertyNameList();
+		references = iterator.getReferences();
+		referenceDefinitions = iterator.getReferenceDefinitions();
 	}
 
 	@Override

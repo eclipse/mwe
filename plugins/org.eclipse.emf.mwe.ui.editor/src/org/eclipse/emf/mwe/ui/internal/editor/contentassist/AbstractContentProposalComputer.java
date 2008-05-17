@@ -27,7 +27,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public abstract class AbstractContentProposalComputer implements
@@ -150,7 +150,7 @@ public abstract class AbstractContentProposalComputer implements
 				c = partitionText.charAt(end);
 			}
 
-			final String substring = partitionText.substring(start, end);
+			final String substring = partitionText.substring(start, end + 1);
 			return new TextInfo(substring, partitionOffset + start, false);
 		} catch (final BadLocationException e) {
 			e.printStackTrace();

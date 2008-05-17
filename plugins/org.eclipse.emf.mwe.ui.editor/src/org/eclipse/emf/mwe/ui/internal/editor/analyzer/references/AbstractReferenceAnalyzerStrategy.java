@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public abstract class AbstractReferenceAnalyzerStrategy implements
 		IReferenceAnalyzerStrategy {
@@ -30,13 +30,12 @@ public abstract class AbstractReferenceAnalyzerStrategy implements
 
 	public AbstractReferenceAnalyzerStrategy(final IFile file,
 			final IDocument document, final ReferenceInfoStore store) {
+		if (file == null || document == null || store == null)
+			throw new IllegalArgumentException();
+
 		this.file = file;
 		this.document = document;
-		if (store == null) {
-			this.store = new ReferenceInfoStore(file);
-		} else {
-			this.store = store;
-		}
+		this.store = store;
 	}
 
 	/**
