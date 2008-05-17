@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 
 public class WorkflowElement implements IRangeCheck {
@@ -264,6 +264,9 @@ public class WorkflowElement implements IRangeCheck {
 	}
 
 	public ElementPositionRange getFirstLineRange() {
+		if (startElementRange == null)
+			return null;
+
 		return startElementRange.getFirstLine().trimWhitespace();
 	}
 
