@@ -22,7 +22,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -45,14 +45,13 @@ public class PropertyContentProposalComputer extends
 	}
 
 	@Override
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		final Set<ICompletionProposal> result =
-				new HashSet<ICompletionProposal>();
+	protected Set<String> getProposalSet(final int offset) {
+		final Set<String> result = new HashSet<String>();
 		final Collection<String> propertyNames = editor.getPropertyNames();
 		if (propertyNames != null) {
 			for (final String name : propertyNames) {
 				final String proposalText = createProposalText(name, offset);
-				result.add(createProposal(proposalText, offset));
+				result.add(proposalText);
 			}
 		}
 		return result;

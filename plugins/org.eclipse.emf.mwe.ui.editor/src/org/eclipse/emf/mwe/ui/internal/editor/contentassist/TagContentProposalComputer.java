@@ -19,11 +19,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class TagContentProposalComputer extends
@@ -47,14 +46,11 @@ public class TagContentProposalComputer extends
 		return isTag(offset);
 	}
 
-	protected Set<ICompletionProposal> createDefaultProposals(final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
+	protected Set<String> createDefaultProposals(final int offset) {
+		final Set<String> resultSet = new HashSet<String>();
 		for (final String s : DEFAULT_PROPOSALS) {
 			final String proposalText = createProposalText(s, offset);
-			final ExtendedCompletionProposal proposal =
-					createProposal(proposalText, offset);
-			resultSet.add(proposal);
+			resultSet.add(proposalText);
 		}
 		return resultSet;
 	}
@@ -71,20 +67,16 @@ public class TagContentProposalComputer extends
 	}
 
 	@Override
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				createDefaultProposals(offset);
+	protected Set<String> getProposalSet(final int offset) {
+		final Set<String> resultSet = createDefaultProposals(offset);
 		final Collection<WorkflowElement> allElements = editor.getElements();
 
 		if (allElements != null) {
 			for (final Object el : allElements) {
 				final WorkflowElement element = (WorkflowElement) el;
 				final String name = element.getName();
-				final String text = createProposalText(name, offset);
-
-				final ExtendedCompletionProposal proposal =
-						createProposal(text, offset);
-				resultSet.add(proposal);
+				final String proposalText = createProposalText(name, offset);
+				resultSet.add(proposalText);
 			}
 		}
 		return resultSet;

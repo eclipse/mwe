@@ -19,11 +19,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -46,33 +45,28 @@ public class AttributeContentProposalComputer extends
 
 	@Override
 	protected String createProposalText(final String name, final int offset) {
-		return name;
+		String text = null;
+		final TextInfo currentText = currentText(document, offset);
+
+		if (currentText.isWhiteSpace()) {
+			text = name + "= \"\" ";
+		} else {
+			text = name;
+		}
+		return text;
 	}
 
 	@Override
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		final Set<ICompletionProposal> result =
-				new HashSet<ICompletionProposal>();
+	protected Set<String> getProposalSet(final int offset) {
+		final Set<String> result = new HashSet<String>();
 		final Collection<WorkflowAttribute> allAttributes =
 				editor.getAttributes();
-		final TextInfo currentText = currentText(document, offset);
 
 		if (allAttributes != null) {
 			final int i = 0;
 			for (final WorkflowAttribute attr : allAttributes) {
-				final String name = attr.getName();
-
-				String text = null;
-
-				if (currentText.isWhiteSpace()) {
-					text = name + "= \"\" ";
-				} else {
-					text = name;
-				}
-
-				result.add(new ExtendedCompletionProposal(text, currentText
-						.getDocumentOffset(), currentText.getText().length(),
-						text.length()));
+				final String name = createProposalText(attr.getName(), offset);
+				result.add(name);
 			}
 		}
 		return result;

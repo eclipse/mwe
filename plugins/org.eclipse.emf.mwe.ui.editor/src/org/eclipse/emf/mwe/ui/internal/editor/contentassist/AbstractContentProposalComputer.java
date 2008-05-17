@@ -27,7 +27,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public abstract class AbstractContentProposalComputer implements
@@ -65,7 +65,15 @@ public abstract class AbstractContentProposalComputer implements
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
 	 */
 	public Set<ICompletionProposal> computeProposals(final int offset) {
-		Set<ICompletionProposal> resultSet = getProposalSet(offset);
+		Set<ICompletionProposal> resultSet =
+				new HashSet<ICompletionProposal>();
+		final Set<String> proposals = getProposalSet(offset);
+		for (final String rawText : proposals) {
+			final String proposalText = createProposalText(rawText, offset);
+			final ICompletionProposal proposal =
+					createProposal(proposalText, offset);
+			resultSet.add(proposal);
+		}
 		resultSet = removeNonMatchingEntries(resultSet, offset);
 		return resultSet;
 	}
@@ -206,7 +214,7 @@ public abstract class AbstractContentProposalComputer implements
 		return extendedTerminalSet;
 	}
 
-	protected abstract Set<ICompletionProposal> getProposalSet(final int offset);
+	protected abstract Set<String> getProposalSet(final int offset);
 
 	protected boolean isAttribute(final int documentOffset) {
 		return computeType(documentOffset) == TextType.ATTRIBUTE;

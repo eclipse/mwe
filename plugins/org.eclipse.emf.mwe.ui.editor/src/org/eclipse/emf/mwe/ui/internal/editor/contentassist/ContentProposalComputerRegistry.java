@@ -51,7 +51,7 @@ public class ContentProposalComputerRegistry extends
 		return null;
 	}
 
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
+	protected Set<String> getProposalSet(final int offset) {
 		return null;
 	}
 

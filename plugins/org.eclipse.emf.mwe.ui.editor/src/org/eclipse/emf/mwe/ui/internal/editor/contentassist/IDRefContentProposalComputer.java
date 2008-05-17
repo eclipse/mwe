@@ -19,11 +19,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class IDRefContentProposalComputer extends
@@ -54,9 +53,8 @@ public class IDRefContentProposalComputer extends
 	}
 
 	@Override
-	protected Set<ICompletionProposal> getProposalSet(final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
+	protected Set<String> getProposalSet(final int offset) {
+		final Set<String> resultSet = new HashSet<String>();
 		final Collection<ReferenceInfo> references = editor.getReferences();
 
 		if (references != null) {
@@ -64,8 +62,7 @@ public class IDRefContentProposalComputer extends
 				final String referenceID = info.getReferenceValue();
 				final String proposalText =
 						createProposalText(referenceID, offset);
-				final ExtendedCompletionProposal proposal =
-						createProposal(proposalText, offset);
+				resultSet.add(proposalText);
 			}
 		}
 		return resultSet;
