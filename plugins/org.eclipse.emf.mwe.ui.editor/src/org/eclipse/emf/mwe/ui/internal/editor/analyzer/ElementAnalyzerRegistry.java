@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -38,6 +38,8 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(
 				file, document, propertyStore));
 		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file,
+				document, propertyStore));
+		map.put(WorkflowElementType.PROPERTY, new PropertyAnalyzer(file,
 				document, propertyStore));
 		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(
 				file, document, propertyStore));
