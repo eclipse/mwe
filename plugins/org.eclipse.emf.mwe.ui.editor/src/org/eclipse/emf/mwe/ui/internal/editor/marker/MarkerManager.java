@@ -28,7 +28,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public final class MarkerManager {
 
@@ -62,8 +62,12 @@ public final class MarkerManager {
 	public static void createMarker(final IFile file,
 			final IDocument document, final WorkflowElement element,
 			final String message, final boolean isError) {
-		createMarkerFromRange(file, document, message, element
-				.getFirstLineRange(), isError);
+		final ElementPositionRange firstLineRange =
+				element.getFirstLineRange();
+		if (firstLineRange == null)
+			return;
+
+		createMarkerFromRange(file, document, message, firstLineRange, isError);
 	}
 
 	public static void createMarkerFromRange(final IFile file,
