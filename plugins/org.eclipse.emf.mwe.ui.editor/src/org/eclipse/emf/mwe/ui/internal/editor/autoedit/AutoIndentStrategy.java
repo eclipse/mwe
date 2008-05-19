@@ -22,11 +22,11 @@ import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
-public class WorkflowAutoIndentStrategy extends
-		AbstractWorkflowAutoEditStrategy {
+public class AutoIndentStrategy extends
+		AbstractAutoEditStrategy {
 
 	private enum IndentType {
 		INDENT, UNINDENT

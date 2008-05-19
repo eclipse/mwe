@@ -25,8 +25,8 @@ import org.eclipse.jface.text.ITypedRegion;
  * @version $Revision: 1.1 $
  */
 
-public class WorkflowRemoveClosingTagStrategy extends
-		AbstractWorkflowAutoEditStrategy {
+public class RemoveClosingTagStrategy extends
+		AbstractAutoEditStrategy {
 
 	private static final Pattern TAG_PATTERN =
 			Pattern.compile("(<\\s*(\\w+)\\s*.*?\\s*>)\\s*<\\s*/\\s*\\2>",

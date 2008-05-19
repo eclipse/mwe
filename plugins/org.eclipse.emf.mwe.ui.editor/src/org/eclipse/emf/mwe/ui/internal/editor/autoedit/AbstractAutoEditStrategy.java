@@ -18,7 +18,7 @@ import org.eclipse.jface.text.IAutoEditStrategy;
  * @version $Revision: 1.1 $
  */
 
-public abstract class AbstractWorkflowAutoEditStrategy implements
+public abstract class AbstractAutoEditStrategy implements
 		IAutoEditStrategy {
 
 	protected static final String END_TAG_PREFIX = "</";

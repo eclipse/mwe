@@ -25,8 +25,8 @@ import org.eclipse.jface.text.IDocument;
  * @version $Revision: 1.1 $
  */
 
-public class WorkflowAutoTagCompletionStrategy extends
-		AbstractWorkflowAutoEditStrategy {
+public class AutoTagCompletionStrategy extends
+		AbstractAutoEditStrategy {
 
 	private static final String TRIGGER_STRING = END_TAG_PREFIX;
 
@@ -37,7 +37,7 @@ public class WorkflowAutoTagCompletionStrategy extends
 
 	private static String triggerBuffer;
 
-	public WorkflowAutoTagCompletionStrategy() {
+	public AutoTagCompletionStrategy() {
 		resetBuffer();
 	}
 
