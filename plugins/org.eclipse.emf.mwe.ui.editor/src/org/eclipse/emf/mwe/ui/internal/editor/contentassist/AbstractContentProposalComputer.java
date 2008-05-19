@@ -17,6 +17,7 @@ import java.util.Set;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TextType;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
@@ -27,7 +28,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public abstract class AbstractContentProposalComputer implements

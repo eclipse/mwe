@@ -9,8 +9,8 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
-enum TextType {
+public enum TextType {
 	TAG, ATTRIBUTE, STRING, OUTSIDE_TAG, UNDEFINED
 }

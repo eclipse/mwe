@@ -18,6 +18,7 @@ import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TextType;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
