@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoIndentStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowAutoTagCompletionStrategy;
+import org.eclipse.emf.mwe.ui.internal.editor.autoedit.WorkflowRemoveClosingTagStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
@@ -53,7 +54,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -114,6 +115,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		strategies.add(new DefaultIndentLineAutoEditStrategy());
 		strategies.add(new WorkflowAutoTagCompletionStrategy());
 		strategies.add(new WorkflowAutoIndentStrategy());
+		strategies.add(new WorkflowRemoveClosingTagStrategy());
 		final IAutoEditStrategy[] res =
 				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
 		return res;
