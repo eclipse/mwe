@@ -20,7 +20,6 @@ import java.io.StringReader;
 import org.apache.xerces.parsers.SAXParser;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
-import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
@@ -30,7 +29,7 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class XMLParser {
 
@@ -39,7 +38,7 @@ public class XMLParser {
 
 	private ErrorHandler errorHandler;
 
-	private WorkflowOutlineContentHandler contentHandler;
+	private WorkflowContentHandler contentHandler;
 
 	public WorkflowElement getRootElement() {
 		WorkflowElement root = null;
@@ -82,8 +81,7 @@ public class XMLParser {
 		parse(inputSource);
 	}
 
-	public void setContentHandler(
-			final WorkflowOutlineContentHandler contentHandler) {
+	public void setContentHandler(final WorkflowContentHandler contentHandler) {
 		this.contentHandler = contentHandler;
 	}
 

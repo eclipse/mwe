@@ -31,8 +31,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
-import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
@@ -59,7 +59,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -193,8 +193,8 @@ public class WorkflowEditor extends TextEditor {
 		final String text = document.get();
 		try {
 			final XMLParser xmlParser = new XMLParser();
-			final WorkflowOutlineContentHandler contentHandler =
-					new WorkflowOutlineContentHandler();
+			final WorkflowContentHandler contentHandler =
+					new WorkflowContentHandler();
 			contentHandler.setDocument(document);
 			contentHandler.setPositionCategory(TAG_POSITIONS);
 			contentHandler.setDocumentLocator(new LocatorImpl());
