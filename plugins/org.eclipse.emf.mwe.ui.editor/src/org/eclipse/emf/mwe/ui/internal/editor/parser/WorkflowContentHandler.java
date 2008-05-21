@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
-import org.eclipse.jface.text.ITypedRegion;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -27,7 +27,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -109,8 +109,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	}
 
 	/**
-	 * This method overrides the implementation of <code>setDocumentLocator</code>
-	 * inherited from the superclass.
+	 * This method overrides the implementation of
+	 * <code>setDocumentLocator</code> inherited from the superclass.
 	 * 
 	 * @see org.xml.sax.helpers.DefaultHandler#setDocumentLocator(org.xml.sax.Locator)
 	 */
@@ -202,16 +202,9 @@ public class WorkflowContentHandler extends DefaultHandler {
 		try {
 			final IRegion region = document.getLineInformationOfOffset(offset);
 			final int lineStartChar = region.getOffset();
-			final Integer charEnd = getCharEnd(offset);
-			if (charEnd != null) {
-				final ITypedRegion typedRegion =
-						document.getPartition(charEnd.intValue() - 2);
-				final int partitionStartChar = typedRegion.getOffset();
-				return new Integer(partitionStartChar);
-			} else
-				return new Integer(lineStartChar);
+			return lineStartChar;
 		} catch (final BadLocationException e) {
-			e.printStackTrace();
+			Log.logError("Bad document location", e);
 			return null;
 		}
 	}
@@ -222,7 +215,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final IRegion region = document.getLineInformationOfOffset(offset);
 			range = new ElementPositionRange(document, region);
 		} catch (final BadLocationException e) {
-			// Do nothing
+			Log.logError("Bad document location", e);
 		}
 
 		return range;

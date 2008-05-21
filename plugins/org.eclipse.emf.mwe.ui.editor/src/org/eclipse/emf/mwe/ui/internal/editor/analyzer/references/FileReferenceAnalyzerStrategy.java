@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
-import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowOutlineContentHandler;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
@@ -25,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -88,8 +88,8 @@ public class FileReferenceAnalyzerStrategy extends
 			}
 
 			final XMLParser parser = new XMLParser();
-			final WorkflowOutlineContentHandler contentHandler =
-					new WorkflowOutlineContentHandler();
+			final WorkflowContentHandler contentHandler =
+					new WorkflowContentHandler();
 			contentHandler.setDocument(document);
 			contentHandler.setPositionCategory("dummy");
 			contentHandler.setDocumentLocator(new LocatorImpl());
