@@ -9,5 +9,6 @@ Bundle-Localization: plugin
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text;visibility:=reexport,
  org.junit;visibility:=reexport,
- org.eclipse.emf.mwe.ui.editor
+ org.eclipse.emf.mwe.ui.editor,
+ org.eclipse.xtend
 Eclipse-LazyStart: true

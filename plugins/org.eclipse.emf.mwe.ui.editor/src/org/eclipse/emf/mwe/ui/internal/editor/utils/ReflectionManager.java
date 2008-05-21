@@ -23,6 +23,8 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -38,11 +40,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public final class ReflectionManager {
 
 	public static final String COMPONENT_SUFFIX = "Component";
+
+	private static final int FIRST_PROPERTY_CHAR = 3;
 
 	private static final String MWE_CONTAINER_PACKAGE =
 			"org.eclipse.emf.mwe.core.container";
@@ -150,6 +154,26 @@ public final class ReflectionManager {
 		return loader;
 	}
 
+	public static Set<String> getSettableProperties(final Class<?> clazz) {
+		if (clazz == null)
+			return null;
+
+		final Set<String> result = new HashSet<String>();
+		final Method[] methods = clazz.getMethods();
+		for (final Method m : methods) {
+			final String methodName = m.getName();
+			final int modifiers = m.getModifiers();
+			if (methodName.length() > SETTER_PREFIX.length()
+					&& Modifier.isPublic(modifiers)
+					&& (methodName.startsWith(ADDER_PREFIX) || methodName
+							.startsWith(SETTER_PREFIX))) {
+				final String propertyName = getPropertyName(methodName);
+				result.add(propertyName);
+			}
+		}
+		return result;
+	}
+
 	public static Method getSetter(final Class<? extends Object> clazz,
 			final String name, final Class<?> type) {
 		Method method = null;
@@ -252,9 +276,20 @@ public final class ReflectionManager {
 		} catch (final SecurityException e) {
 			Log.logError("Security error", e);
 		} catch (final NoSuchMethodException e) {
-			// Do nothing
+			Log.logError("No such method", e);
 		}
 		return null;
+	}
+
+	private static String getPropertyName(final String methodName) {
+		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
+				&& !methodName.startsWith(ADDER_PREFIX)
+				&& methodName.length() <= SETTER_PREFIX.length())
+			throw new IllegalArgumentException();
+
+		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
+		propertyName = toLowerCaseFirst(propertyName);
+		return propertyName;
 	}
 
 	private static boolean isConcrete(final Class<?> clazz) {
@@ -267,14 +302,23 @@ public final class ReflectionManager {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		} catch (final NoSuchMethodException e) {
-			// Do nothing
+			Log.logError("No such method", e);
 		}
 		return !Modifier.isAbstract(modifiers)
-				&& !Modifier.isInterface(modifiers) && (constructor != null);
+				&& !Modifier.isInterface(modifiers) && constructor != null;
 	}
 
 	private static String setterName(final String name) {
 		return SETTER_PREFIX + toUpperCaseFirst(name);
+	}
+
+	private static String toLowerCaseFirst(final String name) {
+		if (name == null || name.length() == 0)
+			return name;
+		else if (name.length() == 1)
+			return name.toLowerCase();
+
+		return name.substring(0, 1).toLowerCase() + name.substring(1);
 	}
 
 	private static String toUpperCaseFirst(final String name) {
@@ -285,4 +329,5 @@ public final class ReflectionManager {
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
+
 }
