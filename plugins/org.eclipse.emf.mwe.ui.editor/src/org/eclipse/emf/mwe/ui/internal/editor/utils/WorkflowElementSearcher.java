@@ -18,7 +18,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public final class WorkflowElementSearcher {
@@ -49,7 +49,7 @@ public final class WorkflowElementSearcher {
 
 		WorkflowElement element =
 				internalSearchContainerElement(firstComponent, null, offset);
-		if (!element.hasAttribute("class")) {
+		while (element != null && !element.hasAttribute("class")) {
 			element = element.getParent();
 		}
 		return element;
