@@ -22,12 +22,10 @@ import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
-
-	private static final String TAG_POSITIONS = "__tag_positions";
 
 	private static final String WORKFLOW =
 			"<workflow>\n"
