@@ -14,18 +14,15 @@ package org.eclipse.emf.mwe.ui.editor.tests.searcher;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.SAXException;
-import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
@@ -79,18 +76,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 	private WorkflowElement parse(final IDocument document) {
 		final String text = document.get();
 		try {
-			final XMLParser xmlParser = new XMLParser();
-			final WorkflowContentHandler contentHandler =
-					new WorkflowContentHandler();
-			contentHandler.setDocument(document);
-			contentHandler.setPositionCategory(TAG_POSITIONS);
-			contentHandler.setDocumentLocator(new LocatorImpl());
-			xmlParser.setContentHandler(contentHandler);
-			xmlParser.parse(text);
-			final WorkflowElement root = xmlParser.getRootElement();
-			return root;
-		} catch (final ValidationException e) {
-			fail();
+			return DocumentParser.parse(document);
 		} catch (final SAXException e) {
 			fail();
 		}

@@ -31,9 +31,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -55,15 +53,12 @@ import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
-import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public class WorkflowEditor extends TextEditor {
-
-	public static final String TAG_POSITIONS = "__tag_positions";
 
 	private ProjectionAnnotationModel annotationModel;
 
@@ -190,23 +185,8 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	public WorkflowElement parseRootElement(final IDocument document) {
-		final String text = document.get();
 		try {
-			final XMLParser xmlParser = new XMLParser();
-			final WorkflowContentHandler contentHandler =
-					new WorkflowContentHandler();
-			contentHandler.setDocument(document);
-			contentHandler.setPositionCategory(TAG_POSITIONS);
-			contentHandler.setDocumentLocator(new LocatorImpl());
-			xmlParser.setContentHandler(contentHandler);
-			xmlParser.parse(text);
-			final WorkflowElement root = xmlParser.getRootElement();
-			return root;
-		} catch (final ValidationException e) {
-			final int line = e.getLineNumber();
-			final int column = e.getColumnNumber();
-			final String msg = e.getDetailedMessage();
-			createMarker(document, msg, line, column);
+			return DocumentParser.parse(document);
 		} catch (final SAXException e) {
 			if (e instanceof SAXParseException) {
 				final SAXParseException ex = (SAXParseException) e;

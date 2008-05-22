@@ -15,6 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
 import org.eclipse.jface.text.IDocument;
@@ -27,7 +28,7 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -53,7 +54,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		this.editor = editor;
 		documentProvider = editor.getDocumentProvider();
 		positionUpdater =
-				new DefaultPositionUpdater(WorkflowEditor.TAG_POSITIONS);
+				new DefaultPositionUpdater(DocumentParser.TAG_POSITIONS);
 	}
 
 	public void dispose() {
@@ -99,7 +100,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 			if (document != null) {
 				try {
 					document
-							.removePositionCategory(WorkflowEditor.TAG_POSITIONS);
+							.removePositionCategory(DocumentParser.TAG_POSITIONS);
 				} catch (final BadPositionCategoryException x) {
 				}
 				document.removePositionUpdater(positionUpdater);
@@ -111,7 +112,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (newInput != null) {
 			final IDocument document = documentProvider.getDocument(newInput);
 			if (document != null) {
-				document.addPositionCategory(WorkflowEditor.TAG_POSITIONS);
+				document.addPositionCategory(DocumentParser.TAG_POSITIONS);
 				document.addPositionUpdater(positionUpdater);
 
 				final WorkflowEditor wfEditor = (WorkflowEditor) editor;
