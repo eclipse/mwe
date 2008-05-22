@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ElementPositionRange implements IRangeCheck {
 
@@ -74,12 +74,17 @@ public class ElementPositionRange implements IRangeCheck {
 	public ElementPositionRange(final IDocument document,
 			final ElementPositionRange startPosition,
 			final ElementPositionRange endPosition) {
-		if (document == null || startPosition == null || endPosition == null)
+		if (document == null || startPosition == null && endPosition == null)
 			throw new IllegalArgumentException();
 
+		final ElementPositionRange startPos =
+				startPosition != null ? startPosition : endPosition;
+		final ElementPositionRange endPos =
+				endPosition != null ? endPosition : startPosition;
+
 		this.document = document;
-		startOffset = startPosition.getStartOffset();
-		endOffset = endPosition.getEndOffset();
+		startOffset = startPos.getStartOffset();
+		endOffset = endPos.getEndOffset();
 		checkOrder();
 	}
 

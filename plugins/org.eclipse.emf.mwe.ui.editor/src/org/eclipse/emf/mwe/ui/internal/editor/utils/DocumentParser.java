@@ -11,16 +11,18 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public final class DocumentParser {
@@ -34,8 +36,12 @@ public final class DocumentParser {
 		throw new UnsupportedOperationException();
 	}
 
-	public static WorkflowElement parse(final IDocument document)
-			throws SAXException {
+	public static WorkflowElement parse(final IDocument document) {
+		return parse(document, null);
+	}
+
+	public static WorkflowElement parse(final IDocument document,
+			final WorkflowEditor editor) {
 		if (document == null)
 			return null;
 
@@ -47,7 +53,17 @@ public final class DocumentParser {
 		contentHandler.setPositionCategory(TAG_POSITIONS);
 		contentHandler.setDocumentLocator(new LocatorImpl());
 		xmlParser.setContentHandler(contentHandler);
-		xmlParser.parse(text);
+		try {
+			xmlParser.parse(text);
+		} catch (final SAXException e) {
+			if (editor != null && e instanceof SAXParseException) {
+				final SAXParseException ex = (SAXParseException) e;
+				final int line = ex.getLineNumber() - 1;
+				final int column = ex.getColumnNumber() - 1;
+				final String msg = ex.getMessage();
+				editor.createMarker(document, msg, line, column);
+			}
+		}
 		final WorkflowElement root = xmlParser.getRootElement();
 		return root;
 	}

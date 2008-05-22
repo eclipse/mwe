@@ -51,12 +51,10 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -90,6 +88,26 @@ public class WorkflowEditor extends TextEditor {
 		setSourceViewerConfiguration(new WorkflowEditorConfiguration(
 				WorkflowEditorPlugin.getDefault(), colorManager, this));
 		setDocumentProvider(new WorkflowDocumentProvider());
+	}
+
+	public void createMarker(final IDocument document, final String msg,
+			final int line, final int column) {
+		try {
+			final IFile file = getInputFile();
+			final int lineOffset = document.getLineOffset(line);
+			final int start = lineOffset + column;
+			int end = start;
+			if (end < document.getLength()) {
+				end++;
+			}
+
+			final ElementPositionRange range =
+					new ElementPositionRange(document, start, end);
+			MarkerManager.createMarkerFromRange(file, document, msg, range,
+					true);
+		} catch (final BadLocationException e) {
+			Log.logError("Document location error", e);
+		}
 	}
 
 	@Override
@@ -185,18 +203,7 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	public WorkflowElement parseRootElement(final IDocument document) {
-		try {
-			return DocumentParser.parse(document);
-		} catch (final SAXException e) {
-			if (e instanceof SAXParseException) {
-				final SAXParseException ex = (SAXParseException) e;
-				final int line = ex.getLineNumber() - 1;
-				final int column = ex.getColumnNumber() - 1;
-				final String msg = ex.getMessage();
-				createMarker(document, msg, line, column);
-			}
-		}
-		return null;
+		return DocumentParser.parse(document, null);
 	}
 
 	/**
@@ -351,26 +358,6 @@ public class WorkflowEditor extends TextEditor {
 		super.rulerContextMenuAboutToShow(menu);
 
 		actionGroup.fillContextMenu(menu);
-	}
-
-	private void createMarker(final IDocument document, final String msg,
-			final int line, final int column) {
-		try {
-			final IFile file = getInputFile();
-			final int lineOffset = document.getLineOffset(line);
-			final int start = lineOffset + column;
-			int end = start;
-			if (end < document.getLength()) {
-				end++;
-			}
-
-			final ElementPositionRange range =
-					new ElementPositionRange(document, start, end);
-			MarkerManager.createMarkerFromRange(file, document, msg, range,
-					true);
-		} catch (final BadLocationException e) {
-			Log.logError("Document location error", e);
-		}
 	}
 
 	private WorkflowEditorPlugin getPlugin() {
