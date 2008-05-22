@@ -18,16 +18,15 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
-import org.xml.sax.SAXException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
 
-	private static final String WORKFLOW =
+	private static final String WORKFLOW1 =
 			"<workflow>\n"
 					+ "	\n"
 					+ "	<property name=\"platformURI\" value=\"..\"/>\n"
@@ -53,8 +52,31 @@ public class WorkflowElementSearcherTest extends TestCase {
 					+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
 					+ "	</component>\n" + "	\n" + "</workflow>\n";
 
-	public void testFindContainer() {
-		final IDocument document = createDocument(WORKFLOW);
+	private static final String WORKFLOW2 =
+			"<workflow>\n"
+					+ "	\n"
+					+ "	<property name=\"platformURI\" value=\"..\"/>\n"
+					+ "	\n"
+					+ "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+					+ "		<modelFile value=\"${modelFile}\"/>\n"
+					+ "		<outputSlot value=\"${outputSlot}\"/>\n";
+
+	public void testFindContainerCompleteWorkflow() {
+		final IDocument document = createDocument(WORKFLOW1);
+		final WorkflowElement root = parse(document);
+		final int offset = 160;
+		final WorkflowElement foundElement =
+				WorkflowElementSearcher.searchContainerElement(root, document,
+						offset);
+		assertNotNull(foundElement);
+		assertEquals("component", foundElement.getName());
+		assertTrue(foundElement.hasAttribute("class"));
+		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent",
+				foundElement.getAttributeValue("class"));
+	}
+
+	public void testFindContainerPartialWorkflow() {
+		final IDocument document = createDocument(WORKFLOW2);
 		final WorkflowElement root = parse(document);
 		final int offset = 160;
 		final WorkflowElement foundElement =
@@ -73,12 +95,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 
 	private WorkflowElement parse(final IDocument document) {
 		final String text = document.get();
-		try {
-			return DocumentParser.parse(document);
-		} catch (final SAXException e) {
-			fail();
-		}
-		return null;
+		return DocumentParser.parse(document);
 	}
 
 }
