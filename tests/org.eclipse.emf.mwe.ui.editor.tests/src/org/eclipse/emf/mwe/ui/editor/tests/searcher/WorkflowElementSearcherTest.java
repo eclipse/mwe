@@ -21,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
@@ -61,6 +61,13 @@ public class WorkflowElementSearcherTest extends TestCase {
 					+ "		<modelFile value=\"${modelFile}\"/>\n"
 					+ "		<outputSlot value=\"${outputSlot}\"/>\n";
 
+	private static final String WORKFLOW3 =
+			"<workflow>\n"
+					+ "	<property file=\'generate.properties\'/>\n"
+					+ "	<component file=\'org/openarchitectureware/xtext/Generator.oaw\' inheritAll=\'true\'/>\n"
+					+ "	<component class=\'org.openarchitectureware.xtend.XtendComponent\'>\n"
+					+ "	<\n" + "</workflow>";
+
 	public void testFindContainerCompleteWorkflow() {
 		final IDocument document = createDocument(WORKFLOW1);
 		final WorkflowElement root = parse(document);
@@ -75,7 +82,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 				foundElement.getAttributeValue("class"));
 	}
 
-	public void testFindContainerPartialWorkflow() {
+	public void testFindContainerPartialWorkflow1() {
 		final IDocument document = createDocument(WORKFLOW2);
 		final WorkflowElement root = parse(document);
 		final int offset = 160;
@@ -86,6 +93,21 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
 		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent",
+				foundElement.getAttributeValue("class"));
+	}
+
+	public void testFindContainerPartialWorkflow2() {
+		final IDocument document = createDocument(WORKFLOW3);
+		final WorkflowElement root = parse(document);
+		int offset = document.getLength() - 1;
+		offset -= 12;
+		final WorkflowElement foundElement =
+				WorkflowElementSearcher.searchContainerElement(root, document,
+						offset);
+		assertNotNull(foundElement);
+		assertEquals("component", foundElement.getName());
+		assertTrue(foundElement.hasAttribute("class"));
+		assertEquals("org.openarchitectureware.xtend.XtendComponent",
 				foundElement.getAttributeValue("class"));
 	}
 
