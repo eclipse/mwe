@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -19,22 +20,22 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public abstract class AbstractSpecializedStringContentProposalComputer extends
 		AbstractStringContentProposalComputer {
 
-	public AbstractSpecializedStringContentProposalComputer(
+	public AbstractSpecializedStringContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+		super(file, editor, document, tagScanner);
 	}
 
 	public abstract String[] getTriggerAttributeNames();
 
 	@Override
-	public boolean isApplicable(int offset) {
+	public boolean isApplicable(final int offset) {
 		return super.isApplicable(offset)
 				&& hasAttributeName(getTriggerAttributeNames(), offset);
 	}

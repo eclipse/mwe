@@ -11,21 +11,23 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public abstract class AbstractStringContentProposalComputer extends
 		AbstractContentProposalComputer {
 
-	public AbstractStringContentProposalComputer(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+	public AbstractStringContentProposalComputer(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
 	}
 
 	/**

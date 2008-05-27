@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
@@ -22,15 +23,16 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class PropertyContentProposalComputer extends
 		AbstractStringContentProposalComputer {
 
-	public PropertyContentProposalComputer(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+	public PropertyContentProposalComputer(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
 	}
 
 	@Override

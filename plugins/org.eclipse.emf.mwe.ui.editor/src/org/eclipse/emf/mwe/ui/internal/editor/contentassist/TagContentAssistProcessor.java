@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextType;
@@ -26,9 +27,11 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class TagContentAssistProcessor implements IContentAssistProcessor {
+
+	private final IFile file;
 
 	private final WorkflowEditor editor;
 
@@ -36,8 +39,9 @@ public class TagContentAssistProcessor implements IContentAssistProcessor {
 
 	private TagContentProposalComputerRegistry registry;
 
-	public TagContentAssistProcessor(final WorkflowEditor editor,
-			final WorkflowTagScanner tagScanner) {
+	public TagContentAssistProcessor(final IFile file,
+			final WorkflowEditor editor, final WorkflowTagScanner tagScanner) {
+		this.file = file;
 		this.editor = editor;
 		this.tagScanner = tagScanner;
 	}
@@ -85,8 +89,8 @@ public class TagContentAssistProcessor implements IContentAssistProcessor {
 	private void setupRegistry(final IDocument document) {
 		if (registry == null) {
 			registry =
-					new TagContentProposalComputerRegistry(editor, document,
-							tagScanner);
+					new TagContentProposalComputerRegistry(file, editor,
+							document, tagScanner);
 		}
 	}
 }

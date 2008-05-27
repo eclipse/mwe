@@ -11,33 +11,35 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class TagContentProposalComputerRegistry extends
 		ContentProposalComputerRegistry {
 
-	public TagContentProposalComputerRegistry(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
-		computers.add(new IDRefContentProposalComputer(editor, document,
+	public TagContentProposalComputerRegistry(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
+		computers.add(new IDRefContentProposalComputer(file, editor, document,
 				tagScanner));
-		computers.add(new PropertyContentProposalComputer(editor, document,
-				tagScanner));
-		computers.add(new AttributeContentProposalComputer(editor, document,
-				tagScanner));
-		computers.add(new AssignmentPropertyContentProposalComputer(editor,
+		computers.add(new PropertyContentProposalComputer(file, editor,
 				document, tagScanner));
-		computers.add(new TagContentProposalComputer(editor, document,
+		computers.add(new AttributeContentProposalComputer(file, editor,
+				document, tagScanner));
+		computers.add(new AssignmentPropertyContentProposalComputer(file,
+				editor, document, tagScanner));
+		computers.add(new TagContentProposalComputer(file, editor, document,
 				tagScanner));
-		computers.add(new DefaultContentProposalComputer(editor, document,
-				tagScanner));
+		computers.add(new DefaultContentProposalComputer(file, editor,
+				document, tagScanner));
 	}
 
 }

@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -22,7 +23,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class TagContentProposalComputer extends
@@ -31,9 +32,10 @@ public class TagContentProposalComputer extends
 	protected static final String[] DEFAULT_PROPOSALS =
 			{ "workflow", "property", "component", "bean" };
 
-	public TagContentProposalComputer(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+	public TagContentProposalComputer(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
 	}
 
 	/**

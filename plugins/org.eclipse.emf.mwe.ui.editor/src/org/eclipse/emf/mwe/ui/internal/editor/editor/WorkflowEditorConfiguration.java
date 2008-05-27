@@ -55,7 +55,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -145,11 +145,13 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		final ContentAssistant assistant = new ContentAssistant();
 
 		assistant.setContentAssistProcessor(new TagContentAssistProcessor(
-				editor, new WorkflowTagScanner(colorManager)),
-				IDocument.DEFAULT_CONTENT_TYPE);
-		assistant.setContentAssistProcessor(new TagContentAssistProcessor(
-				editor, new WorkflowTagScanner(colorManager)),
-				WorkflowPartitionScanner.XML_START_TAG);
+				editor.getInputFile(), editor, new WorkflowTagScanner(
+						colorManager)), IDocument.DEFAULT_CONTENT_TYPE);
+		assistant
+				.setContentAssistProcessor(new TagContentAssistProcessor(
+						editor.getInputFile(), editor, new WorkflowTagScanner(
+								colorManager)),
+						WorkflowPartitionScanner.XML_START_TAG);
 		assistant.enableAutoActivation(true);
 		assistant.setAutoActivationDelay(500);
 		assistant

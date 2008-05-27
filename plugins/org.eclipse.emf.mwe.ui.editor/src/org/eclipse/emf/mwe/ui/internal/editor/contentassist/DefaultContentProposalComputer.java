@@ -11,20 +11,22 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class DefaultContentProposalComputer extends TagContentProposalComputer {
 
-	public DefaultContentProposalComputer(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+	public DefaultContentProposalComputer(IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
 	}
 
 	@Override

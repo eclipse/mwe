@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextType;
@@ -28,9 +29,10 @@ public class ContentProposalComputerRegistry extends
 	protected final List<AbstractContentProposalComputer> computers =
 			new ArrayList<AbstractContentProposalComputer>();
 
-	public ContentProposalComputerRegistry(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+	public ContentProposalComputerRegistry(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		super(file, editor, document, tagScanner);
 	}
 
 	@Override
@@ -50,7 +52,7 @@ public class ContentProposalComputerRegistry extends
 		throw new UnsupportedOperationException();
 	}
 
-	public boolean isApplicable(int offset) {
+	public boolean isApplicable(final int offset) {
 		return true;
 	}
 

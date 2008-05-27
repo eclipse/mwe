@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -23,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends
@@ -57,10 +58,10 @@ public class AssignmentPropertyContentProposalComputer extends
 
 	private ContainerCache containerCache;
 
-	public AssignmentPropertyContentProposalComputer(
+	public AssignmentPropertyContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
-		super(editor, document, tagScanner);
+		super(file, editor, document, tagScanner);
 	}
 
 	@Override
@@ -71,23 +72,21 @@ public class AssignmentPropertyContentProposalComputer extends
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = new HashSet<String>();
-		try {
-			final WorkflowElement container = getContainer(offset);
-			if (container != null) {
-				final String className =
-						container.getAttributeValue(CLASS_ATTRIBUTE);
-				if (className == null)
-					throw new IllegalStateException();
+		final WorkflowElement container = getContainer(offset);
+		if (container != null) {
+			final String className =
+					container.getAttributeValue(CLASS_ATTRIBUTE);
+			if (className == null)
+				throw new IllegalStateException();
 
-				final Class<?> clazz = Class.forName(className);
+			final Class<?> clazz = ReflectionManager.getClass(file, className);
+			if (clazz != null) {
 				final Set<String> settableProperties =
 						ReflectionManager.getSettableProperties(clazz);
 				resultSet.addAll(settableProperties);
 			}
-			return resultSet;
-		} catch (final ClassNotFoundException e) {
-			return resultSet;
 		}
+		return resultSet;
 	}
 
 	private void cacheElement(final WorkflowElement element, final int offset) {

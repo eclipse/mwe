@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -28,7 +29,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public abstract class AbstractContentProposalComputer implements
@@ -42,6 +43,8 @@ public abstract class AbstractContentProposalComputer implements
 
 	private static final char[] EXTENDED_TERMINALS = { '<', '>' };
 
+	protected IFile file;
+
 	protected WorkflowEditor editor;
 
 	protected final IDocument document;
@@ -50,8 +53,10 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected TextType textType;
 
-	protected AbstractContentProposalComputer(final WorkflowEditor editor,
-			final IDocument document, final WorkflowTagScanner tagScanner) {
+	protected AbstractContentProposalComputer(final IFile file,
+			final WorkflowEditor editor, final IDocument document,
+			final WorkflowTagScanner tagScanner) {
+		this.file = file;
 		this.editor = editor;
 		this.document = document;
 		this.tagScanner = tagScanner;
@@ -146,9 +151,15 @@ public abstract class AbstractContentProposalComputer implements
 			int end = index;
 			c = partitionText.charAt(end);
 
+			moved = false;
 			while (!isTerminal(terminalSet(), c) && end < documentOffset) {
+				moved = true;
 				end++;
 				c = partitionText.charAt(end);
+			}
+
+			if (moved) {
+				end--;
 			}
 
 			final String substring = partitionText.substring(start, end + 1);
