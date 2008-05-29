@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Bundle-ActivationPolicy: lazy
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.mwe.ui.editor.tests; singleton:=true
@@ -10,4 +11,3 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface.text;visibility:=reexport,
  org.junit;visibility:=reexport,
  org.eclipse.emf.mwe.ui.editor
-Eclipse-LazyStart: true
