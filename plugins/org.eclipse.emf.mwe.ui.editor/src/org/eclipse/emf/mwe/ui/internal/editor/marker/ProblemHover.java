@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextHover;
+import org.eclipse.jface.text.ITextHoverExtension2;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Region;
 import org.eclipse.jface.text.source.Annotation;
@@ -26,7 +27,8 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 
-public class ProblemHover implements IAnnotationHover, ITextHover {
+public class ProblemHover implements IAnnotationHover, ITextHover,
+ITextHoverExtension2 {
 
 	private final ISourceViewer sourceViewer;
 
@@ -42,14 +44,20 @@ public class ProblemHover implements IAnnotationHover, ITextHover {
 		return getHoverInfoInternal(lineNumber, -1);
 	}
 
-	// for TextHover
+	@SuppressWarnings("deprecation")
 	public String getHoverInfo(final ITextViewer textViewer,
+			final IRegion hoverRegion) {
+		return getHoverInfo2(textViewer, hoverRegion);
+	}
+
+	// for TextHover
+	public String getHoverInfo2(final ITextViewer textViewer,
 			final IRegion hoverRegion) {
 		int lineNumber;
 		try {
 			lineNumber =
-					sourceViewer.getDocument().getLineOfOffset(
-							hoverRegion.getOffset());
+				sourceViewer.getDocument().getLineOfOffset(
+						hoverRegion.getOffset());
 		} catch (final BadLocationException e) {
 			return null;
 		}
@@ -72,8 +80,9 @@ public class ProblemHover implements IAnnotationHover, ITextHover {
 			while (e.hasNext()) {
 				splitInfo("- " + e.next() + "\n");
 			}
-		} else if (messages.size() == 1)
+		} else if (messages.size() == 1) {
 			splitInfo(messages.get(0));
+		}
 		return buffer.toString();
 	}
 
@@ -84,18 +93,21 @@ public class ProblemHover implements IAnnotationHover, ITextHover {
 		final Iterator<?> iterator = model.getAnnotationIterator();
 		while (iterator.hasNext()) {
 			final Annotation annotation = (Annotation) iterator.next();
-			if (!(annotation instanceof MarkerAnnotation))
+			if (!(annotation instanceof MarkerAnnotation)) {
 				continue;
+			}
 			final MarkerAnnotation mAnno = (MarkerAnnotation) annotation;
 			final int start = model.getPosition(mAnno).getOffset();
 			final int end = start + model.getPosition(mAnno).getLength();
 
-			if (offset > 0 && !(start <= offset && offset <= end))
+			if (offset > 0 && !(start <= offset && offset <= end)) {
 				continue;
+			}
 			try {
 				if (lineNumber != sourceViewer.getDocument().getLineOfOffset(
-						start))
+						start)) {
 					continue;
+				}
 			} catch (final Exception x) {
 				continue;
 			}
@@ -114,8 +126,9 @@ public class ProblemHover implements IAnnotationHover, ITextHover {
 				buffer.append(prefix + msg.substring(0, pos) + "\n");
 				msg = msg.substring(pos);
 				prefix = "  ";
-			} else
+			} else {
 				buffer.append(prefix + msg);
+			}
 		} while (pos > -1);
 		return buffer.toString();
 	}
