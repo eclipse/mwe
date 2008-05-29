@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.editor.tests.base;
+package org.eclipse.emf.mwe.ui.internal.editor.tests.base;
 
 import junit.framework.TestCase;
 
@@ -19,7 +19,7 @@ import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.1 $
  */
 public class ParserBaseTest extends TestCase {
 

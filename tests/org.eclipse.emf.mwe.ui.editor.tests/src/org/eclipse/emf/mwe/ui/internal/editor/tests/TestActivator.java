@@ -9,22 +9,26 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.editor.tests.parser;
+package org.eclipse.emf.mwe.ui.internal.editor.tests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+import org.eclipse.core.runtime.Plugin;
 
-public class AllTests {
 
-	public static Test suite() {
-		TestSuite suite =
-				new TestSuite(
-						"Test for org.eclipse.emf.mwe.ui.internal.editor.tests.parser");
-		// $JUnit-BEGIN$
-		suite.addTestSuite(PropertyTest.class);
-		suite.addTestSuite(AssignmentTest.class);
-		// $JUnit-END$
-		return suite;
+/**
+ * @author Patrick Schoenbach
+ * @version $Revision: 1.1 $
+ */
+
+public class TestActivator extends Plugin {
+
+	private static TestActivator plugin;
+
+	public TestActivator() {
+		plugin = this;
+	}
+
+	public static Plugin getDefault() {
+		return plugin;
 	}
 
 }

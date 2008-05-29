@@ -9,11 +9,9 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.editor.tests.reflection;
+package org.eclipse.emf.mwe.ui.internal.editor.tests.reflection;
 
 import java.util.Set;
-
-import junit.framework.TestCase;
 
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 
@@ -22,21 +20,21 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
  * @version $Revision: 1.1 $
  */
 
-public class PropertyNamesTest extends TestCase {
+public class PropertyNamesTest extends ReflectionTestBase {
 
 	public void testSettablePropertyNames() {
-		try {
-			final Class<?> clazz =
-					Class.forName("org.eclipse.xtend.XtendComponent");
+		final Class<?> clazz =
+			getClass("org.eclipse.xtend.XtendComponent");
 
-			final Set<String> propertyNames =
-					ReflectionManager.getSettableProperties(clazz);
-			assertTrue(propertyNames.size() >= 17);
-			assertTrue(propertyNames.contains("extensionAdvice"));
-			assertTrue(propertyNames.contains("invoke"));
-			assertTrue(propertyNames.contains("outputSlot"));
-		} catch (final ClassNotFoundException e) {
+		if (clazz == null) {
 			fail();
 		}
+
+		final Set<String> propertyNames =
+			ReflectionManager.getSettableProperties(clazz);
+		assertTrue(propertyNames.size() >= 17);
+		assertTrue(propertyNames.contains("extensionAdvice"));
+		assertTrue(propertyNames.contains("invoke"));
+		assertTrue(propertyNames.contains("outputSlot"));
 	}
 }

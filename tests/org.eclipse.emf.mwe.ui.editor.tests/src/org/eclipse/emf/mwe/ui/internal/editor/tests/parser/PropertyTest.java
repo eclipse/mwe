@@ -9,10 +9,10 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.editor.tests.parser;
+package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
-import org.eclipse.emf.mwe.ui.editor.tests.base.ParserBaseTest;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserBaseTest;
 import org.xml.sax.SAXException;
 
 public class PropertyTest extends ParserBaseTest {
