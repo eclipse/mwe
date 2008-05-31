@@ -12,10 +12,10 @@
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserBaseTest;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserTestBase;
 import org.xml.sax.SAXException;
 
-public class PropertyTest extends ParserBaseTest {
+public class PropertyTest extends ParserTestBase {
 
 	private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
 

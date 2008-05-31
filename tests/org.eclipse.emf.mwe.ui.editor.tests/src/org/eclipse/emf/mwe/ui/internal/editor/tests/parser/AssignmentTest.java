@@ -12,10 +12,10 @@
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserBaseTest;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserTestBase;
 import org.xml.sax.SAXException;
 
-public class AssignmentTest extends ParserBaseTest {
+public class AssignmentTest extends ParserTestBase {
 
 	private static String WORKFLOW1 =
 			"<?xml  version=\"1.0\" encoding=\"ISO-8859-1\"?>\n"

@@ -11,9 +11,11 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.tests.reflection;
 
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ReflectionTestBase;
+
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class SubClassTest extends ReflectionTestBase {

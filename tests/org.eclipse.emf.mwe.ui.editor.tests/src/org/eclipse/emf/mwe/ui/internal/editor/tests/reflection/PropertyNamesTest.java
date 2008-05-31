@@ -13,11 +13,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.reflection;
 
 import java.util.Set;
 
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ReflectionTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class PropertyNamesTest extends ReflectionTestBase {

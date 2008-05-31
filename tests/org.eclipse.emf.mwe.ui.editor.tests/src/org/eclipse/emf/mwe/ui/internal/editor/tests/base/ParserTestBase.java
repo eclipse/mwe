@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Document;
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
-public class ParserBaseTest extends TestCase {
+public class ParserTestBase extends TestCase {
 
 	protected XMLParser parser;
 
