@@ -40,7 +40,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public final class ReflectionManager {
 
@@ -49,10 +49,10 @@ public final class ReflectionManager {
 	private static final int FIRST_PROPERTY_CHAR = 3;
 
 	private static final String MWE_CONTAINER_PACKAGE =
-			"org.eclipse.emf.mwe.core.container";
+		"org.eclipse.emf.mwe.core.container";
 
 	private static final String OAW_CONTAINER_PACKAGE =
-			"org.openarchitectureware.core.workflow.container";
+		"org.openarchitectureware.core.workflow.container";
 
 	private static final String ADDER_PREFIX = "add";
 
@@ -80,13 +80,32 @@ public final class ReflectionManager {
 		return clazz;
 	}
 
+	public static Class<?> getClass(final IProject project,
+			final String className) {
+		if (project == null || className == null)
+			throw new IllegalArgumentException();
+
+		Class<?> clazz = null;
+		try {
+			final ClassLoader loader = createClassLoader(project);
+			if (loader != null) {
+				clazz = loader.loadClass(className);
+			}
+		} catch (final CoreException e) {
+			Log.logError("Could not create class loader", e);
+		} catch (final ClassNotFoundException e) {
+			// Do nothing
+		}
+		return clazz;
+	}
+
 	public static String getComponentName(final String name, final boolean old) {
 		if (old)
 			return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-					+ COMPONENT_SUFFIX;
+			+ COMPONENT_SUFFIX;
 		else
 			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-					+ COMPONENT_SUFFIX;
+			+ COMPONENT_SUFFIX;
 	}
 
 	public static String getFileContent(final IFile file,
@@ -104,7 +123,7 @@ public final class ReflectionManager {
 				final InputStream is = fileURL.openStream();
 				if (is != null) {
 					final InputStreamReader streamReader =
-							new InputStreamReader(is);
+						new InputStreamReader(is);
 					reader = new BufferedReader(streamReader);
 				}
 			} else {
@@ -114,7 +133,7 @@ public final class ReflectionManager {
 					final File foundFile = findFile(projectPath, filePath);
 					if (foundFile != null) {
 						final FileReader fileReader =
-								new FileReader(foundFile);
+							new FileReader(foundFile);
 						reader = new BufferedReader(fileReader);
 					}
 				}
@@ -145,7 +164,7 @@ public final class ReflectionManager {
 		ClassLoader loader = null;
 		try {
 			final ProjectIncludingResourceLoader l =
-					new ProjectIncludingResourceLoader(project);
+				new ProjectIncludingResourceLoader(project);
 			loader = l.createClassLoader(project);
 		} catch (final CoreException e) {
 			Log.logError("Could not create resource loader", e);
@@ -193,16 +212,28 @@ public final class ReflectionManager {
 	/**
 	 * Builds a classloader for a Java project from the workspace.
 	 * 
-	 * @param project
-	 *            An Eclipse project
+	 * @param file
+	 *            A file
 	 * @throws CoreException
 	 */
 	private static ClassLoader createClassLoader(final IFile file)
-			throws CoreException {
+	throws CoreException {
 		if (file == null)
 			throw new IllegalArgumentException();
 
 		final IProject project = file.getProject();
+		return createClassLoader(project);
+	}
+
+	/**
+	 * Builds a classloader for a Java project from the workspace.
+	 * 
+	 * @param project
+	 *            An Eclipse project
+	 * @throws CoreException
+	 */
+	private static ClassLoader createClassLoader(final IProject project)
+	throws CoreException {
 		final IJavaProject jp = JavaCore.create(project);
 
 		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
@@ -221,8 +252,8 @@ public final class ReflectionManager {
 	private static File findFile(final File rootPath, final String filePath) {
 		// FIXME Improve searching so that only source folders are considered.
 		final String fileNameToTest =
-				rootPath.getAbsoluteFile().getPath() + File.separator
-						+ filePath;
+			rootPath.getAbsoluteFile().getPath() + File.separator
+			+ filePath;
 		File testFile = new File(fileNameToTest);
 		if (testFile.exists())
 			return testFile;
@@ -230,8 +261,9 @@ public final class ReflectionManager {
 		final File[] files = rootPath.listFiles();
 		if (files != null) {
 			for (final File f : files) {
-				if (!f.isDirectory())
+				if (!f.isDirectory()) {
 					continue;
+				}
 
 				testFile = findFile(f, filePath);
 				if (testFile != null)
@@ -305,7 +337,7 @@ public final class ReflectionManager {
 			Log.logError("No such method", e);
 		}
 		return !Modifier.isAbstract(modifiers)
-				&& !Modifier.isInterface(modifiers) && constructor != null;
+		&& !Modifier.isInterface(modifiers) && constructor != null;
 	}
 
 	private static String setterName(final String name) {
