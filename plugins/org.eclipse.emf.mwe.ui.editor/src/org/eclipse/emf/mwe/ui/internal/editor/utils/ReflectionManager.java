@@ -42,50 +42,13 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.search.TypeNameRequestor;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public final class ReflectionManager {
-
-	private static class SubTypeRequestor extends TypeNameRequestor {
-
-		private final IProject project;
-
-		private final Class<?> baseClass;
-
-		private final Set<Class<?>> resultSet = new HashSet<Class<?>>();
-
-		public SubTypeRequestor(final IProject project, final Class<?> baseClass) {
-			super();
-			this.project = project;
-			this.baseClass = baseClass;
-		}
-
-		@Override
-		public void acceptType(final int modifiers, final char[] packageName,
-				final char[] simpleTypeName, final char[][] enclosingTypeNames, final String path) {
-			if (!Modifier.isPublic(modifiers)
-					|| Modifier.isAbstract(modifiers))
-				return;
-
-			final String packageNameString = new String(packageName);
-			final String typeName = new String(simpleTypeName);
-			final String fqn = packageNameString + "." + typeName;
-			final Class<?> clazz =
-				ReflectionManager.getClass(project, fqn);
-			if (clazz != null && baseClass.isAssignableFrom(clazz)) {
-				resultSet.add(clazz);
-			}
-		}
-
-		public Set<Class<?>> getResultSet() {
-			return resultSet;
-		}
-	}
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
@@ -195,6 +158,17 @@ public final class ReflectionManager {
 		return null;
 	}
 
+	public static Set<String> getFQNSet(final Set<Class<?>> classSet) {
+		final Set<String> resultSet = new HashSet<String>();
+		if (classSet != null) {
+			for (final Class<?> c : classSet) {
+				final String className = c.getName();
+				resultSet.add(className);
+			}
+		}
+		return resultSet;
+	}
+
 	public static ClassLoader getResourceLoader(final IFile file) {
 		final IProject project = file.getProject();
 		ClassLoader loader = null;
@@ -239,6 +213,17 @@ public final class ReflectionManager {
 		}
 
 		return method;
+	}
+
+	public static Set<String> getSimpleNameSet(final Set<Class<?>> classSet) {
+		final Set<String> resultSet = new HashSet<String>();
+		if (classSet != null) {
+			for (final Class<?> c : classSet) {
+				final String className = c.getSimpleName();
+				resultSet.add(className);
+			}
+		}
+		return resultSet;
 	}
 
 	public static Set<Class<?>> getSubClasses(final IFile file,
