@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class ReflectionTestBase extends TestCase {
@@ -34,7 +34,7 @@ public class ReflectionTestBase extends TestCase {
 
 	private static final String PROJECT_NAME = "reflection.testproject";
 
-	private IProject project;
+	protected IProject project;
 
 	protected Class<?> getClass(final String className) {
 		if (className == null)
@@ -59,7 +59,7 @@ public class ReflectionTestBase extends TestCase {
 	}
 
 	private void createProject(final String projectName) throws CoreException,
-			InvocationTargetException, InterruptedException {
+	InvocationTargetException, InterruptedException {
 		final Set<String> requiredBundles = new HashSet<String>();
 		requiredBundles.add(XTEND_PROJECT);
 

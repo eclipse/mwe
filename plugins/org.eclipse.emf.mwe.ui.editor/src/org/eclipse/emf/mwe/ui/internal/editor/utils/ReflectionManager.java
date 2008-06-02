@@ -29,20 +29,63 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.IRegion;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.TypeNameRequestor;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class ReflectionManager {
+
+	private static class SubTypeRequestor extends TypeNameRequestor {
+
+		private final IProject project;
+
+		private final Class<?> baseClass;
+
+		private final Set<Class<?>> resultSet = new HashSet<Class<?>>();
+
+		public SubTypeRequestor(final IProject project, final Class<?> baseClass) {
+			super();
+			this.project = project;
+			this.baseClass = baseClass;
+		}
+
+		@Override
+		public void acceptType(final int modifiers, final char[] packageName,
+				final char[] simpleTypeName, final char[][] enclosingTypeNames, final String path) {
+			if (!Modifier.isPublic(modifiers)
+					|| Modifier.isAbstract(modifiers))
+				return;
+
+			final String packageNameString = new String(packageName);
+			final String typeName = new String(simpleTypeName);
+			final String fqn = packageNameString + "." + typeName;
+			final Class<?> clazz =
+				ReflectionManager.getClass(project, fqn);
+			if (clazz != null && baseClass.isAssignableFrom(clazz)) {
+				resultSet.add(clazz);
+			}
+		}
+
+		public Set<Class<?>> getResultSet() {
+			return resultSet;
+		}
+	}
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
@@ -66,24 +109,14 @@ public final class ReflectionManager {
 	}
 
 	public static Class<?> getClass(final IFile file, final String className) {
-		Class<?> clazz = null;
-		try {
-			final ClassLoader loader = createClassLoader(file);
-			if (loader != null) {
-				clazz = loader.loadClass(className);
-			}
-		} catch (final CoreException e) {
-			Log.logError("Could not create class loader", e);
-		} catch (final ClassNotFoundException e) {
-			// Do nothing
-		}
-		return clazz;
+		return getClass(getProject(file), className);
 	}
 
 	public static Class<?> getClass(final IProject project,
 			final String className) {
-		if (project == null || className == null)
+		if (project == null || className == null) {
 			throw new IllegalArgumentException();
+		}
 
 		Class<?> clazz = null;
 		try {
@@ -94,7 +127,9 @@ public final class ReflectionManager {
 		} catch (final CoreException e) {
 			Log.logError("Could not create class loader", e);
 		} catch (final ClassNotFoundException e) {
-			// Do nothing
+			// ignore
+		} catch (final NoClassDefFoundError e) {
+			// ignore
 		}
 		return clazz;
 	}
@@ -113,8 +148,9 @@ public final class ReflectionManager {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null)
+		if (loader == null) {
 			throw new RuntimeException("Could not obtain resource loader");
+		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -205,24 +241,52 @@ public final class ReflectionManager {
 		return method;
 	}
 
-	private static String adderName(final String name) {
-		return ADDER_PREFIX + toUpperCaseFirst(name);
+	public static Set<Class<?>> getSubClasses(final IFile file,
+			final Class<?> baseClass, final boolean onlyConcreteClasses) {
+		return getSubClasses(getProject(file), baseClass, onlyConcreteClasses);
 	}
 
-	/**
-	 * Builds a classloader for a Java project from the workspace.
-	 * 
-	 * @param file
-	 *            A file
-	 * @throws CoreException
-	 */
-	private static ClassLoader createClassLoader(final IFile file)
-	throws CoreException {
-		if (file == null)
+	public static Set<Class<?>> getSubClasses(final IProject project,
+			final Class<?> baseClass, final boolean onlyConcreteClasses) {
+		if (project == null || baseClass == null) {
 			throw new IllegalArgumentException();
+		}
 
-		final IProject project = file.getProject();
-		return createClassLoader(project);
+		final Set<Class<?>> subClasses = new HashSet<Class<?>>();
+		try {
+			final IJavaProject jp = JavaCore.create(project);
+			final IType type = TypeUtils.classToType(project, baseClass);
+			final IRegion region = JavaCore.newRegion();
+			final IPackageFragmentRoot[] root =
+				jp.getAllPackageFragmentRoots();
+			for (final IPackageFragmentRoot r : root) {
+				region.add(r);
+			}
+			final ITypeHierarchy hierarchy =
+				jp.newTypeHierarchy(type, region,
+						new NullProgressMonitor());
+			final IType[] subTypes = hierarchy.getAllSubtypes(type);
+			for (final IType t : subTypes) {
+				final Class<?> subClass = TypeUtils.typeToClass(project, t);
+				if (subClass != null) {
+					final int modifiers = subClass.getModifiers();
+					if (Modifier.isPublic(modifiers)
+							&& (!onlyConcreteClasses || !Modifier
+									.isAbstract(modifiers))) {
+						subClasses.add(subClass);
+					}
+				}
+			}
+
+			return subClasses;
+		} catch (final JavaModelException e) {
+			Log.logError("Java Model Exception", e);
+			return subClasses;
+		}
+	}
+
+	private static String adderName(final String name) {
+		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
 
 	/**
@@ -234,6 +298,10 @@ public final class ReflectionManager {
 	 */
 	private static ClassLoader createClassLoader(final IProject project)
 	throws CoreException {
+		if (project == null)
+			throw new IllegalArgumentException();
+
+
 		final IJavaProject jp = JavaCore.create(project);
 
 		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
@@ -313,11 +381,19 @@ public final class ReflectionManager {
 		return null;
 	}
 
+	private static IProject getProject(final IFile file) {
+		if (file == null)
+			return null;
+
+		return file.getProject();
+	}
+
 	private static String getPropertyName(final String methodName) {
 		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
 				&& !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length())
+				&& methodName.length() <= SETTER_PREFIX.length()) {
 			throw new IllegalArgumentException();
+		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
@@ -361,5 +437,4 @@ public final class ReflectionManager {
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
-
 }
