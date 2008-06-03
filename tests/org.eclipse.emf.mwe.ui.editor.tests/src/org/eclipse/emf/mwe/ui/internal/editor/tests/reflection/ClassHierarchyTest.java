@@ -21,18 +21,28 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
  * @version $Revision: 1.1 $
  */
 
-public class SubClassesTest extends ReflectionTestBase {
+public class ClassHierarchyTest extends ReflectionTestBase {
+
+	public void testGetAllClasses() {
+		final Set<String> allClasses =
+			ReflectionManager.getAllClasses(project, true);
+		assertNotNull(allClasses);
+
+
+		assertTrue(allClasses.size() >= 20900);
+		assertTrue(allClasses.contains("org.eclipse.xtend.XtendComponent"));
+		assertTrue(allClasses.contains("java.lang.String"));
+		assertTrue(checkForSubstring(allClasses, "org.eclipse.emf.mwe.utils"));
+	}
 
 	public void testGetSubClasses() {
 		final Class<?> baseClass =
 			getClass("org.eclipse.emf.mwe.core.WorkflowComponent");
 		assertNotNull(baseClass);
-		final Set<Class<?>> subClasses =
+		final Set<String> subClasses =
 			ReflectionManager.getSubClasses(project, baseClass, true);
-		final Set<String> subClassNames =
-			ReflectionManager.getFQNSet(subClasses);
 		assertNotNull(subClasses);
 		assertTrue(subClasses.size() >= 10);
-		assertTrue(subClassNames.contains("org.eclipse.xtend.XtendComponent"));
+		assertTrue(subClasses.contains("org.eclipse.xtend.XtendComponent"));
 	}
 }

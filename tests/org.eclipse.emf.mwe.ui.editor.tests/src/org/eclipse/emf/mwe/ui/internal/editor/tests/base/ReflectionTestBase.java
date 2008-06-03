@@ -25,10 +25,13 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class ReflectionTestBase extends TestCase {
+
+	private static final String MWE_UTILS_PROJECT =
+			"org.eclipse.emf.mwe.utils";
 
 	private static final String XTEND_PROJECT = "org.eclipse.xtend";
 
@@ -62,7 +65,19 @@ public class ReflectionTestBase extends TestCase {
 	InvocationTargetException, InterruptedException {
 		final Set<String> requiredBundles = new HashSet<String>();
 		requiredBundles.add(XTEND_PROJECT);
+		requiredBundles.add(MWE_UTILS_PROJECT);
 
 		project = ProjectCreator.createProject(PROJECT_NAME, requiredBundles);
+	}
+
+	protected boolean checkForSubstring(Set<String> classNameSet, String substring) {
+		if (classNameSet == null || substring == null)
+			throw new IllegalArgumentException();
+		
+		for (String s : classNameSet) {
+			if (s.contains(substring))
+				return true;
+		}
+		return false;
 	}
 }

@@ -23,7 +23,9 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -35,6 +37,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IRegion;
@@ -42,13 +45,42 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.core.search.SearchPattern;
+import org.eclipse.jdt.core.search.TypeNameMatch;
+import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public final class ReflectionManager {
+
+
+	private static class TypeNameCollector extends TypeNameMatchRequestor {
+
+		IProject project;
+
+		Set<String> classNames = new HashSet<String>();
+
+		public TypeNameCollector(final IProject project) {
+			this.project = project;
+		}
+
+		@Override
+		public void acceptTypeNameMatch(final TypeNameMatch match) {
+			final String className = match.getFullyQualifiedName();
+			classNames.add(className);
+		}
+
+		public Set<String> getClassNames() {
+			return classNames;
+		}
+
+	}
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
@@ -64,11 +96,58 @@ public final class ReflectionManager {
 
 	private static final String SETTER_PREFIX = "set";
 
+	private static Map<String, Set<String>> subClassCache =
+		new HashMap<String, Set<String>>();
+
+	private static Map<String, Set<String>> allClassesCache =
+		new HashMap<String, Set<String>>();
+
 	/**
 	 * Don't allow instantiation.
 	 */
 	private ReflectionManager() {
 		throw new UnsupportedOperationException();
+	}
+
+	public static void clearCache() {
+		subClassCache.clear();
+		allClassesCache.clear();
+	}
+
+	public static Set<String> getAllClasses(final IFile file,
+			final boolean onlyConcreteClasses) {
+		return getAllClasses(getProject(file), onlyConcreteClasses);
+	}
+
+	public static Set<String> getAllClasses(final IProject project,
+			final boolean onlyConcreteClasses) {
+		if (project == null)
+			throw new IllegalArgumentException();
+
+		final Set<String> allClasses =
+			queryAllClassesCache(project);
+		if (!allClasses.isEmpty())
+			return allClasses;
+
+		try {
+			final IJavaProject jp = JavaCore.create(project);
+			final SearchEngine searchEngine = new SearchEngine();
+			final IJavaSearchScope scope =
+				SearchEngine.createJavaSearchScope(
+						new IJavaElement[] { jp }, true);
+			final TypeNameCollector collector = new TypeNameCollector(project);
+			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH,
+					null, SearchPattern.R_EXACT_MATCH,
+					IJavaSearchConstants.CLASS, scope, collector,
+					IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, null);
+			allClasses.addAll(collector.getClassNames());
+
+			cacheAllClasses(project, allClasses);
+			return allClasses;
+		} catch (final JavaModelException e) {
+			Log.logError("Java Model Exception", e);
+			return allClasses;
+		}
 	}
 
 	public static Class<?> getClass(final IFile file, final String className) {
@@ -77,9 +156,8 @@ public final class ReflectionManager {
 
 	public static Class<?> getClass(final IProject project,
 			final String className) {
-		if (project == null || className == null) {
+		if (project == null || className == null)
 			throw new IllegalArgumentException();
-		}
 
 		Class<?> clazz = null;
 		try {
@@ -111,9 +189,8 @@ public final class ReflectionManager {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null) {
+		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
-		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -156,17 +233,6 @@ public final class ReflectionManager {
 			}
 		}
 		return null;
-	}
-
-	public static Set<String> getFQNSet(final Set<Class<?>> classSet) {
-		final Set<String> resultSet = new HashSet<String>();
-		if (classSet != null) {
-			for (final Class<?> c : classSet) {
-				final String className = c.getName();
-				resultSet.add(className);
-			}
-		}
-		return resultSet;
 	}
 
 	public static ClassLoader getResourceLoader(final IFile file) {
@@ -215,63 +281,68 @@ public final class ReflectionManager {
 		return method;
 	}
 
-	public static Set<String> getSimpleNameSet(final Set<Class<?>> classSet) {
-		final Set<String> resultSet = new HashSet<String>();
-		if (classSet != null) {
-			for (final Class<?> c : classSet) {
-				final String className = c.getSimpleName();
-				resultSet.add(className);
-			}
-		}
-		return resultSet;
-	}
-
-	public static Set<Class<?>> getSubClasses(final IFile file,
+	public static Set<String> getSubClasses(final IFile file,
 			final Class<?> baseClass, final boolean onlyConcreteClasses) {
 		return getSubClasses(getProject(file), baseClass, onlyConcreteClasses);
 	}
 
-	public static Set<Class<?>> getSubClasses(final IProject project,
+	public static Set<String> getSubClasses(final IProject project,
 			final Class<?> baseClass, final boolean onlyConcreteClasses) {
-		if (project == null || baseClass == null) {
+		if (project == null || baseClass == null)
 			throw new IllegalArgumentException();
-		}
 
-		final Set<Class<?>> subClasses = new HashSet<Class<?>>();
-		try {
-			final IJavaProject jp = JavaCore.create(project);
-			final IType type = TypeUtils.classToType(project, baseClass);
-			final IRegion region = JavaCore.newRegion();
-			final IPackageFragmentRoot[] root =
-				jp.getAllPackageFragmentRoots();
-			for (final IPackageFragmentRoot r : root) {
-				region.add(r);
-			}
-			final ITypeHierarchy hierarchy =
-				jp.newTypeHierarchy(type, region,
-						new NullProgressMonitor());
+		final Set<String> subClasses =
+			querySubClassCache(project, baseClass);
+		if (!subClasses.isEmpty())
+			return subClasses;
+
+		final IType type = TypeUtils.classToType(project, baseClass);
+		final ITypeHierarchy hierarchy = createTypeHierarchy(project, type);
+		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(type);
-			for (final IType t : subTypes) {
-				final Class<?> subClass = TypeUtils.typeToClass(project, t);
-				if (subClass != null) {
-					final int modifiers = subClass.getModifiers();
-					if (Modifier.isPublic(modifiers)
-							&& (!onlyConcreteClasses || !Modifier
-									.isAbstract(modifiers))) {
-						subClasses.add(subClass);
-					}
-				}
-			}
-
-			return subClasses;
-		} catch (final JavaModelException e) {
-			Log.logError("Java Model Exception", e);
-			return subClasses;
+			addToClassSet(project, subClasses, subTypes,
+					onlyConcreteClasses);
 		}
+		cacheSubClasses(project, baseClass, subClasses);
+		return subClasses;
 	}
 
 	private static String adderName(final String name) {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
+	}
+
+	private static void addToClassSet(final IProject project,
+			final Set<String> classSet, final IType[] type,
+			final boolean onlyConcreteClasses) {
+		for (final IType t : type) {
+			final Class<?> subClass = TypeUtils.typeToClass(project, t);
+			if (subClass != null) {
+				final int modifiers = subClass.getModifiers();
+				if (Modifier.isPublic(modifiers)
+						&& (!onlyConcreteClasses || !Modifier
+								.isAbstract(modifiers))) {
+					classSet.add(subClass.getName());
+				}
+			}
+		}
+	}
+
+	private static void cacheAllClasses(final IProject project,
+			final Set<String> allClasses) {
+		if (project == null || allClasses == null)
+			throw new IllegalArgumentException();
+
+		final String hashString = project.getName();
+		allClassesCache.put(hashString, allClasses);
+	}
+
+	private static void cacheSubClasses(final IProject project,
+			final Class<?> baseClass, final Set<String> subClasses) {
+		if (project == null || baseClass == null || subClasses == null)
+			throw new IllegalArgumentException();
+
+		final String hashString = generateHashString(project, baseClass);
+		subClassCache.put(hashString, subClasses);
 	}
 
 	/**
@@ -283,8 +354,9 @@ public final class ReflectionManager {
 	 */
 	private static ClassLoader createClassLoader(final IProject project)
 	throws CoreException {
-		if (project == null)
+		if (project == null) {
 			throw new IllegalArgumentException();
+		}
 
 
 		final IJavaProject jp = JavaCore.create(project);
@@ -300,6 +372,25 @@ public final class ReflectionManager {
 			}
 		}
 		return new URLClassLoader(url);
+	}
+
+	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type) {
+		try {
+			final IJavaProject jp = JavaCore.create(project);
+			final IRegion region = JavaCore.newRegion();
+			final IPackageFragmentRoot[] root =
+				jp.getAllPackageFragmentRoots();
+			for (final IPackageFragmentRoot r : root) {
+				region.add(r);
+			}
+			final ITypeHierarchy hierarchy =
+				jp.newTypeHierarchy(type, region,
+						new NullProgressMonitor());
+			return hierarchy;
+		} catch (final JavaModelException e) {
+			Log.logError("Java Model Exception", e);
+			return null;
+		}
 	}
 
 	private static File findFile(final File rootPath, final String filePath) {
@@ -324,6 +415,15 @@ public final class ReflectionManager {
 			}
 		}
 		return null;
+	}
+
+	private static String generateHashString(final IProject project,
+			final Class<?> baseClass) {
+		if (project == null || baseClass == null) {
+			throw new IllegalArgumentException();
+		}
+
+		return project.getName() + ":" + baseClass.getName();
 	}
 
 	private static Method getMethod(final Class<?> clazz, final String name,
@@ -376,9 +476,8 @@ public final class ReflectionManager {
 	private static String getPropertyName(final String methodName) {
 		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
 				&& !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length()) {
+				&& methodName.length() <= SETTER_PREFIX.length())
 			throw new IllegalArgumentException();
-		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
@@ -399,6 +498,29 @@ public final class ReflectionManager {
 		}
 		return !Modifier.isAbstract(modifiers)
 		&& !Modifier.isInterface(modifiers) && constructor != null;
+	}
+
+	private static Set<String> queryAllClassesCache(final IProject project) {
+		if (project == null)
+			return null;
+
+		final String hashString = project.getName();
+		if (allClassesCache.containsKey(hashString))
+			return allClassesCache.get(hashString);
+		else
+			return new HashSet<String>();
+	}
+
+	private static Set<String> querySubClassCache(final IProject project,
+			final Class<?> baseClass) {
+		if (project == null || baseClass == null)
+			return null;
+
+		final String hashString = generateHashString(project, baseClass);
+		if (subClassCache.containsKey(hashString))
+			return subClassCache.get(hashString);
+		else
+			return new HashSet<String>();
 	}
 
 	private static String setterName(final String name) {
