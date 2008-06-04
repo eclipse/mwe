@@ -26,7 +26,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class ClassContentProposalComputer extends
@@ -47,6 +47,21 @@ AbstractSpecializedStringContentProposalComputer {
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 		turnOffSorting();
+	}
+
+	public static Class<?> getWorkflowBaseClass(final IFile file) {
+		if (file == null) {
+			throw new IllegalArgumentException();
+		}
+
+		Class<?> baseClass =
+			ReflectionManager.getClass(file, WORKFLOW_BASE_CLASS);
+		if (baseClass == null) {
+			baseClass =
+				ReflectionManager.getClass(file,
+						OLD_WORKFLOW_BASE_CLASS);
+		}
+		return baseClass;
 	}
 
 	/**
@@ -91,9 +106,9 @@ AbstractSpecializedStringContentProposalComputer {
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation
-	 * of <code>getProposalSet</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getProposalSet</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#getProposalSet(int)
 	 */
 	@Override
@@ -102,14 +117,7 @@ AbstractSpecializedStringContentProposalComputer {
 
 		Set<String> classNames = null;
 		if (COMPONENT_TAG.equals(tag)) {
-			Class<?> baseClass =
-				ReflectionManager.getClass(file, WORKFLOW_BASE_CLASS);
-			if (baseClass == null) {
-				baseClass =
-					ReflectionManager.getClass(file,
-							OLD_WORKFLOW_BASE_CLASS);
-			}
-
+			final Class<?> baseClass = getWorkflowBaseClass(file);
 			if (baseClass != null) {
 				classNames =
 					ReflectionManager.getSubClasses(file, baseClass, true);

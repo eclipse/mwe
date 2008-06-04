@@ -25,6 +25,7 @@ import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointAction
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.contentassist.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -55,7 +56,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -294,6 +295,7 @@ public class WorkflowEditor extends TextEditor {
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {
 				validateAndMark();
+
 				return Status.OK_STATUS;
 			}
 		};
@@ -310,6 +312,16 @@ public class WorkflowEditor extends TextEditor {
 		});
 		job.cancel();
 		job.schedule();
+
+		new Job("initializing editor") {
+
+			@Override
+			protected IStatus run(final IProgressMonitor monitor) {
+				preloadClassNameCache();
+				return Status.OK_STATUS;
+			}
+		}.schedule();
+
 		return viewer;
 	}
 
@@ -366,5 +378,12 @@ public class WorkflowEditor extends TextEditor {
 
 	private WorkflowEditorPlugin getPlugin() {
 		return WorkflowEditorPlugin.getDefault();
+	}
+
+	private void preloadClassNameCache() {
+		final IFile file = getInputFile();
+		final Class<?> baseClass = ClassContentProposalComputer.getWorkflowBaseClass(file);
+		ReflectionManager.getSubClasses(file, baseClass, true);
+		ReflectionManager.getAllClasses(file, true);
 	}
 }
