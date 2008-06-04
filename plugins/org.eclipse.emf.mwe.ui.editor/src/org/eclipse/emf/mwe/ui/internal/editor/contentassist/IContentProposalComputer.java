@@ -11,18 +11,18 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
-import java.util.Set;
+import java.util.List;
 
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public interface IContentProposalComputer {
 
-	Set<ICompletionProposal> computeProposals(final int offset);
+	List<ICompletionProposal> computeProposals(final int offset);
 
 	boolean isApplicable(int offset);
 }

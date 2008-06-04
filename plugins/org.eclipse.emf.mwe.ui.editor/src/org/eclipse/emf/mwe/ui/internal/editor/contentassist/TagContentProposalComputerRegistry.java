@@ -18,16 +18,18 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class TagContentProposalComputerRegistry extends
-		ContentProposalComputerRegistry {
+ContentProposalComputerRegistry {
 
 	public TagContentProposalComputerRegistry(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
+		computers.add(new ClassContentProposalComputer(file, editor, document,
+				tagScanner));
 		computers.add(new IDRefContentProposalComputer(file, editor, document,
 				tagScanner));
 		computers.add(new PropertyContentProposalComputer(file, editor,

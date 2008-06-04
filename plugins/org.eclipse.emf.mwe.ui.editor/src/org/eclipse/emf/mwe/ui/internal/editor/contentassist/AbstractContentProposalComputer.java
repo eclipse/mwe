@@ -11,7 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -29,11 +31,11 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public abstract class AbstractContentProposalComputer implements
-		IContentProposalComputer {
+IContentProposalComputer {
 
 	protected static Set<Character> terminalSet;
 
@@ -53,6 +55,8 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected TextType textType;
 
+	protected boolean needsSorting = true;
+
 	protected AbstractContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
@@ -69,19 +73,50 @@ public abstract class AbstractContentProposalComputer implements
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
 	 */
-	public Set<ICompletionProposal> computeProposals(final int offset) {
-		Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
+	public List<ICompletionProposal> computeProposals(final int offset) {
+		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 		final Set<String> proposals = getProposalSet(offset);
 		for (final String rawText : proposals) {
 			final String proposalText = createProposalText(rawText, offset);
 			final ICompletionProposal proposal =
-					createProposal(proposalText, offset);
-			resultSet.add(proposal);
+				createProposal(proposalText, offset);
+			results.add(proposal);
 		}
-		resultSet = removeNonMatchingEntries(resultSet, offset);
+		results = removeNonMatchingEntries(results, offset);
+		return results;
+	}
 
-		return resultSet;
+	public String getTag(final int offset) {
+		if (offset <= 0)
+			return null;
+
+		try {
+			String result = "";
+			int ofs = offset;
+			boolean moved = false;
+			char ch = 0;
+			while (ofs >= 0 && (ch = document.getChar(ofs)) != '<') {
+				moved = true;
+				ofs--;
+			}
+
+			if (moved) {
+				ofs++;
+			}
+
+			if (ch != '<')
+				return null;
+
+			while (ofs <= document.getLength()
+					&& !Character.isWhitespace(ch = document.getChar(ofs))) {
+				result += Character.toString(ch);
+				ofs++;
+			}
+			return result;
+		} catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+			return null;
+		}
 	}
 
 	public TextType getTextType() {
@@ -129,7 +164,7 @@ public abstract class AbstractContentProposalComputer implements
 			final int index = documentOffset - partitionOffset;
 
 			final String partitionText =
-					document.get(partitionOffset, partitionLength);
+				document.get(partitionOffset, partitionLength);
 
 			char c = partitionText.charAt(index);
 
@@ -162,7 +197,16 @@ public abstract class AbstractContentProposalComputer implements
 				end--;
 			}
 
-			final String substring = partitionText.substring(start, end + 1);
+			String substring;
+			if (isTerminal(terminalSet(), c)) {
+				substring = "";
+				if (start < document.getLength() - 1) {
+					start++;
+				}
+			} else {
+				substring = partitionText.substring(start, end + 1);
+			}
+
 			return new TextInfo(substring, partitionOffset + start, false);
 		} catch (final BadLocationException e) {
 			e.printStackTrace();
@@ -181,12 +225,18 @@ public abstract class AbstractContentProposalComputer implements
 
 	protected abstract Set<String> getProposalSet(final int offset);
 
+
 	protected boolean isAttribute() {
 		return getTextType() == TextType.ATTRIBUTE;
 	}
 
 	protected boolean isOutsideTag() {
 		return getTextType() == TextType.OUTSIDE_TAG;
+	}
+
+	protected boolean isProposalIncluded(final String proposalText,
+			final String currentText) {
+		return proposalText.startsWith(currentText);
 	}
 
 	protected boolean isString() {
@@ -204,27 +254,28 @@ public abstract class AbstractContentProposalComputer implements
 		return terminals.contains(ch) || Character.isWhitespace(ch);
 	}
 
-	protected Set<ICompletionProposal> removeNonMatchingEntries(
-			final Set<ICompletionProposal> proposalSet, final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
+	protected List<ICompletionProposal> removeNonMatchingEntries(
+			final List<ICompletionProposal> results, final int offset) {
+		final List<ICompletionProposal> cleanedResults =
+				new ArrayList<ICompletionProposal>();
 		try {
 			if (offset > 0
 					&& !isTerminal(extendedTerminalSet(), document
 							.getChar(offset - 1))) {
 				final TextInfo currentText = currentText(document, offset - 1);
-				for (final ICompletionProposal p : proposalSet) {
-					if (p.getDisplayString().startsWith(currentText.getText())) {
-						resultSet.add(p);
+				for (final ICompletionProposal p : results) {
+					if (isProposalIncluded(p.getDisplayString(), currentText
+							.getText())) {
+						cleanedResults.add(p);
 					}
 				}
 			} else
-				return proposalSet;
+				return results;
 		} catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 		}
 
-		return resultSet;
+		return cleanedResults;
 	}
 
 	protected Set<Character> terminalSet() {
@@ -232,6 +283,10 @@ public abstract class AbstractContentProposalComputer implements
 			terminalSet = createTerminalSet(TERMINALS);
 		}
 		return terminalSet;
+	}
+
+	protected void turnOffSorting() {
+		needsSorting = false;
 	}
 
 	protected boolean useContractedElementCompletion(final int documentOffset,
@@ -267,13 +322,15 @@ public abstract class AbstractContentProposalComputer implements
 
 			final char c = (char) 0;
 			while (c == tagScanner.read()) {
-				if (c == ICharacterScanner.EOF)
+				if (c == ICharacterScanner.EOF) {
 					break;
+				}
 				if (c == '<') {
 					break;
 				}
-				if (!Character.isWhitespace(c))
+				if (!Character.isWhitespace(c)) {
 					textReached = true;
+				}
 
 			}
 		} catch (final BadLocationException e) {

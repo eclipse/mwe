@@ -23,10 +23,14 @@ import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -55,10 +59,29 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public final class ReflectionManager {
 
+
+	private static class ClassNameComparator implements Comparator<String> {
+
+		public int compare(final String className1, final String className2) {
+			if (className1 == className2)
+				return 0;
+			else if (className1 == null)
+				return -1;
+			else if (className2 == null)
+				return 1;
+
+			final String simpleName1 = getSimpleClassName(className1);
+			final String simpleName2 = getSimpleClassName(className2);
+			if (simpleName1.equals(simpleName2))
+				return className1.compareToIgnoreCase(className2);
+			else
+				return simpleName1.compareToIgnoreCase(simpleName2);
+		}
+	}
 
 	private static class TypeNameCollector extends TypeNameMatchRequestor {
 
@@ -81,6 +104,8 @@ public final class ReflectionManager {
 		}
 
 	}
+
+	public static final Pattern SIMPLE_CLASS_NAME_PATTERN = Pattern.compile("^(.+?\\.)*(.+?)$");
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
@@ -121,8 +146,9 @@ public final class ReflectionManager {
 
 	public static Set<String> getAllClasses(final IProject project,
 			final boolean onlyConcreteClasses) {
-		if (project == null)
+		if (project == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final Set<String> allClasses =
 			queryAllClassesCache(project);
@@ -156,8 +182,9 @@ public final class ReflectionManager {
 
 	public static Class<?> getClass(final IProject project,
 			final String className) {
-		if (project == null || className == null)
+		if (project == null || className == null) {
 			throw new IllegalArgumentException();
+		}
 
 		Class<?> clazz = null;
 		try {
@@ -189,8 +216,9 @@ public final class ReflectionManager {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null)
+		if (loader == null) {
 			throw new RuntimeException("Could not obtain resource loader");
+		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -281,6 +309,17 @@ public final class ReflectionManager {
 		return method;
 	}
 
+	public static String getSimpleClassName(final String fqn) {
+		if (fqn == null)
+			return null;
+
+		final Matcher m = SIMPLE_CLASS_NAME_PATTERN.matcher(fqn);
+		if (m.find())
+			return m.group(2);
+		else
+			return fqn;
+	}
+
 	public static Set<String> getSubClasses(final IFile file,
 			final Class<?> baseClass, final boolean onlyConcreteClasses) {
 		return getSubClasses(getProject(file), baseClass, onlyConcreteClasses);
@@ -288,8 +327,9 @@ public final class ReflectionManager {
 
 	public static Set<String> getSubClasses(final IProject project,
 			final Class<?> baseClass, final boolean onlyConcreteClasses) {
-		if (project == null || baseClass == null)
+		if (project == null || baseClass == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final Set<String> subClasses =
 			querySubClassCache(project, baseClass);
@@ -300,9 +340,10 @@ public final class ReflectionManager {
 		final ITypeHierarchy hierarchy = createTypeHierarchy(project, type);
 		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(type);
-			addToClassSet(project, subClasses, subTypes,
+			createClassSet(project, subClasses, subTypes,
 					onlyConcreteClasses);
 		}
+
 		cacheSubClasses(project, baseClass, subClasses);
 		return subClasses;
 	}
@@ -311,26 +352,11 @@ public final class ReflectionManager {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
 
-	private static void addToClassSet(final IProject project,
-			final Set<String> classSet, final IType[] type,
-			final boolean onlyConcreteClasses) {
-		for (final IType t : type) {
-			final Class<?> subClass = TypeUtils.typeToClass(project, t);
-			if (subClass != null) {
-				final int modifiers = subClass.getModifiers();
-				if (Modifier.isPublic(modifiers)
-						&& (!onlyConcreteClasses || !Modifier
-								.isAbstract(modifiers))) {
-					classSet.add(subClass.getName());
-				}
-			}
-		}
-	}
-
 	private static void cacheAllClasses(final IProject project,
 			final Set<String> allClasses) {
-		if (project == null || allClasses == null)
+		if (project == null || allClasses == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String hashString = project.getName();
 		allClassesCache.put(hashString, allClasses);
@@ -338,8 +364,9 @@ public final class ReflectionManager {
 
 	private static void cacheSubClasses(final IProject project,
 			final Class<?> baseClass, final Set<String> subClasses) {
-		if (project == null || baseClass == null || subClasses == null)
+		if (project == null || baseClass == null || subClasses == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String hashString = generateHashString(project, baseClass);
 		subClassCache.put(hashString, subClasses);
@@ -354,9 +381,8 @@ public final class ReflectionManager {
 	 */
 	private static ClassLoader createClassLoader(final IProject project)
 	throws CoreException {
-		if (project == null) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 
 
 		final IJavaProject jp = JavaCore.create(project);
@@ -372,6 +398,22 @@ public final class ReflectionManager {
 			}
 		}
 		return new URLClassLoader(url);
+	}
+
+	private static void createClassSet(final IProject project, final Set<String> classes,
+			final IType[] type,
+			final boolean onlyConcreteClasses) {
+		for (final IType t : type) {
+			final Class<?> subClass = TypeUtils.typeToClass(project, t);
+			if (subClass != null) {
+				final int modifiers = subClass.getModifiers();
+				if (Modifier.isPublic(modifiers)
+						&& (!onlyConcreteClasses || !Modifier
+								.isAbstract(modifiers))) {
+					classes.add(subClass.getName());
+				}
+			}
+		}
 	}
 
 	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type) {
@@ -419,9 +461,8 @@ public final class ReflectionManager {
 
 	private static String generateHashString(final IProject project,
 			final Class<?> baseClass) {
-		if (project == null || baseClass == null) {
+		if (project == null || baseClass == null)
 			throw new IllegalArgumentException();
-		}
 
 		return project.getName() + ":" + baseClass.getName();
 	}
@@ -476,8 +517,9 @@ public final class ReflectionManager {
 	private static String getPropertyName(final String methodName) {
 		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
 				&& !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length())
+				&& methodName.length() <= SETTER_PREFIX.length()) {
 			throw new IllegalArgumentException();
+		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
@@ -508,7 +550,7 @@ public final class ReflectionManager {
 		if (allClassesCache.containsKey(hashString))
 			return allClassesCache.get(hashString);
 		else
-			return new HashSet<String>();
+			return new TreeSet<String>(new ClassNameComparator());
 	}
 
 	private static Set<String> querySubClassCache(final IProject project,
@@ -520,7 +562,7 @@ public final class ReflectionManager {
 		if (subClassCache.containsKey(hashString))
 			return subClassCache.get(hashString);
 		else
-			return new HashSet<String>();
+			return new TreeSet<String>(new ClassNameComparator());
 	}
 
 	private static String setterName(final String name) {

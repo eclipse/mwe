@@ -11,8 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -23,11 +25,11 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class PropertyContentProposalComputer extends
-		AbstractStringContentProposalComputer {
+AbstractStringContentProposalComputer {
 
 	public PropertyContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
@@ -67,10 +69,10 @@ public class PropertyContentProposalComputer extends
 	 *      int)
 	 */
 	@Override
-	protected Set<ICompletionProposal> removeNonMatchingEntries(
-			final Set<ICompletionProposal> proposalSet, final int offset) {
-		final Set<ICompletionProposal> resultSet =
-				new HashSet<ICompletionProposal>();
+	protected List<ICompletionProposal> removeNonMatchingEntries(
+			final List<ICompletionProposal> proposalSet, final int offset) {
+		final List<ICompletionProposal> resultSet =
+			new ArrayList<ICompletionProposal>();
 		final int o = offset > 0 ? offset - 1 : offset;
 		final TextInfo currentText = currentText(document, o);
 		final String startText = currentText.getText();
@@ -80,7 +82,6 @@ public class PropertyContentProposalComputer extends
 				resultSet.add(p);
 			}
 		}
-
 		return resultSet;
 	}
 

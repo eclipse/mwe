@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -24,10 +23,10 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 public class ContentProposalComputerRegistry extends
-		AbstractContentProposalComputer {
+AbstractContentProposalComputer {
 
 	protected final List<AbstractContentProposalComputer> computers =
-			new ArrayList<AbstractContentProposalComputer>();
+		new ArrayList<AbstractContentProposalComputer>();
 
 	public ContentProposalComputerRegistry(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
@@ -36,8 +35,9 @@ public class ContentProposalComputerRegistry extends
 	}
 
 	@Override
-	public Set<ICompletionProposal> computeProposals(final int offset) {
-		Set<ICompletionProposal> result = new HashSet<ICompletionProposal>();
+	public List<ICompletionProposal> computeProposals(final int offset) {
+		List<ICompletionProposal> result =
+				new ArrayList<ICompletionProposal>();
 		for (final AbstractContentProposalComputer c : computers) {
 			if (c.isApplicable(offset)) {
 				result = c.computeProposals(offset);

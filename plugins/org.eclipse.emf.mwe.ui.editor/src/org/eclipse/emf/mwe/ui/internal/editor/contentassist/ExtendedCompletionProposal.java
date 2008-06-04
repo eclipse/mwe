@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class ExtendedCompletionProposal implements ICompletionProposal {
@@ -31,9 +31,23 @@ public class ExtendedCompletionProposal implements ICompletionProposal {
 			final int replacementOffset, final int replacementLength,
 			final int cursorPosition) {
 		proposal =
-				new CompletionProposal(replacementString, replacementOffset,
-						replacementLength, cursorPosition);
+			new CompletionProposal(replacementString, replacementOffset,
+					replacementLength, cursorPosition);
 	}
+
+	public ExtendedCompletionProposal(final String replacementString,
+			final int replacementOffset, final int replacementLength,
+			final int cursorPosition, final Image image,
+			final String displayString,
+			final IContextInformation contextInformation,
+			final String additionalProposalInfo) {
+		proposal =
+			new CompletionProposal(replacementString, replacementOffset,
+						replacementLength, cursorPosition, image,
+						displayString, contextInformation,
+						additionalProposalInfo);
+	}
+
 
 	/**
 	 * @param document
@@ -58,7 +72,7 @@ public class ExtendedCompletionProposal implements ICompletionProposal {
 		if (!(obj instanceof ExtendedCompletionProposal))
 			return false;
 		final ExtendedCompletionProposal other =
-				(ExtendedCompletionProposal) obj;
+			(ExtendedCompletionProposal) obj;
 		if (proposal == null) {
 			if (other.proposal != null)
 				return false;
@@ -119,10 +133,10 @@ public class ExtendedCompletionProposal implements ICompletionProposal {
 		final int prime = 31;
 		int result = 1;
 		result =
-				prime
-						* result
-						+ (proposal == null ? 0 : getDisplayString()
-								.hashCode());
+			prime
+			* result
+			+ (proposal == null ? 0 : getDisplayString()
+					.hashCode());
 		return result;
 	}
 }
