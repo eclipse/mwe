@@ -64,8 +64,8 @@ public final class ProjectCreator {
 		assertExist(file.getParent());
 		try {
 			final InputStream stream =
-					new ByteArrayInputStream(content.getBytes(file
-							.getCharset()));
+				new ByteArrayInputStream(content.getBytes(file
+						.getCharset()));
 			if (file.exists()) {
 				file.setContents(stream, true, true, progressMonitor);
 			} else {
@@ -143,20 +143,20 @@ public final class ProjectCreator {
 
 			final IJavaProject javaProject = JavaCore.create(project);
 			final IProjectDescription projectDescription =
-					ResourcesPlugin.getWorkspace().newProjectDescription(
-							projectName);
+				ResourcesPlugin.getWorkspace().newProjectDescription(
+						projectName);
 			projectDescription.setLocation(null);
 			project.create(projectDescription, new SubProgressMonitor(
 					progressMonitor, 1));
 			final List<IClasspathEntry> classpathEntries =
-					new ArrayList<IClasspathEntry>();
+				new ArrayList<IClasspathEntry>();
 			if (referencedProjects.size() != 0) {
 				projectDescription.setReferencedProjects(referencedProjects
 						.toArray(new IProject[referencedProjects.size()]));
 				for (final IProject referencedProject : referencedProjects) {
 					final IClasspathEntry referencedProjectClasspathEntry =
-							JavaCore.newProjectEntry(referencedProject
-									.getFullPath());
+						JavaCore.newProjectEntry(referencedProject
+								.getFullPath());
 					classpathEntries.add(referencedProjectClasspathEntry);
 				}
 			}
@@ -188,14 +188,14 @@ public final class ProjectCreator {
 							progressMonitor, 1));
 				}
 				final IClasspathEntry srcClasspathEntry =
-						JavaCore.newSourceEntry(srcContainer.getFullPath());
+					JavaCore.newSourceEntry(srcContainer.getFullPath());
 				classpathEntries.add(0, srcClasspathEntry);
 			}
 
 			classpathEntries.add(JavaCore.newContainerEntry(new Path(
 					"org.eclipse.jdt.launching.JRE_CONTAINER")));
 			classpathEntries.add(JavaCore.newContainerEntry(new Path(
-					"org.eclipse.pde.core.requiredPlugins")));
+			"org.eclipse.pde.core.requiredPlugins")));
 
 			javaProject.setRawClasspath(classpathEntries
 					.toArray(new IClasspathEntry[classpathEntries.size()]),
@@ -222,8 +222,9 @@ public final class ProjectCreator {
 	public static IProject createProject(final String projectName,
 			final Set<String> requiredBundles) throws CoreException,
 			InvocationTargetException, InterruptedException {
-		if (projectName == null)
+		if (projectName == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcFolders = new ArrayList<String>();
@@ -243,9 +244,9 @@ public final class ProjectCreator {
 		srcFolders.add("src-gen");
 
 		final IProject project =
-				createProject(projectName, srcFolders, Collections
-						.<IProject> emptyList(), refs, exportedPackages,
-						new NullProgressMonitor());
+			createProject(projectName, srcFolders, Collections
+					.<IProject> emptyList(), refs, exportedPackages,
+					new NullProgressMonitor());
 
 		return project;
 	}
@@ -271,7 +272,7 @@ public final class ProjectCreator {
 			final List<String> srcFolders) {
 		final StringBuilder bpContent = new StringBuilder("source.. = ");
 		for (final Iterator<String> iterator = srcFolders.iterator(); iterator
-				.hasNext();) {
+		.hasNext();) {
 			bpContent.append(iterator.next()).append('/');
 			if (iterator.hasNext()) {
 				bpContent.append(",");
@@ -287,9 +288,9 @@ public final class ProjectCreator {
 			final Set<String> requiredBundles,
 			final List<String> exportedPackages,
 			final IProgressMonitor progressMonitor, final IProject project)
-			throws CoreException {
+	throws CoreException {
 		final StringBuilder maniContent =
-				new StringBuilder("Manifest-Version: 1.0\n");
+			new StringBuilder("Manifest-Version: 1.0\n");
 		maniContent.append("Bundle-ManifestVersion: 2\n");
 		maniContent.append("Bundle-Name: " + projectName + "\n");
 		maniContent.append("Bundle-SymbolicName: " + projectName
@@ -302,7 +303,7 @@ public final class ProjectCreator {
 		maniContent.append(" org.openarchitectureware.dependencies\n");
 
 		if (exportedPackages != null && !exportedPackages.isEmpty()) {
-			maniContent.append("Require-Bundle: " + exportedPackages.get(0));
+			maniContent.append("Export-Package: " + exportedPackages.get(0));
 			for (int i = 1, x = exportedPackages.size(); i < x; i++) {
 				maniContent.append(",\n " + exportedPackages.get(i));
 			}
@@ -311,8 +312,8 @@ public final class ProjectCreator {
 
 		final IFolder metaInf = project.getFolder("META-INF");
 		metaInf
-				.create(false, true,
-						new SubProgressMonitor(progressMonitor, 1));
+		.create(false, true,
+				new SubProgressMonitor(progressMonitor, 1));
 		createFile("MANIFEST.MF", metaInf, maniContent.toString(),
 				progressMonitor);
 	}
