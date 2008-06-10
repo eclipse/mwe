@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.ProcessingInstructionFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.TextFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.WorkflowFormattingStrategy;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.ProblemHover;
+import org.eclipse.emf.mwe.ui.internal.editor.hover.ProblemHover;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.CDataScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowPartitionScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowScanner;
@@ -55,7 +55,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 

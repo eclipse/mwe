@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare
  *******************************************************************************/
-package org.eclipse.emf.mwe.ui.internal.editor.marker;
+package org.eclipse.emf.mwe.ui.internal.editor.hover;
 
 import java.util.ArrayList;
 import java.util.Iterator;
