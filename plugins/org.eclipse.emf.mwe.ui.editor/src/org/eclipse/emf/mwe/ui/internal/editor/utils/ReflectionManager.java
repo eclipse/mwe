@@ -36,7 +36,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
@@ -59,7 +59,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public final class ReflectionManager {
 
@@ -146,9 +146,8 @@ public final class ReflectionManager {
 
 	public static Set<String> getAllClasses(final IProject project,
 			final boolean onlyConcreteClasses) {
-		if (project == null) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> allClasses =
 			queryAllClassesCache(project);
@@ -182,9 +181,8 @@ public final class ReflectionManager {
 
 	public static Class<?> getClass(final IProject project,
 			final String className) {
-		if (project == null || className == null) {
+		if (project == null || className == null)
 			throw new IllegalArgumentException();
-		}
 
 		Class<?> clazz = null;
 		try {
@@ -216,9 +214,8 @@ public final class ReflectionManager {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null) {
+		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
-		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -327,9 +324,8 @@ public final class ReflectionManager {
 
 	public static Set<String> getSubClasses(final IProject project,
 			final Class<?> baseClass, final boolean onlyConcreteClasses) {
-		if (project == null || baseClass == null) {
+		if (project == null || baseClass == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> subClasses =
 			querySubClassCache(project, baseClass);
@@ -354,9 +350,8 @@ public final class ReflectionManager {
 
 	private static void cacheAllClasses(final IProject project,
 			final Set<String> allClasses) {
-		if (project == null || allClasses == null) {
+		if (project == null || allClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = project.getName();
 		allClassesCache.put(hashString, allClasses);
@@ -364,9 +359,8 @@ public final class ReflectionManager {
 
 	private static void cacheSubClasses(final IProject project,
 			final Class<?> baseClass, final Set<String> subClasses) {
-		if (project == null || baseClass == null || subClasses == null) {
+		if (project == null || baseClass == null || subClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = generateHashString(project, baseClass);
 		subClassCache.put(hashString, subClasses);
@@ -381,8 +375,9 @@ public final class ReflectionManager {
 	 */
 	private static ClassLoader createClassLoader(final IProject project)
 	throws CoreException {
-		if (project == null)
+		if (project == null) {
 			throw new IllegalArgumentException();
+		}
 
 
 		final IJavaProject jp = JavaCore.create(project);
@@ -394,7 +389,7 @@ public final class ReflectionManager {
 			try {
 				url[i] = javacp[i].getPath().toFile().toURL();
 			} catch (final MalformedURLException e) {
-				Activator.logError(e);
+				WorkflowEditorPlugin.logError(e);
 			}
 		}
 		return new URLClassLoader(url);
@@ -461,8 +456,9 @@ public final class ReflectionManager {
 
 	private static String generateHashString(final IProject project,
 			final Class<?> baseClass) {
-		if (project == null || baseClass == null)
+		if (project == null || baseClass == null) {
 			throw new IllegalArgumentException();
+		}
 
 		return project.getName() + ":" + baseClass.getName();
 	}
@@ -517,9 +513,8 @@ public final class ReflectionManager {
 	private static String getPropertyName(final String methodName) {
 		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
 				&& !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length()) {
+				&& methodName.length() <= SETTER_PREFIX.length())
 			throw new IllegalArgumentException();
-		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
