@@ -12,9 +12,11 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
@@ -31,11 +33,26 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public abstract class AbstractContentProposalComputer implements
 IContentProposalComputer {
+
+
+	public class StringComparator implements Comparator<String> {
+
+		public int compare(final String str1, final String str2) {
+			if (str1 == str2)
+				return 0;
+			else if (str1 == null)
+				return -1;
+			else if (str2 == null)
+				return 1;
+
+			return str1.compareTo(str2);
+		}
+	}
 
 	protected static Set<Character> terminalSet;
 
@@ -125,6 +142,13 @@ IContentProposalComputer {
 
 	public void setTextType(final TextType textType) {
 		this.textType = textType;
+	}
+
+	protected Set<String> createEmptySet() {
+		if (needsSorting)
+			return new TreeSet<String>(new StringComparator());
+		else
+			return new HashSet<String>();
 	}
 
 	protected ExtendedCompletionProposal createProposal(final String text,
@@ -223,8 +247,8 @@ IContentProposalComputer {
 		return extendedTerminalSet;
 	}
 
-	protected abstract Set<String> getProposalSet(final int offset);
 
+	protected abstract Set<String> getProposalSet(final int offset);
 
 	protected boolean isAttribute() {
 		return getTextType() == TextType.ATTRIBUTE;
@@ -248,8 +272,9 @@ IContentProposalComputer {
 	}
 
 	protected boolean isTerminal(final Set<Character> terminals, final char ch) {
-		if (terminals == null)
+		if (terminals == null) {
 			throw new IllegalArgumentException();
+		}
 
 		return terminals.contains(ch) || Character.isWhitespace(ch);
 	}
@@ -257,7 +282,7 @@ IContentProposalComputer {
 	protected List<ICompletionProposal> removeNonMatchingEntries(
 			final List<ICompletionProposal> results, final int offset) {
 		final List<ICompletionProposal> cleanedResults =
-				new ArrayList<ICompletionProposal>();
+			new ArrayList<ICompletionProposal>();
 		try {
 			if (offset > 0
 					&& !isTerminal(extendedTerminalSet(), document

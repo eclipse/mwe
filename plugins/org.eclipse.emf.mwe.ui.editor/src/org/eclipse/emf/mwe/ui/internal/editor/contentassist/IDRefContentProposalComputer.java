@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -23,11 +22,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class IDRefContentProposalComputer extends
-		AbstractSpecializedStringContentProposalComputer {
+AbstractSpecializedStringContentProposalComputer {
 
 	private static final String[] TRIGGER_ATTRIBUTES = { "idRef" };
 
@@ -56,9 +55,9 @@ public class IDRefContentProposalComputer extends
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> resultSet = new HashSet<String>();
+		final Set<String> resultSet = createEmptySet();
 		final Collection<ReferenceInfo> referenceDefinitions =
-				editor.getReferenceDefinitions();
+			editor.getReferenceDefinitions();
 
 		if (referenceDefinitions != null) {
 			for (final ReferenceInfo info : referenceDefinitions) {

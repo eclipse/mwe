@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -23,14 +22,14 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class TagContentProposalComputer extends
-		AbstractContentProposalComputer {
+AbstractContentProposalComputer {
 
 	protected static final String[] DEFAULT_PROPOSALS =
-			{ "workflow", "property", "component", "bean" };
+	{ "workflow", "property", "component", "bean" };
 
 	public TagContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
@@ -49,7 +48,7 @@ public class TagContentProposalComputer extends
 	}
 
 	protected Set<String> createDefaultProposals(final int offset) {
-		final Set<String> resultSet = new HashSet<String>();
+		final Set<String> resultSet = createEmptySet();
 		for (final String s : DEFAULT_PROPOSALS) {
 			resultSet.add(s);
 		}

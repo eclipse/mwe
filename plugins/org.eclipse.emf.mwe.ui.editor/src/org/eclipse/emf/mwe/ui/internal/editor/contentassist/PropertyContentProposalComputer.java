@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +24,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -50,7 +49,7 @@ AbstractStringContentProposalComputer {
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = createEmptySet();
 		final Collection<String> propertyNames = editor.getPropertyNames();
 		if (propertyNames != null) {
 			for (final String name : propertyNames) {

@@ -11,7 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -24,11 +23,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends
-		TagContentProposalComputer {
+TagContentProposalComputer {
 
 	private class ContainerCache {
 
@@ -71,18 +70,19 @@ public class AssignmentPropertyContentProposalComputer extends
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> resultSet = new HashSet<String>();
+		final Set<String> resultSet = createEmptySet();
 		final WorkflowElement container = getContainer(offset);
 		if (container != null) {
 			final String className =
-					container.getAttributeValue(CLASS_ATTRIBUTE);
-			if (className == null)
+				container.getAttributeValue(CLASS_ATTRIBUTE);
+			if (className == null) {
 				throw new IllegalStateException();
+			}
 
 			final Class<?> clazz = ReflectionManager.getClass(file, className);
 			if (clazz != null) {
 				final Set<String> settableProperties =
-						ReflectionManager.getSettableProperties(clazz);
+					ReflectionManager.getSettableProperties(clazz);
 				resultSet.addAll(settableProperties);
 			}
 		}
@@ -98,8 +98,8 @@ public class AssignmentPropertyContentProposalComputer extends
 			return containerCache.getElement();
 
 		final WorkflowElement element =
-				WorkflowElementSearcher.searchContainerElement(editor,
-						document, offset);
+			WorkflowElementSearcher.searchContainerElement(editor,
+					document, offset);
 
 		if (element != null) {
 			cacheElement(element, offset);

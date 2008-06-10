@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -23,11 +22,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class AttributeContentProposalComputer extends
-		AbstractContentProposalComputer {
+AbstractContentProposalComputer {
 
 	public AttributeContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
@@ -60,9 +59,9 @@ public class AttributeContentProposalComputer extends
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> result = new HashSet<String>();
+		final Set<String> result = createEmptySet();
 		final Collection<WorkflowAttribute> allAttributes =
-				editor.getAttributes();
+			editor.getAttributes();
 
 		if (allAttributes != null) {
 			final int i = 0;
