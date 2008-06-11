@@ -26,11 +26,12 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class ElementIterator {
 
-	private static final String[] EXCLUDED_TAGS = { "workflowfile" };
+	private static final String[] EXCLUDED_TAGS =
+			{ "workflowfile", "workflow" };
 
 	private final IFile file;
 
