@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
+import java.util.Collection;
+
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
@@ -18,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public final class WorkflowElementSearcher {
@@ -33,22 +35,29 @@ public final class WorkflowElementSearcher {
 	public static WorkflowElement searchContainerElement(
 			final WorkflowEditor editor, final IDocument document,
 			final int offset) {
-		return searchContainerElement(editor.getRootElement(), document,
-				offset);
+		if (editor != null || document != null) {
+			final WorkflowElement root = editor.getRootElement();
+			if (root != null)
+				return searchContainerElement(root, document, offset);
+		}
+		return null;
 	}
 
 	public static WorkflowElement searchContainerElement(
-			final WorkflowElement rootElement, final IDocument document,
+			final WorkflowElement root, final IDocument document,
 			final int offset) {
-		if (rootElement == null || document == null)
-			return null;
+		if (root == null || document == null) {
+			throw new IllegalArgumentException();
+		}
 
-		final WorkflowElement firstComponent = rootElement.getChild(0);
-		if (firstComponent == null)
+		final WorkflowElement workflow = root.getChild(0);
+		final Collection<WorkflowElement> allElements =
+				workflow.getChildrenList();
+		if (allElements == null)
 			return null;
 
 		WorkflowElement element =
-				internalSearchContainerElement(firstComponent, null, offset);
+				internalSearchContainerElement(allElements, offset);
 		while (element != null && !element.hasAttribute("class")) {
 			element = element.getParent();
 		}
@@ -56,32 +65,19 @@ public final class WorkflowElementSearcher {
 	}
 
 	private static WorkflowElement internalSearchContainerElement(
-			final WorkflowElement rootElement,
-			final WorkflowElement lastFoundElement, final int offset) {
-		WorkflowElement foundElement = lastFoundElement;
-		int foundOffset;
-		if (foundElement != null) {
-			foundOffset = foundElement.getElementRange().getStartOffset();
-		} else {
-			foundOffset = -1;
-		}
+			final Collection<WorkflowElement> allElements, final int offset) {
+		WorkflowElement foundElement = null;
+		int foundOffset = -1;
 
-		if (rootElement == null)
-			throw new IllegalStateException();
-
-		final ElementPositionRange range = rootElement.getElementRange();
-		final int startOffset = range.getStartOffset();
-		final int endOffset = range.getEndOffset();
-
-		if (startOffset < offset && startOffset > foundOffset
-				&& (endOffset == 0 || endOffset > offset)) {
-			foundElement = rootElement;
-			foundOffset = startOffset;
-		}
-		for (int i = 0; i < rootElement.getChildrenCount(); i++) {
-			final WorkflowElement child = rootElement.getChild(i);
-			foundElement =
-					internalSearchContainerElement(child, foundElement, offset);
+		for (final WorkflowElement e : allElements) {
+			final ElementPositionRange range = e.getElementRange();
+			final int startOffset = range.getStartOffset();
+			final int endOffset = range.getEndOffset();
+			if (startOffset < offset && startOffset > foundOffset
+					&& (endOffset == 0 || endOffset > offset)) {
+				foundElement = e;
+				foundOffset = startOffset;
+			}
 		}
 		return foundElement;
 	}
