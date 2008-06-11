@@ -24,15 +24,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	protected static final String ABSTRACT_ATTRIBUTE = "abstract";
-
-	protected static final String WORKFLOW_TAG = "workflow";
 
 	protected static final String ID_ATTRIBUTE = "id";
 
@@ -185,11 +183,12 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		boolean res = false;
 		WorkflowElement e = element;
 
-		while (e.hasParent() && !e.getName().equals(WORKFLOW_TAG)) {
+		while (e.hasParent()
+				&& !e.getName().equals(WorkflowElement.WORKFLOW_TAG)) {
 			e = e.getParent();
 		}
 
-		if (e.getName().equals(WORKFLOW_TAG)
+		if (e.getName().equals(WorkflowElement.WORKFLOW_TAG)
 				&& e.hasAttribute(ABSTRACT_ATTRIBUTE)
 				&& e.getAttributeValue(ABSTRACT_ATTRIBUTE).equalsIgnoreCase(
 						TRUE_VALUE)) {
