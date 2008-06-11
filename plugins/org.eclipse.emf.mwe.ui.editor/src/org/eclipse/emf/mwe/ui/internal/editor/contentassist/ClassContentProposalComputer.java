@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -23,22 +24,22 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.graphics.Image;
 
-
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class ClassContentProposalComputer extends
-AbstractSpecializedStringContentProposalComputer {
+		AbstractSpecializedStringContentProposalComputer {
 
 	private static final String WORKFLOW_BASE_CLASS =
-		"org.eclipse.emf.mwe.core.WorkflowComponent";
+			"org.eclipse.emf.mwe.core.WorkflowComponent";
 
 	private static final String OLD_WORKFLOW_BASE_CLASS =
-		"org.openarchitectureware.workflow.WorkflowComponent";
+			"org.openarchitectureware.workflow.WorkflowComponent";
 
-	private static final String[] TRIGGER_ATTRIBUTES = { "class" };
+	private static final String[] TRIGGER_ATTRIBUTES =
+			{ WorkflowElement.CLASS_ATTRIBUTE };
 
 	private static final String COMPONENT_TAG = "component";
 
@@ -50,24 +51,22 @@ AbstractSpecializedStringContentProposalComputer {
 	}
 
 	public static Class<?> getWorkflowBaseClass(final IFile file) {
-		if (file == null) {
+		if (file == null)
 			throw new IllegalArgumentException();
-		}
 
 		Class<?> baseClass =
-			ReflectionManager.getClass(file, WORKFLOW_BASE_CLASS);
+				ReflectionManager.getClass(file, WORKFLOW_BASE_CLASS);
 		if (baseClass == null) {
 			baseClass =
-				ReflectionManager.getClass(file,
-						OLD_WORKFLOW_BASE_CLASS);
+					ReflectionManager.getClass(file, OLD_WORKFLOW_BASE_CLASS);
 		}
 		return baseClass;
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation
-	 * of <code>getTriggerAttributeNames</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getTriggerAttributeNames</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractSpecializedStringContentProposalComputer#getTriggerAttributeNames()
 	 */
 	@Override
@@ -76,7 +75,8 @@ AbstractSpecializedStringContentProposalComputer {
 	}
 
 	@Override
-	protected ExtendedCompletionProposal createProposal(final String text, final int offset) {
+	protected ExtendedCompletionProposal createProposal(final String text,
+			final int offset) {
 		int o = offset;
 		try {
 			if (o > 0 && document.getChar(o - 1) != '>') {
@@ -95,10 +95,11 @@ AbstractSpecializedStringContentProposalComputer {
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation
-	 * of <code>createProposalText</code> inherited from the superclass.
-	 *
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#createProposalText(java.lang.String, int)
+	 * This automatically generated method overrides the implementation of
+	 * <code>createProposalText</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#createProposalText(java.lang.String,
+	 *      int)
 	 */
 	@Override
 	protected String createProposalText(final String name, final int offset) {
@@ -120,7 +121,7 @@ AbstractSpecializedStringContentProposalComputer {
 			final Class<?> baseClass = getWorkflowBaseClass(file);
 			if (baseClass != null) {
 				classNames =
-					ReflectionManager.getSubClasses(file, baseClass, true);
+						ReflectionManager.getSubClasses(file, baseClass, true);
 			}
 		} else {
 			classNames = ReflectionManager.getAllClasses(file, true);

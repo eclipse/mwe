@@ -24,17 +24,9 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
-
-	protected static final String NAME_ATTRIBUTE = "name";
-
-	protected static final String VALUE_ATTRIBUTE = "value";
-
-	protected static final String CLASS_ATTRIBUTE = "class";
-
-	protected static final String FILE_ATTRIBUTE = "file";
 
 	protected static final String MAPPING_ERROR_MSG =
 			"Could not determine a class mapping for element";
@@ -53,8 +45,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	public DefaultAnalyzer(final IFile file, final IDocument document,
 			final PropertyStore propertyStore) {
-		if (file == null || document == null || propertyStore == null)
+		if (file == null || document == null || propertyStore == null) {
 			throw new IllegalArgumentException();
+		}
 
 		this.file = file;
 		this.document = document;
@@ -101,8 +94,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkAttribute(final Class<?> mappedClass,
 			final WorkflowElement element, final WorkflowAttribute attribute) {
-		if (mappedClass == null || element == null || attribute == null)
+		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final Class<?> type = computeAttributeType(attribute);
 		final Method method =
@@ -122,8 +116,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	protected void checkAttributes(final WorkflowElement element,
 			final Class<?> mappedClass) {
 		for (final WorkflowAttribute attr : element.getAttributes()) {
-			if (!attr.getName().equals(CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(VALUE_ATTRIBUTE)) {
+			if (!attr.getName().equals(WorkflowElement.CLASS_ATTRIBUTE)
+					&& !attr.getName().equals(WorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedClass, element, attr);
 			}
 		}
@@ -154,8 +148,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void createMarker(final WorkflowAttribute attribute,
 			final String message) {
-		if (attribute == null || message == null || message.length() == 0)
+		if (attribute == null || message == null || message.length() == 0) {
 			throw new IllegalArgumentException();
+		}
 
 		MarkerManager.createMarker(getFile(), getDocument(), attribute,
 				message, true, true);
@@ -169,8 +164,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void createMarkerForValue(final WorkflowAttribute attribute,
 			final String message) {
-		if (attribute == null || message == null || message.length() == 0)
+		if (attribute == null || message == null || message.length() == 0) {
 			throw new IllegalArgumentException();
+		}
 
 		MarkerManager.createMarker(getFile(), getDocument(), attribute,
 				message, true, true);

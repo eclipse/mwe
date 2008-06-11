@@ -24,17 +24,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	protected static final String ABSTRACT_ATTRIBUTE = "abstract";
-
-	protected static final String ID_ATTRIBUTE = "id";
-
-	protected static final String ID_REF_ATTRIBUTE = "idRef";
 
 	protected static final String FILE_AND_CLASS_MSG =
 			"A component cannot have a 'class' and a 'file' attribute at the same time";
@@ -56,12 +52,12 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	public void checkValidity(final WorkflowElement element) {
 		workflowAbstract = isWorkflowAbstract(element);
 
-		if (element.hasAttribute(CLASS_ATTRIBUTE)
-				&& element.hasAttribute(FILE_ATTRIBUTE)) {
+		if (element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)
+				&& element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)) {
 			createMarker(element, FILE_AND_CLASS_MSG);
-		} else if (element.hasAttribute(CLASS_ATTRIBUTE)) {
+		} else if (element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
 			final String className =
-					element.getAttributeValue(CLASS_ATTRIBUTE);
+					element.getAttributeValue(WorkflowElement.CLASS_ATTRIBUTE);
 			final String resolvedClassName =
 					PackageShortcutResolver.resolve(className);
 			final Class<?> mappedClass = getClass(resolvedClassName);
@@ -81,9 +77,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 								+ INHERIT_ALL_ATTRIBUTE
 								+ "' is not allowed, if a 'class' attribute is specified");
 			}
-		} else if (element.hasAttribute(FILE_ATTRIBUTE)) {
+		} else if (element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)) {
 			final WorkflowAttribute attribute =
-					element.getAttribute(FILE_ATTRIBUTE);
+					element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
 			final String content =
 					ReflectionManager
 							.getFileContent(file, document, attribute);
@@ -113,14 +109,16 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	@Override
 	protected void checkAttribute(final Class<?> mappedClass,
 			final WorkflowElement element, final WorkflowAttribute attribute) {
-		if (mappedClass == null || element == null || attribute == null)
+		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String name = attribute.getName();
 		final String value = attribute.getValue();
 
-		if (name.equals(CLASS_ATTRIBUTE) || name.equals(ID_ATTRIBUTE)
-				|| name.equals(ID_REF_ATTRIBUTE))
+		if (name.equals(WorkflowElement.CLASS_ATTRIBUTE)
+				|| name.equals(WorkflowElement.ID_ATTRIBUTE)
+				|| name.equals(WorkflowElement.ID_REF_ATTRIBUTE))
 			return;
 
 		final Class<?> attrType = getValueType(value);
@@ -134,8 +132,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected void checkAttribute(final WorkflowAttribute attribute,
 			final String filePath, final String content) {
-		if (attribute == null || filePath == null || content == null)
+		if (attribute == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String regex = createSubstitutorPattern(attribute.getName());
 		final Pattern pattern = Pattern.compile(regex);
@@ -167,8 +166,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected void checkAttributes(final WorkflowElement element,
 			final String filePath, final String content) {
-		if (element == null || filePath == null || content == null)
+		if (element == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
+		}
 
 		for (final WorkflowAttribute attr : element.getAttributes()) {
 			checkAttribute(attr, filePath, content);

@@ -19,7 +19,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public final class TypeUtils {
 
@@ -30,44 +30,38 @@ public final class TypeUtils {
 		throw new UnsupportedOperationException();
 	}
 
+	public static IType classToType(final IProject project,
+			final Class<?> clazz) {
+		if (project == null || clazz == null)
+			return null;
+
+		final String className = clazz.getName();
+		final IType type = findType(project, className);
+		return type;
+	}
+
 	public static IType findType(final IProject project, final String typeName) {
-		if (project == null || typeName == null)
+		if (project == null || typeName == null) {
 			throw new IllegalArgumentException();
+		}
 
 		try {
-			IJavaProject javaProject = JavaCore.create(project);
-			IType type = javaProject.findType(typeName);
-			if ((type == null) || typeName.startsWith("mwe")) {
-				type =
-						javaProject.findType(typeName.replaceFirst("mwe",
-								"org.eclipse.emf.mwe"));
-			} else if (typeName.startsWith("oaw")) {
-				type =
-						javaProject.findType(typeName.replaceFirst("oaw",
-								"org.openarchitectureware"));
-			}
-
+			final IJavaProject javaProject = JavaCore.create(project);
+			final String resolvedTypeName =
+					PackageShortcutResolver.resolve(typeName);
+			final IType type = javaProject.findType(typeName);
 			return type;
 		} catch (final JavaModelException e) {
 			return null;
 		}
 	}
 
-	public static IType classToType(IProject project, Class<?> clazz) {
-		if (project == null || clazz == null)
-			return null;
-
-		String className = clazz.getName();
-		IType type = findType(project, className);
-		return type;
-	}
-
-	public static Class<?> typeToClass(IProject project, IType type) {
+	public static Class<?> typeToClass(final IProject project, final IType type) {
 		if (project == null || type == null)
 			return null;
 
-		String typeName = type.getFullyQualifiedName();
-		Class<?> clazz = ReflectionManager.getClass(project, typeName);
+		final String typeName = type.getFullyQualifiedName();
+		final Class<?> clazz = ReflectionManager.getClass(project, typeName);
 		return clazz;
 	}
 }

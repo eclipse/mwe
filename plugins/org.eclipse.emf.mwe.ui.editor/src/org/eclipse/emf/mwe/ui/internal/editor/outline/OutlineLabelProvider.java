@@ -19,10 +19,11 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
+
 	private static final String PROPERTY_FILE_LABEL = "file:";
 
 	public void addListener(final ILabelProviderListener listener) {
@@ -64,9 +65,11 @@ public class OutlineLabelProvider implements ILabelProvider {
 							+ workflowElement
 									.getAttributeValue(WorkflowElement.FILE_ATTRIBUTE);
 		} else if (workflowElement.isComponent()) {
-			if (workflowElement.hasAttribute("class")) {
-				String classFQN = workflowElement.getAttributeValue("class");
-				int lastDot = classFQN.lastIndexOf('.');
+			if (workflowElement.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
+				final String classFQN =
+						workflowElement
+								.getAttributeValue(WorkflowElement.CLASS_ATTRIBUTE);
+				final int lastDot = classFQN.lastIndexOf('.');
 				text = classFQN.substring(lastDot + 1);
 			} else {
 				text = workflowElement.getName();

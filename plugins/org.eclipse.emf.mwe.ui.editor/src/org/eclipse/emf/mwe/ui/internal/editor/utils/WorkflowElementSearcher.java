@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public final class WorkflowElementSearcher {
@@ -46,9 +46,8 @@ public final class WorkflowElementSearcher {
 	public static WorkflowElement searchContainerElement(
 			final WorkflowElement root, final IDocument document,
 			final int offset) {
-		if (root == null || document == null) {
+		if (root == null || document == null)
 			throw new IllegalArgumentException();
-		}
 
 		final WorkflowElement workflow = root.getChild(0);
 		final Collection<WorkflowElement> allElements =
@@ -58,7 +57,8 @@ public final class WorkflowElementSearcher {
 
 		WorkflowElement element =
 				internalSearchContainerElement(allElements, offset);
-		while (element != null && !element.hasAttribute("class")) {
+		while (element != null
+				&& !element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
 			element = element.getParent();
 		}
 		return element;
