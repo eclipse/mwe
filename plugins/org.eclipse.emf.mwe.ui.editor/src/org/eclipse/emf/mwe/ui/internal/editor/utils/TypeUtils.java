@@ -11,7 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
@@ -19,7 +22,7 @@ import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class TypeUtils {
 
@@ -41,9 +44,8 @@ public final class TypeUtils {
 	}
 
 	public static IType findType(final IProject project, final String typeName) {
-		if (project == null || typeName == null) {
+		if (project == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		try {
 			final IJavaProject javaProject = JavaCore.create(project);
@@ -52,6 +54,30 @@ public final class TypeUtils {
 			final IType type = javaProject.findType(typeName);
 			return type;
 		} catch (final JavaModelException e) {
+			return null;
+		}
+	}
+
+	public static String getJavaDoc(final IFile file, final String className) {
+		if (file == null || className == null)
+			return null;
+
+		return getJavaDoc(file.getProject(), className);
+	}
+
+	public static String getJavaDoc(final IProject project,
+			final String className) {
+		if (project == null || className == null)
+			return null;
+
+		try {
+			final IType type = findType(project, className);
+			if (type != null)
+				return type.getAttachedJavadoc(new NullProgressMonitor());
+
+			return null;
+		} catch (final JavaModelException e) {
+			Log.logError("Java Model Exception", e);
 			return null;
 		}
 	}

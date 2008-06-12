@@ -56,7 +56,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -104,7 +104,7 @@ public class WorkflowEditor extends TextEditor {
 			}
 
 			final ElementPositionRange range =
-				new ElementPositionRange(document, start, end);
+					new ElementPositionRange(document, start, end);
 			MarkerManager.createMarkerFromRange(file, document, msg, range,
 					true);
 		} catch (final BadLocationException e) {
@@ -118,8 +118,8 @@ public class WorkflowEditor extends TextEditor {
 		final ProjectionViewer viewer = (ProjectionViewer) getSourceViewer();
 
 		projectSupport =
-			new ProjectionSupport(viewer, getAnnotationAccess(),
-					getSharedColors());
+				new ProjectionSupport(viewer, getAnnotationAccess(),
+						getSharedColors());
 		projectSupport.install();
 		viewer.doOperation(ProjectionViewer.TOGGLE);
 		annotationModel = viewer.getProjectionAnnotationModel();
@@ -170,6 +170,12 @@ public class WorkflowEditor extends TextEditor {
 	 */
 	public Collection<WorkflowElement> getElements() {
 		return elements;
+	}
+
+	public IFile getInputFile() {
+		final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
+		final IFile file = ife.getFile();
+		return file;
 	}
 
 	/**
@@ -238,7 +244,7 @@ public class WorkflowEditor extends TextEditor {
 		final IDocument document = getInputDocument();
 		final WorkflowElement newRootElement = parseRootElement(document);
 		final ElementIterator iterator =
-			new ElementIterator(getInputFile(), getInputDocument());
+				new ElementIterator(getInputFile(), getInputDocument());
 
 		if (newRootElement != null) {
 			setRootElement(newRootElement);
@@ -260,25 +266,25 @@ public class WorkflowEditor extends TextEditor {
 		super.createActions();
 		actionGroup = new BreakpointActionGroup(this);
 		final ResourceBundle bundle =
-			WorkflowEditorPlugin.getDefault().getResourceBundle();
+				WorkflowEditorPlugin.getDefault().getResourceBundle();
 		IAction a =
-			new TextOperationAction(bundle, "QuickFormat.", this,
-					ISourceViewer.FORMAT);
+				new TextOperationAction(bundle, "QuickFormat.", this,
+						ISourceViewer.FORMAT);
 		setAction("QuickFormat", a);
 
 		// content assist
 		a =
-			new TextOperationAction(bundle, "ContentAssistProposal.",
-					this, ISourceViewer.CONTENTASSIST_PROPOSALS);
+				new TextOperationAction(bundle, "ContentAssistProposal.",
+						this, ISourceViewer.CONTENTASSIST_PROPOSALS);
 		a
-		.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
+				.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_PROPOSALS);
 		setAction("ContentAssistProposal", a);
 
 		a =
-			new TextOperationAction(bundle, "ContentAssistTip.", this,
-					ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION);
+				new TextOperationAction(bundle, "ContentAssistTip.", this,
+						ISourceViewer.CONTENTASSIST_CONTEXT_INFORMATION);
 		a
-		.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
+				.setActionDefinitionId(ITextEditorActionDefinitionIds.CONTENT_ASSIST_CONTEXT_INFORMATION);
 		setAction("ContentAssistTip", a);
 
 	}
@@ -287,8 +293,8 @@ public class WorkflowEditor extends TextEditor {
 	protected ISourceViewer createSourceViewer(final Composite parent,
 			final IVerticalRuler ruler, final int styles) {
 		final ISourceViewer viewer =
-			new ProjectionViewer(parent, ruler, getOverviewRuler(),
-					isOverviewRulerVisible(), styles);
+				new ProjectionViewer(parent, ruler, getOverviewRuler(),
+						isOverviewRulerVisible(), styles);
 		getSourceViewerDecorationSupport(viewer);
 		job = new Job("parsing document") {
 
@@ -346,14 +352,8 @@ public class WorkflowEditor extends TextEditor {
 
 	protected IDocument getInputDocument() {
 		final IDocument document =
-			getDocumentProvider().getDocument(getEditorInput());
+				getDocumentProvider().getDocument(getEditorInput());
 		return document;
-	}
-
-	protected IFile getInputFile() {
-		final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
-		final IFile file = ife.getFile();
-		return file;
 	}
 
 	/**
@@ -382,7 +382,8 @@ public class WorkflowEditor extends TextEditor {
 
 	private void preloadClassNameCache() {
 		final IFile file = getInputFile();
-		final Class<?> baseClass = ClassContentProposalComputer.getWorkflowBaseClass(file);
+		final Class<?> baseClass =
+				ClassContentProposalComputer.getWorkflowBaseClass(file);
 		ReflectionManager.getSubClasses(file, baseClass, true);
 		ReflectionManager.getAllClasses(file, true);
 	}
