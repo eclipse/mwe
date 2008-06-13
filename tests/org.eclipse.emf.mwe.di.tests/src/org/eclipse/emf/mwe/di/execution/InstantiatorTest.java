@@ -4,13 +4,13 @@ import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.IParser;
-import org.eclipse.xtext.service.InjectedService;
+import org.eclipse.xtext.service.Inject;
 import org.eclipse.xtext.util.StringInputStream;
 
 import test.ObjectB;
 
 public class InstantiatorTest extends AbstractTests {
-	@InjectedService
+	@Inject
 	private IParser parser;
 	
 	public void testSimple() throws Exception {

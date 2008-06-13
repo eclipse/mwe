@@ -24,6 +24,21 @@
       </languageDescriptor>
    </extension>
    <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.emf.mwe.di.services.MWEResourceFactory"
+            type="xtext">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            class="org.eclipse.emf.mwe.di.services.MWEResourceFactory"
+            type="mwe">
+      </parser>
+   </extension>
+   
+   <extension
          point="org.eclipse.xtext.ui.grammarAccess">
       <grammarAccess
             languageId="org.eclipse.emf.mwe.di.MWE"

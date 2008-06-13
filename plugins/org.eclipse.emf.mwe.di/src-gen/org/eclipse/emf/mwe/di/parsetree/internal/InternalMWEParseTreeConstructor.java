@@ -68,7 +68,7 @@ protected void proceedFile(InstanceDescription obj) {
 	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.0/@alternatives/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
-		proceedValue(val);
+		proceedComplexValue(val);
 	} finally {
 		ruleCallEnd(val, true, (RuleCall) ruleCall);
 	}

@@ -117,7 +117,7 @@ ruleFile returns [EObject current=null]
     { 
         currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
-    lv_value=ruleValue 
+    lv_value=ruleComplexValue 
     {
         currentNode = currentNode.getParent();
         if ($current==null) {
@@ -132,14 +132,24 @@ ruleFile returns [EObject current=null]
 // Rule Property
 ruleProperty returns [EObject current=null] 
     @init { EObject temp=null; }:
-(this_LocalVariable=ruleLocalVariable
+(
+    { 
+        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
+    }
+    this_LocalVariable=ruleLocalVariable
     { 
         $current = $this_LocalVariable.current; 
+        currentNode = currentNode.getParent();
     }
 
-    |this_PropertiesFileImport=rulePropertiesFileImport
+    |
+    { 
+        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+    }
+    this_PropertiesFileImport=rulePropertiesFileImport
     { 
         $current = $this_PropertiesFileImport.current; 
+        currentNode = currentNode.getParent();
     }
 );
 
@@ -223,24 +233,44 @@ rulePropertiesFileImport returns [EObject current=null]
 // Rule Value
 ruleValue returns [EObject current=null] 
     @init { EObject temp=null; }:
-(((this_SimpleValue=ruleSimpleValue
+(((
+    { 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.0" /* xtext::RuleCall */, currentNode); 
+    }
+    this_SimpleValue=ruleSimpleValue
     { 
         $current = $this_SimpleValue.current; 
+        currentNode = currentNode.getParent();
     }
 
-    |this_ComplexValue=ruleComplexValue
+    |
+    { 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+    }
+    this_ComplexValue=ruleComplexValue
     { 
         $current = $this_ComplexValue.current; 
+        currentNode = currentNode.getParent();
     }
 )
-    |this_IdRef=ruleIdRef
+    |
+    { 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+    }
+    this_IdRef=ruleIdRef
     { 
         $current = $this_IdRef.current; 
+        currentNode = currentNode.getParent();
     }
 )
-    |this_WorkflowRef=ruleWorkflowRef
+    |
+    { 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+    }
+    this_WorkflowRef=ruleWorkflowRef
     { 
         $current = $this_WorkflowRef.current; 
+        currentNode = currentNode.getParent();
     }
 );
 

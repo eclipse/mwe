@@ -12,7 +12,7 @@
         <terminal xsi:type="xtext:RuleCall" name="Property"/>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
-        <terminal xsi:type="xtext:RuleCall" name="Value"/>
+        <terminal xsi:type="xtext:RuleCall" name="ComplexValue"/>
       </abstractTokens>
     </alternatives>
   </parserRules>

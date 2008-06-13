@@ -14,4 +14,5 @@ public interface IMWE {
 	public static final String ID = "org.eclipse.emf.mwe.di.MWE";
 	public static final String NAME = "MWE";
 	public static final String NAMESPACE = "org.eclipse.emf.mwe.di";
+	
 }

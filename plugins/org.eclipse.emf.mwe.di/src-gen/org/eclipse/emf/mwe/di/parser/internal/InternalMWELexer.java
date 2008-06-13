@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g 2008-06-13 08:21:39
+// $ANTLR 3.0.1 ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g 2008-06-13 14:38:00
 
 package org.eclipse.emf.mwe.di.parser.internal;
 
@@ -283,10 +283,10 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:494:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:494:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:524:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:524:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:494:11: ( '^' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:524:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -295,7 +295,7 @@ public class InternalMWELexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:494:12: '^'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:524:12: '^'
                     {
                     match('^'); 
 
@@ -314,7 +314,7 @@ public class InternalMWELexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:494:41: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:524:41: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -362,10 +362,10 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:496:10: ( ( '0' .. '9' )+ )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:496:12: ( '0' .. '9' )+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:526:10: ( ( '0' .. '9' )+ )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:526:12: ( '0' .. '9' )+
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:496:12: ( '0' .. '9' )+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:526:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -379,7 +379,7 @@ public class InternalMWELexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:496:13: '0' .. '9'
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:526:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -409,7 +409,7 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -421,16 +421,16 @@ public class InternalMWELexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("498:1: RULE_STRING : ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' );", 6, 0, input);
+                    new NoViableAltException("528:1: RULE_STRING : ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' );", 6, 0, input);
 
                 throw nvae;
             }
             switch (alt6) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:15: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"'
                     {
                     match('\"'); 
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )*
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:19: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )*
                     loop4:
                     do {
                         int alt4=3;
@@ -446,7 +446,7 @@ public class InternalMWELexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:21: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -463,7 +463,7 @@ public class InternalMWELexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:65: ~ ( '\\\\' | '\"' )
+                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:65: ~ ( '\\\\' | '\"' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -489,10 +489,10 @@ public class InternalMWELexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\''
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:86: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\''
                     {
                     match('\''); 
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )*
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:91: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -508,7 +508,7 @@ public class InternalMWELexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:93: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:93: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
                     	    {
                     	    match('\\'); 
                     	    if ( input.LA(1)=='\"'||input.LA(1)=='\''||input.LA(1)=='\\'||input.LA(1)=='b'||input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t' ) {
@@ -525,7 +525,7 @@ public class InternalMWELexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:498:137: ~ ( '\\\\' | '\\'' )
+                    	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:528:137: ~ ( '\\\\' | '\\'' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFE') ) {
                     	        input.consume();
@@ -563,12 +563,12 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:500:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:500:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:530:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:530:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:500:24: ( options {greedy=false; } : . )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:530:24: ( options {greedy=false; } : . )*
             loop7:
             do {
                 int alt7=2;
@@ -593,7 +593,7 @@ public class InternalMWELexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:500:52: .
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:530:52: .
             	    {
             	    matchAny(); 
 
@@ -622,12 +622,12 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:17: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:19: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:17: ( '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:19: '//' (~ ( '\\n' | '\\r' ) )* ( '\\r' )? '\\n'
             {
             match("//"); 
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:24: (~ ( '\\n' | '\\r' ) )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:24: (~ ( '\\n' | '\\r' ) )*
             loop8:
             do {
                 int alt8=2;
@@ -640,7 +640,7 @@ public class InternalMWELexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:24: ~ ( '\\n' | '\\r' )
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:24: ~ ( '\\n' | '\\r' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -661,7 +661,7 @@ public class InternalMWELexer extends Lexer {
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:38: ( '\\r' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:38: ( '\\r' )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -670,7 +670,7 @@ public class InternalMWELexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:38: '\\r'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:38: '\\r'
                     {
                     match('\r'); 
 
@@ -695,10 +695,10 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:504:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:504:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:534:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:534:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:504:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:534:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt10=0;
             loop10:
             do {
@@ -752,12 +752,12 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_LEXER_BODY() throws RecognitionException {
         try {
             int _type = RULE_LEXER_BODY;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:506:17: ( '<#' ( '.' )* '#>' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:506:19: '<#' ( '.' )* '#>'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:536:17: ( '<#' ( '.' )* '#>' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:536:19: '<#' ( '.' )* '#>'
             {
             match("<#"); 
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:506:24: ( '.' )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:536:24: ( '.' )*
             loop11:
             do {
                 int alt11=2;
@@ -770,7 +770,7 @@ public class InternalMWELexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:506:24: '.'
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:536:24: '.'
             	    {
             	    match('.'); 
 
@@ -798,8 +798,8 @@ public class InternalMWELexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:508:16: ( . )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:508:18: .
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:538:16: ( . )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:538:18: .
             {
             matchAny(); 
 
