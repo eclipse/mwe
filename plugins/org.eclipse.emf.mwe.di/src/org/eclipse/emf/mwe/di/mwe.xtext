@@ -1,0 +1,44 @@
+language org.eclipse.emf.mwe.di.MWE
+
+generate mwe "http://www.eclipse.org/emf/mwe/di"
+
+File :
+	properties+=Property*
+	value=ComplexValue;
+	
+Property :
+	LocalVariable | PropertiesFileImport;
+	
+LocalVariable :
+	'property' name=ID ('=' value=STRING) ';'?;
+	
+PropertiesFileImport :
+	'properties' file=STRING ';'?;
+	
+Value :
+	SimpleValue | ComplexValue | IdRef | WorkflowRef;
+	
+SimpleValue :
+	value=STRING;
+	
+Assignable :
+	ComplexValue | WorkflowRef;
+	
+ComplexValue :
+	(className=QualifiedName)? ('id' id=ID)? fooBar?='{'
+		assignments+=Assignment*
+	'}';
+	
+WorkflowRef :
+	'file' uri=STRING '{'
+		assignments+=Assignment*
+	'}';
+	
+IdRef :
+	'idRef' id=ID;
+	
+Assignment :
+	feature=ID operator=('='|'+=') value=Value ';'?;
+	
+QualifiedName :
+	parts+=ID (parts+='.' parts+=ID)*;

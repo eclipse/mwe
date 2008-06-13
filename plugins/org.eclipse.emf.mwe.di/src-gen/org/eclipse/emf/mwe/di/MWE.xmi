@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
+  <idElements>org</idElements>
+  <idElements>eclipse</idElements>
+  <idElements>emf</idElements>
+  <idElements>mwe</idElements>
+  <idElements>di</idElements>
+  <idElements>MWE</idElements>
+  <parserRules name="File">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="properties" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" name="Property"/>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" name="Value"/>
+      </abstractTokens>
+    </alternatives>
+  </parserRules>
+  <parserRules name="Property">
+    <alternatives xsi:type="xtext:Alternatives">
+      <groups xsi:type="xtext:RuleCall" name="LocalVariable"/>
+      <groups xsi:type="xtext:RuleCall" name="PropertiesFileImport"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="LocalVariable">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Keyword" value="property"/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="name" operator="=">
+            <terminal xsi:type="xtext:RuleCall" name="ID"/>
+          </abstractTokens>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Keyword" value="="/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+            <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+          </abstractTokens>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="PropertiesFileImport">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Keyword" value="properties"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="file" operator="=">
+          <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="Value">
+    <alternatives xsi:type="xtext:Alternatives">
+      <groups xsi:type="xtext:Alternatives">
+        <groups xsi:type="xtext:Alternatives">
+          <groups xsi:type="xtext:RuleCall" name="SimpleValue"/>
+          <groups xsi:type="xtext:RuleCall" name="ComplexValue"/>
+        </groups>
+        <groups xsi:type="xtext:RuleCall" name="IdRef"/>
+      </groups>
+      <groups xsi:type="xtext:RuleCall" name="WorkflowRef"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="SimpleValue">
+    <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+      <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="Assignable">
+    <alternatives xsi:type="xtext:Alternatives">
+      <groups xsi:type="xtext:RuleCall" name="ComplexValue"/>
+      <groups xsi:type="xtext:RuleCall" name="WorkflowRef"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="ComplexValue">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Group">
+            <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="className" operator="=">
+              <terminal xsi:type="xtext:RuleCall" name="QualifiedName"/>
+            </abstractTokens>
+            <abstractTokens xsi:type="xtext:Group" cardinality="?">
+              <abstractTokens xsi:type="xtext:Keyword" value="id"/>
+              <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
+                <terminal xsi:type="xtext:RuleCall" name="ID"/>
+              </abstractTokens>
+            </abstractTokens>
+          </abstractTokens>
+          <abstractTokens xsi:type="xtext:Assignment" feature="fooBar" operator="?=">
+            <terminal xsi:type="xtext:Keyword" value="{"/>
+          </abstractTokens>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="assignments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" name="Assignment"/>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="WorkflowRef">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Group">
+            <abstractTokens xsi:type="xtext:Keyword" value="file"/>
+            <abstractTokens xsi:type="xtext:Assignment" feature="uri" operator="=">
+              <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+            </abstractTokens>
+          </abstractTokens>
+          <abstractTokens xsi:type="xtext:Keyword" value="{"/>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="assignments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" name="Assignment"/>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" value="}"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="IdRef">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Keyword" value="idRef"/>
+      <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
+        <terminal xsi:type="xtext:RuleCall" name="ID"/>
+      </abstractTokens>
+    </alternatives>
+  </parserRules>
+  <parserRules name="Assignment">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Assignment" feature="feature" operator="=">
+            <terminal xsi:type="xtext:RuleCall" name="ID"/>
+          </abstractTokens>
+          <abstractTokens xsi:type="xtext:Assignment" feature="operator" operator="=">
+            <terminal xsi:type="xtext:Alternatives">
+              <groups xsi:type="xtext:Keyword" value="="/>
+              <groups xsi:type="xtext:Keyword" value="+="/>
+            </terminal>
+          </abstractTokens>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" name="Value"/>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="QualifiedName">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
+        <terminal xsi:type="xtext:RuleCall" name="ID"/>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Group" cardinality="*">
+        <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
+          <terminal xsi:type="xtext:Keyword" value="."/>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" name="ID"/>
+        </abstractTokens>
+      </abstractTokens>
+    </alternatives>
+  </parserRules>
+  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe" nsURI="http://www.eclipse.org/emf/mwe/di"/>
+</xtext:Grammar>

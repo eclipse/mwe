@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!-- Generated with Xtext -->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.xtext.ui.service.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.BaseTextEditor/org.eclipse.emf.mwe.di.MWE"
+            default="true"
+            extensions="test, tst"
+            icon="icons/editor.gif"
+            id="org.eclipse.emf.mwe.di.ui_gen.ui.editor.MWEXtextEditor"
+            name="MWE Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.languageDescriptor">
+      <languageDescriptor
+            id="org.eclipse.emf.mwe.di.MWE"
+            name="MWE"
+            superLanguage="org.eclipse.xtext.builtin.XtextBuiltin">
+      </languageDescriptor>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.grammarAccess">
+      <grammarAccess
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.emf.mwe.di.services.MWEGrammarAccess">
+      </grammarAccess>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.metamodelAccess">
+      <metamodelAccess
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.emf.mwe.di.services.MWEMetamodelAccess">
+      </metamodelAccess>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.aSTFactory">
+      <aSTFactory
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.xtext.parser.GenericEcoreElementFactory">
+      </aSTFactory>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.parser">
+      <parser
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.emf.mwe.di.parser.MWEParser">
+      </parser>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.resourceFactory">
+      <resourceFactory
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.emf.mwe.di.services.MWEResourceFactory">
+      </resourceFactory>
+   </extension>
+   <extension
+         point="org.eclipse.xtext.ui.parseTreeConstructor">
+      <parseTreeConstructor
+            languageId="org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.emf.mwe.di.parsetree.MWEParseTreeConstructor">
+      </parseTreeConstructor>
+   </extension>
+   
+</plugin>
