@@ -24,10 +24,10 @@ public class MWEMetamodelAccess extends BaseEPackageAccess implements IMetamodel
 	}
 
 	
-	public static final String MWE_NS_URI = "http://www.eclipse.org/emf/mwe/di";
-	public static final String MWE_CP_URI = "org/eclipse/emf/mwe/di/mwe.ecore";
+	protected static final String MWE_NS_URI = "http://www.eclipse.org/emf/mwe/di";
+	protected static final String MWE_CP_URI = "org/eclipse/emf/mwe/di/mwe.ecore";
 	
-	public static EPackage getMweEPackage() {	
+	protected EPackage getMweEPackage() {	
 		if (!EPackage.Registry.INSTANCE.containsKey(MWE_NS_URI)) {
 			EPackage p = loadEcoreFile(MWEMetamodelAccess.class.getClassLoader(),MWE_CP_URI);
 			if (p!=null) {
