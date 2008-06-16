@@ -16,12 +16,12 @@ import java.util.Collection;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public final class WorkflowElementSearcher {
@@ -51,7 +51,7 @@ public final class WorkflowElementSearcher {
 			throw new IllegalArgumentException();
 
 		final IWorkflowElement workflow = root.getChild(0);
-		final Collection<WorkflowElementImpl> allElements =
+		final Collection<XMLWorkflowElementImpl> allElements =
 				workflow.getChildrenList();
 		if (allElements == null)
 			return null;
@@ -66,7 +66,7 @@ public final class WorkflowElementSearcher {
 	}
 
 	private static IWorkflowElement internalSearchContainerElement(
-			final Collection<WorkflowElementImpl> allElements, final int offset) {
+			final Collection<XMLWorkflowElementImpl> allElements, final int offset) {
 		IWorkflowElement foundElement = null;
 		int foundOffset = -1;
 

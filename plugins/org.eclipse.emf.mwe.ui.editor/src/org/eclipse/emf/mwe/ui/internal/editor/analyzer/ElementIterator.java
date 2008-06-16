@@ -21,13 +21,13 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class ElementIterator {
 
@@ -55,7 +55,7 @@ public class ElementIterator {
 		referenceInfoStore = new ReferenceInfoStore(file);
 	}
 
-	public void checkValidity(final WorkflowElementImpl root) {
+	public void checkValidity(final XMLWorkflowElementImpl root) {
 		MarkerManager.deleteMarkers(file);
 
 		elementList = flatten(root);
@@ -120,7 +120,7 @@ public class ElementIterator {
 		}
 	}
 
-	private List<IWorkflowElement> flatten(final WorkflowElementImpl root) {
+	private List<IWorkflowElement> flatten(final XMLWorkflowElementImpl root) {
 		final List<IWorkflowElement> list = new ArrayList<IWorkflowElement>();
 		boolean isRootExcluded = false;
 		for (final String tag : EXCLUDED_TAGS) {

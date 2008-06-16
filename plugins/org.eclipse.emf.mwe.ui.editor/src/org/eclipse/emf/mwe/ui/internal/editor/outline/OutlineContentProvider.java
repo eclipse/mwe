@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.text.BadPositionCategoryException;
 import org.eclipse.jface.text.DefaultPositionUpdater;
@@ -29,7 +29,7 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -66,13 +66,13 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (parentElement == input) {
 			if (rootElement == null)
 				return new Object[0];
-			final List<WorkflowElementImpl> childList =
+			final List<XMLWorkflowElementImpl> childList =
 					rootElement.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		} else {
 			final IWorkflowElement parent = (IWorkflowElement) parentElement;
-			final List<WorkflowElementImpl> childList = parent.getChildrenList();
+			final List<XMLWorkflowElementImpl> childList = parent.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		}
@@ -84,7 +84,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 	}
 
 	public Object getParent(final Object element) {
-		if (element instanceof WorkflowElementImpl)
+		if (element instanceof XMLWorkflowElementImpl)
 			return ((IWorkflowElement) element).getParent();
 
 		return null;

@@ -12,7 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
@@ -34,7 +34,7 @@ public class OutlineLabelProvider implements ILabelProvider {
 	}
 
 	public Image getImage(final Object element) {
-		if (!(element instanceof WorkflowElementImpl))
+		if (!(element instanceof XMLWorkflowElementImpl))
 			return null;
 
 		final IWorkflowElement workflowElement = (IWorkflowElement) element;
@@ -42,7 +42,7 @@ public class OutlineLabelProvider implements ILabelProvider {
 	}
 
 	public String getText(final Object element) {
-		if (!(element instanceof WorkflowElementImpl))
+		if (!(element instanceof XMLWorkflowElementImpl))
 			return null;
 
 		final IWorkflowElement workflowElement = (IWorkflowElement) element;

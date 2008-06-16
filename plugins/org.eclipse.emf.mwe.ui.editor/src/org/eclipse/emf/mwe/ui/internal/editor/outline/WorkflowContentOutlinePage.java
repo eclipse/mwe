@@ -17,7 +17,7 @@ import java.util.List;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -101,7 +101,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 		for (int i = 0; i < parentElement.getChildrenCount(); i++) {
 			list.add(parentElement.getChild(i));
 		}
-		return list.toArray(new WorkflowElementImpl[0]);
+		return list.toArray(new XMLWorkflowElementImpl[0]);
 	}
 
 	private ElementPositionRange calculateTagRange(final IDocument document,
@@ -139,7 +139,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 			} else {
 				final Object segment =
 						((IStructuredSelection) selection).getFirstElement();
-				if (segment != null && segment instanceof WorkflowElementImpl) {
+				if (segment != null && segment instanceof XMLWorkflowElementImpl) {
 					final IWorkflowElement wfElement =
 							(IWorkflowElement) segment;
 					final ElementPositionRange range =

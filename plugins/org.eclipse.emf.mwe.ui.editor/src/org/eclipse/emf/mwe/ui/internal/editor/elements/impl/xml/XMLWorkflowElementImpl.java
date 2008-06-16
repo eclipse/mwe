@@ -34,7 +34,7 @@ import org.eclipse.jface.text.IDocument;
  * @version $Revision: 1.1 $
  */
 
-public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
+public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 
 	private final IDocument document;
 
@@ -52,8 +52,8 @@ public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 
 	private boolean recomputeTypeInfo;
 
-	private final List<WorkflowElementImpl> children =
-			new ArrayList<WorkflowElementImpl>();
+	private final List<XMLWorkflowElementImpl> children =
+			new ArrayList<XMLWorkflowElementImpl>();
 
 	private final Map<String, WorkflowAttribute> attributes =
 			new HashMap<String, WorkflowAttribute>();
@@ -66,7 +66,7 @@ public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * @param name
 	 *            the name of the element.
 	 */
-	public WorkflowElementImpl(final IDocument document, final String name) {
+	public XMLWorkflowElementImpl(final IDocument document, final String name) {
 		if (document == null || name == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
@@ -90,9 +90,9 @@ public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * This automatically generated method overrides the implementation 
 	 * of <code>addChild</code> inherited from the superclass.
 	 *
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addChild(org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addChild(org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl)
 	 */
-	public void addChild(final WorkflowElementImpl element) {
+	public void addChild(final XMLWorkflowElementImpl element) {
 		element.setParent(this);
 		children.add(element);
 		recomputeTypeInfo = true;
@@ -160,7 +160,7 @@ public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 *
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getChild(int)
 	 */
-	public WorkflowElementImpl getChild(final int index) {
+	public XMLWorkflowElementImpl getChild(final int index) {
 		if (index < 0 || index >= getChildrenCount())
 			throw new IllegalArgumentException();
 
@@ -183,7 +183,7 @@ public class WorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 *
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getChildrenList()
 	 */
-	public List<WorkflowElementImpl> getChildrenList() {
+	public List<XMLWorkflowElementImpl> getChildrenList() {
 		return children;
 	}
 
