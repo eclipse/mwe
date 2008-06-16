@@ -14,9 +14,9 @@ package org.eclipse.emf.mwe.ui.internal.editor.parser;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -28,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -43,7 +43,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 	protected IDocument document;
 
-	private XMLWorkflowElementImpl rootElement;
+	private IWorkflowElement rootElement;
 
 	private IWorkflowElement currentElement;
 
@@ -95,7 +95,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * 
 	 * @return value of <code>rootElement</code>.
 	 */
-	public XMLWorkflowElementImpl getRootElement() {
+	public IWorkflowElement getRootElement() {
 		return rootElement;
 	}
 
@@ -138,8 +138,11 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startDocument() throws SAXException {
+		final AbstractWorkflowSyntaxFactory factory =
+				AbstractWorkflowSyntaxFactory.getInstance();
 		rootElement =
-				new XMLWorkflowElementImpl(document, IWorkflowElement.WORKFLOWFILE_TAG);
+				factory.newWorkflowElement(document,
+						IWorkflowElement.WORKFLOWFILE_TAG);
 		currentElement = rootElement;
 		rootElement.setStartElementRange(createPositionRange());
 	}
@@ -156,8 +159,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final String qName, final Attributes attributes)
 			throws SAXException {
 
-		final XMLWorkflowElementImpl element =
-				new XMLWorkflowElementImpl(document, localName);
+		final AbstractWorkflowSyntaxFactory factory =
+				AbstractWorkflowSyntaxFactory.getInstance();
+		final IWorkflowElement element =
+				factory.newWorkflowElement(document, localName);
 		if (isIllegalName(localName))
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
 					+ localName, true);
@@ -166,8 +171,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 		for (int i = 0; i < attributes.getLength(); i++) {
 			final String attrName = attributes.getLocalName(i);
 			final String attrValue = attributes.getValue(i);
-			final XMLWorkflowAttributeImpl attr =
-					new XMLWorkflowAttributeImpl(element, attrName, attrValue);
+			final IWorkflowAttribute attr =
+					factory.newWorkflowAttribute(element, attrName, attrValue);
 			element.addAttribute(attr);
 		}
 

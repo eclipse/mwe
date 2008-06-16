@@ -27,9 +27,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
@@ -57,7 +58,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -73,11 +74,11 @@ public class WorkflowEditor extends TextEditor {
 
 	private Job job;
 
-	private XMLWorkflowElementImpl rootElement;
+	private IWorkflowElement rootElement;
 
 	private Collection<IWorkflowElement> elements;
 
-	private Collection<XMLWorkflowAttributeImpl> attributes;
+	private Collection<IWorkflowAttribute> attributes;
 
 	private Collection<String> propertyNames;
 
@@ -124,6 +125,11 @@ public class WorkflowEditor extends TextEditor {
 		projectSupport.install();
 		viewer.doOperation(ProjectionViewer.TOGGLE);
 		annotationModel = viewer.getProjectionAnnotationModel();
+
+		// TODO Preliminary code. The factory has to be installed depending on
+		// the document content.
+		AbstractWorkflowSyntaxFactory
+				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 	}
 
 	@Override
@@ -160,7 +166,7 @@ public class WorkflowEditor extends TextEditor {
 	 * 
 	 * @return value of <code>attributes</code>.
 	 */
-	public Collection<XMLWorkflowAttributeImpl> getAttributes() {
+	public Collection<IWorkflowAttribute> getAttributes() {
 		return attributes;
 	}
 
@@ -201,7 +207,7 @@ public class WorkflowEditor extends TextEditor {
 	 * 
 	 * @return value of <code>rootElement</code>.
 	 */
-	public XMLWorkflowElementImpl getRootElement() {
+	public IWorkflowElement getRootElement() {
 		return rootElement;
 	}
 
@@ -213,18 +219,18 @@ public class WorkflowEditor extends TextEditor {
 		return getVerticalRuler();
 	}
 
-	public XMLWorkflowElementImpl parseRootElement(final IDocument document) {
+	public IWorkflowElement parseRootElement(final IDocument document) {
 		return DocumentParser.parse(document, null);
 	}
 
 	/**
 	 * Sets a new value for field <code>rootElement</code>.
 	 * 
-	 * @param rootElement
+	 * @param newRootElement
 	 *            new value for <code>rootElement</code>.
 	 */
-	public void setRootElement(final XMLWorkflowElementImpl rootElement) {
-		this.rootElement = rootElement;
+	public void setRootElement(final IWorkflowElement newRootElement) {
+		this.rootElement = newRootElement;
 	}
 
 	public void updateFoldingStructure(final ArrayList positions) {
@@ -243,7 +249,7 @@ public class WorkflowEditor extends TextEditor {
 
 	public void validateAndMark() {
 		final IDocument document = getInputDocument();
-		final XMLWorkflowElementImpl newRootElement = parseRootElement(document);
+		final IWorkflowElement newRootElement = parseRootElement(document);
 		final ElementIterator iterator =
 				new ElementIterator(getInputFile(), getInputDocument());
 

@@ -16,12 +16,11 @@ import java.util.Collection;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public final class WorkflowElementSearcher {
@@ -34,24 +33,14 @@ public final class WorkflowElementSearcher {
 	}
 
 	public static IWorkflowElement searchContainerElement(
-			final WorkflowEditor editor, final IDocument document,
-			final int offset) {
-		if (editor != null || document != null) {
-			final IWorkflowElement root = editor.getRootElement();
-			if (root != null)
-				return searchContainerElement(root, document, offset);
-		}
-		return null;
-	}
-
-	public static IWorkflowElement searchContainerElement(
 			final IWorkflowElement root, final IDocument document,
 			final int offset) {
-		if (root == null || document == null)
+		if (root == null || document == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final IWorkflowElement workflow = root.getChild(0);
-		final Collection<XMLWorkflowElementImpl> allElements =
+		final Collection<IWorkflowElement> allElements =
 				workflow.getChildrenList();
 		if (allElements == null)
 			return null;
@@ -65,8 +54,19 @@ public final class WorkflowElementSearcher {
 		return element;
 	}
 
+	public static IWorkflowElement searchContainerElement(
+			final WorkflowEditor editor, final IDocument document,
+			final int offset) {
+		if (editor != null || document != null) {
+			final IWorkflowElement root = editor.getRootElement();
+			if (root != null)
+				return searchContainerElement(root, document, offset);
+		}
+		return null;
+	}
+
 	private static IWorkflowElement internalSearchContainerElement(
-			final Collection<XMLWorkflowElementImpl> allElements, final int offset) {
+			final Collection<IWorkflowElement> allElements, final int offset) {
 		IWorkflowElement foundElement = null;
 		int foundOffset = -1;
 

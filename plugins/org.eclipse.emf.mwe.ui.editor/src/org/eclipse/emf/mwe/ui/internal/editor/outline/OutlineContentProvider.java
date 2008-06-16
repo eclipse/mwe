@@ -29,7 +29,7 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -66,13 +66,13 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (parentElement == input) {
 			if (rootElement == null)
 				return new Object[0];
-			final List<XMLWorkflowElementImpl> childList =
+			final List<IWorkflowElement> childList =
 					rootElement.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		} else {
 			final IWorkflowElement parent = (IWorkflowElement) parentElement;
-			final List<XMLWorkflowElementImpl> childList = parent.getChildrenList();
+			final List<IWorkflowElement> childList = parent.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		}

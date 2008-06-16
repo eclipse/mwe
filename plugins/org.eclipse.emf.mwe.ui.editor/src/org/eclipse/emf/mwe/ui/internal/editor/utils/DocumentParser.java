@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.IDocument;
@@ -23,7 +22,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public final class DocumentParser {
@@ -41,7 +40,7 @@ public final class DocumentParser {
 		return parse(document, null);
 	}
 
-	public static XMLWorkflowElementImpl parse(final IDocument document,
+	public static IWorkflowElement parse(final IDocument document,
 			final WorkflowEditor editor) {
 		if (document == null)
 			return null;
@@ -65,7 +64,7 @@ public final class DocumentParser {
 				editor.createMarker(document, msg, line, column);
 			}
 		}
-		final XMLWorkflowElementImpl root = xmlParser.getRootElement();
+		final IWorkflowElement root = xmlParser.getRootElement();
 		return root;
 	}
 }

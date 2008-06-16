@@ -14,8 +14,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.jface.text.IDocument;
 
 public interface IWorkflowElement {
@@ -48,7 +46,7 @@ public interface IWorkflowElement {
 	 * @param attribute
 	 *            attribute added to current element.
 	 */
-	void addAttribute(final XMLWorkflowAttributeImpl attribute);
+	void addAttribute(final IWorkflowAttribute attribute);
 
 	/**
 	 * Add child element to the current element.
@@ -56,7 +54,7 @@ public interface IWorkflowElement {
 	 * @param element
 	 *            child element added to current element.
 	 */
-	void addChild(final XMLWorkflowElementImpl element);
+	void addChild(final IWorkflowElement element);
 
 	/**
 	 * Deletes all attributes and children of the current element.
@@ -87,7 +85,7 @@ public interface IWorkflowElement {
 	 * 
 	 * @return a collection of all attributes of current element.
 	 */
-	Collection<XMLWorkflowAttributeImpl> getAttributes();
+	Collection<IWorkflowAttribute> getAttributes();
 
 	/**
 	 * Returns the value of an attribute of the current element.
@@ -121,7 +119,7 @@ public interface IWorkflowElement {
 	 * 
 	 * @return list of child elements.
 	 */
-	List<XMLWorkflowElementImpl> getChildrenList();
+	List<IWorkflowElement> getChildrenList();
 
 	/**
 	 * Returns the default mapped class for this element if there is a default.
