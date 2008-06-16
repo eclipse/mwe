@@ -12,12 +12,12 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
@@ -35,10 +35,10 @@ public class IfComponentAnalyzer extends ComponentAnalyzer {
 	 * This method overrides the implementation of <code>checkValidity</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.ComponentAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.ComponentAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final WorkflowElement element) {
+	public void checkValidity(final IWorkflowElement element) {
 		if (element.getAttributeCount() != 1
 				|| !element.hasAttribute(COND_ATTRIBUTE)) {
 			createMarker(element, COND_ONLY_MSG);

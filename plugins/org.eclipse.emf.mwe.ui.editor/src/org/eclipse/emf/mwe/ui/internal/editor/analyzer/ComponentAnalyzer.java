@@ -16,15 +16,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -46,18 +46,18 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 * This method overrides the implementation of <code>checkValidity</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final WorkflowElement element) {
+	public void checkValidity(final IWorkflowElement element) {
 		workflowAbstract = isWorkflowAbstract(element);
 
-		if (element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)
-				&& element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)) {
+		if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)
+				&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
 			createMarker(element, FILE_AND_CLASS_MSG);
-		} else if (element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
+		} else if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
 			final String className =
-					element.getAttributeValue(WorkflowElement.CLASS_ATTRIBUTE);
+					element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
 			final String resolvedClassName =
 					PackageShortcutResolver.resolve(className);
 			final Class<?> mappedClass = getClass(resolvedClassName);
@@ -77,9 +77,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 								+ INHERIT_ALL_ATTRIBUTE
 								+ "' is not allowed, if a 'class' attribute is specified");
 			}
-		} else if (element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)) {
+		} else if (element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
 			final WorkflowAttribute attribute =
-					element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
+					element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 			final String content =
 					ReflectionManager
 							.getFileContent(file, document, attribute);
@@ -103,12 +103,12 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 * inherited from the superclass.
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttribute(java.lang.Class,
-	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement,
+	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl,
 	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute)
 	 */
 	@Override
 	protected void checkAttribute(final Class<?> mappedClass,
-			final WorkflowElement element, final WorkflowAttribute attribute) {
+			final IWorkflowElement element, final WorkflowAttribute attribute) {
 		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
 		}
@@ -116,9 +116,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		final String name = attribute.getName();
 		final String value = attribute.getValue();
 
-		if (name.equals(WorkflowElement.CLASS_ATTRIBUTE)
-				|| name.equals(WorkflowElement.ID_ATTRIBUTE)
-				|| name.equals(WorkflowElement.ID_REF_ATTRIBUTE))
+		if (name.equals(IWorkflowElement.CLASS_ATTRIBUTE)
+				|| name.equals(IWorkflowElement.ID_ATTRIBUTE)
+				|| name.equals(IWorkflowElement.ID_REF_ATTRIBUTE))
 			return;
 
 		final Class<?> attrType = getValueType(value);
@@ -151,11 +151,11 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 * This method overrides the implementation of <code>checkAttributes</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttributes(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement,
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttributes(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl,
 	 *      java.lang.Class)
 	 */
 	@Override
-	protected void checkAttributes(final WorkflowElement element,
+	protected void checkAttributes(final IWorkflowElement element,
 			final Class<?> mappedClass) {
 		for (int i = 0; i < element.getAttributeCount(); i++) {
 			for (final WorkflowAttribute attr : element.getAttributes()) {
@@ -164,7 +164,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		}
 	}
 
-	protected void checkAttributes(final WorkflowElement element,
+	protected void checkAttributes(final IWorkflowElement element,
 			final String filePath, final String content) {
 		if (element == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
@@ -179,16 +179,16 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		return "\\$\\{" + name + "\\}";
 	}
 
-	protected boolean isWorkflowAbstract(final WorkflowElement element) {
+	protected boolean isWorkflowAbstract(final IWorkflowElement element) {
 		boolean res = false;
-		WorkflowElement e = element;
+		IWorkflowElement e = element;
 
 		while (e.hasParent()
-				&& !e.getName().equals(WorkflowElement.WORKFLOW_TAG)) {
+				&& !e.getName().equals(IWorkflowElement.WORKFLOW_TAG)) {
 			e = e.getParent();
 		}
 
-		if (e.getName().equals(WorkflowElement.WORKFLOW_TAG)
+		if (e.getName().equals(IWorkflowElement.WORKFLOW_TAG)
 				&& e.hasAttribute(ABSTRACT_ATTRIBUTE)
 				&& e.getAttributeValue(ABSTRACT_ATTRIBUTE).equalsIgnoreCase(
 						TRUE_VALUE)) {

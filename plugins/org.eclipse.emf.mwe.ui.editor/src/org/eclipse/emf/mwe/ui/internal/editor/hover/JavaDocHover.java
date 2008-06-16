@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowPartitionScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.ui.text.java.hover.IJavaEditorTextHover;
@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class JavaDocHover extends AbstractHover implements
@@ -61,17 +61,17 @@ public class JavaDocHover extends AbstractHover implements
 			if (region.getType()
 					.equals(WorkflowPartitionScanner.XML_START_TAG)) {
 
-				final Collection<WorkflowElement> allElements =
+				final Collection<IWorkflowElement> allElements =
 						wfEditor.getElements();
 				if (allElements != null) {
-					final WorkflowElement element =
+					final IWorkflowElement element =
 							findElements(allElements, region);
 					if (element != null
 							&& element
-									.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
+									.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
 						final String className =
 								element
-										.getAttributeValue(WorkflowElement.CLASS_ATTRIBUTE);
+										.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
 						final IFile file = wfEditor.getInputFile();
 						final String javaDoc =
 								TypeUtils.getJavaDoc(file, className);
@@ -85,8 +85,8 @@ public class JavaDocHover extends AbstractHover implements
 		return null;
 	}
 
-	private WorkflowElement findElements(
-			final Collection<WorkflowElement> allElements,
+	private IWorkflowElement findElements(
+			final Collection<IWorkflowElement> allElements,
 			final ITypedRegion region) {
 		if (allElements == null || region == null) {
 			throw new IllegalArgumentException();
@@ -94,8 +94,8 @@ public class JavaDocHover extends AbstractHover implements
 
 		final int start = region.getOffset();
 		final int end = start + region.getLength() - 1;
-		for (final WorkflowElement element : allElements) {
-			if (WorkflowElement.WORKFLOW_TAG.equals(element.getName())) {
+		for (final IWorkflowElement element : allElements) {
+			if (IWorkflowElement.WORKFLOW_TAG.equals(element.getName())) {
 				continue;
 			}
 

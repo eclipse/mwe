@@ -16,7 +16,8 @@ import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -55,8 +56,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 		viewer.setContentProvider(getContentProvider());
 		viewer.addSelectionChangedListener(this);
 
-		if (input != null)
+		if (input != null) {
 			setInput(input);
+		}
 	}
 
 	public void refresh() {
@@ -65,7 +67,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 		if (viewer != null) {
 			final Control control = viewer.getControl();
 
-			if ((control != null) && !control.isDisposed()) {
+			if (control != null && !control.isDisposed()) {
 				control.setRedraw(false);
 				viewer.setInput(input);
 				((WorkflowEditor) editor).validateAndMark();
@@ -93,12 +95,13 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 		refresh();
 	}
 
-	protected WorkflowElement[] getChildren(final WorkflowElement parentElement) {
-		final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
+	protected IWorkflowElement[] getChildren(
+			final IWorkflowElement parentElement) {
+		final List<IWorkflowElement> list = new ArrayList<IWorkflowElement>();
 		for (int i = 0; i < parentElement.getChildrenCount(); i++) {
 			list.add(parentElement.getChild(i));
 		}
-		return list.toArray(new WorkflowElement[0]);
+		return list.toArray(new WorkflowElementImpl[0]);
 	}
 
 	private ElementPositionRange calculateTagRange(final IDocument document,
@@ -136,9 +139,9 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 			} else {
 				final Object segment =
 						((IStructuredSelection) selection).getFirstElement();
-				if (segment != null && segment instanceof WorkflowElement) {
-					final WorkflowElement wfElement =
-							(WorkflowElement) segment;
+				if (segment != null && segment instanceof WorkflowElementImpl) {
+					final IWorkflowElement wfElement =
+							(IWorkflowElement) segment;
 					final ElementPositionRange range =
 							wfElement.getElementRange();
 					final ElementPositionRange tagRange =

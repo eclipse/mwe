@@ -15,7 +15,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -26,7 +26,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class ClassContentProposalComputer extends
@@ -39,7 +39,7 @@ public class ClassContentProposalComputer extends
 			"org.openarchitectureware.workflow.WorkflowComponent";
 
 	private static final String[] TRIGGER_ATTRIBUTES =
-			{ WorkflowElement.CLASS_ATTRIBUTE };
+			{ IWorkflowElement.CLASS_ATTRIBUTE };
 
 	private static final String COMPONENT_TAG = "component";
 

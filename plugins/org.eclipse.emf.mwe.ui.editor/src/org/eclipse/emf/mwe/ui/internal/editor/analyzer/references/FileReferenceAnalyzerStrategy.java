@@ -12,8 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
@@ -25,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -52,23 +52,23 @@ public class FileReferenceAnalyzerStrategy extends
 	 * This method overrides the implementation of <code>isApplicable</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public boolean isApplicable(final WorkflowElement element) {
+	public boolean isApplicable(final IWorkflowElement element) {
 		return element != null
-				&& element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE);
+				&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 	}
 
 	/**
 	 * This method overrides the implementation of <code>doAnalyze</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	protected void doAnalyze(final WorkflowElement element) {
+	protected void doAnalyze(final IWorkflowElement element) {
 		final WorkflowAttribute attribute =
-				element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
+				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 		final ClassLoader loader = ReflectionManager.getResourceLoader(file);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
@@ -95,7 +95,7 @@ public class FileReferenceAnalyzerStrategy extends
 			contentHandler.setDocumentLocator(new LocatorImpl());
 			try {
 				parser.parse(referencedContent);
-				final WorkflowElement root = parser.getRootElement();
+				final IWorkflowElement root = parser.getRootElement();
 				final ReferenceAnalyzer analyzer =
 						new ReferenceAnalyzer(file, document, store);
 				analyzer.analyzeElement(root);

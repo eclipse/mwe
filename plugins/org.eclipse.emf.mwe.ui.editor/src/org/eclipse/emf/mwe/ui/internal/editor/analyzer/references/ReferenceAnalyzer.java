@@ -15,13 +15,13 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
@@ -50,9 +50,9 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 	 * This method overrides the implementation of <code>analyzeElement</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#analyzeElement(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#analyzeElement(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public void analyzeElement(final WorkflowElement element) {
+	public void analyzeElement(final IWorkflowElement element) {
 		if (!isValid(element))
 			return;
 
@@ -78,17 +78,17 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 	 * This method overrides the implementation of <code>isApplicable</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public boolean isApplicable(final WorkflowElement element) {
+	public boolean isApplicable(final IWorkflowElement element) {
 		return true;
 	}
 
-	public boolean isValid(final WorkflowElement element) {
+	public boolean isValid(final IWorkflowElement element) {
 		return element == null
-				|| element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)
-				^ element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE)
-				^ element.hasAttribute(WorkflowElement.ID_ATTRIBUTE);
+				|| element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)
+				^ element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE)
+				^ element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE);
 	}
 
 	public void markUnresolvedReferences() {

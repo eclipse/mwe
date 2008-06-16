@@ -19,8 +19,8 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -28,7 +28,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class MarkerManager {
 
@@ -60,7 +60,7 @@ public final class MarkerManager {
 	}
 
 	public static void createMarker(final IFile file,
-			final IDocument document, final WorkflowElement element,
+			final IDocument document, final IWorkflowElement element,
 			final String message, final boolean isError) {
 		final ElementPositionRange firstLineRange =
 				element.getFirstLineRange();

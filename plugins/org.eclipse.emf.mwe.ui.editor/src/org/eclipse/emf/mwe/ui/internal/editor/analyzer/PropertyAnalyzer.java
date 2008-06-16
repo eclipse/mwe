@@ -15,14 +15,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -39,25 +39,25 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	 * This method overrides the implementation of <code>checkValidity</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final WorkflowElement element) {
-		if (element.getName().equals(WorkflowElement.PROPERTY_TAG)
+	public void checkValidity(final IWorkflowElement element) {
+		if (element.getName().equals(IWorkflowElement.PROPERTY_TAG)
 				&& !element.isProperty()) {
 			createMarker(element, INVALID_PROPERTY_MSG);
 		}
 		if (element.isSimpleProperty()) {
 			propertyStore.add(element
-					.getAttributeValue(WorkflowElement.NAME_ATTRIBUTE));
+					.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE));
 		} else if (element.isFileProperty()) {
 			parseFileProperties(element);
 		}
 	}
 
-	private void parseFileProperties(final WorkflowElement element) {
+	private void parseFileProperties(final IWorkflowElement element) {
 		final WorkflowAttribute attribute =
-				element.getAttribute(WorkflowElement.FILE_ATTRIBUTE);
+				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 		final String content =
 				ReflectionManager.getFileContent(file, document, attribute);
 		if (content == null)

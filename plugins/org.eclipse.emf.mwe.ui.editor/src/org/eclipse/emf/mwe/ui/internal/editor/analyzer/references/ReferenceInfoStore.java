@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ReferenceInfoStore {
 
@@ -41,9 +41,9 @@ public class ReferenceInfoStore {
 		this.file = file;
 	}
 
-	public boolean addDefinition(final WorkflowElement element) {
+	public boolean addDefinition(final IWorkflowElement element) {
 		if (element == null
-				|| !element.hasAttribute(WorkflowElement.ID_ATTRIBUTE))
+				|| !element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -57,9 +57,9 @@ public class ReferenceInfoStore {
 		return fileNameSet.add(name);
 	}
 
-	public void addReference(final WorkflowElement element) {
+	public void addReference(final IWorkflowElement element) {
 		if (element == null
-				|| !element.hasAttribute(WorkflowElement.ID_REF_ATTRIBUTE))
+				|| !element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -90,17 +90,17 @@ public class ReferenceInfoStore {
 	public boolean isDefined(final ReferenceInfo info) {
 		if (info == null
 				|| !info.getElement().hasAttribute(
-						WorkflowElement.ID_REF_ATTRIBUTE))
+						IWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		return definitionSet.contains(info);
 	}
 
-	private ReferenceInfo createReferenceInfo(final WorkflowElement element) {
+	private ReferenceInfo createReferenceInfo(final IWorkflowElement element) {
 		WorkflowAttribute attribute =
-				element.getAttribute(WorkflowElement.ID_ATTRIBUTE);
+				element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
 		if (attribute == null) {
-			attribute = element.getAttribute(WorkflowElement.ID_REF_ATTRIBUTE);
+			attribute = element.getAttribute(IWorkflowElement.ID_REF_ATTRIBUTE);
 		}
 
 		if (attribute == null)

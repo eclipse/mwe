@@ -20,18 +20,18 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 
 public class WorkflowAttribute implements IRangeCheck {
 
-	private final WorkflowElement element;
+	private final IWorkflowElement element;
 
 	private final String name;
 
 	private final String value;
 
-	public WorkflowAttribute(final WorkflowElement element, final String name,
+	public WorkflowAttribute(final IWorkflowElement element, final String name,
 			final String value) {
 		if (element == null || name == null || value == null
 				|| name.length() == 0)
@@ -120,7 +120,7 @@ public class WorkflowAttribute implements IRangeCheck {
 	 * 
 	 * @return value of <code>element</code>.
 	 */
-	public WorkflowElement getElement() {
+	public IWorkflowElement getElement() {
 		return element;
 	}
 

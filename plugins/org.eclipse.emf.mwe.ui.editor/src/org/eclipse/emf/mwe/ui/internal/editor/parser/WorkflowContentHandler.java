@@ -14,8 +14,9 @@ package org.eclipse.emf.mwe.ui.internal.editor.parser;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -27,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -42,9 +43,9 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 	protected IDocument document;
 
-	private WorkflowElement rootElement;
+	private WorkflowElementImpl rootElement;
 
-	private WorkflowElement currentElement;
+	private IWorkflowElement currentElement;
 
 	private String positionCategory;
 
@@ -94,7 +95,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * 
 	 * @return value of <code>rootElement</code>.
 	 */
-	public WorkflowElement getRootElement() {
+	public WorkflowElementImpl getRootElement() {
 		return rootElement;
 	}
 
@@ -138,7 +139,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		rootElement =
-				new WorkflowElement(document, WorkflowElement.WORKFLOWFILE_TAG);
+				new WorkflowElementImpl(document, IWorkflowElement.WORKFLOWFILE_TAG);
 		currentElement = rootElement;
 		rootElement.setStartElementRange(createPositionRange());
 	}
@@ -155,8 +156,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final String qName, final Attributes attributes)
 			throws SAXException {
 
-		final WorkflowElement element =
-				new WorkflowElement(document, localName);
+		final WorkflowElementImpl element =
+				new WorkflowElementImpl(document, localName);
 		if (isIllegalName(localName))
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
 					+ localName, true);

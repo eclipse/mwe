@@ -19,14 +19,15 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class ElementIterator {
 
@@ -38,7 +39,7 @@ public class ElementIterator {
 
 	private final ElementAnalyzerRegistry analyzer;
 
-	private List<WorkflowElement> elementList;
+	private List<IWorkflowElement> elementList;
 
 	private final List<WorkflowAttribute> attributeList =
 			new ArrayList<WorkflowAttribute>();
@@ -54,18 +55,18 @@ public class ElementIterator {
 		referenceInfoStore = new ReferenceInfoStore(file);
 	}
 
-	public void checkValidity(final WorkflowElement root) {
+	public void checkValidity(final WorkflowElementImpl root) {
 		MarkerManager.deleteMarkers(file);
 
 		elementList = flatten(root);
-		for (final WorkflowElement element : elementList) {
+		for (final IWorkflowElement element : elementList) {
 			analyzer.checkValidity(element);
 		}
 
 		final ReferenceAnalyzer referenceAnalyzer =
 				new ReferenceAnalyzer(file, document, referenceInfoStore);
 
-		for (final WorkflowElement element : elementList) {
+		for (final IWorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
 		}
 		referenceAnalyzer.markUnresolvedReferences();
@@ -85,7 +86,7 @@ public class ElementIterator {
 	 * 
 	 * @return value of <code>elementList</code>.
 	 */
-	public List<WorkflowElement> getElementList() {
+	public List<IWorkflowElement> getElementList() {
 		return elementList;
 	}
 
@@ -106,10 +107,10 @@ public class ElementIterator {
 		return referenceInfoStore.getReferences();
 	}
 
-	private void addChild(final List<WorkflowElement> list,
-			final WorkflowElement element) {
+	private void addChild(final List<IWorkflowElement> list,
+			final IWorkflowElement element) {
 		for (int i = 0; i < element.getChildrenCount(); i++) {
-			final WorkflowElement child = element.getChild(i);
+			final IWorkflowElement child = element.getChild(i);
 			list.add(child);
 			final Collection<WorkflowAttribute> attributes =
 					element.getAttributes();
@@ -119,8 +120,8 @@ public class ElementIterator {
 		}
 	}
 
-	private List<WorkflowElement> flatten(final WorkflowElement root) {
-		final List<WorkflowElement> list = new ArrayList<WorkflowElement>();
+	private List<IWorkflowElement> flatten(final WorkflowElementImpl root) {
+		final List<IWorkflowElement> list = new ArrayList<IWorkflowElement>();
 		boolean isRootExcluded = false;
 		for (final String tag : EXCLUDED_TAGS) {
 			if (root.getName().equals(tag)) {

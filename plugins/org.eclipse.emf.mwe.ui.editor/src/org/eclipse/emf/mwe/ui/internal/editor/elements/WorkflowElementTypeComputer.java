@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -29,12 +29,12 @@ public final class WorkflowElementTypeComputer {
 		throw new UnsupportedOperationException();
 	}
 
-	public static void computeTypeInfo(final WorkflowElement element) {
+	public static void computeTypeInfo(final IWorkflowElement element) {
 		computeElementType(element);
 		computeElementImage(element);
 	}
 
-	public static Class<?> getDefaultClass(final WorkflowElement element) {
+	public static Class<?> getDefaultClass(final IWorkflowElement element) {
 		Class<?> clazz = null;
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
 			clazz = CompositeComponent.class;
@@ -46,7 +46,7 @@ public final class WorkflowElementTypeComputer {
 		return clazz;
 	}
 
-	private static void computeElementImage(final WorkflowElement element) {
+	private static void computeElementImage(final IWorkflowElement element) {
 		String imageName = null;
 		if (element.isWorkflow())
 			imageName = EditorImages.WORKFLOW;
@@ -60,27 +60,27 @@ public final class WorkflowElementTypeComputer {
 		element.setImage(imageName);
 	}
 
-	private static void computeElementType(final WorkflowElement element) {
+	private static void computeElementType(final IWorkflowElement element) {
 		WorkflowElementType type = null;
 		final String name = element.getName();
-		if (name.equals(WorkflowElement.WORKFLOWFILE_TAG)) {
+		if (name.equals(IWorkflowElement.WORKFLOWFILE_TAG)) {
 			type = WorkflowElementType.WORKFLOWFILE;
-		} else if (name.equals(WorkflowElement.COMPONENT_TAG)
-				|| element.hasAttribute(WorkflowElement.CLASS_ATTRIBUTE)) {
+		} else if (name.equals(IWorkflowElement.COMPONENT_TAG)
+				|| element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
 			type = WorkflowElementType.COMPONENT;
-		} else if (name.equals(WorkflowElement.IF_COMPONENT_TAG))
+		} else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG))
 			type = WorkflowElementType.IF_COMPONENT;
-		else if (name.equals(WorkflowElement.WORKFLOW_TAG))
+		else if (name.equals(IWorkflowElement.WORKFLOW_TAG))
 			type = WorkflowElementType.WORKFLOW;
-		else if (name.equals(WorkflowElement.PROPERTY_TAG)) {
+		else if (name.equals(IWorkflowElement.PROPERTY_TAG)) {
 			if (element.getAttributeCount() == 2
-					&& element.hasAttribute(WorkflowElement.NAME_ATTRIBUTE)
-					&& element.hasAttribute(WorkflowElement.VALUE_ATTRIBUTE)
+					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)
+					&& element.hasAttribute(IWorkflowElement.VALUE_ATTRIBUTE)
 					|| element.getAttributeCount() == 1
-					&& element.hasAttribute(WorkflowElement.NAME_ATTRIBUTE)) {
+					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)) {
 				type = WorkflowElementType.SIMPLE_PROPERTY;
 			} else if (element.getAttributeCount() == 1
-					&& element.hasAttribute(WorkflowElement.FILE_ATTRIBUTE)) {
+					&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
 				type = WorkflowElementType.FILE_PROPERTY;
 			} else if (!element.isLeaf()) {
 				type = WorkflowElementType.ASSIGNMENTPROPERTY;

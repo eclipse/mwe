@@ -16,15 +16,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -58,13 +58,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	 * This method overrides the implementation of <code>checkValidity</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public void checkValidity(final WorkflowElement element) {
+	public void checkValidity(final IWorkflowElement element) {
 		if (!element.hasParent())
 			return;
 
-		final WorkflowElement parent = element.getParent();
+		final IWorkflowElement parent = element.getParent();
 		final Class<?> parentClass = getMappedClass(parent);
 		if (parentClass == null) {
 			createMarker(parent, "Element '" + parent.getName()
@@ -93,7 +93,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkAttribute(final Class<?> mappedClass,
-			final WorkflowElement element, final WorkflowAttribute attribute) {
+			final IWorkflowElement element, final WorkflowAttribute attribute) {
 		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
 		}
@@ -113,11 +113,11 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected void checkAttributes(final WorkflowElement element,
+	protected void checkAttributes(final IWorkflowElement element,
 			final Class<?> mappedClass) {
 		for (final WorkflowAttribute attr : element.getAttributes()) {
-			if (!attr.getName().equals(WorkflowElement.CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(WorkflowElement.VALUE_ATTRIBUTE)) {
+			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
+					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedClass, element, attr);
 			}
 		}
@@ -141,7 +141,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return getValueType(value);
 	}
 
-	protected Class<?> computeComponentType(final WorkflowElement element) {
+	protected Class<?> computeComponentType(final IWorkflowElement element) {
 		final Class<?> clazz = getMappedClass(element);
 		return clazz;
 	}
@@ -156,7 +156,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				message, true, true);
 	}
 
-	protected void createMarker(final WorkflowElement element,
+	protected void createMarker(final IWorkflowElement element,
 			final String message) {
 		MarkerManager.createMarker(getFile(), getDocument(), element, message,
 				true);
@@ -176,7 +176,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return ReflectionManager.getClass(getFile(), mappedClassName);
 	}
 
-	protected Class<?> getMappedClass(final WorkflowElement element) {
+	protected Class<?> getMappedClass(final IWorkflowElement element) {
 		Class<?> clazz = null;
 		final String name = element.getName();
 

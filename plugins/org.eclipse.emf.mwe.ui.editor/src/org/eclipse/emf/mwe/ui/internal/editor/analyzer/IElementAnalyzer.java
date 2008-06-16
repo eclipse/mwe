@@ -11,13 +11,13 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public interface IElementAnalyzer {
 
-	void checkValidity(final WorkflowElement element);
+	void checkValidity(final IWorkflowElement element);
 }

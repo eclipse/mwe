@@ -12,13 +12,13 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 
@@ -31,10 +31,10 @@ public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 	 * This method overrides the implementation of <code>checkValidity</code>
 	 * inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final WorkflowElement element) {
+	public void checkValidity(final IWorkflowElement element) {
 		for (final WorkflowAttribute attr : element.getAttributes()) {
 			if (!isPropertyReference(attr))
 				continue;

@@ -16,20 +16,20 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class TagContentProposalComputer extends
-AbstractContentProposalComputer {
+		AbstractContentProposalComputer {
 
 	protected static final String[] DEFAULT_PROPOSALS =
-	{ "workflow", "property", "component", "bean" };
+			{ "workflow", "property", "component", "bean" };
 
 	public TagContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
@@ -69,11 +69,11 @@ AbstractContentProposalComputer {
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = createDefaultProposals(offset);
-		final Collection<WorkflowElement> allElements = editor.getElements();
+		final Collection<IWorkflowElement> allElements = editor.getElements();
 
 		if (allElements != null) {
 			for (final Object el : allElements) {
-				final WorkflowElement element = (WorkflowElement) el;
+				final IWorkflowElement element = (IWorkflowElement) el;
 				final String name = element.getName();
 				resultSet.add(name);
 			}
