@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserTestBase;
 import org.xml.sax.SAXException;
 
@@ -29,8 +29,8 @@ public class PropertyTest extends ParserTestBase {
 	public void testEmptyWorkflow() throws SAXException {
 		setUpDocument(WORKFLOW1);
 		parser.parse(WORKFLOW1);
-		final WorkflowElement root = parser.getRootElement();
-		final WorkflowElement workflow = root.getChild(0);
+		final IWorkflowElement root = parser.getRootElement();
+		final IWorkflowElement workflow = root.getChild(0);
 		assertTrue(root.isWorkflowFile());
 		assertTrue(workflow.isWorkflow());
 	}
@@ -38,11 +38,11 @@ public class PropertyTest extends ParserTestBase {
 	public void testFileProperty() throws SAXException {
 		setUpDocument(WORKFLOW3);
 		parser.parse(WORKFLOW3);
-		final WorkflowElement root = parser.getRootElement();
+		final IWorkflowElement root = parser.getRootElement();
 		assertEquals(1, root.getChildrenCount());
-		final WorkflowElement workflow = root.getChild(0);
+		final IWorkflowElement workflow = root.getChild(0);
 		assertEquals(1, workflow.getChildrenCount());
-		final WorkflowElement property = workflow.getChild(0);
+		final IWorkflowElement property = workflow.getChild(0);
 		assertEquals(1, property.getAttributeCount());
 		assertEquals("foo", property.getAttributeValue("file"));
 	}
@@ -54,11 +54,11 @@ public class PropertyTest extends ParserTestBase {
 	public void testSimpleProperty() throws SAXException {
 		setUpDocument(WORKFLOW2);
 		parser.parse(WORKFLOW2);
-		final WorkflowElement root = parser.getRootElement();
+		final IWorkflowElement root = parser.getRootElement();
 		assertEquals(1, root.getChildrenCount());
-		final WorkflowElement workflow = root.getChild(0);
+		final IWorkflowElement workflow = root.getChild(0);
 		assertEquals(1, workflow.getChildrenCount());
-		final WorkflowElement property = workflow.getChild(0);
+		final IWorkflowElement property = workflow.getChild(0);
 		assertEquals(2, property.getAttributeCount());
 		assertEquals("foo", property.getAttributeValue("name"));
 		assertEquals("bar", property.getAttributeValue("value"));
