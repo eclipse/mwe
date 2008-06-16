@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ReferenceInfoStore {
 
@@ -97,7 +97,7 @@ public class ReferenceInfoStore {
 	}
 
 	private ReferenceInfo createReferenceInfo(final IWorkflowElement element) {
-		WorkflowAttribute attribute =
+		IWorkflowAttribute attribute =
 				element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
 		if (attribute == null) {
 			attribute = element.getAttribute(IWorkflowElement.ID_REF_ATTRIBUTE);

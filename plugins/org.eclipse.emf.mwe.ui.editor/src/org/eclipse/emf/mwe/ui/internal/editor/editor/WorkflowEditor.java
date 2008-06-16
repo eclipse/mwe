@@ -28,7 +28,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
@@ -57,7 +57,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -77,7 +77,7 @@ public class WorkflowEditor extends TextEditor {
 
 	private Collection<IWorkflowElement> elements;
 
-	private Collection<WorkflowAttribute> attributes;
+	private Collection<XMLWorkflowAttributeImpl> attributes;
 
 	private Collection<String> propertyNames;
 
@@ -160,7 +160,7 @@ public class WorkflowEditor extends TextEditor {
 	 * 
 	 * @return value of <code>attributes</code>.
 	 */
-	public Collection<WorkflowAttribute> getAttributes() {
+	public Collection<XMLWorkflowAttributeImpl> getAttributes() {
 		return attributes;
 	}
 

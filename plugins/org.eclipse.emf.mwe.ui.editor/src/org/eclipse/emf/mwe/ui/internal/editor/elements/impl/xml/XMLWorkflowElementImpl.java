@@ -20,8 +20,8 @@ import java.util.Map;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.HierarchyChecker;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementTypeComputer;
 import org.eclipse.jface.text.IDocument;
@@ -31,7 +31,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
@@ -55,8 +55,8 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	private final List<XMLWorkflowElementImpl> children =
 			new ArrayList<XMLWorkflowElementImpl>();
 
-	private final Map<String, WorkflowAttribute> attributes =
-			new HashMap<String, WorkflowAttribute>();
+	private final Map<String, XMLWorkflowAttributeImpl> attributes =
+			new HashMap<String, XMLWorkflowAttributeImpl>();
 
 	/**
 	 * Creates a workflow element.
@@ -79,9 +79,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * This automatically generated method overrides the implementation 
 	 * of <code>addAttribute</code> inherited from the superclass.
 	 *
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addAttribute(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addAttribute(org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl)
 	 */
-	public void addAttribute(final WorkflowAttribute attribute) {
+	public void addAttribute(final XMLWorkflowAttributeImpl attribute) {
 		attributes.put(attribute.getName(), attribute);
 		recomputeTypeInfo = true;
 	}
@@ -115,7 +115,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 *
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttribute(java.lang.String)
 	 */
-	public WorkflowAttribute getAttribute(final String name) {
+	public IWorkflowAttribute getAttribute(final String name) {
 		if (name == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
@@ -138,7 +138,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 *
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributes()
 	 */
-	public Collection<WorkflowAttribute> getAttributes() {
+	public Collection<XMLWorkflowAttributeImpl> getAttributes() {
 		return attributes.values();
 	}
 

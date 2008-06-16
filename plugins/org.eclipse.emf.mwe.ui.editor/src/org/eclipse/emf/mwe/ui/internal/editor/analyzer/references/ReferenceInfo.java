@@ -12,12 +12,12 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public class ReferenceInfo {
 
@@ -25,10 +25,10 @@ public class ReferenceInfo {
 
 	private final IWorkflowElement element;
 
-	private final WorkflowAttribute attribute;
+	private final IWorkflowAttribute attribute;
 
 	public ReferenceInfo(final IFile file, final IWorkflowElement element,
-			final WorkflowAttribute attribute) {
+			final IWorkflowAttribute attribute) {
 		if (element == null || attribute == null)
 			throw new IllegalArgumentException();
 
@@ -68,7 +68,7 @@ public class ReferenceInfo {
 	 * 
 	 * @return value of <code>attribute</code>.
 	 */
-	public WorkflowAttribute getAttribute() {
+	public IWorkflowAttribute getAttribute() {
 		return attribute;
 	}
 

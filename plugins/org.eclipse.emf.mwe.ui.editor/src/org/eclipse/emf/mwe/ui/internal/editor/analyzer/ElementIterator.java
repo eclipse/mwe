@@ -20,14 +20,14 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnaly
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public class ElementIterator {
 
@@ -41,8 +41,8 @@ public class ElementIterator {
 
 	private List<IWorkflowElement> elementList;
 
-	private final List<WorkflowAttribute> attributeList =
-			new ArrayList<WorkflowAttribute>();
+	private final List<XMLWorkflowAttributeImpl> attributeList =
+			new ArrayList<XMLWorkflowAttributeImpl>();
 
 	private final PropertyStore propertyStore = new PropertyStore();
 
@@ -77,7 +77,7 @@ public class ElementIterator {
 	 * 
 	 * @return value of <code>attributeList</code>.
 	 */
-	public List<WorkflowAttribute> getAttributeList() {
+	public List<XMLWorkflowAttributeImpl> getAttributeList() {
 		return attributeList;
 	}
 
@@ -112,9 +112,9 @@ public class ElementIterator {
 		for (int i = 0; i < element.getChildrenCount(); i++) {
 			final IWorkflowElement child = element.getChild(i);
 			list.add(child);
-			final Collection<WorkflowAttribute> attributes =
+			final Collection<XMLWorkflowAttributeImpl> attributes =
 					element.getAttributes();
-			for (final WorkflowAttribute attribute : attributes) {
+			for (final XMLWorkflowAttributeImpl attribute : attributes) {
 				attributeList.add(attribute);
 			}
 		}

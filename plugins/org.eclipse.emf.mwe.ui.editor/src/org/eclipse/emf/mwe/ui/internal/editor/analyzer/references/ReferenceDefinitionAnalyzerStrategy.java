@@ -12,14 +12,14 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ReferenceDefinitionAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -49,7 +49,7 @@ public class ReferenceDefinitionAnalyzerStrategy extends
 	@Override
 	protected void doAnalyze(final IWorkflowElement element) {
 		if (store.addDefinition(element)) {
-			final WorkflowAttribute attribute =
+			final IWorkflowAttribute attribute =
 					element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
 			MarkerManager
 					.createMarker(file, document, attribute, "Duplicate ID '"

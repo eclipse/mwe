@@ -16,15 +16,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -93,7 +93,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkAttribute(final Class<?> mappedClass,
-			final IWorkflowElement element, final WorkflowAttribute attribute) {
+			final IWorkflowElement element, final IWorkflowAttribute attribute) {
 		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
 		}
@@ -115,7 +115,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkAttributes(final IWorkflowElement element,
 			final Class<?> mappedClass) {
-		for (final WorkflowAttribute attr : element.getAttributes()) {
+		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
 					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedClass, element, attr);
@@ -123,7 +123,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected void checkPropertyReference(final WorkflowAttribute attribute) {
+	protected void checkPropertyReference(final IWorkflowAttribute attribute) {
 		final String attrValue = attribute.getValue();
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attrValue);
@@ -136,7 +136,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected Class<?> computeAttributeType(final WorkflowAttribute attribute) {
+	protected Class<?> computeAttributeType(final IWorkflowAttribute attribute) {
 		final String value = attribute.getValue();
 		return getValueType(value);
 	}
@@ -146,7 +146,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return clazz;
 	}
 
-	protected void createMarker(final WorkflowAttribute attribute,
+	protected void createMarker(final IWorkflowAttribute attribute,
 			final String message) {
 		if (attribute == null || message == null || message.length() == 0) {
 			throw new IllegalArgumentException();
@@ -162,7 +162,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				true);
 	}
 
-	protected void createMarkerForValue(final WorkflowAttribute attribute,
+	protected void createMarkerForValue(final IWorkflowAttribute attribute,
 			final String message) {
 		if (attribute == null || message == null || message.length() == 0) {
 			throw new IllegalArgumentException();
@@ -220,7 +220,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				^ value.equalsIgnoreCase(FALSE_VALUE);
 	}
 
-	protected boolean isPropertyReference(final WorkflowAttribute attribute) {
+	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attribute.getValue());
 		return m.matches();

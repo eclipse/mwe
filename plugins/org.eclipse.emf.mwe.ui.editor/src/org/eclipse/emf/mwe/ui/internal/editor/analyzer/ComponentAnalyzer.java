@@ -16,15 +16,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -69,7 +69,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 				return;
 			}
 			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
-				final WorkflowAttribute inheritAttr =
+				final IWorkflowAttribute inheritAttr =
 						element.getAttribute(INHERIT_ALL_ATTRIBUTE);
 				createMarkerForValue(
 						inheritAttr,
@@ -78,13 +78,13 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 								+ "' is not allowed, if a 'class' attribute is specified");
 			}
 		} else if (element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
-			final WorkflowAttribute attribute =
+			final IWorkflowAttribute attribute =
 					element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 			final String content =
 					ReflectionManager
 							.getFileContent(file, document, attribute);
 			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
-				final WorkflowAttribute inheritAttr =
+				final IWorkflowAttribute inheritAttr =
 						element.getAttribute(INHERIT_ALL_ATTRIBUTE);
 				if (getValueType(inheritAttr.getValue()) != Boolean.class) {
 					createMarkerForValue(inheritAttr, "Attribute '"
@@ -104,11 +104,11 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttribute(java.lang.Class,
 	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl,
-	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute)
+	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.XMLWorkflowAttributeImpl)
 	 */
 	@Override
 	protected void checkAttribute(final Class<?> mappedClass,
-			final IWorkflowElement element, final WorkflowAttribute attribute) {
+			final IWorkflowElement element, final IWorkflowAttribute attribute) {
 		if (mappedClass == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
 		}
@@ -130,7 +130,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		}
 	}
 
-	protected void checkAttribute(final WorkflowAttribute attribute,
+	protected void checkAttribute(final IWorkflowAttribute attribute,
 			final String filePath, final String content) {
 		if (attribute == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
@@ -158,7 +158,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	protected void checkAttributes(final IWorkflowElement element,
 			final Class<?> mappedClass) {
 		for (int i = 0; i < element.getAttributeCount(); i++) {
-			for (final WorkflowAttribute attr : element.getAttributes()) {
+			for (final IWorkflowAttribute attr : element.getAttributes()) {
 				checkAttribute(mappedClass, element, attr);
 			}
 		}
@@ -170,7 +170,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			throw new IllegalArgumentException();
 		}
 
-		for (final WorkflowAttribute attr : element.getAttributes()) {
+		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			checkAttribute(attr, filePath, content);
 		}
 	}

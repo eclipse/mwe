@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
@@ -28,7 +28,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -166,8 +166,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 		for (int i = 0; i < attributes.getLength(); i++) {
 			final String attrName = attributes.getLocalName(i);
 			final String attrValue = attributes.getValue(i);
-			final WorkflowAttribute attr =
-					new WorkflowAttribute(element, attrName, attrValue);
+			final XMLWorkflowAttributeImpl attr =
+					new XMLWorkflowAttributeImpl(element, attrName, attrValue);
 			element.addAttribute(attr);
 		}
 

@@ -37,7 +37,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.IClasspathEntry;
@@ -59,7 +59,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public final class ReflectionManager {
 
@@ -210,7 +210,7 @@ public final class ReflectionManager {
 	}
 
 	public static String getFileContent(final IFile file,
-			final IDocument document, final WorkflowAttribute attribute) {
+			final IDocument document, final IWorkflowAttribute attribute) {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 

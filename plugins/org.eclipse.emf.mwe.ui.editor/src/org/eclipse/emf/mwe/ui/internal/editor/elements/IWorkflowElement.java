@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.jface.text.IDocument;
 
@@ -47,7 +48,7 @@ public interface IWorkflowElement {
 	 * @param attribute
 	 *            attribute added to current element.
 	 */
-	void addAttribute(final WorkflowAttribute attribute);
+	void addAttribute(final XMLWorkflowAttributeImpl attribute);
 
 	/**
 	 * Add child element to the current element.
@@ -70,7 +71,7 @@ public interface IWorkflowElement {
 	 * @return the requested attribute or <code>null</code>, if no attribute
 	 *         with the specified name is found.
 	 */
-	WorkflowAttribute getAttribute(final String name);
+	IWorkflowAttribute getAttribute(final String name);
 
 	/**
 	 * Number of attributes of the current element.
@@ -86,7 +87,7 @@ public interface IWorkflowElement {
 	 * 
 	 * @return a collection of all attributes of current element.
 	 */
-	Collection<WorkflowAttribute> getAttributes();
+	Collection<XMLWorkflowAttributeImpl> getAttributes();
 
 	/**
 	 * Returns the value of an attribute of the current element.

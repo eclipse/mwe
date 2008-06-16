@@ -9,21 +9,25 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.elements;
+package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.1 $
  */
 
-public class WorkflowAttribute implements IRangeCheck {
+public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
 
 	private final IWorkflowElement element;
 
@@ -31,7 +35,7 @@ public class WorkflowAttribute implements IRangeCheck {
 
 	private final String value;
 
-	public WorkflowAttribute(final IWorkflowElement element, final String name,
+	public XMLWorkflowAttributeImpl(final IWorkflowElement element, final String name,
 			final String value) {
 		if (element == null || name == null || value == null
 				|| name.length() == 0)
@@ -43,9 +47,10 @@ public class WorkflowAttribute implements IRangeCheck {
 	}
 
 	/**
-	 * Returns the position range of the whole attribute.
-	 * 
-	 * @return position range of attribute.
+	 * This automatically generated method overrides the implementation 
+	 * of <code>getAttributeRange</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getAttributeRange()
 	 */
 	public ElementPositionRange getAttributeRange() {
 		final IDocument document = element.getDocument();
@@ -80,9 +85,10 @@ public class WorkflowAttribute implements IRangeCheck {
 	}
 
 	/**
-	 * Returns the position range of the attribute value.
-	 * 
-	 * @return position range of attribute value.
+	 * This automatically generated method overrides the implementation 
+	 * of <code>getAttributeValueRange</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getAttributeValueRange()
 	 */
 	public ElementPositionRange getAttributeValueRange() {
 		final IDocument document = element.getDocument();
@@ -116,37 +122,40 @@ public class WorkflowAttribute implements IRangeCheck {
 	}
 
 	/**
-	 * Returns the value of field <code>element</code>.
-	 * 
-	 * @return value of <code>element</code>.
+	 * This automatically generated method overrides the implementation 
+	 * of <code>getElement</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getElement()
 	 */
 	public IWorkflowElement getElement() {
 		return element;
 	}
 
 	/**
-	 * Returns the value of field <code>name</code>.
-	 * 
-	 * @return value of <code>name</code>.
+	 * This automatically generated method overrides the implementation 
+	 * of <code>getName</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getName()
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * Returns the value of field <code>value</code>.
-	 * 
-	 * @return value of <code>value</code>.
+	 * This automatically generated method overrides the implementation 
+	 * of <code>getValue</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getValue()
 	 */
 	public String getValue() {
 		return value;
 	}
 
 	/**
-	 * This method overrides the implementation of <code>isInRange</code>
-	 * inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
+	 * This automatically generated method overrides the implementation 
+	 * of <code>isInRange</code> inherited from the superclass.
+	 *
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#isInRange(int)
 	 */
 	public boolean isInRange(final int offset) {
 		return getAttributeValueRange().isInRange(offset);

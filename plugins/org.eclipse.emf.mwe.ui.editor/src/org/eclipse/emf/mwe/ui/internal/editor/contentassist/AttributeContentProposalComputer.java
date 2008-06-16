@@ -16,13 +16,14 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -60,12 +61,12 @@ AbstractContentProposalComputer {
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> result = createEmptySet();
-		final Collection<WorkflowAttribute> allAttributes =
+		final Collection<XMLWorkflowAttributeImpl> allAttributes =
 			editor.getAttributes();
 
 		if (allAttributes != null) {
 			final int i = 0;
-			for (final WorkflowAttribute attr : allAttributes) {
+			for (final IWorkflowAttribute attr : allAttributes) {
 				final String name = createProposalText(attr.getName(), offset);
 				result.add(name);
 			}

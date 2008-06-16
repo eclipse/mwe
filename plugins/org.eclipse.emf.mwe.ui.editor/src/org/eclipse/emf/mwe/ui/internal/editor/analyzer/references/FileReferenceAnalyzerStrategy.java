@@ -12,8 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
@@ -25,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -67,7 +67,7 @@ public class FileReferenceAnalyzerStrategy extends
 	 */
 	@Override
 	protected void doAnalyze(final IWorkflowElement element) {
-		final WorkflowAttribute attribute =
+		final IWorkflowAttribute attribute =
 				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 		final ClassLoader loader = ReflectionManager.getResourceLoader(file);
 		final String fileName = attribute.getValue();

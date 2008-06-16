@@ -12,13 +12,13 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowAttribute;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 
@@ -35,7 +35,7 @@ public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final IWorkflowElement element) {
-		for (final WorkflowAttribute attr : element.getAttributes()) {
+		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			if (!isPropertyReference(attr))
 				continue;
 
