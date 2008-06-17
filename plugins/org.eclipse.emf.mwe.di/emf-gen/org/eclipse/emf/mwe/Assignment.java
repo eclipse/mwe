@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Assignment.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: Assignment.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -16,9 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.Assignment#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.Assignment#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.Assignment#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.Assignment#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -27,32 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Assignment extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Operator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Operator</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Operator</em>' attribute.
-	 * @see #setOperator(String)
-	 * @see org.eclipse.emf.mwe.MwePackage#getAssignment_Operator()
-	 * @model
-	 * @generated
-	 */
-	String getOperator();
-
-	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.Assignment#getOperator <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Operator</em>' attribute.
-	 * @see #getOperator()
-	 * @generated
-	 */
-	void setOperator(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LocalVariableImpl.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: LocalVariableImpl.java,v 1.2 2008/06/17 15:29:45 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -22,34 +22,14 @@ import org.eclipse.emf.mwe.MwePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
-	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String VALUE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected String value = VALUE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -69,6 +49,26 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String VALUE_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -139,10 +139,10 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				return getValue();
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				return getName();
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -155,11 +155,11 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				setValue((String)newValue);
-				return;
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				setName((String)newValue);
+				return;
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -173,11 +173,11 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				setValue(VALUE_EDEFAULT);
-				return;
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -191,10 +191,10 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,10 +209,10 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (value: ");
-		result.append(value);
-		result.append(", name: ");
+		result.append(" (name: ");
 		result.append(name);
+		result.append(", value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}

@@ -1,14 +1,9 @@
 package org.eclipse.emf.mwe.di;
 
-import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.MweFactory;
 import org.eclipse.emf.mwe.QualifiedName;
 
 public class MweUtil {
-	public static boolean isMulti(Assignment ass) {
-		return ass.getOperator().equals("+=");
-	}
-
 	public static String toString(QualifiedName className) {
 		StringBuffer buff = new StringBuffer();
 		for (String s : className.getParts()) {

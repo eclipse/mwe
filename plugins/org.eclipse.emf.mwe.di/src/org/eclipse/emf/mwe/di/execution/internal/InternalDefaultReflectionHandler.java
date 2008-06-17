@@ -1,6 +1,7 @@
 package org.eclipse.emf.mwe.di.execution.internal;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.mwe.di.execution.IReflectionHandler;
@@ -9,23 +10,31 @@ import org.eclipse.xtext.util.Strings;
 
 public class InternalDefaultReflectionHandler implements IReflectionHandler {
 
-	public void inject(Object target, String feature, boolean multiple, Object value) {
+	public void inject(Object target, String feature, Object value) {
 		try {
 			Class<? extends Object> class1 = target.getClass();
-			Method method = class1.getMethod(methodName(feature, multiple), new Class[] { value.getClass() });
-			if (method != null) {
-				method.invoke(target, value);
-			} else {
-				throw new MweInstantiationException("Couldn't find method " + methodName(feature, multiple) + "("
-						+ value.getClass().getSimpleName() + ") for type " + class1.getSimpleName(), null);
+			String[] methodNames = methodNames(feature);
+			for (String methodName : methodNames) {
+				try {
+					Method method = class1.getMethod(methodName, new Class[] { value.getClass() });
+					if (method != null) {
+						method.invoke(target, value);
+						return;
+					}
+				} catch (NoSuchMethodException e) {
+					System.err.println(e);
+					// ignore
+				}
 			}
+			throw new MweInstantiationException("Couldn't find method " + Arrays.toString(methodNames(feature)) + "("
+					+ value.getClass().getSimpleName() + ") for type " + class1.getSimpleName(), null);
 		} catch (Exception e) {
 			throw new WrappedException(e);
 		}
 	}
 
-	private String methodName(String feature, boolean multiple) {
-		return multiple ? "add" + Strings.toFirstUpper(feature) : "set" + Strings.toFirstUpper(feature);
+	private String[] methodNames(String feature) {
+		return new String[] { "add" + Strings.toFirstUpper(feature), "set" + Strings.toFirstUpper(feature) };
 	}
 
 	public Object instantiate(String className) {
@@ -47,12 +56,14 @@ public class InternalDefaultReflectionHandler implements IReflectionHandler {
 		}
 	}
 
-	public String getFeaturesTypeName(String type, String feature, boolean multi) {
+	public String getFeaturesTypeName(String type, String feature) {
 		Class<Object> clazz = classForName(type);
-		String methodName = methodName(feature, multi);
-		for (Method m : clazz.getMethods()) {
-			if (m.getName().equals(methodName) && m.getParameterTypes().length==1) {
-				return m.getParameterTypes()[0].getName();
+		String[] methodNames = methodNames(feature);
+		for (String methodName : methodNames) {
+			for (Method m : clazz.getMethods()) {
+				if (m.getName().equals(methodName) && m.getParameterTypes().length == 1) {
+					return m.getParameterTypes()[0].getName();
+				}
 			}
 		}
 		return null;

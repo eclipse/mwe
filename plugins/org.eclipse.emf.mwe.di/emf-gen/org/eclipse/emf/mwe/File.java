@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: File.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: File.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.File#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.File#getProperties <em>Properties</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,12 +53,12 @@ public interface File extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setValue(Value)
+	 * @see #setValue(ComplexValue)
 	 * @see org.eclipse.emf.mwe.MwePackage#getFile_Value()
 	 * @model containment="true"
 	 * @generated
 	 */
-	Value getValue();
+	ComplexValue getValue();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}' containment reference.
@@ -68,6 +68,6 @@ public interface File extends EObject {
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(Value value);
+	void setValue(ComplexValue value);
 
 } // File

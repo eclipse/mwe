@@ -971,54 +971,16 @@ new Predicate(obj) {
 {
 
 		
-/* xtext::Assignment */ 
-{
+/* xtext::Keyword */ 
 
-	final Object value = obj.consume("operator");
-    
-/* xtext::Alternatives */ 
-{
-
-		if (
+if (
 new Predicate(obj) { 
 		public boolean check() {
-			return value.equals("="); 
+			return true; 
 		}
-}.check() ) {
-			
-/* xtext::Keyword */ 
-{
+}.check() ){
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.0"));
-
-}
-
-		}
-	else		if (
-new Predicate(obj) { 
-		public boolean check() {
-			return value.equals("+="); 
-		}
-}.check() ) {
-			
-/* xtext::Keyword */ 
-{
-
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.1"));
-
-}
-
-		}
-	
-		else {
-		    throw new IllegalStateException("No alternative matched");
-		}
-	
-
-}
-
-    if (obj.isConsumed())
-    	objectCreation(obj);
+	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
 
 }
 

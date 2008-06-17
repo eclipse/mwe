@@ -38,7 +38,7 @@ IdRef :
 	'idRef' id=ID;
 	
 Assignment :
-	feature=ID operator=('='|'+=') value=Value ';'?;
+	feature=ID ('=')? value=Value ';'?;
 	
 QualifiedName :
 	parts+=ID (parts+='.' parts+=ID)*;

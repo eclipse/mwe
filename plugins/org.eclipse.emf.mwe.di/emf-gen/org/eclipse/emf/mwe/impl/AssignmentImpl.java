@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AssignmentImpl.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: AssignmentImpl.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -26,45 +26,14 @@ import org.eclipse.emf.mwe.Value;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getOperator <em>Operator</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class AssignmentImpl extends EObjectImpl implements Assignment {
-	/**
-	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String OPERATOR_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getOperator()
-	 * @generated
-	 * @ordered
-	 */
-	protected String operator = OPERATOR_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Value value;
-
 	/**
 	 * The default value of the '{@link #getFeature() <em>Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -86,6 +55,16 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	protected String feature = FEATURE_EDEFAULT;
 
 	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Value value;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -102,27 +81,6 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	@Override
 	protected EClass eStaticClass() {
 		return MwePackage.Literals.ASSIGNMENT;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getOperator() {
-		return operator;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setOperator(String newOperator) {
-		String oldOperator = operator;
-		operator = newOperator;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MwePackage.ASSIGNMENT__OPERATOR, oldOperator, operator));
 	}
 
 	/**
@@ -211,12 +169,10 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.ASSIGNMENT__OPERATOR:
-				return getOperator();
-			case MwePackage.ASSIGNMENT__VALUE:
-				return getValue();
 			case MwePackage.ASSIGNMENT__FEATURE:
 				return getFeature();
+			case MwePackage.ASSIGNMENT__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -229,14 +185,11 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.ASSIGNMENT__OPERATOR:
-				setOperator((String)newValue);
+			case MwePackage.ASSIGNMENT__FEATURE:
+				setFeature((String)newValue);
 				return;
 			case MwePackage.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
-				return;
-			case MwePackage.ASSIGNMENT__FEATURE:
-				setFeature((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -250,14 +203,11 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.ASSIGNMENT__OPERATOR:
-				setOperator(OPERATOR_EDEFAULT);
+			case MwePackage.ASSIGNMENT__FEATURE:
+				setFeature(FEATURE_EDEFAULT);
 				return;
 			case MwePackage.ASSIGNMENT__VALUE:
 				setValue((Value)null);
-				return;
-			case MwePackage.ASSIGNMENT__FEATURE:
-				setFeature(FEATURE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -271,12 +221,10 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.ASSIGNMENT__OPERATOR:
-				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
-			case MwePackage.ASSIGNMENT__VALUE:
-				return value != null;
 			case MwePackage.ASSIGNMENT__FEATURE:
 				return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
+			case MwePackage.ASSIGNMENT__VALUE:
+				return value != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -291,9 +239,7 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (operator: ");
-		result.append(operator);
-		result.append(", feature: ");
+		result.append(" (feature: ");
 		result.append(feature);
 		result.append(')');
 		return result.toString();

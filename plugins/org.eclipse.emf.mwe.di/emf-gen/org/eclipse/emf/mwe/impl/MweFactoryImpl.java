@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweFactoryImpl.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: MweFactoryImpl.java,v 1.2 2008/06/17 15:29:45 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -60,15 +60,15 @@ public class MweFactoryImpl extends EFactoryImpl implements MweFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case MwePackage.ASSIGNMENT: return createAssignment();
-			case MwePackage.COMPLEX_VALUE: return createComplexValue();
 			case MwePackage.SIMPLE_VALUE: return createSimpleValue();
-			case MwePackage.ID_REF: return createIdRef();
-			case MwePackage.QUALIFIED_NAME: return createQualifiedName();
-			case MwePackage.WORKFLOW_REF: return createWorkflowRef();
-			case MwePackage.FILE: return createFile();
-			case MwePackage.PROPERTIES_FILE_IMPORT: return createPropertiesFileImport();
+			case MwePackage.ASSIGNMENT: return createAssignment();
 			case MwePackage.LOCAL_VARIABLE: return createLocalVariable();
+			case MwePackage.PROPERTIES_FILE_IMPORT: return createPropertiesFileImport();
+			case MwePackage.FILE: return createFile();
+			case MwePackage.COMPLEX_VALUE: return createComplexValue();
+			case MwePackage.ID_REF: return createIdRef();
+			case MwePackage.WORKFLOW_REF: return createWorkflowRef();
+			case MwePackage.QUALIFIED_NAME: return createQualifiedName();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}

@@ -17,12 +17,12 @@ public interface IReflectionHandler {
 	 * @param multiple
 	 * @param value
 	 */
-	public void inject(Object target, String feature, boolean multiple, Object value);
+	public void inject(Object target, String feature, Object value);
 
 	/**
 	 * @param parentsType
 	 * @param feature
 	 * @param multi
 	 */
-	public String getFeaturesTypeName(String type, String feature, boolean multi);
+	public String getFeaturesTypeName(String type, String feature);
 }

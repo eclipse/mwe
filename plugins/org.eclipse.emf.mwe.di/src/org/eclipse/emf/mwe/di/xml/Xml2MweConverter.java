@@ -122,7 +122,6 @@ public class Xml2MweConverter {
 				return null;
 			Assignment a = f.createAssignment();
 			a.setFeature(item.getNodeName());
-			a.setOperator("=");
 			SimpleValue sv = f.createSimpleValue();
 			sv.setValue(item.getNodeValue());
 			a.setValue(sv);
@@ -132,7 +131,6 @@ public class Xml2MweConverter {
 				return null;
 			Assignment a = f.createAssignment();
 			a.setFeature(item.getNodeName());
-			a.setOperator("=");
 			a.setValue(createValue((Element) item));
 			return a;
 		}
@@ -153,7 +151,7 @@ public class Xml2MweConverter {
 				all.add(o.eGet(f));
 			}
 			for (Object object : all) {
-				buff.append(" ").append(f.getName()).append("=").append("'").append(o.eGet(f)).append("'");
+				buff.append(" ").append(f.getName()).append("=").append("'").append(object).append("'");
 			}
 		}
 		buff.append(">");

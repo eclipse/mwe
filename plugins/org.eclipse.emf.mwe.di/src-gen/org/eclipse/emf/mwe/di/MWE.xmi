@@ -135,12 +135,7 @@
           <abstractTokens xsi:type="xtext:Assignment" feature="feature" operator="=">
             <terminal xsi:type="xtext:RuleCall" name="ID"/>
           </abstractTokens>
-          <abstractTokens xsi:type="xtext:Assignment" feature="operator" operator="=">
-            <terminal xsi:type="xtext:Alternatives">
-              <groups xsi:type="xtext:Keyword" value="="/>
-              <groups xsi:type="xtext:Keyword" value="+="/>
-            </terminal>
-          </abstractTokens>
+          <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value="="/>
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
           <terminal xsi:type="xtext:RuleCall" name="Value"/>

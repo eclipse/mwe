@@ -447,18 +447,12 @@ ruleAssignment returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "feature", lv_feature,"ID");    }
-)(
-    lv_operator=('=' 
+)('=' 
 
-    |'+=' 
-) 
     {
-        if ($current==null) {
-            $current = factory.create("Assignment");
-            associateNodeWithAstElement(currentNode, $current);
-        }
-        factory.set($current, "operator", lv_operator,null);        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Alternatives */, currentNode,"operator");    }
-))(
+        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+    }
+)?)(
     
     { 
         currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 

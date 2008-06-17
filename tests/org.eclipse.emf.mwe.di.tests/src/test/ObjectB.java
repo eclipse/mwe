@@ -15,4 +15,9 @@ public class ObjectB {
 		this.multiEle.add(multi);
 	}
 	
+	public ObjectB another;
+	public void setAnother(ObjectB another) {
+		this.another = another;
+	}
+	
 }

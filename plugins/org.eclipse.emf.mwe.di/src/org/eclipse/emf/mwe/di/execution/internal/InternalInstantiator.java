@@ -1,7 +1,5 @@
 package org.eclipse.emf.mwe.di.execution.internal;
 
-import static org.eclipse.emf.mwe.di.MweUtil.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +20,7 @@ import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.execution.IReflectionHandler;
 import org.eclipse.emf.mwe.di.execution.MweInstantiationException;
 import org.eclipse.emf.mwe.util.MweSwitch;
+import org.eclipse.xtext.resource.ClassloaderClasspathUriResolver;
 
 
 public class InternalInstantiator extends MweSwitch<Object> {
@@ -60,7 +59,10 @@ public class InternalInstantiator extends MweSwitch<Object> {
 	
 	@Override
 	public Object caseWorkflowRef(WorkflowRef object) {
-		Resource resource = object.eResource().getResourceSet().createResource(URI.createURI(object.getUri()));
+		URI uri = URI.createURI(object.getUri());
+		uri = new ClassloaderClasspathUriResolver().resolve(getClass().getClassLoader(), uri);
+		Resource resource2 = object.eResource();
+		Resource resource = resource2.getResourceSet().createResource(uri);
 		try {
 			resource.load(null);
 		} catch (IOException e) {
@@ -78,7 +80,7 @@ public class InternalInstantiator extends MweSwitch<Object> {
 			beans.put(complexValue.getId(), result);
 		for (Assignment ass : complexValue.getAssignments()) {
 			Object doSwitch = doSwitch(ass.getValue());
-			reflHandler.inject(result, ass.getFeature(), isMulti(ass), doSwitch);
+			reflHandler.inject(result, ass.getFeature(), doSwitch);
 		}
 		return result;
 	}
@@ -92,7 +94,7 @@ public class InternalInstantiator extends MweSwitch<Object> {
 			return null;
 		
 		String parentsType = findJavaClassName((ComplexValue) ass.eContainer());
-		return reflHandler.getFeaturesTypeName(parentsType,ass.getFeature(),isMulti(ass));
+		return reflHandler.getFeaturesTypeName(parentsType,ass.getFeature());
 	}
 
 

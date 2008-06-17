@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValue.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: ComplexValue.java,v 1.2 2008/06/17 15:29:47 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -16,9 +16,9 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ComplexValue#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ComplexValue#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ComplexValue#isFooBar <em>Foo Bar</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ComplexValue#getClassName <em>Class Name</em>}</li>
  * </ul>
  * </p>
  *

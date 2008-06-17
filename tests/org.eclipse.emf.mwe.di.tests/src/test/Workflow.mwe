@@ -1,0 +1,5 @@
+test.ObjectB {
+	multiEle = { name="Foo" }
+	multiEle = id x { name="Bar" }
+	singleEle = idRef x
+}

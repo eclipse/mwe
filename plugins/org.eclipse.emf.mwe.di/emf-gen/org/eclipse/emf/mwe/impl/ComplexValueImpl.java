@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValueImpl.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: ComplexValueImpl.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -35,9 +35,9 @@ import org.eclipse.emf.mwe.QualifiedName;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getClassName <em>Class Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getId <em>Id</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#isFooBar <em>Foo Bar</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getClassName <em>Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,16 +53,6 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 	 * @ordered
 	 */
 	protected EList<Assignment> assignments;
-
-	/**
-	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected QualifiedName className;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -103,6 +93,16 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 	 * @ordered
 	 */
 	protected boolean fooBar = FOO_BAR_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected QualifiedName className;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -246,12 +246,12 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 		switch (featureID) {
 			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
 				return getAssignments();
-			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
-				return getClassName();
 			case MwePackage.COMPLEX_VALUE__ID:
 				return getId();
 			case MwePackage.COMPLEX_VALUE__FOO_BAR:
 				return isFooBar() ? Boolean.TRUE : Boolean.FALSE;
+			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
+				return getClassName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -269,14 +269,14 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 				getAssignments().clear();
 				getAssignments().addAll((Collection<? extends Assignment>)newValue);
 				return;
-			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
-				setClassName((QualifiedName)newValue);
-				return;
 			case MwePackage.COMPLEX_VALUE__ID:
 				setId((String)newValue);
 				return;
 			case MwePackage.COMPLEX_VALUE__FOO_BAR:
 				setFooBar(((Boolean)newValue).booleanValue());
+				return;
+			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
+				setClassName((QualifiedName)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,14 +293,14 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
 				getAssignments().clear();
 				return;
-			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
-				setClassName((QualifiedName)null);
-				return;
 			case MwePackage.COMPLEX_VALUE__ID:
 				setId(ID_EDEFAULT);
 				return;
 			case MwePackage.COMPLEX_VALUE__FOO_BAR:
 				setFooBar(FOO_BAR_EDEFAULT);
+				return;
+			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
+				setClassName((QualifiedName)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -316,12 +316,12 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue {
 		switch (featureID) {
 			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
 				return assignments != null && !assignments.isEmpty();
-			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
-				return className != null;
 			case MwePackage.COMPLEX_VALUE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case MwePackage.COMPLEX_VALUE__FOO_BAR:
 				return fooBar != FOO_BAR_EDEFAULT;
+			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
+				return className != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -10,10 +10,9 @@ RULE_LEXER_BODY=10
 'idRef'=20
 'property'=12
 'properties'=15
-'.'=22
+'.'=21
 'id'=16
 '='=13
 '}'=18
 '{'=17
 ';'=14
-'+='=21
