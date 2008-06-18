@@ -9,16 +9,18 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.elements;
+package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
 import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.1 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -34,7 +36,7 @@ public final class WorkflowElementTypeComputer {
 		computeElementImage(element);
 	}
 
-	public static Class<?> getDefaultClass(final IWorkflowElement element) {
+	public static String getDefaultClass(final IWorkflowElement element) {
 		Class<?> clazz = null;
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
 			clazz = CompositeComponent.class;
@@ -43,19 +45,21 @@ public final class WorkflowElementTypeComputer {
 		} else if (element.getElementType() == WorkflowElementType.IF_COMPONENT) {
 			clazz = IfComponent.class;
 		}
-		return clazz;
+		final String name = clazz != null ? clazz.getName() : null;
+		return name;
 	}
 
 	private static void computeElementImage(final IWorkflowElement element) {
 		String imageName = null;
-		if (element.isWorkflow())
+		if (element.isWorkflow()) {
 			imageName = EditorImages.WORKFLOW;
-		else if (element.isComponent())
+		} else if (element.isComponent()) {
 			imageName = EditorImages.COMPONENT;
-		else if (element.isProperty() || element.isAssignmentProperty())
+		} else if (element.isProperty() || element.isAssignmentProperty()) {
 			imageName = EditorImages.PROPERTY;
-		else if (element.isAssignment())
+		} else if (element.isAssignment()) {
 			imageName = EditorImages.ASSIGNMENT;
+		}
 
 		element.setImage(imageName);
 	}
@@ -68,11 +72,11 @@ public final class WorkflowElementTypeComputer {
 		} else if (name.equals(IWorkflowElement.COMPONENT_TAG)
 				|| element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
 			type = WorkflowElementType.COMPONENT;
-		} else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG))
+		} else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG)) {
 			type = WorkflowElementType.IF_COMPONENT;
-		else if (name.equals(IWorkflowElement.WORKFLOW_TAG))
+		} else if (name.equals(IWorkflowElement.WORKFLOW_TAG)) {
 			type = WorkflowElementType.WORKFLOW;
-		else if (name.equals(IWorkflowElement.PROPERTY_TAG)) {
+		} else if (name.equals(IWorkflowElement.PROPERTY_TAG)) {
 			if (element.getAttributeCount() == 2
 					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)
 					&& element.hasAttribute(IWorkflowElement.VALUE_ATTRIBUTE)

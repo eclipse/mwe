@@ -13,20 +13,20 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.base;
 
 import java.util.Set;
 
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.1 $
  */
 
-public class ReflectionTestBase extends PluginTestBase {
+public class TypeTestBase extends PluginTestBase {
 
 	protected boolean checkForSubstring(final Set<String> classNameSet,
 			final String substring) {
-		if (classNameSet == null || substring == null) {
+		if (classNameSet == null || substring == null)
 			throw new IllegalArgumentException();
-		}
 
 		for (final String s : classNameSet) {
 			if (s.contains(substring))
@@ -35,16 +35,16 @@ public class ReflectionTestBase extends PluginTestBase {
 		return false;
 	}
 
-	protected Class<?> getClass(final String className) {
-		if (className == null)
-			return null;
-
-		final Class<?> clazz = ReflectionManager.getClass(project, className);
-		return clazz;
-	}
-
 	@Override
 	protected String getProjectName() {
 		return "reflection.test";
+	}
+
+	protected IType getType(final String className) {
+		if (className == null)
+			return null;
+
+		final IType type = TypeUtils.findType(project, className);
+		return type;
 	}
 }

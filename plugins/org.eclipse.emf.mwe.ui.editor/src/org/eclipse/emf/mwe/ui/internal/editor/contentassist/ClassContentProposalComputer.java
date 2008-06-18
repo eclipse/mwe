@@ -19,14 +19,15 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class ClassContentProposalComputer extends
@@ -50,17 +51,15 @@ public class ClassContentProposalComputer extends
 		turnOffSorting();
 	}
 
-	public static Class<?> getWorkflowBaseClass(final IFile file) {
+	public static IType getWorkflowBaseClass(final IFile file) {
 		if (file == null)
 			throw new IllegalArgumentException();
 
-		Class<?> baseClass =
-				ReflectionManager.getClass(file, WORKFLOW_BASE_CLASS);
-		if (baseClass == null) {
-			baseClass =
-					ReflectionManager.getClass(file, OLD_WORKFLOW_BASE_CLASS);
+		IType baseType = TypeUtils.findType(file, WORKFLOW_BASE_CLASS);
+		if (baseType == null) {
+			baseType = TypeUtils.findType(file, OLD_WORKFLOW_BASE_CLASS);
 		}
-		return baseClass;
+		return baseType;
 	}
 
 	/**
@@ -86,7 +85,7 @@ public class ClassContentProposalComputer extends
 			Log.logError("Bad document location", e);
 		}
 
-		final String displayText = ReflectionManager.getSimpleClassName(text);
+		final String displayText = TypeUtils.getSimpleClassName(text);
 		final TextInfo currentText = currentText(document, o);
 		final Image img = EditorImages.getImage(EditorImages.COMPONENT);
 		return new ExtendedCompletionProposal(text, currentText
@@ -118,13 +117,12 @@ public class ClassContentProposalComputer extends
 
 		Set<String> classNames = null;
 		if (COMPONENT_TAG.equals(tag)) {
-			final Class<?> baseClass = getWorkflowBaseClass(file);
-			if (baseClass != null) {
-				classNames =
-						ReflectionManager.getSubClasses(file, baseClass, true);
+			final IType baseType = getWorkflowBaseClass(file);
+			if (baseType != null) {
+				classNames = TypeUtils.getSubClasses(file, baseType, true);
 			}
 		} else {
-			classNames = ReflectionManager.getAllClasses(file, true);
+			classNames = TypeUtils.getAllClasses(file, true);
 		}
 
 		return classNames;

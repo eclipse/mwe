@@ -9,30 +9,30 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.tests.reflection;
+package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
 import java.util.Set;
 
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ReflectionTestBase;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.TypeTestBase;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
-public class PropertyNamesTest extends ReflectionTestBase {
+public class PropertyNamesTest extends TypeTestBase {
 
 	public void testSettablePropertyNames() {
-		final Class<?> clazz =
-			getClass("org.eclipse.xtend.XtendComponent");
+		final IType type = getType("org.eclipse.xtend.XtendComponent");
 
-		if (clazz == null) {
+		if (type == null) {
 			fail();
 		}
 
 		final Set<String> propertyNames =
-			ReflectionManager.getSettableProperties(clazz);
+				TypeUtils.getSettableProperties(type);
 		assertTrue(propertyNames.size() >= 17);
 		assertTrue(propertyNames.contains("extensionAdvice"));
 		assertTrue(propertyNames.contains("invoke"));

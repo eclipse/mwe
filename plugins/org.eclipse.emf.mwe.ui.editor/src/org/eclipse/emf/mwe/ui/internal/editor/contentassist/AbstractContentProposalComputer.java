@@ -33,12 +33,11 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public abstract class AbstractContentProposalComputer implements
-IContentProposalComputer {
-
+		IContentProposalComputer {
 
 	public class StringComparator implements Comparator<String> {
 
@@ -91,12 +90,13 @@ IContentProposalComputer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#computeProposals(int)
 	 */
 	public List<ICompletionProposal> computeProposals(final int offset) {
-		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
+		List<ICompletionProposal> results =
+				new ArrayList<ICompletionProposal>();
 		final Set<String> proposals = getProposalSet(offset);
 		for (final String rawText : proposals) {
 			final String proposalText = createProposalText(rawText, offset);
 			final ICompletionProposal proposal =
-				createProposal(proposalText, offset);
+					createProposal(proposalText, offset);
 			results.add(proposal);
 		}
 		results = removeNonMatchingEntries(results, offset);
@@ -188,7 +188,7 @@ IContentProposalComputer {
 			final int index = documentOffset - partitionOffset;
 
 			final String partitionText =
-				document.get(partitionOffset, partitionLength);
+					document.get(partitionOffset, partitionLength);
 
 			char c = partitionText.charAt(index);
 
@@ -247,6 +247,9 @@ IContentProposalComputer {
 		return extendedTerminalSet;
 	}
 
+	protected IFile getFile() {
+		return file;
+	}
 
 	protected abstract Set<String> getProposalSet(final int offset);
 
@@ -272,9 +275,8 @@ IContentProposalComputer {
 	}
 
 	protected boolean isTerminal(final Set<Character> terminals, final char ch) {
-		if (terminals == null) {
+		if (terminals == null)
 			throw new IllegalArgumentException();
-		}
 
 		return terminals.contains(ch) || Character.isWhitespace(ch);
 	}
@@ -282,7 +284,7 @@ IContentProposalComputer {
 	protected List<ICompletionProposal> removeNonMatchingEntries(
 			final List<ICompletionProposal> results, final int offset) {
 		final List<ICompletionProposal> cleanedResults =
-			new ArrayList<ICompletionProposal>();
+				new ArrayList<ICompletionProposal>();
 		try {
 			if (offset > 0
 					&& !isTerminal(extendedTerminalSet(), document

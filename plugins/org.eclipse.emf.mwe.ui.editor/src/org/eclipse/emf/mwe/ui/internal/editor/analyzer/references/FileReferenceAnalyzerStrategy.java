@@ -18,14 +18,14 @@ import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -69,7 +69,7 @@ public class FileReferenceAnalyzerStrategy extends
 	protected void doAnalyze(final IWorkflowElement element) {
 		final IWorkflowAttribute attribute =
 				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
-		final ClassLoader loader = ReflectionManager.getResourceLoader(file);
+		final ClassLoader loader = TypeUtils.getResourceLoader(file);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
 			return;
@@ -78,8 +78,7 @@ public class FileReferenceAnalyzerStrategy extends
 
 		if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
 			final String referencedContent =
-					ReflectionManager
-							.getFileContent(file, document, attribute);
+					TypeUtils.getFileContent(file, document, attribute);
 			if (referencedContent == null) {
 				MarkerManager.createMarker(file, document, attribute, "File '"
 						+ attribute.getValue() + "' could not be found", true,

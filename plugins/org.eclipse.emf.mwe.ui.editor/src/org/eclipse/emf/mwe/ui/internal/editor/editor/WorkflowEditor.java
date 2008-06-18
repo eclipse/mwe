@@ -35,7 +35,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -58,7 +59,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -139,7 +140,7 @@ public class WorkflowEditor extends TextEditor {
 			outlinePage.setInput(null);
 		}
 
-		ReflectionManager.clearCache();
+		TypeUtils.clearCache();
 		super.dispose();
 	}
 
@@ -389,9 +390,9 @@ public class WorkflowEditor extends TextEditor {
 
 	private void preloadClassNameCache() {
 		final IFile file = getInputFile();
-		final Class<?> baseClass =
+		final IType baseType =
 				ClassContentProposalComputer.getWorkflowBaseClass(file);
-		ReflectionManager.getSubClasses(file, baseClass, true);
-		ReflectionManager.getAllClasses(file, true);
+		TypeUtils.getSubClasses(file, baseType, true);
+		TypeUtils.getAllClasses(file, true);
 	}
 }

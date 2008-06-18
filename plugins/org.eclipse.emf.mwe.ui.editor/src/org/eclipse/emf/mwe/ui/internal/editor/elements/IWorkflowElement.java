@@ -127,7 +127,7 @@ public interface IWorkflowElement {
 	 * @return the default mapped class or <code>null</code> if there is no
 	 *         default.
 	 */
-	Class<?> getDefaultClass();
+	String getDefaultClass();
 
 	/**
 	 * Returns the value of field <code>document</code>.

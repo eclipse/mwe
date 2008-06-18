@@ -9,25 +9,24 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.tests.reflection;
+package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
 import java.util.Set;
 
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ReflectionTestBase;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.base.TypeTestBase;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach
  * @version $Revision: 1.1 $
  */
 
-public class ClassHierarchyTest extends ReflectionTestBase {
+public class ClassHierarchyTest extends TypeTestBase {
 
 	public void testGetAllClasses() {
-		final Set<String> allClasses =
-			ReflectionManager.getAllClasses(project, true);
+		final Set<String> allClasses = TypeUtils.getAllClasses(project, true);
 		assertNotNull(allClasses);
-
 
 		assertTrue(allClasses.size() >= 20900);
 		assertTrue(allClasses.contains("org.eclipse.xtend.XtendComponent"));
@@ -36,11 +35,11 @@ public class ClassHierarchyTest extends ReflectionTestBase {
 	}
 
 	public void testGetSubClasses() {
-		final Class<?> baseClass =
-			getClass("org.eclipse.emf.mwe.core.WorkflowComponent");
-		assertNotNull(baseClass);
+		final IType baseType =
+				getType("org.eclipse.emf.mwe.core.WorkflowComponent");
+		assertNotNull(baseType);
 		final Set<String> subClasses =
-			ReflectionManager.getSubClasses(project, baseClass, true);
+				TypeUtils.getSubClasses(project, baseType, true);
 		assertNotNull(subClasses);
 		assertTrue(subClasses.size() >= 10);
 		assertTrue(subClasses.contains("org.eclipse.xtend.XtendComponent"));

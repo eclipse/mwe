@@ -17,12 +17,12 @@ import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -59,7 +59,7 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 		final IWorkflowAttribute attribute =
 				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 		final String content =
-				ReflectionManager.getFileContent(file, document, attribute);
+				TypeUtils.getFileContent(getFile(), document, attribute);
 		if (content == null)
 			return;
 

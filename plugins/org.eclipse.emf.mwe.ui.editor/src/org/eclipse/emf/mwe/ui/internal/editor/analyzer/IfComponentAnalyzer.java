@@ -13,11 +13,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
@@ -45,8 +46,8 @@ public class IfComponentAnalyzer extends ComponentAnalyzer {
 			return;
 		}
 
-		final Class<?> mappedClass = getMappedClass(element);
-		if (mappedClass == null) {
+		final IType mappedType = getMappedType(element);
+		if (mappedType == null) {
 			// Error message already created in getMappedClass()
 		}
 	}

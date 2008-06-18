@@ -17,17 +17,18 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends
-TagContentProposalComputer {
+		TagContentProposalComputer {
 
 	private class ContainerCache {
 
@@ -74,15 +75,14 @@ TagContentProposalComputer {
 		final IWorkflowElement container = getContainer(offset);
 		if (container != null) {
 			final String className =
-				container.getAttributeValue(CLASS_ATTRIBUTE);
-			if (className == null) {
+					container.getAttributeValue(CLASS_ATTRIBUTE);
+			if (className == null)
 				throw new IllegalStateException();
-			}
 
-			final Class<?> clazz = ReflectionManager.getClass(file, className);
-			if (clazz != null) {
+			final IType type = TypeUtils.findType(getFile(), className);
+			if (type != null) {
 				final Set<String> settableProperties =
-					ReflectionManager.getSettableProperties(clazz);
+						TypeUtils.getSettableProperties(type);
 				resultSet.addAll(settableProperties);
 			}
 		}
@@ -98,8 +98,8 @@ TagContentProposalComputer {
 			return containerCache.getElement();
 
 		final IWorkflowElement element =
-			WorkflowElementSearcher.searchContainerElement(editor,
-					document, offset);
+				WorkflowElementSearcher.searchContainerElement(editor,
+						document, offset);
 
 		if (element != null) {
 			cacheElement(element, offset);

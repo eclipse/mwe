@@ -23,7 +23,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementTypeComputer;
 import org.eclipse.jface.text.IDocument;
 
 /**
@@ -31,7 +30,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
@@ -196,7 +195,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDefaultClass()
 	 */
-	public Class<?> getDefaultClass() {
+	public String getDefaultClass() {
 		return WorkflowElementTypeComputer.getDefaultClass(this);
 	}
 

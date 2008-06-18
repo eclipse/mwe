@@ -11,7 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
-import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,12 +18,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.ReflectionManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -65,13 +66,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			return;
 
 		final IWorkflowElement parent = element.getParent();
-		final Class<?> parentClass = getMappedClass(parent);
-		if (parentClass == null) {
+		final IType parentType = getMappedType(parent);
+		if (parentType == null) {
 			createMarker(parent, "Element '" + parent.getName()
 					+ "' could not be mapped");
 			return;
 		}
-		checkAttributes(element, parentClass);
+		checkAttributes(element, parentType);
 	}
 
 	/**
@@ -92,19 +93,19 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return file;
 	}
 
-	protected void checkAttribute(final Class<?> mappedClass,
+	protected void checkAttribute(final IType mappedType,
 			final IWorkflowElement element, final IWorkflowAttribute attribute) {
-		if (mappedClass == null || element == null || attribute == null) {
+		if (mappedType == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
 		}
 
-		final Class<?> type = computeAttributeType(attribute);
-		final Method method =
-				ReflectionManager.getSetter(mappedClass, attribute.getName(),
-						type);
+		final IType type = computeAttributeType(attribute);
+		final IMethod method =
+				TypeUtils.getSetter(getFile(), mappedType,
+						attribute.getName(), type);
 		if (method == null) {
 			createMarker(element, "No attribute '" + attribute.getName()
-					+ "' available in class '" + mappedClass.getSimpleName()
+					+ "' available in class '" + mappedType.getElementName()
 					+ "'");
 			return;
 		}
@@ -114,11 +115,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkAttributes(final IWorkflowElement element,
-			final Class<?> mappedClass) {
+			final IType mappedType) {
 		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
-				checkAttribute(mappedClass, element, attr);
+					&& !attr.getName()
+							.equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
+				checkAttribute(mappedType, element, attr);
 			}
 		}
 	}
@@ -136,14 +138,14 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected Class<?> computeAttributeType(final IWorkflowAttribute attribute) {
+	protected IType computeAttributeType(final IWorkflowAttribute attribute) {
 		final String value = attribute.getValue();
 		return getValueType(value);
 	}
 
-	protected Class<?> computeComponentType(final IWorkflowElement element) {
-		final Class<?> clazz = getMappedClass(element);
-		return clazz;
+	protected IType computeComponentType(final IWorkflowElement element) {
+		final IType type = getMappedType(element);
+		return type;
 	}
 
 	protected void createMarker(final IWorkflowAttribute attribute,
@@ -172,45 +174,44 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				message, true, true);
 	}
 
-	protected Class<?> getClass(final String mappedClassName) {
-		return ReflectionManager.getClass(getFile(), mappedClassName);
-	}
-
-	protected Class<?> getMappedClass(final IWorkflowElement element) {
-		Class<?> clazz = null;
+	protected IType getMappedType(final IWorkflowElement element) {
+		IType type = null;
 		final String name = element.getName();
 
-		clazz = getClass(name);
+		type = getType(name);
 
-		if (clazz == null
-				&& !name.equalsIgnoreCase(ReflectionManager.COMPONENT_SUFFIX)) {
-			clazz = getClass(ReflectionManager.getComponentName(name, false));
+		if (type == null && !name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
+			type = getType(TypeUtils.getComponentName(name, false));
 		}
 
-		if (clazz == null
-				&& !name.equalsIgnoreCase(ReflectionManager.COMPONENT_SUFFIX)) {
-			clazz = getClass(ReflectionManager.getComponentName(name, true));
+		if (type == null && !name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
+			type = getType(TypeUtils.getComponentName(name, true));
 		}
 
-		if (clazz == null) {
-			clazz = element.getDefaultClass();
+		if (type == null) {
+			final String typeName = element.getDefaultClass();
+			type = TypeUtils.findType(getFile(), typeName);
 		}
 
-		if (clazz == null) {
+		if (type == null) {
 			createMarker(element, "Class '" + name + "' cannot be resolved");
 		}
-		return clazz;
+		return type;
 	}
 
-	protected Class<?> getValueType(final String value) {
+	protected IType getType(final String mappedClassName) {
+		return TypeUtils.findType(getFile(), mappedClassName);
+	}
+
+	protected IType getValueType(final String value) {
 		if (value == null)
 			return null;
 
-		Class<?> type = null;
+		IType type = null;
 		if (isBooleanValue(value)) {
-			type = Boolean.class;
+			type = TypeUtils.findType(getFile(), "java.lang.Boolean");
 		} else {
-			type = String.class;
+			type = TypeUtils.findType(getFile(), "java.lang.String");
 		}
 		return type;
 	}
