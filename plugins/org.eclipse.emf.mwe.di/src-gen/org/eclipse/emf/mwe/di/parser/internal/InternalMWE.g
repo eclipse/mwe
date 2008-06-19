@@ -99,10 +99,23 @@ internalParse returns [EObject current=null] :
 // Rule File
 ruleFile returns [EObject current=null] 
     @init { EObject temp=null; }:
-((
+(((
     
     { 
-        currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
+    }
+    lv_imports=ruleImport 
+    {
+        currentNode = currentNode.getParent();
+        if ($current==null) {
+            $current = factory.create("File");
+            associateNodeWithAstElement(currentNode, $current);
+        }
+        factory.add($current, "imports", lv_imports,null);    }
+)*(
+    
+    { 
+        currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
     lv_properties=ruleProperty 
     {
@@ -112,7 +125,7 @@ ruleFile returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.add($current, "properties", lv_properties,null);    }
-)*(
+)*)(
     
     { 
         currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
@@ -129,12 +142,111 @@ ruleFile returns [EObject current=null]
 
 
 
+// Rule Import
+ruleImport returns [EObject current=null] 
+    @init { EObject temp=null; }:
+(
+    { 
+        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
+    }
+    this_JavaImport=ruleJavaImport
+    { 
+        $current = $this_JavaImport.current; 
+        currentNode = currentNode.getParent();
+    }
+
+    |
+    { 
+        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+    }
+    this_GenericImport=ruleGenericImport
+    { 
+        $current = $this_GenericImport.current; 
+        currentNode = currentNode.getParent();
+    }
+);
+
+
+
+// Rule JavaImport
+ruleJavaImport returns [EObject current=null] 
+    @init { EObject temp=null; }:
+((('import' 
+
+    {
+        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+    }
+(
+    
+    { 
+        currentNode=createCompositeNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+    }
+    lv_javaImport=ruleQualifiedName 
+    {
+        currentNode = currentNode.getParent();
+        if ($current==null) {
+            $current = factory.create("JavaImport");
+            associateNodeWithAstElement(currentNode, $current);
+        }
+        factory.set($current, "javaImport", lv_javaImport,null);    }
+))('.' 
+
+    {
+        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+    }
+(
+    lv_wildcard='*' 
+ 
+    {
+        if ($current==null) {
+            $current = factory.create("JavaImport");
+            associateNodeWithAstElement(currentNode, $current);
+        }
+        factory.set($current, "wildcard", true,"*");        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"wildcard");    }
+))?)(';' 
+
+    {
+        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+    }
+)?);
+
+
+
+// Rule GenericImport
+ruleGenericImport returns [EObject current=null] 
+    @init { EObject temp=null; }:
+(('import' 
+
+    {
+        createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+    }
+(
+    lv_value=RULE_STRING
+    { 
+    createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+    }
+ 
+    {
+        if ($current==null) {
+            $current = factory.create("GenericImport");
+            associateNodeWithAstElement(currentNode, $current);
+        }
+        factory.set($current, "value", lv_value,"STRING");    }
+))(';' 
+
+    {
+        createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+    }
+)?);
+
+
+
 // Rule Property
 ruleProperty returns [EObject current=null] 
     @init { EObject temp=null; }:
 (
     { 
-        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
     }
     this_LocalVariable=ruleLocalVariable
     { 
@@ -144,7 +256,7 @@ ruleProperty returns [EObject current=null]
 
     |
     { 
-        currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
     }
     this_PropertiesFileImport=rulePropertiesFileImport
     { 
@@ -158,15 +270,15 @@ ruleProperty returns [EObject current=null]
 // Rule LocalVariable
 ruleLocalVariable returns [EObject current=null] 
     @init { EObject temp=null; }:
-((('property' 
+((('var' 
 
     {
-        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
     }
 (
     lv_name=RULE_ID
     { 
-    createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"name"); 
+    createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"name"); 
     }
  
     {
@@ -178,24 +290,25 @@ ruleLocalVariable returns [EObject current=null]
 ))('=' 
 
     {
-        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
     }
 (
-    lv_value=RULE_STRING
+    
     { 
-    createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+        currentNode=createCompositeNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
- 
+    lv_value=ruleValue 
     {
+        currentNode = currentNode.getParent();
         if ($current==null) {
             $current = factory.create("LocalVariable");
             associateNodeWithAstElement(currentNode, $current);
         }
-        factory.set($current, "value", lv_value,"STRING");    }
+        factory.set($current, "value", lv_value,null);    }
 )))(';' 
 
     {
-        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 )?);
 
@@ -204,15 +317,20 @@ ruleLocalVariable returns [EObject current=null]
 // Rule PropertiesFileImport
 rulePropertiesFileImport returns [EObject current=null] 
     @init { EObject temp=null; }:
-(('properties' 
+((('var' 
 
     {
-        createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
     }
-(
+'file' 
+
+    {
+        createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+    }
+)(
     lv_file=RULE_STRING
     { 
-    createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"file"); 
+    createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"file"); 
     }
  
     {
@@ -224,7 +342,7 @@ rulePropertiesFileImport returns [EObject current=null]
 ))(';' 
 
     {
-        createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 )?);
 
@@ -235,7 +353,7 @@ ruleValue returns [EObject current=null]
     @init { EObject temp=null; }:
 (((
     { 
-        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.0" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.0" /* xtext::RuleCall */, currentNode); 
     }
     this_SimpleValue=ruleSimpleValue
     { 
@@ -245,7 +363,7 @@ ruleValue returns [EObject current=null]
 
     |
     { 
-        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
     }
     this_ComplexValue=ruleComplexValue
     { 
@@ -255,7 +373,7 @@ ruleValue returns [EObject current=null]
 )
     |
     { 
-        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
     }
     this_IdRef=ruleIdRef
     { 
@@ -265,7 +383,7 @@ ruleValue returns [EObject current=null]
 )
     |
     { 
-        currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
     }
     this_WorkflowRef=ruleWorkflowRef
     { 
@@ -282,7 +400,7 @@ ruleSimpleValue returns [EObject current=null]
 (
     lv_value=RULE_STRING
     { 
-    createLeafNode("//@parserRules.5/@alternatives/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+    createLeafNode("//@parserRules.8/@alternatives/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
     }
  
     {
@@ -303,7 +421,7 @@ ruleComplexValue returns [EObject current=null]
 (((((
     
     { 
-        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
     }
     lv_className=ruleQualifiedName 
     {
@@ -313,15 +431,15 @@ ruleComplexValue returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "className", lv_className,null);    }
-)?('id' 
+)?(':' 
 
     {
-        createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
     }
 (
     lv_id=RULE_ID
     { 
-    createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
+    createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
     }
  
     {
@@ -338,11 +456,11 @@ ruleComplexValue returns [EObject current=null]
             $current = factory.create("ComplexValue");
             associateNodeWithAstElement(currentNode, $current);
         }
-        factory.set($current, "fooBar", true,"{");        createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"fooBar");    }
+        factory.set($current, "fooBar", true,"{");        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"fooBar");    }
 ))(
     
     { 
-        currentNode=createCompositeNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
     lv_assignments=ruleAssignment 
     {
@@ -355,7 +473,7 @@ ruleComplexValue returns [EObject current=null]
 )*)'}' 
 
     {
-        createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 );
 
@@ -367,12 +485,12 @@ ruleWorkflowRef returns [EObject current=null]
 (((('file' 
 
     {
-        createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
     }
 (
     lv_uri=RULE_STRING
     { 
-    createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"uri"); 
+    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"uri"); 
     }
  
     {
@@ -384,12 +502,12 @@ ruleWorkflowRef returns [EObject current=null]
 ))'{' 
 
     {
-        createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 )(
     
     { 
-        currentNode=createCompositeNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
     lv_assignments=ruleAssignment 
     {
@@ -402,7 +520,7 @@ ruleWorkflowRef returns [EObject current=null]
 )*)'}' 
 
     {
-        createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 );
 
@@ -411,15 +529,10 @@ ruleWorkflowRef returns [EObject current=null]
 // Rule IdRef
 ruleIdRef returns [EObject current=null] 
     @init { EObject temp=null; }:
-('idRef' 
-
-    {
-        createLeafNode("//@parserRules.9/@alternatives/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
-    }
-(
+((
     lv_id=RULE_ID
     { 
-    createLeafNode("//@parserRules.9/@alternatives/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
+    createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
     }
  
     {
@@ -428,7 +541,12 @@ ruleIdRef returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "id", lv_id,"ID");    }
-));
+)';' 
+
+    {
+        createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+    }
+);
 
 
 
@@ -438,7 +556,7 @@ ruleAssignment returns [EObject current=null]
 ((((
     lv_feature=RULE_ID
     { 
-    createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"feature"); 
+    createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"feature"); 
     }
  
     {
@@ -447,15 +565,15 @@ ruleAssignment returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "feature", lv_feature,"ID");    }
-)('=' 
+)?'=' 
 
     {
-        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
-)?)(
+)(
     
     { 
-        currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+        currentNode=createCompositeNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
     }
     lv_value=ruleValue 
     {
@@ -468,7 +586,7 @@ ruleAssignment returns [EObject current=null]
 ))(';' 
 
     {
-        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+        createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
 )?);
 
@@ -480,7 +598,7 @@ ruleQualifiedName returns [EObject current=null]
 ((
     lv_parts=RULE_ID
     { 
-    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
+    createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
     }
  
     {
@@ -497,11 +615,11 @@ ruleQualifiedName returns [EObject current=null]
             $current = factory.create("QualifiedName");
             associateNodeWithAstElement(currentNode, $current);
         }
-        factory.add($current, "parts", lv_parts,".");        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal" /* xtext::Keyword */, currentNode,"parts");    }
+        factory.add($current, "parts", lv_parts,".");        createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal" /* xtext::Keyword */, currentNode,"parts");    }
 )(
     lv_parts=RULE_ID
     { 
-    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
+    createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
     }
  
     {

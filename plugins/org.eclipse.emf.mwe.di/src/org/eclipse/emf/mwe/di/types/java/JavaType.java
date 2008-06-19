@@ -1,18 +1,24 @@
-package org.eclipse.emf.mwe.di.execution.internal;
+package org.eclipse.emf.mwe.di.types.java;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.mwe.di.execution.IReflectionHandler;
 import org.eclipse.emf.mwe.di.execution.MweInstantiationException;
+import org.eclipse.emf.mwe.di.types.Type;
 import org.eclipse.xtext.util.Strings;
 
-public class InternalDefaultReflectionHandler implements IReflectionHandler {
+public class JavaType implements Type {
+
+	private Class<?> clazz;
+
+	public JavaType(Class<?> class1) {
+		this.clazz = class1;
+	}
 
 	public void inject(Object target, String feature, Object value) {
 		try {
-			Class<? extends Object> class1 = target.getClass();
+			Class<?> class1 = target.getClass();
 			String[] methodNames = methodNames(feature);
 			for (String methodName : methodNames) {
 				try {
@@ -22,7 +28,6 @@ public class InternalDefaultReflectionHandler implements IReflectionHandler {
 						return;
 					}
 				} catch (NoSuchMethodException e) {
-					System.err.println(e);
 					// ignore
 				}
 			}
@@ -34,39 +39,30 @@ public class InternalDefaultReflectionHandler implements IReflectionHandler {
 	}
 
 	private String[] methodNames(String feature) {
+		if (feature==null) {
+			return new String[] {"add","set"};
+		}
 		return new String[] { "add" + Strings.toFirstUpper(feature), "set" + Strings.toFirstUpper(feature) };
 	}
 
-	public Object instantiate(String className) {
-		Class<Object> clazz = classForName(className);
+	public Type typeForFeature(String feature) {
+		String[] methodNames = methodNames(feature);
+		for (String methodName : methodNames) {
+			Method[] methods = clazz.getMethods();
+			for (Method method : methods) {
+				if (method.getParameterTypes().length==1 && method.getName().equals(methodName))
+					return new JavaType(method.getParameterTypes()[0]);
+			}
+		}
+		return null;
+	}
+
+	public Object newInstance() {
 		try {
 			return clazz.newInstance();
 		} catch (Exception e) {
 			throw new WrappedException(e);
 		}
-	}
-
-	@SuppressWarnings("unchecked")
-	private Class<Object> classForName(String className) {
-		try {
-			Class<Object> clazz = (Class<Object>) Thread.currentThread().getContextClassLoader().loadClass(className);
-			return clazz;
-		} catch (Exception e) {
-			throw new WrappedException(e);
-		}
-	}
-
-	public String getFeaturesTypeName(String type, String feature) {
-		Class<Object> clazz = classForName(type);
-		String[] methodNames = methodNames(feature);
-		for (String methodName : methodNames) {
-			for (Method m : clazz.getMethods()) {
-				if (m.getName().equals(methodName) && m.getParameterTypes().length == 1) {
-					return m.getParameterTypes()[0].getName();
-				}
-			}
-		}
-		return null;
 	}
 
 }

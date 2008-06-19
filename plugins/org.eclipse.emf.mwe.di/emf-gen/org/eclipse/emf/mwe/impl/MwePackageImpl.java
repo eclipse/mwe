@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MwePackageImpl.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
+ * $Id: MwePackageImpl.java,v 1.3 2008/06/19 07:53:38 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -17,7 +17,10 @@ import org.eclipse.emf.mwe.Assignable;
 import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.GenericImport;
 import org.eclipse.emf.mwe.IdRef;
+import org.eclipse.emf.mwe.Import;
+import org.eclipse.emf.mwe.JavaImport;
 import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.MweFactory;
 import org.eclipse.emf.mwe.MwePackage;
@@ -40,6 +43,13 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass genericImportEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass workflowRefEClass = null;
 
 	/**
@@ -48,6 +58,13 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	private EClass complexValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass importEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -118,6 +135,13 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	private EClass simpleValueEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass javaImportEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -192,6 +216,24 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getGenericImport() {
+		return genericImportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getGenericImport_Value() {
+		return (EAttribute)genericImportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getWorkflowRef() {
 		return workflowRefEClass;
 	}
@@ -237,6 +279,15 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getImport() {
+		return importEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getComplexValue_ClassName() {
 		return (EReference)complexValueEClass.getEStructuralFeatures().get(2);
 	}
@@ -255,8 +306,8 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLocalVariable_Value() {
-		return (EAttribute)localVariableEClass.getEStructuralFeatures().get(1);
+	public EReference getLocalVariable_Value() {
+		return (EReference)localVariableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -265,7 +316,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EAttribute getLocalVariable_Name() {
-		return (EAttribute)localVariableEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)localVariableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -309,8 +360,17 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getFile_Value() {
+	public EReference getFile_Imports() {
 		return (EReference)fileEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFile_Value() {
+		return (EReference)fileEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -435,6 +495,33 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getJavaImport() {
+		return javaImportEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getJavaImport_JavaImport() {
+		return (EReference)javaImportEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getJavaImport_Wildcard() {
+		return (EAttribute)javaImportEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public MweFactory getMweFactory() {
 		return (MweFactory)getEFactoryInstance();
 	}
@@ -458,44 +545,54 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 		isCreated = true;
 
 		// Create classes and their features
+		propertyEClass = createEClass(PROPERTY);
+
 		simpleValueEClass = createEClass(SIMPLE_VALUE);
 		createEAttribute(simpleValueEClass, SIMPLE_VALUE__VALUE);
 
-		assignmentEClass = createEClass(ASSIGNMENT);
-		createEAttribute(assignmentEClass, ASSIGNMENT__FEATURE);
-		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
+		fileEClass = createEClass(FILE);
+		createEReference(fileEClass, FILE__IMPORTS);
+		createEReference(fileEClass, FILE__PROPERTIES);
+		createEReference(fileEClass, FILE__VALUE);
 
-		localVariableEClass = createEClass(LOCAL_VARIABLE);
-		createEAttribute(localVariableEClass, LOCAL_VARIABLE__NAME);
-		createEAttribute(localVariableEClass, LOCAL_VARIABLE__VALUE);
-
-		valueEClass = createEClass(VALUE);
-
-		propertyEClass = createEClass(PROPERTY);
-
-		assignableEClass = createEClass(ASSIGNABLE);
-		createEReference(assignableEClass, ASSIGNABLE__ASSIGNMENTS);
+		genericImportEClass = createEClass(GENERIC_IMPORT);
+		createEAttribute(genericImportEClass, GENERIC_IMPORT__VALUE);
 
 		propertiesFileImportEClass = createEClass(PROPERTIES_FILE_IMPORT);
 		createEAttribute(propertiesFileImportEClass, PROPERTIES_FILE_IMPORT__FILE);
-
-		fileEClass = createEClass(FILE);
-		createEReference(fileEClass, FILE__VALUE);
-		createEReference(fileEClass, FILE__PROPERTIES);
 
 		complexValueEClass = createEClass(COMPLEX_VALUE);
 		createEAttribute(complexValueEClass, COMPLEX_VALUE__ID);
 		createEAttribute(complexValueEClass, COMPLEX_VALUE__FOO_BAR);
 		createEReference(complexValueEClass, COMPLEX_VALUE__CLASS_NAME);
 
+		importEClass = createEClass(IMPORT);
+
+		assignableEClass = createEClass(ASSIGNABLE);
+		createEReference(assignableEClass, ASSIGNABLE__ASSIGNMENTS);
+
+		localVariableEClass = createEClass(LOCAL_VARIABLE);
+		createEReference(localVariableEClass, LOCAL_VARIABLE__VALUE);
+		createEAttribute(localVariableEClass, LOCAL_VARIABLE__NAME);
+
 		idRefEClass = createEClass(ID_REF);
 		createEAttribute(idRefEClass, ID_REF__ID);
+
+		qualifiedNameEClass = createEClass(QUALIFIED_NAME);
+		createEAttribute(qualifiedNameEClass, QUALIFIED_NAME__PARTS);
+
+		javaImportEClass = createEClass(JAVA_IMPORT);
+		createEReference(javaImportEClass, JAVA_IMPORT__JAVA_IMPORT);
+		createEAttribute(javaImportEClass, JAVA_IMPORT__WILDCARD);
 
 		workflowRefEClass = createEClass(WORKFLOW_REF);
 		createEAttribute(workflowRefEClass, WORKFLOW_REF__URI);
 
-		qualifiedNameEClass = createEClass(QUALIFIED_NAME);
-		createEAttribute(qualifiedNameEClass, QUALIFIED_NAME__PARTS);
+		assignmentEClass = createEClass(ASSIGNMENT);
+		createEAttribute(assignmentEClass, ASSIGNMENT__FEATURE);
+		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
+
+		valueEClass = createEClass(VALUE);
 	}
 
 	/**
@@ -527,53 +624,65 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 
 		// Add supertypes to classes
 		simpleValueEClass.getESuperTypes().add(this.getValue());
-		localVariableEClass.getESuperTypes().add(this.getProperty());
+		genericImportEClass.getESuperTypes().add(this.getImport());
 		propertiesFileImportEClass.getESuperTypes().add(this.getProperty());
 		complexValueEClass.getESuperTypes().add(this.getValue());
 		complexValueEClass.getESuperTypes().add(this.getAssignable());
+		localVariableEClass.getESuperTypes().add(this.getProperty());
 		idRefEClass.getESuperTypes().add(this.getValue());
-		workflowRefEClass.getESuperTypes().add(this.getValue());
+		javaImportEClass.getESuperTypes().add(this.getImport());
 		workflowRefEClass.getESuperTypes().add(this.getAssignable());
+		workflowRefEClass.getESuperTypes().add(this.getValue());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
 		initEClass(simpleValueEClass, SimpleValue.class, "SimpleValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSimpleValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, SimpleValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssignment_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getFile_Imports(), this.getImport(), null, "imports", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFile_Properties(), this.getProperty(), null, "properties", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFile_Value(), this.getComplexValue(), null, "value", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(localVariableEClass, LocalVariable.class, "LocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLocalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLocalVariable_Value(), ecorePackage.getEString(), "value", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(assignableEClass, Assignable.class, "Assignable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignable_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, Assignable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(genericImportEClass, GenericImport.class, "GenericImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getGenericImport_Value(), ecorePackage.getEString(), "value", null, 0, 1, GenericImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertiesFileImportEClass, PropertiesFileImport.class, "PropertiesFileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertiesFileImport_File(), ecorePackage.getEString(), "file", null, 0, 1, PropertiesFileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getFile_Value(), this.getComplexValue(), null, "value", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getFile_Properties(), this.getProperty(), null, "properties", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(complexValueEClass, ComplexValue.class, "ComplexValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getComplexValue_Id(), ecorePackage.getEString(), "id", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getComplexValue_FooBar(), ecorePackage.getEBoolean(), "fooBar", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getComplexValue_ClassName(), this.getQualifiedName(), null, "className", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(importEClass, Import.class, "Import", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(assignableEClass, Assignable.class, "Assignable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssignable_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, Assignable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(localVariableEClass, LocalVariable.class, "LocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLocalVariable_Value(), this.getValue(), null, "value", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getLocalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(idRefEClass, IdRef.class, "IdRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIdRef_Id(), ecorePackage.getEString(), "id", null, 0, 1, IdRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getQualifiedName_Parts(), ecorePackage.getEString(), "parts", null, 0, -1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(javaImportEClass, JavaImport.class, "JavaImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getJavaImport_JavaImport(), this.getQualifiedName(), null, "javaImport", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getJavaImport_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workflowRefEClass, WorkflowRef.class, "WorkflowRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowRef_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, WorkflowRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getQualifiedName_Parts(), ecorePackage.getEString(), "parts", null, 0, -1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAssignment_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

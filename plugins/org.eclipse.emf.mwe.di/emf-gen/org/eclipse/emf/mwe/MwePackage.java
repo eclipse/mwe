@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MwePackage.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
+ * $Id: MwePackage.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -67,7 +67,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getValue()
 	 * @generated
 	 */
-	int VALUE = 3;
+	int VALUE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl <em>Workflow Ref</em>}' class.
@@ -77,7 +77,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getWorkflowRef()
 	 * @generated
 	 */
-	int WORKFLOW_REF = 10;
+	int WORKFLOW_REF = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.ComplexValueImpl <em>Complex Value</em>}' class.
@@ -87,7 +87,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getComplexValue()
 	 * @generated
 	 */
-	int COMPLEX_VALUE = 8;
+	int COMPLEX_VALUE = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.PropertyImpl <em>Property</em>}' class.
@@ -97,7 +97,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 4;
+	int PROPERTY = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.LocalVariableImpl <em>Local Variable</em>}' class.
@@ -107,7 +107,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getLocalVariable()
 	 * @generated
 	 */
-	int LOCAL_VARIABLE = 2;
+	int LOCAL_VARIABLE = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
@@ -117,7 +117,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getQualifiedName()
 	 * @generated
 	 */
-	int QUALIFIED_NAME = 11;
+	int QUALIFIED_NAME = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.FileImpl <em>File</em>}' class.
@@ -127,7 +127,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getFile()
 	 * @generated
 	 */
-	int FILE = 7;
+	int FILE = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.AssignmentImpl <em>Assignment</em>}' class.
@@ -137,7 +137,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getAssignment()
 	 * @generated
 	 */
-	int ASSIGNMENT = 1;
+	int ASSIGNMENT = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.IdRefImpl <em>Id Ref</em>}' class.
@@ -178,7 +178,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getPropertiesFileImport()
 	 * @generated
 	 */
-	int PROPERTIES_FILE_IMPORT = 6;
+	int PROPERTIES_FILE_IMPORT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.SimpleValueImpl <em>Simple Value</em>}' class.
@@ -188,7 +188,56 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getSimpleValue()
 	 * @generated
 	 */
-	int SIMPLE_VALUE = 0;
+	int SIMPLE_VALUE = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.AssignableImpl <em>Assignable</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.impl.AssignableImpl
+	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getAssignable()
+	 * @generated
+	 */
+	int ASSIGNABLE = 7;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.ImportImpl <em>Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.impl.ImportImpl
+	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getImport()
+	 * @generated
+	 */
+	int IMPORT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.JavaImportImpl <em>Java Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.impl.JavaImportImpl
+	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getJavaImport()
+	 * @generated
+	 */
+	int JAVA_IMPORT = 11;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.GenericImportImpl <em>Generic Import</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.impl.GenericImportImpl
+	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getGenericImport()
+	 * @generated
+	 */
+	int GENERIC_IMPORT = 3;
+
+	/**
+	 * The number of structural features of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Value</em>' class.
@@ -218,13 +267,22 @@ public interface MwePackage extends EPackage {
 	int SIMPLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__FEATURE = 0;
+	int FILE__IMPORTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__PROPERTIES = 1;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -233,44 +291,25 @@ public interface MwePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__VALUE = 1;
+	int FILE__VALUE = 2;
 
 	/**
-	 * The number of structural features of the '<em>Assignment</em>' class.
+	 * The number of structural features of the '<em>File</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT_FEATURE_COUNT = 2;
+	int FILE_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.AssignableImpl <em>Assignable</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.impl.AssignableImpl
-	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getAssignable()
-	 * @generated
-	 */
-	int ASSIGNABLE = 5;
-
-	/**
-	 * The number of structural features of the '<em>Property</em>' class.
+	 * The number of structural features of the '<em>Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_FEATURE_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOCAL_VARIABLE__NAME = PROPERTY_FEATURE_COUNT + 0;
+	int IMPORT_FEATURE_COUNT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -279,34 +318,16 @@ public interface MwePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_VARIABLE__VALUE = PROPERTY_FEATURE_COUNT + 1;
+	int GENERIC_IMPORT__VALUE = IMPORT_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Local Variable</em>' class.
+	 * The number of structural features of the '<em>Generic Import</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOCAL_VARIABLE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNABLE__ASSIGNMENTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Assignable</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNABLE_FEATURE_COUNT = 1;
+	int GENERIC_IMPORT_FEATURE_COUNT = IMPORT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>File</b></em>' attribute.
@@ -325,33 +346,6 @@ public interface MwePackage extends EPackage {
 	 * @ordered
 	 */
 	int PROPERTIES_FILE_IMPORT_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE__VALUE = 0;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE__PROPERTIES = 1;
-
-	/**
-	 * The number of structural features of the '<em>File</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_FEATURE_COUNT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
@@ -399,6 +393,51 @@ public interface MwePackage extends EPackage {
 	int COMPLEX_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE__ASSIGNMENTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Assignable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_VARIABLE__VALUE = PROPERTY_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_VARIABLE__NAME = PROPERTY_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Local Variable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOCAL_VARIABLE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -417,33 +456,6 @@ public interface MwePackage extends EPackage {
 	int ID_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF__ASSIGNMENTS = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF__URI = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Workflow Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Parts</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -460,6 +472,108 @@ public interface MwePackage extends EPackage {
 	 * @ordered
 	 */
 	int QUALIFIED_NAME_FEATURE_COUNT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Java Import</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_IMPORT__JAVA_IMPORT = IMPORT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Wildcard</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_IMPORT__WILDCARD = IMPORT_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Java Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JAVA_IMPORT_FEATURE_COUNT = IMPORT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF__ASSIGNMENTS = ASSIGNABLE__ASSIGNMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF__URI = ASSIGNABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF_FEATURE_COUNT = ASSIGNABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__FEATURE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.GenericImport <em>Generic Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Generic Import</em>'.
+	 * @see org.eclipse.emf.mwe.GenericImport
+	 * @generated
+	 */
+	EClass getGenericImport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.GenericImport#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.emf.mwe.GenericImport#getValue()
+	 * @see #getGenericImport()
+	 * @generated
+	 */
+	EAttribute getGenericImport_Value();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ComplexValue <em>Complex Value</em>}'.
@@ -494,6 +608,16 @@ public interface MwePackage extends EPackage {
 	EAttribute getComplexValue_FooBar();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.Import <em>Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Import</em>'.
+	 * @see org.eclipse.emf.mwe.Import
+	 * @generated
+	 */
+	EClass getImport();
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ComplexValue#getClassName <em>Class Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -515,15 +639,15 @@ public interface MwePackage extends EPackage {
 	EClass getLocalVariable();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @return the meta object for the containment reference '<em>Value</em>'.
 	 * @see org.eclipse.emf.mwe.LocalVariable#getValue()
 	 * @see #getLocalVariable()
 	 * @generated
 	 */
-	EAttribute getLocalVariable_Value();
+	EReference getLocalVariable_Value();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.LocalVariable#getName <em>Name</em>}'.
@@ -577,6 +701,17 @@ public interface MwePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getFile_Properties();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.File#getImports <em>Imports</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Imports</em>'.
+	 * @see org.eclipse.emf.mwe.File#getImports()
+	 * @see #getFile()
+	 * @generated
+	 */
+	EReference getFile_Imports();
 
 	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}'.
@@ -726,6 +861,38 @@ public interface MwePackage extends EPackage {
 	EAttribute getSimpleValue_Value();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.JavaImport <em>Java Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Java Import</em>'.
+	 * @see org.eclipse.emf.mwe.JavaImport
+	 * @generated
+	 */
+	EClass getJavaImport();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.JavaImport#getJavaImport <em>Java Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Java Import</em>'.
+	 * @see org.eclipse.emf.mwe.JavaImport#getJavaImport()
+	 * @see #getJavaImport()
+	 * @generated
+	 */
+	EReference getJavaImport_JavaImport();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.JavaImport#isWildcard <em>Wildcard</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wildcard</em>'.
+	 * @see org.eclipse.emf.mwe.JavaImport#isWildcard()
+	 * @see #getJavaImport()
+	 * @generated
+	 */
+	EAttribute getJavaImport_Wildcard();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -747,6 +914,24 @@ public interface MwePackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.impl.GenericImportImpl <em>Generic Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.impl.GenericImportImpl
+		 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getGenericImport()
+		 * @generated
+		 */
+		EClass GENERIC_IMPORT = eINSTANCE.getGenericImport();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute GENERIC_IMPORT__VALUE = eINSTANCE.getGenericImport_Value();
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl <em>Workflow Ref</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -792,6 +977,16 @@ public interface MwePackage extends EPackage {
 		EAttribute COMPLEX_VALUE__FOO_BAR = eINSTANCE.getComplexValue_FooBar();
 
 		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.impl.ImportImpl <em>Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.impl.ImportImpl
+		 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getImport()
+		 * @generated
+		 */
+		EClass IMPORT = eINSTANCE.getImport();
+
+		/**
 		 * The meta object literal for the '<em><b>Class Name</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -810,12 +1005,12 @@ public interface MwePackage extends EPackage {
 		EClass LOCAL_VARIABLE = eINSTANCE.getLocalVariable();
 
 		/**
-		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOCAL_VARIABLE__VALUE = eINSTANCE.getLocalVariable_Value();
+		EReference LOCAL_VARIABLE__VALUE = eINSTANCE.getLocalVariable_Value();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -860,6 +1055,14 @@ public interface MwePackage extends EPackage {
 		 * @generated
 		 */
 		EReference FILE__PROPERTIES = eINSTANCE.getFile_Properties();
+
+		/**
+		 * The meta object literal for the '<em><b>Imports</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FILE__IMPORTS = eINSTANCE.getFile_Imports();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
@@ -986,6 +1189,32 @@ public interface MwePackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute SIMPLE_VALUE__VALUE = eINSTANCE.getSimpleValue_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.impl.JavaImportImpl <em>Java Import</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.impl.JavaImportImpl
+		 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getJavaImport()
+		 * @generated
+		 */
+		EClass JAVA_IMPORT = eINSTANCE.getJavaImport();
+
+		/**
+		 * The meta object literal for the '<em><b>Java Import</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference JAVA_IMPORT__JAVA_IMPORT = eINSTANCE.getJavaImport_JavaImport();
+
+		/**
+		 * The meta object literal for the '<em><b>Wildcard</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JAVA_IMPORT__WILDCARD = eINSTANCE.getJavaImport_Wildcard();
 
 	}
 

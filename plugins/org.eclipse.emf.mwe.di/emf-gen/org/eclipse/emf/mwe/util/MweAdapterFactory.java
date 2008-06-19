@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweAdapterFactory.java,v 1.2 2008/06/17 15:29:48 sefftinge Exp $
+ * $Id: MweAdapterFactory.java,v 1.3 2008/06/19 07:53:40 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.util;
 
@@ -72,52 +72,64 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 	protected MweSwitch<Adapter> modelSwitch =
 		new MweSwitch<Adapter>() {
 			@Override
-			public Adapter caseSimpleValue(SimpleValue object) {
-				return createSimpleValueAdapter();
-			}
-			@Override
-			public Adapter caseAssignment(Assignment object) {
-				return createAssignmentAdapter();
-			}
-			@Override
-			public Adapter caseLocalVariable(LocalVariable object) {
-				return createLocalVariableAdapter();
-			}
-			@Override
-			public Adapter caseValue(Value object) {
-				return createValueAdapter();
-			}
-			@Override
 			public Adapter caseProperty(Property object) {
 				return createPropertyAdapter();
 			}
 			@Override
-			public Adapter caseAssignable(Assignable object) {
-				return createAssignableAdapter();
-			}
-			@Override
-			public Adapter casePropertiesFileImport(PropertiesFileImport object) {
-				return createPropertiesFileImportAdapter();
+			public Adapter caseSimpleValue(SimpleValue object) {
+				return createSimpleValueAdapter();
 			}
 			@Override
 			public Adapter caseFile(File object) {
 				return createFileAdapter();
 			}
 			@Override
+			public Adapter caseGenericImport(GenericImport object) {
+				return createGenericImportAdapter();
+			}
+			@Override
+			public Adapter casePropertiesFileImport(PropertiesFileImport object) {
+				return createPropertiesFileImportAdapter();
+			}
+			@Override
 			public Adapter caseComplexValue(ComplexValue object) {
 				return createComplexValueAdapter();
+			}
+			@Override
+			public Adapter caseImport(Import object) {
+				return createImportAdapter();
+			}
+			@Override
+			public Adapter caseAssignable(Assignable object) {
+				return createAssignableAdapter();
+			}
+			@Override
+			public Adapter caseLocalVariable(LocalVariable object) {
+				return createLocalVariableAdapter();
 			}
 			@Override
 			public Adapter caseIdRef(IdRef object) {
 				return createIdRefAdapter();
 			}
 			@Override
+			public Adapter caseQualifiedName(QualifiedName object) {
+				return createQualifiedNameAdapter();
+			}
+			@Override
+			public Adapter caseJavaImport(JavaImport object) {
+				return createJavaImportAdapter();
+			}
+			@Override
 			public Adapter caseWorkflowRef(WorkflowRef object) {
 				return createWorkflowRefAdapter();
 			}
 			@Override
-			public Adapter caseQualifiedName(QualifiedName object) {
-				return createQualifiedNameAdapter();
+			public Adapter caseAssignment(Assignment object) {
+				return createAssignmentAdapter();
+			}
+			@Override
+			public Adapter caseValue(Value object) {
+				return createValueAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -138,6 +150,20 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 		return modelSwitch.doSwitch((EObject)target);
 	}
 
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.GenericImport <em>Generic Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.GenericImport
+	 * @generated
+	 */
+	public Adapter createGenericImportAdapter() {
+		return null;
+	}
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.WorkflowRef <em>Workflow Ref</em>}'.
@@ -164,6 +190,20 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createComplexValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.Import <em>Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.Import
+	 * @generated
+	 */
+	public Adapter createImportAdapter() {
 		return null;
 	}
 
@@ -304,6 +344,20 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSimpleValueAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.JavaImport <em>Java Import</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.JavaImport
+	 * @generated
+	 */
+	public Adapter createJavaImportAdapter() {
 		return null;
 	}
 

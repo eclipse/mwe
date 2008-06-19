@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: File.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
+ * $Id: File.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.File#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.File#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,6 +44,22 @@ public interface File extends EObject {
 	 * @generated
 	 */
 	EList<Property> getProperties();
+
+	/**
+	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.mwe.Import}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Imports</em>' containment reference list.
+	 * @see org.eclipse.emf.mwe.MwePackage#getFile_Imports()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Import> getImports();
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

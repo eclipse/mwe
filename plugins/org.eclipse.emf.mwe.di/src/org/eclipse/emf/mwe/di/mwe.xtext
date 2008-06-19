@@ -3,17 +3,27 @@ language org.eclipse.emf.mwe.di.MWE
 generate mwe "http://www.eclipse.org/emf/mwe/di"
 
 File :
+    imports+=Import*
 	properties+=Property*
 	value=ComplexValue;
+
+Import :
+	JavaImport | GenericImport;
 	
+JavaImport :
+	'import' javaImport=QualifiedName ('.' wildcard?='*')? ';'?;
+	
+GenericImport :
+	'import' value=STRING ';'?;
+
 Property :
 	LocalVariable | PropertiesFileImport;
 	
 LocalVariable :
-	'property' name=ID ('=' value=STRING) ';'?;
+	'var' name=ID ('=' value=Value) ';'?;
 	
 PropertiesFileImport :
-	'properties' file=STRING ';'?;
+	'var' 'file' file=STRING ';'?;
 	
 Value :
 	SimpleValue | ComplexValue | IdRef | WorkflowRef;
@@ -25,7 +35,7 @@ Assignable :
 	ComplexValue | WorkflowRef;
 	
 ComplexValue :
-	(className=QualifiedName)? ('id' id=ID)? fooBar?='{'
+	(className=QualifiedName)? (':' id=ID)? fooBar?='{'
 		assignments+=Assignment*
 	'}';
 	
@@ -35,10 +45,10 @@ WorkflowRef :
 	'}';
 	
 IdRef :
-	'idRef' id=ID;
+	id=ID ';';
 	
 Assignment :
-	feature=ID ('=')? value=Value ';'?;
+	(feature=ID)? '=' value=Value ';'?;
 	
 QualifiedName :
 	parts+=ID (parts+='.' parts+=ID)*;

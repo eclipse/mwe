@@ -2,67 +2,59 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowRefImpl.java,v 1.3 2008/06/19 07:53:37 sefftinge Exp $
+ * $Id: GenericImportImpl.java,v 1.1 2008/06/19 07:53:38 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.mwe.Assignable;
-import org.eclipse.emf.mwe.Assignment;
+import org.eclipse.emf.mwe.GenericImport;
 import org.eclipse.emf.mwe.MwePackage;
-import org.eclipse.emf.mwe.WorkflowRef;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Workflow Ref</b></em>'.
+ * An implementation of the model object '<em><b>Generic Import</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.GenericImportImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
+public class GenericImportImpl extends ImportImpl implements GenericImport {
 	/**
-	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUri()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String URI_EDEFAULT = null;
+	protected static final String VALUE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getUri()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected String uri = URI_EDEFAULT;
+	protected String value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WorkflowRefImpl() {
+	protected GenericImportImpl() {
 		super();
 	}
 
@@ -73,7 +65,7 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return MwePackage.Literals.WORKFLOW_REF;
+		return MwePackage.Literals.GENERIC_IMPORT;
 	}
 
 	/**
@@ -81,8 +73,8 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getUri() {
-		return uri;
+	public String getValue() {
+		return value;
 	}
 
 	/**
@@ -90,11 +82,11 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUri(String newUri) {
-		String oldUri = uri;
-		uri = newUri;
+	public void setValue(String newValue) {
+		String oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, MwePackage.WORKFLOW_REF__URI, oldUri, uri));
+			eNotify(new ENotificationImpl(this, Notification.SET, MwePackage.GENERIC_IMPORT__VALUE, oldValue, value));
 	}
 
 	/**
@@ -105,8 +97,8 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.WORKFLOW_REF__URI:
-				return getUri();
+			case MwePackage.GENERIC_IMPORT__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -116,12 +108,11 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.WORKFLOW_REF__URI:
-				setUri((String)newValue);
+			case MwePackage.GENERIC_IMPORT__VALUE:
+				setValue((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -135,8 +126,8 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.WORKFLOW_REF__URI:
-				setUri(URI_EDEFAULT);
+			case MwePackage.GENERIC_IMPORT__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -150,8 +141,8 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.WORKFLOW_REF__URI:
-				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
+			case MwePackage.GENERIC_IMPORT__VALUE:
+				return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -166,10 +157,10 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (uri: ");
-		result.append(uri);
+		result.append(" (value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}
 
-} //WorkflowRefImpl
+} //GenericImportImpl

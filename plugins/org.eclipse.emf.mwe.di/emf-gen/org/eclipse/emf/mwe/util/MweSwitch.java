@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweSwitch.java,v 1.2 2008/06/17 15:29:48 sefftinge Exp $
+ * $Id: MweSwitch.java,v 1.3 2008/06/19 07:53:40 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.util;
 
@@ -87,6 +87,12 @@ public class MweSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MwePackage.PROPERTY: {
+				Property property = (Property)theEObject;
+				T result = caseProperty(property);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MwePackage.SIMPLE_VALUE: {
 				SimpleValue simpleValue = (SimpleValue)theEObject;
 				T result = caseSimpleValue(simpleValue);
@@ -94,34 +100,16 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MwePackage.ASSIGNMENT: {
-				Assignment assignment = (Assignment)theEObject;
-				T result = caseAssignment(assignment);
+			case MwePackage.FILE: {
+				File file = (File)theEObject;
+				T result = caseFile(file);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MwePackage.LOCAL_VARIABLE: {
-				LocalVariable localVariable = (LocalVariable)theEObject;
-				T result = caseLocalVariable(localVariable);
-				if (result == null) result = caseProperty(localVariable);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.VALUE: {
-				Value value = (Value)theEObject;
-				T result = caseValue(value);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.PROPERTY: {
-				Property property = (Property)theEObject;
-				T result = caseProperty(property);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.ASSIGNABLE: {
-				Assignable assignable = (Assignable)theEObject;
-				T result = caseAssignable(assignable);
+			case MwePackage.GENERIC_IMPORT: {
+				GenericImport genericImport = (GenericImport)theEObject;
+				T result = caseGenericImport(genericImport);
+				if (result == null) result = caseImport(genericImport);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -129,12 +117,6 @@ public class MweSwitch<T> {
 				PropertiesFileImport propertiesFileImport = (PropertiesFileImport)theEObject;
 				T result = casePropertiesFileImport(propertiesFileImport);
 				if (result == null) result = caseProperty(propertiesFileImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.FILE: {
-				File file = (File)theEObject;
-				T result = caseFile(file);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -146,18 +128,29 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MwePackage.IMPORT: {
+				Import import_ = (Import)theEObject;
+				T result = caseImport(import_);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.ASSIGNABLE: {
+				Assignable assignable = (Assignable)theEObject;
+				T result = caseAssignable(assignable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.LOCAL_VARIABLE: {
+				LocalVariable localVariable = (LocalVariable)theEObject;
+				T result = caseLocalVariable(localVariable);
+				if (result == null) result = caseProperty(localVariable);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MwePackage.ID_REF: {
 				IdRef idRef = (IdRef)theEObject;
 				T result = caseIdRef(idRef);
 				if (result == null) result = caseValue(idRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.WORKFLOW_REF: {
-				WorkflowRef workflowRef = (WorkflowRef)theEObject;
-				T result = caseWorkflowRef(workflowRef);
-				if (result == null) result = caseValue(workflowRef);
-				if (result == null) result = caseAssignable(workflowRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -167,8 +160,50 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MwePackage.JAVA_IMPORT: {
+				JavaImport javaImport = (JavaImport)theEObject;
+				T result = caseJavaImport(javaImport);
+				if (result == null) result = caseImport(javaImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.WORKFLOW_REF: {
+				WorkflowRef workflowRef = (WorkflowRef)theEObject;
+				T result = caseWorkflowRef(workflowRef);
+				if (result == null) result = caseAssignable(workflowRef);
+				if (result == null) result = caseValue(workflowRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.ASSIGNMENT: {
+				Assignment assignment = (Assignment)theEObject;
+				T result = caseAssignment(assignment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.VALUE: {
+				Value value = (Value)theEObject;
+				T result = caseValue(value);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Generic Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Generic Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseGenericImport(GenericImport object) {
+		return null;
 	}
 
 	/**
@@ -198,6 +233,21 @@ public class MweSwitch<T> {
 	 * @generated
 	 */
 	public T caseComplexValue(ComplexValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseImport(Import object) {
 		return null;
 	}
 
@@ -348,6 +398,21 @@ public class MweSwitch<T> {
 	 * @generated
 	 */
 	public T caseSimpleValue(SimpleValue object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Java Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Java Import</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJavaImport(JavaImport object) {
 		return null;
 	}
 

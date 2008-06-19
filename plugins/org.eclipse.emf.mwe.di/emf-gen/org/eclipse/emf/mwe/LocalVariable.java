@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LocalVariable.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
+ * $Id: LocalVariable.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -15,8 +15,8 @@ package org.eclipse.emf.mwe;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,30 +26,30 @@ package org.eclipse.emf.mwe;
  */
 public interface LocalVariable extends Property {
 	/**
-	 * Returns the value of the '<em><b>Value</b></em>' attribute.
+	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Value</em>' attribute.
-	 * @see #setValue(String)
+	 * @return the value of the '<em>Value</em>' containment reference.
+	 * @see #setValue(Value)
 	 * @see org.eclipse.emf.mwe.MwePackage#getLocalVariable_Value()
-	 * @model
+	 * @model containment="true"
 	 * @generated
 	 */
-	String getValue();
+	Value getValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Value</em>' attribute.
+	 * @param value the new value of the '<em>Value</em>' containment reference.
 	 * @see #getValue()
 	 * @generated
 	 */
-	void setValue(String value);
+	void setValue(Value value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.

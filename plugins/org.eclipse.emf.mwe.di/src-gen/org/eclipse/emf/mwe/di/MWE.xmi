@@ -8,12 +8,53 @@
   <idElements>MWE</idElements>
   <parserRules name="File">
     <alternatives xsi:type="xtext:Group">
-      <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="properties" operator="+=">
-        <terminal xsi:type="xtext:RuleCall" name="Property"/>
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="imports" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" name="Import"/>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="properties" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" name="Property"/>
+        </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
         <terminal xsi:type="xtext:RuleCall" name="ComplexValue"/>
       </abstractTokens>
+    </alternatives>
+  </parserRules>
+  <parserRules name="Import">
+    <alternatives xsi:type="xtext:Alternatives">
+      <groups xsi:type="xtext:RuleCall" name="JavaImport"/>
+      <groups xsi:type="xtext:RuleCall" name="GenericImport"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="JavaImport">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Keyword" value="import"/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="javaImport" operator="=">
+            <terminal xsi:type="xtext:RuleCall" name="QualifiedName"/>
+          </abstractTokens>
+        </abstractTokens>
+        <abstractTokens xsi:type="xtext:Group" cardinality="?">
+          <abstractTokens xsi:type="xtext:Keyword" value="."/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="wildcard" operator="?=">
+            <terminal xsi:type="xtext:Keyword" value="*"/>
+          </abstractTokens>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+    </alternatives>
+  </parserRules>
+  <parserRules name="GenericImport">
+    <alternatives xsi:type="xtext:Group">
+      <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Keyword" value="import"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+        </abstractTokens>
+      </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
     </alternatives>
   </parserRules>
   <parserRules name="Property">
@@ -26,7 +67,7 @@
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
-          <abstractTokens xsi:type="xtext:Keyword" value="property"/>
+          <abstractTokens xsi:type="xtext:Keyword" value="var"/>
           <abstractTokens xsi:type="xtext:Assignment" feature="name" operator="=">
             <terminal xsi:type="xtext:RuleCall" name="ID"/>
           </abstractTokens>
@@ -34,7 +75,7 @@
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Keyword" value="="/>
           <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
-            <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+            <terminal xsi:type="xtext:RuleCall" name="Value"/>
           </abstractTokens>
         </abstractTokens>
       </abstractTokens>
@@ -44,7 +85,10 @@
   <parserRules name="PropertiesFileImport">
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
-        <abstractTokens xsi:type="xtext:Keyword" value="properties"/>
+        <abstractTokens xsi:type="xtext:Group">
+          <abstractTokens xsi:type="xtext:Keyword" value="var"/>
+          <abstractTokens xsi:type="xtext:Keyword" value="file"/>
+        </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="file" operator="=">
           <terminal xsi:type="xtext:RuleCall" name="STRING"/>
         </abstractTokens>
@@ -84,7 +128,7 @@
               <terminal xsi:type="xtext:RuleCall" name="QualifiedName"/>
             </abstractTokens>
             <abstractTokens xsi:type="xtext:Group" cardinality="?">
-              <abstractTokens xsi:type="xtext:Keyword" value="id"/>
+              <abstractTokens xsi:type="xtext:Keyword" value=":"/>
               <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
                 <terminal xsi:type="xtext:RuleCall" name="ID"/>
               </abstractTokens>
@@ -122,20 +166,20 @@
   </parserRules>
   <parserRules name="IdRef">
     <alternatives xsi:type="xtext:Group">
-      <abstractTokens xsi:type="xtext:Keyword" value="idRef"/>
       <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
         <terminal xsi:type="xtext:RuleCall" name="ID"/>
       </abstractTokens>
+      <abstractTokens xsi:type="xtext:Keyword" value=";"/>
     </alternatives>
   </parserRules>
   <parserRules name="Assignment">
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
-          <abstractTokens xsi:type="xtext:Assignment" feature="feature" operator="=">
+          <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="feature" operator="=">
             <terminal xsi:type="xtext:RuleCall" name="ID"/>
           </abstractTokens>
-          <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value="="/>
+          <abstractTokens xsi:type="xtext:Keyword" value="="/>
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
           <terminal xsi:type="xtext:RuleCall" name="Value"/>

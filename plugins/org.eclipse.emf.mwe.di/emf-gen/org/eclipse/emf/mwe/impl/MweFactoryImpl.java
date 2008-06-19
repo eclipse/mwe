@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweFactoryImpl.java,v 1.2 2008/06/17 15:29:45 sefftinge Exp $
+ * $Id: MweFactoryImpl.java,v 1.3 2008/06/19 07:53:36 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -61,17 +61,29 @@ public class MweFactoryImpl extends EFactoryImpl implements MweFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case MwePackage.SIMPLE_VALUE: return createSimpleValue();
-			case MwePackage.ASSIGNMENT: return createAssignment();
-			case MwePackage.LOCAL_VARIABLE: return createLocalVariable();
-			case MwePackage.PROPERTIES_FILE_IMPORT: return createPropertiesFileImport();
 			case MwePackage.FILE: return createFile();
+			case MwePackage.GENERIC_IMPORT: return createGenericImport();
+			case MwePackage.PROPERTIES_FILE_IMPORT: return createPropertiesFileImport();
 			case MwePackage.COMPLEX_VALUE: return createComplexValue();
+			case MwePackage.LOCAL_VARIABLE: return createLocalVariable();
 			case MwePackage.ID_REF: return createIdRef();
-			case MwePackage.WORKFLOW_REF: return createWorkflowRef();
 			case MwePackage.QUALIFIED_NAME: return createQualifiedName();
+			case MwePackage.JAVA_IMPORT: return createJavaImport();
+			case MwePackage.WORKFLOW_REF: return createWorkflowRef();
+			case MwePackage.ASSIGNMENT: return createAssignment();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public GenericImport createGenericImport() {
+		GenericImportImpl genericImport = new GenericImportImpl();
+		return genericImport;
 	}
 
 	/**
@@ -162,6 +174,16 @@ public class MweFactoryImpl extends EFactoryImpl implements MweFactory {
 	public SimpleValue createSimpleValue() {
 		SimpleValueImpl simpleValue = new SimpleValueImpl();
 		return simpleValue;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JavaImport createJavaImport() {
+		JavaImportImpl javaImport = new JavaImportImpl();
+		return javaImport;
 	}
 
 	/**

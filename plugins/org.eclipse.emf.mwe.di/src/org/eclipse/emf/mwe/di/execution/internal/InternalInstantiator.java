@@ -3,10 +3,12 @@ package org.eclipse.emf.mwe.di.execution.internal;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.ComplexValue;
@@ -17,28 +19,28 @@ import org.eclipse.emf.mwe.Property;
 import org.eclipse.emf.mwe.SimpleValue;
 import org.eclipse.emf.mwe.WorkflowRef;
 import org.eclipse.emf.mwe.di.MweUtil;
-import org.eclipse.emf.mwe.di.execution.IReflectionHandler;
 import org.eclipse.emf.mwe.di.execution.MweInstantiationException;
+import org.eclipse.emf.mwe.di.types.Type;
+import org.eclipse.emf.mwe.di.types.TypeSystem;
 import org.eclipse.emf.mwe.util.MweSwitch;
 import org.eclipse.xtext.resource.ClassloaderClasspathUriResolver;
 
-
 public class InternalInstantiator extends MweSwitch<Object> {
-	private Map<String, String> properties = new HashMap<String, String>();
-	private Map<String, Object> beans = new HashMap<String, Object>();
-	
-	private IReflectionHandler reflHandler = null;
+	private Map<String, Object> localVars = new HashMap<String, Object>();
 
-	public InternalInstantiator(IReflectionHandler reflHandler) {
+	private TypeSystem typeSystem = null;
+	private File file;
+	private Stack<Type> typeStack = new Stack<Type>();
+
+	public InternalInstantiator(TypeSystem typeSystem, File file, Map<String, Object> params) {
 		super();
-		this.reflHandler = reflHandler;
+		this.typeSystem = typeSystem;
+		if (params != null)
+			localVars.putAll(params);
+		this.file = file;
 	}
 
-	public Object instantiate(File file, Map<String, String> params, Map<String, Object> beans) {
-		if (params != null)
-			properties.putAll(params);
-		if (beans != null)
-			this.beans.putAll(beans);
+	public Object instantiate() {
 		return doSwitch(file);
 	}
 
@@ -52,11 +54,11 @@ public class InternalInstantiator extends MweSwitch<Object> {
 
 	@Override
 	public Object caseIdRef(IdRef object) {
-		if (!beans.containsKey(object.getId()))
+		if (!localVars.containsKey(object.getId()))
 			throw new MweInstantiationException("Couldn't find bean with id " + object.getId(), object);
-		return beans.get(object.getId());
+		return localVars.get(object.getId());
 	}
-	
+
 	@Override
 	public Object caseWorkflowRef(WorkflowRef object) {
 		URI uri = URI.createURI(object.getUri());
@@ -68,53 +70,74 @@ public class InternalInstantiator extends MweSwitch<Object> {
 		} catch (IOException e) {
 			throw new WrappedException(e);
 		}
-		EObject object2 = resource.getContents().get(0);
-		return doSwitch(object2);
+		try {
+			typeStack.push(null);
+			File f = (File) resource.getContents().get(0); // TODO error handling
+			Map<String, Object> params = new HashMap<String, Object>();
+			for (Assignment ass : object.getAssignments()) {
+				Object doSwitch = doSwitch(ass.getValue());
+				params.put(ass.getFeature(), doSwitch);
+			}
+			return new InternalInstantiator(typeSystem,f,params).instantiate();
+		} finally {
+			typeStack.pop();
+		}
 	}
 
 	@Override
 	public Object caseComplexValue(ComplexValue complexValue) {
-		String className = findJavaClassName(complexValue);
-		Object result = reflHandler.instantiate(className);
+		Type t = findType(complexValue);
+		if (t==null)
+			throw new RuntimeException("Couldn't find type for "+complexValue);
+		Object result = t.newInstance();
 		if (complexValue.getId() != null)
-			beans.put(complexValue.getId(), result);
-		for (Assignment ass : complexValue.getAssignments()) {
-			Object doSwitch = doSwitch(ass.getValue());
-			reflHandler.inject(result, ass.getFeature(), doSwitch);
+			localVars.put(complexValue.getId(), result);
+		try {
+			typeStack.push(t);
+			for (Assignment ass : complexValue.getAssignments()) {
+				Object doSwitch = doSwitch(ass.getValue());
+				t.inject(result, ass.getFeature(), doSwitch);
+			}
+		} finally {
+			typeStack.pop();
 		}
 		return result;
 	}
-	
-	private String findJavaClassName(ComplexValue complexValue) {
-		if (complexValue.getClassName()!=null) 
-			return MweUtil.toString(complexValue.getClassName());
-		
+
+	private Type findType(ComplexValue complexValue) {
+		if (complexValue.getClassName() != null)
+			return typeSystem.typeForName(MweUtil.toString(complexValue.getClassName()), file);
+
 		Assignment ass = (Assignment) complexValue.eContainer();
-		if (ass==null)
+		if (ass == null)
 			return null;
-		
-		String parentsType = findJavaClassName((ComplexValue) ass.eContainer());
-		return reflHandler.getFeaturesTypeName(parentsType,ass.getFeature());
+		Type peek = typeStack.peek();
+		return peek.typeForFeature(ass.getFeature());
 	}
 
-
+	private Pattern p = Pattern.compile("\\$\\{(\\w+)\\}");
 	@Override
 	public Object caseSimpleValue(SimpleValue object) {
-		return object.getValue();
+		String value = object.getValue();
+		Matcher m = p.matcher(value);
+		while (m.find()) {
+			String var = m.group(1);
+			String string = (String) localVars.get(var);
+			value = m.replaceFirst(string);
+			m = p.matcher(value);
+		}
+		return value;
 	}
 
 	@Override
 	public Object caseLocalVariable(LocalVariable object) {
-		if (!properties.containsKey(object.getValue())) {
+		if (!localVars.containsKey(object.getValue())) {
 			if (object.getValue() == null)
 				throw new MweInstantiationException("The parameter '" + object.getName() + "' must be passed in.",
 						object);
-			properties.put(object.getValue(), object.getName());
+			localVars.put(object.getName(),doSwitch(object.getValue()));
 		}
 		return super.caseLocalVariable(object);
 	}
 
-	public Object instantiate(File file) {
-		return instantiate(file, null, null);
-	}
 }

@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g 2008-06-17 17:20:13
+// $ANTLR 3.0.1 ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g 2008-06-19 09:47:56
 
 package org.eclipse.emf.mwe.di.parser.internal; 
 
@@ -19,14 +19,14 @@ import java.util.ArrayList;
 
 public class InternalMWEParser extends AbstractAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_STRING", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_LEXER_BODY", "RULE_ANY_OTHER", "'property'", "'='", "';'", "'properties'", "'id'", "'{'", "'}'", "'file'", "'idRef'", "'.'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_LEXER_BODY", "RULE_ANY_OTHER", "'import'", "'.'", "'*'", "';'", "'var'", "'='", "'file'", "':'", "'{'", "'}'"
     };
     public static final int RULE_ML_COMMENT=7;
-    public static final int RULE_ID=4;
+    public static final int RULE_ID=5;
     public static final int RULE_WS=9;
     public static final int EOF=-1;
     public static final int RULE_INT=6;
-    public static final int RULE_STRING=5;
+    public static final int RULE_STRING=4;
     public static final int RULE_ANY_OTHER=11;
     public static final int RULE_SL_COMMENT=8;
     public static final int RULE_LEXER_BODY=10;
@@ -92,9 +92,11 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleFile
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:100:1: ruleFile returns [EObject current=null] : ( (lv_properties= ruleProperty )* (lv_value= ruleComplexValue ) ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:100:1: ruleFile returns [EObject current=null] : ( ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* ) (lv_value= ruleComplexValue ) ) ;
     public final EObject ruleFile() throws RecognitionException {
         EObject current = null;
+
+        EObject lv_imports = null;
 
         EObject lv_properties = null;
 
@@ -103,31 +105,72 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:101:33: ( ( (lv_properties= ruleProperty )* (lv_value= ruleComplexValue ) ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:1: ( (lv_properties= ruleProperty )* (lv_value= ruleComplexValue ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:101:33: ( ( ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* ) (lv_value= ruleComplexValue ) ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:1: ( ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* ) (lv_value= ruleComplexValue ) )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:1: ( (lv_properties= ruleProperty )* (lv_value= ruleComplexValue ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:2: (lv_properties= ruleProperty )* (lv_value= ruleComplexValue )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:1: ( ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* ) (lv_value= ruleComplexValue ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:2: ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* ) (lv_value= ruleComplexValue )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:2: (lv_properties= ruleProperty )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:2: ( (lv_imports= ruleImport )* (lv_properties= ruleProperty )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:3: (lv_imports= ruleImport )* (lv_properties= ruleProperty )*
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:102:3: (lv_imports= ruleImport )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
 
-                if ( (LA1_0==12||LA1_0==15) ) {
+                if ( (LA1_0==12) ) {
                     alt1=1;
                 }
 
 
                 switch (alt1) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:104:5: lv_properties= ruleProperty
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:104:5: lv_imports= ruleImport
             	    {
             	     
-            	            currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
+            	            currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleProperty_in_ruleFile133);
+            	    pushFollow(FOLLOW_ruleImport_in_ruleFile134);
+            	    lv_imports=ruleImport();
+            	    _fsp--;
+
+
+            	            currentNode = currentNode.getParent();
+            	            if (current==null) {
+            	                current = factory.create("File");
+            	                associateNodeWithAstElement(currentNode, current);
+            	            }
+            	            factory.add(current, "imports", lv_imports,null);    
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop1;
+                }
+            } while (true);
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:115:3: (lv_properties= ruleProperty )*
+            loop2:
+            do {
+                int alt2=2;
+                int LA2_0 = input.LA(1);
+
+                if ( (LA2_0==16) ) {
+                    alt2=1;
+                }
+
+
+                switch (alt2) {
+            	case 1 :
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:117:5: lv_properties= ruleProperty
+            	    {
+            	     
+            	            currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+            	        
+            	    pushFollow(FOLLOW_ruleProperty_in_ruleFile164);
             	    lv_properties=ruleProperty();
             	    _fsp--;
 
@@ -143,17 +186,20 @@ public class InternalMWEParser extends AbstractAntlrParser {
             	    break;
 
             	default :
-            	    break loop1;
+            	    break loop2;
                 }
             } while (true);
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:115:3: (lv_value= ruleComplexValue )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:117:5: lv_value= ruleComplexValue
+
+            }
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:128:4: (lv_value= ruleComplexValue )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:130:5: lv_value= ruleComplexValue
             {
              
                     currentNode=createCompositeNode("//@parserRules.0/@alternatives/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
                 
-            pushFollow(FOLLOW_ruleComplexValue_in_ruleFile163);
+            pushFollow(FOLLOW_ruleComplexValue_in_ruleFile195);
             lv_value=ruleComplexValue();
             _fsp--;
 
@@ -188,8 +234,319 @@ public class InternalMWEParser extends AbstractAntlrParser {
     // $ANTLR end ruleFile
 
 
+    // $ANTLR start ruleImport
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:146:1: ruleImport returns [EObject current=null] : (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport ) ;
+    public final EObject ruleImport() throws RecognitionException {
+        EObject current = null;
+
+        EObject this_JavaImport = null;
+
+        EObject this_GenericImport = null;
+
+
+         EObject temp=null; 
+        try {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:147:33: ( (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:148:1: (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport )
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:148:1: (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport )
+            int alt3=2;
+            int LA3_0 = input.LA(1);
+
+            if ( (LA3_0==12) ) {
+                int LA3_1 = input.LA(2);
+
+                if ( (LA3_1==RULE_STRING) ) {
+                    alt3=2;
+                }
+                else if ( (LA3_1==RULE_ID) ) {
+                    alt3=1;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("148:1: (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport )", 3, 1, input);
+
+                    throw nvae;
+                }
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("148:1: (this_JavaImport= ruleJavaImport | this_GenericImport= ruleGenericImport )", 3, 0, input);
+
+                throw nvae;
+            }
+            switch (alt3) {
+                case 1 :
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:149:5: this_JavaImport= ruleJavaImport
+                    {
+                     
+                            currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
+                        
+                    pushFollow(FOLLOW_ruleJavaImport_in_ruleImport243);
+                    this_JavaImport=ruleJavaImport();
+                    _fsp--;
+
+                     
+                            current = this_JavaImport; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+                case 2 :
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:159:5: this_GenericImport= ruleGenericImport
+                    {
+                     
+                            currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+                        
+                    pushFollow(FOLLOW_ruleGenericImport_in_ruleImport270);
+                    this_GenericImport=ruleGenericImport();
+                    _fsp--;
+
+                     
+                            current = this_GenericImport; 
+                            currentNode = currentNode.getParent();
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+                IParseError error = createParseError(re);
+                reportError(error, re);
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleImport
+
+
+    // $ANTLR start ruleJavaImport
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:172:1: ruleJavaImport returns [EObject current=null] : ( ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? ) ( ';' )? ) ;
+    public final EObject ruleJavaImport() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_wildcard=null;
+        EObject lv_javaImport = null;
+
+
+         EObject temp=null; 
+        try {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:173:33: ( ( ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? ) ( ';' )? ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:1: ( ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? ) ( ';' )? )
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:1: ( ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:2: ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? ) ( ';' )?
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:2: ( ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:3: ( 'import' (lv_javaImport= ruleQualifiedName ) ) ( '.' (lv_wildcard= '*' ) )?
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:3: ( 'import' (lv_javaImport= ruleQualifiedName ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:174:4: 'import' (lv_javaImport= ruleQualifiedName )
+            {
+            match(input,12,FOLLOW_12_in_ruleJavaImport305); 
+
+                    createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:179:1: (lv_javaImport= ruleQualifiedName )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:181:5: lv_javaImport= ruleQualifiedName
+            {
+             
+                    currentNode=createCompositeNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+                
+            pushFollow(FOLLOW_ruleQualifiedName_in_ruleJavaImport334);
+            lv_javaImport=ruleQualifiedName();
+            _fsp--;
+
+
+                    currentNode = currentNode.getParent();
+                    if (current==null) {
+                        current = factory.create("JavaImport");
+                        associateNodeWithAstElement(currentNode, current);
+                    }
+                    factory.set(current, "javaImport", lv_javaImport,null);    
+
+            }
+
+
+            }
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:192:3: ( '.' (lv_wildcard= '*' ) )?
+            int alt4=2;
+            int LA4_0 = input.LA(1);
+
+            if ( (LA4_0==13) ) {
+                alt4=1;
+            }
+            switch (alt4) {
+                case 1 :
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:192:4: '.' (lv_wildcard= '*' )
+                    {
+                    match(input,13,FOLLOW_13_in_ruleJavaImport346); 
+
+                            createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                        
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:197:1: (lv_wildcard= '*' )
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:198:5: lv_wildcard= '*'
+                    {
+                    lv_wildcard=(Token)input.LT(1);
+                    match(input,14,FOLLOW_14_in_ruleJavaImport364); 
+
+                            if (current==null) {
+                                current = factory.create("JavaImport");
+                                associateNodeWithAstElement(currentNode, current);
+                            }
+                            factory.set(current, "wildcard", true,"*");        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"wildcard");    
+
+                    }
+
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:206:5: ( ';' )?
+            int alt5=2;
+            int LA5_0 = input.LA(1);
+
+            if ( (LA5_0==15) ) {
+                alt5=1;
+            }
+            switch (alt5) {
+                case 1 :
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:206:6: ';'
+                    {
+                    match(input,15,FOLLOW_15_in_ruleJavaImport380); 
+
+                            createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+                IParseError error = createParseError(re);
+                reportError(error, re);
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleJavaImport
+
+
+    // $ANTLR start ruleGenericImport
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:216:1: ruleGenericImport returns [EObject current=null] : ( ( 'import' (lv_value= RULE_STRING ) ) ( ';' )? ) ;
+    public final EObject ruleGenericImport() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_value=null;
+
+         EObject temp=null; 
+        try {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:217:33: ( ( ( 'import' (lv_value= RULE_STRING ) ) ( ';' )? ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:218:1: ( ( 'import' (lv_value= RULE_STRING ) ) ( ';' )? )
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:218:1: ( ( 'import' (lv_value= RULE_STRING ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:218:2: ( 'import' (lv_value= RULE_STRING ) ) ( ';' )?
+            {
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:218:2: ( 'import' (lv_value= RULE_STRING ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:218:3: 'import' (lv_value= RULE_STRING )
+            {
+            match(input,12,FOLLOW_12_in_ruleGenericImport418); 
+
+                    createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:223:1: (lv_value= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:224:5: lv_value= RULE_STRING
+            {
+            lv_value=(Token)input.LT(1);
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleGenericImport436); 
+             
+                createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+                
+
+                    if (current==null) {
+                        current = factory.create("GenericImport");
+                        associateNodeWithAstElement(currentNode, current);
+                    }
+                    factory.set(current, "value", lv_value,"STRING");    
+
+            }
+
+
+            }
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:235:3: ( ';' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
+
+            if ( (LA6_0==15) ) {
+                alt6=1;
+            }
+            switch (alt6) {
+                case 1 :
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:235:4: ';'
+                    {
+                    match(input,15,FOLLOW_15_in_ruleGenericImport455); 
+
+                            createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                        
+
+                    }
+                    break;
+
+            }
+
+
+            }
+
+
+            }
+
+        }
+         
+            catch (RecognitionException re) { 
+                recover(input,re); 
+                appendSkippedTokens();
+                IParseError error = createParseError(re);
+                reportError(error, re);
+            } 
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end ruleGenericImport
+
+
     // $ANTLR start ruleProperty
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:133:1: ruleProperty returns [EObject current=null] : (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:245:1: ruleProperty returns [EObject current=null] : (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport ) ;
     public final EObject ruleProperty() throws RecognitionException {
         EObject current = null;
 
@@ -200,33 +557,43 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:134:33: ( (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:135:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:246:33: ( (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:247:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:135:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )
-            int alt2=2;
-            int LA2_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:247:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )
+            int alt7=2;
+            int LA7_0 = input.LA(1);
 
-            if ( (LA2_0==12) ) {
-                alt2=1;
-            }
-            else if ( (LA2_0==15) ) {
-                alt2=2;
+            if ( (LA7_0==16) ) {
+                int LA7_1 = input.LA(2);
+
+                if ( (LA7_1==18) ) {
+                    alt7=2;
+                }
+                else if ( (LA7_1==RULE_ID) ) {
+                    alt7=1;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("247:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )", 7, 1, input);
+
+                    throw nvae;
+                }
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("135:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )", 2, 0, input);
+                    new NoViableAltException("247:1: (this_LocalVariable= ruleLocalVariable | this_PropertiesFileImport= rulePropertiesFileImport )", 7, 0, input);
 
                 throw nvae;
             }
-            switch (alt2) {
+            switch (alt7) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:136:5: this_LocalVariable= ruleLocalVariable
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:248:5: this_LocalVariable= ruleLocalVariable
                     {
                      
-                            currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
+                            currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0" /* xtext::RuleCall */, currentNode); 
                         
-                    pushFollow(FOLLOW_ruleLocalVariable_in_ruleProperty211);
+                    pushFollow(FOLLOW_ruleLocalVariable_in_ruleProperty505);
                     this_LocalVariable=ruleLocalVariable();
                     _fsp--;
 
@@ -238,12 +605,12 @@ public class InternalMWEParser extends AbstractAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:146:5: this_PropertiesFileImport= rulePropertiesFileImport
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:258:5: this_PropertiesFileImport= rulePropertiesFileImport
                     {
                      
-                            currentNode=createCompositeNode("//@parserRules.1/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+                            currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
                         
-                    pushFollow(FOLLOW_rulePropertiesFileImport_in_ruleProperty238);
+                    pushFollow(FOLLOW_rulePropertiesFileImport_in_ruleProperty532);
                     this_PropertiesFileImport=rulePropertiesFileImport();
                     _fsp--;
 
@@ -276,38 +643,39 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleLocalVariable
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:159:1: ruleLocalVariable returns [EObject current=null] : ( ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) ) ( ';' )? ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:271:1: ruleLocalVariable returns [EObject current=null] : ( ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) ) ( ';' )? ) ;
     public final EObject ruleLocalVariable() throws RecognitionException {
         EObject current = null;
 
         Token lv_name=null;
-        Token lv_value=null;
+        EObject lv_value = null;
+
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:160:33: ( ( ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) ) ( ';' )? ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:1: ( ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:272:33: ( ( ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) ) ( ';' )? ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:1: ( ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) ) ( ';' )? )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:1: ( ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) ) ( ';' )? )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:2: ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) ) ( ';' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:1: ( ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:2: ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) ) ( ';' )?
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:2: ( ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:3: ( 'property' (lv_name= RULE_ID ) ) ( '=' (lv_value= RULE_STRING ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:2: ( ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:3: ( 'var' (lv_name= RULE_ID ) ) ( '=' (lv_value= ruleValue ) )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:3: ( 'property' (lv_name= RULE_ID ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:161:4: 'property' (lv_name= RULE_ID )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:3: ( 'var' (lv_name= RULE_ID ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:273:4: 'var' (lv_name= RULE_ID )
             {
-            match(input,12,FOLLOW_12_in_ruleLocalVariable273); 
+            match(input,16,FOLLOW_16_in_ruleLocalVariable567); 
 
-                    createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
                 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:166:1: (lv_name= RULE_ID )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:167:5: lv_name= RULE_ID
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:278:1: (lv_name= RULE_ID )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:279:5: lv_name= RULE_ID
             {
             lv_name=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleLocalVariable291); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleLocalVariable585); 
              
-                createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"name"); 
+                createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"name"); 
                 
 
                     if (current==null) {
@@ -321,27 +689,30 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:178:3: ( '=' (lv_value= RULE_STRING ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:178:4: '=' (lv_value= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:290:3: ( '=' (lv_value= ruleValue ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:290:4: '=' (lv_value= ruleValue )
             {
-            match(input,13,FOLLOW_13_in_ruleLocalVariable310); 
+            match(input,17,FOLLOW_17_in_ruleLocalVariable604); 
 
-                    createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
                 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:183:1: (lv_value= RULE_STRING )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:184:5: lv_value= RULE_STRING
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:295:1: (lv_value= ruleValue )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:297:5: lv_value= ruleValue
             {
-            lv_value=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleLocalVariable328); 
              
-                createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+                    currentNode=createCompositeNode("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
                 
+            pushFollow(FOLLOW_ruleValue_in_ruleLocalVariable633);
+            lv_value=ruleValue();
+            _fsp--;
 
+
+                    currentNode = currentNode.getParent();
                     if (current==null) {
                         current = factory.create("LocalVariable");
                         associateNodeWithAstElement(currentNode, current);
                     }
-                    factory.set(current, "value", lv_value,"STRING");    
+                    factory.set(current, "value", lv_value,null);    
 
             }
 
@@ -351,20 +722,20 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:195:4: ( ';' )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:308:4: ( ';' )?
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA3_0==14) ) {
-                alt3=1;
+            if ( (LA8_0==15) ) {
+                alt8=1;
             }
-            switch (alt3) {
+            switch (alt8) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:195:5: ';'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:308:5: ';'
                     {
-                    match(input,14,FOLLOW_14_in_ruleLocalVariable348); 
+                    match(input,15,FOLLOW_15_in_ruleLocalVariable646); 
 
-                            createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                            createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                         
 
                     }
@@ -394,7 +765,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start rulePropertiesFileImport
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:205:1: rulePropertiesFileImport returns [EObject current=null] : ( ( 'properties' (lv_file= RULE_STRING ) ) ( ';' )? ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:318:1: rulePropertiesFileImport returns [EObject current=null] : ( ( ( 'var' 'file' ) (lv_file= RULE_STRING ) ) ( ';' )? ) ;
     public final EObject rulePropertiesFileImport() throws RecognitionException {
         EObject current = null;
 
@@ -402,26 +773,36 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:206:33: ( ( ( 'properties' (lv_file= RULE_STRING ) ) ( ';' )? ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:207:1: ( ( 'properties' (lv_file= RULE_STRING ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:319:33: ( ( ( ( 'var' 'file' ) (lv_file= RULE_STRING ) ) ( ';' )? ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:1: ( ( ( 'var' 'file' ) (lv_file= RULE_STRING ) ) ( ';' )? )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:207:1: ( ( 'properties' (lv_file= RULE_STRING ) ) ( ';' )? )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:207:2: ( 'properties' (lv_file= RULE_STRING ) ) ( ';' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:1: ( ( ( 'var' 'file' ) (lv_file= RULE_STRING ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:2: ( ( 'var' 'file' ) (lv_file= RULE_STRING ) ) ( ';' )?
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:207:2: ( 'properties' (lv_file= RULE_STRING ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:207:3: 'properties' (lv_file= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:2: ( ( 'var' 'file' ) (lv_file= RULE_STRING ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:3: ( 'var' 'file' ) (lv_file= RULE_STRING )
             {
-            match(input,15,FOLLOW_15_in_rulePropertiesFileImport386); 
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:3: ( 'var' 'file' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:320:4: 'var' 'file'
+            {
+            match(input,16,FOLLOW_16_in_rulePropertiesFileImport685); 
 
-                    createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
                 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:212:1: (lv_file= RULE_STRING )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:213:5: lv_file= RULE_STRING
+            match(input,18,FOLLOW_18_in_rulePropertiesFileImport695); 
+
+                    createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                
+
+            }
+
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:330:2: (lv_file= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:331:5: lv_file= RULE_STRING
             {
             lv_file=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertiesFileImport404); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rulePropertiesFileImport714); 
              
-                createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"file"); 
+                createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"file"); 
                 
 
                     if (current==null) {
@@ -435,20 +816,20 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:224:3: ( ';' )?
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:342:3: ( ';' )?
+            int alt9=2;
+            int LA9_0 = input.LA(1);
 
-            if ( (LA4_0==14) ) {
-                alt4=1;
+            if ( (LA9_0==15) ) {
+                alt9=1;
             }
-            switch (alt4) {
+            switch (alt9) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:224:4: ';'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:342:4: ';'
                     {
-                    match(input,14,FOLLOW_14_in_rulePropertiesFileImport423); 
+                    match(input,15,FOLLOW_15_in_rulePropertiesFileImport733); 
 
-                            createLeafNode("//@parserRules.3/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                            createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                         
 
                     }
@@ -478,7 +859,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleValue
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:234:1: ruleValue returns [EObject current=null] : ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:352:1: ruleValue returns [EObject current=null] : ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef ) ;
     public final EObject ruleValue() throws RecognitionException {
         EObject current = null;
 
@@ -493,73 +874,86 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:235:33: ( ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:353:33: ( ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( ((LA7_0>=RULE_ID && LA7_0<=RULE_STRING)||(LA7_0>=16 && LA7_0<=17)||LA7_0==20) ) {
-                alt7=1;
+            if ( ((LA12_0>=RULE_STRING && LA12_0<=RULE_ID)||(LA12_0>=19 && LA12_0<=20)) ) {
+                alt12=1;
             }
-            else if ( (LA7_0==19) ) {
-                alt7=2;
+            else if ( (LA12_0==18) ) {
+                alt12=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("236:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )", 7, 0, input);
+                    new NoViableAltException("354:1: ( ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef ) | this_WorkflowRef= ruleWorkflowRef )", 12, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt12) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )
                     {
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )
-                    int alt6=2;
-                    int LA6_0 = input.LA(1);
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )
+                    int alt11=2;
+                    int LA11_0 = input.LA(1);
 
-                    if ( ((LA6_0>=RULE_ID && LA6_0<=RULE_STRING)||(LA6_0>=16 && LA6_0<=17)) ) {
-                        alt6=1;
+                    if ( (LA11_0==RULE_STRING||(LA11_0>=19 && LA11_0<=20)) ) {
+                        alt11=1;
                     }
-                    else if ( (LA6_0==20) ) {
-                        alt6=2;
+                    else if ( (LA11_0==RULE_ID) ) {
+                        int LA11_2 = input.LA(2);
+
+                        if ( (LA11_2==15) ) {
+                            alt11=2;
+                        }
+                        else if ( (LA11_2==13||(LA11_2>=19 && LA11_2<=20)) ) {
+                            alt11=1;
+                        }
+                        else {
+                            NoViableAltException nvae =
+                                new NoViableAltException("354:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )", 11, 2, input);
+
+                            throw nvae;
+                        }
                     }
                     else {
                         NoViableAltException nvae =
-                            new NoViableAltException("236:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )", 6, 0, input);
+                            new NoViableAltException("354:2: ( (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue ) | this_IdRef= ruleIdRef )", 11, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt6) {
+                    switch (alt11) {
                         case 1 :
-                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )
+                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )
                             {
-                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:236:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )
-                            int alt5=2;
-                            int LA5_0 = input.LA(1);
+                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:354:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )
+                            int alt10=2;
+                            int LA10_0 = input.LA(1);
 
-                            if ( (LA5_0==RULE_STRING) ) {
-                                alt5=1;
+                            if ( (LA10_0==RULE_STRING) ) {
+                                alt10=1;
                             }
-                            else if ( (LA5_0==RULE_ID||(LA5_0>=16 && LA5_0<=17)) ) {
-                                alt5=2;
+                            else if ( (LA10_0==RULE_ID||(LA10_0>=19 && LA10_0<=20)) ) {
+                                alt10=2;
                             }
                             else {
                                 NoViableAltException nvae =
-                                    new NoViableAltException("236:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )", 5, 0, input);
+                                    new NoViableAltException("354:3: (this_SimpleValue= ruleSimpleValue | this_ComplexValue= ruleComplexValue )", 10, 0, input);
 
                                 throw nvae;
                             }
-                            switch (alt5) {
+                            switch (alt10) {
                                 case 1 :
-                                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:237:5: this_SimpleValue= ruleSimpleValue
+                                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:355:5: this_SimpleValue= ruleSimpleValue
                                     {
                                      
-                                            currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.0" /* xtext::RuleCall */, currentNode); 
+                                            currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.0" /* xtext::RuleCall */, currentNode); 
                                         
-                                    pushFollow(FOLLOW_ruleSimpleValue_in_ruleValue475);
+                                    pushFollow(FOLLOW_ruleSimpleValue_in_ruleValue785);
                                     this_SimpleValue=ruleSimpleValue();
                                     _fsp--;
 
@@ -571,12 +965,12 @@ public class InternalMWEParser extends AbstractAntlrParser {
                                     }
                                     break;
                                 case 2 :
-                                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:247:5: this_ComplexValue= ruleComplexValue
+                                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:365:5: this_ComplexValue= ruleComplexValue
                                     {
                                      
-                                            currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+                                            currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
                                         
-                                    pushFollow(FOLLOW_ruleComplexValue_in_ruleValue502);
+                                    pushFollow(FOLLOW_ruleComplexValue_in_ruleValue812);
                                     this_ComplexValue=ruleComplexValue();
                                     _fsp--;
 
@@ -594,12 +988,12 @@ public class InternalMWEParser extends AbstractAntlrParser {
                             }
                             break;
                         case 2 :
-                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:257:5: this_IdRef= ruleIdRef
+                            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:375:5: this_IdRef= ruleIdRef
                             {
                              
-                                    currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
+                                    currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.0/@groups.1" /* xtext::RuleCall */, currentNode); 
                                 
-                            pushFollow(FOLLOW_ruleIdRef_in_ruleValue530);
+                            pushFollow(FOLLOW_ruleIdRef_in_ruleValue840);
                             this_IdRef=ruleIdRef();
                             _fsp--;
 
@@ -617,12 +1011,12 @@ public class InternalMWEParser extends AbstractAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:267:5: this_WorkflowRef= ruleWorkflowRef
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:385:5: this_WorkflowRef= ruleWorkflowRef
                     {
                      
-                            currentNode=createCompositeNode("//@parserRules.4/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
+                            currentNode=createCompositeNode("//@parserRules.7/@alternatives/@groups.1" /* xtext::RuleCall */, currentNode); 
                         
-                    pushFollow(FOLLOW_ruleWorkflowRef_in_ruleValue558);
+                    pushFollow(FOLLOW_ruleWorkflowRef_in_ruleValue868);
                     this_WorkflowRef=ruleWorkflowRef();
                     _fsp--;
 
@@ -655,7 +1049,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleSimpleValue
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:280:1: ruleSimpleValue returns [EObject current=null] : (lv_value= RULE_STRING ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:398:1: ruleSimpleValue returns [EObject current=null] : (lv_value= RULE_STRING ) ;
     public final EObject ruleSimpleValue() throws RecognitionException {
         EObject current = null;
 
@@ -663,16 +1057,16 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:281:33: ( (lv_value= RULE_STRING ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:282:1: (lv_value= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:399:33: ( (lv_value= RULE_STRING ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:400:1: (lv_value= RULE_STRING )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:282:1: (lv_value= RULE_STRING )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:283:5: lv_value= RULE_STRING
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:400:1: (lv_value= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:401:5: lv_value= RULE_STRING
             {
             lv_value=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSimpleValue598); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleSimpleValue908); 
              
-                createLeafNode("//@parserRules.5/@alternatives/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
+                createLeafNode("//@parserRules.8/@alternatives/@terminal" /* xtext::RuleCall */, currentNode,"value"); 
                 
 
                     if (current==null) {
@@ -702,7 +1096,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleComplexValue
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:301:1: ruleComplexValue returns [EObject current=null] : ( ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:419:1: ruleComplexValue returns [EObject current=null] : ( ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' ) ;
     public final EObject ruleComplexValue() throws RecognitionException {
         EObject current = null;
 
@@ -715,36 +1109,36 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:302:33: ( ( ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:1: ( ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:420:33: ( ( ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:1: ( ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:1: ( ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:2: ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:1: ( ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:2: ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* ) '}'
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:2: ( ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:3: ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:2: ( ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:3: ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) ) (lv_assignments= ruleAssignment )*
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:3: ( ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:4: ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:3: ( ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:4: ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? ) (lv_fooBar= '{' )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:4: ( (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )? )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:5: (lv_className= ruleQualifiedName )? ( 'id' (lv_id= RULE_ID ) )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:4: ( (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:5: (lv_className= ruleQualifiedName )? ( ':' (lv_id= RULE_ID ) )?
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:303:5: (lv_className= ruleQualifiedName )?
-            int alt8=2;
-            int LA8_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:421:5: (lv_className= ruleQualifiedName )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
 
-            if ( (LA8_0==RULE_ID) ) {
-                alt8=1;
+            if ( (LA13_0==RULE_ID) ) {
+                alt13=1;
             }
-            switch (alt8) {
+            switch (alt13) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:305:5: lv_className= ruleQualifiedName
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:423:5: lv_className= ruleQualifiedName
                     {
                      
-                            currentNode=createCompositeNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
+                            currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode); 
                         
-                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleComplexValue663);
+                    pushFollow(FOLLOW_ruleQualifiedName_in_ruleComplexValue973);
                     lv_className=ruleQualifiedName();
                     _fsp--;
 
@@ -761,28 +1155,28 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:316:3: ( 'id' (lv_id= RULE_ID ) )?
-            int alt9=2;
-            int LA9_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:434:3: ( ':' (lv_id= RULE_ID ) )?
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA9_0==16) ) {
-                alt9=1;
+            if ( (LA14_0==19) ) {
+                alt14=1;
             }
-            switch (alt9) {
+            switch (alt14) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:316:4: 'id' (lv_id= RULE_ID )
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:434:4: ':' (lv_id= RULE_ID )
                     {
-                    match(input,16,FOLLOW_16_in_ruleComplexValue675); 
+                    match(input,19,FOLLOW_19_in_ruleComplexValue985); 
 
-                            createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                            createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
                         
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:321:1: (lv_id= RULE_ID )
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:322:5: lv_id= RULE_ID
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:439:1: (lv_id= RULE_ID )
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:440:5: lv_id= RULE_ID
                     {
                     lv_id=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleComplexValue693); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleComplexValue1003); 
                      
-                        createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
+                        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
                         
 
                             if (current==null) {
@@ -802,42 +1196,42 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:333:5: (lv_fooBar= '{' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:334:5: lv_fooBar= '{'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:451:5: (lv_fooBar= '{' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:452:5: lv_fooBar= '{'
             {
             lv_fooBar=(Token)input.LT(1);
-            match(input,17,FOLLOW_17_in_ruleComplexValue721); 
+            match(input,20,FOLLOW_20_in_ruleComplexValue1031); 
 
                     if (current==null) {
                         current = factory.create("ComplexValue");
                         associateNodeWithAstElement(currentNode, current);
                     }
-                    factory.set(current, "fooBar", true,"{");        createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"fooBar");    
+                    factory.set(current, "fooBar", true,"{");        createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"fooBar");    
 
             }
 
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:342:3: (lv_assignments= ruleAssignment )*
-            loop10:
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:460:3: (lv_assignments= ruleAssignment )*
+            loop15:
             do {
-                int alt10=2;
-                int LA10_0 = input.LA(1);
+                int alt15=2;
+                int LA15_0 = input.LA(1);
 
-                if ( (LA10_0==RULE_ID) ) {
-                    alt10=1;
+                if ( (LA15_0==RULE_ID||LA15_0==17) ) {
+                    alt15=1;
                 }
 
 
-                switch (alt10) {
+                switch (alt15) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:344:5: lv_assignments= ruleAssignment
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:462:5: lv_assignments= ruleAssignment
             	    {
             	     
-            	            currentNode=createCompositeNode("//@parserRules.7/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+            	            currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleAssignment_in_ruleComplexValue753);
+            	    pushFollow(FOLLOW_ruleAssignment_in_ruleComplexValue1063);
             	    lv_assignments=ruleAssignment();
             	    _fsp--;
 
@@ -853,16 +1247,16 @@ public class InternalMWEParser extends AbstractAntlrParser {
             	    break;
 
             	default :
-            	    break loop10;
+            	    break loop15;
                 }
             } while (true);
 
 
             }
 
-            match(input,18,FOLLOW_18_in_ruleComplexValue765); 
+            match(input,21,FOLLOW_21_in_ruleComplexValue1075); 
 
-                    createLeafNode("//@parserRules.7/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                 
 
             }
@@ -886,7 +1280,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleWorkflowRef
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:365:1: ruleWorkflowRef returns [EObject current=null] : ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:483:1: ruleWorkflowRef returns [EObject current=null] : ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' ) ;
     public final EObject ruleWorkflowRef() throws RecognitionException {
         EObject current = null;
 
@@ -896,32 +1290,32 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:366:33: ( ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:1: ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:484:33: ( ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:1: ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:1: ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:2: ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:1: ( ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:2: ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* ) '}'
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:2: ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:3: ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:2: ( ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:3: ( ( 'file' (lv_uri= RULE_STRING ) ) '{' ) (lv_assignments= ruleAssignment )*
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:3: ( ( 'file' (lv_uri= RULE_STRING ) ) '{' )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:4: ( 'file' (lv_uri= RULE_STRING ) ) '{'
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:3: ( ( 'file' (lv_uri= RULE_STRING ) ) '{' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:4: ( 'file' (lv_uri= RULE_STRING ) ) '{'
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:4: ( 'file' (lv_uri= RULE_STRING ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:367:5: 'file' (lv_uri= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:4: ( 'file' (lv_uri= RULE_STRING ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:485:5: 'file' (lv_uri= RULE_STRING )
             {
-            match(input,19,FOLLOW_19_in_ruleWorkflowRef803); 
+            match(input,18,FOLLOW_18_in_ruleWorkflowRef1113); 
 
-                    createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
                 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:372:1: (lv_uri= RULE_STRING )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:373:5: lv_uri= RULE_STRING
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:490:1: (lv_uri= RULE_STRING )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:491:5: lv_uri= RULE_STRING
             {
             lv_uri=(Token)input.LT(1);
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleWorkflowRef821); 
+            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_ruleWorkflowRef1131); 
              
-                createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"uri"); 
+                createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"uri"); 
                 
 
                     if (current==null) {
@@ -935,32 +1329,32 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            match(input,17,FOLLOW_17_in_ruleWorkflowRef839); 
+            match(input,20,FOLLOW_20_in_ruleWorkflowRef1149); 
 
-                    createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                 
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:389:2: (lv_assignments= ruleAssignment )*
-            loop11:
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:507:2: (lv_assignments= ruleAssignment )*
+            loop16:
             do {
-                int alt11=2;
-                int LA11_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( (LA11_0==RULE_ID) ) {
-                    alt11=1;
+                if ( (LA16_0==RULE_ID||LA16_0==17) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt11) {
+                switch (alt16) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:391:5: lv_assignments= ruleAssignment
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:509:5: lv_assignments= ruleAssignment
             	    {
             	     
-            	            currentNode=createCompositeNode("//@parserRules.8/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+            	            currentNode=createCompositeNode("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
             	        
-            	    pushFollow(FOLLOW_ruleAssignment_in_ruleWorkflowRef869);
+            	    pushFollow(FOLLOW_ruleAssignment_in_ruleWorkflowRef1179);
             	    lv_assignments=ruleAssignment();
             	    _fsp--;
 
@@ -976,16 +1370,16 @@ public class InternalMWEParser extends AbstractAntlrParser {
             	    break;
 
             	default :
-            	    break loop11;
+            	    break loop16;
                 }
             } while (true);
 
 
             }
 
-            match(input,18,FOLLOW_18_in_ruleWorkflowRef881); 
+            match(input,21,FOLLOW_21_in_ruleWorkflowRef1191); 
 
-                    createLeafNode("//@parserRules.8/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                    createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                 
 
             }
@@ -1009,7 +1403,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleIdRef
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:412:1: ruleIdRef returns [EObject current=null] : ( 'idRef' (lv_id= RULE_ID ) ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:530:1: ruleIdRef returns [EObject current=null] : ( (lv_id= RULE_ID ) ';' ) ;
     public final EObject ruleIdRef() throws RecognitionException {
         EObject current = null;
 
@@ -1017,23 +1411,19 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:413:33: ( ( 'idRef' (lv_id= RULE_ID ) ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:414:1: ( 'idRef' (lv_id= RULE_ID ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:531:33: ( ( (lv_id= RULE_ID ) ';' ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:1: ( (lv_id= RULE_ID ) ';' )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:414:1: ( 'idRef' (lv_id= RULE_ID ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:414:2: 'idRef' (lv_id= RULE_ID )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:1: ( (lv_id= RULE_ID ) ';' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:2: (lv_id= RULE_ID ) ';'
             {
-            match(input,20,FOLLOW_20_in_ruleIdRef916); 
-
-                    createLeafNode("//@parserRules.9/@alternatives/@abstractTokens.0" /* xtext::Keyword */, currentNode,null); 
-                
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:419:1: (lv_id= RULE_ID )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:420:5: lv_id= RULE_ID
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:532:2: (lv_id= RULE_ID )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:533:5: lv_id= RULE_ID
             {
             lv_id=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleIdRef934); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleIdRef1234); 
              
-                createLeafNode("//@parserRules.9/@alternatives/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
+                createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
                 
 
                     if (current==null) {
@@ -1044,6 +1434,10 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
+            match(input,15,FOLLOW_15_in_ruleIdRef1251); 
+
+                    createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                
 
             }
 
@@ -1066,7 +1460,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleAssignment
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:436:1: ruleAssignment returns [EObject current=null] : ( ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) ) ( ';' )? ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:554:1: ruleAssignment returns [EObject current=null] : ( ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) ) ( ';' )? ) ;
     public final EObject ruleAssignment() throws RecognitionException {
         EObject current = null;
 
@@ -1076,66 +1470,60 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:437:33: ( ( ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) ) ( ';' )? ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:1: ( ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:555:33: ( ( ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) ) ( ';' )? ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:1: ( ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) ) ( ';' )? )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:1: ( ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) ) ( ';' )? )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:2: ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) ) ( ';' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:1: ( ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) ) ( ';' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:2: ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) ) ( ';' )?
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:2: ( ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:3: ( (lv_feature= RULE_ID ) ( '=' )? ) (lv_value= ruleValue )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:2: ( ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:3: ( (lv_feature= RULE_ID )? '=' ) (lv_value= ruleValue )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:3: ( (lv_feature= RULE_ID ) ( '=' )? )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:4: (lv_feature= RULE_ID ) ( '=' )?
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:3: ( (lv_feature= RULE_ID )? '=' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:4: (lv_feature= RULE_ID )? '='
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:438:4: (lv_feature= RULE_ID )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:439:5: lv_feature= RULE_ID
-            {
-            lv_feature=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAssignment986); 
-             
-                createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"feature"); 
-                
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:556:4: (lv_feature= RULE_ID )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-                    if (current==null) {
-                        current = factory.create("Assignment");
-                        associateNodeWithAstElement(currentNode, current);
-                    }
-                    factory.set(current, "feature", lv_feature,"ID");    
-
+            if ( (LA17_0==RULE_ID) ) {
+                alt17=1;
             }
-
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:450:2: ( '=' )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
-
-            if ( (LA12_0==13) ) {
-                alt12=1;
-            }
-            switch (alt12) {
+            switch (alt17) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:450:3: '='
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:557:5: lv_feature= RULE_ID
                     {
-                    match(input,13,FOLLOW_13_in_ruleAssignment1004); 
-
-                            createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                    lv_feature=(Token)input.LT(1);
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleAssignment1296); 
+                     
+                        createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"feature"); 
                         
+
+                            if (current==null) {
+                                current = factory.create("Assignment");
+                                associateNodeWithAstElement(currentNode, current);
+                            }
+                            factory.set(current, "feature", lv_feature,"ID");    
 
                     }
                     break;
 
             }
 
+            match(input,17,FOLLOW_17_in_ruleAssignment1314); 
+
+                    createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:455:4: (lv_value= ruleValue )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:457:5: lv_value= ruleValue
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:573:2: (lv_value= ruleValue )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:575:5: lv_value= ruleValue
             {
              
-                    currentNode=createCompositeNode("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
+                    currentNode=createCompositeNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 
                 
-            pushFollow(FOLLOW_ruleValue_in_ruleAssignment1036);
+            pushFollow(FOLLOW_ruleValue_in_ruleAssignment1344);
             lv_value=ruleValue();
             _fsp--;
 
@@ -1152,20 +1540,20 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:468:3: ( ';' )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:586:3: ( ';' )?
+            int alt18=2;
+            int LA18_0 = input.LA(1);
 
-            if ( (LA13_0==14) ) {
-                alt13=1;
+            if ( (LA18_0==15) ) {
+                alt18=1;
             }
-            switch (alt13) {
+            switch (alt18) {
                 case 1 :
-                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:468:4: ';'
+                    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:586:4: ';'
                     {
-                    match(input,14,FOLLOW_14_in_ruleAssignment1048); 
+                    match(input,15,FOLLOW_15_in_ruleAssignment1356); 
 
-                            createLeafNode("//@parserRules.10/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
+                            createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
                         
 
                     }
@@ -1195,7 +1583,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
 
     // $ANTLR start ruleQualifiedName
-    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:478:1: ruleQualifiedName returns [EObject current=null] : ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* ) ;
+    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:596:1: ruleQualifiedName returns [EObject current=null] : ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* ) ;
     public final EObject ruleQualifiedName() throws RecognitionException {
         EObject current = null;
 
@@ -1203,19 +1591,19 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
          EObject temp=null; 
         try {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:479:33: ( ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* ) )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:480:1: ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:597:33: ( ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* ) )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:598:1: ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* )
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:480:1: ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:480:2: (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )*
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:598:1: ( (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:598:2: (lv_parts= RULE_ID ) ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )*
             {
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:480:2: (lv_parts= RULE_ID )
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:481:5: lv_parts= RULE_ID
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:598:2: (lv_parts= RULE_ID )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:599:5: lv_parts= RULE_ID
             {
             lv_parts=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1093); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1401); 
              
-                createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
+                createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
                 
 
                     if (current==null) {
@@ -1226,42 +1614,48 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
             }
 
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:492:2: ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )*
-            loop14:
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:610:2: ( (lv_parts= '.' ) (lv_parts= RULE_ID ) )*
+            loop19:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt19=2;
+                int LA19_0 = input.LA(1);
 
-                if ( (LA14_0==21) ) {
-                    alt14=1;
+                if ( (LA19_0==13) ) {
+                    int LA19_1 = input.LA(2);
+
+                    if ( (LA19_1==RULE_ID) ) {
+                        alt19=1;
+                    }
+
+
                 }
 
 
-                switch (alt14) {
+                switch (alt19) {
             	case 1 :
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:492:3: (lv_parts= '.' ) (lv_parts= RULE_ID )
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:610:3: (lv_parts= '.' ) (lv_parts= RULE_ID )
             	    {
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:492:3: (lv_parts= '.' )
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:493:5: lv_parts= '.'
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:610:3: (lv_parts= '.' )
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:611:5: lv_parts= '.'
             	    {
             	    lv_parts=(Token)input.LT(1);
-            	    match(input,21,FOLLOW_21_in_ruleQualifiedName1119); 
+            	    match(input,13,FOLLOW_13_in_ruleQualifiedName1427); 
 
             	            if (current==null) {
             	                current = factory.create("QualifiedName");
             	                associateNodeWithAstElement(currentNode, current);
             	            }
-            	            factory.add(current, "parts", lv_parts,".");        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal" /* xtext::Keyword */, currentNode,"parts");    
+            	            factory.add(current, "parts", lv_parts,".");        createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal" /* xtext::Keyword */, currentNode,"parts");    
 
             	    }
 
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:501:2: (lv_parts= RULE_ID )
-            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:502:5: lv_parts= RULE_ID
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:619:2: (lv_parts= RULE_ID )
+            	    // ./src-gen/org/eclipse/emf/mwe/di/parser/internal/InternalMWE.g:620:5: lv_parts= RULE_ID
             	    {
             	    lv_parts=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1139); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleQualifiedName1447); 
             	     
-            	        createLeafNode("//@parserRules.11/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
+            	        createLeafNode("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode,"parts"); 
             	        
 
             	            if (current==null) {
@@ -1277,7 +1671,7 @@ public class InternalMWEParser extends AbstractAntlrParser {
             	    break;
 
             	default :
-            	    break loop14;
+            	    break loop19;
                 }
             } while (true);
 
@@ -1306,42 +1700,54 @@ public class InternalMWEParser extends AbstractAntlrParser {
 
     public static final BitSet FOLLOW_ruleFile_in_internalParse78 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_internalParse88 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleProperty_in_ruleFile133 = new BitSet(new long[]{0x0000000000039010L});
-    public static final BitSet FOLLOW_ruleComplexValue_in_ruleFile163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleLocalVariable_in_ruleProperty211 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertiesFileImport_in_ruleProperty238 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleLocalVariable273 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleLocalVariable291 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_13_in_ruleLocalVariable310 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleLocalVariable328 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_14_in_ruleLocalVariable348 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rulePropertiesFileImport386 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertiesFileImport404 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_14_in_rulePropertiesFileImport423 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSimpleValue_in_ruleValue475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleComplexValue_in_ruleValue502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleIdRef_in_ruleValue530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleWorkflowRef_in_ruleValue558 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleSimpleValue598 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleComplexValue663 = new BitSet(new long[]{0x0000000000030000L});
-    public static final BitSet FOLLOW_16_in_ruleComplexValue675 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleComplexValue693 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleComplexValue721 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_ruleAssignment_in_ruleComplexValue753 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_18_in_ruleComplexValue765 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleWorkflowRef803 = new BitSet(new long[]{0x0000000000000020L});
-    public static final BitSet FOLLOW_RULE_STRING_in_ruleWorkflowRef821 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_17_in_ruleWorkflowRef839 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_ruleAssignment_in_ruleWorkflowRef869 = new BitSet(new long[]{0x0000000000040010L});
-    public static final BitSet FOLLOW_18_in_ruleWorkflowRef881 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleIdRef916 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleIdRef934 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleAssignment986 = new BitSet(new long[]{0x00000000001B2030L});
-    public static final BitSet FOLLOW_13_in_ruleAssignment1004 = new BitSet(new long[]{0x00000000001B0030L});
-    public static final BitSet FOLLOW_ruleValue_in_ruleAssignment1036 = new BitSet(new long[]{0x0000000000004002L});
-    public static final BitSet FOLLOW_14_in_ruleAssignment1048 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1093 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_ruleQualifiedName1119 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1139 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_ruleImport_in_ruleFile134 = new BitSet(new long[]{0x0000000000191020L});
+    public static final BitSet FOLLOW_ruleProperty_in_ruleFile164 = new BitSet(new long[]{0x0000000000190020L});
+    public static final BitSet FOLLOW_ruleComplexValue_in_ruleFile195 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleJavaImport_in_ruleImport243 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleGenericImport_in_ruleImport270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleJavaImport305 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleJavaImport334 = new BitSet(new long[]{0x000000000000A002L});
+    public static final BitSet FOLLOW_13_in_ruleJavaImport346 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_14_in_ruleJavaImport364 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleJavaImport380 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleGenericImport418 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleGenericImport436 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleGenericImport455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleLocalVariable_in_ruleProperty505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertiesFileImport_in_ruleProperty532 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleLocalVariable567 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleLocalVariable585 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleLocalVariable604 = new BitSet(new long[]{0x00000000001C0030L});
+    public static final BitSet FOLLOW_ruleValue_in_ruleLocalVariable633 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleLocalVariable646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rulePropertiesFileImport685 = new BitSet(new long[]{0x0000000000040000L});
+    public static final BitSet FOLLOW_18_in_rulePropertiesFileImport695 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_rulePropertiesFileImport714 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_rulePropertiesFileImport733 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSimpleValue_in_ruleValue785 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleComplexValue_in_ruleValue812 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleIdRef_in_ruleValue840 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleWorkflowRef_in_ruleValue868 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleSimpleValue908 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleQualifiedName_in_ruleComplexValue973 = new BitSet(new long[]{0x0000000000180000L});
+    public static final BitSet FOLLOW_19_in_ruleComplexValue985 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleComplexValue1003 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleComplexValue1031 = new BitSet(new long[]{0x0000000000220020L});
+    public static final BitSet FOLLOW_ruleAssignment_in_ruleComplexValue1063 = new BitSet(new long[]{0x0000000000220020L});
+    public static final BitSet FOLLOW_21_in_ruleComplexValue1075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_ruleWorkflowRef1113 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_STRING_in_ruleWorkflowRef1131 = new BitSet(new long[]{0x0000000000100000L});
+    public static final BitSet FOLLOW_20_in_ruleWorkflowRef1149 = new BitSet(new long[]{0x0000000000220020L});
+    public static final BitSet FOLLOW_ruleAssignment_in_ruleWorkflowRef1179 = new BitSet(new long[]{0x0000000000220020L});
+    public static final BitSet FOLLOW_21_in_ruleWorkflowRef1191 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleIdRef1234 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_15_in_ruleIdRef1251 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleAssignment1296 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_17_in_ruleAssignment1314 = new BitSet(new long[]{0x00000000001C0030L});
+    public static final BitSet FOLLOW_ruleValue_in_ruleAssignment1344 = new BitSet(new long[]{0x0000000000008002L});
+    public static final BitSet FOLLOW_15_in_ruleAssignment1356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1401 = new BitSet(new long[]{0x0000000000002002L});
+    public static final BitSet FOLLOW_13_in_ruleQualifiedName1427 = new BitSet(new long[]{0x0000000000000020L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleQualifiedName1447 = new BitSet(new long[]{0x0000000000002002L});
 
 }

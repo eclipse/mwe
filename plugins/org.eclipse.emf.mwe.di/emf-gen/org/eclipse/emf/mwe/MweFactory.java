@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweFactory.java,v 1.1 2008/06/13 09:57:49 sefftinge Exp $
+ * $Id: MweFactory.java,v 1.2 2008/06/19 07:53:39 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -24,6 +24,15 @@ public interface MweFactory extends EFactory {
 	 * @generated
 	 */
 	MweFactory eINSTANCE = org.eclipse.emf.mwe.impl.MweFactoryImpl.init();
+
+	/**
+	 * Returns a new object of class '<em>Generic Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Generic Import</em>'.
+	 * @generated
+	 */
+	GenericImport createGenericImport();
 
 	/**
 	 * Returns a new object of class '<em>Workflow Ref</em>'.
@@ -105,6 +114,15 @@ public interface MweFactory extends EFactory {
 	 * @generated
 	 */
 	SimpleValue createSimpleValue();
+
+	/**
+	 * Returns a new object of class '<em>Java Import</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Java Import</em>'.
+	 * @generated
+	 */
+	JavaImport createJavaImport();
 
 	/**
 	 * Returns the package supported by this factory.
