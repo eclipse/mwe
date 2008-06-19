@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
@@ -20,7 +20,7 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
 public class ExtendedCompletionProposal implements ICompletionProposal {

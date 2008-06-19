@@ -19,13 +19,18 @@ import org.eclipse.emf.mwe.ui.internal.editor.autoedit.SmartQuoteStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAutoIndentStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAutoTagCompletionStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLRemoveClosingTagStrategy;
+import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.XMLTagContentAssistProcessor;
+import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 public class XMLWorkflowSyntaxFactoryImpl extends
 		AbstractWorkflowSyntaxFactory {
@@ -39,6 +44,18 @@ public class XMLWorkflowSyntaxFactoryImpl extends
 		strategies.add(new XMLRemoveClosingTagStrategy());
 		strategies.add(new SmartQuoteStrategy());
 		return strategies;
+	}
+
+	@Override
+	public IContentAssistProcessor newContentAssistProcessor(
+			final WorkflowEditor editor, final ColorManager colorManager) {
+		if (editor == null || colorManager == null) {
+			throw new IllegalArgumentException();
+		}
+
+		return new XMLTagContentAssistProcessor(editor.getInputFile(), editor,
+				new WorkflowTagScanner(colorManager));
+
 	}
 
 	@Override

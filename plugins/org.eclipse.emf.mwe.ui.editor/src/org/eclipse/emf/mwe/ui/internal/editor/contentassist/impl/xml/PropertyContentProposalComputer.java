@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -24,7 +24,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.1 $
  */
 
 public class PropertyContentProposalComputer extends
@@ -64,7 +64,7 @@ AbstractStringContentProposalComputer {
 	 * This automatically generated method overrides the implementation of
 	 * <code>removeNonMatchingEntries</code> inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#removeNonMatchingEntries(java.util.Set,
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.AbstractContentProposalComputer#removeNonMatchingEntries(java.util.Set,
 	 *      int)
 	 */
 	@Override

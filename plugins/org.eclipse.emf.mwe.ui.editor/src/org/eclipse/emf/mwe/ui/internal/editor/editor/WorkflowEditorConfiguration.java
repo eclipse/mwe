@@ -15,7 +15,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
-import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
@@ -38,6 +37,7 @@ import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextViewerUndoManager;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
@@ -53,7 +53,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -148,14 +148,14 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 			final ISourceViewer sourceViewer) {
 		final ContentAssistant assistant = new ContentAssistant();
 
-		assistant.setContentAssistProcessor(new TagContentAssistProcessor(
-				editor.getInputFile(), editor, new WorkflowTagScanner(
-						colorManager)), IDocument.DEFAULT_CONTENT_TYPE);
-		assistant
-				.setContentAssistProcessor(new TagContentAssistProcessor(
-						editor.getInputFile(), editor, new WorkflowTagScanner(
-								colorManager)),
-						WorkflowPartitionScanner.XML_START_TAG);
+		IContentAssistProcessor contentAssistProcessor =
+				factory.newContentAssistProcessor(editor, colorManager);
+		assistant.setContentAssistProcessor(contentAssistProcessor,
+				IDocument.DEFAULT_CONTENT_TYPE);
+		contentAssistProcessor =
+				factory.newContentAssistProcessor(editor, colorManager);
+		assistant.setContentAssistProcessor(contentAssistProcessor,
+				WorkflowPartitionScanner.XML_START_TAG);
 		assistant.enableAutoActivation(true);
 		assistant.setAutoActivationDelay(500);
 		assistant

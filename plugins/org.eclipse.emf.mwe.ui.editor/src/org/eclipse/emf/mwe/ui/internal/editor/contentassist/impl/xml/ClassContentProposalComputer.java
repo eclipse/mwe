@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.Set;
 
@@ -27,7 +27,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
 
 public class ClassContentProposalComputer extends
@@ -66,7 +66,7 @@ public class ClassContentProposalComputer extends
 	 * This automatically generated method overrides the implementation of
 	 * <code>getTriggerAttributeNames</code> inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractSpecializedStringContentProposalComputer#getTriggerAttributeNames()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.AbstractSpecializedStringContentProposalComputer#getTriggerAttributeNames()
 	 */
 	@Override
 	public String[] getTriggerAttributeNames() {
@@ -97,7 +97,7 @@ public class ClassContentProposalComputer extends
 	 * This automatically generated method overrides the implementation of
 	 * <code>createProposalText</code> inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#createProposalText(java.lang.String,
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.AbstractContentProposalComputer#createProposalText(java.lang.String,
 	 *      int)
 	 */
 	@Override
@@ -109,7 +109,7 @@ public class ClassContentProposalComputer extends
 	 * This automatically generated method overrides the implementation of
 	 * <code>getProposalSet</code> inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#getProposalSet(int)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.AbstractContentProposalComputer#getProposalSet(int)
 	 */
 	@Override
 	protected Set<String> getProposalSet(final int offset) {

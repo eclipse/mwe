@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.Collection;
 import java.util.Set;
@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
 
 public class IDRefContentProposalComputer extends
@@ -45,7 +45,7 @@ AbstractSpecializedStringContentProposalComputer {
 	 * This automatically generated method overrides the implementation of
 	 * <code>createProposalText</code> inherited from the superclass.
 	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.AbstractContentProposalComputer#createProposalText(java.lang.String,
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.AbstractContentProposalComputer#createProposalText(java.lang.String,
 	 *      int)
 	 */
 	@Override

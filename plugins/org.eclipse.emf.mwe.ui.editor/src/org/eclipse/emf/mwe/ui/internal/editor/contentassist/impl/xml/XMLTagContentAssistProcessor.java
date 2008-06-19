@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.List;
 
@@ -27,9 +27,9 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.1 $
  */
-public class TagContentAssistProcessor implements IContentAssistProcessor {
+public class XMLTagContentAssistProcessor implements IContentAssistProcessor {
 
 	private final IFile file;
 
@@ -39,7 +39,7 @@ public class TagContentAssistProcessor implements IContentAssistProcessor {
 
 	private TagContentProposalComputerRegistry registry;
 
-	public TagContentAssistProcessor(final IFile file,
+	public XMLTagContentAssistProcessor(final IFile file,
 			final WorkflowEditor editor, final WorkflowTagScanner tagScanner) {
 		this.file = file;
 		this.editor = editor;

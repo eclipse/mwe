@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.contentassist;
+package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
@@ -18,31 +18,25 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
 
-public class DefaultContentProposalComputer extends TagContentProposalComputer {
+public abstract class AbstractStringContentProposalComputer extends
+		AbstractContentProposalComputer {
 
-	public DefaultContentProposalComputer(IFile file,
+	public AbstractStringContentProposalComputer(final IFile file,
 			final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
 
-	@Override
+	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isApplicable</code> inherited from the superclass.
+	 * 
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer#isApplicable(int)
+	 */
 	public boolean isApplicable(final int offset) {
-		return isOutsideTag();
+		return isString();
 	}
-
-	@Override
-	protected String createProposalText(final String name, final int offset) {
-		String text = null;
-		if (useContractedElementCompletion(offset, document)) {
-			text = name;
-		} else {
-			text = "\t<" + name + "></" + name + ">";
-		}
-		return text;
-	}
-
 }

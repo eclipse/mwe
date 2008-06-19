@@ -13,14 +13,17 @@ package org.eclipse.emf.mwe.ui.internal.editor.factories;
 
 import java.util.Collection;
 
+import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractWorkflowSyntaxFactory {
@@ -44,6 +47,9 @@ public abstract class AbstractWorkflowSyntaxFactory {
 	}
 
 	public abstract Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
+
+	public abstract IContentAssistProcessor newContentAssistProcessor(
+			WorkflowEditor editor, ColorManager colorManager);
 
 	public abstract IWorkflowAttribute newWorkflowAttribute(
 			IWorkflowElement element, String name, String value);
