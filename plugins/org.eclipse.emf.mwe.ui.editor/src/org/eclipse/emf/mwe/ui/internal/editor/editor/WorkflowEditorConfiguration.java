@@ -53,7 +53,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -75,6 +75,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private final WorkflowEditorPlugin plugin;
 
+	private final AbstractWorkflowSyntaxFactory factory;
+
 	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin,
 			final ColorManager colorManager, final WorkflowEditor editor) {
 		super(plugin.getCombinedPreferenceStore());
@@ -86,6 +88,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		// the document content.
 		AbstractWorkflowSyntaxFactory
 				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
+
+		factory = AbstractWorkflowSyntaxFactory.getInstance();
 	}
 
 	/**
@@ -109,8 +113,6 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	@Override
 	public IAutoEditStrategy[] getAutoEditStrategies(
 			final ISourceViewer sourceViewer, final String contentType) {
-		final AbstractWorkflowSyntaxFactory factory =
-				AbstractWorkflowSyntaxFactory.getInstance();
 		final IAutoEditStrategy[] inheritedStrategies =
 				super.getAutoEditStrategies(sourceViewer, contentType);
 		final List<IAutoEditStrategy> strategies =
