@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
+package org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml;
 
 import org.eclipse.jface.text.IAutoEditStrategy;
 
@@ -18,7 +18,7 @@ import org.eclipse.jface.text.IAutoEditStrategy;
  * @version $Revision: 1.1 $
  */
 
-public abstract class AbstractAutoEditStrategy implements
+public abstract class XMLAbstractAutoEditStrategy implements
 		IAutoEditStrategy {
 
 	protected static final String END_TAG_PREFIX = "</";

@@ -11,16 +11,17 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
 
+import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAbstractAutoEditStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextTypeComputer;
 import org.eclipse.jface.text.DocumentCommand;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
-public class SmartQuoteStrategy extends AbstractAutoEditStrategy {
+public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
 
 	/**
 	 * This automatically generated method overrides the implementation of

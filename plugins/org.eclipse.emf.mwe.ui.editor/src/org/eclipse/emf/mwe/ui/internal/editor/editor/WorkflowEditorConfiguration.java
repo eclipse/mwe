@@ -15,11 +15,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
-import org.eclipse.emf.mwe.ui.internal.editor.autoedit.AutoIndentStrategy;
-import org.eclipse.emf.mwe.ui.internal.editor.autoedit.AutoTagCompletionStrategy;
-import org.eclipse.emf.mwe.ui.internal.editor.autoedit.RemoveClosingTagStrategy;
-import org.eclipse.emf.mwe.ui.internal.editor.autoedit.SmartQuoteStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.TagContentAssistProcessor;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.ProcessingInstructionFormattingStrategy;
@@ -55,7 +53,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -83,6 +81,11 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		this.plugin = plugin;
 		this.colorManager = colorManager;
 		this.editor = editor;
+
+		// TODO Preliminary code. The factory has to be installed depending on
+		// the document content.
+		AbstractWorkflowSyntaxFactory
+				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 	}
 
 	/**
@@ -106,6 +109,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	@Override
 	public IAutoEditStrategy[] getAutoEditStrategies(
 			final ISourceViewer sourceViewer, final String contentType) {
+		final AbstractWorkflowSyntaxFactory factory =
+				AbstractWorkflowSyntaxFactory.getInstance();
 		final IAutoEditStrategy[] inheritedStrategies =
 				super.getAutoEditStrategies(sourceViewer, contentType);
 		final List<IAutoEditStrategy> strategies =
@@ -114,10 +119,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 			strategies.add(s);
 		}
 		strategies.add(new DefaultIndentLineAutoEditStrategy());
-		strategies.add(new AutoTagCompletionStrategy());
-		strategies.add(new AutoIndentStrategy());
-		strategies.add(new RemoveClosingTagStrategy());
-		strategies.add(new SmartQuoteStrategy());
+		strategies.addAll(factory.newAutoEditStrategyCollection());
 		final IAutoEditStrategy[] res =
 				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
 		return res;
@@ -202,8 +204,9 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	@Override
 	public ITextDoubleClickStrategy getDoubleClickStrategy(
 			final ISourceViewer sourceViewer, final String contentType) {
-		if (doubleClickStrategy == null)
+		if (doubleClickStrategy == null) {
 			doubleClickStrategy = new WorkflowDoubleClickStrategy();
+		}
 		return doubleClickStrategy;
 	}
 

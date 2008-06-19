@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
+package org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml;
 
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
@@ -25,8 +25,8 @@ import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
  * @version $Revision: 1.1 $
  */
 
-public class AutoIndentStrategy extends
-		AbstractAutoEditStrategy {
+public class XMLAutoIndentStrategy extends
+		XMLAbstractAutoEditStrategy {
 
 	private enum IndentType {
 		INDENT, UNINDENT

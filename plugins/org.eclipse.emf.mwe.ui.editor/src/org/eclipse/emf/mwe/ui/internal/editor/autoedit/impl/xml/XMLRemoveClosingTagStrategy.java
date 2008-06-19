@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
+package org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -25,8 +25,8 @@ import org.eclipse.jface.text.ITypedRegion;
  * @version $Revision: 1.1 $
  */
 
-public class RemoveClosingTagStrategy extends
-		AbstractAutoEditStrategy {
+public class XMLRemoveClosingTagStrategy extends
+		XMLAbstractAutoEditStrategy {
 
 	private static final Pattern TAG_PATTERN =
 			Pattern.compile("(<\\s*(\\w+)\\s*.*?\\s*>)\\s*<\\s*/\\s*\\2>",

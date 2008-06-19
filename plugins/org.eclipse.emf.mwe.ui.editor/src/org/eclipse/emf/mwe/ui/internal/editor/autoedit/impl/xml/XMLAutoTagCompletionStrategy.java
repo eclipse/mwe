@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
+package org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml;
 
 import java.util.Stack;
 import java.util.regex.Matcher;
@@ -25,8 +25,8 @@ import org.eclipse.jface.text.IDocument;
  * @version $Revision: 1.1 $
  */
 
-public class AutoTagCompletionStrategy extends
-		AbstractAutoEditStrategy {
+public class XMLAutoTagCompletionStrategy extends
+		XMLAbstractAutoEditStrategy {
 
 	private static final String TRIGGER_STRING = END_TAG_PREFIX;
 
@@ -37,7 +37,7 @@ public class AutoTagCompletionStrategy extends
 
 	private static String triggerBuffer;
 
-	public AutoTagCompletionStrategy() {
+	public XMLAutoTagCompletionStrategy() {
 		resetBuffer();
 	}
 

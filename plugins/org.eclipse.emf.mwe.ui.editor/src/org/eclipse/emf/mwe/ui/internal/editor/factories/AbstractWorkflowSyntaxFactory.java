@@ -11,13 +11,16 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.factories;
 
+import java.util.Collection;
+
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public abstract class AbstractWorkflowSyntaxFactory {
@@ -39,6 +42,8 @@ public abstract class AbstractWorkflowSyntaxFactory {
 
 		instance = newInstance;
 	}
+
+	public abstract Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
 
 	public abstract IWorkflowAttribute newWorkflowAttribute(
 			IWorkflowElement element, String name, String value);
