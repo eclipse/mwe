@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -87,8 +87,8 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
 				final IWorkflowAttribute inheritAttr =
 						element.getAttribute(INHERIT_ALL_ATTRIBUTE);
-				if ("Boolean".equals(getValueType(inheritAttr.getValue())
-						.getElementName())) {
+				final IType valType = getValueType(inheritAttr.getValue());
+				if (!"Boolean".equals(valType.getElementName())) {
 					createMarkerForValue(inheritAttr, "Attribute '"
 							+ INHERIT_ALL_ATTRIBUTE
 							+ "' must have a boolean value");
