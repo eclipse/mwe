@@ -235,13 +235,7 @@ protected void proceedJavaImport(InstanceDescription obj) {
 
 		
 /* xtext::Keyword */ 
-
-if (
-new Predicate(obj) { 
-		public boolean check() {
-			return true; 
-		}
-}.check() ){
+{
 
 	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.1"));
 
@@ -471,13 +465,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 
 		
 /* xtext::Keyword */ 
-
-if (
-new Predicate(obj) { 
-		public boolean check() {
-			return true; 
-		}
-}.check() ){
+{
 
 	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.1"));
 
@@ -581,13 +569,7 @@ protected void proceedPropertiesFileImport(InstanceDescription obj) {
 
 		
 /* xtext::Keyword */ 
-
-if (
-new Predicate(obj) { 
-		public boolean check() {
-			return true; 
-		}
-}.check() ){
+{
 
 	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.6/@alternatives/@abstractTokens.1"));
 
@@ -1180,18 +1162,6 @@ new Predicate(obj) {
 
 protected void proceedIdRef(InstanceDescription obj) {
 	
-/* xtext::Group */ 
-{
-
-		
-/* xtext::Keyword */ 
-{
-
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.12/@alternatives/@abstractTokens.1"));
-
-}
-
-		
 /* xtext::Assignment */ 
 {
 
@@ -1202,7 +1172,7 @@ protected void proceedIdRef(InstanceDescription obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.12/@alternatives/@abstractTokens.0/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.12/@alternatives/@terminal"));
 		
 	
 
@@ -1210,9 +1180,6 @@ protected void proceedIdRef(InstanceDescription obj) {
 
     if (obj.isConsumed())
     	objectCreation(obj);
-
-}
-
 
 }
 
@@ -1273,10 +1240,54 @@ new Predicate(obj) {
 {
 
 		
+/* xtext::Assignment */ 
+{
+
+	final Object value = obj.consume("operator");
+    
+/* xtext::Alternatives */ 
+{
+
+		if (
+new Predicate(obj) { 
+		public boolean check() {
+			return value.equals("="); 
+		}
+}.check() ) {
+			
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
+	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.0"));
+
+}
+
+		}
+	else		if (
+new Predicate(obj) { 
+		public boolean check() {
+			return value.equals("+="); 
+		}
+}.check() ) {
+			
+/* xtext::Keyword */ 
+{
+
+	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.1"));
+
+}
+
+		}
+	
+		else {
+		    throw new IllegalStateException("No alternative matched");
+		}
+	
+
+}
+
+    if (obj.isConsumed())
+    	objectCreation(obj);
 
 }
 

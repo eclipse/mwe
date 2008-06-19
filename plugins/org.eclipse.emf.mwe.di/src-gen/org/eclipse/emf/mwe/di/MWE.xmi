@@ -43,7 +43,7 @@
           </abstractTokens>
         </abstractTokens>
       </abstractTokens>
-      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+      <abstractTokens xsi:type="xtext:Keyword" value=";"/>
     </alternatives>
   </parserRules>
   <parserRules name="GenericImport">
@@ -79,7 +79,7 @@
           </abstractTokens>
         </abstractTokens>
       </abstractTokens>
-      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+      <abstractTokens xsi:type="xtext:Keyword" value=";"/>
     </alternatives>
   </parserRules>
   <parserRules name="PropertiesFileImport">
@@ -93,7 +93,7 @@
           <terminal xsi:type="xtext:RuleCall" name="STRING"/>
         </abstractTokens>
       </abstractTokens>
-      <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
+      <abstractTokens xsi:type="xtext:Keyword" value=";"/>
     </alternatives>
   </parserRules>
   <parserRules name="Value">
@@ -165,11 +165,8 @@
     </alternatives>
   </parserRules>
   <parserRules name="IdRef">
-    <alternatives xsi:type="xtext:Group">
-      <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
-        <terminal xsi:type="xtext:RuleCall" name="ID"/>
-      </abstractTokens>
-      <abstractTokens xsi:type="xtext:Keyword" value=";"/>
+    <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
+      <terminal xsi:type="xtext:RuleCall" name="ID"/>
     </alternatives>
   </parserRules>
   <parserRules name="Assignment">
@@ -179,7 +176,12 @@
           <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="feature" operator="=">
             <terminal xsi:type="xtext:RuleCall" name="ID"/>
           </abstractTokens>
-          <abstractTokens xsi:type="xtext:Keyword" value="="/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="operator" operator="=">
+            <terminal xsi:type="xtext:Alternatives">
+              <groups xsi:type="xtext:Keyword" value="="/>
+              <groups xsi:type="xtext:Keyword" value="+="/>
+            </terminal>
+          </abstractTokens>
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
           <terminal xsi:type="xtext:RuleCall" name="Value"/>

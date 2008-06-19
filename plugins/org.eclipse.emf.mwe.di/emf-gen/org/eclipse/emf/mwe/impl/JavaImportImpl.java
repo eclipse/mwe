@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: JavaImportImpl.java,v 1.1 2008/06/19 07:53:37 sefftinge Exp $
+ * $Id: JavaImportImpl.java,v 1.2 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -25,24 +25,14 @@ import org.eclipse.emf.mwe.QualifiedName;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.JavaImportImpl#getJavaImport <em>Java Import</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.JavaImportImpl#isWildcard <em>Wildcard</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.JavaImportImpl#getJavaImport <em>Java Import</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class JavaImportImpl extends ImportImpl implements JavaImport {
-	/**
-	 * The cached value of the '{@link #getJavaImport() <em>Java Import</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getJavaImport()
-	 * @generated
-	 * @ordered
-	 */
-	protected QualifiedName javaImport;
-
 	/**
 	 * The default value of the '{@link #isWildcard() <em>Wildcard</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +52,16 @@ public class JavaImportImpl extends ImportImpl implements JavaImport {
 	 * @ordered
 	 */
 	protected boolean wildcard = WILDCARD_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getJavaImport() <em>Java Import</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getJavaImport()
+	 * @generated
+	 * @ordered
+	 */
+	protected QualifiedName javaImport;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,10 +168,10 @@ public class JavaImportImpl extends ImportImpl implements JavaImport {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
-				return getJavaImport();
 			case MwePackage.JAVA_IMPORT__WILDCARD:
 				return isWildcard() ? Boolean.TRUE : Boolean.FALSE;
+			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
+				return getJavaImport();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,11 +184,11 @@ public class JavaImportImpl extends ImportImpl implements JavaImport {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
-				setJavaImport((QualifiedName)newValue);
-				return;
 			case MwePackage.JAVA_IMPORT__WILDCARD:
 				setWildcard(((Boolean)newValue).booleanValue());
+				return;
+			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
+				setJavaImport((QualifiedName)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,11 +202,11 @@ public class JavaImportImpl extends ImportImpl implements JavaImport {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
-				setJavaImport((QualifiedName)null);
-				return;
 			case MwePackage.JAVA_IMPORT__WILDCARD:
 				setWildcard(WILDCARD_EDEFAULT);
+				return;
+			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
+				setJavaImport((QualifiedName)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,10 +220,10 @@ public class JavaImportImpl extends ImportImpl implements JavaImport {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
-				return javaImport != null;
 			case MwePackage.JAVA_IMPORT__WILDCARD:
 				return wildcard != WILDCARD_EDEFAULT;
+			case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
+				return javaImport != null;
 		}
 		return super.eIsSet(featureID);
 	}

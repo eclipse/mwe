@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: AssignmentImpl.java,v 1.2 2008/06/17 15:29:46 sefftinge Exp $
+ * $Id: AssignmentImpl.java,v 1.3 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -27,6 +27,7 @@ import org.eclipse.emf.mwe.Value;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getFeature <em>Feature</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.AssignmentImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
@@ -53,6 +54,26 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	 * @ordered
 	 */
 	protected String feature = FEATURE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String OPERATOR_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOperator()
+	 * @generated
+	 * @ordered
+	 */
+	protected String operator = OPERATOR_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -152,6 +173,27 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getOperator() {
+		return operator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOperator(String newOperator) {
+		String oldOperator = operator;
+		operator = newOperator;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MwePackage.ASSIGNMENT__OPERATOR, oldOperator, operator));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -171,6 +213,8 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 		switch (featureID) {
 			case MwePackage.ASSIGNMENT__FEATURE:
 				return getFeature();
+			case MwePackage.ASSIGNMENT__OPERATOR:
+				return getOperator();
 			case MwePackage.ASSIGNMENT__VALUE:
 				return getValue();
 		}
@@ -187,6 +231,9 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 		switch (featureID) {
 			case MwePackage.ASSIGNMENT__FEATURE:
 				setFeature((String)newValue);
+				return;
+			case MwePackage.ASSIGNMENT__OPERATOR:
+				setOperator((String)newValue);
 				return;
 			case MwePackage.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
@@ -206,6 +253,9 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 			case MwePackage.ASSIGNMENT__FEATURE:
 				setFeature(FEATURE_EDEFAULT);
 				return;
+			case MwePackage.ASSIGNMENT__OPERATOR:
+				setOperator(OPERATOR_EDEFAULT);
+				return;
 			case MwePackage.ASSIGNMENT__VALUE:
 				setValue((Value)null);
 				return;
@@ -223,6 +273,8 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 		switch (featureID) {
 			case MwePackage.ASSIGNMENT__FEATURE:
 				return FEATURE_EDEFAULT == null ? feature != null : !FEATURE_EDEFAULT.equals(feature);
+			case MwePackage.ASSIGNMENT__OPERATOR:
+				return OPERATOR_EDEFAULT == null ? operator != null : !OPERATOR_EDEFAULT.equals(operator);
 			case MwePackage.ASSIGNMENT__VALUE:
 				return value != null;
 		}
@@ -241,6 +293,8 @@ public class AssignmentImpl extends EObjectImpl implements Assignment {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (feature: ");
 		result.append(feature);
+		result.append(", operator: ");
+		result.append(operator);
 		result.append(')');
 		return result.toString();
 	}

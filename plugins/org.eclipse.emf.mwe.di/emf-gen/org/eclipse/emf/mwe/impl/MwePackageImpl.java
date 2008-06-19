@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MwePackageImpl.java,v 1.3 2008/06/19 07:53:38 sefftinge Exp $
+ * $Id: MwePackageImpl.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -262,7 +262,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EAttribute getComplexValue_Id() {
-		return (EAttribute)complexValueEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)complexValueEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -271,7 +271,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EAttribute getComplexValue_FooBar() {
-		return (EAttribute)complexValueEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)complexValueEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -289,7 +289,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EReference getComplexValue_ClassName() {
-		return (EReference)complexValueEClass.getEStructuralFeatures().get(2);
+		return (EReference)complexValueEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -307,7 +307,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EReference getLocalVariable_Value() {
-		return (EReference)localVariableEClass.getEStructuralFeatures().get(0);
+		return (EReference)localVariableEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -316,7 +316,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EAttribute getLocalVariable_Name() {
-		return (EAttribute)localVariableEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)localVariableEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -397,7 +397,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EReference getAssignment_Value() {
-		return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
+		return (EReference)assignmentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -407,6 +407,15 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 */
 	public EAttribute getAssignment_Feature() {
 		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getAssignment_Operator() {
+		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -505,7 +514,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EReference getJavaImport_JavaImport() {
-		return (EReference)javaImportEClass.getEStructuralFeatures().get(0);
+		return (EReference)javaImportEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -514,7 +523,7 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 	 * @generated
 	 */
 	public EAttribute getJavaImport_Wildcard() {
-		return (EAttribute)javaImportEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)javaImportEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -545,54 +554,55 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 		isCreated = true;
 
 		// Create classes and their features
+		complexValueEClass = createEClass(COMPLEX_VALUE);
+		createEAttribute(complexValueEClass, COMPLEX_VALUE__FOO_BAR);
+		createEReference(complexValueEClass, COMPLEX_VALUE__CLASS_NAME);
+		createEAttribute(complexValueEClass, COMPLEX_VALUE__ID);
+
 		propertyEClass = createEClass(PROPERTY);
 
 		simpleValueEClass = createEClass(SIMPLE_VALUE);
 		createEAttribute(simpleValueEClass, SIMPLE_VALUE__VALUE);
+
+		workflowRefEClass = createEClass(WORKFLOW_REF);
+		createEAttribute(workflowRefEClass, WORKFLOW_REF__URI);
 
 		fileEClass = createEClass(FILE);
 		createEReference(fileEClass, FILE__IMPORTS);
 		createEReference(fileEClass, FILE__PROPERTIES);
 		createEReference(fileEClass, FILE__VALUE);
 
+		assignableEClass = createEClass(ASSIGNABLE);
+		createEReference(assignableEClass, ASSIGNABLE__ASSIGNMENTS);
+
 		genericImportEClass = createEClass(GENERIC_IMPORT);
 		createEAttribute(genericImportEClass, GENERIC_IMPORT__VALUE);
+
+		javaImportEClass = createEClass(JAVA_IMPORT);
+		createEAttribute(javaImportEClass, JAVA_IMPORT__WILDCARD);
+		createEReference(javaImportEClass, JAVA_IMPORT__JAVA_IMPORT);
 
 		propertiesFileImportEClass = createEClass(PROPERTIES_FILE_IMPORT);
 		createEAttribute(propertiesFileImportEClass, PROPERTIES_FILE_IMPORT__FILE);
 
-		complexValueEClass = createEClass(COMPLEX_VALUE);
-		createEAttribute(complexValueEClass, COMPLEX_VALUE__ID);
-		createEAttribute(complexValueEClass, COMPLEX_VALUE__FOO_BAR);
-		createEReference(complexValueEClass, COMPLEX_VALUE__CLASS_NAME);
-
-		importEClass = createEClass(IMPORT);
-
-		assignableEClass = createEClass(ASSIGNABLE);
-		createEReference(assignableEClass, ASSIGNABLE__ASSIGNMENTS);
+		valueEClass = createEClass(VALUE);
 
 		localVariableEClass = createEClass(LOCAL_VARIABLE);
-		createEReference(localVariableEClass, LOCAL_VARIABLE__VALUE);
 		createEAttribute(localVariableEClass, LOCAL_VARIABLE__NAME);
+		createEReference(localVariableEClass, LOCAL_VARIABLE__VALUE);
 
-		idRefEClass = createEClass(ID_REF);
-		createEAttribute(idRefEClass, ID_REF__ID);
+		assignmentEClass = createEClass(ASSIGNMENT);
+		createEAttribute(assignmentEClass, ASSIGNMENT__FEATURE);
+		createEAttribute(assignmentEClass, ASSIGNMENT__OPERATOR);
+		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
+
+		importEClass = createEClass(IMPORT);
 
 		qualifiedNameEClass = createEClass(QUALIFIED_NAME);
 		createEAttribute(qualifiedNameEClass, QUALIFIED_NAME__PARTS);
 
-		javaImportEClass = createEClass(JAVA_IMPORT);
-		createEReference(javaImportEClass, JAVA_IMPORT__JAVA_IMPORT);
-		createEAttribute(javaImportEClass, JAVA_IMPORT__WILDCARD);
-
-		workflowRefEClass = createEClass(WORKFLOW_REF);
-		createEAttribute(workflowRefEClass, WORKFLOW_REF__URI);
-
-		assignmentEClass = createEClass(ASSIGNMENT);
-		createEAttribute(assignmentEClass, ASSIGNMENT__FEATURE);
-		createEReference(assignmentEClass, ASSIGNMENT__VALUE);
-
-		valueEClass = createEClass(VALUE);
+		idRefEClass = createEClass(ID_REF);
+		createEAttribute(idRefEClass, ID_REF__ID);
 	}
 
 	/**
@@ -623,66 +633,67 @@ public class MwePackageImpl extends EPackageImpl implements MwePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		simpleValueEClass.getESuperTypes().add(this.getValue());
-		genericImportEClass.getESuperTypes().add(this.getImport());
-		propertiesFileImportEClass.getESuperTypes().add(this.getProperty());
-		complexValueEClass.getESuperTypes().add(this.getValue());
 		complexValueEClass.getESuperTypes().add(this.getAssignable());
+		complexValueEClass.getESuperTypes().add(this.getValue());
+		simpleValueEClass.getESuperTypes().add(this.getValue());
+		workflowRefEClass.getESuperTypes().add(this.getValue());
+		workflowRefEClass.getESuperTypes().add(this.getAssignable());
+		genericImportEClass.getESuperTypes().add(this.getImport());
+		javaImportEClass.getESuperTypes().add(this.getImport());
+		propertiesFileImportEClass.getESuperTypes().add(this.getProperty());
 		localVariableEClass.getESuperTypes().add(this.getProperty());
 		idRefEClass.getESuperTypes().add(this.getValue());
-		javaImportEClass.getESuperTypes().add(this.getImport());
-		workflowRefEClass.getESuperTypes().add(this.getAssignable());
-		workflowRefEClass.getESuperTypes().add(this.getValue());
 
 		// Initialize classes and features; add operations and parameters
+		initEClass(complexValueEClass, ComplexValue.class, "ComplexValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getComplexValue_FooBar(), ecorePackage.getEBoolean(), "fooBar", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getComplexValue_ClassName(), this.getQualifiedName(), null, "className", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getComplexValue_Id(), ecorePackage.getEString(), "id", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(propertyEClass, Property.class, "Property", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(simpleValueEClass, SimpleValue.class, "SimpleValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getSimpleValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, SimpleValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowRefEClass, WorkflowRef.class, "WorkflowRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowRef_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, WorkflowRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(fileEClass, File.class, "File", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getFile_Imports(), this.getImport(), null, "imports", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFile_Properties(), this.getProperty(), null, "properties", null, 0, -1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFile_Value(), this.getComplexValue(), null, "value", null, 0, 1, File.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(assignableEClass, Assignable.class, "Assignable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAssignable_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, Assignable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(genericImportEClass, GenericImport.class, "GenericImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getGenericImport_Value(), ecorePackage.getEString(), "value", null, 0, 1, GenericImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(javaImportEClass, JavaImport.class, "JavaImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getJavaImport_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaImport_JavaImport(), this.getQualifiedName(), null, "javaImport", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertiesFileImportEClass, PropertiesFileImport.class, "PropertiesFileImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertiesFileImport_File(), ecorePackage.getEString(), "file", null, 0, 1, PropertiesFileImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(complexValueEClass, ComplexValue.class, "ComplexValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getComplexValue_Id(), ecorePackage.getEString(), "id", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getComplexValue_FooBar(), ecorePackage.getEBoolean(), "fooBar", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getComplexValue_ClassName(), this.getQualifiedName(), null, "className", null, 0, 1, ComplexValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(importEClass, Import.class, "Import", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(assignableEClass, Assignable.class, "Assignable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignable_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, Assignable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(localVariableEClass, LocalVariable.class, "LocalVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLocalVariable_Value(), this.getValue(), null, "value", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLocalVariable_Name(), ecorePackage.getEString(), "name", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLocalVariable_Value(), this.getValue(), null, "value", null, 0, 1, LocalVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(idRefEClass, IdRef.class, "IdRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIdRef_Id(), ecorePackage.getEString(), "id", null, 0, 1, IdRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getAssignment_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAssignment_Operator(), ecorePackage.getEString(), "operator", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(importEClass, Import.class, "Import", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(qualifiedNameEClass, QualifiedName.class, "QualifiedName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getQualifiedName_Parts(), ecorePackage.getEString(), "parts", null, 0, -1, QualifiedName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(javaImportEClass, JavaImport.class, "JavaImport", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJavaImport_JavaImport(), this.getQualifiedName(), null, "javaImport", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getJavaImport_Wildcard(), ecorePackage.getEBoolean(), "wildcard", null, 0, 1, JavaImport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(workflowRefEClass, WorkflowRef.class, "WorkflowRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWorkflowRef_Uri(), ecorePackage.getEString(), "uri", null, 0, 1, WorkflowRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getAssignment_Feature(), ecorePackage.getEString(), "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(idRefEClass, IdRef.class, "IdRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIdRef_Id(), ecorePackage.getEString(), "id", null, 0, 1, IdRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

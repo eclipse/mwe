@@ -11,7 +11,7 @@ Import :
 	JavaImport | GenericImport;
 	
 JavaImport :
-	'import' javaImport=QualifiedName ('.' wildcard?='*')? ';'?;
+	'import' javaImport=QualifiedName ('.' wildcard?='*')? ';';
 	
 GenericImport :
 	'import' value=STRING ';'?;
@@ -20,10 +20,10 @@ Property :
 	LocalVariable | PropertiesFileImport;
 	
 LocalVariable :
-	'var' name=ID ('=' value=Value) ';'?;
+	'var' name=ID ('=' value=Value) ';';
 	
 PropertiesFileImport :
-	'var' 'file' file=STRING ';'?;
+	'var' 'file' file=STRING ';';
 	
 Value :
 	SimpleValue | ComplexValue | IdRef | WorkflowRef;
@@ -45,10 +45,10 @@ WorkflowRef :
 	'}';
 	
 IdRef :
-	id=ID ';';
+	id=ID;
 	
 Assignment :
-	(feature=ID)? '=' value=Value ';'?;
+	(feature=ID)? operator=('='|'+=') value=Value ';'?;
 	
 QualifiedName :
 	parts+=ID (parts+='.' parts+=ID)*;

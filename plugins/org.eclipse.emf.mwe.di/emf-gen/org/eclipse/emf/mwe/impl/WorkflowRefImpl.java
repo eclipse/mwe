@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowRefImpl.java,v 1.3 2008/06/19 07:53:37 sefftinge Exp $
+ * $Id: WorkflowRefImpl.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -30,13 +30,24 @@ import org.eclipse.emf.mwe.WorkflowRef;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl#getAssignments <em>Assignments</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
+public class WorkflowRefImpl extends ValueImpl implements WorkflowRef {
+	/**
+	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Assignment> assignments;
+
 	/**
 	 * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -81,6 +92,18 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Assignment> getAssignments() {
+		if (assignments == null) {
+			assignments = new EObjectContainmentEList<Assignment>(Assignment.class, this, MwePackage.WORKFLOW_REF__ASSIGNMENTS);
+		}
+		return assignments;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getUri() {
 		return uri;
 	}
@@ -103,8 +126,24 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case MwePackage.WORKFLOW_REF__ASSIGNMENTS:
+				return ((InternalEList<?>)getAssignments()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case MwePackage.WORKFLOW_REF__ASSIGNMENTS:
+				return getAssignments();
 			case MwePackage.WORKFLOW_REF__URI:
 				return getUri();
 		}
@@ -120,6 +159,10 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case MwePackage.WORKFLOW_REF__ASSIGNMENTS:
+				getAssignments().clear();
+				getAssignments().addAll((Collection<? extends Assignment>)newValue);
+				return;
 			case MwePackage.WORKFLOW_REF__URI:
 				setUri((String)newValue);
 				return;
@@ -135,6 +178,9 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case MwePackage.WORKFLOW_REF__ASSIGNMENTS:
+				getAssignments().clear();
+				return;
 			case MwePackage.WORKFLOW_REF__URI:
 				setUri(URI_EDEFAULT);
 				return;
@@ -150,10 +196,44 @@ public class WorkflowRefImpl extends AssignableImpl implements WorkflowRef {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case MwePackage.WORKFLOW_REF__ASSIGNMENTS:
+				return assignments != null && !assignments.isEmpty();
 			case MwePackage.WORKFLOW_REF__URI:
 				return URI_EDEFAULT == null ? uri != null : !URI_EDEFAULT.equals(uri);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (derivedFeatureID) {
+				case MwePackage.WORKFLOW_REF__ASSIGNMENTS: return MwePackage.ASSIGNABLE__ASSIGNMENTS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (baseFeatureID) {
+				case MwePackage.ASSIGNABLE__ASSIGNMENTS: return MwePackage.WORKFLOW_REF__ASSIGNMENTS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

@@ -203,12 +203,12 @@ ruleJavaImport returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "wildcard", true,"*");        createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal" /* xtext::Keyword */, currentNode,"wildcard");    }
-))?)(';' 
+))?)';' 
 
     {
         createLeafNode("//@parserRules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
-)?);
+);
 
 
 
@@ -305,12 +305,12 @@ ruleLocalVariable returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "value", lv_value,null);    }
-)))(';' 
+)))';' 
 
     {
         createLeafNode("//@parserRules.5/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
-)?);
+);
 
 
 
@@ -339,12 +339,12 @@ rulePropertiesFileImport returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "file", lv_file,"STRING");    }
-))(';' 
+))';' 
 
     {
         createLeafNode("//@parserRules.6/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
     }
-)?);
+);
 
 
 
@@ -529,10 +529,10 @@ ruleWorkflowRef returns [EObject current=null]
 // Rule IdRef
 ruleIdRef returns [EObject current=null] 
     @init { EObject temp=null; }:
-((
+(
     lv_id=RULE_ID
     { 
-    createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.0/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
+    createLeafNode("//@parserRules.12/@alternatives/@terminal" /* xtext::RuleCall */, currentNode,"id"); 
     }
  
     {
@@ -541,11 +541,6 @@ ruleIdRef returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "id", lv_id,"ID");    }
-)';' 
-
-    {
-        createLeafNode("//@parserRules.12/@alternatives/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
-    }
 );
 
 
@@ -565,12 +560,18 @@ ruleAssignment returns [EObject current=null]
             associateNodeWithAstElement(currentNode, $current);
         }
         factory.set($current, "feature", lv_feature,"ID");    }
-)?'=' 
+)?(
+    lv_operator=('=' 
 
+    |'+=' 
+) 
     {
-        createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1" /* xtext::Keyword */, currentNode,null); 
-    }
-)(
+        if ($current==null) {
+            $current = factory.create("Assignment");
+            associateNodeWithAstElement(currentNode, $current);
+        }
+        factory.set($current, "operator", lv_operator,null);        createLeafNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::Alternatives */, currentNode,"operator");    }
+))(
     
     { 
         currentNode=createCompositeNode("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal" /* xtext::RuleCall */, currentNode); 

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweSwitch.java,v 1.3 2008/06/19 07:53:40 sefftinge Exp $
+ * $Id: MweSwitch.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.util;
 
@@ -87,6 +87,14 @@ public class MweSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
+			case MwePackage.COMPLEX_VALUE: {
+				ComplexValue complexValue = (ComplexValue)theEObject;
+				T result = caseComplexValue(complexValue);
+				if (result == null) result = caseAssignable(complexValue);
+				if (result == null) result = caseValue(complexValue);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MwePackage.PROPERTY: {
 				Property property = (Property)theEObject;
 				T result = caseProperty(property);
@@ -100,9 +108,23 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MwePackage.WORKFLOW_REF: {
+				WorkflowRef workflowRef = (WorkflowRef)theEObject;
+				T result = caseWorkflowRef(workflowRef);
+				if (result == null) result = caseValue(workflowRef);
+				if (result == null) result = caseAssignable(workflowRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MwePackage.FILE: {
 				File file = (File)theEObject;
 				T result = caseFile(file);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.ASSIGNABLE: {
+				Assignable assignable = (Assignable)theEObject;
+				T result = caseAssignable(assignable);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -113,6 +135,13 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case MwePackage.JAVA_IMPORT: {
+				JavaImport javaImport = (JavaImport)theEObject;
+				T result = caseJavaImport(javaImport);
+				if (result == null) result = caseImport(javaImport);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case MwePackage.PROPERTIES_FILE_IMPORT: {
 				PropertiesFileImport propertiesFileImport = (PropertiesFileImport)theEObject;
 				T result = casePropertiesFileImport(propertiesFileImport);
@@ -120,23 +149,9 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MwePackage.COMPLEX_VALUE: {
-				ComplexValue complexValue = (ComplexValue)theEObject;
-				T result = caseComplexValue(complexValue);
-				if (result == null) result = caseValue(complexValue);
-				if (result == null) result = caseAssignable(complexValue);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.IMPORT: {
-				Import import_ = (Import)theEObject;
-				T result = caseImport(import_);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.ASSIGNABLE: {
-				Assignable assignable = (Assignable)theEObject;
-				T result = caseAssignable(assignable);
+			case MwePackage.VALUE: {
+				Value value = (Value)theEObject;
+				T result = caseValue(value);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -147,10 +162,15 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MwePackage.ID_REF: {
-				IdRef idRef = (IdRef)theEObject;
-				T result = caseIdRef(idRef);
-				if (result == null) result = caseValue(idRef);
+			case MwePackage.ASSIGNMENT: {
+				Assignment assignment = (Assignment)theEObject;
+				T result = caseAssignment(assignment);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case MwePackage.IMPORT: {
+				Import import_ = (Import)theEObject;
+				T result = caseImport(import_);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -160,30 +180,10 @@ public class MweSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case MwePackage.JAVA_IMPORT: {
-				JavaImport javaImport = (JavaImport)theEObject;
-				T result = caseJavaImport(javaImport);
-				if (result == null) result = caseImport(javaImport);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.WORKFLOW_REF: {
-				WorkflowRef workflowRef = (WorkflowRef)theEObject;
-				T result = caseWorkflowRef(workflowRef);
-				if (result == null) result = caseAssignable(workflowRef);
-				if (result == null) result = caseValue(workflowRef);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.ASSIGNMENT: {
-				Assignment assignment = (Assignment)theEObject;
-				T result = caseAssignment(assignment);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case MwePackage.VALUE: {
-				Value value = (Value)theEObject;
-				T result = caseValue(value);
+			case MwePackage.ID_REF: {
+				IdRef idRef = (IdRef)theEObject;
+				T result = caseIdRef(idRef);
+				if (result == null) result = caseValue(idRef);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

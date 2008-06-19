@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LocalVariable.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
+ * $Id: LocalVariable.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -15,8 +15,8 @@ package org.eclipse.emf.mwe;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.LocalVariable#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *

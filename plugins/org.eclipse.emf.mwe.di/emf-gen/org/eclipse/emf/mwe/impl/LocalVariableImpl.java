@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: LocalVariableImpl.java,v 1.3 2008/06/19 07:53:37 sefftinge Exp $
+ * $Id: LocalVariableImpl.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -25,24 +25,14 @@ import org.eclipse.emf.mwe.Value;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.LocalVariableImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
-	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getValue()
-	 * @generated
-	 * @ordered
-	 */
-	protected Value value;
-
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,6 +52,16 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getValue()
+	 * @generated
+	 * @ordered
+	 */
+	protected Value value;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -168,10 +168,10 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				return getValue();
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				return getName();
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -184,11 +184,11 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				setValue((Value)newValue);
-				return;
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				setName((String)newValue);
+				return;
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				setValue((Value)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -202,11 +202,11 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				setValue((Value)null);
-				return;
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				setName(NAME_EDEFAULT);
+				return;
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				setValue((Value)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -220,10 +220,10 @@ public class LocalVariableImpl extends PropertyImpl implements LocalVariable {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.LOCAL_VARIABLE__VALUE:
-				return value != null;
 			case MwePackage.LOCAL_VARIABLE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case MwePackage.LOCAL_VARIABLE__VALUE:
+				return value != null;
 		}
 		return super.eIsSet(featureID);
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: JavaImport.java,v 1.1 2008/06/19 07:53:39 sefftinge Exp $
+ * $Id: JavaImport.java,v 1.2 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -15,8 +15,8 @@ package org.eclipse.emf.mwe;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.JavaImport#getJavaImport <em>Java Import</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.JavaImport#isWildcard <em>Wildcard</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.JavaImport#getJavaImport <em>Java Import</em>}</li>
  * </ul>
  * </p>
  *

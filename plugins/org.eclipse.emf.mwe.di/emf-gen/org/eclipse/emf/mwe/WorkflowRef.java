@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowRef.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
+ * $Id: WorkflowRef.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -25,7 +25,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface WorkflowRef extends Assignable, Value {
+public interface WorkflowRef extends Value, Assignable {
 	/**
 	 * Returns the value of the '<em><b>Uri</b></em>' attribute.
 	 * <!-- begin-user-doc -->
