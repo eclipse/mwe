@@ -30,6 +30,8 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceDescription;
+import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
@@ -135,17 +137,17 @@ public final class ProjectCreator {
 			progressMonitor.subTask("Creating project " + projectName);
 			final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 			project = workspace.getRoot().getProject(projectName);
+			if (project.exists())
+				return project;
 
-			if (project.exists()) {
-				// Clean up any old project information.
-				project.delete(true, true, new SubProgressMonitor(
-						progressMonitor, 1));
-			}
+			final IWorkspaceDescription description =
+					workspace.getDescription();
+			description.setAutoBuilding(false);
+			workspace.setDescription(description);
 
 			final IJavaProject javaProject = JavaCore.create(project);
 			final IProjectDescription projectDescription =
-					ResourcesPlugin.getWorkspace().newProjectDescription(
-							projectName);
+					workspace.newProjectDescription(projectName);
 			projectDescription.setLocation(null);
 			project.create(projectDescription, new SubProgressMonitor(
 					progressMonitor, 1));
@@ -208,7 +210,10 @@ public final class ProjectCreator {
 			createManifest(projectName, requiredBundles, exportedPackages,
 					progressMonitor, project);
 			createBuildProps(progressMonitor, project, srcFolders);
-			return javaProject.getProject();
+			project.build(IncrementalProjectBuilder.FULL_BUILD,
+					new NullProgressMonitor());
+
+			return project;
 		} catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 		} catch (final CoreException e) {
