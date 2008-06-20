@@ -19,7 +19,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class PropertyNamesTest extends TypeTestBase {
@@ -33,7 +33,7 @@ public class PropertyNamesTest extends TypeTestBase {
 
 		final Set<String> propertyNames =
 				TypeUtils.getSettableProperties(type);
-		assertTrue(propertyNames.size() >= 17);
+		assertTrue(propertyNames.size() >= 5);
 		assertTrue(propertyNames.contains("extensionAdvice"));
 		assertTrue(propertyNames.contains("invoke"));
 		assertTrue(propertyNames.contains("outputSlot"));
