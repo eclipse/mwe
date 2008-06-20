@@ -14,6 +14,9 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 import junit.framework.TestCase;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.FactoryNotInitializedException;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
@@ -21,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
@@ -109,6 +112,17 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertTrue(foundElement.hasAttribute("class"));
 		assertEquals("org.openarchitectureware.xtend.XtendComponent",
 				foundElement.getAttributeValue("class"));
+	}
+
+	@Override
+	protected void setUp() throws Exception {
+		try {
+			AbstractWorkflowSyntaxFactory.getInstance();
+		} catch (final FactoryNotInitializedException e) {
+			AbstractWorkflowSyntaxFactory
+					.installFactory(new XMLWorkflowSyntaxFactoryImpl());
+		}
+
 	}
 
 	private IDocument createDocument(final String text) {
