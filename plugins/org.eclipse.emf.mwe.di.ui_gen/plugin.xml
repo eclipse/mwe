@@ -9,7 +9,7 @@
       <editor
             class="org.eclipse.xtext.ui.service.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.BaseTextEditor/org.eclipse.emf.mwe.di.MWE"
             default="true"
-            extensions="test, tst"
+            extensions="xtext,mwe"
             icon="icons/editor.gif"
             id="org.eclipse.emf.mwe.di.ui_gen.ui.editor.MWEXtextEditor"
             name="MWE Editor">
