@@ -6,10 +6,9 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ComplexValue;
-import org.eclipse.jdt.core.JavaModelException;
 
 public class MweDiagnostic extends BasicDiagnostic {
+
 	private static final String ID = "org.eclipse.emf.mwe.core";
 
 	private final EObject context;
@@ -22,8 +21,22 @@ public class MweDiagnostic extends BasicDiagnostic {
 		this.context = context;
 	}
 
-	private static Object[] toArray(Object element, Throwable t, List<Object> additionalData) {
-		List<Object> data = new ArrayList<Object>();
+	public static MweDiagnostic error(final String message, final EObject ctx) {
+		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, null, null);
+	}
+
+	public static Diagnostic error(final String message, final EObject ctx,
+			final Throwable e) {
+		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, e, null);
+	}
+
+	public static MweDiagnostic warning(final String message, final EObject ctx) {
+		return new MweDiagnostic(Diagnostic.WARNING, message, ctx, null, null);
+	}
+
+	private static Object[] toArray(final Object element, final Throwable t,
+			final List<Object> additionalData) {
+		final List<Object> data = new ArrayList<Object>();
 		if (element != null) {
 			data.add(element);
 		}
@@ -35,20 +48,9 @@ public class MweDiagnostic extends BasicDiagnostic {
 		}
 		return data.toArray();
 	}
-	
+
 	public EObject getContext() {
 		return context;
 	}
-	
-	public static MweDiagnostic error(String message, EObject ctx) {
-		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, null, null);
-	}
-	public static MweDiagnostic warning(String message, EObject ctx) {
-		return new MweDiagnostic(Diagnostic.WARNING, message, ctx, null, null);
-	}
 
-	public static Diagnostic error(String message, EObject ctx, Throwable e) {
-		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, e, null);
-	}
-	
 }
