@@ -23,37 +23,18 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
 
-public abstract class AbstractWorkflowSyntaxFactory {
+public interface IWorkflowSyntaxFactory {
 
-	private static AbstractWorkflowSyntaxFactory instance;
+	Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
 
-	public static AbstractWorkflowSyntaxFactory getInstance() {
-		if (instance == null)
-			throw new FactoryNotInitializedException("Factory not initialized");
+	IContentAssistProcessor newContentAssistProcessor(WorkflowEditor editor,
+			ColorManager colorManager);
 
-		return instance;
-	}
+	IWorkflowAttribute newWorkflowAttribute(IWorkflowElement element,
+			String name, String value);
 
-	public static void installFactory(
-			final AbstractWorkflowSyntaxFactory newInstance) {
-		if (newInstance == null) {
-			throw new IllegalArgumentException();
-		}
-
-		instance = newInstance;
-	}
-
-	public abstract Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
-
-	public abstract IContentAssistProcessor newContentAssistProcessor(
-			WorkflowEditor editor, ColorManager colorManager);
-
-	public abstract IWorkflowAttribute newWorkflowAttribute(
-			IWorkflowElement element, String name, String value);
-
-	public abstract IWorkflowElement newWorkflowElement(IDocument document,
-			String name);
+	IWorkflowElement newWorkflowElement(IDocument document, String name);
 }

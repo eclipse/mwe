@@ -16,7 +16,8 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -28,7 +29,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -138,8 +139,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startDocument() throws SAXException {
-		final AbstractWorkflowSyntaxFactory factory =
-				AbstractWorkflowSyntaxFactory.getInstance();
+		final IWorkflowSyntaxFactory factory =
+				WorkflowSyntaxFactory.getInstance();
 		rootElement =
 				factory.newWorkflowElement(document,
 						IWorkflowElement.WORKFLOWFILE_TAG);
@@ -159,8 +160,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final String qName, final Attributes attributes)
 			throws SAXException {
 
-		final AbstractWorkflowSyntaxFactory factory =
-				AbstractWorkflowSyntaxFactory.getInstance();
+		final IWorkflowSyntaxFactory factory =
+				WorkflowSyntaxFactory.getInstance();
 		final IWorkflowElement element =
 				factory.newWorkflowElement(document, localName);
 		if (isIllegalName(localName))

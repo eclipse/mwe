@@ -26,16 +26,14 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
-public class XMLWorkflowSyntaxFactoryImpl extends
-		AbstractWorkflowSyntaxFactory {
+public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 
-	@Override
 	public Collection<IAutoEditStrategy> newAutoEditStrategyCollection() {
 		final List<IAutoEditStrategy> strategies =
 				new ArrayList<IAutoEditStrategy>();
@@ -46,7 +44,6 @@ public class XMLWorkflowSyntaxFactoryImpl extends
 		return strategies;
 	}
 
-	@Override
 	public IContentAssistProcessor newContentAssistProcessor(
 			final WorkflowEditor editor, final ColorManager colorManager) {
 		if (editor == null || colorManager == null) {
@@ -58,14 +55,12 @@ public class XMLWorkflowSyntaxFactoryImpl extends
 
 	}
 
-	@Override
 	public IWorkflowAttribute newWorkflowAttribute(
 			final IWorkflowElement element, final String name,
 			final String value) {
 		return new XMLWorkflowAttributeImpl(element, name, value);
 	}
 
-	@Override
 	public IWorkflowElement newWorkflowElement(final IDocument document,
 			final String name) {
 		return new XMLWorkflowElementImpl(document, name);

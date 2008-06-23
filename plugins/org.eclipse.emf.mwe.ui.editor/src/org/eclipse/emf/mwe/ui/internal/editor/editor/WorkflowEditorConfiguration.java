@@ -15,7 +15,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DefaultFormattingStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.format.DocTypeFormattingStrategy;
@@ -53,7 +54,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -75,7 +76,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private final WorkflowEditorPlugin plugin;
 
-	private final AbstractWorkflowSyntaxFactory factory;
+	private final IWorkflowSyntaxFactory factory;
 
 	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin,
 			final ColorManager colorManager, final WorkflowEditor editor) {
@@ -86,10 +87,10 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 		// TODO Preliminary code. The factory has to be installed depending on
 		// the document content.
-		AbstractWorkflowSyntaxFactory
+		WorkflowSyntaxFactory
 				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 
-		factory = AbstractWorkflowSyntaxFactory.getInstance();
+		factory = WorkflowSyntaxFactory.getInstance();
 	}
 
 	/**
