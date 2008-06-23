@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.base;
 
 import junit.framework.TestCase;
 
-import org.eclipse.emf.mwe.ui.internal.editor.factories.AbstractWorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
@@ -21,7 +21,7 @@ import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ParserTestBase extends TestCase {
 
@@ -31,7 +31,7 @@ public class ParserTestBase extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		AbstractWorkflowSyntaxFactory
+		WorkflowSyntaxFactory
 				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 		parser = new XMLParser();
 		contentHandler = new WorkflowContentHandler();
