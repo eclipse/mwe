@@ -1,6 +1,9 @@
 package org.eclipse.emf.mwe.di;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.MwePackage;
+import org.eclipse.emf.mwe.di.execution.Instantiator;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 
 public abstract class AbstractTests extends AbstractXtextTests {
@@ -19,6 +22,27 @@ public abstract class AbstractTests extends AbstractXtextTests {
 		MwePackage.eINSTANCE.getAssignment();
 		MWEStandaloneSetup.doSetup();
 		setCurrentLanguage(MWEStandaloneSetup.getLanguageDescriptor());
+	}
+
+	protected File createModelFile(final String model) {
+		if (model == null)
+			return null;
+	
+		try {
+			final File file =
+					(File) loadModel(URI.createURI("foo.mwe"), model);
+			return file;
+		} catch (final Exception e) {
+			return null;
+		}
+	}
+
+	protected Object instantiate(final File file) {
+		if (file == null)
+			return null;
+	
+		final Instantiator instantiator = new Instantiator();
+		return instantiator.instantiate(file);
 	}
 
 }
