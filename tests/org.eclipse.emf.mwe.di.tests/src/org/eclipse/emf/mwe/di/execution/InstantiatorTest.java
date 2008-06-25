@@ -22,7 +22,7 @@ public class InstantiatorTest extends AbstractTests {
 		assertNull(obj.multiEle.get(0).name);
 	}
 
-	public void testTypeInferrence() throws Exception {
+	public void testTypeInference() throws Exception {
 		File file = (File) loadModel(URI.createURI("foo.mwe"),
 				"test.ObjectB { singleEle = :a {name='foo'} multiEle = {} multiEle = a;}");
 		assertNotNull(file);
