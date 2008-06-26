@@ -37,4 +37,16 @@ public class Xml2MweConverterTest extends AbstractTests {
 				"value.assignments.select(e|e.feature=='component').size",
 				file);
 	}
+
+	public void testWhiteSpaceHandling() {
+		final File file =
+				fileFromXML("<workflow>\n"
+						+ "     <component file='org/example/dsl/parser/Parser.oaw'>\n"
+						+ "     <modelFile value='${modelFile}'/>\n"
+						+ "     <outputSlot value='theModel'/>\n"
+						+ "     </component>\n" + "</workflow>");
+		assertNotNull(file);
+		assertWithXtend("1", "value.assignments.size", file);
+		System.out.println(invokeWithXtend("value.assignments.feature", file));
+	}
 }
