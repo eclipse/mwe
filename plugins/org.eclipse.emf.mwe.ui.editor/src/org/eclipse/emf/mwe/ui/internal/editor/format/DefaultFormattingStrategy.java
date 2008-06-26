@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.format;
 import org.eclipse.jface.text.formatter.IFormattingStrategy;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class DefaultFormattingStrategy implements IFormattingStrategy {
 	protected static final String LINE_SEPARATOR =

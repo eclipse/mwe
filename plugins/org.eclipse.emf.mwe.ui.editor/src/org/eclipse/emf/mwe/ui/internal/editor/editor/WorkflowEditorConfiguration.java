@@ -53,8 +53,8 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.19 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.20 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 

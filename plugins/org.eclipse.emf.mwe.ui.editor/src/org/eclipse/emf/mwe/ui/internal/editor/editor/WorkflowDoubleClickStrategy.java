@@ -17,8 +17,8 @@ import org.eclipse.jface.text.ITextDoubleClickStrategy;
 import org.eclipse.jface.text.ITextViewer;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 public class WorkflowDoubleClickStrategy implements ITextDoubleClickStrategy {
 	protected ITextViewer fText;

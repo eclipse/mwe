@@ -17,8 +17,8 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.6 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 

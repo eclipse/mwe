@@ -18,8 +18,8 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.7 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.8 $
  */
 public class WorkflowAnalyzer extends DefaultAnalyzer {
 

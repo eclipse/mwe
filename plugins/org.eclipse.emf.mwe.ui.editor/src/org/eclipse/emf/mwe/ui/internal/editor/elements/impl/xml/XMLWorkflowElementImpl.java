@@ -29,8 +29,8 @@ import org.eclipse.jface.text.IDocument;
  * This class defines the elements used in the outline view of the workflow
  * editor.
  * 
- * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.5 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {

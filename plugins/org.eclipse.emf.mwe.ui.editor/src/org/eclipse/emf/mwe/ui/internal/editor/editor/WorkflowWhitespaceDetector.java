@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 import org.eclipse.jface.text.rules.IWhitespaceDetector;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class WorkflowWhitespaceDetector implements IWhitespaceDetector {
 

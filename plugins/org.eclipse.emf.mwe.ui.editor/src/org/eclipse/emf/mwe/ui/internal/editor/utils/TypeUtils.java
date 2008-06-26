@@ -53,8 +53,8 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.5 $
  */
 public final class TypeUtils {
 

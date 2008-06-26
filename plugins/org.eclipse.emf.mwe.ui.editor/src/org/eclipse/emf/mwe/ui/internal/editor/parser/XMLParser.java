@@ -28,8 +28,8 @@ import org.xml.sax.SAXNotSupportedException;
 import org.xml.sax.XMLReader;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.11 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.12 $
  */
 public class XMLParser {
 

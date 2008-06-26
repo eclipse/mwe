@@ -21,8 +21,8 @@ import org.eclipse.jface.text.DocumentCommand;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public class XMLAutoTagCompletionStrategy extends

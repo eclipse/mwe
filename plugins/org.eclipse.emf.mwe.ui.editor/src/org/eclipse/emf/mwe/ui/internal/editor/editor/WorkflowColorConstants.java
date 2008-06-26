@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 import org.eclipse.swt.graphics.RGB;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.5 $
  */
 public final class WorkflowColorConstants {
 	public static final RGB XML_COMMENT = new RGB(128, 0, 0);

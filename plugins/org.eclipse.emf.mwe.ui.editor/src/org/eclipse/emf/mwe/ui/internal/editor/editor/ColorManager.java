@@ -20,8 +20,8 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class ColorManager {
 

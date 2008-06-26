@@ -21,8 +21,8 @@ import org.eclipse.jface.text.IRegion;
 import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public class XMLAutoIndentStrategy extends

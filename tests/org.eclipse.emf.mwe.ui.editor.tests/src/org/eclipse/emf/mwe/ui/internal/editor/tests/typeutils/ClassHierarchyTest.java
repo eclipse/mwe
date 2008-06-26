@@ -18,8 +18,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public class ClassHierarchyTest extends TypeTestBase {

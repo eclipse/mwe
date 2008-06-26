@@ -28,8 +28,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.16 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.17 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 

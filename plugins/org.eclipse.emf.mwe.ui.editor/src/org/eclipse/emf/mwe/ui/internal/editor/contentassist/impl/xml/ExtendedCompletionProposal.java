@@ -19,8 +19,8 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public class ExtendedCompletionProposal implements ICompletionProposal {

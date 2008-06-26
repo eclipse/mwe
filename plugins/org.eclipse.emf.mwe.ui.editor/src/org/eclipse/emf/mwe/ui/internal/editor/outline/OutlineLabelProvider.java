@@ -19,8 +19,8 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.9 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {

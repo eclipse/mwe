@@ -25,8 +25,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.21 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.22 $
  */
 public class ElementIterator {
 

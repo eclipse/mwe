@@ -24,8 +24,8 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.24 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.25 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 

@@ -22,8 +22,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.9 $
  */
 public class ReferenceInfoStore {
 

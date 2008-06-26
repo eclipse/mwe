@@ -16,8 +16,8 @@ import java.util.List;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 
 public interface IContentProposalComputer {

@@ -25,8 +25,8 @@ import org.eclipse.jface.text.presentation.IPresentationRepairer;
 import org.eclipse.swt.custom.StyleRange;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
 		IPresentationRepairer {

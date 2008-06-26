@@ -33,8 +33,8 @@ import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public abstract class AbstractContentProposalComputer implements

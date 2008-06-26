@@ -24,8 +24,8 @@ import org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension;
 import org.eclipse.swt.widgets.Display;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.6 $
  */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		IReconcilingStrategyExtension {

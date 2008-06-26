@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml;
 import org.eclipse.jface.text.IAutoEditStrategy;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public abstract class XMLAbstractAutoEditStrategy implements

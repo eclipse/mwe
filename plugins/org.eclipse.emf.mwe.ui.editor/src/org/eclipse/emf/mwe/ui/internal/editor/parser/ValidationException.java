@@ -14,8 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.parser;
 import org.xml.sax.Locator;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 public class ValidationException extends RuntimeException {
 

@@ -16,8 +16,8 @@ import org.eclipse.ui.texteditor.RetargetTextEditorAction;
 /**
  * Manages the installation and deinstallation of actions for the editor.
  * 
- * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.5 $
  */
 public class WorkflowEditorContributor extends
 		BasicTextEditorActionContributor {

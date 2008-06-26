@@ -26,8 +26,8 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 
 public class JavaDocHover extends AbstractHover implements

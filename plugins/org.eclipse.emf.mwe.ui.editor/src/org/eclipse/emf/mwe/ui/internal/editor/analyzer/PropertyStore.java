@@ -17,8 +17,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 public class PropertyStore {
 

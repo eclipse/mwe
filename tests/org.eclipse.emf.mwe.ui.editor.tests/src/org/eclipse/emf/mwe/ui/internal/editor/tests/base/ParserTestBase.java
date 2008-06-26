@@ -20,8 +20,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.Document;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.3 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.4 $
  */
 public class ParserTestBase extends TestCase {
 

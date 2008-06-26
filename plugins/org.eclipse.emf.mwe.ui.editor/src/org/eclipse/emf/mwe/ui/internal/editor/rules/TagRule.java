@@ -16,8 +16,8 @@ import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.MultiLineRule;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.2 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class TagRule extends MultiLineRule {
 

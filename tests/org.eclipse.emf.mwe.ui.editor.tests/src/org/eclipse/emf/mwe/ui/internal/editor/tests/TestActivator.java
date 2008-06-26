@@ -15,8 +15,8 @@ import org.eclipse.core.runtime.Plugin;
 
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.1 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.2 $
  */
 
 public class TestActivator extends Plugin {

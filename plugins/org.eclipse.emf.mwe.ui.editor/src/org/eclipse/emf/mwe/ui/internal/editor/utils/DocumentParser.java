@@ -21,8 +21,8 @@ import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.5 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.6 $
  */
 
 public final class DocumentParser {

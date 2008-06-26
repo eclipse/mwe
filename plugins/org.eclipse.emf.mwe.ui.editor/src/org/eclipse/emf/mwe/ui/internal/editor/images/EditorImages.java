@@ -23,8 +23,8 @@ import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.8 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.9 $
  */
 public final class EditorImages {
 

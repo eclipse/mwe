@@ -56,8 +56,8 @@ import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.33 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.34 $
  */
 public class WorkflowEditor extends TextEditor {
 

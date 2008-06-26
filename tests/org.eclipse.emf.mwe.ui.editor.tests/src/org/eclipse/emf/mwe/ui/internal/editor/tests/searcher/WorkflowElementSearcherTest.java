@@ -23,8 +23,8 @@ import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.4 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.5 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {

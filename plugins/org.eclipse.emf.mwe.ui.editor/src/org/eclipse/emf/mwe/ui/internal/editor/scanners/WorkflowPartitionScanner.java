@@ -21,8 +21,8 @@ import org.eclipse.jface.text.rules.RuleBasedPartitionScanner;
 import org.eclipse.jface.text.rules.Token;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.6 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.7 $
  */
 public class WorkflowPartitionScanner extends RuleBasedPartitionScanner {
 

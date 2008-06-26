@@ -21,8 +21,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.jface.text.IDocument;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.12 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.13 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 

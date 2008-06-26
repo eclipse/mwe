@@ -24,8 +24,8 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.11 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {

@@ -27,8 +27,8 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
- * @author Patrick Schoenbach
- * @version $Revision: 1.10 $
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.11 $
  */
 public final class MarkerManager {
 
