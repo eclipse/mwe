@@ -5,6 +5,16 @@ import org.eclipse.emf.mwe.di.AbstractTests;
 
 public class Xml2MweConverterTest extends AbstractTests {
 
+	public void testProperties() {
+		final File file =
+				fileFromXML("<workflow>\n"
+						+ "   <property name='modelFile'/>\n"
+						+ "   <property name='targetDir' value='src-gen/'/>\n"
+						+ "   <property file='foo'/>\n" + "</workflow>");
+		assertNotNull(file);
+		assertWithXtend("3", "properties.size", file);
+	}
+
 	public void testSimple() throws Exception {
 		final File file =
 				fileFromXML("<?xml version=\"1.0\"?><workflow id='foo' foo='stuff'><nested value='x'/></workflow>");
