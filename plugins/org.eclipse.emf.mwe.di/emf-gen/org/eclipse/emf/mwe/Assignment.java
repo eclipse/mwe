@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: Assignment.java,v 1.3 2008/06/19 11:01:43 sefftinge Exp $
+ * $Id: Assignment.java,v 1.4 2008/07/01 11:50:54 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -17,8 +17,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.Assignment#getFeature <em>Feature</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.Assignment#getOperator <em>Operator</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.Assignment#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.Assignment#getOperator <em>Operator</em>}</li>
  * </ul>
  * </p>
  *

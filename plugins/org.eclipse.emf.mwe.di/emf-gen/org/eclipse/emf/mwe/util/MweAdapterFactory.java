@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MweAdapterFactory.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
+ * $Id: MweAdapterFactory.java,v 1.5 2008/07/01 11:50:54 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.util;
 
@@ -72,16 +72,36 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 	protected MweSwitch<Adapter> modelSwitch =
 		new MweSwitch<Adapter>() {
 			@Override
-			public Adapter caseComplexValue(ComplexValue object) {
-				return createComplexValueAdapter();
+			public Adapter caseQualifiedName(QualifiedName object) {
+				return createQualifiedNameAdapter();
+			}
+			@Override
+			public Adapter caseValue(Value object) {
+				return createValueAdapter();
+			}
+			@Override
+			public Adapter caseGenericImport(GenericImport object) {
+				return createGenericImportAdapter();
 			}
 			@Override
 			public Adapter caseProperty(Property object) {
 				return createPropertyAdapter();
 			}
 			@Override
-			public Adapter caseSimpleValue(SimpleValue object) {
-				return createSimpleValueAdapter();
+			public Adapter casePropertiesFileImport(PropertiesFileImport object) {
+				return createPropertiesFileImportAdapter();
+			}
+			@Override
+			public Adapter caseImport(Import object) {
+				return createImportAdapter();
+			}
+			@Override
+			public Adapter caseAssignment(Assignment object) {
+				return createAssignmentAdapter();
+			}
+			@Override
+			public Adapter caseIdRef(IdRef object) {
+				return createIdRefAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowRef(WorkflowRef object) {
@@ -96,40 +116,20 @@ public class MweAdapterFactory extends AdapterFactoryImpl {
 				return createAssignableAdapter();
 			}
 			@Override
-			public Adapter caseGenericImport(GenericImport object) {
-				return createGenericImportAdapter();
-			}
-			@Override
 			public Adapter caseJavaImport(JavaImport object) {
 				return createJavaImportAdapter();
 			}
 			@Override
-			public Adapter casePropertiesFileImport(PropertiesFileImport object) {
-				return createPropertiesFileImportAdapter();
-			}
-			@Override
-			public Adapter caseValue(Value object) {
-				return createValueAdapter();
+			public Adapter caseComplexValue(ComplexValue object) {
+				return createComplexValueAdapter();
 			}
 			@Override
 			public Adapter caseLocalVariable(LocalVariable object) {
 				return createLocalVariableAdapter();
 			}
 			@Override
-			public Adapter caseAssignment(Assignment object) {
-				return createAssignmentAdapter();
-			}
-			@Override
-			public Adapter caseImport(Import object) {
-				return createImportAdapter();
-			}
-			@Override
-			public Adapter caseQualifiedName(QualifiedName object) {
-				return createQualifiedNameAdapter();
-			}
-			@Override
-			public Adapter caseIdRef(IdRef object) {
-				return createIdRefAdapter();
+			public Adapter caseSimpleValue(SimpleValue object) {
+				return createSimpleValueAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {

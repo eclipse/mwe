@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileImpl.java,v 1.3 2008/06/19 07:53:38 sefftinge Exp $
+ * $Id: FileImpl.java,v 1.4 2008/07/01 11:50:53 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -36,9 +36,9 @@ import org.eclipse.emf.mwe.Value;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.FileImpl#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.impl.FileImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.FileImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.FileImpl#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.FileImpl#getImports <em>Imports</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,14 +46,14 @@ import org.eclipse.emf.mwe.Value;
  */
 public class FileImpl extends EObjectImpl implements File {
 	/**
-	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImports()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Import> imports;
+	protected ComplexValue value;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -66,14 +66,14 @@ public class FileImpl extends EObjectImpl implements File {
 	protected EList<Property> properties;
 
 	/**
-	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+	 * The cached value of the '{@link #getImports() <em>Imports</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getValue()
+	 * @see #getImports()
 	 * @generated
 	 * @ordered
 	 */
-	protected ComplexValue value;
+	protected EList<Import> imports;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -169,12 +169,12 @@ public class FileImpl extends EObjectImpl implements File {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case MwePackage.FILE__IMPORTS:
-				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
-			case MwePackage.FILE__PROPERTIES:
-				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case MwePackage.FILE__VALUE:
 				return basicSetValue(null, msgs);
+			case MwePackage.FILE__PROPERTIES:
+				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
+			case MwePackage.FILE__IMPORTS:
+				return ((InternalEList<?>)getImports()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -187,12 +187,12 @@ public class FileImpl extends EObjectImpl implements File {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.FILE__IMPORTS:
-				return getImports();
-			case MwePackage.FILE__PROPERTIES:
-				return getProperties();
 			case MwePackage.FILE__VALUE:
 				return getValue();
+			case MwePackage.FILE__PROPERTIES:
+				return getProperties();
+			case MwePackage.FILE__IMPORTS:
+				return getImports();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,16 +206,16 @@ public class FileImpl extends EObjectImpl implements File {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.FILE__IMPORTS:
-				getImports().clear();
-				getImports().addAll((Collection<? extends Import>)newValue);
+			case MwePackage.FILE__VALUE:
+				setValue((ComplexValue)newValue);
 				return;
 			case MwePackage.FILE__PROPERTIES:
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends Property>)newValue);
 				return;
-			case MwePackage.FILE__VALUE:
-				setValue((ComplexValue)newValue);
+			case MwePackage.FILE__IMPORTS:
+				getImports().clear();
+				getImports().addAll((Collection<? extends Import>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -229,14 +229,14 @@ public class FileImpl extends EObjectImpl implements File {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.FILE__IMPORTS:
-				getImports().clear();
+			case MwePackage.FILE__VALUE:
+				setValue((ComplexValue)null);
 				return;
 			case MwePackage.FILE__PROPERTIES:
 				getProperties().clear();
 				return;
-			case MwePackage.FILE__VALUE:
-				setValue((ComplexValue)null);
+			case MwePackage.FILE__IMPORTS:
+				getImports().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -250,12 +250,12 @@ public class FileImpl extends EObjectImpl implements File {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.FILE__IMPORTS:
-				return imports != null && !imports.isEmpty();
-			case MwePackage.FILE__PROPERTIES:
-				return properties != null && !properties.isEmpty();
 			case MwePackage.FILE__VALUE:
 				return value != null;
+			case MwePackage.FILE__PROPERTIES:
+				return properties != null && !properties.isEmpty();
+			case MwePackage.FILE__IMPORTS:
+				return imports != null && !imports.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

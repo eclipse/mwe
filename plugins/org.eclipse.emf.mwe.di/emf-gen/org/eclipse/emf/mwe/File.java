@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: File.java,v 1.3 2008/06/19 07:53:39 sefftinge Exp $
+ * $Id: File.java,v 1.4 2008/07/01 11:50:54 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.File#getImports <em>Imports</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.File#getProperties <em>Properties</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.File#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.File#getProperties <em>Properties</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.File#getImports <em>Imports</em>}</li>
  * </ul>
  * </p>
  *

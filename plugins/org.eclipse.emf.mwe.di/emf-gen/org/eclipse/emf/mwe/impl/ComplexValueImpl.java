@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValueImpl.java,v 1.3 2008/06/19 11:01:43 sefftinge Exp $
+ * $Id: ComplexValueImpl.java,v 1.4 2008/07/01 11:50:54 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -34,15 +34,36 @@ import org.eclipse.emf.mwe.QualifiedName;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#isFooBar <em>Foo Bar</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getAssignments <em>Assignments</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getClassName <em>Class Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#isFooBar <em>Foo Bar</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.impl.ComplexValueImpl#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
+public class ComplexValueImpl extends ValueImpl implements ComplexValue {
+	/**
+	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAssignments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Assignment> assignments;
+
+	/**
+	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getClassName()
+	 * @generated
+	 * @ordered
+	 */
+	protected QualifiedName className;
+
 	/**
 	 * The default value of the '{@link #isFooBar() <em>Foo Bar</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,16 +83,6 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	 * @ordered
 	 */
 	protected boolean fooBar = FOO_BAR_EDEFAULT;
-
-	/**
-	 * The cached value of the '{@link #getClassName() <em>Class Name</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getClassName()
-	 * @generated
-	 * @ordered
-	 */
-	protected QualifiedName className;
 
 	/**
 	 * The default value of the '{@link #getId() <em>Id</em>}' attribute.
@@ -110,6 +121,18 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	protected EClass eStaticClass() {
 		return MwePackage.Literals.COMPLEX_VALUE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Assignment> getAssignments() {
+		if (assignments == null) {
+			assignments = new EObjectContainmentEList<Assignment>(Assignment.class, this, MwePackage.COMPLEX_VALUE__ASSIGNMENTS);
+		}
+		return assignments;
 	}
 
 	/**
@@ -205,6 +228,8 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
+				return ((InternalEList<?>)getAssignments()).basicRemove(otherEnd, msgs);
 			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
 				return basicSetClassName(null, msgs);
 		}
@@ -219,10 +244,12 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case MwePackage.COMPLEX_VALUE__FOO_BAR:
-				return isFooBar() ? Boolean.TRUE : Boolean.FALSE;
+			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
+				return getAssignments();
 			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
 				return getClassName();
+			case MwePackage.COMPLEX_VALUE__FOO_BAR:
+				return isFooBar() ? Boolean.TRUE : Boolean.FALSE;
 			case MwePackage.COMPLEX_VALUE__ID:
 				return getId();
 		}
@@ -238,11 +265,15 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case MwePackage.COMPLEX_VALUE__FOO_BAR:
-				setFooBar(((Boolean)newValue).booleanValue());
+			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
+				getAssignments().clear();
+				getAssignments().addAll((Collection<? extends Assignment>)newValue);
 				return;
 			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
 				setClassName((QualifiedName)newValue);
+				return;
+			case MwePackage.COMPLEX_VALUE__FOO_BAR:
+				setFooBar(((Boolean)newValue).booleanValue());
 				return;
 			case MwePackage.COMPLEX_VALUE__ID:
 				setId((String)newValue);
@@ -259,11 +290,14 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case MwePackage.COMPLEX_VALUE__FOO_BAR:
-				setFooBar(FOO_BAR_EDEFAULT);
+			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
+				getAssignments().clear();
 				return;
 			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
 				setClassName((QualifiedName)null);
+				return;
+			case MwePackage.COMPLEX_VALUE__FOO_BAR:
+				setFooBar(FOO_BAR_EDEFAULT);
 				return;
 			case MwePackage.COMPLEX_VALUE__ID:
 				setId(ID_EDEFAULT);
@@ -280,14 +314,48 @@ public class ComplexValueImpl extends AssignableImpl implements ComplexValue {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case MwePackage.COMPLEX_VALUE__FOO_BAR:
-				return fooBar != FOO_BAR_EDEFAULT;
+			case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
+				return assignments != null && !assignments.isEmpty();
 			case MwePackage.COMPLEX_VALUE__CLASS_NAME:
 				return className != null;
+			case MwePackage.COMPLEX_VALUE__FOO_BAR:
+				return fooBar != FOO_BAR_EDEFAULT;
 			case MwePackage.COMPLEX_VALUE__ID:
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (derivedFeatureID) {
+				case MwePackage.COMPLEX_VALUE__ASSIGNMENTS: return MwePackage.ASSIGNABLE__ASSIGNMENTS;
+				default: return -1;
+			}
+		}
+		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
+		if (baseClass == Assignable.class) {
+			switch (baseFeatureID) {
+				case MwePackage.ASSIGNABLE__ASSIGNMENTS: return MwePackage.COMPLEX_VALUE__ASSIGNMENTS;
+				default: return -1;
+			}
+		}
+		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
 	}
 
 	/**

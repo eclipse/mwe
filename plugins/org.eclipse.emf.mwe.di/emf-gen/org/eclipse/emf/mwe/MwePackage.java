@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: MwePackage.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
+ * $Id: MwePackage.java,v 1.5 2008/07/01 11:50:54 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
@@ -67,7 +67,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getValue()
 	 * @generated
 	 */
-	int VALUE = 9;
+	int VALUE = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.WorkflowRefImpl <em>Workflow Ref</em>}' class.
@@ -77,7 +77,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getWorkflowRef()
 	 * @generated
 	 */
-	int WORKFLOW_REF = 3;
+	int WORKFLOW_REF = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.ComplexValueImpl <em>Complex Value</em>}' class.
@@ -87,7 +87,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getComplexValue()
 	 * @generated
 	 */
-	int COMPLEX_VALUE = 0;
+	int COMPLEX_VALUE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.PropertyImpl <em>Property</em>}' class.
@@ -97,7 +97,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getProperty()
 	 * @generated
 	 */
-	int PROPERTY = 1;
+	int PROPERTY = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.LocalVariableImpl <em>Local Variable</em>}' class.
@@ -107,7 +107,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getLocalVariable()
 	 * @generated
 	 */
-	int LOCAL_VARIABLE = 10;
+	int LOCAL_VARIABLE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.QualifiedNameImpl <em>Qualified Name</em>}' class.
@@ -117,7 +117,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getQualifiedName()
 	 * @generated
 	 */
-	int QUALIFIED_NAME = 13;
+	int QUALIFIED_NAME = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.FileImpl <em>File</em>}' class.
@@ -127,7 +127,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getFile()
 	 * @generated
 	 */
-	int FILE = 4;
+	int FILE = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.AssignmentImpl <em>Assignment</em>}' class.
@@ -137,7 +137,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getAssignment()
 	 * @generated
 	 */
-	int ASSIGNMENT = 11;
+	int ASSIGNMENT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.IdRefImpl <em>Id Ref</em>}' class.
@@ -147,7 +147,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getIdRef()
 	 * @generated
 	 */
-	int ID_REF = 14;
+	int ID_REF = 7;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.WorkflowRef <em>Workflow Ref</em>}'.
@@ -178,7 +178,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getPropertiesFileImport()
 	 * @generated
 	 */
-	int PROPERTIES_FILE_IMPORT = 8;
+	int PROPERTIES_FILE_IMPORT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.SimpleValueImpl <em>Simple Value</em>}' class.
@@ -188,7 +188,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getSimpleValue()
 	 * @generated
 	 */
-	int SIMPLE_VALUE = 2;
+	int SIMPLE_VALUE = 14;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.AssignableImpl <em>Assignable</em>}' class.
@@ -198,7 +198,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getAssignable()
 	 * @generated
 	 */
-	int ASSIGNABLE = 5;
+	int ASSIGNABLE = 10;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.ImportImpl <em>Import</em>}' class.
@@ -208,7 +208,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getImport()
 	 * @generated
 	 */
-	int IMPORT = 12;
+	int IMPORT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.JavaImportImpl <em>Java Import</em>}' class.
@@ -218,7 +218,7 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getJavaImport()
 	 * @generated
 	 */
-	int JAVA_IMPORT = 7;
+	int JAVA_IMPORT = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.impl.GenericImportImpl <em>Generic Import</em>}' class.
@@ -228,79 +228,25 @@ public interface MwePackage extends EPackage {
 	 * @see org.eclipse.emf.mwe.impl.MwePackageImpl#getGenericImport()
 	 * @generated
 	 */
-	int GENERIC_IMPORT = 6;
+	int GENERIC_IMPORT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Parts</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNABLE__ASSIGNMENTS = 0;
+	int QUALIFIED_NAME__PARTS = 0;
 
 	/**
-	 * The number of structural features of the '<em>Assignable</em>' class.
+	 * The number of structural features of the '<em>Qualified Name</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNABLE_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_VALUE__ASSIGNMENTS = ASSIGNABLE__ASSIGNMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Foo Bar</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_VALUE__FOO_BAR = ASSIGNABLE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Class Name</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_VALUE__CLASS_NAME = ASSIGNABLE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_VALUE__ID = ASSIGNABLE_FEATURE_COUNT + 2;
-
-	/**
-	 * The number of structural features of the '<em>Complex Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPLEX_VALUE_FEATURE_COUNT = ASSIGNABLE_FEATURE_COUNT + 3;
-
-	/**
-	 * The number of structural features of the '<em>Property</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PROPERTY_FEATURE_COUNT = 0;
+	int QUALIFIED_NAME_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of structural features of the '<em>Value</em>' class.
@@ -310,87 +256,6 @@ public interface MwePackage extends EPackage {
 	 * @ordered
 	 */
 	int VALUE_FEATURE_COUNT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Simple Value</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SIMPLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF__ASSIGNMENTS = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Uri</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF__URI = VALUE_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Workflow Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int WORKFLOW_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE__IMPORTS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE__PROPERTIES = 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE__VALUE = 2;
-
-	/**
-	 * The number of structural features of the '<em>File</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Import</em>' class.
@@ -420,6 +285,168 @@ public interface MwePackage extends EPackage {
 	int GENERIC_IMPORT_FEATURE_COUNT = IMPORT_FEATURE_COUNT + 1;
 
 	/**
+	 * The number of structural features of the '<em>Property</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_COUNT = 0;
+
+	/**
+	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_FILE_IMPORT__FILE = PROPERTY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Properties File Import</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTIES_FILE_IMPORT_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__FEATURE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__VALUE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT__OPERATOR = 2;
+
+	/**
+	 * The number of structural features of the '<em>Assignment</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT_FEATURE_COUNT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_REF__ID = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Id Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ID_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF__ASSIGNMENTS = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF__URI = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int WORKFLOW_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__VALUE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__PROPERTIES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Imports</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE__IMPORTS = 2;
+
+	/**
+	 * The number of structural features of the '<em>File</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_FEATURE_COUNT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE__ASSIGNMENTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Assignable</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNABLE_FEATURE_COUNT = 1;
+
+	/**
 	 * The feature id for the '<em><b>Wildcard</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -447,22 +474,49 @@ public interface MwePackage extends EPackage {
 	int JAVA_IMPORT_FEATURE_COUNT = IMPORT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>File</b></em>' attribute.
+	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTIES_FILE_IMPORT__FILE = PROPERTY_FEATURE_COUNT + 0;
+	int COMPLEX_VALUE__ASSIGNMENTS = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The number of structural features of the '<em>Properties File Import</em>' class.
+	 * The feature id for the '<em><b>Class Name</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTIES_FILE_IMPORT_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 1;
+	int COMPLEX_VALUE__CLASS_NAME = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Foo Bar</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_VALUE__FOO_BAR = VALUE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_VALUE__ID = VALUE_FEATURE_COUNT + 3;
+
+	/**
+	 * The number of structural features of the '<em>Complex Value</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMPLEX_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -492,76 +546,22 @@ public interface MwePackage extends EPackage {
 	int LOCAL_VARIABLE_FEATURE_COUNT = PROPERTY_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' attribute.
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__FEATURE = 0;
+	int SIMPLE_VALUE__VALUE = VALUE_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Operator</b></em>' attribute.
+	 * The number of structural features of the '<em>Simple Value</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSIGNMENT__OPERATOR = 1;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT__VALUE = 2;
-
-	/**
-	 * The number of structural features of the '<em>Assignment</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSIGNMENT_FEATURE_COUNT = 3;
-
-	/**
-	 * The feature id for the '<em><b>Parts</b></em>' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAME__PARTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Qualified Name</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int QUALIFIED_NAME_FEATURE_COUNT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ID_REF__ID = VALUE_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Id Ref</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ID_REF_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+	int SIMPLE_VALUE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.GenericImport <em>Generic Import</em>}'.
