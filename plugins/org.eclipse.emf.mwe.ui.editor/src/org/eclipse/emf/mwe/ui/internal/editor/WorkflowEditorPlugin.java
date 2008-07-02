@@ -27,7 +27,11 @@ import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
+ */
+/**
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.3 $
  */
 public class WorkflowEditorPlugin extends AbstractUIPlugin {
 
@@ -37,13 +41,16 @@ public class WorkflowEditorPlugin extends AbstractUIPlugin {
 	public static final String PLUGIN_ID = "org.eclipse.emf.mwe.ui";
 
 	private static final String PLUGIN_RESOURCES_PROPERTY =
-			"org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPluginResources";
+		"org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPluginResources";
 
 	/**
 	 * The shared instance
 	 */
 	private static WorkflowEditorPlugin plugin;
 
+	/**
+	 * The preference store
+	 */
 	private IPreferenceStore combinedPreferenceStore;
 
 	/**
@@ -58,7 +65,7 @@ public class WorkflowEditorPlugin extends AbstractUIPlugin {
 		plugin = this;
 		try {
 			resourceBundle =
-					ResourceBundle.getBundle(PLUGIN_RESOURCES_PROPERTY);
+				ResourceBundle.getBundle(PLUGIN_RESOURCES_PROPERTY);
 		} catch (final MissingResourceException x) {
 			resourceBundle = null;
 		}
@@ -102,7 +109,7 @@ public class WorkflowEditorPlugin extends AbstractUIPlugin {
 	 */
 	public static String getResourceString(final String key) {
 		final ResourceBundle bundle =
-				WorkflowEditorPlugin.getDefault().getResourceBundle();
+			WorkflowEditorPlugin.getDefault().getResourceBundle();
 		try {
 			return bundle != null ? bundle.getString(key) : key;
 		} catch (final MissingResourceException e) {
@@ -168,10 +175,10 @@ public class WorkflowEditorPlugin extends AbstractUIPlugin {
 	public IPreferenceStore getCombinedPreferenceStore() {
 		if (combinedPreferenceStore == null) {
 			final IPreferenceStore generalTextStore =
-					EditorsUI.getPreferenceStore();
+				EditorsUI.getPreferenceStore();
 			combinedPreferenceStore =
-					new ChainedPreferenceStore(new IPreferenceStore[] {
-							getPreferenceStore(), generalTextStore });
+				new ChainedPreferenceStore(new IPreferenceStore[] {
+						getPreferenceStore(), generalTextStore });
 		}
 		return combinedPreferenceStore;
 	}
