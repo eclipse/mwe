@@ -34,7 +34,6 @@ import org.eclipse.core.resources.IWorkspaceDescription;
 import org.eclipse.core.resources.IncrementalProjectBuilder;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
@@ -227,8 +226,9 @@ public final class ProjectCreator {
 	public static IProject createProject(final String projectName,
 			final Set<String> requiredBundles) throws CoreException,
 			InvocationTargetException, InterruptedException {
-		if (projectName == null)
+		if (projectName == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcFolders = new ArrayList<String>();
@@ -321,17 +321,4 @@ public final class ProjectCreator {
 		createFile("MANIFEST.MF", metaInf, maniContent.toString(),
 				progressMonitor);
 	}
-
-	private static IPath createPath(final String req) {
-		if (req == null)
-			return null;
-
-		String result = "";
-		final String[] segment = req.split("\\.");
-		for (final String s : segment) {
-			result += "/" + s;
-		}
-		return new Path(result);
-	}
-
 }
