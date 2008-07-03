@@ -7,19 +7,30 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.infrastructure;
+package org.eclipse.emf.mwe.di.ui.tests.utils;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 
-public class InfrastructureTest extends AbstractUITests {
+/**
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.1 $
+ */
+
+public class ModelUtilsTest extends AbstractUITests {
+
 	private static final String CONTENT = "test.ObjectB {\n" + "	multiEle = { name=\"Foo\" }\n"
 			+ "	multiEle = :x { name=\"Bar\" }\n" + "	singleEle = x;\n" + "}";
 
-	public void testInfrastructure() {
+	public void testGetProject() {
 		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
 		final File model = loadModelFile(file);
 		assertNotNull(model);
+		final IProject project = ModelUtils.getProject(model);
+		assertNotNull(project);
+		assertEquals(PROJECT_NAME, project.getName());
 	}
 }

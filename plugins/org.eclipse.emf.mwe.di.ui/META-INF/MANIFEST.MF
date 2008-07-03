@@ -8,6 +8,8 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.mwe.di;bundle-version="1.0.0",
  org.eclipse.jdt.core;bundle-version="3.4.0",
  org.eclipse.core.runtime;bundle-version="3.4.0",
- org.eclipse.core.resources;bundle-version="3.4.0"
+ org.eclipse.core.resources;bundle-version="3.4.0",
+ org.eclipse.xtext.ui;bundle-version="1.0.0"
 Export-Package: org.eclipse.emf.mwe.di.ui.analyze;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
- org.eclipse.emf.mwe.di.ui.analyze.internal;x-friends:="org.eclipse.emf.mwe.di.ui.tests"
+ org.eclipse.emf.mwe.di.ui.analyze.internal;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
+ org.eclipse.emf.mwe.di.ui.utils;x-friends:="org.eclipse.emf.mwe.di.ui.tests"
