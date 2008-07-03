@@ -71,7 +71,7 @@ protected void proceedFile(InstanceDescription obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.0/@alternatives/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.0/@alternatives/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedComplexValue(val);
@@ -108,7 +108,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedProperty(val);
@@ -141,7 +141,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.0/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.0/@alternatives/@abstractTokens.0/@abstractTokens.0/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedImport(val);
@@ -182,7 +182,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.1/@alternatives/@groups.0");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.1/@alternatives/@groups.0");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedJavaImport(val);
@@ -206,7 +206,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.1/@alternatives/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.1/@alternatives/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedGenericImport(val);
@@ -237,7 +237,7 @@ protected void proceedJavaImport(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -264,7 +264,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal"));
 
 }
 
@@ -277,7 +277,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
 
 }
 
@@ -299,7 +299,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedQualifiedName(val);
@@ -319,7 +319,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
 
 }
 
@@ -349,7 +349,7 @@ new Predicate(obj) {
 		}
 }.check() ){
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.3/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.3/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -368,7 +368,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -383,7 +383,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.3/@alternatives/@abstractTokens.0/@abstractTokens.0"));
 
 }
 
@@ -412,7 +412,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.4/@alternatives/@groups.0");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.4/@alternatives/@groups.0");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedLocalVariable(val);
@@ -436,7 +436,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.4/@alternatives/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.4/@alternatives/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedPropertiesFileImport(val);
@@ -467,7 +467,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -490,7 +490,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedValue(val);
@@ -510,7 +510,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
 
 }
 
@@ -532,7 +532,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -547,7 +547,7 @@ protected void proceedLocalVariable(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
 
 }
 
@@ -571,7 +571,7 @@ protected void proceedPropertiesFileImport(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.6/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.6/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -590,7 +590,7 @@ protected void proceedPropertiesFileImport(InstanceDescription obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -609,7 +609,7 @@ protected void proceedPropertiesFileImport(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
 
 }
 
@@ -617,7 +617,7 @@ protected void proceedPropertiesFileImport(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.6/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
 
 }
 
@@ -684,7 +684,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.0");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.0");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedSimpleValue(val);
@@ -708,7 +708,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.7/@alternatives/@groups.0/@groups.0/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedComplexValue(val);
@@ -741,7 +741,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.7/@alternatives/@groups.0/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.7/@alternatives/@groups.0/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedIdRef(val);
@@ -774,7 +774,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.7/@alternatives/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.7/@alternatives/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedWorkflowRef(val);
@@ -808,7 +808,7 @@ protected void proceedSimpleValue(InstanceDescription obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.8/@alternatives/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.8/@alternatives/@terminal"));
 		
 	
 
@@ -838,7 +838,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.9/@alternatives/@groups.0");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.9/@alternatives/@groups.0");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedComplexValue(val);
@@ -862,7 +862,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = obj;
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.9/@alternatives/@groups.1");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.9/@alternatives/@groups.1");
 	try {
 		ruleCallStart(val, false, (RuleCall) ruleCall);
 		proceedWorkflowRef(val);
@@ -893,7 +893,7 @@ protected void proceedComplexValue(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -918,7 +918,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedAssignment(val);
@@ -947,7 +947,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
 
 }
 
@@ -981,7 +981,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -996,7 +996,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@abstractTokens.0"));
 
 }
 
@@ -1020,7 +1020,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedQualifiedName(val);
@@ -1059,7 +1059,7 @@ protected void proceedWorkflowRef(InstanceDescription obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.11/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -1084,7 +1084,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedAssignment(val);
@@ -1108,7 +1108,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1"));
 
 }
 
@@ -1127,7 +1127,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -1142,7 +1142,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0"));
 
 }
 
@@ -1172,7 +1172,7 @@ protected void proceedIdRef(InstanceDescription obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.12/@alternatives/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.12/@alternatives/@terminal"));
 		
 	
 
@@ -1200,7 +1200,7 @@ new Predicate(obj) {
 		}
 }.check() ){
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13/@alternatives/@abstractTokens.1"));
 
 }
 
@@ -1219,7 +1219,7 @@ new Predicate(obj) {
 
 	
 	InstanceDescription val = (getDescr((EObject)value));
-	EObject ruleCall = getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
+	EObject ruleCall = getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.1/@terminal");
 	try {
 		ruleCallStart(val, true, (RuleCall) ruleCall);
 		proceedValue(val);
@@ -1258,7 +1258,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.0"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.0"));
 
 }
 
@@ -1273,7 +1273,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.1"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.1/@terminal/@groups.1"));
 
 }
 
@@ -1308,7 +1308,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13/@alternatives/@abstractTokens.0/@abstractTokens.0/@abstractTokens.0/@terminal"));
 		
 	
 
@@ -1356,7 +1356,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.1/@terminal"));
 		
 	
 
@@ -1376,7 +1376,7 @@ new Predicate(obj) {
 /* xtext::Keyword */ 
 {
 
-	keyword((Keyword)getGrammar().eResource().getEObject("//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal"));
+	keyword((Keyword)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.14/@alternatives/@abstractTokens.1/@abstractTokens.0/@terminal"));
 
 }
 
@@ -1399,7 +1399,7 @@ new Predicate(obj) {
 
 	
 		
-		lexerRuleCall(value,(RuleCall)getGrammar().eResource().getEObject("//@parserRules.14/@alternatives/@abstractTokens.0/@terminal"));
+		lexerRuleCall(value,(RuleCall)getGrammarElement("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.14/@alternatives/@abstractTokens.0/@terminal"));
 		
 	
 
