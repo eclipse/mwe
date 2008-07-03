@@ -4,7 +4,7 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser;
 
 import org.antlr.runtime.ANTLRInputStream;
-import org.eclipse.xtext.parser.IElementFactory;
+import org.eclipse.xtext.parser.IAstFactory;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe.di.parser.internal.InternalMWEParser;
 public class MWEParser extends org.eclipse.xtext.parser.AbstractParser {
 	
 	@Override
-	protected IParseResult parse(String ruleName, ANTLRInputStream in, IElementFactory factory) {
+	protected IParseResult parse(String ruleName, ANTLRInputStream in, IAstFactory factory) {
 		InternalMWELexer lexer = new InternalMWELexer(in);
 		XtextTokenStream stream = new XtextTokenStream(lexer);
 		InternalMWEParser parser = new InternalMWEParser(
