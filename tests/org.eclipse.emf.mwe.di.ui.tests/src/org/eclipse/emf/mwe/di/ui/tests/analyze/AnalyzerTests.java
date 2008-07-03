@@ -9,13 +9,18 @@
 
 package org.eclipse.emf.mwe.di.ui.tests.analyze;
 
-import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
+import junit.framework.Test;
+import junit.framework.TestSuite;
 
-/**
- * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
- */
 
-public class AnalyzerTest extends AbstractUITests {
+public class AnalyzerTests {
+
+	public static Test suite() {
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.tests.analyze");
+		//$JUnit-BEGIN$
+		suite.addTestSuite(AnalyzerTest.class);
+		//$JUnit-END$
+		return suite;
+	}
 
 }

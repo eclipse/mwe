@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.base;
+package org.eclipse.emf.mwe.di.ui.base;
 
 import java.util.HashSet;
 import java.util.Set;
