@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.PluginTestBase;
+import org.eclipse.emf.mwe.ui.internal.editor.base.PluginTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 
 public class TypeUtilsTest extends PluginTestBase {

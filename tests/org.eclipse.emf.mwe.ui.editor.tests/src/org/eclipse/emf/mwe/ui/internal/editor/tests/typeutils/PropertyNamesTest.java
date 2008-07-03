@@ -13,13 +13,13 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
 import java.util.Set;
 
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.TypeTestBase;
+import org.eclipse.emf.mwe.ui.internal.editor.base.TypeTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class PropertyNamesTest extends TypeTestBase {

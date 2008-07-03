@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.tests.base;
+package org.eclipse.emf.mwe.ui.internal.editor.base;
 
 import java.util.Set;
 
@@ -18,7 +18,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
 public class TypeTestBase extends PluginTestBase {

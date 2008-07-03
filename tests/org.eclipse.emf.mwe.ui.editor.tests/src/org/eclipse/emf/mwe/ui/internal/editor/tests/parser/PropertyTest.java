@@ -11,8 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
+import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.tests.base.ParserTestBase;
 import org.xml.sax.SAXException;
 
 public class PropertyTest extends ParserTestBase {
