@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -29,4 +29,14 @@ public class AnalyzerTest extends AbstractUITests {
 		analyzer.validate(file, diag, null);
 		assertEquals(0, diag.getChildren().size());
 	}
+
+	public void testSimpleSetter2() {
+		final String workflow = "stubs.ObjectA { foo = 'test' }";
+		final File file = createModelFile(workflow);
+		final InternalAnalyzer analyzer = new InternalAnalyzer(project);
+		final BasicDiagnostic diag = new BasicDiagnostic();
+		analyzer.validate(file, diag, null);
+		assertEquals(0, diag.getChildren().size());
+	}
+
 }
