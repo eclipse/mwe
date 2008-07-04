@@ -22,10 +22,9 @@ import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.emf.mwe.di.ui.utils.ProjectCreator;
 import org.eclipse.xtext.parser.IParseResult;
 
-
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -53,7 +52,12 @@ public class AbstractUITests extends AbstractTests {
 	protected void tearDown() throws Exception {
 		super.tearDown();
 		if (project != null) {
-			project.delete(true, new NullProgressMonitor());
+			try {
+				project.delete(true, new NullProgressMonitor());
+			}
+			catch (final Exception e) {
+				// ignore
+			}
 		}
 	}
 
