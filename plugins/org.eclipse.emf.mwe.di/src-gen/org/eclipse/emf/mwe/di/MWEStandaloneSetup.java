@@ -19,8 +19,8 @@ import org.eclipse.xtext.parser.IParser;
 import org.eclipse.emf.mwe.di.parser.MWEParser;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.emf.mwe.di.services.MWEResourceFactory;
-import org.eclipse.xtext.parsetree.IParseTreeConstructor;
-import org.eclipse.emf.mwe.di.parsetree.MWEParseTreeConstructor;
+import org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor;
+import org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor;
 
 import org.eclipse.emf.mwe.di.IMWE;
 

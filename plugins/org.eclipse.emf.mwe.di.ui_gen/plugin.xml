@@ -77,7 +77,7 @@
          point="org.eclipse.xtext.ui.parseTreeConstructor">
       <parseTreeConstructor
             languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.parsetree.MWEParseTreeConstructor">
+            class="org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor">
       </parseTreeConstructor>
    </extension>
    
