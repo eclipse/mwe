@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.analyze;
+package org.eclipse.emf.mwe.di.ui.tests.analyzer;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.mwe.File;
@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
