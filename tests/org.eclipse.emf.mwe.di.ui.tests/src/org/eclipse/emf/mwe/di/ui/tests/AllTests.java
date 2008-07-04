@@ -12,18 +12,19 @@ package org.eclipse.emf.mwe.di.ui.tests;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.mwe.di.ui.tests.analyzer.AnalyzerTests;
-import org.eclipse.emf.mwe.di.ui.tests.infrastructure.InfrastructureTests;
-
+import org.eclipse.emf.mwe.di.ui.tests.analyzer.AnalyzerSuite;
+import org.eclipse.emf.mwe.di.ui.tests.infrastructure.InfrastructureSuite;
+import org.eclipse.emf.mwe.di.ui.tests.utils.ModelUtilsSuite;
 
 public class AllTests {
 
 	public static Test suite() {
 		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.tests");
-		//$JUnit-BEGIN$
-		suite.addTest(InfrastructureTests.suite());
-		suite.addTest(AnalyzerTests.suite());
-		//$JUnit-END$
+		// $JUnit-BEGIN$
+		suite.addTest(InfrastructureSuite.suite());
+		suite.addTest(ModelUtilsSuite.suite());
+		suite.addTest(AnalyzerSuite.suite());
+		// $JUnit-END$
 		return suite;
 	}
 
