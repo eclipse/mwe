@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.di.ui.stubs;
+package stubs;
 
 public class ObjectA {
 	public String name;

@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.di.ui.stubs;
+package stubs;
 
 import java.util.ArrayList;
 import java.util.List;

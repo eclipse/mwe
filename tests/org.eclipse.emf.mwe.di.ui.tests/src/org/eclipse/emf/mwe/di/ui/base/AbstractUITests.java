@@ -24,7 +24,7 @@ import org.eclipse.xtext.parser.IParseResult;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -33,6 +33,7 @@ public class AbstractUITests extends AbstractTests {
 	protected static final String PROJECT_NAME = "uitest";
 	protected static final String DI_BUNDLE = "org.eclipse.emf.mwe.di";
 	protected static final String DI_UI_BUNDLE = "org.eclipse.emf.mwe.di.ui";
+	protected static final String DI_UI_TEST_BUNDLE = "org.eclipse.emf.mwe.di.ui.tests";
 
 	protected IProject project;
 
@@ -93,6 +94,7 @@ public class AbstractUITests extends AbstractTests {
 		final Set<String> requiredBundles = new HashSet<String>();
 		requiredBundles.add(DI_BUNDLE);
 		requiredBundles.add(DI_UI_BUNDLE);
+		requiredBundles.add(DI_UI_TEST_BUNDLE);
 		final IProject project = ProjectCreator.createProject(name, requiredBundles);
 		return project;
 	}

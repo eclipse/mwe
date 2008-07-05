@@ -51,22 +51,21 @@ public final class ProjectCreator {
 		throw new UnsupportedOperationException();
 	}
 
-	public static IFile createFile(final String name,
-			final IContainer container, final String content,
+	public static IFile createFile(final String name, final IContainer container, final String content,
 			final IProgressMonitor progressMonitor) {
 		final IFile file = container.getFile(new Path(name));
 		assertExist(file.getParent());
 		try {
-			final InputStream stream =
-				new ByteArrayInputStream(content.getBytes(file
-						.getCharset()));
+			final InputStream stream = new ByteArrayInputStream(content.getBytes(file.getCharset()));
 			if (file.exists()) {
 				file.setContents(stream, true, true, progressMonitor);
-			} else {
+			}
+			else {
 				file.create(stream, true, progressMonitor);
 			}
 			stream.close();
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
 		}
 		progressMonitor.worked(1);
@@ -86,8 +85,7 @@ public final class ProjectCreator {
 	 *            status
 	 * @return
 	 */
-	public static IFile createFile(final String name,
-			final IContainer container, final URL contentUrl,
+	public static IFile createFile(final String name, final IContainer container, final URL contentUrl,
 			final IProgressMonitor progressMonitor) {
 
 		final IFile file = container.getFile(new Path(name));
@@ -96,17 +94,21 @@ public final class ProjectCreator {
 			inputStream = contentUrl.openStream();
 			if (file.exists()) {
 				file.setContents(inputStream, true, true, progressMonitor);
-			} else {
+			}
+			else {
 				file.create(inputStream, true, progressMonitor);
 			}
 			inputStream.close();
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			if (null != inputStream) {
 				try {
 					inputStream.close();
-				} catch (final IOException e) {
+				}
+				catch (final IOException e) {
 					e.printStackTrace();
 				}
 			}
@@ -116,12 +118,9 @@ public final class ProjectCreator {
 		return file;
 	}
 
-	public static IProject createProject(final String projectName,
-			final List<String> srcFolders,
-			final List<IProject> referencedProjects,
-			final Set<String> requiredBundles,
-			final List<String> exportedPackages,
-			final IProgressMonitor progressMonitor) {
+	public static IProject createProject(final String projectName, final List<String> srcFolders,
+			final List<IProject> referencedProjects, final Set<String> requiredBundles,
+			final List<String> exportedPackages, final IProgressMonitor progressMonitor) {
 		try {
 			IProject project = null;
 			progressMonitor.beginTask("", 10);
@@ -131,32 +130,26 @@ public final class ProjectCreator {
 			if (project.exists())
 				return project;
 
-			final IWorkspaceDescription description =
-				workspace.getDescription();
+			final IWorkspaceDescription description = workspace.getDescription();
 			description.setAutoBuilding(false);
 			workspace.setDescription(description);
 
 			final IJavaProject javaProject = JavaCore.create(project);
-			final IProjectDescription projectDescription =
-				workspace.newProjectDescription(projectName);
+			final IProjectDescription projectDescription = workspace.newProjectDescription(projectName);
 			projectDescription.setLocation(null);
-			project.create(projectDescription, new SubProgressMonitor(
-					progressMonitor, 1));
-			final List<IClasspathEntry> classpathEntries =
-				new ArrayList<IClasspathEntry>();
+			project.create(projectDescription, new SubProgressMonitor(progressMonitor, 1));
+			final List<IClasspathEntry> classpathEntries = new ArrayList<IClasspathEntry>();
 			if (referencedProjects.size() != 0) {
-				projectDescription.setReferencedProjects(referencedProjects
-						.toArray(new IProject[referencedProjects.size()]));
+				projectDescription.setReferencedProjects(referencedProjects.toArray(new IProject[referencedProjects
+						.size()]));
 				for (final IProject referencedProject : referencedProjects) {
-					final IClasspathEntry referencedProjectClasspathEntry =
-						JavaCore.newProjectEntry(referencedProject
-								.getFullPath());
+					final IClasspathEntry referencedProjectClasspathEntry = JavaCore.newProjectEntry(referencedProject
+							.getFullPath());
 					classpathEntries.add(referencedProjectClasspathEntry);
 				}
 			}
 
-			projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID,
-			"org.eclipse.pde.PluginNature" });
+			projectDescription.setNatureIds(new String[] { JavaCore.NATURE_ID, "org.eclipse.pde.PluginNature" });
 
 			final ICommand java = projectDescription.newCommand();
 			java.setBuilderName(JavaCore.BUILDER_ID);
@@ -167,59 +160,49 @@ public final class ProjectCreator {
 			final ICommand schema = projectDescription.newCommand();
 			schema.setBuilderName("org.eclipse.pde.SchemaBuilder");
 
-			projectDescription.setBuildSpec(new ICommand[] { java, manifest,
-					schema });
+			projectDescription.setBuildSpec(new ICommand[] { java, manifest, schema });
 
 			project.open(new SubProgressMonitor(progressMonitor, 1));
-			project.setDescription(projectDescription, new SubProgressMonitor(
-					progressMonitor, 1));
+			project.setDescription(projectDescription, new SubProgressMonitor(progressMonitor, 1));
 
 			Collections.reverse(srcFolders);
 			for (final String src : srcFolders) {
 				final IFolder srcContainer = project.getFolder(src);
 				if (!srcContainer.exists()) {
-					srcContainer.create(false, true, new SubProgressMonitor(
-							progressMonitor, 1));
+					srcContainer.create(false, true, new SubProgressMonitor(progressMonitor, 1));
 				}
-				final IClasspathEntry srcClasspathEntry =
-					JavaCore.newSourceEntry(srcContainer.getFullPath());
+				final IClasspathEntry srcClasspathEntry = JavaCore.newSourceEntry(srcContainer.getFullPath());
 				classpathEntries.add(0, srcClasspathEntry);
 			}
 
-			classpathEntries.add(JavaCore.newContainerEntry(new Path(
-			"org.eclipse.jdt.launching.JRE_CONTAINER")));
-			classpathEntries.add(JavaCore.newContainerEntry(new Path(
-			"org.eclipse.pde.core.requiredPlugins")));
+			classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.jdt.launching.JRE_CONTAINER")));
+			classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins")));
 
-			javaProject.setRawClasspath(classpathEntries
-					.toArray(new IClasspathEntry[classpathEntries.size()]),
+			javaProject.setRawClasspath(classpathEntries.toArray(new IClasspathEntry[classpathEntries.size()]),
 					new SubProgressMonitor(progressMonitor, 1));
 
-			javaProject.setOutputLocation(
-					new Path("/" + projectName + "/bin"),
-					new SubProgressMonitor(progressMonitor, 1));
-			createManifest(projectName, requiredBundles, exportedPackages,
-					progressMonitor, project);
+			javaProject.setOutputLocation(new Path("/" + projectName + "/bin"), new SubProgressMonitor(progressMonitor,
+					1));
+			createManifest(projectName, requiredBundles, exportedPackages, progressMonitor, project);
 			createBuildProps(progressMonitor, project, srcFolders);
-			project.build(IncrementalProjectBuilder.FULL_BUILD,
-					new NullProgressMonitor());
-
+			fullBuild(project);
 			return project;
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			e.printStackTrace();
-		} catch (final CoreException e) {
+		}
+		catch (final CoreException e) {
 			e.printStackTrace();
-		} finally {
+		}
+		finally {
 			progressMonitor.done();
 		}
 		return null;
 	}
 
-	public static IProject createProject(final String projectName,
-			final Set<String> requiredBundles) {
-		if (projectName == null) {
+	public static IProject createProject(final String projectName, final Set<String> requiredBundles) {
+		if (projectName == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> refs = new HashSet<String>();
 		final List<String> srcFolders = new ArrayList<String>();
@@ -234,10 +217,8 @@ public final class ProjectCreator {
 		srcFolders.add("src");
 		srcFolders.add("src-gen");
 
-		final IProject project =
-			createProject(projectName, srcFolders, Collections
-					.<IProject> emptyList(), refs, exportedPackages,
-					new NullProgressMonitor());
+		final IProject project = createProject(projectName, srcFolders, Collections.<IProject> emptyList(), refs,
+				exportedPackages, new NullProgressMonitor());
 
 		return project;
 	}
@@ -249,21 +230,19 @@ public final class ProjectCreator {
 			}
 			if (c instanceof IFolder) {
 				try {
-					((IFolder) c).create(false, true,
-							new NullProgressMonitor());
-				} catch (final CoreException e) {
+					((IFolder) c).create(false, true, new NullProgressMonitor());
+				}
+				catch (final CoreException e) {
 					e.printStackTrace();
 				}
 			}
 		}
 	}
 
-	private static void createBuildProps(
-			final IProgressMonitor progressMonitor, final IProject project,
+	private static void createBuildProps(final IProgressMonitor progressMonitor, final IProject project,
 			final List<String> srcFolders) {
 		final StringBuilder bpContent = new StringBuilder("source.. = ");
-		for (final Iterator<String> iterator = srcFolders.iterator(); iterator
-		.hasNext();) {
+		for (final Iterator<String> iterator = srcFolders.iterator(); iterator.hasNext();) {
 			bpContent.append(iterator.next()).append('/');
 			if (iterator.hasNext()) {
 				bpContent.append(",");
@@ -271,21 +250,16 @@ public final class ProjectCreator {
 		}
 		bpContent.append("\n");
 		bpContent.append("bin.includes = META-INF/,.\n");
-		createFile("build.properties", project, bpContent.toString(),
-				progressMonitor);
+		createFile("build.properties", project, bpContent.toString(), progressMonitor);
 	}
 
-	private static void createManifest(final String projectName,
-			final Set<String> requiredBundles,
-			final List<String> exportedPackages,
-			final IProgressMonitor progressMonitor, final IProject project)
-	throws CoreException {
-		final StringBuilder maniContent =
-			new StringBuilder("Manifest-Version: 1.0\n");
+	private static void createManifest(final String projectName, final Set<String> requiredBundles,
+			final List<String> exportedPackages, final IProgressMonitor progressMonitor, final IProject project)
+			throws CoreException {
+		final StringBuilder maniContent = new StringBuilder("Manifest-Version: 1.0\n");
 		maniContent.append("Bundle-ManifestVersion: 2\n");
 		maniContent.append("Bundle-Name: " + projectName + "\n");
-		maniContent.append("Bundle-SymbolicName: " + projectName
-				+ "; singleton:=true\n");
+		maniContent.append("Bundle-SymbolicName: " + projectName + "; singleton:=true\n");
 		maniContent.append("Bundle-Version: 1.0.0\n");
 		maniContent.append("Require-Bundle: ");
 		for (final String entry : requiredBundles) {
@@ -302,10 +276,31 @@ public final class ProjectCreator {
 		}
 
 		final IFolder metaInf = project.getFolder("META-INF");
-		metaInf
-		.create(false, true,
-				new SubProgressMonitor(progressMonitor, 1));
-		createFile("MANIFEST.MF", metaInf, maniContent.toString(),
-				progressMonitor);
+		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
+		createFile("MANIFEST.MF", metaInf, maniContent.toString(), progressMonitor);
+	}
+
+	public static void fullBuild(final IProject project) {
+		if (project == null)
+			return;
+
+		try {
+			project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+		}
+		catch (final CoreException e) {
+			throw new RuntimeException("Cannot launch build", e);
+		}
+	}
+
+	public static void incrementalBuild(final IProject project) {
+		if (project == null)
+			return;
+
+		try {
+			project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, new NullProgressMonitor());
+		}
+		catch (final CoreException e) {
+			throw new RuntimeException("Cannot launch build", e);
+		}
 	}
 }

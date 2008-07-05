@@ -3,19 +3,18 @@ package org.eclipse.emf.mwe.di.ui.analyze.internal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.ComplexValue;
+import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.ui.analyze.MweDiagnostic;
+import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
 import org.eclipse.emf.mwe.util.MweSwitch;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
 
 public class InternalAnalyzer extends MweSwitch<Object> {
 
@@ -24,30 +23,42 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 	private final Map<String, IType> beans = new HashMap<String, IType>();
 	private Map<Object, Object> context;
 	// TODO Temporary code
-	private final IProject project;
+	private final IFile file;
 
 	public InternalAnalyzer() {
-		project = null;
+		file = null;
 	}
 
-	public InternalAnalyzer(final IProject project) {
-		this.project = project;
+	public InternalAnalyzer(final IFile file) {
+		if (file == null)
+			throw new IllegalArgumentException();
+
+		this.file = file;
+	}
+
+	public boolean validate(final EObject object) {
+		if (diagnostics == null) {
+			throw new IllegalStateException("Diagnostic chain not set");
+		}
+
+		doSwitch(object);
+		return true;
 	}
 
 	public boolean validate(final EObject object, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		this.diagnostics = diagnostics;
 		this.context = context;
 		doSwitch(object);
-		return false;
+		return true;
 	}
 
 	@Override
 	public Object caseComplexValue(final ComplexValue object) {
-		try {
-			final IProject project = getProject(object);
-			if (project != null) {
-				final IJavaProject jp = JavaCore.create(project);
-				final IType type = jp.findType(MweUtil.toString(object.getClassName()));
+		final IProject project = getProject(object);
+		if (project != null) {
+			final String typeName = MweUtil.toString(object.getClassName());
+			final IType type = TypeUtils.findType(project, typeName);
+			if (type != null) {
 				if (object.getId() != null) {
 					if (beans.containsKey(object.getId())) {
 						diagnostics.add(MweDiagnostic.warning("overwrites existing bean with id '" + object.getId()
@@ -57,24 +68,47 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 						beans.put(object.getId(), type);
 					}
 				}
-
-				final AssignmentAnalyzer analyzer = new AssignmentAnalyzer(project, object, type);
+				final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, project, diagnostics, object, type);
 				for (final Assignment ass : object.getAssignments()) {
-					final Diagnostic diagnose = analyzer.evaluate(ass.getValue());
-					if (diagnose != null) {
-						diagnostics.add(diagnose);
-					}
+					assAnalyzer.validate(ass);
 				}
 			}
-		}
-		catch (final JavaModelException e) {
-			diagnostics.add(MweDiagnostic.error(e.getMessage(), object, e));
+			else {
+				diagnostics.add(MweDiagnostic.error("Cannot find class '" + typeName + "'", object, null));
+			}
 		}
 		return super.caseComplexValue(object);
 	}
 
 	// TODO Add full implementation
 	private IProject getProject(final EObject object) {
-		return project;
+		return file.getProject();
 	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.util.MweSwitch#caseFile(org.eclipse.emf.mwe.File)
+	 */
+	@Override
+	public Object caseFile(final File object) {
+		final ComplexValue value = object.getValue();
+		doSwitch(value);
+		return super.caseFile(object);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.util.MweSwitch#caseAssignment(org.eclipse.emf.mwe.Assignment)
+	 */
+	@Override
+	public Object caseAssignment(final Assignment object) {
+		final IProject project = getProject(object);
+		if (project != null) {
+			final ComplexValue parent = (ComplexValue) object.eContainer();
+			final String typeName = MweUtil.toString(parent.getClassName());
+			final IType type = TypeUtils.findType(project, typeName);
+			final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, project, diagnostics, parent, type);
+			assAnalyzer.validate(object);
+		}
+		return super.caseAssignment(object);
+	}
+
 }

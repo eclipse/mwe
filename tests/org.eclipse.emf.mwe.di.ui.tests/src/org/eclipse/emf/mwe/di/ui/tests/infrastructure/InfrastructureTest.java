@@ -12,6 +12,8 @@ package org.eclipse.emf.mwe.di.ui.tests.infrastructure;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
+import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 
 public class InfrastructureTest extends AbstractUITests {
 	private static final String CONTENT = "test.ObjectB {\n" + "	multiEle = { name=\"Foo\" }\n"
@@ -21,5 +23,10 @@ public class InfrastructureTest extends AbstractUITests {
 		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
 		final File model = loadModelFile(file);
 		assertNotNull(model);
+	}
+
+	public void testStubAccess() {
+		final IType type = TypeUtils.findType(project, "stubs.ObjectA");
+		assertNotNull(type);
 	}
 }
