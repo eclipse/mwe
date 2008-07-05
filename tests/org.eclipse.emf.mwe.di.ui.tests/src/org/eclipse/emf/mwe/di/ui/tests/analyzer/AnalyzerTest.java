@@ -9,8 +9,6 @@
 
 package org.eclipse.emf.mwe.di.ui.tests.analyzer;
 
-import java.util.List;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -20,10 +18,12 @@ import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
+
+	private static final String NO_SETTER_MSG = "No setter";
 
 	public void testSimpleSetter1() {
 		final String workflow = "stubs.ObjectA { name = 'test' }";
@@ -32,7 +32,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final InternalAnalyzer analyzer = new InternalAnalyzer(modelFile);
 		final BasicDiagnostic diag = new BasicDiagnostic();
 		analyzer.validate(file, diag, null);
-		assertEquals(0, diag.getChildren().size());
+		assertEquals(0, getErrorCount(diag));
 	}
 
 	public void testSimpleSetter2() {
@@ -42,9 +42,8 @@ public class AnalyzerTest extends AbstractUITests {
 		final InternalAnalyzer analyzer = new InternalAnalyzer(modelFile);
 		final BasicDiagnostic diag = new BasicDiagnostic();
 		analyzer.validate(file, diag, null);
-		final List<Diagnostic> children = diag.getChildren();
-		assertEquals(1, children.size());
-		assertTrue(children.get(0).getMessage().startsWith("No setter"));
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(isSetterError(diag, 0));
 	}
 
 	public void testComplexSetter1() {
@@ -54,7 +53,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final InternalAnalyzer analyzer = new InternalAnalyzer(modelFile);
 		final BasicDiagnostic diag = new BasicDiagnostic();
 		analyzer.validate(file, diag, null);
-		assertEquals(0, diag.getChildren().size());
+		assertEquals(0, getErrorCount(diag));
 	}
 
 	public void testComplexSetter2() {
@@ -64,9 +63,20 @@ public class AnalyzerTest extends AbstractUITests {
 		final InternalAnalyzer analyzer = new InternalAnalyzer(modelFile);
 		final BasicDiagnostic diag = new BasicDiagnostic();
 		analyzer.validate(file, diag, null);
-		final List<Diagnostic> children = diag.getChildren();
-		assertEquals(2, children.size());
-		assertTrue(children.get(0).getMessage().startsWith("No setter"));
-		assertTrue(children.get(1).getMessage().startsWith("No setter"));
+		assertEquals(2, getErrorCount(diag));
+		assertTrue(isSetterError(diag, 0));
+		assertTrue(isSetterError(diag, 1));
+	}
+
+	private int getErrorCount(final Diagnostic diagnostic) {
+		return diagnostic.getChildren().size();
+	}
+
+	private boolean isSetterError(final Diagnostic diagnostic, final int index) {
+		if (diagnostic == null || index < 0 || index >= getErrorCount(diagnostic)) {
+			throw new IllegalArgumentException();
+		}
+
+		return diagnostic.getChildren().get(index).getMessage().startsWith(NO_SETTER_MSG);
 	}
 }
