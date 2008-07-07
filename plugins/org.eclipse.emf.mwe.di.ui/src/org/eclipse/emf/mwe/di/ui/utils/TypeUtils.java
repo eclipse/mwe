@@ -32,7 +32,17 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.SimpleValue;
-import org.eclipse.jdt.core.*;
+import org.eclipse.jdt.core.Flags;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaElement;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.IRegion;
+import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.ITypeHierarchy;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchEngine;
@@ -43,7 +53,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public final class TypeUtils {
 
@@ -115,17 +125,15 @@ public final class TypeUtils {
 	}
 
 	public static IType findType(final IFile file, final String typeName) {
-		if (file == null || typeName == null) {
+		if (file == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		return findType(file.getProject(), typeName);
 	}
 
 	public static IType findType(final IProject project, final String typeName) {
-		if (project == null || typeName == null) {
+		if (project == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		try {
 			final IJavaProject javaProject = JavaCore.create(project);
@@ -142,9 +150,8 @@ public final class TypeUtils {
 	}
 
 	public static Set<String> getAllClasses(final IProject project, final boolean onlyConcreteClasses) {
-		if (project == null) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> allClasses = queryAllClassesCache(project);
 		if (!allClasses.isEmpty())
@@ -177,9 +184,8 @@ public final class TypeUtils {
 		final String filePath = value.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null) {
+		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
-		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -286,17 +292,15 @@ public final class TypeUtils {
 	}
 
 	public static IMethod getSetter(final IFile file, final IType type, final String name, final IType argType) {
-		if (file == null || type == null || name == null) {
+		if (file == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		return getSetter(file.getProject(), type, name, argType);
 	}
 
 	public static IMethod getSetter(final IProject project, final IType type, final String name, final IType argType) {
-		if (project == null || type == null || name == null) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		IMethod method = null;
 
@@ -325,9 +329,8 @@ public final class TypeUtils {
 
 	public static Set<String> getSubClasses(final IProject project, final IType baseType,
 			final boolean onlyConcreteClasses) {
-		if (project == null || baseType == null) {
+		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> subClasses = querySubClassCache(project, baseType);
 		if (!subClasses.isEmpty())
@@ -348,27 +351,24 @@ public final class TypeUtils {
 	}
 
 	private static void cacheAllClasses(final IProject project, final Set<String> allClasses) {
-		if (project == null || allClasses == null) {
+		if (project == null || allClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = project.getName();
 		allClassesCache.put(hashString, allClasses);
 	}
 
 	private static void cacheSubClasses(final IProject project, final IType baseType, final Set<String> subClasses) {
-		if (project == null || baseType == null || subClasses == null) {
+		if (project == null || baseType == null || subClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = generateHashString(project, baseType);
 		subClassCache.put(hashString, subClasses);
 	}
 
 	private static String[] convertParameterTypes(final IType[] paramType) {
-		if (paramType == null) {
+		if (paramType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String[] result = new String[paramType.length];
 		for (int i = 0; i < paramType.length; i++) {
@@ -432,16 +432,16 @@ public final class TypeUtils {
 	}
 
 	private static String generateHashString(final IProject project, final IType baseType) {
-		if (project == null || baseType == null)
+		if (project == null || baseType == null) {
 			throw new IllegalArgumentException();
+		}
 
 		return project.getName() + ":" + baseType.getFullyQualifiedName();
 	}
 
 	private static IMethod getMethod(final IProject project, final IType type, final String name, final IType argType) {
-		if (project == null || type == null || name == null) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		IMethod method = null;
 		try {
@@ -460,7 +460,6 @@ public final class TypeUtils {
 			}
 
 			if (m != null && m.exists()) {
-				final IOpenable o = m.getOpenable();
 				final int modifiers = m.getFlags();
 				if (name.equals(m.getElementName()) && Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
 					method = m;
@@ -474,9 +473,8 @@ public final class TypeUtils {
 	}
 
 	private static IMethod getMethod(final IType type, final String name, final IType[] paramTypes) {
-		if (type == null || name == null) {
+		if (type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
 		return type.getMethod(name, parameterTypeSignature);
@@ -491,9 +489,8 @@ public final class TypeUtils {
 
 	private static String getPropertyName(final String methodName) {
 		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length()) {
+				&& methodName.length() <= SETTER_PREFIX.length())
 			throw new IllegalArgumentException();
-		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
