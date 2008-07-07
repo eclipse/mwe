@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -46,9 +46,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	public DefaultAnalyzer(final IFile file, final IDocument document,
 			final PropertyStore propertyStore) {
-		if (file == null || document == null || propertyStore == null) {
+		if (file == null || document == null || propertyStore == null)
 			throw new IllegalArgumentException();
-		}
 
 		this.file = file;
 		this.document = document;
@@ -95,11 +94,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkAttribute(final IType mappedType,
 			final IWorkflowElement element, final IWorkflowAttribute attribute) {
-		if (mappedType == null || element == null || attribute == null) {
+		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
-		}
 
-		final IType type = computeAttributeType(attribute);
+		final String type = computeAttributeType(attribute);
 		final IMethod method =
 				TypeUtils.getSetter(getFile(), mappedType,
 						attribute.getName(), type);
@@ -138,7 +136,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected IType computeAttributeType(final IWorkflowAttribute attribute) {
+	protected String computeAttributeType(final IWorkflowAttribute attribute) {
 		final String value = attribute.getValue();
 		return getValueType(value);
 	}
@@ -150,9 +148,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void createMarker(final IWorkflowAttribute attribute,
 			final String message) {
-		if (attribute == null || message == null || message.length() == 0) {
+		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
-		}
 
 		MarkerManager.createMarker(getFile(), getDocument(), attribute,
 				message, true, true);
@@ -166,9 +163,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void createMarkerForValue(final IWorkflowAttribute attribute,
 			final String message) {
-		if (attribute == null || message == null || message.length() == 0) {
+		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
-		}
 
 		MarkerManager.createMarker(getFile(), getDocument(), attribute,
 				message, true, true);
@@ -203,15 +199,15 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return TypeUtils.findType(getFile(), mappedClassName);
 	}
 
-	protected IType getValueType(final String value) {
+	protected String getValueType(final String value) {
 		if (value == null)
 			return null;
 
-		IType type = null;
+		String type = null;
 		if (isBooleanValue(value)) {
-			type = TypeUtils.findType(getFile(), "java.lang.Boolean");
+			type = "boolean";
 		} else {
-			type = TypeUtils.findType(getFile(), "java.lang.String");
+			type = "java.lang.String";
 		}
 		return type;
 	}

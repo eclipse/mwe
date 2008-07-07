@@ -11,26 +11,23 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.base;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
 import java.util.Set;
 
 import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public abstract class PluginTestBase extends TestCase {
 
-	private static final String MWE_UTILS_PROJECT =
-			"org.eclipse.emf.mwe.utils";
+	private static final String MWE_UTILS_PROJECT = "org.eclipse.emf.mwe.utils";
 
 	private static final String XTEND_PROJECT = "org.eclipse.xtend";
 
@@ -52,8 +49,7 @@ public abstract class PluginTestBase extends TestCase {
 		}
 	}
 
-	private void createProject(final String projectName) throws CoreException,
-			InvocationTargetException, InterruptedException {
+	private void createProject(final String projectName) {
 		final Set<String> requiredBundles = new HashSet<String>();
 		requiredBundles.add(XTEND_PROJECT);
 		requiredBundles.add(MWE_UTILS_PROJECT);

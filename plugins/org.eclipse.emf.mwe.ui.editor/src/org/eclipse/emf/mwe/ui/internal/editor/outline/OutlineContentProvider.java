@@ -29,15 +29,11 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
 	protected IPositionUpdater positionUpdater;
-
-	private final WorkflowContentOutlinePage outlinePage;
-
-	private final Viewer viewer;
 
 	private IWorkflowElement rootElement;
 
@@ -47,11 +43,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
 	private final TextEditor editor;
 
-	public OutlineContentProvider(
-			final WorkflowContentOutlinePage outlinePage, final Viewer viewer,
-			final TextEditor editor) {
-		this.outlinePage = outlinePage;
-		this.viewer = viewer;
+	public OutlineContentProvider(final TextEditor editor) {
 		this.editor = editor;
 		documentProvider = editor.getDocumentProvider();
 		positionUpdater =

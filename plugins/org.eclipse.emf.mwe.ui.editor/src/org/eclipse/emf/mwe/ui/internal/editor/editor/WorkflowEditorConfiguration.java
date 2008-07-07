@@ -54,7 +54,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -74,14 +74,11 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private final WorkflowEditor editor;
 
-	private final WorkflowEditorPlugin plugin;
-
 	private final IWorkflowSyntaxFactory factory;
 
 	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin,
 			final ColorManager colorManager, final WorkflowEditor editor) {
 		super(plugin.getCombinedPreferenceStore());
-		this.plugin = plugin;
 		this.colorManager = colorManager;
 		this.editor = editor;
 

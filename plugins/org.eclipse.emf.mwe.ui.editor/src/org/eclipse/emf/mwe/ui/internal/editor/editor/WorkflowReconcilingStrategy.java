@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		IReconcilingStrategyExtension {
@@ -73,7 +73,8 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategyExtension#initialReconcile()
+	 * @seeorg.eclipse.jface.text.reconciler.IReconcilingStrategyExtension#
+	 * initialReconcile()
 	 */
 	public void initialReconcile() {
 		offset = 0;
@@ -83,8 +84,10 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 	}
 
 	/*
-	 * @see org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.eclipse.jface.text.reconciler.DirtyRegion,
-	 *      org.eclipse.jface.text.IRegion)
+	 * @see
+	 * org.eclipse.jface.text.reconciler.IReconcilingStrategy#reconcile(org.
+	 * eclipse.jface.text.reconciler.DirtyRegion,
+	 * org.eclipse.jface.text.IRegion)
 	 */
 	public void reconcile(final DirtyRegion dirtyRegion,
 			final IRegion subRegion) {
@@ -142,19 +145,15 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 	}
 
 	/**
-	 * classsifies a tag: <br />
-	 * &lt;?...?&gt;: {@link #PI_TAG} <br />
-	 * &lt;!...--&gt;: {@link #COMMENT_TAG} <br />
-	 * &lt;...&gt;: {@link #START_TAG} <br />
-	 * &lt;.../&gt;: {@link #LEAF_TAG} <br />
-	 * &lt;/...&gt;: {@link #END_TAG} <br />
-	 * &lt;...: {@link #EOR_TAG} (end of range reached before closing &gt; is
-	 * found). <br />
-	 * when this method is called, {@link #nextPos} must point to the character
-	 * after &lt;, when it returns, it points to the character after &gt; or
-	 * after the range. About syntax errors: this method is not a validator, it
-	 * is useful. Side effect: writes number of found newLines to
-	 * {@link #newLines}.
+	 * classsifies a tag: <br /> &lt;?...?&gt;: {@link #PI_TAG} <br />
+	 * &lt;!...--&gt;: {@link #COMMENT_TAG} <br /> &lt;...&gt;:
+	 * {@link #START_TAG} <br /> &lt;.../&gt;: {@link #LEAF_TAG} <br />
+	 * &lt;/...&gt;: {@link #END_TAG} <br /> &lt;...: {@link #EOR_TAG} (end of
+	 * range reached before closing &gt; is found). <br /> when this method is
+	 * called, {@link #nextPos} must point to the character after &lt;, when it
+	 * returns, it points to the character after &gt; or after the range. About
+	 * syntax errors: this method is not a validator, it is useful. Side effect:
+	 * writes number of found newLines to {@link #newLines}.
 	 * 
 	 * @return the tag classification
 	 */
@@ -164,31 +163,35 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 			final char ch = document.getChar(nextPos++);
 			newLines = 0;
 
-			if ('?' == ch)
+			if ('?' == ch) {
 				retVal =
-						(isProcessingInstruction(document))
+						isProcessingInstruction(document)
 								? WorkflowReconcilingStrategy.PI_TAG
 								: WorkflowReconcilingStrategy.EOR_TAG;
-			else if ('!' == ch)
+			} else if ('!' == ch) {
 				retVal =
-						(isComment(document))
+						isComment(document)
 								? WorkflowReconcilingStrategy.COMMENT_TAG
 								: WorkflowReconcilingStrategy.EOR_TAG;
+			}
 
 			if (retVal == 0)
-				if (consumeWhitespace(document))
+				if (consumeWhitespace(document)) {
 					retVal = WorkflowReconcilingStrategy.EOR_TAG;
+				}
 
-			if (retVal == 0 && '/' == ch)
+			if (retVal == 0 && '/' == ch) {
 				retVal =
-						(isEndTag(document))
+						isEndTag(document)
 								? WorkflowReconcilingStrategy.END_TAG
 								: WorkflowReconcilingStrategy.EOR_TAG;
+			}
 
-			if (retVal == 0)
+			if (retVal == 0) {
 				retVal = isStartOrLeafTag(document);
+			}
 
-			assert (retVal != 0);
+			assert retVal != 0;
 
 			return retVal;
 		} catch (final BadLocationException e) {
@@ -202,7 +205,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 			return 0;
 		char ch = document.getChar(nextPos++);
 		// 1. eat all spaces and tabs
-		while ((nextPos < rangeEnd) && ((' ' == ch) || ('\t' == ch))) {
+		while (nextPos < rangeEnd && (' ' == ch || '\t' == ch)) {
 			ch = document.getChar(nextPos++);
 		}
 		if (nextPos >= rangeEnd) {
@@ -257,11 +260,6 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 						final int startOffset = nextPos - 1;
 						final int startNewLines = newLines;
 						final int classification = classifyTag();
-						final String tagString =
-								document
-										.get(startOffset, Math.min(nextPos
-												- startOffset, rangeEnd
-												- startOffset));
 						newLines += newLines;
 
 						switch (classification) {
@@ -295,8 +293,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 						break;
 					case '\n':
 					case '\r':
-						if ((ch == lastNewLineChar)
-								|| (' ' == lastNewLineChar)) {
+						if (ch == lastNewLineChar || ' ' == lastNewLineChar) {
 							newLines++;
 							lastNewLineChar = ch;
 						}
@@ -313,7 +310,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 	private boolean consumeWhitespace(final IDocument document)
 			throws BadLocationException {
 		char ch = document.getChar(nextPos++);
-		while ((' ' == ch) || ('\t' == ch) || ('\n' == ch) || ('\r' == ch)) {
+		while (' ' == ch || '\t' == ch || '\n' == ch || '\r' == ch) {
 			ch = document.getChar(nextPos++);
 			if (nextPos > rangeEnd)
 				return true;
@@ -330,11 +327,11 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		int commEnd = 0;
 		while (nextPos < rangeEnd) {
 			final char ch = document.getChar(nextPos++);
-			if (('>' == ch) && (commEnd >= 2))
+			if ('>' == ch && commEnd >= 2)
 				return true;
 
-			if (('\n' == ch) || ('\r' == ch)) {
-				if ((ch == lastNewLineChar) || (' ' == lastNewLineChar)) {
+			if ('\n' == ch || '\r' == ch) {
+				if (ch == lastNewLineChar || ' ' == lastNewLineChar) {
 					newLines++;
 					lastNewLineChar = ch;
 				}
@@ -358,12 +355,12 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 			}
 			if ('"' == ch) {
 				ch = document.getChar(nextPos++);
-				while ((nextPos < rangeEnd) && ('"' != ch)) {
+				while (nextPos < rangeEnd && '"' != ch) {
 					ch = document.getChar(nextPos++);
 				}
 			} else if ('\'' == ch) {
 				ch = document.getChar(nextPos++);
-				while ((nextPos < rangeEnd) && ('\'' != ch)) {
+				while (nextPos < rangeEnd && '\'' != ch) {
 					ch = document.getChar(nextPos++);
 				}
 			}
@@ -376,10 +373,10 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		boolean piFlag = false;
 		while (nextPos < rangeEnd) {
 			final char ch = document.getChar(nextPos++);
-			if (('>' == ch) && piFlag)
+			if ('>' == ch && piFlag)
 				return true;
 
-			piFlag = ('?' == ch);
+			piFlag = '?' == ch;
 		}
 		return false;
 
@@ -401,23 +398,26 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 							break;
 						}
 					}
-					if (retVal == 0)
+					if (retVal == 0) {
 						retVal = WorkflowReconcilingStrategy.EOR_TAG;
+					}
 
 					break;
 				case '"':
 					while (nextPos < rangeEnd) {
 						ch = document.getChar(nextPos++);
-						if ('"' == ch)
+						if ('"' == ch) {
 							break restart;
+						}
 					}
 					retVal = WorkflowReconcilingStrategy.EOR_TAG;
 					break;
 				case '\'':
 					while (nextPos < rangeEnd) {
 						ch = document.getChar(nextPos++);
-						if ('\'' == ch)
+						if ('\'' == ch) {
 							break restart;
+						}
 					}
 					retVal = WorkflowReconcilingStrategy.EOR_TAG;
 					break;

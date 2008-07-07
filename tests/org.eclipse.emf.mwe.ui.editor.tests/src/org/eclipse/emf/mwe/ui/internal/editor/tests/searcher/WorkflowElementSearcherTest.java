@@ -24,79 +24,53 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
 
-	private static final String WORKFLOW1 =
-			"<workflow>\n"
-					+ "	\n"
-					+ "	<property name=\"platformURI\" value=\"..\"/>\n"
-					+ "	\n"
-					+ "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
-					+ "		<modelFile value=\"${modelFile}\"/>\n"
-					+ "		<outputSlot value=\"${outputSlot}\"/>\n"
-					+ "	</component>\n"
-					+ "	\n"
-					+ "	<component class=\"oaw.xtend.XtendComponent\">\n"
-					+ "	   <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
-					+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
-					+ "	</component>\n"
-					+ "	\n"
-					+ "	<component class=\"oaw.xtext.CheckComponent2\">\n"
-					+ "	 	<metaModel idRef=\"mm\"/>\n"
-					+ "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
-					+ "	   <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n"
-					+ "	</component>\n"
-					+ "	\n"
-					+ "	<component class=\"oaw.xtend.XtendComponent\">\n"
-					+ "	 	<metaModel idRef=\"mm\"/>\n"
-					+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
-					+ "	</component>\n" + "	\n" + "</workflow>\n";
+	private static final String WORKFLOW1 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
+			+ "	\n" + "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n"
+			+ "	</component>\n" + "	\n" + "	<component class=\"oaw.xtend.XtendComponent\">\n"
+			+ "	   <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
+			+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
+			+ "	</component>\n" + "	\n" + "	<component class=\"oaw.xtext.CheckComponent2\">\n"
+			+ "	 	<metaModel idRef=\"mm\"/>\n"
+			+ "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
+			+ "	   <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n" + "	</component>\n" + "	\n"
+			+ "	<component class=\"oaw.xtend.XtendComponent\">\n" + "	 	<metaModel idRef=\"mm\"/>\n"
+			+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
+			+ "	</component>\n" + "	\n" + "</workflow>\n";
 
-	private static final String WORKFLOW2 =
-			"<workflow>\n"
-					+ "	\n"
-					+ "	<property name=\"platformURI\" value=\"..\"/>\n"
-					+ "	\n"
-					+ "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
-					+ "		<modelFile value=\"${modelFile}\"/>\n"
-					+ "		<outputSlot value=\"${outputSlot}\"/>\n";
+	private static final String WORKFLOW2 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
+			+ "	\n" + "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n";
 
-	private static final String WORKFLOW3 =
-			"<workflow>\n"
-					+ "	<property file=\'generate.properties\'/>\n"
-					+ "	<component file=\'org/openarchitectureware/xtext/Generator.oaw\' inheritAll=\'true\'/>\n"
-					+ "	<component class=\'org.openarchitectureware.xtend.XtendComponent\'>\n"
-					+ "	<\n" + "</workflow>";
+	private static final String WORKFLOW3 = "<workflow>\n" + "	<property file=\'generate.properties\'/>\n"
+			+ "	<component file=\'org/openarchitectureware/xtext/Generator.oaw\' inheritAll=\'true\'/>\n"
+			+ "	<component class=\'org.openarchitectureware.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
 
 	public void testFindContainerCompleteWorkflow() {
 		final IDocument document = createDocument(WORKFLOW1);
 		final IWorkflowElement root = parse(document);
 		final int offset = 160;
-		final IWorkflowElement foundElement =
-				WorkflowElementSearcher.searchContainerElement(root, document,
-						offset);
+		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent",
-				foundElement.getAttributeValue("class"));
+		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
 	}
 
 	public void testFindContainerPartialWorkflow1() {
 		final IDocument document = createDocument(WORKFLOW2);
 		final IWorkflowElement root = parse(document);
 		final int offset = 160;
-		final IWorkflowElement foundElement =
-				WorkflowElementSearcher.searchContainerElement(root, document,
-						offset);
+		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent",
-				foundElement.getAttributeValue("class"));
+		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
 	}
 
 	public void testFindContainerPartialWorkflow2() {
@@ -104,23 +78,20 @@ public class WorkflowElementSearcherTest extends TestCase {
 		final IWorkflowElement root = parse(document);
 		int offset = document.getLength() - 1;
 		offset -= 12;
-		final IWorkflowElement foundElement =
-				WorkflowElementSearcher.searchContainerElement(root, document,
-						offset);
+		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtend.XtendComponent",
-				foundElement.getAttributeValue("class"));
+		assertEquals("org.openarchitectureware.xtend.XtendComponent", foundElement.getAttributeValue("class"));
 	}
 
 	@Override
 	protected void setUp() throws Exception {
 		try {
 			WorkflowSyntaxFactory.getInstance();
-		} catch (final FactoryNotInitializedException e) {
-			WorkflowSyntaxFactory
-					.installFactory(new XMLWorkflowSyntaxFactoryImpl());
+		}
+		catch (final FactoryNotInitializedException e) {
+			WorkflowSyntaxFactory.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 		}
 
 	}
@@ -130,7 +101,6 @@ public class WorkflowElementSearcherTest extends TestCase {
 	}
 
 	private IWorkflowElement parse(final IDocument document) {
-		final String text = document.get();
 		return DocumentParser.parse(document);
 	}
 

@@ -25,7 +25,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class FileReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -69,7 +69,6 @@ public class FileReferenceAnalyzerStrategy extends
 	protected void doAnalyze(final IWorkflowElement element) {
 		final IWorkflowAttribute attribute =
 				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
-		final ClassLoader loader = TypeUtils.getResourceLoader(file);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
 			return;

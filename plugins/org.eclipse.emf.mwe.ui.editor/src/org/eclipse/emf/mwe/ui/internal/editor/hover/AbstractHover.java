@@ -27,7 +27,7 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractHover implements IAnnotationHover, ITextHover,
@@ -38,9 +38,8 @@ public abstract class AbstractHover implements IAnnotationHover, ITextHover,
 	protected IDocument document;
 
 	public AbstractHover(final ISourceViewer sourceViewer) {
-		if (sourceViewer == null) {
+		if (sourceViewer == null)
 			throw new IllegalArgumentException();
-		}
 
 		this.sourceViewer = sourceViewer;
 		document = sourceViewer.getDocument();
@@ -51,7 +50,6 @@ public abstract class AbstractHover implements IAnnotationHover, ITextHover,
 		return getHoverInfoInternal(lineNumber, -1);
 	}
 
-	@SuppressWarnings("deprecation")
 	public String getHoverInfo(final ITextViewer textViewer,
 			final IRegion hoverRegion) {
 		return getHoverInfo2(textViewer, hoverRegion);

@@ -125,7 +125,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 	}
 
 	private ITreeContentProvider getContentProvider() {
-		return new OutlineContentProvider(this, getTreeViewer(), editor);
+		return new OutlineContentProvider(editor);
 	}
 
 	private ILabelProvider getLabelProvider() {
@@ -139,7 +139,8 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 			} else {
 				final Object segment =
 						((IStructuredSelection) selection).getFirstElement();
-				if (segment != null && segment instanceof XMLWorkflowElementImpl) {
+				if (segment != null
+						&& segment instanceof XMLWorkflowElementImpl) {
 					final IWorkflowElement wfElement =
 							(IWorkflowElement) segment;
 					final ElementPositionRange range =

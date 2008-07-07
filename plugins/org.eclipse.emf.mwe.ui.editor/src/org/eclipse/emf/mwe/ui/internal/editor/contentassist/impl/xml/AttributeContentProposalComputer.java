@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class AttributeContentProposalComputer extends
@@ -64,7 +64,6 @@ public class AttributeContentProposalComputer extends
 				editor.getAttributes();
 
 		if (allAttributes != null) {
-			final int i = 0;
 			for (final IWorkflowAttribute attr : allAttributes) {
 				final String name = createProposalText(attr.getName(), offset);
 				result.add(name);

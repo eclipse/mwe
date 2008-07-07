@@ -29,7 +29,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -72,9 +72,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 	@Override
 	public void endElement(final String uri, final String localName,
 			final String qName) throws SAXException {
-		if (isIllegalName(localName))
+		if (isIllegalName(localName)) {
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
 					+ localName, true);
+		}
 
 		currentElement.setEndElementRange(createPositionRange());
 		if (currentElement.hasParent()) {
@@ -164,9 +165,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 				WorkflowSyntaxFactory.getInstance();
 		final IWorkflowElement element =
 				factory.newWorkflowElement(document, localName);
-		if (isIllegalName(localName))
+		if (isIllegalName(localName)) {
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
 					+ localName, true);
+		}
 
 		element.setStartElementRange(createPositionRange());
 		for (int i = 0; i < attributes.getLength(); i++) {
@@ -179,10 +181,11 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 		if (element.isValidChildFor(currentElement)) {
 			currentElement.addChild(element);
-		} else
+		} else {
 			throw new ValidationException(locator, "'" + localName + "'"
 					+ NO_VALID_CHILD_ELEMENT_MSG + " '"
 					+ currentElement.getName() + "'", true);
+		}
 		currentElement = element;
 	}
 
@@ -214,23 +217,6 @@ public class WorkflowContentHandler extends DefaultHandler {
 			Log.logError("Bad document location", e);
 			return null;
 		}
-	}
-
-	private ElementPositionRange getLineInformationFromOffset(final int offset) {
-		ElementPositionRange range = null;
-		try {
-			final IRegion region = document.getLineInformationOfOffset(offset);
-			range = new ElementPositionRange(document, region);
-		} catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
-		return range;
-	}
-
-	private ElementPositionRange getLineRange(final int lineNumber) {
-		final int offset = getOffsetFromLine(lineNumber);
-		return getLineInformationFromOffset(offset);
 	}
 
 	private int getOffsetFromLine(final int lineNumber) {

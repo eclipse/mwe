@@ -22,11 +22,10 @@ import org.eclipse.jface.text.ITypedRegion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
-public class XMLRemoveClosingTagStrategy extends
-		XMLAbstractAutoEditStrategy {
+public class XMLRemoveClosingTagStrategy extends XMLAbstractAutoEditStrategy {
 
 	private static final Pattern TAG_PATTERN =
 			Pattern.compile("(<\\s*(\\w+)\\s*.*?\\s*>)\\s*<\\s*/\\s*\\2>",
@@ -63,8 +62,7 @@ public class XMLRemoveClosingTagStrategy extends
 	}
 
 	private void deleteClosingTag(final DocumentCommand command,
-			final String fullMatch, final String startTag, final int start)
-			throws BadLocationException {
+			final String fullMatch, final String startTag, final int start) {
 		command.offset = start;
 		command.length = fullMatch.length();
 		command.text = startTag;

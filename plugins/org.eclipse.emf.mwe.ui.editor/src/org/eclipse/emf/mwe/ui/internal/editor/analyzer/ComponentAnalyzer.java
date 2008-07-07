@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -80,15 +80,11 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 								+ "' is not allowed, if a 'class' attribute is specified");
 			}
 		} else if (element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
-			final IWorkflowAttribute attribute =
-					element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
-			final String content =
-					TypeUtils.getFileContent(getFile(), document, attribute);
 			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
 				final IWorkflowAttribute inheritAttr =
 						element.getAttribute(INHERIT_ALL_ATTRIBUTE);
-				final IType valType = getValueType(inheritAttr.getValue());
-				if (!"Boolean".equals(valType.getElementName())) {
+				final String valType = getValueType(inheritAttr.getValue());
+				if (!"Boolean".equals(valType)) {
 					createMarkerForValue(inheritAttr, "Attribute '"
 							+ INHERIT_ALL_ATTRIBUTE
 							+ "' must have a boolean value");
@@ -113,8 +109,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	@Override
 	protected void checkAttribute(final IType mappedType,
 			final IWorkflowElement element, final IWorkflowAttribute attribute) {
-		if (mappedType == null || element == null || attribute == null)
+		if (mappedType == null || element == null || attribute == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String name = attribute.getName();
 		final String value = attribute.getValue();
@@ -124,7 +121,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 				|| name.equals(IWorkflowElement.ID_REF_ATTRIBUTE))
 			return;
 
-		final IType attrType = getValueType(value);
+		final String attrType = getValueType(value);
 		final IMethod method =
 				TypeUtils.getSetter(getFile(), mappedType, name, attrType);
 		if (method == null) {
@@ -135,8 +132,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected void checkAttribute(final IWorkflowAttribute attribute,
 			final String filePath, final String content) {
-		if (attribute == null || filePath == null || content == null)
+		if (attribute == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String regex = createSubstitutorPattern(attribute.getName());
 		final Pattern pattern = Pattern.compile(regex);
@@ -168,8 +166,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected void checkAttributes(final IWorkflowElement element,
 			final String filePath, final String content) {
-		if (element == null || filePath == null || content == null)
+		if (element == null || filePath == null || content == null) {
 			throw new IllegalArgumentException();
+		}
 
 		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			checkAttribute(attr, filePath, content);
