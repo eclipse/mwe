@@ -19,12 +19,13 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
+import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
 import org.eclipse.emf.mwe.di.ui.utils.ProjectCreator;
 import org.eclipse.xtext.parser.IParseResult;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -43,6 +44,7 @@ public class AbstractUITests extends AbstractTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		MWEStandaloneSetup.doSetup();
 		project = createProject(PROJECT_NAME);
 	}
 

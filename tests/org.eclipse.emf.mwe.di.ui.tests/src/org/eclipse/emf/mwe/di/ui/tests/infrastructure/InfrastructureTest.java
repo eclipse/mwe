@@ -29,4 +29,11 @@ public class InfrastructureTest extends AbstractUITests {
 		final IType type = TypeUtils.findType(project, "stubs.ObjectA");
 		assertNotNull(type);
 	}
+
+	public void testResourceAccess() {
+		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
+		final File model = loadModelFile(file);
+		assertNotNull(model);
+		assertNotNull(model.eResource());
+	}
 }
