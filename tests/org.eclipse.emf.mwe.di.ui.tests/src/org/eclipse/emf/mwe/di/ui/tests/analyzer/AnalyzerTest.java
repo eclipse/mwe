@@ -17,30 +17,20 @@ import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
 
 	private static final String NO_SETTER_MSG = "No setter";
 
-	public void testSimpleSetter1() {
-		final String workflow = "stubs.ObjectA { name = 'test' }";
+	public void testBooleanSetter() {
+		final String workflow = "stubs.ObjectC { flag = 'true' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
 		final BasicDiagnostic diag = new BasicDiagnostic();
 		analyzer.validate(file, diag, null);
 		assertEquals(0, getErrorCount(diag));
-	}
-
-	public void testSimpleSetter2() {
-		final String workflow = "stubs.ObjectA { foo = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
-		final File file = loadModelFile(modelFile);
-		final BasicDiagnostic diag = new BasicDiagnostic();
-		analyzer.validate(file, diag, null);
-		assertEquals(1, getErrorCount(diag));
-		assertTrue(isSetterError(diag, 0));
 	}
 
 	public void testComplexSetter1() {
@@ -61,6 +51,25 @@ public class AnalyzerTest extends AbstractUITests {
 		assertEquals(2, getErrorCount(diag));
 		assertTrue(isSetterError(diag, 0));
 		assertTrue(isSetterError(diag, 1));
+	}
+
+	public void testSimpleSetter1() {
+		final String workflow = "stubs.ObjectA { name = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		final BasicDiagnostic diag = new BasicDiagnostic();
+		analyzer.validate(file, diag, null);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testSimpleSetter2() {
+		final String workflow = "stubs.ObjectA { foo = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		final BasicDiagnostic diag = new BasicDiagnostic();
+		analyzer.validate(file, diag, null);
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(isSetterError(diag, 0));
 	}
 
 	private int getErrorCount(final Diagnostic diagnostic) {

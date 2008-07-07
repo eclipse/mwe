@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class AssignmentAnalyzer extends MweSwitch<Object> {
@@ -41,9 +41,8 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 
 	public AssignmentAnalyzer(final InternalAnalyzer mainAnalyzer, final IProject project,
 			final DiagnosticChain diagnostics, final ComplexValue analyzedObject, final IType type) {
-		if (mainAnalyzer == null || project == null || diagnostics == null || analyzedObject == null || type == null) {
+		if (mainAnalyzer == null || project == null || diagnostics == null || analyzedObject == null || type == null)
 			throw new IllegalArgumentException();
-		}
 
 		this.mainAnalyzer = mainAnalyzer;
 		this.project = project;
@@ -71,12 +70,12 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 	}
 
 	private Object processComplexValue(final Assignment object, final ComplexValue value) {
-		if (object == null || value == null)
+		if (object == null || value == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final String featureName = object.getFeature();
-		final String className = MweUtil.toString(value.getClassName());
-		final IType argType = TypeUtils.findType(project, className);
+		final String argType = MweUtil.toString(value.getClassName());
 		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 		if (method == null) {
 			diagnostics.add(createNoSetterError(object));
@@ -89,7 +88,7 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 
 	private Object processSimpleValue(final Assignment object, final SimpleValue value) {
 		final String featureName = object.getFeature();
-		final IType argType = getSimpleValueType(value);
+		final String argType = getSimpleValueType(value);
 		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 		if (method == null) {
 			diagnostics.add(createNoSetterError(object));
@@ -108,16 +107,16 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 				analyzedObject, null);
 	}
 
-	private IType getSimpleValueType(final SimpleValue value) {
+	private String getSimpleValueType(final SimpleValue value) {
 		if (value == null)
 			return null;
 
-		IType type = null;
+		String type = null;
 		if (isBooleanValue(value)) {
-			type = TypeUtils.findType(project, "java.lang.Boolean");
+			type = "boolean";
 		}
 		else {
-			type = TypeUtils.findType(project, "java.lang.String");
+			type = "java.lang.String";
 		}
 		return type;
 	}

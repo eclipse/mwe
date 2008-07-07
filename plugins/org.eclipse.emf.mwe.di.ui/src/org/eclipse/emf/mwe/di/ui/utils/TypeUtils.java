@@ -53,7 +53,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 public final class TypeUtils {
 
@@ -97,6 +97,8 @@ public final class TypeUtils {
 		}
 
 	}
+
+	private static final String OBJECT_CLASS_NAME = "java.lang.Object";
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
@@ -291,14 +293,14 @@ public final class TypeUtils {
 		return result;
 	}
 
-	public static IMethod getSetter(final IFile file, final IType type, final String name, final IType argType) {
+	public static IMethod getSetter(final IFile file, final IType type, final String name, final String argType) {
 		if (file == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
 		return getSetter(file.getProject(), type, name, argType);
 	}
 
-	public static IMethod getSetter(final IProject project, final IType type, final String name, final IType argType) {
+	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
@@ -366,15 +368,45 @@ public final class TypeUtils {
 		subClassCache.put(hashString, subClasses);
 	}
 
-	private static String[] convertParameterTypes(final IType[] paramType) {
+	private static String[] convertParameterTypes(final String[] paramType) {
 		if (paramType == null)
 			throw new IllegalArgumentException();
 
 		final String[] result = new String[paramType.length];
 		for (int i = 0; i < paramType.length; i++) {
-			result[i] = "L" + paramType[i].getFullyQualifiedName() + ";";
+			final String param = paramType[i];
+			if (param.endsWith("boolean")) {
+				result[i] = "Z";
+			}
+			else {
+				result[i] = "L" + param + ";";
+			}
 		}
 		return result;
+	}
+
+	/**
+	 * Builds a classloader for a Java project from the workspace.
+	 * 
+	 * @param project
+	 *            An Eclipse project
+	 * @throws CoreException
+	 */
+	private static ClassLoader createClassLoader(final IProject project) throws CoreException {
+		final IJavaProject jp = JavaCore.create(project);
+
+		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
+		final URL[] url = new URL[javacp.length];
+
+		for (int i = 0; i < javacp.length; i++) {
+			try {
+				url[i] = javacp[i].getPath().toFile().toURL();
+			}
+			catch (final MalformedURLException e) {
+				e.printStackTrace();
+			}
+		}
+		return new URLClassLoader(url);
 	}
 
 	private static void createClassSet(final IProject project, final Set<String> classes, final IType[] type,
@@ -439,7 +471,7 @@ public final class TypeUtils {
 		return project.getName() + ":" + baseType.getFullyQualifiedName();
 	}
 
-	private static IMethod getMethod(final IProject project, final IType type, final String name, final IType argType) {
+	private static IMethod getMethod(final IProject project, final IType type, final String name, final String argType) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
@@ -448,14 +480,14 @@ public final class TypeUtils {
 			IMethod m = null;
 
 			if (argType != null) {
-				final IType[] param = new IType[1];
+				final String[] param = new String[1];
 				param[0] = argType;
 				m = getMethod(type, name, param);
 			}
 
 			if (m == null) {
-				final IType[] objectParam = new IType[1];
-				objectParam[0] = findType(project, "java.lang.Object");
+				final String[] objectParam = new String[1];
+				objectParam[0] = OBJECT_CLASS_NAME;
 				m = getMethod(type, name, objectParam);
 			}
 
@@ -472,7 +504,7 @@ public final class TypeUtils {
 		return method;
 	}
 
-	private static IMethod getMethod(final IType type, final String name, final IType[] paramTypes) {
+	private static IMethod getMethod(final IType type, final String name, final String[] paramTypes) {
 		if (type == null || name == null)
 			throw new IllegalArgumentException();
 
@@ -539,29 +571,5 @@ public final class TypeUtils {
 			return name.toUpperCase();
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
-	}
-
-	/**
-	 * Builds a classloader for a Java project from the workspace.
-	 * 
-	 * @param project
-	 *            An Eclipse project
-	 * @throws CoreException
-	 */
-	private static ClassLoader createClassLoader(final IProject project) throws CoreException {
-		final IJavaProject jp = JavaCore.create(project);
-
-		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
-		final URL[] url = new URL[javacp.length];
-
-		for (int i = 0; i < javacp.length; i++) {
-			try {
-				url[i] = javacp[i].getPath().toFile().toURL();
-			}
-			catch (final MalformedURLException e) {
-				e.printStackTrace();
-			}
-		}
-		return new URLClassLoader(url);
 	}
 }
