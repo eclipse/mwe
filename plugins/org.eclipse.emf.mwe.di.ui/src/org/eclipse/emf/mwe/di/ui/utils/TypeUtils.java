@@ -53,9 +53,11 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public final class TypeUtils {
+
+	private static final String BUILTIN_BOOLEAN_TYPE = "boolean";
 
 	private static class ClassNameComparator implements Comparator<String> {
 
@@ -375,7 +377,7 @@ public final class TypeUtils {
 		final String[] result = new String[paramType.length];
 		for (int i = 0; i < paramType.length; i++) {
 			final String param = paramType[i];
-			if (param.endsWith("boolean")) {
+			if (param.endsWith(BUILTIN_BOOLEAN_TYPE)) {
 				result[i] = "Z";
 			}
 			else {
