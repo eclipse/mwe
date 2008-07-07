@@ -14,18 +14,20 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
 import org.eclipse.emf.mwe.di.ui.utils.ProjectCreator;
-import org.eclipse.xtext.parser.IParseResult;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -69,13 +71,14 @@ public class AbstractUITests extends AbstractTests {
 			return null;
 
 		try {
-			final IParseResult result = parse(file.getContents());
-			final EObject object = result.getRootASTElement();
+			final ResourceSet rs = new ResourceSetImpl();
+			final Resource resource = rs.createResource(URI.createURI(file.getLocationURI().toString()));
+			resource.load(file.getContents(), null);
+			if (resource.getContents().isEmpty())
+				return null;
+
+			final EObject object = resource.getContents().iterator().next();
 			return (File) object;
-		}
-		catch (final CoreException e) {
-			e.printStackTrace();
-			return null;
 		}
 		catch (final Exception e) {
 			e.printStackTrace();
