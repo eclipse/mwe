@@ -23,11 +23,12 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
+import org.eclipse.emf.mwe.di.ui.analyze.internal.InternalAnalyzer;
 import org.eclipse.emf.mwe.di.ui.utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -39,6 +40,7 @@ public class AbstractUITests extends AbstractTests {
 	protected static final String DI_UI_TEST_BUNDLE = "org.eclipse.emf.mwe.di.ui.tests";
 
 	protected IProject project;
+	protected InternalAnalyzer analyzer;
 
 	/**
 	 * @see org.eclipse.emf.mwe.di.AbstractTests#setUp()
@@ -48,6 +50,7 @@ public class AbstractUITests extends AbstractTests {
 		super.setUp();
 		MWEStandaloneSetup.doSetup();
 		project = createProject(PROJECT_NAME);
+		analyzer = new InternalAnalyzer();
 	}
 
 	/**

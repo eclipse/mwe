@@ -3,7 +3,6 @@ package org.eclipse.emf.mwe.di.ui.analyze.internal;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
@@ -12,6 +11,7 @@ import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.ui.analyze.MweDiagnostic;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
 import org.eclipse.emf.mwe.util.MweSwitch;
 import org.eclipse.jdt.core.IType;
@@ -22,19 +22,6 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 	private final Map<String, String> properties = new HashMap<String, String>();
 	private final Map<String, IType> beans = new HashMap<String, IType>();
 	private Map<Object, Object> context;
-	// TODO Temporary code
-	private final IFile file;
-
-	public InternalAnalyzer() {
-		file = null;
-	}
-
-	public InternalAnalyzer(final IFile file) {
-		if (file == null)
-			throw new IllegalArgumentException();
-
-		this.file = file;
-	}
 
 	public boolean validate(final EObject object) {
 		if (diagnostics == null) {
@@ -80,9 +67,8 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 		return super.caseComplexValue(object);
 	}
 
-	// TODO Add full implementation
 	private IProject getProject(final EObject object) {
-		return file.getProject();
+		return ModelUtils.getProject(object);
 	}
 
 	/**
