@@ -22,7 +22,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class JavaImportRegistry {
@@ -31,9 +31,8 @@ public class JavaImportRegistry {
 	private final List<String> packageImports = new ArrayList<String>();
 
 	public void addImport(final JavaImport imp) {
-		if (imp == null) {
+		if (imp == null)
 			throw new IllegalArgumentException();
-		}
 
 		final QualifiedName fqn = imp.getJavaImport();
 		final String fqnString = MweUtil.toString(fqn);
@@ -46,8 +45,9 @@ public class JavaImportRegistry {
 	}
 
 	public IType resolve(final IProject project, final EObject context, final String className) {
-		if (project == null || context == null || className == null)
+		if (project == null || context == null || className == null) {
 			throw new IllegalArgumentException();
+		}
 
 		if (!isQualified(className)) {
 			IType type = lookupType(project, context, className);
@@ -63,35 +63,33 @@ public class JavaImportRegistry {
 	private IType browsePackages(final IProject project, final EObject context, final String className) {
 		IType type = null;
 		int count = 0;
+		final TypeCollector collector = new TypeCollector(context);
 		for (final String name : packageImports) {
 			final String resolvedName = name + "." + className;
 			type = TypeUtils.findType(project, resolvedName);
 			if (type != null) {
+				collector.addType(type);
 				count++;
 			}
 
-			if (count > 1) {
-				throw new AmbiguousTypeException("The class name '" + className + "' is ambiguous", context);
-			}
 		}
-		return type;
+		return collector.resolve();
 	}
 
 	private IType lookupType(final IProject project, final EObject context, final String className) {
 		IType type = null;
 		int count = 0;
+		final TypeCollector collector = new TypeCollector(context);
 		for (final String name : classImports) {
 			if (name.endsWith(className)) {
 				type = TypeUtils.findType(project, name);
 				if (type != null) {
+					collector.addType(type);
 					count++;
 				}
 			}
-			if (count > 1) {
-				throw new AmbiguousTypeException("The class name '" + className + "' is ambiguous", context);
-			}
 		}
-		return type;
+		return collector.resolve();
 	}
 
 	private boolean isQualified(final String className) {
