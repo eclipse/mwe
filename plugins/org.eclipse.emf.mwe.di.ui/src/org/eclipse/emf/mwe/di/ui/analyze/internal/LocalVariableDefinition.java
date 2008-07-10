@@ -1,0 +1,78 @@
+/*
+ * Copyright (c) 2008 itemis AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ */
+
+package org.eclipse.emf.mwe.di.ui.analyze.internal;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.LocalVariable;
+import org.eclipse.emf.mwe.SimpleValue;
+import org.eclipse.emf.mwe.Value;
+
+/**
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.1 $
+ */
+
+public class LocalVariableDefinition {
+
+	public static final Pattern REFERENCE_PATTERN = Pattern.compile("\\$\\{(\\w+)\\}");
+
+	private final LocalVariable definition;
+	private final int definitionPosition;
+
+	private final EObject context;
+
+	public LocalVariableDefinition(final LocalVariable definition, final int definitionPosition, final EObject context) {
+		if (definition == null || definitionPosition < 0 || context == null)
+			throw new IllegalArgumentException();
+
+		if (definition.getName() == null || definition.getValue() == null) {
+			throw new IllegalArgumentException("Incomplete variable definition");
+		}
+
+		this.definition = definition;
+		this.definitionPosition = definitionPosition;
+		this.context = context;
+	}
+
+	public EObject getContext() {
+		return context;
+	}
+
+	public int getDefinitionPosition() {
+		return definitionPosition;
+	}
+
+	public String getName() {
+		return definition.getName();
+	}
+
+	public String getValue() {
+		final Value val = definition.getValue();
+		if (val instanceof SimpleValue)
+			return ((SimpleValue) val).getValue();
+
+		return null;
+	}
+
+	public Collection<String> getReferences() {
+		final Collection<String> result = new HashSet<String>();
+		final Matcher m = REFERENCE_PATTERN.matcher(getValue());
+		while (m.find()) {
+			final String refName = m.group(1);
+			result.add(refName);
+		}
+		return result;
+	}
+}
