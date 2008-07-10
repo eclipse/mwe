@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.analyzer;
+package org.eclipse.emf.mwe.di.ui.analyzer;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -16,7 +16,7 @@ import junit.framework.TestSuite;
 public class AnalyzerSuite {
 
 	public static Test suite() {
-		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.tests.analyzer");
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.analyzer");
 		//$JUnit-BEGIN$
 		suite.addTestSuite(AnalyzerTest.class);
 		//$JUnit-END$

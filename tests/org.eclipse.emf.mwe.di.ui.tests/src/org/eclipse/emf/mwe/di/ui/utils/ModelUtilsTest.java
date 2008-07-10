@@ -7,13 +7,14 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.utils;
+package org.eclipse.emf.mwe.di.ui.utils;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
+
+import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation

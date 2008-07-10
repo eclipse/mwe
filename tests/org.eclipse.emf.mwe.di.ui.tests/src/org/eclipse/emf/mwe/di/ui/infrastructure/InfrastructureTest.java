@@ -7,13 +7,14 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.infrastructure;
+package org.eclipse.emf.mwe.di.ui.infrastructure;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.di.ui.base.AbstractUITests;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
+
+import base.AbstractUITests;
 
 public class InfrastructureTest extends AbstractUITests {
 	private static final String CONTENT = "test.ObjectB {\n" + "	multiEle = { name=\"Foo\" }\n"

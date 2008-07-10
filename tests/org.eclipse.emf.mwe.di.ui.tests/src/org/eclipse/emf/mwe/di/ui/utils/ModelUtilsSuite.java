@@ -7,19 +7,18 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests.infrastructure;
+package org.eclipse.emf.mwe.di.ui.utils;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-public class InfrastructureSuite {
+public class ModelUtilsSuite {
 
 	public static Test suite() {
-		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.tests.infrastructure");
-		//$JUnit-BEGIN$
-		suite.addTestSuite(InfrastructureTest.class);
-		//$JUnit-END$
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.utils");
+		// $JUnit-BEGIN$
+		suite.addTestSuite(ModelUtilsTest.class);
+		// $JUnit-END$
 		return suite;
 	}
 

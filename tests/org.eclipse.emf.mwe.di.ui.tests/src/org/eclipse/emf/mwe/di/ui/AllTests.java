@@ -7,14 +7,14 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.tests;
+package org.eclipse.emf.mwe.di.ui;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.mwe.di.ui.tests.analyzer.AnalyzerSuite;
-import org.eclipse.emf.mwe.di.ui.tests.infrastructure.InfrastructureSuite;
-import org.eclipse.emf.mwe.di.ui.tests.utils.ModelUtilsSuite;
+import org.eclipse.emf.mwe.di.ui.analyzer.AnalyzerSuite;
+import org.eclipse.emf.mwe.di.ui.infrastructure.InfrastructureSuite;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtilsSuite;
 
 public class AllTests {
 

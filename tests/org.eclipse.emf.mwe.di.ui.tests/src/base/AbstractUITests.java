@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.base;
+package base;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -24,11 +24,12 @@ import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.InternalAnalyzer;
-import org.eclipse.emf.mwe.di.ui.utils.ProjectCreator;
+
+import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.1 $
  */
 
 public class AbstractUITests extends AbstractTests {

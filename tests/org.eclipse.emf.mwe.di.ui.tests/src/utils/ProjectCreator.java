@@ -9,7 +9,7 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package utils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
