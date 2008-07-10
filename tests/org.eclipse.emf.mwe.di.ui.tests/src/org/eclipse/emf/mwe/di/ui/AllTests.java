@@ -12,7 +12,7 @@ package org.eclipse.emf.mwe.di.ui;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.mwe.di.ui.analyzer.AnalyzerSuite;
+import org.eclipse.emf.mwe.di.ui.analyze.AnalyzerSuite;
 import org.eclipse.emf.mwe.di.ui.infrastructure.InfrastructureSuite;
 import org.eclipse.emf.mwe.di.ui.utils.ModelUtilsSuite;
 

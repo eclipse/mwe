@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.analyzer;
+package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.BasicDiagnostic;
