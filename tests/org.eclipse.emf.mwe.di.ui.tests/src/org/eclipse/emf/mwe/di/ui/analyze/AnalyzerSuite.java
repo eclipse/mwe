@@ -14,6 +14,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.mwe.di.ui.analyze.internal.AnalyzerTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.LocalVariableDefinition;
+import org.eclipse.emf.mwe.di.ui.analyze.internal.VariableRegistry;
 
 public class AnalyzerSuite {
 
@@ -22,6 +23,7 @@ public class AnalyzerSuite {
 		// $JUnit-BEGIN$
 		suite.addTestSuite(AnalyzerTest.class);
 		suite.addTestSuite(LocalVariableDefinition.class);
+		suite.addTestSuite(VariableRegistry.class);
 		// $JUnit-END$
 		return suite;
 	}
