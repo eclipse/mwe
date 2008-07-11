@@ -10,8 +10,6 @@
 package org.eclipse.emf.mwe.di.ui.utils;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -31,7 +29,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.mwe.SimpleValue;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
@@ -53,7 +51,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class TypeUtils {
 
@@ -181,35 +179,36 @@ public final class TypeUtils {
 		}
 	}
 
-	public static String getFileContent(final IFile file, final SimpleValue value) {
-		if (file == null || value == null)
+	public static IFile getFile(final IProject project, final String filePath) {
+		if (project == null || filePath == null)
 			return null;
 
-		final String filePath = value.getValue();
-		final ClassLoader loader = getResourceLoader(file);
+		final IFile file = project.getFile(new Path(filePath));
+		return file;
+	}
 
-		if (loader == null)
+	public static String getFileContent(final IProject project, final String filePath) {
+		final IFile file = getFile(project, filePath);
+		if (file == null)
+			return null;
+
+		ClassLoader loader = null;
+		try {
+			loader = createClassLoader(project);
+		}
+		catch (final CoreException e) {
 			throw new RuntimeException("Could not obtain resource loader");
+		}
+
+		final URL fileURL = loader.getResource(file.getProjectRelativePath().toString());
 
 		BufferedReader reader = null;
-		final URL fileURL = loader.getResource(filePath);
 		try {
 			if (fileURL != null) {
 				final InputStream is = fileURL.openStream();
 				if (is != null) {
 					final InputStreamReader streamReader = new InputStreamReader(is);
 					reader = new BufferedReader(streamReader);
-				}
-			}
-			else {
-				final IProject project = file.getProject();
-				if (project != null) {
-					final File projectPath = project.getLocation().toFile();
-					final File foundFile = findFile(projectPath, filePath);
-					if (foundFile != null) {
-						final FileReader fileReader = new FileReader(foundFile);
-						reader = new BufferedReader(fileReader);
-					}
 				}
 			}
 		}
@@ -441,28 +440,6 @@ public final class TypeUtils {
 			CoreLog.logError("Java Model Exception", e);
 			return null;
 		}
-	}
-
-	private static File findFile(final File rootPath, final String filePath) {
-		// FIXME Improve searching so that only source folders are considered.
-		final String fileNameToTest = rootPath.getAbsoluteFile().getPath() + File.separator + filePath;
-		File testFile = new File(fileNameToTest);
-		if (testFile.exists())
-			return testFile;
-
-		final File[] files = rootPath.listFiles();
-		if (files != null) {
-			for (final File f : files) {
-				if (!f.isDirectory()) {
-					continue;
-				}
-
-				testFile = findFile(f, filePath);
-				if (testFile != null)
-					return testFile;
-			}
-		}
-		return null;
 	}
 
 	private static String generateHashString(final IProject project, final IType baseType) {

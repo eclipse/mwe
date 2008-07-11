@@ -18,6 +18,7 @@ public class ModelUtilsSuite {
 		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.utils");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(ModelUtilsTest.class);
+		suite.addTestSuite(PropertyFileReaderTest.class);
 		// $JUnit-END$
 		return suite;
 	}
