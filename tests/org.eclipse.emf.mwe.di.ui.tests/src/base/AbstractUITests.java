@@ -29,16 +29,17 @@ import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AbstractUITests extends AbstractTests {
 
+	private static final String PROJECT_NAME = "uitest";
+	private static final String DI_BUNDLE = "org.eclipse.emf.mwe.di";
+	private static final String DI_UI_BUNDLE = "org.eclipse.emf.mwe.di.ui";
+	private static final String DI_UI_TEST_BUNDLE = "org.eclipse.emf.mwe.di.ui.tests";
+
 	protected static final String WORKFLOW_NAME = "test/workflow.mwe";
-	protected static final String PROJECT_NAME = "uitest";
-	protected static final String DI_BUNDLE = "org.eclipse.emf.mwe.di";
-	protected static final String DI_UI_BUNDLE = "org.eclipse.emf.mwe.di.ui";
-	protected static final String DI_UI_TEST_BUNDLE = "org.eclipse.emf.mwe.di.ui.tests";
 
 	protected IProject project;
 	protected InternalAnalyzer analyzer;
