@@ -21,7 +21,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class LocalVariableDefinitionTest extends AbstractUITests {
@@ -57,7 +57,7 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 	public void testGetValue() {
 		simpleValue.setValue(VAR_VALUE);
 		final LocalVariableDefinition def = createDefinition();
-		assertEquals(VAR_VALUE, def.getValue());
+		assertEquals(VAR_VALUE, def.getSimpleValue());
 	}
 
 	public void testGetDefinitionPosition() {
