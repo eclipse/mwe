@@ -21,27 +21,27 @@ import org.eclipse.emf.mwe.Value;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class LocalVariableDefinition {
 
 	public static final Pattern REFERENCE_PATTERN = Pattern.compile("\\$\\{(\\w+)\\}");
 
-	private final LocalVariable definition;
+	private final LocalVariable variable;
 	private final int definitionPosition;
 
 	private final EObject context;
 
-	public LocalVariableDefinition(final LocalVariable definition, final int definitionPosition, final EObject context) {
-		if (definition == null || definitionPosition < 0 || context == null) {
+	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final EObject context) {
+		if (variable == null || definitionPosition < 0 || context == null) {
 			throw new IllegalArgumentException();
 		}
 
-		if (definition.getName() == null || definition.getValue() == null)
-			throw new IllegalArgumentException("Incomplete variable definition");
+		if (variable.getName() == null || variable.getValue() == null)
+			throw new IllegalArgumentException("Incomplete variable variable");
 
-		this.definition = definition;
+		this.variable = variable;
 		this.definitionPosition = definitionPosition;
 		this.context = context;
 	}
@@ -55,7 +55,7 @@ public class LocalVariableDefinition {
 	}
 
 	public String getName() {
-		return definition.getName();
+		return variable.getName();
 	}
 
 	public Collection<String> getReferences() {
@@ -78,7 +78,7 @@ public class LocalVariableDefinition {
 	}
 
 	public Value getValue() {
-		return definition.getValue();
+		return variable.getValue();
 	}
 
 	public boolean hasSimpleValue() {
