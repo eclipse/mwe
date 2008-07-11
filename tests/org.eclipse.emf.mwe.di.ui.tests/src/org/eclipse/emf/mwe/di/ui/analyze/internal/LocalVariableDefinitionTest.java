@@ -9,8 +9,7 @@
 
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.LocalVariable;
@@ -21,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class LocalVariableDefinitionTest extends AbstractUITests {
@@ -75,25 +74,18 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 	public void testSingleReference() {
 		simpleValue.setValue("${ref}/test");
 		final LocalVariableDefinition def = createDefinition();
-		final Collection<String> ref = def.getReferences();
+		final List<String> ref = def.getReferences();
 		assertEquals(1, ref.size());
-		final Iterator<String> it = ref.iterator();
-		assertTrue(it.hasNext());
-		assertEquals("ref", it.next());
-		assertFalse(it.hasNext());
+		assertEquals("ref", ref.get(0));
 	}
 
 	public void testMultipleleReference() {
 		simpleValue.setValue("${ref1}/test1/${ref2}/test2");
 		final LocalVariableDefinition def = createDefinition();
-		final Collection<String> ref = def.getReferences();
+		final List<String> ref = def.getReferences();
 		assertEquals(2, ref.size());
-		final Iterator<String> it = ref.iterator();
-		assertTrue(it.hasNext());
-		assertEquals("ref1", it.next());
-		assertTrue(it.hasNext());
-		assertEquals("ref2", it.next());
-		assertFalse(it.hasNext());
+		assertEquals("ref1", ref.get(0));
+		assertEquals("ref2", ref.get(1));
 	}
 
 	private LocalVariableDefinition createDefinition() {

@@ -10,7 +10,7 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.Value;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class LocalVariableDefinition {
@@ -34,12 +34,12 @@ public class LocalVariableDefinition {
 	private final EObject context;
 
 	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final EObject context) {
-		if (variable == null || definitionPosition < 0 || context == null)
+		if (variable == null || definitionPosition < 0 || context == null) {
 			throw new IllegalArgumentException();
-
-		if (variable.getName() == null || variable.getValue() == null) {
-			throw new IllegalArgumentException("Incomplete variable variable");
 		}
+
+		if (variable.getName() == null || variable.getValue() == null)
+			throw new IllegalArgumentException("Incomplete variable variable");
 
 		this.variable = variable;
 		this.definitionPosition = definitionPosition;
@@ -58,8 +58,8 @@ public class LocalVariableDefinition {
 		return variable.getName();
 	}
 
-	public Collection<String> getReferences() {
-		final Collection<String> result = new ArrayList<String>();
+	public List<String> getReferences() {
+		final List<String> result = new ArrayList<String>();
 		final Matcher m = REFERENCE_PATTERN.matcher(getSimpleValue());
 		while (m.find()) {
 			final String refName = m.group(1);
