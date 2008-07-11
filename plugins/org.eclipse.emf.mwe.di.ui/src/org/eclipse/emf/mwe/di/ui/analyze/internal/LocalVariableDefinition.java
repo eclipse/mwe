@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.Value;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class LocalVariableDefinition {
@@ -34,12 +34,12 @@ public class LocalVariableDefinition {
 	private final EObject context;
 
 	public LocalVariableDefinition(final LocalVariable definition, final int definitionPosition, final EObject context) {
-		if (definition == null || definitionPosition < 0 || context == null)
+		if (definition == null || definitionPosition < 0 || context == null) {
 			throw new IllegalArgumentException();
-
-		if (definition.getName() == null || definition.getValue() == null) {
-			throw new IllegalArgumentException("Incomplete variable definition");
 		}
+
+		if (definition.getName() == null || definition.getValue() == null)
+			throw new IllegalArgumentException("Incomplete variable definition");
 
 		this.definition = definition;
 		this.definitionPosition = definitionPosition;
@@ -58,21 +58,30 @@ public class LocalVariableDefinition {
 		return definition.getName();
 	}
 
-	public String getValue() {
-		final Value val = definition.getValue();
-		if (val instanceof SimpleValue)
-			return ((SimpleValue) val).getValue();
-
-		return null;
-	}
-
 	public Collection<String> getReferences() {
 		final Collection<String> result = new HashSet<String>();
-		final Matcher m = REFERENCE_PATTERN.matcher(getValue());
+		final Matcher m = REFERENCE_PATTERN.matcher(getSimpleValue());
 		while (m.find()) {
 			final String refName = m.group(1);
 			result.add(refName);
 		}
 		return result;
+	}
+
+	public String getSimpleValue() {
+		if (hasSimpleValue()) {
+			final SimpleValue val = (SimpleValue) getValue();
+			return val.getValue();
+		}
+
+		return null;
+	}
+
+	public Value getValue() {
+		return definition.getValue();
+	}
+
+	public boolean hasSimpleValue() {
+		return getValue() instanceof SimpleValue;
 	}
 }
