@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.Value;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class LocalVariableDefinition {
@@ -34,12 +34,12 @@ public class LocalVariableDefinition {
 	private final EObject context;
 
 	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final EObject context) {
-		if (variable == null || definitionPosition < 0 || context == null)
+		if (variable == null || definitionPosition < 0 || context == null) {
 			throw new IllegalArgumentException();
-
-		if (variable.getName() == null || variable.getValue() == null) {
-			throw new IllegalArgumentException("Incomplete variable variable");
 		}
+
+		if (variable.getName() == null || variable.getValue() == null)
+			throw new IllegalArgumentException("Incomplete variable variable");
 
 		this.variable = variable;
 		this.definitionPosition = definitionPosition;
@@ -79,6 +79,10 @@ public class LocalVariableDefinition {
 
 	public Value getValue() {
 		return variable.getValue();
+	}
+
+	public LocalVariable getVariable() {
+		return variable;
 	}
 
 	public boolean hasSimpleValue() {
