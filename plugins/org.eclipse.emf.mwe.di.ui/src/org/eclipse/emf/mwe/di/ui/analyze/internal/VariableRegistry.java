@@ -41,6 +41,8 @@ public class VariableRegistry {
 	public void addVariable(final LocalVariable variable) {
 		if (variable == null)
 			throw new IllegalArgumentException();
+		else if (getContext() == null)
+			throw new IllegalStateException("No context set");
 
 		final int definitionPosition = size();
 		final LocalVariableDefinition def = new LocalVariableDefinition(variable, definitionPosition, context);
@@ -71,6 +73,9 @@ public class VariableRegistry {
 					result.add(r);
 				}
 			}
+		}
+		else {
+			result.add(name);
 		}
 		return result;
 	}

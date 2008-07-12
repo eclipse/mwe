@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -63,6 +63,12 @@ public class VariableRegistryTest extends AbstractUITests {
 		registry.addVariable(var);
 		final List<String> lst = registry.getUnresolvedReferences("test2");
 		assertNotNull(lst);
+		assertEquals(1, lst.size());
+		assertEquals("foo", lst.get(0));
+	}
+
+	public void testUndefinedVariable() {
+		final List<String> lst = registry.getUnresolvedReferences("foo");
 		assertEquals(1, lst.size());
 		assertEquals("foo", lst.get(0));
 	}

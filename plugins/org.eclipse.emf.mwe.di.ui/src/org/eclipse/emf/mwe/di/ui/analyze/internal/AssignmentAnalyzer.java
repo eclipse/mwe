@@ -19,14 +19,13 @@ import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.SimpleValue;
 import org.eclipse.emf.mwe.Value;
 import org.eclipse.emf.mwe.di.MweUtil;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AssignmentAnalyzer extends AbstractAnalyzer<Object> {
@@ -49,11 +48,6 @@ public class AssignmentAnalyzer extends AbstractAnalyzer<Object> {
 		this.type = type;
 	}
 
-	@Override
-	public Object validate(final EObject object) {
-		return doSwitch(object);
-	}
-
 	/**
 	 * @see org.eclipse.emf.mwe.util.MweSwitch#caseAssignment(org.eclipse.emf.mwe.Assignment)
 	 */
@@ -65,37 +59,12 @@ public class AssignmentAnalyzer extends AbstractAnalyzer<Object> {
 		else if (value instanceof ComplexValue)
 			return processComplexValue(object, (ComplexValue) value);
 
-		return false;
+		return super.caseAssignment(object);
 	}
 
-	private Object processComplexValue(final Assignment object, final ComplexValue value) {
-		if (object == null || value == null) {
-			throw new IllegalArgumentException();
-		}
-
-		final String featureName = object.getFeature();
-		final String argType = MweUtil.toString(value.getClassName());
-		final IProject project = ModelUtils.getProject(object);
-		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
-		if (method == null) {
-			createNoSetterError(object);
-		}
-		for (final Assignment ass : value.getAssignments()) {
-			mainAnalyzer.validate(ass);
-		}
-		return true;
-	}
-
-	private Object processSimpleValue(final Assignment object, final SimpleValue value) {
-		final String featureName = object.getFeature();
-		final String argType = getSimpleValueType(value);
-		final IProject project = ModelUtils.getProject(object);
-		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
-		if (method == null) {
-			createNoSetterError(object);
-			return false;
-		}
-		return true;
+	@Override
+	public Object validate(final EObject object) {
+		return doSwitch(object);
 	}
 
 	private void createNoSetterError(final Assignment object) {
@@ -127,5 +96,37 @@ public class AssignmentAnalyzer extends AbstractAnalyzer<Object> {
 
 		final String valueString = value.getValue();
 		return valueString.equalsIgnoreCase(TRUE_VALUE) ^ valueString.equalsIgnoreCase(FALSE_VALUE);
+	}
+
+	private Object processComplexValue(final Assignment object, final ComplexValue value) {
+		if (object == null || value == null) {
+			throw new IllegalArgumentException();
+		}
+
+		final String featureName = object.getFeature();
+		final String argType = MweUtil.toString(value.getClassName());
+		final IProject project = getProject(object);
+		if (project == null) {
+			final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
+			if (method == null) {
+				createNoSetterError(object);
+			}
+			for (final Assignment ass : value.getAssignments()) {
+				mainAnalyzer.validate(ass);
+			}
+		}
+		return true;
+	}
+
+	private Object processSimpleValue(final Assignment object, final SimpleValue value) {
+		final String featureName = object.getFeature();
+		final String argType = getSimpleValueType(value);
+		final IProject project = getProject(object);
+		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
+		if (method == null) {
+			createNoSetterError(object);
+			return false;
+		}
+		return true;
 	}
 }

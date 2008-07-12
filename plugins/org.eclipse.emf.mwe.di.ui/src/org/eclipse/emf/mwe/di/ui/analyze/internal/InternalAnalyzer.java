@@ -1,6 +1,7 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
@@ -11,12 +12,20 @@ import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.Import;
 import org.eclipse.emf.mwe.JavaImport;
+import org.eclipse.emf.mwe.LocalVariable;
+import org.eclipse.emf.mwe.MweFactory;
+import org.eclipse.emf.mwe.PropertiesFileImport;
+import org.eclipse.emf.mwe.Property;
+import org.eclipse.emf.mwe.SimpleValue;
+import org.eclipse.emf.mwe.Value;
 import org.eclipse.emf.mwe.di.MweUtil;
+import org.eclipse.emf.mwe.di.ui.utils.PropertyFileReader;
+import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 
 public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
-	private final VariableRegistry properties = new VariableRegistry();
+	private final VariableRegistry variables = new VariableRegistry();
 	private final Map<String, IType> beans = new HashMap<String, IType>();
 	private final JavaImportRegistry javaImportRegistry = new JavaImportRegistry();
 
@@ -36,6 +45,9 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			final IType type = javaImportRegistry.resolve(project, object, typeName);
 			final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, diagnostics, parent, type, null);
 			assAnalyzer.validate(object);
+			final Value value = object.getValue();
+			doSwitch(value);
+
 		}
 		return super.caseAssignment(object);
 	}
@@ -56,9 +68,8 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 						beans.put(object.getId(), type);
 					}
 				}
-				final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, diagnostics, object, type, null);
 				for (final Assignment ass : object.getAssignments()) {
-					assAnalyzer.validate(ass);
+					doSwitch(ass);
 				}
 			}
 			else {
@@ -74,9 +85,11 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	@Override
 	public Object caseFile(final File object) {
 		for (final Import imp : object.getImports()) {
-			if (imp instanceof JavaImport) {
-				javaImportRegistry.addImport((JavaImport) imp);
-			}
+			doSwitch(imp);
+		}
+
+		for (final Property p : object.getProperties()) {
+			doSwitch(p);
 		}
 
 		final ComplexValue value = object.getValue();
@@ -85,7 +98,50 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	}
 
 	@Override
+	public Object caseJavaImport(final JavaImport object) {
+		javaImportRegistry.addImport(object);
+		return super.caseJavaImport(object);
+	}
+
+	@Override
+	public Object caseLocalVariable(final LocalVariable object) {
+		variables.addVariable(object);
+		final Value value = object.getValue();
+		doSwitch(value);
+		return super.caseLocalVariable(object);
+	}
+
+	@Override
+	public Object casePropertiesFileImport(final PropertiesFileImport object) {
+		final IProject project = getProject(object);
+		final String filePath = object.getFile();
+		final String content = TypeUtils.getFileContent(project, filePath);
+		if (content != null) {
+			final Map<String, String> map = PropertyFileReader.parse(content);
+			convertMap(map);
+		}
+		else {
+			addError("Cannot find file '" + filePath + "'", object, null);
+		}
+		return super.casePropertiesFileImport(object);
+	}
+
+	@Override
+	public Object caseSimpleValue(final SimpleValue object) {
+		final String value = object.getValue();
+		if (VariableRegistry.isReference(value)) {
+			final String refName = VariableRegistry.referenceName(value);
+			final List<String> unresolvedReferences = variables.getUnresolvedReferences(refName);
+			for (final String ref : unresolvedReferences) {
+				addError("Cannot resolve reference ${" + ref + "}", object, null);
+			}
+		}
+		return super.caseSimpleValue(object);
+	}
+
+	@Override
 	public Object validate(final EObject object) {
+		variables.setContext(object);
 		try {
 			return doSwitch(object);
 		}
@@ -93,5 +149,21 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			addError(e.getMessage(), e.getContext(), null);
 		}
 		return null;
+	}
+
+	private void convertMap(final Map<String, String> map) {
+		if (map == null)
+			return;
+
+		for (final String key : map.keySet()) {
+			final String value = map.get(key);
+			final MweFactory factory = MweFactory.eINSTANCE;
+			final LocalVariable var = factory.createLocalVariable();
+			var.setName(key);
+			final SimpleValue val = factory.createSimpleValue();
+			val.setValue(value);
+			var.setValue(val);
+			variables.addVariable(var);
+		}
 	}
 }
