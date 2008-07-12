@@ -9,49 +9,48 @@
 
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
+import java.util.Map;
+
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.SimpleValue;
 import org.eclipse.emf.mwe.Value;
 import org.eclipse.emf.mwe.di.MweUtil;
-import org.eclipse.emf.mwe.di.ui.analyze.MweDiagnostic;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
-import org.eclipse.emf.mwe.util.MweSwitch;
 import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
-public class AssignmentAnalyzer extends MweSwitch<Object> {
+public class AssignmentAnalyzer extends AbstractAnalyzer<Object> {
 
 	protected static final String FALSE_VALUE = "false";
 	protected static final String TRUE_VALUE = "true";
 
-	private final InternalAnalyzer mainAnalyzer;
-	private final IProject project;
-	private final DiagnosticChain diagnostics;
+	private final AbstractAnalyzer<Object> mainAnalyzer;
 	private final ComplexValue analyzedObject;
 	private final IType type;
 
-	public AssignmentAnalyzer(final InternalAnalyzer mainAnalyzer, final IProject project,
-			final DiagnosticChain diagnostics, final ComplexValue analyzedObject, final IType type) {
-		if (mainAnalyzer == null || project == null || diagnostics == null || analyzedObject == null || type == null)
+	public AssignmentAnalyzer(final AbstractAnalyzer<Object> mainAnalyzer, final DiagnosticChain diagnostics,
+			final ComplexValue analyzedObject, final IType type, final Map<Object, Object> context) {
+		super(diagnostics, context);
+		if (mainAnalyzer == null || analyzedObject == null || type == null)
 			throw new IllegalArgumentException();
 
 		this.mainAnalyzer = mainAnalyzer;
-		this.project = project;
-		this.diagnostics = diagnostics;
 		this.analyzedObject = analyzedObject;
 		this.type = type;
 	}
 
-	public Object validate(final Assignment object) {
+	@Override
+	public Object validate(final EObject object) {
 		return doSwitch(object);
 	}
 
@@ -76,9 +75,10 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 
 		final String featureName = object.getFeature();
 		final String argType = MweUtil.toString(value.getClassName());
+		final IProject project = ModelUtils.getProject(object);
 		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 		if (method == null) {
-			diagnostics.add(createNoSetterError(object));
+			createNoSetterError(object);
 		}
 		for (final Assignment ass : value.getAssignments()) {
 			mainAnalyzer.validate(ass);
@@ -89,22 +89,22 @@ public class AssignmentAnalyzer extends MweSwitch<Object> {
 	private Object processSimpleValue(final Assignment object, final SimpleValue value) {
 		final String featureName = object.getFeature();
 		final String argType = getSimpleValueType(value);
+		final IProject project = ModelUtils.getProject(object);
 		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 		if (method == null) {
-			diagnostics.add(createNoSetterError(object));
+			createNoSetterError(object);
 			return false;
 		}
 		return true;
 	}
 
-	private Diagnostic createNoSetterError(final Assignment object) {
+	private void createNoSetterError(final Assignment object) {
 		if (object == null)
-			return null;
+			return;
 
 		final String featureName = object.getFeature();
 		final String objectName = MweUtil.toString(analyzedObject.getClassName());
-		return MweDiagnostic.error("No setter for '" + featureName + "' in object '" + objectName + "'",
-				analyzedObject, null);
+		addError("No setter for '" + featureName + "' in object '" + objectName + "'", analyzedObject, null);
 	}
 
 	private String getSimpleValueType(final SimpleValue value) {

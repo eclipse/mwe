@@ -18,28 +18,29 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
 
 	private static final String AMBIGUOUS_MSG = "ambiguous";
-
 	private static final String NO_SETTER_MSG = "No setter";
 
 	private BasicDiagnostic diag;
+	private AbstractAnalyzer<Object> analyzer;
 
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		diag = new BasicDiagnostic();
+		analyzer = new InternalAnalyzer(diag, null);
 	}
 
 	public void testBooleanSetter() {
 		final String workflow = "stubs.ObjectC { flag = 'true' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
@@ -47,7 +48,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA { name = 'test1' } multiEle += stubs.ObjectA { name = 'test2' } }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
@@ -55,7 +56,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA { foo = 'test1' } multiEle += stubs.ObjectA { foo = 'test2' } }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(2, getErrorCount(diag));
 		assertTrue(isSetterError(diag, 0));
 		assertTrue(isSetterError(diag, 1));
@@ -65,7 +66,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "stubs.ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
@@ -73,7 +74,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "stubs.ObjectA { foo = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
 		assertTrue(isSetterError(diag, 0));
 	}
@@ -86,7 +87,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "import stubs.ObjectA; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
@@ -94,7 +95,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "import stubs.*; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
@@ -102,7 +103,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "import stubs.ObjectA; import ambiguity.ObjectA; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
 		assertTrue(errorContains(diag, 0, AMBIGUOUS_MSG));
 	}
@@ -111,7 +112,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final String workflow = "import stubs.*; import ambiguity.*; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
-		analyzer.validate(file, diag, null);
+		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
 		assertTrue(errorContains(diag, 0, AMBIGUOUS_MSG));
 	}
@@ -121,8 +122,9 @@ public class AnalyzerTest extends AbstractUITests {
 	}
 
 	private boolean errorContains(final Diagnostic diagnostic, final int index, final String text) {
-		if (diagnostic == null || text == null || index < 0 || index >= getErrorCount(diagnostic))
+		if (diagnostic == null || text == null || index < 0 || index >= getErrorCount(diagnostic)) {
 			throw new IllegalArgumentException();
+		}
 
 		return diagnostic.getChildren().get(index).getMessage().contains(text);
 	}

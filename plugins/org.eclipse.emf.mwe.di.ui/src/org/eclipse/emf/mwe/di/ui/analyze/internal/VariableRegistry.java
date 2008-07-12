@@ -21,15 +21,8 @@ import org.eclipse.emf.mwe.Value;
 
 public class VariableRegistry {
 
-	private final EObject context;
+	private EObject context;
 	private final Map<String, LocalVariableDefinition> variables = new HashMap<String, LocalVariableDefinition>();
-
-	public VariableRegistry(final EObject context) {
-		if (context == null)
-			throw new IllegalArgumentException();
-
-		this.context = context;
-	}
 
 	public static boolean isReference(final String text) {
 		final Matcher m = LocalVariableDefinition.REFERENCE_PATTERN.matcher(text);
@@ -46,9 +39,8 @@ public class VariableRegistry {
 	}
 
 	public void addVariable(final LocalVariable variable) {
-		if (variable == null) {
+		if (variable == null)
 			throw new IllegalArgumentException();
-		}
 
 		final int definitionPosition = size();
 		final LocalVariableDefinition def = new LocalVariableDefinition(variable, definitionPosition, context);
@@ -110,6 +102,14 @@ public class VariableRegistry {
 
 	public boolean isEmpty() {
 		return variables.isEmpty();
+	}
+
+	public void setContext(final EObject context) {
+		if (context == null) {
+			throw new IllegalArgumentException();
+		}
+
+		this.context = context;
 	}
 
 	public int size() {

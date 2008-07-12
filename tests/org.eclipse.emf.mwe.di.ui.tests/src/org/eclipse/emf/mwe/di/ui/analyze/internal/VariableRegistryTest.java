@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -37,7 +37,8 @@ public class VariableRegistryTest extends AbstractUITests {
 	protected void setUp() throws Exception {
 		super.setUp();
 		file = factory.createFile();
-		registry = new VariableRegistry(file);
+		registry = new VariableRegistry();
+		registry.setContext(file);
 		variable = createVariable(DEFAULT_NAME, DEFAULT_VALUE);
 		assertNotNull(variable);
 		registry.addVariable(variable);

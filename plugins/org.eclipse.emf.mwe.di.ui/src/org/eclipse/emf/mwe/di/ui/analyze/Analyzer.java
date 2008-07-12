@@ -12,14 +12,17 @@ import org.eclipse.emf.mwe.di.ui.analyze.internal.InternalAnalyzer;
 public class Analyzer implements EValidator {
 
 	public boolean validate(final EObject object, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		return new InternalAnalyzer().validate(object, diagnostics, context);
+		new InternalAnalyzer(diagnostics, context).validate(object);
+		return true;
 	}
 
-	public boolean validate(final EClass class1, final EObject object, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean validate(final EClass class1, final EObject object, final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
 		return false;
 	}
 
-	public boolean validate(final EDataType dataType, final Object value, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public boolean validate(final EDataType dataType, final Object value, final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
 		return false;
 	}
 

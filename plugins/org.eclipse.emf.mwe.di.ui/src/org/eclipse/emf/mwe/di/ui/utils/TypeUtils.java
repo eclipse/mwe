@@ -51,7 +51,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public final class TypeUtils {
 
@@ -147,11 +147,11 @@ public final class TypeUtils {
 		}
 	}
 
-	public static Set<String> getAllClasses(final IFile file, final boolean onlyConcreteClasses) {
-		return getAllClasses(getProject(file), onlyConcreteClasses);
+	public static Set<String> getAllClasses(final IFile file) {
+		return getAllClasses(getProject(file));
 	}
 
-	public static Set<String> getAllClasses(final IProject project, final boolean onlyConcreteClasses) {
+	public static Set<String> getAllClasses(final IProject project) {
 		if (project == null)
 			throw new IllegalArgumentException();
 
@@ -342,7 +342,7 @@ public final class TypeUtils {
 		final ITypeHierarchy hierarchy = createTypeHierarchy(project, baseType);
 		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(baseType);
-			createClassSet(project, subClasses, subTypes, onlyConcreteClasses);
+			createClassSet(subClasses, subTypes, onlyConcreteClasses);
 		}
 
 		cacheSubClasses(project, baseType, subClasses);
@@ -410,8 +410,7 @@ public final class TypeUtils {
 		return new URLClassLoader(url);
 	}
 
-	private static void createClassSet(final IProject project, final Set<String> classes, final IType[] type,
-			final boolean onlyConcreteClasses) {
+	private static void createClassSet(final Set<String> classes, final IType[] type, final boolean onlyConcreteClasses) {
 		try {
 			for (final IType t : type) {
 				final int modifiers = t.getFlags();

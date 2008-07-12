@@ -12,18 +12,17 @@ import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.Import;
 import org.eclipse.emf.mwe.JavaImport;
 import org.eclipse.emf.mwe.di.MweUtil;
-import org.eclipse.emf.mwe.di.ui.analyze.MweDiagnostic;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
-import org.eclipse.emf.mwe.util.MweSwitch;
 import org.eclipse.jdt.core.IType;
 
-public class InternalAnalyzer extends MweSwitch<Object> {
+public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
-	private DiagnosticChain diagnostics;
-	private final Map<String, String> properties = new HashMap<String, String>();
+	private final VariableRegistry properties = new VariableRegistry();
 	private final Map<String, IType> beans = new HashMap<String, IType>();
 	private final JavaImportRegistry javaImportRegistry = new JavaImportRegistry();
-	private Map<Object, Object> context;
+
+	public InternalAnalyzer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		super(diagnostics, context);
+	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.util.MweSwitch#caseAssignment(org.eclipse.emf.mwe.Assignment)
@@ -35,7 +34,7 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 			final ComplexValue parent = (ComplexValue) object.eContainer();
 			final String typeName = MweUtil.toString(parent.getClassName());
 			final IType type = javaImportRegistry.resolve(project, object, typeName);
-			final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, project, diagnostics, parent, type);
+			final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, diagnostics, parent, type, null);
 			assAnalyzer.validate(object);
 		}
 		return super.caseAssignment(object);
@@ -50,20 +49,20 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 			if (type != null) {
 				if (object.getId() != null) {
 					if (beans.containsKey(object.getId())) {
-						diagnostics.add(MweDiagnostic.warning("overwrites existing bean with id '" + object.getId()
-								+ "' of type " + beans.get(object.getId()).getElementName(), object));
+						addWarning("overwrites existing bean with id '" + object.getId() + "' of type "
+								+ beans.get(object.getId()).getElementName(), object);
 					}
 					else {
 						beans.put(object.getId(), type);
 					}
 				}
-				final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, project, diagnostics, object, type);
+				final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, diagnostics, object, type, null);
 				for (final Assignment ass : object.getAssignments()) {
 					assAnalyzer.validate(ass);
 				}
 			}
 			else {
-				diagnostics.add(MweDiagnostic.error("Cannot find class '" + typeName + "'", object, null));
+				addError("Cannot find class '" + typeName + "'", object, null);
 			}
 		}
 		return super.caseComplexValue(object);
@@ -85,28 +84,14 @@ public class InternalAnalyzer extends MweSwitch<Object> {
 		return super.caseFile(object);
 	}
 
-	public boolean validate(final EObject object) {
-		if (diagnostics == null) {
-			throw new IllegalStateException("Diagnostic chain not set");
-		}
-
+	@Override
+	public Object validate(final EObject object) {
 		try {
-			doSwitch(object);
+			return doSwitch(object);
 		}
 		catch (final AmbiguousTypeException e) {
-			diagnostics.add(MweDiagnostic.error(e.getMessage(), e.getContext(), null));
+			addError(e.getMessage(), e.getContext(), null);
 		}
-		return true;
+		return null;
 	}
-
-	public boolean validate(final EObject object, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		this.diagnostics = diagnostics;
-		this.context = context;
-		return validate(object);
-	}
-
-	private IProject getProject(final EObject object) {
-		return ModelUtils.getProject(object);
-	}
-
 }
