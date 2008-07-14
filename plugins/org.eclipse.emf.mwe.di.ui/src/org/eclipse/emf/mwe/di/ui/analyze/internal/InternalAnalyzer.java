@@ -1,23 +1,12 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.Assignment;
-import org.eclipse.emf.mwe.ComplexValue;
-import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.Import;
-import org.eclipse.emf.mwe.JavaImport;
-import org.eclipse.emf.mwe.LocalVariable;
-import org.eclipse.emf.mwe.MweFactory;
-import org.eclipse.emf.mwe.PropertiesFileImport;
-import org.eclipse.emf.mwe.Property;
-import org.eclipse.emf.mwe.SimpleValue;
-import org.eclipse.emf.mwe.Value;
+import org.eclipse.emf.mwe.*;
 import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.ui.utils.PropertyFileReader;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
@@ -26,7 +15,6 @@ import org.eclipse.jdt.core.IType;
 public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 	private final VariableRegistry variables = new VariableRegistry();
-	private final Map<String, IType> beans = new HashMap<String, IType>();
 	private final JavaImportRegistry javaImportRegistry = new JavaImportRegistry();
 
 	public InternalAnalyzer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
@@ -59,15 +47,19 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			final String typeName = MweUtil.toString(object.getClassName());
 			final IType type = javaImportRegistry.resolve(project, object, typeName);
 			if (type != null) {
-				if (object.getId() != null) {
-					if (beans.containsKey(object.getId())) {
-						addWarning("overwrites existing bean with id '" + object.getId() + "' of type "
-								+ beans.get(object.getId()).getElementName(), object);
+				final String id = object.getId();
+				if (id != null) {
+					if (variables.isBean(id)) {
+						final IType beanType = variables.getType(id);
+						addWarning(
+								"overwrites existing bean with id '" + id + "' of type " + beanType.getElementName(),
+								object);
 					}
 					else {
-						beans.put(object.getId(), type);
+						addVariable(id, object, type);
 					}
 				}
+
 				for (final Assignment ass : object.getAssignments()) {
 					doSwitch(ass);
 				}
@@ -98,6 +90,17 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	}
 
 	@Override
+	public Object caseIdRef(final IdRef object) {
+		if (object != null) {
+			final String id = object.getId();
+			if (id != null) {
+				checkReference(id, object);
+			}
+		}
+		return super.caseIdRef(object);
+	}
+
+	@Override
 	public Object caseJavaImport(final JavaImport object) {
 		javaImportRegistry.addImport(object);
 		return super.caseJavaImport(object);
@@ -105,7 +108,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 	@Override
 	public Object caseLocalVariable(final LocalVariable object) {
-		variables.addVariable(object);
+		addVariable(object);
 		final Value value = object.getValue();
 		doSwitch(value);
 		return super.caseLocalVariable(object);
@@ -131,10 +134,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final String value = object.getValue();
 		if (VariableRegistry.isReference(value)) {
 			final String refName = VariableRegistry.referenceName(value);
-			final List<String> unresolvedReferences = variables.getUnresolvedReferences(refName);
-			for (final String ref : unresolvedReferences) {
-				addError("Cannot resolve reference ${" + ref + "}", object, null);
-			}
+			checkReference(refName, object);
 		}
 		return super.caseSimpleValue(object);
 	}
@@ -151,6 +151,43 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		return null;
 	}
 
+	private void addVariable(final LocalVariable variable) {
+		if (variable == null)
+			throw new IllegalArgumentException();
+
+		variables.addVariable(variable);
+	}
+
+	private void addVariable(final String name, final Value value) {
+		if (name == null || value == null)
+			throw new IllegalArgumentException();
+
+		final MweFactory factory = MweFactory.eINSTANCE;
+		final LocalVariable var = factory.createLocalVariable();
+		var.setName(name);
+		var.setValue(value);
+		addVariable(var);
+	}
+
+	private void addVariable(final String name, final Value value, final IType type) {
+		if (type == null)
+			throw new IllegalArgumentException();
+
+		addVariable(name, value);
+		variables.setType(name, type);
+	}
+
+	private void checkReference(final String referenceName, final EObject context) {
+		if (referenceName == null || context == null) {
+			throw new IllegalArgumentException();
+		}
+
+		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName);
+		for (final String ref : unresolvedReferences) {
+			addError("Cannot resolve reference ${" + ref + "}", context, null);
+		}
+	}
+
 	private void convertMap(final Map<String, String> map) {
 		if (map == null)
 			return;
@@ -163,7 +200,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			final SimpleValue val = factory.createSimpleValue();
 			val.setValue(value);
 			var.setValue(val);
-			variables.addVariable(var);
+			addVariable(var);
 		}
 	}
 }

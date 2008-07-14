@@ -18,6 +18,7 @@ import java.util.regex.Matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.Value;
+import org.eclipse.jdt.core.IType;
 
 public class VariableRegistry {
 
@@ -59,7 +60,27 @@ public class VariableRegistry {
 
 	public String getSimpleValue(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.getSimpleValue() : null;
+		if (isSimpleValue(name))
+			return def.getSimpleValue();
+
+		return null;
+	}
+
+	public String getIdRef(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		if (isIdRef(name))
+			return def.getId();
+
+		return null;
+	}
+
+	public IType getType(final String name) {
+		if (isBean(name)) {
+			final LocalVariableDefinition def = getDefinition(name);
+			return def.getType();
+		}
+
+		return null;
 	}
 
 	public List<String> getUnresolvedReferences(final String name) {
@@ -85,9 +106,14 @@ public class VariableRegistry {
 		return def != null ? def.getValue() : null;
 	}
 
-	public boolean hasSimpleValue(final String name) {
+	public boolean isSimpleValue(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.hasSimpleValue() : false;
+		return def != null ? def.isSimpleValue() : false;
+	}
+
+	public boolean isIdRef(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null ? def.isIdRef() : false;
 	}
 
 	public boolean hasVariable(final String name) {
@@ -95,6 +121,14 @@ public class VariableRegistry {
 			return false;
 
 		return variables.containsKey(name);
+	}
+
+	public boolean isBean(final String name) {
+		if (name == null)
+			return false;
+
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null && def.isBean();
 	}
 
 	public boolean isDefinedBefore(final String name, final int definitionPosition) {
@@ -115,6 +149,14 @@ public class VariableRegistry {
 		}
 
 		this.context = context;
+	}
+
+	public void setType(final String name, final IType type) {
+		if (!hasVariable(name))
+			throw new IllegalArgumentException("No such variable");
+
+		final LocalVariableDefinition def = getDefinition(name);
+		def.setType(type);
 	}
 
 	public int size() {

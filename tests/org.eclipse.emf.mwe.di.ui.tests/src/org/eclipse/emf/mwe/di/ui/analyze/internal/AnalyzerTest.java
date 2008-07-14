@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -134,6 +134,41 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testProperty3() {
 		final String workflow = "var prop1 = '${prop2}'; var prop2 = 'foo'; stubs.ObjectA { name = '${prop2}' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
+	}
+
+	public void testIdRef1() {
+		final String workflow = "var prop1 = 'foo'; var prop2 = prop1; stubs.ObjectA { name = prop1 }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testIdRef2() {
+		final String workflow = "var prop1 = 'foo'; var prop2 = foo; stubs.ObjectA { name = foo }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(2, getErrorCount(diag));
+		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
+		assertTrue(errorContains(diag, 1, RESOLVE_MSG));
+	}
+
+	public void testComplexValueStorage1() {
+		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += a }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testComplexValueStorage2() {
+		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += foo }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);

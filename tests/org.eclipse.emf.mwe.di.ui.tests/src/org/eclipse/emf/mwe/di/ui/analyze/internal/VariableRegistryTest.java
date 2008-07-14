@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -46,7 +46,7 @@ public class VariableRegistryTest extends AbstractUITests {
 
 	public void testSimpleValue() {
 		assertTrue(registry.hasVariable(DEFAULT_NAME));
-		assertTrue(registry.hasSimpleValue(DEFAULT_NAME));
+		assertTrue(registry.isSimpleValue(DEFAULT_NAME));
 		assertEquals(DEFAULT_VALUE, registry.getSimpleValue(DEFAULT_NAME));
 	}
 
