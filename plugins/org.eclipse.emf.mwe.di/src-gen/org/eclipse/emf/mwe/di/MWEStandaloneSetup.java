@@ -3,7 +3,9 @@ Generated with Xtext
 */
 package org.eclipse.emf.mwe.di;
 
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.xtext.builtin.XtextBuiltinStandaloneSetup;
 import org.eclipse.xtext.service.ILanguageDescriptor;
@@ -32,11 +34,8 @@ public abstract class MWEStandaloneSetup {
 		if(!isInitialized) {
 			
 			// setup super language first
-			XtextBuiltinStandaloneSetup.doSetup();
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"ecore", new XMIResourceFactoryImpl());
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				"xmi", new XMIResourceFactoryImpl());
+			org.eclipse.xtext.builtin.XtextBuiltinStandaloneSetup.doSetup();
+			
 			ILanguageDescriptor languageDescriptor = 
 				LanguageDescriptorFactory.createLanguageDescriptor(
 					IMWE.ID, 
@@ -56,11 +55,23 @@ public abstract class MWEStandaloneSetup {
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("mwe", resourceFactory);
 			
 			
+			// initialize EPackages
+			
+				if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/emf/mwe/di")) {
+					EPackage mwe = EcoreUtil2.loadEPackage(
+							"classpath:/org/eclipse/emf/mwe/di/mwe.ecore",
+							MWEStandaloneSetup.class.getClassLoader());
+					if (mwe == null)
+						throw new IllegalStateException(
+								"Couldn't load EPackage from 'classpath:/org/eclipse/emf/mwe/di/mwe.ecore'");
+					EPackage.Registry.INSTANCE.put("http://www.eclipse.org/emf/mwe/di", mwe);
+				}
+			
 			isInitialized = true;
 		}
 	}
 	
-	public static ILanguageDescriptor getLanguageDescriptor() {
+	public static synchronized ILanguageDescriptor getLanguageDescriptor() {
 		if(!isInitialized) {
 			doSetup();
 		}
