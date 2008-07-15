@@ -9,6 +9,13 @@ import org.eclipse.xtext.parser.BaseEPackageAccess;
 
 public class MWEMetamodelAccess extends BaseEPackageAccess implements IMetamodelAccess {
 
+{
+
+		if (!EPackage.Registry.INSTANCE.containsKey(MWE_NS_URI))
+			EPackage.Registry.INSTANCE.put(MWE_NS_URI, loadEcoreFile(getClass().getClassLoader(), "classpath:/org/eclipse/emf/mwe/di/mwe.ecore"));
+
+}
+
 	private EPackage[] generated = new EPackage[] {
 		
 		getMweEPackage()

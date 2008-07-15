@@ -23,7 +23,7 @@ public abstract class AbstractTests extends AbstractXtextTests {
 		super.setUp();
 		MwePackage.eINSTANCE.getAssignment();
 		MWEStandaloneSetup.doSetup();
-		setCurrentLanguage(MWEStandaloneSetup.getLanguageDescriptor());
+		setCurrentLanguage(MWEStandaloneSetup.getServiceScope());
 	}
 
 	protected File createModelFile(final String model) {

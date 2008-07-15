@@ -17,12 +17,11 @@
       </editor>
    </extension>
    <extension
-         point="org.eclipse.xtext.ui.languageDescriptor">
-      <languageDescriptor
+         point="org.eclipse.xtext.service.scope">
+      <serviceScope
             id="org.eclipse.emf.mwe.di.MWE"
-            name="MWE"
-            superLanguage="org.eclipse.xtext.builtin.XtextBuiltin">
-      </languageDescriptor>
+            parentScope="org.eclipse.xtext.builtin.XtextBuiltin">
+      </serviceScope>
    </extension>
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
@@ -81,5 +80,4 @@
             class="org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor">
       </parseTreeConstructor>
    </extension>
-   
 </plugin>
