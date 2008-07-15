@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -53,7 +53,7 @@ public class VariableRegistryTest extends AbstractUITests {
 	public void testReference1() {
 		final LocalVariable var = createVariable("test2", "${test}/bar");
 		registry.addVariable(var);
-		final List<String> lst = registry.getUnresolvedReferences("test2");
+		final List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertNotNull(lst);
 		assertEquals(0, lst.size());
 	}
@@ -61,14 +61,14 @@ public class VariableRegistryTest extends AbstractUITests {
 	public void testReference2() {
 		final LocalVariable var = createVariable("test2", "${foo}/bar");
 		registry.addVariable(var);
-		final List<String> lst = registry.getUnresolvedReferences("test2");
+		final List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertNotNull(lst);
 		assertEquals(1, lst.size());
 		assertEquals("foo", lst.get(0));
 	}
 
 	public void testUndefinedVariable() {
-		final List<String> lst = registry.getUnresolvedReferences("foo");
+		final List<String> lst = registry.getUnresolvedReferences("foo", true);
 		assertEquals(1, lst.size());
 		assertEquals("foo", lst.get(0));
 	}
@@ -78,10 +78,10 @@ public class VariableRegistryTest extends AbstractUITests {
 		registry.addVariable(var);
 		var = createVariable("test3", "${test2}/bar");
 		registry.addVariable(var);
-		List<String> lst = registry.getUnresolvedReferences("test2");
+		List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertEquals(1, lst.size());
 		assertEquals("test3", lst.get(0));
-		lst = registry.getUnresolvedReferences("test3");
+		lst = registry.getUnresolvedReferences("test3", true);
 		assertEquals(0, lst.size());
 	}
 

@@ -15,21 +15,16 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.AbstractTests;
 import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
-import org.eclipse.emf.mwe.di.ui.analyze.internal.AbstractAnalyzer;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 
 import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AbstractUITests extends AbstractTests {
@@ -39,10 +34,10 @@ public class AbstractUITests extends AbstractTests {
 	private static final String DI_UI_TEST_BUNDLE = "org.eclipse.emf.mwe.di.ui.tests";
 
 	protected static final String PROJECT_NAME = "uitest";
-	protected static final String WORKFLOW_NAME = "test/workflow.mwe";
+	protected static final String WORKFLOW_NAME1 = "test/workflow1.mwe";
+	protected static final String WORKFLOW_NAME2 = "test/workflow2.mwe";
 
 	protected IProject project;
-	protected AbstractAnalyzer<Object> analyzer;
 
 	/**
 	 * @see org.eclipse.emf.mwe.di.AbstractTests#setUp()
@@ -70,26 +65,6 @@ public class AbstractUITests extends AbstractTests {
 		}
 	}
 
-	protected File loadModelFile(final IFile file) {
-		if (file == null || !file.exists())
-			return null;
-
-		try {
-			final ResourceSet rs = new ResourceSetImpl();
-			final Resource resource = rs.createResource(URI.createURI(file.getLocationURI().toString()));
-			resource.load(file.getContents(), null);
-			if (resource.getContents().isEmpty())
-				return null;
-
-			final EObject object = resource.getContents().iterator().next();
-			return (File) object;
-		}
-		catch (final Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
 	protected IFile createFile(final IProject project, final String fileName, final String content) {
 		final String fullName = "src" + "/" + fileName;
 		final IFile file = ProjectCreator.createFile(fullName, project, content, new NullProgressMonitor());
@@ -106,5 +81,9 @@ public class AbstractUITests extends AbstractTests {
 		requiredBundles.add(DI_UI_TEST_BUNDLE);
 		final IProject project = ProjectCreator.createProject(name, requiredBundles);
 		return project;
+	}
+
+	protected File loadModelFile(final IFile file) {
+		return ModelUtils.loadModelFile(file);
 	}
 }

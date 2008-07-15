@@ -22,17 +22,18 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
-public class JavaImportRegistry {
+public class JavaImportRegistry implements IMergable {
 
 	private final List<String> classImports = new ArrayList<String>();
 	private final List<String> packageImports = new ArrayList<String>();
 
 	public void addImport(final JavaImport imp) {
-		if (imp == null)
+		if (imp == null) {
 			throw new IllegalArgumentException();
+		}
 
 		final QualifiedName fqn = imp.getJavaImport();
 		final String fqnString = MweUtil.toString(fqn);
@@ -44,10 +45,17 @@ public class JavaImportRegistry {
 		}
 	}
 
-	public IType resolve(final IProject project, final EObject context, final String className) {
-		if (project == null || context == null || className == null) {
-			throw new IllegalArgumentException();
+	public void merge(final IMergable other) {
+		if (other instanceof JavaImportRegistry) {
+			final JavaImportRegistry o = (JavaImportRegistry) other;
+			classImports.addAll(o.getClassImports());
+			packageImports.addAll(o.getPackageImports());
 		}
+	}
+
+	public IType resolve(final IProject project, final EObject context, final String className) {
+		if (project == null || context == null || className == null)
+			throw new IllegalArgumentException();
 
 		if (!isQualified(className)) {
 			IType type = lookupType(project, context, className);
@@ -58,6 +66,14 @@ public class JavaImportRegistry {
 				return type;
 		}
 		return TypeUtils.findType(project, className);
+	}
+
+	protected List<String> getClassImports() {
+		return classImports;
+	}
+
+	protected List<String> getPackageImports() {
+		return packageImports;
 	}
 
 	private IType browsePackages(final IProject project, final EObject context, final String className) {
@@ -76,6 +92,13 @@ public class JavaImportRegistry {
 		return collector.resolve();
 	}
 
+	private boolean isQualified(final String className) {
+		if (className == null)
+			return false;
+
+		return className.contains(".");
+	}
+
 	private IType lookupType(final IProject project, final EObject context, final String className) {
 		IType type = null;
 		int count = 0;
@@ -90,12 +113,5 @@ public class JavaImportRegistry {
 			}
 		}
 		return collector.resolve();
-	}
-
-	private boolean isQualified(final String className) {
-		if (className == null)
-			return false;
-
-		return className.contains(".");
 	}
 }

@@ -20,8 +20,8 @@ public class InfrastructureTest extends AbstractUITests {
 	private static final String CONTENT = "test.ObjectB {\n" + "	multiEle = { name=\"Foo\" }\n"
 			+ "	multiEle = :x { name=\"Bar\" }\n" + "	singleEle = x;\n" + "}";
 
-	public void testInfrastructure() {
-		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
+	public void testLoadModel() {
+		final IFile file = createFile(project, WORKFLOW_NAME1, CONTENT);
 		final File model = loadModelFile(file);
 		assertNotNull(model);
 	}
@@ -31,10 +31,16 @@ public class InfrastructureTest extends AbstractUITests {
 		assertNotNull(type);
 	}
 
-	public void testResourceAccess() {
-		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
+	public void testLocalResourceAccess() {
+		final IFile file = createFile(project, WORKFLOW_NAME1, CONTENT);
 		final File model = loadModelFile(file);
 		assertNotNull(model);
 		assertNotNull(model.eResource());
+	}
+
+	public void testExternalResourceAccess() {
+		final String content = TypeUtils.getFileContent(project, "org/eclipse/emf/mwe/di/mwe.xtext");
+		assertNotNull(content);
+		assertTrue(content.length() > 0);
 	}
 }

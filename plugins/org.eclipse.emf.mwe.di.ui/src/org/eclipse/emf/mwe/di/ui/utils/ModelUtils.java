@@ -9,6 +9,7 @@
 
 package org.eclipse.emf.mwe.di.ui.utils;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -17,10 +18,14 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe.File;
+import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public final class ModelUtils {
@@ -65,5 +70,33 @@ public final class ModelUtils {
 			}
 		}
 		return null;
+	}
+
+	public static File loadModelFile(final IFile file) {
+		if (file == null || !file.exists())
+			return null;
+
+		try {
+			final ResourceSet rs = new ResourceSetImpl();
+			final Resource resource = rs.createResource(URI.createURI(file.getLocationURI().toString()));
+			resource.load(file.getContents(), null);
+			if (resource.getContents().isEmpty())
+				return null;
+
+			final EObject object = resource.getContents().iterator().next();
+			return (File) object;
+		}
+		catch (final Exception e) {
+			CoreLog.logError("Could not load model file '" + file.getName() + "'", e);
+			return null;
+		}
+	}
+
+	public static File loadModelFile(final IProject project, final String filePath) {
+		if (project == null || filePath == null)
+			return null;
+
+		final IFile file = project.getFile(filePath);
+		return loadModelFile(file);
 	}
 }

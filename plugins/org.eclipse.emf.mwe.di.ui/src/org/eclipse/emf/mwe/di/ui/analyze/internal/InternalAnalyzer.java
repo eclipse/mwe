@@ -8,11 +8,16 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.*;
 import org.eclipse.emf.mwe.di.MweUtil;
+import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
 import org.eclipse.emf.mwe.di.ui.utils.PropertyFileReader;
 import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
+import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 
 public class InternalAnalyzer extends AbstractAnalyzer<Object> {
+
+	private static final String TRUE_VALUE = "true";
+	private static final String FALSE_VALUE = "false";
 
 	private final VariableRegistry variables = new VariableRegistry();
 	private final JavaImportRegistry javaImportRegistry = new JavaImportRegistry();
@@ -28,14 +33,15 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	public Object caseAssignment(final Assignment object) {
 		final IProject project = getProject(object);
 		if (project != null) {
-			final ComplexValue parent = (ComplexValue) object.eContainer();
-			final String typeName = MweUtil.toString(parent.getClassName());
-			final IType type = javaImportRegistry.resolve(project, object, typeName);
-			final AssignmentAnalyzer assAnalyzer = new AssignmentAnalyzer(this, diagnostics, parent, type, null);
-			assAnalyzer.validate(object);
+			final EObject parent = object.eContainer();
 			final Value value = object.getValue();
+			if (parent instanceof ComplexValue) {
+				final ComplexValue p = (ComplexValue) parent;
+				final String typeName = MweUtil.toString(p.getClassName());
+				final IType type = javaImportRegistry.resolve(project, object, typeName);
+				processValue(object, value, p, type);
+			}
 			doSwitch(value);
-
 		}
 		return super.caseAssignment(object);
 	}
@@ -94,7 +100,8 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (object != null) {
 			final String id = object.getId();
 			if (id != null) {
-				checkReference(id, object);
+				// TODO Complete implementation
+				checkReference(id, object, true);
 			}
 		}
 		return super.caseIdRef(object);
@@ -134,9 +141,23 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final String value = object.getValue();
 		if (VariableRegistry.isReference(value)) {
 			final String refName = VariableRegistry.referenceName(value);
-			checkReference(refName, object);
+			// TODO Complete implementation
+			checkReference(refName, object, true);
 		}
 		return super.caseSimpleValue(object);
+	}
+
+	@Override
+	public Object caseWorkflowRef(final WorkflowRef object) {
+		final IProject project = getProject(object);
+		final String filePath = object.getUri();
+		final File includedFile = ModelUtils.loadModelFile(project, filePath);
+		if (includedFile != null) {
+			final InternalAnalyzer subAnalyzer = new InternalAnalyzer(diagnostics, context);
+			subAnalyzer.validate(includedFile);
+			merge(subAnalyzer);
+		}
+		return super.caseWorkflowRef(object);
 	}
 
 	@Override
@@ -149,6 +170,14 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			addError(e.getMessage(), e.getContext(), null);
 		}
 		return null;
+	}
+
+	protected JavaImportRegistry getJavaImportRegistry() {
+		return javaImportRegistry;
+	}
+
+	protected VariableRegistry getVariables() {
+		return variables;
 	}
 
 	private void addVariable(final LocalVariable variable) {
@@ -177,12 +206,12 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		variables.setType(name, type);
 	}
 
-	private void checkReference(final String referenceName, final EObject context) {
+	private void checkReference(final String referenceName, final EObject context, final boolean checkForUndefined) {
 		if (referenceName == null || context == null) {
 			throw new IllegalArgumentException();
 		}
 
-		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName);
+		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName, checkForUndefined);
 		for (final String ref : unresolvedReferences) {
 			addError("Cannot resolve reference ${" + ref + "}", context, null);
 		}
@@ -201,6 +230,87 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			val.setValue(value);
 			var.setValue(val);
 			addVariable(var);
+		}
+	}
+
+	private void createNoSetterError(final Assignment object, final ComplexValue parent) {
+		if (object == null)
+			return;
+
+		final String featureName = object.getFeature();
+		final String objectName = MweUtil.toString(parent.getClassName());
+		addError("No setter for '" + featureName + "' in object '" + objectName + "'", parent, null);
+	}
+
+	private String getSimpleValueType(final SimpleValue value) {
+		if (value == null)
+			return null;
+
+		String type = null;
+		if (isBooleanValue(value)) {
+			type = "boolean";
+		}
+		else {
+			type = "java.lang.String";
+		}
+		return type;
+	}
+
+	private boolean isBooleanValue(final SimpleValue value) {
+		if (value == null)
+			return false;
+
+		final String valueString = value.getValue();
+		return valueString.equalsIgnoreCase(TRUE_VALUE) ^ valueString.equalsIgnoreCase(FALSE_VALUE);
+	}
+
+	private void merge(final InternalAnalyzer other) {
+		if (other != null) {
+			variables.merge(other.getVariables());
+			javaImportRegistry.merge(other.getJavaImportRegistry());
+		}
+	}
+
+	private Object processComplexValue(final Assignment object, final ComplexValue value, final ComplexValue parent,
+			final IType type) {
+		if (object == null || value == null)
+			throw new IllegalArgumentException();
+
+		final String featureName = object.getFeature();
+		final String argType = MweUtil.toString(value.getClassName());
+		final IProject project = getProject(object);
+		if (project == null) {
+			final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
+			if (method == null) {
+				createNoSetterError(object, parent);
+			}
+			for (final Assignment ass : value.getAssignments()) {
+				doSwitch(ass);
+			}
+		}
+		return true;
+	}
+
+	private Object processSimpleValue(final Assignment object, final SimpleValue value, final ComplexValue parent,
+			final IType type) {
+		final String featureName = object.getFeature();
+		final String argType = getSimpleValueType(value);
+		final IProject project = getProject(object);
+		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
+		if (method == null) {
+			createNoSetterError(object, parent);
+			return false;
+		}
+		return true;
+	}
+
+	private void processValue(final Assignment assignment, final Value value, final ComplexValue parent,
+			final IType type) {
+		if (value instanceof ComplexValue) {
+			processComplexValue(assignment, (ComplexValue) value, parent, type);
+		}
+		else if (value instanceof SimpleValue) {
+			processSimpleValue(assignment, (SimpleValue) value, parent, type);
 		}
 	}
 }

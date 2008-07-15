@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.Value;
 import org.eclipse.jdt.core.IType;
 
-public class VariableRegistry {
+public class VariableRegistry implements IMergable {
 
 	private EObject context;
 	private final Map<String, LocalVariableDefinition> variables = new HashMap<String, LocalVariableDefinition>();
@@ -58,18 +58,18 @@ public class VariableRegistry {
 		return context;
 	}
 
-	public String getSimpleValue(final String name) {
-		final LocalVariableDefinition def = getDefinition(name);
-		if (isSimpleValue(name))
-			return def.getSimpleValue();
-
-		return null;
-	}
-
 	public String getIdRef(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
 		if (isIdRef(name))
 			return def.getId();
+
+		return null;
+	}
+
+	public String getSimpleValue(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		if (isSimpleValue(name))
+			return def.getSimpleValue();
 
 		return null;
 	}
@@ -83,7 +83,7 @@ public class VariableRegistry {
 		return null;
 	}
 
-	public List<String> getUnresolvedReferences(final String name) {
+	public List<String> getUnresolvedReferences(final String name, final boolean includeUndefinedReferences) {
 		final List<String> result = new ArrayList<String>();
 		final LocalVariableDefinition secondDef = getDefinition(name);
 		if (secondDef != null) {
@@ -95,25 +95,16 @@ public class VariableRegistry {
 				}
 			}
 		}
-		else {
+		else if (includeUndefinedReferences) {
 			result.add(name);
 		}
+
 		return result;
 	}
 
 	public Value getValue(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
 		return def != null ? def.getValue() : null;
-	}
-
-	public boolean isSimpleValue(final String name) {
-		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.isSimpleValue() : false;
-	}
-
-	public boolean isIdRef(final String name) {
-		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.isIdRef() : false;
 	}
 
 	public boolean hasVariable(final String name) {
@@ -143,6 +134,16 @@ public class VariableRegistry {
 		return variables.isEmpty();
 	}
 
+	public boolean isIdRef(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null ? def.isIdRef() : false;
+	}
+
+	public boolean isSimpleValue(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null ? def.isSimpleValue() : false;
+	}
+
 	public void setContext(final EObject context) {
 		if (context == null) {
 			throw new IllegalArgumentException();
@@ -163,6 +164,10 @@ public class VariableRegistry {
 		return variables.size();
 	}
 
+	protected Map<String, LocalVariableDefinition> getVariables() {
+		return variables;
+	}
+
 	private LocalVariableDefinition getDefinition(final String name) {
 		if (name == null)
 			return null;
@@ -175,5 +180,12 @@ public class VariableRegistry {
 			return false;
 
 		return firstDef.getDefinitionPosition() < secondDef.getDefinitionPosition();
+	}
+
+	public void merge(final IMergable other) {
+		if (other instanceof VariableRegistry) {
+			final VariableRegistry o = (VariableRegistry) other;
+			variables.putAll(o.getVariables());
+		}
 	}
 }

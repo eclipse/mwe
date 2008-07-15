@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class ModelUtilsTest extends AbstractUITests {
@@ -27,7 +27,7 @@ public class ModelUtilsTest extends AbstractUITests {
 			+ "	multiEle = :x { name=\"Bar\" }\n" + "	singleEle = x;\n" + "}";
 
 	public void testGetProject() {
-		final IFile file = createFile(project, WORKFLOW_NAME, CONTENT);
+		final IFile file = createFile(project, WORKFLOW_NAME1, CONTENT);
 		final File model = loadModelFile(file);
 		assertNotNull(model);
 		final IProject project = ModelUtils.getProject(model);

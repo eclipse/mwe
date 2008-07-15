@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -39,7 +39,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testSimpleSetter1() {
 		final String workflow = "stubs.ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -47,7 +47,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testSimpleSetter2() {
 		final String workflow = "stubs.ObjectA { foo = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
@@ -56,7 +56,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testBooleanSetter() {
 		final String workflow = "stubs.ObjectC { flag = 'true' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -64,7 +64,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testComplexSetter1() {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA { name = 'test1' } multiEle += stubs.ObjectA { name = 'test2' } }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -72,7 +72,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testComplexSetter2() {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA { foo = 'test1' } multiEle += stubs.ObjectA { foo = 'test2' } }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(2, getErrorCount(diag));
@@ -82,7 +82,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testJavaClassImport() {
 		final String workflow = "import stubs.ObjectA; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -90,7 +90,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testJavaPackageImport() {
 		final String workflow = "import stubs.*; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -98,7 +98,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testAmbiguousJavaClassImport() {
 		final String workflow = "import stubs.ObjectA; import ambiguity.ObjectA; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
@@ -107,7 +107,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testAmbiguousJavaPackageImport() {
 		final String workflow = "import stubs.*; import ambiguity.*; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
@@ -116,7 +116,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testProperty1() {
 		final String workflow = "var prop1 = 'foo'; var prop2 = '${prop1}'; stubs.ObjectA { name = '${prop1}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -124,7 +124,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testProperty2() {
 		final String workflow = "var prop1 = 'foo'; var prop2 = '${foo}'; stubs.ObjectA { name = '${foo}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(2, getErrorCount(diag));
@@ -134,7 +134,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testProperty3() {
 		final String workflow = "var prop1 = '${prop2}'; var prop2 = 'foo'; stubs.ObjectA { name = '${prop2}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
@@ -143,7 +143,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testIdRef1() {
 		final String workflow = "var prop1 = 'foo'; var prop2 = prop1; stubs.ObjectA { name = prop1 }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -151,7 +151,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testIdRef2() {
 		final String workflow = "var prop1 = 'foo'; var prop2 = foo; stubs.ObjectA { name = foo }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(2, getErrorCount(diag));
@@ -161,7 +161,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testComplexValueStorage1() {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += a }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -169,7 +169,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testComplexValueStorage2() {
 		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += foo }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
@@ -178,7 +178,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testPropertyFile1() {
 		final String workflow = "var file 'stubs/test.properties'; stubs.ObjectA { name = '${test1}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -186,7 +186,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testPropertyFile2() {
 		final String workflow = "var file 'stubs/test.properties'; stubs.ObjectA { name = '${test2}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -194,7 +194,7 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testPropertyFile3() {
 		final String workflow = "var file 'stubs/test.properties'; stubs.ObjectA { name = '${multi}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
@@ -202,16 +202,15 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testPropertyFile4() {
 		final String workflow = "var file 'stubs/test.properties'; stubs.ObjectA { name = '${test3}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME, workflow);
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
 	private boolean errorContains(final Diagnostic diagnostic, final int index, final String text) {
-		if (diagnostic == null || text == null || index < 0 || index >= getErrorCount(diagnostic)) {
+		if (diagnostic == null || text == null || index < 0 || index >= getErrorCount(diagnostic))
 			throw new IllegalArgumentException();
-		}
 
 		return diagnostic.getChildren().get(index).getMessage().contains(text);
 	}
