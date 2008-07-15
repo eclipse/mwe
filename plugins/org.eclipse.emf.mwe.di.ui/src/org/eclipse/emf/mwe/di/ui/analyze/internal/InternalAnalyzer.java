@@ -35,13 +35,13 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (project != null) {
 			final EObject parent = object.eContainer();
 			final Value value = object.getValue();
-			if (parent instanceof ComplexValue) {
+			if (value != null) {
 				final ComplexValue p = (ComplexValue) parent;
 				final String typeName = MweUtil.toString(p.getClassName());
 				final IType type = javaImportRegistry.resolve(project, object, typeName);
 				processValue(object, value, p, type);
+				doSwitch(value);
 			}
-			doSwitch(value);
 		}
 		return super.caseAssignment(object);
 	}
@@ -233,13 +233,13 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		}
 	}
 
-	private void createNoSetterError(final Assignment object, final ComplexValue parent) {
-		if (object == null)
+	private void createNoSetterError(final Assignment object, final ComplexValue parent, final String argType) {
+		if (object == null || argType == null)
 			return;
 
 		final String featureName = object.getFeature();
 		final String objectName = MweUtil.toString(parent.getClassName());
-		addError("No setter for '" + featureName + "' in object '" + objectName + "'", parent, null);
+		addError("No setter '" + featureName + "(" + argType + "' in object '" + objectName + "'", parent, null);
 	}
 
 	private String getSimpleValueType(final SimpleValue value) {
@@ -279,13 +279,10 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final String featureName = object.getFeature();
 		final String argType = MweUtil.toString(value.getClassName());
 		final IProject project = getProject(object);
-		if (project == null) {
+		if (project != null) {
 			final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 			if (method == null) {
-				createNoSetterError(object, parent);
-			}
-			for (final Assignment ass : value.getAssignments()) {
-				doSwitch(ass);
+				createNoSetterError(object, parent, argType);
 			}
 		}
 		return true;
@@ -298,7 +295,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final IProject project = getProject(object);
 		final IMethod method = TypeUtils.getSetter(project, type, featureName, argType);
 		if (method == null) {
-			createNoSetterError(object, parent);
+			createNoSetterError(object, parent, argType);
 			return false;
 		}
 		return true;

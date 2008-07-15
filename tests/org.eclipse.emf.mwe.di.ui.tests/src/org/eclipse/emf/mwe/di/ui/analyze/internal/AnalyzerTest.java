@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -202,6 +202,14 @@ public class AnalyzerTest extends AbstractUITests {
 
 	public void testPropertyFile4() {
 		final String workflow = "var file 'stubs/test.properties'; stubs.ObjectA { name = '${test3}' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testPolymorphicAssignment1() {
+		final String workflow = "stubs.ObjectD { refE1 = stubs.ObjectE2 { name = 'test1' value = 'true' } refE2 = stubs.ObjectE2 { name = 'test2' value = 'false' } }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);

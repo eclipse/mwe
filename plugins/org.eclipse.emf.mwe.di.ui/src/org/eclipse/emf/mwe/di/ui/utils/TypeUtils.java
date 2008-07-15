@@ -16,9 +16,13 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
@@ -51,7 +55,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class TypeUtils {
 
@@ -127,17 +131,15 @@ public final class TypeUtils {
 	}
 
 	public static IType findType(final IFile file, final String typeName) {
-		if (file == null || typeName == null) {
+		if (file == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		return findType(file.getProject(), typeName);
 	}
 
 	public static IType findType(final IProject project, final String typeName) {
-		if (project == null || typeName == null) {
+		if (project == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		try {
 			final IJavaProject javaProject = JavaCore.create(project);
@@ -149,14 +151,34 @@ public final class TypeUtils {
 		}
 	}
 
+	public static List<IType> findTypes(final IFile file, final String[] typeNames) {
+		if (file == null || typeNames == null)
+			throw new IllegalArgumentException();
+
+		return findTypes(file.getProject(), typeNames);
+	}
+
+	public static List<IType> findTypes(final IProject project, final String[] typeNames) {
+		if (project == null || typeNames == null)
+			throw new IllegalArgumentException();
+
+		final List<IType> result = new ArrayList<IType>();
+		for (final String t : typeNames) {
+			final IType type = findType(project, t);
+			if (type != null) {
+				result.add(type);
+			}
+		}
+		return result;
+	}
+
 	public static Set<String> getAllClasses(final IFile file) {
 		return getAllClasses(getProject(file));
 	}
 
 	public static Set<String> getAllClasses(final IProject project) {
-		if (project == null) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> allClasses = queryAllClassesCache(project);
 		if (!allClasses.isEmpty())
@@ -301,17 +323,15 @@ public final class TypeUtils {
 	}
 
 	public static IMethod getSetter(final IFile file, final IType type, final String name, final String argType) {
-		if (file == null || type == null || name == null) {
+		if (file == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		return getSetter(file.getProject(), type, name, argType);
 	}
 
 	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType) {
-		if (project == null || type == null || name == null) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		IMethod method = null;
 
@@ -340,9 +360,8 @@ public final class TypeUtils {
 
 	public static Set<String> getSubClasses(final IProject project, final IType baseType,
 			final boolean onlyConcreteClasses) {
-		if (project == null || baseType == null) {
+		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> subClasses = querySubClassCache(project, baseType);
 		if (!subClasses.isEmpty())
@@ -362,28 +381,34 @@ public final class TypeUtils {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
 
-	private static void cacheAllClasses(final IProject project, final Set<String> allClasses) {
-		if (project == null || allClasses == null) {
+	private static void addToMap(final Map<String, IType> map, final List<IType> list) {
+		if (map == null || list == null)
 			throw new IllegalArgumentException();
+
+		for (final IType ifType : list) {
+			map.put(ifType.getFullyQualifiedName(), ifType);
 		}
+	}
+
+	private static void cacheAllClasses(final IProject project, final Set<String> allClasses) {
+		if (project == null || allClasses == null)
+			throw new IllegalArgumentException();
 
 		final String hashString = project.getName();
 		allClassesCache.put(hashString, allClasses);
 	}
 
 	private static void cacheSubClasses(final IProject project, final IType baseType, final Set<String> subClasses) {
-		if (project == null || baseType == null || subClasses == null) {
+		if (project == null || baseType == null || subClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = generateHashString(project, baseType);
 		subClassCache.put(hashString, subClasses);
 	}
 
 	private static String[] convertParameterTypes(final String[] paramType) {
-		if (paramType == null) {
+		if (paramType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String[] result = new String[paramType.length];
 		for (int i = 0; i < paramType.length; i++) {
@@ -454,31 +479,117 @@ public final class TypeUtils {
 	}
 
 	private static String generateHashString(final IProject project, final IType baseType) {
-		if (project == null || baseType == null)
+		if (project == null || baseType == null) {
 			throw new IllegalArgumentException();
+		}
 
 		return project.getName() + ":" + baseType.getFullyQualifiedName();
 	}
 
-	private static IMethod getMethod(final IProject project, final IType type, final String name, final String argType) {
-		if (project == null || type == null || name == null) {
+	private static IMethod getMethod(final IProject project, final IType type, final String name,
+			final String argTypeName) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
+
+		final IType argType = findType(project, argTypeName);
+		if (argType != null && argType.exists()) {
+			final Collection<IType> typeCandidates = getSuperTypes(project, argType);
+			for (final IType t : typeCandidates) {
+				final String typeName = t.getFullyQualifiedName();
+				final IMethod m = internalGetMethod(project, type, name, new String[] { typeName });
+				if (m != null && m.exists())
+					return m;
+			}
 		}
+		return internalGetMethod(project, type, name, new String[] { argTypeName });
+	}
+
+	private static IMethod getMethod(final IProject project, final IType type, final String name,
+			final String[] paramTypes) {
+		if (project == null || type == null || name == null)
+			throw new IllegalArgumentException();
+
+		final Collection<IType> typeCandidates = getSuperTypes(project, type);
+
+		if (typeCandidates != null) {
+			final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
+			for (final IType t : typeCandidates) {
+				final IMethod m = t.getMethod(name, parameterTypeSignature);
+				if (m != null && m.exists())
+					return m;
+			}
+		}
+		return null;
+	}
+
+	private static IProject getProject(final IFile file) {
+		if (file == null)
+			return null;
+
+		return file.getProject();
+	}
+
+	private static String getPropertyName(final String methodName) {
+		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
+				&& methodName.length() <= SETTER_PREFIX.length())
+			throw new IllegalArgumentException();
+
+		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
+		propertyName = toLowerCaseFirst(propertyName);
+		return propertyName;
+	}
+
+	private static Collection<IType> getSuperTypes(final IProject project, final IType type) {
+		if (project == null || type == null)
+			throw new IllegalArgumentException();
+
+		try {
+			final Map<String, IType> result = new HashMap<String, IType>();
+			IType t = type;
+			while (t != null && !result.containsKey(OBJECT_CLASS_NAME)) {
+				result.put(t.getFullyQualifiedName(), t);
+				final String superClassName = t.getSuperclassName();
+				t = superClassName != null ? findType(project, superClassName) : null;
+			}
+
+			final Map<String, IType> interfaces = new HashMap<String, IType>();
+			String[] interfaceNames = type.getSuperInterfaceNames();
+			List<IType> interfaceTypes = findTypes(project, interfaceNames);
+			addToMap(interfaces, interfaceTypes);
+
+			final Collection<IType> values = interfaces.values();
+			for (final Iterator<IType> it = values.iterator(); it.hasNext();) {
+				t = it.next();
+				interfaceNames = t.getSuperInterfaceNames();
+				interfaceTypes = findTypes(project, interfaceNames);
+				addToMap(interfaces, interfaceTypes);
+			}
+			result.putAll(interfaces);
+			return result.values();
+		}
+		catch (final JavaModelException e) {
+			CoreLog.logError("Java Model Exception", e);
+			return null;
+		}
+	}
+
+	private static IMethod internalGetMethod(final IProject project, final IType type, final String name,
+			final String[] argTypes) {
+		if (project == null || type == null || name == null)
+			throw new IllegalArgumentException();
 
 		IMethod method = null;
 		try {
 			IMethod m = null;
 
-			if (argType != null) {
-				final String[] param = new String[1];
-				param[0] = argType;
-				m = getMethod(type, name, param);
+			if (argTypes != null) {
+				m = getMethod(project, type, name, argTypes);
 			}
 
 			if (m == null) {
 				final String[] objectParam = new String[1];
 				objectParam[0] = OBJECT_CLASS_NAME;
-				m = getMethod(type, name, objectParam);
+				m = getMethod(project, type, name, objectParam);
 			}
 
 			if (m != null && m.exists()) {
@@ -492,33 +603,6 @@ public final class TypeUtils {
 			CoreLog.logError("Java Model Exception", e);
 		}
 		return method;
-	}
-
-	private static IMethod getMethod(final IType type, final String name, final String[] paramTypes) {
-		if (type == null || name == null) {
-			throw new IllegalArgumentException();
-		}
-
-		final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
-		return type.getMethod(name, parameterTypeSignature);
-	}
-
-	private static IProject getProject(final IFile file) {
-		if (file == null)
-			return null;
-
-		return file.getProject();
-	}
-
-	private static String getPropertyName(final String methodName) {
-		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length()) {
-			throw new IllegalArgumentException();
-		}
-
-		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
-		propertyName = toLowerCaseFirst(propertyName);
-		return propertyName;
 	}
 
 	private static Set<String> queryAllClassesCache(final IProject project) {
