@@ -72,7 +72,7 @@
             <terminal xsi:type="xtext:RuleCall" name="ID"/>
           </abstractTokens>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Group">
+        <abstractTokens xsi:type="xtext:Group" cardinality="?">
           <abstractTokens xsi:type="xtext:Keyword" value="="/>
           <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
             <terminal xsi:type="xtext:RuleCall" name="Value"/>

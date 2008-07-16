@@ -20,7 +20,7 @@ Property :
 	LocalVariable | PropertiesFileImport;
 	
 LocalVariable :
-	'var' name=ID ('=' value=Value) ';';
+	'var' name=ID ('=' value=Value)? ';';
 	
 PropertiesFileImport :
 	'var' 'file' file=STRING ';';

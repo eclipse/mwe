@@ -23,6 +23,28 @@
             parentScope="org.eclipse.xtext.builtin.XtextBuiltin">
       </serviceScope>
    </extension>
+	<extension
+         point="org.eclipse.ui.preferencePages">
+		<page
+			class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage/org.eclipse.emf.mwe.di.MWE"
+			id="org.eclipse.emf.mwe.di.MWE"
+			name="MWE">
+		</page>
+		<page
+		    category="org.eclipse.emf.mwe.di.MWE"
+		    class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.EditorPreferencePage/org.eclipse.emf.mwe.di.MWE"
+		    id="org.eclipse.emf.mwe.di.MWE.editor"
+		    name="Editor">
+		</page>
+		<page
+		    category="org.eclipse.emf.mwe.di.MWE.editor"
+		    class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.SyntaxColoringPreferencePage/org.eclipse.emf.mwe.di.MWE"
+		    id="org.eclipse.emf.mwe.di.MWE.editor.syntaxcoloring"
+		    name="Syntax Coloring">
+		</page>
+      </extension>
+      
+   
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
@@ -80,4 +102,5 @@
             class="org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor">
       </parseTreeConstructor>
    </extension>
+   
 </plugin>

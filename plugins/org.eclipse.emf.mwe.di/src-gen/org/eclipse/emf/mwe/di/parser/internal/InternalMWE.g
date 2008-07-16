@@ -342,7 +342,7 @@ ruleLocalVariable returns [EObject current=null]
         factory.set($current, "value", lv_value,null);
         
          }
-)))';' 
+))?)';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }

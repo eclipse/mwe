@@ -539,7 +539,13 @@ protected void proceedLocalVariable(InstanceDescription obj,IParseTreeConstructo
 
 		
 /* xtext::Group */ 
-{
+
+if (
+new Predicate(obj) { 
+		public boolean check() {
+			return obj.checkConsume("value")&&true; 
+		}
+}.check() ){
 
 		
 /* xtext::Assignment */ 
