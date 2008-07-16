@@ -11,9 +11,10 @@ package org.eclipse.emf.mwe.di.xml.conversion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
+@SuppressWarnings("serial")
 public class InconsistentRegistryException extends RuntimeException {
 
 	public InconsistentRegistryException() {

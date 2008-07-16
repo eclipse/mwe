@@ -2,11 +2,10 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowRef.java,v 1.4 2008/06/19 11:01:43 sefftinge Exp $
+ * $Id: WorkflowRef.java,v 1.5 2008/07/16 07:36:08 sefftinge Exp $
  */
 package org.eclipse.emf.mwe;
 
-import org.eclipse.emf.common.util.EList;
 
 
 /**

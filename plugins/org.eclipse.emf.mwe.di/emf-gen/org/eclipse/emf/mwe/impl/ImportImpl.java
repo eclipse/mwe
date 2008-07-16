@@ -2,22 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ImportImpl.java,v 1.1 2008/06/19 07:53:38 sefftinge Exp $
+ * $Id: ImportImpl.java,v 1.2 2008/07/16 07:36:08 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.mwe.Import;
 import org.eclipse.emf.mwe.MwePackage;
-import org.eclipse.emf.mwe.QualifiedName;
 
 /**
  * <!-- begin-user-doc -->

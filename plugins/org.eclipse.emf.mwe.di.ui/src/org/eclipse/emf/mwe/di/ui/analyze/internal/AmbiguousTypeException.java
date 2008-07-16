@@ -13,9 +13,10 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
+@SuppressWarnings("serial")
 public class AmbiguousTypeException extends RuntimeException {
 
 	private EObject context;

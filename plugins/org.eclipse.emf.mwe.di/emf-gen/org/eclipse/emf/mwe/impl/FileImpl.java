@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: FileImpl.java,v 1.4 2008/07/01 11:50:53 sefftinge Exp $
+ * $Id: FileImpl.java,v 1.5 2008/07/16 07:36:08 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.impl;
 
@@ -10,24 +10,18 @@ import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.Import;
 import org.eclipse.emf.mwe.MwePackage;
 import org.eclipse.emf.mwe.Property;
-import org.eclipse.emf.mwe.Value;
 
 /**
  * <!-- begin-user-doc -->
