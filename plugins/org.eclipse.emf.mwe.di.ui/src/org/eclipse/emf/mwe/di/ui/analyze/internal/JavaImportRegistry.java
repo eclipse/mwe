@@ -22,10 +22,10 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
-public class JavaImportRegistry implements IMergable {
+public class JavaImportRegistry implements IMergeable {
 
 	private final List<String> classImports = new ArrayList<String>();
 	private final List<String> packageImports = new ArrayList<String>();
@@ -45,7 +45,7 @@ public class JavaImportRegistry implements IMergable {
 		}
 	}
 
-	public void merge(final IMergable other) {
+	public void merge(final IMergeable other) {
 		if (other instanceof JavaImportRegistry) {
 			final JavaImportRegistry o = (JavaImportRegistry) other;
 			classImports.addAll(o.getClassImports());

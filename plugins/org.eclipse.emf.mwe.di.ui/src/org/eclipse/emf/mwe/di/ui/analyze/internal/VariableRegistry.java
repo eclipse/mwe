@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.Value;
 import org.eclipse.jdt.core.IType;
 
-public class VariableRegistry implements IMergable {
+public class VariableRegistry implements IMergeable {
 
 	private EObject context;
 	private final Map<String, LocalVariableDefinition> variables = new HashMap<String, LocalVariableDefinition>();
@@ -182,7 +182,7 @@ public class VariableRegistry implements IMergable {
 		return firstDef.getDefinitionPosition() < secondDef.getDefinitionPosition();
 	}
 
-	public void merge(final IMergable other) {
+	public void merge(final IMergeable other) {
 		if (other instanceof VariableRegistry) {
 			final VariableRegistry o = (VariableRegistry) other;
 			variables.putAll(o.getVariables());

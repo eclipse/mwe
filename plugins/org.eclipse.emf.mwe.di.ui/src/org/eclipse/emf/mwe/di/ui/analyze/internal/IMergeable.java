@@ -14,7 +14,7 @@ package org.eclipse.emf.mwe.di.ui.analyze.internal;
  * @version $Revision: 1.1 $
  */
 
-public interface IMergable {
+public interface IMergeable {
 
-	void merge(IMergable other);
+	void merge(IMergeable other);
 }
