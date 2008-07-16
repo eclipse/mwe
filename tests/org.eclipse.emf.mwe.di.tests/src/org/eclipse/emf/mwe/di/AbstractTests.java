@@ -21,7 +21,9 @@ public abstract class AbstractTests extends AbstractXtextTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		MwePackage.eINSTANCE.getAssignment();
+		// register the generated EPackage
+		MwePackage.eINSTANCE.getAssignable();
+		// do stand alone setup of MWE DI language
 		MWEStandaloneSetup.doSetup();
 		setCurrentLanguage(MWEStandaloneSetup.getServiceScope());
 	}
