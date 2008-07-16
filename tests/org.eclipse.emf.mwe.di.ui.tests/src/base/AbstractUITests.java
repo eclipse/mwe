@@ -12,22 +12,23 @@ package base;
 import java.util.HashSet;
 import java.util.Set;
 
+import junit.framework.TestCase;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.di.AbstractTests;
-import org.eclipse.emf.mwe.di.MWEStandaloneSetup;
 import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
+import org.eclipse.xtext.service.Activator;
 
 import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
-public class AbstractUITests extends AbstractTests {
+public class AbstractUITests extends TestCase {
 
 	private static final String DI_BUNDLE = "org.eclipse.emf.mwe.di";
 	private static final String DI_UI_BUNDLE = "org.eclipse.emf.mwe.di.ui";
@@ -45,7 +46,9 @@ public class AbstractUITests extends AbstractTests {
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
-		MWEStandaloneSetup.doSetup();
+		// the following activates the service bundle which reads in all extension points and configures the service registry
+		// this is the Eclipse runtime equivalent to standalone setup (i.e. MWEStandaloneSetup.doSetup())
+		Activator.getDefault(); 
 		project = createProject(PROJECT_NAME);
 	}
 
