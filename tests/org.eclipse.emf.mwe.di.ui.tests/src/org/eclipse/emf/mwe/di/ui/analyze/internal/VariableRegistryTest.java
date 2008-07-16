@@ -10,6 +10,7 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.LocalVariable;
@@ -20,7 +21,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -41,7 +42,7 @@ public class VariableRegistryTest extends AbstractUITests {
 		registry.setContext(file);
 		variable = createVariable(DEFAULT_NAME, DEFAULT_VALUE);
 		assertNotNull(variable);
-		registry.addVariable(variable);
+		registry.addVariable(variable, false);
 	}
 
 	public void testSimpleValue() {
@@ -52,7 +53,7 @@ public class VariableRegistryTest extends AbstractUITests {
 
 	public void testReference1() {
 		final LocalVariable var = createVariable("test2", "${test}/bar");
-		registry.addVariable(var);
+		registry.addVariable(var, false);
 		final List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertNotNull(lst);
 		assertEquals(0, lst.size());
@@ -60,7 +61,7 @@ public class VariableRegistryTest extends AbstractUITests {
 
 	public void testReference2() {
 		final LocalVariable var = createVariable("test2", "${foo}/bar");
-		registry.addVariable(var);
+		registry.addVariable(var, false);
 		final List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertNotNull(lst);
 		assertEquals(1, lst.size());
@@ -75,14 +76,22 @@ public class VariableRegistryTest extends AbstractUITests {
 
 	public void testCircularReference() {
 		LocalVariable var = createVariable("test2", "${test3}/foo");
-		registry.addVariable(var);
+		registry.addVariable(var, false);
 		var = createVariable("test3", "${test2}/bar");
-		registry.addVariable(var);
+		registry.addVariable(var, false);
 		List<String> lst = registry.getUnresolvedReferences("test2", true);
 		assertEquals(1, lst.size());
 		assertEquals("test3", lst.get(0));
 		lst = registry.getUnresolvedReferences("test3", true);
 		assertEquals(0, lst.size());
+	}
+
+	public void testGetVariables() {
+		final LocalVariable var = createVariable("test2", "bar");
+		registry.addVariable(var, true);
+		final Set<String> variables = registry.getVariableNames(true);
+		assertEquals(1, variables.size());
+		assertTrue(variables.contains(DEFAULT_NAME));
 	}
 
 	private LocalVariable createVariable(final String name, final String value) {

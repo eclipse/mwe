@@ -1,7 +1,9 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -21,9 +23,13 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 	private final VariableRegistry variables = new VariableRegistry();
 	private final JavaImportRegistry javaImportRegistry = new JavaImportRegistry();
+	private final Set<String> references = new HashSet<String>();
+	private final InternalAnalyzer parentAnalyzer;
 
-	public InternalAnalyzer(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+	public InternalAnalyzer(final InternalAnalyzer parentAnalyzer, final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
 		super(diagnostics, context);
+		this.parentAnalyzer = parentAnalyzer;
 	}
 
 	/**
@@ -39,7 +45,10 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 				final ComplexValue p = (ComplexValue) parent;
 				final String typeName = MweUtil.toString(p.getClassName());
 				final IType type = javaImportRegistry.resolve(project, object, typeName);
-				analyzeReferences(object, value, p, type);
+				if (isTopAnalyzer()) {
+					analyzeReferences(object, value, p, type);
+				}
+
 				doSwitch(value);
 			}
 		}
@@ -62,7 +71,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 								object);
 					}
 					else {
-						addVariable(id, object, type);
+						addVariable(id, object, type, false);
 					}
 				}
 
@@ -92,6 +101,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 		final ComplexValue value = object.getValue();
 		doSwitch(value);
+		checkForUnreferencedVariables(object);
 		return super.caseFile(object);
 	}
 
@@ -100,7 +110,10 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (object != null) {
 			final String id = object.getId();
 			if (id != null) {
-				checkReference(id, object, true);
+				if (isTopAnalyzer()) {
+					checkReference(id, object, true);
+				}
+				references.add(id);
 			}
 		}
 		return super.caseIdRef(object);
@@ -114,9 +127,11 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 	@Override
 	public Object caseLocalVariable(final LocalVariable object) {
-		addVariable(object);
+		addVariable(object, false);
 		final Value value = object.getValue();
-		doSwitch(value);
+		if (value != null) {
+			doSwitch(value);
+		}
 		return super.caseLocalVariable(object);
 	}
 
@@ -140,7 +155,10 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final String value = object.getValue();
 		if (VariableRegistry.isReference(value)) {
 			final String refName = VariableRegistry.referenceName(value);
-			checkReference(refName, object, true);
+			references.add(refName);
+			if (isTopAnalyzer()) {
+				checkReference(refName, object, true);
+			}
 		}
 		return super.caseSimpleValue(object);
 	}
@@ -151,17 +169,25 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final String filePath = object.getUri();
 		final File includedFile = ModelUtils.loadModelFile(project, filePath);
 		if (includedFile != null) {
-			final InternalAnalyzer subAnalyzer = new InternalAnalyzer(diagnostics, context);
+			final InternalAnalyzer subAnalyzer = new InternalAnalyzer(this, diagnostics, context);
 			subAnalyzer.validate(includedFile);
 			merge(subAnalyzer);
+			for (final Assignment ass : object.getAssignments()) {
+				checkForVariable(subAnalyzer, ass, object);
+			}
 		}
 		return super.caseWorkflowRef(object);
+	}
+
+	public boolean isTopAnalyzer() {
+		return parentAnalyzer == null;
 	}
 
 	@Override
 	public Object validate(final EObject object) {
 		variables.setContext(object);
 		try {
+			references.clear();
 			return doSwitch(object);
 		}
 		catch (final AmbiguousTypeException e) {
@@ -178,40 +204,50 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		return variables;
 	}
 
-	private void addVariable(final LocalVariable variable) {
-		if (variable == null) {
-			throw new IllegalArgumentException();
-		}
+	protected boolean hasReference(final String name) {
+		if (name == null)
+			return false;
 
-		variables.addVariable(variable);
+		return references.contains(name);
 	}
 
-	private void addVariable(final String name, final Value value) {
-		if (name == null || value == null) {
+	protected boolean hasVariable(final String name) {
+		if (name == null)
+			return false;
+
+		return variables.hasVariable(name);
+	}
+
+	private void addVariable(final LocalVariable variable, final boolean imported) {
+		if (variable == null)
 			throw new IllegalArgumentException();
-		}
+
+		variables.addVariable(variable, imported);
+	}
+
+	private void addVariable(final String name, final Value value, final boolean imported) {
+		if (name == null || value == null)
+			throw new IllegalArgumentException();
 
 		final MweFactory factory = MweFactory.eINSTANCE;
 		final LocalVariable var = factory.createLocalVariable();
 		var.setName(name);
 		var.setValue(value);
-		addVariable(var);
+		addVariable(var, imported);
 	}
 
-	private void addVariable(final String name, final Value value, final IType type) {
-		if (type == null) {
+	private void addVariable(final String name, final Value value, final IType type, final boolean imported) {
+		if (type == null)
 			throw new IllegalArgumentException();
-		}
 
-		addVariable(name, value);
+		addVariable(name, value, imported);
 		variables.setType(name, type);
 	}
 
 	private Object analyzeReferences(final Assignment object, final ComplexValue value, final ComplexValue parent,
 			final IType type) {
-		if (object == null || value == null) {
+		if (object == null || value == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String featureName = object.getFeature();
 		final String argType = MweUtil.toString(value.getClassName());
@@ -248,13 +284,37 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		}
 	}
 
-	private void checkReference(final String referenceName, final EObject context, final boolean checkForUndefined) {
-		if (referenceName == null || context == null)
+	private void checkForUnreferencedVariables(final File modelFile) {
+		if (modelFile == null)
 			throw new IllegalArgumentException();
+
+		final Set<String> variableNames = variables.getVariableNames(true);
+		variableNames.removeAll(references);
+		for (final String r : variableNames) {
+			addWarning("Variable '" + r + "' never is referenced within the workflow", modelFile);
+		}
+	}
+
+	private void checkForVariable(final InternalAnalyzer analyzer, final Assignment assignment,
+			final WorkflowRef workflowRef) {
+		if (analyzer == null || assignment == null || workflowRef == null)
+			throw new IllegalArgumentException();
+
+		final String assName = assignment.getFeature();
+		if (!analyzer.hasVariable(assName)) {
+			addError("There is no variable '" + assName + "' in workflow '" + workflowRef.getUri() + "'", workflowRef,
+					null);
+		}
+	}
+
+	private void checkReference(final String referenceName, final EObject context, final boolean checkForUndefined) {
+		if (referenceName == null || context == null) {
+			throw new IllegalArgumentException();
+		}
 
 		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName, checkForUndefined);
 		for (final String ref : unresolvedReferences) {
-			addError("Cannot resolve reference ${" + ref + "}", context, null);
+			addError("Cannot resolve reference '${" + ref + "}'", context, null);
 		}
 	}
 
@@ -270,7 +330,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			final SimpleValue val = factory.createSimpleValue();
 			val.setValue(value);
 			var.setValue(val);
-			addVariable(var);
+			addVariable(var, true);
 		}
 	}
 

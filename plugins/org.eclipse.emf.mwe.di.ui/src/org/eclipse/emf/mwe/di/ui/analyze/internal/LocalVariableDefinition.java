@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class LocalVariableDefinition {
@@ -34,17 +34,20 @@ public class LocalVariableDefinition {
 	private final int definitionPosition;
 	private final EObject context;
 	private IType type;
+	private final boolean imported;
 
-	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final EObject context) {
-		if (variable == null || definitionPosition < 0 || context == null)
+	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final boolean imported,
+			final EObject context) {
+		if (variable == null || definitionPosition < 0 || context == null) {
 			throw new IllegalArgumentException();
-
-		if (variable.getName() == null || variable.getValue() == null) {
-			throw new IllegalArgumentException("Incomplete variable variable");
 		}
+
+		if (variable.getName() == null || variable.getValue() == null)
+			throw new IllegalArgumentException("Incomplete variable variable");
 
 		this.variable = variable;
 		this.definitionPosition = definitionPosition;
+		this.imported = imported;
 		this.context = context;
 	}
 
@@ -102,16 +105,24 @@ public class LocalVariableDefinition {
 		return variable.getValue();
 	}
 
+	public boolean isBean() {
+		return type != null;
+	}
+
+	public boolean isEmptyDeclaration() {
+		return getValue() == null;
+	}
+
 	public boolean isIdRef() {
 		return getValue() instanceof IdRef;
 	}
 
-	public boolean isSimpleValue() {
-		return getValue() instanceof SimpleValue;
+	public boolean isImported() {
+		return imported;
 	}
 
-	public boolean isBean() {
-		return type != null;
+	public boolean isSimpleValue() {
+		return getValue() instanceof SimpleValue;
 	}
 
 	public void setType(final IType type) {

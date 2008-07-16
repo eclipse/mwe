@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class LocalVariableDefinitionTest extends AbstractUITests {
@@ -90,6 +90,6 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 
 	private LocalVariableDefinition createDefinition() {
 		localVariable.setValue(simpleValue);
-		return new LocalVariableDefinition(localVariable, VAR_DEF_POSITION, file);
+		return new LocalVariableDefinition(localVariable, VAR_DEF_POSITION, false, file);
 	}
 }

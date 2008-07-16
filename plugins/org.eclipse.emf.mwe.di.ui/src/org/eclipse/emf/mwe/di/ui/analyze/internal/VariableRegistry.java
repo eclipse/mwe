@@ -11,8 +11,10 @@ package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 import org.eclipse.emf.ecore.EObject;
@@ -39,14 +41,14 @@ public class VariableRegistry implements IMergeable {
 		return m.group(1);
 	}
 
-	public void addVariable(final LocalVariable variable) {
+	public void addVariable(final LocalVariable variable, final boolean imported) {
 		if (variable == null)
 			throw new IllegalArgumentException();
 		else if (getContext() == null)
 			throw new IllegalStateException("No context set");
 
 		final int definitionPosition = size();
-		final LocalVariableDefinition def = new LocalVariableDefinition(variable, definitionPosition, context);
+		final LocalVariableDefinition def = new LocalVariableDefinition(variable, definitionPosition, imported, context);
 		variables.put(def.getName(), def);
 	}
 
@@ -107,6 +109,22 @@ public class VariableRegistry implements IMergeable {
 		return def != null ? def.getValue() : null;
 	}
 
+	public Set<String> getVariableNames(final boolean excludeImported) {
+		if (excludeImported) {
+			final Set<String> result = new HashSet<String>();
+			final Set<String> keys = variables.keySet();
+			for (final String k : keys) {
+				final LocalVariableDefinition def = variables.get(k);
+				if (!def.isImported()) {
+					result.add(def.getName());
+				}
+			}
+			return result;
+		}
+
+		return variables.keySet();
+	}
+
 	public boolean hasVariable(final String name) {
 		if (name == null)
 			return false;
@@ -134,6 +152,11 @@ public class VariableRegistry implements IMergeable {
 		return variables.isEmpty();
 	}
 
+	public boolean isEmptyDeclaration(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null ? def.isEmptyDeclaration() : false;
+	}
+
 	public boolean isIdRef(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
 		return def != null ? def.isIdRef() : false;
@@ -142,6 +165,13 @@ public class VariableRegistry implements IMergeable {
 	public boolean isSimpleValue(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
 		return def != null ? def.isSimpleValue() : false;
+	}
+
+	public void merge(final IMergeable other) {
+		if (other instanceof VariableRegistry) {
+			final VariableRegistry o = (VariableRegistry) other;
+			variables.putAll(o.getVariables());
+		}
 	}
 
 	public void setContext(final EObject context) {
@@ -180,12 +210,5 @@ public class VariableRegistry implements IMergeable {
 			return false;
 
 		return firstDef.getDefinitionPosition() < secondDef.getDefinitionPosition();
-	}
-
-	public void merge(final IMergeable other) {
-		if (other instanceof VariableRegistry) {
-			final VariableRegistry o = (VariableRegistry) other;
-			variables.putAll(o.getVariables());
-		}
 	}
 }

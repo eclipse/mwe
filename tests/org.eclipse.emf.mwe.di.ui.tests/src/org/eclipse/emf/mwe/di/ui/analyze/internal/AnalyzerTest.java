@@ -18,11 +18,12 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
 
+	private static final String REFERENCED_MSG = "referenced";
 	private static final String AMBIGUOUS_MSG = "ambiguous";
 	private static final String NO_SETTER_MSG = "No setter";
 	private static final String RESOLVE_MSG = "resolve";
@@ -34,7 +35,7 @@ public class AnalyzerTest extends AbstractUITests {
 	protected void setUp() throws Exception {
 		super.setUp();
 		diag = new BasicDiagnostic();
-		analyzer = new InternalAnalyzer(diag, null);
+		analyzer = new InternalAnalyzer(null, diag, null);
 	}
 
 	public void testSimpleSetter1() {
@@ -102,7 +103,7 @@ public class AnalyzerTest extends AbstractUITests {
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, AMBIGUOUS_MSG));
+		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
 	}
 
 	public void testAmbiguousJavaPackageImport() {
@@ -111,11 +112,11 @@ public class AnalyzerTest extends AbstractUITests {
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, AMBIGUOUS_MSG));
+		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
 	}
 
 	public void testProperty1() {
-		final String workflow = "var prop1 = 'foo'; var prop2 = '${prop1}'; stubs.ObjectA { name = '${prop1}' }";
+		final String workflow = "var prop1 = 'foo'; var prop2 = '${prop1}'; stubs.ObjectA { name = '${prop2}' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
@@ -123,13 +124,15 @@ public class AnalyzerTest extends AbstractUITests {
 	}
 
 	public void testProperty2() {
-		final String workflow = "var prop1 = 'foo'; var prop2 = '${foo}'; stubs.ObjectA { name = '${foo}' }";
+		final String workflow = "var prop = '${foo}'; stubs.ObjectA { name = '${foo}' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
-		assertEquals(2, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
-		assertTrue(errorContains(diag, 1, RESOLVE_MSG));
+		assertEquals(3, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
+		assertTrue(messageContains(diag, 1, RESOLVE_MSG));
+		assertTrue(isWarning(diag, 2));
+		assertTrue(messageContains(diag, 2, REFERENCED_MSG));
 	}
 
 	public void testProperty3() {
@@ -137,12 +140,14 @@ public class AnalyzerTest extends AbstractUITests {
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
-		assertEquals(1, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
+		assertEquals(2, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
+		assertTrue(isWarning(diag, 1));
+		assertTrue(messageContains(diag, 1, REFERENCED_MSG));
 	}
 
 	public void testIdRef1() {
-		final String workflow = "var prop1 = 'foo'; var prop2 = prop1; stubs.ObjectA { name = prop1 }";
+		final String workflow = "var prop1 = 'foo'; var prop2 = prop1; stubs.ObjectA { name = prop2 }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
@@ -150,13 +155,15 @@ public class AnalyzerTest extends AbstractUITests {
 	}
 
 	public void testIdRef2() {
-		final String workflow = "var prop1 = 'foo'; var prop2 = foo; stubs.ObjectA { name = foo }";
+		final String workflow = "var prop = foo; stubs.ObjectA { name = foo }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
-		assertEquals(2, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
-		assertTrue(errorContains(diag, 1, RESOLVE_MSG));
+		assertEquals(3, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
+		assertTrue(messageContains(diag, 1, RESOLVE_MSG));
+		assertTrue(isWarning(diag, 2));
+		assertTrue(messageContains(diag, 2, REFERENCED_MSG));
 	}
 
 	public void testComplexValueStorage1() {
@@ -172,8 +179,10 @@ public class AnalyzerTest extends AbstractUITests {
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
-		assertEquals(1, getErrorCount(diag));
-		assertTrue(errorContains(diag, 0, RESOLVE_MSG));
+		assertEquals(2, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
+		assertTrue(isWarning(diag, 1));
+		assertTrue(messageContains(diag, 1, REFERENCED_MSG));
 	}
 
 	public void testPropertyFile1() {
@@ -216,18 +225,39 @@ public class AnalyzerTest extends AbstractUITests {
 		assertEquals(0, getErrorCount(diag));
 	}
 
-	private boolean errorContains(final Diagnostic diagnostic, final int index, final String text) {
-		if (diagnostic == null || text == null || index < 0 || index >= getErrorCount(diagnostic))
-			throw new IllegalArgumentException();
-
-		return diagnostic.getChildren().get(index).getMessage().contains(text);
+	public void testUnrefererencedVariable() {
+		final String workflow = "var test = 'foo'; stubs.ObjectA { name = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(isWarning(diag, 0));
+		assertTrue(messageContains(diag, 0, REFERENCED_MSG));
 	}
 
 	private int getErrorCount(final Diagnostic diagnostic) {
 		return diagnostic.getChildren().size();
 	}
 
+	private boolean isInRange(final Diagnostic diagnostic, final int index) {
+		return diagnostic != null && 0 <= index && index < getErrorCount(diagnostic);
+	}
+
 	private boolean isSetterError(final BasicDiagnostic diagnostic, final int index) {
-		return errorContains(diagnostic, index, NO_SETTER_MSG);
+		return messageContains(diagnostic, index, NO_SETTER_MSG);
+	}
+
+	private boolean isWarning(final Diagnostic diagnostic, final int index) {
+		if (!isInRange(diagnostic, index))
+			throw new IllegalArgumentException();
+
+		return diagnostic.getChildren().get(index).getSeverity() == Diagnostic.WARNING;
+	}
+
+	private boolean messageContains(final Diagnostic diagnostic, final int index, final String text) {
+		if (!isInRange(diagnostic, index) || text == null)
+			throw new IllegalArgumentException();
+
+		return diagnostic.getChildren().get(index).getMessage().contains(text);
 	}
 }
