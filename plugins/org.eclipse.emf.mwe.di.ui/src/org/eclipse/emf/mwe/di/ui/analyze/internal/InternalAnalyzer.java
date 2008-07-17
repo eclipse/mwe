@@ -41,16 +41,15 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (project != null) {
 			final EObject parent = object.eContainer();
 			final Value value = object.getValue();
-			if (value != null) {
+			if (value != null && parent instanceof ComplexValue) {
 				final ComplexValue p = (ComplexValue) parent;
 				final String typeName = MweUtil.toString(p.getClassName());
 				final IType type = javaImportRegistry.resolve(project, object, typeName);
 				if (isTopAnalyzer()) {
 					analyzeReferences(object, value, p, type);
 				}
-
-				doSwitch(value);
 			}
+			doSwitch(value);
 		}
 		return super.caseAssignment(object);
 	}
@@ -59,28 +58,30 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	public Object caseComplexValue(final ComplexValue object) {
 		final IProject project = getProject(object);
 		if (project != null) {
-			final String typeName = MweUtil.toString(object.getClassName());
-			final IType type = javaImportRegistry.resolve(project, object, typeName);
-			if (type != null) {
-				final String id = object.getId();
-				if (id != null) {
-					if (variables.isBean(id)) {
-						final IType beanType = variables.getType(id);
-						addWarning(
-								"overwrites existing bean with id '" + id + "' of type " + beanType.getElementName(),
-								object);
+			final QualifiedName className = object.getClassName();
+			if (className != null) {
+				final String typeName = MweUtil.toString(className);
+				final IType type = javaImportRegistry.resolve(project, object, typeName);
+				if (type != null) {
+					final String id = object.getId();
+					if (id != null) {
+						if (variables.isBean(id)) {
+							final IType beanType = variables.getType(id);
+							addWarning("overwrites existing bean with id '" + id + "' of type "
+									+ beanType.getElementName(), object);
+						}
+						else {
+							addVariable(id, object, type, false);
+						}
 					}
-					else {
-						addVariable(id, object, type, false);
-					}
-				}
 
-				for (final Assignment ass : object.getAssignments()) {
-					doSwitch(ass);
+					for (final Assignment ass : object.getAssignments()) {
+						doSwitch(ass);
+					}
 				}
-			}
-			else {
-				addError("Cannot find class '" + typeName + "'", object, null);
+				else {
+					addError("Cannot find class '" + typeName + "'", object, null);
+				}
 			}
 		}
 		return super.caseComplexValue(object);
@@ -101,7 +102,10 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 		final ComplexValue value = object.getValue();
 		doSwitch(value);
-		checkForUnreferencedVariables(object);
+		if (isTopAnalyzer()) {
+			checkForUnreferencedVariables(object);
+		}
+
 		return super.caseFile(object);
 	}
 
@@ -171,10 +175,14 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (includedFile != null) {
 			final InternalAnalyzer subAnalyzer = new InternalAnalyzer(this, diagnostics, context);
 			subAnalyzer.validate(includedFile);
-			merge(subAnalyzer);
-			for (final Assignment ass : object.getAssignments()) {
-				checkForVariable(subAnalyzer, ass, object);
-			}
+			checkVariableMatching(subAnalyzer, object);
+		}
+		else {
+			addError("Workflow file '" + filePath + "' could not be found", object, null);
+		}
+
+		for (final Assignment ass : object.getAssignments()) {
+			doSwitch(ass);
 		}
 		return super.caseWorkflowRef(object);
 	}
@@ -190,10 +198,14 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			references.clear();
 			return doSwitch(object);
 		}
-		catch (final AmbiguousTypeException e) {
+		catch (final DuplicateElementException e) {
 			addError(e.getMessage(), e.getContext(), null);
 		}
 		return null;
+	}
+
+	protected Set<String> getDeclarations() {
+		return variables.getDeclarations();
 	}
 
 	protected JavaImportRegistry getJavaImportRegistry() {
@@ -295,18 +307,6 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		}
 	}
 
-	private void checkForVariable(final InternalAnalyzer analyzer, final Assignment assignment,
-			final WorkflowRef workflowRef) {
-		if (analyzer == null || assignment == null || workflowRef == null)
-			throw new IllegalArgumentException();
-
-		final String assName = assignment.getFeature();
-		if (!analyzer.hasVariable(assName)) {
-			addError("There is no variable '" + assName + "' in workflow '" + workflowRef.getUri() + "'", workflowRef,
-					null);
-		}
-	}
-
 	private void checkReference(final String referenceName, final EObject context, final boolean checkForUndefined) {
 		if (referenceName == null || context == null)
 			throw new IllegalArgumentException();
@@ -314,6 +314,28 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName, checkForUndefined);
 		for (final String ref : unresolvedReferences) {
 			addError("Cannot resolve reference '${" + ref + "}'", context, null);
+		}
+	}
+
+	private void checkVariableMatching(final InternalAnalyzer analyzer, final WorkflowRef workflowRef) {
+		if (analyzer == null || workflowRef == null)
+			throw new IllegalArgumentException();
+
+		final Set<String> declarations = analyzer.getDeclarations();
+		for (final Assignment ass : workflowRef.getAssignments()) {
+			final String assName = ass.getFeature();
+			if (!analyzer.hasVariable(assName)) {
+				addError("There is no variable '" + assName + "' in workflow '" + workflowRef.getUri() + "'",
+						workflowRef, null);
+			}
+			else {
+				declarations.remove(assName);
+			}
+		}
+
+		for (final String d : declarations) {
+			addError("The declared variable '" + d + "in workflow '" + workflowRef.getUri() + "' has not been set",
+					workflowRef, null);
 		}
 	}
 
@@ -362,12 +384,5 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 
 		final String valueString = value.getValue();
 		return valueString.equalsIgnoreCase(TRUE_VALUE) ^ valueString.equalsIgnoreCase(FALSE_VALUE);
-	}
-
-	private void merge(final InternalAnalyzer other) {
-		if (other != null) {
-			variables.merge(other.getVariables());
-			javaImportRegistry.merge(other.getJavaImportRegistry());
-		}
 	}
 }

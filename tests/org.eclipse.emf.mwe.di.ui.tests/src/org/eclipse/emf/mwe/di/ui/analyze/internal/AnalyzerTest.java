@@ -18,11 +18,14 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
 
+	private static final String NO_VARIABLE_MSG = "no variable";
+	private static final String VAR_NOT_SET_MSG = "not been set";
+	private static final String DUPLICATE_MSG = "already defined";
 	private static final String REFERENCED_MSG = "referenced";
 	private static final String AMBIGUOUS_MSG = "ambiguous";
 	private static final String NO_SETTER_MSG = "No setter";
@@ -181,6 +184,15 @@ public class AnalyzerTest extends AbstractUITests {
 		assertTrue(isWarning(diag, 2, REFERENCED_MSG));
 	}
 
+	public void testDuplicateVariable() {
+		final String workflow = "var prop = 'foo'; var prop = 'bar'; stubs.ObjectA { name = '${prop}' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getMessageCount(diag));
+		assertTrue(isError(diag, 0, DUPLICATE_MSG));
+	}
+
 	public void testPolymorphicAssignment() {
 		final String workflow = "stubs.ObjectD { refE1 = stubs.ObjectE2 { name = 'test1' value = 'true' } refE2 = stubs.ObjectE2 { name = 'test2' value = 'false' } }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
@@ -228,6 +240,33 @@ public class AnalyzerTest extends AbstractUITests {
 		analyzer.validate(file);
 		assertEquals(1, getMessageCount(diag));
 		assertTrue(isWarning(diag, 0, REFERENCED_MSG));
+	}
+
+	public void testWorkflowRef1() {
+		final String workflow = "var test = 'foo'; stubs.ObjectB { multiEle = file 'stubs/Workflow.mwe' { singleName = test multiName = test }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getMessageCount(diag));
+	}
+
+	public void testWorkflowRef2() {
+		final String workflow = "var test = 'foo'; stubs.ObjectB { multiEle = file 'stubs/Workflow.mwe' { singleName = test }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getMessageCount(diag));
+		assertTrue(isError(diag, 0, VAR_NOT_SET_MSG));
+	}
+
+	public void testWorkflowRef3() {
+		final String workflow = "var test = 'foo'; stubs.ObjectB { multiEle = file 'stubs/Workflow.mwe' { singleName = test foo = test }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(2, getMessageCount(diag));
+		assertTrue(isError(diag, 0, NO_VARIABLE_MSG));
+		assertTrue(isError(diag, 1, VAR_NOT_SET_MSG));
 	}
 
 	private int getMessageCount(final Diagnostic diagnostic) {

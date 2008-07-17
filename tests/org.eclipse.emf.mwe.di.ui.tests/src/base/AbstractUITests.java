@@ -25,7 +25,7 @@ import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class AbstractUITests extends TestCase {
@@ -39,28 +39,6 @@ public class AbstractUITests extends TestCase {
 	protected static final String WORKFLOW_NAME2 = "test/workflow2.mwe";
 
 	protected IProject project;
-
-	protected IFile createFile(final IProject project, final String fileName, final String content) {
-		final String fullName = "src" + "/" + fileName;
-		final IFile file = ProjectCreator.createFile(fullName, project, content, new NullProgressMonitor());
-		return file;
-	}
-
-	protected IProject createProject(final String name) {
-		if (name == null)
-			return null;
-
-		final Set<String> requiredBundles = new HashSet<String>();
-		requiredBundles.add(DI_BUNDLE);
-		requiredBundles.add(DI_UI_BUNDLE);
-		requiredBundles.add(DI_UI_TEST_BUNDLE);
-		final IProject project = ProjectCreator.createProject(name, requiredBundles);
-		return project;
-	}
-
-	protected File loadModelFile(final IFile file) {
-		return ModelUtils.loadModelFile(file);
-	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.di.AbstractTests#setUp()
@@ -90,5 +68,31 @@ public class AbstractUITests extends TestCase {
 				// ignore
 			}
 		}
+	}
+
+	protected IFile createFile(final IProject project, final String fileName, final String content) {
+		final String fullName = "src" + "/" + fileName;
+		final IFile file = ProjectCreator.createFile(fullName, project, content, new NullProgressMonitor());
+		return file;
+	}
+
+	protected IProject createProject(final String name) {
+		if (name == null)
+			return null;
+
+		final Set<String> requiredBundles = new HashSet<String>();
+		requiredBundles.add(DI_BUNDLE);
+		requiredBundles.add(DI_UI_BUNDLE);
+		requiredBundles.add(DI_UI_TEST_BUNDLE);
+		final IProject project = ProjectCreator.createProject(name, requiredBundles);
+		return project;
+	}
+
+	protected File loadModelFile(final IFile modelFile) {
+		return ModelUtils.loadModelFile(modelFile);
+	}
+
+	protected File loadModelFile(final IProject project, final String filePath) {
+		return ModelUtils.loadModelFile(project, filePath);
 	}
 }

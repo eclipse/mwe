@@ -47,6 +47,9 @@ public class VariableRegistry implements IMergeable {
 		else if (getContext() == null)
 			throw new IllegalStateException("No context set");
 
+		if (variables.containsKey(variable.getName()))
+			throw new DuplicateElementException("Variable '" + variable.getName() + "' is already defined", variable);
+
 		final int definitionPosition = size();
 		final LocalVariableDefinition def = new LocalVariableDefinition(variable, definitionPosition, imported, context);
 		variables.put(def.getName(), def);
@@ -58,6 +61,17 @@ public class VariableRegistry implements IMergeable {
 
 	public EObject getContext() {
 		return context;
+	}
+
+	public Set<String> getDeclarations() {
+		final Set<String> result = new HashSet<String>();
+		final Set<String> names = getVariableNames(true);
+		for (final String n : names) {
+			if (isDeclarationOnly(n)) {
+				result.add(n);
+			}
+		}
+		return result;
 	}
 
 	public String getIdRef(final String name) {
@@ -140,6 +154,11 @@ public class VariableRegistry implements IMergeable {
 		return def != null && def.isBean();
 	}
 
+	public boolean isDeclarationOnly(final String name) {
+		final LocalVariableDefinition def = getDefinition(name);
+		return def != null ? def.isDeclarationOnly() : false;
+	}
+
 	public boolean isDefinedBefore(final String name, final int definitionPosition) {
 		if (!hasVariable(name) || definitionPosition < 0)
 			return false;
@@ -150,11 +169,6 @@ public class VariableRegistry implements IMergeable {
 
 	public boolean isEmpty() {
 		return variables.isEmpty();
-	}
-
-	public boolean isDeclarationOnly(final String name) {
-		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.isDeclarationOnly() : false;
 	}
 
 	public boolean isIdRef(final String name) {

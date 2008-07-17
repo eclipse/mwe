@@ -9,6 +9,10 @@
 
 package org.eclipse.emf.mwe.di.ui.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -25,7 +29,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public final class ModelUtils {
@@ -72,19 +76,15 @@ public final class ModelUtils {
 		return null;
 	}
 
-	public static File loadModelFile(final IFile file) {
-		if (file == null || !file.exists())
+	public static File loadModelFile(final IProject project, final String filePath) {
+		if (project == null || filePath == null)
 			return null;
 
+		final IFile file = project.getFile(filePath);
 		try {
-			final ResourceSet rs = new ResourceSetImpl();
-			final Resource resource = rs.createResource(URI.createURI(file.getLocationURI().toString()));
-			resource.load(file.getContents(), null);
-			if (resource.getContents().isEmpty())
-				return null;
-
-			final EObject object = resource.getContents().iterator().next();
-			return (File) object;
+			final URL fileURL = TypeUtils.getFile(project, filePath);
+			final InputStream is = fileURL.openStream();
+			return loadResource(file, is);
 		}
 		catch (final Exception e) {
 			CoreLog.logError("Could not load model file '" + file.getName() + "'", e);
@@ -92,11 +92,31 @@ public final class ModelUtils {
 		}
 	}
 
-	public static File loadModelFile(final IProject project, final String filePath) {
-		if (project == null || filePath == null)
+	public static File loadModelFile(final IFile file) {
+		if (file == null)
 			return null;
 
-		final IFile file = project.getFile(filePath);
-		return loadModelFile(file);
+		try {
+			final InputStream is = file.getContents();
+			return loadResource(file, is);
+		}
+		catch (final Exception e) {
+			CoreLog.logError("Could not load model file '" + file.getName() + "'", e);
+			return null;
+		}
+	}
+
+	private static File loadResource(final IFile file, final InputStream is) throws IOException {
+		if (file == null || is == null)
+			return null;
+
+		final ResourceSet rs = new ResourceSetImpl();
+		final Resource resource = rs.createResource(URI.createURI(file.getLocationURI().toString()));
+		resource.load(is, null);
+		if (resource.getContents().isEmpty())
+			return null;
+
+		final EObject object = resource.getContents().iterator().next();
+		return (File) object;
 	}
 }

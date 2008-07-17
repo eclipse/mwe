@@ -1,5 +1,8 @@
-test.ObjectB {
+var singleName;
+var multiName;
+
+stubs.ObjectB {        
+	singleEle = singleName;
 	multiEle = { name="${multiName}" }
-	multiEle = :x { name="Bar" }
-	singleEle = x;
+	multiEle = { name="Bar" }
 }

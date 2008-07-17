@@ -17,14 +17,10 @@ import org.eclipse.jdt.core.IType;
 import base.AbstractUITests;
 
 public class InfrastructureTest extends AbstractUITests {
+
+	private static final String WORKFLOW_FILE = "stubs/Workflow.mwe";
 	private static final String CONTENT = "test.ObjectB {\n" + "	multiEle = { name=\"Foo\" }\n"
 			+ "	multiEle = :x { name=\"Bar\" }\n" + "	singleEle = x;\n" + "}";
-
-	public void testExternalResourceAccess() {
-		final String content = TypeUtils.getFileContent(project, "org/eclipse/emf/mwe/di/mwe.xtext");
-		assertNotNull(content);
-		assertTrue(content.length() > 0);
-	}
 
 	public void testLoadModel() {
 		final IFile file = createFile(project, WORKFLOW_NAME1, CONTENT);
@@ -37,6 +33,17 @@ public class InfrastructureTest extends AbstractUITests {
 		final File model = loadModelFile(file);
 		assertNotNull(model);
 		assertNotNull(model.eResource());
+	}
+
+	public void testExternalResourceAccess() {
+		final String content = TypeUtils.getFileContent(project, WORKFLOW_FILE);
+		assertNotNull(content);
+		assertTrue(content.length() > 0);
+	}
+
+	public void testLoadExternalModel() {
+		final File model = loadModelFile(project, WORKFLOW_FILE);
+		assertNotNull(model);
 	}
 
 	public void testStubAccess() {

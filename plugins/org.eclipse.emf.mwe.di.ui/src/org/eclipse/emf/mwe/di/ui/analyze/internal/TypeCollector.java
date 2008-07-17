@@ -17,7 +17,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class TypeCollector {
@@ -54,7 +54,7 @@ public class TypeCollector {
 		return types.size();
 	}
 
-	private AmbiguousTypeException createAmbiguityException() {
+	private DuplicateElementException createAmbiguityException() {
 		final StringBuilder sb = new StringBuilder();
 		final String shortName = types.get(0).getElementName();
 		sb.append("The class '");
@@ -65,6 +65,6 @@ public class TypeCollector {
 			sb.append(t.getFullyQualifiedName());
 			sb.append("\n");
 		}
-		return new AmbiguousTypeException(sb.toString(), context);
+		return new DuplicateElementException(sb.toString(), context);
 	}
 }

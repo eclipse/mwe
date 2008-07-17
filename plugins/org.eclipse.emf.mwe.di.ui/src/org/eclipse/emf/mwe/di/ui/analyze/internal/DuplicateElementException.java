@@ -13,32 +13,32 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
 @SuppressWarnings("serial")
-public class AmbiguousTypeException extends RuntimeException {
+public class DuplicateElementException extends RuntimeException {
 
 	private EObject context;
 
-	public AmbiguousTypeException() {
+	public DuplicateElementException() {
 		super();
 	}
 
-	public AmbiguousTypeException(final String message) {
+	public DuplicateElementException(final String message) {
 		super(message);
 	}
 
-	public AmbiguousTypeException(final String message, final EObject context) {
+	public DuplicateElementException(final String message, final EObject context) {
 		super(message);
 		this.context = context;
 	}
 
-	public AmbiguousTypeException(final String message, final Throwable cause) {
+	public DuplicateElementException(final String message, final Throwable cause) {
 		super(message, cause);
 	}
 
-	public AmbiguousTypeException(final Throwable cause) {
+	public DuplicateElementException(final Throwable cause) {
 		super(cause);
 	}
 
