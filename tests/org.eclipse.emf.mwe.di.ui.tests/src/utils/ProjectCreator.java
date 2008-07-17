@@ -223,6 +223,30 @@ public final class ProjectCreator {
 		return project;
 	}
 
+	public static void fullBuild(final IProject project) {
+		if (project == null)
+			return;
+
+		try {
+			project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
+		}
+		catch (final CoreException e) {
+			throw new RuntimeException("Cannot launch build", e);
+		}
+	}
+
+	public static void incrementalBuild(final IProject project) {
+		if (project == null)
+			return;
+
+		try {
+			project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, new NullProgressMonitor());
+		}
+		catch (final CoreException e) {
+			throw new RuntimeException("Cannot launch build", e);
+		}
+	}
+
 	private static void assertExist(final IContainer c) {
 		if (!c.exists()) {
 			if (!c.getParent().exists()) {
@@ -278,29 +302,5 @@ public final class ProjectCreator {
 		final IFolder metaInf = project.getFolder("META-INF");
 		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
 		createFile("MANIFEST.MF", metaInf, maniContent.toString(), progressMonitor);
-	}
-
-	public static void fullBuild(final IProject project) {
-		if (project == null)
-			return;
-
-		try {
-			project.build(IncrementalProjectBuilder.FULL_BUILD, new NullProgressMonitor());
-		}
-		catch (final CoreException e) {
-			throw new RuntimeException("Cannot launch build", e);
-		}
-	}
-
-	public static void incrementalBuild(final IProject project) {
-		if (project == null)
-			return;
-
-		try {
-			project.build(IncrementalProjectBuilder.INCREMENTAL_BUILD, new NullProgressMonitor());
-		}
-		catch (final CoreException e) {
-			throw new RuntimeException("Cannot launch build", e);
-		}
 	}
 }

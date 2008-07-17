@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class LocalVariableDefinitionTest extends AbstractUITests {
@@ -33,17 +33,10 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 	private LocalVariable localVariable;
 	private SimpleValue simpleValue;
 
-	/**
-	 * @see junit.framework.TestCase#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		final MweFactory factory = MweFactory.eINSTANCE;
-		file = factory.createFile();
-		localVariable = factory.createLocalVariable();
-		localVariable.setName(VAR_NAME);
-		simpleValue = factory.createSimpleValue();
+	public void testGetDefinitionPosition() {
+		simpleValue.setValue(VAR_VALUE);
+		final LocalVariableDefinition def = createDefinition();
+		assertEquals(VAR_DEF_POSITION, def.getDefinitionPosition());
 	}
 
 	public void testGetName() {
@@ -59,10 +52,13 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 		assertEquals(VAR_VALUE, def.getSimpleValue());
 	}
 
-	public void testGetDefinitionPosition() {
-		simpleValue.setValue(VAR_VALUE);
+	public void testMultipleleReference() {
+		simpleValue.setValue("${ref1}/test1/${ref2}/test2");
 		final LocalVariableDefinition def = createDefinition();
-		assertEquals(VAR_DEF_POSITION, def.getDefinitionPosition());
+		final List<String> ref = def.getReferences();
+		assertEquals(2, ref.size());
+		assertEquals("ref1", ref.get(0));
+		assertEquals("ref2", ref.get(1));
 	}
 
 	public void testNoReference() {
@@ -79,13 +75,17 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 		assertEquals("ref", ref.get(0));
 	}
 
-	public void testMultipleleReference() {
-		simpleValue.setValue("${ref1}/test1/${ref2}/test2");
-		final LocalVariableDefinition def = createDefinition();
-		final List<String> ref = def.getReferences();
-		assertEquals(2, ref.size());
-		assertEquals("ref1", ref.get(0));
-		assertEquals("ref2", ref.get(1));
+	/**
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		final MweFactory factory = MweFactory.eINSTANCE;
+		file = factory.createFile();
+		localVariable = factory.createLocalVariable();
+		localVariable.setName(VAR_NAME);
+		simpleValue = factory.createSimpleValue();
 	}
 
 	private LocalVariableDefinition createDefinition() {

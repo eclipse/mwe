@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -31,28 +31,22 @@ public class AnalyzerTest extends AbstractUITests {
 	private BasicDiagnostic diag;
 	private AbstractAnalyzer<Object> analyzer;
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		diag = new BasicDiagnostic();
-		analyzer = new InternalAnalyzer(null, diag, null);
-	}
-
-	public void testSimpleSetter1() {
-		final String workflow = "stubs.ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(0, getErrorCount(diag));
-	}
-
-	public void testSimpleSetter2() {
-		final String workflow = "stubs.ObjectA { foo = 'test' }";
+	public void testAmbiguousJavaClassImport() {
+		final String workflow = "import stubs.ObjectA; import ambiguity.ObjectA; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(1, getErrorCount(diag));
-		assertTrue(isSetterError(diag, 0));
+		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
+	}
+
+	public void testAmbiguousJavaPackageImport() {
+		final String workflow = "import stubs.*; import ambiguity.*; ObjectA { name = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
 	}
 
 	public void testBooleanSetter() {
@@ -81,62 +75,16 @@ public class AnalyzerTest extends AbstractUITests {
 		assertTrue(isSetterError(diag, 1));
 	}
 
-	public void testJavaClassImport() {
-		final String workflow = "import stubs.ObjectA; ObjectA { name = 'test' }";
+	public void testComplexValueStorage1() {
+		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += a }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
-	public void testJavaPackageImport() {
-		final String workflow = "import stubs.*; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(0, getErrorCount(diag));
-	}
-
-	public void testAmbiguousJavaClassImport() {
-		final String workflow = "import stubs.ObjectA; import ambiguity.ObjectA; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(1, getErrorCount(diag));
-		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
-	}
-
-	public void testAmbiguousJavaPackageImport() {
-		final String workflow = "import stubs.*; import ambiguity.*; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(1, getErrorCount(diag));
-		assertTrue(messageContains(diag, 0, AMBIGUOUS_MSG));
-	}
-
-	public void testProperty1() {
-		final String workflow = "var prop1 = 'foo'; var prop2 = '${prop1}'; stubs.ObjectA { name = '${prop2}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(0, getErrorCount(diag));
-	}
-
-	public void testProperty2() {
-		final String workflow = "var prop = '${foo}'; stubs.ObjectA { name = '${foo}' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(3, getErrorCount(diag));
-		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
-		assertTrue(messageContains(diag, 1, RESOLVE_MSG));
-		assertTrue(isWarning(diag, 2));
-		assertTrue(messageContains(diag, 2, REFERENCED_MSG));
-	}
-
-	public void testProperty3() {
-		final String workflow = "var prop1 = '${prop2}'; var prop2 = 'foo'; stubs.ObjectA { name = '${prop2}' }";
+	public void testComplexValueStorage2() {
+		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += foo }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
@@ -166,16 +114,52 @@ public class AnalyzerTest extends AbstractUITests {
 		assertTrue(messageContains(diag, 2, REFERENCED_MSG));
 	}
 
-	public void testComplexValueStorage1() {
-		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += a }";
+	public void testJavaClassImport() {
+		final String workflow = "import stubs.ObjectA; ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
 	}
 
-	public void testComplexValueStorage2() {
-		final String workflow = "stubs.ObjectB { singleEle = stubs.ObjectA :a { name = 'test' } multiEle += foo }";
+	public void testJavaPackageImport() {
+		final String workflow = "import stubs.*; ObjectA { name = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testPolymorphicAssignment1() {
+		final String workflow = "stubs.ObjectD { refE1 = stubs.ObjectE2 { name = 'test1' value = 'true' } refE2 = stubs.ObjectE2 { name = 'test2' value = 'false' } }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testProperty1() {
+		final String workflow = "var prop1 = 'foo'; var prop2 = '${prop1}'; stubs.ObjectA { name = '${prop2}' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testProperty2() {
+		final String workflow = "var prop = '${foo}'; stubs.ObjectA { name = '${foo}' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(3, getErrorCount(diag));
+		assertTrue(messageContains(diag, 0, RESOLVE_MSG));
+		assertTrue(messageContains(diag, 1, RESOLVE_MSG));
+		assertTrue(isWarning(diag, 2));
+		assertTrue(messageContains(diag, 2, REFERENCED_MSG));
+	}
+
+	public void testProperty3() {
+		final String workflow = "var prop1 = '${prop2}'; var prop2 = 'foo'; stubs.ObjectA { name = '${prop2}' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
@@ -217,12 +201,21 @@ public class AnalyzerTest extends AbstractUITests {
 		assertEquals(0, getErrorCount(diag));
 	}
 
-	public void testPolymorphicAssignment1() {
-		final String workflow = "stubs.ObjectD { refE1 = stubs.ObjectE2 { name = 'test1' value = 'true' } refE2 = stubs.ObjectE2 { name = 'test2' value = 'false' } }";
+	public void testSimpleSetter1() {
+		final String workflow = "stubs.ObjectA { name = 'test' }";
 		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getErrorCount(diag));
+	}
+
+	public void testSimpleSetter2() {
+		final String workflow = "stubs.ObjectA { foo = 'test' }";
+		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
+		final File file = loadModelFile(modelFile);
+		analyzer.validate(file);
+		assertEquals(1, getErrorCount(diag));
+		assertTrue(isSetterError(diag, 0));
 	}
 
 	public void testUnrefererencedVariable() {
@@ -233,6 +226,13 @@ public class AnalyzerTest extends AbstractUITests {
 		assertEquals(1, getErrorCount(diag));
 		assertTrue(isWarning(diag, 0));
 		assertTrue(messageContains(diag, 0, REFERENCED_MSG));
+	}
+
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		diag = new BasicDiagnostic();
+		analyzer = new InternalAnalyzer(null, diag, null);
 	}
 
 	private int getErrorCount(final Diagnostic diagnostic) {

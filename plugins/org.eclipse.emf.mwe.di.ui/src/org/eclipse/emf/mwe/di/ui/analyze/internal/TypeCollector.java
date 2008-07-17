@@ -17,7 +17,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class TypeCollector {
@@ -29,31 +29,29 @@ public class TypeCollector {
 		this.context = context;
 	}
 
-	public boolean isEmpty() {
-		return types.isEmpty();
-	}
-
 	public void addType(final IType type) {
-		if (type == null) {
+		if (type == null)
 			throw new IllegalArgumentException();
-		}
 
 		types.add(type);
 	}
 
-	public int size() {
-		return types.size();
+	public boolean isEmpty() {
+		return types.isEmpty();
 	}
 
 	public IType resolve() {
 		if (isEmpty())
 			return null;
 
-		if (size() > 1) {
+		if (size() > 1)
 			throw createAmbiguityException();
-		}
 
 		return types.get(0);
+	}
+
+	public int size() {
+		return types.size();
 	}
 
 	private AmbiguousTypeException createAmbiguityException() {

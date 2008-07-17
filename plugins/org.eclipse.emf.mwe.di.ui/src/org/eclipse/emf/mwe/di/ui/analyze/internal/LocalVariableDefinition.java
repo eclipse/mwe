@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class LocalVariableDefinition {
@@ -38,9 +38,8 @@ public class LocalVariableDefinition {
 
 	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final boolean imported,
 			final EObject context) {
-		if (variable == null || definitionPosition < 0 || context == null) {
+		if (variable == null || definitionPosition < 0 || context == null)
 			throw new IllegalArgumentException();
-		}
 
 		if (variable.getName() == null || variable.getValue() == null)
 			throw new IllegalArgumentException("Incomplete variable variable");

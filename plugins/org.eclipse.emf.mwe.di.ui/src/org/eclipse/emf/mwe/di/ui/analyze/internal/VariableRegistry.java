@@ -175,9 +175,8 @@ public class VariableRegistry implements IMergeable {
 	}
 
 	public void setContext(final EObject context) {
-		if (context == null) {
+		if (context == null)
 			throw new IllegalArgumentException();
-		}
 
 		this.context = context;
 	}

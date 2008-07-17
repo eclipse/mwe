@@ -12,14 +12,13 @@ package org.eclipse.emf.mwe.di.ui.infrastructure;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
 public class InfrastructureSuite {
 
 	public static Test suite() {
 		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.infrastructure");
-		//$JUnit-BEGIN$
+		// $JUnit-BEGIN$
 		suite.addTestSuite(InfrastructureTest.class);
-		//$JUnit-END$
+		// $JUnit-END$
 		return suite;
 	}
 

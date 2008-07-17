@@ -55,7 +55,7 @@ import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public final class TypeUtils {
 
@@ -479,9 +479,8 @@ public final class TypeUtils {
 	}
 
 	private static String generateHashString(final IProject project, final IType baseType) {
-		if (project == null || baseType == null) {
+		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
-		}
 
 		return project.getName() + ":" + baseType.getFullyQualifiedName();
 	}

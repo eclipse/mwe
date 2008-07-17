@@ -13,11 +13,9 @@ public class MweDiagnostic extends BasicDiagnostic {
 
 	private final EObject context;
 
-	private MweDiagnostic(final int severity, final String msg,
-			final EObject context, final Throwable t,
+	private MweDiagnostic(final int severity, final String msg, final EObject context, final Throwable t,
 			final List<Object> additionalData) {
-		super(severity, ID, Diagnostic.OK, msg, toArray(context, t,
-				additionalData));
+		super(severity, ID, Diagnostic.OK, msg, toArray(context, t, additionalData));
 		this.context = context;
 	}
 
@@ -25,8 +23,7 @@ public class MweDiagnostic extends BasicDiagnostic {
 		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, null, null);
 	}
 
-	public static Diagnostic error(final String message, final EObject ctx,
-			final Throwable e) {
+	public static Diagnostic error(final String message, final EObject ctx, final Throwable e) {
 		return new MweDiagnostic(Diagnostic.ERROR, message, ctx, e, null);
 	}
 
@@ -34,8 +31,7 @@ public class MweDiagnostic extends BasicDiagnostic {
 		return new MweDiagnostic(Diagnostic.WARNING, message, ctx, null, null);
 	}
 
-	private static Object[] toArray(final Object element, final Throwable t,
-			final List<Object> additionalData) {
+	private static Object[] toArray(final Object element, final Throwable t, final List<Object> additionalData) {
 		final List<Object> data = new ArrayList<Object>();
 		if (element != null) {
 			data.add(element);

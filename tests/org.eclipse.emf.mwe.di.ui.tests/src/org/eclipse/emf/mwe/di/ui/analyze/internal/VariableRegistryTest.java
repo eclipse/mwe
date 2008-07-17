@@ -21,7 +21,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class VariableRegistryTest extends AbstractUITests {
@@ -33,46 +33,6 @@ public class VariableRegistryTest extends AbstractUITests {
 	private VariableRegistry registry;
 	private final MweFactory factory = MweFactory.eINSTANCE;
 	private LocalVariable variable;
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		file = factory.createFile();
-		registry = new VariableRegistry();
-		registry.setContext(file);
-		variable = createVariable(DEFAULT_NAME, DEFAULT_VALUE);
-		assertNotNull(variable);
-		registry.addVariable(variable, false);
-	}
-
-	public void testSimpleValue() {
-		assertTrue(registry.hasVariable(DEFAULT_NAME));
-		assertTrue(registry.isSimpleValue(DEFAULT_NAME));
-		assertEquals(DEFAULT_VALUE, registry.getSimpleValue(DEFAULT_NAME));
-	}
-
-	public void testReference1() {
-		final LocalVariable var = createVariable("test2", "${test}/bar");
-		registry.addVariable(var, false);
-		final List<String> lst = registry.getUnresolvedReferences("test2", true);
-		assertNotNull(lst);
-		assertEquals(0, lst.size());
-	}
-
-	public void testReference2() {
-		final LocalVariable var = createVariable("test2", "${foo}/bar");
-		registry.addVariable(var, false);
-		final List<String> lst = registry.getUnresolvedReferences("test2", true);
-		assertNotNull(lst);
-		assertEquals(1, lst.size());
-		assertEquals("foo", lst.get(0));
-	}
-
-	public void testUndefinedVariable() {
-		final List<String> lst = registry.getUnresolvedReferences("foo", true);
-		assertEquals(1, lst.size());
-		assertEquals("foo", lst.get(0));
-	}
 
 	public void testCircularReference() {
 		LocalVariable var = createVariable("test2", "${test3}/foo");
@@ -92,6 +52,46 @@ public class VariableRegistryTest extends AbstractUITests {
 		final Set<String> variables = registry.getVariableNames(true);
 		assertEquals(1, variables.size());
 		assertTrue(variables.contains(DEFAULT_NAME));
+	}
+
+	public void testReference1() {
+		final LocalVariable var = createVariable("test2", "${test}/bar");
+		registry.addVariable(var, false);
+		final List<String> lst = registry.getUnresolvedReferences("test2", true);
+		assertNotNull(lst);
+		assertEquals(0, lst.size());
+	}
+
+	public void testReference2() {
+		final LocalVariable var = createVariable("test2", "${foo}/bar");
+		registry.addVariable(var, false);
+		final List<String> lst = registry.getUnresolvedReferences("test2", true);
+		assertNotNull(lst);
+		assertEquals(1, lst.size());
+		assertEquals("foo", lst.get(0));
+	}
+
+	public void testSimpleValue() {
+		assertTrue(registry.hasVariable(DEFAULT_NAME));
+		assertTrue(registry.isSimpleValue(DEFAULT_NAME));
+		assertEquals(DEFAULT_VALUE, registry.getSimpleValue(DEFAULT_NAME));
+	}
+
+	public void testUndefinedVariable() {
+		final List<String> lst = registry.getUnresolvedReferences("foo", true);
+		assertEquals(1, lst.size());
+		assertEquals("foo", lst.get(0));
+	}
+
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		file = factory.createFile();
+		registry = new VariableRegistry();
+		registry.setContext(file);
+		variable = createVariable(DEFAULT_NAME, DEFAULT_VALUE);
+		assertNotNull(variable);
+		registry.addVariable(variable, false);
 	}
 
 	private LocalVariable createVariable(final String name, final String value) {

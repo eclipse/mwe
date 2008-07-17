@@ -25,7 +25,7 @@ import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class AbstractUITests extends TestCase {
@@ -39,34 +39,6 @@ public class AbstractUITests extends TestCase {
 	protected static final String WORKFLOW_NAME2 = "test/workflow2.mwe";
 
 	protected IProject project;
-
-	/**
-	 * @see org.eclipse.emf.mwe.di.AbstractTests#setUp()
-	 */
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		// the following activates the service bundle which reads in all extension points and configures the service registry
-		// this is the Eclipse runtime equivalent to standalone setup (i.e. MWEStandaloneSetup.doSetup())
-		Activator.getDefault(); 
-		project = createProject(PROJECT_NAME);
-	}
-
-	/**
-	 * @see junit.framework.TestCase#tearDown()
-	 */
-	@Override
-	protected void tearDown() throws Exception {
-		super.tearDown();
-		if (project != null) {
-			try {
-				project.delete(true, new NullProgressMonitor());
-			}
-			catch (final Exception e) {
-				// ignore
-			}
-		}
-	}
 
 	protected IFile createFile(final IProject project, final String fileName, final String content) {
 		final String fullName = "src" + "/" + fileName;
@@ -88,5 +60,35 @@ public class AbstractUITests extends TestCase {
 
 	protected File loadModelFile(final IFile file) {
 		return ModelUtils.loadModelFile(file);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.di.AbstractTests#setUp()
+	 */
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		// the following activates the service bundle which reads in all
+		// extension points and configures the service registry
+		// this is the Eclipse runtime equivalent to standalone setup (i.e.
+		// MWEStandaloneSetup.doSetup())
+		Activator.getDefault();
+		project = createProject(PROJECT_NAME);
+	}
+
+	/**
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@Override
+	protected void tearDown() throws Exception {
+		super.tearDown();
+		if (project != null) {
+			try {
+				project.delete(true, new NullProgressMonitor());
+			}
+			catch (final Exception e) {
+				// ignore
+			}
+		}
 	}
 }

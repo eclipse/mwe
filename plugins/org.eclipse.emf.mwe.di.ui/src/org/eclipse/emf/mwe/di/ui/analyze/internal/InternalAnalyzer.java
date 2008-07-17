@@ -308,9 +308,8 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	}
 
 	private void checkReference(final String referenceName, final EObject context, final boolean checkForUndefined) {
-		if (referenceName == null || context == null) {
+		if (referenceName == null || context == null)
 			throw new IllegalArgumentException();
-		}
 
 		final List<String> unresolvedReferences = variables.getUnresolvedReferences(referenceName, checkForUndefined);
 		for (final String ref : unresolvedReferences) {

@@ -22,7 +22,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class JavaImportRegistry implements IMergeable {
@@ -31,9 +31,8 @@ public class JavaImportRegistry implements IMergeable {
 	private final List<String> packageImports = new ArrayList<String>();
 
 	public void addImport(final JavaImport imp) {
-		if (imp == null) {
+		if (imp == null)
 			throw new IllegalArgumentException();
-		}
 
 		final QualifiedName fqn = imp.getJavaImport();
 		final String fqnString = MweUtil.toString(fqn);
