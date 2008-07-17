@@ -152,9 +152,9 @@ public class VariableRegistry implements IMergeable {
 		return variables.isEmpty();
 	}
 
-	public boolean isEmptyDeclaration(final String name) {
+	public boolean isDeclarationOnly(final String name) {
 		final LocalVariableDefinition def = getDefinition(name);
-		return def != null ? def.isEmptyDeclaration() : false;
+		return def != null ? def.isDeclarationOnly() : false;
 	}
 
 	public boolean isIdRef(final String name) {

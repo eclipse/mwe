@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class LocalVariableDefinition {
@@ -108,7 +108,7 @@ public class LocalVariableDefinition {
 		return type != null;
 	}
 
-	public boolean isEmptyDeclaration() {
+	public boolean isDeclarationOnly() {
 		return getValue() == null;
 	}
 
