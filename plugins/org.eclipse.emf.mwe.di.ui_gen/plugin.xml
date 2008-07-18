@@ -17,7 +17,7 @@
       </editor>
    </extension>
    <extension
-         point="org.eclipse.xtext.service.scope">
+         point="org.eclipse.xtext.service.ui.scope">
       <serviceScope
             id="org.eclipse.emf.mwe.di.MWE"
             parentScope="org.eclipse.xtext.builtin.XtextBuiltin">
@@ -26,19 +26,19 @@
 	<extension
          point="org.eclipse.ui.preferencePages">
 		<page
-			class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage/org.eclipse.emf.mwe.di.MWE"
+			class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage/org.eclipse.emf.mwe.di.MWE"
 			id="org.eclipse.emf.mwe.di.MWE"
 			name="MWE">
 		</page>
 		<page
 		    category="org.eclipse.emf.mwe.di.MWE"
-		    class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.EditorPreferencePage/org.eclipse.emf.mwe.di.MWE"
+		    class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.EditorPreferencePage/org.eclipse.emf.mwe.di.MWE"
 		    id="org.eclipse.emf.mwe.di.MWE.editor"
 		    name="Editor">
 		</page>
 		<page
 		    category="org.eclipse.emf.mwe.di.MWE.editor"
-		    class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.preferences.SyntaxColoringPreferencePage/org.eclipse.emf.mwe.di.MWE"
+		    class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.SyntaxColoringPreferencePage/org.eclipse.emf.mwe.di.MWE"
 		    id="org.eclipse.emf.mwe.di.MWE.editor.syntaxcoloring"
 		    name="Syntax Coloring">
 		</page>
