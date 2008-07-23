@@ -5,64 +5,71 @@ import java.util.Arrays;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.mwe.di.execution.MweInstantiationException;
+import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.Type;
 import org.eclipse.xtext.util.Strings;
 
-public class JavaType implements Type {
+public class JavaType implements Type, StaticType {
 
-	private Class<?> clazz;
+	public boolean hasProperty(final String name) {
+		return typeForFeature(name) != null;
+	}
 
-	public JavaType(Class<?> class1) {
+	private final Class<?> clazz;
+
+	public JavaType(final Class<?> class1) {
 		this.clazz = class1;
 	}
 
-	public void inject(Object target, String feature, Object value) {
+	public void inject(final Object target, final String feature, final Object value) {
 		try {
-			Class<?> class1 = target.getClass();
-			String[] methodNames = methodNames(feature);
-			for (String methodName : methodNames) {
+			final Class<?> class1 = target.getClass();
+			final String[] methodNames = methodNames(feature);
+			for (final String methodName : methodNames) {
 				try {
-					Method method = class1.getMethod(methodName, new Class[] { value.getClass() });
+					final Method method = class1.getMethod(methodName, new Class[] { value.getClass() });
 					if (method != null) {
 						method.invoke(target, value);
 						return;
 					}
-				} catch (NoSuchMethodException e) {
+				}
+				catch (final NoSuchMethodException e) {
 					// ignore
 				}
 			}
 			throw new MweInstantiationException("Couldn't find method " + Arrays.toString(methodNames(feature)) + "("
 					+ value.getClass().getSimpleName() + ") for type " + class1.getSimpleName(), null);
-		} catch (Exception e) {
+		}
+		catch (final Exception e) {
 			throw new WrappedException(e);
 		}
 	}
 
-	private String[] methodNames(String feature) {
-		if (feature==null) {
-			return new String[] {"add","set"};
+	public Object newInstance() {
+		try {
+			return clazz.newInstance();
 		}
-		return new String[] { "add" + Strings.toFirstUpper(feature), "set" + Strings.toFirstUpper(feature) };
+		catch (final Exception e) {
+			throw new WrappedException(e);
+		}
 	}
 
-	public Type typeForFeature(String feature) {
-		String[] methodNames = methodNames(feature);
-		for (String methodName : methodNames) {
-			Method[] methods = clazz.getMethods();
-			for (Method method : methods) {
-				if (method.getParameterTypes().length==1 && method.getName().equals(methodName))
+	public Type typeForFeature(final String feature) {
+		final String[] methodNames = methodNames(feature);
+		for (final String methodName : methodNames) {
+			final Method[] methods = clazz.getMethods();
+			for (final Method method : methods) {
+				if (method.getParameterTypes().length == 1 && method.getName().equals(methodName))
 					return new JavaType(method.getParameterTypes()[0]);
 			}
 		}
 		return null;
 	}
 
-	public Object newInstance() {
-		try {
-			return clazz.newInstance();
-		} catch (Exception e) {
-			throw new WrappedException(e);
-		}
+	private String[] methodNames(final String feature) {
+		if (feature == null)
+			return new String[] { "add", "set" };
+		return new String[] { "add" + Strings.toFirstUpper(feature), "set" + Strings.toFirstUpper(feature) };
 	}
 
 }

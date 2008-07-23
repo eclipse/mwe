@@ -5,24 +5,30 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.Type;
 
-public class EMFType implements Type {
+public class EMFType implements Type, StaticType {
 
-	private EClass eclass;
+	private final EClass eclass;
 
-	public EMFType(EClass class1) {
+	public EMFType(final EClass class1) {
 		this.eclass = class1;
 	}
 
+	public boolean hasProperty(final String name) {
+		return typeForFeature(name) != null;
+	}
+
 	@SuppressWarnings("unchecked")
-	public void inject(Object target, String feature, Object value) {
-		EObject t = (EObject) target;
-		EStructuralFeature f = t.eClass().getEStructuralFeature(feature);
+	public void inject(final Object target, final String feature, final Object value) {
+		final EObject t = (EObject) target;
+		final EStructuralFeature f = t.eClass().getEStructuralFeature(feature);
 		if (f.isMany()) {
-			((EList<Object>)t.eGet(f)).add(value);
-		} else {
-			t.eSet(f,value);
+			((EList<Object>) t.eGet(f)).add(value);
+		}
+		else {
+			t.eSet(f, value);
 		}
 	}
 
@@ -30,11 +36,10 @@ public class EMFType implements Type {
 		return eclass.getEPackage().getEFactoryInstance().create(eclass);
 	}
 
-	public Type typeForFeature(String featureName) {
-		EStructuralFeature feature = eclass.getEStructuralFeature(featureName);
-		if (feature instanceof EReference) {
+	public Type typeForFeature(final String featureName) {
+		final EStructuralFeature feature = eclass.getEStructuralFeature(featureName);
+		if (feature instanceof EReference)
 			return new EMFType((EClass) feature.getEType());
-		}
 		return null;
 	}
 
