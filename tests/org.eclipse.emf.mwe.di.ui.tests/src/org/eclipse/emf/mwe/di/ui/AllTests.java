@@ -14,7 +14,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.emf.mwe.di.ui.analyze.AnalyzerSuite;
 import org.eclipse.emf.mwe.di.ui.infrastructure.InfrastructureSuite;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtilsSuite;
+import org.eclipse.emf.mwe.di.ui.util.ModelUtilsSuite;
 
 public class AllTests {
 

@@ -15,12 +15,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.di.ui.analyze.MweDiagnostic;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
+import org.eclipse.emf.mwe.di.util.ModelUtils;
 import org.eclipse.emf.mwe.util.MweSwitch;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class AbstractAnalyzer<T> extends MweSwitch<T> {

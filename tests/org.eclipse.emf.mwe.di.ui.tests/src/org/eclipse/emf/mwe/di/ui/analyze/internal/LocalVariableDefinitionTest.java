@@ -20,7 +20,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class LocalVariableDefinitionTest extends AbstractUITests {
@@ -52,7 +52,7 @@ public class LocalVariableDefinitionTest extends AbstractUITests {
 		assertEquals(VAR_VALUE, def.getSimpleValue());
 	}
 
-	public void testMultipleleReference() {
+	public void testMultipleReference() {
 		simpleValue.setValue("${ref1}/test1/${ref2}/test2");
 		final LocalVariableDefinition def = createDefinition();
 		final List<String> ref = def.getReferences();

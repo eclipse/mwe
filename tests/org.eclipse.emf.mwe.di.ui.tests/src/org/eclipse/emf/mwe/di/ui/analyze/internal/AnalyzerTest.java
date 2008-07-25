@@ -18,7 +18,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class AnalyzerTest extends AbstractUITests {
@@ -116,24 +116,6 @@ public class AnalyzerTest extends AbstractUITests {
 		final File file = loadModelFile(modelFile);
 		analyzer.validate(file);
 		assertEquals(0, getMessageCount(diag));
-	}
-
-	public void testAmbiguousJavaClassImport() {
-		final String workflow = "import stubs.ObjectA; import ambiguity.ObjectA; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(1, getMessageCount(diag));
-		assertTrue(isError(diag, 0, AMBIGUOUS_MSG));
-	}
-
-	public void testAmbiguousJavaPackageImport() {
-		final String workflow = "import stubs.*; import ambiguity.*; ObjectA { name = 'test' }";
-		final IFile modelFile = createFile(project, WORKFLOW_NAME1, workflow);
-		final File file = loadModelFile(modelFile);
-		analyzer.validate(file);
-		assertEquals(1, getMessageCount(diag));
-		assertTrue(isError(diag, 0, AMBIGUOUS_MSG));
 	}
 
 	public void testVariable1() {

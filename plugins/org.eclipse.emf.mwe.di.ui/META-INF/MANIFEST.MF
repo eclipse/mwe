@@ -7,12 +7,11 @@ Bundle-Vendor: www.eclipse.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.mwe.di;bundle-version="1.0.0",
  org.eclipse.core.runtime;bundle-version="3.4.0",
- org.eclipse.core.resources;bundle-version="3.4.0",
  org.eclipse.xtext.ui;bundle-version="1.0.0",
  org.apache.commons.logging;bundle-version="1.0.4"
 Export-Package: org.eclipse.emf.mwe.di.ui,
  org.eclipse.emf.mwe.di.ui.analyze;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
  org.eclipse.emf.mwe.di.ui.analyze.internal;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
  org.eclipse.emf.mwe.di.ui.extensibility,
- org.eclipse.emf.mwe.di.ui.utils;x-friends:="org.eclipse.emf.mwe.di.ui.tests"
+ org.eclipse.emf.mwe.di.ui.util
 Bundle-Activator: org.eclipse.emf.mwe.di.ui.Activator

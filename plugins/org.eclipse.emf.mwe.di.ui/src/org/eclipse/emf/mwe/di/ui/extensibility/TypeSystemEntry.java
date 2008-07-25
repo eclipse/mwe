@@ -19,12 +19,12 @@ import org.eclipse.emf.mwe.di.types.Type;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class TypeSystemEntry implements Comparable<TypeSystemEntry> {
 
-	private static final String DOMINANCE = "dominance";
+	private static final String DOMINANT = "dominant";
 	private static final String PRIORITY = "priority";
 	private static final String TYPE_SYSTEM_CLASS = "class";
 	private static final Log log = LogFactory.getLog(TypeSystemEntry.class);
@@ -89,11 +89,11 @@ public class TypeSystemEntry implements Comparable<TypeSystemEntry> {
 	}
 
 	private final boolean extractDominance() {
-		final String booleanString = configurationElement.getAttribute(DOMINANCE);
+		final String booleanString = configurationElement.getAttribute(DOMINANT);
 		if (booleanString != null) {
-			final Boolean dominance = Boolean.valueOf(booleanString);
-			if (dominance != null)
-				return dominance;
+			final Boolean dominant = Boolean.valueOf(booleanString);
+			if (dominant != null)
+				return dominant;
 		}
 		throw new IllegalArgumentException();
 	}

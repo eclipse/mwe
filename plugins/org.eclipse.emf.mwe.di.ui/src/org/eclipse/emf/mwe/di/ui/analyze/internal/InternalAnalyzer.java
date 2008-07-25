@@ -23,8 +23,8 @@ import org.eclipse.emf.mwe.WorkflowRef;
 import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.ui.extensibility.StaticTypeSystemRegistry;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
-import org.eclipse.emf.mwe.di.ui.utils.PropertyFileReader;
+import org.eclipse.emf.mwe.di.ui.util.PropertyFileReader;
+import org.eclipse.emf.mwe.di.util.ModelUtils;
 
 public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 

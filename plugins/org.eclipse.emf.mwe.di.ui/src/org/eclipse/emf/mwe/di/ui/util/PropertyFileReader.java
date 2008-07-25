@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package org.eclipse.emf.mwe.di.ui.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;

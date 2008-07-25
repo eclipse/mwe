@@ -15,10 +15,15 @@ Export-Package: org.eclipse.emf.mwe,
  org.eclipse.emf.mwe.di.types,
  org.eclipse.emf.mwe.di.types.emf,
  org.eclipse.emf.mwe.di.types.java,
+ org.eclipse.emf.mwe.di.util,
  org.eclipse.emf.mwe.di.xml,
  org.eclipse.emf.mwe.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext;bundle-version="1.0.0",
- org.eclipse.xtext.generator;bundle-version="1.0.0";resolution:=optional
+ org.eclipse.xtext.generator;bundle-version="1.0.0";resolution:=optional,
+ org.eclipse.core.resources;bundle-version="3.4.0";visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version="3.4.0";visibility:=reexport,
+ org.eclipse.jdt.core;bundle-version="3.4.0";visibility:=reexport
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.eclipse.emf.mwe.di.Activator

@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package org.eclipse.emf.mwe.di.util;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -34,11 +34,10 @@ import org.eclipse.emf.mwe.File;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.xtext.ui.internal.CoreLog;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
 
 public final class ModelUtils {
@@ -156,7 +155,7 @@ public final class ModelUtils {
 	 *            An Eclipse project
 	 * @throws CoreException
 	 */
-	private static ClassLoader createClassLoader(final IProject project) throws CoreException {
+	public static ClassLoader createClassLoader(final IProject project) throws CoreException {
 		final IJavaProject jp = JavaCore.create(project);
 
 		final IClasspathEntry[] javacp = jp.getResolvedClasspath(true);
@@ -192,7 +191,7 @@ public final class ModelUtils {
 		catch (final IOException e) {
 			return null;
 		}
-	
+
 		if (reader != null) {
 			try {
 				String content = new String();

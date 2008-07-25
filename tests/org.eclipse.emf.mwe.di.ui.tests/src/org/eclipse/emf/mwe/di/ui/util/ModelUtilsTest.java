@@ -7,17 +7,18 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package org.eclipse.emf.mwe.di.ui.util;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.di.util.ModelUtils;
 
 import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.1 $
  */
 
 public class ModelUtilsTest extends AbstractUITests {

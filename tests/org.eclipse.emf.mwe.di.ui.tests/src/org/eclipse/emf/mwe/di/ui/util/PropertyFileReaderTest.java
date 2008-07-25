@@ -7,15 +7,18 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package org.eclipse.emf.mwe.di.ui.util;
 
 import java.util.Map;
+
+import org.eclipse.emf.mwe.di.ui.util.PropertyFileReader;
+import org.eclipse.emf.mwe.di.util.ModelUtils;
 
 import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.1 $
  */
 
 public class PropertyFileReaderTest extends AbstractUITests {

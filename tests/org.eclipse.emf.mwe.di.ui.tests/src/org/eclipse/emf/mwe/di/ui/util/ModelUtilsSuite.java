@@ -7,7 +7,7 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.ui.utils;
+package org.eclipse.emf.mwe.di.ui.util;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
@@ -15,7 +15,7 @@ import junit.framework.TestSuite;
 public class ModelUtilsSuite {
 
 	public static Test suite() {
-		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.utils");
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.util");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(ModelUtilsTest.class);
 		suite.addTestSuite(PropertyFileReaderTest.class);

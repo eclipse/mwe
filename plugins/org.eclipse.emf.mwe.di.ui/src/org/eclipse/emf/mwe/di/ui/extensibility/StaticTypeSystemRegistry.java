@@ -22,7 +22,7 @@ import org.eclipse.emf.mwe.di.types.TypeSystem;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class StaticTypeSystemRegistry implements TypeSystem {
@@ -36,7 +36,6 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 	 * Don't allow instantiation.
 	 */
 	private StaticTypeSystemRegistry() {
-		throw new UnsupportedOperationException();
 	}
 
 	public static StaticTypeSystemRegistry getInstance() {

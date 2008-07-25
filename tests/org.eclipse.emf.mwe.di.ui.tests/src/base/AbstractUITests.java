@@ -18,14 +18,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.di.ui.utils.ModelUtils;
+import org.eclipse.emf.mwe.di.util.ModelUtils;
 import org.eclipse.xtext.service.ui.Activator;
 
 import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class AbstractUITests extends TestCase {
