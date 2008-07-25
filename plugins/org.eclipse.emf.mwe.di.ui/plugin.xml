@@ -12,7 +12,7 @@
       <typeSystem
             class="org.eclipse.emf.mwe.di.types.emf.EMFTypeSystem"
             dominant="true"
-            priority="1">
+            priority="2">
       </typeSystem>
    </extension>
 
