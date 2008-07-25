@@ -12,9 +12,8 @@ public class JavaTypeSystem implements TypeSystem, StaticTypeSystem {
 
 	private final ClassLoader classLoader;
 
-	public JavaTypeSystem(final ClassLoader classLoader) {
-		super();
-		this.classLoader = classLoader;
+	public JavaTypeSystem() {
+		this.classLoader = Thread.currentThread().getContextClassLoader();
 	}
 
 	public String getName() {

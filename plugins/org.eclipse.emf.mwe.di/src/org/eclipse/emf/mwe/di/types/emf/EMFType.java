@@ -12,8 +12,12 @@ public class EMFType implements Type, StaticType {
 
 	private final EClass eclass;
 
-	public EMFType(final EClass class1) {
-		this.eclass = class1;
+	public EMFType(final EClass eclass) {
+		this.eclass = eclass;
+	}
+
+	public String getName() {
+		return eclass.getName();
 	}
 
 	public boolean hasProperty(final String name) {

@@ -19,11 +19,11 @@ import org.eclipse.emf.mwe.IdRef;
 import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.SimpleValue;
 import org.eclipse.emf.mwe.Value;
-import org.eclipse.jdt.core.IType;
+import org.eclipse.emf.mwe.di.types.StaticType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class LocalVariableDefinition {
@@ -33,7 +33,7 @@ public class LocalVariableDefinition {
 	private final LocalVariable variable;
 	private final int definitionPosition;
 	private final EObject context;
-	private IType type;
+	private StaticType type;
 	private final boolean imported;
 
 	public LocalVariableDefinition(final LocalVariable variable, final int definitionPosition, final boolean imported,
@@ -96,7 +96,7 @@ public class LocalVariableDefinition {
 		return null;
 	}
 
-	public IType getType() {
+	public StaticType getType() {
 		return type;
 	}
 
@@ -124,7 +124,7 @@ public class LocalVariableDefinition {
 		return getValue() instanceof SimpleValue;
 	}
 
-	public void setType(final IType type) {
+	public void setType(final StaticType type) {
 		this.type = type;
 	}
 }

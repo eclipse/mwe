@@ -20,7 +20,7 @@ import java.util.regex.Matcher;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.Value;
-import org.eclipse.jdt.core.IType;
+import org.eclipse.emf.mwe.di.types.StaticType;
 
 public class VariableRegistry implements IMergeable {
 
@@ -90,7 +90,7 @@ public class VariableRegistry implements IMergeable {
 		return null;
 	}
 
-	public IType getType(final String name) {
+	public StaticType getType(final String name) {
 		if (isBean(name)) {
 			final LocalVariableDefinition def = getDefinition(name);
 			return def.getType();
@@ -195,7 +195,7 @@ public class VariableRegistry implements IMergeable {
 		this.context = context;
 	}
 
-	public void setType(final String name, final IType type) {
+	public void setType(final String name, final StaticType type) {
 		if (!hasVariable(name))
 			throw new IllegalArgumentException("No such variable");
 

@@ -11,10 +11,12 @@ package org.eclipse.emf.mwe.di.types;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public interface StaticType extends Type {
+
+	String getName();
 
 	boolean hasProperty(String name);
 }

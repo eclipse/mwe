@@ -11,8 +11,6 @@ package org.eclipse.emf.mwe.di.ui.infrastructure;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.File;
-import org.eclipse.emf.mwe.di.ui.utils.TypeUtils;
-import org.eclipse.jdt.core.IType;
 
 import base.AbstractUITests;
 
@@ -35,19 +33,8 @@ public class InfrastructureTest extends AbstractUITests {
 		assertNotNull(model.eResource());
 	}
 
-	public void testExternalResourceAccess() {
-		final String content = TypeUtils.getFileContent(project, WORKFLOW_FILE);
-		assertNotNull(content);
-		assertTrue(content.length() > 0);
-	}
-
 	public void testLoadExternalModel() {
 		final File model = loadModelFile(project, WORKFLOW_FILE);
 		assertNotNull(model);
-	}
-
-	public void testStubAccess() {
-		final IType type = TypeUtils.findType(project, "stubs.ObjectA");
-		assertNotNull(type);
 	}
 }

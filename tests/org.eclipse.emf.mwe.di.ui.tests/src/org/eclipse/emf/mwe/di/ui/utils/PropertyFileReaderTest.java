@@ -15,7 +15,7 @@ import base.AbstractUITests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class PropertyFileReaderTest extends AbstractUITests {
@@ -23,12 +23,12 @@ public class PropertyFileReaderTest extends AbstractUITests {
 	private static final String FILE_NAME = "stubs/test.properties";
 
 	public void testFileAccess() {
-		final String content = TypeUtils.getFileContent(project, FILE_NAME);
+		final String content = ModelUtils.getFileContent(project, FILE_NAME);
 		assertNotNull(content);
 	}
 
 	public void testReader() {
-		final String content = TypeUtils.getFileContent(project, FILE_NAME);
+		final String content = ModelUtils.getFileContent(project, FILE_NAME);
 		assertNotNull(content);
 		final Map<String, String> map = PropertyFileReader.parse(content);
 		assertEquals(4, map.size());

@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="typeSystem" name="Static type system extension" schema="schema/typeSystem.exsd"/>
+   <extension
+         point="org.eclipse.emf.mwe.di.ui.typeSystem">
+      <typeSystem
+            class="org.eclipse.emf.mwe.di.types.java.JavaTypeSystem"
+            dominant="true"
+            priority="1">
+      </typeSystem>
+      <typeSystem
+            class="org.eclipse.emf.mwe.di.types.emf.EMFTypeSystem"
+            dominant="true"
+            priority="1">
+      </typeSystem>
+   </extension>
 
 </plugin>

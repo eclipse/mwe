@@ -11,14 +11,18 @@ import org.eclipse.xtext.util.Strings;
 
 public class JavaType implements Type, StaticType {
 
-	public boolean hasProperty(final String name) {
-		return typeForFeature(name) != null;
-	}
-
 	private final Class<?> clazz;
 
-	public JavaType(final Class<?> class1) {
-		this.clazz = class1;
+	public JavaType(final Class<?> clazz) {
+		this.clazz = clazz;
+	}
+
+	public String getName() {
+		return clazz.getName();
+	}
+
+	public boolean hasProperty(final String name) {
+		return typeForFeature(name) != null;
 	}
 
 	public void inject(final Object target, final String feature, final Object value) {
