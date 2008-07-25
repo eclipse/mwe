@@ -7,19 +7,22 @@
  *
  */
 
-package org.eclipse.emf.mwe.di.types;
+package org.eclipse.emf.mwe.di.ui.extensibility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.di.types.StaticTypeSystem;
+import org.eclipse.emf.mwe.di.types.Type;
+import org.eclipse.emf.mwe.di.types.TypeSystem;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
  * @version $Revision: 1.1 $
  */
 
-public class CompositeStaticTypeSystem implements TypeSystem {
+public class StaticTypeSystemRegistry implements TypeSystem {
 
 	private final List<StaticTypeSystem> typeSystems = new ArrayList<StaticTypeSystem>();
 
