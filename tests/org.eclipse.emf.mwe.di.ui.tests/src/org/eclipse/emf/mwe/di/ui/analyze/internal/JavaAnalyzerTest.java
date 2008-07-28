@@ -10,36 +10,16 @@
 package org.eclipse.emf.mwe.di.ui.analyze.internal;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.util.BasicDiagnostic;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.File;
 
-import base.AbstractUITests;
+import base.AbstractAnalyzerTests;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.1 $
  */
 
-public class AnalyzerTest extends AbstractUITests {
-
-	private static final String NO_VARIABLE_MSG = "no variable";
-	private static final String VAR_NOT_SET_MSG = "not been set";
-	private static final String DUPLICATE_MSG = "already defined";
-	private static final String REFERENCED_MSG = "referenced";
-	private static final String AMBIGUOUS_MSG = "ambiguous";
-	private static final String NO_SETTER_MSG = "No setter";
-	private static final String RESOLVE_MSG = "resolve";
-
-	private BasicDiagnostic diag;
-	private AbstractAnalyzer<Object> analyzer;
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		diag = new BasicDiagnostic();
-		analyzer = new InternalAnalyzer(null, diag, null);
-	}
+public class JavaAnalyzerTest extends AbstractAnalyzerTests {
 
 	public void testSimpleSetter1() {
 		final String workflow = "stubs.ObjectA { name = 'test' }";
@@ -249,36 +229,5 @@ public class AnalyzerTest extends AbstractUITests {
 		assertEquals(2, getMessageCount(diag));
 		assertTrue(isError(diag, 0, NO_VARIABLE_MSG));
 		assertTrue(isError(diag, 1, VAR_NOT_SET_MSG));
-	}
-
-	private int getMessageCount(final Diagnostic diagnostic) {
-		return diagnostic.getChildren().size();
-	}
-
-	private boolean isInRange(final Diagnostic diagnostic, final int index) {
-		return diagnostic != null && 0 <= index && index < getMessageCount(diagnostic);
-	}
-
-	private boolean isError(final Diagnostic diagnostic, final int index, final String text) {
-		if (!isInRange(diagnostic, index) || text == null)
-			throw new IllegalArgumentException();
-
-		return diagnostic.getChildren().get(index).getSeverity() == Diagnostic.ERROR
-				&& messageContains(diagnostic, index, text);
-	}
-
-	private boolean isWarning(final Diagnostic diagnostic, final int index, final String text) {
-		if (!isInRange(diagnostic, index) || text == null)
-			throw new IllegalArgumentException();
-
-		return diagnostic.getChildren().get(index).getSeverity() == Diagnostic.WARNING
-				&& messageContains(diagnostic, index, text);
-	}
-
-	private boolean messageContains(final Diagnostic diagnostic, final int index, final String text) {
-		if (!isInRange(diagnostic, index) || text == null)
-			throw new IllegalArgumentException();
-
-		return diagnostic.getChildren().get(index).getMessage().contains(text);
 	}
 }

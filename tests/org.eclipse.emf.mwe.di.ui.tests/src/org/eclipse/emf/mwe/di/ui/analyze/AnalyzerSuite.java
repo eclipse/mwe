@@ -12,7 +12,8 @@ package org.eclipse.emf.mwe.di.ui.analyze;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.emf.mwe.di.ui.analyze.internal.AnalyzerTest;
+import org.eclipse.emf.mwe.di.ui.analyze.internal.EMFAnalyzerTest;
+import org.eclipse.emf.mwe.di.ui.analyze.internal.JavaAnalyzerTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.LocalVariableDefinitionTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.VariableRegistryTest;
 
@@ -21,7 +22,8 @@ public class AnalyzerSuite {
 	public static Test suite() {
 		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.di.ui.analyze");
 		// $JUnit-BEGIN$
-		suite.addTestSuite(AnalyzerTest.class);
+		suite.addTestSuite(JavaAnalyzerTest.class);
+		suite.addTestSuite(EMFAnalyzerTest.class);
 		suite.addTestSuite(LocalVariableDefinitionTest.class);
 		suite.addTestSuite(VariableRegistryTest.class);
 		// $JUnit-END$

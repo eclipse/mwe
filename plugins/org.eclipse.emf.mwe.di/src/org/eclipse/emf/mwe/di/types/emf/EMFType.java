@@ -21,7 +21,7 @@ public class EMFType implements Type, StaticType {
 	}
 
 	public boolean hasProperty(final String name) {
-		return typeForFeature(name) != null;
+		return getFeature(name) != null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,6 +45,13 @@ public class EMFType implements Type, StaticType {
 		if (feature instanceof EReference)
 			return new EMFType((EClass) feature.getEType());
 		return null;
+	}
+
+	private EStructuralFeature getFeature(final String name) {
+		if (name == null)
+			return null;
+
+		return eclass.getEStructuralFeature(name);
 	}
 
 }
