@@ -13,19 +13,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionPoint;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.StaticTypeSystem;
 import org.eclipse.emf.mwe.di.types.Type;
 import org.eclipse.emf.mwe.di.types.TypeSystem;
+import org.eclipse.emf.mwe.di.ui.Activator;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class StaticTypeSystemRegistry implements TypeSystem {
+
+	private static final String TYPE_SYSTEM_EXTENSION_POINT = "typeSystem";
 
 	private static StaticTypeSystemRegistry instance;
 
@@ -36,6 +44,7 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 	 * Don't allow instantiation.
 	 */
 	private StaticTypeSystemRegistry() {
+		initialize();
 	}
 
 	public static StaticTypeSystemRegistry getInstance() {
@@ -44,15 +53,6 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 		}
 
 		return instance;
-	}
-
-	public void addTypeSystemConfiguration(final IConfigurationElement configurationElement) {
-		if (configurationElement == null)
-			throw new IllegalArgumentException();
-
-		final TypeSystemEntry entry = new TypeSystemEntry(configurationElement);
-		typeSystemEntries.add(entry);
-		needsSorting = true;
 	}
 
 	public StaticTypeSystem getTypeSystem(final String name) {
@@ -96,6 +96,28 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 				return type;
 		}
 		return null;
+	}
+
+	private void addTypeSystemConfiguration(final IConfigurationElement configurationElement) {
+		if (configurationElement == null)
+			throw new IllegalArgumentException();
+
+		final TypeSystemEntry entry = new TypeSystemEntry(configurationElement);
+		typeSystemEntries.add(entry);
+		needsSorting = true;
+	}
+
+	private final void initialize() {
+		final IExtensionRegistry epr = Platform.getExtensionRegistry();
+		final Bundle bundle = Activator.getDefault().getBundle();
+		final String pluginName = bundle.getSymbolicName();
+		final IExtensionPoint ep = epr.getExtensionPoint(pluginName, TYPE_SYSTEM_EXTENSION_POINT);
+		Assert.isNotNull(ep, "The extension point '" + TYPE_SYSTEM_EXTENSION_POINT + "is not defined!");
+
+		final IConfigurationElement[] configurationElements = ep.getConfigurationElements();
+		for (final IConfigurationElement cfg : configurationElements) {
+			addTypeSystemConfiguration(cfg);
+		}
 	}
 
 	private void sort() {
