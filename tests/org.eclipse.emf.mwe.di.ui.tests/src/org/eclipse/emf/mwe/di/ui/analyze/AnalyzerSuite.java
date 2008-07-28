@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.di.ui.analyze;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
+import org.eclipse.emf.mwe.di.ui.analyze.internal.DummyAnalyzerTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.EMFAnalyzerTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.JavaAnalyzerTest;
 import org.eclipse.emf.mwe.di.ui.analyze.internal.LocalVariableDefinitionTest;
@@ -24,6 +25,7 @@ public class AnalyzerSuite {
 		// $JUnit-BEGIN$
 		suite.addTestSuite(JavaAnalyzerTest.class);
 		suite.addTestSuite(EMFAnalyzerTest.class);
+		suite.addTestSuite(DummyAnalyzerTest.class);
 		suite.addTestSuite(LocalVariableDefinitionTest.class);
 		suite.addTestSuite(VariableRegistryTest.class);
 		// $JUnit-END$

@@ -9,8 +9,11 @@
 
 package org.eclipse.emf.mwe.di.ui.infrastructure;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.di.ui.extensibility.StaticTypeSystemRegistry;
 
 import base.AbstractUITests;
 
@@ -36,5 +39,16 @@ public class InfrastructureTest extends AbstractUITests {
 	public void testLoadExternalModel() {
 		final File model = loadModelFile(project, WORKFLOW_FILE);
 		assertNotNull(model);
+	}
+
+	public void testTypeSystemRegistry() {
+		final StaticTypeSystemRegistry registry = StaticTypeSystemRegistry.getInstance();
+		assertNotNull(registry);
+		final List<String> names = registry.getTypeSystemNames();
+		assertEquals(3, names.size());
+		assertTrue(names.get(0).contains("Java"));
+		assertTrue(names.get(1).contains("EMF"));
+		assertTrue(names.get(2).contains("Dummy"));
+
 	}
 }
