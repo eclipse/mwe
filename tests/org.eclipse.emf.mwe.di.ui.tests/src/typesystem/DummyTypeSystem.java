@@ -15,11 +15,12 @@ import org.eclipse.emf.mwe.di.types.Type;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
-public class DummyTypeSystem implements StaticTypeSystem {
+public class DummyTypeSystem extends StaticTypeSystem {
 
+	@Override
 	public String getName() {
 		return "Dummy type system";
 	}

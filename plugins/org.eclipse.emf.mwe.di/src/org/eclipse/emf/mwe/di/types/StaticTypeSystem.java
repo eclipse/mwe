@@ -9,12 +9,22 @@
 
 package org.eclipse.emf.mwe.di.types;
 
+import org.eclipse.emf.mwe.File;
+
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
-public interface StaticTypeSystem extends TypeSystem {
+public abstract class StaticTypeSystem implements TypeSystem {
 
-	String getName();
+	public abstract String getName();
+
+	public StaticType staticTypeForName(final String name, final File file) {
+		final Type type = typeForName(name, file);
+		if (type instanceof StaticType)
+			return (StaticType) type;
+
+		return null;
+	}
 }

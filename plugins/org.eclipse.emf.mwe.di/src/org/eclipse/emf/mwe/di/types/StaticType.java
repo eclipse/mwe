@@ -11,12 +11,20 @@ package org.eclipse.emf.mwe.di.types;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
-public interface StaticType extends Type {
+public abstract class StaticType implements Type {
 
-	String getName();
+	public abstract String getName();
 
-	boolean hasProperty(String name);
+	public abstract boolean hasProperty(String name);
+
+	public StaticType staticTypeForFeature(final String featureName) {
+		final Type type = typeForFeature(featureName);
+		if (type instanceof StaticType)
+			return (StaticType) type;
+
+		return null;
+	}
 }

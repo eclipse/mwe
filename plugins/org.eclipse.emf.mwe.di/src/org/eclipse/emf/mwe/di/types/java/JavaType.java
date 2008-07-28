@@ -9,7 +9,7 @@ import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.Type;
 import org.eclipse.xtext.util.Strings;
 
-public class JavaType implements Type, StaticType {
+public class JavaType extends StaticType {
 
 	private final Class<?> clazz;
 
@@ -17,10 +17,12 @@ public class JavaType implements Type, StaticType {
 		this.clazz = clazz;
 	}
 
+	@Override
 	public String getName() {
 		return clazz.getName();
 	}
 
+	@Override
 	public boolean hasProperty(final String name) {
 		return typeForFeature(name) != null;
 	}

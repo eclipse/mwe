@@ -6,13 +6,13 @@ import org.eclipse.emf.mwe.JavaImport;
 import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.types.StaticTypeSystem;
 import org.eclipse.emf.mwe.di.types.Type;
-import org.eclipse.emf.mwe.di.types.TypeSystem;
 import org.eclipse.emf.mwe.di.util.CoreLog;
 import org.eclipse.emf.mwe.di.util.ModelUtils;
 import org.eclipse.xtext.EcoreUtil2;
 
-public class JavaTypeSystem implements TypeSystem, StaticTypeSystem {
+public class JavaTypeSystem extends StaticTypeSystem {
 
+	@Override
 	public String getName() {
 		return "Java types";
 	}

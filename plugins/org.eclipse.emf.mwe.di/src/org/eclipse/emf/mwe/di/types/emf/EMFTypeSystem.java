@@ -8,13 +8,13 @@ import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.GenericImport;
 import org.eclipse.emf.mwe.di.types.StaticTypeSystem;
 import org.eclipse.emf.mwe.di.types.Type;
-import org.eclipse.emf.mwe.di.types.TypeSystem;
 import org.eclipse.xtext.EcoreUtil2;
 
-public class EMFTypeSystem implements TypeSystem, StaticTypeSystem {
+public class EMFTypeSystem extends StaticTypeSystem {
 
 	private final EPackage.Registry registry = EPackage.Registry.INSTANCE;
 
+	@Override
 	public String getName() {
 		return "EMF types";
 	}

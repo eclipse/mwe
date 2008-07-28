@@ -14,10 +14,10 @@ import org.eclipse.emf.mwe.di.types.Type;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
-public class DummyType implements StaticType {
+public class DummyType extends StaticType {
 
 	public void inject(final Object target, final String feature, final Object value) {
 	}
@@ -30,10 +30,12 @@ public class DummyType implements StaticType {
 		return null;
 	}
 
+	@Override
 	public String getName() {
 		return null;
 	}
 
+	@Override
 	public boolean hasProperty(final String name) {
 		if ("dummyProperty".equals(name))
 			return true;

@@ -8,7 +8,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.Type;
 
-public class EMFType implements Type, StaticType {
+public class EMFType extends StaticType {
 
 	private final EClass eclass;
 
@@ -16,10 +16,12 @@ public class EMFType implements Type, StaticType {
 		this.eclass = eclass;
 	}
 
+	@Override
 	public String getName() {
 		return eclass.getName();
 	}
 
+	@Override
 	public boolean hasProperty(final String name) {
 		return getFeature(name) != null;
 	}
