@@ -37,7 +37,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public final class ModelUtils {
@@ -163,7 +163,7 @@ public final class ModelUtils {
 
 		for (int i = 0; i < javacp.length; i++) {
 			try {
-				url[i] = javacp[i].getPath().toFile().toURL();
+				url[i] = javacp[i].getPath().toFile().toURI().toURL();
 			}
 			catch (final MalformedURLException e) {
 				e.printStackTrace();
