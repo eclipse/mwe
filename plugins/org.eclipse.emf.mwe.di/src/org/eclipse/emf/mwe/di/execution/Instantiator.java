@@ -11,23 +11,8 @@ import org.eclipse.emf.mwe.di.types.java.JavaTypeSystem;
 
 public class Instantiator {
 
-	private final ClassLoader classLoader;
-
-	public Instantiator() {
-		classLoader = Thread.currentThread().getContextClassLoader();
-	}
-
-	public Instantiator(final ClassLoader classLoader) {
-		if (classLoader == null)
-			throw new IllegalArgumentException();
-
-		this.classLoader = classLoader;
-	}
-
 	public Object instantiate(final File file) {
-		final TypeSystem compositeTypeSystem = new CompositeTypeSystem(new EMFTypeSystem(), new JavaTypeSystem());
-		compositeTypeSystem.setExternalClassLoader(classLoader);
-		return instantiate(file, null, compositeTypeSystem);
+		return instantiate(file, null, new CompositeTypeSystem(new EMFTypeSystem(), new JavaTypeSystem()));
 	}
 
 	public Object instantiate(final File file, final Map<String, Object> params, final TypeSystem typeSystem) {

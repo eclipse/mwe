@@ -45,7 +45,7 @@ public abstract class AbstractTests extends AbstractXtextTests {
 		if (file == null)
 			return null;
 
-		final Instantiator instantiator = new Instantiator(Thread.currentThread().getContextClassLoader());
+		final Instantiator instantiator = new Instantiator();
 		return instantiator.instantiate(file);
 	}
 
