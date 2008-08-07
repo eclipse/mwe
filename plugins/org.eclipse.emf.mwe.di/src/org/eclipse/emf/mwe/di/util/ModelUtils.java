@@ -37,7 +37,7 @@ import org.eclipse.jdt.core.JavaCore;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public final class ModelUtils {
@@ -57,27 +57,32 @@ public final class ModelUtils {
 		if (res != null) {
 			final URI uri = res.getURI();
 			if (uri != null && uri.hasPath()) {
-				final IWorkspace ws = ResourcesPlugin.getWorkspace();
-				final IWorkspaceRoot wsRoot = ws.getRoot();
-				final IPath wsPath = wsRoot.getLocation();
-				final String[] wsPathSegments = wsPath.segments();
-				final String[] uriSegments = uri.segments();
-				int segmentNumber = 0;
-				for (int i = 0; i < wsPathSegments.length; i++) {
-					if (wsPathSegments[i].equals(uriSegments[i])) {
-						segmentNumber = i;
+				try {
+					final IWorkspace ws = ResourcesPlugin.getWorkspace();
+					final IWorkspaceRoot wsRoot = ws.getRoot();
+					final IPath wsPath = wsRoot.getLocation();
+					final String[] wsPathSegments = wsPath.segments();
+					final String[] uriSegments = uri.segments();
+					int segmentNumber = 0;
+					for (int i = 0; i < wsPathSegments.length; i++) {
+						if (wsPathSegments[i].equals(uriSegments[i])) {
+							segmentNumber = i;
+						}
+						else {
+							break;
+						}
 					}
-					else {
-						break;
+					if (segmentNumber > 0) {
+						segmentNumber++;
+						if (segmentNumber < uri.segmentCount()) {
+							final String projectName = uri.segment(segmentNumber);
+							final IProject project = wsRoot.getProject(projectName);
+							return project.exists() ? project : null;
+						}
 					}
 				}
-				if (segmentNumber > 0) {
-					segmentNumber++;
-					if (segmentNumber < uri.segmentCount()) {
-						final String projectName = uri.segment(segmentNumber);
-						final IProject project = wsRoot.getProject(projectName);
-						return project.exists() ? project : null;
-					}
+				catch (final Exception e) {
+					return null;
 				}
 			}
 		}
