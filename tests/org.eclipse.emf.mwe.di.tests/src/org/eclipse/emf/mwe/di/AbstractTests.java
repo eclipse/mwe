@@ -14,7 +14,7 @@ public abstract class AbstractTests extends AbstractXtextTests {
 		super();
 	}
 
-	public AbstractTests(String name) {
+	public AbstractTests(final String name) {
 		super(name);
 	}
 
@@ -31,12 +31,12 @@ public abstract class AbstractTests extends AbstractXtextTests {
 	protected File createModelFile(final String model) {
 		if (model == null)
 			return null;
-	
+
 		try {
-			final File file =
-					(File) loadModel(URI.createURI("foo.mwe"), model);
+			final File file = (File) loadModel(URI.createURI("foo.mwe"), model);
 			return file;
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			return null;
 		}
 	}
@@ -44,18 +44,16 @@ public abstract class AbstractTests extends AbstractXtextTests {
 	protected Object instantiate(final File file) {
 		if (file == null)
 			return null;
-	
-		final Instantiator instantiator = new Instantiator();
+
+		final Instantiator instantiator = new Instantiator(Thread.currentThread().getContextClassLoader());
 		return instantiator.instantiate(file);
 	}
 
 	protected File fileFromXML(final String xmlWorkflow) {
 		if (xmlWorkflow == null)
 			return null;
-	
-		final File file =
-				new Xml2MweConverter().fromXML(new StringInputStream(
-						xmlWorkflow));
+
+		final File file = new Xml2MweConverter().fromXML(new StringInputStream(xmlWorkflow));
 		return file;
 	}
 

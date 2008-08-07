@@ -19,6 +19,14 @@ public class EMFTypeSystem extends StaticTypeSystem {
 		return "EMF types";
 	}
 
+	public boolean needsExternalClassLoader() {
+		return false;
+	}
+
+	public void setExternalClassLoader(final ClassLoader classLoader) {
+		throw new UnsupportedOperationException();
+	}
+
 	public Type typeForName(final String name, final File file) {
 		for (final GenericImport imp : EcoreUtil2.typeSelect(file.getImports(), GenericImport.class)) {
 			final EPackage package1 = registry.getEPackage(imp.getValue());

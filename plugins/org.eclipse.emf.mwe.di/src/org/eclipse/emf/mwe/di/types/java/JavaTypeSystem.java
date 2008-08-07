@@ -12,6 +12,19 @@ import org.eclipse.xtext.EcoreUtil2;
 
 public class JavaTypeSystem extends StaticTypeSystem {
 
+	private ClassLoader externalClassLoader;
+
+	public boolean needsExternalClassLoader() {
+		return true;
+	}
+
+	public void setExternalClassLoader(final ClassLoader classLoader) {
+		if (classLoader == null)
+			throw new IllegalArgumentException();
+
+		externalClassLoader = classLoader;
+	}
+
 	@Override
 	public String getName() {
 		return "Java types";
@@ -40,14 +53,17 @@ public class JavaTypeSystem extends StaticTypeSystem {
 
 	private Type load(final IProject project, final String string) {
 		try {
-			final ClassLoader classLoader = ModelUtils.createClassLoader(project);
-			final Class<?> class1 = classLoader.loadClass(string);
-			return new JavaType(class1);
+			final ClassLoader classLoader = project != null ? ModelUtils.createClassLoader(project)
+					: externalClassLoader;
+			if (classLoader != null) {
+				final Class<?> class1 = classLoader.loadClass(string);
+				return new JavaType(class1);
+			}
 		}
 		catch (final Exception e) {
 			CoreLog.logError(e.getMessage(), e);
-			return null;
 		}
+		return null;
 	}
 
 }

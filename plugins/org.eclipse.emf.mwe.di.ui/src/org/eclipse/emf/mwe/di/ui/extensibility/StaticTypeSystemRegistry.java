@@ -28,7 +28,7 @@ import org.osgi.framework.Bundle;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class StaticTypeSystemRegistry implements TypeSystem {
@@ -76,6 +76,25 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 
 	public boolean hasTypeSystem(final String name) {
 		return getTypeSystem(name) != null;
+	}
+
+	public boolean needsExternalClassLoader() {
+		for (final TypeSystemEntry tse : typeSystemEntries) {
+			if (tse.needsExternalClassLoader())
+				return true;
+		}
+		return false;
+	}
+
+	public void setExternalClassLoader(final ClassLoader classLoader) {
+		if (classLoader == null)
+			throw new IllegalArgumentException();
+
+		for (final TypeSystemEntry tse : typeSystemEntries) {
+			if (tse.needsExternalClassLoader()) {
+				tse.setExternalClassLoader(classLoader);
+			}
+		}
 	}
 
 	public StaticType staticTypeForName(final String name, final File file) {
@@ -126,4 +145,5 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 			needsSorting = false;
 		}
 	}
+
 }

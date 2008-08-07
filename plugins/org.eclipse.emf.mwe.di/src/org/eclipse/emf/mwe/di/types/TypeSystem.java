@@ -13,5 +13,9 @@ import org.eclipse.emf.mwe.File;
 
 public interface TypeSystem {
 
-	public Type typeForName(String name, File file);
+	Type typeForName(String name, File file);
+
+	boolean needsExternalClassLoader();
+
+	void setExternalClassLoader(ClassLoader classLoader);
 }

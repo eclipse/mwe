@@ -15,7 +15,7 @@ import org.eclipse.emf.mwe.di.types.Type;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class DummyTypeSystem extends StaticTypeSystem {
@@ -31,4 +31,13 @@ public class DummyTypeSystem extends StaticTypeSystem {
 
 		return null;
 	}
+
+	public boolean needsExternalClassLoader() {
+		return false;
+	}
+
+	public void setExternalClassLoader(final ClassLoader classLoader) {
+		throw new UnsupportedOperationException();
+	}
+
 }

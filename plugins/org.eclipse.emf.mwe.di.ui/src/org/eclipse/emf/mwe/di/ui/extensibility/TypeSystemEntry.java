@@ -19,7 +19,7 @@ import org.eclipse.emf.mwe.di.types.Type;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class TypeSystemEntry implements Comparable<TypeSystemEntry> {
@@ -82,6 +82,14 @@ public class TypeSystemEntry implements Comparable<TypeSystemEntry> {
 
 	public boolean isDominant() {
 		return dominant;
+	}
+
+	public boolean needsExternalClassLoader() {
+		return typeSystem.needsExternalClassLoader();
+	}
+
+	public void setExternalClassLoader(final ClassLoader classLoader) {
+		typeSystem.setExternalClassLoader(classLoader);
 	}
 
 	public Type typeForName(final String name, final File file) {
