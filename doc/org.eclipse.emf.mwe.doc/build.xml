@@ -3,10 +3,10 @@
   
   <property file="${buildDirectory}/finalPluginsVersions.properties"/>
   <!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
-  <property name="pluginVersion" value="${org.eclipse.xpand.doc}"/>
+  <property name="pluginVersion" value="${org.eclipse.emf.mwe.doc}"/>
   
-  <property name="plugin" value="org.eclipse.xpand"/>
-  <property name="docPlugin" value="org.eclipse.xpand.doc"/>
+  <property name="plugin" value="org.eclipse.emf.mwe"/>
+  <property name="docPlugin" value="org.eclipse.emf.mwe.doc"/>
   <property name="filesToInclude"
     value="META-INF/**,images/**,tasks/**,gettingStarted/**,references/**,tutorials/**,notices.html,about.*,eclipse*.gif,ModelingFeature*.png,eclipse_lg.gif,plugin.*,book.css,toc*.xml,topics_*.xml,index/**"/>
   
