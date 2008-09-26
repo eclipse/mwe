@@ -4,89 +4,35 @@
 <!-- Generated with Xtext -->
 
 <plugin>
-   <extension
+	<extension
          point="org.eclipse.ui.editors">
       <editor
-            class="org.eclipse.xtext.ui.service.utils.XtextServiceExtensionFactory:org.eclipse.xtext.ui.editor.BaseTextEditor/org.eclipse.emf.mwe.di.MWE"
+            class="org.eclipse.xtext.ui.core.editor.XtextEditor"
             contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
             default="true"
             extensions="xtext,mwe"
-            icon="icons/editor.gif"
-            id="org.eclipse.emf.mwe.di.ui_gen.ui.editor.MWEXtextEditor"
+            id="org.eclipse.emf.mwe.di.MWE"
             name="MWE Editor">
       </editor>
    </extension>
-   <extension
-         point="org.eclipse.xtext.service.ui.scope">
-      <serviceScope
-            id="org.eclipse.emf.mwe.di.MWE"
-            parentScope="org.eclipse.xtext.builtin.XtextBuiltin">
-      </serviceScope>
-   </extension>
+ <extension
+       point="org.eclipse.xtext.service.ui.serviceRegistrationFactory">
+    <serviceRegistrationFactory
+          class="org.eclipse.emf.mwe.di.MWEUiConfig"/>
+    <serviceRegistrationFactory
+          class="org.eclipse.emf.mwe.di.MWERuntimeConfig"/>
+ </extension>
 	<extension
-         point="org.eclipse.ui.preferencePages">
-		<page
-			class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage/org.eclipse.emf.mwe.di.MWE"
-			id="org.eclipse.emf.mwe.di.MWE"
-			name="MWE">
-			<keywordReference
-				id="org.eclipse.emf.mwe.di.ui_gen.ui.keyword_MWE">
-			</keywordReference>
-		</page>
-		<page
-		    category="org.eclipse.emf.mwe.di.MWE"
-		    class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.EditorPreferencePage/org.eclipse.emf.mwe.di.MWE"
-		    id="org.eclipse.emf.mwe.di.MWE.editor"
-		    name="Editor">
-		    	<keywordReference 
-           			id="org.eclipse.xtext.keyword.editor">
-     			</keywordReference>
-		</page>
-		<page
-		    category="org.eclipse.emf.mwe.di.MWE.editor"
-		    class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.SyntaxColoringPreferencePage/org.eclipse.emf.mwe.di.MWE"
-		    id="org.eclipse.emf.mwe.di.MWE.editor.syntaxcoloring"
-		    name="Syntax Coloring">
-		    <keywordReference
-           		id="org.eclipse.xtext.keyword.syntax_coloring">
-			</keywordReference>
-		</page>
-      </extension>
-		<extension
-			point="org.eclipse.ui.keywords">
-			<keyword
-				id="org.eclipse.emf.mwe.di.ui_gen.ui.keyword_MWE"
-				label="MWE">
-			</keyword>
-		</extension>
-   
-   <extension
-         point="org.eclipse.ui.editors.templates">
-      <contextType
-            class="org.eclipse.jface.text.templates.TemplateContextType"
-            id="org.eclipse.emf.mwe.di.MWE.rootContext"
-            name="MWE">
-      </contextType>
-      <template
-            autoinsert="false"
-            contextTypeId="org.eclipse.emf.mwe.di.MWE.rootContext"
-            description="MWE minimal file"
-            id="org.eclipse.emf.mwe.di.MWE.template.minimalFile"
-            name="file">
-         <pattern>the text which will be inserted here should be derived from the grammar
-         </pattern>
-      </template>
-   </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            category="org.eclipse.emf.mwe.di.MWE.editor"
-            class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.XtextTemplatePreferencePage/org.eclipse.emf.mwe.di.MWE"
-            id="org.eclipse.emf.mwe.di.MWE.editor.templates"
-            name="Templates">
-      </page>
-   </extension>
-
+		point="org.eclipse.ui.keywords">
+		<keyword
+			id="org.eclipse.emf.mwe.di.ui_gen.ui.keyword_MWE"
+			label="MWE">
+		</keyword>
+		<keyword
+            id="org.eclipse.emf.mwe.di.MWE.tasktags"
+            label="Task Tags">
+        </keyword>
+	</extension>
    <extension
          point="org.eclipse.emf.ecore.extension_parser">
       <parser
@@ -101,48 +47,4 @@
             type="mwe">
       </parser>
    </extension>
-   
-   <extension
-         point="org.eclipse.xtext.ui.grammarAccess">
-      <grammarAccess
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.services.MWEGrammarAccess">
-      </grammarAccess>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.ui.metamodelAccess">
-      <metamodelAccess
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.services.MWEMetamodelAccess">
-      </metamodelAccess>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.ui.aSTFactory">
-      <aSTFactory
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.xtext.parser.GenericEcoreElementFactory">
-      </aSTFactory>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.ui.parser">
-      <parser
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.parser.MWEParser">
-      </parser>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.ui.resourceFactory">
-      <resourceFactory
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.services.MWEResourceFactory">
-      </resourceFactory>
-   </extension>
-   <extension
-         point="org.eclipse.xtext.ui.parseTreeConstructor">
-      <parseTreeConstructor
-            languageId="org.eclipse.emf.mwe.di.MWE"
-            class="org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor">
-      </parseTreeConstructor>
-   </extension>
-   
 </plugin>

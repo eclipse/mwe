@@ -25,92 +25,92 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	
 	
 	public ParserRule pr_File() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.0"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.0"),true); 
 	}
 
 	public ParserRule pr_Import() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.1"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.1"),true); 
 	}
 
 	public ParserRule pr_JavaImport() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.2"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.2"),true); 
 	}
 
 	public ParserRule pr_GenericImport() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.3"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.3"),true); 
 	}
 
 	public ParserRule pr_Property() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.4"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.4"),true); 
 	}
 
 	public ParserRule pr_LocalVariable() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.5"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.5"),true); 
 	}
 
 	public ParserRule pr_PropertiesFileImport() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.6"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.6"),true); 
 	}
 
 	public ParserRule pr_Value() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.7"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.7"),true); 
 	}
 
 	public ParserRule pr_SimpleValue() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.8"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.8"),true); 
 	}
 
 	public ParserRule pr_Assignable() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.9"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.9"),true); 
 	}
 
 	public ParserRule pr_ComplexValue() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.10"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.10"),true); 
 	}
 
 	public ParserRule pr_WorkflowRef() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.11"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.11"),true); 
 	}
 
 	public ParserRule pr_IdRef() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.12"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.12"),true); 
 	}
 
 	public ParserRule pr_Assignment() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.13"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.13"),true); 
 	}
 
 	public ParserRule pr_QualifiedName() {
-		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@parserRules.14"),true); 
+		return (ParserRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.14"),true); 
 	}
 
 	
 	public LexerRule lr_ID() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.0"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"),true); 
 	}
 
 	public LexerRule lr_INT() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.1"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.1"),true); 
 	}
 
 	public LexerRule lr_STRING() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.2"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"),true); 
 	}
 
 	public LexerRule lr_ML_COMMENT() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.3"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.3"),true); 
 	}
 
 	public LexerRule lr_SL_COMMENT() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.4"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.4"),true); 
 	}
 
 	public LexerRule lr_WS() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.5"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.5"),true); 
 	}
 
 	public LexerRule lr_ANY_OTHER() {
-		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@lexerRules.6"),true); 
+		return (LexerRule) getGrammar().eResource().getResourceSet().getEObject(URI.createURI("classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.6"),true); 
 	}
 
    

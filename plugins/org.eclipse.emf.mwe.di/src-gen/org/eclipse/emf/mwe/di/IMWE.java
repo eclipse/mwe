@@ -3,6 +3,9 @@ Generated with Xtext
 */
 package org.eclipse.emf.mwe.di;
 
+import org.eclipse.xtext.service.IServiceScope;
+import org.eclipse.xtext.service.ServiceScopeFactory;
+
 public interface IMWE {
 
 	/**
@@ -15,5 +18,6 @@ public interface IMWE {
 	public static final String NAME = "MWE";
 	public static final String NAMESPACE = "org.eclipse.emf.mwe.di";
 	public static final String[] FILE_EXTENSIONS = new String[]{"xtext","mwe"};
+	public static final IServiceScope SCOPE = ServiceScopeFactory.createScope(ID, org.eclipse.xtext.builtin.IXtextBuiltin.SCOPE);
 	
 }

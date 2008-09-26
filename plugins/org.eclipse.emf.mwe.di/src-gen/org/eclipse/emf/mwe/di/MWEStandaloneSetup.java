@@ -4,25 +4,12 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di;
 
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.xtext.builtin.XtextBuiltinStandaloneSetup;
-import org.eclipse.xtext.service.IServiceScope;
-import org.eclipse.xtext.service.ServiceScopeFactory;
-import org.eclipse.xtext.service.ServiceRegistry;
-import org.eclipse.xtext.IGrammarAccess;
-import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
-import org.eclipse.xtext.IMetamodelAccess;
-import org.eclipse.emf.mwe.di.services.MWEMetamodelAccess;
-import org.eclipse.xtext.parser.IAstFactory;
-import org.eclipse.xtext.parser.GenericEcoreElementFactory;
-import org.eclipse.xtext.parser.IParser;
-import org.eclipse.emf.mwe.di.parser.MWEParser;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.resource.IResourceFactory;
-import org.eclipse.emf.mwe.di.services.MWEResourceFactory;
-import org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor;
-import org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor;
+import org.eclipse.xtext.service.IServiceScope;
+import org.eclipse.xtext.service.ServiceRegistry;
+import org.eclipse.xtext.service.IServiceRegistrationFactory.IServiceRegistration;
 
 import org.eclipse.emf.mwe.di.IMWE;
 
@@ -32,22 +19,15 @@ public abstract class MWEStandaloneSetup {
 
 	public synchronized static void doSetup() {
 		if(!isInitialized) {
-			
 			// setup super language first
 			org.eclipse.xtext.builtin.XtextBuiltinStandaloneSetup.doSetup();
 			
-			IServiceScope scope = ServiceScopeFactory.createScope(
-					IMWE.ID, 
-					ServiceScopeFactory.get("org.eclipse.xtext.builtin.XtextBuiltin"));
-			ServiceRegistry.registerService(scope, IGrammarAccess.class, MWEGrammarAccess.class);
-			ServiceRegistry.registerService(scope, IMetamodelAccess.class, MWEMetamodelAccess.class);
-			ServiceRegistry.registerService(scope, IAstFactory.class, GenericEcoreElementFactory.class);
-			ServiceRegistry.registerService(scope, IParser.class, MWEParser.class);
-			ServiceRegistry.registerService(scope, IResourceFactory.class, MWEResourceFactory.class);
-			ServiceRegistry.registerService(scope, IParseTreeConstructor.class, MWEParseTreeConstructor.class);
+			for (IServiceRegistration reg :  new org.eclipse.emf.mwe.di.MWERuntimeConfig().registrations()) {
+				ServiceRegistry.registerFactory(reg.scope(), reg.serviceFactory(), reg.priority());
+			}
 			
 			// register resource factory to EMF
-			IResourceFactory resourceFactory = new MWEResourceFactory();
+			IResourceFactory resourceFactory = new org.eclipse.emf.mwe.di.services.MWEResourceFactory();
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xtext", resourceFactory);
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("mwe", resourceFactory);
 			
@@ -68,11 +48,7 @@ public abstract class MWEStandaloneSetup {
 		}
 	}
 	
-	public static synchronized IServiceScope getServiceScope() {
-		if(!isInitialized) {
-			doSetup();
-		}
-		return ServiceScopeFactory.get(IMWE.ID);
+	public static IServiceScope getServiceScope() {
+		return org.eclipse.emf.mwe.di.IMWE.SCOPE;
 	}
-			
 }
