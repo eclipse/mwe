@@ -1,3 +1,6 @@
+/*
+Generated with Xtext
+*/
 package org.eclipse.emf.mwe.di;
 
 import java.util.Set;

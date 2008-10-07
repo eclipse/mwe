@@ -22,6 +22,26 @@
     <serviceRegistrationFactory
           class="org.eclipse.emf.mwe.di.MWERuntimeConfig"/>
  </extension>
+ <extension
+         point="org.eclipse.ui.preferencePages">
+		<page
+			class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.preferences.LanguageRootPreferencePage/org.eclipse.emf.mwe.di.MWE"
+			id="org.eclipse.emf.mwe.di.MWE"
+			name="MWE">
+			<keywordReference
+				id="org.eclipse.emf.mwe.di.ui_gen.ui.keyword_MWE">
+			</keywordReference>
+		</page>
+		<page
+		    category="org.eclipse.emf.mwe.di.MWE"
+		    class="org.eclipse.xtext.service.ui.ServiceInjectingExecutableExtensionFactory:org.eclipse.xtext.ui.core.editor.preferences.EditorPreferencePage/org.eclipse.emf.mwe.di.MWE"
+		    id="org.eclipse.emf.mwe.di.MWE.editor"
+		    name="Editor">
+		    	<keywordReference 
+           			id="org.eclipse.xtext.keyword.editor">
+     			</keywordReference>
+		</page>
+      </extension>
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
