@@ -18,6 +18,7 @@ public class MWERuntimeConfig extends AbstractServiceRegistrationFactory {
 		.with(org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider.class, org.eclipse.emf.mwe.di.parser.MWEAntlrTokenFileProvider.class)
 		.with(org.eclipse.xtext.resource.IResourceFactory.class, org.eclipse.emf.mwe.di.services.MWEResourceFactory.class)
 		.with(org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructor.class, org.eclipse.emf.mwe.di.parsetree.reconstr.MWEParseTreeConstructor.class)
+		.with(org.eclipse.xtext.parsetree.reconstr.IParseTreeConstructorCallback.class, org.eclipse.xtext.parsetree.reconstr.callbacks.WhitespacePreservingCallback.class)
 		.with(org.eclipse.xtext.parser.antlr.Lexer.class, org.eclipse.emf.mwe.di.parser.internal.InternalMWELexer.class)
 		
 			.registrations();
