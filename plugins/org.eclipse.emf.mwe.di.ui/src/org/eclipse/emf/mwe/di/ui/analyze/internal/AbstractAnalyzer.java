@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe.util.MweSwitch;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public abstract class AbstractAnalyzer<T> extends MweSwitch<T> {
@@ -35,7 +35,7 @@ public abstract class AbstractAnalyzer<T> extends MweSwitch<T> {
 		this.diagnostics = diagnostics;
 		this.context = context;
 	}
-
+	
 	public abstract T validate(final EObject object);
 
 	protected void addError(final String message, final EObject context, final Throwable cause) {

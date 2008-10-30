@@ -8,6 +8,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.Assignment;
 import org.eclipse.emf.mwe.ComplexValue;
 import org.eclipse.emf.mwe.File;
@@ -15,7 +16,6 @@ import org.eclipse.emf.mwe.IdRef;
 import org.eclipse.emf.mwe.LocalVariable;
 import org.eclipse.emf.mwe.MweFactory;
 import org.eclipse.emf.mwe.PropertiesFileImport;
-import org.eclipse.emf.mwe.Property;
 import org.eclipse.emf.mwe.QualifiedName;
 import org.eclipse.emf.mwe.SimpleValue;
 import org.eclipse.emf.mwe.Value;
@@ -31,12 +31,17 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 	private final VariableRegistry variables = new VariableRegistry();
 	private final Set<String> references = new HashSet<String>();
 	private final InternalAnalyzer parentAnalyzer;
-	private File analyzedFile;
 
 	public InternalAnalyzer(final InternalAnalyzer parentAnalyzer, final DiagnosticChain diagnostics,
 			final Map<Object, Object> context) {
 		super(diagnostics, context);
 		this.parentAnalyzer = parentAnalyzer;
+	}
+	
+	@Override
+	public Object doSwitch(EObject theEObject) {
+		// TODO Auto-generated method stub
+		return super.doSwitch(theEObject);
 	}
 
 	/**
@@ -50,7 +55,7 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		if (value != null && parent instanceof ComplexValue) {
 			final ComplexValue p = (ComplexValue) parent;
 			final String typeName = MweUtil.toString(p.getClassName());
-			final StaticType type = registry.staticTypeForName(typeName, analyzedFile);
+			final StaticType type = registry.staticTypeForName(typeName, getFile(object));
 			if (isTopAnalyzer()) {
 				analyzeReferences(object, value, p, type);
 			}
@@ -59,13 +64,17 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 		return super.caseAssignment(object);
 	}
 
+	private File getFile(EObject object) {
+		return (File) EcoreUtil.getRootContainer(object);
+	}
+
 	@Override
 	public Object caseComplexValue(final ComplexValue object) {
 		final StaticTypeSystemRegistry registry = StaticTypeSystemRegistry.getInstance();
 		final QualifiedName className = object.getClassName();
 		if (className != null) {
 			final String typeName = MweUtil.toString(className);
-			final StaticType type = registry.staticTypeForName(typeName, analyzedFile);
+			final StaticType type = registry.staticTypeForName(typeName, getFile(object));
 			if (type != null) {
 				final String id = object.getId();
 				if (id != null) {
@@ -88,25 +97,6 @@ public class InternalAnalyzer extends AbstractAnalyzer<Object> {
 			}
 		}
 		return super.caseComplexValue(object);
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.util.MweSwitch#caseFile(org.eclipse.emf.mwe.File)
-	 */
-	@Override
-	public Object caseFile(final File object) {
-		analyzedFile = object;
-		for (final Property p : object.getProperties()) {
-			doSwitch(p);
-		}
-
-		final ComplexValue value = object.getValue();
-		doSwitch(value);
-		if (isTopAnalyzer()) {
-			checkForUnreferencedVariables(object);
-		}
-
-		return super.caseFile(object);
 	}
 
 	@Override

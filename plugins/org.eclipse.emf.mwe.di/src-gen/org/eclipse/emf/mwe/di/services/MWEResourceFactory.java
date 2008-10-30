@@ -13,7 +13,7 @@ import org.eclipse.xtext.service.ServiceScopeFactory;
 public class MWEResourceFactory implements IResourceFactory {
 
 	public String[] getModelFileExtensions() {
-		return new String[] { "xtext", "mwe" };
+		return new String[] { "mwe" };
 	}
 	
 	 /* (non-Javadoc)

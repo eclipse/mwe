@@ -17,7 +17,7 @@ public interface IMWE {
 	public static final String ID = "org.eclipse.emf.mwe.di.MWE";
 	public static final String NAME = "MWE";
 	public static final String NAMESPACE = "org.eclipse.emf.mwe.di";
-	public static final String[] FILE_EXTENSIONS = new String[]{"xtext","mwe"};
+	public static final String[] FILE_EXTENSIONS = new String[]{"mwe"};
 	public static final IServiceScope SCOPE = ServiceScopeFactory.createScope(ID, org.eclipse.xtext.builtin.IXtextBuiltin.SCOPE);
 	
 }

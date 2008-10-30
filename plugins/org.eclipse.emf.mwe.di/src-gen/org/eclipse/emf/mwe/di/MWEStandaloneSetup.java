@@ -28,7 +28,6 @@ public abstract class MWEStandaloneSetup {
 			
 			// register resource factory to EMF
 			IResourceFactory resourceFactory = new org.eclipse.emf.mwe.di.services.MWEResourceFactory();
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xtext", resourceFactory);
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("mwe", resourceFactory);
 			
 			

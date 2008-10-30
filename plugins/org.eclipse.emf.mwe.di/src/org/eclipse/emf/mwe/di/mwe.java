@@ -18,13 +18,13 @@ import org.eclipse.xtext.resource.XtextResourceSet;
  * @author Peter Friese
  */
 public class mwe {
-    private static final String PATH = "./src-gen";
-    private static final String UI_PATH = "../org.eclipse.emf.mwe.di.ui_gen";
+    private static final String RUNTIME_PATH = ".";
+    private static final String UI_PATH = "../org.eclipse.emf.mwe.di.ui";
 
     public void generate() throws IOException {
         XtextStandaloneSetup.doSetup();
 
-        GeneratorFacade.cleanFolder(PATH);
+        GeneratorFacade.cleanFolder(RUNTIME_PATH+"/src-gen");
 
         String classpathUri = "classpath:/"+getClass().getName().replace('.', '/') + ".xtext";
         System.out.println("loading " + classpathUri);
@@ -33,7 +33,7 @@ public class mwe {
         resource.load(null);
         Grammar grammarModel = (Grammar) resource.getContents().get(0);
 
-        GeneratorFacade.generate(grammarModel, PATH, UI_PATH, "xtext", "mwe");
+        GeneratorFacade.generate(grammarModel, RUNTIME_PATH,UI_PATH, "mwe");
         System.out.println("Done.");
     }
 
