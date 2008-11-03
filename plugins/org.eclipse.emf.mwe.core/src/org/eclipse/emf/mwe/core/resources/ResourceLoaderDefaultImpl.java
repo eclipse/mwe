@@ -9,13 +9,12 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.emf.mwe.internal.core.resources;
+package org.eclipse.emf.mwe.core.resources;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 
 public class ResourceLoaderDefaultImpl implements ResourceLoader {

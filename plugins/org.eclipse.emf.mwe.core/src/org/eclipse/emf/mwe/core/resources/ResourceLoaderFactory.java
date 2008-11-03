@@ -11,13 +11,12 @@
 
 package org.eclipse.emf.mwe.core.resources;
 
-import org.eclipse.emf.mwe.internal.core.resources.ResourceLoaderDefaultImpl;
 
 /**
  * Factory for
  * {@link org.eclipse.emf.mwe.core.resources.ResourceLoader ResourceLoaders}.
  * By default this factory creates instances of
- * {@link org.eclipse.emf.mwe.internal.core.resources.ResourceLoaderDefaultImpl ResourceLoaderDefaultImpl}.
+ * {@link org.eclipse.emf.mwe.core.resources.ResourceLoaderDefaultImpl ResourceLoaderDefaultImpl}.
  * <p>
  * The factory evaluates the <tt>org.eclipse.emf.mwe.core.resources.ResourceLoader</tt>
  * system property to get the <tt>ResourceLoader</tt> implementation class
@@ -34,6 +33,10 @@ public class ResourceLoaderFactory {
     public static void setCurrentThreadResourceLoader(final ResourceLoader rl) {
         current.set(rl);
     }
+    
+    public static ResourceLoader getCurrentThreadResourceLoader() {
+		return current.get();
+	}
 
     private static void initResourceLoaderClass() {
         final String name = System.getProperty(PARAM_RESOURCELOADER_CLASS, ResourceLoaderDefaultImpl.class.getName());

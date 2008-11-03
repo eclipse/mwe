@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.internal.core.resources;
+package org.eclipse.emf.mwe.core.resources;
 
 import java.net.URL;
 
