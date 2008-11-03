@@ -16,7 +16,7 @@ import java.net.URLClassLoader;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.mwe.internal.core.resources.ResourceLoaderDefaultImpl;
+import org.eclipse.emf.mwe.core.resources.ResourceLoaderDefaultImpl;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
