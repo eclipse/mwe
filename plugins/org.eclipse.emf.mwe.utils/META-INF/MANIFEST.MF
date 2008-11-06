@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName (Incubation)
+Bundle-Name: %pluginName
+Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.emf.mwe.utils
 Bundle-Version: 0.7.0.qualifier
 Require-Bundle: org.eclipse.emf.mwe.core,

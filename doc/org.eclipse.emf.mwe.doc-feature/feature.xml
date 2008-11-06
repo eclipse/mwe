@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="org.eclipse.emf.mwe.doc"
-      label="%featureName (Incubation)"
+      label="%featureName"
       version="0.7.0.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
    <description>
-      %description (Incubation)
+      %description
    </description>
 
    <copyright url="http://www.eclipse.org/legal/epl-v10.html">
