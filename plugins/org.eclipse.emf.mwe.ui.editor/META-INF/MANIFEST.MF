@@ -1,8 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Modelling Workflow Engine Editor Plug-in
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.mwe.ui.editor;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.7.0.qualifier
 Require-Bundle: org.eclipse.core.resources,
  org.eclipse.core.runtime,
  org.eclipse.emf.mwe.core,
@@ -40,3 +41,4 @@ Export-Package: org.eclipse.emf.mwe.ui.internal.editor;x-friends:="org.eclipse.e
  org.eclipse.emf.mwe.ui.internal.editor.rules;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.scanners;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.utils;x-friends:="org.eclipse.emf.mwe.ui.editor.tests"
+Bundle-Vendor: %providerName
