@@ -1,13 +1,14 @@
 package org.eclipse.emf.mwe.tests;
 
 import org.eclipse.emf.mwe.core.WorkflowComponent;
+import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 
 import junit.framework.TestCase;
 
 public class IssuesTest extends TestCase {
 
-	private IssuesImpl issues;
+	private Issues issues;
 
 	@Override
 	protected void setUp() throws Exception {

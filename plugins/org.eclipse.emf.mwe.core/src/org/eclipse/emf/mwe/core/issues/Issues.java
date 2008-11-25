@@ -22,8 +22,8 @@ import org.eclipse.emf.mwe.core.WorkflowComponent;
 public interface Issues {
 
 	/**
-	 * Adds a {@link MWEDiagnostic}. Only {@link MWEDiagnostic} with a severity of
-	 * {@link MWEDiagnostic#INFO}, {@link MWEDiagnostic#WARNING} and
+	 * Adds a {@link MWEDiagnostic}. Only {@link MWEDiagnostic} with a severity
+	 * of {@link MWEDiagnostic#INFO}, {@link MWEDiagnostic#WARNING} and
 	 * {@link MWEDiagnostic#ERROR} are allowed
 	 * 
 	 * @param issue
@@ -53,7 +53,18 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addInfo(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
-	
+
+	/**
+	 * @param ctx
+	 * @param msg
+	 * @param element
+	 * @param featureName
+	 * @param t
+	 * @param additionalData
+	 */
+	public void addInfo(final WorkflowComponent ctx, final String msg, final Object element, final String featureName,
+			final Throwable t, final List<Object> additionalData);
+
 	/**
 	 * Adds an info message
 	 * 
@@ -104,7 +115,18 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addWarning(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
-	
+
+	/**
+	 * @param ctx
+	 * @param msg
+	 * @param obj
+	 * @param feature
+	 * @param t
+	 * @param additionalData
+	 */
+	public void addWarning(WorkflowComponent ctx, String msg, Object obj, String featureName, Throwable t,
+			List<Object> additionalData);
+
 	/**
 	 * Adds an warn message
 	 * 
@@ -155,7 +177,20 @@ public interface Issues {
 	 *            Message text.
 	 */
 	public void addError(WorkflowComponent ctx, String msg, Object obj, Throwable t, List<Object> additionalData);
-	
+
+	/**
+	 * Adds an error message.
+	 * 
+	 * @param ctx
+	 * @param msg
+	 * @param obj
+	 * @param feature
+	 * @param t
+	 * @param additionalData
+	 */
+	public void addError(WorkflowComponent ctx, String msg, Object obj, String featureName, Throwable t,
+			List<Object> additionalData);
+
 	/**
 	 * Adds an error message
 	 * 
@@ -187,7 +222,7 @@ public interface Issues {
 	 * removes all warnings and errors
 	 */
 	public void clear();
-	
+
 	/**
 	 * @return all {@link MWEDiagnostic}s reported here
 	 */

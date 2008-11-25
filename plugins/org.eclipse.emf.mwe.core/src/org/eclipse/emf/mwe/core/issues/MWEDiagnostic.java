@@ -29,24 +29,35 @@ public class MWEDiagnostic extends BasicDiagnostic {
 	private final Object element;
 	private final WorkflowComponent ctx;
 
-	public MWEDiagnostic(final int severity, final String msg,
-			final Object element, final Throwable t,
-			final List<Object> additionalData, final WorkflowComponent ctx) {
-		super(severity, ID, Diagnostic.OK, msg, setup(element, t,
-				additionalData, ctx));
+	private Throwable throwable;
+
+	private String feature;
+
+	public MWEDiagnostic(final int severity, final String msg, final Object element, final String feature,
+			final Throwable t, final List<Object> additionalData, final WorkflowComponent ctx) {
+		super(severity, ID, Diagnostic.OK, msg, setup(element, feature, additionalData, ctx));
+		this.throwable = t;
 		this.element = element;
+		this.feature = feature;
 		this.ctx = ctx;
 	}
 
-	private static Object[] setup(final Object element, final Throwable t,
-			final List<Object> additionalData, final WorkflowComponent ctx) {
+	@Override
+	public Throwable getException() {
+		if (this.throwable == null)
+			return super.getException();
+		return this.throwable;
+	}
+
+	private static Object[] setup(final Object element, String feature, final List<Object> additionalData,
+			final WorkflowComponent ctx) {
 		List<Object> data = new ArrayList<Object>();
-		if (element != null) {
-			data.add(element);
-		}
-		if (t != null) {
-			data.add(t);
-		}
+		// adding information to data, see Diagnostic.getData() java doc
+		data.add(0, element);
+		// we reserve the slot with index 1 even if feature==null, because
+		// adding ctx or additionalData in the following steps
+		// may cause conflicts or unexpected behavior
+		data.add(1, feature);
 		if (ctx != null) {
 			data.add(ctx);
 		}
@@ -69,17 +80,17 @@ public class MWEDiagnostic extends BasicDiagnostic {
 		StringBuilder buff = new StringBuilder();
 		buff.append("[");
 		switch (severity) {
-		case WARNING: {
-			buff.append("WARNING");
-			break;
-		}
-		case ERROR: {
-			buff.append("ERROR");
-			break;
-		}
-		default:
-			buff.append("INFO");
-			break;
+			case WARNING: {
+				buff.append("WARNING");
+				break;
+			}
+			case ERROR: {
+				buff.append("ERROR");
+				break;
+			}
+			default:
+				buff.append("INFO");
+				break;
 		}
 		buff.append("]");
 		if (getMessage() != null) {
@@ -88,13 +99,18 @@ public class MWEDiagnostic extends BasicDiagnostic {
 		buff.append("(Element: ");
 		if (getElement() != null) {
 			buff.append(getElementStringRep());
-		} else {
+			if (feature != null) {
+				buff.append(" Feature: " + feature);
+			}
+		}
+		else {
 			buff.append("-UNKNOWN-");
 		}
 		buff.append("; Reported by: ");
 		if (getContext() != null) {
 			buff.append(ComponentPrinter.getString(getContext()));
-		} else {
+		}
+		else {
 			buff.append("-UNKNOWN-");
 		}
 		buff.append(")");

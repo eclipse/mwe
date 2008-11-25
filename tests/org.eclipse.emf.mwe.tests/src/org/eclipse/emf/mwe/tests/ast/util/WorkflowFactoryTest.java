@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.apache.tools.ant.filters.StringInputStream;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
+import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 
@@ -48,7 +49,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         final Workflow cont = parseWorkflow(new StringInputStream(simpleWorkflow1), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
-        final IssuesImpl issues = new IssuesImpl();
+        final Issues issues = new IssuesImpl();
         cont.checkConfiguration(issues);
         cont.invoke(null, null, null);
         final Component comp = (Component) cont.getComponents().get(0);
@@ -81,7 +82,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         final Workflow cont = parseWorkflow(new StringInputStream(conditional), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
-        final IssuesImpl issues = new IssuesImpl();
+        final Issues issues = new IssuesImpl();
         cont.checkConfiguration(issues);
         cont.invoke(null, null, null);
         final Component comp = (Component) ((CompositeComponent) cont.getComponents().get(0)).getComponents().get(0);
@@ -93,7 +94,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         final Workflow cont = parseWorkflow(new StringInputStream(conditional), Collections.singletonMap("prop", "false"));
         assertNoIssues();
         assertNotNull(cont);
-        final IssuesImpl issues = new IssuesImpl();
+        final Issues issues = new IssuesImpl();
         cont.checkConfiguration(issues);
         cont.invoke(null, null, null);
         final Component comp = (Component) ((CompositeComponent) cont.getComponents().get(0)).getComponents().get(0);

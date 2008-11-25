@@ -15,12 +15,13 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import org.apache.tools.ant.filters.StringInputStream;
+import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 
 public abstract class AbstractWorkflowParsingTestBase extends TestCase {
-    protected IssuesImpl issues;
+    protected Issues issues;
 
     @Override
     protected void setUp() throws Exception {

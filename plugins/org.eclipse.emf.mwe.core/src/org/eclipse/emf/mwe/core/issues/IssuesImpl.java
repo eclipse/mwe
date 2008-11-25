@@ -21,12 +21,17 @@ public class IssuesImpl implements Issues {
 	private final List<MWEDiagnostic> issues = new ArrayList<MWEDiagnostic>();
 
 	public void add(final MWEDiagnostic issue) {
-			issues.add(issue);
+		issues.add(issue);
 	}
 
-	public void addError(final WorkflowComponent ctx, final String msg,
-			final Object element, final Throwable t, final List<Object> additionalData) {
-		add(createError(ctx, msg, element, t, additionalData));
+	public void addError(WorkflowComponent ctx, String msg, Object obj, String feature, Throwable t,
+			List<Object> additionalData) {
+		add(createError(ctx, msg, obj, feature, t, additionalData));
+	}
+
+	public void addError(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
+			final List<Object> additionalData) {
+		addError(ctx, msg, element, null, t, additionalData);
 	}
 
 	public void addError(final WorkflowComponent ctx, final String msg) {
@@ -40,13 +45,13 @@ public class IssuesImpl implements Issues {
 	public void addError(final String msg) {
 		addError(msg, (Object) null);
 	}
-	
+
 	public void addError(WorkflowComponent compnent, String msg, Object obj) {
-		addError(compnent,msg, obj, null, Collections.emptyList());
+		addError(compnent, msg, obj, null, Collections.emptyList());
 	}
 
 	public boolean hasErrors() {
-		return getErrors().length!=0;
+		return getErrors().length != 0;
 	}
 
 	public MWEDiagnostic[] getErrors() {
@@ -61,17 +66,22 @@ public class IssuesImpl implements Issues {
 		addWarning(null, msg, element, null, Collections.emptyList());
 	}
 
-	public void addWarning(final WorkflowComponent ctx, final String msg,
-			final Object element, final Throwable t, final List<Object> additionalData) {
-		add(createWarning(ctx, msg, element, t, additionalData));
+	public void addWarning(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
+			final List<Object> additionalData) {
+		addWarning(ctx, msg, element, null, t, additionalData);
+	}
+
+	public void addWarning(final WorkflowComponent ctx, final String msg, final Object element, final String feature,
+			final Throwable t, final List<Object> additionalData) {
+		add(createWarning(ctx, msg, element, feature, t, additionalData));
 	}
 
 	public void addWarning(final String msg) {
 		addWarning(msg, null);
 	}
-	
+
 	public void addWarning(WorkflowComponent compnent, String msg, Object obj) {
-		addWarning(compnent,msg, obj, null, Collections.emptyList());
+		addWarning(compnent, msg, obj, null, Collections.emptyList());
 	}
 
 	public MWEDiagnostic[] getWarnings() {
@@ -79,7 +89,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public boolean hasWarnings() {
-		return getWarnings().length!=0;
+		return getWarnings().length != 0;
 	}
 
 	public void addInfo(final WorkflowComponent ctx, final String msg) {
@@ -90,13 +100,18 @@ public class IssuesImpl implements Issues {
 		addInfo(null, msg, element, null, Collections.emptyList());
 	}
 
-	public void addInfo(final WorkflowComponent ctx, final String msg,
-			final Object element, final Throwable t, final List<Object> additionalData) {
-		add(createInfo(ctx, msg, element, t, additionalData));
+	public void addInfo(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
+			final List<Object> additionalData) {
+		addInfo(ctx, msg, element, null, t, additionalData);
 	}
-	
+
+	public void addInfo(final WorkflowComponent ctx, final String msg, final Object element, final String featureName,
+			final Throwable t, final List<Object> additionalData) {
+		add(createInfo(ctx, msg, element, featureName, t, additionalData));
+	}
+
 	public void addInfo(WorkflowComponent compnent, String msg, Object obj) {
-		addInfo(compnent,msg, obj, null, Collections.emptyList());
+		addInfo(compnent, msg, obj, null, Collections.emptyList());
 	}
 
 	public void addInfo(final String msg) {
@@ -108,7 +123,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public boolean hasInfos() {
-		return getInfos().length!=0;
+		return getInfos().length != 0;
 	}
 
 	@Override
@@ -133,46 +148,43 @@ public class IssuesImpl implements Issues {
 		issues.clear();
 	}
 
-	private static MWEDiagnostic createDiagnostic(final int severity,
-			final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
-			final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = new MWEDiagnostic(severity, msg, element, t,
-				additionalData, ctx);
+	private static MWEDiagnostic createDiagnostic(final int severity, final WorkflowComponent ctx, final String msg,
+			final Object element, final String feature, final Throwable t, final List<Object> additionalData) {
+		MWEDiagnostic diagnostic = new MWEDiagnostic(severity, msg, element, feature, t, additionalData, ctx);
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createInfo(final WorkflowComponent ctx, final String msg,
-			final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.INFO, ctx, msg,
-				element, t, additionalData);
+	static MWEDiagnostic createInfo(final WorkflowComponent ctx, final String msg, final Object element,
+			final String featureName, final Throwable t, final List<Object> additionalData) {
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.INFO, ctx, msg, element, featureName, t,
+				additionalData);
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createWarning(final WorkflowComponent ctx,
-			final String msg, final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.WARNING, ctx,
-				msg, element, t, additionalData);
+	private static MWEDiagnostic createWarning(final WorkflowComponent ctx, final String msg, final Object element,
+			String feature, final Throwable t, final List<Object> additionalData) {
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.WARNING, ctx, msg, element, feature, t,
+				additionalData);
 		;
 		return diagnostic;
 	}
 
-	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg,
-			final Object element, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.ERROR, ctx, msg,
-				element, t, additionalData);
+	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg, final Object element,
+			final String feature, final Throwable t, final List<Object> additionalData) {
+		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.ERROR, ctx, msg, element, feature, t, additionalData);
 		return diagnostic;
 	}
 
 	private MWEDiagnostic[] filterIssues(final int severity) {
-		List<MWEDiagnostic>result = new ArrayList<MWEDiagnostic>();
+		List<MWEDiagnostic> result = new ArrayList<MWEDiagnostic>();
 		for (MWEDiagnostic diagnostic : issues) {
-			if ( diagnostic.getSeverity()==severity){
+			if (diagnostic.getSeverity() == severity) {
 				result.add(diagnostic);
 			}
 		}
 		return result.toArray(new MWEDiagnostic[result.size()]);
 	}
-	
+
 	public MWEDiagnostic[] getIssues() {
 		return issues.toArray(new MWEDiagnostic[issues.size()]);
 	}
