@@ -16,6 +16,7 @@ import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 public class MWEParseTreeConstructor extends AbstractParseTreeConstructor {
 
 	public IAbstractToken serialize(EObject object) {
+		if(object == null) throw new IllegalArgumentException("The to-be-serialialized model is null");
 		Solution t = internalSerialize(object);
 		if(t == null) throw new XtextSerializationException(getDescr(object), "No rule found for serialization");
 		return t.getPredecessor();
@@ -117,7 +118,7 @@ protected class File_0_0_Assignment_imports extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("imports",required)) == null) return null;
+		if((value = current.getConsumable("imports",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("imports");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -145,7 +146,7 @@ protected class File_0_1_Assignment_properties extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("properties",required)) == null) return null;
+		if((value = current.getConsumable("properties",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("properties");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -174,7 +175,7 @@ protected class File_1_Assignment_value extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("value",required)) == null) return null;
+		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -375,7 +376,7 @@ protected class JavaImport_0_0_1_Assignment_javaImport extends AssignmentToken  
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("javaImport",required)) == null) return null;
+		if((value = current.getConsumable("javaImport",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("javaImport");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -444,7 +445,7 @@ protected class JavaImport_0_1_1_Assignment_wildcard extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("wildcard",required)) == null) return null;
+		if((value = current.getConsumable("wildcard",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("wildcard");
 		if("*".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
@@ -559,7 +560,7 @@ protected class GenericImport_0_1_Assignment_value extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("value",required)) == null) return null;
+		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -768,7 +769,7 @@ protected class LocalVariable_0_0_1_Assignment_name extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("name",required)) == null) return null;
+		if((value = current.getConsumable("name",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("name");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -832,7 +833,7 @@ protected class LocalVariable_0_1_1_Assignment_value extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("value",required)) == null) return null;
+		if((value = current.getConsumable("value",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -993,7 +994,7 @@ protected class PropertiesFileImport_0_1_Assignment_file extends AssignmentToken
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("file",required)) == null) return null;
+		if((value = current.getConsumable("file",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("file");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1186,7 +1187,7 @@ protected class SimpleValue_Assignment_value extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("value",required)) == null) return null;
+		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1397,7 +1398,7 @@ protected class ComplexValue_0_0_0_0_Assignment_className extends AssignmentToke
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("className",required)) == null) return null;
+		if((value = current.getConsumable("className",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("className");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -1465,7 +1466,7 @@ protected class ComplexValue_0_0_0_1_1_Assignment_id extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("id",required)) == null) return null;
+		if((value = current.getConsumable("id",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("id");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1490,7 +1491,7 @@ protected class ComplexValue_0_0_1_Assignment_fooBar extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("fooBar",required)) == null) return null;
+		if((value = current.getConsumable("fooBar",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("fooBar");
 		if("{".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
@@ -1514,7 +1515,7 @@ protected class ComplexValue_0_1_Assignment_assignments extends AssignmentToken 
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("assignments",required)) == null) return null;
+		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -1689,7 +1690,7 @@ protected class WorkflowRef_0_0_0_1_Assignment_uri extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("uri",required)) == null) return null;
+		if((value = current.getConsumable("uri",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("uri");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1726,7 +1727,7 @@ protected class WorkflowRef_0_1_Assignment_assignments extends AssignmentToken  
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("assignments",required)) == null) return null;
+		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -1777,7 +1778,7 @@ protected class IdRef_Assignment_id extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("id",required)) == null) return null;
+		if((value = current.getConsumable("id",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("id");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1893,7 +1894,7 @@ protected class Assignment_0_0_0_Assignment_feature extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("feature",required)) == null) return null;
+		if((value = current.getConsumable("feature",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("feature");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -1916,7 +1917,7 @@ protected class Assignment_0_0_1_Assignment_operator extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("operator",required)) == null) return null;
+		if((value = current.getConsumable("operator",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("operator");
 		if("=".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
@@ -1945,7 +1946,7 @@ protected class Assignment_0_1_Assignment_value extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("value",required)) == null) return null;
+		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
@@ -2024,7 +2025,7 @@ protected class QualifiedName_0_Assignment_parts extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("parts",required)) == null) return null;
+		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;
@@ -2075,7 +2076,7 @@ protected class QualifiedName_1_0_Assignment_parts extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("parts",required)) == null) return null;
+		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(".".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
@@ -2098,7 +2099,7 @@ protected class QualifiedName_1_1_Assignment_parts extends AssignmentToken  {
 	}
 	
 	protected Solution createSolution() {
-		if((value = current.getConsumable("parts",required)) == null) return null;
+		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(true) { // xtext::RuleCall FIXME: check if value is valid for lexer rule
 			type = AssignmentType.LRC;

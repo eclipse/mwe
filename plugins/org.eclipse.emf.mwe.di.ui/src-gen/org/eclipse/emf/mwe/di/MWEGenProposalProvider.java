@@ -11,6 +11,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
+import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.ui.common.editor.codecompletion.AbstractProposalProvider;
 import org.eclipse.xtext.ui.common.editor.codecompletion.IProposalProvider;
 
@@ -96,7 +97,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("\"GenericImportValue\"", offset));		
+		return Collections.singletonList(createCompletionProposal(assignment,model,"\"GenericImportValue\"", offset));		
 	}
 	
 	public List<? extends ICompletionProposal> completeLocalVariableName(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -105,7 +106,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("LocalVariableName", offset));
+		return Collections.singletonList(createCompletionProposal(assignment,model,"LocalVariableName", offset));
 	}
 	
 	public List<? extends ICompletionProposal> completeLocalVariableValue(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -123,7 +124,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("\"PropertiesFileImportFile\"", offset));		
+		return Collections.singletonList(createCompletionProposal(assignment,model,"\"PropertiesFileImportFile\"", offset));		
 	}
 	
 	public List<? extends ICompletionProposal> completeSimpleValueValue(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -132,7 +133,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("\"SimpleValueValue\"", offset));		
+		return Collections.singletonList(createCompletionProposal(assignment,model,"\"SimpleValueValue\"", offset));		
 	}
 	
 	public List<? extends ICompletionProposal> completeComplexValueClassName(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -150,7 +151,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("ComplexValueId", offset));
+		return Collections.singletonList(createCompletionProposal(assignment,model,"ComplexValueId", offset));
 	}
 	
 	public List<? extends ICompletionProposal> completeComplexValueFooBar(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -177,7 +178,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("\"WorkflowRefUri\"", offset));		
+		return Collections.singletonList(createCompletionProposal(assignment,model,"\"WorkflowRefUri\"", offset));		
 	}
 	
 	public List<? extends ICompletionProposal> completeWorkflowRefAssignments(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -195,7 +196,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("IdRefId", offset));
+		return Collections.singletonList(createCompletionProposal(assignment,model,"IdRefId", offset));
 	}
 	
 	public List<? extends ICompletionProposal> completeAssignmentFeature(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -204,7 +205,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("AssignmentFeature", offset));
+		return Collections.singletonList(createCompletionProposal(assignment,model,"AssignmentFeature", offset));
 	}
 	
 	public List<? extends ICompletionProposal> completeAssignmentOperator(Assignment assignment, EObject model, String prefix, IDocument doc,int offset) {
@@ -231,19 +232,18 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
 					+ prefix.trim() + "'");
 		}
-		return Collections.singletonList(createCompletionProposal("QualifiedNameParts", offset));
+		return Collections.singletonList(createCompletionProposal(assignment,model,"QualifiedNameParts", offset));
 	}
 	
 	
     
     @Override
 	protected String getDefaultImageFilePath() {
-		return "iconds/editor.gif";
+		return "icons/editor.gif";
 	}
 
 	@Override
 	protected String getPluginId() {
 		return UI_PLUGIN_ID;
 	}
-    
 }
