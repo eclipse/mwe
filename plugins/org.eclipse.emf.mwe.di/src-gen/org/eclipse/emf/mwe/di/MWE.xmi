@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
-  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe" nsURI="http://www.eclipse.org/emf/mwe/di"/>
   <idElements>org</idElements>
   <idElements>eclipse</idElements>
   <idElements>emf</idElements>
   <idElements>mwe</idElements>
   <idElements>di</idElements>
   <idElements>MWE</idElements>
+  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe" nsURI="http://www.eclipse.org/emf/mwe/di"/>
   <rules xsi:type="xtext:ParserRule" name="File">
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
-        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" operator="+=" feature="imports">
-          <terminal xsi:type="xtext:RuleCall" name="Import"/>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="imports" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.1"/>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" operator="+=" feature="properties">
-          <terminal xsi:type="xtext:RuleCall" name="Property"/>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="properties" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.4"/>
         </abstractTokens>
       </abstractTokens>
-      <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="value">
-        <terminal xsi:type="xtext:RuleCall" name="ComplexValue"/>
+      <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.10"/>
       </abstractTokens>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Import">
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" name="JavaImport"/>
-      <groups xsi:type="xtext:RuleCall" name="GenericImport"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.2"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.3"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="JavaImport">
@@ -33,13 +33,13 @@
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Keyword" value="import"/>
-          <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="javaImport">
-            <terminal xsi:type="xtext:RuleCall" name="QualifiedName"/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="javaImport" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.14"/>
           </abstractTokens>
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Group" cardinality="?">
           <abstractTokens xsi:type="xtext:Keyword" value="."/>
-          <abstractTokens xsi:type="xtext:Assignment" operator="?=" feature="wildcard">
+          <abstractTokens xsi:type="xtext:Assignment" feature="wildcard" operator="?=">
             <terminal xsi:type="xtext:Keyword" value="*"/>
           </abstractTokens>
         </abstractTokens>
@@ -51,8 +51,10 @@
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Keyword" value="import"/>
-        <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="value">
-          <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall">
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+          </terminal>
         </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
@@ -60,8 +62,8 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Property">
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" name="LocalVariable"/>
-      <groups xsi:type="xtext:RuleCall" name="PropertiesFileImport"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.5"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.6"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="LocalVariable">
@@ -69,14 +71,16 @@
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Keyword" value="var"/>
-          <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="name">
-            <terminal xsi:type="xtext:RuleCall" name="ID"/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="name" operator="=">
+            <terminal xsi:type="xtext:RuleCall">
+              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+            </terminal>
           </abstractTokens>
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Group" cardinality="?">
           <abstractTokens xsi:type="xtext:Keyword" value="="/>
-          <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="value">
-            <terminal xsi:type="xtext:RuleCall" name="Value"/>
+          <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+            <terminal xsi:type="xtext:RuleCall" rule="//@rules.7"/>
           </abstractTokens>
         </abstractTokens>
       </abstractTokens>
@@ -90,8 +94,10 @@
           <abstractTokens xsi:type="xtext:Keyword" value="var"/>
           <abstractTokens xsi:type="xtext:Keyword" value="file"/>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="file">
-          <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="file" operator="=">
+          <terminal xsi:type="xtext:RuleCall">
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+          </terminal>
         </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Keyword" value=";"/>
@@ -101,23 +107,25 @@
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:Alternatives">
         <groups xsi:type="xtext:Alternatives">
-          <groups xsi:type="xtext:RuleCall" name="SimpleValue"/>
-          <groups xsi:type="xtext:RuleCall" name="ComplexValue"/>
+          <groups xsi:type="xtext:RuleCall" rule="//@rules.8"/>
+          <groups xsi:type="xtext:RuleCall" rule="//@rules.10"/>
         </groups>
-        <groups xsi:type="xtext:RuleCall" name="IdRef"/>
+        <groups xsi:type="xtext:RuleCall" rule="//@rules.12"/>
       </groups>
-      <groups xsi:type="xtext:RuleCall" name="WorkflowRef"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.11"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="SimpleValue">
-    <alternatives xsi:type="xtext:Assignment" operator="=" feature="value">
-      <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+    <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
+      <terminal xsi:type="xtext:RuleCall">
+        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+      </terminal>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Assignable">
     <alternatives xsi:type="xtext:Alternatives">
-      <groups xsi:type="xtext:RuleCall" name="ComplexValue"/>
-      <groups xsi:type="xtext:RuleCall" name="WorkflowRef"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.10"/>
+      <groups xsi:type="xtext:RuleCall" rule="//@rules.11"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ComplexValue">
@@ -125,22 +133,24 @@
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Group">
-            <abstractTokens xsi:type="xtext:Assignment" cardinality="?" operator="=" feature="className">
-              <terminal xsi:type="xtext:RuleCall" name="QualifiedName"/>
+            <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="className" operator="=">
+              <terminal xsi:type="xtext:RuleCall" rule="//@rules.14"/>
             </abstractTokens>
             <abstractTokens xsi:type="xtext:Group" cardinality="?">
               <abstractTokens xsi:type="xtext:Keyword" value=":"/>
-              <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="id">
-                <terminal xsi:type="xtext:RuleCall" name="ID"/>
+              <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
+                <terminal xsi:type="xtext:RuleCall">
+                  <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+                </terminal>
               </abstractTokens>
             </abstractTokens>
           </abstractTokens>
-          <abstractTokens xsi:type="xtext:Assignment" operator="?=" feature="fooBar">
+          <abstractTokens xsi:type="xtext:Assignment" feature="fooBar" operator="?=">
             <terminal xsi:type="xtext:Keyword" value="{"/>
           </abstractTokens>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" operator="+=" feature="assignments">
-          <terminal xsi:type="xtext:RuleCall" name="Assignment"/>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="assignments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.13"/>
         </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Keyword" value="}"/>
@@ -152,40 +162,46 @@
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Group">
             <abstractTokens xsi:type="xtext:Keyword" value="file"/>
-            <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="uri">
-              <terminal xsi:type="xtext:RuleCall" name="STRING"/>
+            <abstractTokens xsi:type="xtext:Assignment" feature="uri" operator="=">
+              <terminal xsi:type="xtext:RuleCall">
+                <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+              </terminal>
             </abstractTokens>
           </abstractTokens>
           <abstractTokens xsi:type="xtext:Keyword" value="{"/>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" operator="+=" feature="assignments">
-          <terminal xsi:type="xtext:RuleCall" name="Assignment"/>
+        <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="assignments" operator="+=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.13"/>
         </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Keyword" value="}"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="IdRef">
-    <alternatives xsi:type="xtext:Assignment" operator="=" feature="id">
-      <terminal xsi:type="xtext:RuleCall" name="ID"/>
+    <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
+      <terminal xsi:type="xtext:RuleCall">
+        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+      </terminal>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Assignment">
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
-          <abstractTokens xsi:type="xtext:Assignment" cardinality="?" operator="=" feature="feature">
-            <terminal xsi:type="xtext:RuleCall" name="ID"/>
+          <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="feature" operator="=">
+            <terminal xsi:type="xtext:RuleCall">
+              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+            </terminal>
           </abstractTokens>
-          <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="operator">
+          <abstractTokens xsi:type="xtext:Assignment" feature="operator" operator="=">
             <terminal xsi:type="xtext:Alternatives">
               <groups xsi:type="xtext:Keyword" value="="/>
               <groups xsi:type="xtext:Keyword" value="+="/>
             </terminal>
           </abstractTokens>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" operator="=" feature="value">
-          <terminal xsi:type="xtext:RuleCall" name="Value"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
+          <terminal xsi:type="xtext:RuleCall" rule="//@rules.7"/>
         </abstractTokens>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Keyword" cardinality="?" value=";"/>
@@ -193,15 +209,19 @@
   </rules>
   <rules xsi:type="xtext:ParserRule" name="QualifiedName">
     <alternatives xsi:type="xtext:Group">
-      <abstractTokens xsi:type="xtext:Assignment" operator="+=" feature="parts">
-        <terminal xsi:type="xtext:RuleCall" name="ID"/>
+      <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
+        <terminal xsi:type="xtext:RuleCall">
+          <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+        </terminal>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Group" cardinality="*">
-        <abstractTokens xsi:type="xtext:Assignment" operator="+=" feature="parts">
+        <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
           <terminal xsi:type="xtext:Keyword" value="."/>
         </abstractTokens>
-        <abstractTokens xsi:type="xtext:Assignment" operator="+=" feature="parts">
-          <terminal xsi:type="xtext:RuleCall" name="ID"/>
+        <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
+          <terminal xsi:type="xtext:RuleCall">
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+          </terminal>
         </abstractTokens>
       </abstractTokens>
     </alternatives>
