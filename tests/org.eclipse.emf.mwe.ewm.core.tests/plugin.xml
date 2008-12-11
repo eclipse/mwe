@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2008/12/11 23:43:28 bhunt Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/junit"
+            class="org.eclipse.emf.mwe.ewm.workflow.junit.JunitPackage"
+            genModel="model/junit.genmodel"/>
+   </extension>
+
+</plugin>

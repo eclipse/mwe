@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="workflow"
+    nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow" nsPrefix="org.eclipse.emf.mwe.ewm.workflow">
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponent" abstract="true">
+    <eOperations name="accept">
+      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+    </eOperations>
+    <eOperations name="start">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="componentOrchestrationStrategy"
+        eType="#//orchestration/WorkflowComponentOrchestrationStrategy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowCompositeComponent" eSuperTypes="#//WorkflowComponent">
+    <eOperations name="accept">
+      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+    </eOperations>
+    <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="components" upperBound="-1"
+        eType="#//WorkflowComponent" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//WorkflowParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeOrchestrationStrategy"
+        lowerBound="1" eType="#//orchestration/WorkflowCompositeOrchestrationStrategy"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connections" upperBound="-1"
+        eType="#//WorkflowParameterConnection" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="stateResolutionStrategy"
+        lowerBound="1" eType="#//runtime/WorkflowStateResolutionStrategy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowUnitOfWork" abstract="true"
+      eSuperTypes="#//WorkflowComponent">
+    <eOperations name="accept">
+      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+    </eOperations>
+    <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+        eType="#//WorkflowParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameter">
+    <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eOperations name="setValue" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" lowerBound="1"
+        eType="#//WorkflowParameterConnection" eOpposite="#//WorkflowParameterConnection/inputs"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valueStrategy" lowerBound="1"
+        eType="#//WorkflowParameterValueStrategy" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterValueStrategy">
+    <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="parameter" eType="#//WorkflowParameter"/>
+    </eOperations>
+    <eOperations name="setValue" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="parameter" eType="#//WorkflowParameter"/>
+      <eParameters name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterConnection">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+        eType="#//WorkflowParameter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" lowerBound="1"
+        upperBound="-1" eType="#//WorkflowParameter" eOpposite="#//WorkflowParameter/connection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterSimpleValueStrategy"
+      eSuperTypes="#//WorkflowParameterValueStrategy">
+    <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
+        eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="parameter" eType="#//WorkflowParameter"/>
+    </eOperations>
+    <eOperations name="setValue" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="parameter" eType="#//WorkflowParameter"/>
+      <eParameters name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eOperations>
+  </eClassifiers>
+  <eSubpackages name="orchestration" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration"
+      nsPrefix="org.eclipse.emf.mwe.ewm.workflow.orchestration">
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowSerialOrchestrationStrategy"
+        eSuperTypes="#//orchestration/WorkflowCompositeOrchestrationStrategy">
+      <eOperations name="run">
+        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowParallelOrchestrationStrategy"
+        eSuperTypes="#//orchestration/WorkflowCompositeOrchestrationStrategy">
+      <eOperations name="run">
+        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowCompositeOrchestrationStrategy"
+        abstract="true">
+      <eOperations name="run">
+        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentOrchestrationStrategy">
+      <eOperations name="run">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowConditionalComponentOrchestrationStrategy"
+        eSuperTypes="#//orchestration/WorkflowComponentOrchestrationStrategy">
+      <eOperations name="run">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+          eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowExecutionPredicate" abstract="true">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowRerunPredicate" eSuperTypes="#//orchestration/WorkflowExecutionPredicate">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="runtime" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"
+      nsPrefix="org.eclipse.emf.mwe.ewm.workflow.runtime">
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowContext">
+      <eOperations name="reset">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
+          eType="#//runtime/WorkflowParameterMap" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="#//runtime/ExecutorService"
+          changeable="false" transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
+          eType="#//runtime/WorkflowStateMap" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowEngine" eSuperTypes="#//runtime/WorkflowRunnable">
+      <eOperations name="run"/>
+      <eOperations name="reset"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workflow" lowerBound="1"
+          eType="#//WorkflowComponent" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+          eType="#//runtime/WorkflowContext" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="ExecutorService" instanceClassName="java.util.concurrent.ExecutorService"/>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateMap" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//WorkflowComponent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//runtime/state/WorkflowState" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterMap" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//WorkflowParameter"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResolutionStrategy">
+      <eOperations name="resolve" eType="#//runtime/state/WorkflowState">
+        <eParameters name="workflow" eType="#//WorkflowCompositeComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowRunnable" instanceClassName="java.lang.Runnable">
+      <eOperations name="run"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowRunner" eSuperTypes="#//runtime/WorkflowRunnable">
+      <eOperations name="run"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+          eType="#//runtime/WorkflowContext"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
+          eType="#//WorkflowComponent"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IWorkflowVisitor" abstract="true"
+        interface="true">
+      <eOperations name="visitUnitOfWork">
+        <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
+      </eOperations>
+      <eOperations name="visitComposite">
+        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResetter" eSuperTypes="#//runtime/IWorkflowVisitor">
+      <eOperations name="visitUnitOfWork">
+        <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
+      </eOperations>
+      <eOperations name="visitComposite">
+        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+          eType="#//runtime/WorkflowContext"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EDataType" name="WorkflowRuntimeException" instanceClassName="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException"/>
+    <eSubpackages name="state" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state"
+        nsPrefix="org.eclipse.emf.mwe.ewm.workflow.runtime.state">
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowState" abstract="true">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowIdleState" eSuperTypes="#//runtime/state/WorkflowState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowRunningState" eSuperTypes="#//runtime/state/WorkflowState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowDoneState" eSuperTypes="#//runtime/state/WorkflowState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowSuccessState" eSuperTypes="#//runtime/state/WorkflowDoneState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowFailedState" eSuperTypes="#//runtime/state/WorkflowDoneState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowErrorState" eSuperTypes="#//runtime/state/WorkflowDoneState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+    </eSubpackages>
+  </eSubpackages>
+</ecore:EPackage>

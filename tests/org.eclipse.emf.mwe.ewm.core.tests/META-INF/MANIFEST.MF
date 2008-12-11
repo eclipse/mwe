@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.emf.mwe.ewm.core.tests;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.mwe.ewm.workflow.junit,
+ org.eclipse.emf.mwe.ewm.workflow.junit.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.mwe.ewm.core;visibility:=reexport,
+ org.junit4;bundle-version="4.5.0"
+Bundle-ActivationPolicy: lazy

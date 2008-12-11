@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="junit"
+    nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/junit" nsPrefix="org.eclipse.emf.mwe.ewm.workflow.junit">
+  <eClassifiers xsi:type="ecore:EClass" name="UnitOfWorkTestHarness" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowUnitOfWork">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endState" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="runningState" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PredicateTestHarness" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//orchestration/WorkflowExecutionPredicate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionAllowed" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+</ecore:EPackage>

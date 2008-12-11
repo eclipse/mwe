@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2008/12/11 23:42:34 bhunt Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow"
+            class="org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage"
+            genModel="model/workflow.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration"
+            class="org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage"
+            genModel="model/workflow.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"
+            class="org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage"
+            genModel="model/workflow.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state"
+            class="org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage"
+            genModel="model/workflow.genmodel"/>
+   </extension>
+  <extension
+        id="id1"
+        point="org.eclipse.core.runtime.applications">
+     <application
+           cardinality="singleton-global"
+           thread="main"
+           visible="true">
+        <run
+              class="org.eclipse.emf.mwe.ewm.workflow.app.WorkflowApplication">
+        </run>
+     </application>
+   </extension>
+</plugin>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.mwe.ewm.core.tests/src"
+    editDirectory="/org.eclipse.emf.mwe.ewm.core.tests.edit/src" editorDirectory="/org.eclipse.emf.mwe.ewm.core.tests.editor/src"
+    modelPluginID="org.eclipse.emf.mwe.ewm.core.tests" modelName="Junit" suppressInterfaces="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.emf.mwe.ewm.core/model/workflow.genmodel#//workflow">
+  <foreignModel>junit.ecore</foreignModel>
+  <genPackages prefix="Junit" basePackage="org.eclipse.emf.mwe.ewm.workflow" disposableProviderFactory="true"
+      ecorePackage="junit.ecore#/">
+    <genClasses ecoreClass="junit.ecore#//UnitOfWorkTestHarness">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference junit.ecore#//UnitOfWorkTestHarness/endState"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference junit.ecore#//UnitOfWorkTestHarness/runningState"/>
+    </genClasses>
+    <genClasses ecoreClass="junit.ecore#//PredicateTestHarness">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute junit.ecore#//PredicateTestHarness/executionAllowed"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
