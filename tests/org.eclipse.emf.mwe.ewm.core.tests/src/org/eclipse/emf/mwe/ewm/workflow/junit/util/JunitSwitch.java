@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
-import org.eclipse.emf.mwe.ewm.workflow.junit.*;
 import org.eclipse.emf.mwe.ewm.workflow.junit.JunitPackage;
 import org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness;
 import org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness;

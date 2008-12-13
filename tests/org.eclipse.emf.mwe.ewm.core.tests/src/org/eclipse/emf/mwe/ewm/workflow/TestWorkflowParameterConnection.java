@@ -13,8 +13,6 @@ package org.eclipse.emf.mwe.ewm.workflow;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.junit.Test;
