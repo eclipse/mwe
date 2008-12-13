@@ -35,6 +35,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getComponentOrchestrationStrategy <em>Component Orchestration Strategy</em>}</li>
  * </ul>
  * </p>
@@ -64,6 +65,24 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	protected String name = NAME_EDEFAULT;
 
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TYPE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected String type = TYPE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getComponentOrchestrationStrategy() <em>Component Orchestration Strategy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -126,6 +145,41 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPONENT__NAME, oldName, name));
+	}
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see #setType(String)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowComponent_Type()
+	 * @model required="true"
+	 * @generated
+	 */
+	public String getType()
+	{
+		return type;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see #getType()
+	 * @generated
+	 */
+	public void setType(String newType)
+	{
+		String oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPONENT__TYPE, oldType, type));
 	}
 
 	/**
@@ -244,6 +298,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return getName();
+			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
+				return getType();
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return getComponentOrchestrationStrategy();
 		}
@@ -261,6 +317,9 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName((String)newValue);
+				return;
+			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
+				setType((String)newValue);
 				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				setComponentOrchestrationStrategy((WorkflowComponentOrchestrationStrategy)newValue);
@@ -281,6 +340,9 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
+				setType(TYPE_EDEFAULT);
+				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				setComponentOrchestrationStrategy((WorkflowComponentOrchestrationStrategy)null);
 				return;
@@ -299,6 +361,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
+				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return componentOrchestrationStrategy != null;
 		}

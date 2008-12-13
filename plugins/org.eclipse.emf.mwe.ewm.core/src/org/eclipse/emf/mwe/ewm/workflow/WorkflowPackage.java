@@ -91,13 +91,22 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_COMPONENT__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT__TYPE = 1;
+
+	/**
 	 * The feature id for the '<em><b>Component Orchestration Strategy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY = 1;
+	public static final int WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY = 2;
 
 	/**
 	 * The number of structural features of the '<em>Component</em>' class.
@@ -106,7 +115,7 @@ public class WorkflowPackage extends EPackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_COMPONENT_FEATURE_COUNT = 2;
+	public static final int WORKFLOW_COMPONENT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent <em>Composite Component</em>}' class.
@@ -126,6 +135,15 @@ public class WorkflowPackage extends EPackageImpl
 	 * @ordered
 	 */
 	public static final int WORKFLOW_COMPOSITE_COMPONENT__NAME = WORKFLOW_COMPONENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPOSITE_COMPONENT__TYPE = WORKFLOW_COMPONENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Component Orchestration Strategy</b></em>' containment reference.
@@ -208,6 +226,15 @@ public class WorkflowPackage extends EPackageImpl
 	 * @ordered
 	 */
 	public static final int WORKFLOW_UNIT_OF_WORK__NAME = WORKFLOW_COMPONENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_UNIT_OF_WORK__TYPE = WORKFLOW_COMPONENT__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Component Orchestration Strategy</b></em>' containment reference.
@@ -547,6 +574,21 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getType()
+	 * @see #getWorkflowComponent()
+	 * @generated
+	 */
+	public EAttribute getWorkflowComponent_Type()
+	{
+		return (EAttribute)workflowComponentEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
 	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getComponentOrchestrationStrategy <em>Component Orchestration Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -557,7 +599,7 @@ public class WorkflowPackage extends EPackageImpl
 	 */
 	public EReference getWorkflowComponent_ComponentOrchestrationStrategy()
 	{
-		return (EReference)workflowComponentEClass.getEStructuralFeatures().get(1);
+		return (EReference)workflowComponentEClass.getEStructuralFeatures().get(2);
 	}
 
 
@@ -889,6 +931,7 @@ public class WorkflowPackage extends EPackageImpl
 		// Create classes and their features
 		workflowComponentEClass = createEClass(WORKFLOW_COMPONENT);
 		createEAttribute(workflowComponentEClass, WORKFLOW_COMPONENT__NAME);
+		createEAttribute(workflowComponentEClass, WORKFLOW_COMPONENT__TYPE);
 		createEReference(workflowComponentEClass, WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY);
 
 		workflowCompositeComponentEClass = createEClass(WORKFLOW_COMPOSITE_COMPONENT);
@@ -964,6 +1007,7 @@ public class WorkflowPackage extends EPackageImpl
 		// Initialize classes and features; add operations and parameters
 		initEClass(workflowComponentEClass, WorkflowComponent.class, "WorkflowComponent", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowComponent_Name(), ecorePackage.getEString(), "name", null, 1, 1, WorkflowComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowComponent_Type(), ecorePackage.getEString(), "type", null, 1, 1, WorkflowComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowComponent_ComponentOrchestrationStrategy(), theOrchestrationPackage.getWorkflowComponentOrchestrationStrategy(), null, "componentOrchestrationStrategy", null, 0, 1, WorkflowComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowComponentEClass, null, "accept", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1082,6 +1126,14 @@ public class WorkflowPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EAttribute WORKFLOW_COMPONENT__NAME = eINSTANCE.getWorkflowComponent_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_COMPONENT__TYPE = eINSTANCE.getWorkflowComponent_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Component Orchestration Strategy</b></em>' containment reference feature.
