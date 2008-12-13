@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.ewm.workflow.junit;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -38,7 +39,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 {
 	/**
-	 * The cached value of the '{@link #getEndState() <em>End State</em>}' reference.
+	 * The cached value of the '{@link #getEndState() <em>End State</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEndState()
 	 * @generated
@@ -47,7 +48,7 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	protected WorkflowState endState;
 
 	/**
-	 * The cached value of the '{@link #getRunningState() <em>Running State</em>}' reference.
+	 * The cached value of the '{@link #getRunningState() <em>Running State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getRunningState()
@@ -76,83 +77,79 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	}
 
 	/**
-	 * Returns the value of the '<em><b>End State</b></em>' reference.
+	 * Returns the value of the '<em><b>End State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End State</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>End State</em>' reference.
+	 * @return the value of the '<em>End State</em>' containment reference.
 	 * @see #setEndState(WorkflowState)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.JunitPackage#getUnitOfWorkTestHarness_EndState()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowState getEndState()
 	{
-		if (endState != null && endState.eIsProxy())
-		{
-			InternalEObject oldEndState = (InternalEObject)endState;
-			endState = (WorkflowState)eResolveProxy(oldEndState);
-			if (endState != oldEndState)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, oldEndState, endState));
-			}
-		}
 		return endState;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowState basicGetEndState()
+	public NotificationChain basicSetEndState(WorkflowState newEndState, NotificationChain msgs)
 	{
-		return endState;
+		WorkflowState oldEndState = endState;
+		endState = newEndState;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, oldEndState, newEndState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getEndState <em>End State</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getEndState <em>End State</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @param value the new value of the '<em>End State</em>' reference.
+	 * @param value the new value of the '<em>End State</em>' containment reference.
 	 * @see #getEndState()
 	 * @generated
 	 */
 	public void setEndState(WorkflowState newEndState)
 	{
-		WorkflowState oldEndState = endState;
-		endState = newEndState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, oldEndState, endState));
+		if (newEndState != endState)
+		{
+			NotificationChain msgs = null;
+			if (endState != null)
+				msgs = ((InternalEObject)endState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, null, msgs);
+			if (newEndState != null)
+				msgs = ((InternalEObject)newEndState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, null, msgs);
+			msgs = basicSetEndState(newEndState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE, newEndState, newEndState));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Running State</b></em>' reference.
+	 * Returns the value of the '<em><b>Running State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Running State</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Running State</em>' reference.
+	 * @return the value of the '<em>Running State</em>' containment reference.
 	 * @see #setRunningState(WorkflowState)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.JunitPackage#getUnitOfWorkTestHarness_RunningState()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowState getRunningState()
 	{
-		if (runningState != null && runningState.eIsProxy())
-		{
-			InternalEObject oldRunningState = (InternalEObject)runningState;
-			runningState = (WorkflowState)eResolveProxy(oldRunningState);
-			if (runningState != oldRunningState)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, oldRunningState, runningState));
-			}
-		}
 		return runningState;
 	}
 
@@ -161,25 +158,58 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowState basicGetRunningState()
+	public NotificationChain basicSetRunningState(WorkflowState newRunningState, NotificationChain msgs)
 	{
-		return runningState;
+		WorkflowState oldRunningState = runningState;
+		runningState = newRunningState;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, oldRunningState, newRunningState);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState <em>Running State</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState <em>Running State</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Running State</em>' reference.
+	 * @param value the new value of the '<em>Running State</em>' containment reference.
 	 * @see #getRunningState()
 	 * @generated
 	 */
 	public void setRunningState(WorkflowState newRunningState)
 	{
-		WorkflowState oldRunningState = runningState;
-		runningState = newRunningState;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, oldRunningState, runningState));
+		if (newRunningState != runningState)
+		{
+			NotificationChain msgs = null;
+			if (runningState != null)
+				msgs = ((InternalEObject)runningState).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, null, msgs);
+			if (newRunningState != null)
+				msgs = ((InternalEObject)newRunningState).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, null, msgs);
+			msgs = basicSetRunningState(newRunningState, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE, newRunningState, newRunningState));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE:
+				return basicSetEndState(null, msgs);
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE:
+				return basicSetRunningState(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -192,11 +222,9 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 		switch (featureID)
 		{
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__END_STATE:
-				if (resolve) return getEndState();
-				return basicGetEndState();
+				return getEndState();
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE:
-				if (resolve) return getRunningState();
-				return basicGetRunningState();
+				return getRunningState();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

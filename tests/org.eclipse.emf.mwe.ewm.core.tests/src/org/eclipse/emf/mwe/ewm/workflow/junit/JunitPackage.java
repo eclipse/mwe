@@ -106,7 +106,7 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>End State</b></em>' reference.
+	 * The feature id for the '<em><b>End State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -115,7 +115,7 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__END_STATE = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Running State</b></em>' reference.
+	 * The feature id for the '<em><b>Running State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -262,10 +262,10 @@ public class JunitPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getEndState <em>End State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getEndState <em>End State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>End State</em>'.
+	 * @return the meta object for the containment reference '<em>End State</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getEndState()
 	 * @see #getUnitOfWorkTestHarness()
 	 * @generated
@@ -277,10 +277,10 @@ public class JunitPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState <em>Running State</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState <em>Running State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Running State</em>'.
+	 * @return the meta object for the containment reference '<em>Running State</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState()
 	 * @see #getUnitOfWorkTestHarness()
 	 * @generated
@@ -399,8 +399,8 @@ public class JunitPackage extends EPackageImpl
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(unitOfWorkTestHarnessEClass, UnitOfWorkTestHarness.class, "UnitOfWorkTestHarness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getUnitOfWorkTestHarness_EndState(), theStatePackage.getWorkflowState(), null, "endState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUnitOfWorkTestHarness_RunningState(), theStatePackage.getWorkflowState(), null, "runningState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnitOfWorkTestHarness_EndState(), theStatePackage.getWorkflowState(), null, "endState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnitOfWorkTestHarness_RunningState(), theStatePackage.getWorkflowState(), null, "runningState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(predicateTestHarnessEClass, PredicateTestHarness.class, "PredicateTestHarness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPredicateTestHarness_ExecutionAllowed(), ecorePackage.getEBoolean(), "executionAllowed", null, 1, 1, PredicateTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -434,7 +434,7 @@ public class JunitPackage extends EPackageImpl
 		public static final EClass UNIT_OF_WORK_TEST_HARNESS = eINSTANCE.getUnitOfWorkTestHarness();
 
 		/**
-		 * The meta object literal for the '<em><b>End State</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>End State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -442,7 +442,7 @@ public class JunitPackage extends EPackageImpl
 		public static final EReference UNIT_OF_WORK_TEST_HARNESS__END_STATE = eINSTANCE.getUnitOfWorkTestHarness_EndState();
 
 		/**
-		 * The meta object literal for the '<em><b>Running State</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Running State</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

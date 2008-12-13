@@ -39,11 +39,10 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 	@Before
 	public void setUp() throws Exception
 	{
-		super.setUp();
 		strategy = OrchestrationFactory.eINSTANCE.createWorkflowConditionalComponentOrchestrationStrategy();
-		component = createComponent("Test", 0, null, context);
+		component = createComponent("Test", 0, null);
 		component.setComponentOrchestrationStrategy(strategy);
-		engine.setWorkflow(component);
+		getEngine().setWorkflow(component);
 	}
 
 	/**
@@ -55,7 +54,7 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		PredicateTestHarness predicate = JunitFactory.eINSTANCE.createPredicateTestHarness();
 		predicate.setExecutionAllowed(true);
 		strategy.getConditions().add(predicate);
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 	}
 	
@@ -68,7 +67,7 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		PredicateTestHarness predicate = JunitFactory.eINSTANCE.createPredicateTestHarness();
 		predicate.setExecutionAllowed(false);
 		strategy.getConditions().add(predicate);
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
 	}
 
@@ -86,7 +85,7 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		predicate2.setExecutionAllowed(true);
 		strategy.getConditions().add(predicate2);
 
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 	}
 
@@ -104,7 +103,7 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		predicate2.setExecutionAllowed(false);
 		strategy.getConditions().add(predicate2);
 
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
 	}
 
@@ -122,13 +121,13 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		predicate2.setExecutionAllowed(true);
 		strategy.getConditions().add(predicate2);
 
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
 		
 		predicate1.setExecutionAllowed(true);
 		predicate2.setExecutionAllowed(false);
 		
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
 	}
 
@@ -141,11 +140,11 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		WorkflowRerunPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate();
 		strategy.getConditions().add(predicate);
 		component.setEndState(StateFactory.eINSTANCE.createWorkflowSuccessState());
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 		
 		component.setRunningState(null);
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
 	}
 	
@@ -158,11 +157,11 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		WorkflowRerunPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate();
 		strategy.getConditions().add(predicate);
 		component.setEndState(StateFactory.eINSTANCE.createWorkflowFailedState());
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 		
 		component.setRunningState(null);
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 	}
 
@@ -175,11 +174,11 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		WorkflowRerunPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate();
 		strategy.getConditions().add(predicate);
 		component.setEndState(StateFactory.eINSTANCE.createWorkflowErrorState());
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 		
 		component.setRunningState(null);
-		engine.run();
+		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
 	}
 
@@ -193,7 +192,7 @@ public class TestWorkflowConditionalComponentOrchestrationStrategy extends Workf
 		WorkflowRerunPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate();
 		strategy.getConditions().add(predicate);
 
-		URI uri = URI.createFileURI(tempFile.getAbsolutePath());
+		URI uri = URI.createFileURI(createTemporaryFile("conditional").getAbsolutePath());
 		
 		ResourceSet outResourceSet = new ResourceSetImpl();
 		Resource outResource = outResourceSet.createResource(uri);

@@ -24,7 +24,7 @@ import org.junit.Test;
  * @author bhunt
  *
  */
-public class TestWorkflowParameterConnection
+public class TestWorkflowParameterConnection extends WorkflowTestHarness
 {
 	/**
 	 * Test that the value from an output parameter is the value of a connected input parameter
@@ -33,18 +33,14 @@ public class TestWorkflowParameterConnection
 	@Test
 	public void testConnectedParameters() throws WorkflowRuntimeException
 	{
-		WorkflowParameter out = WorkflowFactory.eINSTANCE.createWorkflowParameter();
-		out.setType(EcorePackage.eINSTANCE.getEString());
-		out.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
-		WorkflowParameter in = WorkflowFactory.eINSTANCE.createWorkflowParameter();
-		in.setType(EcorePackage.eINSTANCE.getEString());
-		in.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
+		WorkflowParameter out = createStringParameter(null);
+		WorkflowParameter in = createStringParameter(null);
 		
 		WorkflowParameterConnection connection = WorkflowFactory.eINSTANCE.createWorkflowParameterConnection();
 		connection.setOutput(out);
 		connection.getInputs().add(in);
 		
-		WorkflowContext context = RuntimeFactory.eINSTANCE.createWorkflowContext();
+		WorkflowContext context = getContext();
 		out.setValue(context, "Hello");
 		assertThat((String) in.getValue(context), is("Hello"));
 	}

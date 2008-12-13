@@ -38,16 +38,16 @@ public class TestWorkflowParallelOrchestrationStrategy extends WorkflowTestHarne
 		WorkflowCompositeComponent composite = createComposite("Test", OrchestrationFactory.eINSTANCE.createWorkflowParallelOrchestrationStrategy());
 		composite.setStateResolutionStrategy(RuntimeFactory.eINSTANCE.createWorkflowStateResolutionStrategy());
 
-		UnitOfWorkTestHarness c1 = createComponent("First", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);
-		UnitOfWorkTestHarness c2 = createComponent("Second", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);		
+		UnitOfWorkTestHarness c1 = createComponent("First", 0, StateFactory.eINSTANCE.createWorkflowSuccessState());
+		UnitOfWorkTestHarness c2 = createComponent("Second", 0, StateFactory.eINSTANCE.createWorkflowSuccessState());		
 		composite.getComponents().add(c1);
 		composite.getComponents().add(c2);
 		
-		engine.setWorkflow(composite);
-		engine.run();
+		getEngine().setWorkflow(composite);
+		getEngine().run();
 		
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowSuccessState.class)));
-		assertThat(context.getStates().get(c1), is(instanceOf(WorkflowSuccessState.class)));
-		assertThat(context.getStates().get(c2), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getStates().get(c1), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getStates().get(c2), is(instanceOf(WorkflowSuccessState.class)));
 	}
 }

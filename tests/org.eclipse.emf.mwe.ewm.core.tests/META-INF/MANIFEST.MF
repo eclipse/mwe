@@ -7,7 +7,8 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.emf.mwe.ewm.workflow.junit,
+Export-Package: org.eclipse.emf.mwe.ewm.workflow,
+ org.eclipse.emf.mwe.ewm.workflow.junit,
  org.eclipse.emf.mwe.ewm.workflow.junit.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

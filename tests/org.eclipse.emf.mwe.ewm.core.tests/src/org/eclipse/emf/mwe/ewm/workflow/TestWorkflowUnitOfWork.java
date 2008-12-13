@@ -38,9 +38,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 	@Before
 	public void setUp() throws Exception
 	{
-		super.setUp();
-		component = createComponent("Test", 1, StateFactory.eINSTANCE.createWorkflowDoneState(), context);
-		engine.setWorkflow(component);
+		component = createComponent("Test", 1, StateFactory.eINSTANCE.createWorkflowDoneState());
 	}
 	
 	/**
@@ -49,9 +47,10 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 	@Test
 	public void testExecutionStates()
 	{
-		engine.run();
+		getEngine().setWorkflow(component);
+		getEngine().run();
 		assertThat(component.getRunningState(), is(instanceOf(WorkflowRunningState.class)));
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
 	}
 	
 	/**
@@ -62,7 +61,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 	public void testPersistence() throws IOException
 	{
 		component.setEndState(null);
-		URI uri = URI.createFileURI(tempFile.getAbsolutePath());
+		URI uri = URI.createFileURI(createTemporaryFile("work").getAbsolutePath());
 		
 		ResourceSet outResourceSet = new ResourceSetImpl();
 		Resource outResource = outResourceSet.createResource(uri);

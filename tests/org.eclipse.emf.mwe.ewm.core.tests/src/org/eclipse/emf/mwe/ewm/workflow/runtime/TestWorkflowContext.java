@@ -35,12 +35,12 @@ public class TestWorkflowContext extends WorkflowTestHarness
 	@Test
 	public void testResetOnComponent()
 	{
-		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState(), context);
-		engine.setWorkflow(component);
-		engine.run();
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
-		context.reset(component);
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		getEngine().setWorkflow(component);
+		getEngine().run();
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+		getContext().reset(component);
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
 	}
 
 	/**
@@ -49,15 +49,15 @@ public class TestWorkflowContext extends WorkflowTestHarness
 	@Test
 	public void testResetOnComposite()
 	{
-		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState(), context);
-		WorkflowCompositeComponent composite = createComposite("Composite");
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		WorkflowCompositeComponent composite = createSerialComposite(null);
 		composite.getComponents().add(component);
-		engine.setWorkflow(composite);
-		engine.run();
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowDoneState.class)));
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
-		context.reset(composite);
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowIdleState.class)));
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowIdleState.class)));		
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowDoneState.class)));
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+		getContext().reset(composite);
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowIdleState.class)));
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));		
 	}
 }

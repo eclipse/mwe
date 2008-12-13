@@ -13,9 +13,6 @@ package org.eclipse.emf.mwe.ewm.workflow;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.junit.Test;
 
@@ -24,7 +21,7 @@ import org.junit.Test;
  * @author bhunt
  *
  */
-public class TestWorkflowParameter
+public class TestWorkflowParameter extends WorkflowTestHarness
 {
 	/**
 	 * Test that a parameter can get its value from a context
@@ -33,11 +30,9 @@ public class TestWorkflowParameter
 	@Test
 	public void testGetValue() throws WorkflowRuntimeException
 	{
-		WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
-		parameter.setType(EcorePackage.eINSTANCE.getEString());
-		parameter.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
-		WorkflowContext context = RuntimeFactory.eINSTANCE.createWorkflowContext();
-		parameter.setValue(context, "Hello");
-		assertThat((String) parameter.getValue(context), is("Hello"));
+		WorkflowParameter parameter = createStringParameter(null);
+		parameter.setValue(getContext(), "Hello");
+		assertThat(getContext().getParameters().size(), is(1));
+		assertThat((String) parameter.getValue(getContext()), is("Hello"));
 	}
 }

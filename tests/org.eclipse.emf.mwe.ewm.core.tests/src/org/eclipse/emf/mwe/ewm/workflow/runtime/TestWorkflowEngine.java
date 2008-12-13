@@ -34,11 +34,11 @@ public class TestWorkflowEngine extends WorkflowTestHarness
 	@Test
 	public void testReset()
 	{
-		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState(), context);
-		engine.setWorkflow(component);
-		engine.run();
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
-		engine.reset();
-		assertThat(context.getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		getEngine().setWorkflow(component);
+		getEngine().run();
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+		getEngine().reset();
+		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
 	}
 }

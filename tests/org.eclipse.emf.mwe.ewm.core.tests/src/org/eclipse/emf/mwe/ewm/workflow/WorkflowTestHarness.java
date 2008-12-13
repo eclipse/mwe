@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow;
 
-import static org.junit.Assert.assertTrue;
-
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.mwe.ewm.workflow.junit.JunitFactory;
@@ -24,83 +24,83 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 import org.junit.After;
-import org.junit.Before;
 
 /**
  * This class is used as a test harness for the various unit tests
+ * 
  * @author bhunt
- *
+ * 
  */
 public class WorkflowTestHarness
 {
-	/**
-	 * Set up an engine, context, parameter, and a temp file
-	 * @throws Exception
-	 */
-	@Before
-	public void setUp() throws Exception
-	{
-		parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
-		parameter.setName("TestParameter");
-		parameter.setType(EcorePackage.eINSTANCE.getEString());
-		
-		engine = RuntimeFactory.eINSTANCE.createWorkflowEngine();
-		context = RuntimeFactory.eINSTANCE.createWorkflowContext();
-	
-		engine.setContext(context);
-
-		tempFile = File.createTempFile("workflowComponent", "junit");
-	}
-
 	/**
 	 * Deletes the temp fle
 	 */
 	@After
 	public void tearDown() throws Exception
 	{
-		if(tempFile != null)
-			assertTrue(tempFile.delete());
+		for (File file : tempFiles)
+		{
+			try
+			{
+				file.delete();
+			}
+			catch (Exception e)
+			{}
+		}
+
+		tempFiles.clear();
+
+		if (context != null)
+		{
+			context.getParameters().clear();
+			context.getStates().clear();
+		}
 	}
-	
+
 	/**
 	 * Factory for creating a UnitOfWorkTestharness
-	 * @param name the name of the workflow component
-	 * @param numberParameters the number of parameters to construct
-	 * @param endState the end state of the workflow component
+	 * 
+	 * @param name
+	 *          the name of the workflow component
+	 * @param numberParameters
+	 *          the number of parameters to construct
+	 * @param endState
+	 *          the end state of the workflow component
 	 * @return a new instance of UnitofWorkTestHarness
 	 */
-	public UnitOfWorkTestHarness createComponent(String name, int numberParameters, WorkflowState endState, WorkflowContext context)
+	public UnitOfWorkTestHarness createComponent(String name, int numberParameters, WorkflowState endState)
 	{
 		UnitOfWorkTestHarness component = JunitFactory.eINSTANCE.createUnitOfWorkTestHarness();
 		component.setName(name);
 		component.setEndState(endState);
 		component.setComponentOrchestrationStrategy(OrchestrationFactory.eINSTANCE.createWorkflowComponentOrchestrationStrategy());
-		
-		for(int i = 0; i < numberParameters; i++)
-		{
-			WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
-			parameter.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
-			parameter.setType(EcorePackage.eINSTANCE.getEString());
-			component.getParameters().add(parameter);
-		}
-		
+
+		for (int i = 0; i < numberParameters; i++)
+			component.getParameters().add(createStringParameter(null));
+
 		return component;
 	}
 
 	/**
 	 * Factory for creating a WorkflowCompositeComponent with a default serial orchestration strategy
-	 * @param name the name of the composite
+	 * 
+	 * @param name
+	 *          the name of the composite
 	 * @return a new instance of WorkflowCompositeComponent
 	 */
-	public WorkflowCompositeComponent createComposite(String name)
+	public WorkflowCompositeComponent createSerialComposite(String name)
 	{
 		return createComposite(name, OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy());
 	}
-	
+
 	/**
 	 * Factory for creating a WorkflowCompositeComponent
-	 * @param name the name of the composite
-	 * @param strategy the orchestration strategy
+	 * 
+	 * @param name
+	 *          the name of the composite
+	 * @param strategy
+	 *          the orchestration strategy
 	 * @return a new instance of WorkflowCompositeComponent
 	 */
 	public WorkflowCompositeComponent createComposite(String name, WorkflowCompositeOrchestrationStrategy strategy)
@@ -112,9 +112,43 @@ public class WorkflowTestHarness
 		composite.setCompositeOrchestrationStrategy(strategy);
 		return composite;
 	}
-	
-	protected WorkflowEngine engine;
-	protected WorkflowContext context;
-	protected WorkflowParameter parameter;
-	protected File tempFile;
+
+	public WorkflowParameter createStringParameter(String name)
+	{
+		WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
+		parameter.setName(name);
+		parameter.setType(EcorePackage.Literals.ESTRING);
+		parameter.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
+		return parameter;
+	}
+
+	public File createTemporaryFile(String prefix) throws IOException
+	{
+		File file = File.createTempFile(prefix, ".junit");
+		tempFiles.add(file);
+		return file;
+	}
+
+	public WorkflowContext getContext()
+	{
+		if (context == null)
+			context = RuntimeFactory.eINSTANCE.createWorkflowContext();
+
+		return context;
+	}
+
+	public WorkflowEngine getEngine()
+	{
+		if (engine == null)
+		{
+			engine = RuntimeFactory.eINSTANCE.createWorkflowEngine();
+			engine.setContext(getContext());
+		}
+		
+		return engine;
+	}
+
+	private WorkflowEngine engine;
+	private WorkflowContext context;
+	private ArrayList<File> tempFiles = new ArrayList<File>();
 }

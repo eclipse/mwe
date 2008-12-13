@@ -42,8 +42,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowCompositeComponent composite = createComposite("Test", OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy());
 		composite.setStateResolutionStrategy(RuntimeFactory.eINSTANCE.createWorkflowStateResolutionStrategy());
 
-		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);
-		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);		
+		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowSuccessState());
+		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState());		
 		composite.getComponents().add(c1);
 		composite.getComponents().add(c2);
 		
@@ -53,11 +53,11 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		connection.setOutput(output);
 		connection.getInputs().add(input);
 		
-		c1.getParameters().get(0).setValue(context, "Hello");
-		engine.setWorkflow(composite);
-		engine.run();
+		c1.getParameters().get(0).setValue(getContext(), "Hello");
+		getEngine().setWorkflow(composite);
+		getEngine().run();
 		
-		assertThat((String) c2.getParameters().get(1).getValue(context), is("Hello"));
+		assertThat((String) c2.getParameters().get(1).getValue(getContext()), is("Hello"));
 	}
 
 	/**
@@ -70,8 +70,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowCompositeComponent composite = createComposite("Test", OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy());
 		composite.setStateResolutionStrategy(RuntimeFactory.eINSTANCE.createWorkflowStateResolutionStrategy());
 
-		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowFailedState(), context);
-		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);		
+		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowFailedState());
+		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState());		
 		composite.getComponents().add(c1);
 		composite.getComponents().add(c2);
 		
@@ -81,10 +81,10 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		connection.setOutput(output);
 		connection.getInputs().add(input);
 		
-		c1.getParameters().get(0).setValue(context, "Hello");
-		engine.setWorkflow(composite);
-		engine.run();
-		assertThat((String) c2.getParameters().get(1).getValue(context), is(nullValue()));
+		c1.getParameters().get(0).setValue(getContext(), "Hello");
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat((String) c2.getParameters().get(1).getValue(getContext()), is(nullValue()));
 	}
 
 	/**
@@ -97,8 +97,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowCompositeComponent composite = createComposite("Test", OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy());
 		composite.setStateResolutionStrategy(RuntimeFactory.eINSTANCE.createWorkflowStateResolutionStrategy());
 
-		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowErrorState(), context);
-		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState(), context);		
+		UnitOfWorkTestHarness c1 = createComponent("First", 2, StateFactory.eINSTANCE.createWorkflowErrorState());
+		UnitOfWorkTestHarness c2 = createComponent("Second", 2, StateFactory.eINSTANCE.createWorkflowSuccessState());		
 		composite.getComponents().add(c1);
 		composite.getComponents().add(c2);
 		
@@ -108,10 +108,10 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		connection.setOutput(output);
 		connection.getInputs().add(input);
 		
-		c1.getParameters().get(0).setValue(context, "Hello");
-		engine.setWorkflow(composite);
-		engine.run();
+		c1.getParameters().get(0).setValue(getContext(), "Hello");
+		getEngine().setWorkflow(composite);
+		getEngine().run();
 		
-		assertThat((String) c2.getParameters().get(1).getValue(context), is(nullValue()));
+		assertThat((String) c2.getParameters().get(1).getValue(getContext()), is(nullValue()));
 	}
 }

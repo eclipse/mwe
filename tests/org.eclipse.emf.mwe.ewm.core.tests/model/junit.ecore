@@ -5,9 +5,11 @@
     nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/junit" nsPrefix="org.eclipse.emf.mwe.ewm.workflow.junit">
   <eClassifiers xsi:type="ecore:EClass" name="UnitOfWorkTestHarness" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowUnitOfWork">
     <eStructuralFeatures xsi:type="ecore:EReference" name="endState" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="runningState" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PredicateTestHarness" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//orchestration/WorkflowExecutionPredicate">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="executionAllowed" lowerBound="1"

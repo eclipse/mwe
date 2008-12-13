@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationFactory;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.junit.Test;
 
 /**
@@ -39,19 +37,14 @@ public class TestWorkflowCompositeComponent extends WorkflowTestHarness
 	@Test
 	public void testPersistence() throws IOException
 	{
-		UnitOfWorkTestHarness component = createComponent("Test", 1, null, context);
-		WorkflowCompositeComponent composite = WorkflowFactory.eINSTANCE.createWorkflowCompositeComponent();
+		UnitOfWorkTestHarness component = createComponent("Test", 1, null);
+		WorkflowCompositeComponent composite = createSerialComposite(null);
 
-		composite.setName("Composite");
-		composite.setComponentOrchestrationStrategy(OrchestrationFactory.eINSTANCE.createWorkflowComponentOrchestrationStrategy());
-		composite.setCompositeOrchestrationStrategy(OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy());
-		composite.setStateResolutionStrategy(RuntimeFactory.eINSTANCE.createWorkflowStateResolutionStrategy());
-		
 		composite.getComponents().add(component);
 		composite.getParameters().add(component.getParameters().get(0));
 		composite.getConnections().add(WorkflowFactory.eINSTANCE.createWorkflowParameterConnection());
 		
-		URI uri = URI.createFileURI(tempFile.getAbsolutePath());
+		URI uri = URI.createFileURI(createTemporaryFile("composite").getAbsolutePath());
 		
 		ResourceSet outResourceSet = new ResourceSetImpl();
 		Resource outResource = outResourceSet.createResource(uri);

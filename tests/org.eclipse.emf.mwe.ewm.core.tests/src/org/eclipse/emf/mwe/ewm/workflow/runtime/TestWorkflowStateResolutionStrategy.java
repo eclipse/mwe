@@ -35,12 +35,12 @@ public class TestWorkflowStateResolutionStrategy extends WorkflowTestHarness
 	@Test
 	public void testSuccess()
 	{
-		WorkflowCompositeComponent composite = createComposite("Composite");
-		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context));
-		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context));
-		engine.setWorkflow(composite);
-		engine.run();
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowSuccessState.class)));
+		WorkflowCompositeComponent composite = createSerialComposite("Composite");
+		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState()));
+		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowSuccessState()));
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowSuccessState.class)));
 	}
 	
 	/**
@@ -49,12 +49,12 @@ public class TestWorkflowStateResolutionStrategy extends WorkflowTestHarness
 	@Test
 	public void testFailed()
 	{
-		WorkflowCompositeComponent composite = createComposite("Composite");
-		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context));
-		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowFailedState(), context));
-		engine.setWorkflow(composite);
-		engine.run();
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowFailedState.class)));		
+		WorkflowCompositeComponent composite = createSerialComposite("Composite");
+		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState()));
+		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowFailedState()));
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowFailedState.class)));		
 	}
 	
 	/**
@@ -63,11 +63,11 @@ public class TestWorkflowStateResolutionStrategy extends WorkflowTestHarness
 	@Test
 	public void testError()
 	{
-		WorkflowCompositeComponent composite = createComposite("Composite");
-		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState(), context));
-		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowErrorState(), context));
-		engine.setWorkflow(composite);
-		engine.run();
-		assertThat(context.getStates().get(composite), is(instanceOf(WorkflowErrorState.class)));		
+		WorkflowCompositeComponent composite = createSerialComposite("Composite");
+		composite.getComponents().add(createComponent("C1", 0, StateFactory.eINSTANCE.createWorkflowSuccessState()));
+		composite.getComponents().add(createComponent("C2", 0, StateFactory.eINSTANCE.createWorkflowErrorState()));
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowErrorState.class)));		
 	}
 }
