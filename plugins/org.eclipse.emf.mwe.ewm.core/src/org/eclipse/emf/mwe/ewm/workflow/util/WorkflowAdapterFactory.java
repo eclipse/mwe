@@ -49,8 +49,7 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 */
 	public WorkflowAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = WorkflowPackage.eINSTANCE;
 		}
 	}
@@ -66,12 +65,10 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -84,46 +81,37 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected WorkflowSwitch<Adapter> modelSwitch =
-		new WorkflowSwitch<Adapter>()
-		{
+		new WorkflowSwitch<Adapter>() {
 			@Override
-			public Adapter caseWorkflowComponent(WorkflowComponent object)
-			{
+			public Adapter caseWorkflowComponent(WorkflowComponent object) {
 				return createWorkflowComponentAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
-			{
+			public Adapter caseWorkflowCompositeComponent(WorkflowCompositeComponent object) {
 				return createWorkflowCompositeComponentAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowUnitOfWork(WorkflowUnitOfWork object)
-			{
+			public Adapter caseWorkflowUnitOfWork(WorkflowUnitOfWork object) {
 				return createWorkflowUnitOfWorkAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameter(WorkflowParameter object)
-			{
+			public Adapter caseWorkflowParameter(WorkflowParameter object) {
 				return createWorkflowParameterAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterValueStrategy(WorkflowParameterValueStrategy object)
-			{
+			public Adapter caseWorkflowParameterValueStrategy(WorkflowParameterValueStrategy object) {
 				return createWorkflowParameterValueStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterConnection(WorkflowParameterConnection object)
-			{
+			public Adapter caseWorkflowParameterConnection(WorkflowParameterConnection object) {
 				return createWorkflowParameterConnectionAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object)
-			{
+			public Adapter caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object) {
 				return createWorkflowParameterSimpleValueStrategyAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

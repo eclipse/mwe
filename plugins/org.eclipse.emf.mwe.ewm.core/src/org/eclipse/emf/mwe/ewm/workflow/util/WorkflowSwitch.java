@@ -54,8 +54,7 @@ public class WorkflowSwitch<T>
 	 */
 	public WorkflowSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = WorkflowPackage.eINSTANCE;
 		}
 	}
@@ -81,12 +80,10 @@ public class WorkflowSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -104,54 +101,46 @@ public class WorkflowSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case WorkflowPackage.WORKFLOW_COMPONENT:
-			{
+		switch (classifierID) {
+			case WorkflowPackage.WORKFLOW_COMPONENT: {
 				WorkflowComponent workflowComponent = (WorkflowComponent)theEObject;
 				T result = caseWorkflowComponent(workflowComponent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT:
-			{
+			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT: {
 				WorkflowCompositeComponent workflowCompositeComponent = (WorkflowCompositeComponent)theEObject;
 				T result = caseWorkflowCompositeComponent(workflowCompositeComponent);
 				if (result == null) result = caseWorkflowComponent(workflowCompositeComponent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK:
-			{
+			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK: {
 				WorkflowUnitOfWork workflowUnitOfWork = (WorkflowUnitOfWork)theEObject;
 				T result = caseWorkflowUnitOfWork(workflowUnitOfWork);
 				if (result == null) result = caseWorkflowComponent(workflowUnitOfWork);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_PARAMETER:
-			{
+			case WorkflowPackage.WORKFLOW_PARAMETER: {
 				WorkflowParameter workflowParameter = (WorkflowParameter)theEObject;
 				T result = caseWorkflowParameter(workflowParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_PARAMETER_VALUE_STRATEGY:
-			{
+			case WorkflowPackage.WORKFLOW_PARAMETER_VALUE_STRATEGY: {
 				WorkflowParameterValueStrategy workflowParameterValueStrategy = (WorkflowParameterValueStrategy)theEObject;
 				T result = caseWorkflowParameterValueStrategy(workflowParameterValueStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION:
-			{
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION: {
 				WorkflowParameterConnection workflowParameterConnection = (WorkflowParameterConnection)theEObject;
 				T result = caseWorkflowParameterConnection(workflowParameterConnection);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY:
-			{
+			case WorkflowPackage.WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY: {
 				WorkflowParameterSimpleValueStrategy workflowParameterSimpleValueStrategy = (WorkflowParameterSimpleValueStrategy)theEObject;
 				T result = caseWorkflowParameterSimpleValueStrategy(workflowParameterSimpleValueStrategy);
 				if (result == null) result = caseWorkflowParameterValueStrategy(workflowParameterSimpleValueStrategy);

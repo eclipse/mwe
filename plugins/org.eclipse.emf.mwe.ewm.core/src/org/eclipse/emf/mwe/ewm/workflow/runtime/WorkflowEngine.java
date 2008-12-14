@@ -105,8 +105,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	{
 		WorkflowComponent oldWorkflow = workflow;
 		workflow = newWorkflow;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, oldWorkflow, newWorkflow);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -123,8 +122,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	 */
 	public void setWorkflow(WorkflowComponent newWorkflow)
 	{
-		if (newWorkflow != workflow)
-		{
+		if (newWorkflow != workflow) {
 			NotificationChain msgs = null;
 			if (workflow != null)
 				msgs = ((InternalEObject)workflow).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, null, msgs);
@@ -165,8 +163,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	{
 		WorkflowContext oldContext = context;
 		context = newContext;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__CONTEXT, oldContext, newContext);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -183,8 +180,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	 */
 	public void setContext(WorkflowContext newContext)
 	{
-		if (newContext != context)
-		{
+		if (newContext != context) {
 			NotificationChain msgs = null;
 			if (context != null)
 				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__CONTEXT, null, msgs);
@@ -227,8 +223,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
 				return basicSetWorkflow(null, msgs);
 			case RuntimePackage.WORKFLOW_ENGINE__CONTEXT:
@@ -245,8 +240,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
 				return getWorkflow();
 			case RuntimePackage.WORKFLOW_ENGINE__CONTEXT:
@@ -263,8 +257,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
 				setWorkflow((WorkflowComponent)newValue);
 				return;
@@ -283,8 +276,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
 				setWorkflow((WorkflowComponent)null);
 				return;
@@ -303,8 +295,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
 				return workflow != null;
 			case RuntimePackage.WORKFLOW_ENGINE__CONTEXT:

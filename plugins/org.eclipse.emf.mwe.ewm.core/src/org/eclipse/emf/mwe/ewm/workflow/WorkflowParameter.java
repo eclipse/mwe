@@ -171,12 +171,10 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public EClassifier getType()
 	{
-		if (type != null && type.eIsProxy())
-		{
+		if (type != null && type.eIsProxy()) {
 			InternalEObject oldType = (InternalEObject)type;
 			type = (EClassifier)eResolveProxy(oldType);
-			if (type != oldType)
-			{
+			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.WORKFLOW_PARAMETER__TYPE, oldType, type));
 			}
@@ -238,8 +236,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	{
 		WorkflowParameterValueStrategy oldValueStrategy = valueStrategy;
 		valueStrategy = newValueStrategy;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY, oldValueStrategy, newValueStrategy);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -256,8 +253,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public void setValueStrategy(WorkflowParameterValueStrategy newValueStrategy)
 	{
-		if (newValueStrategy != valueStrategy)
-		{
+		if (newValueStrategy != valueStrategy) {
 			NotificationChain msgs = null;
 			if (valueStrategy != null)
 				msgs = ((InternalEObject)valueStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY, null, msgs);
@@ -358,12 +354,10 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public WorkflowParameterConnection getConnection()
 	{
-		if (connection != null && connection.eIsProxy())
-		{
+		if (connection != null && connection.eIsProxy()) {
 			InternalEObject oldConnection = (InternalEObject)connection;
 			connection = (WorkflowParameterConnection)eResolveProxy(oldConnection);
-			if (connection != oldConnection)
-			{
+			if (connection != oldConnection) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION, oldConnection, connection));
 			}
@@ -390,8 +384,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	{
 		WorkflowParameterConnection oldConnection = connection;
 		connection = newConnection;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION, oldConnection, newConnection);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -408,8 +401,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public void setConnection(WorkflowParameterConnection newConnection)
 	{
-		if (newConnection != connection)
-		{
+		if (newConnection != connection) {
 			NotificationChain msgs = null;
 			if (connection != null)
 				msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowParameterConnection.class, msgs);
@@ -506,8 +498,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION:
 				if (connection != null)
 					msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowParameterConnection.class, msgs);
@@ -524,8 +515,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION:
 				return basicSetConnection(null, msgs);
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:
@@ -542,8 +532,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__NAME:
 				return getName();
 			case WorkflowPackage.WORKFLOW_PARAMETER__DESCRIPTION:
@@ -570,8 +559,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__NAME:
 				setName((String)newValue);
 				return;
@@ -602,8 +590,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -634,8 +621,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_PARAMETER__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case WorkflowPackage.WORKFLOW_PARAMETER__DESCRIPTION:

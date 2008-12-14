@@ -86,8 +86,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	 */
 	public EList<WorkflowExecutionPredicate> getConditions()
 	{
-		if (conditions == null)
-		{
+		if (conditions == null) {
 			conditions = new EObjectContainmentEList<WorkflowExecutionPredicate>(WorkflowExecutionPredicate.class, this, OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS);
 		}
 		return conditions;
@@ -101,8 +100,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
 				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
 		}
@@ -117,8 +115,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
 				return getConditions();
 		}
@@ -134,8 +131,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
 				getConditions().clear();
 				getConditions().addAll((Collection<? extends WorkflowExecutionPredicate>)newValue);
@@ -152,8 +148,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
 				getConditions().clear();
 				return;
@@ -169,8 +164,7 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
 				return conditions != null && !conditions.isEmpty();
 		}

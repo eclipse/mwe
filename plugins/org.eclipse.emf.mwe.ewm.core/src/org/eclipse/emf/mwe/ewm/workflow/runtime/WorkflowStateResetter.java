@@ -85,12 +85,10 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 */
 	public WorkflowContext getContext()
 	{
-		if (context != null && context.eIsProxy())
-		{
+		if (context != null && context.eIsProxy()) {
 			InternalEObject oldContext = (InternalEObject)context;
 			context = (WorkflowContext)eResolveProxy(oldContext);
-			if (context != oldContext)
-			{
+			if (context != oldContext) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT, oldContext, context));
 			}
@@ -157,8 +155,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();
@@ -174,8 +171,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
 				setContext((WorkflowContext)newValue);
 				return;
@@ -191,8 +187,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
 				setContext((WorkflowContext)null);
 				return;
@@ -208,8 +203,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
 				return context != null;
 		}

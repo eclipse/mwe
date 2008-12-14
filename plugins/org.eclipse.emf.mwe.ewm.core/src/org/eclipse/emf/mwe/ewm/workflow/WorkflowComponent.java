@@ -36,6 +36,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getComponentOrchestrationStrategy <em>Component Orchestration Strategy</em>}</li>
  * </ul>
  * </p>
@@ -83,6 +84,24 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected String type = TYPE_EDEFAULT;
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getComponentOrchestrationStrategy() <em>Component Orchestration Strategy</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -183,6 +202,39 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowComponent_Description()
+	 * @model
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
 	 * Returns the value of the '<em><b>Component Orchestration Strategy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -210,8 +262,7 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	{
 		WorkflowComponentOrchestrationStrategy oldComponentOrchestrationStrategy = componentOrchestrationStrategy;
 		componentOrchestrationStrategy = newComponentOrchestrationStrategy;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY, oldComponentOrchestrationStrategy, newComponentOrchestrationStrategy);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -228,8 +279,7 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public void setComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy newComponentOrchestrationStrategy)
 	{
-		if (newComponentOrchestrationStrategy != componentOrchestrationStrategy)
-		{
+		if (newComponentOrchestrationStrategy != componentOrchestrationStrategy) {
 			NotificationChain msgs = null;
 			if (componentOrchestrationStrategy != null)
 				msgs = ((InternalEObject)componentOrchestrationStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY, null, msgs);
@@ -279,8 +329,7 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return basicSetComponentOrchestrationStrategy(null, msgs);
 		}
@@ -294,12 +343,13 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return getName();
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
 				return getType();
+			case WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION:
+				return getDescription();
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return getComponentOrchestrationStrategy();
 		}
@@ -313,13 +363,15 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName((String)newValue);
 				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
 				setType((String)newValue);
+				return;
+			case WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				setComponentOrchestrationStrategy((WorkflowComponentOrchestrationStrategy)newValue);
@@ -335,13 +387,15 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
 				setType(TYPE_EDEFAULT);
+				return;
+			case WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
 				return;
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				setComponentOrchestrationStrategy((WorkflowComponentOrchestrationStrategy)null);
@@ -357,12 +411,13 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+			case WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return componentOrchestrationStrategy != null;
 		}

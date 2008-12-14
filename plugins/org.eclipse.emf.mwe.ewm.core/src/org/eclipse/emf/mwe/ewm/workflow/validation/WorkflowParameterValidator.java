@@ -10,7 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.validation;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection;
+import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterValueStrategy;
 
 /**
  * A sample validator interface for {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter}.
@@ -28,4 +30,8 @@ public interface WorkflowParameterValidator
 	boolean validateConnection(WorkflowParameterConnection value);
 
 	boolean validateRequired(boolean value);
+
+	boolean validateType(EClassifier value);
+
+	boolean validateValueStrategy(WorkflowParameterValueStrategy value);
 }

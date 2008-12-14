@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime.validation;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 
 /**
@@ -23,5 +24,7 @@ public interface WorkflowParameterMapValidator
 	boolean validate();
 
 	boolean validateTypedKey(WorkflowParameter value);
+	boolean validateTypedValue(EObject value);
+
 	boolean validateTypedValue(Object value);
 }

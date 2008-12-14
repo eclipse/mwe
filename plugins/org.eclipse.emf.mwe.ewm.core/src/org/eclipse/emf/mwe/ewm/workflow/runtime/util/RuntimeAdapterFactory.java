@@ -53,8 +53,7 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 */
 	public RuntimeAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = RuntimePackage.eINSTANCE;
 		}
 	}
@@ -70,12 +69,10 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -88,56 +85,45 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected RuntimeSwitch<Adapter> modelSwitch =
-		new RuntimeSwitch<Adapter>()
-		{
+		new RuntimeSwitch<Adapter>() {
 			@Override
-			public Adapter caseWorkflowContext(WorkflowContext object)
-			{
+			public Adapter caseWorkflowContext(WorkflowContext object) {
 				return createWorkflowContextAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowEngine(WorkflowEngine object)
-			{
+			public Adapter caseWorkflowEngine(WorkflowEngine object) {
 				return createWorkflowEngineAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowStateMap(Map.Entry<WorkflowComponent, WorkflowState> object)
-			{
+			public Adapter caseWorkflowStateMap(Map.Entry<WorkflowComponent, WorkflowState> object) {
 				return createWorkflowStateMapAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object)
-			{
+			public Adapter caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object) {
 				return createWorkflowParameterMapAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowStateResolutionStrategy(WorkflowStateResolutionStrategy object)
-			{
+			public Adapter caseWorkflowStateResolutionStrategy(WorkflowStateResolutionStrategy object) {
 				return createWorkflowStateResolutionStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRunnable(Runnable object)
-			{
+			public Adapter caseWorkflowRunnable(Runnable object) {
 				return createWorkflowRunnableAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRunner(WorkflowRunner object)
-			{
+			public Adapter caseWorkflowRunner(WorkflowRunner object) {
 				return createWorkflowRunnerAdapter();
 			}
 			@Override
-			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object)
-			{
+			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object) {
 				return createIWorkflowVisitorAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowStateResetter(WorkflowStateResetter object)
-			{
+			public Adapter caseWorkflowStateResetter(WorkflowStateResetter object) {
 				return createWorkflowStateResetterAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

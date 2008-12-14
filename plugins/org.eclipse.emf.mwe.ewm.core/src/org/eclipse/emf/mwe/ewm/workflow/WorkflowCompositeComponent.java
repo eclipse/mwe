@@ -140,8 +140,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	 */
 	public EList<WorkflowComponent> getComponents()
 	{
-		if (components == null)
-		{
+		if (components == null) {
 			components = new EObjectContainmentEList<WorkflowComponent>(WorkflowComponent.class, this, WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS);
 		}
 		return components;
@@ -163,8 +162,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	 */
 	public EList<WorkflowParameter> getParameters()
 	{
-		if (parameters == null)
-		{
+		if (parameters == null) {
 			parameters = new EObjectResolvingEList<WorkflowParameter>(WorkflowParameter.class, this, WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__PARAMETERS);
 		}
 		return parameters;
@@ -198,8 +196,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	{
 		WorkflowCompositeOrchestrationStrategy oldCompositeOrchestrationStrategy = compositeOrchestrationStrategy;
 		compositeOrchestrationStrategy = newCompositeOrchestrationStrategy;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPOSITE_ORCHESTRATION_STRATEGY, oldCompositeOrchestrationStrategy, newCompositeOrchestrationStrategy);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -216,8 +213,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	 */
 	public void setCompositeOrchestrationStrategy(WorkflowCompositeOrchestrationStrategy newCompositeOrchestrationStrategy)
 	{
-		if (newCompositeOrchestrationStrategy != compositeOrchestrationStrategy)
-		{
+		if (newCompositeOrchestrationStrategy != compositeOrchestrationStrategy) {
 			NotificationChain msgs = null;
 			if (compositeOrchestrationStrategy != null)
 				msgs = ((InternalEObject)compositeOrchestrationStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPOSITE_ORCHESTRATION_STRATEGY, null, msgs);
@@ -246,8 +242,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	 */
 	public EList<WorkflowParameterConnection> getConnections()
 	{
-		if (connections == null)
-		{
+		if (connections == null) {
 			connections = new EObjectContainmentEList<WorkflowParameterConnection>(WorkflowParameterConnection.class, this, WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__CONNECTIONS);
 		}
 		return connections;
@@ -281,8 +276,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	{
 		WorkflowStateResolutionStrategy oldStateResolutionStrategy = stateResolutionStrategy;
 		stateResolutionStrategy = newStateResolutionStrategy;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__STATE_RESOLUTION_STRATEGY, oldStateResolutionStrategy, newStateResolutionStrategy);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -299,8 +293,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	 */
 	public void setStateResolutionStrategy(WorkflowStateResolutionStrategy newStateResolutionStrategy)
 	{
-		if (newStateResolutionStrategy != stateResolutionStrategy)
-		{
+		if (newStateResolutionStrategy != stateResolutionStrategy) {
 			NotificationChain msgs = null;
 			if (stateResolutionStrategy != null)
 				msgs = ((InternalEObject)stateResolutionStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__STATE_RESOLUTION_STRATEGY, null, msgs);
@@ -321,8 +314,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS:
 				return ((InternalEList<?>)getComponents()).basicRemove(otherEnd, msgs);
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPOSITE_ORCHESTRATION_STRATEGY:
@@ -343,8 +335,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS:
 				return getComponents();
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__PARAMETERS:
@@ -368,8 +359,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS:
 				getComponents().clear();
 				getComponents().addAll((Collection<? extends WorkflowComponent>)newValue);
@@ -400,8 +390,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS:
 				getComponents().clear();
 				return;
@@ -429,8 +418,7 @@ public class WorkflowCompositeComponent extends WorkflowComponent
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS:
 				return components != null && !components.isEmpty();
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT__PARAMETERS:

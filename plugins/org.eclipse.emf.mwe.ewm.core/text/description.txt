@@ -5,14 +5,16 @@ org.eclipse.emf.examples.generator.validator plug-in to illustrate how EMF's
 code generator can be extended.
 This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator=false.
 
-Package workflow <http://www.eclipse.org/emf/workflow.ecore>
+Package workflow <http://www.eclipse.org/emf/mwe/ewm/workflow>
 
   Class WorkflowComponent
     Attribute name : EString<<1..1>>
+    Attribute type : EString<<1..1>>
+    Attribute description : EString
     Reference componentOrchestrationStrategy : WorkflowComponentOrchestrationStrategy
-    Operation run(WorkflowContext) : WorkflowState
     Operation accept(IWorkflowVisitor) : void
     Operation start(WorkflowContext) : void
+    Operation run(WorkflowContext) : WorkflowState
 
   Class WorkflowCompositeComponent -> WorkflowComponent
     Reference components : WorkflowComponent<<0..*>>
@@ -20,22 +22,32 @@ Package workflow <http://www.eclipse.org/emf/workflow.ecore>
     Reference compositeOrchestrationStrategy : WorkflowCompositeOrchestrationStrategy<<1..1>>
     Reference connections : WorkflowParameterConnection<<0..*>>
     Reference stateResolutionStrategy : WorkflowStateResolutionStrategy<<1..1>>
-    Operation run(WorkflowContext) : WorkflowState
     Operation accept(IWorkflowVisitor) : void
+    Operation run(WorkflowContext) : WorkflowState
 
   Class WorkflowUnitOfWork -> WorkflowComponent
     Reference parameters : WorkflowParameter<<0..*>>
-    Operation run(WorkflowContext) : WorkflowState
     Operation accept(IWorkflowVisitor) : void
+    Operation run(WorkflowContext) : WorkflowState
 
   Class WorkflowParameter
-    Attribute type : EString<<1..1>>
     Attribute name : EString<<1..1>>
     Attribute description : EString<<1..1>>
     Reference connection : WorkflowParameterConnection<<1..1>>
     Attribute required : EBoolean<<1..1>>
+    Reference type : EClassifier<<1..1>>
+    Reference valueStrategy : WorkflowParameterValueStrategy<<1..1>>
     Operation getValue(WorkflowContext) : EJavaObject
+    Operation setValue(WorkflowContext, EJavaObject) : void
+
+  Class WorkflowParameterValueStrategy
+    Operation getValue(WorkflowContext, WorkflowParameter) : EJavaObject
+    Operation setValue(WorkflowContext, WorkflowParameter, EJavaObject) : void
 
   Class WorkflowParameterConnection
     Reference output : WorkflowParameter<<1..1>>
     Reference inputs : WorkflowParameter<<1..*>>
+
+  Class WorkflowParameterSimpleValueStrategy -> WorkflowParameterValueStrategy
+    Operation getValue(WorkflowContext, WorkflowParameter) : EJavaObject
+    Operation setValue(WorkflowContext, WorkflowParameter, EJavaObject) : void

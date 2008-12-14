@@ -123,8 +123,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 */
 	public EMap<WorkflowParameter, EObject> getParameters()
 	{
-		if (parameters == null)
-		{
+		if (parameters == null) {
 			parameters = new EcoreEMap<WorkflowParameter,EObject>(RuntimePackage.Literals.WORKFLOW_PARAMETER_MAP, WorkflowParameterMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS);
 		}
 		return parameters;
@@ -168,8 +167,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 */
 	public EMap<WorkflowComponent, WorkflowState> getStates()
 	{
-		if (states == null)
-		{
+		if (states == null) {
 			states = new EcoreEMap<WorkflowComponent,WorkflowState>(RuntimePackage.Literals.WORKFLOW_STATE_MAP, WorkflowStateMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__STATES);
 		}
 		return states;
@@ -196,8 +194,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
@@ -214,8 +211,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				if (coreType) return getParameters();
 				else return getParameters().map();
@@ -236,8 +232,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				((EStructuralFeature.Setting)getParameters()).set(newValue);
 				return;
@@ -256,8 +251,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				getParameters().clear();
 				return;
@@ -276,8 +270,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:

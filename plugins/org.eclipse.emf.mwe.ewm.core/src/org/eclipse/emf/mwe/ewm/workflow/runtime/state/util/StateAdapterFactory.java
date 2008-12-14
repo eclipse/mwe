@@ -49,8 +49,7 @@ public class StateAdapterFactory extends AdapterFactoryImpl
 	 */
 	public StateAdapterFactory()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = StatePackage.eINSTANCE;
 		}
 	}
@@ -66,12 +65,10 @@ public class StateAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage)
-		{
+		if (object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject)
-		{
+		if (object instanceof EObject) {
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -84,46 +81,37 @@ public class StateAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected StateSwitch<Adapter> modelSwitch =
-		new StateSwitch<Adapter>()
-		{
+		new StateSwitch<Adapter>() {
 			@Override
-			public Adapter caseWorkflowState(WorkflowState object)
-			{
+			public Adapter caseWorkflowState(WorkflowState object) {
 				return createWorkflowStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowIdleState(WorkflowIdleState object)
-			{
+			public Adapter caseWorkflowIdleState(WorkflowIdleState object) {
 				return createWorkflowIdleStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRunningState(WorkflowRunningState object)
-			{
+			public Adapter caseWorkflowRunningState(WorkflowRunningState object) {
 				return createWorkflowRunningStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowDoneState(WorkflowDoneState object)
-			{
+			public Adapter caseWorkflowDoneState(WorkflowDoneState object) {
 				return createWorkflowDoneStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowSuccessState(WorkflowSuccessState object)
-			{
+			public Adapter caseWorkflowSuccessState(WorkflowSuccessState object) {
 				return createWorkflowSuccessStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowFailedState(WorkflowFailedState object)
-			{
+			public Adapter caseWorkflowFailedState(WorkflowFailedState object) {
 				return createWorkflowFailedStateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowErrorState(WorkflowErrorState object)
-			{
+			public Adapter caseWorkflowErrorState(WorkflowErrorState object) {
 				return createWorkflowErrorStateAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object)
-			{
+			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
 		};

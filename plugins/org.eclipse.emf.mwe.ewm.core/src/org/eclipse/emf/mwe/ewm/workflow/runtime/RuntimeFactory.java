@@ -49,16 +49,13 @@ public class RuntimeFactory extends EFactoryImpl
 	 */
 	public static RuntimeFactory init()
 	{
-		try
-		{
+		try {
 			RuntimeFactory theRuntimeFactory = (RuntimeFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"); 
-			if (theRuntimeFactory != null)
-			{
+			if (theRuntimeFactory != null) {
 				return theRuntimeFactory;
 			}
 		}
-		catch (Exception exception)
-		{
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RuntimeFactory();
@@ -83,8 +80,7 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID())
-		{
+		switch (eClass.getClassifierID()) {
 			case RuntimePackage.WORKFLOW_CONTEXT: return createWorkflowContext();
 			case RuntimePackage.WORKFLOW_ENGINE: return createWorkflowEngine();
 			case RuntimePackage.WORKFLOW_STATE_MAP: return (EObject)createWorkflowStateMap();
@@ -106,8 +102,7 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case RuntimePackage.EXECUTOR_SERVICE:
 				return createExecutorServiceFromString(eDataType, initialValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:
@@ -125,8 +120,7 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID())
-		{
+		switch (eDataType.getClassifierID()) {
 			case RuntimePackage.EXECUTOR_SERVICE:
 				return convertExecutorServiceToString(eDataType, instanceValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:

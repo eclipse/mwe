@@ -98,12 +98,10 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 */
 	public WorkflowParameter getTypedKey()
 	{
-		if (key != null && key.eIsProxy())
-		{
+		if (key != null && key.eIsProxy()) {
 			InternalEObject oldKey = (InternalEObject)key;
 			key = (WorkflowParameter)eResolveProxy(oldKey);
-			if (key != oldKey)
-			{
+			if (key != oldKey) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY, oldKey, key));
 			}
@@ -165,8 +163,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		EObject oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -183,8 +180,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 */
 	public void setTypedValue(EObject newValue)
 	{
-		if (newValue != value)
-		{
+		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
 				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, null, msgs);
@@ -205,8 +201,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
 				return basicSetTypedValue(null, msgs);
 		}
@@ -221,8 +216,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
 				if (resolve) return getTypedKey();
 				return basicGetTypedKey();
@@ -240,8 +234,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
 				setTypedKey((WorkflowParameter)newValue);
 				return;
@@ -260,8 +253,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
 				setTypedKey((WorkflowParameter)null);
 				return;
@@ -280,8 +272,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
 				return key != null;
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
@@ -304,8 +295,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 */
 	public int getHash()
 	{
-		if (hash == -1)
-		{
+		if (hash == -1) {
 			Object theKey = getKey();
 			hash = (theKey == null ? 0 : theKey.hashCode());
 		}

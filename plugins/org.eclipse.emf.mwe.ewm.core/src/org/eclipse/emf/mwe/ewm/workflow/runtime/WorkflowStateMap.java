@@ -99,12 +99,10 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	 */
 	public WorkflowComponent getTypedKey()
 	{
-		if (key != null && key.eIsProxy())
-		{
+		if (key != null && key.eIsProxy()) {
 			InternalEObject oldKey = (InternalEObject)key;
 			key = (WorkflowComponent)eResolveProxy(oldKey);
-			if (key != oldKey)
-			{
+			if (key != oldKey) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_STATE_MAP__KEY, oldKey, key));
 			}
@@ -166,8 +164,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	{
 		WorkflowState oldValue = value;
 		value = newValue;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_STATE_MAP__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -184,8 +181,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	 */
 	public void setTypedValue(WorkflowState newValue)
 	{
-		if (newValue != value)
-		{
+		if (newValue != value) {
 			NotificationChain msgs = null;
 			if (value != null)
 				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_STATE_MAP__VALUE, null, msgs);
@@ -206,8 +202,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_MAP__VALUE:
 				return basicSetTypedValue(null, msgs);
 		}
@@ -222,8 +217,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_MAP__KEY:
 				if (resolve) return getTypedKey();
 				return basicGetTypedKey();
@@ -241,8 +235,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_MAP__KEY:
 				setTypedKey((WorkflowComponent)newValue);
 				return;
@@ -261,8 +254,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_MAP__KEY:
 				setTypedKey((WorkflowComponent)null);
 				return;
@@ -281,8 +273,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID)
-		{
+		switch (featureID) {
 			case RuntimePackage.WORKFLOW_STATE_MAP__KEY:
 				return key != null;
 			case RuntimePackage.WORKFLOW_STATE_MAP__VALUE:
@@ -305,8 +296,7 @@ public class WorkflowStateMap extends EObjectImpl implements BasicEMap.Entry<Wor
 	 */
 	public int getHash()
 	{
-		if (hash == -1)
-		{
+		if (hash == -1) {
 			Object theKey = getKey();
 			hash = (theKey == null ? 0 : theKey.hashCode());
 		}

@@ -23,5 +23,9 @@ public interface WorkflowComponentValidator
 	boolean validate();
 
 	boolean validateName(String value);
+	boolean validateType(String value);
+
+	boolean validateDescription(String value);
+
 	boolean validateComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy value);
 }

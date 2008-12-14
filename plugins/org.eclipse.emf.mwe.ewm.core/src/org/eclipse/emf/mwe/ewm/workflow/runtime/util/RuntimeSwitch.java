@@ -57,8 +57,7 @@ public class RuntimeSwitch<T>
 	 */
 	public RuntimeSwitch()
 	{
-		if (modelPackage == null)
-		{
+		if (modelPackage == null) {
 			modelPackage = RuntimePackage.eINSTANCE;
 		}
 	}
@@ -84,12 +83,10 @@ public class RuntimeSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage)
-		{
+		if (theEClass.eContainer() == modelPackage) {
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else
-		{
+		else {
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -107,61 +104,52 @@ public class RuntimeSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID)
-		{
-			case RuntimePackage.WORKFLOW_CONTEXT:
-			{
+		switch (classifierID) {
+			case RuntimePackage.WORKFLOW_CONTEXT: {
 				WorkflowContext workflowContext = (WorkflowContext)theEObject;
 				T result = caseWorkflowContext(workflowContext);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_ENGINE:
-			{
+			case RuntimePackage.WORKFLOW_ENGINE: {
 				WorkflowEngine workflowEngine = (WorkflowEngine)theEObject;
 				T result = caseWorkflowEngine(workflowEngine);
 				if (result == null) result = caseWorkflowRunnable(workflowEngine);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_STATE_MAP:
-			{
+			case RuntimePackage.WORKFLOW_STATE_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<WorkflowComponent, WorkflowState> workflowStateMap = (Map.Entry<WorkflowComponent, WorkflowState>)theEObject;
 				T result = caseWorkflowStateMap(workflowStateMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP:
-			{
+			case RuntimePackage.WORKFLOW_PARAMETER_MAP: {
 				@SuppressWarnings("unchecked") Map.Entry<WorkflowParameter, EObject> workflowParameterMap = (Map.Entry<WorkflowParameter, EObject>)theEObject;
 				T result = caseWorkflowParameterMap(workflowParameterMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_STATE_RESOLUTION_STRATEGY:
-			{
+			case RuntimePackage.WORKFLOW_STATE_RESOLUTION_STRATEGY: {
 				WorkflowStateResolutionStrategy workflowStateResolutionStrategy = (WorkflowStateResolutionStrategy)theEObject;
 				T result = caseWorkflowStateResolutionStrategy(workflowStateResolutionStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_RUNNER:
-			{
+			case RuntimePackage.WORKFLOW_RUNNER: {
 				WorkflowRunner workflowRunner = (WorkflowRunner)theEObject;
 				T result = caseWorkflowRunner(workflowRunner);
 				if (result == null) result = caseWorkflowRunnable(workflowRunner);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.IWORKFLOW_VISITOR:
-			{
+			case RuntimePackage.IWORKFLOW_VISITOR: {
 				IWorkflowVisitor iWorkflowVisitor = (IWorkflowVisitor)theEObject;
 				T result = caseIWorkflowVisitor(iWorkflowVisitor);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_STATE_RESETTER:
-			{
+			case RuntimePackage.WORKFLOW_STATE_RESETTER: {
 				WorkflowStateResetter workflowStateResetter = (WorkflowStateResetter)theEObject;
 				T result = caseWorkflowStateResetter(workflowStateResetter);
 				if (result == null) result = caseIWorkflowVisitor(workflowStateResetter);
