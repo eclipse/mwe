@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.debug.ui.launchConfigurationTypeImages">
       <launchConfigurationTypeImage
-            configTypeID="org.eclipse.emf.mwe.ewm.launcher.workflowLaunchConfigurationType"
+            configTypeID="org.eclipse.emf.mwe.ewm.launcher.core.workflowLaunchConfigurationType"
             icon="icons/obj16/workflow.gif"
             id="org.eclipse.emf.mwe.ewm.launcher.ui.launchConfigurationTypeImage">
       </launchConfigurationTypeImage>
@@ -14,7 +14,7 @@
       <launchConfigurationTabGroup
             class="org.eclipse.emf.mwe.ewm.internal.launcher.ui.WorkflowLaunchConfigurationTabGroup"
             id="org.eclipse.emf.mwe.ewm.launcher.ui.launchConfigurationTabGroup"
-            type="org.eclipse.emf.mwe.ewm.launcher.workflowLaunchConfigurationType">
+            type="org.eclipse.emf.mwe.ewm.launcher.core.workflowLaunchConfigurationType">
       </launchConfigurationTabGroup>
    </extension>
 
