@@ -36,4 +36,4 @@ Export-Package: org.eclipse.emf.mwe.core,
  org.eclipse.emf.mwe.internal.core.debug.processing.handlers;x-friends:="org.eclipse.emf.mwe.ui,org.eclipse.emf.mwe.tests",
  org.eclipse.emf.mwe.internal.core.util;x-friends:="org.eclipse.emf.mwe.tests"
 Bundle-Activator: org.eclipse.emf.mwe.internal.core.MWEPlugin$Implementation
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
