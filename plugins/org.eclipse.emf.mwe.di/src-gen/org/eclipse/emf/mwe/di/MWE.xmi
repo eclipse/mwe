@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="ASCII"?>
-<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
+<xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext">
   <idElements>org</idElements>
   <idElements>eclipse</idElements>
   <idElements>emf</idElements>
   <idElements>mwe</idElements>
   <idElements>di</idElements>
   <idElements>MWE</idElements>
-  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe" nsURI="http://www.eclipse.org/emf/mwe/di"/>
+  <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe">
+    <ePackage href="http://www.eclipse.org/emf/mwe/di#/"/>
+  </metamodelDeclarations>
   <rules xsi:type="xtext:ParserRule" name="File">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//File"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Assignment" cardinality="*" feature="imports" operator="+=">
@@ -23,12 +28,18 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Import">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//Import"/>
+    </type>
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:RuleCall" rule="//@rules.2"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.3"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="JavaImport">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//JavaImport"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -48,6 +59,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="GenericImport">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//GenericImport"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Keyword" value="import"/>
@@ -61,12 +75,18 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Property">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//Property"/>
+    </type>
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:RuleCall" rule="//@rules.5"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.6"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="LocalVariable">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//LocalVariable"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -88,6 +108,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="PropertiesFileImport">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//PropertiesFileImport"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -104,6 +127,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Value">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//Value"/>
+    </type>
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:Alternatives">
         <groups xsi:type="xtext:Alternatives">
@@ -116,6 +142,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="SimpleValue">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//SimpleValue"/>
+    </type>
     <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
       <terminal xsi:type="xtext:RuleCall">
         <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
@@ -123,12 +152,18 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Assignable">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//Assignable"/>
+    </type>
     <alternatives xsi:type="xtext:Alternatives">
       <groups xsi:type="xtext:RuleCall" rule="//@rules.10"/>
       <groups xsi:type="xtext:RuleCall" rule="//@rules.11"/>
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="ComplexValue">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//ComplexValue"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -157,6 +192,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="WorkflowRef">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//WorkflowRef"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -178,6 +216,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="IdRef">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//IdRef"/>
+    </type>
     <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
       <terminal xsi:type="xtext:RuleCall">
         <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
@@ -185,6 +226,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="Assignment">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//Assignment"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Group">
         <abstractTokens xsi:type="xtext:Group">
@@ -208,6 +252,9 @@
     </alternatives>
   </rules>
   <rules xsi:type="xtext:ParserRule" name="QualifiedName">
+    <type metamodel="//@metamodelDeclarations.0">
+      <type xsi:type="ecore:EClass" href="http://www.eclipse.org/emf/mwe/di#//QualifiedName"/>
+    </type>
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
         <terminal xsi:type="xtext:RuleCall">

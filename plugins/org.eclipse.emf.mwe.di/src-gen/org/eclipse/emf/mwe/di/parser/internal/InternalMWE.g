@@ -27,6 +27,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.AbstractAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.eclipse.xtext.parser.antlr.DatatypeRuleToken;
+import org.eclipse.xtext.parser.antlr.ValueConverterException;
+
 }
 
 @parser::members {
@@ -58,6 +61,7 @@ import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 
 
+
 // Entry rule entryRuleFile
 entryRuleFile returns [EObject current=null] :
 	{ currentNode = createCompositeNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.0" /* xtext::ParserRule */, currentNode); }
@@ -78,14 +82,18 @@ ruleFile returns [EObject current=null]
 	    }
 	    lv_imports=ruleImport 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("File");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.add($current, "imports", lv_imports,null);
-	         }
+	        try {
+	        	factory.add($current, "imports", lv_imports, "Import", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 )*(	
 	
@@ -95,14 +103,18 @@ ruleFile returns [EObject current=null]
 	    }
 	    lv_properties=ruleProperty 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("File");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.add($current, "properties", lv_properties,null);
-	         }
+	        try {
+	        	factory.add($current, "properties", lv_properties, "Property", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 )*)(	
 	
@@ -112,17 +124,23 @@ ruleFile returns [EObject current=null]
 	    }
 	    lv_value=ruleComplexValue 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("File");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.set($current, "value", lv_value,null);
-	         }
+	        try {
+	        	factory.set($current, "value", lv_value, "ComplexValue", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 ));
-    
+
+
+
 
 
 // Entry rule entryRuleImport
@@ -157,7 +175,9 @@ ruleImport returns [EObject current=null]
         currentNode = currentNode.getParent();
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleJavaImport
@@ -184,14 +204,18 @@ ruleJavaImport returns [EObject current=null]
 	    }
 	    lv_javaImport=ruleQualifiedName 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("JavaImport");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.set($current, "javaImport", lv_javaImport,null);
-	         }
+	        try {
+	        	factory.set($current, "javaImport", lv_javaImport, "QualifiedName", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 ))('.' 
     {
@@ -210,15 +234,21 @@ ruleJavaImport returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "wildcard", true,"*");
-	         }
+	        try {
+	        	factory.set($current, "wildcard", true, "*", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))?)';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.2/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleGenericImport
@@ -250,15 +280,21 @@ ruleGenericImport returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "value", lv_value,"STRING");
-	         }
+	        try {
+	        	factory.set($current, "value", lv_value, "STRING", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))(';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.3/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 )?);
-    
+
+
+
 
 
 // Entry rule entryRuleProperty
@@ -293,7 +329,9 @@ ruleProperty returns [EObject current=null]
         currentNode = currentNode.getParent();
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleLocalVariable
@@ -325,8 +363,12 @@ ruleLocalVariable returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "name", lv_name,"ID");
-	         }
+	        try {
+	        	factory.set($current, "name", lv_name, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))('=' 
     {
@@ -340,21 +382,27 @@ ruleLocalVariable returns [EObject current=null]
 	    }
 	    lv_value=ruleValue 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("LocalVariable");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.set($current, "value", lv_value,null);
-	         }
+	        try {
+	        	factory.set($current, "value", lv_value, "Value", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 ))?)';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.5/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRulePropertiesFileImport
@@ -390,15 +438,21 @@ rulePropertiesFileImport returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "file", lv_file,"STRING");
-	         }
+	        try {
+	        	factory.set($current, "file", lv_file, "STRING", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.6/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleValue
@@ -453,7 +507,9 @@ ruleValue returns [EObject current=null]
         currentNode = currentNode.getParent();
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleSimpleValue
@@ -481,11 +537,17 @@ ruleSimpleValue returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "value", lv_value,"STRING");
-	         }
+	        try {
+	        	factory.set($current, "value", lv_value, "STRING", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 );
-    
+
+
+
 
 
 
@@ -510,14 +572,18 @@ ruleComplexValue returns [EObject current=null]
 	    }
 	    lv_className=ruleQualifiedName 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("ComplexValue");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.set($current, "className", lv_className,null);
-	         }
+	        try {
+	        	factory.set($current, "className", lv_className, "QualifiedName", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 )?(':' 
     {
@@ -536,8 +602,12 @@ ruleComplexValue returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "id", lv_id,"ID");
-	         }
+	        try {
+	        	factory.set($current, "id", lv_id, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))?)(	
 	
@@ -552,8 +622,12 @@ ruleComplexValue returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "fooBar", true,"{");
-	         }
+	        try {
+	        	factory.set($current, "fooBar", true, "{", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))(	
 	
@@ -563,21 +637,27 @@ ruleComplexValue returns [EObject current=null]
 	    }
 	    lv_assignments=ruleAssignment 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("ComplexValue");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.add($current, "assignments", lv_assignments,null);
-	         }
+	        try {
+	        	factory.add($current, "assignments", lv_assignments, "Assignment", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 )*)'}' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.10/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleWorkflowRef
@@ -609,8 +689,12 @@ ruleWorkflowRef returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "uri", lv_uri,"STRING");
-	         }
+	        try {
+	        	factory.set($current, "uri", lv_uri, "STRING", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))'{' 
     {
@@ -624,21 +708,27 @@ ruleWorkflowRef returns [EObject current=null]
 	    }
 	    lv_assignments=ruleAssignment 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("WorkflowRef");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.add($current, "assignments", lv_assignments,null);
-	         }
+	        try {
+	        	factory.add($current, "assignments", lv_assignments, "Assignment", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 )*)'}' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.11/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 );
-    
+
+
+
 
 
 // Entry rule entryRuleIdRef
@@ -666,11 +756,17 @@ ruleIdRef returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "id", lv_id,"ID");
-	         }
+	        try {
+	        	factory.set($current, "id", lv_id, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 );
-    
+
+
+
 
 
 // Entry rule entryRuleAssignment
@@ -698,8 +794,12 @@ ruleAssignment returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "feature", lv_feature,"ID");
-	         }
+	        try {
+	        	factory.set($current, "feature", lv_feature, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 )?(	
 	
@@ -719,8 +819,12 @@ ruleAssignment returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.set($current, "operator", input.LT(-1),null);
-	         }
+	        try {
+	        	factory.set($current, "operator", input.LT(-1), null, currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))(	
 	
@@ -730,21 +834,27 @@ ruleAssignment returns [EObject current=null]
 	    }
 	    lv_value=ruleValue 
 	    {
-	        currentNode = currentNode.getParent();
 	        if ($current==null) {
 	            $current = factory.create("Assignment");
-	            associateNodeWithAstElement(currentNode, $current);
+	            associateNodeWithAstElement(currentNode.getParent(), $current);
 	        }
 	        
-	        factory.set($current, "value", lv_value,null);
-	         }
+	        try {
+	        	factory.set($current, "value", lv_value, "Value", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	        currentNode = currentNode.getParent();
+	    }
 	
 ))(';' 
     {
         createLeafNode("classpath:/org/eclipse/emf/mwe/di/MWE.xmi#//@rules.13/@alternatives/@abstractTokens.1" /* xtext::Keyword */, null); 
     }
 )?);
-    
+
+
+
 
 
 // Entry rule entryRuleQualifiedName
@@ -772,8 +882,12 @@ ruleQualifiedName returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.add($current, "parts", lv_parts,"ID");
-	         }
+	        try {
+	        	factory.add($current, "parts", lv_parts, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 )((	
 	
@@ -788,8 +902,12 @@ ruleQualifiedName returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.add($current, "parts", input.LT(-1),".");
-	         }
+	        try {
+	        	factory.add($current, "parts", input.LT(-1), ".", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 )(	
 	
@@ -804,11 +922,16 @@ ruleQualifiedName returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
 	        
-	        factory.add($current, "parts", lv_parts,"ID");
-	         }
+	        try {
+	        	factory.add($current, "parts", lv_parts, "ID", currentNode);
+	        } catch (ValueConverterException vce) {
+				handleValueConverterException(vce);
+	        }
+	    }
 	
 ))*);
-    
+
+
 
 
 

@@ -25,24 +25,55 @@ public class MWEParseTreeConstructor extends AbstractParseTreeConstructor {
 	protected Solution internalSerialize(EObject obj) {
 		IInstanceDescription inst = getDescr(obj);
 		Solution s;
+
 		if(inst.isInstanceOf("File") && (s = new File_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("Import") && (s = new Import_Alternatives(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("JavaImport") && (s = new JavaImport_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("GenericImport") && (s = new GenericImport_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("Property") && (s = new Property_Alternatives(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("LocalVariable") && (s = new LocalVariable_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("PropertiesFileImport") && (s = new PropertiesFileImport_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("Value") && (s = new Value_Alternatives(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("SimpleValue") && (s = new SimpleValue_Assignment_value(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("Assignable") && (s = new Assignable_Alternatives(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("ComplexValue") && (s = new ComplexValue_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("WorkflowRef") && (s = new WorkflowRef_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("IdRef") && (s = new IdRef_Assignment_id(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("Assignment") && (s = new Assignment_Group(inst, null).firstSolution()) != null) return s;
+
+
 		if(inst.isInstanceOf("QualifiedName") && (s = new QualifiedName_Group(inst, null).firstSolution()) != null) return s;
+
 		return null;
 	}
 	
+
 /************ begin Rule File ****************
  *
  * File : ( imports += Import ) * ( properties += Property ) * value = ComplexValue ;
@@ -120,6 +151,7 @@ protected class File_0_0_Assignment_imports extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("imports",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("imports");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Import")) {
@@ -130,6 +162,7 @@ protected class File_0_0_Assignment_imports extends AssignmentToken  {
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -148,6 +181,7 @@ protected class File_0_1_Assignment_properties extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("properties",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("properties");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Property")) {
@@ -158,6 +192,7 @@ protected class File_0_1_Assignment_properties extends AssignmentToken  {
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -177,6 +212,7 @@ protected class File_1_Assignment_value extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("ComplexValue")) {
@@ -187,12 +223,14 @@ protected class File_1_Assignment_value extends AssignmentToken  {
 				} 
 			}
 		}
+
 		return null;
 	}
 }
 
 
 /************ end Rule File ****************/
+
 
 /************ begin Rule Import ****************
  *
@@ -260,6 +298,7 @@ protected class Import_1_RuleCall_GenericImport extends RuleCallToken {
 
 
 /************ end Rule Import ****************/
+
 
 /************ begin Rule JavaImport ****************
  *
@@ -378,6 +417,7 @@ protected class JavaImport_0_0_1_Assignment_javaImport extends AssignmentToken  
 	protected Solution createSolution() {
 		if((value = current.getConsumable("javaImport",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("javaImport");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("QualifiedName")) {
@@ -388,6 +428,7 @@ protected class JavaImport_0_0_1_Assignment_javaImport extends AssignmentToken  
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -429,7 +470,7 @@ protected class JavaImport_0_1_0_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prJavaImport().ele010Keyword();
+		return MWEGrammarAccess.INSTANCE.prJavaImport().ele010KeywordFullStop();
 	}	
 }
 
@@ -449,7 +490,7 @@ protected class JavaImport_0_1_1_Assignment_wildcard extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("wildcard");
 		if("*".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
-			element = MWEGrammarAccess.INSTANCE.prJavaImport().ele0110Keyword();
+			element = MWEGrammarAccess.INSTANCE.prJavaImport().ele0110KeywordAsterisk();
 			return new Solution(obj);
 		}
 		return null;
@@ -466,12 +507,13 @@ protected class JavaImport_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prJavaImport().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prJavaImport().ele1KeywordSemicolon();
 	}	
 }
 
 
 /************ end Rule JavaImport ****************/
+
 
 /************ begin Rule GenericImport ****************
  *
@@ -580,12 +622,13 @@ protected class GenericImport_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prGenericImport().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prGenericImport().ele1KeywordSemicolon();
 	}	
 }
 
 
 /************ end Rule GenericImport ****************/
+
 
 /************ begin Rule Property ****************
  *
@@ -653,6 +696,7 @@ protected class Property_1_RuleCall_PropertiesFileImport extends RuleCallToken {
 
 
 /************ end Rule Property ****************/
+
 
 /************ begin Rule LocalVariable ****************
  *
@@ -817,7 +861,7 @@ protected class LocalVariable_0_1_0_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele010Keyword();
+		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele010KeywordEqualsSign();
 	}	
 }
 
@@ -835,6 +879,7 @@ protected class LocalVariable_0_1_1_Assignment_value extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Value")) {
@@ -845,6 +890,7 @@ protected class LocalVariable_0_1_1_Assignment_value extends AssignmentToken  {
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -859,12 +905,13 @@ protected class LocalVariable_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele1KeywordSemicolon();
 	}	
 }
 
 
 /************ end Rule LocalVariable ****************/
+
 
 /************ begin Rule PropertiesFileImport ****************
  *
@@ -1014,12 +1061,13 @@ protected class PropertiesFileImport_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().ele1KeywordSemicolon();
 	}	
 }
 
 
 /************ end Rule PropertiesFileImport ****************/
+
 
 /************ begin Rule Value ****************
  *
@@ -1168,6 +1216,7 @@ protected class Value_1_RuleCall_WorkflowRef extends RuleCallToken {
 
 /************ end Rule Value ****************/
 
+
 /************ begin Rule SimpleValue ****************
  *
  * SimpleValue : value = STRING ;
@@ -1199,6 +1248,7 @@ protected class SimpleValue_Assignment_value extends AssignmentToken  {
 }
 
 /************ end Rule SimpleValue ****************/
+
 
 /************ begin Rule Assignable ****************
  *
@@ -1266,6 +1316,7 @@ protected class Assignable_1_RuleCall_WorkflowRef extends RuleCallToken {
 
 
 /************ end Rule Assignable ****************/
+
 
 /************ begin Rule ComplexValue ****************
  *
@@ -1400,6 +1451,7 @@ protected class ComplexValue_0_0_0_0_Assignment_className extends AssignmentToke
 	protected Solution createSolution() {
 		if((value = current.getConsumable("className",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("className");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("QualifiedName")) {
@@ -1410,6 +1462,7 @@ protected class ComplexValue_0_0_0_0_Assignment_className extends AssignmentToke
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -1450,7 +1503,7 @@ protected class ComplexValue_0_0_0_1_0_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prComplexValue().ele00010Keyword();
+		return MWEGrammarAccess.INSTANCE.prComplexValue().ele00010KeywordColon();
 	}	
 }
 
@@ -1495,7 +1548,7 @@ protected class ComplexValue_0_0_1_Assignment_fooBar extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("fooBar");
 		if("{".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
-			element = MWEGrammarAccess.INSTANCE.prComplexValue().ele0010Keyword();
+			element = MWEGrammarAccess.INSTANCE.prComplexValue().ele0010KeywordLeftCurlyBracket();
 			return new Solution(obj);
 		}
 		return null;
@@ -1517,6 +1570,7 @@ protected class ComplexValue_0_1_Assignment_assignments extends AssignmentToken 
 	protected Solution createSolution() {
 		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Assignment")) {
@@ -1527,6 +1581,7 @@ protected class ComplexValue_0_1_Assignment_assignments extends AssignmentToken 
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -1540,12 +1595,13 @@ protected class ComplexValue_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prComplexValue().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prComplexValue().ele1KeywordRightCurlyBracket();
 	}	
 }
 
 
 /************ end Rule ComplexValue ****************/
+
 
 /************ begin Rule WorkflowRef ****************
  *
@@ -1710,7 +1766,7 @@ protected class WorkflowRef_0_0_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele001Keyword();
+		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele001KeywordLeftCurlyBracket();
 	}	
 }
 
@@ -1729,6 +1785,7 @@ protected class WorkflowRef_0_1_Assignment_assignments extends AssignmentToken  
 	protected Solution createSolution() {
 		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Assignment")) {
@@ -1739,6 +1796,7 @@ protected class WorkflowRef_0_1_Assignment_assignments extends AssignmentToken  
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -1752,12 +1810,13 @@ protected class WorkflowRef_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele1KeywordRightCurlyBracket();
 	}	
 }
 
 
 /************ end Rule WorkflowRef ****************/
+
 
 /************ begin Rule IdRef ****************
  *
@@ -1790,6 +1849,7 @@ protected class IdRef_Assignment_id extends AssignmentToken  {
 }
 
 /************ end Rule IdRef ****************/
+
 
 /************ begin Rule Assignment ****************
  *
@@ -1921,12 +1981,12 @@ protected class Assignment_0_0_1_Assignment_operator extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("operator");
 		if("=".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
-			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00100Keyword();
+			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00100KeywordEqualsSign();
 			return new Solution(obj);
 		}
 		if("+=".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
-			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00101Keyword();
+			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00101KeywordPlusSignEqualsSign();
 			return new Solution(obj);
 		}
 		return null;
@@ -1948,6 +2008,7 @@ protected class Assignment_0_1_Assignment_value extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
+
 		if(value instanceof EObject) { // xtext::RuleCall
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Value")) {
@@ -1958,6 +2019,7 @@ protected class Assignment_0_1_Assignment_value extends AssignmentToken  {
 				} 
 			}
 		}
+
 		return null;
 	}
 }
@@ -1971,12 +2033,13 @@ protected class Assignment_1_Keyword extends KeywordToken  {
 	}
 	
 	public Keyword getGrammarElement() {
-		return MWEGrammarAccess.INSTANCE.prAssignment().ele1Keyword();
+		return MWEGrammarAccess.INSTANCE.prAssignment().ele1KeywordSemicolon();
 	}	
 }
 
 
 /************ end Rule Assignment ****************/
+
 
 /************ begin Rule QualifiedName ****************
  *
@@ -2080,7 +2143,7 @@ protected class QualifiedName_1_0_Assignment_parts extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(".".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
-			element = MWEGrammarAccess.INSTANCE.prQualifiedName().ele100Keyword();
+			element = MWEGrammarAccess.INSTANCE.prQualifiedName().ele100KeywordFullStop();
 			return new Solution(obj);
 		}
 		return null;
