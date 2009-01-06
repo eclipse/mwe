@@ -205,6 +205,14 @@ public interface IWorkflowElement {
 	boolean hasAttributes();
 
 	/**
+	 * Checks if the current element has any children attached.
+	 * 
+	 * @return <code>true</code> if current elements has children, otherwise
+	 *         <code>false</code>.
+	 */
+	boolean hasChildren();
+
+	/**
 	 * Checks if the current element has a parent node.
 	 * 
 	 * @return <code>true</code> if field <code>parent</code> is not

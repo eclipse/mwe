@@ -26,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public class ElementIterator {
 
@@ -41,7 +41,7 @@ public class ElementIterator {
 	private List<IWorkflowElement> elementList;
 
 	private final List<IWorkflowAttribute> attributeList =
-			new ArrayList<IWorkflowAttribute>();
+		new ArrayList<IWorkflowAttribute>();
 
 	private final PropertyStore propertyStore = new PropertyStore();
 
@@ -63,7 +63,7 @@ public class ElementIterator {
 		}
 
 		final ReferenceAnalyzer referenceAnalyzer =
-				new ReferenceAnalyzer(file, document, referenceInfoStore);
+			new ReferenceAnalyzer(file, document, referenceInfoStore);
 
 		for (final IWorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
@@ -112,7 +112,7 @@ public class ElementIterator {
 			final IWorkflowElement child = element.getChild(i);
 			list.add(child);
 			final Collection<IWorkflowAttribute> attributes =
-					element.getAttributes();
+				element.getAttributes();
 			for (final IWorkflowAttribute attribute : attributes) {
 				attributeList.add(attribute);
 			}
@@ -130,10 +130,13 @@ public class ElementIterator {
 			}
 		}
 
-		if (!isRootExcluded) {
-			list.add(workflowElement);
-		} else {
-			list.add(workflowElement.getChild(0));
+		if (workflowElement != null) {
+			if (!isRootExcluded) {
+				list.add(workflowElement);
+			}
+			else if (workflowElement.hasChildren()) {
+				list.add(workflowElement.getChild(0));
+			}
 		}
 
 		for (int i = 0; i < list.size(); i++) {
