@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.emf.mwe.core;
@@ -27,45 +25,63 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
  */
 public interface WorkflowComponent {
 
-    /**
-     * @param ctx
-     *            current workflow context
-     * @param monitor
-     *            implementors should provide some feedback about the progress
-     *            using this monitor
-     * @param issues
-     */
-    public void invoke(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
+	/**
+	 * Invoke the component.
+	 * 
+	 * @param ctx
+	 *            current workflow context
+	 * @param monitor
+	 *            implementors should provide some feedback about the progress
+	 *            using this monitor
+	 * @param issues
+	 *            collecton of execution issues
+	 */
+	public void invoke(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
 
-    /**
-     * Is called by the container after configuration so the component can
-     * validate the configuration before invocation.
-     * 
-     * @param issues -
-     *            implementors should report configuration issues to this.
-     */
-    public void checkConfiguration(Issues issues);
-    
-    /**
-     * returns the containing component, if there is one
-     * @return
-     */
-    public CompositeComponent getContainer();
-    
-    /**
-     * set the containing component
-     * @return
-     */
-    public void setContainer( CompositeComponent container );
-    
-    /**
-     * set the location in the source file that invokes the current component.
-     */
-    public void setLocation( Location location);
-    
-    /**
-     * return the location
-     * @return the location
-     */
-    public Location getLocation();
+	/**
+	 * Called by the container after configuration so the component can validate
+	 * the configuration before invocation.
+	 * 
+	 * @param issues
+	 *            implementors should report configuration issues to this.
+	 */
+	public void checkConfiguration(Issues issues);
+
+	/**
+	 * Returns the containing component if there is one.
+	 * 
+	 * @return the containing component
+	 */
+	public CompositeComponent getContainer();
+
+	/**
+	 * Sets the containing component.
+	 * 
+	 * @param container
+	 *            the containing component
+	 */
+	public void setContainer(CompositeComponent container);
+
+	/**
+	 * Sets the location in the source file that invokes the current component.
+	 * 
+	 * @param location
+	 *            the location
+	 */
+	public void setLocation(Location location);
+
+	/**
+	 * Returns the location
+	 * 
+	 * @return the location
+	 */
+	public Location getLocation();
+
+	/**
+	 * Returns the name of the component.
+	 * 
+	 * @return the component name
+	 * @since 4.3.1
+	 */
+	public String getComponentName();
 }

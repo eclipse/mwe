@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.emf.mwe.core.resources;
@@ -26,7 +24,8 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 		if (resource != null) {
 			try {
 				return resource.openStream();
-			} catch (IOException ignore) {
+			}
+			catch (IOException ignore) {
 			}
 		}
 		return null;
@@ -35,23 +34,21 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 	public final Class<?> loadClass(final String clazzName) {
 		try {
 			return MWEPlugin.loadClass(MWEPlugin.ID, clazzName);
-		} catch (Exception e1) {
+		}
+		catch (Exception e1) {
 			try {
 				return internalLoadClass(clazzName);
-			} catch (final Exception e2) {
-				if (clazzName.startsWith("mwe")) {
-					return loadClass(clazzName.replaceFirst("mwe",
-							"org.eclipse.emf.mwe"));
-				}
+			}
+			catch (final Exception e2) {
+				if (clazzName.startsWith("mwe"))
+					return loadClass(clazzName.replaceFirst("mwe", "org.eclipse.emf.mwe"));
 			}
 		}
 		return null;
 	}
 
-	protected Class<?> internalLoadClass(final String clazzName)
-			throws ClassNotFoundException {
-		return Class.forName(clazzName, true, Thread.currentThread()
-				.getContextClassLoader());
+	protected Class<?> internalLoadClass(final String clazzName) throws ClassNotFoundException {
+		return Class.forName(clazzName, true, Thread.currentThread().getContextClassLoader());
 	}
 
 	public final URL getResource(String path) {
@@ -74,10 +71,10 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 				path = FILE_PREFIX + path;
 			}
 			URL url = new URL(path);
-			if (url.getContent() != null) {
+			if (url.getContent() != null)
 				return url;
-			}
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 		}
 		return null;
 	}
@@ -85,10 +82,10 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 	private URL loadFromBaseURL(String path) {
 		try {
 			URL url = new URL(MWEPlugin.INSTANCE.getBaseURL() + path);
-			if (url.getContent() != null) {
+			if (url.getContent() != null)
 				return url;
-			}
-		} catch (Exception ignore) {
+		}
+		catch (Exception ignore) {
 		}
 		return null;
 	}
@@ -96,10 +93,10 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 	private URL loadDirectly(String path) {
 		try {
 			URL url = new URL(path);
-			if (url.getContent() != null) {
+			if (url.getContent() != null)
 				return url;
-			}
-		} catch (Exception ignore) {
+		}
+		catch (Exception ignore) {
 		}
 		return null;
 	}

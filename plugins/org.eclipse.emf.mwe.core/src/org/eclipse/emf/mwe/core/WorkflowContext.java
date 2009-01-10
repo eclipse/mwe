@@ -1,12 +1,10 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.emf.mwe.core;
@@ -16,31 +14,31 @@ package org.eclipse.emf.mwe.core;
  * 
  */
 public interface WorkflowContext {
-    /** Identifier of the default slot. */
-    public final static String DEFAULT_SLOT = "default";
+	/** Identifier of the default slot. */
+	public final static String DEFAULT_SLOT = "default";
 
-    /**
-     * returns the object of the given slot name.
-     * 
-     * @param slotName
-     *            The slot's name.
-     * @return The object associated to the specified slot or <tt>null</tt> if
-     *         no such slot exists.
-     */
-    Object get(String slotName);
+	/**
+	 * returns the object of the given slot name.
+	 * 
+	 * @param slotName
+	 *            The slot's name.
+	 * @return The object associated to the specified slot or <tt>null</tt> if
+	 *         no such slot exists.
+	 */
+	Object get(String slotName);
 
-    /**
-     * Sets the passed Model the specified slot. Removes the model currently set
-     * to the specified slot.
-     * 
-     * @param slotName
-     *            The slot's name.
-     * @param value
-     *            object to store in the slot (set <code>null</code> to remove
-     *            the slot)
-     */
-    void set(String slotName, Object value);
+	/**
+	 * Sets the passed Model the specified slot. Removes the model currently set
+	 * to the specified slot.
+	 * 
+	 * @param slotName
+	 *            The slot's name.
+	 * @param value
+	 *            object to store in the slot (set <code>null</code> to remove
+	 *            the slot)
+	 */
+	void set(String slotName, Object value);
 
-    public String[] getSlotNames();
+	public String[] getSlotNames();
 
 }

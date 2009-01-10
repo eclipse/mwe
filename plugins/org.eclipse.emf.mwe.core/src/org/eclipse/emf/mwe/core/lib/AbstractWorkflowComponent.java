@@ -1,13 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
+ * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- * Contributors:
- *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
+
 package org.eclipse.emf.mwe.core.lib;
 
 import org.apache.commons.logging.Log;
@@ -24,74 +23,18 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
  * 
  */
 public abstract class AbstractWorkflowComponent implements WorkflowComponentWithID {
-	
+
 	private static final Log log = LogFactory.getLog(AbstractWorkflowComponent.class);
-	
+
 	/** The component's id */
 	private String componentID;
-	
+
 	private boolean skipOnErrors = false;
 
 	/** Container component */
 	private CompositeComponent container;
 
 	private Location location;
-
-	/**
-	 * @return The component's id
-	 */
-	public String getId() {
-		return componentID;
-	}
-
-	/**
-	 * @param id
-	 *            The component's id
-	 */
-	public void setId(final String id) {
-		componentID = id;
-	}
-	
-	public void setSkipOnErrors(final boolean b) {
-        skipOnErrors = b;
-    }
-	
-	/**
-	 * @return The containing component if any
-	 */
-	public CompositeComponent getContainer() {
-		return container;
-	}
-
-	/**
-	 * @param container
-	 *            The containing component
-	 */
-	public void setContainer(final CompositeComponent container) {
-		this.container = container;
-	}
-
-	public String getLogMessage() {
-		return null;
-	}
-
-	public Location getLocation() {
-		return location;
-	}
-
-	public void setLocation(final Location location) {
-		this.location = location;
-	}
-	
-	public final void invoke(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-        if (skipOnErrors && issues.hasErrors()) {
-            log.info("execution skipped, since there are errors and skipOnErrors is set.");
-            return;
-        }
-        invokeInternal(ctx, monitor, issues);
-    }
-
-    protected abstract void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
 
 	/**
 	 * Utility method that can be used in method <code>checkConfiguration</code>
@@ -106,11 +49,13 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 * @param issues
 	 *            The Issues instance.
 	 */
-	public void checkRequiredConfigProperty(final String configPropertyName, final Object configPropertyValue, final Issues issues) {
+	public void checkRequiredConfigProperty(final String configPropertyName, final Object configPropertyValue,
+			final Issues issues) {
 		boolean isError = false;
 		if (configPropertyValue == null) {
 			isError = true;
-		} else if ((configPropertyValue instanceof String) && isBlank(configPropertyValue.toString())) {
+		}
+		else if ((configPropertyValue instanceof String) && isBlank(configPropertyValue.toString())) {
 			isError = true;
 		}
 
@@ -119,10 +64,108 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 		}
 	}
 
-	private boolean isBlank(final String string) {
-		if ((string == null) || string.trim().equals("")) {
-			return true;
+	/**
+	 * Returns the component's name.
+	 * 
+	 * Overridable by custom components.
+	 * 
+	 * @return simple class name by default
+	 * @since 4.3.1
+	 */
+	public String getComponentName() {
+		return getClass().getSimpleName();
+	}
+
+	/**
+	 * @return The containing component if any
+	 */
+	public CompositeComponent getContainer() {
+		return container;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#getId()
+	 */
+	public String getId() {
+		return componentID;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getLocation()
+	 */
+	public Location getLocation() {
+		return location;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#getLogMessage()
+	 */
+	public String getLogMessage() {
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#invoke(org.eclipse.emf.mwe.core.WorkflowContext,
+	 *      org.eclipse.emf.mwe.core.monitor.ProgressMonitor,
+	 *      org.eclipse.emf.mwe.core.issues.Issues)
+	 */
+	public final void invoke(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
+		if (skipOnErrors && issues.hasErrors()) {
+			log.info("execution skipped, since there are errors and skipOnErrors is set.");
+			return;
 		}
+		invokeInternal(ctx, monitor, issues);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setContainer(org.eclipse.emf.mwe.core.container.CompositeComponent)
+	 */
+	public void setContainer(final CompositeComponent container) {
+		this.container = container;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#setId(java.lang.String)
+	 */
+	public void setId(final String id) {
+		componentID = id;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setLocation(org.eclipse.emf.mwe.internal.core.ast.parser.Location)
+	 */
+	public void setLocation(final Location location) {
+		this.location = location;
+	}
+
+	/**
+	 * Sets if the current component should be skipped if previous components
+	 * caused errors.
+	 * 
+	 * @param skipOnErrors
+	 *            if <code>true</code>, the current component is skipped if
+	 *            errors have occurred, if <code>false</code>, the component is
+	 *            not skipped.
+	 */
+	public void setSkipOnErrors(final boolean skipOnErrors) {
+		this.skipOnErrors = skipOnErrors;
+	}
+
+	/**
+	 * Internal method for component execution.
+	 * 
+	 * @param ctx
+	 *            the workflow context
+	 * @param monitor
+	 *            the progress monitor
+	 * @param issues
+	 *            container of execution issues
+	 */
+	protected abstract void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
+
+	private boolean isBlank(final String string) {
+		if ((string == null) || string.trim().equals(""))
+			return true;
 		return false;
 	}
 }
