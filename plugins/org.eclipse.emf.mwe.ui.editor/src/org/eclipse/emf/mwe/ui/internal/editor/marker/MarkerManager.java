@@ -12,7 +12,9 @@
 package org.eclipse.emf.mwe.ui.internal.editor.marker;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
@@ -28,12 +30,13 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public final class MarkerManager {
 
-	private static final String ERROR_MARKER_ID =
-			"org.eclipse.emf.mwe.ui.editor.workflowerror";
+	private static final String ERROR_MARKER_ID = "org.eclipse.emf.mwe.ui.editor.workflowerror";
+
+	private static final Set<Map> knownMarkers = new HashSet<Map>();
 
 	/**
 	 * Don't allow instantiation.
@@ -42,39 +45,31 @@ public final class MarkerManager {
 		throw new UnsupportedOperationException();
 	}
 
-	public static void createMarker(final IFile file,
-			final IDocument document, final IWorkflowAttribute attribute,
-			final String message, final boolean valueOnly,
-			final boolean isError) {
-		if (document == null || attribute == null || message == null
-				|| message.length() == 0)
+	public static void createMarker(final IFile file, final IDocument document, final IWorkflowAttribute attribute,
+			final String message, final boolean valueOnly, final boolean isError) {
+		if (document == null || attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
 
 		if (valueOnly) {
-			createMarkerFromRange(file, document, message, attribute
-					.getAttributeValueRange(), true);
-		} else {
-			createMarkerFromRange(file, document, message, attribute
-					.getAttributeRange(), true);
+			createMarkerFromRange(file, document, message, attribute.getAttributeValueRange(), isError);
+		}
+		else {
+			createMarkerFromRange(file, document, message, attribute.getAttributeRange(), isError);
 		}
 	}
 
-	public static void createMarker(final IFile file,
-			final IDocument document, final IWorkflowElement element,
+	public static void createMarker(final IFile file, final IDocument document, final IWorkflowElement element,
 			final String message, final boolean isError) {
-		final ElementPositionRange firstLineRange =
-				element.getFirstLineRange();
+		final ElementPositionRange firstLineRange = element.getFirstLineRange();
 		if (firstLineRange == null)
 			return;
 
 		createMarkerFromRange(file, document, message, firstLineRange, isError);
 	}
 
-	public static void createMarkerFromRange(final IFile file,
-			final IDocument document, final String message,
+	public static void createMarkerFromRange(final IFile file, final IDocument document, final String message,
 			final ElementPositionRange range, final boolean isError) {
-		if (file == null || document == null || message == null
-				|| range == null)
+		if (file == null || document == null || message == null || range == null)
 			throw new IllegalArgumentException();
 
 		final Map map = new HashMap();
@@ -82,10 +77,12 @@ public final class MarkerManager {
 		try {
 			if (range.getStartOffset() <= document.getLength()) {
 				lineNumber = document.getLineOfOffset(range.getStartOffset());
-			} else {
+			}
+			else {
 				lineNumber = document.getNumberOfLines();
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 			return;
 		}
@@ -99,22 +96,29 @@ public final class MarkerManager {
 		Integer severity;
 		if (isError) {
 			severity = IMarker.SEVERITY_ERROR;
-		} else {
+		}
+		else {
 			severity = IMarker.SEVERITY_WARNING;
 		}
 
 		map.put(IMarker.SEVERITY, severity);
 		try {
-			MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
-		} catch (final CoreException ee) {
+			if (!knownMarkers.contains(map)) {
+				MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
+				knownMarkers.add(map);
+			}
+		}
+		catch (final CoreException ee) {
 			ee.printStackTrace();
 		}
 	}
 
 	public static void deleteMarkers(final IFile file) {
 		try {
-			file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_ZERO);
-		} catch (final CoreException e) {
+			file.deleteMarkers(null, true, IResource.DEPTH_INFINITE);
+			knownMarkers.clear();
+		}
+		catch (final CoreException e) {
 			e.printStackTrace();
 		}
 	}

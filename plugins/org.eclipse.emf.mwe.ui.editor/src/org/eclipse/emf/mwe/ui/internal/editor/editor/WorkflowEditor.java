@@ -33,6 +33,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
@@ -58,7 +59,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.38 $
+ * @version $Revision: 1.39 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -211,7 +212,15 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	public IWorkflowElement parseRootElement(final IDocument document) {
-		return DocumentParser.parse(document, null);
+		try {
+			return DocumentParser.parse(document, null);
+		}
+		catch (ValidationException e) {
+			int line = e.getLineNumber() - 1;
+			int col = e.getColumnNumber();
+			createMarker(document, e.getDetailedMessage(), line, col);
+			return null;
+		}
 	}
 
 	/**

@@ -27,7 +27,7 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class XMLTagContentAssistProcessor implements IContentAssistProcessor {
 
@@ -39,34 +39,27 @@ public class XMLTagContentAssistProcessor implements IContentAssistProcessor {
 
 	private TagContentProposalComputerRegistry registry;
 
-	public XMLTagContentAssistProcessor(final IFile file,
-			final WorkflowEditor editor, final WorkflowTagScanner tagScanner) {
+	public XMLTagContentAssistProcessor(final IFile file, final WorkflowEditor editor,
+			final WorkflowTagScanner tagScanner) {
 		this.file = file;
 		this.editor = editor;
 		this.tagScanner = tagScanner;
 	}
 
 	/**
-	 * This method overrides the implementation of
-	 * <code>computeCompletionProposals</code> inherited from the superclass.
-	 * 
 	 * @see org.eclipse.jface.text.contentassist.IContentAssistProcessor#computeCompletionProposals(org.eclipse.jface.text.ITextViewer,
 	 *      int)
 	 */
-	public ICompletionProposal[] computeCompletionProposals(
-			final ITextViewer viewer, final int offset) {
+	public ICompletionProposal[] computeCompletionProposals(final ITextViewer viewer, final int offset) {
 		final IDocument document = viewer.getDocument();
 		setupRegistry(document);
-		final TextType textType =
-			TextTypeComputer.computeType(document, offset);
+		final TextType textType = TextTypeComputer.computeType(document, offset);
 		registry.setTextType(textType);
-		final List<ICompletionProposal> result =
-			registry.computeProposals(offset);
+		final List<ICompletionProposal> result = registry.computeProposals(offset);
 		return result.toArray(new ICompletionProposal[result.size()]);
 	}
 
-	public IContextInformation[] computeContextInformation(
-			final ITextViewer viewer, final int offset) {
+	public IContextInformation[] computeContextInformation(final ITextViewer viewer, final int offset) {
 		return null;
 	}
 
@@ -88,9 +81,7 @@ public class XMLTagContentAssistProcessor implements IContentAssistProcessor {
 
 	private void setupRegistry(final IDocument document) {
 		if (registry == null) {
-			registry =
-				new TagContentProposalComputerRegistry(file, editor,
-						document, tagScanner);
+			registry = new TagContentProposalComputerRegistry(file, editor, document, tagScanner);
 		}
 	}
 }
