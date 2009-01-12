@@ -28,95 +28,97 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 
 public class Component implements WorkflowComponent {
 
-    public boolean booleanParam = false;
+	private static final String COMPONENT_NAME = "Test Component";
 
-    public void setBooleanParam(final boolean booleanParam) {
-        this.booleanParam = booleanParam;
-    }
+	public boolean booleanParam = false;
 
-    public Boolean booleanObjectParam = Boolean.FALSE;
+	public void setBooleanParam(final boolean booleanParam) {
+		this.booleanParam = booleanParam;
+	}
 
-    public void setBooleanObjectParam(final Boolean booleanObjectParam) {
-        this.booleanObjectParam = booleanObjectParam;
-    }
+	public Boolean booleanObjectParam = Boolean.FALSE;
 
-    public int intParam = -1;
+	public void setBooleanObjectParam(final Boolean booleanObjectParam) {
+		this.booleanObjectParam = booleanObjectParam;
+	}
 
-    public void setIntParam(final int intParam) {
-        this.intParam = intParam;
-    }
+	public int intParam = -1;
 
-    public Integer integerParam = new Integer(-1);
+	public void setIntParam(final int intParam) {
+		this.intParam = intParam;
+	}
 
-    public void setIntegerParam(final Integer integerParam) {
-        this.integerParam = integerParam;
-    }
+	public Integer integerParam = new Integer(-1);
 
-    public String stringParam;
+	public void setIntegerParam(final Integer integerParam) {
+		this.integerParam = integerParam;
+	}
 
-    public void setStringParam(final String stringParam) {
-        this.stringParam = stringParam;
-    }
+	public String stringParam;
 
-    public String[] stringArrayParam;
+	public void setStringParam(final String stringParam) {
+		this.stringParam = stringParam;
+	}
 
-    public void setStringArrayParam(final String[] stringArrayParam) {
-        this.stringArrayParam = stringArrayParam;
-    }
+	public String[] stringArrayParam;
 
-    public Component type;
+	public void setStringArrayParam(final String[] stringArrayParam) {
+		this.stringArrayParam = stringArrayParam;
+	}
 
-    public void setType(final Component type) {
-        this.type = type;
-    }
+	public Component type;
 
-    public List<Component> types = new ArrayList<Component>();
+	public void setType(final Component type) {
+		this.type = type;
+	}
 
-    public void addTypes(final Component type) {
-        types.add(type);
-    }
+	public List<Component> types = new ArrayList<Component>();
 
-    public Map<String, Object> map = new HashMap<String, Object>();
+	public void addTypes(final Component type) {
+		types.add(type);
+	}
 
-    public void put(final String key, final Object value) {
-        map.put(key, value);
-    }
+	public Map<String, Object> map = new HashMap<String, Object>();
 
-    public Object bean = null;
+	public void put(final String key, final Object value) {
+		map.put(key, value);
+	}
 
-    public void setBean(final Object bean) {
-        this.bean = bean;
-    }
+	public Object bean = null;
 
-    public static int INVOCATIONS = 0;
+	public void setBean(final Object bean) {
+		this.bean = bean;
+	}
 
-    public int invocations = 0;
+	public static int INVOCATIONS = 0;
 
-    public void invoke(final WorkflowContext model, final ProgressMonitor monitor, final Issues issues) {
-        invocations++;
-        INVOCATIONS++;
-    }
+	public int invocations = 0;
 
-    public static int CHECKS = 0;
+	public void invoke(final WorkflowContext model, final ProgressMonitor monitor, final Issues issues) {
+		invocations++;
+		INVOCATIONS++;
+	}
 
-    public int checks = 0;
+	public static int CHECKS = 0;
+
+	public int checks = 0;
 
 	private CompositeComponent container;
 
 	private Location location;
 
-    public void checkConfiguration(final Issues issues) {
-        checks++;
-        CHECKS++;
-    }
+	public void checkConfiguration(final Issues issues) {
+		checks++;
+		CHECKS++;
+	}
 
-    public CompositeComponent getContainer() {
-    	return container;
-    }
-    
-    public void setContainer(CompositeComponent container) {
-    	this.container = container;
-    }
+	public CompositeComponent getContainer() {
+		return container;
+	}
+
+	public void setContainer(CompositeComponent container) {
+		this.container = container;
+	}
 
 	public Location getLocation() {
 		return location;
@@ -126,5 +128,8 @@ public class Component implements WorkflowComponent {
 		this.location = location;
 		//
 	}
-    
+
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
 }
