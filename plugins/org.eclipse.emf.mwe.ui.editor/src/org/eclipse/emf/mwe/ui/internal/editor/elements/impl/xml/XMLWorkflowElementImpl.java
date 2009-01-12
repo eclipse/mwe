@@ -1,11 +1,13 @@
-/*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+/*
+ * Copyright (c) 2008 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- *******************************************************************************/
+ * Contributors:
+ *    committers of openArchitectureWare - initial API and implementation
+ */
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
@@ -28,7 +30,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
@@ -50,10 +52,10 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	private boolean recomputeTypeInfo;
 
 	private final List<IWorkflowElement> children =
-		new ArrayList<IWorkflowElement>();
+			new ArrayList<IWorkflowElement>();
 
 	private final Map<String, IWorkflowAttribute> attributes =
-		new HashMap<String, IWorkflowAttribute>();
+			new HashMap<String, IWorkflowAttribute>();
 
 	/**
 	 * Creates a workflow element.
@@ -64,8 +66,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 *            the name of the element.
 	 */
 	public XMLWorkflowElementImpl(final IDocument document, final String name) {
-		if (document == null || name == null || name.length() == 0)
+		if (document == null || name == null || name.length() == 0) {
 			throw new IllegalArgumentException();
+		}
 
 		this.document = document;
 		this.name = name;
@@ -73,6 +76,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>addAttribute</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addAttribute(IWorkflowAttribute)
 	 */
 	public void addAttribute(final IWorkflowAttribute attribute) {
@@ -81,6 +87,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>addChild</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#addChild(IWorkflowElement)
 	 */
 	public void addChild(final IWorkflowElement element) {
@@ -90,6 +99,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>clear</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#clear()
 	 */
 	public void clear() {
@@ -98,16 +110,23 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttribute</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttribute(java.lang.String)
 	 */
 	public IWorkflowAttribute getAttribute(final String name) {
-		if (name == null || name.length() == 0)
+		if (name == null || name.length() == 0) {
 			throw new IllegalArgumentException();
+		}
 
 		return attributes.get(name);
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttributeCount</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributeCount()
 	 */
 	public int getAttributeCount() {
@@ -115,6 +134,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttributes</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributes()
 	 */
 	public Collection<IWorkflowAttribute> getAttributes() {
@@ -122,6 +144,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttributeValue</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributeValue(java.lang.String)
 	 */
 	public String getAttributeValue(final String name) {
@@ -131,16 +156,23 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getChild</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getChild(int)
 	 */
 	public IWorkflowElement getChild(final int index) {
-		if (index < 0 || index >= getChildrenCount())
+		if (index < 0 || index >= getChildrenCount()) {
 			throw new IllegalArgumentException();
+		}
 
 		return children.get(index);
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getChildrenCount</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getChildrenCount()
 	 */
 	public int getChildrenCount() {
@@ -148,6 +180,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getChildrenList</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getChildrenList()
 	 */
 	public List<IWorkflowElement> getChildrenList() {
@@ -155,6 +190,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getDefaultClass</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDefaultClass()
 	 */
 	public String getDefaultClass() {
@@ -162,6 +200,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getDocument</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDocument()
 	 */
 	public IDocument getDocument() {
@@ -169,6 +210,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getElementRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getElementRange()
 	 */
 	public ElementPositionRange getElementRange() {
@@ -177,6 +221,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getElementType</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getElementType()
 	 */
 	public WorkflowElementType getElementType() {
@@ -188,6 +235,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getElementTypeString</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getElementTypeString()
 	 */
 	public String getElementTypeString() {
@@ -195,6 +245,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getEndElementRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getEndElementRange()
 	 */
 	public ElementPositionRange getEndElementRange() {
@@ -202,6 +255,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getFirstLineRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getFirstLineRange()
 	 */
 	public ElementPositionRange getFirstLineRange() {
@@ -212,6 +268,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getImage</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getImage()
 	 */
 	public String getImage() {
@@ -223,6 +282,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getName</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getName()
 	 */
 	public String getName() {
@@ -230,6 +292,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getParent</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getParent()
 	 */
 	public IWorkflowElement getParent() {
@@ -237,6 +302,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>getStartElementRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getStartElementRange()
 	 */
 	public ElementPositionRange getStartElementRange() {
@@ -244,6 +312,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>hasAttribute</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasAttribute(java.lang.String)
 	 */
 	public boolean hasAttribute(final String name) {
@@ -251,6 +322,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>hasAttributes</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasAttributes()
 	 */
 	public boolean hasAttributes() {
@@ -258,13 +332,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasChildren()
-	 */
-	public boolean hasChildren() {
-		return getChildrenCount() > 0;
-	}
-
-	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>hasParent</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasParent()
 	 */
 	public boolean hasParent() {
@@ -272,6 +342,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isAssignment</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isAssignment()
 	 */
 	public boolean isAssignment() {
@@ -279,6 +352,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isAssignmentProperty</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isAssignmentProperty()
 	 */
 	public boolean isAssignmentProperty() {
@@ -286,14 +362,20 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isComponent</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isComponent()
 	 */
 	public boolean isComponent() {
 		return getComputedElementType() == WorkflowElementType.COMPONENT
-		|| isIfComponent();
+				|| isIfComponent();
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isFileProperty</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isFileProperty()
 	 */
 	public boolean isFileProperty() {
@@ -301,6 +383,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isIfComponent</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isIfComponent()
 	 */
 	public boolean isIfComponent() {
@@ -308,6 +393,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isInRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isInRange(int)
 	 */
 	public boolean isInRange(final int offset) {
@@ -315,6 +403,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isLeaf</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isLeaf()
 	 */
 	public boolean isLeaf() {
@@ -322,6 +413,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isProperty</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isProperty()
 	 */
 	public boolean isProperty() {
@@ -329,6 +423,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isSimpleProperty</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isSimpleProperty()
 	 */
 	public boolean isSimpleProperty() {
@@ -336,6 +433,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isValidChildFor</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isValidChildFor(org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement)
 	 */
 	public boolean isValidChildFor(final IWorkflowElement parentElement) {
@@ -343,6 +443,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isWorkflow</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isWorkflow()
 	 */
 	public boolean isWorkflow() {
@@ -350,6 +453,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>isWorkflowFile</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isWorkflowFile()
 	 */
 	public boolean isWorkflowFile() {
@@ -357,6 +463,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>setEndElementRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setEndElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setEndElementRange(final ElementPositionRange endElementRange) {
@@ -364,6 +473,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>setImage</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setImage(java.lang.String)
 	 */
 	public void setImage(final String image) {
@@ -371,6 +483,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>setParent</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setParent(org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement)
 	 */
 	public void setParent(final IWorkflowElement parent) {
@@ -378,6 +493,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>setStartElementRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setStartElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setStartElementRange(
@@ -386,6 +504,9 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * This automatically generated method overrides the implementation of
+	 * <code>setType</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setType(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType)
 	 */
 	public void setType(final WorkflowElementType type) {

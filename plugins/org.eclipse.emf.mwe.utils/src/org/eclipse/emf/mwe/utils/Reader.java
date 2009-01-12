@@ -1,10 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.mwe.utils;
 
@@ -21,22 +23,20 @@ import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
-
 public class Reader extends AbstractEMFWorkflowComponent {
+
+	private static final String COMPONENT_NAME = "Reader";
 
 	private boolean makeEPackagesGlobal = true;
 
 	private boolean firstElementOnly = true;
 
 	@Override
-	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor,
-			final Issues issues) {
-		ctx.set(this.getModelSlot(), load(resourceSet, uri, firstElementOnly));
+	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
+		ctx.set(getModelSlot(), load(resourceSet, uri, firstElementOnly));
 		if (makeEPackagesGlobal) {
-			for (String k : resourceSet.getPackageRegistry()
-					.keySet()) {
-				EPackage.Registry.INSTANCE.put(k, resourceSet
-						.getPackageRegistry().get(k));
+			for (String k : resourceSet.getPackageRegistry().keySet()) {
+				EPackage.Registry.INSTANCE.put(k, resourceSet.getPackageRegistry().get(k));
 			}
 		}
 	}
@@ -49,27 +49,22 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		}
 	}
 
-	public static Object load(final ResourceSet resourceSet, final String uri,
-			final boolean firstElementOnly) {
+	public static Object load(final ResourceSet resourceSet, final String uri, final boolean firstElementOnly) {
 		Resource res = resourceSet.getResource(URI.createURI(uri), true);
-		if (res == null) {
-			throw new WorkflowInterruptedException(
-					"Couldn't find resource under " + uri);
-		}
+		if (res == null)
+			throw new WorkflowInterruptedException("Couldn't find resource under " + uri);
 		try {
 			if (!res.isLoaded()) {
 				res.load(Collections.EMPTY_MAP);
 			}
-		} catch (IOException e) {
-			throw new WorkflowInterruptedException(
-					"Couldn't find resource under " + uri + " : "
-							+ e.getMessage());
+		}
+		catch (IOException e) {
+			throw new WorkflowInterruptedException("Couldn't find resource under " + uri + " : " + e.getMessage());
 		}
 		EList result = res.getContents();
 		if (firstElementOnly) {
-			if (result.isEmpty()) {
+			if (result.isEmpty())
 				return null;
-			}
 			return result.iterator().next();
 		}
 		return result;
@@ -88,4 +83,10 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		return "Loading model from " + uri;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
+	 */
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
 }

@@ -1,10 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.emf.mwe.core;
@@ -23,15 +25,17 @@ public class WorkflowComponentHelper {
 	 * 
 	 * @param filename
 	 *            Path to a file
-	 * @return <tt>true</tt> if the path points to a file, <tt>false</tt> if the
-	 *         file does not exist or is a directory.
+	 * @return <tt>true</tt> if the path points to a file, <tt>false</tt> if
+	 *         the file does not exist or is a directory.
 	 */
 	public static boolean isLegalFile(final String filename) {
 		final File f = new File(filename);
-		if (!f.exists())
+		if (!f.exists()) {
 			return false;
-		if (f.isDirectory())
+		}
+		if (f.isDirectory()) {
 			return false;
+		}
 		return true;
 	}
 
@@ -45,10 +49,12 @@ public class WorkflowComponentHelper {
 	 */
 	public static boolean isLegalDir(final String dirname) {
 		final File f = new File(dirname);
-		if (!f.exists())
+		if (!f.exists()) {
 			return false;
-		if (f.isFile())
+		}
+		if (f.isFile()) {
 			return false;
+		}
 		return true;
 	}
 
@@ -62,18 +68,17 @@ public class WorkflowComponentHelper {
 	 *         <tt>false</tt>.
 	 */
 	public static boolean isLegalURL(final String url) {
-		if ((url == null) || (url.trim().length() == 0))
+		if ((url == null) || (url.trim().length() == 0)) {
 			return false;
+		}
 
 		try {
 			final URL u = new URL(url);
 			u.openConnection();
 			return true;
-		}
-		catch (final MalformedURLException e) {
+		} catch (final MalformedURLException e) {
 			return false;
-		}
-		catch (final IOException e) {
+		} catch (final IOException e) {
 			return false;
 		}
 	}
@@ -91,15 +96,14 @@ public class WorkflowComponentHelper {
 	public static boolean isResource(final String uri) {
 		try {
 			final URL u = ResourceLoaderFactory.createResourceLoader().getResource(uri);
-			if (u == null)
+			if (u == null) {
 				return false;
+			}
 			u.openConnection();
 			return true;
-		}
-		catch (final MalformedURLException e) {
+		} catch (final MalformedURLException e) {
 			return false;
-		}
-		catch (final IOException e) {
+		} catch (final IOException e) {
 			return false;
 		}
 	}
@@ -116,18 +120,20 @@ public class WorkflowComponentHelper {
 	 * @return <tt>true</tt> if the given URI points to a valid resource,
 	 *         otherwise <tt>false</tt>.
 	 */
-	public static boolean isResource(final String uri, final String contextClassName) {
-		if (!isLoadableClass(contextClassName))
+	public static boolean isResource(final String uri,
+			final String contextClassName) {
+		if (!isLoadableClass(contextClassName)) {
 			return false;
+		}
 		try {
 			final Class<?> context = Class.forName(contextClassName);
 			final URL u = context.getResource(uri);
-			if (u == null)
+			if (u == null) {
 				return false;
+			}
 			u.openConnection();
 			return true;
-		}
-		catch (final Exception e) {
+		} catch (final Exception e) {
 			return false;
 		}
 	}
@@ -154,8 +160,7 @@ public class WorkflowComponentHelper {
 		try {
 			Class.forName(classname);
 			return true;
-		}
-		catch (final Exception exc) {
+		} catch (final Exception exc) {
 			return false;
 		}
 	}

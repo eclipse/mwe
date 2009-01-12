@@ -1,10 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
 package org.eclipse.emf.mwe.internal.core.ast.util;
@@ -30,24 +32,26 @@ import org.eclipse.emf.mwe.internal.core.ast.util.converter.StringConverter;
 
 /**
  * The WorkflowFactory is responsible for creating
- * {@link org.eclipse.emf.mwe.core.WorkflowComponent WorkflowComponents} from a
- * workflow configuration.
+ * {@link org.eclipse.emf.mwe.core.WorkflowComponent WorkflowComponents}
+ * from a workflow configuration.
  * 
  */
 public class WorkflowFactory {
 
 	private final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
-	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params,
-			final Map<Class<?>, Converter> converter, final Issues issues) {
+	
+	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter> converter, final Issues issues) {
 		final InputStream in = loader.getResourceAsStream(fileName);
-		if (in == null)
+		if (in == null) {
 			throw new IllegalArgumentException("Couldn't load file " + fileName);
+		}
 		return parseInitAndCreate(in, fileName, params, converter, issues);
 	}
 
-	public Workflow parseInitAndCreate(final InputStream in, final String resourceName,
-			final Map<String, String> params, final Map<Class<?>, Converter> converters, final Issues issues) {
+	
+	public Workflow parseInitAndCreate(final InputStream in, final String resourceName, final Map<String, String> params,
+			final Map<Class<?>, Converter> converters, final Issues issues) {
 		final AbstractASTBase wfast = parseAndInitialize(in, resourceName, issues, params);
 		if (isAbstract(wfast)) {
 			issues.clear();
@@ -55,12 +59,14 @@ public class WorkflowFactory {
 					.addError("This workflow file is abstract and cannot be run directly. It must be called from another workflow, passing in the required parameters.");
 			return null;
 		}
-		if (issues.hasErrors())
+		if (issues.hasErrors()) {
 			return null;
+		}
 		final WorkflowContainer wc = new WorkflowContainer();
 		wfast.accept(new VisitorAnalyzer(issues, converters, wc.getClass()));
-		if (issues.hasErrors())
+		if (issues.hasErrors()) {
 			return null;
+		}
 		wfast.accept(new VisitorCreator(issues, converters, wc));
 		Workflow wfRoot = (Workflow) wc.getRoot();
 		return wfRoot;
@@ -72,16 +78,16 @@ public class WorkflowFactory {
 			for (AbstractASTBase child : ca.getChildren()) {
 				if (child instanceof SimpleParamAST) {
 					SimpleParamAST spa = (SimpleParamAST) child;
-					if (spa.getName().toLowerCase().equals("abstract") && spa.getValue().toLowerCase().equals("true"))
+					if (spa.getName().toLowerCase().equals("abstract") && spa.getValue().toLowerCase().equals("true")) {
 						return true;
+					}
 				}
 			}
 		}
 		return false;
 	}
 
-	public AbstractASTBase parseAndInitialize(final String uri, final Issues issues,
-			final Map<String, String> properties) {
+	public AbstractASTBase parseAndInitialize(final String uri, final Issues issues, final Map<String, String> properties) {
 		final InputStream in = loader.getResourceAsStream(uri);
 		if (in == null) {
 			issues.addError("Couldn't find resource '" + uri + "'", null);
@@ -90,22 +96,21 @@ public class WorkflowFactory {
 		return parseAndInitialize(in, uri, issues, properties);
 	}
 
-	public AbstractASTBase parseAndInitialize(final InputStream in, final String resourceName, final Issues issues,
-			final Map<String, String> properties) {
+	public AbstractASTBase parseAndInitialize(final InputStream in, final String resourceName, final Issues issues, final Map<String, String> properties) {
 		final WorkflowParser wp = new WorkflowParser();
 		final AbstractASTBase wfast = wp.parse(in, resourceName, issues);
 
 		if (wfast != null) {
 			// resolve properties
-			final VisitorInitializer pr = new VisitorInitializer(issues, properties,
-					new HashMap<String, ComponentAST>());
+			final VisitorInitializer pr = new VisitorInitializer(issues, properties, new HashMap<String, ComponentAST>());
 			wfast.accept(pr);
 		}
 		return wfast;
 	}
 
-	public Set<?> parseInitAndAnalyze(final InputStream in, final String resourceName, final Issues issues,
-			final Map<String, String> properties, final Map<Class<?>, Converter> converter) {
+	
+	public Set<?> parseInitAndAnalyze(final InputStream in, final String resourceName, final Issues issues, final Map<String, String> properties,
+			final Map<Class<?>, Converter> converter) {
 		final AbstractASTBase wf = parseAndInitialize(in, resourceName, issues, properties);
 		final Map<Class<?>, Converter> conv = WorkflowFactory.getDefaultConverter();
 		conv.putAll(converter);
@@ -113,6 +118,7 @@ public class WorkflowFactory {
 		return (Set<?>) wf.accept(visitor);
 	}
 
+	
 	public static Map<Class<?>, Converter> getDefaultConverter() {
 		final Map<Class<?>, Converter> m = new HashMap<Class<?>, Converter>();
 		m.put(Object.class, new StringConverter());

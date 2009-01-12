@@ -1,11 +1,13 @@
-/*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+/*
+ * Copyright (c) 2008 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
- *******************************************************************************/
+ * Contributors:
+ *    committers of openArchitectureWare - initial API and implementation
+ */
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
@@ -24,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class ElementIterator {
 
@@ -39,7 +41,7 @@ public class ElementIterator {
 	private List<IWorkflowElement> elementList;
 
 	private final List<IWorkflowAttribute> attributeList =
-		new ArrayList<IWorkflowAttribute>();
+			new ArrayList<IWorkflowAttribute>();
 
 	private final PropertyStore propertyStore = new PropertyStore();
 
@@ -61,7 +63,7 @@ public class ElementIterator {
 		}
 
 		final ReferenceAnalyzer referenceAnalyzer =
-			new ReferenceAnalyzer(file, document, referenceInfoStore);
+				new ReferenceAnalyzer(file, document, referenceInfoStore);
 
 		for (final IWorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
@@ -110,7 +112,7 @@ public class ElementIterator {
 			final IWorkflowElement child = element.getChild(i);
 			list.add(child);
 			final Collection<IWorkflowAttribute> attributes =
-				element.getAttributes();
+					element.getAttributes();
 			for (final IWorkflowAttribute attribute : attributes) {
 				attributeList.add(attribute);
 			}
@@ -128,13 +130,10 @@ public class ElementIterator {
 			}
 		}
 
-		if (workflowElement != null) {
-			if (!isRootExcluded) {
-				list.add(workflowElement);
-			}
-			else if (workflowElement.hasChildren()) {
-				list.add(workflowElement.getChild(0));
-			}
+		if (!isRootExcluded) {
+			list.add(workflowElement);
+		} else {
+			list.add(workflowElement.getChild(0));
 		}
 
 		for (int i = 0; i < list.size(); i++) {

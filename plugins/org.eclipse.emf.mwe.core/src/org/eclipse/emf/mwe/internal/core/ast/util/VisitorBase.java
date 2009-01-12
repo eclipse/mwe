@@ -1,12 +1,13 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2006 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
 import org.apache.commons.logging.Log;
@@ -25,7 +26,8 @@ public abstract class VisitorBase {
 
 	protected static final Log log = LogFactory.getLog(VisitorBase.class);
 
-	protected ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
+	protected ResourceLoader loader = ResourceLoaderFactory
+			.createResourceLoader();
 
 	public final Object visit(final AbstractASTBase ele) {
 		Object result = visitAbstractASTBase(ele);
@@ -50,31 +52,38 @@ public abstract class VisitorBase {
 		return result;
 	}
 
-	public Object visitAbstractASTBase(final AbstractASTBase ele) {
+	public Object visitAbstractASTBase(
+	final AbstractASTBase ele) {
 		return null;
 	}
 
-	public Object visitComponentAST(final ComponentAST ele) {
+	public Object visitComponentAST(
+	final ComponentAST ele) {
 		return null;
 	}
 
-	public Object visitInclusionAST(final InclusionAST ele) {
+	public Object visitInclusionAST(
+	final InclusionAST ele) {
 		return null;
 	}
 
-	public Object visitDeclaredPropertyAST(final DeclaredPropertyAST ele) {
+	public Object visitDeclaredPropertyAST(
+	final DeclaredPropertyAST ele) {
 		return null;
 	}
 
-	public Object visitDeclaredPropertyFileAST(final DeclaredPropertyFileAST ele) {
+	public Object visitDeclaredPropertyFileAST(
+	final DeclaredPropertyFileAST ele) {
 		return null;
 	}
 
-	public Object visitReferenceAST(final ReferenceAST ele) {
+	public Object visitReferenceAST(
+	final ReferenceAST ele) {
 		return null;
 	}
 
-	public Object visitSimpleParamAST(final SimpleParamAST ele) {
+	public Object visitSimpleParamAST(
+	final SimpleParamAST ele) {
 		return null;
 	}
 

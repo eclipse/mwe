@@ -1,12 +1,13 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-
 package org.eclipse.emf.mwe.core.issues;
 
 import java.io.PrintWriter;
@@ -128,8 +129,9 @@ public class MWEDiagnostic extends BasicDiagnostic {
 		if (element instanceof EObject) {
 			EObject eo = (EObject) element;
 			String name = getEName(eo);
-			if (name == null)
+			if (name == null) {
 				return eo.toString();
+			}
 			StringBuffer qfn = new StringBuffer();
 			qfn.append(name);
 			while (eo.eContainer() != null) {
@@ -146,8 +148,9 @@ public class MWEDiagnostic extends BasicDiagnostic {
 
 	private String getEName(final EObject eo) {
 		EStructuralFeature f = eo.eClass().getEStructuralFeature("name");
-		if (f == null)
+		if (f == null) {
 			return null;
+		}
 		return (String) eo.eGet(f);
 	}
 

@@ -1,10 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2005-2009 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2005, 2007 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 package org.eclipse.emf.mwe.utils;
 
@@ -27,6 +29,8 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 
 public class Writer extends AbstractEMFWorkflowComponent {
 
+	private static final String COMPONENT_NAME = "Writer";
+
 	private boolean OPTION_SCHEMA_LOCATION = true;
 
 	public void setOPTION_SCHEMA_LOCATION(final boolean option_schema_location) {
@@ -34,101 +38,101 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	}
 
 	private boolean OPTION_SCHEMA_LOCATION_IMPLEMENTATION = true;
-	
+
 	private boolean multipleResourcesInCaseOfList = false;
-	
+
 	private boolean cloneSlotContents = false;
-	
-	public void setMultipleResourcesInCaseOfList( final boolean b ) {
+
+	public void setMultipleResourcesInCaseOfList(final boolean b) {
 		multipleResourcesInCaseOfList = b;
 	}
-	
-	public void setCloneSlotContents( final boolean b ) {
+
+	public void setCloneSlotContents(final boolean b) {
 		this.cloneSlotContents = b;
 	}
-	
 
-	public void setOPTION_SCHEMA_LOCATION_IMPLEMENTATION(
-			final boolean option_schema_location_implementation) {
+	public void setOPTION_SCHEMA_LOCATION_IMPLEMENTATION(final boolean option_schema_location_implementation) {
 		OPTION_SCHEMA_LOCATION_IMPLEMENTATION = option_schema_location_implementation;
 	}
 
 	@Override
-	
-	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor,
-			final Issues issues) {
+	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		Object slotContent = ctx.get(getModelSlot());
 		if (slotContent == null) {
 			issues.addError(this, "slot '" + getModelSlot() + "' is empty.");
 			return;
 		}
 		if (!((slotContent instanceof Collection<?>) || (slotContent instanceof EObject))) {
-			issues
-					.addError(this, "slot '" + getModelSlot()
-							+ "' neither contains an EList nor an EObject",
-							slotContent, null, null);
+			issues.addError(this, "slot '" + getModelSlot() + "' neither contains an EList nor an EObject",
+					slotContent, null, null);
 			return;
 		}
-		
-		if ( slotContent instanceof EObject ) {
-			EObject sc = (EObject)slotContent;
-			if ( cloneSlotContents ) {
-				if ( sc.eResource() == null ) {
-					issues.addWarning(this, "model in slot '"+getModelSlot()+"' is not yet associated with a resource; cloning it is most likely an error!");
-				} else {
+
+		if (slotContent instanceof EObject) {
+			EObject sc = (EObject) slotContent;
+			if (cloneSlotContents) {
+				if (sc.eResource() == null) {
+					issues.addWarning(this, "model in slot '" + getModelSlot()
+							+ "' is not yet associated with a resource; cloning it is most likely an error!");
+				}
+				else {
 					EcoreUtil.Copier copier = new EcoreUtil.Copier();
 					EObject copy = copier.copy(sc);
 					copier.copyReferences();
 					slotContent = copy;
 				}
-			} else {
-				if ( sc.eResource() != null ) {
-					issues.addWarning(this, "the element in slot '"+getModelSlot()+"' is already contained in a resource and will be taken out of that resource!");
+			}
+			else {
+				if (sc.eResource() != null) {
+					issues.addWarning(this, "the element in slot '" + getModelSlot()
+							+ "' is already contained in a resource and will be taken out of that resource!");
 				}
 			}
 		}
-		
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*",
-				new XMIResourceFactoryImpl());
-		
-		if ( !multipleResourcesInCaseOfList ) {
+
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
+
+		if (!multipleResourcesInCaseOfList) {
 			Resource r = getResourceSet().createResource(URI.createURI(getUri()));
 			if (slotContent instanceof Collection<?>) {
 				r.getContents().addAll((Collection) slotContent);
-			} else {
+			}
+			else {
 				r.getContents().add((EObject) slotContent);
 			}
 			write(r);
-		} else {
+		}
+		else {
 			if (slotContent instanceof Collection<?>) {
-				Collection coll = (Collection)slotContent;
+				Collection coll = (Collection) slotContent;
 				Collection<Resource> resources = new ArrayList<Resource>();
 				for (Object object : coll) {
-					EObject eo = (EObject)object;
+					EObject eo = (EObject) object;
 					Resource r = getResourceSet().createResource(URI.createURI(createResourceName(eo)));
 					r.getContents().add(eo);
-					resources.add( r );
+					resources.add(r);
 				}
 				for (Resource r : resources) {
 					write(r);
 				}
-			} else {
+			}
+			else {
 				Resource r = getResourceSet().createResource(URI.createURI(getUri()));
 				r.getContents().add((EObject) slotContent);
 				write(r);
 			}
-			
+
 		}
 	}
 
 	private String createResourceName(final EObject eo) {
-		return getUri()+(getUri().endsWith("/")? "": "/")+getName(eo)+".ecore";
+		return getUri() + (getUri().endsWith("/") ? "" : "/") + getName(eo) + ".ecore";
 	}
 
 	private String getName(final EObject model) {
 		return (String) model.eGet(model.eClass().getEStructuralFeature("name"));
 	}
-	
+
 	private void write(final Resource r) {
 		try {
 			Map<String, Object> options = new HashMap<String, Object>();
@@ -136,20 +140,24 @@ public class Writer extends AbstractEMFWorkflowComponent {
 				options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 			}
 			if (OPTION_SCHEMA_LOCATION_IMPLEMENTATION) {
-				options.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION,
-						Boolean.TRUE);
+				options.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
 			}
 			r.save(options);
-		} catch (final IOException e) {
-			throw new WorkflowInterruptedException(
-					"Problems writing xmi file to " + getUri() + " : "
-							+ e.getMessage());
+		}
+		catch (final IOException e) {
+			throw new WorkflowInterruptedException("Problems writing xmi file to " + getUri() + " : " + e.getMessage());
 		}
 	}
-	
+
 	@Override
 	public String getLogMessage() {
-		return "Writing model to "+uri;
+		return "Writing model to " + uri;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
+	 */
+	public String getComponentName() {
+		return COMPONENT_NAME;
+	}
 }
