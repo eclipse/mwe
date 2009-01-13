@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe,
  org.eclipse.emf.mwe.di,
  org.eclipse.emf.mwe.di.execution,
- org.eclipse.emf.mwe.di.parser,
  org.eclipse.emf.mwe.di.services,
  org.eclipse.emf.mwe.di.types,
  org.eclipse.emf.mwe.di.types.emf,

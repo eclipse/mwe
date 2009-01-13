@@ -1,0 +1,294 @@
+/*
+Generated with Xtext
+*/
+package org.eclipse.emf.mwe.di.parser.packrat;
+
+import org.eclipse.xtext.parser.packrat.AbstractParserConfiguration;
+import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
+import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
+import org.eclipse.xtext.parser.packrat.IMarkerFactory;
+import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
+
+import org.eclipse.xtext.builtin.parser.packrat.XtextBuiltinParserConfiguration; 
+
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEFileConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEImportConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEJavaImportConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEGenericImportConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEPropertyConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWELocalVariableConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEPropertiesFileImportConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWESimpleValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEAssignableConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEComplexValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEIdRefConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEAssignmentConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEQualifiedNameConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinIDConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinINTConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinSTRINGConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinML_COMMENTConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinSL_COMMENTConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinWSConsumer;
+import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinANY_OTHERConsumer;
+
+public class MWEParserConfiguration extends AbstractParserConfiguration {
+
+	private XtextBuiltinParserConfiguration xtextBuiltinConfiguration; 
+
+    private MWEFileConsumer fileConsumer;
+    private MWEImportConsumer importConsumer;
+    private MWEJavaImportConsumer javaImportConsumer;
+    private MWEGenericImportConsumer genericImportConsumer;
+    private MWEPropertyConsumer propertyConsumer;
+    private MWELocalVariableConsumer localVariableConsumer;
+    private MWEPropertiesFileImportConsumer propertiesFileImportConsumer;
+    private MWEValueConsumer valueConsumer;
+    private MWESimpleValueConsumer simpleValueConsumer;
+    private MWEAssignableConsumer assignableConsumer;
+    private MWEComplexValueConsumer complexValueConsumer;
+    private MWEWorkflowRefConsumer workflowRefConsumer;
+    private MWEIdRefConsumer idRefConsumer;
+    private MWEAssignmentConsumer assignmentConsumer;
+    private MWEQualifiedNameConsumer qualifiedNameConsumer;
+
+	public MWEParserConfiguration(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
+			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil) {
+		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil);
+		this.xtextBuiltinConfiguration = new XtextBuiltinParserConfiguration(
+			input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil);
+	}
+
+	public MWEFileConsumer getRootConsumer() {
+		return fileConsumer;
+	} 
+	
+	public void createNonTerminalConsumers() {
+		getXtextBuiltinConfiguration().createNonTerminalConsumers();
+		fileConsumer = new MWEFileConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(),
+    		new ITerminalConsumer[]{ getWsConsumer(), getMlCommentConsumer(), getSlCommentConsumer() }
+    	);
+		importConsumer = new MWEImportConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		javaImportConsumer = new MWEJavaImportConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		genericImportConsumer = new MWEGenericImportConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		propertyConsumer = new MWEPropertyConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		localVariableConsumer = new MWELocalVariableConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		propertiesFileImportConsumer = new MWEPropertiesFileImportConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		valueConsumer = new MWEValueConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		simpleValueConsumer = new MWESimpleValueConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		assignableConsumer = new MWEAssignableConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		complexValueConsumer = new MWEComplexValueConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		workflowRefConsumer = new MWEWorkflowRefConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		idRefConsumer = new MWEIdRefConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		assignmentConsumer = new MWEAssignmentConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+		qualifiedNameConsumer = new MWEQualifiedNameConsumer(
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
+    	);
+	}
+	
+	public void createTerminalConsumers() {
+		getXtextBuiltinConfiguration().createTerminalConsumers();
+	}
+	
+	public void configureConsumers() {
+		getFileConsumer().setImportConsumer(getImportConsumer());
+		getFileConsumer().setComplexValueConsumer(getComplexValueConsumer());
+		getFileConsumer().setPropertyConsumer(getPropertyConsumer());
+
+		getImportConsumer().setJavaImportConsumer(getJavaImportConsumer());
+		getImportConsumer().setGenericImportConsumer(getGenericImportConsumer());
+
+		getJavaImportConsumer().setQualifiedNameConsumer(getQualifiedNameConsumer());
+
+		getGenericImportConsumer().setStringConsumer(getStringConsumer());
+
+		getPropertyConsumer().setLocalVariableConsumer(getLocalVariableConsumer());
+		getPropertyConsumer().setPropertiesFileImportConsumer(getPropertiesFileImportConsumer());
+
+		getLocalVariableConsumer().setIdConsumer(getIdConsumer());
+		getLocalVariableConsumer().setValueConsumer(getValueConsumer());
+
+		getPropertiesFileImportConsumer().setStringConsumer(getStringConsumer());
+
+		getValueConsumer().setSimpleValueConsumer(getSimpleValueConsumer());
+		getValueConsumer().setIdRefConsumer(getIdRefConsumer());
+		getValueConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
+		getValueConsumer().setComplexValueConsumer(getComplexValueConsumer());
+
+		getSimpleValueConsumer().setStringConsumer(getStringConsumer());
+
+		getAssignableConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
+		getAssignableConsumer().setComplexValueConsumer(getComplexValueConsumer());
+
+		getComplexValueConsumer().setIdConsumer(getIdConsumer());
+		getComplexValueConsumer().setQualifiedNameConsumer(getQualifiedNameConsumer());
+		getComplexValueConsumer().setAssignmentConsumer(getAssignmentConsumer());
+
+		getWorkflowRefConsumer().setStringConsumer(getStringConsumer());
+		getWorkflowRefConsumer().setAssignmentConsumer(getAssignmentConsumer());
+
+		getIdRefConsumer().setIdConsumer(getIdConsumer());
+
+		getAssignmentConsumer().setIdConsumer(getIdConsumer());
+		getAssignmentConsumer().setValueConsumer(getValueConsumer());
+
+		getQualifiedNameConsumer().setIdConsumer(getIdConsumer());
+
+		getIdConsumer().initFields(this);
+		getIntConsumer().initFields(this);
+		getStringConsumer().initFields(this);
+		getMlCommentConsumer().initFields(this);
+		getSlCommentConsumer().initFields(this);
+		getWsConsumer().initFields(this);
+		getAnyOtherConsumer().initFields(this);
+	}
+	
+	// TODO collect superGrammars transitive
+	public XtextBuiltinParserConfiguration getXtextBuiltinConfiguration() {
+		return xtextBuiltinConfiguration;
+	} 
+	
+    public MWEFileConsumer getFileConsumer() {
+    	return fileConsumer;
+    }
+
+
+    public MWEImportConsumer getImportConsumer() {
+    	return importConsumer;
+    }
+
+
+    public MWEJavaImportConsumer getJavaImportConsumer() {
+    	return javaImportConsumer;
+    }
+
+
+    public MWEGenericImportConsumer getGenericImportConsumer() {
+    	return genericImportConsumer;
+    }
+
+
+    public MWEPropertyConsumer getPropertyConsumer() {
+    	return propertyConsumer;
+    }
+
+
+    public MWELocalVariableConsumer getLocalVariableConsumer() {
+    	return localVariableConsumer;
+    }
+
+
+    public MWEPropertiesFileImportConsumer getPropertiesFileImportConsumer() {
+    	return propertiesFileImportConsumer;
+    }
+
+
+    public MWEValueConsumer getValueConsumer() {
+    	return valueConsumer;
+    }
+
+
+    public MWESimpleValueConsumer getSimpleValueConsumer() {
+    	return simpleValueConsumer;
+    }
+
+
+    public MWEAssignableConsumer getAssignableConsumer() {
+    	return assignableConsumer;
+    }
+
+
+    public MWEComplexValueConsumer getComplexValueConsumer() {
+    	return complexValueConsumer;
+    }
+
+
+    public MWEWorkflowRefConsumer getWorkflowRefConsumer() {
+    	return workflowRefConsumer;
+    }
+
+
+    public MWEIdRefConsumer getIdRefConsumer() {
+    	return idRefConsumer;
+    }
+
+
+    public MWEAssignmentConsumer getAssignmentConsumer() {
+    	return assignmentConsumer;
+    }
+
+
+    public MWEQualifiedNameConsumer getQualifiedNameConsumer() {
+    	return qualifiedNameConsumer;
+    }
+
+
+    public XtextBuiltinIDConsumer getIdConsumer() {
+    	return getXtextBuiltinConfiguration().getIdConsumer();
+    }
+
+
+    public XtextBuiltinINTConsumer getIntConsumer() {
+    	return getXtextBuiltinConfiguration().getIntConsumer();
+    }
+
+
+    public XtextBuiltinSTRINGConsumer getStringConsumer() {
+    	return getXtextBuiltinConfiguration().getStringConsumer();
+    }
+
+
+    public XtextBuiltinML_COMMENTConsumer getMlCommentConsumer() {
+    	return getXtextBuiltinConfiguration().getMlCommentConsumer();
+    }
+
+
+    public XtextBuiltinSL_COMMENTConsumer getSlCommentConsumer() {
+    	return getXtextBuiltinConfiguration().getSlCommentConsumer();
+    }
+
+
+    public XtextBuiltinWSConsumer getWsConsumer() {
+    	return getXtextBuiltinConfiguration().getWsConsumer();
+    }
+
+
+    public XtextBuiltinANY_OTHERConsumer getAnyOtherConsumer() {
+    	return getXtextBuiltinConfiguration().getAnyOtherConsumer();
+    }
+
+
+
+}

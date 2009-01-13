@@ -1,7 +1,7 @@
 /*
 Generated with Xtext
 */
-package org.eclipse.emf.mwe.di.parser;
+package org.eclipse.emf.mwe.di.parser.antlr;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider;
@@ -11,10 +11,10 @@ import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.service.Inject;
 
-import org.eclipse.emf.mwe.di.parser.internal.InternalMWELexer;
-import org.eclipse.emf.mwe.di.parser.internal.InternalMWEParser;
+import org.eclipse.emf.mwe.di.parser.antlr.internal.InternalMWELexer;
+import org.eclipse.emf.mwe.di.parser.antlr.internal.InternalMWEParser;
 
-public class MWEParser extends org.eclipse.xtext.parser.AbstractParser {
+public class MWEParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	
 	@Inject 
     protected AntlrTokenDefProvider antlrTokenDefProvider;

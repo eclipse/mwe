@@ -4,11 +4,11 @@ Generated with Xtext
 grammar InternalMWE;
 
 options {
-	superClass=AbstractAntlrParser;
+	superClass=AbstractInternalAntlrParser;
 }
 
 @lexer::header {
-package org.eclipse.emf.mwe.di.parser.internal;
+package org.eclipse.emf.mwe.di.parser.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
@@ -16,7 +16,7 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 }
 
 @parser::header {
-package org.eclipse.emf.mwe.di.parser.internal; 
+package org.eclipse.emf.mwe.di.parser.antlr.internal; 
 
 import java.io.InputStream;
 import org.eclipse.xtext.*;
@@ -25,10 +25,10 @@ import org.eclipse.xtext.parser.impl.*;
 import org.eclipse.xtext.parsetree.*;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.antlr.AbstractAntlrParser;
+import org.eclipse.xtext.parser.antlr.AbstractInternalAntlrParser;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.parser.antlr.DatatypeRuleToken;
-import org.eclipse.xtext.parser.antlr.ValueConverterException;
+import org.eclipse.xtext.parser.antlr.AntlrDatatypeRuleToken;
+import org.eclipse.xtext.conversion.ValueConverterException;
 
 }
 
@@ -43,7 +43,7 @@ import org.eclipse.xtext.parser.antlr.ValueConverterException;
     @Override
     protected InputStream getTokenFile() {
     	ClassLoader classLoader = InternalMWEParser.class.getClassLoader();
-    	return classLoader.getResourceAsStream("org/eclipse/emf/mwe/di/parser/internal/InternalMWE.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.tokens");
     }
     
     @Override

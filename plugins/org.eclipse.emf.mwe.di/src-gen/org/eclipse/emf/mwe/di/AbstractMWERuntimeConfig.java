@@ -17,16 +17,20 @@ public abstract class AbstractMWERuntimeConfig extends AbstractServiceRegistrati
 		return org.eclipse.emf.mwe.di.services.MWEGrammarAccess.class;
 	}
 		
+	protected Class<? extends org.eclipse.xtext.parser.packrat.IPackratParser> getIPackratParser() {
+		return org.eclipse.emf.mwe.di.parser.packrat.MWEPackratParser.class;
+	}
+		
 	protected Class<? extends org.eclipse.xtext.parser.IAstFactory> getIAstFactory() {
-		return org.eclipse.xtext.parser.GenericEcoreElementFactory.class;
+		return org.eclipse.xtext.parser.antlr.AntlrEcoreElementFactory.class;
 	}
 		
 	protected Class<? extends org.eclipse.xtext.parser.IParser> getIParser() {
-		return org.eclipse.emf.mwe.di.parser.MWEParser.class;
+		return org.eclipse.emf.mwe.di.parser.antlr.MWEParser.class;
 	}
 		
 	protected Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> getIAntlrTokenFileProvider() {
-		return org.eclipse.emf.mwe.di.parser.MWEAntlrTokenFileProvider.class;
+		return org.eclipse.emf.mwe.di.parser.antlr.MWEAntlrTokenFileProvider.class;
 	}
 		
 	protected Class<? extends org.eclipse.xtext.resource.IResourceFactory> getIResourceFactory() {
@@ -50,7 +54,7 @@ public abstract class AbstractMWERuntimeConfig extends AbstractServiceRegistrati
 	}
 		
 	protected Class<? extends org.eclipse.xtext.parser.antlr.Lexer> getLexer() {
-		return org.eclipse.emf.mwe.di.parser.internal.InternalMWELexer.class;
+		return org.eclipse.emf.mwe.di.parser.antlr.internal.InternalMWELexer.class;
 	}
 		
 	
@@ -58,6 +62,7 @@ public abstract class AbstractMWERuntimeConfig extends AbstractServiceRegistrati
 		return scope(org.eclipse.emf.mwe.di.IMWE.SCOPE)
 		.with(org.eclipse.xtext.IMetamodelAccess.class, getIMetamodelAccess())
 		.with(org.eclipse.xtext.IGrammarAccess.class, getIGrammarAccess())
+		.with(org.eclipse.xtext.parser.packrat.IPackratParser.class, getIPackratParser())
 		.with(org.eclipse.xtext.parser.IAstFactory.class, getIAstFactory())
 		.with(org.eclipse.xtext.parser.IParser.class, getIParser())
 		.with(org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider.class, getIAntlrTokenFileProvider())

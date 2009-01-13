@@ -14,62 +14,25 @@ import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 
 
 public class MWEParseTreeConstructor extends AbstractParseTreeConstructor {
-
-	public IAbstractToken serialize(EObject object) {
-		if(object == null) throw new IllegalArgumentException("The to-be-serialialized model is null");
-		Solution t = internalSerialize(object);
-		if(t == null) throw new XtextSerializationException(getDescr(object), "No rule found for serialization");
-		return t.getPredecessor();
-	}
-	
+		
 	protected Solution internalSerialize(EObject obj) {
 		IInstanceDescription inst = getDescr(obj);
 		Solution s;
-
-		if(inst.isInstanceOf("File") && (s = new File_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("Import") && (s = new Import_Alternatives(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("JavaImport") && (s = new JavaImport_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("GenericImport") && (s = new GenericImport_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("Property") && (s = new Property_Alternatives(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("LocalVariable") && (s = new LocalVariable_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("PropertiesFileImport") && (s = new PropertiesFileImport_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("Value") && (s = new Value_Alternatives(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("SimpleValue") && (s = new SimpleValue_Assignment_value(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("Assignable") && (s = new Assignable_Alternatives(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("ComplexValue") && (s = new ComplexValue_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("WorkflowRef") && (s = new WorkflowRef_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("IdRef") && (s = new IdRef_Assignment_id(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("Assignment") && (s = new Assignment_Group(inst, null).firstSolution()) != null) return s;
-
-
-		if(inst.isInstanceOf("QualifiedName") && (s = new QualifiedName_Group(inst, null).firstSolution()) != null) return s;
-
+		if(inst.isInstanceOf("File") && (s = new File_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("Import") && (s = new Import_Alternatives(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("JavaImport") && (s = new JavaImport_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("GenericImport") && (s = new GenericImport_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("Property") && (s = new Property_Alternatives(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("LocalVariable") && (s = new LocalVariable_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("PropertiesFileImport") && (s = new PropertiesFileImport_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("Value") && (s = new Value_Alternatives(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("SimpleValue") && (s = new SimpleValue_Assignment_value(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("Assignable") && (s = new Assignable_Alternatives(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("ComplexValue") && (s = new ComplexValue_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("WorkflowRef") && (s = new WorkflowRef_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("IdRef") && (s = new IdRef_Assignment_id(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("Assignment") && (s = new Assignment_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
+		if(inst.isInstanceOf("QualifiedName") && (s = new QualifiedName_Group(inst, null).firstSolution()) != null && isConsumed(s,null)) return s;
 		return null;
 	}
 	
@@ -97,7 +60,7 @@ protected class File_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new File_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -125,7 +88,7 @@ protected class File_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new File_0_0_Assignment_imports(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -156,6 +119,7 @@ protected class File_0_0_Assignment_imports extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Import")) {
 				Solution s = new Import_Alternatives(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -186,6 +150,7 @@ protected class File_0_1_Assignment_properties extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Property")) {
 				Solution s = new Property_Alternatives(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -217,6 +182,7 @@ protected class File_1_Assignment_value extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("ComplexValue")) {
 				Solution s = new ComplexValue_Group(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -323,7 +289,7 @@ protected class JavaImport_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new JavaImport_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -351,7 +317,7 @@ protected class JavaImport_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new JavaImport_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -379,7 +345,7 @@ protected class JavaImport_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new JavaImport_0_0_0_Keyword_import(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -422,6 +388,7 @@ protected class JavaImport_0_0_1_Assignment_javaImport extends AssignmentToken  
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("QualifiedName")) {
 				Solution s = new QualifiedName_Group(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -450,7 +417,7 @@ protected class JavaImport_0_1_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new JavaImport_0_1_0_Keyword(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -538,7 +505,7 @@ protected class GenericImport_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new GenericImport_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -566,7 +533,7 @@ protected class GenericImport_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new GenericImport_0_0_Keyword_import(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -721,7 +688,7 @@ protected class LocalVariable_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new LocalVariable_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -749,7 +716,7 @@ protected class LocalVariable_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new LocalVariable_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -777,7 +744,7 @@ protected class LocalVariable_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new LocalVariable_0_0_0_Keyword_var(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -841,7 +808,7 @@ protected class LocalVariable_0_1_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new LocalVariable_0_1_0_Keyword(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -884,6 +851,7 @@ protected class LocalVariable_0_1_1_Assignment_value extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Value")) {
 				Solution s = new Value_Alternatives(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -936,7 +904,7 @@ protected class PropertiesFileImport_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new PropertiesFileImport_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -964,7 +932,7 @@ protected class PropertiesFileImport_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new PropertiesFileImport_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -992,7 +960,7 @@ protected class PropertiesFileImport_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new PropertiesFileImport_0_0_0_Keyword_var(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1341,7 +1309,7 @@ protected class ComplexValue_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new ComplexValue_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1369,7 +1337,7 @@ protected class ComplexValue_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new ComplexValue_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1397,7 +1365,7 @@ protected class ComplexValue_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new ComplexValue_0_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1425,7 +1393,7 @@ protected class ComplexValue_0_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new ComplexValue_0_0_0_0_Assignment_className(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1456,6 +1424,7 @@ protected class ComplexValue_0_0_0_0_Assignment_className extends AssignmentToke
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("QualifiedName")) {
 				Solution s = new QualifiedName_Group(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -1483,7 +1452,7 @@ protected class ComplexValue_0_0_0_1_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new ComplexValue_0_0_0_1_0_Keyword(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1575,6 +1544,7 @@ protected class ComplexValue_0_1_Assignment_assignments extends AssignmentToken 
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Assignment")) {
 				Solution s = new Assignment_Group(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -1626,7 +1596,7 @@ protected class WorkflowRef_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new WorkflowRef_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1654,7 +1624,7 @@ protected class WorkflowRef_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new WorkflowRef_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1682,7 +1652,7 @@ protected class WorkflowRef_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new WorkflowRef_0_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1710,7 +1680,7 @@ protected class WorkflowRef_0_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new WorkflowRef_0_0_0_0_Keyword_file(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1790,6 +1760,7 @@ protected class WorkflowRef_0_1_Assignment_assignments extends AssignmentToken  
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Assignment")) {
 				Solution s = new Assignment_Group(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -1874,7 +1845,7 @@ protected class Assignment_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new Assignment_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1902,7 +1873,7 @@ protected class Assignment_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new Assignment_0_0_Group(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -1930,7 +1901,7 @@ protected class Assignment_0_0_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new Assignment_0_0_0_Assignment_feature(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -2013,6 +1984,7 @@ protected class Assignment_0_1_Assignment_value extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf("Value")) {
 				Solution s = new Value_Alternatives(param, this).firstSolution();
+				while(s != null && !isConsumed(s,this)) s = s.getPredecessor().nextSolution(this,s);
 				if(s != null) {
 					type = AssignmentType.PRC; 
 					return new Solution(obj,s.getPredecessor());
@@ -2064,7 +2036,7 @@ protected class QualifiedName_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new QualifiedName_0_Assignment_parts(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
@@ -2115,7 +2087,7 @@ protected class QualifiedName_1_Group extends GroupToken {
 		while(s1 != null) {
 			Solution s2 = new QualifiedName_1_0_Assignment_parts(s1.getCurrent(), s1.getPredecessor()).firstSolution();
 			if(s2 == null) {
-				s1 = s1.getPredecessor().nextSolution(this);
+				s1 = s1.getPredecessor().nextSolution(this,s1);
 				if(s1 == null) return null;
 			} else {
 				last = s2.getPredecessor();
