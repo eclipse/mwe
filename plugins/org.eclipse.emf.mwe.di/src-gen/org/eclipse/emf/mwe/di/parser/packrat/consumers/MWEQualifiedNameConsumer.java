@@ -11,73 +11,85 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
+import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
+
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.QualifiedNameElements;
 
 import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinIDConsumer;
 
+@SuppressWarnings("unused")
 public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 
 	private XtextBuiltinIDConsumer idConsumer;
 
+	private ISequenceMatcher ruleCall$3$Delimiter;
+	
+	private ISequenceMatcher ruleCall$8$Delimiter;
+	
+	private ICharacterClass keyword$6$Delimiter;
+	
 	public MWEQualifiedNameConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
 			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
 			ITerminalConsumer[] hiddenTokens) {
 		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+		ruleCall$3$Delimiter = ISequenceMatcher.Factory.nullMatcher();
+		ruleCall$8$Delimiter = ISequenceMatcher.Factory.nullMatcher();
+		keyword$6$Delimiter = ICharacterClass.Factory.nullClass();
 	}
 	
-	@SuppressWarnings("unused")
 	protected boolean doConsume() throws Exception {
-		GROUP$1SUCCESS: {
-			IMarker mGROUP$1 = mark();
-			GROUP$1FAILURE: {
-				ASSIGNMENT$2SUCCESS: {
-					ASSIGNMENT$2FAILURE: {
-						if (consumeTerminal(idConsumer, "parts", true, false, getRule().ele00LexerRuleCallID()))
-							break ASSIGNMENT$2FAILURE;
-						mGROUP$1.rollback();
-						break ASSIGNMENT$2SUCCESS;
-					}
-					break GROUP$1FAILURE;
-				}
-				mGROUP$1.rollback();
-				break GROUP$1SUCCESS;
-			}
-			GROUP$1FAILURE: {
-				GROUP$4SUCCESS: while(true) {
-					IMarker mGROUP$4 = mark();
-					GROUP$4FAILURE: {
-						ASSIGNMENT$5SUCCESS: {
-							ASSIGNMENT$5FAILURE: {
-								if (consumeKeyword(getRule().ele100KeywordFullStop(), "parts", true, false))
-									break ASSIGNMENT$5FAILURE;
-								mGROUP$4.rollback();
-								break ASSIGNMENT$5SUCCESS;
-							}
-							break GROUP$4FAILURE;
-						}
-						mGROUP$4.rollback();
-						break GROUP$4SUCCESS;
-					}
-					GROUP$4FAILURE: {
-						ASSIGNMENT$7SUCCESS: {
-							ASSIGNMENT$7FAILURE: {
-								if (consumeTerminal(idConsumer, "parts", true, false, getRule().ele110LexerRuleCallID()))
-									break ASSIGNMENT$7FAILURE;
-								mGROUP$4.rollback();
-								break ASSIGNMENT$7SUCCESS;
-							}
-							break GROUP$4FAILURE;
-						}
-						mGROUP$4.rollback();
-						break GROUP$4SUCCESS;
-					}
-					continue GROUP$4SUCCESS;
-				}
-			}
-			return true;
+		return consumeGroup$1();
+	}
+
+	protected boolean consumeGroup$1() throws Exception {
+		final IMarker marker = mark();
+		if (!consumeAssignment$2()) {
+			marker.rollback();
+			return false;
 		}
+		if (!consumeGroup$4()) {
+			marker.rollback();
+			return false;
+		}
+		return true;
+	}
+
+	protected boolean consumeAssignment$2() throws Exception {
+		if (consumeTerminal(idConsumer, "parts", true, false, getRule().ele00LexerRuleCallID(), getRuleCall$3$Delimiter()))
+			return true;
+		return false;
+	}
+
+	protected boolean consumeGroup$4() throws Exception {
+		while(doConsumeGroup$4()) {}
+		return true;
+	}
+
+	protected boolean doConsumeGroup$4() throws Exception {
+		final IMarker marker = mark();
+		if (!consumeAssignment$5()) {
+			marker.rollback();
+			return false;
+		}
+		if (!consumeAssignment$7()) {
+			marker.rollback();
+			return false;
+		}
+		return true;
+	}
+
+	protected boolean consumeAssignment$5() throws Exception {
+		if (consumeKeyword(getRule().ele100KeywordFullStop(), "parts", true, false, getKeyword$6$Delimiter()))
+			return true;
+		return false;
+	}
+
+	protected boolean consumeAssignment$7() throws Exception {
+		if (consumeTerminal(idConsumer, "parts", true, false, getRule().ele110LexerRuleCallID(), getRuleCall$8$Delimiter()))
+			return true;
 		return false;
 	}
 
@@ -98,5 +110,28 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 		this.idConsumer = idConsumer;
 	}
 	
-
+	public ISequenceMatcher getRuleCall$3$Delimiter() {
+		return ruleCall$3$Delimiter;
+	}
+	
+	public void setRuleCall$3$Delimiter(ISequenceMatcher matcher) {
+		ruleCall$3$Delimiter = matcher != null ? matcher : ISequenceMatcher.Factory.nullMatcher();
+	}
+	
+	public ISequenceMatcher getRuleCall$8$Delimiter() {
+		return ruleCall$8$Delimiter;
+	}
+	
+	public void setRuleCall$8$Delimiter(ISequenceMatcher matcher) {
+		ruleCall$8$Delimiter = matcher != null ? matcher : ISequenceMatcher.Factory.nullMatcher();
+	}
+	
+	public ICharacterClass getKeyword$6$Delimiter() {
+		return keyword$6$Delimiter;
+	}
+	
+	public void setKeyword$6$Delimiter(ICharacterClass characterClass) {
+		keyword$6$Delimiter = characterClass != null ? characterClass : ICharacterClass.Factory.nullClass();
+	}
+	
 }

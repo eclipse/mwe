@@ -11,21 +11,25 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
+import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
+
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.ValueElements;
 
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWESimpleValueConsumer;
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEIdRefConsumer;
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
 import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEComplexValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEIdRefConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWESimpleValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
 
+@SuppressWarnings("unused")
 public final class MWEValueConsumer extends NonTerminalConsumer {
 
-	private MWESimpleValueConsumer simpleValueConsumer;
-	private MWEIdRefConsumer idRefConsumer;
-	private MWEWorkflowRefConsumer workflowRefConsumer;
 	private MWEComplexValueConsumer complexValueConsumer;
+	private MWEIdRefConsumer idRefConsumer;
+	private MWESimpleValueConsumer simpleValueConsumer;
+	private MWEWorkflowRefConsumer workflowRefConsumer;
 
 	public MWEValueConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
 			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
@@ -33,47 +37,36 @@ public final class MWEValueConsumer extends NonTerminalConsumer {
 		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
 	}
 	
-	@SuppressWarnings("unused")
 	protected boolean doConsume() throws Exception {
-		ALTERNATIVES$1SUCCESS: {
-			ALTERNATIVES$1FAILURE: {
-				ALTERNATIVES$2SUCCESS: {
-					ALTERNATIVES$2FAILURE: {
-						ALTERNATIVES$3SUCCESS: {
-							ALTERNATIVES$3FAILURE: {
-								RULECALL$4SUCCESS: {
-									if (!consumeNonTerminal(simpleValueConsumer, null, false, false,  getRule().ele000ParserRuleCallSimpleValue()))
-										break RULECALL$4SUCCESS;
-									break ALTERNATIVES$3FAILURE;
-								}
-								RULECALL$5SUCCESS: {
-									if (!consumeNonTerminal(complexValueConsumer, null, false, false,  getRule().ele001ParserRuleCallComplexValue()))
-										break RULECALL$5SUCCESS;
-									break ALTERNATIVES$3FAILURE;
-								}
-								break ALTERNATIVES$3SUCCESS;
-							}
-							break ALTERNATIVES$2FAILURE;
-						}
-						RULECALL$6SUCCESS: {
-							if (!consumeNonTerminal(idRefConsumer, null, false, false,  getRule().ele01ParserRuleCallIdRef()))
-								break RULECALL$6SUCCESS;
-							break ALTERNATIVES$2FAILURE;
-						}
-						break ALTERNATIVES$2SUCCESS;
-					}
-					break ALTERNATIVES$1FAILURE;
-				}
-				RULECALL$7SUCCESS: {
-					if (!consumeNonTerminal(workflowRefConsumer, null, false, false,  getRule().ele1ParserRuleCallWorkflowRef()))
-						break RULECALL$7SUCCESS;
-					break ALTERNATIVES$1FAILURE;
-				}
-				break ALTERNATIVES$1SUCCESS;
-			}
+		return consumeAlternatives$1();
+	}
+
+	protected boolean consumeAlternatives$1() throws Exception {
+		if (consumeRuleCall$4())
 			return true;
-		}
+		if (consumeRuleCall$5())
+			return true;
+		if (consumeRuleCall$6())
+			return true;
+		if (consumeRuleCall$7())
+			return true;
 		return false;
+	}
+
+	protected boolean consumeRuleCall$4() throws Exception {
+		return consumeNonTerminal(simpleValueConsumer, null, false, false, getRule().ele000ParserRuleCallSimpleValue());
+	}
+
+	protected boolean consumeRuleCall$5() throws Exception {
+		return consumeNonTerminal(complexValueConsumer, null, false, false, getRule().ele001ParserRuleCallComplexValue());
+	}
+
+	protected boolean consumeRuleCall$6() throws Exception {
+		return consumeNonTerminal(idRefConsumer, null, false, false, getRule().ele01ParserRuleCallIdRef());
+	}
+
+	protected boolean consumeRuleCall$7() throws Exception {
+		return consumeNonTerminal(workflowRefConsumer, null, false, false, getRule().ele1ParserRuleCallWorkflowRef());
 	}
 
 	public ValueElements getRule() {
@@ -89,21 +82,20 @@ public final class MWEValueConsumer extends NonTerminalConsumer {
 		return "Value";
 	}
 	
-	public void setSimpleValueConsumer(MWESimpleValueConsumer simpleValueConsumer) {
-		this.simpleValueConsumer = simpleValueConsumer;
+	public void setComplexValueConsumer(MWEComplexValueConsumer complexValueConsumer) {
+		this.complexValueConsumer = complexValueConsumer;
 	}
 	
 	public void setIdRefConsumer(MWEIdRefConsumer idRefConsumer) {
 		this.idRefConsumer = idRefConsumer;
 	}
 	
+	public void setSimpleValueConsumer(MWESimpleValueConsumer simpleValueConsumer) {
+		this.simpleValueConsumer = simpleValueConsumer;
+	}
+	
 	public void setWorkflowRefConsumer(MWEWorkflowRefConsumer workflowRefConsumer) {
 		this.workflowRefConsumer = workflowRefConsumer;
 	}
 	
-	public void setComplexValueConsumer(MWEComplexValueConsumer complexValueConsumer) {
-		this.complexValueConsumer = complexValueConsumer;
-	}
-	
-
 }

@@ -11,17 +11,21 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
+import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
+
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.AssignableElements;
 
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
 import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEComplexValueConsumer;
+import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
 
+@SuppressWarnings("unused")
 public final class MWEAssignableConsumer extends NonTerminalConsumer {
 
-	private MWEWorkflowRefConsumer workflowRefConsumer;
 	private MWEComplexValueConsumer complexValueConsumer;
+	private MWEWorkflowRefConsumer workflowRefConsumer;
 
 	public MWEAssignableConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
 			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
@@ -29,25 +33,24 @@ public final class MWEAssignableConsumer extends NonTerminalConsumer {
 		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
 	}
 	
-	@SuppressWarnings("unused")
 	protected boolean doConsume() throws Exception {
-		ALTERNATIVES$1SUCCESS: {
-			ALTERNATIVES$1FAILURE: {
-				RULECALL$2SUCCESS: {
-					if (!consumeNonTerminal(complexValueConsumer, null, false, false,  getRule().ele0ParserRuleCallComplexValue()))
-						break RULECALL$2SUCCESS;
-					break ALTERNATIVES$1FAILURE;
-				}
-				RULECALL$3SUCCESS: {
-					if (!consumeNonTerminal(workflowRefConsumer, null, false, false,  getRule().ele1ParserRuleCallWorkflowRef()))
-						break RULECALL$3SUCCESS;
-					break ALTERNATIVES$1FAILURE;
-				}
-				break ALTERNATIVES$1SUCCESS;
-			}
+		return consumeAlternatives$1();
+	}
+
+	protected boolean consumeAlternatives$1() throws Exception {
+		if (consumeRuleCall$2())
 			return true;
-		}
+		if (consumeRuleCall$3())
+			return true;
 		return false;
+	}
+
+	protected boolean consumeRuleCall$2() throws Exception {
+		return consumeNonTerminal(complexValueConsumer, null, false, false, getRule().ele0ParserRuleCallComplexValue());
+	}
+
+	protected boolean consumeRuleCall$3() throws Exception {
+		return consumeNonTerminal(workflowRefConsumer, null, false, false, getRule().ele1ParserRuleCallWorkflowRef());
 	}
 
 	public AssignableElements getRule() {
@@ -63,13 +66,12 @@ public final class MWEAssignableConsumer extends NonTerminalConsumer {
 		return "Assignable";
 	}
 	
-	public void setWorkflowRefConsumer(MWEWorkflowRefConsumer workflowRefConsumer) {
-		this.workflowRefConsumer = workflowRefConsumer;
-	}
-	
 	public void setComplexValueConsumer(MWEComplexValueConsumer complexValueConsumer) {
 		this.complexValueConsumer = complexValueConsumer;
 	}
 	
-
+	public void setWorkflowRefConsumer(MWEWorkflowRefConsumer workflowRefConsumer) {
+		this.workflowRefConsumer = workflowRefConsumer;
+	}
+	
 }

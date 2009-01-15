@@ -11,92 +11,97 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
+import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
+
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.AssignmentElements;
 
 import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinIDConsumer;
 import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEValueConsumer;
 
+@SuppressWarnings("unused")
 public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 
 	private XtextBuiltinIDConsumer idConsumer;
 	private MWEValueConsumer valueConsumer;
 
+	private ICharacterClass keyword$8$Delimiter;
+	
+	private ICharacterClass keyword$9$Delimiter;
+	
+	private ICharacterClass keyword$12$Delimiter;
+	
+	private ISequenceMatcher ruleCall$5$Delimiter;
+	
 	public MWEAssignmentConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
 			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
 			ITerminalConsumer[] hiddenTokens) {
 		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+		keyword$8$Delimiter = ICharacterClass.Factory.nullClass();
+		keyword$9$Delimiter = ICharacterClass.Factory.nullClass();
+		keyword$12$Delimiter = ICharacterClass.Factory.nullClass();
+		ruleCall$5$Delimiter = ISequenceMatcher.Factory.nullMatcher();
 	}
 	
-	@SuppressWarnings("unused")
 	protected boolean doConsume() throws Exception {
-		GROUP$1SUCCESS: {
-			IMarker mGROUP$1 = mark();
-			GROUP$1FAILURE: {
-				GROUP$2SUCCESS: {
-					IMarker mGROUP$2 = mark();
-					GROUP$2FAILURE: {
-						GROUP$3SUCCESS: {
-							IMarker mGROUP$3 = mark();
-							GROUP$3FAILURE: {
-								ASSIGNMENT$4SUCCESS: {
-									ASSIGNMENT$4FAILURE: {
-										if (consumeTerminal(idConsumer, "feature", false, false, getRule().ele0000LexerRuleCallID()))
-											break ASSIGNMENT$4FAILURE;
-										break ASSIGNMENT$4SUCCESS;
-									}
-									break GROUP$3FAILURE;
-								}
-							}
-							GROUP$3FAILURE: {
-								ASSIGNMENT$6SUCCESS: {
-									ASSIGNMENT$6FAILURE: {
-										if (consumeKeyword(getRule().ele00100KeywordEqualsSign(), "operator", false, false))
-											break ASSIGNMENT$6FAILURE;
-										if (consumeKeyword(getRule().ele00101KeywordPlusSignEqualsSign(), "operator", false, false))
-											break ASSIGNMENT$6FAILURE;
-										mGROUP$3.rollback();
-										break ASSIGNMENT$6SUCCESS;
-									}
-									break GROUP$3FAILURE;
-								}
-								mGROUP$3.rollback();
-								break GROUP$3SUCCESS;
-							}
-							break GROUP$2FAILURE;
-						}
-						mGROUP$2.rollback();
-						break GROUP$2SUCCESS;
-					}
-					GROUP$2FAILURE: {
-						ASSIGNMENT$10SUCCESS: {
-							ASSIGNMENT$10FAILURE: {
-								if (consumeNonTerminal(valueConsumer, "value", false, false , getRule().ele010ParserRuleCallValue()))
-									break ASSIGNMENT$10FAILURE;
-								mGROUP$2.rollback();
-								break ASSIGNMENT$10SUCCESS;
-							}
-							break GROUP$2FAILURE;
-						}
-						mGROUP$2.rollback();
-						break GROUP$2SUCCESS;
-					}
-					break GROUP$1FAILURE;
-				}
-				mGROUP$1.rollback();
-				break GROUP$1SUCCESS;
-			}
-			GROUP$1FAILURE: {
-				KEYWORD$12SUCCESS: {
-					if (!consumeKeyword(getRule().ele1KeywordSemicolon(), null, false, false))
-						break KEYWORD$12SUCCESS;
-					break GROUP$1FAILURE;
-				}
-			}
-			return true;
+		return consumeGroup$1();
+	}
+
+	protected boolean consumeGroup$1() throws Exception {
+		final IMarker marker = mark();
+		if (!consumeAssignment$4()) {
+			marker.rollback();
+			return false;
 		}
+		if (!consumeAssignment$6()) {
+			marker.rollback();
+			return false;
+		}
+		if (!consumeAssignment$10()) {
+			marker.rollback();
+			return false;
+		}
+		if (!consumeKeyword$12()) {
+			marker.rollback();
+			return false;
+		}
+		return true;
+	}
+
+	protected boolean consumeAssignment$4() throws Exception {
+		doConsumeAssignment$4();
+		return true;
+	}
+
+	protected boolean doConsumeAssignment$4() throws Exception {
+		if (consumeTerminal(idConsumer, "feature", false, false, getRule().ele0000LexerRuleCallID(), getRuleCall$5$Delimiter()))
+			return true;
 		return false;
+	}
+
+	protected boolean consumeAssignment$6() throws Exception {
+		if (consumeKeyword(getRule().ele00100KeywordEqualsSign(), "operator", false, false, getKeyword$8$Delimiter()))
+			return true;
+		if (consumeKeyword(getRule().ele00101KeywordPlusSignEqualsSign(), "operator", false, false, getKeyword$9$Delimiter()))
+			return true;
+		return false;
+	}
+
+	protected boolean consumeAssignment$10() throws Exception {
+		if (consumeNonTerminal(valueConsumer, "value", false, false, getRule().ele010ParserRuleCallValue()))
+			return true;
+		return false;
+	}
+
+	protected boolean consumeKeyword$12() throws Exception {
+		doConsumeKeyword$12();
+		return true;
+	}
+
+	protected boolean doConsumeKeyword$12() throws Exception {
+		return consumeKeyword(getRule().ele1KeywordSemicolon(), null, false, false, getKeyword$12$Delimiter());
 	}
 
 	public AssignmentElements getRule() {
@@ -120,5 +125,36 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 		this.valueConsumer = valueConsumer;
 	}
 	
-
+	public ICharacterClass getKeyword$8$Delimiter() {
+		return keyword$8$Delimiter;
+	}
+	
+	public void setKeyword$8$Delimiter(ICharacterClass characterClass) {
+		keyword$8$Delimiter = characterClass != null ? characterClass : ICharacterClass.Factory.nullClass();
+	}
+	
+	public ICharacterClass getKeyword$9$Delimiter() {
+		return keyword$9$Delimiter;
+	}
+	
+	public void setKeyword$9$Delimiter(ICharacterClass characterClass) {
+		keyword$9$Delimiter = characterClass != null ? characterClass : ICharacterClass.Factory.nullClass();
+	}
+	
+	public ICharacterClass getKeyword$12$Delimiter() {
+		return keyword$12$Delimiter;
+	}
+	
+	public void setKeyword$12$Delimiter(ICharacterClass characterClass) {
+		keyword$12$Delimiter = characterClass != null ? characterClass : ICharacterClass.Factory.nullClass();
+	}
+	
+	public ISequenceMatcher getRuleCall$5$Delimiter() {
+		return ruleCall$5$Delimiter;
+	}
+	
+	public void setRuleCall$5$Delimiter(ISequenceMatcher matcher) {
+		ruleCall$5$Delimiter = matcher != null ? matcher : ISequenceMatcher.Factory.nullMatcher();
+	}
+	
 }

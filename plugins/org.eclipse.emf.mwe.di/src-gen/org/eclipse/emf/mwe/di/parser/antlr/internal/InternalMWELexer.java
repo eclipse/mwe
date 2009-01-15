@@ -1,4 +1,4 @@
-// $ANTLR 3.0.1 ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g 2009-01-13 09:51:31
+// $ANTLR 3.0 ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g 2009-01-15 16:52:07
 
 package org.eclipse.emf.mwe.di.parser.antlr.internal;
 
@@ -40,10 +40,10 @@ public class InternalMWELexer extends Lexer {
     public String getGrammarFileName() { return "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g"; }
 
     // $ANTLR start T11
-    public final void mT11() throws RecognitionException {
+    public void mT11() throws RecognitionException {
         try {
             int _type = T11;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:10:5: ( 'import' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:10:7: ( 'import' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:10:7: 'import'
             {
             match("import"); 
@@ -59,10 +59,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T11
 
     // $ANTLR start T12
-    public final void mT12() throws RecognitionException {
+    public void mT12() throws RecognitionException {
         try {
             int _type = T12;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:11:5: ( '.' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:11:7: ( '.' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:11:7: '.'
             {
             match('.'); 
@@ -77,10 +77,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T12
 
     // $ANTLR start T13
-    public final void mT13() throws RecognitionException {
+    public void mT13() throws RecognitionException {
         try {
             int _type = T13;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:12:5: ( '*' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:12:7: ( '*' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:12:7: '*'
             {
             match('*'); 
@@ -95,10 +95,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T13
 
     // $ANTLR start T14
-    public final void mT14() throws RecognitionException {
+    public void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:13:5: ( ';' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:13:7: ( ';' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:13:7: ';'
             {
             match(';'); 
@@ -113,10 +113,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T14
 
     // $ANTLR start T15
-    public final void mT15() throws RecognitionException {
+    public void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:14:5: ( 'var' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:14:7: ( 'var' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:14:7: 'var'
             {
             match("var"); 
@@ -132,10 +132,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T15
 
     // $ANTLR start T16
-    public final void mT16() throws RecognitionException {
+    public void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:15:5: ( '=' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:15:7: ( '=' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:15:7: '='
             {
             match('='); 
@@ -150,10 +150,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T16
 
     // $ANTLR start T17
-    public final void mT17() throws RecognitionException {
+    public void mT17() throws RecognitionException {
         try {
             int _type = T17;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:16:5: ( 'file' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:16:7: ( 'file' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:16:7: 'file'
             {
             match("file"); 
@@ -169,10 +169,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T17
 
     // $ANTLR start T18
-    public final void mT18() throws RecognitionException {
+    public void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:17:5: ( ':' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:17:7: ( ':' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:17:7: ':'
             {
             match(':'); 
@@ -187,10 +187,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T18
 
     // $ANTLR start T19
-    public final void mT19() throws RecognitionException {
+    public void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:18:5: ( '{' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:18:7: ( '{' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:18:7: '{'
             {
             match('{'); 
@@ -205,10 +205,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T19
 
     // $ANTLR start T20
-    public final void mT20() throws RecognitionException {
+    public void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:19:5: ( '}' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:19:7: ( '}' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:19:7: '}'
             {
             match('}'); 
@@ -223,10 +223,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T20
 
     // $ANTLR start T21
-    public final void mT21() throws RecognitionException {
+    public void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:20:5: ( '+=' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:20:7: ( '+=' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:20:7: '+='
             {
             match("+="); 
@@ -242,10 +242,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end T21
 
     // $ANTLR start RULE_ID
-    public final void mRULE_ID() throws RecognitionException {
+    public void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:938:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:938:11: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:938:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:938:11: ( '^' )?
@@ -321,10 +321,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_ID
 
     // $ANTLR start RULE_INT
-    public final void mRULE_INT() throws RecognitionException {
+    public void mRULE_INT() throws RecognitionException {
         try {
             int _type = RULE_INT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:940:10: ( ( '0' .. '9' )+ )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:940:12: ( ( '0' .. '9' )+ )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:940:12: ( '0' .. '9' )+
             {
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:940:12: ( '0' .. '9' )+
@@ -368,10 +368,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_INT
 
     // $ANTLR start RULE_STRING
-    public final void mRULE_STRING() throws RecognitionException {
+    public void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:942:13: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:942:15: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\"' ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) | ~ ( '\\\\' | '\\'' ) )* '\\'' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -522,10 +522,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_STRING
 
     // $ANTLR start RULE_ML_COMMENT
-    public final void mRULE_ML_COMMENT() throws RecognitionException {
+    public void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:944:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:944:19: ( '/*' ( options {greedy=false; } : . )* '*/' )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:944:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
@@ -581,10 +581,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_ML_COMMENT
 
     // $ANTLR start RULE_SL_COMMENT
-    public final void mRULE_SL_COMMENT() throws RecognitionException {
+    public void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:946:17: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )? )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:946:19: ( '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )? )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:946:19: '//' (~ ( '\\n' | '\\r' ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
@@ -671,10 +671,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_SL_COMMENT
 
     // $ANTLR start RULE_WS
-    public final void mRULE_WS() throws RecognitionException {
+    public void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:948:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:948:11: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:948:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:948:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
@@ -728,10 +728,10 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_WS
 
     // $ANTLR start RULE_ANY_OTHER
-    public final void mRULE_ANY_OTHER() throws RecognitionException {
+    public void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:950:16: ( . )
+            // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:950:18: ( . )
             // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:950:18: .
             {
             matchAny(); 
@@ -746,7 +746,7 @@ public class InternalMWELexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:1:8: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g:1:10: ( T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt12=18;
         int LA12_0 = input.LA(1);
 

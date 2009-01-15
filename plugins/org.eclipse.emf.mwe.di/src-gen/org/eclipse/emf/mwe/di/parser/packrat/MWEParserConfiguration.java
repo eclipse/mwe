@@ -123,12 +123,12 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 	}
 	
 	public void configureConsumers() {
-		getFileConsumer().setImportConsumer(getImportConsumer());
 		getFileConsumer().setComplexValueConsumer(getComplexValueConsumer());
+		getFileConsumer().setImportConsumer(getImportConsumer());
 		getFileConsumer().setPropertyConsumer(getPropertyConsumer());
 
-		getImportConsumer().setJavaImportConsumer(getJavaImportConsumer());
 		getImportConsumer().setGenericImportConsumer(getGenericImportConsumer());
+		getImportConsumer().setJavaImportConsumer(getJavaImportConsumer());
 
 		getJavaImportConsumer().setQualifiedNameConsumer(getQualifiedNameConsumer());
 
@@ -142,22 +142,22 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 
 		getPropertiesFileImportConsumer().setStringConsumer(getStringConsumer());
 
-		getValueConsumer().setSimpleValueConsumer(getSimpleValueConsumer());
-		getValueConsumer().setIdRefConsumer(getIdRefConsumer());
-		getValueConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
 		getValueConsumer().setComplexValueConsumer(getComplexValueConsumer());
+		getValueConsumer().setIdRefConsumer(getIdRefConsumer());
+		getValueConsumer().setSimpleValueConsumer(getSimpleValueConsumer());
+		getValueConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
 
 		getSimpleValueConsumer().setStringConsumer(getStringConsumer());
 
-		getAssignableConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
 		getAssignableConsumer().setComplexValueConsumer(getComplexValueConsumer());
+		getAssignableConsumer().setWorkflowRefConsumer(getWorkflowRefConsumer());
 
+		getComplexValueConsumer().setAssignmentConsumer(getAssignmentConsumer());
 		getComplexValueConsumer().setIdConsumer(getIdConsumer());
 		getComplexValueConsumer().setQualifiedNameConsumer(getQualifiedNameConsumer());
-		getComplexValueConsumer().setAssignmentConsumer(getAssignmentConsumer());
 
-		getWorkflowRefConsumer().setStringConsumer(getStringConsumer());
 		getWorkflowRefConsumer().setAssignmentConsumer(getAssignmentConsumer());
+		getWorkflowRefConsumer().setStringConsumer(getStringConsumer());
 
 		getIdRefConsumer().setIdConsumer(getIdConsumer());
 
@@ -166,12 +166,51 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 
 		getQualifiedNameConsumer().setIdConsumer(getIdConsumer());
 
+		getJavaImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getJavaImportConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getJavaImportConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getJavaImportConsumer().setKeyword$10$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getGenericImportConsumer().setRuleCall$5$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
+		getGenericImportConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getGenericImportConsumer().setKeyword$3$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getLocalVariableConsumer().setRuleCall$6$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getLocalVariableConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getLocalVariableConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getLocalVariableConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getPropertiesFileImportConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
+		getPropertiesFileImportConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getPropertiesFileImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getPropertiesFileImportConsumer().setKeyword$5$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getSimpleValueConsumer().setRuleCall$2$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
+		getComplexValueConsumer().setRuleCall$10$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getComplexValueConsumer().setKeyword$15$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getComplexValueConsumer().setKeyword$12$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getComplexValueConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getWorkflowRefConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
+		getWorkflowRefConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getWorkflowRefConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getWorkflowRefConsumer().setKeyword$5$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getIdRefConsumer().setRuleCall$2$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getAssignmentConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getAssignmentConsumer().setKeyword$9$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getAssignmentConsumer().setKeyword$12$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getAssignmentConsumer().setRuleCall$5$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getQualifiedNameConsumer().setRuleCall$3$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getQualifiedNameConsumer().setRuleCall$8$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getQualifiedNameConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		// TODO remove workaround
 		getIdConsumer().initFields(this);
+		// TODO remove workaround
 		getIntConsumer().initFields(this);
+		// TODO remove workaround
 		getStringConsumer().initFields(this);
+		// TODO remove workaround
 		getMlCommentConsumer().initFields(this);
+		// TODO remove workaround
 		getSlCommentConsumer().initFields(this);
+		// TODO remove workaround
 		getWsConsumer().initFields(this);
+		// TODO remove workaround
 		getAnyOtherConsumer().initFields(this);
 	}
 	
@@ -184,111 +223,89 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
     	return fileConsumer;
     }
 
-
     public MWEImportConsumer getImportConsumer() {
     	return importConsumer;
     }
-
 
     public MWEJavaImportConsumer getJavaImportConsumer() {
     	return javaImportConsumer;
     }
 
-
     public MWEGenericImportConsumer getGenericImportConsumer() {
     	return genericImportConsumer;
     }
-
 
     public MWEPropertyConsumer getPropertyConsumer() {
     	return propertyConsumer;
     }
 
-
     public MWELocalVariableConsumer getLocalVariableConsumer() {
     	return localVariableConsumer;
     }
-
 
     public MWEPropertiesFileImportConsumer getPropertiesFileImportConsumer() {
     	return propertiesFileImportConsumer;
     }
 
-
     public MWEValueConsumer getValueConsumer() {
     	return valueConsumer;
     }
-
 
     public MWESimpleValueConsumer getSimpleValueConsumer() {
     	return simpleValueConsumer;
     }
 
-
     public MWEAssignableConsumer getAssignableConsumer() {
     	return assignableConsumer;
     }
-
 
     public MWEComplexValueConsumer getComplexValueConsumer() {
     	return complexValueConsumer;
     }
 
-
     public MWEWorkflowRefConsumer getWorkflowRefConsumer() {
     	return workflowRefConsumer;
     }
-
 
     public MWEIdRefConsumer getIdRefConsumer() {
     	return idRefConsumer;
     }
 
-
     public MWEAssignmentConsumer getAssignmentConsumer() {
     	return assignmentConsumer;
     }
-
 
     public MWEQualifiedNameConsumer getQualifiedNameConsumer() {
     	return qualifiedNameConsumer;
     }
 
-
     public XtextBuiltinIDConsumer getIdConsumer() {
     	return getXtextBuiltinConfiguration().getIdConsumer();
     }
-
 
     public XtextBuiltinINTConsumer getIntConsumer() {
     	return getXtextBuiltinConfiguration().getIntConsumer();
     }
 
-
     public XtextBuiltinSTRINGConsumer getStringConsumer() {
     	return getXtextBuiltinConfiguration().getStringConsumer();
     }
-
 
     public XtextBuiltinML_COMMENTConsumer getMlCommentConsumer() {
     	return getXtextBuiltinConfiguration().getMlCommentConsumer();
     }
 
-
     public XtextBuiltinSL_COMMENTConsumer getSlCommentConsumer() {
     	return getXtextBuiltinConfiguration().getSlCommentConsumer();
     }
-
 
     public XtextBuiltinWSConsumer getWsConsumer() {
     	return getXtextBuiltinConfiguration().getWsConsumer();
     }
 
-
     public XtextBuiltinANY_OTHERConsumer getAnyOtherConsumer() {
     	return getXtextBuiltinConfiguration().getAnyOtherConsumer();
     }
-
 
 
 }
