@@ -12,15 +12,25 @@
 package org.eclipse.emf.mwe.core;
 
 /**
- * This is a workflow component that has an ID, so that it can be output in the
+ * This is a workflow component that has an Id, so that it can be output in the
  * logger.
  */
 public interface WorkflowComponentWithID extends WorkflowComponent {
 
+	/**
+	 * Sets the Id of the component.
+	 * @param id Component Id.
+	 */
     public void setId(String id);
 
+    /**
+     * Retrieves the Id of the component.
+     * @return Component Id.
+     */
     public String getId();
-    
-    public String getLogMessage();
 
+    /**
+     * Retrieves a log message that can be reported to the execution log.
+     */
+    public String getLogMessage();
 }

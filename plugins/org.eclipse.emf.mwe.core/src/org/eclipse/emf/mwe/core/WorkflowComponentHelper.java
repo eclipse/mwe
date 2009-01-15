@@ -18,6 +18,9 @@ import java.net.URL;
 
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 
+/**
+ * Helper class that provides some utility methods for workflow components. 
+ */
 public class WorkflowComponentHelper {
 
 	/**
