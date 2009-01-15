@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 
 /**
  * WorkflowComponents are components that can be executed by the
- * openArchitectureWare Workflow Engine.
+ * Model Workflow Engine.
  * <p>
  * The Workflow Engine will call the
  * {@link #invoke(WorkflowContext, ProgressMonitor)} method at the appropriate
@@ -28,7 +28,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 public interface WorkflowComponent {
 
     /**
-	 * Invoke the component.
+	 * Invokes the component.
 	 * 
      * @param ctx
      *            current workflow context
@@ -72,7 +72,7 @@ public interface WorkflowComponent {
     public void setLocation( Location location);
     
     /**
-	 * Returns the location
+	 * Returns the location.
 	 * 
      * @return the location
      */
@@ -82,7 +82,6 @@ public interface WorkflowComponent {
 	 * Returns the name of the component.
 	 * 
 	 * @return the component name
-	 * @since 4.3.1
 	 */
 	public String getComponentName();
 }
