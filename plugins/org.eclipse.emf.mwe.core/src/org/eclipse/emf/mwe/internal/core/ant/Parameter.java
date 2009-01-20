@@ -8,7 +8,7 @@
  * Contributors:
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
-package org.eclipse.emf.mwe.core.ant;
+package org.eclipse.emf.mwe.internal.core.ant;
 
 /**
  * Simple bean that holds a name/value pair.
