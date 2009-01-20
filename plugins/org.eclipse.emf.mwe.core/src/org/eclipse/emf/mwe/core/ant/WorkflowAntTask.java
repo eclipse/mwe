@@ -17,22 +17,30 @@ import java.util.List;
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.Java;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
+import org.eclipse.emf.mwe.internal.core.ant.Parameter;
 
 /**
- * Ant task that runs the openArchitectureWare Workflow Engine.
+ * Ant task that runs the Model Workflow Engine.
  * <p>
- * This task specializes the <tt>Java</tt> task.
- * 
+ * This task specializes Ant's <tt>Java</tt> task.
+ * @see http://ant.apache.org/manual/CoreTasks/java.html
  */
 public class WorkflowAntTask extends Java {
     private String file;
 
     private final List<Parameter> params = new ArrayList<Parameter>();
 
+    /**
+     * Property getter.
+     */
     public String getFile() {
         return file;
     }
 
+    /**
+     * Sets the workflow file to execute.
+     * @param file Path of the workflow file.
+     */
     public void setFile(final String file) {
         this.file = file;
     }
@@ -42,6 +50,7 @@ public class WorkflowAntTask extends Java {
      */
     @Override
     public void execute() throws BuildException {
+    	// add Parameter as arg instances to Java task
         for (Parameter param : params) {
             if (param != null) {
                 final String paramString = "-p" + param.getName() + "=" + param.getValue();
