@@ -455,11 +455,13 @@ protected class JavaImport_0_1_1_Assignment_wildcard extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("wildcard",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("wildcard");
-		if("*".equals(value)) { // xtext::Keyword
+
+		if(Boolean.TRUE.equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
 			element = MWEGrammarAccess.INSTANCE.prJavaImport().ele0110KeywordAsterisk();
 			return new Solution(obj);
 		}
+
 		return null;
 	}
 }
@@ -1515,11 +1517,13 @@ protected class ComplexValue_0_0_1_Assignment_fooBar extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("fooBar",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("fooBar");
-		if("{".equals(value)) { // xtext::Keyword
+
+		if(Boolean.TRUE.equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
 			element = MWEGrammarAccess.INSTANCE.prComplexValue().ele0010KeywordLeftCurlyBracket();
 			return new Solution(obj);
 		}
+
 		return null;
 	}
 }
@@ -1950,16 +1954,20 @@ protected class Assignment_0_0_1_Assignment_operator extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("operator",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("operator");
+
 		if("=".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
 			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00100KeywordEqualsSign();
 			return new Solution(obj);
 		}
+
+
 		if("+=".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
 			element = MWEGrammarAccess.INSTANCE.prAssignment().ele00101KeywordPlusSignEqualsSign();
 			return new Solution(obj);
 		}
+
 		return null;
 	}
 }
@@ -2113,11 +2121,13 @@ protected class QualifiedName_1_0_Assignment_parts extends AssignmentToken  {
 	protected Solution createSolution() {
 		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
+
 		if(".".equals(value)) { // xtext::Keyword
 			type = AssignmentType.KW;
 			element = MWEGrammarAccess.INSTANCE.prQualifiedName().ele100KeywordFullStop();
 			return new Solution(obj);
 		}
+
 		return null;
 	}
 }

@@ -19,25 +19,25 @@ T19 : '{' ;
 T20 : '}' ;
 T21 : '+=' ;
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 938
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1026
 RULE_ID : ('^')?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 940
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1028
 RULE_INT : ('0'..'9')+;
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 942
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1030
 RULE_STRING : '"' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'"') )* '"' |                '\'' ( '\\' ('b'|'t'|'n'|'f'|'r'|'\"'|'\''|'\\') | ~('\\'|'\'') )* '\'';
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 944
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1032
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )* '*/' {$channel=HIDDEN;};
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 946
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1034
 RULE_SL_COMMENT : '//' ~('\n'|'\r')* ('\r'? '\n')? {$channel=HIDDEN;};
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 948
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1036
 RULE_WS : (' '|'\t'|'\r'|'\n')+ {$channel=HIDDEN;};
 
-// $ANTLR src "./src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 950
+// $ANTLR src "../org.eclipse.emf.mwe.di/src-gen/org/eclipse/emf/mwe/di/parser/antlr/internal/InternalMWE.g" 1038
 RULE_ANY_OTHER : .;
 
 

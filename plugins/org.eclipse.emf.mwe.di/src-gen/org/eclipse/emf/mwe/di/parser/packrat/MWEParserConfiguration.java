@@ -71,8 +71,7 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 	public void createNonTerminalConsumers() {
 		getXtextBuiltinConfiguration().createNonTerminalConsumers();
 		fileConsumer = new MWEFileConsumer(
-    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(),
-    		new ITerminalConsumer[]{ getWsConsumer(), getMlCommentConsumer(), getSlCommentConsumer() }
+    		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
     	);
 		importConsumer = new MWEImportConsumer(
     		getInput(), getMarkerFactory(), getTokenAcceptor(), getHiddenTokenHandler(), getConsumerUtil(), null
@@ -166,52 +165,38 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 
 		getQualifiedNameConsumer().setIdConsumer(getIdConsumer());
 
-		getJavaImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getJavaImportConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getJavaImportConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getJavaImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getJavaImportConsumer().setKeyword$10$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getGenericImportConsumer().setRuleCall$5$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
-		getGenericImportConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getJavaImportConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getGenericImportConsumer().setKeyword$3$Delimiter(MWEDelimiters.keyword$21$Delimiter);
-		getLocalVariableConsumer().setRuleCall$6$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
-		getLocalVariableConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getGenericImportConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getGenericImportConsumer().setRuleCall$5$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
 		getLocalVariableConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
 		getLocalVariableConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getPropertiesFileImportConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
+		getLocalVariableConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getLocalVariableConsumer().setRuleCall$6$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
 		getPropertiesFileImportConsumer().setKeyword$4$Delimiter(MWEDelimiters.keyword$21$Delimiter);
-		getPropertiesFileImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getPropertiesFileImportConsumer().setKeyword$5$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getPropertiesFileImportConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getPropertiesFileImportConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
 		getSimpleValueConsumer().setRuleCall$2$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
-		getComplexValueConsumer().setRuleCall$10$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
-		getComplexValueConsumer().setKeyword$15$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getComplexValueConsumer().setKeyword$12$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getComplexValueConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getWorkflowRefConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
-		getWorkflowRefConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		getWorkflowRefConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getComplexValueConsumer().setKeyword$12$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getComplexValueConsumer().setKeyword$15$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getComplexValueConsumer().setRuleCall$10$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
 		getWorkflowRefConsumer().setKeyword$5$Delimiter(MWEDelimiters.keyword$21$Delimiter);
+		getWorkflowRefConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getWorkflowRefConsumer().setKeyword$11$Delimiter(MWEDelimiters.keyword$25$Delimiter);
+		getWorkflowRefConsumer().setRuleCall$7$Delimiter(MWEDelimiters.ruleCall$35$Delimiter);
 		getIdRefConsumer().setRuleCall$2$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
 		getAssignmentConsumer().setKeyword$8$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getAssignmentConsumer().setKeyword$9$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getAssignmentConsumer().setKeyword$12$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getAssignmentConsumer().setRuleCall$5$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
+		getQualifiedNameConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
 		getQualifiedNameConsumer().setRuleCall$3$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
 		getQualifiedNameConsumer().setRuleCall$8$Delimiter(MWEDelimiters.ruleCall$49$Delimiter);
-		getQualifiedNameConsumer().setKeyword$6$Delimiter(MWEDelimiters.keyword$25$Delimiter);
-		// TODO remove workaround
-		getIdConsumer().initFields(this);
-		// TODO remove workaround
-		getIntConsumer().initFields(this);
-		// TODO remove workaround
-		getStringConsumer().initFields(this);
-		// TODO remove workaround
-		getMlCommentConsumer().initFields(this);
-		// TODO remove workaround
-		getSlCommentConsumer().initFields(this);
-		// TODO remove workaround
-		getWsConsumer().initFields(this);
-		// TODO remove workaround
-		getAnyOtherConsumer().initFields(this);
 	}
 	
 	// TODO collect superGrammars transitive

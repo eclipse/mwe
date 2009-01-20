@@ -586,7 +586,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 	
 	public XtextBuiltinGrammarAccess getSuperGrammar() {
-		return XtextBuiltinGrammarAccess.INSTANCE;		
+		return XtextBuiltinGrammarAccess.INSTANCE;
 	}
 
 	

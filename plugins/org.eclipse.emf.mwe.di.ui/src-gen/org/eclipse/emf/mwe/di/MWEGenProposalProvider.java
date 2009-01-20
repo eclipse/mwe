@@ -10,7 +10,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.ui.common.editor.contentassist.AbstractProposalProvider;
+import org.eclipse.xtext.ui.common.editor.contentassist.impl.AbstractProposalProvider;
 import org.eclipse.xtext.ui.common.editor.contentassist.IProposalProvider;
 import org.eclipse.xtext.ui.common.editor.contentassist.IContentAssistContext;
 
@@ -177,23 +177,7 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 		return Collections.singletonList(createCompletionProposal(assignment, "IdRefId", contentAssistContext));
 	}
 	
-	public List<? extends ICompletionProposal> completeAssignmentFeature(Assignment assignment, IContentAssistContext contentAssistContext) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeAssignmentFeature feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ contentAssistContext.getMatchString().trim() + "'");
-		}
-		return Collections.singletonList(createCompletionProposal(assignment, "AssignmentFeature", contentAssistContext));
-	}
 	
-	public List<? extends ICompletionProposal> completeAssignmentOperator(Assignment assignment, IContentAssistContext contentAssistContext) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeAssignmentOperator feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ contentAssistContext.getMatchString().trim() + "'");
-		}
-		return Collections.emptyList();
-	}
 	
 	public List<? extends ICompletionProposal> completeAssignmentValue(Assignment assignment, IContentAssistContext contentAssistContext) {
 		if (logger.isDebugEnabled()) {
@@ -216,13 +200,6 @@ public class MWEGenProposalProvider  extends AbstractProposalProvider {
 	
     
     
-	public List<? extends ICompletionProposal> complete(RuleCall ruleCall, IContentAssistContext contentAssistContext) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + contentAssistContext.getModel() + "' and prefix '" + contentAssistContext.getMatchString() + "'");
-		}
-		return Collections.emptyList();
-	}
     
     
     

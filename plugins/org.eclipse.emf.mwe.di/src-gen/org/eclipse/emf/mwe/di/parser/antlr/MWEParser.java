@@ -22,7 +22,7 @@ public class MWEParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParse
 	@Override
 	protected IParseResult parse(String ruleName, ANTLRInputStream in, IAstFactory factory) {
 		InternalMWELexer lexer = new InternalMWELexer(in);
-		XtextTokenStream stream = new XtextTokenStream(lexer);
+		XtextTokenStream stream = new XtextTokenStream(lexer, antlrTokenDefProvider);
 		InternalMWEParser parser = new InternalMWEParser(
 				stream, factory, grammarAccess.getGrammar());
 		parser.setTokenTypeMap(antlrTokenDefProvider.getTokenDefMap());

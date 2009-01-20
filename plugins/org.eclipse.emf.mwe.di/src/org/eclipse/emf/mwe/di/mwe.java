@@ -16,30 +16,43 @@ import org.eclipse.xtext.resource.XtextResourceSet;
  * 
  * @author Sven Efftinge - Initial contribution and API
  * @author Peter Friese
+ * @author Jan K&ouml;hnlein
  */
 public class mwe {
-    private static final String RUNTIME_PATH = ".";
-    private static final String UI_PATH = "../org.eclipse.emf.mwe.di.ui";
+	private static final String RUNTIME_PATH = ".";
+	private static final String UI_PATH = "../org.eclipse.emf.mwe.di.ui";
 
-    public void generate() throws IOException {
-        XtextStandaloneSetup.doSetup();
+	private String uiPath = UI_PATH;
+	private String runtimePath = RUNTIME_PATH;
 
-        GeneratorFacade.cleanFolder(RUNTIME_PATH+"/src-gen");
+	private mwe(String... args) {
+		if (args.length > 0) {
+			runtimePath = args[0];
+			uiPath = args[0] + "/" + UI_PATH;
+		}
+	}
 
-        String classpathUri = "classpath:/"+getClass().getName().replace('.', '/') + ".xtext";
-        System.out.println("loading " + classpathUri);
-        ResourceSet rs = new XtextResourceSet();
-        Resource resource = rs.createResource(new ClassloaderClasspathUriResolver().resolve(null, URI.createURI(classpathUri)));
-        resource.load(null);
-        Grammar grammarModel = (Grammar) resource.getContents().get(0);
+	public void generate(String... args) throws IOException {
 
-        GeneratorFacade.generate(grammarModel, RUNTIME_PATH,UI_PATH, "mwe");
-        System.out.println("Done.");
-    }
+		XtextStandaloneSetup.doSetup();
 
-    public static void main(String[] args) throws IOException {
-        mwe generator = new mwe();
-        generator.generate();
-    }
+		GeneratorFacade.cleanFolder(runtimePath + "/src-gen");
+
+		String classpathUri = "classpath:/" + getClass().getName().replace('.', '/') + ".xtext";
+		System.out.println("loading " + classpathUri);
+		ResourceSet rs = new XtextResourceSet();
+		Resource resource = rs.createResource(new ClassloaderClasspathUriResolver().resolve(null, URI
+				.createURI(classpathUri)));
+		resource.load(null);
+		Grammar grammarModel = (Grammar) resource.getContents().get(0);
+
+		GeneratorFacade.generate(grammarModel, runtimePath, uiPath, "mwe");
+		System.out.println("Done.");
+	}
+
+	public static void main(String... args) throws IOException {
+		mwe generator = new mwe(args);
+		generator.generate();
+	}
 
 }
