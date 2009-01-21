@@ -43,16 +43,20 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		final IMarker marker = mark();
 		if (!consumeAssignment$3()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$5()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$7()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
+		marker.release();
 		return true;
 	}
 

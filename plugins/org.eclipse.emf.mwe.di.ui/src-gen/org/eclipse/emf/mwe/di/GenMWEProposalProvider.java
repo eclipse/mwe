@@ -19,7 +19,7 @@ import org.eclipse.xtext.ui.common.editor.contentassist.IContentAssistContext;
  * 
  * @see org.eclipse.xtext.ui.common.editor.contentassist.IProposalProvider
  */
-public class MWEGenProposalProvider  extends AbstractProposalProvider {
+public class GenMWEProposalProvider  extends AbstractProposalProvider {
 	// constants
 	private static final String UI_PLUGIN_ID  = "org.eclipse.emf.mwe.di.ui";
 	

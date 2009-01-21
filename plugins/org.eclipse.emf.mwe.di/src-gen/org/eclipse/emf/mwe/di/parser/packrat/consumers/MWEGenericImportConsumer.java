@@ -48,16 +48,20 @@ public final class MWEGenericImportConsumer extends NonTerminalConsumer {
 		final IMarker marker = mark();
 		if (!consumeKeyword$3()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$4()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeKeyword$6()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
+		marker.release();
 		return true;
 	}
 

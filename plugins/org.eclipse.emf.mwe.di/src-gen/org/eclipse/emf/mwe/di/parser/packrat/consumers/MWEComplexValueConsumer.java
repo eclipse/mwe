@@ -55,24 +55,30 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		final IMarker marker = mark();
 		if (!consumeAssignment$5()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeGroup$7()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$11()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$13()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeKeyword$15()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
+		marker.release();
 		return true;
 	}
 
@@ -96,12 +102,15 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		final IMarker marker = mark();
 		if (!consumeKeyword$8()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
 		if (!consumeAssignment$9()) {
 			marker.rollback();
+			marker.release();
 			return false;
 		}
+		marker.release();
 		return true;
 	}
 
