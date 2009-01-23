@@ -37,6 +37,7 @@ public class mwe {
 		XtextStandaloneSetup.doSetup();
 
 		GeneratorFacade.cleanFolder(runtimePath + "/src-gen");
+		GeneratorFacade.cleanFolder(uiPath + "/src-gen");
 
 		String classpathUri = "classpath:/" + getClass().getName().replace('.', '/') + ".xtext";
 		System.out.println("loading " + classpathUri);

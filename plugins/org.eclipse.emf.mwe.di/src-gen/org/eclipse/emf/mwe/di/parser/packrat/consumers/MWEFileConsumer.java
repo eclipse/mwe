@@ -11,6 +11,7 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
@@ -35,57 +36,85 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
 	}
 	
-	protected boolean doConsume() throws Exception {
+	protected int doConsume() throws Exception {
 		return consumeGroup$1();
 	}
 
-	protected boolean consumeGroup$1() throws Exception {
+	protected int consumeGroup$1() throws Exception {
 		final IMarker marker = mark();
-		if (!consumeAssignment$3()) {
-			marker.rollback();
+		int result;
+		result = consumeAssignment$3(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele00AssignmentImports());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeAssignment$5()) {
-			marker.rollback();
+		result = consumeAssignment$5(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele01AssignmentProperties());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeAssignment$7()) {
-			marker.rollback();
+		result = consumeAssignment$7(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele1AssignmentValue());
 			marker.release();
-			return false;
+			return result;
 		}
 		marker.release();
-		return true;
+		return result;
 	}
 
-	protected boolean consumeAssignment$3() throws Exception {
-		while(doConsumeAssignment$3()) {}
-		return true;
+	protected int consumeAssignment$3() throws Exception {
+		IMarker marker = mark();
+		while(doConsumeAssignment$3() == ConsumeResult.SUCCESS) {
+			marker.release();
+			marker = mark();
+		}
+		marker.rollback();
+		marker.release();
+		return ConsumeResult.SUCCESS;
 	}
 
-	protected boolean doConsumeAssignment$3() throws Exception {
-		if (consumeNonTerminal(importConsumer, "imports", true, false, getRule().ele000ParserRuleCallImport()))
-			return true;
-		return false;
+	protected int doConsumeAssignment$3() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeNonTerminal(importConsumer, "imports", true, false, getRule().ele000ParserRuleCallImport());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeAssignment$5() throws Exception {
-		while(doConsumeAssignment$5()) {}
-		return true;
+	protected int consumeAssignment$5() throws Exception {
+		IMarker marker = mark();
+		while(doConsumeAssignment$5() == ConsumeResult.SUCCESS) {
+			marker.release();
+			marker = mark();
+		}
+		marker.rollback();
+		marker.release();
+		return ConsumeResult.SUCCESS;
 	}
 
-	protected boolean doConsumeAssignment$5() throws Exception {
-		if (consumeNonTerminal(propertyConsumer, "properties", true, false, getRule().ele010ParserRuleCallProperty()))
-			return true;
-		return false;
+	protected int doConsumeAssignment$5() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeNonTerminal(propertyConsumer, "properties", true, false, getRule().ele010ParserRuleCallProperty());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeAssignment$7() throws Exception {
-		if (consumeNonTerminal(complexValueConsumer, "value", false, false, getRule().ele10ParserRuleCallComplexValue()))
-			return true;
-		return false;
+	protected int consumeAssignment$7() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeNonTerminal(complexValueConsumer, "value", false, false, getRule().ele10ParserRuleCallComplexValue());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
 	public FileElements getRule() {

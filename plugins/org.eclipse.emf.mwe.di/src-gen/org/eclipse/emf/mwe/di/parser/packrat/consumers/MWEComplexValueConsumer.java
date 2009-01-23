@@ -11,6 +11,7 @@ import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
@@ -47,101 +48,140 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		ruleCall$10$Delimiter = ISequenceMatcher.Factory.nullMatcher();
 	}
 	
-	protected boolean doConsume() throws Exception {
+	protected int doConsume() throws Exception {
 		return consumeGroup$1();
 	}
 
-	protected boolean consumeGroup$1() throws Exception {
+	protected int consumeGroup$1() throws Exception {
 		final IMarker marker = mark();
-		if (!consumeAssignment$5()) {
-			marker.rollback();
+		int result;
+		result = consumeAssignment$5(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele0000AssignmentClassName());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeGroup$7()) {
-			marker.rollback();
+		result = consumeGroup$7(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele0001Group());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeAssignment$11()) {
-			marker.rollback();
+		result = consumeAssignment$11(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele001AssignmentFooBar());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeAssignment$13()) {
-			marker.rollback();
+		result = consumeAssignment$13(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele01AssignmentAssignments());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeKeyword$15()) {
-			marker.rollback();
+		result = consumeKeyword$15(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele1KeywordRightCurlyBracket());
 			marker.release();
-			return false;
+			return result;
 		}
 		marker.release();
-		return true;
+		return result;
 	}
 
-	protected boolean consumeAssignment$5() throws Exception {
-		doConsumeAssignment$5();
-		return true;
+	protected int consumeAssignment$5() throws Exception {
+		IMarker marker = mark();
+		int result = doConsumeAssignment$5();
+		if (result != ConsumeResult.SUCCESS)
+			marker.rollback();
+		marker.release();
+		return ConsumeResult.SUCCESS;
 	}
 
-	protected boolean doConsumeAssignment$5() throws Exception {
-		if (consumeNonTerminal(qualifiedNameConsumer, "className", false, false, getRule().ele00000ParserRuleCallQualifiedName()))
-			return true;
-		return false;
+	protected int doConsumeAssignment$5() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeNonTerminal(qualifiedNameConsumer, "className", false, false, getRule().ele00000ParserRuleCallQualifiedName());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeGroup$7() throws Exception {
-		doConsumeGroup$7();
-		return true;
+	protected int consumeGroup$7() throws Exception {
+		IMarker marker = mark();
+		int result = doConsumeGroup$7();
+		if (result != ConsumeResult.SUCCESS)
+			marker.rollback();
+		marker.release();
+		return ConsumeResult.SUCCESS;
 	}
 
-	protected boolean doConsumeGroup$7() throws Exception {
+	protected int doConsumeGroup$7() throws Exception {
 		final IMarker marker = mark();
-		if (!consumeKeyword$8()) {
-			marker.rollback();
+		int result;
+		result = consumeKeyword$8(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele00010KeywordColon());
 			marker.release();
-			return false;
+			return result;
 		}
-		if (!consumeAssignment$9()) {
-			marker.rollback();
+		result = consumeAssignment$9(); 
+		if (result!=ConsumeResult.SUCCESS) {
+			error("Another token expected.", getRule().ele00011AssignmentId());
 			marker.release();
-			return false;
+			return result;
 		}
 		marker.release();
-		return true;
+		return result;
 	}
 
-	protected boolean consumeKeyword$8() throws Exception {
+	protected int consumeKeyword$8() throws Exception {
 		return consumeKeyword(getRule().ele00010KeywordColon(), null, false, false, getKeyword$8$Delimiter());
 	}
 
-	protected boolean consumeAssignment$9() throws Exception {
-		if (consumeTerminal(idConsumer, "id", false, false, getRule().ele000110LexerRuleCallID(), getRuleCall$10$Delimiter()))
-			return true;
-		return false;
+	protected int consumeAssignment$9() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeTerminal(idConsumer, "id", false, false, getRule().ele000110LexerRuleCallID(), getRuleCall$10$Delimiter());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeAssignment$11() throws Exception {
-		if (consumeKeyword(getRule().ele0010KeywordLeftCurlyBracket(), "fooBar", false, true, getKeyword$12$Delimiter()))
-			return true;
-		return false;
+	protected int consumeAssignment$11() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeKeyword(getRule().ele0010KeywordLeftCurlyBracket(), "fooBar", false, true, getKeyword$12$Delimiter()); 
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeAssignment$13() throws Exception {
-		while(doConsumeAssignment$13()) {}
-		return true;
+	protected int consumeAssignment$13() throws Exception {
+		IMarker marker = mark();
+		while(doConsumeAssignment$13() == ConsumeResult.SUCCESS) {
+			marker.release();
+			marker = mark();
+		}
+		marker.rollback();
+		marker.release();
+		return ConsumeResult.SUCCESS;
 	}
 
-	protected boolean doConsumeAssignment$13() throws Exception {
-		if (consumeNonTerminal(assignmentConsumer, "assignments", true, false, getRule().ele010ParserRuleCallAssignment()))
-			return true;
-		return false;
+	protected int doConsumeAssignment$13() throws Exception {
+		int result = Integer.MIN_VALUE;
+		int tempResult;
+		tempResult = consumeNonTerminal(assignmentConsumer, "assignments", true, false, getRule().ele010ParserRuleCallAssignment());
+		if (tempResult == ConsumeResult.SUCCESS)
+			return tempResult;
+		result = tempResult >= result ? tempResult : result; 
+		return result;
 	}
 
-	protected boolean consumeKeyword$15() throws Exception {
+	protected int consumeKeyword$15() throws Exception {
 		return consumeKeyword(getRule().ele1KeywordRightCurlyBracket(), null, false, false, getKeyword$15$Delimiter());
 	}
 
