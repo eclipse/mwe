@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.AssignmentElements;
@@ -36,10 +32,8 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 	
 	private ISequenceMatcher ruleCall$5$Delimiter;
 	
-	public MWEAssignmentConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEAssignmentConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 		keyword$8$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$9$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$12$Delimiter = ICharacterClass.Factory.nullClass();
@@ -56,28 +50,28 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 		result = consumeAssignment$4(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele000AssignmentFeature());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$6(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele001AssignmentOperator());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$10(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele01AssignmentValue());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeKeyword$12(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1KeywordSemicolon());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
@@ -86,7 +80,8 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 		int result = doConsumeAssignment$4();
 		if (result != ConsumeResult.SUCCESS)
 			marker.rollback();
-		marker.release();
+		else
+			marker.commit();
 		return ConsumeResult.SUCCESS;
 	}
 
@@ -129,7 +124,8 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 		int result = doConsumeKeyword$12();
 		if (result != ConsumeResult.SUCCESS)
 			marker.rollback();
-		marker.release();
+		else
+			marker.commit();
 		return ConsumeResult.SUCCESS;
 	}
 

@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.AssignableElements;
@@ -28,10 +24,8 @@ public final class MWEAssignableConsumer extends NonTerminalConsumer {
 	private MWEComplexValueConsumer complexValueConsumer;
 	private MWEWorkflowRefConsumer workflowRefConsumer;
 
-	public MWEAssignableConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEAssignableConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 	}
 	
 	protected int doConsume() throws Exception {
@@ -43,43 +37,35 @@ public final class MWEAssignableConsumer extends NonTerminalConsumer {
 		IMarker bestMarker = mark();
 		IMarker currentMarker;
 		int tempResult;
-		currentMarker = bestMarker.copy();
+		currentMarker = bestMarker.fork();
 		tempResult = consumeRuleCall$2(); 
 		if (tempResult == ConsumeResult.SUCCESS) {
-			if (bestMarker != currentMarker) {
-				bestMarker.discard();
-			}
-			currentMarker.release();
+			bestMarker = currentMarker.join(bestMarker);
+			bestMarker.commit();
 			return tempResult;
 		}
 		if (tempResult > result) {
-			bestMarker.discard();
-			bestMarker = currentMarker;			
+			bestMarker = currentMarker.join(bestMarker);
 			result = tempResult;
 		} else {
-			currentMarker.discard();
+			bestMarker = bestMarker.join(currentMarker);
 		}
 		currentMarker = null;
-		bestMarker.activate();
-		currentMarker = bestMarker.copy();
+		currentMarker = bestMarker.fork();
 		tempResult = consumeRuleCall$3(); 
 		if (tempResult == ConsumeResult.SUCCESS) {
-			if (bestMarker != currentMarker) {
-				bestMarker.discard();
-			}
-			currentMarker.release();
+			bestMarker = currentMarker.join(bestMarker);
+			bestMarker.commit();
 			return tempResult;
 		}
 		if (tempResult > result) {
-			bestMarker.discard();
-			bestMarker = currentMarker;			
+			bestMarker = currentMarker.join(bestMarker);
 			result = tempResult;
 		} else {
-			currentMarker.discard();
+			bestMarker = bestMarker.join(currentMarker);
 		}
 		currentMarker = null;
-		bestMarker.activate();
-		bestMarker.release();
+		bestMarker.commit();
 		return result;
 	}
 

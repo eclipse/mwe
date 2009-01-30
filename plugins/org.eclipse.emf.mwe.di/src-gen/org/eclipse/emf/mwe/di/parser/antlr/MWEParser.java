@@ -5,11 +5,11 @@ package org.eclipse.emf.mwe.di.parser.antlr;
 
 import org.antlr.runtime.ANTLRInputStream;
 import org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider;
-import org.eclipse.xtext.parser.IAstFactory;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
-import org.eclipse.xtext.service.Inject;
+
+import com.google.inject.Inject;
 
 import org.eclipse.emf.mwe.di.parser.antlr.internal.InternalMWELexer;
 import org.eclipse.emf.mwe.di.parser.antlr.internal.InternalMWEParser;
@@ -20,11 +20,11 @@ public class MWEParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParse
     protected AntlrTokenDefProvider antlrTokenDefProvider;
 	
 	@Override
-	protected IParseResult parse(String ruleName, ANTLRInputStream in, IAstFactory factory) {
+	protected IParseResult parse(String ruleName, ANTLRInputStream in) {
 		InternalMWELexer lexer = new InternalMWELexer(in);
 		XtextTokenStream stream = new XtextTokenStream(lexer, antlrTokenDefProvider);
 		InternalMWEParser parser = new InternalMWEParser(
-				stream, factory, grammarAccess.getGrammar());
+				stream, getElementFactory(), grammarAccess.getGrammar());
 		parser.setTokenTypeMap(antlrTokenDefProvider.getTokenDefMap());
 		try {
 			if(ruleName != null) {

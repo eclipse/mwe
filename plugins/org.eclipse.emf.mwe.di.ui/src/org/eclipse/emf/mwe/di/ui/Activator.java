@@ -1,12 +1,12 @@
 package org.eclipse.emf.mwe.di.ui;
 
-import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.mwe.MwePackage;
 import org.eclipse.emf.mwe.di.ui.analyze.Analyzer;
+import org.eclipse.emf.mwe.di.ui.internal.MWEActivator;
 import org.osgi.framework.BundleContext;
 
-public class Activator extends Plugin {
+public class Activator extends MWEActivator {
 
 	private static Activator plugin;
 

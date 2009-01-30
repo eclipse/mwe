@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.PropertiesFileImportElements;
@@ -34,10 +30,8 @@ public final class MWEPropertiesFileImportConsumer extends NonTerminalConsumer {
 	
 	private ISequenceMatcher ruleCall$7$Delimiter;
 	
-	public MWEPropertiesFileImportConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEPropertiesFileImportConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 		keyword$4$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$5$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$8$Delimiter = ICharacterClass.Factory.nullClass();
@@ -54,28 +48,28 @@ public final class MWEPropertiesFileImportConsumer extends NonTerminalConsumer {
 		result = consumeKeyword$4(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele000KeywordVar());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeKeyword$5(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele001KeywordFile());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$6(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele01AssignmentFile());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeKeyword$8(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1KeywordSemicolon());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 

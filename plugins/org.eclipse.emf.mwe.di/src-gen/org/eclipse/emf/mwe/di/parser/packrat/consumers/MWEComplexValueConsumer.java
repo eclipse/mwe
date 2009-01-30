@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.ComplexValueElements;
@@ -38,10 +34,8 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 	
 	private ISequenceMatcher ruleCall$10$Delimiter;
 	
-	public MWEComplexValueConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEComplexValueConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 		keyword$8$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$12$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$15$Delimiter = ICharacterClass.Factory.nullClass();
@@ -58,34 +52,34 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		result = consumeAssignment$5(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele0000AssignmentClassName());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeGroup$7(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele0001Group());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$11(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele001AssignmentFooBar());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$13(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele01AssignmentAssignments());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeKeyword$15(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1KeywordRightCurlyBracket());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
@@ -94,7 +88,8 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		int result = doConsumeAssignment$5();
 		if (result != ConsumeResult.SUCCESS)
 			marker.rollback();
-		marker.release();
+		else
+			marker.commit();
 		return ConsumeResult.SUCCESS;
 	}
 
@@ -113,7 +108,8 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		int result = doConsumeGroup$7();
 		if (result != ConsumeResult.SUCCESS)
 			marker.rollback();
-		marker.release();
+		else
+			marker.commit();
 		return ConsumeResult.SUCCESS;
 	}
 
@@ -123,16 +119,16 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		result = consumeKeyword$8(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele00010KeywordColon());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$9(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele00011AssignmentId());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
@@ -163,11 +159,9 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 	protected int consumeAssignment$13() throws Exception {
 		IMarker marker = mark();
 		while(doConsumeAssignment$13() == ConsumeResult.SUCCESS) {
-			marker.release();
-			marker = mark();
+			marker.flush();
 		}
 		marker.rollback();
-		marker.release();
 		return ConsumeResult.SUCCESS;
 	}
 

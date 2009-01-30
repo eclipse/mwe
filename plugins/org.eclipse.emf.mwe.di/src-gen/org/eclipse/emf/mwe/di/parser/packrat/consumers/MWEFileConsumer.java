@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.FileElements;
@@ -30,10 +26,8 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 	private MWEImportConsumer importConsumer;
 	private MWEPropertyConsumer propertyConsumer;
 
-	public MWEFileConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEFileConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 	}
 	
 	protected int doConsume() throws Exception {
@@ -46,33 +40,31 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		result = consumeAssignment$3(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele00AssignmentImports());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$5(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele01AssignmentProperties());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$7(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1AssignmentValue());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
 	protected int consumeAssignment$3() throws Exception {
 		IMarker marker = mark();
 		while(doConsumeAssignment$3() == ConsumeResult.SUCCESS) {
-			marker.release();
-			marker = mark();
+			marker.flush();
 		}
 		marker.rollback();
-		marker.release();
 		return ConsumeResult.SUCCESS;
 	}
 
@@ -89,11 +81,9 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 	protected int consumeAssignment$5() throws Exception {
 		IMarker marker = mark();
 		while(doConsumeAssignment$5() == ConsumeResult.SUCCESS) {
-			marker.release();
-			marker = mark();
+			marker.flush();
 		}
 		marker.rollback();
-		marker.release();
 		return ConsumeResult.SUCCESS;
 	}
 

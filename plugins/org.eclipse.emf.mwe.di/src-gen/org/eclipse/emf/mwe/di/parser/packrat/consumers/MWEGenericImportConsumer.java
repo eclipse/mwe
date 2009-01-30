@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.GenericImportElements;
@@ -32,10 +28,8 @@ public final class MWEGenericImportConsumer extends NonTerminalConsumer {
 	
 	private ISequenceMatcher ruleCall$5$Delimiter;
 	
-	public MWEGenericImportConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEGenericImportConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 		keyword$3$Delimiter = ICharacterClass.Factory.nullClass();
 		keyword$6$Delimiter = ICharacterClass.Factory.nullClass();
 		ruleCall$5$Delimiter = ISequenceMatcher.Factory.nullMatcher();
@@ -51,22 +45,22 @@ public final class MWEGenericImportConsumer extends NonTerminalConsumer {
 		result = consumeKeyword$3(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele00KeywordImport());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$4(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele01AssignmentValue());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeKeyword$6(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1KeywordSemicolon());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
@@ -89,7 +83,8 @@ public final class MWEGenericImportConsumer extends NonTerminalConsumer {
 		int result = doConsumeKeyword$6();
 		if (result != ConsumeResult.SUCCESS)
 			marker.rollback();
-		marker.release();
+		else
+			marker.commit();
 		return ConsumeResult.SUCCESS;
 	}
 

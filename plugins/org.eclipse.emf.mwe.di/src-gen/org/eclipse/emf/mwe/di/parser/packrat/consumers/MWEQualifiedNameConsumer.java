@@ -4,17 +4,13 @@ Generated with Xtext
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.parser.packrat.ICharSequenceWithOffset;
-import org.eclipse.xtext.parser.packrat.IHiddenTokenHandler;
-import org.eclipse.xtext.parser.packrat.IMarkerFactory;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.IConsumerUtility;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
-import org.eclipse.xtext.parser.packrat.tokens.IParsedTokenAcceptor;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess;
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.QualifiedNameElements;
@@ -32,10 +28,8 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 	
 	private ISequenceMatcher ruleCall$8$Delimiter;
 	
-	public MWEQualifiedNameConsumer(ICharSequenceWithOffset input, IMarkerFactory markerFactory,
-			IParsedTokenAcceptor tokenAcceptor, IHiddenTokenHandler hiddenTokenHandler, IConsumerUtility consumerUtil,
-			ITerminalConsumer[] hiddenTokens) {
-		super(input, markerFactory, tokenAcceptor, hiddenTokenHandler, consumerUtil, hiddenTokens);
+	public MWEQualifiedNameConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
+		super(configuration, hiddenTokens);
 		keyword$6$Delimiter = ICharacterClass.Factory.nullClass();
 		ruleCall$3$Delimiter = ISequenceMatcher.Factory.nullMatcher();
 		ruleCall$8$Delimiter = ISequenceMatcher.Factory.nullMatcher();
@@ -51,16 +45,16 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 		result = consumeAssignment$2(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele0AssignmentParts());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeGroup$4(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele1Group());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
@@ -77,11 +71,9 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 	protected int consumeGroup$4() throws Exception {
 		IMarker marker = mark();
 		while(doConsumeGroup$4() == ConsumeResult.SUCCESS) {
-			marker.release();
-			marker = mark();
+			marker.flush();
 		}
 		marker.rollback();
-		marker.release();
 		return ConsumeResult.SUCCESS;
 	}
 
@@ -91,16 +83,16 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 		result = consumeAssignment$5(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele10AssignmentParts());
-			marker.release();
+			marker.commit();
 			return result;
 		}
 		result = consumeAssignment$7(); 
 		if (result!=ConsumeResult.SUCCESS) {
 			error("Another token expected.", getRule().ele11AssignmentParts());
-			marker.release();
+			marker.commit();
 			return result;
 		}
-		marker.release();
+		marker.commit();
 		return result;
 	}
 
