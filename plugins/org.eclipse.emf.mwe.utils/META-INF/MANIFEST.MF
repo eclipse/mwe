@@ -7,7 +7,6 @@ Bundle-Version: 0.7.0.qualifier
 Require-Bundle: org.eclipse.emf.mwe.core,
  org.apache.commons.logging,
  org.eclipse.emf.ecore.xmi
-Export-Package: org.eclipse.emf.mwe.utils,
- org.eclipse.mwe.utils
+Export-Package: org.eclipse.emf.mwe.utils
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

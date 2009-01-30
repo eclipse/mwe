@@ -11,17 +11,13 @@
 package org.eclipse.emf.mwe.utils;
 
 import org.eclipse.emf.mwe.core.customizer.WorkflowCustomization;
-import org.eclipse.mwe.utils.DirectoryCleaner;
 
 public class StandardComponentMappingHelper {
 
 	public StandardComponentMappingHelper() {
-		WorkflowCustomization.registerKeywordMapping("cleanDir",
-				DirectoryCleaner.class.getName());
-		WorkflowCustomization.registerKeywordMapping("read", Reader.class
-				.getName());
-		WorkflowCustomization.registerKeywordMapping("write", Writer.class
-				.getName());
+		WorkflowCustomization.registerKeywordMapping("cleanDir", DirectoryCleaner.class.getName());
+		WorkflowCustomization.registerKeywordMapping("read", Reader.class.getName());
+		WorkflowCustomization.registerKeywordMapping("write", Writer.class.getName());
 	}
 
 }
