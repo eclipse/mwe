@@ -18,14 +18,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.di.MweUtil;
 import org.eclipse.emf.mwe.di.util.ModelUtils;
-import org.eclipse.xtext.service.ui.Activator;
 
 import utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class AbstractUITests extends TestCase {
@@ -50,7 +50,6 @@ public class AbstractUITests extends TestCase {
 		// extension points and configures the service registry
 		// this is the Eclipse runtime equivalent to standalone setup (i.e.
 		// MWEStandaloneSetup.doSetup())
-		Activator.getDefault();
 		project = createProject(PROJECT_NAME);
 	}
 
