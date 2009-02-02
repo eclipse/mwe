@@ -71,7 +71,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 					for (int j = 0; j < contents.length; j++) {
 						final File file = contents[j];
 						if (!delete(file)) {
-							LOG.error("Couldn't delete " + file.getAbsolutePath());
+							LOG.warn(file.getAbsolutePath() + "has not been deleted");
 						}
 					}
 				}
@@ -171,14 +171,15 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
- * Revision 1.5  2009/01/30 15:26:37  pschonbac
- * bug 221820: DirectoryCleaner should have an exclude property and default excludes
- * https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
- *
- * ...furthermore, wrong path name fixed.
- * Revision 1.16 2009/01/30 14:55:53 pschoenb
+ * Revision 1.6  2009/02/02 15:29:49  pschonbac
+ * Message improved
+ * Revision 1.5 2009/01/30 15:26:37 pschonbac
  * bug 221820: DirectoryCleaner should have an exclude property and default
  * excludes https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
+ * 
+ * ...furthermore, wrong path name fixed. Revision 1.16 2009/01/30 14:55:53
+ * pschoenb bug 221820: DirectoryCleaner should have an exclude property and
+ * default excludes https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
  * 
  * Revision 1.15 2009/01/15 14:12:34 kthoms Removed deprecated code
  * 
