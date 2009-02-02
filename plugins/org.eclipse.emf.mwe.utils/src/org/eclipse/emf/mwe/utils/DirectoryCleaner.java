@@ -144,7 +144,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.WorkflowComponent#getComponentName()
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getComponentName()
 	 */
 	@Override
 	public String getComponentName() {
@@ -171,11 +171,12 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
- * Revision 1.7  2009/02/02 15:33:58  pschonbac
- * Message fixed
- * Revision 1.6 2009/02/02 15:29:49 pschonbac
- * Message improved Revision 1.5 2009/01/30 15:26:37 pschonbac bug 221820:
- * DirectoryCleaner should have an exclude property and default excludes
+ * Revision 1.8  2009/02/02 15:37:47  pschonbac
+ * JavaDoc fixed
+ * Revision 1.7 2009/02/02 15:33:58 pschonbac
+ * Message fixed Revision 1.6 2009/02/02 15:29:49 pschonbac Message improved
+ * Revision 1.5 2009/01/30 15:26:37 pschonbac bug 221820: DirectoryCleaner
+ * should have an exclude property and default excludes
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
  * 
  * ...furthermore, wrong path name fixed. Revision 1.16 2009/01/30 14:55:53
