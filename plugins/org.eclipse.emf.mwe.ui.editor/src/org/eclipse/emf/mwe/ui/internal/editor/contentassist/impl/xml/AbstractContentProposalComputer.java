@@ -28,13 +28,12 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
@@ -345,12 +344,13 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 
 			final char c = (char) 0;
 			while (c == tagScanner.read()) {
-				if (c == ICharacterScanner.EOF) {
-					break;
-				}
-				if (c == '<') {
-					break;
-				}
+				// TODO dead code because c is = 0 ever!
+				// if (c == ICharacterScanner.EOF) {
+				// break;
+				// }
+				// if (c == '<') {
+				// break;
+				// }
 				if (!Character.isWhitespace(c)) {
 					textReached = true;
 				}
