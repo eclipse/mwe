@@ -15,6 +15,14 @@ public abstract class AbstractMWEUiModule extends DefaultUIModule {
 		return org.eclipse.emf.mwe.di.GenMWEProposalProvider.class;
 	}
 	
+	public Class<? extends org.eclipse.xtext.ui.common.editor.syntaxcoloring.antlr.ITokenColorer> bindITokenColorer() {
+		return org.eclipse.xtext.ui.common.editor.syntaxcoloring.antlr.BuiltinAntlrTokenColorer.class;
+	}
+	
+	public Class<? extends org.eclipse.jface.text.rules.ITokenScanner> bindITokenScanner() {
+		return org.eclipse.xtext.ui.common.editor.syntaxcoloring.antlr.AntlrTokenScanner.class;
+	}
+	
 	
 	
 }
