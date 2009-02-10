@@ -10,7 +10,8 @@ import com.google.inject.Binder;
 import com.google.inject.name.Names;
 
 /**
- * GENERATED! Manual modification goes to MWERuntimeModule
+ * Generated from ServiceConfig.xpt! 
+ * Manual modifications go to MWERuntimeModule
  */
 public abstract class AbstractMWERuntimeModule extends DefaultRuntimeModule {
 	
@@ -18,7 +19,7 @@ public abstract class AbstractMWERuntimeModule extends DefaultRuntimeModule {
 	public void configure(Binder binder) {
 		super.configure(binder);
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance(
-				"org.eclipse.emf.mwe.di.MWE");
+			"org.eclipse.emf.mwe.di.MWE");
 	}
 	
 	public Class<? extends org.eclipse.xtext.IMetamodelAccess> bindIMetamodelAccess() {
@@ -54,6 +55,5 @@ public abstract class AbstractMWERuntimeModule extends DefaultRuntimeModule {
 	public Class<? extends org.eclipse.xtext.parser.ISwitchingParser> bindISwitchingParser() {
 		return org.eclipse.xtext.parser.SwitchingParser.class;
 	}
-	
 	
 }

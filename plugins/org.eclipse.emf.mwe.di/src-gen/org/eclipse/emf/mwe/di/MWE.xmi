@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <xtext:Grammar xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xtext="http://www.eclipse.org/2008/Xtext" name="org.eclipse.emf.mwe.di.MWE">
+  <superGrammar href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#/"/>
   <metamodelDeclarations xsi:type="xtext:GeneratedMetamodel" name="mwe">
     <ePackage href="http://www.eclipse.org/emf/mwe/di#/"/>
   </metamodelDeclarations>
@@ -61,7 +62,7 @@
         <abstractTokens xsi:type="xtext:Keyword" value="import"/>
         <abstractTokens xsi:type="xtext:Assignment" feature="value" operator="=">
           <terminal xsi:type="xtext:RuleCall">
-            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.2"/>
           </terminal>
         </abstractTokens>
       </abstractTokens>
@@ -87,7 +88,7 @@
           <abstractTokens xsi:type="xtext:Keyword" value="var"/>
           <abstractTokens xsi:type="xtext:Assignment" feature="name" operator="=">
             <terminal xsi:type="xtext:RuleCall">
-              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
             </terminal>
           </abstractTokens>
         </abstractTokens>
@@ -113,7 +114,7 @@
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="file" operator="=">
           <terminal xsi:type="xtext:RuleCall">
-            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.2"/>
           </terminal>
         </abstractTokens>
       </abstractTokens>
@@ -141,7 +142,7 @@
     </type>
     <alternatives xsi:type="xtext:Assignment" feature="value" operator="=">
       <terminal xsi:type="xtext:RuleCall">
-        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.2"/>
       </terminal>
     </alternatives>
   </rules>
@@ -169,7 +170,7 @@
               <abstractTokens xsi:type="xtext:Keyword" value=":"/>
               <abstractTokens xsi:type="xtext:Assignment" feature="id" operator="=">
                 <terminal xsi:type="xtext:RuleCall">
-                  <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+                  <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
                 </terminal>
               </abstractTokens>
             </abstractTokens>
@@ -196,7 +197,7 @@
             <abstractTokens xsi:type="xtext:Keyword" value="file"/>
             <abstractTokens xsi:type="xtext:Assignment" feature="uri" operator="=">
               <terminal xsi:type="xtext:RuleCall">
-                <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.2"/>
+                <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.2"/>
               </terminal>
             </abstractTokens>
           </abstractTokens>
@@ -215,7 +216,7 @@
     </type>
     <alternatives xsi:type="xtext:Assignment" feature="id" operator="=">
       <terminal xsi:type="xtext:RuleCall">
-        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+        <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
       </terminal>
     </alternatives>
   </rules>
@@ -228,7 +229,7 @@
         <abstractTokens xsi:type="xtext:Group">
           <abstractTokens xsi:type="xtext:Assignment" cardinality="?" feature="feature" operator="=">
             <terminal xsi:type="xtext:RuleCall">
-              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+              <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
             </terminal>
           </abstractTokens>
           <abstractTokens xsi:type="xtext:Assignment" feature="operator" operator="=">
@@ -252,7 +253,7 @@
     <alternatives xsi:type="xtext:Group">
       <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
         <terminal xsi:type="xtext:RuleCall">
-          <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+          <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
         </terminal>
       </abstractTokens>
       <abstractTokens xsi:type="xtext:Group" cardinality="*">
@@ -261,7 +262,7 @@
         </abstractTokens>
         <abstractTokens xsi:type="xtext:Assignment" feature="parts" operator="+=">
           <terminal xsi:type="xtext:RuleCall">
-            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xmi#//@rules.0"/>
+            <rule href="classpath:/org/eclipse/xtext/builtin/XtextBuiltin.xtext#//@rules.0"/>
           </terminal>
         </abstractTokens>
       </abstractTokens>
