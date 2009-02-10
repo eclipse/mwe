@@ -160,7 +160,7 @@ public final class MWELocalVariableConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(valueConsumer, "value", false, false, getRule().ele0110ParserRuleCallValue());
+		tempResult = consumeNonTerminal(valueConsumer, "value", false, false, false, getRule().ele0110ParserRuleCallValue());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;

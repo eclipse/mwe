@@ -21,28 +21,28 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final Assignment c1AssignmentValue = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall c10ParserRuleCallComplexValue = (RuleCall)c1AssignmentValue.eContents().get(0);
 		
-		// File : ( imports += Import ) * ( properties += Property ) * value = ComplexValue ;
+		// File:   (imports+=Import)* (properties+=Property)* value=ComplexValue;
 		public ParserRule getRule() { return rule; }
 
-		// ( imports += Import ) * ( properties += Property ) * value = ComplexValue
+		// (imports+=Import)* (properties+=Property)* value=ComplexValue
 		public Group eleGroup() { return cGroup; }
 
-		// ( imports += Import ) * ( properties += Property ) *
+		// (imports+=Import)* (properties+=Property)*
 		public Group ele0Group() { return c0Group; }
 
-		// ( imports += Import ) *
+		// (imports+=Import)*
 		public Assignment ele00AssignmentImports() { return c00AssignmentImports; }
 
 		// Import
 		public RuleCall ele000ParserRuleCallImport() { return c000ParserRuleCallImport; }
 
-		// ( properties += Property ) *
+		// (properties+=Property)*
 		public Assignment ele01AssignmentProperties() { return c01AssignmentProperties; }
 
 		// Property
 		public RuleCall ele010ParserRuleCallProperty() { return c010ParserRuleCallProperty; }
 
-		// value = ComplexValue
+		// value=ComplexValue
 		public Assignment ele1AssignmentValue() { return c1AssignmentValue; }
 
 		// ComplexValue
@@ -55,10 +55,10 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c0ParserRuleCallJavaImport = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallGenericImport = (RuleCall)cAlternatives.eContents().get(1);
 		
-		// Import : JavaImport | GenericImport ;
+		// Import:   JavaImport|GenericImport;
 		public ParserRule getRule() { return rule; }
 
-		// JavaImport | GenericImport
+		// JavaImport|GenericImport
 		public Alternatives eleAlternatives() { return cAlternatives; }
 
 		// JavaImport
@@ -82,34 +82,34 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final Keyword c0110KeywordAsterisk = (Keyword)c011AssignmentWildcard.eContents().get(0);
 		private final Keyword c1KeywordSemicolon = (Keyword)cGroup.eContents().get(1);
 		
-		// JavaImport : "import" javaImport = QualifiedName ( "." wildcard ?= "*" ) ? ";" ;
+		// JavaImport:   "import" javaImport=QualifiedName ("." wildcard?="*")? ";";
 		public ParserRule getRule() { return rule; }
 
-		// "import" javaImport = QualifiedName ( "." wildcard ?= "*" ) ? ";"
+		// "import" javaImport=QualifiedName ("." wildcard?="*")? ";"
 		public Group eleGroup() { return cGroup; }
 
-		// "import" javaImport = QualifiedName ( "." wildcard ?= "*" ) ?
+		// "import" javaImport=QualifiedName ("." wildcard?="*")?
 		public Group ele0Group() { return c0Group; }
 
-		// "import" javaImport = QualifiedName
+		// "import" javaImport=QualifiedName
 		public Group ele00Group() { return c00Group; }
 
 		// "import"
 		public Keyword ele000KeywordImport() { return c000KeywordImport; }
 
-		// javaImport = QualifiedName
+		// javaImport=QualifiedName
 		public Assignment ele001AssignmentJavaImport() { return c001AssignmentJavaImport; }
 
 		// QualifiedName
 		public RuleCall ele0010ParserRuleCallQualifiedName() { return c0010ParserRuleCallQualifiedName; }
 
-		// ( "." wildcard ?= "*" ) ?
+		// ("." wildcard?="*")?
 		public Group ele01Group() { return c01Group; }
 
 		// "."
 		public Keyword ele010KeywordFullStop() { return c010KeywordFullStop; }
 
-		// wildcard ?= "*"
+		// wildcard?="*"
 		public Assignment ele011AssignmentWildcard() { return c011AssignmentWildcard; }
 
 		// "*"
@@ -128,25 +128,25 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c010LexerRuleCallSTRING = (RuleCall)c01AssignmentValue.eContents().get(0);
 		private final Keyword c1KeywordSemicolon = (Keyword)cGroup.eContents().get(1);
 		
-		// GenericImport : "import" value = STRING ";" ? ;
+		// GenericImport:   "import" value=STRING ";"?;
 		public ParserRule getRule() { return rule; }
 
-		// "import" value = STRING ";" ?
+		// "import" value=STRING ";"?
 		public Group eleGroup() { return cGroup; }
 
-		// "import" value = STRING
+		// "import" value=STRING
 		public Group ele0Group() { return c0Group; }
 
 		// "import"
 		public Keyword ele00KeywordImport() { return c00KeywordImport; }
 
-		// value = STRING
+		// value=STRING
 		public Assignment ele01AssignmentValue() { return c01AssignmentValue; }
 
 		// STRING
 		public RuleCall ele010LexerRuleCallSTRING() { return c010LexerRuleCallSTRING; }
 
-		// ";" ?
+		// ";"?
 		public Keyword ele1KeywordSemicolon() { return c1KeywordSemicolon; }
 	}
 
@@ -156,10 +156,10 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c0ParserRuleCallLocalVariable = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallPropertiesFileImport = (RuleCall)cAlternatives.eContents().get(1);
 		
-		// Property : LocalVariable | PropertiesFileImport ;
+		// Property:   LocalVariable|PropertiesFileImport;
 		public ParserRule getRule() { return rule; }
 
-		// LocalVariable | PropertiesFileImport
+		// LocalVariable|PropertiesFileImport
 		public Alternatives eleAlternatives() { return cAlternatives; }
 
 		// LocalVariable
@@ -183,34 +183,34 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c0110ParserRuleCallValue = (RuleCall)c011AssignmentValue.eContents().get(0);
 		private final Keyword c1KeywordSemicolon = (Keyword)cGroup.eContents().get(1);
 		
-		// LocalVariable : "var" name = ID ( "=" value = Value ) ? ";" ;
+		// LocalVariable:   "var" name=ID ("=" value=Value)? ";";
 		public ParserRule getRule() { return rule; }
 
-		// "var" name = ID ( "=" value = Value ) ? ";"
+		// "var" name=ID ("=" value=Value)? ";"
 		public Group eleGroup() { return cGroup; }
 
-		// "var" name = ID ( "=" value = Value ) ?
+		// "var" name=ID ("=" value=Value)?
 		public Group ele0Group() { return c0Group; }
 
-		// "var" name = ID
+		// "var" name=ID
 		public Group ele00Group() { return c00Group; }
 
 		// "var"
 		public Keyword ele000KeywordVar() { return c000KeywordVar; }
 
-		// name = ID
+		// name=ID
 		public Assignment ele001AssignmentName() { return c001AssignmentName; }
 
 		// ID
 		public RuleCall ele0010LexerRuleCallID() { return c0010LexerRuleCallID; }
 
-		// ( "=" value = Value ) ?
+		// ("=" value=Value)?
 		public Group ele01Group() { return c01Group; }
 
 		// "="
 		public Keyword ele010KeywordEqualsSign() { return c010KeywordEqualsSign; }
 
-		// value = Value
+		// value=Value
 		public Assignment ele011AssignmentValue() { return c011AssignmentValue; }
 
 		// Value
@@ -231,13 +231,13 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c010LexerRuleCallSTRING = (RuleCall)c01AssignmentFile.eContents().get(0);
 		private final Keyword c1KeywordSemicolon = (Keyword)cGroup.eContents().get(1);
 		
-		// PropertiesFileImport : "var" "file" file = STRING ";" ;
+		// PropertiesFileImport:   "var" "file" file=STRING ";";
 		public ParserRule getRule() { return rule; }
 
-		// "var" "file" file = STRING ";"
+		// "var" "file" file=STRING ";"
 		public Group eleGroup() { return cGroup; }
 
-		// "var" "file" file = STRING
+		// "var" "file" file=STRING
 		public Group ele0Group() { return c0Group; }
 
 		// "var" "file"
@@ -249,7 +249,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		// "file"
 		public Keyword ele001KeywordFile() { return c001KeywordFile; }
 
-		// file = STRING
+		// file=STRING
 		public Assignment ele01AssignmentFile() { return c01AssignmentFile; }
 
 		// STRING
@@ -269,16 +269,16 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c01ParserRuleCallIdRef = (RuleCall)c0Alternatives.eContents().get(1);
 		private final RuleCall c1ParserRuleCallWorkflowRef = (RuleCall)cAlternatives.eContents().get(1);
 		
-		// Value : SimpleValue | ComplexValue | IdRef | WorkflowRef ;
+		// Value:   SimpleValue|ComplexValue|IdRef|WorkflowRef;
 		public ParserRule getRule() { return rule; }
 
-		// SimpleValue | ComplexValue | IdRef | WorkflowRef
+		// SimpleValue|ComplexValue|IdRef|WorkflowRef
 		public Alternatives eleAlternatives() { return cAlternatives; }
 
-		// SimpleValue | ComplexValue | IdRef
+		// SimpleValue|ComplexValue|IdRef
 		public Alternatives ele0Alternatives() { return c0Alternatives; }
 
-		// SimpleValue | ComplexValue
+		// SimpleValue|ComplexValue
 		public Alternatives ele00Alternatives() { return c00Alternatives; }
 
 		// SimpleValue
@@ -299,10 +299,10 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final Assignment cAssignmentValue = (Assignment)rule.eContents().get(1);
 		private final RuleCall c0LexerRuleCallSTRING = (RuleCall)cAssignmentValue.eContents().get(0);
 		
-		// SimpleValue : value = STRING ;
+		// SimpleValue:   value=STRING;
 		public ParserRule getRule() { return rule; }
 
-		// value = STRING
+		// value=STRING
 		public Assignment eleAssignmentValue() { return cAssignmentValue; }
 
 		// STRING
@@ -315,10 +315,10 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c0ParserRuleCallComplexValue = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallWorkflowRef = (RuleCall)cAlternatives.eContents().get(1);
 		
-		// Assignable : ComplexValue | WorkflowRef ;
+		// Assignable:   ComplexValue|WorkflowRef;
 		public ParserRule getRule() { return rule; }
 
-		// ComplexValue | WorkflowRef
+		// ComplexValue|WorkflowRef
 		public Alternatives eleAlternatives() { return cAlternatives; }
 
 		// ComplexValue
@@ -346,46 +346,46 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c010ParserRuleCallAssignment = (RuleCall)c01AssignmentAssignments.eContents().get(0);
 		private final Keyword c1KeywordRightCurlyBracket = (Keyword)cGroup.eContents().get(1);
 		
-		// ComplexValue : ( className = QualifiedName ) ? ( ":" id = ID ) ? fooBar ?= "{" ( assignments += Assignment ) * "}" ;
+		// ComplexValue:   (className=QualifiedName)? (":" id=ID)? fooBar?="{" (assignments+=Assignment)* "}";
 		public ParserRule getRule() { return rule; }
 
-		// ( className = QualifiedName ) ? ( ":" id = ID ) ? fooBar ?= "{" ( assignments += Assignment ) * "}"
+		// (className=QualifiedName)? (":" id=ID)? fooBar?="{" (assignments+=Assignment)* "}"
 		public Group eleGroup() { return cGroup; }
 
-		// ( className = QualifiedName ) ? ( ":" id = ID ) ? fooBar ?= "{" ( assignments += Assignment ) *
+		// (className=QualifiedName)? (":" id=ID)? fooBar?="{" (assignments+=Assignment)*
 		public Group ele0Group() { return c0Group; }
 
-		// ( className = QualifiedName ) ? ( ":" id = ID ) ? fooBar ?= "{"
+		// (className=QualifiedName)? (":" id=ID)? fooBar?="{"
 		public Group ele00Group() { return c00Group; }
 
-		// ( className = QualifiedName ) ? ( ":" id = ID ) ?
+		// (className=QualifiedName)? (":" id=ID)?
 		public Group ele000Group() { return c000Group; }
 
-		// ( className = QualifiedName ) ?
+		// (className=QualifiedName)?
 		public Assignment ele0000AssignmentClassName() { return c0000AssignmentClassName; }
 
 		// QualifiedName
 		public RuleCall ele00000ParserRuleCallQualifiedName() { return c00000ParserRuleCallQualifiedName; }
 
-		// ( ":" id = ID ) ?
+		// (":" id=ID)?
 		public Group ele0001Group() { return c0001Group; }
 
 		// ":"
 		public Keyword ele00010KeywordColon() { return c00010KeywordColon; }
 
-		// id = ID
+		// id=ID
 		public Assignment ele00011AssignmentId() { return c00011AssignmentId; }
 
 		// ID
 		public RuleCall ele000110LexerRuleCallID() { return c000110LexerRuleCallID; }
 
-		// fooBar ?= "{"
+		// fooBar?="{"
 		public Assignment ele001AssignmentFooBar() { return c001AssignmentFooBar; }
 
 		// "{"
 		public Keyword ele0010KeywordLeftCurlyBracket() { return c0010KeywordLeftCurlyBracket; }
 
-		// ( assignments += Assignment ) *
+		// (assignments+=Assignment)*
 		public Assignment ele01AssignmentAssignments() { return c01AssignmentAssignments; }
 
 		// Assignment
@@ -409,25 +409,25 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c010ParserRuleCallAssignment = (RuleCall)c01AssignmentAssignments.eContents().get(0);
 		private final Keyword c1KeywordRightCurlyBracket = (Keyword)cGroup.eContents().get(1);
 		
-		// WorkflowRef : "file" uri = STRING "{" ( assignments += Assignment ) * "}" ;
+		// WorkflowRef:   "file" uri=STRING "{" (assignments+=Assignment)* "}";
 		public ParserRule getRule() { return rule; }
 
-		// "file" uri = STRING "{" ( assignments += Assignment ) * "}"
+		// "file" uri=STRING "{" (assignments+=Assignment)* "}"
 		public Group eleGroup() { return cGroup; }
 
-		// "file" uri = STRING "{" ( assignments += Assignment ) *
+		// "file" uri=STRING "{" (assignments+=Assignment)*
 		public Group ele0Group() { return c0Group; }
 
-		// "file" uri = STRING "{"
+		// "file" uri=STRING "{"
 		public Group ele00Group() { return c00Group; }
 
-		// "file" uri = STRING
+		// "file" uri=STRING
 		public Group ele000Group() { return c000Group; }
 
 		// "file"
 		public Keyword ele0000KeywordFile() { return c0000KeywordFile; }
 
-		// uri = STRING
+		// uri=STRING
 		public Assignment ele0001AssignmentUri() { return c0001AssignmentUri; }
 
 		// STRING
@@ -436,7 +436,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		// "{"
 		public Keyword ele001KeywordLeftCurlyBracket() { return c001KeywordLeftCurlyBracket; }
 
-		// ( assignments += Assignment ) *
+		// (assignments+=Assignment)*
 		public Assignment ele01AssignmentAssignments() { return c01AssignmentAssignments; }
 
 		// Assignment
@@ -451,10 +451,10 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final Assignment cAssignmentId = (Assignment)rule.eContents().get(1);
 		private final RuleCall c0LexerRuleCallID = (RuleCall)cAssignmentId.eContents().get(0);
 		
-		// IdRef : id = ID ;
+		// IdRef:   id=ID;
 		public ParserRule getRule() { return rule; }
 
-		// id = ID
+		// id=ID
 		public Assignment eleAssignmentId() { return cAssignmentId; }
 
 		// ID
@@ -476,28 +476,28 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final RuleCall c010ParserRuleCallValue = (RuleCall)c01AssignmentValue.eContents().get(0);
 		private final Keyword c1KeywordSemicolon = (Keyword)cGroup.eContents().get(1);
 		
-		// Assignment : ( feature = ID ) ? operator = ( "=" | "+=" ) value = Value ";" ? ;
+		// Assignment:   (feature=ID)? operator=("="|"+=") value=Value ";"?;
 		public ParserRule getRule() { return rule; }
 
-		// ( feature = ID ) ? operator = ( "=" | "+=" ) value = Value ";" ?
+		// (feature=ID)? operator=("="|"+=") value=Value ";"?
 		public Group eleGroup() { return cGroup; }
 
-		// ( feature = ID ) ? operator = ( "=" | "+=" ) value = Value
+		// (feature=ID)? operator=("="|"+=") value=Value
 		public Group ele0Group() { return c0Group; }
 
-		// ( feature = ID ) ? operator = ( "=" | "+=" )
+		// (feature=ID)? operator=("="|"+=")
 		public Group ele00Group() { return c00Group; }
 
-		// ( feature = ID ) ?
+		// (feature=ID)?
 		public Assignment ele000AssignmentFeature() { return c000AssignmentFeature; }
 
 		// ID
 		public RuleCall ele0000LexerRuleCallID() { return c0000LexerRuleCallID; }
 
-		// operator = ( "=" | "+=" )
+		// operator=("="|"+=")
 		public Assignment ele001AssignmentOperator() { return c001AssignmentOperator; }
 
-		// "=" | "+="
+		// "="|"+="
 		public Alternatives ele0010Alternatives() { return c0010Alternatives; }
 
 		// "="
@@ -506,13 +506,13 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		// "+="
 		public Keyword ele00101KeywordPlusSignEqualsSign() { return c00101KeywordPlusSignEqualsSign; }
 
-		// value = Value
+		// value=Value
 		public Assignment ele01AssignmentValue() { return c01AssignmentValue; }
 
 		// Value
 		public RuleCall ele010ParserRuleCallValue() { return c010ParserRuleCallValue; }
 
-		// ";" ?
+		// ";"?
 		public Keyword ele1KeywordSemicolon() { return c1KeywordSemicolon; }
 	}
 
@@ -527,28 +527,28 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 		private final Assignment c11AssignmentParts = (Assignment)c1Group.eContents().get(1);
 		private final RuleCall c110LexerRuleCallID = (RuleCall)c11AssignmentParts.eContents().get(0);
 		
-		// QualifiedName : parts += ID ( parts += "." parts += ID ) * ;
+		// QualifiedName:   parts+=ID (parts+="." parts+=ID)*;
 		public ParserRule getRule() { return rule; }
 
-		// parts += ID ( parts += "." parts += ID ) *
+		// parts+=ID (parts+="." parts+=ID)*
 		public Group eleGroup() { return cGroup; }
 
-		// parts += ID
+		// parts+=ID
 		public Assignment ele0AssignmentParts() { return c0AssignmentParts; }
 
 		// ID
 		public RuleCall ele00LexerRuleCallID() { return c00LexerRuleCallID; }
 
-		// ( parts += "." parts += ID ) *
+		// (parts+="." parts+=ID)*
 		public Group ele1Group() { return c1Group; }
 
-		// parts += "."
+		// parts+="."
 		public Assignment ele10AssignmentParts() { return c10AssignmentParts; }
 
 		// "."
 		public Keyword ele100KeywordFullStop() { return c100KeywordFullStop; }
 
-		// parts += ID
+		// parts+=ID
 		public Assignment ele11AssignmentParts() { return c11AssignmentParts; }
 
 		// ID
@@ -590,77 +590,77 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	
-	// File : ( imports += Import ) * ( properties += Property ) * value = ComplexValue ;
+	// File:   (imports+=Import)* (properties+=Property)* value=ComplexValue;
 	public FileElements prFile() {
 		return (pFile != null) ? pFile : (pFile = new FileElements());
 	} 
 
-	// Import : JavaImport | GenericImport ;
+	// Import:   JavaImport|GenericImport;
 	public ImportElements prImport() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
 	} 
 
-	// JavaImport : "import" javaImport = QualifiedName ( "." wildcard ?= "*" ) ? ";" ;
+	// JavaImport:   "import" javaImport=QualifiedName ("." wildcard?="*")? ";";
 	public JavaImportElements prJavaImport() {
 		return (pJavaImport != null) ? pJavaImport : (pJavaImport = new JavaImportElements());
 	} 
 
-	// GenericImport : "import" value = STRING ";" ? ;
+	// GenericImport:   "import" value=STRING ";"?;
 	public GenericImportElements prGenericImport() {
 		return (pGenericImport != null) ? pGenericImport : (pGenericImport = new GenericImportElements());
 	} 
 
-	// Property : LocalVariable | PropertiesFileImport ;
+	// Property:   LocalVariable|PropertiesFileImport;
 	public PropertyElements prProperty() {
 		return (pProperty != null) ? pProperty : (pProperty = new PropertyElements());
 	} 
 
-	// LocalVariable : "var" name = ID ( "=" value = Value ) ? ";" ;
+	// LocalVariable:   "var" name=ID ("=" value=Value)? ";";
 	public LocalVariableElements prLocalVariable() {
 		return (pLocalVariable != null) ? pLocalVariable : (pLocalVariable = new LocalVariableElements());
 	} 
 
-	// PropertiesFileImport : "var" "file" file = STRING ";" ;
+	// PropertiesFileImport:   "var" "file" file=STRING ";";
 	public PropertiesFileImportElements prPropertiesFileImport() {
 		return (pPropertiesFileImport != null) ? pPropertiesFileImport : (pPropertiesFileImport = new PropertiesFileImportElements());
 	} 
 
-	// Value : SimpleValue | ComplexValue | IdRef | WorkflowRef ;
+	// Value:   SimpleValue|ComplexValue|IdRef|WorkflowRef;
 	public ValueElements prValue() {
 		return (pValue != null) ? pValue : (pValue = new ValueElements());
 	} 
 
-	// SimpleValue : value = STRING ;
+	// SimpleValue:   value=STRING;
 	public SimpleValueElements prSimpleValue() {
 		return (pSimpleValue != null) ? pSimpleValue : (pSimpleValue = new SimpleValueElements());
 	} 
 
-	// Assignable : ComplexValue | WorkflowRef ;
+	// Assignable:   ComplexValue|WorkflowRef;
 	public AssignableElements prAssignable() {
 		return (pAssignable != null) ? pAssignable : (pAssignable = new AssignableElements());
 	} 
 
-	// ComplexValue : ( className = QualifiedName ) ? ( ":" id = ID ) ? fooBar ?= "{" ( assignments += Assignment ) * "}" ;
+	// ComplexValue:   (className=QualifiedName)? (":" id=ID)? fooBar?="{" (assignments+=Assignment)* "}";
 	public ComplexValueElements prComplexValue() {
 		return (pComplexValue != null) ? pComplexValue : (pComplexValue = new ComplexValueElements());
 	} 
 
-	// WorkflowRef : "file" uri = STRING "{" ( assignments += Assignment ) * "}" ;
+	// WorkflowRef:   "file" uri=STRING "{" (assignments+=Assignment)* "}";
 	public WorkflowRefElements prWorkflowRef() {
 		return (pWorkflowRef != null) ? pWorkflowRef : (pWorkflowRef = new WorkflowRefElements());
 	} 
 
-	// IdRef : id = ID ;
+	// IdRef:   id=ID;
 	public IdRefElements prIdRef() {
 		return (pIdRef != null) ? pIdRef : (pIdRef = new IdRefElements());
 	} 
 
-	// Assignment : ( feature = ID ) ? operator = ( "=" | "+=" ) value = Value ";" ? ;
+	// Assignment:   (feature=ID)? operator=("="|"+=") value=Value ";"?;
 	public AssignmentElements prAssignment() {
 		return (pAssignment != null) ? pAssignment : (pAssignment = new AssignmentElements());
 	} 
 
-	// QualifiedName : parts += ID ( parts += "." parts += ID ) * ;
+	// QualifiedName:   parts+=ID (parts+="." parts+=ID)*;
 	public QualifiedNameElements prQualifiedName() {
 		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
 	} 

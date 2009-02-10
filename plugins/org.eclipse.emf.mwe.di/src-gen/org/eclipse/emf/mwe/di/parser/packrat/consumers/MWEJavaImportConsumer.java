@@ -99,7 +99,7 @@ public final class MWEJavaImportConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(qualifiedNameConsumer, "javaImport", false, false, getRule().ele0010ParserRuleCallQualifiedName());
+		tempResult = consumeNonTerminal(qualifiedNameConsumer, "javaImport", false, false, false, getRule().ele0010ParserRuleCallQualifiedName());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;

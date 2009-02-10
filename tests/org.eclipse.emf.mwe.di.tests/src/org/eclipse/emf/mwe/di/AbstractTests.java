@@ -1,6 +1,5 @@
 package org.eclipse.emf.mwe.di;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe.File;
 import org.eclipse.emf.mwe.MwePackage;
 import org.eclipse.emf.mwe.di.execution.Instantiator;
@@ -14,31 +13,12 @@ public abstract class AbstractTests extends AbstractXtextTests {
 		super();
 	}
 
-	public AbstractTests(final String name) {
-		super(name);
-	}
-
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		// register the generated EPackage
 		MwePackage.eINSTANCE.getAssignable();
-		// do stand alone setup of MWE DI language
-		MWEStandaloneSetup.doSetup();
-		setCurrentLanguage(MWEStandaloneSetup.getServiceScope());
-	}
-
-	protected File createModelFile(final String model) {
-		if (model == null)
-			return null;
-
-		try {
-			final File file = (File) loadModel(URI.createURI("foo.mwe"), model);
-			return file;
-		}
-		catch (final Exception e) {
-			return null;
-		}
+		with(MWEStandaloneSetup.class);
 	}
 
 	protected Object instantiate(final File file) {

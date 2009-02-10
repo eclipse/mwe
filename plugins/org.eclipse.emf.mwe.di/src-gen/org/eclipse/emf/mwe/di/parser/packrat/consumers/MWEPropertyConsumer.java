@@ -52,11 +52,11 @@ public final class MWEPropertyConsumer extends NonTerminalConsumer {
 	}
 
 	protected int consumeRuleCall$2(int entryPoint) throws Exception {
-		return consumeNonTerminal(localVariableConsumer, null, false, false, getRule().ele0ParserRuleCallLocalVariable());
+		return consumeNonTerminal(localVariableConsumer, null, false, false, false, getRule().ele0ParserRuleCallLocalVariable());
 	}
 
 	protected int consumeRuleCall$3(int entryPoint) throws Exception {
-		return consumeNonTerminal(propertiesFileImportConsumer, null, false, false, getRule().ele1ParserRuleCallPropertiesFileImport());
+		return consumeNonTerminal(propertiesFileImportConsumer, null, false, false, false, getRule().ele1ParserRuleCallPropertiesFileImport());
 	}
 
 	public PropertyElements getRule() {

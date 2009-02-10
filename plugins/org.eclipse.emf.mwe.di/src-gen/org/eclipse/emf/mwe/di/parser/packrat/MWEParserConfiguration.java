@@ -5,6 +5,7 @@ package org.eclipse.emf.mwe.di.parser.packrat;
 
 import org.eclipse.xtext.parser.packrat.AbstractParserConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 
 import org.eclipse.xtext.builtin.parser.packrat.XtextBuiltinParserConfiguration; 
 
@@ -60,7 +61,7 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
 	public MWEFileConsumer getRootConsumer() {
 		return fileConsumer;
 	} 
-	
+
 	public void createNonTerminalConsumers() {
 		getXtextBuiltinConfiguration().createNonTerminalConsumers();
 		fileConsumer = new MWEFileConsumer(
@@ -286,4 +287,9 @@ public class MWEParserConfiguration extends AbstractParserConfiguration {
     }
 
 
+	@Override
+	public ITerminalConsumer[] getInitialHiddenTerminals() {
+		return getXtextBuiltinConfiguration().getInitialHiddenTerminals();
+	}
+	
 }

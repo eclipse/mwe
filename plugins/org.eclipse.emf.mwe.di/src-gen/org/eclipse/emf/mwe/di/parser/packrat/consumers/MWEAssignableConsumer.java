@@ -52,11 +52,11 @@ public final class MWEAssignableConsumer extends NonTerminalConsumer {
 	}
 
 	protected int consumeRuleCall$2(int entryPoint) throws Exception {
-		return consumeNonTerminal(complexValueConsumer, null, false, false, getRule().ele0ParserRuleCallComplexValue());
+		return consumeNonTerminal(complexValueConsumer, null, false, false, false, getRule().ele0ParserRuleCallComplexValue());
 	}
 
 	protected int consumeRuleCall$3(int entryPoint) throws Exception {
-		return consumeNonTerminal(workflowRefConsumer, null, false, false, getRule().ele1ParserRuleCallWorkflowRef());
+		return consumeNonTerminal(workflowRefConsumer, null, false, false, false, getRule().ele1ParserRuleCallWorkflowRef());
 	}
 
 	public AssignableElements getRule() {

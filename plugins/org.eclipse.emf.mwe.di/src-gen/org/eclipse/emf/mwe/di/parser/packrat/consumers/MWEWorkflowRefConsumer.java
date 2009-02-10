@@ -137,7 +137,7 @@ public final class MWEWorkflowRefConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(assignmentConsumer, "assignments", true, false, getRule().ele010ParserRuleCallAssignment());
+		tempResult = consumeNonTerminal(assignmentConsumer, "assignments", true, false, false, getRule().ele010ParserRuleCallAssignment());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;

@@ -12,5 +12,5 @@ public class MWEPackratParser extends AbstractPackratParser {
 	protected MWEParserConfiguration createParserConfiguration(IInternalParserConfiguration configuration) {
 		return new MWEParserConfiguration(configuration);
 	}
-
+	
 }

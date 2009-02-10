@@ -85,10 +85,13 @@ public class InstantiatorTest extends AbstractTests {
 		assertEquals("fo_bar_obar", obj.name);
 	}
 
+	private File createModelFile(String string) throws Exception {
+		return (File) getModel(string);
+	}
+
 	public void testWorkflowRef() throws Exception {
 		final File file =
-				(File) loadModel(URI.createURI("foo.mwe"),
-						"test.ObjectB {another = file 'classpath:/test/Workflow.mwe'{}}");
+				(File) getModel("test.ObjectB {another = file 'classpath:/test/Workflow.mwe'{}}");
 		assertNotNull(file);
 		final ObjectB obj = (ObjectB) instantiate(file);
 		assertNotNull(obj.another);

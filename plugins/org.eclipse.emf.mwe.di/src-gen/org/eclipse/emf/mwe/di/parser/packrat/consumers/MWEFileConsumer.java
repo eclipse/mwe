@@ -87,7 +87,7 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(importConsumer, "imports", true, false, getRule().ele000ParserRuleCallImport());
+		tempResult = consumeNonTerminal(importConsumer, "imports", true, false, false, getRule().ele000ParserRuleCallImport());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;
@@ -110,7 +110,7 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(propertyConsumer, "properties", true, false, getRule().ele010ParserRuleCallProperty());
+		tempResult = consumeNonTerminal(propertyConsumer, "properties", true, false, false, getRule().ele010ParserRuleCallProperty());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;
@@ -124,7 +124,7 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(complexValueConsumer, "value", false, false, getRule().ele10ParserRuleCallComplexValue());
+		tempResult = consumeNonTerminal(complexValueConsumer, "value", false, false, false, getRule().ele10ParserRuleCallComplexValue());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;

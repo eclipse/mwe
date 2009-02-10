@@ -23,6 +23,7 @@ public class MWEParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParse
 	protected IParseResult parse(String ruleName, ANTLRInputStream in) {
 		InternalMWELexer lexer = new InternalMWELexer(in);
 		XtextTokenStream stream = new XtextTokenStream(lexer, antlrTokenDefProvider);
+		stream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
 		InternalMWEParser parser = new InternalMWEParser(
 				stream, getElementFactory(), grammarAccess.getGrammar());
 		parser.setTokenTypeMap(antlrTokenDefProvider.getTokenDefMap());

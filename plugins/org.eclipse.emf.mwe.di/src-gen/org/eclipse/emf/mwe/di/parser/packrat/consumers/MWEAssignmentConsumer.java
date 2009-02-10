@@ -146,7 +146,7 @@ public final class MWEAssignmentConsumer extends NonTerminalConsumer {
 		int result = ConsumeResult.EMPTY_MATCH;
 		int tempResult;
 		announceNextLevel();
-		tempResult = consumeNonTerminal(valueConsumer, "value", false, false, getRule().ele010ParserRuleCallValue());
+		tempResult = consumeNonTerminal(valueConsumer, "value", false, false, false, getRule().ele010ParserRuleCallValue());
 		if (tempResult == ConsumeResult.SUCCESS) {
 			announceLevelFinished();
 			return tempResult;

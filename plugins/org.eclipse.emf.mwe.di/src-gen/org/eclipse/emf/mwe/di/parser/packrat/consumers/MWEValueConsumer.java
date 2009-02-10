@@ -66,19 +66,19 @@ public final class MWEValueConsumer extends NonTerminalConsumer {
 	}
 
 	protected int consumeRuleCall$4(int entryPoint) throws Exception {
-		return consumeNonTerminal(simpleValueConsumer, null, false, false, getRule().ele000ParserRuleCallSimpleValue());
+		return consumeNonTerminal(simpleValueConsumer, null, false, false, false, getRule().ele000ParserRuleCallSimpleValue());
 	}
 
 	protected int consumeRuleCall$5(int entryPoint) throws Exception {
-		return consumeNonTerminal(complexValueConsumer, null, false, false, getRule().ele001ParserRuleCallComplexValue());
+		return consumeNonTerminal(complexValueConsumer, null, false, false, false, getRule().ele001ParserRuleCallComplexValue());
 	}
 
 	protected int consumeRuleCall$6(int entryPoint) throws Exception {
-		return consumeNonTerminal(idRefConsumer, null, false, false, getRule().ele01ParserRuleCallIdRef());
+		return consumeNonTerminal(idRefConsumer, null, false, false, false, getRule().ele01ParserRuleCallIdRef());
 	}
 
 	protected int consumeRuleCall$7(int entryPoint) throws Exception {
-		return consumeNonTerminal(workflowRefConsumer, null, false, false, getRule().ele1ParserRuleCallWorkflowRef());
+		return consumeNonTerminal(workflowRefConsumer, null, false, false, false, getRule().ele1ParserRuleCallWorkflowRef());
 	}
 
 	public ValueElements getRule() {

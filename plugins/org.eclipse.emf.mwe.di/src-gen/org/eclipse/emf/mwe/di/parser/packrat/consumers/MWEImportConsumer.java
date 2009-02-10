@@ -52,11 +52,11 @@ public final class MWEImportConsumer extends NonTerminalConsumer {
 	}
 
 	protected int consumeRuleCall$2(int entryPoint) throws Exception {
-		return consumeNonTerminal(javaImportConsumer, null, false, false, getRule().ele0ParserRuleCallJavaImport());
+		return consumeNonTerminal(javaImportConsumer, null, false, false, false, getRule().ele0ParserRuleCallJavaImport());
 	}
 
 	protected int consumeRuleCall$3(int entryPoint) throws Exception {
-		return consumeNonTerminal(genericImportConsumer, null, false, false, getRule().ele1ParserRuleCallGenericImport());
+		return consumeNonTerminal(genericImportConsumer, null, false, false, false, getRule().ele1ParserRuleCallGenericImport());
 	}
 
 	public ImportElements getRule() {
