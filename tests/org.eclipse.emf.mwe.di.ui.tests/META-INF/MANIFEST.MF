@@ -2,15 +2,15 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests Plug-in for the UI
 Bundle-SymbolicName: org.eclipse.emf.mwe.di.ui.tests;singleton:=true
-Bundle-Version: 0.0.1
+Bundle-Version: 0.7.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.emf.mwe.di;bundle-version="0.0.1",
- org.eclipse.emf.mwe.di.ui;bundle-version="0.0.1",
- org.eclipse.xtext;bundle-version="0.7.0",
+Require-Bundle: org.eclipse.emf.mwe.di,
+ org.eclipse.emf.mwe.di.ui,
+ org.eclipse.xtext,
  org.junit,
- org.eclipse.xtext.util;bundle-version="0.7.0",
- org.eclipse.core.runtime;bundle-version="3.4.0",
- org.eclipse.core.resources;bundle-version="3.4.0",
- org.eclipse.jdt.core;bundle-version="3.4.0"
+ org.eclipse.xtext.util,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.jdt.core
 Export-Package: stubs
 Bundle-ActivationPolicy: lazy

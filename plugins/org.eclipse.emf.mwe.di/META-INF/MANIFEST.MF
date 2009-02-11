@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.mwe.di;singleton:=true
-Bundle-Version: 0.7.0
+Bundle-Version: 0.7.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
@@ -20,10 +20,10 @@ Export-Package: org.eclipse.emf.mwe,
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.xtext,
  org.eclipse.xtext.generator;resolution:=optional,
- org.eclipse.core.resources;bundle-version="3.4.0";visibility:=reexport,
- org.eclipse.core.runtime;bundle-version="3.4.0";visibility:=reexport,
- org.eclipse.jdt.core;bundle-version="3.4.0";visibility:=reexport,
- de.itemis.xtext.antlr;bundle-version="1.0.0";resolution:=optional
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.jdt.core;visibility:=reexport,
+ de.itemis.xtext.antlr;resolution:=optional
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.emf.mwe.di.Activator
