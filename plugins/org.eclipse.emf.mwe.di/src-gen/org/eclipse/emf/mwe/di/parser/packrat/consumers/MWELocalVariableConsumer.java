@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
@@ -21,8 +22,8 @@ import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEValueConsumer;
 @SuppressWarnings("unused")
 public final class MWELocalVariableConsumer extends NonTerminalConsumer {
 
-	private XtextBuiltinIDConsumer idConsumer;
-	private MWEValueConsumer valueConsumer;
+	private ITerminalConsumer idConsumer;
+	private INonTerminalConsumer valueConsumer;
 
 	private ICharacterClass keyword$4$Delimiter;
 	
@@ -179,6 +180,7 @@ public final class MWELocalVariableConsumer extends NonTerminalConsumer {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable();
 	}
 	
+	@Override
 	protected EObject getGrammarElement() {
 		return getRule().getRule();
 	}
@@ -188,11 +190,11 @@ public final class MWELocalVariableConsumer extends NonTerminalConsumer {
 		return "LocalVariable";
 	}
 	
-	public void setIdConsumer(XtextBuiltinIDConsumer idConsumer) {
+	public void setIdConsumer(ITerminalConsumer idConsumer) {
 		this.idConsumer = idConsumer;
 	}
 	
-	public void setValueConsumer(MWEValueConsumer valueConsumer) {
+	public void setValueConsumer(INonTerminalConsumer valueConsumer) {
 		this.valueConsumer = valueConsumer;
 	}
 	

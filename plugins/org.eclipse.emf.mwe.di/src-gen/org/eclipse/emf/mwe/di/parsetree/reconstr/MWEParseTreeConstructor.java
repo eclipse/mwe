@@ -55,6 +55,7 @@ protected class File_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prFile().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new File_1_Assignment_value(current, this).firstSolution();
 		while(s1 != null) {
@@ -83,6 +84,7 @@ protected class File_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prFile().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new File_0_1_Assignment_properties(current, this).firstSolution();
 		while(s1 != null) {
@@ -111,6 +113,7 @@ protected class File_0_0_Assignment_imports extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prFile().ele00AssignmentImports();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("imports",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("imports");
@@ -142,6 +145,7 @@ protected class File_0_1_Assignment_properties extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prFile().ele01AssignmentProperties();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("properties",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("properties");
@@ -174,6 +178,7 @@ protected class File_1_Assignment_value extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prFile().ele1AssignmentValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -215,7 +220,8 @@ protected class Import_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prImport().eleAlternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Import_1_RuleCall_GenericImport(current, this) : new Import_0_RuleCall_JavaImport(current, this);
 		Solution s = t.firstSolution();
@@ -237,6 +243,7 @@ protected class Import_0_RuleCall_JavaImport extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prImport().ele0ParserRuleCallJavaImport();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(JavaImport_Group.class, current)) return null;
 		if(!current.isInstanceOf("JavaImport")) return null;
@@ -255,6 +262,7 @@ protected class Import_1_RuleCall_GenericImport extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prImport().ele1ParserRuleCallGenericImport();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(GenericImport_Group.class, current)) return null;
 		if(!current.isInstanceOf("GenericImport")) return null;
@@ -284,6 +292,7 @@ protected class JavaImport_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prJavaImport().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new JavaImport_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -312,6 +321,7 @@ protected class JavaImport_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prJavaImport().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new JavaImport_0_1_Group(current, this).firstSolution();
 		while(s1 != null) {
@@ -340,6 +350,7 @@ protected class JavaImport_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prJavaImport().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new JavaImport_0_0_1_Assignment_javaImport(current, this).firstSolution();
 		while(s1 != null) {
@@ -380,6 +391,7 @@ protected class JavaImport_0_0_1_Assignment_javaImport extends AssignmentToken  
 		return MWEGrammarAccess.INSTANCE.prJavaImport().ele001AssignmentJavaImport();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("javaImport",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("javaImport");
@@ -412,6 +424,7 @@ protected class JavaImport_0_1_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prJavaImport().ele01Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new JavaImport_0_1_1_Assignment_wildcard(current, this).firstSolution();
 		while(s1 != null) {
@@ -452,6 +465,7 @@ protected class JavaImport_0_1_1_Assignment_wildcard extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prJavaImport().ele011AssignmentWildcard();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("wildcard",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("wildcard");
@@ -502,6 +516,7 @@ protected class GenericImport_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prGenericImport().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new GenericImport_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -530,6 +545,7 @@ protected class GenericImport_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prGenericImport().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new GenericImport_0_1_Assignment_value(current, this).firstSolution();
 		while(s1 != null) {
@@ -570,6 +586,7 @@ protected class GenericImport_0_1_Assignment_value extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prGenericImport().ele01AssignmentValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -616,7 +633,8 @@ protected class Property_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prProperty().eleAlternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Property_1_RuleCall_PropertiesFileImport(current, this) : new Property_0_RuleCall_LocalVariable(current, this);
 		Solution s = t.firstSolution();
@@ -638,6 +656,7 @@ protected class Property_0_RuleCall_LocalVariable extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prProperty().ele0ParserRuleCallLocalVariable();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(LocalVariable_Group.class, current)) return null;
 		if(!current.isInstanceOf("LocalVariable")) return null;
@@ -656,6 +675,7 @@ protected class Property_1_RuleCall_PropertiesFileImport extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prProperty().ele1ParserRuleCallPropertiesFileImport();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(PropertiesFileImport_Group.class, current)) return null;
 		if(!current.isInstanceOf("PropertiesFileImport")) return null;
@@ -685,6 +705,7 @@ protected class LocalVariable_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new LocalVariable_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -713,6 +734,7 @@ protected class LocalVariable_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new LocalVariable_0_1_Group(current, this).firstSolution();
 		while(s1 != null) {
@@ -741,6 +763,7 @@ protected class LocalVariable_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new LocalVariable_0_0_1_Assignment_name(current, this).firstSolution();
 		while(s1 != null) {
@@ -781,6 +804,7 @@ protected class LocalVariable_0_0_1_Assignment_name extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele001AssignmentName();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("name",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("name");
@@ -805,6 +829,7 @@ protected class LocalVariable_0_1_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele01Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new LocalVariable_0_1_1_Assignment_value(current, this).firstSolution();
 		while(s1 != null) {
@@ -845,6 +870,7 @@ protected class LocalVariable_0_1_1_Assignment_value extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prLocalVariable().ele011AssignmentValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -901,6 +927,7 @@ protected class PropertiesFileImport_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new PropertiesFileImport_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -929,6 +956,7 @@ protected class PropertiesFileImport_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new PropertiesFileImport_0_1_Assignment_file(current, this).firstSolution();
 		while(s1 != null) {
@@ -957,6 +985,7 @@ protected class PropertiesFileImport_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new PropertiesFileImport_0_0_1_Keyword_file(current, this).firstSolution();
 		while(s1 != null) {
@@ -1010,6 +1039,7 @@ protected class PropertiesFileImport_0_1_Assignment_file extends AssignmentToken
 		return MWEGrammarAccess.INSTANCE.prPropertiesFileImport().ele01AssignmentFile();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("file",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("file");
@@ -1056,7 +1086,8 @@ protected class Value_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prValue().eleAlternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Value_1_RuleCall_WorkflowRef(current, this) : new Value_0_Alternatives(current, this);
 		Solution s = t.firstSolution();
@@ -1077,7 +1108,8 @@ protected class Value_0_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prValue().ele0Alternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Value_0_1_RuleCall_IdRef(current, this) : new Value_0_0_Alternatives(current, this);
 		Solution s = t.firstSolution();
@@ -1098,7 +1130,8 @@ protected class Value_0_0_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prValue().ele00Alternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Value_0_0_1_RuleCall_ComplexValue(current, this) : new Value_0_0_0_RuleCall_SimpleValue(current, this);
 		Solution s = t.firstSolution();
@@ -1120,6 +1153,7 @@ protected class Value_0_0_0_RuleCall_SimpleValue extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prValue().ele000ParserRuleCallSimpleValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(SimpleValue_Assignment_value.class, current)) return null;
 		if(!current.isInstanceOf("SimpleValue")) return null;
@@ -1138,6 +1172,7 @@ protected class Value_0_0_1_RuleCall_ComplexValue extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prValue().ele001ParserRuleCallComplexValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(ComplexValue_Group.class, current)) return null;
 		if(!current.isInstanceOf("ComplexValue")) return null;
@@ -1157,6 +1192,7 @@ protected class Value_0_1_RuleCall_IdRef extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prValue().ele01ParserRuleCallIdRef();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(IdRef_Assignment_id.class, current)) return null;
 		if(!current.isInstanceOf("IdRef")) return null;
@@ -1176,6 +1212,7 @@ protected class Value_1_RuleCall_WorkflowRef extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prValue().ele1ParserRuleCallWorkflowRef();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(WorkflowRef_Group.class, current)) return null;
 		if(!current.isInstanceOf("WorkflowRef")) return null;
@@ -1205,6 +1242,7 @@ protected class SimpleValue_Assignment_value extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prSimpleValue().eleAssignmentValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -1237,7 +1275,8 @@ protected class Assignable_Alternatives extends AlternativesToken {
 	public Alternatives getGrammarElement() {
 		return MWEGrammarAccess.INSTANCE.prAssignable().eleAlternatives();
 	}
-	
+
+	@Override	
 	protected Solution createSolution() {
 		AbstractToken t = (first) ? new Assignable_1_RuleCall_WorkflowRef(current, this) : new Assignable_0_RuleCall_ComplexValue(current, this);
 		Solution s = t.firstSolution();
@@ -1259,6 +1298,7 @@ protected class Assignable_0_RuleCall_ComplexValue extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prAssignable().ele0ParserRuleCallComplexValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(ComplexValue_Group.class, current)) return null;
 		if(!current.isInstanceOf("ComplexValue")) return null;
@@ -1277,6 +1317,7 @@ protected class Assignable_1_RuleCall_WorkflowRef extends RuleCallToken {
 		return MWEGrammarAccess.INSTANCE.prAssignable().ele1ParserRuleCallWorkflowRef();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if(checkForRecursion(WorkflowRef_Group.class, current)) return null;
 		if(!current.isInstanceOf("WorkflowRef")) return null;
@@ -1306,6 +1347,7 @@ protected class ComplexValue_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new ComplexValue_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -1334,6 +1376,7 @@ protected class ComplexValue_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new ComplexValue_0_1_Assignment_assignments(current, this).firstSolution();
 		while(s1 != null) {
@@ -1362,6 +1405,7 @@ protected class ComplexValue_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new ComplexValue_0_0_1_Assignment_fooBar(current, this).firstSolution();
 		while(s1 != null) {
@@ -1390,6 +1434,7 @@ protected class ComplexValue_0_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele000Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new ComplexValue_0_0_0_1_Group(current, this).firstSolution();
 		while(s1 != null) {
@@ -1418,6 +1463,7 @@ protected class ComplexValue_0_0_0_0_Assignment_className extends AssignmentToke
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele0000AssignmentClassName();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("className",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("className");
@@ -1449,6 +1495,7 @@ protected class ComplexValue_0_0_0_1_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele0001Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new ComplexValue_0_0_0_1_1_Assignment_id(current, this).firstSolution();
 		while(s1 != null) {
@@ -1489,6 +1536,7 @@ protected class ComplexValue_0_0_0_1_1_Assignment_id extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele00011AssignmentId();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("id",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("id");
@@ -1514,6 +1562,7 @@ protected class ComplexValue_0_0_1_Assignment_fooBar extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele001AssignmentFooBar();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("fooBar",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("fooBar");
@@ -1540,6 +1589,7 @@ protected class ComplexValue_0_1_Assignment_assignments extends AssignmentToken 
 		return MWEGrammarAccess.INSTANCE.prComplexValue().ele01AssignmentAssignments();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
@@ -1595,6 +1645,7 @@ protected class WorkflowRef_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new WorkflowRef_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -1623,6 +1674,7 @@ protected class WorkflowRef_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new WorkflowRef_0_1_Assignment_assignments(current, this).firstSolution();
 		while(s1 != null) {
@@ -1651,6 +1703,7 @@ protected class WorkflowRef_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new WorkflowRef_0_0_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -1679,6 +1732,7 @@ protected class WorkflowRef_0_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele000Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new WorkflowRef_0_0_0_1_Assignment_uri(current, this).firstSolution();
 		while(s1 != null) {
@@ -1719,6 +1773,7 @@ protected class WorkflowRef_0_0_0_1_Assignment_uri extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele0001AssignmentUri();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("uri",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("uri");
@@ -1756,6 +1811,7 @@ protected class WorkflowRef_0_1_Assignment_assignments extends AssignmentToken  
 		return MWEGrammarAccess.INSTANCE.prWorkflowRef().ele01AssignmentAssignments();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("assignments",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("assignments");
@@ -1811,6 +1867,7 @@ protected class IdRef_Assignment_id extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prIdRef().eleAssignmentId();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("id",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("id");
@@ -1844,6 +1901,7 @@ protected class Assignment_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prAssignment().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new Assignment_1_Keyword(current, this).firstSolution();
 		while(s1 != null) {
@@ -1872,6 +1930,7 @@ protected class Assignment_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prAssignment().ele0Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new Assignment_0_1_Assignment_value(current, this).firstSolution();
 		while(s1 != null) {
@@ -1900,6 +1959,7 @@ protected class Assignment_0_0_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prAssignment().ele00Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new Assignment_0_0_1_Assignment_operator(current, this).firstSolution();
 		while(s1 != null) {
@@ -1928,6 +1988,7 @@ protected class Assignment_0_0_0_Assignment_feature extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prAssignment().ele000AssignmentFeature();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("feature",!IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("feature");
@@ -1951,6 +2012,7 @@ protected class Assignment_0_0_1_Assignment_operator extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prAssignment().ele001AssignmentOperator();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("operator",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("operator");
@@ -1984,6 +2046,7 @@ protected class Assignment_0_1_Assignment_value extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prAssignment().ele01AssignmentValue();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("value",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
@@ -2039,6 +2102,7 @@ protected class QualifiedName_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prQualifiedName().eleGroup();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new QualifiedName_1_Group(current, this).firstSolution();
 		while(s1 != null) {
@@ -2067,6 +2131,7 @@ protected class QualifiedName_0_Assignment_parts extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prQualifiedName().ele0AssignmentParts();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
@@ -2090,6 +2155,7 @@ protected class QualifiedName_1_Group extends GroupToken {
 		return MWEGrammarAccess.INSTANCE.prQualifiedName().ele1Group();
 	}
 		
+	@Override
 	protected Solution createSolution() {	
 		Solution s1 = new QualifiedName_1_1_Assignment_parts(current, this).firstSolution();
 		while(s1 != null) {
@@ -2118,6 +2184,7 @@ protected class QualifiedName_1_0_Assignment_parts extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prQualifiedName().ele10AssignmentParts();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
@@ -2143,6 +2210,7 @@ protected class QualifiedName_1_1_Assignment_parts extends AssignmentToken  {
 		return MWEGrammarAccess.INSTANCE.prQualifiedName().ele11AssignmentParts();
 	}
 	
+	@Override
 	protected Solution createSolution() {
 		if((value = current.getConsumable("parts",IS_REQUIRED)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");

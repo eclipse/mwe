@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
@@ -22,9 +23,9 @@ import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEQualifiedNameConsumer;
 @SuppressWarnings("unused")
 public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 
-	private MWEAssignmentConsumer assignmentConsumer;
-	private XtextBuiltinIDConsumer idConsumer;
-	private MWEQualifiedNameConsumer qualifiedNameConsumer;
+	private INonTerminalConsumer assignmentConsumer;
+	private ITerminalConsumer idConsumer;
+	private INonTerminalConsumer qualifiedNameConsumer;
 
 	private ICharacterClass keyword$8$Delimiter;
 	
@@ -233,6 +234,7 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		return MWEGrammarAccess.INSTANCE.prComplexValue();
 	}
 	
+	@Override
 	protected EObject getGrammarElement() {
 		return getRule().getRule();
 	}
@@ -242,15 +244,15 @@ public final class MWEComplexValueConsumer extends NonTerminalConsumer {
 		return "ComplexValue";
 	}
 	
-	public void setAssignmentConsumer(MWEAssignmentConsumer assignmentConsumer) {
+	public void setAssignmentConsumer(INonTerminalConsumer assignmentConsumer) {
 		this.assignmentConsumer = assignmentConsumer;
 	}
 	
-	public void setIdConsumer(XtextBuiltinIDConsumer idConsumer) {
+	public void setIdConsumer(ITerminalConsumer idConsumer) {
 		this.idConsumer = idConsumer;
 	}
 	
-	public void setQualifiedNameConsumer(MWEQualifiedNameConsumer qualifiedNameConsumer) {
+	public void setQualifiedNameConsumer(INonTerminalConsumer qualifiedNameConsumer) {
 		this.qualifiedNameConsumer = qualifiedNameConsumer;
 	}
 	

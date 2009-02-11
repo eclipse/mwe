@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
@@ -21,8 +22,8 @@ import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEJavaImportConsumer;
 @SuppressWarnings("unused")
 public final class MWEImportConsumer extends NonTerminalConsumer {
 
-	private MWEGenericImportConsumer genericImportConsumer;
-	private MWEJavaImportConsumer javaImportConsumer;
+	private INonTerminalConsumer genericImportConsumer;
+	private INonTerminalConsumer javaImportConsumer;
 
 	public MWEImportConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
@@ -64,6 +65,7 @@ public final class MWEImportConsumer extends NonTerminalConsumer {
 		return MWEGrammarAccess.INSTANCE.prImport();
 	}
 	
+	@Override
 	protected EObject getGrammarElement() {
 		return getRule().getRule();
 	}
@@ -73,11 +75,11 @@ public final class MWEImportConsumer extends NonTerminalConsumer {
 		return "Import";
 	}
 	
-	public void setGenericImportConsumer(MWEGenericImportConsumer genericImportConsumer) {
+	public void setGenericImportConsumer(INonTerminalConsumer genericImportConsumer) {
 		this.genericImportConsumer = genericImportConsumer;
 	}
 	
-	public void setJavaImportConsumer(MWEJavaImportConsumer javaImportConsumer) {
+	public void setJavaImportConsumer(INonTerminalConsumer javaImportConsumer) {
 		this.javaImportConsumer = javaImportConsumer;
 	}
 	

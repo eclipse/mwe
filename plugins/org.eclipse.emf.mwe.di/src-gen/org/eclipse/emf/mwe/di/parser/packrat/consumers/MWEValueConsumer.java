@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
@@ -23,10 +24,10 @@ import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEWorkflowRefConsumer;
 @SuppressWarnings("unused")
 public final class MWEValueConsumer extends NonTerminalConsumer {
 
-	private MWEComplexValueConsumer complexValueConsumer;
-	private MWEIdRefConsumer idRefConsumer;
-	private MWESimpleValueConsumer simpleValueConsumer;
-	private MWEWorkflowRefConsumer workflowRefConsumer;
+	private INonTerminalConsumer complexValueConsumer;
+	private INonTerminalConsumer idRefConsumer;
+	private INonTerminalConsumer simpleValueConsumer;
+	private INonTerminalConsumer workflowRefConsumer;
 
 	public MWEValueConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
@@ -86,6 +87,7 @@ public final class MWEValueConsumer extends NonTerminalConsumer {
 		return MWEGrammarAccess.INSTANCE.prValue();
 	}
 	
+	@Override
 	protected EObject getGrammarElement() {
 		return getRule().getRule();
 	}
@@ -95,19 +97,19 @@ public final class MWEValueConsumer extends NonTerminalConsumer {
 		return "Value";
 	}
 	
-	public void setComplexValueConsumer(MWEComplexValueConsumer complexValueConsumer) {
+	public void setComplexValueConsumer(INonTerminalConsumer complexValueConsumer) {
 		this.complexValueConsumer = complexValueConsumer;
 	}
 	
-	public void setIdRefConsumer(MWEIdRefConsumer idRefConsumer) {
+	public void setIdRefConsumer(INonTerminalConsumer idRefConsumer) {
 		this.idRefConsumer = idRefConsumer;
 	}
 	
-	public void setSimpleValueConsumer(MWESimpleValueConsumer simpleValueConsumer) {
+	public void setSimpleValueConsumer(INonTerminalConsumer simpleValueConsumer) {
 		this.simpleValueConsumer = simpleValueConsumer;
 	}
 	
-	public void setWorkflowRefConsumer(MWEWorkflowRefConsumer workflowRefConsumer) {
+	public void setWorkflowRefConsumer(INonTerminalConsumer workflowRefConsumer) {
 		this.workflowRefConsumer = workflowRefConsumer;
 	}
 	

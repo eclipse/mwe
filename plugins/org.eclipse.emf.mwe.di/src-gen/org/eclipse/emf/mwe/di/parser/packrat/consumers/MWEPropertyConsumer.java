@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
 import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
 import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
@@ -21,8 +22,8 @@ import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEPropertiesFileImportCo
 @SuppressWarnings("unused")
 public final class MWEPropertyConsumer extends NonTerminalConsumer {
 
-	private MWELocalVariableConsumer localVariableConsumer;
-	private MWEPropertiesFileImportConsumer propertiesFileImportConsumer;
+	private INonTerminalConsumer localVariableConsumer;
+	private INonTerminalConsumer propertiesFileImportConsumer;
 
 	public MWEPropertyConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
@@ -64,6 +65,7 @@ public final class MWEPropertyConsumer extends NonTerminalConsumer {
 		return MWEGrammarAccess.INSTANCE.prProperty();
 	}
 	
+	@Override
 	protected EObject getGrammarElement() {
 		return getRule().getRule();
 	}
@@ -73,11 +75,11 @@ public final class MWEPropertyConsumer extends NonTerminalConsumer {
 		return "Property";
 	}
 	
-	public void setLocalVariableConsumer(MWELocalVariableConsumer localVariableConsumer) {
+	public void setLocalVariableConsumer(INonTerminalConsumer localVariableConsumer) {
 		this.localVariableConsumer = localVariableConsumer;
 	}
 	
-	public void setPropertiesFileImportConsumer(MWEPropertiesFileImportConsumer propertiesFileImportConsumer) {
+	public void setPropertiesFileImportConsumer(INonTerminalConsumer propertiesFileImportConsumer) {
 		this.propertiesFileImportConsumer = propertiesFileImportConsumer;
 	}
 	
