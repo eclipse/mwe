@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
@@ -49,7 +49,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 
 	private static final String WORKFLOW3 = "<workflow>\n" + "	<property file=\'generate.properties\'/>\n"
 			+ "	<component file=\'org/openarchitectureware/xtext/Generator.oaw\' inheritAll=\'true\'/>\n"
-			+ "	<component class=\'org.openarchitectureware.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
+			+ "	<component class=\'org.eclipse.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
 
 	public void testFindContainerCompleteWorkflow() {
 		final IDocument document = createDocument(WORKFLOW1);
@@ -82,7 +82,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtend.XtendComponent", foundElement.getAttributeValue("class"));
+		assertEquals("org.eclipse.xtend.XtendComponent", foundElement.getAttributeValue("class"));
 	}
 
 	@Override

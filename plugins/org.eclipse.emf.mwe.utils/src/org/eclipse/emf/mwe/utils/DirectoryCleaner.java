@@ -51,7 +51,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 	}
 
 	/**
-	 * @see org.openarchitectureware.workflow.lib.AbstractWorkflowComponent#getLogMessage()
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
 	@Override
 	public String getLogMessage() {
@@ -171,6 +171,9 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
+ * Revision 1.9  2009/02/11 16:17:09  jkohnlein
+ * Removed dependencies to oAW.
+ *
  * Revision 1.8  2009/02/02 15:37:47  pschonbac
  * JavaDoc fixed
  * Revision 1.7 2009/02/02 15:33:58 pschonbac

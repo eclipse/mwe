@@ -22,7 +22,7 @@
     different workflow components which should be used where suitable, but you
     can also implement your own. The only thing you have to do is to implement
     the
-    <classname>org.openarchitectureware.workflow.WorkflowComponent</classname>
+    <classname>org.eclipse.emf.mwe.core.WorkflowComponent</classname>
     interface:</para>
 
     <programlisting>public interface WorkflowComponent {
@@ -428,9 +428,9 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         you have to specify the attribute class for a root element. There is
         only one exception: If the root element is named workflow the engine
         knows that it has to instantiate the type
-        <classname>org.openarchitectureware.Workflow</classname>. Of course
+        <classname>org.eclipse.mwe.runtime.Workflow</classname>. Of course
         you can specify your own subtype of
-        <classname>org.openarchitectureware.Workflow</classname> using the
+        <classname>org.eclipse.mwe.runtime.Workflow</classname> using the
         <property>class</property> attribute (if you need to for any
         reason).</para>
       </section>
@@ -476,7 +476,7 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
 	&lt;property file="workflow.properties"/&gt;
 
 	&lt;component id="xmiParser"
-		class="org.openarchitectureware.emf.XmiReader"&gt;
+		class="org.eclipse.xtend.typesystem.emf.XmiReader"&gt;
 		&lt;outputSlot value="model"/&gt;
 	&lt;/component&gt;
 
@@ -628,15 +628,15 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         <title>Starting the WorkflowRunner</title>
 
         <para>The class
-        <classname>org.openarchitectureware.workflow.WorkflowRunner</classname>
+        <classname>org.eclipse.emf.mwe.core.WorkflowRunner</classname>
         is the main entry point if you want to run the workflow from the
         command line. Take a look at the following example:</para>
 
-        <programlisting>java org.openarchitectureware.workflow.WorkflowRunner path/workflow.oaw</programlisting>
+        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner path/workflow.oaw</programlisting>
 
         <para>You can override properties using the -p option:</para>
 
-        <programlisting>java org.openarchitectureware.workflow.WorkflowRunner -pbasedir=/base/ path/workflow.oaw</programlisting>
+        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner -pbasedir=/base/ path/workflow.oaw</programlisting>
       </section>
 
       <section id="workflow_reference_starting_with_ant">
@@ -645,7 +645,7 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         <para>We also have an Ant task. Here is an example:</para>
 
         <programlisting>	&lt;target name='generate'&gt;
-		&lt;taskdef name="workflow" classname="org.openarchitectureware.workflow.ant.WorkflowAntTask"/&gt;
+		&lt;taskdef name="workflow" classname="org.eclipse.emf.mwe.core.ant.WorkflowAntTask"/&gt;
 			&lt;workflow file='path/workflow.oaw'&gt;
 				&lt;param name='baseDir' value='/base/'/&gt;
 			&lt;/workflow&gt;
