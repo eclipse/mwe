@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.emf.mwe.examples.source; singleton=true
-Bundle-Version: 0.7.0.200901190910
-Bundle-Localization: plugin
-Bundle-Vendor: %providerName
