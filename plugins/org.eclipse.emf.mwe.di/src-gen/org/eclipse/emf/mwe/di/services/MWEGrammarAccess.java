@@ -4,14 +4,15 @@ Generated with Xtext
 
 package org.eclipse.emf.mwe.di.services;
 
+import com.google.inject.Singleton;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.parser.BaseEPackageAccess;
-import org.eclipse.xtext.builtin.XtextBuiltinGrammarAccess;
 
+@Singleton
 public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAccess {
 	
 	public class FileElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(1);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "File");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Assignment c00AssignmentImports = (Assignment)c0Group.eContents().get(0);
@@ -50,7 +51,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class ImportElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(2);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Import");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall c0ParserRuleCallJavaImport = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallGenericImport = (RuleCall)cAlternatives.eContents().get(1);
@@ -69,7 +70,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class JavaImportElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(3);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "JavaImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -120,7 +121,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class GenericImportElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(4);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "GenericImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Keyword c00KeywordImport = (Keyword)c0Group.eContents().get(0);
@@ -151,7 +152,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class PropertyElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(5);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Property");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall c0ParserRuleCallLocalVariable = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallPropertiesFileImport = (RuleCall)cAlternatives.eContents().get(1);
@@ -170,7 +171,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class LocalVariableElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(6);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "LocalVariable");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -221,7 +222,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class PropertiesFileImportElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(7);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertiesFileImport");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -260,7 +261,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class ValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(8);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Value");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Alternatives c0Alternatives = (Alternatives)cAlternatives.eContents().get(0);
 		private final Alternatives c00Alternatives = (Alternatives)c0Alternatives.eContents().get(0);
@@ -295,7 +296,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class SimpleValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(9);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SimpleValue");
 		private final Assignment cAssignmentValue = (Assignment)rule.eContents().get(1);
 		private final RuleCall c0LexerRuleCallSTRING = (RuleCall)cAssignmentValue.eContents().get(0);
 		
@@ -310,7 +311,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class AssignableElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(10);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Assignable");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall c0ParserRuleCallComplexValue = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall c1ParserRuleCallWorkflowRef = (RuleCall)cAlternatives.eContents().get(1);
@@ -329,7 +330,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class ComplexValueElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(11);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ComplexValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -396,7 +397,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class WorkflowRefElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(12);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "WorkflowRef");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -447,7 +448,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class IdRefElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(13);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "IdRef");
 		private final Assignment cAssignmentId = (Assignment)rule.eContents().get(1);
 		private final RuleCall c0LexerRuleCallID = (RuleCall)cAssignmentId.eContents().get(0);
 		
@@ -462,7 +463,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class AssignmentElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(14);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Assignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Group c0Group = (Group)cGroup.eContents().get(0);
 		private final Group c00Group = (Group)c0Group.eContents().get(0);
@@ -517,7 +518,7 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	}
 
 	public class QualifiedNameElements implements IParserRuleAccess {
-		private final ParserRule rule = (ParserRule) getGrammar().eContents().get(15);
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "QualifiedName");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment c0AssignmentParts = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall c00LexerRuleCallID = (RuleCall)c0AssignmentParts.eContents().get(0);
@@ -574,6 +575,13 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	private static IdRefElements pIdRef;
 	private static AssignmentElements pAssignment;
 	private static QualifiedNameElements pQualifiedName;
+	private static LexerRule lID;
+	private static LexerRule lINT;
+	private static LexerRule lSTRING;
+	private static LexerRule lML_COMMENT;
+	private static LexerRule lSL_COMMENT;
+	private static LexerRule lWS;
+	private static LexerRule lANY_OTHER;
 
 	@SuppressWarnings("unused")
 	public synchronized Grammar getGrammar() {	
@@ -583,10 +591,6 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 			GRAMMAR = (Grammar) loadGrammarFile(MWEGrammarAccess.class.getClassLoader(),MWE_GRAMMAR_CP_URI);
 		}
 		return GRAMMAR;
-	}
-	
-	public XtextBuiltinGrammarAccess getSuperGrammar() {
-		return XtextBuiltinGrammarAccess.INSTANCE;
 	}
 
 	
@@ -663,5 +667,40 @@ public class MWEGrammarAccess extends BaseEPackageAccess implements IGrammarAcce
 	// QualifiedName:   parts+=ID (parts+="." parts+=ID)*;
 	public QualifiedNameElements prQualifiedName() {
 		return (pQualifiedName != null) ? pQualifiedName : (pQualifiedName = new QualifiedNameElements());
+	} 
+
+	// lexer ID:   "(\'^\')?(\'a\'..\'z\'|\'A\'..\'Z\'|\'_\') (\'a\'..\'z\'|\'A\'..\'Z\'|\'_\'|\'0\'..\'9\')*";
+	public LexerRule lrID() {
+		return (lID != null) ? lID : (lID = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
+	} 
+
+	// lexer INT returns EInt:   "(\'0\'..\'9\')+";
+	public LexerRule lrINT() {
+		return (lINT != null) ? lINT : (lINT = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "INT"));
+	} 
+
+	// lexer STRING:   "\n\t\t\t  \'\"\' ( \'\\\\\' (\'b\'|\'t\'|\'n\'|\'f\'|\'r\'|\'\\\"\'|\'\\\'\'|\'\\\\\') | ~(\'\\\\\'|\'\"\') )* \'\"\' | \n              \'\\\'\' ( \'\\\\\' (\'b\'|\'t\'|\'n\'|\'f\'|\'r\'|\'\\\"\'|\'\\\'\'|\'\\\\\') | ~(\'\\\\\'|\'\\\'\') )* \'\\\'\'\n              ";
+	public LexerRule lrSTRING() {
+		return (lSTRING != null) ? lSTRING : (lSTRING = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "STRING"));
+	} 
+
+	// lexer ML_COMMENT:   "\'/*\' ( options {greedy=false;} : . )* \'*/\'";
+	public LexerRule lrML_COMMENT() {
+		return (lML_COMMENT != null) ? lML_COMMENT : (lML_COMMENT = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
+	} 
+
+	// lexer SL_COMMENT:   "\'//\' ~(\'\\n\'|\'\\r\')* (\'\\r\'? \'\\n\')?";
+	public LexerRule lrSL_COMMENT() {
+		return (lSL_COMMENT != null) ? lSL_COMMENT : (lSL_COMMENT = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
+	} 
+
+	// lexer WS:   "(\' \'|\'\\t\'|\'\\r\'|\'\\n\')+";
+	public LexerRule lrWS() {
+		return (lWS != null) ? lWS : (lWS = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
+	} 
+
+	// lexer ANY_OTHER:   ".";
+	public LexerRule lrANY_OTHER() {
+		return (lANY_OTHER != null) ? lANY_OTHER : (lANY_OTHER = (LexerRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
 	} 
 }
