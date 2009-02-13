@@ -1,158 +1,264 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.emf.mwe.doc" default="build.jars" basedir=".">
-  
-  <property file="${buildDirectory}/finalPluginsVersions.properties"/>
-  <!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
-  <property name="pluginVersion" value="${org.eclipse.emf.mwe.doc}"/>
-  
-  <property name="plugin" value="org.eclipse.emf.mwe"/>
-  <property name="docPlugin" value="org.eclipse.emf.mwe.doc"/>
-  <property name="filesToInclude"
-    value="META-INF/**,images/**,tasks/**,gettingStarted/**,references/**,tutorials/**,notices.html,about.*,eclipse*.gif,ModelingFeature*.png,eclipse_lg.gif,plugin.*,book.css,toc*.xml,topics_*.xml,index/**"/>
-  
-  <!-- Compiler settings. -->
-  <property name="javacFailOnError" value="false"/>
-  <property name="javacDebugInfo" value="on"/>
-  <property name="javacVerbose" value="true"/>
-  <property name="javacSource" value="1.5"/>
-  <property name="javacTarget" value="1.5"/>
-  <property name="compilerArg" value=""/>
-  <path id="path_bootclasspath">
-    <fileset dir="${java.home}/lib">
-      <include name="*.jar"/>
-    </fileset>
-  </path>
-  <property name="bootclasspath" refid="path_bootclasspath"/>
-  
-  <property name="bundleJavacSource" value="${javacSource}"/>
-  <property name="bundleJavacTarget" value="${javacTarget}"/>
-  <property name="bundleBootClasspath" value="${bootclasspath}"/>
-  <property name="basews" value="${ws}"/>
-  <property name="baseos" value="${os}"/>
-  <property name="basearch" value="${arch}"/>
-  <property name="basenl" value="${nl}"/>
-  
-  <target name="init" depends="properties">
-    <condition property="pluginTemp" value="${buildTempFolder}/plugins">
-      <isset property="buildTempFolder"/>
-    </condition>
-    <property name="pluginTemp" value="${basedir}"/>
-    <condition property="build.result.folder"
-      value="${pluginTemp}/${docPlugin}">
-      <isset property="buildTempFolder"/>
-    </condition>
-    <property name="build.result.folder" value="${basedir}"/>
-    <property name="temp.folder" value="${basedir}/temp.folder"/>
-    <property name="plugin.destination" value="${basedir}"/>
-  </target>
-  
-  <target name="properties" if="eclipse.running">
-    <property name="build.compiler"
-      value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
-    
-  </target>
-  
-  <target name="build.update.jar" depends="init"
-    description="Build the plug-in: ${plugin} for an update site.">
-    <delete dir="${temp.folder}"/>
-    <mkdir dir="${temp.folder}"/>
-    <antcall target="build.jars"/>
-    <antcall target="gather.bin.parts">
-      <param name="destination.temp.folder" value="${temp.folder}/"/>
-    </antcall>
-    <zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.jar"
-      basedir="${temp.folder}/${docPlugin}_${pluginVersion}" filesonly="false"
-      whenempty="skip" update="false"/>
-    <delete dir="${temp.folder}"/>
-  </target>
-  
-  <target name="build.jars" depends="init"
-    description="Build all the jars for the plug-in: ${docPlugin}.">
-    
-    <!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
-    <exec executable="sh">
-      <arg value="build/antJavadoc.sh"/>
-      <arg value="${eclipse.home}/../eclipse"/>
-    </exec>
-    
-    <antcall target="build.index"/>
-    
-  </target>
-  
-  <target name="build.index" depends="init"
-    description="Builds search index for the plug-in" if="eclipse.running">
-    <help.buildHelpIndex manifest="plugin.xml" destination="."/>
-  </target>
-  
-  <target name="build.sources" depends="init">
-  </target>
-  
-  <target name="gather.bin.parts" depends="init" if="destination.temp.folder">
-    <mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"/>
-    <copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
-      failonerror="false" overwrite="false">
-      <fileset dir="${basedir}" includes="${filesToInclude}"/>
-    </copy>
-    <eclipse.versionReplacer
-      path="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
-      version="${pluginVersion}"/>
-  </target>
-  
-  <target name="build.zips" depends="init">
-  </target>
-  
-  <target name="gather.sources" depends="init" if="destination.temp.folder">
-  </target>
-  
-  <target name="gather.logs" depends="init" if="destination.temp.folder">
-  </target>
-  
-  <target name="clean" depends="init"
-    description="Clean the plug-in: ${docPlugin} of all the zips, jars and logs created.">
-    <delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.jar"/>
-    <delete file="${plugin.destination}/${docPlugin}_${pluginVersion}.zip"/>
-    <delete dir="${temp.folder}"/>
-  </target>
-  
-  <target name="zip.plugin" depends="init"
-    description="Create a zip containing all the elements for the plug-in: ${docPlugin}.">
-    <delete dir="${temp.folder}"/>
-    <mkdir dir="${temp.folder}"/>
-    <antcall target="build.jars"/>
-    <antcall target="build.sources"/>
-    <antcall target="gather.bin.parts">
-      <param name="destination.temp.folder" value="${temp.folder}/"/>
-    </antcall>
-    <antcall target="gather.sources">
-      <param name="destination.temp.folder" value="${temp.folder}/"/>
-    </antcall>
-    <delete>
-      <fileset dir="${temp.folder}" includes="**/*.bin.log"/>
-    </delete>
-    <zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.zip"
-      basedir="${temp.folder}" filesonly="true" whenempty="skip" update="false"/>
-    <delete dir="${temp.folder}"/>
-  </target>
-  
-  <property file="build-docbook.properties"/>
-  
-  <target name="release">
-    <mkdir dir="${release.build.dir}"/>
-    <mkdir dir="${release.dir}"/>
-    
-    <copy todir="${release.build.dir}">
-      <fileset dir="${pdf.output.dir}">
-        <include name="*.pdf"/>
-      </fileset>
-    </copy>
-    
-    <zip
-      zipfile="${release.dir}/${product.name}-documentation-${product.version}.zip">
-      <fileset dir="${release.build.dir}">
-        <include name="*.pdf"/>
-      </fileset>
-    </zip>
-    
-    <delete dir="${release.build.dir}"/>
-  </target>
+<!--
+	This build script is an adoption of the build script being use for Eclipse.org Articles.
+	Original authors: 	Chris Aniszczyk <zx@eclipsesource.com>,
+						Lawrence Mandel <lmandel@ca.ibm.com>
+						
+	Other authors:		Peter Friese <peter.friese@itemis.com>
+-->
+
+<project name="org.eclipse.xpand.doc" default="docbook2html" basedir=".">
+
+	<property file="${buildDirectory}/finalPluginsVersions.properties" />
+	<!-- Plug-in version.  This is a HACK.  Do not forget to update. -->
+	<property name="pluginVersion" value="${org.eclipse.emf.mwe.doc}" />
+
+	<property name="plugin" value="org.eclipse.xpand" />
+	<property name="docPlugin" value="${plugin}.doc" />
+	<property name="filesToInclude"
+	          value="META-INF/**,images/**,tasks/**,gettingStarted/**,references/**,tutorials/**,notices.html,about.*,eclipse*.gif,ModelingFeature*.png,eclipse_lg.gif,plugin.*,book.css,toc*.xml,topics_*.xml,index/**" />
+
+	<!-- ========== Properties: User Defined Options ========================= -->
+
+	<property name="eclipse.plugin.id" value="org.eclipse.emf.mwe.doc" />
+	<property name="eclipse.plugin.name"
+	          value="MWE core documentation (Incubation)" />
+	<property name="eclipse.plugin.provider" value="Eclipse.org" />
+
+	<property name="src.dir" value="src/5.0/content" />
+	<property name="article.name" value="workflow_reference" />
+	<property name="article.stylesheet"
+	          value="src/styles/xslt/custom_eclipse.xsl" />
+
+	<property name="dest.dir" value="." />
+	<property name="download.dir"
+	          value="${java.io.tmpdir}${file.separator}downloads" />
+
+	<property name="docbook.version" value="1.73.2" />
+	<property name="docbook.dir"
+	          value="${download.dir}${file.separator}docbook-xsl-${docbook.version}" />
+	<property name="docbookxsl.url"
+	          value="http://internap.dl.sourceforge.net/sourceforge/docbook/docbook-xsl-${docbook.version}.zip" />
+	<property name="fop.dir"
+	          value="${download.dir}${file.separator}fop-0.20.5" />
+	<property name="fop.url"
+	          value="http://archive.apache.org/dist/xmlgraphics/fop/binaries/fop-0.20.5-bin.zip" />
+	<property name="jai.dir" value="ENTER_JAI_DIRECTORY" />
+
+	<property name="build.home" value="build" />
+
+	<!-- ========== Macro Definition =================================================== -->
+
+	<macrodef name="docbook2pdf">
+		<attribute name="source" />
+		<attribute name="target" />
+		<sequential>
+			<taskdef name="fop" classname="org.apache.fop.tools.anttasks.Fop">
+				<classpath>
+					<pathelement location="${fop.dir}${file.separator}build${file.separator}fop.jar" />
+					<pathelement location="${fop.dir}${file.separator}lib${file.separator}avalon-framework-cvs-20020806.jar" />
+					<pathelement location="${fop.dir}${file.separator}lib${file.separator}batik.jar" />
+					<pathelement location="${jai.dir}${file.separator}lib${file.separator}jai_core.jar" />
+					<pathelement location="${jai.dir}${file.separator}lib${file.separator}jai_codec.jar" />
+				</classpath>
+			</taskdef>
+			<fop format="application/pdf"
+			     fofile="@{source}"
+			     outfile="@{target}"
+			     messagelevel="info" />
+		</sequential>
+	</macrodef>
+
+	<!-- ========== Targets =================================================== -->
+
+	<target name="init">
+		<mkdir dir="${download.dir}" />
+
+		<available file="${jai.dir}" property="jai.exists" />
+		<antcall target="notifyJAI" />
+	</target>
+
+	<target name="build.update.jar"
+	        depends="init"
+	        description="Build the plug-in: ${plugin} for an update site.">
+		<delete dir="${temp.folder}" />
+		<mkdir dir="${temp.folder}" />
+		<antcall target="build.jars" />
+		<antcall target="gather.bin.parts">
+			<param name="destination.temp.folder" value="${temp.folder}/" />
+		</antcall>
+		<zip destfile="${plugin.destination}/${docPlugin}_${pluginVersion}.jar"
+		     basedir="${temp.folder}/${docPlugin}_${pluginVersion}"
+		     filesonly="false"
+		     whenempty="skip"
+		     update="false" />
+		<delete dir="${temp.folder}" />
+	</target>
+
+	<target name="build.jars"
+	        depends="init"
+	        description="Build all the jars for the plug-in: ${docPlugin}.">
+
+		<!-- Execute a shell script that will create an ant javadoc script and then run it for us -->
+		<exec executable="sh">
+			<arg value="build/antJavadoc.sh" />
+			<arg value="${eclipse.home}/../eclipse" />
+		</exec>
+
+		<antcall target="build.index" />
+
+	</target>
+
+	<target name="build.index"
+	        depends="init"
+	        description="Builds search index for the plug-in"
+	        if="eclipse.running">
+		<help.buildHelpIndex manifest="plugin.xml" destination="." />
+	</target>
+
+	<target name="build.sources" depends="init">
+	</target>
+
+	<target name="notifyJAI" unless="jai.exists">
+		<echo message="The Java Advanced Imaging (JAI) library is not available." />
+		<echo message="JAI is required if you want to use PNG images in your article." />
+		<echo message="You can download JAI from http://java.sun.com/products/java-media/jai/downloads/download-1_1_2_01.html." />
+		<echo message="Specify the JAI installation directory to the article build by providing the parameter jai.dir to this build script." />
+	</target>
+
+	<target name="build-doc" depends="init, get-docbook-xsl, get-fop">
+		<echo>Building Help...</echo>
+		<antcall target="docbook2html" />
+		<antcall target="docbook2pdf" />
+		<antcall target="dist" />
+	</target>
+
+	<target name="check-docbook">
+		<available file="${download.dir}${file.separator}docbook.zip"
+		           property="hasDocbook" />
+	</target>
+
+	<target name="check-fop">
+		<available file="${download.dir}${file.separator}fop.zip"
+		           property="hasFOP" />
+	</target>
+
+	<target name="get-docbook-xsl"
+	        description="Downloads docbook xsl"
+	        depends="check-docbook"
+	        unless="hasDocbook">
+		<echo>Downloading DocBook XSL...</echo>
+		<get dest="${download.dir}${file.separator}docbook.zip"
+		     src="${docbookxsl.url}" />
+		<unzip src="${download.dir}${file.separator}docbook.zip"
+		       dest="${download.dir}" />
+	</target>
+
+	<target name="get-fop"
+	        description="Downloads FOP"
+	        depends="check-fop"
+	        unless="hasFOP">
+		<echo>Downloading FOP...</echo>
+		<get dest="${download.dir}${file.separator}fop.zip" src="${fop.url}" />
+		<unzip src="${download.dir}${file.separator}fop.zip"
+		       dest="${download.dir}" />
+	</target>
+
+	<target name="docbook2html">
+		<echo>Converting article to HTML...</echo>
+		<delete file="${dest.dir}${file.separator}${article.name}.html" />
+		<xslt in="${src.dir}${file.separator}${article.name}.xml"
+		      extension="xml"
+		      out="${dest.dir}${file.separator}${article.name}.html"
+		      style="${article.stylesheet}">
+			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
+				<attribute name="http://xml.apache.org/xalan/features/optimize"
+				           value="true" />
+			</factory>
+			<xmlcatalog>
+				<entity publicId="docbook.xsl"
+				        location="${docbook.dir}${file.separator}html${file.separator}docbook.xsl" />
+				<entity publicId="eclipse.xsl"
+				        location="${docbook.dir}${file.separator}eclipse${file.separator}eclipse.xsl" />
+			</xmlcatalog>
+			<param name="header.rule" expression="1" />
+			<param name="admon.graphics.extension" expression=".gif" />
+			<param name="admon.textlabel" expression="0" />
+			<param name="ulink.target" expression="_new" />
+			<param name="eclipse.plugin.id" expression="${eclipse.plugin.id}" />
+			<param name="eclipse.plugin.name"
+			       expression="${eclipse.plugin.name}" />
+			<param name="eclipse.plugin.provider"
+			       expression="${eclipse.plugin.provider}" />
+		</xslt>
+	</target>
+
+	<target name="docbook2pdf">
+		<echo>Converting article to PDF...</echo>
+
+		<delete file="${dest.dir}${file.separator}${article.name}.pdf" />
+		<delete file="${dest.dir}${file.separator}${article.name}.fo" />
+		<xslt in="${src.dir}${file.separator}${article.name}.xml"
+		      extension="xml"
+		      out="${dest.dir}${file.separator}${article.name}.fo"
+		      style="${docbook.dir}${file.separator}fo${file.separator}docbook.xsl">
+			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
+				<attribute name="http://xml.apache.org/xalan/features/optimize"
+				           value="true" />
+			</factory>
+			<xmlcatalog>
+				<entity publicId="docbook.xsl"
+				        location="${docbook.dir}${file.separator}fo${file.separator}docbook.xsl" />
+			</xmlcatalog>
+			<param name="generate.toc" expression="book toc" />
+			<param name="show.comments" expression="0" />
+			<param name="header.rule" expression="1" />
+			<param name="admon.graphics.extension" expression=".gif" />
+			<param name="admon.textlabel" expression="0" />
+			<param name="admon.graphics" expression="1" />
+		</xslt>
+
+		<docbook2pdf source="${dest.dir}${file.separator}${article.name}.fo"
+		             target="${dest.dir}${file.separator}${article.name}.pdf" />
+
+		<!-- Remove the resulting formatting object. This object isn't necessary in the
+		     result of this build. -->
+		<delete file="${dest.dir}${file.separator}${article.name}.fo" />
+	</target>
+
+	<target name="gather.bin.parts" depends="init" if="destination.temp.folder">
+		<mkdir dir="${destination.temp.folder}/${docPlugin}_${pluginVersion}" />
+		<copy todir="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
+		      failonerror="false"
+		      overwrite="false">
+			<fileset dir="${basedir}" includes="${filesToInclude}" />
+		</copy>
+		<eclipse.versionReplacer path="${destination.temp.folder}/${docPlugin}_${pluginVersion}"
+		                         version="${pluginVersion}" />
+	</target>
+
+	<target name="build.zips" depends="init">
+	</target>
+
+	<target name="gather.sources" depends="init" if="destination.temp.folder">
+	</target>
+
+	<target name="gather.logs" depends="init" if="destination.temp.folder">
+	</target>
+
+	<!-- ================================= 
+          target: clean              
+         ================================= -->
+	<target name="clean" description="Cleanup task">
+	</target>
+
+	<target name="dist">
+		<echo>Building article zip file...</echo>
+		<delete file="${dest.dir}${file.separator}${article.name}.zip" />
+		<zip basedir="${dest.dir}"
+		     destfile="${dest.dir}${file.separator}${article.name}.zip"
+		     excludes="${article.name}.fo, ${article.name}.zip, .project">
+		</zip>
+		<echo>If you're done with your article, please post the zip file on the related bugzilla entry.</echo>
+	</target>
+
 </project>
