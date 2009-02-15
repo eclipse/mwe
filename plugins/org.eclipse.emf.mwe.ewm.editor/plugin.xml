@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/02/15 20:03:41 bhunt Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowModelWizardID"
+            name="%_UI_WorkflowModelWizard_label"
+            class="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/WorkflowModelFile.gif">
+         <description>%_UI_WorkflowModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowEditorID"
+            name="%_UI_WorkflowEditor_label"
+            icon="icons/full/obj16/WorkflowModelFile.gif"
+            extensions="workflow"
+            class="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowEditor"
+            contributorClass="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.mwe.ewm.workflow.orchestration.presentation.OrchestrationEditorID"
+            name="%_UI_OrchestrationEditor_label"
+            icon="icons/full/obj16/OrchestrationModelFile.gif"
+            extensions="orchestration"
+            class="org.eclipse.emf.mwe.ewm.workflow.orchestration.presentation.OrchestrationEditor"
+            contributorClass="org.eclipse.emf.mwe.ewm.workflow.orchestration.presentation.OrchestrationActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="org.eclipse.emf.mwe.ewm.workflow.runtime.presentation.RuntimeModelWizardID"
+            name="%_UI_RuntimeModelWizard_label"
+            class="org.eclipse.emf.mwe.ewm.workflow.runtime.presentation.RuntimeModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/RuntimeModelFile.gif">
+         <description>%_UI_RuntimeModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.mwe.ewm.workflow.runtime.presentation.RuntimeEditorID"
+            name="%_UI_RuntimeEditor_label"
+            icon="icons/full/obj16/RuntimeModelFile.gif"
+            extensions="runtime"
+            class="org.eclipse.emf.mwe.ewm.workflow.runtime.presentation.RuntimeEditor"
+            contributorClass="org.eclipse.emf.mwe.ewm.workflow.runtime.presentation.RuntimeActionBarContributor">
+      </editor>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="org.eclipse.emf.mwe.ewm.workflow.runtime.state.presentation.StateEditorID"
+            name="%_UI_StateEditor_label"
+            icon="icons/full/obj16/StateModelFile.gif"
+            extensions="state"
+            class="org.eclipse.emf.mwe.ewm.workflow.runtime.state.presentation.StateEditor"
+            contributorClass="org.eclipse.emf.mwe.ewm.workflow.runtime.state.presentation.StateActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
