@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ASCII"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="./src-gen" forceOverwrite="true" bundleManifest="false" complianceLevel="5.0" copyrightFields="false">
+  <genPackages prefix="Mwe" basePackage="org.eclipse.emf.mwe.di" disposableProviderFactory="true">
+    <ecorePackage href="http://www.eclipse.org/emf/mwe/di#/"/>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//File"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//File/imports"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//File/properties"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//File/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//Import"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//JavaImport"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//JavaImport/javaImport"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//JavaImport/wildcard"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//GenericImport"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//GenericImport/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//Property"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//LocalVariable"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//LocalVariable/name"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//LocalVariable/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//PropertiesFileImport"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//PropertiesFileImport/file"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//Value"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//SimpleValue"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//SimpleValue/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//Assignable"/>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//ComplexValue"/>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//ComplexValue/className"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//ComplexValue/id"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//ComplexValue/fooBar"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//ComplexValue/assignments"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//WorkflowRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//WorkflowRef/uri"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//WorkflowRef/assignments"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//IdRef"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//IdRef/id"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//Assignment"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//Assignment/feature"/>
+      </genFeatures>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//Assignment/operator"/>
+      </genFeatures>
+      <genFeatures property="None" children="true" createChild="true">
+        <ecoreFeature xsi:type="ecore:EReference" href="http://www.eclipse.org/emf/mwe/di#//Assignment/value"/>
+      </genFeatures>
+    </genClasses>
+    <genClasses>
+      <ecoreClass href="http://www.eclipse.org/emf/mwe/di#//QualifiedName"/>
+      <genFeatures createChild="false">
+        <ecoreFeature xsi:type="ecore:EAttribute" href="http://www.eclipse.org/emf/mwe/di#//QualifiedName/parts"/>
+      </genFeatures>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -23,7 +23,9 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
  org.eclipse.jdt.core;visibility:=reexport,
- de.itemis.xtext.antlr;resolution:=optional
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.eclipse.emf.mwe.core;bundle-version="0.7.0",
+ org.eclipse.xtext.ui.generator;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.emf.mwe.di.Activator
