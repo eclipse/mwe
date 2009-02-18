@@ -12,10 +12,9 @@ Require-Bundle: org.eclipse.emf.mwe.di,
  org.eclipse.emf.mwe.di.tests,
  org.eclipse.xtext.ui.common,
  org.eclipse.xtext.xtend;resolution:=optional
-Export-Package: org.eclipse.emf.mwe.di.ui,
- org.eclipse.emf.mwe.di.ui.analyze;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
+Export-Package: org.eclipse.emf.mwe.di.ui.analyze;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
  org.eclipse.emf.mwe.di.ui.analyze.internal;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
  org.eclipse.emf.mwe.di.ui.extensibility,
  org.eclipse.emf.mwe.di.ui.util
-Bundle-Activator: org.eclipse.emf.mwe.di.ui.Activator
+Bundle-Activator: org.eclipse.emf.mwe.di.Activator
 Bundle-ActivationPolicy: lazy

@@ -19,16 +19,16 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.mwe.File;
+import org.eclipse.emf.mwe.di.Activator;
 import org.eclipse.emf.mwe.di.types.StaticType;
 import org.eclipse.emf.mwe.di.types.StaticTypeSystem;
 import org.eclipse.emf.mwe.di.types.Type;
 import org.eclipse.emf.mwe.di.types.TypeSystem;
-import org.eclipse.emf.mwe.di.ui.Activator;
 import org.osgi.framework.Bundle;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class StaticTypeSystemRegistry implements TypeSystem {
@@ -109,7 +109,7 @@ public class StaticTypeSystemRegistry implements TypeSystem {
 
 	private final void initialize() {
 		final IExtensionRegistry epr = Platform.getExtensionRegistry();
-		final Bundle bundle = Activator.getDefault().getBundle();
+		final Bundle bundle = Activator.getInstance().getBundle();
 		final String pluginName = bundle.getSymbolicName();
 		final IExtensionPoint ep = epr.getExtensionPoint(pluginName, TYPE_SYSTEM_EXTENSION_POINT);
 		Assert.isNotNull(ep, "The extension point '" + TYPE_SYSTEM_EXTENSION_POINT + "is not defined!");
