@@ -15,7 +15,11 @@
 package org.eclipse.emf.mwe.utils;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
 
@@ -36,7 +40,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 	private Set<String> excludes = new HashSet<String>();
 
-	private String[] defaultExcludes = new String[] { ".CVS", ".svn" };
+	private Set<String> defaultExcludes = new LinkedHashSet<String>(Arrays.asList(new String[] { "CVS", ".cvsignore", ".svn" }));
 
 	private boolean useDefaultExcludes = true;
 
@@ -67,12 +71,10 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 				final File f = new File(dir);
 				if (f.exists() && f.isDirectory()) {
 					LOG.info("Cleaning " + f.getAbsolutePath());
-					final File[] contents = f.listFiles();
-					for (int j = 0; j < contents.length; j++) {
-						final File file = contents[j];
-						if (!delete(file)) {
-							LOG.warn(file.getAbsolutePath() + " has not been deleted");
-						}
+					try {
+						cleanFolder(f.getAbsolutePath());
+					} catch (FileNotFoundException e) {
+						issues.addError(e.getMessage());
 					}
 				}
 			}
@@ -91,25 +93,58 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 	 * deletions were successful. If a deletion fails, the method stops
 	 * attempting to delete and returns false.
 	 */
-	public boolean delete(final File file) {
-		if (file.isDirectory()) {
-			final String[] children = file.list();
-			for (int i = 0; i < children.length; i++) {
-				if (isExcluded(file)) {
-					continue;
-				}
+	public void cleanFolder(String srcGenPath) throws FileNotFoundException {
+		File f = new File(srcGenPath);
+		if (!f.exists())
+			throw new FileNotFoundException(srcGenPath + " " + f.getAbsolutePath());
+		LOG.info("Cleaning folder " + f.getPath());
+		cleanFolder(f, new FileFilter() {
+			public boolean accept(File pathname) {
+				return !getExcludes().contains(pathname.getName());
+			}
+		}, false, false);
+	}
+	
+	public Set<String> getExcludes() {
+		if (useDefaultExcludes)
+			return defaultExcludes;
+		return excludes;
+	}
 
-				boolean success = delete(new File(file, children[i]));
-				if (!success)
+	public boolean cleanFolder(File parentFolder, final FileFilter filter, boolean continueOnError,
+			boolean deleteParentFolder) throws FileNotFoundException {
+		if (!parentFolder.exists()) {
+			throw new FileNotFoundException(parentFolder.getAbsolutePath());
+		}
+		FileFilter myFilter = filter;
+		if (myFilter == null)
+			myFilter = new FileFilter() {
+				public boolean accept(File pathname) {
+					return true;
+				}
+			};
+		LOG.debug("Cleaning folder " + parentFolder.toString());
+		final File[] contents = parentFolder.listFiles(myFilter);
+		for (int j = 0; j < contents.length; j++) {
+			final File file = contents[j];
+			if (file.isDirectory()) {
+				if (!cleanFolder(file, myFilter, continueOnError, false) && !continueOnError)
 					return false;
+			} else {
+				if (!file.delete()) {
+					LOG.error("Couldn't delete " + file.getAbsolutePath());
+					if (!continueOnError)
+						return false;
+				}
 			}
 		}
-
-		// only delete directories if they are empty
-		if (isExcluded(file) || (file.isDirectory() && file.list().length > 0))
-			return true;
-		else
-			return file.delete();
+		if (deleteParentFolder) {
+			if (!parentFolder.delete()) {
+				LOG.error("Couldn't delete " + parentFolder.getAbsolutePath());
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
@@ -171,15 +206,15 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
- * Revision 1.9  2009/02/11 16:17:09  jkohnlein
+ * Revision 1.10  2009/02/19 16:25:09  sefftinge
+ * directory cleaner fixed
+ * Revision 1.9 2009/02/11 16:17:09 jkohnlein
  * Removed dependencies to oAW.
- *
- * Revision 1.8  2009/02/02 15:37:47  pschonbac
- * JavaDoc fixed
- * Revision 1.7 2009/02/02 15:33:58 pschonbac
- * Message fixed Revision 1.6 2009/02/02 15:29:49 pschonbac Message improved
- * Revision 1.5 2009/01/30 15:26:37 pschonbac bug 221820: DirectoryCleaner
- * should have an exclude property and default excludes
+ * 
+ * Revision 1.8 2009/02/02 15:37:47 pschonbac JavaDoc fixed Revision 1.7
+ * 2009/02/02 15:33:58 pschonbac Message fixed Revision 1.6 2009/02/02 15:29:49
+ * pschonbac Message improved Revision 1.5 2009/01/30 15:26:37 pschonbac bug
+ * 221820: DirectoryCleaner should have an exclude property and default excludes
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
  * 
  * ...furthermore, wrong path name fixed. Revision 1.16 2009/01/30 14:55:53
