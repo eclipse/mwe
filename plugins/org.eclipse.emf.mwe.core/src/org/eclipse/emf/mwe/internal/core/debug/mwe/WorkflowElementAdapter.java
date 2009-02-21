@@ -29,7 +29,7 @@ import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 public class WorkflowElementAdapter implements ElementAdapter {
 
 	public static final String TYPE = "workflow";
-	
+
 	private Object context;
 
 	private CompositeComponent root;
@@ -48,7 +48,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return context;
 	}
 
-	public void setContext(final Object context) {
+	public void setContext(Object context) {
 		this.context = context;
 	}
 
@@ -58,7 +58,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 
 	// -------------------------------------------------------------------------
 
-	public boolean canHandle(final Object element) {
+	public boolean canHandle(Object element) {
 		if (element instanceof WorkflowComponent) {
 			if (root == null) {
 				root = ((WorkflowComponent) element).getContainer();
@@ -67,27 +67,26 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		}
 		if (element instanceof SyntaxElement) {
 			SyntaxElement se = (SyntaxElement) element;
-			String resource = se.resource;
-			return resource.endsWith(".mwe") || resource.endsWith(".oaw");
+			return se.resource.endsWith(".oaw");
 		}
 		return false;
 	}
 
-	public boolean shallHandle(final Object element) {
+	public boolean shallHandle(Object element) {
 		// no special treatment for workflow components
 		return true;
 	}
 
-	public boolean shallSuspend(final Object element, final int flag) {
+	public boolean shallSuspend(Object element, int flag) {
 		// no special treatment for workflow components
 		return true;
 	}
 
-	public boolean isSurroundingElement(final Object element) {
+	public boolean isSurroundingElement(Object element) {
 		return CompositeComponent.class.isAssignableFrom(element.getClass());
 	}
 
-	public SyntaxElement createElementTO(final Object element) {
+	public SyntaxElement createElement(Object element) {
 		WorkflowComponent comp = (WorkflowComponent) element;
 		SyntaxElement se = new SyntaxElement();
 		Location loc = comp.getLocation();
@@ -102,7 +101,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
-	public SyntaxElement createEndElementTO(final Object element) {
+	public SyntaxElement createEndElementTO(Object element) {
 		CompositeComponent comp = (CompositeComponent) element;
 		SyntaxElement se = new SyntaxElement();
 		Location loc = comp.getOwnLocation();
@@ -122,26 +121,30 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
-	public List<NameValuePair> getVariables(final Object element) {
+	public List<NameValuePair> getVariables(Object element) {
 		List<NameValuePair> list = new ArrayList<NameValuePair>();
 
 		if (element instanceof WorkflowComponent) {
 			// TODO: ER: show Variables, that are workflow properties
 			// Note: only the available slot variables are shown
-			// internal variables of the WfComponent are neither visible before start nor after end of invocation
+			// internal variables of the WfComponent are neither visible before
+			// start nor after end of invocation
 			// that's why we don't check the element itself
 			WorkflowContext ctx = (WorkflowContext) context;
 			for (String name : ctx.getSlotNames()) {
 				list.add(new NameValuePair(name, ctx.get(name)));
 			}
-		} else {
+		}
+		else {
 			int i = 0;
 			for (String name : ReflectionUtil.getFieldNames(element)) {
 				Object childElement;
-				// ReflectionUtil returns a name format "[" + i + "]" for arrays, therefore we can't use name here
+				// ReflectionUtil returns a name format "[" + i + "]" for
+				// arrays, therefore we can't use name here
 				if (element instanceof Object[]) {
 					childElement = ((Object[]) element)[i++];
-				} else {
+				}
+				else {
 					childElement = ReflectionUtil.getFieldValue(element, name);
 				}
 				list.add(new NameValuePair(name, childElement));
@@ -150,60 +153,53 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return list;
 	}
 
-	public String getVariableDetailRep(final Object element) {
+	public String getVariableDetailRep(Object element) {
 		return ReflectionUtil.getNameToString(element);
 	}
 
-	public String getVariableSimpleRep(final Object element) {
+	public String getVariableSimpleRep(Object element) {
 		return ReflectionUtil.getSimpleName(element);
 	}
 
-	public boolean checkVariableHasMembers(final Object element) {
+	public boolean checkVariableHasMembers(Object element) {
 		return ReflectionUtil.checkFields(element);
 	}
 
-	public Object findElement(final SyntaxElement se, final Object actual, final int flag) {
-		if (root == null) {
+	public Object findElement(SyntaxElement se, Object actual, int flag) {
+		if (root == null)
 			return null;
-		}
 		return findComponent(root, se.resource, se.line);
 	}
 
-	private Object findComponent(final CompositeComponent parent, final String resource, final int lineNo) {
+	private Object findComponent(CompositeComponent parent, String resource, int lineNo) {
 		Location loc = parent.getOwnLocation();
 		if (loc == null) {
 			loc = parent.getLocation();
 		}
 		if (resource.endsWith(loc.getResource())) {
-			for (WorkflowComponent comp : parent.getComponents()) {
-				if (comp.getLocation().getLineNumber() == lineNo) {
+			for (WorkflowComponent comp : parent.getComponents())
+				if (comp.getLocation().getLineNumber() == lineNo)
 					return comp;
-				}
-			}
 		}
-		for (WorkflowComponent comp : parent.getComponents()) {
+		for (WorkflowComponent comp : parent.getComponents())
 			if (comp instanceof CompositeComponent) {
 				CompositeComponent child = (CompositeComponent) comp;
 				Object found = findComponent(child, resource, lineNo);
-				if (found != null) {
+				if (found != null)
 					return found;
-				}
 			}
-		}
 		return null;
 	}
 
-	private Location initialize(final Location loc) {
-		if (loc.getResource() == null) {
+	private Location initialize(Location loc) {
+		if (loc.getResource() == null)
 			return null;
-		}
 		return locationAnalyser.adapt(loc);
 	}
 
-	private Location initializeEndLocation(final Location loc) {
-		if (loc.getResource() == null) {
+	private Location initializeEndLocation(Location loc) {
+		if (loc.getResource() == null)
 			return null;
-		}
 		return locationAnalyser.adaptEnd(loc);
 	}
 

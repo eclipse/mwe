@@ -16,9 +16,24 @@ public class GlobalConfigurationHolder {
 
 	private static ConfigurationModel configModel = null;
 
-	public static void setConfigurationModel( final ConfigurationModel cm, final Issues issues ) {
+	/**
+	 * Sets the configuration model. This method won't allow to overwrite the existing configuration.
+	 * @param cm The configuration
+	 * @param issues The Issues object to report errors to
+	 */
+	public static void setConfigurationModel( ConfigurationModel cm, Issues issues ) {
+		setConfigurationModel(cm, issues, false);
+	}
+
+	/**
+	 * Sets the configuration model
+	 * @param cm The configuration
+	 * @param issues The Issues object to report errors to
+	 * @param overwrite Allow replacement of the configuration model when it was already set
+	 */
+	public static void setConfigurationModel( ConfigurationModel cm, Issues issues, boolean overwrite ) {
 		if ( configModel != null ) {
-			if ( !configModel.equals(cm)) {
+			if ( !configModel.equals(cm) && !overwrite) {
 				issues.addError("configuration model already set!");
 			}
 		} else {

@@ -23,8 +23,9 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler;
 import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 
 /**
- * This class handles the communication of Breakpoints on the runtime side. It listens in an extra thread for set
- * and removal of breakpoints. The <code>DebugMonitor</code> uses this class to suspend the runtime process at
+ * This class handles the communication of Breakpoints on the runtime side. It
+ * listens in an extra thread for set and removal of breakpoints. The
+ * <code>DebugMonitor</code> uses this class to suspend the runtime process at
  * breakpoints.
  */
 public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler, Runnable {
@@ -45,6 +46,10 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 
 	// -------------------------------------------------------------------------
 
+	/**
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
+	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
+	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -53,18 +58,25 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 		}
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#startListener()
+	 */
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
 		thread.start();
 	}
 
+	/**
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		try {
 			while (true) {
 				listenAndDispatchCommand();
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 		}
 	}
 
@@ -74,14 +86,14 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 
 	private void handle(final BreakpointPackage packet) {
 		switch (packet.type) {
-		case SET:
-			doSet(packet.se, null, 0);
-			break;
-		case REMOVE:
-			doRemove(packet.se, null, 0);
-			break;
-		default:
-			break;
+			case SET:
+				doSet(packet.se, null, 0);
+				break;
+			case REMOVE:
+				doRemove(packet.se, null, 0);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -89,40 +101,42 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 
 	private void doSet(final SyntaxElement se, final Object actual, final int flag) {
 		ElementAdapter adapter = monitor.getAdapter(se);
-		if (adapter == null) {
+		if (adapter == null)
 			return;
-		}
 		Object element = adapter.findElement(se, actual, flag);
-		// breakpoints may be set before the syntax element structure is instantiated
-		// in this case we store the SyntaxElement and try it again during shallSuspend(...)
-		if (element == null){
+		// breakpoints may be set before the syntax element structure is
+		// instantiated
+		// in this case we store the SyntaxElement and try it again during
+		// shallSuspend(...)
+		if (element == null) {
 			breakpointTOs.add(se);
 			for (SyntaxElement cand : toBeRemovedTOs) {
-				if(se.equalsBP(cand)){
+				if (se.equalsBP(cand)) {
 					toBeRemovedTOs.remove(cand);
 					break;
+				}
 			}
-			}
-		} else {
+		}
+		else {
 			breakpoints.add(element);
 		}
 	}
 
 	private void doRemove(final SyntaxElement se, final Object actual, final int flag) {
 		ElementAdapter adapter = monitor.getAdapter(se);
-		if (adapter == null) {
+		if (adapter == null)
 			return;
-		}
 		Object element = adapter.findElement(se, actual, flag);
-		if (element == null){
+		if (element == null) {
 			toBeRemovedTOs.add(se);
 			for (SyntaxElement cand : breakpointTOs) {
-				if(se.equalsBP(cand)){
+				if (se.equalsBP(cand)) {
 					breakpointTOs.remove(cand);
 					break;
+				}
 			}
-			}
-		} else {
+		}
+		else {
 			breakpoints.remove(element);
 		}
 	}
@@ -137,7 +151,8 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	/**
 	 * returns true if a breakpoint is rgeistered for that element
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean, java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean,
+	 *      java.lang.Object, int)
 	 */
 	public boolean shallSuspend(final boolean lastState, final Object element, final int flag) {
 		if (!toBeRemovedTOs.isEmpty()) {
@@ -162,7 +177,8 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean, java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean,
+	 *      java.lang.Object, int)
 	 */
 	public boolean shallHandle(final boolean lastState, final Object element, final int flag) {
 		return lastState;

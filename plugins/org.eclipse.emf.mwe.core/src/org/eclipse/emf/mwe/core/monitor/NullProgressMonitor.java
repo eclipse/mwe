@@ -11,97 +11,87 @@
 
 package org.eclipse.emf.mwe.core.monitor;
 
-import org.eclipse.emf.common.util.Diagnostic;
-
 /**
  * Empty implementation of {@link ProgressMonitor}.
  * 
+ * @author Sven Efftinge (http://www.efftinge.de)
+ * @since 4.0
  */
 public class NullProgressMonitor implements ProgressMonitor {
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#beginTask(java.lang.String,
-     *      int)
-     */
-    public void beginTask(final String name, final int totalWork) {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#done()
-     */
-    public void done() {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#internalWorked(double)
-     */
-    public void internalWorked(final double work) {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#isCanceled()
-     */
-    public boolean isCanceled() {
-        return false;
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setCanceled(boolean)
-     */
-    public void setCanceled(final boolean value) {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setTaskName(java.lang.String)
-     */
-    public void setTaskName(final String name) {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#subTask(java.lang.String)
-     */
-    public void subTask(final String name) {
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#worked(int)
-     */
-    public void worked(final int work) {
-    }
-
-	public void started(final Object element, final Object context){
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#beginTask(java.lang.String,
+	 *      int)
+	 */
+	public void beginTask(final String name, final int totalWork) {
 	}
 
-	public void finished(final Object element, final Object context){
-		
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#done()
+	 */
+	public void done() {
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#internalWorked(double)
+	 */
+	public void internalWorked(final double work) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#isCanceled()
+	 */
+	public boolean isCanceled() {
+		return false;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setCanceled(boolean)
+	 */
+	public void setCanceled(final boolean value) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setTaskName(java.lang.String)
+	 */
+	public void setTaskName(final String name) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#subTask(java.lang.String)
+	 */
+	public void subTask(final String name) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#worked(int)
+	 */
+	public void worked(final int work) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#started(java.lang.Object,
+	 *      java.lang.Object)
+	 */
+	public void started(final Object element, final Object context) {
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#finished(java.lang.Object,
+	 *      java.lang.Object)
+	 */
+	public void finished(final Object element, final Object context) {
+
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#postTask(java.lang.Object,
+	 *      java.lang.Object)
+	 */
 	public void postTask(final Object element, final Object context) {
 	}
 
 	public void preTask(final Object element, final Object context) {
-	}
-
-	public void clearBlocked() {
-	}
-
-	public void setBlocked(final Diagnostic reason) {
 	}
 
 }

@@ -33,7 +33,7 @@ public class CommandPluginHandler {
 
 	// -------------------------------------------------------------------------
 
-	public void setConnection(final Connection connection) {
+	public void setConnection(Connection connection) {
 		this.connection = connection;
 	}
 

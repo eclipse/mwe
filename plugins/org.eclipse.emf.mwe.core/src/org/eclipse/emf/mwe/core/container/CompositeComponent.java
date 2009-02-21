@@ -58,6 +58,11 @@ public class CompositeComponent implements WorkflowComponentWithID {
 
 	private String id;
 
+	/**
+	 * Returns a list of aggregated components.
+	 * 
+	 * @return list of components
+	 */
 	public List<WorkflowComponent> getComponents() {
 		return components;
 	}
@@ -124,7 +129,9 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		}
 		for (WorkflowComponent comp : components) {
 			if ((!(comp instanceof AbstractWorkflowAdvice))) {
-				log.debug("Checking configuration of: " + ComponentPrinter.getString(comp));
+				if (log.isDebugEnabled()) {
+					log.debug("Checking configuration of: " + ComponentPrinter.getString(comp));
+				}
 				comp.checkConfiguration(issues);
 			}
 		}
@@ -174,20 +181,39 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		}
 	}
 
+	/**
+	 * Returns the name of the component.
+	 * 
+	 * @return name of component
+	 */
 	public String getName() {
 		return name;
 	}
 
-	// the file name of this workflow
+	/**
+	 * Returns the filename of the workflow.
+	 * 
+	 * @return the filename
+	 */
 	public String getResource() {
 		return resource;
 	}
 
+	/**
+	 * Sets the filename of the workflow.
+	 * 
+	 * @param resource
+	 *            the filename
+	 */
 	public void setResource(final String resource) {
 		this.resource = resource;
 	}
 
-	// the location of the entry in the parent workflow file
+	/**
+	 * Returns the location of the entry in the parent workflow file.
+	 * 
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getLocation()
+	 */
 	public Location getLocation() {
 		return location;
 	}
@@ -196,14 +222,36 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		this.location = location;
 	}
 
-	// the location of the start and closing tags in the actual workflow file
+	/**
+	 * Returns the location of the start and closing tags in the actual workflow
+	 * file.
+	 * 
+	 * @return the location
+	 */
 	public Location getOwnLocation() {
 		return ownLocation;
 	}
 
+	/**
+	 * Sets the location of the start and closing tags in the actual workflow
+	 * file.
+	 * 
+	 * @param endLocation
+	 *            the location
+	 */
 	// locations are set from VisitorCreator by reflection
-	public void setOwnLocation(final Location endLocation) {
+	public void setOwnLocation(Location endLocation) {
 		this.ownLocation = endLocation;
+	}
+
+	/**
+	 * Adds a bean.
+	 * 
+	 * @param obj
+	 *            the bean
+	 */
+	public void addBean(final Object obj) {
+		// noop
 	}
 
 	/**
@@ -232,6 +280,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	 * adds a conditionalcompositecomponent to the list of components
 	 * 
 	 * @param comp
+	 *            the conditional component
 	 */
 	public void addIf(final IfComponent comp) {
 		addComponent(comp);
@@ -241,25 +290,34 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	 * adds a feature components to the list of components
 	 * 
 	 * @param comp
+	 *            the feature component
 	 */
 	public void addFeature(final FeatureComponent comp) {
 		addComponent(comp);
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getContainer()
+	 */
 	public CompositeComponent getContainer() {
 		return container;
 	}
 
-	public void setContainer(final CompositeComponent container) {
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setContainer(org.eclipse.emf.mwe.core.container.CompositeComponent)
+	 */
+	public void setContainer(CompositeComponent container) {
 		this.container = container;
 	}
 
-	public void put(final String name, final WorkflowComponent comp) {
+	/**
+	 * Adds a workflow component.
+	 * 
+	 * @param comp
+	 *            the component
+	 */
+	public void put(WorkflowComponent comp) {
 		addComponent(comp);
-	}
-
-	public void addBean(final Object obj) {
-		// noop
 	}
 
 	/**
@@ -268,4 +326,5 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
+
 }

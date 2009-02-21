@@ -32,13 +32,14 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	private final String extension = "mwe";
 
 	String initialContents = "";
+
 	/*
 	 * (non-Javadoc) Method declared on IWizard.
 	 */
 	@Override
 	public void addPages() {
 		super.addPages();
-		mainPage = new Page(getSelection());
+		mainPage = new Page(getSelection());//$NON-NLS-1$
 		addPage(mainPage);
 	}
 
@@ -58,7 +59,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	 */
 	@Override
 	protected void initializeDefaultPageImageDescriptor() {
-		ImageDescriptor desc =
+		final ImageDescriptor desc =
 		// IDEWorkbenchPlugin.getIDEImageDescriptor("wizban/newfile_wiz.png");//$NON-NLS-1$
 		AbstractUIPlugin.imageDescriptorFromPlugin("org.eclipse.ui.ide", "$nl$/icons/full/wizban/newfile_wiz.png");
 		setDefaultPageImageDescriptor(desc);
@@ -75,17 +76,17 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	@Override
 	public boolean performFinish() {
 		final IFile file = mainPage.createNewFile();
-		if (file == null) {
+		if (file == null)
 			return false;
-		}
 
 		selectAndReveal(file);
 		getShell().getDisplay().asyncExec(new Runnable() {
 			public void run() {
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				try {
 					IDE.openEditor(page, file, true);
-				} catch (PartInitException e) {
+				}
+				catch (final PartInitException e) {
 					Activator.logError(e);
 				}
 			}
@@ -104,9 +105,8 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 
 		@Override
 		public String getErrorMessage() {
-			if (!getFileName().endsWith("." + extension)) {
+			if (!getFileName().endsWith("." + extension))
 				return "file extension must be ." + extension;
-			}
 			return null;
 		}
 

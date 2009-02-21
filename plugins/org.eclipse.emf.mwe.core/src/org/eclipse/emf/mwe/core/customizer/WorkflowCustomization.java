@@ -22,21 +22,21 @@ public class WorkflowCustomization {
 
 	private static final Log logger = LogFactory.getLog(WorkflowCustomization.class);
 
-	public static void registerKeywordMapping( final String keyword, final Class<?> componentClass ) {
+	public static void registerKeywordMapping( String keyword, Class<?> componentClass ) {
 		keywordmapping .put( keyword, componentClass );
 	}
-	
-	public static void registerKeywordMapping( final String keyword, final String componentClassName ) {
+
+	public static void registerKeywordMapping( String keyword, String componentClassName ) {
 		try {
 			keywordmapping .put( keyword, Class.forName(componentClassName) );
 		} catch (ClassNotFoundException e) {
 			logger.warn("Cannot resolve keyword class "+componentClassName);
 		}
 	}
-	
-	public static Class<?> getKeywordMapping( final String keyword ) {
+
+	public static Class<?> getKeywordMapping( String keyword ) {
 		return keywordmapping.get(keyword);
 	}
-	
+
 	
 }

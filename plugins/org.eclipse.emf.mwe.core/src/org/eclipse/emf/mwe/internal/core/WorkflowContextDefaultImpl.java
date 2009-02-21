@@ -18,6 +18,9 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 
 /**
  * Default {@link WorkflowContext} implementation.
+ * 
+ * @author Sven Efftinge (http://www.efftinge.de)
+ * @since 4.0
  */
 public class WorkflowContextDefaultImpl implements WorkflowContext {
 
@@ -34,12 +37,10 @@ public class WorkflowContextDefaultImpl implements WorkflowContext {
      * @see WorkflowContext#set(String, Object)
      */
     public void set(final String slotName, final Object model) {
-        if (slotName == null) {
+        if (slotName == null)
 			throw new IllegalArgumentException("slotName must not be null!");
-		}
-        if (!slotName.matches("[\\w_]+")) {
+        if (!slotName.matches("[\\w_]+"))
 			throw new IllegalArgumentException("slotName '" + slotName + "' contains invalid characters!");
-		}
         if (model == null) {
             models.remove(slotName);
         }

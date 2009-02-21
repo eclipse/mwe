@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.internal.core.ast.util;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -33,19 +34,18 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
 public class VisitorInitializer extends VisitorBase {
 
 	private VisitorInitializer cloneThis() {
-		final VisitorInitializer newOne = new VisitorInitializer(issues, props,
-				beans);
+		final VisitorInitializer newOne = new VisitorInitializer(issues, props, beans);
 		newOne.beans = beans;
+		newOne.initialProps = initialProps;
 		newOne.props = props;
 		newOne.declaredPropertyNames = declaredPropertyNames;
 		return newOne;
 	}
 
-	public VisitorInitializer(final Issues issues,
-			final Map<String, String> initialProperties,
-			final Map<String, ComponentAST> initialBeans) {
+	public VisitorInitializer(final Issues issues, final Map<String, String> initialProperties, final Map<String, ComponentAST> initialBeans) {
 		this.issues = issues;
-		props = new HashMap<String, String>(initialProperties);
+		initialProps = new HashMap<String, String>(initialProperties);
+		props = new HashMap<String, String>();
 		beans = new HashMap<String, ComponentAST>(initialBeans);
 	}
 
@@ -57,11 +57,13 @@ public class VisitorInitializer extends VisitorBase {
 
 	private Map<String, String> props = null;
 
+	private Map<String, String> initialProps = null;
+
 	private void traverseChildren(final ComponentAST c) {
-		for (Object name : c.getChildren()) {
-final AbstractASTBase element = (AbstractASTBase) name;
-element.accept(cloneThis());
-}
+		for (final Iterator<?> iter = c.getChildren().iterator(); iter.hasNext();) {
+			final AbstractASTBase element = (AbstractASTBase) iter.next();
+			element.accept(cloneThis());
+		}
 	}
 
 	@Override
@@ -89,62 +91,55 @@ element.accept(cloneThis());
 		final Map<String, ComponentAST> paramBeans = new HashMap<String, ComponentAST>();
 
 		if (comp.isInheritAll()) {
+			params.putAll(this.initialProps);
 			params.putAll(this.props);
 			paramBeans.putAll(this.beans);
 		}
-		for (Object o : comp.getChildren()) {
-if (o instanceof SimpleParamAST) {
-		final SimpleParamAST p = (SimpleParamAST) o;
-		params.put(p.getName(), p.getValue());
-} else if (o instanceof ComponentAST) {
-		final ComponentAST p = (ComponentAST) o;
-		paramBeans.put(p.getName(), p);
-} else if (o instanceof ReferenceAST) {
-		final ReferenceAST ref = (ReferenceAST) o;
-		paramBeans.put(ref.getName(), ref.getReference());
-}
-}
+		for (final Iterator<?> iter = comp.getChildren().iterator(); iter.hasNext();) {
+			final Object o = iter.next();
+			if (o instanceof SimpleParamAST) {
+				final SimpleParamAST p = (SimpleParamAST) o;
+				params.put(p.getName(), p.getValue());
+			} else if (o instanceof ComponentAST) {
+				final ComponentAST p = (ComponentAST) o;
+				paramBeans.put(p.getName(), p);
+			} else if (o instanceof ReferenceAST) {
+				final ReferenceAST ref = (ReferenceAST) o;
+				paramBeans.put(ref.getName(), ref.getReference());
+			}
+		}
 		comp.setPassedBeans(paramBeans);
 		comp.setPassedProperties(params);
 		if (comp.getFile() != null) {
 			final WorkflowParser p = new WorkflowParser();
-			InputStream in = loader.getResourceAsStream(translateFileURI(comp
-					.getFile(), "mwe"));
+			final InputStream in = loader.getResourceAsStream(translateFileURI(comp.getFile()));
 			if (in == null) {
-				in = loader.getResourceAsStream(translateFileURI(
-						comp.getFile(), "oaw"));
-				if (in == null) {
-					issues.addError("Couldn't load workflow fragment from "
-							+ comp.getFile(), comp);
-					return comp;
-				}
+				issues.addError("Couldn't load workflow fragment from " + comp.getFile(), comp);
+				return comp;
 			}
 			final AbstractASTBase ref = p.parse(in, comp.getFile(), issues);
 			comp.setImportedElement(ref);
 			if (ref == null) {
-				issues.addError("Couldn't parse nested workflow file "
-						+ comp.getFile(), comp);
+				issues.addError("Couldn't parse nested workflow file " + comp.getFile(), comp);
 				return comp;
 			}
 			if (comp.getPassedProperties() == null) {
-				issues.addError(
-						"Workflow not initialized! (passedProperties is null)",
-						comp);
+				issues.addError("Workflow not initialized! (passedProperties is null)", comp);
 				return comp;
 			}
-			final VisitorInitializer vis = new VisitorInitializer(issues, comp
-					.getPassedProperties(), comp.getPassedBeans());
+			final VisitorInitializer vis = new VisitorInitializer(issues, comp.getPassedProperties(), comp
+					.getPassedBeans());
 			ref.accept(vis);
 		}
 		return comp;
 	}
 
-	private String translateFileURI(String file, final String extension) {
-		if (file.indexOf("::") != -1) {
+	private String translateFileURI(String file) {
+		if (file.indexOf("::")!=-1) {
 			file = file.replaceAll("::", "/");
 		}
-		if (!file.endsWith("." + extension)) {
-			file += "." + extension;
+		if (!file.endsWith(".oaw")) {
+			file +=".oaw";
 		}
 		return file;
 	}
@@ -154,8 +149,7 @@ if (o instanceof SimpleParamAST) {
 		comp.setIdRef(replaceProperties(comp.getIdRef(), comp));
 		final ComponentAST ref = beans.get(comp.getIdRef());
 		if (ref == null) {
-			issues.addError("Couldn't find bean with id '" + comp.getIdRef()
-					+ "'", comp);
+			issues.addError("Couldn't find bean with id '" + comp.getIdRef() + "'", comp);
 		} else {
 			comp.setReference(ref);
 		}
@@ -172,8 +166,8 @@ if (o instanceof SimpleParamAST) {
 	public Object visitDeclaredPropertyAST(final DeclaredPropertyAST prop) {
 		if (prop.getValue() != null) {
 			final String n = replaceProperties(prop.getName(), prop);
-			if (!props.containsKey(n)) {
-				props.put(n, replaceProperties(prop.getValue(), prop));
+			if (!initialProps.containsKey(n)) {
+				props.put(n, replaceProperties(prop.getValue(), prop ));
 			} else {
 				if (!declaredPropertyNames.add(n)) {
 					issues.addError("Duplicate property " + n, prop);
@@ -184,44 +178,41 @@ if (o instanceof SimpleParamAST) {
 	}
 
 	@Override
-	public Object visitDeclaredPropertyFileAST(
-			final DeclaredPropertyFileAST propFile) {
+	public Object visitDeclaredPropertyFileAST(final DeclaredPropertyFileAST propFile) {
 		propFile.setFile(replaceProperties(propFile.getFile(), propFile));
 		final Properties properties = propFile.getProperties(loader);
 		if (properties == null) {
 			issues.addError("Couldn't resolve properties file!", propFile);
 			return new HashMap<Object, Object>();
+		} else {
+			for (final Iterator<String> iter = propFile.getPropertyNames(loader).iterator(); iter.hasNext();) {
+				final String name = replaceProperties(iter.next(), propFile );
+				final String val = replaceProperties((String) properties.get(name), propFile);
+				if (!initialProps.containsKey(name)) {
+					props.put(name, val);
+				} else {
+					if (!declaredPropertyNames.add(name)) {
+						issues.addError("Duplicate property " + name, propFile);
+					}
+				}
+			}
 		}
-		for (String string : propFile.getPropertyNames(loader)) {
-final String name = replaceProperties(string, propFile);
-final String val = replaceProperties((String) properties.get(name),
-			propFile);
-if (!props.containsKey(name)) {
-		props.put(name, val);
-} else {
-		if (!declaredPropertyNames.add(name)) {
-			issues.addError("Duplicate property " + name, propFile);
-		}
-}
-}
 		return props;
 	}
 
-	private static final Pattern PROPERTY_PATTERN = Pattern
-			.compile("\\$\\{([\\w_\\.-]+)\\}");
+	private static final Pattern PROPERTY_PATTERN = Pattern.compile("\\$\\{([\\w_\\.-]+)\\}");
 
-	protected String replaceProperties(final String toResolve,
-			final AbstractASTBase ast) {
+	private static final Pattern[] PROPERTY_WARN_PATTERN = { Pattern.compile("\\$\\(([\\w_\\.-]+)\\)") };
+
+	protected String replaceProperties(final String toResolve, AbstractASTBase ast) {
 		return replaceProperties(toResolve, true, ast);
 	}
 
 	private final Stack<String> currentProp = new Stack<String>();
 
-	protected String replaceProperties(final String toResolve,
-			final boolean logIssues, final AbstractASTBase ast) {
-		if (toResolve == null) {
+	protected String replaceProperties(final String toResolve, final boolean logIssues, AbstractASTBase ast) {
+		if (toResolve == null)
 			return null;
-		}
 		// if (currentProp.contains(toResolve)) {
 		// issues.addError("property "+toResolve+" not found!");
 		// return null;
@@ -229,22 +220,33 @@ if (!props.containsKey(name)) {
 		//
 		// try {
 		currentProp.push(toResolve);
+
+		// check for expressions the user probably didn't want to use
+		if(logIssues) {
+			for(Pattern p: PROPERTY_WARN_PATTERN) {
+				final Matcher m = p.matcher(toResolve);
+				while(m.find()) {
+					issues.addWarning("The expression \"" + m.group(0)+"\" is not a valid property and therefore not resolved."+
+					" Properties need to be enclosed in curly brackets, like: ${myProperty}");
+				}
+			}
+		}
+
 		final Matcher m = PROPERTY_PATTERN.matcher(toResolve);
 		final StringBuffer buff = new StringBuffer();
 		int index = 0;
 		while (m.find()) {
 			final String varName = m.group(1);
-			String propValue = props.get(varName);
+			String propValue = propGet(varName);
 			if (propValue == null) {
 				if (logIssues) {
-					issues.addError("property " + varName
-							+ " not specified. Dereferenced at "
-							+ ast.getLocation().toString());
+					issues.addError("property " + varName + " not specified. Dereferenced at "+ast.getLocation().toString());
 				}
 
 				return null;
+			} else {
+				propValue = replaceProperties(propValue, logIssues, ast);
 			}
-			propValue = replaceProperties(propValue, logIssues, ast);
 			final int start = m.start();
 			final int end = m.end();
 			buff.append(toResolve.substring(index, start));
@@ -257,5 +259,13 @@ if (!props.containsKey(name)) {
 		// currentProp.pop();
 		// }
 
+	}
+
+	private String propGet(final String varName) {
+		String val = initialProps.get(varName);
+		if (val != null)
+			return val;
+
+		return props.get(varName);
 	}
 }

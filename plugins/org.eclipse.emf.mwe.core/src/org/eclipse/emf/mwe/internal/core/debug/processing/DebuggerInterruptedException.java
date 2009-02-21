@@ -20,11 +20,11 @@ public class DebuggerInterruptedException extends RuntimeException {
 
 	private static final long serialVersionUID = 8297242905634686930L;
 
-	public DebuggerInterruptedException(final IOException e) {
+	public DebuggerInterruptedException(IOException e) {
 		super(e);
 	}
 
-	public DebuggerInterruptedException(final String msg) {
+	public DebuggerInterruptedException(String msg) {
 		super(msg);
 	}
 

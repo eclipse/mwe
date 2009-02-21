@@ -25,10 +25,10 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
  * This class handles the communication of debug commands on the runtime side.<br>
  * It listens in an extra thread for commands and sets state values accordingly.<br>
  * <br>
- * The <code>DebugMonitor</code> uses this class to react according to the process state settings when it needs
- * to.<br>
- * The <code>ICommandListener</code> and <code>IProcessHandler</code> methods are the active ones that
- * communicate with the debug server.<br>
+ * The <code>DebugMonitor</code> uses this class to react according to the
+ * process state settings when it needs to.<br>
+ * The <code>ICommandListener</code> and <code>IProcessHandler</code> methods
+ * are the active ones that communicate with the debug server.<br>
  * The <code>IEventHandler</code> methods react only internally on events.
  */
 public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, ProcessHandler, EventHandler, Runnable {
@@ -69,6 +69,10 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	// -------------------------------------------------------------------------
 
+	/**
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
+	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
+	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -79,18 +83,25 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 		}
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#startListener()
+	 */
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
 		thread.start();
 	}
 
+	/**
+	 * @see java.lang.Runnable#run()
+	 */
 	public void run() {
 		try {
 			while (true) {
 				listenAndDispatchCommand();
 			}
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			doTerminate();
 		}
 	}
@@ -101,22 +112,22 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 
 	private void dispatch(final int cmd) {
 		switch (cmd) {
-		case STEP_INTO:
-		case STEP_OVER:
-		case STEP_RETURN:
-			doStep(cmd);
-			break;
-		case RESUME:
-			doResume();
-			break;
-		case TERMINATE:
-			doTerminate();
-			break;
-		case SUSPEND:
-			doSuspend();
-			break;
-		default:
-			break;
+			case STEP_INTO:
+			case STEP_OVER:
+			case STEP_RETURN:
+				doStep(cmd);
+				break;
+			case RESUME:
+				doResume();
+				break;
+			case TERMINATE:
+				doTerminate();
+				break;
+			case SUSPEND:
+				doSuspend();
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -125,15 +136,15 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	private void doStep(final int cmd) {
 		stepping = true;
 		switch (cmd) {
-		case STEP_INTO:
-			suspendBaseLevel = iterationLevel + 1;
-			break;
-		case STEP_OVER:
-			suspendBaseLevel = iterationLevel;
-			break;
-		case STEP_RETURN:
-			suspendBaseLevel = iterationLevel - 1;
-			break;
+			case STEP_INTO:
+				suspendBaseLevel = iterationLevel + 1;
+				break;
+			case STEP_OVER:
+				suspendBaseLevel = iterationLevel;
+				break;
+			case STEP_RETURN:
+				suspendBaseLevel = iterationLevel - 1;
+				break;
 		}
 		continueDebugger();
 	}
@@ -165,17 +176,19 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	}
 
 	/**
-	 * ask the suitable element adapter if the element shall be handled. Remember that information for the pop
-	 * call.
+	 * ask the suitable element adapter if the element shall be handled.
+	 * Remember that information for the pop call.
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean, java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean,
+	 *      java.lang.Object, int)
 	 */
 	public boolean shallHandle(final boolean lastState, final Object element, final int flag) {
 		boolean result;
 		if (flag == PUSH) {
 			result = monitor.getAdapter(element).shallHandle(element);
 			stackFrames.push(result);
-		} else {
+		}
+		else {
 			// POP
 			result = stackFrames.pop();
 		}
@@ -183,12 +196,15 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	}
 
 	/**
-	 * return true in case of a user's suspend request or dependend on the current iteration level.
+	 * return true in case of a user's suspend request or dependend on the
+	 * current iteration level.
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean, java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean,
+	 *      java.lang.Object, int)
 	 */
 	public boolean shallSuspend(final boolean lastState, final Object element, final int flag) {
-		boolean shallSuspend = lastState || forceSuspend || (stepping && (suspendBaseLevel - (flag == NORMAL_FRAME ? 0 : 1) >= iterationLevel));
+		boolean shallSuspend = lastState || forceSuspend
+				|| (stepping && (suspendBaseLevel - (flag == NORMAL_FRAME ? 0 : 1) >= iterationLevel));
 		if (!monitor.getAdapter(element).shallSuspend(element, flag) && shallSuspend) {
 			suspendBaseLevel++;
 			return false;
@@ -197,7 +213,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	}
 
 	/**
-	 * return true in case of a user's terminate event or if the socket connection is no longer open
+	 * return true in case of a user's terminate event or if the socket
+	 * connection is no longer open
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallInterrupt(boolean)
 	 */
@@ -219,7 +236,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * increment the iteration level
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
+	 *      int)
 	 */
 	public void preTask(final Object element, final Object context, final int state) {
 		iterationLevel++;
@@ -228,7 +246,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * decrement the iteration level
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
+	 *      int)
 	 */
 	public void postTask(final Object context) {
 		iterationLevel--;
@@ -267,7 +286,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 			synchronized (syncObject) {
 				try {
 					syncObject.wait();
-				} catch (InterruptedException e) {
+				}
+				catch (InterruptedException e) {
 					//
 				}
 			}
@@ -275,7 +295,8 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 		continueOperation = false;
 	}
 
-	// set the continue flag so that the debugMonitor doesn't need to stop if the next command is already there
+	// set the continue flag so that the debugMonitor doesn't need to stop if
+	// the next command is already there
 	private void continueDebugger() {
 		continueOperation = true;
 		synchronized (syncObject) {

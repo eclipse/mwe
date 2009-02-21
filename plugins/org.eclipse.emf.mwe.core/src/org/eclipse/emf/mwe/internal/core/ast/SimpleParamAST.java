@@ -14,7 +14,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 
 public class SimpleParamAST extends AbstractASTBase implements NamedAST {
 
-    private final String name;
+    private String name;
 
     private String value;
 

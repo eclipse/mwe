@@ -17,20 +17,25 @@ package org.eclipse.emf.mwe.core;
  */
 public class WorkflowInterruptedException extends RuntimeException {
 
-    /** The serial version. */
+    /**
+	 * 
+	 */
 	private static final long serialVersionUID = 7995016626229631046L;
 
-	/** Creates an instance. */
 	public WorkflowInterruptedException() {
         super();
     }
 
-	/**
-	 * Creates an instance.
-	 * @param message Error message.
-	 */
     public WorkflowInterruptedException(final String message) {
         super(message);
     }
+
+	public WorkflowInterruptedException(String arg0, Throwable arg1) {
+		super(arg0, arg1);
+	}
+
+	public WorkflowInterruptedException(Throwable arg0) {
+		super(arg0);
+	}
 
 }

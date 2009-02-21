@@ -39,64 +39,64 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 	}
 
 	// provides the image in the several view for the debug element
-	// if we don't cover it here, the DefaultLabelProvider uses the default debug labels
-	// Hint: for ILaunch and IProcess the method is not called, so we don't have a chance to customize them
+	// if we don't cover it here, the DefaultLabelProvider uses the default
+	// debug labels
+	// Hint: for ILaunch and IProcess the method is not called, so we don't have
+	// a chance to customize them
 	@Override
 	public Image getImage(final Object element) {
 		if (element instanceof DebugStackFrame) {
-			DebugStackFrame frame = (DebugStackFrame) element;
-			PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByType(frame.getType());
-			if (adapter != null) {
+			final DebugStackFrame frame = (DebugStackFrame) element;
+			final PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByType(frame.getType());
+			if (adapter != null)
 				return adapter.getIcon();
-			}
 		}
 		return null;
 	}
 
 	// provides the text in the several debug views
-	// Hint: we return null by intension, so that the DefaultLabelProvider calls getName() on the debug elements
-	// For breakpoints the default is too Java related, so we implement our own presentation.
+	// Hint: we return null by intension, so that the DefaultLabelProvider calls
+	// getName() on the debug elements
+	// For breakpoints the default is too Java related, so we implement our own
+	// presentation.
 	@Override
 	public String getText(final Object element) {
-		if (element instanceof MWEBreakpoint) {
+		if (element instanceof MWEBreakpoint)
 			return ((MWEBreakpoint) element).getName();
-		}
 		return null;
 	}
 
 	public void computeDetail(final IValue value, final IValueDetailListener listener) {
-		String detail = ((DebugValue) value).getDetailRep();
+		final String detail = ((DebugValue) value).getDetailRep();
 		listener.detailComputed(value, detail);
 	}
 
 	// called to get the right source editor input for a resource
 	public IEditorInput getEditorInput(final Object element) {
-		if (element instanceof IFile) {
+		if (element instanceof IFile)
 			return new FileEditorInput((IFile) element);
-		}
-		if (element instanceof ILineBreakpoint) {
+		if (element instanceof ILineBreakpoint)
 			return new FileEditorInput((IFile) ((ILineBreakpoint) element).getMarker().getResource());
-		}
-		if (element instanceof IStorage) {
+		if (element instanceof IStorage)
 			return new JarEntryEditorInput((IStorage) element);
-		}
 
 		return null;
 	}
 
-	// called at source editor display to show the source in the right editor type
+	// called at source editor display to show the source in the right editor
+	// type
 	@SuppressWarnings("restriction")
 	public String getEditorId(final IEditorInput input, final Object element) {
 		String ext = "";
-		if (((element instanceof IFile) || (element instanceof ILineBreakpoint)) && (input instanceof IFileEditorInput)) {
+		if ((element instanceof IFile || element instanceof ILineBreakpoint) && input instanceof IFileEditorInput) {
 			ext = ((IFileEditorInput) input).getFile().getFileExtension();
-		} else if ((element instanceof IStorage) && (input instanceof JarEntryEditorInput)) {
+		}
+		else if (element instanceof IStorage && input instanceof JarEntryEditorInput) {
 			ext = ((JarEntryEditorInput) input).getContentType();
 		}
-		PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(ext);
-		if (adapter != null) {
+		final PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(ext);
+		if (adapter != null)
 			return adapter.getEditorId();
-		}
 		return "org.eclipse.ui.DefaultTextEditor";
 	}
 }

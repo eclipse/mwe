@@ -14,20 +14,29 @@ import org.eclipse.emf.mwe.core.issues.Issues;
 
 public abstract class WorkflowComponentWithModelSlot extends AbstractWorkflowComponent {
 
-    private String modelSlot;
+	private String modelSlot;
 
-    public void setModelSlot(final String ms) {
-        modelSlot = ms;
-    }
+	/**
+	 * Sets the name of the model slot.
+	 * 
+	 * @param slot
+	 *            name of slot
+	 */
+	public void setModelSlot(final String slot) {
+		modelSlot = slot;
+	}
 
-    protected String getModelSlot() {
-        return modelSlot;
-    }
+	protected String getModelSlot() {
+		return modelSlot;
+	}
 
-    public void checkConfiguration(final Issues issues) {
-        if (modelSlot == null) {
+	/**
+	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
+	 */
+	public void checkConfiguration(final Issues issues) {
+		if (modelSlot == null) {
 			issues.addError(this, "modelSlot not specified.");
 		}
-    }
+	}
 
 }

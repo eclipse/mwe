@@ -17,7 +17,7 @@ import org.eclipse.jface.text.rules.MultiLineRule;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class TagRule extends MultiLineRule {
 
@@ -26,8 +26,7 @@ public class TagRule extends MultiLineRule {
 	}
 
 	@Override
-	protected boolean sequenceDetected(final ICharacterScanner scanner,
-			final char[] sequence, final boolean eofAllowed) {
+    protected boolean sequenceDetected(final ICharacterScanner scanner, final char[] sequence, final boolean eofAllowed) {
 		final int c = scanner.read();
 		if (sequence[0] == '<') {
 			if (c == '?') {

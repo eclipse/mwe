@@ -17,7 +17,7 @@ public class AttributeNotFound extends Exception {
 		super();
 	}
 	
-	public AttributeNotFound(final String message) {
+	public AttributeNotFound(String message) {
 		super(message);
 	}
 	

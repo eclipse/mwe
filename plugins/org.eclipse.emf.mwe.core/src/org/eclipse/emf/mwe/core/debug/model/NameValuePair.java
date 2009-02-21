@@ -18,7 +18,7 @@ public class NameValuePair {
 
 	public Object value;
 
-	public NameValuePair(final String name, final Object value) {
+	public NameValuePair(String name, Object value) {
 		this.name = name;
 		this.value = value;
 	}

@@ -25,7 +25,8 @@ import org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler;
 
 /**
  * This class handles the communication of debug events on the runtime side.<br>
- * It sends them out (together with addition syntax element information, if required).
+ * It sends them out (together with addition syntax element information, if
+ * required).
  */
 public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	public static final int STARTED = 1;
@@ -46,6 +47,10 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 
 	// -------------------------------------------------------------------------
 
+	/**
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
+	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
+	 */
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -74,14 +79,16 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	/**
 	 * Push the element onto the stack
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
+	 *      int)
 	 */
 	public void preTask(final Object element, final Object context, final int state) {
 		stackFrames.push(new Frame(element, context, state));
 	}
 
 	/**
-	 * Pop the element from the stack, adjust the cleanStackLevel value if required
+	 * Pop the element from the stack, adjust the cleanStackLevel value if
+	 * required
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
@@ -93,9 +100,11 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	}
 
 	/**
-	 * Send SUSPENDED event to the debug server together with the number of stack elements that are still the same
-	 * (cleanStackLevel) since the last suspend and all new SyntaxElements.<br>
-	 * Wait for a confirmation. In the meantime other threads could handle for instance variable requests.
+	 * Send SUSPENDED event to the debug server together with the number of
+	 * stack elements that are still the same (cleanStackLevel) since the last
+	 * suspend and all new SyntaxElements.<br>
+	 * Wait for a confirmation. In the meantime other threads could handle for
+	 * instance variable requests.
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
 	 */
@@ -109,8 +118,9 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 			ElementAdapter adapter = monitor.getAdapter(frame.element);
 			adapter.setContext(frame.context);
 			if (frame.state == NORMAL_FRAME) {
-				to = adapter.createElementTO(frame.element);
-			} else {
+				to = adapter.createElement(frame.element);
+			}
+			else {
 				to = adapter.createEndElementTO(frame.element);
 			}
 			to.type = adapter.getAdapterType();

@@ -19,7 +19,7 @@ public class Location {
 
 	private int nameEnd;
 
-	private final String resource;
+	private String resource;
 
 	public Location(final int line, final int column, final String resource) {
 		lineNumber = line;
@@ -35,7 +35,7 @@ public class Location {
 		return lineNumber;
 	}
 
-	public void setLineNumber(final int lineNumber) {
+	public void setLineNumber(int lineNumber) {
 		this.lineNumber = lineNumber;
 	}
 
@@ -43,7 +43,7 @@ public class Location {
 		return columnNumber;
 	}
 
-	public void setColumnNumber(final int columnNumber) {
+	public void setColumnNumber(int columnNumber) {
 		this.columnNumber = columnNumber;
 	}
 
@@ -51,7 +51,7 @@ public class Location {
 		return nameStart;
 	}
 
-	public void setNameStart(final int nameStart) {
+	public void setNameStart(int nameStart) {
 		this.nameStart = nameStart;
 	}
 
@@ -59,7 +59,7 @@ public class Location {
 		return nameEnd;
 	}
 
-	public void setNameEnd(final int nameEnd) {
+	public void setNameEnd(int nameEnd) {
 		this.nameEnd = nameEnd;
 	}
 

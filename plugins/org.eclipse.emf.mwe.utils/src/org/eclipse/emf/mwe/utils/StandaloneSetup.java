@@ -44,13 +44,11 @@ public class StandaloneSetup {
 		return platformRootPath;
 	}
 
-	private static final Log log = LogFactory.getLog(StandaloneSetup.class);
+	private Log log = LogFactory.getLog(getClass());
 	static {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-				Resource.Factory.Registry.DEFAULT_EXTENSION,
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION,
 				new XMIResourceFactoryImpl());
-		EPackage.Registry.INSTANCE.put(EcorePackage.eINSTANCE.getNsURI(),
-				EcorePackage.eINSTANCE);
+		EPackage.Registry.INSTANCE.put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
 	}
 
 	/**
@@ -58,43 +56,39 @@ public class StandaloneSetup {
 	 * 
 	 * @param pathToPlatform
 	 */
-	
-	public void setPlatformUri(final String pathToPlatform) {
+	@SuppressWarnings("unchecked")
+	public void setPlatformUri(String pathToPlatform) {
 		File f = new File(pathToPlatform);
-		if (!f.exists()) {
-			throw new ConfigurationException("The platformUri location '"
-					+ pathToPlatform + "' does not exist");
-		}
-		if (!f.isDirectory()) {
-			throw new ConfigurationException(
-					"The platformUri location must point to a directory");
-		}
+		if (!f.exists())
+			throw new ConfigurationException("The platformUri location '" + pathToPlatform + "' does not exist");
+		if (!f.isDirectory())
+			throw new ConfigurationException("The platformUri location must point to a directory");
 		String path = f.getAbsolutePath();
 		try {
 			path = f.getCanonicalPath();
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			log.error("Error when registering platform location", e);
 		}
-		if ((platformRootPath == null) || !platformRootPath.equals(path)) {
+		if (platformRootPath == null || !platformRootPath.equals(path)) {
 			platformRootPath = path;
 			log.info("Registering platform uri '" + path + "'");
 			if (f.exists()) {
 				for (File subdir : f.listFiles(new FileFilter() {
-					public boolean accept(final File arg0) {
-						return arg0.exists() && arg0.isDirectory()
-								&& !arg0.getName().startsWith(".");
+					public boolean accept(File arg0) {
+						return arg0.exists() && arg0.isDirectory() && !arg0.getName().startsWith(".");
 					}
 				})) {
 					String s = subdir.getName();
 					try {
-						URI uri = URI.createFileURI(subdir.getCanonicalPath()
-								+ "/");
+						URI uri = URI.createFileURI(subdir.getCanonicalPath() + "/");
 						EcorePlugin.getPlatformResourceMap().put(s, uri);
-						log.debug("Registering project " + s + " at '"
-								+ subdir.getCanonicalPath() + "'");
-					} catch (IOException e) {
-						throw new ConfigurationException(
-								"Error when registering platform location", e);
+						if (log.isDebugEnabled()) {
+							log.debug("Registering project " + s + " at '" + subdir.getCanonicalPath() + "'");
+						}
+					}
+					catch (IOException e) {
+						throw new ConfigurationException("Error when registering platform location", e);
 					}
 				}
 			}
@@ -105,121 +99,102 @@ public class StandaloneSetup {
 	 * 
 	 * @param uriMap
 	 */
-	
+	@SuppressWarnings("unchecked")
 	public void addUriMap(final Mapping uriMap) {
-		log.info("Adding URI mapping from '" + uriMap.getFrom() + "' to '"
-				+ uriMap.getTo() + "'");
+		log.info("Adding URI mapping from '" + uriMap.getFrom() + "' to '" + uriMap.getTo() + "'");
 		final URI baseUri = URI.createURI(uriMap.getFrom());
 		final URI mappedUri = URI.createURI(uriMap.getTo());
-		if (mappedUri == null) {
-			throw new ConfigurationException("cannot make URI out of "
-					+ uriMap.getTo());
-		}
+		if (mappedUri == null)
+			throw new ConfigurationException("cannot make URI out of " + uriMap.getTo());
+		else {
 		URIConverter.URI_MAP.put(baseUri, mappedUri);
+	}
 	}
 
 	/**
 	 * Adds an extension
 	 * 
 	 * @param m
-	 *            <tt>from</tt>: extension name, <tt>to</tt> factory
-	 *            classname
+	 *            <tt>from</tt>: extension name, <tt>to</tt> factory classname
 	 * @throws ConfigurationException
 	 *             <ul>
-	 *             <li> The factory class for the extension cannot be found
-	 *             <li> The inner factory class for the extension cannot be
-	 *             found
+	 *             <li>The factory class for the extension cannot be found
+	 *             <li>The inner factory class for the extension cannot be found
 	 *             </ul>
 	 */
-	
+	@SuppressWarnings("unchecked")
 	public void addExtensionMap(final Mapping m) throws ConfigurationException {
-		log.info("Adding Extension mapping from '" + m.getFrom() + "' to '"
-				+ m.getTo() + "'");
+		log.info("Adding Extension mapping from '" + m.getFrom() + "' to '" + m.getTo() + "'");
 		try {
 			// locate the factory class of the extension
-			Class factoryClass = ResourceLoaderFactory.createResourceLoader()
-					.loadClass(m.getTo());
-			if (factoryClass == null) {
-				throw new ConfigurationException("cannot find class "
-						+ m.getTo() + " for extension " + m.getFrom());
-			}
+			Class factoryClass = ResourceLoaderFactory.createResourceLoader().loadClass(m.getTo());
+			if (factoryClass == null)
+				throw new ConfigurationException("cannot find class " + m.getTo() + " for extension " + m.getFrom());
 			Object factoryInstance = null;
 			if (factoryClass.isInterface()) {
 				final Class[] innerClasses = factoryClass.getDeclaredClasses();
 				factoryClass = null;
-				for (Class element : innerClasses) {
-					if (Resource.Factory.class
-							.isAssignableFrom(element)) {
-						factoryClass = element;
+				for (int j = 0; j < innerClasses.length; j++) {
+					if (Resource.Factory.class.isAssignableFrom(innerClasses[j])) {
+						factoryClass = innerClasses[j];
 					}
 				}
-				if (factoryClass == null) {
-					throw new ConfigurationException(
-							"cannot find inner factory class " + m.getTo()
-									+ " for extension " + m.getFrom());
-				}
+				if (factoryClass == null)
+					throw new ConfigurationException("cannot find inner factory class " + m.getTo() + " for extension "
+							+ m.getFrom());
 				final Field instanceField = factoryClass.getField("INSTANCE");
 				factoryInstance = instanceField.get(null);
-			} else {
+			}
+			else {
 				factoryInstance = factoryClass.newInstance();
 			}
-			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(
-					m.getFrom(), factoryInstance);
-		} catch (final Exception e) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(m.getFrom(), factoryInstance);
+		}
+		catch (final Exception e) {
 			throw new ConfigurationException(e);
 		}
 	}
 
-	public void addRegisterGeneratedEPackage(final String interfacename) {
-		Class clazz = ResourceLoaderFactory.createResourceLoader().loadClass(
-				interfacename);
-		if (clazz == null) {
-			throw new ConfigurationException("Couldn't find an interface "
-					+ interfacename);
-		}
+	public void addRegisterGeneratedEPackage(String interfacename) {
+		Class clazz = ResourceLoaderFactory.createResourceLoader().loadClass(interfacename);
+		if (clazz == null)
+			throw new ConfigurationException("Couldn't find an interface " + interfacename);
 		try {
-			EPackage pack = (EPackage) clazz.getDeclaredField("eINSTANCE").get(
-					null);
+			EPackage pack = (EPackage) clazz.getDeclaredField("eINSTANCE").get(null);
 			registry.put(pack.getNsURI(), pack);
 			log.info("Adding generated EPackage '" + interfacename + "'");
 
-		} catch (Exception e) {
-			throw new ConfigurationException("Couldn't register "
-					+ interfacename
-					+ ". Is it the generated EPackage interface? : "
-					+ e.getMessage());
+		}
+		catch (Exception e) {
+			throw new ConfigurationException("Couldn't register " + interfacename
+					+ ". Is it the generated EPackage interface? : " + e.getMessage());
 		}
 	}
 
 	protected ResourceSet resourceSet = new ResourceSetImpl();
 	protected Registry registry = EPackage.Registry.INSTANCE;
 
-	public void setResourceSet(final ResourceSet resourceSet) {
+	public void setResourceSet(ResourceSet resourceSet) {
 		log
 				.info("Using resourceSet registry. The registered Packages will not be registered in the global EPackage.Registry.INSTANCE!");
 		this.resourceSet = resourceSet;
 		this.registry = resourceSet.getPackageRegistry();
 	}
 
-	public void setResourceSetImpl(final ResourceSetImpl resourceSet) {
-		this.setResourceSet(resourceSet);
+	public void setResourceSetImpl(ResourceSetImpl resourceSet) {
+		setResourceSet(resourceSet);
 	}
 
-	public void addRegisterEcoreFile(final String fileName)
-			throws IllegalArgumentException, SecurityException,
-			IllegalAccessException, NoSuchFieldException {
-		Resource res = resourceSet.getResource(URI.createURI(fileName), true);
-		if (res == null) {
-			throw new ConfigurationException("Couldn't find resource under  "
-					+ fileName);
-		}
+	public void addRegisterEcoreFile(String fileName) throws IllegalArgumentException, SecurityException {
+		Resource res = resourceSet.getResource(createURI(fileName), true);
+		if (res == null)
+			throw new ConfigurationException("Couldn't find resource under  " + fileName);
 		if (!res.isLoaded()) {
 			try {
 				res.load(null);
-			} catch (IOException e) {
-				throw new ConfigurationException(
-						"Couldn't load resource under  " + fileName + " : "
-								+ e.getMessage());
+			}
+			catch (IOException e) {
+				throw new ConfigurationException("Couldn't load resource under  " + fileName + " : " + e.getMessage());
 			}
 		}
 		List<EObject> result = res.getContents();
@@ -228,18 +203,28 @@ public class StandaloneSetup {
 				String nsUri = ((EPackage) object).getNsURI();
 				if (registry.get(nsUri) == null) {
 					registry.put(nsUri, object);
-					log.info("Adding dynamic EPackage '" + nsUri + "' from '"
-							+ fileName + "'");
-				} else {
-					log.debug("Dynamic EPackage '" + nsUri + "' from '"
-							+ fileName + "' already in the registry!");
+					log.info("Adding dynamic EPackage '" + nsUri + "' from '" + fileName + "'");
+				}
+				else if (log.isDebugEnabled()) {
+					log.debug("Dynamic EPackage '" + nsUri + "' from '" + fileName + "' already in the registry!");
 				}
 			}
 		}
 	}
 
-	public EPackage getPackage(final String nsUri) {
+	public EPackage getPackage(String nsUri) {
 		return (EPackage) registry.get(nsUri);
 	}
 
+	private URI createURI(String path) {
+		if (path == null)
+			throw new IllegalArgumentException();
+
+		URI uri = URI.createURI(path);
+		if (uri.isRelative()) {
+			URI resolvedURI = URI.createFileURI(new File(path).getAbsolutePath());
+			return resolvedURI;
+		}
+		return uri;
+	}
 }

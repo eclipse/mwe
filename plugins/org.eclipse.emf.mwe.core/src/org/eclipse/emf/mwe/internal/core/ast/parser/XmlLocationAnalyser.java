@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 
 public class XmlLocationAnalyser {
-	private final Map<String, XmlFileEvaluator> repository = new HashMap<String, XmlFileEvaluator>();
+	private Map<String, XmlFileEvaluator> repository = new HashMap<String, XmlFileEvaluator>();
 
 	protected ResourceLoader loader;
 
@@ -31,29 +31,28 @@ public class XmlLocationAnalyser {
 	 * 
 	 * @param loc the (raw) location to be adapted
 	 */
-	public Location adapt(final Location loc) {
+	public Location adapt(Location loc) {
 		String resource = loc.getResource();
 		XmlFileEvaluator evaluator = evaluateResource(resource);
 		return evaluator.adapt(loc);
 	}
 
-	public Location adaptEnd(final Location loc) {
+	public Location adaptEnd(Location loc) {
 		String resource = loc.getResource();
 		XmlFileEvaluator evaluator = evaluateResource(resource);
 		return evaluator.adaptEnd(loc);
 	}
 
-	public int findFirstLineOfTag(final String resource, final int lineNumber) {
+	public int findFirstLineOfTag(String resource, int lineNumber) {
 		if (!repository.containsKey(resource)) {
 			evaluateResource(resource);
 		}
 		return repository.get(resource).findFirstLineOfTag(lineNumber);
 	}
 
-	private XmlFileEvaluator evaluateResource(final String resource) {
-		if (loader == null) {
+	private XmlFileEvaluator evaluateResource(String resource) {
+		if (loader == null)
 			loader = ResourceLoaderFactory.createResourceLoader();
-		}
 		InputStream is = loader.getResourceAsStream(resource);
 		XmlFileEvaluator evaluator = new XmlFileEvaluator();
 		evaluator.evaluate(is);
@@ -74,7 +73,7 @@ public class XmlLocationAnalyser {
 
 	public class XmlFileEvaluator {
 
-		private final List<XmlTagValues> values = new ArrayList<XmlTagValues>();
+		private List<XmlTagValues> values = new ArrayList<XmlTagValues>();
 
 		// for test only
 		private List<Object[]> result;
@@ -84,9 +83,8 @@ public class XmlLocationAnalyser {
 		protected boolean inTag, isClosingTag, inName, inInstruction, inComment = false;
 
 		public void evaluate(final InputStream is) {
-			if (is == null) {
+			if (is == null)
 				return;
-			}
 			int c;
 			result = new ArrayList<Object[]>();
 			int offset = 0, column = 0, nameStart = 0, nameEnd = 0, line = 0, tagLine = 0, firstColumn = 0;
@@ -104,12 +102,10 @@ public class XmlLocationAnalyser {
 						break;
 					case '>':
 						if (inTag) {
-							if (nameEnd == 0) {
+							if (nameEnd == 0)
 								nameEnd = offset - specChar.length();
-							}
-							if (line != tagLine) {
+							if (line != tagLine)
 								firstColumn = 0;
-							}
 							XmlTagValues value = new XmlTagValues();
 							value.firstLineOfTag = tagLine + 1;
 							value.lastLineOfTag = line + 1;
@@ -133,24 +129,21 @@ public class XmlLocationAnalyser {
 						}
 						break;
 					case '/':
-						if (inTag && !inInstruction && (name.length() == 0)) {
+						if (inTag && !inInstruction && name.length() == 0)
 							isClosingTag = true;
-						}
 						specChar.append((char) c);
 						break;
 					case '!':
-						if (inTag && !inInstruction && (name.length() == 0)) {
+						if (inTag && !inInstruction && name.length() == 0) {
 							specChar.append((char) c);
-						} else {
+						} else
 							consume(c);
-						}
 						break;
 					case '-':
-						if ((inTag && (name.length() == 0)) || inComment) {
+						if (inTag && name.length() == 0 || inComment) {
 							specChar.append((char) c);
-						} else {
+						} else
 							consume(c);
-						}
 						if (specChar.toString().endsWith("!--")) {
 							inTag = false;
 							inInstruction = false;
@@ -159,14 +152,13 @@ public class XmlLocationAnalyser {
 						}
 						break;
 					case '?':
-						if (inTag && !inInstruction && (name.length() == 0)) {
+						if (inTag && !inInstruction && name.length() == 0) {
 							inTag = false;
 							inInstruction = true;
 						} else if (inInstruction) {
 							specChar.append((char) c);
-						} else {
+						} else
 							consume(c);
-						}
 						break;
 					case ' ':
 					case '\t':
@@ -193,7 +185,7 @@ public class XmlLocationAnalyser {
 						consume(c);
 						break;
 					default:
-						if (inTag && !inName && (name.length() == 0)) {
+						if (inTag && !inName && name.length() == 0) {
 							specChar = new StringBuffer();
 							inName = true;
 							nameStart = offset;
@@ -210,16 +202,14 @@ public class XmlLocationAnalyser {
 			}
 		}
 
-		private void consume(final int c) {
-			if (inName) {
+		private void consume(int c) {
+			if (inName)
 				name.append(specChar.toString() + (char) c);
-			} else if (name.length() > 0) {
+			else if (name.length() > 0)
 				otherText.append(specChar.toString() + (char) c);
-			}
-			if (specChar.length() > 0) {
+			if (specChar.length() > 0)
 				specChar = new StringBuffer();
 			}
-		}
 
 		private void reset() {
 			otherText = new StringBuffer();
@@ -232,38 +222,35 @@ public class XmlLocationAnalyser {
 			inComment = false;
 		}
 
-		protected int findFirstLineOfTag(final int lineNumber) {
+		protected int findFirstLineOfTag(int lineNumber) {
 			for (XmlTagValues value : values) {
-				if ((lineNumber >= value.firstLineOfTag) && (lineNumber <= value.lastLineOfTag)) {
+				if (lineNumber >= value.firstLineOfTag && lineNumber <= value.lastLineOfTag)
 					return value.firstLineOfTag;
 				}
-			}
 			return -1;
 		}
 
-		public Location adapt(final Location rawLoc) {
+		public Location adapt(Location rawLoc) {
 			XmlTagValues value = findLine(rawLoc);
-			if (value == null) {
+			if (value == null) // should not occur
 				return null;
-			}
 			Location loc = new Location(value.firstLineOfTag, 0, rawLoc.getResource());
 			loc.setNameStart(value.nameStart);
 			loc.setNameEnd(value.nameEnd);
 			return loc;
 		}
 
-		protected Location adaptEnd(final Location rawLoc) {
+		protected Location adaptEnd(Location rawLoc) {
 			int line = rawLoc.getLineNumber();
 			int col = rawLoc.getColumnNumber();
 			String name1 = null;
 			XmlTagValues potentialValue = null;
 			for (XmlTagValues value : values) {
-				if ((name1 == null) && (line == value.firstLineOfTag) && (col >= value.firstColumn) && (col <= value.endColumn)) {
+				if (name1 == null && line == value.firstLineOfTag && col >= value.firstColumn && col <= value.endColumn)
 					name1 = value.name;
-				}
-				if ((name1 == null) && (line < value.firstLineOfTag)) {
+				if (name1 == null && line < value.firstLineOfTag)
 					name1 = potentialValue.name;
-				} else if (value.name.equals(name1) && value.isClosingTag) {
+				else if (value.name.equals(name1) && value.isClosingTag) {
 					Location loc = new Location(value.firstLineOfTag, 0, rawLoc.getResource());
 					loc.setNameStart(value.nameStart);
 					loc.setNameEnd(value.nameEnd);
@@ -274,10 +261,10 @@ public class XmlLocationAnalyser {
 			return null; // no end tag found; can that occur?
 		}
 
-		protected XmlTagValues findLine(final Location loc) {
-			if (values.isEmpty()) {
+		@SuppressWarnings("null")
+		protected XmlTagValues findLine(Location loc) {
+			if (values.isEmpty())
 				return null;
-			}
 			int line = loc.getRawLineNumber();
 			int col = loc.getColumnNumber();
 			List<XmlTagValues> potentialValues = new ArrayList<XmlTagValues>();
@@ -291,35 +278,30 @@ public class XmlLocationAnalyser {
 					}
 					continue;
 				}
-				if (((line >= value.firstLineOfTag) && (line < nextValue.firstLineOfTag)) || (value.firstLineOfTag == nextValue.firstLineOfTag)) {
+				if (line >= value.firstLineOfTag && line < nextValue.firstLineOfTag || value.firstLineOfTag == nextValue.firstLineOfTag)
 					potentialValues.add(value);
-				}
 				value = nextValue; // TODO: CK: low: check when we can break
 			}
 			// last tag
-			if (potentialValues.isEmpty() || (line == value.firstLineOfTag)) {
+			if (potentialValues.isEmpty() || line == value.firstLineOfTag)
 				potentialValues.add(value);
-			}
 			value = handleColumns(col, potentialValues);
 			return value;
 		}
 
-		protected XmlTagValues handleColumns(final int col, final List<XmlTagValues> values) {
-			if (values.size() == 1) {
+		protected XmlTagValues handleColumns(int col, List<XmlTagValues> values) {
+			if (values.size() == 1)
 				return values.get(0);
-			}
 			XmlTagValues value = null;
 			for (XmlTagValues nextValue : values) {
 				if (value == null) {
 					value = nextValue;
-					if (col < value.firstColumn) {
+					if (col < value.firstColumn)
 						return value;
-					}
 					continue;
 				}
-				if ((col >= value.firstColumn) && (col < nextValue.firstColumn)) {
+				if (col >= value.firstColumn && col < nextValue.firstColumn)
 					return value;
-				}
 				value = nextValue;
 			}
 			return value;

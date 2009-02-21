@@ -20,15 +20,17 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RegisterPackage;
 
 /**
- * This manager class listens for requests from the debug server to instantiate handlers or adapters.<br>
- * It initiates the handlers and registers adapters at the <code>DebugMonitor</code> instance.
+ * This manager class listens for requests from the debug server to instantiate
+ * handlers or adapters.<br>
+ * It initiates the handlers and registers adapters at the
+ * <code>DebugMonitor</code> instance.
  */
 public class RuntimeHandlerManager implements Runnable {
 
 	private Connection connection;
 
 	private final DebugMonitor monitor;
-	
+
 	private static final Log logger = LogFactory.getLog(RuntimeHandlerManager.class);
 
 	// -------------------------------------------------------------------------
@@ -54,7 +56,9 @@ public class RuntimeHandlerManager implements Runnable {
 
 	// -------------------------------------------------------------------------
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
@@ -62,14 +66,16 @@ public class RuntimeHandlerManager implements Runnable {
 			while (true) {
 				listenAndRegisterClasses();
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			if (!(e instanceof IOException)) {
 				logger.error(e.getMessage(), e);
 			}
 		}
 	}
 
-	private void listenAndRegisterClasses() throws InstantiationException, IllegalAccessException, ClassNotFoundException, IOException {
+	private void listenAndRegisterClasses() throws InstantiationException, IllegalAccessException,
+			ClassNotFoundException, IOException {
 
 		RegisterPackage packet = (RegisterPackage) connection.listenForPackage(RegisterPackage.class);
 
@@ -88,7 +94,8 @@ public class RuntimeHandlerManager implements Runnable {
 				handler.init(monitor, connection);
 				handler.startListener();
 			}
-		} else {
+		}
+		else {
 			ElementAdapter adapter = null;
 			for (String className : packet.classNames) {
 				final Class<?> clazz = ResourceLoaderFactory.createResourceLoader().loadClass(className);

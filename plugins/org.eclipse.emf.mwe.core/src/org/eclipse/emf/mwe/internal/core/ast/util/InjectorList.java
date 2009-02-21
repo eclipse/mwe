@@ -28,7 +28,7 @@ public class InjectorList implements Injector {
         return name;
     }
 
-    
+    @SuppressWarnings("unchecked")
 	public void setValue(final Object target, final Object val) {
         try {
             ((List<Object>) getter.invoke(target, new Object[0])).add(val);

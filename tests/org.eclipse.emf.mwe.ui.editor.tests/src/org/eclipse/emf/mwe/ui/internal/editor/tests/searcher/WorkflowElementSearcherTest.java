@@ -24,13 +24,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class WorkflowElementSearcherTest extends TestCase {
 
 	private static final String WORKFLOW1 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
-			+ "	\n" + "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+			+ "	\n" + "	<component class=\"org.eclipse.xtext.parser.ParserComponent\">\n"
 			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n"
 			+ "	</component>\n" + "	\n" + "	<component class=\"oaw.xtend.XtendComponent\">\n"
 			+ "	   <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
@@ -44,7 +44,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 			+ "	</component>\n" + "	\n" + "</workflow>\n";
 
 	private static final String WORKFLOW2 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
-			+ "	\n" + "	<component class=\"org.openarchitectureware.xtext.parser.ParserComponent\">\n"
+			+ "	\n" + "	<component class=\"org.eclipse.xtext.parser.ParserComponent\">\n"
 			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n";
 
 	private static final String WORKFLOW3 = "<workflow>\n" + "	<property file=\'generate.properties\'/>\n"
@@ -59,7 +59,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
+		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
 	}
 
 	public void testFindContainerPartialWorkflow1() {
@@ -70,7 +70,7 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.openarchitectureware.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
+		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
 	}
 
 	public void testFindContainerPartialWorkflow2() {

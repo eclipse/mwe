@@ -29,8 +29,9 @@ import org.eclipse.jdt.core.JavaCore;
  * FIXME: Refactor this class to repect the EMFPlugin 
  */
 public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
-    private final ClassLoader projectCL;
+    private ClassLoader projectCL;
     
+
 	public ProjectIncludingResourceLoader(final IProject project) throws CoreException {
 		super();
 		projectCL = createClassLoader(project);
@@ -52,7 +53,7 @@ public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
 				url[i] = javacp[i].getPath().toFile().toURL();
 			} catch (MalformedURLException e) {
 				Activator.logError(e);
-			}
+		}
 		}
 		return new URLClassLoader(url);
 	}

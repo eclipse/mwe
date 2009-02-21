@@ -44,15 +44,15 @@ import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
  */
 public class DebugTarget extends DebugElement implements IDebugTarget {
 
-	private final IProcess fProcess;
+	private IProcess fProcess;
 
-	private final ILaunch fLaunch;
+	private ILaunch fLaunch;
 
 	private DebugThread fThread;
 
-	private final DebugModelManager dmm;
+	private DebugModelManager dmm;
 
-	private final Map<Integer, DebugValue> valueCache = new HashMap<Integer, DebugValue>();
+	private Map<Integer, DebugValue> valueCache = new HashMap<Integer, DebugValue>();
 
 	protected boolean suspended;
 
@@ -76,7 +76,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return target[0];
 	}
 
-	private DebugTarget(final ILaunch launch, final IProcess process, final Connection conn) throws DebugException {
+	private DebugTarget(ILaunch launch, IProcess process, Connection conn) throws DebugException {
 		super(null);
 		fLaunch = launch;
 		target = this;
@@ -129,14 +129,14 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return dmm;
 	}
 
-	public DebugValue getDebugValue(final VarValueTO varTO) {
+	public DebugValue getDebugValue(VarValueTO varTO) {
 		DebugValue value = null;
 		int valueId = varTO.valueId;
 
-		if (valueId == 0) {
+		if (valueId == 0)
 			// don't cache primitives
 			value = new DebugValue(this, varTO);
-		} else {
+		else {
 			value = valueCache.get(valueId);
 			if (value == null) {
 				value = new DebugValue(this, varTO);
@@ -146,10 +146,10 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return value;
 	}
 
-	public void updateDebugValues(final List<VarValueTO> vars) {
+	public void updateDebugValues(List<VarValueTO> vars) {
 		for (VarValueTO varTO : vars) {
 			DebugValue value = valueCache.get(varTO.valueId);
-			if ((value != null) && value.isDirty()) {
+			if (value != null && value.isDirty()) {
 				value.setVarTO(varTO);
 			}
 		}
@@ -177,17 +177,15 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		dmm.requireSuspend();
 	}
 
-	public void setSuspended(final boolean value) {
+	public void setSuspended(boolean value) {
 		suspended = value;
 	}
 
 	public void setVariablesDirty() {
-		for (DebugValue entry : valueCache.values()) {
-			if (entry != null) {
+		for (DebugValue entry : valueCache.values())
+			if (entry != null)
 				entry.setDirty(true);
 			}
-		}
-	}
 
 	// ***************** Breakpoint handling, IBreakpointListener implementation
 

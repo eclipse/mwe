@@ -41,20 +41,16 @@ public class InjectorPut implements Injector {
 
 	public Class<?> getRequiredType() {
 		Class<?> defaultClass = putMethod.getParameterTypes()[1];
-		Class<?> overriddenClass = WorkflowCustomization
-				.getKeywordMapping(getName());
-		if (overriddenClass != null) {
-			if (!defaultClass.isAssignableFrom(overriddenClass)) {
-				throw new RuntimeException("the customized class '"
-						+ overriddenClass.getName() + "' for the keyword '"
-						+ getName()
-						+ "' is not a subtype of the default class '"
-						+ defaultClass.getName()
-						+ "'; falling back to default.");
-			}
+        Class<?> overriddenClass = WorkflowCustomization.getKeywordMapping(getName());
+        if ( overriddenClass != null ) {
+        	if ( !defaultClass.isAssignableFrom(overriddenClass)) {
+                throw new RuntimeException( "the customized class '"+overriddenClass.getName()+"' for the keyword '"+
+                		getName()+"' is not a subtype of the default class '"+defaultClass.getName()+"'; falling back to default.");
+        	} else {
 			return overriddenClass;
 		}
+        } else {
 		return defaultClass;
-
+        }    	
 	}
 }

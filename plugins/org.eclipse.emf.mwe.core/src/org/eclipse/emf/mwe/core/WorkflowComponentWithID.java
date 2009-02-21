@@ -18,19 +18,25 @@ package org.eclipse.emf.mwe.core;
 public interface WorkflowComponentWithID extends WorkflowComponent {
 
 	/**
-	 * Sets the Id of the component.
-	 * @param id Component Id.
+	 * Sets the ID of the workflow component.
+	 * 
+	 * @param id
+	 *            the ID
 	 */
     public void setId(String id);
 
     /**
-     * Retrieves the Id of the component.
-     * @return Component Id.
+	 * Returns the ID of the component.
+	 * 
+	 * @return the component ID
      */
     public String getId();
 
     /**
-     * Retrieves a log message that can be reported to the execution log.
+	 * Returns the log message,
+	 * 
+	 * @return the log message
      */
     public String getLogMessage();
+
 }

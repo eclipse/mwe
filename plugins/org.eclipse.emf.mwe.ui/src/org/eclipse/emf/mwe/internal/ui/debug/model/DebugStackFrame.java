@@ -24,10 +24,12 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.ui.VariableSorter;
 
 /**
  * MWE Debug StackFrame implementation.<br>
- * Each debugger step is represented by a stack frame. It holds the variables that belong to that frame. It
- * provides all information important for the Source code display. <br>
+ * Each debugger step is represented by a stack frame. It holds the variables
+ * that belong to that frame. It provides all information important for the
+ * Source code display. <br>
  * <br>
- * For Info: In the MWE debug model all processing methods are delegated either to DebugTarget or DebugThread.
+ * For Info: In the MWE debug model all processing methods are delegated either
+ * to DebugTarget or DebugThread.
  * 
  */
 public class DebugStackFrame extends DebugElement implements IStackFrame {
@@ -56,13 +58,15 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 
 	public synchronized IVariable[] getVariables() throws DebugException {
 		if (!variablesChecked) {
-			// Hint: we assume that when clicking a frame or opening the variables view at first this method is
-			// called. Therefore we remember the current stackFrame number in thread and use it when collecting
+			// Hint: we assume that when clicking a frame or opening the
+			// variables view at first this method is
+			// called. Therefore we remember the current stackFrame number in
+			// thread and use it when collecting
 			// sub variables.
-			List<VarValueTO> vars = getDebugModelManager().requireVariables(thread.getSetVarFrameId(this));
+			final List<VarValueTO> vars = getDebugModelManager().requireVariables(thread.getSetVarFrameId(this));
 			variables.clear();
-			for (VarValueTO varTO : vars) {
-				DebugVariable var = new DebugVariable(getDebugTarget0(), varTO);
+			for (final VarValueTO varTO : vars) {
+				final DebugVariable var = new DebugVariable(getDebugTarget0(), varTO);
 				variables.add(var);
 			}
 			VariableSorter.sort(variables);
@@ -101,17 +105,17 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 
 	public String getType() {
 		return frameValues.type;
-		
+
 	}
 
 	public int getFrameId() {
 		return frameValues.frameId;
-		
+
 	}
 
 	public boolean isVisible() {
 		return frameValues.visible;
-		
+
 	}
 
 	public IRegisterGroup[] getRegisterGroups() {

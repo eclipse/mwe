@@ -36,17 +36,16 @@ import org.eclipse.jdt.launching.sourcelookup.containers.JavaProjectSourceContai
 public class SourceFolderSourceContainer extends CompositeSourceContainer {
 
 	// Java project
-	private final IJavaProject fProject;
+	private IJavaProject fProject;
 
 	// Source folders
 	private ISourceContainer[] fSourceFolders;
 
 	public static final String TYPE_ID = Activator.PLUGIN_ID + ".sourceFolderSourceContainer";
 
-	public SourceFolderSourceContainer(final IJavaProject project) {
-		if (project == null) {
+	public SourceFolderSourceContainer(IJavaProject project) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 		fProject = project;
 	}
 
@@ -68,7 +67,8 @@ public class SourceFolderSourceContainer extends CompositeSourceContainer {
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			if (fProject.getProject().isOpen()) {
 				IClasspathEntry[] entries = fProject.getRawClasspath();
-				for (IClasspathEntry entry : entries) {
+				for (int i = 0; i < entries.length; i++) {
+					IClasspathEntry entry = entries[i];
 					switch (entry.getEntryKind()) {
 					case IClasspathEntry.CPE_SOURCE:
 						IPath path = entry.getPath();
@@ -99,7 +99,7 @@ public class SourceFolderSourceContainer extends CompositeSourceContainer {
 	}
 
 	@Override
-	public Object[] findSourceElements(final String name) throws CoreException {
+	public Object[] findSourceElements(String name) throws CoreException {
 		// force container initialization
 		getSourceContainers();
 		return findSourceElements(name, fSourceFolders);

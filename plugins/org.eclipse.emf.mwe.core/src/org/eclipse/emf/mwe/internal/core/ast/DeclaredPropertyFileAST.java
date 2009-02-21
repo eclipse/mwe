@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
 
 public class DeclaredPropertyFileAST extends AbstractASTBase {
-	private static final Log log = LogFactory.getLog(DeclaredPropertyAST.class);
+    private final Log log = LogFactory.getLog(getClass());
 
 	private String file;
 
@@ -48,9 +48,8 @@ public class DeclaredPropertyFileAST extends AbstractASTBase {
 	public Properties getProperties(final ResourceLoader loader) {
 		if (properties == null) {
 			final InputStream in = loader.getResourceAsStream(getFile());
-			if (in == null) {
+            if (in == null)
 				return null;
-			}
 			try {
 				properties = new Properties();
 				properties.load(in);
@@ -59,6 +58,7 @@ public class DeclaredPropertyFileAST extends AbstractASTBase {
 			} catch (final IOException e) {
 				log.error(e.getMessage(), e);
 			} finally {
+                if (in != null) {
 				try {
 					in.close();
 				} catch (final IOException e) {
@@ -66,6 +66,7 @@ public class DeclaredPropertyFileAST extends AbstractASTBase {
 				}
 			}
 		}
+        }
 		return properties;
 	}
 
@@ -80,23 +81,19 @@ public class DeclaredPropertyFileAST extends AbstractASTBase {
 		file = string;
 	}
 
-	private synchronized void loadPropertyNames(final InputStream inStream)
-			throws IOException {
+    private synchronized void loadPropertyNames(final InputStream inStream) throws IOException {
 		propertyNames = new ArrayList<String>();
-		final BufferedReader in = new BufferedReader(new InputStreamReader(
-				inStream, "8859_1"));
+        final BufferedReader in = new BufferedReader(new InputStreamReader(inStream, "8859_1"));
 		while (true) {
 			final String line = in.readLine();
-			if (line == null) {
+            if (line == null)
 				return;
-			}
 
 			if (line.length() > 0) {
 				final int sep = line.indexOf('=');
 				if (sep != -1) {
 					final String key = line.substring(0, sep).trim();
-					if ((key.length() > 0) && (key.indexOf(' ') == -1)
-							&& (key.indexOf('#') == -1) && (key.indexOf('!') == -1)) {
+                    if (key.length() > 0 && key.indexOf(' ') == -1 && key.indexOf('#') == -1 && key.indexOf('!') == -1) {
 						propertyNames.add(key);
 					}
 				}

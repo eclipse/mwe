@@ -15,7 +15,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
 
 public class DeclaredPropertyAST extends AbstractASTBase {
 
-    private final String name;
+    private String name;
 
     private String value;
 

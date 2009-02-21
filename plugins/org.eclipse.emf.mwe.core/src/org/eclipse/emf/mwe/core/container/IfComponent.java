@@ -10,29 +10,36 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core.container;
 
-
 public class IfComponent extends ConditionalComponent {
 
-    public IfComponent() {
-        super("if");
-    }
+	public IfComponent() {
+		super("if");
+	}
 
-    private String condition = null;
+	private String condition = null;
 
-    public void setCond(final String condition) {
-        this.condition = condition;
-    }
+	/**
+	 * Sets the condition.
+	 * 
+	 * @param condition
+	 *            the condition
+	 */
+	public void setCond(final String condition) {
+		this.condition = condition;
+	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.container.WorkflowConditional#evaluate()
+	 */
 	public boolean evaluate() {
 		return Boolean.valueOf(condition).booleanValue();
 	}
-	
-    @Override
+
+	/**
+	 * @see org.eclipse.emf.mwe.core.container.CompositeComponent#getLogMessage()
+	 */
+	@Override
 	public String getLogMessage() {
-    	return "if ( "+condition+" ): "+evaluate();
-    }
-
-	
-	
-
+		return "if ( " + condition + " ): " + evaluate();
+	}
 }

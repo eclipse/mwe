@@ -72,7 +72,8 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 					LOG.info("Cleaning " + f.getAbsolutePath());
 					try {
 						cleanFolder(f.getAbsolutePath());
-					} catch (FileNotFoundException e) {
+					}
+					catch (FileNotFoundException e) {
 						issues.addError(e.getMessage());
 					}
 				}
@@ -112,16 +113,16 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 	public boolean cleanFolder(File parentFolder, final FileFilter filter, boolean continueOnError,
 			boolean deleteParentFolder) throws FileNotFoundException {
-		if (!parentFolder.exists()) {
+		if (!parentFolder.exists())
 			throw new FileNotFoundException(parentFolder.getAbsolutePath());
-		}
 		FileFilter myFilter = filter;
-		if (myFilter == null)
+		if (myFilter == null) {
 			myFilter = new FileFilter() {
 				public boolean accept(File pathname) {
 					return true;
 				}
 			};
+		}
 		LOG.debug("Cleaning folder " + parentFolder.toString());
 		final File[] contents = parentFolder.listFiles(myFilter);
 		for (int j = 0; j < contents.length; j++) {
@@ -129,7 +130,8 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 			if (file.isDirectory()) {
 				if (!cleanFolder(file, myFilter, continueOnError, false) && !continueOnError)
 					return false;
-			} else {
+			}
+			else {
 				if (!file.delete()) {
 					LOG.error("Couldn't delete " + file.getAbsolutePath());
 					if (!continueOnError)
@@ -186,36 +188,33 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 	}
 
 }
-
 /*******************************************************************************
  * $Log: DirectoryCleaner.java,v $
- * Revision 1.11  2009/02/20 00:33:32  pschonbac
- * bug 265575: Behaviour of DirectoryCleaner has been altered
- * https://bugs.eclipse.org/bugs/show_bug.cgi?id=265575
+ * Revision 1.12  2009/02/21 23:32:55  pschonbac
+ * Merged changes from oAW 4.3.1
  *
- * Revision 1.10  2009/02/19 16:25:09  sefftinge
- * directory cleaner fixed
- * Revision 1.9 2009/02/11 16:17:09 jkohnlein
- * Removed dependencies to oAW.
+ * Revision 1.18  2009/02/20 00:49:12  pschoenb
+ * Restored original behavior of DirectoryCleaner. There has been some loss of functionality because of the latest changes.
  *
- * Revision 1.8 2009/02/02 15:37:47 pschonbac JavaDoc fixed Revision 1.7
- * 2009/02/02 15:33:58 pschonbac Message fixed Revision 1.6 2009/02/02 15:29:49
- * pschonbac Message improved Revision 1.5 2009/01/30 15:26:37 pschonbac bug
- * 221820: DirectoryCleaner should have an exclude property and default excludes
+ * Revision 1.17  2009/02/02 22:45:34  pschoenb
+ * Error message improved
+ *
+ * Revision 1.16  2009/01/30 14:55:53  pschoenb
+ * bug 221820: DirectoryCleaner should have an exclude property and default excludes
  * https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
  *
- * ...furthermore, wrong path name fixed. Revision 1.16 2009/01/30 14:55:53
- * pschoenb bug 221820: DirectoryCleaner should have an exclude property and
- * default excludes https://bugs.eclipse.org/bugs/show_bug.cgi?id=221820
+ * Revision 1.15  2009/01/15 14:12:34  kthoms
+ * Removed deprecated code
  *
- * Revision 1.15 2009/01/15 14:12:34 kthoms Removed deprecated code
+ * Revision 1.14  2008/12/23 21:53:35  pschoenb
+ * Merged from branch B_v43
  *
- * Revision 1.14 2008/12/23 21:53:35 pschoenb Merged from branch B_v43
- *
- * Revision 1.13.4.7 2008/11/06 17:41:24 pschoenb Default exclude fixed.
- * Revision 1.13.4.6 2008/11/06 17:40:15 pschoenb Excluding mechanism
- * implemented as requested by Markus Völter. Revision 1.13.4.5 2008/10/29
- * 22:00:52 kthoms added 'setDirectories' for backwards compatibility reasons.
+ * Revision 1.13.4.7  2008/11/06 17:41:24  pschoenb
+ * Default exclude fixed.
+ * Revision 1.13.4.6 2008/11/06 17:40:15
+ * pschoenb Excluding mechanism implemented as requested by Markus Völter.
+ * Revision 1.13.4.5 2008/10/29 22:00:52 kthoms added 'setDirectories' for
+ * backwards compatibility reasons.
  *
  * Revision 1.13.4.4 2008/10/27 22:58:53 pschoenb bug 251828: JavaDoc for
  * Workflow Components https://bugs.eclipse.org/bugs/show_bug.cgi?id=251828

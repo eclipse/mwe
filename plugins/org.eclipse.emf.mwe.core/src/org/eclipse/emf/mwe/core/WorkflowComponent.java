@@ -24,44 +24,46 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
  * {@link #invoke(WorkflowContext, ProgressMonitor)} method at the appropriate
  * time to execute the component's service.
  * 
+ * @author Sven Efftinge (http://www.efftinge.de)
  */
 public interface WorkflowComponent {
 
     /**
-	 * Invokes the component.
+	 * Invokes the workflow component.
 	 * 
      * @param ctx
-     *            current workflow context
+	 *            the current workflow context
      * @param monitor
      *            implementors should provide some feedback about the progress
      *            using this monitor
      * @param issues
+	 *            facility for reporting possible issues that occur during
+	 *            invocation
      */
     public void invoke(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
 
     /**
-	 * Called by the container after configuration so the component can validate
-	 * the configuration before invocation.
+	 * Validates the configuration before invocation.
      * 
 	 * @param issues
-     *            implementors should report configuration issues to this.
+	 *            facility for reporting configuration issues.
      */
     public void checkConfiguration(Issues issues);
     
     /**
-	 * Returns the containing component if there is one.
+	 * Returns the containing component, if there is one.
 	 * 
-	 * @return the containing component
+	 * @return the container
      */
     public CompositeComponent getContainer();
     
     /**
-	 * Sets the containing component.
+	 * Sers the containing component.
 	 * 
 	 * @param container
 	 *            the containing component
      */
-    public void setContainer( CompositeComponent container );
+	public void setContainer(CompositeComponent container);
     
     /**
 	 * Sets the location in the source file that invokes the current component.
@@ -69,10 +71,11 @@ public interface WorkflowComponent {
 	 * @param location
 	 *            the location
      */
-    public void setLocation( Location location);
+	public void setLocation(Location location);
     
     /**
-	 * Returns the location.
+	 * Returns the location in the source file that invokes the current
+	 * component.
 	 * 
      * @return the location
      */
@@ -82,6 +85,8 @@ public interface WorkflowComponent {
 	 * Returns the name of the component.
 	 * 
 	 * @return the component name
+	 * @since 4.3.1
 	 */
 	public String getComponentName();
+
 }

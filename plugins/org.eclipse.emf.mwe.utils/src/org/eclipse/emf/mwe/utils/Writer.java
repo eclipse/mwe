@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
@@ -38,6 +38,8 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	}
 
 	private boolean OPTION_SCHEMA_LOCATION_IMPLEMENTATION = true;
+
+	private String encoding = null;
 
 	private boolean multipleResourcesInCaseOfList = false;
 
@@ -121,7 +123,6 @@ public class Writer extends AbstractEMFWorkflowComponent {
 				r.getContents().add((EObject) slotContent);
 				write(r);
 			}
-
 		}
 	}
 
@@ -137,10 +138,13 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		try {
 			Map<String, Object> options = new HashMap<String, Object>();
 			if (OPTION_SCHEMA_LOCATION) {
-				options.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+				options.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 			}
 			if (OPTION_SCHEMA_LOCATION_IMPLEMENTATION) {
-				options.put(XMLResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+				options.put(XMIResource.OPTION_SCHEMA_LOCATION_IMPLEMENTATION, Boolean.TRUE);
+			}
+			if (encoding != null) {
+				options.put(XMIResource.OPTION_ENCODING, encoding);
 			}
 			r.save(options);
 		}

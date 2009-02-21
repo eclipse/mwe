@@ -21,21 +21,20 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ColorManager {
 
-	protected Map fColorTable = new HashMap(10);
+    protected Map<RGB,Color> fColorTable = new HashMap<RGB,Color>(10);
 
 	public void dispose() {
-		final Iterator e = fColorTable.values().iterator();
-		while (e.hasNext()) {
-			((Color) e.next()).dispose();
-		}
+        final Iterator<Color> e = fColorTable.values().iterator();
+        while (e.hasNext())
+            (e.next()).dispose();
 	}
 
 	public Color getColor(final RGB rgb) {
-		Color color = (Color) fColorTable.get(rgb);
+        Color color = fColorTable.get(rgb);
 		if (color == null) {
 			color = new Color(Display.getCurrent(), rgb);
 			fColorTable.put(rgb, color);

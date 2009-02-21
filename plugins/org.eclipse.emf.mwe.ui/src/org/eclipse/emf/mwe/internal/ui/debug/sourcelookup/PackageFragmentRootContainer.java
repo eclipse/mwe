@@ -26,15 +26,15 @@ import org.eclipse.jdt.core.IPackageFragmentRoot;
  */
 public class PackageFragmentRootContainer extends AbstractSourceContainer {
 
-	private final IPackageFragmentRoot fRoot;
+	private IPackageFragmentRoot fRoot;
 
 	public static final String TYPE_ID = Activator.PLUGIN_ID + ".packageFragmentRootContainer";
 
-	public PackageFragmentRootContainer(final IPackageFragmentRoot root) {
+	public PackageFragmentRootContainer(IPackageFragmentRoot root) {
 		fRoot = root;
 	}
 
-	public Object[] findSourceElements(final String name) throws CoreException {
+	public Object[] findSourceElements(String name) throws CoreException {
 		int index = name.lastIndexOf('.');
 		String typeName = name;
 		String suffix = "";
@@ -58,12 +58,11 @@ public class PackageFragmentRootContainer extends AbstractSourceContainer {
 			for (Object resource : resources) {
 				if (resource instanceof IStorage) {
 					IStorage storage = (IStorage) resource;
-					if (elementName.equals(storage.getName())) {
+					if (elementName.equals(storage.getName()))
 						return new Object[] { resource };
 					}
 				}
 			}
-		}
 		return EMPTY;
 	}
 
@@ -77,7 +76,7 @@ public class PackageFragmentRootContainer extends AbstractSourceContainer {
 
 	@Override
 	public boolean equals(final Object obj) {
-		return (obj instanceof PackageFragmentRootContainer)
+		return obj instanceof PackageFragmentRootContainer
 				&& ((PackageFragmentRootContainer) obj)
 						.getPackageFragmentRoot().equals(
 								getPackageFragmentRoot());

@@ -27,7 +27,7 @@ import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
  */
 public class DebugThread extends DebugElement implements IThread {
 
-	private final Stack<DebugStackFrame> frames = new Stack<DebugStackFrame>();
+	private Stack<DebugStackFrame> frames = new Stack<DebugStackFrame>();
 
 	private MWEBreakpoint bp;
 

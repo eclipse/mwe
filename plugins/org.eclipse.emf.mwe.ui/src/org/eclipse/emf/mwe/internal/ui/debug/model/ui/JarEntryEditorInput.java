@@ -42,7 +42,6 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 		return fJarEntryFile.getFullPath().makeRelative().toString();
 	}
 
-	@Override
 	public ImageDescriptor getImageDescriptor() {
 		IEditorRegistry registry = PlatformUI.getWorkbench()
 				.getEditorRegistry();
@@ -50,13 +49,21 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 				.getFileExtension());
 	}
 
-	@Override
+	public boolean exists() {
+		// JAR entries can't be deleted
+		return true;
+	}
 	
-	public Object getAdapter(final Class adapter) {
+	@SuppressWarnings("unchecked")
+	public Object getAdapter(Class adapter) {
 		if (adapter == IStorage.class) {
 			return fJarEntryFile;
 		}
         return fJarEntryFile.getAdapter(adapter);
+	}
+
+	public IStorage getStorage() {
+		return fJarEntryFile;
 	}
 
 }

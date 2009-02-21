@@ -29,7 +29,7 @@ public class VarValue {
 
 	// -------------------------------------------------------------------------
 
-	public VarValue(final Object element, final int id) {
+	public VarValue(Object element, int id) {
 		this.element = element;
 		this.id = id;
 	}

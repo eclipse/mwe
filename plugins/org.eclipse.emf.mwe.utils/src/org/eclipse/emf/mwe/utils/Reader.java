@@ -42,14 +42,14 @@ public class Reader extends AbstractEMFWorkflowComponent {
 	}
 
 	@Override
-	public void checkConfiguration(final Issues issues) {
+	public void checkConfiguration(Issues issues) {
 		super.checkConfiguration(issues);
 		if (uri == null) {
 			issues.addError("URI not set");
 		}
 	}
 
-	public static Object load(final ResourceSet resourceSet, final String uri, final boolean firstElementOnly) {
+	public static Object load(ResourceSet resourceSet, String uri, boolean firstElementOnly) {
 		Resource res = resourceSet.getResource(URI.createURI(uri), true);
 		if (res == null)
 			throw new WorkflowInterruptedException("Couldn't find resource under " + uri);
@@ -67,14 +67,15 @@ public class Reader extends AbstractEMFWorkflowComponent {
 				return null;
 			return result.iterator().next();
 		}
+		else
 		return result;
 	}
 
-	public void setFirstElementOnly(final boolean firstElementOnly) {
+	public void setFirstElementOnly(boolean firstElementOnly) {
 		this.firstElementOnly = firstElementOnly;
 	}
 
-	public void setMakeEPackagesGlobal(final boolean makeEPackagesGlobal) {
+	public void setMakeEPackagesGlobal(boolean makeEPackagesGlobal) {
 		this.makeEPackagesGlobal = makeEPackagesGlobal;
 	}
 
@@ -83,10 +84,8 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		return "Loading model from " + uri;
 	}
 
-	/**
-	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
-	 */
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
+
 }

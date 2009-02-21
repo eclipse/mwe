@@ -21,19 +21,18 @@ import org.eclipse.core.runtime.Platform;
 
 public class PluginConfigurationElementUtil {
 
-	public static String getConfigAttribute(final String path) {
+	public static String getConfigAttribute(String path) {
 		 // "aaa/bbb[xx=yy]/ccc" or "aaa/bbb/ccc";
 		Pattern p = Pattern.compile("(.+)/(.+?)(\\[(.+)=(.+)\\])?/(.+)");
 		Matcher m = p.matcher(path);
-		if (!m.find()) {
+		if (!m.find())
 			return null;
-		}
 
 		String attribute = null;
 		IExtensionRegistry reg = Platform.getExtensionRegistry();
 		IConfigurationElement[] elems = reg.getConfigurationElementsFor(m.group(1));
 		for (IConfigurationElement elem : elems) {
-			if (elem.getName().equals(m.group(2)) && ((m.group(3) == null) || m.group(5).equals(elem.getAttribute(m.group(4))))) {
+			if (elem.getName().equals(m.group(2)) && (m.group(3) == null || m.group(5).equals(elem.getAttribute(m.group(4))))) {
 				attribute = elem.getAttribute(m.group(6));
 				break;
 			}

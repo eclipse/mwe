@@ -46,7 +46,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 
 	public static DebugModelManager newDebugModelManager(final DebugTarget target, final Connection connection)
 			throws DebugException {
-		DebugModelManager dmm = new DebugModelManager(target);
+		final DebugModelManager dmm = new DebugModelManager(target);
 		dmm.extensionManager = PluginExtensionManager.getDefault();
 		dmm.extensionManager.init(dmm, connection);
 		return dmm;
@@ -72,7 +72,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 	}
 
 	public boolean hasRequiredHandlers() {
-		return (cmdHandler != null) && (varHandler != null) && (bpHandler != null);
+		return cmdHandler != null && varHandler != null && bpHandler != null;
 	}
 
 	// -------------------------------------------------------------------------
@@ -107,14 +107,15 @@ public class DebugModelManager implements IDebugEventSetListener {
 		target.setSuspended(true);
 		// Hint: we don't set DebugEvent.STEP_END by intention
 		// only CLIENT_REQUEST or BREAKPOINT detail will expand the launch tree
-		int detail = (checkBreakPoint()) ? DebugEvent.BREAKPOINT : DebugEvent.CLIENT_REQUEST;
+		final int detail = checkBreakPoint() ? DebugEvent.BREAKPOINT : DebugEvent.CLIENT_REQUEST;
 		fireSuspendEvent(detail);
 	}
 
 	public void debuggerResumed() {
 		target.setSuspended(false);
 		// Hint: we don't set STEP_IN, STEP_OVER or STEP_RETURN by intention
-		// because the ThreadEventHandler would only update CONTENT, but not STATE
+		// because the ThreadEventHandler would only update CONTENT, but not
+		// STATE
 		fireResumeEvent(DebugEvent.CLIENT_REQUEST);
 	}
 
@@ -122,27 +123,33 @@ public class DebugModelManager implements IDebugEventSetListener {
 		target.setSuspended(true);
 		getThread().setStepping(false);
 		fireSuspendEvent(DebugEvent.CLIENT_REQUEST);
-		// wait until the delayed event handling is finished (>500ms) before returning and sending confirmation
+		// wait until the delayed event handling is finished (>500ms) before
+		// returning and sending confirmation
 		// afterwards
-		// this is to make sure that the source view update event will be really thrown
-		// see org.eclipse.debug.internal.ui.viewers.update.EventHandlerModelProxy.dispatchResume(...)
+		// this is to make sure that the source view update event will be really
+		// thrown
+		// see
+		// org.eclipse.debug.internal.ui.viewers.update.EventHandlerModelProxy.dispatchResume(...)
 		try {
 			Thread.sleep(700);
-		} catch (final InterruptedException e) {
+		}
+		catch (final InterruptedException e) {
 		}
 	}
 
 	/**
-	 * This class is registered as IDebugEventSetListener to get TERMINATE information during an unnormal end of
-	 * the runtime process (when no terminate communication-event is thrown)<br>
+	 * This class is registered as IDebugEventSetListener to get TERMINATE
+	 * information during an unnormal end of the runtime process (when no
+	 * terminate communication-event is thrown)<br>
 	 * In this case a DebugEvent.TERMINATE is fired with an IProcess source.<br>
-	 * Another terminate event must be fired here with the DebugTarget source. This is necessary because some
-	 * listeners don't cleanup completely if there is only a terminate event with source = IProcess
+	 * Another terminate event must be fired here with the DebugTarget source.
+	 * This is necessary because some listeners don't cleanup completely if
+	 * there is only a terminate event with source = IProcess
 	 * 
 	 * @see org.eclipse.debug.core.IDebugEventSetListener#handleDebugEvents(org.eclipse.debug.core.DebugEvent[])
 	 */
 	public void handleDebugEvents(final DebugEvent[] events) {
-		for (DebugEvent event : events) {
+		for (final DebugEvent event : events) {
 			if (event.getKind() == DebugEvent.TERMINATE) {
 				DebugPlugin.getDefault().removeDebugEventListener(this);
 				DebugPlugin.getDefault().getBreakpointManager().removeBreakpointListener(target);
@@ -157,16 +164,17 @@ public class DebugModelManager implements IDebugEventSetListener {
 		try {
 			return target.getLaunch().getLaunchConfiguration().getAttribute(
 					IJavaLaunchConfigurationConstants.ATTR_STOP_IN_MAIN, true);
-		} catch (CoreException e) {
+		}
+		catch (final CoreException e) {
 			return true;
 		}
 	}
 
 	private boolean checkBreakPoint() {
-		IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints(
+		final IBreakpoint[] breakpoints = DebugPlugin.getDefault().getBreakpointManager().getBreakpoints(
 				MWEBreakpoint.DEBUG_MODEL_ID);
-		DebugStackFrame frame = getThread().getStackFramePeek();
-		for (IBreakpoint bp : breakpoints) {
+		final DebugStackFrame frame = getThread().getStackFramePeek();
+		for (final IBreakpoint bp : breakpoints) {
 			if (((MWEBreakpoint) bp).equals(frame.getCharStart(), frame.getResource())) {
 				getThread().setBreakpoint((MWEBreakpoint) bp);
 				return true;
@@ -209,34 +217,42 @@ public class DebugModelManager implements IDebugEventSetListener {
 
 	public List<VarValueTO> requireVariables(final int frameId) throws DebugException {
 		try {
-			List<VarValueTO> vars = varHandler.sendRequireVariables(frameId);
+			final List<VarValueTO> vars = varHandler.sendRequireVariables(frameId);
 			target.updateDebugValues(vars);
 			return vars;
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			handleIOProblem(e);
-			return null; // does not occur, because handleIOProblem throws always an exception
+			return null; // does not occur, because handleIOProblem throws
+			// always an exception
 		}
 	}
 
-	// we send the frame id and the var id; the frame id is used to get the correct adapter
-	// example: an object could occur in a workflow slot (which is handled by the workflow adapter
-	// later in the execution context the string representation may be rendered differently by another adapter
+	// we send the frame id and the var id; the frame id is used to get the
+	// correct adapter
+	// example: an object could occur in a workflow slot (which is handled by
+	// the workflow adapter
+	// later in the execution context the string representation may be rendered
+	// differently by another adapter
 	public List<VarValueTO> requireSubVariables(final int varId) throws DebugException {
-		int frameId = target.getThread().getVarFrameId();
+		final int frameId = target.getThread().getVarFrameId();
 		try {
-			List<VarValueTO> vars = varHandler.sendRequireSubVariables(frameId, varId);
+			final List<VarValueTO> vars = varHandler.sendRequireSubVariables(frameId, varId);
 			target.updateDebugValues(vars);
 			return vars;
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			handleIOProblem(e);
-			return null; // does not occur, because handleIOProblem throws always an exception
+			return null; // does not occur, because handleIOProblem throws
+			// always an exception
 		}
 	}
 
 	public void requireSetBreakpoint(final MWEBreakpoint bp) throws DebugException {
 		try {
 			bpHandler.sendSetBreakpoint(bp);
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			handleIOProblem(e);
 		}
 	}
@@ -244,7 +260,8 @@ public class DebugModelManager implements IDebugEventSetListener {
 	public void requireRemoveBreakpoint(final MWEBreakpoint bp) throws DebugException {
 		try {
 			bpHandler.sendRemoveBreakpoint(bp);
-		} catch (IOException e) {
+		}
+		catch (final IOException e) {
 			handleIOProblem(e);
 		}
 	}

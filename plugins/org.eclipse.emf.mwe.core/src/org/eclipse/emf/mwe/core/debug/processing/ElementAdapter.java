@@ -67,7 +67,7 @@ public interface ElementAdapter {
 	 * @return a SyntaxElement that contains the information to be shown in the debugger views in a common
 	 *         neutral way
 	 */
-	public SyntaxElement createElementTO(Object element);
+	public SyntaxElement createElement(Object element);
 
 	/**
 	 * returns whether the element has a body and debugger shall stop again at the end of the execution of that

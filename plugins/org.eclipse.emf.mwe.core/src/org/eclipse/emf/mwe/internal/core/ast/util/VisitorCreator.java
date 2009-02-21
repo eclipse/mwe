@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.emf.mwe.core.ConfigurationException;
@@ -33,14 +34,12 @@ public class VisitorCreator extends VisitorBase {
 
     private Map<String, Object> beans = new HashMap<String, Object>();
 
-    
 	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class, Converter>
 
     private Object currentBean = null;
 
     private Issues issues = new IssuesImpl();
 
-    
 	public VisitorCreator(final Issues issues, final Map<Class<?>, Converter> converter, final Object rootBean) {
         this.issues = issues;
         this.converter = converter;
@@ -63,10 +62,11 @@ public class VisitorCreator extends VisitorBase {
         if (cart.isInheritAll()) {
             beansToPass.putAll(this.beans);
         }
-        for (Object o : cart.getChildren()) {
-            if (o instanceof InclusionAST) {
+        for (final Iterator<?> iter = cart.getChildren().iterator(); iter.hasNext();) {
+            final Object o = iter.next();
+            if (o instanceof InclusionAST)
 				throw new ConfigurationException("Nested inclusions are not supported!");
-			} else if (o instanceof ComponentAST) {
+            else if (o instanceof ComponentAST) {
                 final ComponentAST p = (ComponentAST) o;
                 final Object bean = createBean(p, null);
                 beansToPass.put(p.getName(), bean);
@@ -148,8 +148,8 @@ public class VisitorCreator extends VisitorBase {
                 }
             }
             final VisitorBase vis = cloneWithBean(bean);
-            for (Object name : comp.getChildren()) {
-                ((AbstractASTBase) name).accept(vis);
+            for (final Iterator<?> iter = comp.getChildren().iterator(); iter.hasNext();) {
+                ((AbstractASTBase) iter.next()).accept(vis);
             }
         } catch (final Exception e) {
             log.error(e);
@@ -178,7 +178,6 @@ public class VisitorCreator extends VisitorBase {
         return null;
     }
 
-    
 	@Override
     public Object visitSimpleParamAST(final SimpleParamAST param) {
         final Injector inj = InjectorFactory.getInjector(currentBean.getClass(), param.getName());

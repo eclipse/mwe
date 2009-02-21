@@ -92,16 +92,12 @@ public class WorkflowRunner {
 						.withArgName("className,moreArgs")
 						.withDescription(
 								"the name of a class that implements ProgressMonitor. More arguments can be appended that will be injected to the monitor,"
-										+ " if it has a init(String[] args) method.")
-						.withLongOpt("monitorClass").withValueSeparator(',')
-						.create(MONITOR));
-		options.addOption(OptionBuilder.withLongOpt("ant").withDescription(
-				"must be set when using in Ant context").create(ANT));
-		final Option paramOption = OptionBuilder
-				.withArgName("key=value")
-				.withDescription(
-						"external property that is handled as workflow property")
-				.hasArgs().create(PARAM);
+										+ " if it has a init(String[] args) method.").withLongOpt("monitorClass")
+						.withValueSeparator(',').create(MONITOR));
+		options.addOption(OptionBuilder.withLongOpt("ant").withDescription("must be set when using in Ant context")
+				.create(ANT));
+		final Option paramOption = OptionBuilder.withArgName("key=value").withDescription(
+				"external property that is handled as workflow property").hasArgs().create(PARAM);
 		paramOption.setLongOpt("param");
 		options.addOption(paramOption);
 
@@ -110,35 +106,31 @@ public class WorkflowRunner {
 		CommandLine line = null;
 		try {
 			line = parser.parse(options, args);
-		} catch (final ParseException exp) {
-			System.err.println("Parsing arguments failed.  Reason: "
-					+ exp.getMessage());
+		}
+		catch (final ParseException exp) {
+			System.err.println("Parsing arguments failed.  Reason: " + exp.getMessage());
 			wrongCall(options);
 			return;
 		}
 		if (line.getArgs().length != 1) {
 			wrongCall(options);
-		} else {
+		}
+		else {
 			ProgressMonitor monitor = null;
 
-			String[] monitorOptValues = line.getOptionValues(MONITOR);
+			final String[] monitorOptValues = line.getOptionValues(MONITOR);
 			if (monitorOptValues != null) {
 				try {
-					final Class<?> clazz = ResourceLoaderFactory
-							.createResourceLoader().loadClass(
-									monitorOptValues[0]);
-					if (clazz == null) {
-						throw new ClassNotFoundException("Didn't find class "
-								+ monitorOptValues[0]);
-					}
+					final Class<?> clazz = ResourceLoaderFactory.createResourceLoader().loadClass(monitorOptValues[0]);
+					if (clazz == null)
+						throw new ClassNotFoundException("Didn't find class " + monitorOptValues[0]);
 					monitor = (ProgressMonitor) clazz.newInstance();
-					Method method = monitor.getClass().getMethod("init",
-							new Class[] { String[].class });
+					final Method method = monitor.getClass().getMethod("init", new Class[] { String[].class });
 					if (method != null) {
-						method.invoke(monitor,
-								new Object[] { monitorOptValues });
+						method.invoke(monitor, new Object[] { monitorOptValues });
 					}
-				} catch (final Exception e) {
+				}
+				catch (final Exception e) {
 					logger.error(e.getMessage(), e);
 					if (line.hasOption(ANT)) {
 						System.exit(1);
@@ -147,8 +139,7 @@ public class WorkflowRunner {
 				}
 			}
 
-			final Map<String, String> params = resolveParams(line
-					.getOptionValues(PARAM));
+			final Map<String, String> params = resolveParams(line.getOptionValues(PARAM));
 			String wfFile = line.getArgs()[0];
 
 			// normalize wfFile name so that it can be found in the class path
@@ -159,28 +150,27 @@ public class WorkflowRunner {
 				// TODO BK change to resource loader factory
 				// wfUrl = ResourceLoaderFactory.createResourceLoader()
 				// .getResource(wfFile);
-				wfUrl = Thread.currentThread().getContextClassLoader()
-						.getResource(wfFile);
+				wfUrl = Thread.currentThread().getContextClassLoader().getResource(wfFile);
 				if (wfUrl == null) {
 					index = wfFile.indexOf('/');
 					if (index >= 0) {
 						wfFile = wfFile.substring(index + 1);
 					}
 				}
-			} while ((wfUrl == null) && (index >= 0));
+			} while (wfUrl == null && index >= 0);
 
-			WorkflowRunner runner = new WorkflowRunner();
+			final WorkflowRunner runner = new WorkflowRunner();
 
 			if (wfUrl == null) {
-				runner.logger.error("can't find the workflow file '"
-						+ line.getArgs()[0] + "' in the current class path");
+				runner.logger.error("can't find the workflow file '" + line.getArgs()[0]
+						+ "' in the current class path");
 				if (line.hasOption(ANT)) {
 					System.exit(1);
 				}
 				return;
 			}
 
-			boolean success = runner.run(wfFile, monitor, params, null);
+			final boolean success = runner.run(wfFile, monitor, params, null);
 			if (!success && line.hasOption(ANT)) {
 				System.exit(1);
 			}
@@ -197,15 +187,12 @@ public class WorkflowRunner {
 	 */
 	private static Map<String, String> resolveParams(final String[] args) {
 		final Map<String, String> params = new HashMap<String, String>();
-		if (args == null) {
+		if (args == null)
 			return params;
-		}
-		for (String element : args) {
+		for (final String element : args) {
 			final String[] string = element.split("=", 2);
-			if (string.length != 2) {
-				throw new IllegalArgumentException(
-						"wrong param syntax (-pkey=value). was : " + element);
-			}
+			if (string.length != 2)
+				throw new IllegalArgumentException("wrong param syntax (-pkey=value). was : " + element);
 			params.put(string[0], string[1]);
 		}
 		return params;
@@ -218,10 +205,8 @@ public class WorkflowRunner {
 	 */
 	private static void wrongCall(final Options options) {
 		final HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp("java " + WorkflowRunner.class.getName()
-				+ " some_workflow_file.mwe [options]\nor\njava "
-				+ WorkflowRunner.class.getName()
-				+ " some_workflow_file.oaw [options]\n", options);
+		formatter.printHelp("java " + WorkflowRunner.class.getName() + " some_workflow_file.mwe [options]\nor\njava "
+				+ WorkflowRunner.class.getName() + " some_workflow_file.(mwe|oaw) [options]\n", options);
 		System.exit(0);
 	}
 
@@ -231,38 +216,32 @@ public class WorkflowRunner {
 	 * @param logger
 	 * @param params
 	 */
-	public boolean run(final String workFlowFile,
-			final ProgressMonitor theMonitor,
-			final Map<String, String> theParams,
-			final Map<String, ?> externalSlotContents) {
+	public boolean run(final String workFlowFile, final ProgressMonitor theMonitor,
+			final Map<String, String> theParams, final Map<String, ?> externalSlotContents) {
 		final boolean configOK = prepare(workFlowFile, theMonitor, theParams);
 		final Issues issues = new IssuesImpl();
-		if (configOK) {
+		if (configOK)
 			return executeWorkflow(externalSlotContents, issues);
-		}
 		return false;
 	}
 
-	public boolean prepare(final String workFlowFile,
-			final ProgressMonitor theMonitor,
+	public boolean prepare(final String workFlowFile, final ProgressMonitor theMonitor,
 			final Map<String, String> theParams) {
-		if (workFlowFile == null) {
+		if (workFlowFile == null)
 			throw new NullPointerException("workflowFile is null");
-		}
 
 		if (theMonitor == null) {
 			monitor = new NullProgressMonitor();
-		} else {
+		}
+		else {
 			monitor = theMonitor;
 		}
 		params = theParams;
 
-		logger
-				.info("--------------------------------------------------------------------------------------");
+		logger.info("--------------------------------------------------------------------------------------");
 		logger.info("EMF Modeling Workflow Engine " + getVersion());
 		logger.info("(c) 2005-2007 openarchitectureware.org and contributors");
-		logger
-				.info("--------------------------------------------------------------------------------------");
+		logger.info("--------------------------------------------------------------------------------------");
 		logger.info("running workflow: " + workFlowFile);
 		logger.info("");
 
@@ -279,18 +258,17 @@ public class WorkflowRunner {
 			// a configuration problem.
 			// Detect this very special case
 			try {
-				workflow = factory.parseInitAndCreate(workFlowFile, params,
-						WorkflowFactory.getDefaultConverter(), issues);
-			} catch (IllegalArgumentException illegalArg) {
-				if (illegalArg.getMessage().startsWith("Couldn't load file")) {
+				workflow = factory.parseInitAndCreate(workFlowFile, params, WorkflowFactory.getDefaultConverter(),
+						issues);
+			}
+			catch (final IllegalArgumentException illegalArg) {
+				if (illegalArg.getMessage().startsWith("Couldn't load file"))
 					throw new ConfigurationException(illegalArg.getMessage());
-				}
 				throw illegalArg;
 			}
 			logIssues(logger, issues);
 			if (issues.hasErrors()) {
-				logger
-						.error("Workflow interrupted because of configuration errors.");
+				logger.error("Workflow interrupted because of configuration errors.");
 				return false;
 			}
 			if (workflow != null) {
@@ -298,11 +276,11 @@ public class WorkflowRunner {
 			}
 			logIssues(logger, issues);
 			if (issues.hasErrors()) {
-				logger
-						.error("Workflow interrupted because of configuration errors.");
+				logger.error("Workflow interrupted because of configuration errors.");
 				return false;
 			}
-		} catch (final ConfigurationException ex) {
+		}
+		catch (final ConfigurationException ex) {
 			logger.fatal(ex.getMessage(), ex);
 			logIssues(logger, issues);
 			return false;
@@ -312,8 +290,7 @@ public class WorkflowRunner {
 
 	}
 
-	public boolean executeWorkflow(final Map<?, ?> externalSlotContents,
-			final Issues issues) {
+	public boolean executeWorkflow(final Map<?, ?> externalSlotContents, final Issues issues) {
 		try {
 			wfContext = new WorkflowContextDefaultImpl();
 			addExternalSlotContents(externalSlotContents);
@@ -323,27 +300,28 @@ public class WorkflowRunner {
 			monitor.finished(workflow, wfContext);
 			final long duration = System.currentTimeMillis() - time;
 			logger.info("workflow completed in " + duration + "ms!");
-			if (issues.getErrors().length > 0) {
+			if (issues.getErrors().length > 0)
 				return false;
-			}
 			return true;
-		} catch (final Exception e) {
+		}
+		catch (final Exception e) {
 			if (e.getClass().getName().indexOf("Interrupt") > -1) {
 				logger.error("Workflow interrupted. Reason: " + e.getMessage());
-			} else {
+			}
+			else {
 				logger.error(e.getMessage(), e);
 			}
-		} finally {
+		}
+		finally {
 			logIssues(logger, issues);
 		}
 		return false;
 	}
 
 	private void addExternalSlotContents(final Map<?, ?> slotContents) {
-		if (slotContents == null) {
+		if (slotContents == null)
 			return;
-		}
-		for (Object name : slotContents.keySet()) {
+		for (final Object name : slotContents.keySet()) {
 			final String key = (String) name;
 			wfContext.set(key, slotContents.get(key));
 		}
@@ -351,7 +329,7 @@ public class WorkflowRunner {
 
 	private void logIssues(final Log logger, final Issues issues) {
 		// log any configuration warning messages
-		Diagnostic[] issueArray = issues.getIssues();
+		final Diagnostic[] issueArray = issues.getIssues();
 		for (final Diagnostic issue : issueArray) {
 			if (issue.getSeverity() == Diagnostic.ERROR) {
 				logger.error(issue.toString());
@@ -382,26 +360,22 @@ public class WorkflowRunner {
 
 		// get all META-INF/MANIFEST.MF found in the classpath
 		try {
-			Manifest manifest = new Manifest(ResourceLoaderFactory
-					.createResourceLoader().getResource("META-INF/MANIFEST.MF")
-					.openStream());
+			final Manifest manifest = new Manifest(ResourceLoaderFactory.createResourceLoader().getResource(
+					"META-INF/MANIFEST.MF").openStream());
 			// identify the manifest from core.workflow plugin
-			String bundleName = manifest.getMainAttributes()
-					.getValue("Bundle-SymbolicName");
+			final String bundleName = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
 			if (bundleName.startsWith("org.eclipse.emf.mwe.core")) {
 				// Read bundle version an split it.
 				// Original value : "4.1.1.200609291913"
 				// Resulting value : "4.1.1, Build 200609291913"
-				version = manifest.getMainAttributes().getValue(
-						"Bundle-Version");
-				int lastPoint = version.lastIndexOf('.');
-				version = version.substring(0, lastPoint) + ", Build "
-						+ version.substring(lastPoint + 1);
+				version = manifest.getMainAttributes().getValue("Bundle-Version");
+				final int lastPoint = version.lastIndexOf('.');
+				version = version.substring(0, lastPoint) + ", Build " + version.substring(lastPoint + 1);
 				return version;
 			}
-		} catch (IOException e) {
-			logger
-					.debug("Failed to read Manifest file. Unable to retrieve version");
+		}
+		catch (final IOException e) {
+			logger.debug("Failed to read Manifest file. Unable to retrieve version");
 		}
 		// build version not detected from manifest, fallback
 		// this will only occur in developer's workbench

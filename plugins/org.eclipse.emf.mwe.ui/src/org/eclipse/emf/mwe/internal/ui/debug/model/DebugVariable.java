@@ -21,11 +21,11 @@ import org.eclipse.emf.mwe.internal.core.debug.model.VarValueTO;
  */
 public class DebugVariable extends DebugElement implements IVariable {
 
-	private final String name;
+	private String name;
 
 	private DebugValue value;
 
-	public DebugVariable(final DebugTarget target, final VarValueTO varTO) {
+	public DebugVariable(DebugTarget target, VarValueTO varTO) {
 		super(target);
 		name = varTO.name;
 		setValue(varTO);
@@ -43,20 +43,19 @@ public class DebugVariable extends DebugElement implements IVariable {
 		return value;
 	}
 
-	public void setValue(final VarValueTO varTO) {
+	public void setValue(VarValueTO varTO) {
 		value = target.getDebugValue(varTO);
 	}
 
-	public void setValue(final String expression) {
+	public void setValue(String expression) {
 		// not used (yet?)
 		// to be implemented if variable modification shall be established
 	}
 
-	public void setValue(final IValue value) {
-		if (value instanceof DebugValue) {
+	public void setValue(IValue value) {
+		if (value instanceof DebugValue)
 			this.value = (DebugValue) value;
 		}
-	}
 
 	public String getReferenceTypeName() {
 		return value.getReferenceTypeName();
@@ -72,11 +71,11 @@ public class DebugVariable extends DebugElement implements IVariable {
 		return false;
 	}
 
-	public boolean verifyValue(final String expression) {
+	public boolean verifyValue(String expression) {
 		return true;
 	}
 
-	public boolean verifyValue(final IValue test) {
+	public boolean verifyValue(IValue test) {
 		return true;
 	}
 
