@@ -274,8 +274,8 @@ public final class ProjectCreator {
 		maniContent.append("Bundle-Name: " + projectName + "\n");
 		maniContent.append("Bundle-SymbolicName: " + projectName + "; singleton:=true\n");
 		maniContent.append("Bundle-Version: 1.0.0\n");
-		maniContent.append(createList("Require-Bundle: ", requiredBundles));
-		maniContent.append(createList("Export-Package: ", exportedPackages));
+		maniContent.append(createList("Require-Bundle", requiredBundles));
+		maniContent.append(createList("Export-Package", exportedPackages));
 
 		final IFolder metaInf = project.getFolder("META-INF");
 		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
@@ -285,7 +285,7 @@ public final class ProjectCreator {
 	private static StringBuilder createList(String title, Collection<String> collection) {
 		StringBuilder result = new StringBuilder();
 		if (collection != null && !collection.isEmpty() && title != null && title.length() > 0) {
-			result.append(title);
+			result.append(title + ": ");
 			int i = 0;
 			for (Iterator<String> it = collection.iterator(); it.hasNext();) {
 				String s = it.next();
