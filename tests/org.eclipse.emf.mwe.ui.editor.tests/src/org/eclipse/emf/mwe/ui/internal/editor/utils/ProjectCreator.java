@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -273,21 +274,32 @@ public final class ProjectCreator {
 		maniContent.append("Bundle-Name: " + projectName + "\n");
 		maniContent.append("Bundle-SymbolicName: " + projectName + "; singleton:=true\n");
 		maniContent.append("Bundle-Version: 1.0.0\n");
-		maniContent.append("Require-Bundle: ");
-		for (final String entry : requiredBundles) {
-			maniContent.append(" " + entry + ",\n");
-		}
-
-		if (exportedPackages != null && !exportedPackages.isEmpty()) {
-			maniContent.append("Export-Package: " + exportedPackages.get(0));
-			for (int i = 1, x = exportedPackages.size(); i < x; i++) {
-				maniContent.append(",\n " + exportedPackages.get(i));
-			}
-			maniContent.append("\n");
-		}
+		maniContent.append(createList("Require-Bundle: ", requiredBundles));
+		maniContent.append(createList("Export-Package: ", exportedPackages));
 
 		final IFolder metaInf = project.getFolder("META-INF");
 		metaInf.create(false, true, new SubProgressMonitor(progressMonitor, 1));
 		createFile("MANIFEST.MF", metaInf, maniContent.toString(), progressMonitor);
+	}
+
+	private static StringBuilder createList(String title, Collection<String> collection) {
+		StringBuilder result = new StringBuilder();
+		if (collection != null && !collection.isEmpty() && title != null && title.length() > 0) {
+			result.append(title);
+			int i = 0;
+			for (Iterator<String> it = collection.iterator(); it.hasNext();) {
+				String s = it.next();
+				if (i == 0) {
+					result.append(s);
+				}
+				else {
+					result.append(",\n " + s);
+				}
+
+				i++;
+			}
+			result.append("\n");
+		}
+		return result;
 	}
 }
