@@ -29,36 +29,35 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 public interface WorkflowComponent {
 
     /**
-	 * Invokes the workflow component.
+	 * Invokes the component.
 	 * 
      * @param ctx
-	 *            the current workflow context
+     *            current workflow context
      * @param monitor
      *            implementors should provide some feedback about the progress
      *            using this monitor
      * @param issues
-	 *            facility for reporting possible issues that occur during
-	 *            invocation
      */
     public void invoke(WorkflowContext ctx, ProgressMonitor monitor, Issues issues);
 
     /**
-	 * Validates the configuration before invocation.
+	 * Called by the container after configuration so the component can validate
+	 * the configuration before invocation.
      * 
 	 * @param issues
-	 *            facility for reporting configuration issues.
+     *            implementors should report configuration issues to this.
      */
     public void checkConfiguration(Issues issues);
     
     /**
-	 * Returns the containing component, if there is one.
+	 * Returns the containing component if there is one.
 	 * 
-	 * @return the container
+	 * @return the containing component
      */
     public CompositeComponent getContainer();
     
     /**
-	 * Sers the containing component.
+	 * Sets the containing component.
 	 * 
 	 * @param container
 	 *            the containing component
