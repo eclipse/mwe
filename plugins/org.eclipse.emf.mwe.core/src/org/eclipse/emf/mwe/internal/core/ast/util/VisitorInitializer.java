@@ -137,9 +137,7 @@ public class VisitorInitializer extends VisitorBase {
 	private String translateFileURI(String file) {
 		if (file.indexOf("::")!=-1) {
 			file = file.replaceAll("::", "/");
-		}
-		if (!file.endsWith(".oaw")) {
-			file +=".oaw";
+			file +=".mwe";
 		}
 		return file;
 	}

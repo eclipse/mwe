@@ -2,5 +2,5 @@
 <workflow>
    <property name="test" value="${param}"/>
    <bean id="myBean" class="test.res.Component" stringParam="Hallo Welt"/>
-   <component file="test/res/complex/inheritAll2.oaw" inheritAll="true"/>
+   <component file="test/res/complex/inheritAll2.mwe" inheritAll="true"/>
 </workflow>

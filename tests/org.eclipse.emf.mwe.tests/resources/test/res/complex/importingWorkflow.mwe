@@ -2,17 +2,17 @@
 <workflow>
 	<bean class="java.util.HashMap" id="myMap" name="foo_bar"/>
 	
-	<bean file="test/res/complex/aBean.oaw" id="myBean">
+	<bean file="test/res/complex/aBean.mwe" id="myBean">
 		<stringParam value="foo"/>
 		<aBean1 idRef="myMap"/>
 		<aBean2 class="java.util.HashMap" name="bar_foo"/>
 	</bean>
 	
 	<component class="test.res.Component">
-		<type file="test/res/complex/aComp.oaw" p="foobar"/>
+		<type file="test/res/complex/aComp.mwe" p="foobar"/>
 	</component>
 	
-	<component file="test/res/complex/aCartridge.oaw">
+	<component file="test/res/complex/aCartridge.mwe">
 		<prop value="barfoo"/>
 		<myBean idRef="myBean"/>
 	</component>

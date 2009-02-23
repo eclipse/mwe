@@ -4,5 +4,5 @@
 	<bean2 idRef="${id}"/>
 	<bean3 id="${id}1" test="x" foo="bar"/>
 	<bean4 idRef="${id}1"/>
-	<cartridge file="${path}/testSimple.oaw" path="${path}"/>
+	<cartridge file="${path}/testSimple.mwe" path="${path}"/>
 </workflow>
