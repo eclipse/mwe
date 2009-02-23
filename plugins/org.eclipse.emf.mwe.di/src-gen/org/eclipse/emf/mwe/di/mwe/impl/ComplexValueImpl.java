@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ComplexValueImpl.java,v 1.1 2009/02/18 19:38:26 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.di.mwe.impl;
 
@@ -266,7 +265,7 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue
       case MwePackage.COMPLEX_VALUE__ID:
         return getId();
       case MwePackage.COMPLEX_VALUE__FOO_BAR:
-        return isFooBar() ? Boolean.TRUE : Boolean.FALSE;
+        return isFooBar();
       case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
         return getAssignments();
     }
@@ -291,7 +290,7 @@ public class ComplexValueImpl extends ValueImpl implements ComplexValue
         setId((String)newValue);
         return;
       case MwePackage.COMPLEX_VALUE__FOO_BAR:
-        setFooBar(((Boolean)newValue).booleanValue());
+        setFooBar((Boolean)newValue);
         return;
       case MwePackage.COMPLEX_VALUE__ASSIGNMENTS:
         getAssignments().clear();

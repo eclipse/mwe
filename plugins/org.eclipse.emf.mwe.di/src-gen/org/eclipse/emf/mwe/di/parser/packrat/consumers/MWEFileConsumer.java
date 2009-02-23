@@ -4,123 +4,137 @@
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.Group;
+import org.eclipse.xtext.RuleCall;
 
-import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.IElementConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
-import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
-import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
-import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
-import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
+import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.FileElements;
 
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEComplexValueConsumer;
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEImportConsumer;
-import org.eclipse.emf.mwe.di.parser.packrat.consumers.MWEPropertyConsumer;
-
-@SuppressWarnings("unused")
 public final class MWEFileConsumer extends NonTerminalConsumer {
 
-	private FileElements rule;
-	
+	private FileElements rule;	
+
 	private INonTerminalConsumer complexValueConsumer;
+
 	private INonTerminalConsumer importConsumer;
+
 	private INonTerminalConsumer propertyConsumer;
+
+	private IElementConsumer group$1$Consumer;
+
+	private IElementConsumer assignment$3$Consumer;
+
+	private IElementConsumer ruleCall$4$Consumer;
+
+	private IElementConsumer assignment$5$Consumer;
+
+	private IElementConsumer ruleCall$6$Consumer;
+
+	private IElementConsumer assignment$7$Consumer;
+
+	private IElementConsumer ruleCall$8$Consumer;
+
+	protected class Group$1$Consumer extends GroupConsumer {
+		
+		protected Group$1$Consumer(final Group group) {
+			super(group);
+		}
+		
+		@Override
+		protected void doGetConsumers(ConsumerAcceptor acceptor) {
+			acceptor.accept(assignment$3$Consumer);
+			acceptor.accept(assignment$5$Consumer);
+			acceptor.accept(assignment$7$Consumer);
+		}
+	}
+
+	protected class Assignment$3$Consumer extends LoopAssignmentConsumer {
+		
+		protected Assignment$3$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$4$Consumer;
+		}
+	}
+
+	protected class RuleCall$4$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$4$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeNonTerminal(importConsumer, "imports", true, false, false, getElement());
+		}
+	}
+
+	protected class Assignment$5$Consumer extends LoopAssignmentConsumer {
+		
+		protected Assignment$5$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$6$Consumer;
+		}
+	}
+
+	protected class RuleCall$6$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$6$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeNonTerminal(propertyConsumer, "properties", true, false, false, getElement());
+		}
+	}
+
+	protected class Assignment$7$Consumer extends AssignmentConsumer {
+		
+		protected Assignment$7$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$8$Consumer;
+		}
+	}
+
+	protected class RuleCall$8$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$8$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeNonTerminal(complexValueConsumer, "value", false, false, false, getElement());
+		}
+	}
 
 	public MWEFileConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
 	}
 	
 	@Override
-	protected int doConsume(int entryPoint) throws Exception {
-		return consumeGroup$1(entryPoint);
-	}
-
-	protected int consumeGroup$1(int entryPoint) throws Exception {
-		announceNextLevel();
-		final IMarker marker = mark();
-		int result = ConsumeResult.SUCCESS;
-		switch(entryPoint) {
-			case -1: // use fall through semantics of switch case
-				result = ConsumeResult.EMPTY_MATCH;
-			case 0:
-				announceNextStep();
-				result = consumeAssignment$3(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele00AssignmentImports());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 1:
-				announceNextStep();
-				result = consumeAssignment$5(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele01AssignmentProperties());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 2:
-				announceNextStep();
-				result = consumeAssignment$7(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele1AssignmentValue());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-		}
-		marker.commit();
-		announceLevelFinished();
-		return result;
-	}
-
-	protected int consumeAssignment$3(int entryPoint) throws Exception {
-		IMarker marker = mark();
-		while(doConsumeAssignment$3(entryPoint) == ConsumeResult.SUCCESS) {
-			marker.flush();
-		}
-		marker.rollback();
-		return ConsumeResult.SUCCESS;
-	}
-
-	protected int doConsumeAssignment$3(int entryPoint) throws Exception {
-		return consumeRuleCall$4(entryPoint);
-	}
-
-	protected int consumeRuleCall$4(int entryPoint) throws Exception {
-		return consumeNonTerminal(importConsumer, "imports", true, false, false, getRule().ele000ParserRuleCallImport());
-	}
-
-	protected int consumeAssignment$5(int entryPoint) throws Exception {
-		IMarker marker = mark();
-		while(doConsumeAssignment$5(entryPoint) == ConsumeResult.SUCCESS) {
-			marker.flush();
-		}
-		marker.rollback();
-		return ConsumeResult.SUCCESS;
-	}
-
-	protected int doConsumeAssignment$5(int entryPoint) throws Exception {
-		return consumeRuleCall$6(entryPoint);
-	}
-
-	protected int consumeRuleCall$6(int entryPoint) throws Exception {
-		return consumeNonTerminal(propertyConsumer, "properties", true, false, false, getRule().ele010ParserRuleCallProperty());
-	}
-
-	protected int consumeAssignment$7(int entryPoint) throws Exception {
-		return consumeRuleCall$8(entryPoint);
-	}
-
-	protected int consumeRuleCall$8(int entryPoint) throws Exception {
-		return consumeNonTerminal(complexValueConsumer, "value", false, false, false, getRule().ele10ParserRuleCallComplexValue());
+	protected int doConsume() throws Exception {
+		return group$1$Consumer.consume();
 	}
 
 	public FileElements getRule() {
@@ -129,6 +143,14 @@ public final class MWEFileConsumer extends NonTerminalConsumer {
 	
 	public void setRule(FileElements rule) {
 		this.rule = rule;
+		
+		group$1$Consumer = new Group$1$Consumer(rule.eleGroup());
+		assignment$3$Consumer = new Assignment$3$Consumer(rule.ele00AssignmentImports());
+		ruleCall$4$Consumer = new RuleCall$4$Consumer(rule.ele000ParserRuleCallImport());
+		assignment$5$Consumer = new Assignment$5$Consumer(rule.ele01AssignmentProperties());
+		ruleCall$6$Consumer = new RuleCall$6$Consumer(rule.ele010ParserRuleCallProperty());
+		assignment$7$Consumer = new Assignment$7$Consumer(rule.ele1AssignmentValue());
+		ruleCall$8$Consumer = new RuleCall$8$Consumer(rule.ele10ParserRuleCallComplexValue());
 	}
 	
 	@Override

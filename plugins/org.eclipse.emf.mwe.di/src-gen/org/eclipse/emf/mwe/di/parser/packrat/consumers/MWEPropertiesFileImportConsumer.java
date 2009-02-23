@@ -4,38 +4,123 @@
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.Group;
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 
-import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
-import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
-import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.IElementConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
-import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
+import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.PropertiesFileImportElements;
 
-import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinSTRINGConsumer;
-
-@SuppressWarnings("unused")
 public final class MWEPropertiesFileImportConsumer extends NonTerminalConsumer {
 
-	private PropertiesFileImportElements rule;
-	
+	private PropertiesFileImportElements rule;	
+
 	private ITerminalConsumer stringConsumer;
 
+	private IElementConsumer group$1$Consumer;
+
+	private IElementConsumer keyword$4$Consumer;
+
+	private IElementConsumer keyword$5$Consumer;
+
+	private IElementConsumer assignment$6$Consumer;
+
+	private IElementConsumer ruleCall$7$Consumer;
+
+	private IElementConsumer keyword$8$Consumer;
+
 	private ICharacterClass keyword$4$Delimiter;
-	
+
 	private ICharacterClass keyword$5$Delimiter;
-	
+
 	private ICharacterClass keyword$8$Delimiter;
-	
+
 	private ISequenceMatcher ruleCall$7$Delimiter;
-	
+
+	protected class Group$1$Consumer extends GroupConsumer {
+		
+		protected Group$1$Consumer(final Group group) {
+			super(group);
+		}
+		
+		@Override
+		protected void doGetConsumers(ConsumerAcceptor acceptor) {
+			acceptor.accept(keyword$4$Consumer);
+			acceptor.accept(keyword$5$Consumer);
+			acceptor.accept(assignment$6$Consumer);
+			acceptor.accept(keyword$8$Consumer);
+		}
+	}
+
+	protected class Keyword$4$Consumer extends ElementConsumer<Keyword> {
+		
+		protected Keyword$4$Consumer(final Keyword keyword) {
+			super(keyword);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeKeyword(getElement(), null, false, false, getKeyword$4$Delimiter());
+		}
+	}
+
+	protected class Keyword$5$Consumer extends ElementConsumer<Keyword> {
+		
+		protected Keyword$5$Consumer(final Keyword keyword) {
+			super(keyword);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeKeyword(getElement(), null, false, false, getKeyword$5$Delimiter());
+		}
+	}
+
+	protected class Assignment$6$Consumer extends AssignmentConsumer {
+		
+		protected Assignment$6$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$7$Consumer;
+		}
+	}
+
+	protected class RuleCall$7$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$7$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeTerminal(stringConsumer, "file", false, false, getElement(), getRuleCall$7$Delimiter());
+		}
+	}
+
+	protected class Keyword$8$Consumer extends ElementConsumer<Keyword> {
+		
+		protected Keyword$8$Consumer(final Keyword keyword) {
+			super(keyword);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeKeyword(getElement(), null, false, false, getKeyword$8$Delimiter());
+		}
+	}
+
 	public MWEPropertiesFileImportConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
 		keyword$4$Delimiter = ICharacterClass.Factory.nullClass();
@@ -45,77 +130,8 @@ public final class MWEPropertiesFileImportConsumer extends NonTerminalConsumer {
 	}
 	
 	@Override
-	protected int doConsume(int entryPoint) throws Exception {
-		return consumeGroup$1(entryPoint);
-	}
-
-	protected int consumeGroup$1(int entryPoint) throws Exception {
-		announceNextLevel();
-		final IMarker marker = mark();
-		int result = ConsumeResult.SUCCESS;
-		switch(entryPoint) {
-			case -1: // use fall through semantics of switch case
-				result = ConsumeResult.EMPTY_MATCH;
-			case 0:
-				announceNextStep();
-				result = consumeKeyword$4(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele000KeywordVar());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 1:
-				announceNextStep();
-				result = consumeKeyword$5(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele001KeywordFile());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 2:
-				announceNextStep();
-				result = consumeAssignment$6(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele01AssignmentFile());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 3:
-				announceNextStep();
-				result = consumeKeyword$8(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele1KeywordSemicolon());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-		}
-		marker.commit();
-		announceLevelFinished();
-		return result;
-	}
-
-	protected int consumeKeyword$4(int entryPoint) throws Exception {
-		return consumeKeyword(getRule().ele000KeywordVar(), null, false, false, getKeyword$4$Delimiter());
-	}
-
-	protected int consumeKeyword$5(int entryPoint) throws Exception {
-		return consumeKeyword(getRule().ele001KeywordFile(), null, false, false, getKeyword$5$Delimiter());
-	}
-
-	protected int consumeAssignment$6(int entryPoint) throws Exception {
-		return consumeRuleCall$7(entryPoint);
-	}
-
-	protected int consumeRuleCall$7(int entryPoint) throws Exception {
-		return consumeTerminal(stringConsumer, "file", false, false, getRule().ele010LexerRuleCallSTRING(), getRuleCall$7$Delimiter());
-	}
-
-	protected int consumeKeyword$8(int entryPoint) throws Exception {
-		return consumeKeyword(getRule().ele1KeywordSemicolon(), null, false, false, getKeyword$8$Delimiter());
+	protected int doConsume() throws Exception {
+		return group$1$Consumer.consume();
 	}
 
 	public PropertiesFileImportElements getRule() {
@@ -124,6 +140,13 @@ public final class MWEPropertiesFileImportConsumer extends NonTerminalConsumer {
 	
 	public void setRule(PropertiesFileImportElements rule) {
 		this.rule = rule;
+		
+		group$1$Consumer = new Group$1$Consumer(rule.eleGroup());
+		keyword$4$Consumer = new Keyword$4$Consumer(rule.ele000KeywordVar());
+		keyword$5$Consumer = new Keyword$5$Consumer(rule.ele001KeywordFile());
+		assignment$6$Consumer = new Assignment$6$Consumer(rule.ele01AssignmentFile());
+		ruleCall$7$Consumer = new RuleCall$7$Consumer(rule.ele010LexerRuleCallSTRING());
+		keyword$8$Consumer = new Keyword$8$Consumer(rule.ele1KeywordSemicolon());
 	}
 	
 	@Override

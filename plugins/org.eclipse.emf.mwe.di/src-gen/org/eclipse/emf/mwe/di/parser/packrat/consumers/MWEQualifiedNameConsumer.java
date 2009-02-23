@@ -4,36 +4,148 @@
 package org.eclipse.emf.mwe.di.parser.packrat.consumers;
 
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.xtext.AbstractRule;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.Group;
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.RuleCall;
 
-import org.eclipse.xtext.parser.packrat.IMarkerFactory.IMarker;
-import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
-import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumer;
-import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.IElementConsumer;
 import org.eclipse.xtext.parser.packrat.consumers.INonTerminalConsumerConfiguration;
-import org.eclipse.xtext.parser.packrat.consumers.ConsumeResult;
+import org.eclipse.xtext.parser.packrat.consumers.ITerminalConsumer;
+import org.eclipse.xtext.parser.packrat.consumers.NonTerminalConsumer;
 import org.eclipse.xtext.parser.packrat.matching.ICharacterClass;
 import org.eclipse.xtext.parser.packrat.matching.ISequenceMatcher;
 
 import org.eclipse.emf.mwe.di.services.MWEGrammarAccess.QualifiedNameElements;
 
-import org.eclipse.xtext.builtin.parser.packrat.consumers.XtextBuiltinIDConsumer;
-
-@SuppressWarnings("unused")
 public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 
-	private QualifiedNameElements rule;
-	
+	private QualifiedNameElements rule;	
+
 	private ITerminalConsumer idConsumer;
 
+	private IElementConsumer group$1$Consumer;
+
+	private IElementConsumer assignment$2$Consumer;
+
+	private IElementConsumer ruleCall$3$Consumer;
+
+	private IElementConsumer group$4$Consumer;
+
+	private IElementConsumer assignment$5$Consumer;
+
+	private IElementConsumer keyword$6$Consumer;
+
+	private IElementConsumer assignment$7$Consumer;
+
+	private IElementConsumer ruleCall$8$Consumer;
+
 	private ICharacterClass keyword$6$Delimiter;
-	
+
 	private ISequenceMatcher ruleCall$3$Delimiter;
-	
+
 	private ISequenceMatcher ruleCall$8$Delimiter;
-	
+
+	protected class Group$1$Consumer extends GroupConsumer {
+		
+		protected Group$1$Consumer(final Group group) {
+			super(group);
+		}
+		
+		@Override
+		protected void doGetConsumers(ConsumerAcceptor acceptor) {
+			acceptor.accept(assignment$2$Consumer);
+			acceptor.accept(group$4$Consumer);
+		}
+	}
+
+	protected class Assignment$2$Consumer extends AssignmentConsumer {
+		
+		protected Assignment$2$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$3$Consumer;
+		}
+	}
+
+	protected class RuleCall$3$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$3$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeTerminal(idConsumer, "parts", true, false, getElement(), getRuleCall$3$Delimiter());
+		}
+	}
+
+	protected class Group$4$Consumer extends LoopGroupConsumer {
+		
+		protected Group$4$Consumer(final Group group) {
+			super(group);
+		}
+		
+		@Override
+		protected void doGetConsumers(ConsumerAcceptor acceptor) {
+			acceptor.accept(assignment$5$Consumer);
+			acceptor.accept(assignment$7$Consumer);
+		}
+	}
+
+	protected class Assignment$5$Consumer extends AssignmentConsumer {
+		
+		protected Assignment$5$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return keyword$6$Consumer;
+		}
+	}
+
+	protected class Keyword$6$Consumer extends ElementConsumer<Keyword> {
+		
+		protected Keyword$6$Consumer(final Keyword keyword) {
+			super(keyword);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeKeyword(getElement(), "parts", true, false, getKeyword$6$Delimiter());
+		}
+	}
+
+	protected class Assignment$7$Consumer extends AssignmentConsumer {
+		
+		protected Assignment$7$Consumer(final Assignment assignment) {
+			super(assignment);
+		}
+		
+		@Override
+		protected IElementConsumer getConsumer() {
+			return ruleCall$8$Consumer;
+		}
+	}
+
+	protected class RuleCall$8$Consumer extends ElementConsumer<RuleCall> {
+		
+		protected RuleCall$8$Consumer(final RuleCall ruleCall) {
+			super(ruleCall);
+		}
+		
+		@Override
+		protected int doConsume() throws Exception {
+			return consumeTerminal(idConsumer, "parts", true, false, getElement(), getRuleCall$8$Delimiter());
+		}
+	}
+
 	public MWEQualifiedNameConsumer(INonTerminalConsumerConfiguration configuration, ITerminalConsumer[] hiddenTokens) {
 		super(configuration, hiddenTokens);
 		keyword$6$Delimiter = ICharacterClass.Factory.nullClass();
@@ -42,103 +154,8 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 	}
 	
 	@Override
-	protected int doConsume(int entryPoint) throws Exception {
-		return consumeGroup$1(entryPoint);
-	}
-
-	protected int consumeGroup$1(int entryPoint) throws Exception {
-		announceNextLevel();
-		final IMarker marker = mark();
-		int result = ConsumeResult.SUCCESS;
-		switch(entryPoint) {
-			case -1: // use fall through semantics of switch case
-				result = ConsumeResult.EMPTY_MATCH;
-			case 0:
-				announceNextStep();
-				result = consumeAssignment$2(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele0AssignmentParts());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 1:
-				announceNextStep();
-				result = consumeGroup$4(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele1Group());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-		}
-		marker.commit();
-		announceLevelFinished();
-		return result;
-	}
-
-	protected int consumeAssignment$2(int entryPoint) throws Exception {
-		return consumeRuleCall$3(entryPoint);
-	}
-
-	protected int consumeRuleCall$3(int entryPoint) throws Exception {
-		return consumeTerminal(idConsumer, "parts", true, false, getRule().ele00LexerRuleCallID(), getRuleCall$3$Delimiter());
-	}
-
-	protected int consumeGroup$4(int entryPoint) throws Exception {
-		IMarker marker = mark();
-		while(doConsumeGroup$4(entryPoint) == ConsumeResult.SUCCESS) {
-			marker.flush();
-		}
-		marker.rollback();
-		return ConsumeResult.SUCCESS;
-	}
-
-	protected int doConsumeGroup$4(int entryPoint) throws Exception {
-		announceNextLevel();
-		final IMarker marker = mark();
-		int result = ConsumeResult.SUCCESS;
-		switch(entryPoint) {
-			case -1: // use fall through semantics of switch case
-				result = ConsumeResult.EMPTY_MATCH;
-			case 0:
-				announceNextStep();
-				result = consumeAssignment$5(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele10AssignmentParts());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-			case 1:
-				announceNextStep();
-				result = consumeAssignment$7(nextEntryPoint());
-				if (result!=ConsumeResult.SUCCESS) {
-					error("Another token expected.", getRule().ele11AssignmentParts());
-					marker.commit();
-					announceLevelFinished();
-					return result;
-				}
-		}
-		marker.commit();
-		announceLevelFinished();
-		return result;
-	}
-
-	protected int consumeAssignment$5(int entryPoint) throws Exception {
-		return consumeKeyword$6(entryPoint);
-	}
-
-	protected int consumeKeyword$6(int entryPoint) throws Exception {
-		return consumeKeyword(getRule().ele100KeywordFullStop(), "parts", true, false, getKeyword$6$Delimiter());
-	}
-
-	protected int consumeAssignment$7(int entryPoint) throws Exception {
-		return consumeRuleCall$8(entryPoint);
-	}
-
-	protected int consumeRuleCall$8(int entryPoint) throws Exception {
-		return consumeTerminal(idConsumer, "parts", true, false, getRule().ele110LexerRuleCallID(), getRuleCall$8$Delimiter());
+	protected int doConsume() throws Exception {
+		return group$1$Consumer.consume();
 	}
 
 	public QualifiedNameElements getRule() {
@@ -147,6 +164,15 @@ public final class MWEQualifiedNameConsumer extends NonTerminalConsumer {
 	
 	public void setRule(QualifiedNameElements rule) {
 		this.rule = rule;
+		
+		group$1$Consumer = new Group$1$Consumer(rule.eleGroup());
+		assignment$2$Consumer = new Assignment$2$Consumer(rule.ele0AssignmentParts());
+		ruleCall$3$Consumer = new RuleCall$3$Consumer(rule.ele00LexerRuleCallID());
+		group$4$Consumer = new Group$4$Consumer(rule.ele1Group());
+		assignment$5$Consumer = new Assignment$5$Consumer(rule.ele10AssignmentParts());
+		keyword$6$Consumer = new Keyword$6$Consumer(rule.ele100KeywordFullStop());
+		assignment$7$Consumer = new Assignment$7$Consumer(rule.ele11AssignmentParts());
+		ruleCall$8$Consumer = new RuleCall$8$Consumer(rule.ele110LexerRuleCallID());
 	}
 	
 	@Override

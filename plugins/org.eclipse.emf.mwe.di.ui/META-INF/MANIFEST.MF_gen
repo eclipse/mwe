@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.emf.mwe.di.MWE.ui
-Bundle-SymbolicName: org.eclipse.emf.mwe.di.MWE.ui
+Bundle-Name: org.eclipse.emf.mwe.di.ui
+Bundle-SymbolicName: org.eclipse.emf.mwe.di.ui
 Bundle-Version: 0.0.1
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

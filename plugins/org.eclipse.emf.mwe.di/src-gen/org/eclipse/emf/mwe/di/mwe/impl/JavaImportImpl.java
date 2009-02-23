@@ -2,7 +2,6 @@
  * <copyright>
  * </copyright>
  *
- * $Id: JavaImportImpl.java,v 1.1 2009/02/18 19:38:22 sefftinge Exp $
  */
 package org.eclipse.emf.mwe.di.mwe.impl;
 
@@ -185,7 +184,7 @@ public class JavaImportImpl extends ImportImpl implements JavaImport
       case MwePackage.JAVA_IMPORT__JAVA_IMPORT:
         return getJavaImport();
       case MwePackage.JAVA_IMPORT__WILDCARD:
-        return isWildcard() ? Boolean.TRUE : Boolean.FALSE;
+        return isWildcard();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -204,7 +203,7 @@ public class JavaImportImpl extends ImportImpl implements JavaImport
         setJavaImport((QualifiedName)newValue);
         return;
       case MwePackage.JAVA_IMPORT__WILDCARD:
-        setWildcard(((Boolean)newValue).booleanValue());
+        setWildcard((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
