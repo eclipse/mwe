@@ -33,7 +33,7 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
@@ -200,7 +200,7 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 					c = partitionText.charAt(start);
 				}
 			}
-			if (moved) {
+			if (moved && (isTerminal(terminalSet(), c) || start < 0)) {
 				start++;
 			}
 
@@ -214,21 +214,11 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 				c = partitionText.charAt(end);
 			}
 
-			if (moved) {
+			if (moved && isTerminal(terminalSet(), c)) {
 				end--;
 			}
 
-			String substring;
-			if (isTerminal(terminalSet(), c)) {
-				substring = "";
-				if (start < document.getLength() - 1) {
-					start++;
-				}
-			}
-			else {
-				substring = partitionText.substring(start, end + 1);
-			}
-
+			String substring = partitionText.substring(start, end + 1);
 			return new TextInfo(substring, partitionOffset + start, false);
 		}
 		catch (final BadLocationException e) {
