@@ -15,8 +15,9 @@ import org.xml.sax.Locator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
+@SuppressWarnings("serial")
 public class ValidationException extends RuntimeException {
 
 	private final int lineNumber;

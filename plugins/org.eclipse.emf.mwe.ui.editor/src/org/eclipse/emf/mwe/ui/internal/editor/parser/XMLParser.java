@@ -17,7 +17,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 
-import org.apache.xerces.parsers.SAXParser;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParserFactory;
+
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.xml.sax.ErrorHandler;
@@ -29,7 +31,7 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class XMLParser {
 
@@ -62,7 +64,7 @@ public class XMLParser {
 
 	public void parse(final InputSource inputSource) throws SAXException {
 		try {
-			final XMLReader reader = new SAXParser();
+			final XMLReader reader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
 			reader.setErrorHandler(errorHandler);
 			reader.setContentHandler(contentHandler);
 			reader.setFeature(VALIDATION_FEATURE, true);
@@ -72,6 +74,8 @@ public class XMLParser {
 		} catch (final SAXNotSupportedException e) {
 			Log.logError(e);
 		} catch (final IOException e) {
+			Log.logError(e);
+		} catch (ParserConfigurationException e) {
 			Log.logError(e);
 		}
 	}

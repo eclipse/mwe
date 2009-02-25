@@ -59,7 +59,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.39 $
+ * @version $Revision: 1.40 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -249,6 +249,7 @@ public class WorkflowEditor extends TextEditor {
 
 	public void validateAndMark() {
 		final IDocument document = getInputDocument();
+		MarkerManager.deleteMarkers(getInputFile());
 		final IWorkflowElement newRootElement = parseRootElement(document);
 		final ElementIterator iterator = new ElementIterator(getInputFile(), getInputDocument());
 

@@ -30,7 +30,7 @@ import org.eclipse.ui.texteditor.MarkerUtilities;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public final class MarkerManager {
 
@@ -115,7 +115,7 @@ public final class MarkerManager {
 
 	public static void deleteMarkers(final IFile file) {
 		try {
-			file.deleteMarkers(null, true, IResource.DEPTH_INFINITE);
+			file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_INFINITE);
 			knownMarkers.clear();
 		}
 		catch (final CoreException e) {

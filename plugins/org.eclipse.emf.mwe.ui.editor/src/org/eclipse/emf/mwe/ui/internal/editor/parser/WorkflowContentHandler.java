@@ -29,7 +29,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -70,11 +70,11 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 *      java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void endElement(final String uri, final String localName,
+	public void endElement(final String uri, final String ln,
 			final String qName) throws SAXException {
-		if (isIllegalName(localName)) {
+		if (isIllegalName(qName)) {
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
-					+ localName, true);
+					+ qName, true);
 		}
 
 		currentElement.setEndElementRange(createPositionRange());
@@ -157,22 +157,22 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
 	@Override
-	public void startElement(final String uri, final String localName,
+	public void startElement(final String uri, final String ln,
 			final String qName, final Attributes attributes)
 			throws SAXException {
 
 		final IWorkflowSyntaxFactory factory =
 				WorkflowSyntaxFactory.getInstance();
 		final IWorkflowElement element =
-				factory.newWorkflowElement(document, localName);
-		if (isIllegalName(localName)) {
+				factory.newWorkflowElement(document, qName);
+		if (isIllegalName(qName)) {
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
-					+ localName, true);
+					+ qName, true);
 		}
 
 		element.setStartElementRange(createPositionRange());
 		for (int i = 0; i < attributes.getLength(); i++) {
-			final String attrName = attributes.getLocalName(i);
+			final String attrName = attributes.getQName(i);
 			final String attrValue = attributes.getValue(i);
 			final IWorkflowAttribute attr =
 					factory.newWorkflowAttribute(element, attrName, attrValue);
@@ -182,7 +182,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		if (element.isValidChildFor(currentElement)) {
 			currentElement.addChild(element);
 		} else {
-			throw new ValidationException(locator, "'" + localName + "'"
+			throw new ValidationException(locator, "'" + qName + "'"
 					+ NO_VALID_CHILD_ELEMENT_MSG + " '"
 					+ currentElement.getName() + "'", true);
 		}
@@ -232,7 +232,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return offset;
 	}
 
-	private boolean isIllegalName(final String localName) {
-		return !Pattern.matches(TAG_NAME_PATTERN, localName);
+	private boolean isIllegalName(final String name) {
+		return !Pattern.matches(TAG_NAME_PATTERN, name);
 	}
 }
