@@ -104,15 +104,14 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	}
 
 	private void locateWfRunner(final IResource resource) throws CoreException {
-		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName())) {
-			throw new DebugException(Activator.createErrorStatus(
-					"Can't execute.\n MWE release jars are required in the project's classpath! --> aborting",
-					null));
-		}
+//		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName())) {
+//			throw new DebugException(Activator.createErrorStatus(
+//					"Can't execute.\n MWE release jars are required in the project's classpath! --> aborting",
+//					null));
+//		}
 	}
 
 	private boolean checkClasspathEntries(final IResource resource, final String classNameToFind) throws CoreException {
-		// TODO: ER: put required MWE packages always to the classpath
 		final IJavaProject project = JavaCore.create(resource.getProject());
 		final SearchPattern pattern = SearchPattern
 				.createPattern(classNameToFind, IJavaSearchConstants.TYPE, IJavaSearchConstants.DECLARATIONS,
