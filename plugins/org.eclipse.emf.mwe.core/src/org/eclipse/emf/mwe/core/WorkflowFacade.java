@@ -33,7 +33,9 @@ public class WorkflowFacade {
 
 	public WorkflowFacade(String path, Map<String, String> params) {
 		final WorkflowFactory factory = new WorkflowFactory();
-		workflow = factory.parseInitAndCreate(path, params, WorkflowFactory.getDefaultConverter(), issues);
+		workflow = factory.parseInitAndCreate(path,
+				(params == null) ? Collections.<String, String> emptyMap() : params, WorkflowFactory
+						.getDefaultConverter(), issues);
 		if (workflow == null)
 			throw new IllegalStateException("Couldn't load workflow file from '" + path + "'. Problems: "
 					+ issues.toString());
