@@ -25,16 +25,17 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
-	protected static final String MAPPING_ERROR_MSG =
-			"Could not determine a class mapping for element";
+	protected static final String MAPPING_ERROR_MSG = "Could not determine a class mapping for element";
 
 	protected static final String FALSE_VALUE = "false";
 
 	protected static final String TRUE_VALUE = "true";
+
+	protected static final String CLASS_ATTRIBUTE = "class";
 
 	static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
 
@@ -44,8 +45,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected PropertyStore propertyStore;
 
-	public DefaultAnalyzer(final IFile file, final IDocument document,
-			final PropertyStore propertyStore) {
+	public DefaultAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
 		if (file == null || document == null || propertyStore == null)
 			throw new IllegalArgumentException();
 
@@ -67,8 +67,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final IWorkflowElement parent = element.getParent();
 		final IType parentType = getMappedType(parent);
 		if (parentType == null) {
-			createMarker(parent, "Element '" + parent.getName()
-					+ "' could not be mapped");
+			createMarker(parent, "Element '" + parent.getName() + "' could not be mapped");
 			return;
 		}
 		checkAttributes(element, parentType);
@@ -92,19 +91,30 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return file;
 	}
 
-	protected void checkAttribute(final IType mappedType,
-			final IWorkflowElement element, final IWorkflowAttribute attribute) {
+	protected void checkAttribute(final IType mappedType, final IWorkflowElement element,
+			final IWorkflowAttribute attribute) {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
 		final String type = computeAttributeType(attribute);
-		final IMethod method =
-				TypeUtils.getSetter(getFile(), mappedType,
-						attribute.getName(), type);
+		IMethod method = null;
+		String name = attribute.getName();
+		IType mt = getSetterParameter(element, mappedType);
+		if (mt == null) {
+			mt = mappedType;
+		}
+		method = TypeUtils.getSetter(getFile(), mt, name, type);
+
+		if (method == null && element.hasParent()) {
+			mt = getSetterParameter(element.getParent(), mappedType);
+			if (mt != null) {
+				name = element.getName();
+				method = TypeUtils.getSetter(getFile(), mt, name, type);
+			}
+		}
+
 		if (method == null) {
-			createMarker(element, "No attribute '" + attribute.getName()
-					+ "' available in class '" + mappedType.getElementName()
-					+ "'");
+			createMarker(element, "No attribute '" + name + "' available in class '" + mt.getElementName() + "'");
 			return;
 		}
 		if (isPropertyReference(attribute)) {
@@ -112,12 +122,24 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected void checkAttributes(final IWorkflowElement element,
-			final IType mappedType) {
+	private IType getSetterParameter(final IWorkflowElement element, IType mappedType) {
+		IType mt = null;
+		IMethod method = TypeUtils.getSetter(getFile(), mappedType, element.getName(), TypeUtils.WILDCARD);
+		if (method != null) {
+			String[] params = method.getParameterTypes();
+			if (params.length == 1) {
+				String paramType = params[0];
+				paramType = paramType.substring(1, paramType.length() - 1);
+				mt = TypeUtils.findType(getFile(), paramType);
+			}
+		}
+		return mt;
+	}
+
+	protected void checkAttributes(final IWorkflowElement element, final IType mappedType) {
 		for (final IWorkflowAttribute attr : element.getAttributes()) {
 			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
-					&& !attr.getName()
-							.equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
+					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
 			}
 		}
@@ -130,8 +152,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		while (m.find()) {
 			final String value = m.group(1);
 			if (!propertyStore.contains(value)) {
-				createMarker(attribute, "Undefined property reference '"
-						+ value + "'");
+				createMarker(attribute, "Undefined property reference '" + value + "'");
 			}
 		}
 	}
@@ -146,35 +167,37 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return type;
 	}
 
-	protected void createMarker(final IWorkflowAttribute attribute,
-			final String message) {
+	protected void createMarker(final IWorkflowAttribute attribute, final String message) {
 		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
 
-		MarkerManager.createMarker(getFile(), getDocument(), attribute,
-				message, true, true);
+		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, true, true);
 	}
 
-	protected void createMarker(final IWorkflowElement element,
-			final String message) {
-		MarkerManager.createMarker(getFile(), getDocument(), element, message,
-				true);
+	protected void createMarker(final IWorkflowElement element, final String message) {
+		MarkerManager.createMarker(getFile(), getDocument(), element, message, true);
 	}
 
-	protected void createMarkerForValue(final IWorkflowAttribute attribute,
-			final String message) {
+	protected void createMarkerForValue(final IWorkflowAttribute attribute, final String message) {
 		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
 
-		MarkerManager.createMarker(getFile(), getDocument(), attribute,
-				message, true, true);
+		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, true, true);
 	}
 
 	protected IType getMappedType(final IWorkflowElement element) {
 		IType type = null;
 		final String name = element.getName();
 
-		type = getType(name);
+		if (name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
+			if (element.hasAttribute(CLASS_ATTRIBUTE)) {
+				String classValue = element.getAttributeValue(CLASS_ATTRIBUTE);
+				type = getType(classValue);
+			}
+		}
+		else {
+			type = getType(name);
+		}
 
 		if (type == null && !name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
 			type = getType(TypeUtils.getComponentName(name, false));
@@ -186,9 +209,14 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		if (type == null) {
 			final String typeName = element.getDefaultClass();
-			type = TypeUtils.findType(getFile(), typeName);
+			if (typeName != null) {
+				type = TypeUtils.findType(getFile(), typeName);
+			}
 		}
 
+		if (type == null && element.hasParent()) {
+			type = getMappedType(element.getParent());
+		}
 		if (type == null) {
 			createMarker(element, "Class '" + name + "' cannot be resolved");
 		}
@@ -206,15 +234,15 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		String type = null;
 		if (isBooleanValue(value)) {
 			type = "boolean";
-		} else {
+		}
+		else {
 			type = "java.lang.String";
 		}
 		return type;
 	}
 
 	protected boolean isBooleanValue(final String value) {
-		return value.equalsIgnoreCase(TRUE_VALUE)
-				^ value.equalsIgnoreCase(FALSE_VALUE);
+		return value.equalsIgnoreCase(TRUE_VALUE) ^ value.equalsIgnoreCase(FALSE_VALUE);
 	}
 
 	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {

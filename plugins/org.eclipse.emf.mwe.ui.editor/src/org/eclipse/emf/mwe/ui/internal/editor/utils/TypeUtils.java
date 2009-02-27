@@ -54,7 +54,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class TypeUtils {
 
@@ -105,26 +105,23 @@ public final class TypeUtils {
 
 	public static final String COMPONENT_SUFFIX = "Component";
 
-	public static final Pattern SIMPLE_CLASS_NAME_PATTERN =
-			Pattern.compile("^(.+?\\.)*(.+?)$");
+	public static final Pattern SIMPLE_CLASS_NAME_PATTERN = Pattern.compile("^(.+?\\.)*(.+?)$");
+
+	public static final String WILDCARD = "*";
 
 	private static final String ADDER_PREFIX = "add";
 
-	private static Map<String, Set<String>> allClassesCache =
-			new HashMap<String, Set<String>>();
+	private static Map<String, Set<String>> allClassesCache = new HashMap<String, Set<String>>();
 
 	private static final int FIRST_PROPERTY_CHAR = 3;
 
-	private static final String MWE_CONTAINER_PACKAGE =
-			"org.eclipse.emf.mwe.core.container";
+	private static final String MWE_CONTAINER_PACKAGE = "org.eclipse.emf.mwe.core.container";
 
-	private static final String OAW_CONTAINER_PACKAGE =
-			"org.openarchitectureware.core.workflow.container";
+	private static final String OAW_CONTAINER_PACKAGE = "org.openarchitectureware.core.workflow.container";
 
 	private static final String SETTER_PREFIX = "set";
 
-	private static Map<String, Set<String>> subClassCache =
-			new HashMap<String, Set<String>>();
+	private static Map<String, Set<String>> subClassCache = new HashMap<String, Set<String>>();
 
 	/**
 	 * Don't allow instantiation.
@@ -139,39 +136,34 @@ public final class TypeUtils {
 	}
 
 	public static IType findType(final IFile file, final String typeName) {
-		if (file == null || typeName == null) {
+		if (file == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		return findType(file.getProject(), typeName);
 	}
 
 	public static IType findType(final IProject project, final String typeName) {
-		if (project == null || typeName == null) {
+		if (project == null || typeName == null)
 			throw new IllegalArgumentException();
-		}
 
 		try {
 			final IJavaProject javaProject = JavaCore.create(project);
-			final String resolvedTypeName =
-					PackageShortcutResolver.resolve(typeName);
+			final String resolvedTypeName = PackageShortcutResolver.resolve(typeName);
 			final IType type = javaProject.findType(resolvedTypeName);
 			return type;
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			return null;
 		}
 	}
 
-	public static Set<String> getAllClasses(final IFile file,
-			final boolean onlyConcreteClasses) {
+	public static Set<String> getAllClasses(final IFile file, final boolean onlyConcreteClasses) {
 		return getAllClasses(getProject(file), onlyConcreteClasses);
 	}
 
-	public static Set<String> getAllClasses(final IProject project,
-			final boolean onlyConcreteClasses) {
-		if (project == null) {
+	public static Set<String> getAllClasses(final IProject project, final boolean onlyConcreteClasses) {
+		if (project == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> allClasses = queryAllClassesCache(project);
 		if (!allClasses.isEmpty())
@@ -180,19 +172,18 @@ public final class TypeUtils {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
 			final SearchEngine searchEngine = new SearchEngine();
-			final IJavaSearchScope scope =
-					SearchEngine.createJavaSearchScope(
-							new IJavaElement[] { jp }, true);
+			final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { jp }, true);
 			final TypeNameCollector collector = new TypeNameCollector(project);
-			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH,
-					null, SearchPattern.R_EXACT_MATCH,
-					IJavaSearchConstants.CLASS, scope, collector,
-					IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, null);
+			searchEngine
+					.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
+							IJavaSearchConstants.CLASS, scope, collector,
+							IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, null);
 			allClasses.addAll(collector.getClassNames());
 
 			cacheAllClasses(project, allClasses);
 			return allClasses;
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 			return allClasses;
 		}
@@ -200,21 +191,17 @@ public final class TypeUtils {
 
 	public static String getComponentName(final String name, final boolean old) {
 		if (old)
-			return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-					+ COMPONENT_SUFFIX;
+			return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
 		else
-			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name)
-					+ COMPONENT_SUFFIX;
+			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
 	}
 
-	public static String getFileContent(final IFile file,
-			final IDocument document, final IWorkflowAttribute attribute) {
+	public static String getFileContent(final IFile file, final IDocument document, final IWorkflowAttribute attribute) {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
-		if (loader == null) {
+		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
-		}
 
 		BufferedReader reader = null;
 		final URL fileURL = loader.getResource(filePath);
@@ -222,23 +209,23 @@ public final class TypeUtils {
 			if (fileURL != null) {
 				final InputStream is = fileURL.openStream();
 				if (is != null) {
-					final InputStreamReader streamReader =
-							new InputStreamReader(is);
+					final InputStreamReader streamReader = new InputStreamReader(is);
 					reader = new BufferedReader(streamReader);
 				}
-			} else {
+			}
+			else {
 				final IProject project = file.getProject();
 				if (project != null) {
 					final File projectPath = project.getLocation().toFile();
 					final File foundFile = findFile(projectPath, filePath);
 					if (foundFile != null) {
-						final FileReader fileReader =
-								new FileReader(foundFile);
+						final FileReader fileReader = new FileReader(foundFile);
 						reader = new BufferedReader(fileReader);
 					}
 				}
 			}
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			return null;
 		}
 
@@ -252,7 +239,8 @@ public final class TypeUtils {
 				}
 				reader.close();
 				return content;
-			} catch (final IOException e) {
+			}
+			catch (final IOException e) {
 				Log.logError("I/O error", e);
 			}
 		}
@@ -266,8 +254,7 @@ public final class TypeUtils {
 		return getJavaDoc(file.getProject(), className);
 	}
 
-	public static String getJavaDoc(final IProject project,
-			final String className) {
+	public static String getJavaDoc(final IProject project, final String className) {
 		if (project == null || className == null)
 			return null;
 
@@ -277,7 +264,8 @@ public final class TypeUtils {
 				return type.getAttachedJavadoc(new NullProgressMonitor());
 
 			return null;
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 			return null;
 		}
@@ -287,10 +275,10 @@ public final class TypeUtils {
 		final IProject project = file.getProject();
 		ClassLoader loader = null;
 		try {
-			final ProjectIncludingResourceLoader l =
-					new ProjectIncludingResourceLoader(project);
+			final ProjectIncludingResourceLoader l = new ProjectIncludingResourceLoader(project);
 			loader = l.createClassLoader(project);
-		} catch (final CoreException e) {
+		}
+		catch (final CoreException e) {
 			Log.logError("Could not create resource loader", e);
 		}
 
@@ -307,34 +295,29 @@ public final class TypeUtils {
 			for (final IMethod m : methods) {
 				final String methodName = m.getElementName();
 				final int modifiers = m.getFlags();
-				if (methodName.length() > SETTER_PREFIX.length()
-						&& Flags.isPublic(modifiers)
-						&& (methodName.startsWith(ADDER_PREFIX) || methodName
-								.startsWith(SETTER_PREFIX))) {
+				if (methodName.length() > SETTER_PREFIX.length() && Flags.isPublic(modifiers)
+						&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))) {
 					final String propertyName = getPropertyName(methodName);
 					result.add(propertyName);
 				}
 			}
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 		}
 		return result;
 	}
 
-	public static IMethod getSetter(final IFile file, final IType type,
-			final String name, final String argType) {
-		if (file == null || type == null || name == null) {
+	public static IMethod getSetter(final IFile file, final IType type, final String name, final String argType) {
+		if (file == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		return getSetter(file.getProject(), type, name, argType);
 	}
 
-	public static IMethod getSetter(final IProject project, final IType type,
-			final String name, final String argType) {
-		if (project == null || type == null || name == null) {
+	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		IMethod method = null;
 
@@ -357,23 +340,20 @@ public final class TypeUtils {
 			return fqn;
 	}
 
-	public static Set<String> getSubClasses(final IFile file,
-			final IType baseType, final boolean onlyConcreteClasses) {
+	public static Set<String> getSubClasses(final IFile file, final IType baseType, final boolean onlyConcreteClasses) {
 		return getSubClasses(getProject(file), baseType, onlyConcreteClasses);
 	}
 
-	public static Set<String> getSubClasses(final IProject project,
-			final IType baseType, final boolean onlyConcreteClasses) {
-		if (project == null || baseType == null) {
+	public static Set<String> getSubClasses(final IProject project, final IType baseType,
+			final boolean onlyConcreteClasses) {
+		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final Set<String> subClasses = querySubClassCache(project, baseType);
 		if (!subClasses.isEmpty())
 			return subClasses;
 
-		final ITypeHierarchy hierarchy =
-				createTypeHierarchy(project, baseType);
+		final ITypeHierarchy hierarchy = createTypeHierarchy(project, baseType);
 		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(baseType);
 			createClassSet(project, subClasses, subTypes, onlyConcreteClasses);
@@ -387,75 +367,69 @@ public final class TypeUtils {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
 
-	private static void cacheAllClasses(final IProject project,
-			final Set<String> allClasses) {
-		if (project == null || allClasses == null) {
+	private static void cacheAllClasses(final IProject project, final Set<String> allClasses) {
+		if (project == null || allClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = project.getName();
 		allClassesCache.put(hashString, allClasses);
 	}
 
-	private static void cacheSubClasses(final IProject project,
-			final IType baseType, final Set<String> subClasses) {
-		if (project == null || baseType == null || subClasses == null) {
+	private static void cacheSubClasses(final IProject project, final IType baseType, final Set<String> subClasses) {
+		if (project == null || baseType == null || subClasses == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String hashString = generateHashString(project, baseType);
 		subClassCache.put(hashString, subClasses);
 	}
 
 	private static String[] convertParameterTypes(final String[] paramType) {
-		if (paramType == null) {
+		if (paramType == null)
 			throw new IllegalArgumentException();
-		}
 
 		final String[] result = new String[paramType.length];
 		for (int i = 0; i < paramType.length; i++) {
 			final String param = paramType[i];
 			if (param.endsWith(BUILTIN_BOOLEAN_TYPE)) {
 				result[i] = "Z";
-			} else {
+			}
+			else if (WILDCARD.equals(param)) {
+				result[i] = param;
+			}
+			else {
 				result[i] = "L" + param + ";";
 			}
 		}
 		return result;
 	}
 
-	private static void createClassSet(final IProject project,
-			final Set<String> classes, final IType[] type,
+	private static void createClassSet(final IProject project, final Set<String> classes, final IType[] type,
 			final boolean onlyConcreteClasses) {
 		try {
 			for (final IType t : type) {
 				final int modifiers = t.getFlags();
-				if (Flags.isPublic(modifiers)
-						&& (!onlyConcreteClasses || !Flags
-								.isAbstract(modifiers))) {
+				if (Flags.isPublic(modifiers) && (!onlyConcreteClasses || !Flags.isAbstract(modifiers))) {
 					classes.add(t.getFullyQualifiedName());
 				}
 			}
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 		}
 	}
 
-	private static ITypeHierarchy createTypeHierarchy(final IProject project,
-			final IType type) {
+	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
 			final IRegion region = JavaCore.newRegion();
-			final IPackageFragmentRoot[] root =
-					jp.getAllPackageFragmentRoots();
+			final IPackageFragmentRoot[] root = jp.getAllPackageFragmentRoots();
 			for (final IPackageFragmentRoot r : root) {
 				region.add(r);
 			}
-			final ITypeHierarchy hierarchy =
-					jp.newTypeHierarchy(type, region,
-							new NullProgressMonitor());
+			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, new NullProgressMonitor());
 			return hierarchy;
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
 			return null;
 		}
@@ -463,9 +437,7 @@ public final class TypeUtils {
 
 	private static File findFile(final File rootPath, final String filePath) {
 		// FIXME Improve searching so that only source folders are considered.
-		final String fileNameToTest =
-				rootPath.getAbsoluteFile().getPath() + File.separator
-						+ filePath;
+		final String fileNameToTest = rootPath.getAbsoluteFile().getPath() + File.separator + filePath;
 		File testFile = new File(fileNameToTest);
 		if (testFile.exists())
 			return testFile;
@@ -485,19 +457,16 @@ public final class TypeUtils {
 		return null;
 	}
 
-	private static String generateHashString(final IProject project,
-			final IType baseType) {
+	private static String generateHashString(final IProject project, final IType baseType) {
 		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
 
 		return project.getName() + ":" + baseType.getFullyQualifiedName();
 	}
 
-	private static IMethod getMethod(final IProject project, final IType type,
-			final String name, final String argType) {
-		if (project == null || type == null || name == null) {
+	private static IMethod getMethod(final IProject project, final IType type, final String name, final String argType) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
 		IMethod method = null;
 
@@ -517,26 +486,36 @@ public final class TypeUtils {
 
 			if (m != null && m.exists()) {
 				final int modifiers = m.getFlags();
-				if (name.equals(m.getElementName())
-						&& Flags.isPublic(modifiers)
-						&& !Flags.isAbstract(modifiers)) {
+				if (name.equals(m.getElementName()) && Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
 					method = m;
 				}
 			}
-		} catch (final JavaModelException e) {
+		}
+		catch (final JavaModelException e) {
 			Log.logError("", e);
 		}
 		return method;
 	}
 
-	private static IMethod getMethod(final IType type, final String name,
-			final String[] paramTypes) {
-		if (type == null || name == null) {
+	private static IMethod getMethod(final IType type, final String name, final String[] paramTypes) {
+		if (type == null || name == null)
 			throw new IllegalArgumentException();
-		}
 
-		final String[] parameterTypeSignature =
-				convertParameterTypes(paramTypes);
+		final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
+		if (parameterTypeSignature.length == 1 && WILDCARD.equals(parameterTypeSignature[0])) {
+			try {
+				IMethod[] methods = type.getMethods();
+				for (IMethod m : methods) {
+					if (name.equals(m.getElementName()))
+						return m;
+				}
+				return null;
+			}
+			catch (JavaModelException e) {
+				Log.logError("", e);
+				return null;
+			}
+		}
 		return type.getMethod(name, parameterTypeSignature);
 	}
 
@@ -548,11 +527,9 @@ public final class TypeUtils {
 	}
 
 	private static String getPropertyName(final String methodName) {
-		if (methodName == null || !methodName.startsWith(SETTER_PREFIX)
-				&& !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length()) {
+		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
+				&& methodName.length() <= SETTER_PREFIX.length())
 			throw new IllegalArgumentException();
-		}
 
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
@@ -570,8 +547,7 @@ public final class TypeUtils {
 			return new TreeSet<String>(new ClassNameComparator());
 	}
 
-	private static Set<String> querySubClassCache(final IProject project,
-			final IType baseType) {
+	private static Set<String> querySubClassCache(final IProject project, final IType baseType) {
 		if (project == null || baseType == null)
 			return null;
 

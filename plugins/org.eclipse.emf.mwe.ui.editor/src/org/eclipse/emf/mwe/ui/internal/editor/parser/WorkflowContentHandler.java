@@ -29,16 +29,15 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
-	private static final String NO_VALID_CHILD_ELEMENT_MSG =
-			"is no valid child element for element";
+	private static final String NO_VALID_CHILD_ELEMENT_MSG = "is no valid child element for element";
 
 	private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name:";
 
-	private static final String TAG_NAME_PATTERN = "[a-zA-Z0-9]+";
+	private static final String TAG_NAME_PATTERN = "[a-zA-Z0-9\\.\\-]+";
 
 	protected Locator locator;
 
@@ -70,12 +69,9 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 *      java.lang.String, java.lang.String)
 	 */
 	@Override
-	public void endElement(final String uri, final String ln,
-			final String qName) throws SAXException {
-		if (isIllegalName(qName)) {
-			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG
-					+ qName, true);
-		}
+	public void endElement(final String uri, final String ln, final String qName) throws SAXException {
+		if (isIllegalName(qName))
+			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + qName, true);
 
 		currentElement.setEndElementRange(createPositionRange());
 		if (currentElement.hasParent()) {
@@ -140,11 +136,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 */
 	@Override
 	public void startDocument() throws SAXException {
-		final IWorkflowSyntaxFactory factory =
-				WorkflowSyntaxFactory.getInstance();
-		rootElement =
-				factory.newWorkflowElement(document,
-						IWorkflowElement.WORKFLOWFILE_TAG);
+		final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
+		rootElement = factory.newWorkflowElement(document, IWorkflowElement.WORKFLOWFILE_TAG);
 		currentElement = rootElement;
 		rootElement.setStartElementRange(createPositionRange());
 	}
@@ -157,35 +150,28 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
 	 */
 	@Override
-	public void startElement(final String uri, final String ln,
-			final String qName, final Attributes attributes)
+	public void startElement(final String uri, final String ln, final String qName, final Attributes attributes)
 			throws SAXException {
 
-		final IWorkflowSyntaxFactory factory =
-				WorkflowSyntaxFactory.getInstance();
-		final IWorkflowElement element =
-				factory.newWorkflowElement(document, qName);
-		if (isIllegalName(qName)) {
-			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " "
-					+ qName, true);
-		}
+		final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
+		final IWorkflowElement element = factory.newWorkflowElement(document, qName);
+		if (isIllegalName(qName))
+			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " " + qName, true);
 
 		element.setStartElementRange(createPositionRange());
 		for (int i = 0; i < attributes.getLength(); i++) {
 			final String attrName = attributes.getQName(i);
 			final String attrValue = attributes.getValue(i);
-			final IWorkflowAttribute attr =
-					factory.newWorkflowAttribute(element, attrName, attrValue);
+			final IWorkflowAttribute attr = factory.newWorkflowAttribute(element, attrName, attrValue);
 			element.addAttribute(attr);
 		}
 
 		if (element.isValidChildFor(currentElement)) {
 			currentElement.addChild(element);
-		} else {
-			throw new ValidationException(locator, "'" + qName + "'"
-					+ NO_VALID_CHILD_ELEMENT_MSG + " '"
-					+ currentElement.getName() + "'", true);
 		}
+		else
+			throw new ValidationException(locator, "'" + qName + "'" + NO_VALID_CHILD_ELEMENT_MSG + " '"
+					+ currentElement.getName() + "'", true);
 		currentElement = element;
 	}
 
@@ -202,7 +188,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final IRegion region = document.getLineInformationOfOffset(offset);
 			final int endChar = region.getOffset() + region.getLength();
 			return endChar;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -213,7 +200,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final IRegion region = document.getLineInformationOfOffset(offset);
 			final int lineStartChar = region.getOffset();
 			return lineStartChar;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 			return null;
 		}
@@ -223,10 +211,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 		int offset = 0;
 		try {
 			offset = document.getLineOffset(lineNumber);
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			try {
 				offset = document.getLineOffset(lineNumber - 1);
-			} catch (final BadLocationException e1) {
+			}
+			catch (final BadLocationException e1) {
 			}
 		}
 		return offset;
