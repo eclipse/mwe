@@ -54,7 +54,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public final class TypeUtils {
 
@@ -363,6 +363,36 @@ public final class TypeUtils {
 		return subClasses;
 	}
 
+	public static Set<IType> getSuperTypes(IFile file, IType type) {
+		return getSuperTypes(getProject(file), type);
+	}
+
+	public static Set<IType> getSuperTypes(IProject project, IType type) {
+		if (project == null || type == null)
+			throw new IllegalArgumentException();
+
+		Set<IType> result = new HashSet<IType>();
+		try {
+			String superClass = type.getSuperclassName();
+			IType superType = (superClass != null) ? findType(project, superClass) : null;
+			if (superType != null) {
+				result.add(superType);
+			}
+
+			String[] interfaces = type.getSuperInterfaceNames();
+			for (String ifn : interfaces) {
+				superType = findType(project, ifn);
+				if (superType != null) {
+					result.add(superType);
+				}
+			}
+		}
+		catch (JavaModelException e) {
+			Log.logError("", e);
+		}
+		return result;
+	}
+
 	private static String adderName(final String name) {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
@@ -475,13 +505,13 @@ public final class TypeUtils {
 			if (argType != null) {
 				final String[] param = new String[1];
 				param[0] = argType;
-				m = getMethod(type, name, param);
+				m = internalGetMethod(project, type, name, param);
 			}
 
 			if (m == null) {
 				final String[] objectParam = new String[1];
 				objectParam[0] = OBJECT_CLASS_NAME;
-				m = getMethod(type, name, objectParam);
+				m = internalGetMethod(project, type, name, objectParam);
 			}
 
 			if (m != null && m.exists()) {
@@ -497,8 +527,9 @@ public final class TypeUtils {
 		return method;
 	}
 
-	private static IMethod getMethod(final IType type, final String name, final String[] paramTypes) {
-		if (type == null || name == null)
+	private static IMethod internalGetMethod(IProject project, final IType type, final String name,
+			final String[] paramTypes) {
+		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
 		final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
@@ -509,14 +540,25 @@ public final class TypeUtils {
 					if (name.equals(m.getElementName()))
 						return m;
 				}
-				return null;
+
 			}
 			catch (JavaModelException e) {
 				Log.logError("", e);
 				return null;
 			}
 		}
-		return type.getMethod(name, parameterTypeSignature);
+		else {
+			IMethod method = type.getMethod(name, parameterTypeSignature);
+			if (method != null)
+				return method;
+		}
+		Set<IType> superTypes = getSuperTypes(project, type);
+		for (IType t : superTypes) {
+			IMethod method = internalGetMethod(project, t, name, paramTypes);
+			if (method != null)
+				return method;
+		}
+		return null;
 	}
 
 	private static IProject getProject(final IFile file) {
