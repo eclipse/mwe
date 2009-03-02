@@ -240,7 +240,7 @@ public class WorkflowRunner {
 
 		logger.info("--------------------------------------------------------------------------------------");
 		logger.info("EMF Modeling Workflow Engine " + getVersion());
-		logger.info("(c) 2005-2007 openarchitectureware.org and contributors");
+		logger.info("(c) 2005-2009 openarchitectureware.org and contributors");
 		logger.info("--------------------------------------------------------------------------------------");
 		logger.info("running workflow: " + workFlowFile);
 		logger.info("");
