@@ -152,7 +152,7 @@ public class VisitorCreator extends VisitorBase {
                 ((AbstractASTBase) iter.next()).accept(vis);
             }
         } catch (final Exception e) {
-            log.error(e);
+            log.error(e.getMessage(), e);
             issues.addError("Error creating instance of type '" + comp.getClazz() + "' : " + e.getMessage(), comp);
         }
         return bean;
