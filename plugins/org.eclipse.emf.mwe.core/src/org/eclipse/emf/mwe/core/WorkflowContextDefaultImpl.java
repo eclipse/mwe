@@ -9,12 +9,11 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.emf.mwe.internal.core;
+package org.eclipse.emf.mwe.core;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.emf.mwe.core.WorkflowContext;
 
 /**
  * Default {@link WorkflowContext} implementation.

@@ -316,7 +316,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	 * @param comp
 	 *            the component
 	 */
-	public void put(WorkflowComponent comp) {
+	public void put(String name, WorkflowComponent comp) {
 		addComponent(comp);
 	}
 

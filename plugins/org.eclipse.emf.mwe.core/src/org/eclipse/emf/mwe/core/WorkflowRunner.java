@@ -26,7 +26,6 @@ import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.Workflow;
-import org.eclipse.emf.mwe.internal.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 import org.eclipse.emf.mwe.internal.core.cli.CommandLine;
 import org.eclipse.emf.mwe.internal.core.cli.CommandLineParser;
