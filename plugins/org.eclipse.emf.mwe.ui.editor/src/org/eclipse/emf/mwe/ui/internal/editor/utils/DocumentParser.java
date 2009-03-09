@@ -22,7 +22,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public final class DocumentParser {
@@ -41,7 +41,7 @@ public final class DocumentParser {
 	}
 
 	public static IWorkflowElement parse(final IDocument document, final WorkflowEditor editor) {
-		if (document == null)
+		if (document == null || editor == null) // don't try to parse erroneous editors
 			return null;
 
 		final String text = document.get();

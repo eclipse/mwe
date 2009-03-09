@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public final class MarkerManager {
 
@@ -144,6 +144,8 @@ public final class MarkerManager {
 	}
 
 	public static void deleteMarkers(final IFile file) {
+		if (file == null || !file.exists()) // may happen when you delete a project
+			return;
 		try {
 			file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_INFINITE);
 			knownMarkers.clear();
