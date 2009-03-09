@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -114,6 +114,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 					method = TypeUtils.getSetter(getFile(), mt, name, TypeUtils.WILDCARD);
 				}
 			}
+		}
+		if (mt == null) {
+			mt = mappedType;
 		}
 
 		if (method == null) {
