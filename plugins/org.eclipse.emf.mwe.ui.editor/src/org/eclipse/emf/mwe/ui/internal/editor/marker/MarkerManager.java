@@ -27,10 +27,12 @@ import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.ui.texteditor.MarkerUtilities;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public final class MarkerManager {
 
@@ -65,6 +67,34 @@ public final class MarkerManager {
 			return;
 
 		createMarkerFromRange(file, document, message, firstLineRange, isError);
+	}
+
+	public static void createMarkerFromParserException(IFile file, final IDocument document,
+			final SAXException exception) {
+		if (exception instanceof SAXParseException) {
+			final SAXParseException ex = (SAXParseException) exception;
+			final int line = ex.getLineNumber() - 1;
+			final int column = ex.getColumnNumber() - 1;
+			final String msg = ex.getMessage();
+			createMarker(file, document, msg, line, column);
+		}
+	}
+
+	public static void createMarker(IFile file, IDocument document, String msg, int line, int column) {
+		try {
+			final int lineOffset = document.getLineOffset(line);
+			final int start = lineOffset + column;
+			int end = start;
+			if (end < document.getLength()) {
+				end++;
+			}
+
+			final ElementPositionRange range = new ElementPositionRange(document, start, end);
+			MarkerManager.createMarkerFromRange(file, document, msg, range, true);
+		}
+		catch (final BadLocationException e) {
+			Log.logError("Document location error", e);
+		}
 	}
 
 	public static void createMarkerFromRange(final IFile file, final IDocument document, final String message,

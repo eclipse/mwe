@@ -30,7 +30,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.ClassConten
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
@@ -40,7 +39,6 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.source.Annotation;
@@ -59,7 +57,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -96,21 +94,8 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	public void createMarker(final IDocument document, final String msg, final int line, final int column) {
-		try {
-			final IFile file = getInputFile();
-			final int lineOffset = document.getLineOffset(line);
-			final int start = lineOffset + column;
-			int end = start;
-			if (end < document.getLength()) {
-				end++;
-			}
-
-			final ElementPositionRange range = new ElementPositionRange(document, start, end);
-			MarkerManager.createMarkerFromRange(file, document, msg, range, true);
-		}
-		catch (final BadLocationException e) {
-			Log.logError("Document location error", e);
-		}
+		final IFile file = getInputFile();
+		MarkerManager.createMarker(file, document, msg, line, column);
 	}
 
 	@Override

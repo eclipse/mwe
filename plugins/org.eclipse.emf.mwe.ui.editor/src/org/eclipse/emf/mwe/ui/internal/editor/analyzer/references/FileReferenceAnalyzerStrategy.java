@@ -14,7 +14,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
@@ -25,15 +24,13 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
-public class FileReferenceAnalyzerStrategy extends
-		AbstractReferenceAnalyzerStrategy {
+public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
 	protected static final String PROPERTIES_EXTENSION = ".properties";
 
-	public FileReferenceAnalyzerStrategy(final IFile file,
-			final IDocument document, final ReferenceInfoStore store) {
+	public FileReferenceAnalyzerStrategy(final IFile file, final IDocument document, final ReferenceInfoStore store) {
 		super(file, document, store);
 	}
 
@@ -55,8 +52,7 @@ public class FileReferenceAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	public boolean isApplicable(final IWorkflowElement element) {
-		return element != null
-				&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+		return element != null && element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 	}
 
 	/**
@@ -67,8 +63,7 @@ public class FileReferenceAnalyzerStrategy extends
 	 */
 	@Override
 	protected void doAnalyze(final IWorkflowElement element) {
-		final IWorkflowAttribute attribute =
-				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
 			return;
@@ -76,29 +71,26 @@ public class FileReferenceAnalyzerStrategy extends
 		store.addFileName(fileName);
 
 		if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
-			final String referencedContent =
-					TypeUtils.getFileContent(file, document, attribute);
+			final String referencedContent = TypeUtils.getFileContent(file, document, attribute);
 			if (referencedContent == null) {
-				MarkerManager.createMarker(file, document, attribute, "File '"
-						+ attribute.getValue() + "' could not be found", true,
-						false);
+				MarkerManager.createMarker(file, document, attribute, "File '" + attribute.getValue()
+						+ "' could not be found", true, false);
 				return;
 			}
 
 			final XMLParser parser = new XMLParser();
-			final WorkflowContentHandler contentHandler =
-					new WorkflowContentHandler();
+			final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
 			contentHandler.setDocument(document);
 			contentHandler.setPositionCategory("dummy");
 			contentHandler.setDocumentLocator(new LocatorImpl());
 			try {
 				parser.parse(referencedContent);
 				final IWorkflowElement root = parser.getRootElement();
-				final ReferenceAnalyzer analyzer =
-						new ReferenceAnalyzer(file, document, store);
+				final ReferenceAnalyzer analyzer = new ReferenceAnalyzer(file, document, store);
 				analyzer.analyzeElement(root);
-			} catch (final SAXException e) {
-				Log.logError("Parse error", e);
+			}
+			catch (final SAXException e) {
+				MarkerManager.createMarkerFromParserException(file, document, e);
 			}
 		}
 	}

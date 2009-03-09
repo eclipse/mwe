@@ -18,12 +18,11 @@ import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public final class DocumentParser {
@@ -54,14 +53,9 @@ public final class DocumentParser {
 		xmlParser.setContentHandler(contentHandler);
 		try {
 			xmlParser.parse(text);
-		} catch (final SAXException e) {
-			if (editor != null && e instanceof SAXParseException) {
-				final SAXParseException ex = (SAXParseException) e;
-				final int line = ex.getLineNumber() - 1;
-				final int column = ex.getColumnNumber() - 1;
-				final String msg = ex.getMessage();
-				editor.createMarker(document, msg, line, column);
-			}
+		}
+		catch (final SAXException e) {
+			MarkerManager.createMarkerFromParserException(editor.getInputFile(), document, e);
 		}
 		final IWorkflowElement root = xmlParser.getRootElement();
 		return root;
