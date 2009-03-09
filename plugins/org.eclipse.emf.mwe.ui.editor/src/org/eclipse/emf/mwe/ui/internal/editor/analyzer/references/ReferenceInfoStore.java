@@ -23,17 +23,15 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class ReferenceInfoStore {
 
 	private final IFile file;
 
-	private final Set<ReferenceInfo> definitionSet =
-			new HashSet<ReferenceInfo>();
+	private final Set<ReferenceInfo> definitionSet = new HashSet<ReferenceInfo>();
 
-	private final List<ReferenceInfo> references =
-			new LinkedList<ReferenceInfo>();
+	private final List<ReferenceInfo> references = new LinkedList<ReferenceInfo>();
 
 	private final Set<String> fileNameSet = new HashSet<String>();
 
@@ -42,8 +40,7 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean addDefinition(final IWorkflowElement element) {
-		if (element == null
-				|| !element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE))
+		if (element == null || !element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -51,15 +48,14 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean addFileName(final String name) {
-		if (name == null || name.length() == 0)
+		if (name == null)
 			throw new IllegalArgumentException();
 
 		return fileNameSet.add(name);
 	}
 
 	public void addReference(final IWorkflowElement element) {
-		if (element == null
-				|| !element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
+		if (element == null || !element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -88,17 +84,14 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean isDefined(final ReferenceInfo info) {
-		if (info == null
-				|| !info.getElement().hasAttribute(
-						IWorkflowElement.ID_REF_ATTRIBUTE))
+		if (info == null || !info.getElement().hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		return definitionSet.contains(info);
 	}
 
 	private ReferenceInfo createReferenceInfo(final IWorkflowElement element) {
-		IWorkflowAttribute attribute =
-				element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
+		IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
 		if (attribute == null) {
 			attribute = element.getAttribute(IWorkflowElement.ID_REF_ATTRIBUTE);
 		}
