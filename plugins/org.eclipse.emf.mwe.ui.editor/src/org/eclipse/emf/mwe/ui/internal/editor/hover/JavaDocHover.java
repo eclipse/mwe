@@ -27,11 +27,10 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
-public class JavaDocHover extends AbstractHover implements
-		IJavaEditorTextHover {
+public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover {
 
 	private IEditorPart editor;
 
@@ -50,47 +49,36 @@ public class JavaDocHover extends AbstractHover implements
 	}
 
 	@Override
-	protected String getHoverInfoInternal(final int lineNumber,
-			final int offset) {
+	protected String getHoverInfoInternal(final int lineNumber, final int offset) {
 		final WorkflowEditor wfEditor = getWorkflowEditor();
 		if (wfEditor == null)
 			return null;
 
 		try {
-			final ITypedRegion region = document.getPartition(offset);
-			if (region.getType()
-					.equals(WorkflowPartitionScanner.XML_START_TAG)) {
+			final ITypedRegion region = getDocument().getPartition(offset);
+			if (region.getType().equals(WorkflowPartitionScanner.XML_START_TAG)) {
 
-				final Collection<IWorkflowElement> allElements =
-						wfEditor.getElements();
+				final Collection<IWorkflowElement> allElements = wfEditor.getElements();
 				if (allElements != null) {
-					final IWorkflowElement element =
-							findElements(allElements, region);
-					if (element != null
-							&& element
-									.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
-						final String className =
-								element
-										.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
+					final IWorkflowElement element = findElements(allElements, region);
+					if (element != null && element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
+						final String className = element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
 						final IFile file = wfEditor.getInputFile();
-						final String javaDoc =
-								TypeUtils.getJavaDoc(file, className);
+						final String javaDoc = TypeUtils.getJavaDoc(file, className);
 						return javaDoc;
 					}
 				}
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 		return null;
 	}
 
-	private IWorkflowElement findElements(
-			final Collection<IWorkflowElement> allElements,
-			final ITypedRegion region) {
-		if (allElements == null || region == null) {
+	private IWorkflowElement findElements(final Collection<IWorkflowElement> allElements, final ITypedRegion region) {
+		if (allElements == null || region == null)
 			throw new IllegalArgumentException();
-		}
 
 		final int start = region.getOffset();
 		final int end = start + region.getLength() - 1;

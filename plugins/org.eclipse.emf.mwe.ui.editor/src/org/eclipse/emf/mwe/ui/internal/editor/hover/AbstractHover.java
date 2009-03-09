@@ -27,48 +27,45 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
-public abstract class AbstractHover implements IAnnotationHover, ITextHover,
-		ITextHoverExtension2 {
+public abstract class AbstractHover implements IAnnotationHover, ITextHover, ITextHoverExtension2 {
 
 	protected final ISourceViewer sourceViewer;
-
-	protected IDocument document;
 
 	public AbstractHover(final ISourceViewer sourceViewer) {
 		if (sourceViewer == null)
 			throw new IllegalArgumentException();
 
 		this.sourceViewer = sourceViewer;
-		document = sourceViewer.getDocument();
 	}
 
-	public String getHoverInfo(final ISourceViewer sourceViewer,
-			final int lineNumber) {
+	public IDocument getDocument() {
+		return sourceViewer.getDocument();
+	}
+
+	public String getHoverInfo(final ISourceViewer sourceViewer, final int lineNumber) {
 		return getHoverInfoInternal(lineNumber, -1);
 	}
 
-	public String getHoverInfo(final ITextViewer textViewer,
-			final IRegion hoverRegion) {
+	public String getHoverInfo(final ITextViewer textViewer, final IRegion hoverRegion) {
 		return getHoverInfo2(textViewer, hoverRegion);
 	}
 
 	// for TextHover
-	public String getHoverInfo2(final ITextViewer textViewer,
-			final IRegion hoverRegion) {
+	public String getHoverInfo2(final ITextViewer textViewer, final IRegion hoverRegion) {
 		int lineNumber;
 		try {
-			lineNumber = document.getLineOfOffset(hoverRegion.getOffset());
-		} catch (final BadLocationException e) {
+			lineNumber = getDocument().getLineOfOffset(hoverRegion.getOffset());
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 		return getHoverInfoInternal(lineNumber, hoverRegion.getOffset());
 	}
 
-	public IRegion getHoverRegion(final ITextViewer textViewer,
-			final int offset) {
+	public IRegion getHoverRegion(final ITextViewer textViewer, final int offset) {
 		final Point selection = textViewer.getSelectedRange();
 		if (selection.x <= offset && offset < selection.x + selection.y)
 			return new Region(selection.x, selection.y);
@@ -83,14 +80,14 @@ public abstract class AbstractHover implements IAnnotationHover, ITextHover,
 			while (e.hasNext()) {
 				splitInfo("- " + e.next() + "\n", buffer);
 			}
-		} else if (messages.size() == 1) {
+		}
+		else if (messages.size() == 1) {
 			splitInfo(messages.get(0), buffer);
 		}
 		return buffer.toString();
 	}
 
-	protected abstract String getHoverInfoInternal(final int lineNumber,
-			final int offset);
+	protected abstract String getHoverInfoInternal(final int lineNumber, final int offset);
 
 	private String splitInfo(final String message, final StringBuffer buffer) {
 		String msg = message;
@@ -102,7 +99,8 @@ public abstract class AbstractHover implements IAnnotationHover, ITextHover,
 				buffer.append(prefix + msg.substring(0, pos) + "\n");
 				msg = msg.substring(pos);
 				prefix = "  ";
-			} else {
+			}
+			else {
 				buffer.append(prefix + msg);
 			}
 		} while (pos > -1);
