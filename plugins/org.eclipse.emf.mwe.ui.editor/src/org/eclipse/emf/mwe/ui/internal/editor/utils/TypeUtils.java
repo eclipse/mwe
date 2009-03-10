@@ -32,6 +32,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.Flags;
@@ -50,15 +51,12 @@ import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.TypeNameMatch;
 import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
-import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public final class TypeUtils {
-
-	private static final String BUILTIN_BOOLEAN_TYPE = "boolean";
 
 	private static class ClassNameComparator implements Comparator<String> {
 
@@ -92,7 +90,18 @@ public final class TypeUtils {
 		@Override
 		public void acceptTypeNameMatch(final TypeNameMatch match) {
 			final String className = match.getFullyQualifiedName();
-			classNames.add(className);
+			IType type = findType(project, className);
+			if (type != null) {
+				try {
+					int modifier = type.getFlags();
+					if (Flags.isPublic(modifier) && !Flags.isAbstract(modifier)) {
+						classNames.add(className);
+					}
+				}
+				catch (JavaModelException e) {
+					// do nothing
+				}
+			}
 		}
 
 		public Set<String> getClassNames() {
@@ -100,6 +109,8 @@ public final class TypeUtils {
 		}
 
 	}
+
+	private static final String BUILTIN_BOOLEAN_TYPE = "boolean";
 
 	private static final String OBJECT_CLASS_NAME = "java.lang.Object";
 
@@ -157,11 +168,11 @@ public final class TypeUtils {
 		}
 	}
 
-	public static Set<String> getAllClasses(final IFile file, final boolean onlyConcreteClasses) {
-		return getAllClasses(getProject(file), onlyConcreteClasses);
+	public static Set<String> getAllClasses(final IFile file) {
+		return getAllClasses(getProject(file));
 	}
 
-	public static Set<String> getAllClasses(final IProject project, final boolean onlyConcreteClasses) {
+	public static Set<String> getAllClasses(final IProject project) {
 		if (project == null)
 			throw new IllegalArgumentException();
 
@@ -196,7 +207,7 @@ public final class TypeUtils {
 			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
 	}
 
-	public static String getFileContent(final IFile file, final IDocument document, final IWorkflowAttribute attribute) {
+	public static String getFileContent(final IFile file, final IWorkflowAttribute attribute) {
 		final String filePath = attribute.getValue();
 		final ClassLoader loader = getResourceLoader(file);
 
@@ -329,6 +340,23 @@ public final class TypeUtils {
 		return method;
 	}
 
+	public static IType getSetterParameter(IFile file, final IWorkflowElement element, IType mappedType) {
+		if (file == null)
+			return null;
+
+		IType mt = null;
+		IMethod method = TypeUtils.getSetter(file, mappedType, element.getName(), TypeUtils.WILDCARD);
+		if (method != null) {
+			String[] params = method.getParameterTypes();
+			if (params.length == 1) {
+				String paramType = params[0];
+				paramType = paramType.substring(1, paramType.length() - 1);
+				mt = TypeUtils.findType(file, paramType);
+			}
+		}
+		return mt;
+	}
+
 	public static String getSimpleClassName(final String fqn) {
 		if (fqn == null)
 			return null;
@@ -340,12 +368,11 @@ public final class TypeUtils {
 			return fqn;
 	}
 
-	public static Set<String> getSubClasses(final IFile file, final IType baseType, final boolean onlyConcreteClasses) {
-		return getSubClasses(getProject(file), baseType, onlyConcreteClasses);
+	public static Set<String> getSubClasses(final IFile file, final IType baseType) {
+		return getSubClasses(getProject(file), baseType);
 	}
 
-	public static Set<String> getSubClasses(final IProject project, final IType baseType,
-			final boolean onlyConcreteClasses) {
+	public static Set<String> getSubClasses(final IProject project, final IType baseType) {
 		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
 
@@ -356,7 +383,7 @@ public final class TypeUtils {
 		final ITypeHierarchy hierarchy = createTypeHierarchy(project, baseType);
 		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(baseType);
-			createClassSet(project, subClasses, subTypes, onlyConcreteClasses);
+			createClassSet(subClasses, subTypes);
 		}
 
 		cacheSubClasses(project, baseType, subClasses);
@@ -391,6 +418,35 @@ public final class TypeUtils {
 			Log.logError("", e);
 		}
 		return result;
+	}
+
+	public static boolean isInstantiable(IType type) {
+		if (type == null)
+			return false;
+
+		try {
+			int modifiers = type.getFlags();
+			if (Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
+				String name = type.getElementName();
+				IMethod[] methods = type.getMethods();
+				int count = 0;
+				for (IMethod m : methods) {
+					if (name.equals(m.getElementName())) {
+						count++;
+						String[] parameterTypes = m.getParameterTypes();
+						if (parameterTypes.length == 0)
+							return true;
+					}
+				}
+				if (count == 0)
+					return true;
+			}
+			return false;
+		}
+		catch (JavaModelException e) {
+			Log.logError("", e);
+			return false;
+		}
 	}
 
 	private static String adderName(final String name) {
@@ -433,12 +489,11 @@ public final class TypeUtils {
 		return result;
 	}
 
-	private static void createClassSet(final IProject project, final Set<String> classes, final IType[] type,
-			final boolean onlyConcreteClasses) {
+	private static void createClassSet(final Set<String> classes, final IType[] type) {
 		try {
 			for (final IType t : type) {
 				final int modifiers = t.getFlags();
-				if (Flags.isPublic(modifiers) && (!onlyConcreteClasses || !Flags.isAbstract(modifiers))) {
+				if (Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
 					classes.add(t.getFullyQualifiedName());
 				}
 			}
@@ -527,6 +582,23 @@ public final class TypeUtils {
 		return method;
 	}
 
+	private static IProject getProject(final IFile file) {
+		if (file == null)
+			return null;
+
+		return file.getProject();
+	}
+
+	private static String getPropertyName(final String methodName) {
+		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
+				&& methodName.length() <= SETTER_PREFIX.length())
+			throw new IllegalArgumentException();
+
+		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
+		propertyName = toLowerCaseFirst(propertyName);
+		return propertyName;
+	}
+
 	private static IMethod internalGetMethod(IProject project, final IType type, final String name,
 			final String[] paramTypes) {
 		if (project == null || type == null || name == null)
@@ -559,23 +631,6 @@ public final class TypeUtils {
 				return method;
 		}
 		return null;
-	}
-
-	private static IProject getProject(final IFile file) {
-		if (file == null)
-			return null;
-
-		return file.getProject();
-	}
-
-	private static String getPropertyName(final String methodName) {
-		if (methodName == null || !methodName.startsWith(SETTER_PREFIX) && !methodName.startsWith(ADDER_PREFIX)
-				&& methodName.length() <= SETTER_PREFIX.length())
-			throw new IllegalArgumentException();
-
-		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
-		propertyName = toLowerCaseFirst(propertyName);
-		return propertyName;
 	}
 
 	private static Set<String> queryAllClassesCache(final IProject project) {
@@ -621,4 +676,5 @@ public final class TypeUtils {
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
+
 }

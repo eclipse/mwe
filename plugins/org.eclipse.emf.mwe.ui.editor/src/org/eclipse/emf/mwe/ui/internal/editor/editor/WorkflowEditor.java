@@ -57,7 +57,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.41 $
+ * @version $Revision: 1.42 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -198,12 +198,11 @@ public class WorkflowEditor extends TextEditor {
 
 	public IWorkflowElement parseRootElement(final IDocument document) {
 		try {
-			return DocumentParser.parse(document, null);
+			return DocumentParser.parse(document, this);
 		}
 		catch (ValidationException e) {
 			int line = e.getLineNumber() - 1;
-			int col = e.getColumnNumber();
-			createMarker(document, e.getDetailedMessage(), line, col);
+			createMarker(document, e.getDetailedMessage(), line, 0);
 			return null;
 		}
 	}
@@ -373,7 +372,7 @@ public class WorkflowEditor extends TextEditor {
 			throw new CoreException(WorkflowEditorPlugin.createErrorStatus(
 					"Please add the MWE runtime to the classpath", null));
 
-		TypeUtils.getSubClasses(file, baseType, true);
-		TypeUtils.getAllClasses(file, true);
+		TypeUtils.getSubClasses(file, baseType);
+		TypeUtils.getAllClasses(file);
 	}
 }

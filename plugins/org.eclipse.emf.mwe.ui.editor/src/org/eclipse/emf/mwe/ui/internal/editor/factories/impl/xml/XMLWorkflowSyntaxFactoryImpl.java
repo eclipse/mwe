@@ -35,8 +35,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 
 	public Collection<IAutoEditStrategy> newAutoEditStrategyCollection() {
-		final List<IAutoEditStrategy> strategies =
-				new ArrayList<IAutoEditStrategy>();
+		final List<IAutoEditStrategy> strategies = new ArrayList<IAutoEditStrategy>();
 		strategies.add(new XMLAutoTagCompletionStrategy());
 		strategies.add(new XMLAutoIndentStrategy());
 		strategies.add(new XMLRemoveClosingTagStrategy());
@@ -44,25 +43,20 @@ public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 		return strategies;
 	}
 
-	public IContentAssistProcessor newContentAssistProcessor(
-			final WorkflowEditor editor, final ColorManager colorManager) {
-		if (editor == null || colorManager == null) {
+	public IContentAssistProcessor newContentAssistProcessor(final WorkflowEditor editor,
+			final ColorManager colorManager) {
+		if (editor == null || colorManager == null)
 			throw new IllegalArgumentException();
-		}
 
-		return new XMLTagContentAssistProcessor(editor.getInputFile(), editor,
-				new WorkflowTagScanner(colorManager));
+		return new XMLTagContentAssistProcessor(editor.getInputFile(), editor, new WorkflowTagScanner(colorManager));
 
 	}
 
-	public IWorkflowAttribute newWorkflowAttribute(
-			final IWorkflowElement element, final String name,
-			final String value) {
+	public IWorkflowAttribute newWorkflowAttribute(final IWorkflowElement element, final String name, final String value) {
 		return new XMLWorkflowAttributeImpl(element, name, value);
 	}
 
-	public IWorkflowElement newWorkflowElement(final IDocument document,
-			final String name) {
-		return new XMLWorkflowElementImpl(document, name);
+	public IWorkflowElement newWorkflowElement(WorkflowEditor editor, final IDocument document, final String name) {
+		return new XMLWorkflowElementImpl(editor, document, name);
 	}
 }

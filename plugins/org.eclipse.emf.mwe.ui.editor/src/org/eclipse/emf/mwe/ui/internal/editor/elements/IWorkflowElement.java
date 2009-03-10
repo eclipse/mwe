@@ -14,6 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 public interface IWorkflowElement {
@@ -122,14 +124,6 @@ public interface IWorkflowElement {
 	List<IWorkflowElement> getChildrenList();
 
 	/**
-	 * Returns the default mapped class for this element if there is a default.
-	 * 
-	 * @return the default mapped class or <code>null</code> if there is no
-	 *         default.
-	 */
-	String getDefaultClass();
-
-	/**
 	 * Returns the value of field <code>document</code>.
 	 * 
 	 * @return value of <code>document</code>.
@@ -164,6 +158,14 @@ public interface IWorkflowElement {
 	 */
 	ElementPositionRange getEndElementRange();
 
+	/**
+	 * Returns the attached source file reference, if any.
+	 * 
+	 * @return the attached source file reference or <code>null</code> if none
+	 *         exists
+	 */
+	IFile getFile();
+
 	ElementPositionRange getFirstLineRange();
 
 	/**
@@ -172,6 +174,20 @@ public interface IWorkflowElement {
 	 * @return name of image.
 	 */
 	String getImage();
+
+	/**
+	 * Returns the name of the mapped class for this element if there is one.
+	 * 
+	 * @return name of the mapped class or <code>null</code> if there is none.
+	 */
+	String getMappedClassName();
+
+	/**
+	 * Returns the type of the mapped class for this element if there is one.
+	 * 
+	 * @return type of the mapped class or <code>null</code> if there is none.
+	 */
+	IType getMappedClassType();
 
 	/**
 	 * Returns the value of field <code>name</code>.
@@ -194,6 +210,14 @@ public interface IWorkflowElement {
 	 */
 	ElementPositionRange getStartElementRange();
 
+	/**
+	 * Checks if the current element has a certain attribute.
+	 * 
+	 * @param name
+	 *            name of attribute
+	 * @return <code>true</code> if the current element has an attribute named
+	 *         <code>name</code>, otherwise <code>false</code>
+	 */
 	boolean hasAttribute(final String name);
 
 	/**
@@ -211,6 +235,22 @@ public interface IWorkflowElement {
 	 *         <code>false</code>.
 	 */
 	boolean hasChildren();
+
+	/**
+	 * Checks if the current element has a reference to its source file.
+	 * 
+	 * @return <code>true</code> if the current element has a reference to its
+	 *         source file, otherwise <code>false</code>
+	 */
+	boolean hasFile();
+
+	/**
+	 * Checks if the current element has a class it is mapped to.
+	 * 
+	 * @return <code>true</code> if there exists a class to which the current
+	 *         element is mapped, otherwise <code>false</code>
+	 */
+	boolean hasMappedClass();
 
 	/**
 	 * Checks if the current element has a parent node.
@@ -267,6 +307,14 @@ public interface IWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
 	 */
 	boolean isInRange(final int offset);
+
+	/**
+	 * Checks if the current element can be instantiated from within a workflow.
+	 * 
+	 * @return <code>true</code> if the current element can be instantiated from
+	 *         within a workflow, otherwise <code>false</code>
+	 */
+	boolean isInstantiable();
 
 	/**
 	 * Checks if the current element is a leaf element.

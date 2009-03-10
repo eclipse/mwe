@@ -27,25 +27,20 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
-public class ClassContentProposalComputer extends
-		AbstractSpecializedStringContentProposalComputer {
+public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
 
-	private static final String WORKFLOW_BASE_CLASS =
-			"org.eclipse.emf.mwe.core.WorkflowComponent";
+	private static final String WORKFLOW_BASE_CLASS = "org.eclipse.emf.mwe.core.WorkflowComponent";
 
-	private static final String OLD_WORKFLOW_BASE_CLASS =
-			"org.openarchitectureware.workflow.WorkflowComponent";
+	private static final String OLD_WORKFLOW_BASE_CLASS = "org.openarchitectureware.workflow.WorkflowComponent";
 
-	private static final String[] TRIGGER_ATTRIBUTES =
-			{ IWorkflowElement.CLASS_ATTRIBUTE };
+	private static final String[] TRIGGER_ATTRIBUTES = { IWorkflowElement.CLASS_ATTRIBUTE };
 
 	private static final String COMPONENT_TAG = "component";
 
-	public ClassContentProposalComputer(final IFile file,
-			final WorkflowEditor editor, final IDocument document,
+	public ClassContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 		turnOffSorting();
@@ -74,23 +69,30 @@ public class ClassContentProposalComputer extends
 	}
 
 	@Override
-	protected ExtendedCompletionProposal createProposal(final String text,
-			final int offset) {
+	protected ExtendedCompletionProposal createProposal(final String text, final int offset) {
 		int o = offset;
 		try {
 			if (o > 0 && document.getChar(o - 1) != '>') {
 				o--;
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 		}
 
-		final String displayText = TypeUtils.getSimpleClassName(text);
+		String simpleName = TypeUtils.getSimpleClassName(text);
+		int length = text.length() - simpleName.length() - 1;
+		String packageName = null;
+		if (length >= 0) {
+			packageName = text.substring(0, length);
+		}
+
+		final String displayText = simpleName
+				+ ((packageName != null && packageName.length() > 0) ? " (" + packageName + ")" : "");
 		final TextInfo currentText = currentText(document, o);
 		final Image img = EditorImages.getImage(EditorImages.COMPONENT);
-		return new ExtendedCompletionProposal(text, currentText
-				.getDocumentOffset(), currentText.getText().length(), text
-				.length(), img, displayText, null, null);
+		return new ExtendedCompletionProposal(text, currentText.getDocumentOffset(), currentText.getText().length(),
+				text.length(), img, displayText, null, null);
 	}
 
 	/**
@@ -119,10 +121,11 @@ public class ClassContentProposalComputer extends
 		if (COMPONENT_TAG.equals(tag)) {
 			final IType baseType = getWorkflowBaseClass(file);
 			if (baseType != null) {
-				classNames = TypeUtils.getSubClasses(file, baseType, true);
+				classNames = TypeUtils.getSubClasses(file, baseType);
 			}
-		} else {
-			classNames = TypeUtils.getAllClasses(file, true);
+		}
+		else {
+			classNames = TypeUtils.getAllClasses(file);
 		}
 
 		return classNames;

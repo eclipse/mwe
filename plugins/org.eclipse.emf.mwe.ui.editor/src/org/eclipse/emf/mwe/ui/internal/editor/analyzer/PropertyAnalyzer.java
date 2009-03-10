@@ -22,7 +22,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -30,8 +30,7 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 
 	private static final String INVALID_PROPERTY_MSG = "Property not valid";
 
-	public PropertyAnalyzer(final IFile file, final IDocument document,
-			final PropertyStore propertyStore) {
+	public PropertyAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
 		super(file, document, propertyStore);
 	}
 
@@ -43,23 +42,20 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final IWorkflowElement element) {
-		if (element.getName().equals(IWorkflowElement.PROPERTY_TAG)
-				&& !element.isProperty()) {
+		if (element.getName().equals(IWorkflowElement.PROPERTY_TAG) && !element.isProperty()) {
 			createMarker(element, INVALID_PROPERTY_MSG);
 		}
 		if (element.isSimpleProperty()) {
-			propertyStore.add(element
-					.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE));
-		} else if (element.isFileProperty()) {
+			propertyStore.add(element.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE));
+		}
+		else if (element.isFileProperty()) {
 			parseFileProperties(element);
 		}
 	}
 
 	private void parseFileProperties(final IWorkflowElement element) {
-		final IWorkflowAttribute attribute =
-				element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
-		final String content =
-				TypeUtils.getFileContent(getFile(), document, attribute);
+		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+		final String content = TypeUtils.getFileContent(getFile(), attribute);
 		if (content == null)
 			return;
 

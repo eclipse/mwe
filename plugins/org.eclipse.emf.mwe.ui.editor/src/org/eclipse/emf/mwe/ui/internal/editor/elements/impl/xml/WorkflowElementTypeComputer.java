@@ -11,16 +11,19 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
-import org.eclipse.emf.mwe.core.container.CompositeComponent;
 import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
+import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -37,15 +40,46 @@ public final class WorkflowElementTypeComputer {
 	}
 
 	public static String getDefaultClass(final IWorkflowElement element) {
-		Class<?> clazz = null;
+		String name = null;
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
-			clazz = CompositeComponent.class;
-		} else if (element.getElementType() == WorkflowElementType.COMPONENT) {
-			clazz = AbstractWorkflowComponent.class;
-		} else if (element.getElementType() == WorkflowElementType.IF_COMPONENT) {
-			clazz = IfComponent.class;
+			name = Workflow.class.getCanonicalName();
 		}
-		final String name = clazz != null ? clazz.getName() : null;
+		else if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
+			name = element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
+		}
+		else if (element.hasFile() && element.hasParent()) {
+			IMethod method = null;
+
+			IType parentType = element.getParent().getMappedClassType();
+			if (parentType != null) {
+				IType mt = TypeUtils.getSetterParameter(element.getFile(), element, parentType);
+				if (mt == null) {
+					mt = parentType;
+				}
+				method = TypeUtils.getSetter(element.getFile(), mt, element.getName(), TypeUtils.WILDCARD);
+
+				if (method == null && element.hasParent()) {
+					mt = TypeUtils.getSetterParameter(element.getFile(), element.getParent(), parentType);
+					if (mt != null) {
+						name = element.getName();
+						method = TypeUtils.getSetter(element.getFile(), mt, element.getName(), TypeUtils.WILDCARD);
+					}
+				}
+				if (mt == null) {
+					mt = parentType;
+				}
+
+				if (method != null) {
+					name = mt.getFullyQualifiedName();
+				}
+			}
+			else if (element.getElementType() == WorkflowElementType.COMPONENT) {
+				name = AbstractWorkflowComponent.class.getCanonicalName();
+			}
+			else if (element.getElementType() == WorkflowElementType.IF_COMPONENT) {
+				name = IfComponent.class.getCanonicalName();
+			}
+		}
 		return name;
 	}
 
@@ -53,11 +87,14 @@ public final class WorkflowElementTypeComputer {
 		String imageName = null;
 		if (element.isWorkflow()) {
 			imageName = EditorImages.WORKFLOW;
-		} else if (element.isComponent()) {
+		}
+		else if (element.isComponent()) {
 			imageName = EditorImages.COMPONENT;
-		} else if (element.isProperty() || element.isAssignmentProperty()) {
+		}
+		else if (element.isProperty() || element.isAssignmentProperty()) {
 			imageName = EditorImages.PROPERTY;
-		} else if (element.isAssignment()) {
+		}
+		else if (element.isAssignment()) {
 			imageName = EditorImages.ASSIGNMENT;
 		}
 
@@ -69,29 +106,33 @@ public final class WorkflowElementTypeComputer {
 		final String name = element.getName();
 		if (name.equals(IWorkflowElement.WORKFLOWFILE_TAG)) {
 			type = WorkflowElementType.WORKFLOWFILE;
-		} else if (name.equals(IWorkflowElement.COMPONENT_TAG)
-				|| element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
+		}
+		else if (name.equals(IWorkflowElement.COMPONENT_TAG) || element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
 			type = WorkflowElementType.COMPONENT;
-		} else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG)) {
+		}
+		else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG)) {
 			type = WorkflowElementType.IF_COMPONENT;
-		} else if (name.equals(IWorkflowElement.WORKFLOW_TAG)) {
+		}
+		else if (name.equals(IWorkflowElement.WORKFLOW_TAG)) {
 			type = WorkflowElementType.WORKFLOW;
-		} else if (name.equals(IWorkflowElement.PROPERTY_TAG)) {
-			if (element.getAttributeCount() == 2
-					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)
-					&& element.hasAttribute(IWorkflowElement.VALUE_ATTRIBUTE)
-					|| element.getAttributeCount() == 1
+		}
+		else if (name.equals(IWorkflowElement.PROPERTY_TAG)) {
+			if (element.getAttributeCount() == 2 && element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)
+					&& element.hasAttribute(IWorkflowElement.VALUE_ATTRIBUTE) || element.getAttributeCount() == 1
 					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)) {
 				type = WorkflowElementType.SIMPLE_PROPERTY;
-			} else if (element.getAttributeCount() == 1
-					&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
+			}
+			else if (element.getAttributeCount() == 1 && element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
 				type = WorkflowElementType.FILE_PROPERTY;
-			} else if (!element.isLeaf()) {
+			}
+			else if (!element.isLeaf()) {
 				type = WorkflowElementType.ASSIGNMENTPROPERTY;
-			} else {
+			}
+			else {
 				type = WorkflowElementType.PROPERTY;
 			}
-		} else {
+		}
+		else {
 			type = WorkflowElementType.ASSIGNMENT;
 		}
 

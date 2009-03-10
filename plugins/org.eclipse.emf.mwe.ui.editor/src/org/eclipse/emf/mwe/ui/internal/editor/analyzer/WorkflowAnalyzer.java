@@ -19,7 +19,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class WorkflowAnalyzer extends DefaultAnalyzer {
 
@@ -32,7 +32,7 @@ public class WorkflowAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final IWorkflowElement element) {
-		final String mappedTypeName = element.getDefaultClass();
+		final String mappedTypeName = element.getMappedClassName();
 		final IType mappedType = TypeUtils.findType(getFile(), mappedTypeName);
 		checkAttributes(element, mappedType);
 	}

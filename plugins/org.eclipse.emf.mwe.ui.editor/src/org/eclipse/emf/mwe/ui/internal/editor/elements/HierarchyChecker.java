@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public final class HierarchyChecker {
 
@@ -24,24 +24,23 @@ public final class HierarchyChecker {
 		throw new UnsupportedOperationException();
 	}
 
-	public static boolean checkChildValidity(
-			final IWorkflowElement parentElement,
-			final IWorkflowElement childElement) {
+	public static boolean checkChildValidity(final IWorkflowElement parentElement, final IWorkflowElement childElement) {
 		boolean res = true;
 
 		if (parentElement == null)
 			throw new IllegalArgumentException();
 
-		if (parentElement.isWorkflowFile() && !childElement.isWorkflow()) {
+		if (parentElement.isWorkflowFile() && !childElement.isInstantiable()) {
 			res = false;
-		} else if (parentElement.isWorkflow()) {
+		}
+		else if (parentElement.isWorkflow()) {
 			if (!parentElement.isLeaf() && childElement.isProperty()) {
 				final int lastElement = parentElement.getChildrenCount() - 1;
 				if (!parentElement.getChild(lastElement).isProperty()) {
 					res = false;
 				}
-			} else if (parentElement.isAssignment()
-					|| parentElement.isAssignmentProperty()) {
+			}
+			else if (parentElement.isAssignment() || parentElement.isAssignmentProperty()) {
 				if (childElement.isProperty()) {
 					res = false;
 				}

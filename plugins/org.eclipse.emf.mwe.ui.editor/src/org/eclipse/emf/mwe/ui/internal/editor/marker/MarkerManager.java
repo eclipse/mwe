@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public final class MarkerManager {
 
@@ -84,13 +84,11 @@ public final class MarkerManager {
 		try {
 			final int lineOffset = document.getLineOffset(line);
 			final int start = lineOffset + column;
-			int end = start;
-			if (end < document.getLength()) {
-				end++;
-			}
+			int lineLength = document.getLineLength(line);
+			int end = start + lineLength;
 
 			final ElementPositionRange range = new ElementPositionRange(document, start, end);
-			MarkerManager.createMarkerFromRange(file, document, msg, range, true);
+			createMarkerFromRange(file, document, msg, range, true);
 		}
 		catch (final BadLocationException e) {
 			Log.logError("Document location error", e);
@@ -99,7 +97,10 @@ public final class MarkerManager {
 
 	public static void createMarkerFromRange(final IFile file, final IDocument document, final String message,
 			final ElementPositionRange range, final boolean isError) {
-		if (file == null || document == null || message == null || range == null)
+		if (file == null || !file.exists())
+			return;
+
+		if (document == null || message == null || range == null)
 			throw new IllegalArgumentException();
 
 		final Map map = new HashMap();
@@ -134,24 +135,26 @@ public final class MarkerManager {
 		map.put(IMarker.SEVERITY, severity);
 		try {
 			if (!knownMarkers.contains(map)) {
-				MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
+				// MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
+				IMarker marker = file.createMarker(ERROR_MARKER_ID);
+				marker.setAttributes(map);
 				knownMarkers.add(map);
 			}
 		}
-		catch (final CoreException ee) {
-			ee.printStackTrace();
+		catch (final CoreException e) {
+			Log.logError("", e);
 		}
 	}
 
 	public static void deleteMarkers(final IFile file) {
-		if (file == null || !file.exists()) // may happen when you delete a project
-			return;
 		try {
-			file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_INFINITE);
+			if (file != null && file.exists()) {
+				file.deleteMarkers(ERROR_MARKER_ID, true, IResource.DEPTH_INFINITE);
+			}
 			knownMarkers.clear();
 		}
 		catch (final CoreException e) {
-			e.printStackTrace();
+			Log.logError("", e);
 		}
 	}
 }

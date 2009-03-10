@@ -23,18 +23,16 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public interface IWorkflowSyntaxFactory {
 
 	Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
 
-	IContentAssistProcessor newContentAssistProcessor(WorkflowEditor editor,
-			ColorManager colorManager);
+	IContentAssistProcessor newContentAssistProcessor(WorkflowEditor editor, ColorManager colorManager);
 
-	IWorkflowAttribute newWorkflowAttribute(IWorkflowElement element,
-			String name, String value);
+	IWorkflowAttribute newWorkflowAttribute(IWorkflowElement element, String name, String value);
 
-	IWorkflowElement newWorkflowElement(IDocument document, String name);
+	IWorkflowElement newWorkflowElement(WorkflowEditor editor, IDocument document, String name);
 }

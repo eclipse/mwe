@@ -22,7 +22,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public final class DocumentParser {
@@ -41,12 +41,13 @@ public final class DocumentParser {
 	}
 
 	public static IWorkflowElement parse(final IDocument document, final WorkflowEditor editor) {
-		if (document == null || editor == null) // don't try to parse erroneous editors
+		if (document == null)
 			return null;
 
 		final String text = document.get();
 		final XMLParser xmlParser = new XMLParser();
 		final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
+		contentHandler.setEditor(editor);
 		contentHandler.setDocument(document);
 		contentHandler.setPositionCategory(TAG_POSITIONS);
 		contentHandler.setDocumentLocator(new LocatorImpl());

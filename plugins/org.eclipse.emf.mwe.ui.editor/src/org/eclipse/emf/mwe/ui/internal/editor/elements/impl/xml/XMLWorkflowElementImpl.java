@@ -17,12 +17,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.HierarchyChecker;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
@@ -30,10 +34,12 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
+
+	private WorkflowEditor editor;
 
 	private final IDocument document;
 
@@ -51,24 +57,25 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 
 	private boolean recomputeTypeInfo;
 
-	private final List<IWorkflowElement> children =
-		new ArrayList<IWorkflowElement>();
+	private final List<IWorkflowElement> children = new ArrayList<IWorkflowElement>();
 
-	private final Map<String, IWorkflowAttribute> attributes =
-		new HashMap<String, IWorkflowAttribute>();
+	private final Map<String, IWorkflowAttribute> attributes = new HashMap<String, IWorkflowAttribute>();
 
 	/**
 	 * Creates a workflow element.
 	 * 
+	 * @param file
+	 *            the containing file
 	 * @param document
-	 *            the containing document.
+	 *            the containing document
 	 * @param name
-	 *            the name of the element.
+	 *            the name of the element
 	 */
-	public XMLWorkflowElementImpl(final IDocument document, final String name) {
+	public XMLWorkflowElementImpl(WorkflowEditor editor, final IDocument document, final String name) {
 		if (document == null || name == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
+		this.editor = editor;
 		this.document = document;
 		this.name = name;
 		recomputeTypeInfo = true;
@@ -157,13 +164,6 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDefaultClass()
-	 */
-	public String getDefaultClass() {
-		return WorkflowElementTypeComputer.getDefaultClass(this);
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDocument()
 	 */
 	public IDocument getDocument() {
@@ -174,8 +174,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getElementRange()
 	 */
 	public ElementPositionRange getElementRange() {
-		return new ElementPositionRange(document, startElementRange,
-				endElementRange).trimWhitespace();
+		return new ElementPositionRange(document, startElementRange, endElementRange).trimWhitespace();
 	}
 
 	/**
@@ -197,10 +196,28 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isInstantiable()
+	 */
+	public boolean isInstantiable() {
+		IType type = getMappedClassType();
+		return (type != null) ? TypeUtils.isInstantiable(type) : false;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getEndElementRange()
 	 */
 	public ElementPositionRange getEndElementRange() {
 		return endElementRange;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getFile()
+	 */
+	public IFile getFile() {
+		if (editor != null)
+			return editor.getInputFile();
+
+		return null;
 	}
 
 	/**
@@ -222,6 +239,26 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 		}
 
 		return image;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getMappedClassName()
+	 */
+	public String getMappedClassName() {
+		return WorkflowElementTypeComputer.getDefaultClass(this);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getMappedClassType()
+	 */
+	public IType getMappedClassType() {
+		IType type = null;
+		String name = getMappedClassName();
+		if (hasFile() && name != null) {
+			type = TypeUtils.findType(getFile(), name);
+		}
+
+		return type;
 	}
 
 	/**
@@ -267,6 +304,20 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasFile()
+	 */
+	public boolean hasFile() {
+		return editor != null && editor.getInputFile() != null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasMappedClass()
+	 */
+	public boolean hasMappedClass() {
+		return getMappedClassType() != null;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasParent()
 	 */
 	public boolean hasParent() {
@@ -291,8 +342,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isComponent()
 	 */
 	public boolean isComponent() {
-		return getComputedElementType() == WorkflowElementType.COMPONENT
-		|| isIfComponent();
+		return getComputedElementType() == WorkflowElementType.COMPONENT || isIfComponent();
 	}
 
 	/**
@@ -382,8 +432,7 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setStartElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
-	public void setStartElementRange(
-			final ElementPositionRange startElementRange) {
+	public void setStartElementRange(final ElementPositionRange startElementRange) {
 		this.startElementRange = startElementRange;
 	}
 

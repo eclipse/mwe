@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
@@ -71,7 +71,7 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 		store.addFileName(fileName);
 
 		if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
-			final String referencedContent = TypeUtils.getFileContent(file, document, attribute);
+			final String referencedContent = TypeUtils.getFileContent(file, attribute);
 			if (referencedContent == null) {
 				MarkerManager.createMarker(file, document, attribute, "File '" + attribute.getValue()
 						+ "' could not be found", true, false);
