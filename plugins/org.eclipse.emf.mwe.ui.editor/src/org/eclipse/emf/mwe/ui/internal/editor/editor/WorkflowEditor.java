@@ -57,9 +57,33 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.42 $
+ * @version $Revision: 1.43 $
  */
 public class WorkflowEditor extends TextEditor {
+
+	private class InitializerJob extends Job {
+
+		public InitializerJob(String name) {
+			super(name);
+			setPriority(Job.LONG);
+		}
+
+		@Override
+		protected IStatus run(IProgressMonitor monitor) {
+			try {
+				preloadClassNameCache(monitor);
+				if (validationJob != null) {
+					validationJob.schedule();
+				}
+			}
+			catch (CoreException e) {
+				IDocument document = getInputDocument();
+				MarkerManager.createMarkerFromRange(getInputFile(), document, e.getMessage(), new ElementPositionRange(
+						document), true);
+			}
+			return Status.OK_STATUS;
+		}
+	}
 
 	private ProjectionAnnotationModel annotationModel;
 
@@ -71,7 +95,9 @@ public class WorkflowEditor extends TextEditor {
 
 	private WorkflowContentOutlinePage outlinePage;
 
-	private Job job;
+	private Job validationJob;
+
+	private Job initializerJob = new InitializerJob("Initializing editor...");
 
 	private IWorkflowElement rootElement;
 
@@ -116,6 +142,7 @@ public class WorkflowEditor extends TextEditor {
 			outlinePage.setInput(null);
 		}
 
+		initializerJob.cancel();
 		TypeUtils.clearCache();
 		super.dispose();
 	}
@@ -276,7 +303,7 @@ public class WorkflowEditor extends TextEditor {
 		final ISourceViewer viewer = new ProjectionViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
 				styles);
 		getSourceViewerDecorationSupport(viewer);
-		job = new Job("parsing document") {
+		validationJob = new Job("parsing document") {
 
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {
@@ -289,30 +316,14 @@ public class WorkflowEditor extends TextEditor {
 
 			public void textChanged(final org.eclipse.jface.text.TextEvent event) {
 				if (event.getDocumentEvent() != null) {
-					job.cancel();
-					job.schedule();
+					validationJob.cancel();
+					validationJob.schedule();
 				}
 			}
 
 		});
-		job.cancel();
-		job.schedule();
 
-		new Job("initializing editor") {
-
-			@Override
-			protected IStatus run(final IProgressMonitor monitor) {
-				try {
-					preloadClassNameCache();
-				}
-				catch (CoreException e) {
-					IDocument document = getInputDocument();
-					MarkerManager.createMarkerFromRange(getInputFile(), document, e.getMessage(),
-							new ElementPositionRange(document), true);
-				}
-				return Status.OK_STATUS;
-			}
-		}.schedule();
+		initializerJob.schedule();
 
 		return viewer;
 	}
@@ -365,14 +376,14 @@ public class WorkflowEditor extends TextEditor {
 		return WorkflowEditorPlugin.getDefault();
 	}
 
-	private void preloadClassNameCache() throws CoreException {
+	private void preloadClassNameCache(IProgressMonitor monitor) throws CoreException {
 		final IFile file = getInputFile();
 		final IType baseType = ClassContentProposalComputer.getWorkflowBaseClass(file);
 		if (baseType == null)
 			throw new CoreException(WorkflowEditorPlugin.createErrorStatus(
 					"Please add the MWE runtime to the classpath", null));
 
-		TypeUtils.getSubClasses(file, baseType);
-		TypeUtils.getAllClasses(file);
+		TypeUtils.getSubClasses(file, baseType, monitor);
+		TypeUtils.getAllClasses(file, monitor);
 	}
 }

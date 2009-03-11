@@ -30,6 +30,7 @@ import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
@@ -54,7 +55,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public final class TypeUtils {
 
@@ -168,11 +169,11 @@ public final class TypeUtils {
 		}
 	}
 
-	public static Set<String> getAllClasses(final IFile file) {
-		return getAllClasses(getProject(file));
+	public static Set<String> getAllClasses(final IFile file, IProgressMonitor monitor) {
+		return getAllClasses(getProject(file), monitor);
 	}
 
-	public static Set<String> getAllClasses(final IProject project) {
+	public static Set<String> getAllClasses(final IProject project, IProgressMonitor monitor) {
 		if (project == null)
 			throw new IllegalArgumentException();
 
@@ -185,10 +186,9 @@ public final class TypeUtils {
 			final SearchEngine searchEngine = new SearchEngine();
 			final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { jp }, true);
 			final TypeNameCollector collector = new TypeNameCollector(project);
-			searchEngine
-					.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
-							IJavaSearchConstants.CLASS, scope, collector,
-							IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, null);
+			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
+					IJavaSearchConstants.CLASS, scope, collector, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
+					monitor);
 			allClasses.addAll(collector.getClassNames());
 
 			cacheAllClasses(project, allClasses);
@@ -368,11 +368,11 @@ public final class TypeUtils {
 			return fqn;
 	}
 
-	public static Set<String> getSubClasses(final IFile file, final IType baseType) {
-		return getSubClasses(getProject(file), baseType);
+	public static Set<String> getSubClasses(final IFile file, final IType baseType, IProgressMonitor monitor) {
+		return getSubClasses(getProject(file), baseType, monitor);
 	}
 
-	public static Set<String> getSubClasses(final IProject project, final IType baseType) {
+	public static Set<String> getSubClasses(final IProject project, final IType baseType, IProgressMonitor monitor) {
 		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
 
@@ -380,7 +380,7 @@ public final class TypeUtils {
 		if (!subClasses.isEmpty())
 			return subClasses;
 
-		final ITypeHierarchy hierarchy = createTypeHierarchy(project, baseType);
+		final ITypeHierarchy hierarchy = createTypeHierarchy(project, baseType, monitor);
 		if (hierarchy != null) {
 			final IType[] subTypes = hierarchy.getAllSubtypes(baseType);
 			createClassSet(subClasses, subTypes);
@@ -503,7 +503,7 @@ public final class TypeUtils {
 		}
 	}
 
-	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type) {
+	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type, IProgressMonitor monitor) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
 			final IRegion region = JavaCore.newRegion();
@@ -511,7 +511,7 @@ public final class TypeUtils {
 			for (final IPackageFragmentRoot r : root) {
 				region.add(r);
 			}
-			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, new NullProgressMonitor());
+			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, monitor);
 			return hierarchy;
 		}
 		catch (final JavaModelException e) {

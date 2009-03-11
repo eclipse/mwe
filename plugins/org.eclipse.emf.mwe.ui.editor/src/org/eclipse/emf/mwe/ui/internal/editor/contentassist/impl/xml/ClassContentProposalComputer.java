@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
@@ -27,7 +28,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
@@ -121,11 +122,11 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 		if (COMPONENT_TAG.equals(tag)) {
 			final IType baseType = getWorkflowBaseClass(file);
 			if (baseType != null) {
-				classNames = TypeUtils.getSubClasses(file, baseType);
+				classNames = TypeUtils.getSubClasses(file, baseType, new NullProgressMonitor());
 			}
 		}
 		else {
-			classNames = TypeUtils.getAllClasses(file);
+			classNames = TypeUtils.getAllClasses(file, new NullProgressMonitor());
 		}
 
 		return classNames;
