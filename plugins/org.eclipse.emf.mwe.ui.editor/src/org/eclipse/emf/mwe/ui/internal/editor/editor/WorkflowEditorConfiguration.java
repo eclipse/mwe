@@ -37,8 +37,6 @@ import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextViewerUndoManager;
-import org.eclipse.jface.text.contentassist.ContentAssistant;
-import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
@@ -54,7 +52,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -76,16 +74,15 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	private final IWorkflowSyntaxFactory factory;
 
-	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin,
-			final ColorManager colorManager, final WorkflowEditor editor) {
+	public WorkflowEditorConfiguration(final WorkflowEditorPlugin plugin, final ColorManager colorManager,
+			final WorkflowEditor editor) {
 		super(plugin.getCombinedPreferenceStore());
 		this.colorManager = colorManager;
 		this.editor = editor;
 
 		// TODO Preliminary code. The factory has to be installed depending on
 		// the document content.
-		WorkflowSyntaxFactory
-				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
+		WorkflowSyntaxFactory.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 
 		factory = WorkflowSyntaxFactory.getInstance();
 	}
@@ -109,30 +106,23 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	 *      java.lang.String)
 	 */
 	@Override
-	public IAutoEditStrategy[] getAutoEditStrategies(
-			final ISourceViewer sourceViewer, final String contentType) {
-		final IAutoEditStrategy[] inheritedStrategies =
-				super.getAutoEditStrategies(sourceViewer, contentType);
-		final List<IAutoEditStrategy> strategies =
-				new LinkedList<IAutoEditStrategy>();
+	public IAutoEditStrategy[] getAutoEditStrategies(final ISourceViewer sourceViewer, final String contentType) {
+		final IAutoEditStrategy[] inheritedStrategies = super.getAutoEditStrategies(sourceViewer, contentType);
+		final List<IAutoEditStrategy> strategies = new LinkedList<IAutoEditStrategy>();
 		for (final IAutoEditStrategy s : inheritedStrategies) {
 			strategies.add(s);
 		}
 		strategies.add(new DefaultIndentLineAutoEditStrategy());
 		strategies.addAll(factory.newAutoEditStrategyCollection());
-		final IAutoEditStrategy[] res =
-				strategies.toArray(new IAutoEditStrategy[strategies.size()]);
+		final IAutoEditStrategy[] res = strategies.toArray(new IAutoEditStrategy[strategies.size()]);
 		return res;
 	}
 
 	@Override
 	public String[] getConfiguredContentTypes(final ISourceViewer sourceViewer) {
-		return new String[] { IDocument.DEFAULT_CONTENT_TYPE,
-				WorkflowPartitionScanner.XML_START_TAG,
-				WorkflowPartitionScanner.XML_END_TAG,
-				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
-				WorkflowPartitionScanner.XML_DOCTYPE,
-				WorkflowPartitionScanner.XML_TEXT };
+		return new String[] { IDocument.DEFAULT_CONTENT_TYPE, WorkflowPartitionScanner.XML_START_TAG,
+				WorkflowPartitionScanner.XML_END_TAG, WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION,
+				WorkflowPartitionScanner.XML_DOCTYPE, WorkflowPartitionScanner.XML_TEXT };
 	}
 
 	/**
@@ -142,25 +132,26 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	 * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getContentAssistant(org.eclipse.jface.text.source.ISourceViewer)
 	 */
 	@Override
-	public IContentAssistant getContentAssistant(
-			final ISourceViewer sourceViewer) {
-		final ContentAssistant assistant = new ContentAssistant();
-
-		IContentAssistProcessor contentAssistProcessor =
-				factory.newContentAssistProcessor(editor, colorManager);
-		assistant.setContentAssistProcessor(contentAssistProcessor,
-				IDocument.DEFAULT_CONTENT_TYPE);
-		contentAssistProcessor =
-				factory.newContentAssistProcessor(editor, colorManager);
-		assistant.setContentAssistProcessor(contentAssistProcessor,
-				WorkflowPartitionScanner.XML_START_TAG);
-		assistant.enableAutoActivation(true);
-		assistant.setAutoActivationDelay(500);
-		assistant
-				.setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
-		assistant
-				.setContextInformationPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
-		return assistant;
+	public IContentAssistant getContentAssistant(final ISourceViewer sourceViewer) {
+		// TODO Content assist temporarily disabled for Galileo M6. Renabled
+		// after milestone.
+		/*
+		 * final ContentAssistant assistant = new ContentAssistant();
+		 * 
+		 * IContentAssistProcessor contentAssistProcessor =
+		 * factory.newContentAssistProcessor(editor, colorManager);
+		 * assistant.setContentAssistProcessor(contentAssistProcessor,
+		 * IDocument.DEFAULT_CONTENT_TYPE); contentAssistProcessor =
+		 * factory.newContentAssistProcessor(editor, colorManager);
+		 * assistant.setContentAssistProcessor(contentAssistProcessor,
+		 * WorkflowPartitionScanner.XML_START_TAG);
+		 * assistant.enableAutoActivation(true);
+		 * assistant.setAutoActivationDelay(500); assistant
+		 * .setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+		 * assistant.setContextInformationPopupOrientation(IContentAssistant.
+		 * CONTEXT_INFO_BELOW); return assistant;
+		 */
+		return super.getContentAssistant(sourceViewer);
 	}
 
 	/**
@@ -170,40 +161,28 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	 * @see org.eclipse.jface.text.source.SourceViewerConfiguration#getContentFormatter(org.eclipse.jface.text.source.ISourceViewer)
 	 */
 	@Override
-	public IContentFormatter getContentFormatter(
-			final ISourceViewer sourceViewer) {
+	public IContentFormatter getContentFormatter(final ISourceViewer sourceViewer) {
 		final ContentFormatter formatter = new ContentFormatter();
 
-		final WorkflowFormattingStrategy formattingStrategy =
-				new WorkflowFormattingStrategy();
-		final DefaultFormattingStrategy defaultStrategy =
-				new DefaultFormattingStrategy();
-		final TextFormattingStrategy textStrategy =
-				new TextFormattingStrategy();
-		final DocTypeFormattingStrategy docTypeStrategy =
-				new DocTypeFormattingStrategy();
-		final ProcessingInstructionFormattingStrategy processingInstructionStrategy =
-				new ProcessingInstructionFormattingStrategy();
+		final WorkflowFormattingStrategy formattingStrategy = new WorkflowFormattingStrategy();
+		final DefaultFormattingStrategy defaultStrategy = new DefaultFormattingStrategy();
+		final TextFormattingStrategy textStrategy = new TextFormattingStrategy();
+		final DocTypeFormattingStrategy docTypeStrategy = new DocTypeFormattingStrategy();
+		final ProcessingInstructionFormattingStrategy processingInstructionStrategy = new ProcessingInstructionFormattingStrategy();
 
-		formatter.setFormattingStrategy(defaultStrategy,
-				IDocument.DEFAULT_CONTENT_TYPE);
-		formatter.setFormattingStrategy(textStrategy,
-				WorkflowPartitionScanner.XML_TEXT);
-		formatter.setFormattingStrategy(docTypeStrategy,
-				WorkflowPartitionScanner.XML_DOCTYPE);
+		formatter.setFormattingStrategy(defaultStrategy, IDocument.DEFAULT_CONTENT_TYPE);
+		formatter.setFormattingStrategy(textStrategy, WorkflowPartitionScanner.XML_TEXT);
+		formatter.setFormattingStrategy(docTypeStrategy, WorkflowPartitionScanner.XML_DOCTYPE);
 		formatter.setFormattingStrategy(processingInstructionStrategy,
 				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
-		formatter.setFormattingStrategy(formattingStrategy,
-				WorkflowPartitionScanner.XML_START_TAG);
-		formatter.setFormattingStrategy(formattingStrategy,
-				WorkflowPartitionScanner.XML_END_TAG);
+		formatter.setFormattingStrategy(formattingStrategy, WorkflowPartitionScanner.XML_START_TAG);
+		formatter.setFormattingStrategy(formattingStrategy, WorkflowPartitionScanner.XML_END_TAG);
 
 		return formatter;
 	}
 
 	@Override
-	public ITextDoubleClickStrategy getDoubleClickStrategy(
-			final ISourceViewer sourceViewer, final String contentType) {
+	public ITextDoubleClickStrategy getDoubleClickStrategy(final ISourceViewer sourceViewer, final String contentType) {
 		if (doubleClickStrategy == null) {
 			doubleClickStrategy = new WorkflowDoubleClickStrategy();
 		}
@@ -211,12 +190,10 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	}
 
 	@Override
-	public IPresentationReconciler getPresentationReconciler(
-			final ISourceViewer sourceViewer) {
+	public IPresentationReconciler getPresentationReconciler(final ISourceViewer sourceViewer) {
 		final PresentationReconciler reconciler = new PresentationReconciler();
 
-		DefaultDamagerRepairer dr =
-				new DefaultDamagerRepairer(getWorkflowTagScanner());
+		DefaultDamagerRepairer dr = new DefaultDamagerRepairer(getWorkflowTagScanner());
 		reconciler.setDamager(dr, WorkflowPartitionScanner.XML_START_TAG);
 		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_START_TAG);
 
@@ -233,20 +210,15 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_DOCTYPE);
 
 		dr = new DefaultDamagerRepairer(getWorkflowScanner());
-		reconciler.setDamager(dr,
-				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
-		reconciler.setRepairer(dr,
-				WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
+		reconciler.setDamager(dr, WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
+		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_PROCESSING_INSTRUCTION);
 
 		dr = new DefaultDamagerRepairer(getWorkflowTextScanner());
 		reconciler.setDamager(dr, WorkflowPartitionScanner.XML_TEXT);
 		reconciler.setRepairer(dr, WorkflowPartitionScanner.XML_TEXT);
 
-		final TextAttribute textAttribute =
-				new TextAttribute(colorManager
-						.getColor(WorkflowColorConstants.XML_COMMENT));
-		final NonRuleBasedDamagerRepairer ndr =
-				new NonRuleBasedDamagerRepairer(textAttribute);
+		final TextAttribute textAttribute = new TextAttribute(colorManager.getColor(WorkflowColorConstants.XML_COMMENT));
+		final NonRuleBasedDamagerRepairer ndr = new NonRuleBasedDamagerRepairer(textAttribute);
 		reconciler.setDamager(ndr, WorkflowPartitionScanner.XML_COMMENT);
 		reconciler.setRepairer(ndr, WorkflowPartitionScanner.XML_COMMENT);
 
@@ -255,8 +227,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
 	@Override
 	public IReconciler getReconciler(final ISourceViewer sourceViewer) {
-		final WorkflowReconcilingStrategy strategy =
-				new WorkflowReconcilingStrategy();
+		final WorkflowReconcilingStrategy strategy = new WorkflowReconcilingStrategy();
 		strategy.setEditor(editor);
 		final MonoReconciler reconciler = new MonoReconciler(strategy, false);
 		return reconciler;
@@ -271,8 +242,7 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	 *      java.lang.String)
 	 */
 	@Override
-	public ITextHover getTextHover(final ISourceViewer sourceViewer,
-			final String contentType) {
+	public ITextHover getTextHover(final ISourceViewer sourceViewer, final String contentType) {
 		return new ProblemHover(sourceViewer);
 	}
 
@@ -290,11 +260,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	protected CDataScanner getCDataScanner() {
 		if (cdataScanner == null) {
 			cdataScanner = new CDataScanner(colorManager);
-			cdataScanner
-					.setDefaultReturnToken(new Token(
-							new TextAttribute(
-									colorManager
-											.getColor(WorkflowColorConstants.CDATA_TEXT))));
+			cdataScanner.setDefaultReturnToken(new Token(new TextAttribute(colorManager
+					.getColor(WorkflowColorConstants.CDATA_TEXT))));
 		}
 		return cdataScanner;
 	}
@@ -302,8 +269,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	protected WorkflowScanner getWorkflowScanner() {
 		if (scanner == null) {
 			scanner = new WorkflowScanner(colorManager);
-			scanner.setDefaultReturnToken(new Token(new TextAttribute(
-					colorManager.getColor(WorkflowColorConstants.DEFAULT))));
+			scanner.setDefaultReturnToken(new Token(new TextAttribute(colorManager
+					.getColor(WorkflowColorConstants.DEFAULT))));
 		}
 		return scanner;
 	}
@@ -311,8 +278,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	protected WorkflowTagScanner getWorkflowTagScanner() {
 		if (tagScanner == null) {
 			tagScanner = new WorkflowTagScanner(colorManager);
-			tagScanner.setDefaultReturnToken(new Token(new TextAttribute(
-					colorManager.getColor(WorkflowColorConstants.TAG))));
+			tagScanner.setDefaultReturnToken(new Token(new TextAttribute(colorManager
+					.getColor(WorkflowColorConstants.TAG))));
 		}
 		return tagScanner;
 	}
@@ -320,8 +287,8 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	protected WorkflowTextScanner getWorkflowTextScanner() {
 		if (textScanner == null) {
 			textScanner = new WorkflowTextScanner(colorManager);
-			textScanner.setDefaultReturnToken(new Token(new TextAttribute(
-					colorManager.getColor(WorkflowColorConstants.DEFAULT))));
+			textScanner.setDefaultReturnToken(new Token(new TextAttribute(colorManager
+					.getColor(WorkflowColorConstants.DEFAULT))));
 		}
 		return textScanner;
 	}
