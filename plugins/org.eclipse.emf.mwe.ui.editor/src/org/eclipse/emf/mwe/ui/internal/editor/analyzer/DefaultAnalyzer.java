@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.32 $
+ * @version $Revision: 1.33 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -97,14 +97,18 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			throw new IllegalArgumentException();
 
 		final String type = computeAttributeType(attribute);
-		IMethod method = null;
-		String name = attribute.getName();
-		IType mt = TypeUtils.getSetterParameter(getFile(), element, mappedType);
-		if (mt == null) {
-			mt = mappedType;
-		}
-		method = TypeUtils.getSetter(getFile(), mt, name, type);
+		IMethod method = TypeUtils.getSetter(getFile(), mappedType, element.getName(), type);
 
+		String name = null;
+		IType mt = null;
+		if (method == null) {
+			name = attribute.getName();
+			mt = TypeUtils.getSetterParameter(getFile(), element, mappedType);
+			if (mt == null) {
+				mt = mappedType;
+			}
+			method = TypeUtils.getSetter(getFile(), mt, name, type);
+		}
 		if (method == null && element.hasParent()) {
 			mt = TypeUtils.getSetterParameter(getFile(), element.getParent(), mappedType);
 			if (mt != null) {
