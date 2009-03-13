@@ -18,12 +18,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 
-	public AssignmentPropertyAnalyzer(final IFile file,
-			final IDocument document, final PropertyStore propertyStore) {
+	public AssignmentPropertyAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
 		super(file, document, propertyStore);
 	}
 
@@ -35,9 +34,10 @@ public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final IWorkflowElement element) {
-		for (final IWorkflowAttribute attr : element.getAttributes()) {
-			if (!isPropertyReference(attr))
+		for (final IWorkflowAttribute attr : element.getAttributeList()) {
+			if (!isPropertyReference(attr)) {
 				continue;
+			}
 
 			checkPropertyReference(attr);
 		}

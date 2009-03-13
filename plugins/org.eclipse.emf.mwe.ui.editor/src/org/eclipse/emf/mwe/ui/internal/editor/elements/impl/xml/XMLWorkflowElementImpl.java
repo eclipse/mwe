@@ -12,8 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +34,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
@@ -124,10 +124,14 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributes()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getAttributeList()
 	 */
-	public Collection<IWorkflowAttribute> getAttributes() {
-		return attributes.values();
+	public List<IWorkflowAttribute> getAttributeList() {
+		List<IWorkflowAttribute> result = new LinkedList<IWorkflowAttribute>();
+		for (IWorkflowAttribute attr : attributes.values()) {
+			result.add(attr);
+		}
+		return result;
 	}
 
 	/**
@@ -343,6 +347,13 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 */
 	public boolean isComponent() {
 		return getComputedElementType() == WorkflowElementType.COMPONENT || isIfComponent();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isCompose()
+	 */
+	public boolean isCompose() {
+		return getComputedElementType() == WorkflowElementType.COMPOSE;
 	}
 
 	/**

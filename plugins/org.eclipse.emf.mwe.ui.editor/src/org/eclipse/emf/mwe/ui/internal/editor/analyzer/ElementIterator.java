@@ -26,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  */
 public class ElementIterator {
 
@@ -40,8 +40,7 @@ public class ElementIterator {
 
 	private List<IWorkflowElement> elementList;
 
-	private final List<IWorkflowAttribute> attributeList =
-		new ArrayList<IWorkflowAttribute>();
+	private final List<IWorkflowAttribute> attributeList = new ArrayList<IWorkflowAttribute>();
 
 	private final PropertyStore propertyStore = new PropertyStore();
 
@@ -62,8 +61,7 @@ public class ElementIterator {
 			analyzer.checkValidity(element);
 		}
 
-		final ReferenceAnalyzer referenceAnalyzer =
-			new ReferenceAnalyzer(file, document, referenceInfoStore);
+		final ReferenceAnalyzer referenceAnalyzer = new ReferenceAnalyzer(file, document, referenceInfoStore);
 
 		for (final IWorkflowElement element : elementList) {
 			referenceAnalyzer.analyzeElement(element);
@@ -106,21 +104,17 @@ public class ElementIterator {
 		return referenceInfoStore.getReferences();
 	}
 
-	private void addChild(final List<IWorkflowElement> list,
-			final IWorkflowElement element) {
+	private void addChild(final List<IWorkflowElement> list, final IWorkflowElement element) {
 		for (int i = 0; i < element.getChildrenCount(); i++) {
 			final IWorkflowElement child = element.getChild(i);
 			list.add(child);
-			final Collection<IWorkflowAttribute> attributes =
-				element.getAttributes();
-			for (final IWorkflowAttribute attribute : attributes) {
+			for (final IWorkflowAttribute attribute : element.getAttributeList()) {
 				attributeList.add(attribute);
 			}
 		}
 	}
 
-	private List<IWorkflowElement> flatten(
-			final IWorkflowElement workflowElement) {
+	private List<IWorkflowElement> flatten(final IWorkflowElement workflowElement) {
 		final List<IWorkflowElement> list = new ArrayList<IWorkflowElement>();
 		boolean isRootExcluded = false;
 		for (final String tag : EXCLUDED_TAGS) {

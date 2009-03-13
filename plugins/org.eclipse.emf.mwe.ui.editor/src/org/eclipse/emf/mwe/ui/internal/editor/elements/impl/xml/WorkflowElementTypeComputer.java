@@ -23,7 +23,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -52,21 +52,27 @@ public final class WorkflowElementTypeComputer {
 
 			IType parentType = element.getParent().getMappedClassType();
 			if (parentType != null) {
-				IType mt = TypeUtils.getSetterParameter(element.getFile(), element, parentType);
-				if (mt == null) {
-					mt = parentType;
+				if (element.hasAttributes()) {
+					method = TypeUtils.getSetter(element.getFile(), parentType, element.getName(), TypeUtils.WILDCARD);
 				}
-				method = TypeUtils.getSetter(element.getFile(), mt, element.getName(), TypeUtils.WILDCARD);
 
+				IType mt = parentType;
+				if (method == null) {
+					mt = TypeUtils.getSetterParameter(element.getFile(), element, parentType);
+					if (mt == null) {
+						mt = parentType;
+					}
+					method = TypeUtils.getSetter(element.getFile(), mt, element.getName(), TypeUtils.WILDCARD);
+				}
 				if (method == null && element.hasParent()) {
 					mt = TypeUtils.getSetterParameter(element.getFile(), element.getParent(), parentType);
 					if (mt != null) {
 						name = element.getName();
 						method = TypeUtils.getSetter(element.getFile(), mt, element.getName(), TypeUtils.WILDCARD);
 					}
-				}
-				if (mt == null) {
-					mt = parentType;
+					if (mt == null) {
+						mt = parentType;
+					}
 				}
 
 				if (method != null) {
@@ -112,6 +118,9 @@ public final class WorkflowElementTypeComputer {
 		}
 		else if (name.equals(IWorkflowElement.IF_COMPONENT_TAG)) {
 			type = WorkflowElementType.IF_COMPONENT;
+		}
+		else if (name.equals(IWorkflowElement.COMPOSE_TAG)) {
+			type = WorkflowElementType.COMPOSE;
 		}
 		else if (name.equals(IWorkflowElement.WORKFLOW_TAG)) {
 			type = WorkflowElementType.WORKFLOW;

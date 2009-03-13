@@ -25,17 +25,19 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected static final String MAPPING_ERROR_MSG = "Could not determine a class mapping for element";
 
-	protected static final String FALSE_VALUE = "false";
-
-	protected static final String TRUE_VALUE = "true";
-
 	protected static final String CLASS_ATTRIBUTE = "class";
+
+	protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
+
+	protected static final String FILE_ATTRIBUTE = "file";
+
+	protected static final String FRAGMENT_TAG = "fragment";
 
 	static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
 
@@ -65,7 +67,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			return;
 
 		final IWorkflowElement parent = element.getParent();
-		final IType parentType = getMappedType(parent);
+		final IType parentType = parent.getMappedClassType();
 		if (parentType == null) {
 			createMarker(parent, "Element '" + parent.getName() + "' could not be mapped");
 			return;
@@ -96,19 +98,18 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
-		final String type = computeAttributeType(attribute);
-		IMethod method = TypeUtils.getSetter(getFile(), mappedType, element.getName(), type);
+		if (isFragment(element) && IsAllowedFragmentAttribute(attribute))
+			return;
 
-		String name = null;
-		IType mt = null;
-		if (method == null) {
-			name = attribute.getName();
-			mt = TypeUtils.getSetterParameter(getFile(), element, mappedType);
-			if (mt == null) {
-				mt = mappedType;
-			}
-			method = TypeUtils.getSetter(getFile(), mt, name, type);
+		final String type = TypeUtils.computeAttributeType(attribute);
+		IMethod method = null;
+		String name = attribute.getName();
+		IType mt = TypeUtils.getSetterParameter(getFile(), element, mappedType);
+		if (mt == null) {
+			mt = mappedType;
 		}
+		method = TypeUtils.getSetter(getFile(), mt, name, type);
+
 		if (method == null && element.hasParent()) {
 			mt = TypeUtils.getSetterParameter(getFile(), element.getParent(), mappedType);
 			if (mt != null) {
@@ -133,7 +134,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkAttributes(final IWorkflowElement element, final IType mappedType) {
-		for (final IWorkflowAttribute attr : element.getAttributes()) {
+		for (final IWorkflowAttribute attr : element.getAttributeList()) {
 			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
 					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
@@ -153,13 +154,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected String computeAttributeType(final IWorkflowAttribute attribute) {
-		final String value = attribute.getValue();
-		return getValueType(value);
-	}
-
 	protected IType computeComponentType(final IWorkflowElement element) {
-		final IType type = getMappedType(element);
+		final IType type = element.getMappedClassType();
 		return type;
 	}
 
@@ -181,69 +177,39 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, true, true);
 	}
 
-	protected IType getMappedType(final IWorkflowElement element) {
-		IType type = null;
-		final String name = element.getName();
-
-		if (name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
-			if (element.hasAttribute(CLASS_ATTRIBUTE)) {
-				String classValue = element.getAttributeValue(CLASS_ATTRIBUTE);
-				type = getType(classValue);
-			}
-		}
-		else {
-			type = getType(name);
-		}
-
-		if (type == null && !name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
-			type = getType(TypeUtils.getComponentName(name, false));
-		}
-
-		if (type == null && !name.equalsIgnoreCase(TypeUtils.COMPONENT_SUFFIX)) {
-			type = getType(TypeUtils.getComponentName(name, true));
-		}
-
-		if (type == null) {
-			final String typeName = element.getMappedClassName();
-			if (typeName != null) {
-				type = TypeUtils.findType(getFile(), typeName);
-			}
-		}
-
-		if (type == null && element.hasParent()) {
-			type = getMappedType(element.getParent());
-		}
-		if (type == null) {
-			createMarker(element, "Class '" + name + "' cannot be resolved");
-		}
-		return type;
-	}
-
 	protected IType getType(final String mappedClassName) {
 		return TypeUtils.findType(getFile(), mappedClassName);
-	}
-
-	protected String getValueType(final String value) {
-		if (value == null)
-			return null;
-
-		String type = null;
-		if (isBooleanValue(value)) {
-			type = "boolean";
-		}
-		else {
-			type = "java.lang.String";
-		}
-		return type;
-	}
-
-	protected boolean isBooleanValue(final String value) {
-		return value.equalsIgnoreCase(TRUE_VALUE) ^ value.equalsIgnoreCase(FALSE_VALUE);
 	}
 
 	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attribute.getValue());
 		return m.matches();
+	}
+
+	protected boolean isFragment(IWorkflowElement element) {
+		if (element == null)
+			return false;
+
+		return FRAGMENT_TAG.equals(element.getName()) || (FRAGMENT_TAG + "s").equals(element.getName());
+	}
+
+	protected boolean IsAllowedFragmentAttribute(IWorkflowAttribute attribute) {
+		if (attribute == null)
+			throw new IllegalArgumentException();
+
+		if ((FILE_ATTRIBUTE.equals(attribute.getName()) && isStringValue(attribute))
+				|| (INHERIT_ALL_ATTRIBUTE.equals(attribute.getName()) && isBooleanValue(attribute)))
+			return true;
+
+		return false;
+	}
+
+	private boolean isBooleanValue(IWorkflowAttribute attribute) {
+		return TypeUtils.computeAttributeType(attribute).contains("boolean");
+	}
+
+	private boolean isStringValue(IWorkflowAttribute attribute) {
+		return TypeUtils.computeAttributeType(attribute).contains("String");
 	}
 }

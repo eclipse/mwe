@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public final class MarkerManager {
 
@@ -135,9 +135,7 @@ public final class MarkerManager {
 		map.put(IMarker.SEVERITY, severity);
 		try {
 			if (!knownMarkers.contains(map)) {
-				// MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
-				IMarker marker = file.createMarker(ERROR_MARKER_ID);
-				marker.setAttributes(map);
+				MarkerUtilities.createMarker(file, map, ERROR_MARKER_ID);
 				knownMarkers.add(map);
 			}
 		}

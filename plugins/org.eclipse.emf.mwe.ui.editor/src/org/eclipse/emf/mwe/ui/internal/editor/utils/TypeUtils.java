@@ -55,7 +55,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public final class TypeUtils {
 
@@ -121,6 +121,10 @@ public final class TypeUtils {
 
 	public static final String WILDCARD = "*";
 
+	public static final String FALSE_VALUE = "false";
+
+	public static final String TRUE_VALUE = "true";
+
 	private static final String ADDER_PREFIX = "add";
 
 	private static Map<String, Set<String>> allClassesCache = new HashMap<String, Set<String>>();
@@ -145,6 +149,11 @@ public final class TypeUtils {
 	public static void clearCache() {
 		subClassCache.clear();
 		allClassesCache.clear();
+	}
+
+	public static String computeAttributeType(final IWorkflowAttribute attribute) {
+		final String value = attribute.getValue();
+		return getValueType(value);
 	}
 
 	public static IType findType(final IFile file, final String typeName) {
@@ -420,6 +429,20 @@ public final class TypeUtils {
 		return result;
 	}
 
+	public static String getValueType(final String value) {
+		if (value == null)
+			return null;
+
+		String type = null;
+		if (isBooleanValue(value)) {
+			type = "boolean";
+		}
+		else {
+			type = "java.lang.String";
+		}
+		return type;
+	}
+
 	public static boolean isInstantiable(IType type) {
 		if (type == null)
 			return false;
@@ -633,6 +656,10 @@ public final class TypeUtils {
 		return null;
 	}
 
+	private static boolean isBooleanValue(final String value) {
+		return value.equalsIgnoreCase(TRUE_VALUE) ^ value.equalsIgnoreCase(FALSE_VALUE);
+	}
+
 	private static Set<String> queryAllClassesCache(final IProject project) {
 		if (project == null)
 			return null;
@@ -676,5 +703,4 @@ public final class TypeUtils {
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
 	}
-
 }

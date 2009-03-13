@@ -11,7 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -39,6 +38,8 @@ public interface IWorkflowElement {
 	String WORKFLOW_TAG = "workflow";
 
 	String COMPONENT_TAG = "component";
+
+	String COMPOSE_TAG = "compose";
 
 	String IF_COMPONENT_TAG = "if";
 
@@ -81,13 +82,13 @@ public interface IWorkflowElement {
 	int getAttributeCount();
 
 	/**
-	 * Returns a collection containing all attributes of the currect element.
-	 * Please notice that the order of attributes within the collection does not
-	 * necessarily match the order in which the attributes were defined.
+	 * Returns a list containing all attribute elements. Please notice that the
+	 * order of attributes within the collection does not necessarily match the
+	 * order in which the attributes were defined.
 	 * 
-	 * @return a collection of all attributes of current element.
+	 * @return list of attribute elements.
 	 */
-	Collection<IWorkflowAttribute> getAttributes();
+	List<IWorkflowAttribute> getAttributeList();
 
 	/**
 	 * Returns the value of an attribute of the current element.
@@ -283,6 +284,14 @@ public interface IWorkflowElement {
 	 *         <code>false</code>.
 	 */
 	boolean isComponent();
+
+	/**
+	 * Checks if the current element is a compose.
+	 * 
+	 * @return <code>true</code> if current element is a compose, otherwise
+	 *         <code>false</code>.
+	 */
+	boolean isCompose();
 
 	/**
 	 * Checks if the current element is a file property.

@@ -57,7 +57,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.43 $
+ * @version $Revision: 1.44 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -72,9 +72,6 @@ public class WorkflowEditor extends TextEditor {
 		protected IStatus run(IProgressMonitor monitor) {
 			try {
 				preloadClassNameCache(monitor);
-				if (validationJob != null) {
-					validationJob.schedule();
-				}
 			}
 			catch (CoreException e) {
 				IDocument document = getInputDocument();
@@ -323,6 +320,7 @@ public class WorkflowEditor extends TextEditor {
 
 		});
 
+		validateAndMark();
 		initializerJob.schedule();
 
 		return viewer;

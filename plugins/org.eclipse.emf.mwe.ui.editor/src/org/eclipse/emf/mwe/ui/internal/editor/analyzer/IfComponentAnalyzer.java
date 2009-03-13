@@ -18,17 +18,15 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
-	protected static final String COND_ONLY_MSG =
-			"The component 'if' only accepts an attribute 'cond'";
+	protected static final String COND_ONLY_MSG = "The component 'if' only accepts an attribute 'cond'";
 
 	private static final String COND_ATTRIBUTE = "cond";
 
-	public IfComponentAnalyzer(final IFile file, final IDocument document,
-			final PropertyStore propertyStore) {
+	public IfComponentAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
 		super(file, document, propertyStore);
 	}
 
@@ -40,15 +38,14 @@ public class IfComponentAnalyzer extends ComponentAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final IWorkflowElement element) {
-		if (element.getAttributeCount() != 1
-				|| !element.hasAttribute(COND_ATTRIBUTE)) {
+		if (element.getAttributeCount() != 1 || !element.hasAttribute(COND_ATTRIBUTE)) {
 			createMarker(element, COND_ONLY_MSG);
 			return;
 		}
 
-		final IType mappedType = getMappedType(element);
+		final IType mappedType = element.getMappedClassType();
 		if (mappedType == null) {
-			// Error message already created in getMappedClass()
+			createMarker(element, "Class '" + element.getName() + "' cannot be resolved");
 		}
 	}
 }
