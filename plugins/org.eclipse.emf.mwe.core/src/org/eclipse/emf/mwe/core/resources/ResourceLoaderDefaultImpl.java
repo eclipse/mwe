@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.core.resources;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -18,8 +19,6 @@ import java.net.URL;
 import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 
 public class ResourceLoaderDefaultImpl implements ResourceLoader {
-
-	private static final String FILE_PREFIX = "file:";
 
 	public final InputStream getResourceAsStream(String path) {
 		URL resource = getResource(path);
@@ -70,13 +69,9 @@ public class ResourceLoaderDefaultImpl implements ResourceLoader {
 
 	private URL loadFromFile(String path) {
 		try {
-			if (!path.startsWith(FILE_PREFIX)) {
-				path = FILE_PREFIX + path;
-			}
-			URL url = new URL(path);
-			if (url.getContent() != null) {
-				return url;
-			}
+			File f = new File(path);
+			if (f.exists())
+				return f.toURL();
 		} catch (final Exception e) {
 		}
 		return null;
