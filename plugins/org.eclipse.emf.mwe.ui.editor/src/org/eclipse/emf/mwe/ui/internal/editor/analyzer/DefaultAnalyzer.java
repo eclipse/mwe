@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -71,6 +71,26 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (parentType == null) {
 			createMarker(parent, "Element '" + parent.getName() + "' could not be mapped");
 			return;
+		}
+
+		if (isFragment(element)) {
+			if (!(element.hasAttribute(CLASS_ATTRIBUTE) ^ element.hasAttribute(FILE_ATTRIBUTE))) {
+				createMarker(element, "<" + element.getName() + "> needs either a '" + CLASS_ATTRIBUTE + "' or a '"
+						+ FILE_ATTRIBUTE + "' attribute.");
+				return;
+			}
+
+			if (element.getAttributeCount() > 1) {
+				for (IWorkflowAttribute attr : element.getAttributeList()) {
+					boolean hasErrors = false;
+					if (CLASS_ATTRIBUTE.equals(attr.getName()) || FILE_ATTRIBUTE.equals(attr.getName())
+							|| INHERIT_ALL_ATTRIBUTE.equals(attr.getName())) {
+						continue;
+					}
+
+					hasErrors = true;
+				}
+			}
 		}
 		checkAttributes(element, parentType);
 	}

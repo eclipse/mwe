@@ -22,16 +22,14 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
-public class XMLAutoTagCompletionStrategy extends
-		XMLAbstractAutoEditStrategy {
+public class XMLAutoTagCompletionStrategy extends XMLAbstractAutoEditStrategy {
 
 	private static final String TRIGGER_STRING = END_TAG_PREFIX;
 
-	private static final Pattern TAG_PATTERN =
-			Pattern.compile("<\\s*/?(\\w+).*?/?>", Pattern.MULTILINE);
+	private static final Pattern TAG_PATTERN = Pattern.compile("<\\s*/?(\\w+).*?/?>", Pattern.MULTILINE);
 
 	private static int characterCount;
 
@@ -48,8 +46,7 @@ public class XMLAutoTagCompletionStrategy extends
 	 * @see org.eclipse.jface.text.IAutoEditStrategy#customizeDocumentCommand(org.eclipse.jface.text.IDocument,
 	 *      org.eclipse.jface.text.DocumentCommand)
 	 */
-	public void customizeDocumentCommand(final IDocument document,
-			final DocumentCommand command) {
+	public void customizeDocumentCommand(final IDocument document, final DocumentCommand command) {
 		checkTrigger(command.text);
 		if (isTriggered()) {
 			final String tag = getTagName(document, command.offset);
@@ -65,8 +62,11 @@ public class XMLAutoTagCompletionStrategy extends
 		char ch2 = 0;
 		if (text != null && text.length() > 0) {
 			ch1 = text.charAt(0);
-			ch2 = TRIGGER_STRING.charAt(characterCount);
-		} else {
+			if (characterCount < TRIGGER_STRING.length()) {
+				ch2 = TRIGGER_STRING.charAt(characterCount);
+			}
+		}
+		else {
 			resetBuffer();
 			return;
 		}
@@ -74,7 +74,8 @@ public class XMLAutoTagCompletionStrategy extends
 		if (ch1 == ch2) {
 			triggerBuffer += text;
 			characterCount++;
-		} else {
+		}
+		else {
 			resetBuffer();
 			return;
 		}
@@ -88,7 +89,8 @@ public class XMLAutoTagCompletionStrategy extends
 		String previousText;
 		try {
 			previousText = document.get(0, offset - 1);
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 			return null;
 		}
@@ -104,14 +106,18 @@ public class XMLAutoTagCompletionStrategy extends
 
 			if (isStartTag(fullTag)) {
 				openTags.push(tagName);
-			} else if (isEndTag(fullTag)) {
+			}
+			else if (isEndTag(fullTag)) {
 				if (tagName.equals(openTags.peek())) {
 					openTags.pop();
-				} else
+				}
+				else
 					return null;
-			} else if (isLeafTag(fullTag)) {
+			}
+			else if (isLeafTag(fullTag)) {
 				// Do nothing
-			} else
+			}
+			else
 				throw new IllegalStateException();
 		}
 

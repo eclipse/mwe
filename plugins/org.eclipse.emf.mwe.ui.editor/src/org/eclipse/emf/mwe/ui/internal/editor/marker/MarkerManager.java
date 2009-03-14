@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public final class MarkerManager {
 
@@ -73,7 +73,8 @@ public final class MarkerManager {
 			final SAXException exception) {
 		if (exception instanceof SAXParseException) {
 			final SAXParseException ex = (SAXParseException) exception;
-			final int line = ex.getLineNumber() - 1;
+			int line = ex.getLineNumber();
+			line = (line <= 0) ? 0 : line - 1;
 			final int column = ex.getColumnNumber() - 1;
 			final String msg = ex.getMessage();
 			createMarker(file, document, msg, line, column);
@@ -118,7 +119,7 @@ public final class MarkerManager {
 			return;
 		}
 
-		MarkerUtilities.setLineNumber(map, lineNumber);
+		MarkerUtilities.setLineNumber(map, lineNumber + 1);
 		MarkerUtilities.setMessage(map, message);
 		map.put(IMarker.LOCATION, "line : " + (lineNumber + 1));
 
