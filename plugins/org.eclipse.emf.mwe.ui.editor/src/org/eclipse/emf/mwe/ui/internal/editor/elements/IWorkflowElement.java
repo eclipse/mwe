@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
@@ -165,7 +165,7 @@ public interface IWorkflowElement {
 	 * @return the attached source file reference or <code>null</code> if none
 	 *         exists
 	 */
-	IFile getFile();
+	IProject getProject();
 
 	ElementPositionRange getFirstLineRange();
 
@@ -243,7 +243,7 @@ public interface IWorkflowElement {
 	 * @return <code>true</code> if the current element has a reference to its
 	 *         source file, otherwise <code>false</code>
 	 */
-	boolean hasFile();
+	boolean hasProject();
 
 	/**
 	 * Checks if the current element has a class it is mapped to.

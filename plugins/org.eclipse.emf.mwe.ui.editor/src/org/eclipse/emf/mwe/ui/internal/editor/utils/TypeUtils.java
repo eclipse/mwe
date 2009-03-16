@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public final class TypeUtils {
 
@@ -332,17 +332,21 @@ public final class TypeUtils {
 	}
 
 	public static IType getSetterParameter(IFile file, final IWorkflowElement element, IType mappedType) {
-		if (file == null)
+		return getSetterParameter(file.getProject(), element, mappedType);
+	}
+
+	public static IType getSetterParameter(IProject project, final IWorkflowElement element, IType mappedType) {
+		if (project == null)
 			return null;
 
 		IType mt = null;
-		IMethod method = TypeUtils.getSetter(file, mappedType, element.getName(), TypeUtils.WILDCARD);
+		IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD);
 		if (method != null) {
 			String[] params = method.getParameterTypes();
 			if (params.length == 1) {
 				String paramType = params[0];
 				paramType = paramType.substring(1, paramType.length() - 1);
-				mt = TypeUtils.findType(file, paramType);
+				mt = TypeUtils.findType(project, paramType);
 			}
 		}
 		return mt;
