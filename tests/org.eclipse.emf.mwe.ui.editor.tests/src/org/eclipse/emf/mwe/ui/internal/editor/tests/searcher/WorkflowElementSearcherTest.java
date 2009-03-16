@@ -11,12 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 
-import junit.framework.TestCase;
-
+import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.FactoryNotInitializedException;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
-import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
@@ -24,10 +20,10 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
-public class WorkflowElementSearcherTest extends TestCase {
+public class WorkflowElementSearcherTest extends ParserTestBase {
 
 	private static final String WORKFLOW1 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
 			+ "	\n" + "	<component class=\"org.eclipse.xtext.parser.ParserComponent\">\n"
@@ -85,23 +81,12 @@ public class WorkflowElementSearcherTest extends TestCase {
 		assertEquals("org.eclipse.xtend.XtendComponent", foundElement.getAttributeValue("class"));
 	}
 
-	@Override
-	protected void setUp() throws Exception {
-		try {
-			WorkflowSyntaxFactory.getInstance();
-		}
-		catch (final FactoryNotInitializedException e) {
-			WorkflowSyntaxFactory.installFactory(new XMLWorkflowSyntaxFactoryImpl());
-		}
-
-	}
-
 	private IDocument createDocument(final String text) {
 		return new Document(text);
 	}
 
 	private IWorkflowElement parse(final IDocument document) {
-		return DocumentParser.parse(document);
+		return DocumentParser.parse(document, project);
 	}
 
 }

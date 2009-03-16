@@ -17,7 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.HierarchyChecker;
@@ -34,10 +34,12 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
+
+	private IProject project;
 
 	private WorkflowEditor editor;
 
@@ -71,11 +73,12 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 * @param name
 	 *            the name of the element
 	 */
-	public XMLWorkflowElementImpl(WorkflowEditor editor, final IDocument document, final String name) {
+	public XMLWorkflowElementImpl(WorkflowEditor editor, IProject project, final IDocument document, final String name) {
 		if (document == null || name == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
 		this.editor = editor;
+		this.project = project;
 		this.document = document;
 		this.name = name;
 		recomputeTypeInfo = true;
@@ -200,28 +203,10 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isInstantiable()
-	 */
-	public boolean isInstantiable() {
-		IType type = getMappedClassType();
-		return (type != null) ? TypeUtils.isInstantiable(type) : false;
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getEndElementRange()
 	 */
 	public ElementPositionRange getEndElementRange() {
 		return endElementRange;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getFile()
-	 */
-	public IFile getFile() {
-		if (editor != null)
-			return editor.getInputFile();
-
-		return null;
 	}
 
 	/**
@@ -258,8 +243,8 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	public IType getMappedClassType() {
 		IType type = null;
 		String name = getMappedClassName();
-		if (hasFile() && name != null) {
-			type = TypeUtils.findType(getFile(), name);
+		if (hasProject() && name != null) {
+			type = TypeUtils.findType(getProject(), name);
 		}
 
 		return type;
@@ -277,6 +262,16 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 */
 	public IWorkflowElement getParent() {
 		return parent;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getProject()
+	 */
+	public IProject getProject() {
+		if (editor != null && editor.getInputFile() != null)
+			return editor.getInputFile().getProject();
+
+		return project;
 	}
 
 	/**
@@ -308,13 +303,6 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasFile()
-	 */
-	public boolean hasFile() {
-		return editor != null && editor.getInputFile() != null;
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasMappedClass()
 	 */
 	public boolean hasMappedClass() {
@@ -326,6 +314,13 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 */
 	public boolean hasParent() {
 		return parent != null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasProject()
+	 */
+	public boolean hasProject() {
+		return (editor != null && editor.getInputFile() != null) || project != null;
 	}
 
 	/**
@@ -364,6 +359,13 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isFragment()
+	 */
+	public boolean isFragment() {
+		return FRAGMENT_TAG.equals(getName()) || (FRAGMENT_TAG + "s").equals(getName());
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isIfComponent()
 	 */
 	public boolean isIfComponent() {
@@ -375,6 +377,14 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 	 */
 	public boolean isInRange(final int offset) {
 		return getElementRange().isInRange(offset);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isInstantiable()
+	 */
+	public boolean isInstantiable() {
+		IType type = getMappedClassType();
+		return (type != null) ? TypeUtils.isInstantiable(type) : false;
 	}
 
 	/**

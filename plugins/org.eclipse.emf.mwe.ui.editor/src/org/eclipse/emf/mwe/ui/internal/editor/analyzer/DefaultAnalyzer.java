@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.37 $
+ * @version $Revision: 1.38 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -36,8 +36,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	protected static final String FILE_ATTRIBUTE = "file";
-
-	protected static final String FRAGMENT_TAG = "fragment";
 
 	static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
 
@@ -73,7 +71,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			return;
 		}
 
-		if (isFragment(element)) {
+		if (element.isFragment()) {
 			if (!(element.hasAttribute(CLASS_ATTRIBUTE) ^ element.hasAttribute(FILE_ATTRIBUTE))) {
 				createMarker(element, "<" + element.getName() + "> needs either a '" + CLASS_ATTRIBUTE + "' or a '"
 						+ FILE_ATTRIBUTE + "' attribute.");
@@ -118,8 +116,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
-		if (isFragment(element) && IsAllowedFragmentAttribute(attribute))
+		if (!IsAllowedFragmentAttribute(attribute)) {
+			createMarker(attribute, "Invalid attribute '" + attribute.getName() + "'");
 			return;
+		}
 
 		final String type = TypeUtils.computeAttributeType(attribute);
 		IMethod method = null;
@@ -183,7 +183,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
 
-		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, true, true);
+		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, false, true);
 	}
 
 	protected void createMarker(final IWorkflowElement element, final String message) {
@@ -207,22 +207,16 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return m.matches();
 	}
 
-	protected boolean isFragment(IWorkflowElement element) {
-		if (element == null)
-			return false;
-
-		return FRAGMENT_TAG.equals(element.getName()) || (FRAGMENT_TAG + "s").equals(element.getName());
-	}
-
 	protected boolean IsAllowedFragmentAttribute(IWorkflowAttribute attribute) {
 		if (attribute == null)
 			throw new IllegalArgumentException();
 
-		if ((FILE_ATTRIBUTE.equals(attribute.getName()) && isStringValue(attribute))
-				|| (INHERIT_ALL_ATTRIBUTE.equals(attribute.getName()) && isBooleanValue(attribute)))
-			return true;
+		if ((FILE_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
+				|| (CLASS_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
+				|| (INHERIT_ALL_ATTRIBUTE.equals(attribute.getName()) && !isBooleanValue(attribute)))
+			return false;
 
-		return false;
+		return true;
 	}
 
 	private boolean isBooleanValue(IWorkflowAttribute attribute) {

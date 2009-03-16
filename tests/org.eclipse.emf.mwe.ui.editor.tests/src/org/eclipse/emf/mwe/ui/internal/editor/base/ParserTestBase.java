@@ -11,8 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.base;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
@@ -21,9 +19,9 @@ import org.eclipse.jface.text.Document;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
-public class ParserTestBase extends TestCase {
+public class ParserTestBase extends PluginTestBase {
 
 	protected XMLParser parser;
 
@@ -31,10 +29,11 @@ public class ParserTestBase extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		WorkflowSyntaxFactory
-				.installFactory(new XMLWorkflowSyntaxFactoryImpl());
+		super.setUp();
+		WorkflowSyntaxFactory.installFactory(new XMLWorkflowSyntaxFactoryImpl());
 		parser = new XMLParser();
 		contentHandler = new WorkflowContentHandler();
+		contentHandler.setProject(project);
 		parser.setContentHandler(contentHandler);
 	}
 
@@ -44,4 +43,13 @@ public class ParserTestBase extends TestCase {
 		final Document document = new Document(content);
 		contentHandler.setDocument(document);
 	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.base.PluginTestBase#getProjectName()
+	 */
+	@Override
+	protected String getProjectName() {
+		return "org.eclipse.emf.mwe.ui.editor";
+	}
+
 }

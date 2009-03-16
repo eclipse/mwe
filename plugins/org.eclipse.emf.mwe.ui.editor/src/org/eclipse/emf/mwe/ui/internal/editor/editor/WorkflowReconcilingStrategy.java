@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		IReconcilingStrategyExtension {

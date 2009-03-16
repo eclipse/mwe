@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.SmartQuoteStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAutoIndentStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAutoTagCompletionStrategy;
@@ -56,7 +57,8 @@ public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 		return new XMLWorkflowAttributeImpl(element, name, value);
 	}
 
-	public IWorkflowElement newWorkflowElement(WorkflowEditor editor, final IDocument document, final String name) {
-		return new XMLWorkflowElementImpl(editor, document, name);
+	public IWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project, final IDocument document,
+			final String name) {
+		return new XMLWorkflowElementImpl(editor, project, document, name);
 	}
 }
