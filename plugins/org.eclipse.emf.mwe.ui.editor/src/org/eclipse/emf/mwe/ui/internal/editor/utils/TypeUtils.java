@@ -40,8 +40,6 @@ import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
-import org.eclipse.jdt.core.IRegion;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
@@ -55,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public final class TypeUtils {
 
@@ -529,13 +527,7 @@ public final class TypeUtils {
 	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type, IProgressMonitor monitor) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
-			final IRegion region = JavaCore.newRegion();
-			final IPackageFragmentRoot[] root = jp.getAllPackageFragmentRoots();
-			for (final IPackageFragmentRoot r : root) {
-				region.add(r);
-			}
-			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, monitor);
-			return hierarchy;
+			return type.newTypeHierarchy(jp, monitor);
 		}
 		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
