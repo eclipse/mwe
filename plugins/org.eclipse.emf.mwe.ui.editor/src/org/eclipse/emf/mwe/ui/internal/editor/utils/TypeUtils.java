@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public final class TypeUtils {
 
@@ -78,28 +78,12 @@ public final class TypeUtils {
 
 	private static class TypeNameCollector extends TypeNameMatchRequestor {
 
-		IProject project;
-
-		Set<String> classNames = new HashSet<String>();
-
-		public TypeNameCollector(final IProject project) {
-			this.project = project;
-		}
+		Set<String> classNames = new HashSet<String>(1000);
 
 		@Override
 		public void acceptTypeNameMatch(final TypeNameMatch match) {
-			final String className = match.getFullyQualifiedName();
-			IType type = findType(project, className);
-			if (type != null) {
-				try {
-					int modifier = type.getFlags();
-					if (Flags.isPublic(modifier) && !Flags.isAbstract(modifier)) {
-						classNames.add(className);
-					}
-				}
-				catch (JavaModelException e) {
-					// do nothing
-				}
+			if (Flags.isPublic(match.getModifiers()) && !Flags.isAbstract(match.getModifiers())) {
+				classNames.add(match.getFullyQualifiedName());
 			}
 		}
 
@@ -192,7 +176,7 @@ public final class TypeUtils {
 			final IJavaProject jp = JavaCore.create(project);
 			final SearchEngine searchEngine = new SearchEngine();
 			final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { jp }, true);
-			final TypeNameCollector collector = new TypeNameCollector(project);
+			final TypeNameCollector collector = new TypeNameCollector();
 			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
 					IJavaSearchConstants.CLASS, scope, collector, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 					monitor);
