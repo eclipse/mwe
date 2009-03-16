@@ -40,6 +40,8 @@ import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
+import org.eclipse.jdt.core.IRegion;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
@@ -53,7 +55,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public final class TypeUtils {
 
@@ -78,12 +80,28 @@ public final class TypeUtils {
 
 	private static class TypeNameCollector extends TypeNameMatchRequestor {
 
-		Set<String> classNames = new HashSet<String>(1000);
+		IProject project;
+
+		Set<String> classNames = new HashSet<String>();
+
+		public TypeNameCollector(final IProject project) {
+			this.project = project;
+		}
 
 		@Override
 		public void acceptTypeNameMatch(final TypeNameMatch match) {
-			if (Flags.isPublic(match.getModifiers()) && !Flags.isAbstract(match.getModifiers())) {
-				classNames.add(match.getFullyQualifiedName());
+			final String className = match.getFullyQualifiedName();
+			IType type = findType(project, className);
+			if (type != null) {
+				try {
+					int modifier = type.getFlags();
+					if (Flags.isPublic(modifier) && !Flags.isAbstract(modifier)) {
+						classNames.add(className);
+					}
+				}
+				catch (JavaModelException e) {
+					// do nothing
+				}
 			}
 		}
 
@@ -176,7 +194,7 @@ public final class TypeUtils {
 			final IJavaProject jp = JavaCore.create(project);
 			final SearchEngine searchEngine = new SearchEngine();
 			final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { jp }, true);
-			final TypeNameCollector collector = new TypeNameCollector();
+			final TypeNameCollector collector = new TypeNameCollector(project);
 			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
 					IJavaSearchConstants.CLASS, scope, collector, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 					monitor);
@@ -332,21 +350,17 @@ public final class TypeUtils {
 	}
 
 	public static IType getSetterParameter(IFile file, final IWorkflowElement element, IType mappedType) {
-		return getSetterParameter(file.getProject(), element, mappedType);
-	}
-
-	public static IType getSetterParameter(IProject project, final IWorkflowElement element, IType mappedType) {
-		if (project == null)
+		if (file == null)
 			return null;
 
 		IType mt = null;
-		IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD);
+		IMethod method = TypeUtils.getSetter(file, mappedType, element.getName(), TypeUtils.WILDCARD);
 		if (method != null) {
 			String[] params = method.getParameterTypes();
 			if (params.length == 1) {
 				String paramType = params[0];
 				paramType = paramType.substring(1, paramType.length() - 1);
-				mt = TypeUtils.findType(project, paramType);
+				mt = TypeUtils.findType(file, paramType);
 			}
 		}
 		return mt;
@@ -515,7 +529,13 @@ public final class TypeUtils {
 	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type, IProgressMonitor monitor) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
-			return type.newTypeHierarchy(jp, monitor);
+			final IRegion region = JavaCore.newRegion();
+			final IPackageFragmentRoot[] root = jp.getAllPackageFragmentRoots();
+			for (final IPackageFragmentRoot r : root) {
+				region.add(r);
+			}
+			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, monitor);
+			return hierarchy;
 		}
 		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);

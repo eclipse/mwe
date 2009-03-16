@@ -11,15 +11,12 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -44,7 +41,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextListener;
-import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
@@ -53,7 +49,6 @@ import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
@@ -62,29 +57,21 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.45 $
+ * @version $Revision: 1.46 $
  */
 public class WorkflowEditor extends TextEditor {
 
 	private class InitializerJob extends Job {
 
-		public InitializerJob(String name, IResource resource) {
+		public InitializerJob(String name) {
 			super(name);
 			setPriority(Job.LONG);
-			if (resource != null)
-				setRule(resource);
-			else
-				setRule(ResourcesPlugin.getWorkspace().getRoot());
 		}
 
 		@Override
 		protected IStatus run(IProgressMonitor monitor) {
-			if (monitor.isCanceled())
-				return Status.CANCEL_STATUS;
 			try {
 				preloadClassNameCache(monitor);
-				if (monitor.isCanceled())
-					return Status.CANCEL_STATUS;
 			}
 			catch (CoreException e) {
 				IDocument document = getInputDocument();
@@ -107,8 +94,8 @@ public class WorkflowEditor extends TextEditor {
 
 	private Job validationJob;
 
-	private Job initializerJob;
-	
+	private Job initializerJob = new InitializerJob("Initializing editor...");
+
 	private IWorkflowElement rootElement;
 
 	private Collection<IWorkflowElement> elements;
@@ -151,19 +138,18 @@ public class WorkflowEditor extends TextEditor {
 		if (outlinePage != null) {
 			outlinePage.setInput(null);
 		}
-		if (initializerJob != null)
-			initializerJob.cancel();
+
+		initializerJob.cancel();
 		TypeUtils.clearCache();
 		super.dispose();
 	}
 
 	/**
 	 * This method overrides the implementation of <code>getAdapter</code>
-	 * inherited from the superclass to provide an adapter for IContentOutlinePage.
+	 * inherited from the superclass.
 	 * 
 	 * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public Object getAdapter(final Class adapter) {
 		if (IContentOutlinePage.class.equals(adapter)) {
@@ -198,16 +184,6 @@ public class WorkflowEditor extends TextEditor {
 		final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
 		final IFile file = ife.getFile();
 		return file;
-	}
-	
-	@Override
-	protected void doSetInput(IEditorInput input) throws CoreException {
-		super.doSetInput(input);
-		if (input instanceof IFileEditorInput) {
-			IFile file = getInputFile();
-			initializerJob = new InitializerJob("Initializing editor...", file);
-			initializerJob.schedule();
-		}
 	}
 
 	/**
@@ -265,9 +241,9 @@ public class WorkflowEditor extends TextEditor {
 		this.rootElement = newRootElement;
 	}
 
-	public void updateFoldingStructure(final List<Position> positions) {
+	public void updateFoldingStructure(final ArrayList positions) {
 		final Annotation[] annotations = new Annotation[positions.size()];
-		final Map<ProjectionAnnotation, Position> newAnnotations = new HashMap<ProjectionAnnotation, Position>();
+		final HashMap newAnnotations = new HashMap();
 		for (int i = 0; i < positions.size(); i++) {
 			final ProjectionAnnotation annotation = new ProjectionAnnotation();
 
@@ -345,6 +321,7 @@ public class WorkflowEditor extends TextEditor {
 		});
 
 		validateAndMark();
+		initializerJob.schedule();
 
 		return viewer;
 	}

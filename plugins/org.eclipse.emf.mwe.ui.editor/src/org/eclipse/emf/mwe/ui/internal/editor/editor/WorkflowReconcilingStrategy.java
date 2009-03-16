@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.text.BadLocationException;
@@ -26,7 +25,7 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 		IReconcilingStrategyExtension {
@@ -43,7 +42,7 @@ public class WorkflowReconcilingStrategy implements IReconcilingStrategy,
 
 	protected static final int PI_TAG = 6;
 
-	protected final List<Position> positions = new ArrayList<Position>();
+	protected final ArrayList positions = new ArrayList();
 
 	protected int offset;
 

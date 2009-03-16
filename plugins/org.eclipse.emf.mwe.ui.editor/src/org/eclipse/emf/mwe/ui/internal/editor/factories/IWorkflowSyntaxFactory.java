@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.factories;
 
 import java.util.Collection;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
@@ -24,7 +23,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public interface IWorkflowSyntaxFactory {
@@ -35,5 +34,5 @@ public interface IWorkflowSyntaxFactory {
 
 	IWorkflowAttribute newWorkflowAttribute(IWorkflowElement element, String name, String value);
 
-	IWorkflowElement newWorkflowElement(IProject project, IDocument document, String name);
+	IWorkflowElement newWorkflowElement(WorkflowEditor editor, IDocument document, String name);
 }
