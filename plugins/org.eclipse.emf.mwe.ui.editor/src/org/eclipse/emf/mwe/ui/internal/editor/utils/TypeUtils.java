@@ -40,8 +40,6 @@ import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IMethod;
-import org.eclipse.jdt.core.IPackageFragmentRoot;
-import org.eclipse.jdt.core.IRegion;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
@@ -55,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public final class TypeUtils {
 
@@ -80,28 +78,12 @@ public final class TypeUtils {
 
 	private static class TypeNameCollector extends TypeNameMatchRequestor {
 
-		IProject project;
-
-		Set<String> classNames = new HashSet<String>();
-
-		public TypeNameCollector(final IProject project) {
-			this.project = project;
-		}
+		Set<String> classNames = new HashSet<String>(1000);
 
 		@Override
 		public void acceptTypeNameMatch(final TypeNameMatch match) {
-			final String className = match.getFullyQualifiedName();
-			IType type = findType(project, className);
-			if (type != null) {
-				try {
-					int modifier = type.getFlags();
-					if (Flags.isPublic(modifier) && !Flags.isAbstract(modifier)) {
-						classNames.add(className);
-					}
-				}
-				catch (JavaModelException e) {
-					// do nothing
-				}
+			if (Flags.isPublic(match.getModifiers()) && !Flags.isAbstract(match.getModifiers())) {
+				classNames.add(match.getFullyQualifiedName());
 			}
 		}
 
@@ -194,7 +176,7 @@ public final class TypeUtils {
 			final IJavaProject jp = JavaCore.create(project);
 			final SearchEngine searchEngine = new SearchEngine();
 			final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { jp }, true);
-			final TypeNameCollector collector = new TypeNameCollector(project);
+			final TypeNameCollector collector = new TypeNameCollector();
 			searchEngine.searchAllTypeNames(null, SearchPattern.R_EXACT_MATCH, null, SearchPattern.R_EXACT_MATCH,
 					IJavaSearchConstants.CLASS, scope, collector, IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH,
 					monitor);
@@ -529,13 +511,7 @@ public final class TypeUtils {
 	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type, IProgressMonitor monitor) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
-			final IRegion region = JavaCore.newRegion();
-			final IPackageFragmentRoot[] root = jp.getAllPackageFragmentRoots();
-			for (final IPackageFragmentRoot r : root) {
-				region.add(r);
-			}
-			final ITypeHierarchy hierarchy = jp.newTypeHierarchy(type, region, monitor);
-			return hierarchy;
+			return type.newTypeHierarchy(jp, monitor);
 		}
 		catch (final JavaModelException e) {
 			Log.logError("Java Model Exception", e);
