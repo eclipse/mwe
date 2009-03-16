@@ -33,7 +33,7 @@ import org.eclipse.jface.text.IDocument;
  * editor.
  * 
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
@@ -78,6 +78,13 @@ public class XMLWorkflowElementImpl implements IRangeCheck, IWorkflowElement {
 		this.document = document;
 		this.name = name;
 		recomputeTypeInfo = true;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#isFragment()
+	 */
+	public boolean isFragment() {
+		return FRAGMENT_TAG.equals(getName()) || (FRAGMENT_TAG + "s").equals(getName());
 	}
 
 	/**

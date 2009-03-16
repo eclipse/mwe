@@ -21,6 +21,8 @@ public interface IWorkflowElement {
 
 	String WORKFLOWFILE_TAG = "workflowfile";
 
+	String FRAGMENT_TAG = "fragment";
+
 	String FILE_ATTRIBUTE = "file";
 
 	String VALUE_ATTRIBUTE = "value";
@@ -159,14 +161,6 @@ public interface IWorkflowElement {
 	 */
 	ElementPositionRange getEndElementRange();
 
-	/**
-	 * Returns the attached source file reference, if any.
-	 * 
-	 * @return the attached source file reference or <code>null</code> if none
-	 *         exists
-	 */
-	IProject getProject();
-
 	ElementPositionRange getFirstLineRange();
 
 	/**
@@ -205,6 +199,14 @@ public interface IWorkflowElement {
 	IWorkflowElement getParent();
 
 	/**
+	 * Returns the attached source file reference, if any.
+	 * 
+	 * @return the attached source file reference or <code>null</code> if none
+	 *         exists
+	 */
+	IProject getProject();
+
+	/**
 	 * Returns the value of field <code>startElementRange</code>.
 	 * 
 	 * @return value of <code>startElementRange</code>.
@@ -238,14 +240,6 @@ public interface IWorkflowElement {
 	boolean hasChildren();
 
 	/**
-	 * Checks if the current element has a reference to its source file.
-	 * 
-	 * @return <code>true</code> if the current element has a reference to its
-	 *         source file, otherwise <code>false</code>
-	 */
-	boolean hasProject();
-
-	/**
 	 * Checks if the current element has a class it is mapped to.
 	 * 
 	 * @return <code>true</code> if there exists a class to which the current
@@ -260,6 +254,14 @@ public interface IWorkflowElement {
 	 *         <code>null</code>.
 	 */
 	boolean hasParent();
+
+	/**
+	 * Checks if the current element has a reference to its source file.
+	 * 
+	 * @return <code>true</code> if the current element has a reference to its
+	 *         source file, otherwise <code>false</code>
+	 */
+	boolean hasProject();
 
 	/**
 	 * Checks if the current element is an assignment.
@@ -300,6 +302,14 @@ public interface IWorkflowElement {
 	 *         otherwise <code>false</code>.
 	 */
 	boolean isFileProperty();
+
+	/**
+	 * Checks if the current element is a fragment.
+	 * 
+	 * @return <code>true</code> if current element is a fragment, otherwise
+	 *         <code>false</code>.
+	 */
+	boolean isFragment();
 
 	/**
 	 * Checks if the current element is an if-component.
