@@ -31,7 +31,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -221,14 +221,43 @@ public class WorkflowContentHandler extends DefaultHandler {
 	}
 
 	private Integer getCharStart(final int offset) {
+		return searchChar(offset, '<', true);
+	}
+
+	private Integer searchChar(int offset, char stopChar, boolean backwards) {
 		try {
-			final IRegion region = document.getLineInformationOfOffset(offset);
-			final int lineStartChar = region.getOffset();
-			return lineStartChar;
+			int singleQuotes = 0;
+			int doubleQuotes = 0;
+			int limit = backwards ? 0 : document.getLength() - 1;
+			int i = offset;
+
+			while (Math.abs(limit - i) > 0) {
+				char ch = document.getChar(i);
+				if (ch == '"') {
+					doubleQuotes++;
+					continue;
+				}
+				else if (ch == '\'') {
+					singleQuotes++;
+					continue;
+				}
+
+				if (ch == stopChar && (singleQuotes % 2 == 0) && (doubleQuotes % 2 == 0)) {
+					break;
+				}
+
+				if (backwards) {
+					i--;
+				}
+				else {
+					i++;
+				}
+			}
+			return i;
 		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-			return null;
+		catch (BadLocationException e) {
+			Log.logError("", e);
+			return -1;
 		}
 	}
 
