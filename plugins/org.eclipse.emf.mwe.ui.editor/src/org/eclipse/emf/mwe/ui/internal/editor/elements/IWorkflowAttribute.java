@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
-public interface IWorkflowAttribute {
+public interface IWorkflowAttribute extends IRangeCheck {
 
 	/**
 	 * Returns the position range of the whole attribute.
@@ -47,13 +47,4 @@ public interface IWorkflowAttribute {
 	 * @return value of <code>value</code>.
 	 */
 	String getValue();
-
-	/**
-	 * This method overrides the implementation of <code>isInRange</code>
-	 * inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
-	 */
-	boolean isInRange(final int offset);
-
 }

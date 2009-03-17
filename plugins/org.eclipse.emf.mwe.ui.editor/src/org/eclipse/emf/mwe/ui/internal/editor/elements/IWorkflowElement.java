@@ -49,7 +49,7 @@ public interface IWorkflowElement {
 	 * Adds an attribute to the current element.
 	 * 
 	 * @param attribute
-	 *            attribute added to current element.
+	 *            attribute added to current element
 	 */
 	void addAttribute(final IWorkflowAttribute attribute);
 
@@ -57,7 +57,7 @@ public interface IWorkflowElement {
 	 * Add child element to the current element.
 	 * 
 	 * @param element
-	 *            child element added to current element.
+	 *            child element added to current element
 	 */
 	void addChild(final IWorkflowElement element);
 
@@ -70,16 +70,16 @@ public interface IWorkflowElement {
 	 * Returns the specified attribute of the current element.
 	 * 
 	 * @param name
-	 *            name of the requested attribute.
+	 *            name of the requested attribute
 	 * @return the requested attribute or <code>null</code>, if no attribute
-	 *         with the specified name is found.
+	 *         with the specified name is found
 	 */
 	IWorkflowAttribute getAttribute(final String name);
 
 	/**
 	 * Number of attributes of the current element.
 	 * 
-	 * @return number of attributes.
+	 * @return number of attributes
 	 */
 	int getAttributeCount();
 
@@ -88,7 +88,7 @@ public interface IWorkflowElement {
 	 * order of attributes within the collection does not necessarily match the
 	 * order in which the attributes were defined.
 	 * 
-	 * @return list of attribute elements.
+	 * @return list of attribute elements
 	 */
 	List<IWorkflowAttribute> getAttributeList();
 
@@ -98,7 +98,7 @@ public interface IWorkflowElement {
 	 * @param name
 	 *            local name of attribute
 	 * @return value of attribute or <code>null</code>, if no attribute with the
-	 *         specified name is found.
+	 *         specified name is found
 	 */
 	String getAttributeValue(final String name);
 
@@ -107,87 +107,92 @@ public interface IWorkflowElement {
 	 * <code>index</code>.
 	 * 
 	 * @param index
-	 *            the index position.
-	 * @return child element at position <code>index</code>.
+	 *            the index position
+	 * @return child element at position <code>index</code>
 	 */
 	IWorkflowElement getChild(final int index);
 
 	/**
 	 * Number of child elements of the current element.
 	 * 
-	 * @return number of child elements.
+	 * @return number of child elements
 	 */
 	int getChildrenCount();
 
 	/**
 	 * Returns a list containing all child elements.
 	 * 
-	 * @return list of child elements.
+	 * @return list of child elements
 	 */
 	List<IWorkflowElement> getChildrenList();
 
 	/**
-	 * Returns the value of field <code>document</code>.
+	 * Returns the document
 	 * 
-	 * @return value of <code>document</code>.
+	 * @return the document
 	 */
 	IDocument getDocument();
 
 	/**
 	 * Returns the position range of the whole element.
 	 * 
-	 * @return position range of whole element.
+	 * @return position range of whole element
 	 */
 	ElementPositionRange getElementRange();
 
 	/**
 	 * Returns the type of the current element.
 	 * 
-	 * @return type of current element.
+	 * @return type of current element
 	 */
 	WorkflowElementType getElementType();
 
 	/**
 	 * Returns the type of the current element as a string.
 	 * 
-	 * @return string representation of the type of the current element.
+	 * @return string representation of the type of the current element
 	 */
 	String getElementTypeString();
 
 	/**
-	 * Returns the value of field <code>endElementRange</code>.
+	 * Returns the position range of the end element.
 	 * 
-	 * @return value of <code>endElementRange</code>.
+	 * @return position range of end element
 	 */
 	ElementPositionRange getEndElementRange();
 
+	/**
+	 * Returns the position range of the first line of the start element.
+	 * 
+	 * @return position range of the first line of the start element
+	 */
 	ElementPositionRange getFirstLineRange();
 
 	/**
 	 * Returns the name of the icon image of the current element.
 	 * 
-	 * @return name of image.
+	 * @return name of image
 	 */
 	String getImage();
 
 	/**
 	 * Returns the name of the mapped class for this element if there is one.
 	 * 
-	 * @return name of the mapped class or <code>null</code> if there is none.
+	 * @return name of the mapped class or <code>null</code> if there is none
 	 */
 	String getMappedClassName();
 
 	/**
 	 * Returns the type of the mapped class for this element if there is one.
 	 * 
-	 * @return type of the mapped class or <code>null</code> if there is none.
+	 * @return type of the mapped class or <code>null</code> if there is none
 	 */
 	IType getMappedClassType();
 
 	/**
 	 * Returns the value of field <code>name</code>.
 	 * 
-	 * @return value of <code>name</code>.
+	 * @return value of <code>name</code>
 	 */
 	String getName();
 
@@ -209,7 +214,7 @@ public interface IWorkflowElement {
 	/**
 	 * Returns the value of field <code>startElementRange</code>.
 	 * 
-	 * @return value of <code>startElementRange</code>.
+	 * @return value of <code>startElementRange</code>
 	 */
 	ElementPositionRange getStartElementRange();
 
@@ -227,7 +232,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element has any attributes attached.
 	 * 
 	 * @return <code>true</code> if current elements has attributes, otherwise
-	 *         <code>false</code>.
+	 *         <code>false</code>
 	 */
 	boolean hasAttributes();
 
@@ -235,7 +240,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element has any children attached.
 	 * 
 	 * @return <code>true</code> if current elements has children, otherwise
-	 *         <code>false</code>.
+	 *         <code>false</code>
 	 */
 	boolean hasChildren();
 
@@ -251,7 +256,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element has a parent node.
 	 * 
 	 * @return <code>true</code> if field <code>parent</code> is not
-	 *         <code>null</code>.
+	 *         <code>null</code>
 	 */
 	boolean hasParent();
 
@@ -291,7 +296,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a compose.
 	 * 
 	 * @return <code>true</code> if current element is a compose, otherwise
-	 *         <code>false</code>.
+	 *         <code>false</code>
 	 */
 	boolean isCompose();
 
@@ -299,7 +304,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a file property.
 	 * 
 	 * @return <code>true</code> if current element is a file property,
-	 *         otherwise <code>false</code>.
+	 *         otherwise <code>false</code>
 	 */
 	boolean isFileProperty();
 
@@ -307,7 +312,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a fragment.
 	 * 
 	 * @return <code>true</code> if current element is a fragment, otherwise
-	 *         <code>false</code>.
+	 *         <code>false</code>
 	 */
 	boolean isFragment();
 
@@ -339,7 +344,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a leaf element.
 	 * 
 	 * @return <code>true</code> if current element has no child elements,
-	 *         otherwise <code>false</code>.
+	 *         otherwise <code>false</code>
 	 */
 	boolean isLeaf();
 
@@ -347,7 +352,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a property.
 	 * 
 	 * @return <code>true</code> if current element is a property, otherwise
-	 *         <code>false</code>.
+	 *         <code>false</code>
 	 */
 	boolean isProperty();
 
@@ -355,7 +360,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a simple property.
 	 * 
 	 * @return <code>true</code> if current element is a simple property,
-	 *         otherwise <code>false</code>.
+	 *         otherwise <code>false</code>
 	 */
 	boolean isSimpleProperty();
 
@@ -366,7 +371,7 @@ public interface IWorkflowElement {
 	 * @param parentElement
 	 *            the potential parent element.
 	 * @return <code>true</code> if the current element is a valid child for
-	 *         <code>parentElement</code>, otherwise <code>false</code>.
+	 *         <code>parentElement</code>, otherwise <code>false</code>
 	 */
 	boolean isValidChildFor(final IWorkflowElement parentElement);
 
@@ -374,7 +379,7 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a workflow container.
 	 * 
 	 * @return <code>true</code> if current element is a workflow container,
-	 *         otherwise <code>false</code>.
+	 *         otherwise <code>false</code>
 	 */
 	boolean isWorkflow();
 
@@ -382,15 +387,15 @@ public interface IWorkflowElement {
 	 * Checks if the current element is a workflow file container.
 	 * 
 	 * @return <code>true</code> if current element is a workflow file
-	 *         container, otherwise <code>false</code>.
+	 *         container, otherwise <code>false</code>
 	 */
 	boolean isWorkflowFile();
 
 	/**
-	 * Sets a new value for field <code>endElementRange</code>.
+	 * Sets the position range of the end element.
 	 * 
 	 * @param endElementRange
-	 *            new value for <code>endElementRange</code>.
+	 *            position range of end element
 	 */
 	void setEndElementRange(final ElementPositionRange endElementRange);
 
@@ -403,18 +408,18 @@ public interface IWorkflowElement {
 	void setImage(final String image);
 
 	/**
-	 * Sets a new value for field <code>parent</code>.
+	 * Sets the parent element for the current element
 	 * 
 	 * @param parent
-	 *            new value for <code>parent</code>.
+	 *            the parent element
 	 */
 	void setParent(final IWorkflowElement parent);
 
 	/**
-	 * Sets a new value for field <code>startElementRange</code>.
+	 * Sets the position range of the start element.
 	 * 
 	 * @param startElementRange
-	 *            new value for <code>startElementRange</code>.
+	 *            position range of start element
 	 */
 	void setStartElementRange(final ElementPositionRange startElementRange);
 
@@ -422,7 +427,7 @@ public interface IWorkflowElement {
 	 * Sets the type of the current element.
 	 * 
 	 * @param type
-	 *            the type.
+	 *            the type
 	 */
 	void setType(final WorkflowElementType type);
 
