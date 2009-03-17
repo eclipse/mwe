@@ -23,8 +23,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLRemoveClosing
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.XMLTagContentAssistProcessor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.PropertyContainerImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
@@ -53,12 +55,21 @@ public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 
 	}
 
-	public IWorkflowAttribute newWorkflowAttribute(final AbstractWorkflowElement element, final String name, final String value) {
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory#newPropertyContainer()
+	 */
+	public IPropertyContainer newPropertyContainer() {
+		return new PropertyContainerImpl();
+	}
+
+	public IWorkflowAttribute newWorkflowAttribute(final AbstractWorkflowElement element, final String name,
+			final String value) {
 		return new XMLWorkflowAttributeImpl(element, name, value);
 	}
 
-	public AbstractWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project, final IDocument document,
-			final String name) {
+	public AbstractWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project,
+			final IDocument document, final String name) {
 		return new XMLWorkflowElementImpl(editor, project, document, name);
 	}
+
 }

@@ -10,30 +10,31 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.HierarchyChecker;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
+import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class XMLWorkflowElementImpl.
- */
-
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -52,6 +53,8 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	private AbstractWorkflowElement parent;
 
 	private WorkflowElementType type;
+
+	private IPropertyContainer propertyContainer;
 
 	private String image;
 
@@ -102,11 +105,31 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
+	 */
+	public void addProperties(Collection<Property> collection) {
+		initializePropertyContainer();
+		propertyContainer.addProperties(collection);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
+	 */
+	public void addProperty(Property property) {
+		initializePropertyContainer();
+		propertyContainer.addProperty(property);
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#clear()
 	 */
 	public void clear() {
 		children.clear();
 		attributes.clear();
+		if (isPropertyContainerInitialized()) {
+			propertyContainer.clear();
+			propertyContainer = null;
+		}
 	}
 
 	/**
@@ -275,6 +298,58 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperties()
+	 */
+	public Collection<Property> getProperties() {
+		return isPropertyContainerInitialized() ? propertyContainer.getProperties() : new LinkedList<Property>();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperty(java.lang.String)
+	 */
+	public Property getProperty(String name) {
+		return isPropertyContainerInitialized() ? propertyContainer.getProperty(name) : null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyNames()
+	 */
+	public Set<String> getPropertyNames() {
+		return isPropertyContainerInitialized() ? propertyContainer.getPropertyNames() : new HashSet<String>();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
+	 */
+	public Collection<Property> getReferenceProperties() {
+		return isPropertyContainerInitialized() ? propertyContainer.getReferenceProperties()
+				: new LinkedList<Property>();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferencePropertyNames()
+	 */
+	public Set<String> getReferencePropertyNames() {
+		return propertyContainer.getReferencePropertyNames();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValueProperties()
+	 */
+	public Collection<Property> getSimpleValueProperties() {
+		return isPropertyContainerInitialized() ? propertyContainer.getSimpleValueProperties()
+				: new LinkedList<Property>();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValuePropertyNames()
+	 */
+	public Set<String> getSimpleValuePropertyNames() {
+		return isPropertyContainerInitialized() ? propertyContainer.getSimpleValuePropertyNames()
+				: new HashSet<String>();
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#getStartElementRange()
 	 */
 	public ElementPositionRange getStartElementRange() {
@@ -321,6 +396,34 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 */
 	public boolean hasProject() {
 		return (editor != null && editor.getInputFile() != null) || project != null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperties()
+	 */
+	public boolean hasProperties() {
+		return propertyContainer.hasProperties();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
+	 */
+	public boolean hasProperty(String name) {
+		return propertyContainer.hasProperty(name);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
+	 */
+	public boolean hasReferenceProperty(String name) {
+		return isPropertyContainerInitialized() ? propertyContainer.hasReferenceProperty(name) : false;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
+	 */
+	public boolean hasSimpleValueProperty(String name) {
+		return isPropertyContainerInitialized() ? propertyContainer.hasSimpleValueProperty(name) : false;
 	}
 
 	/**
@@ -430,6 +533,13 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#propertyCount()
+	 */
+	public int propertyCount() {
+		return isPropertyContainerInitialized() ? propertyContainer.propertyCount() : 0;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#setEndElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setEndElementRange(final ElementPositionRange endElementRange) {
@@ -481,7 +591,16 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 		if (recomputeTypeInfo) {
 			computeTypeInfo();
 		}
-
 		return type;
+	}
+
+	private void initializePropertyContainer() {
+		if (!isPropertyContainerInitialized()) {
+			propertyContainer = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		}
+	}
+
+	private boolean isPropertyContainerInitialized() {
+		return propertyContainer != null;
 	}
 }

@@ -12,5 +12,5 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttributeContainer,
-		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping {
+		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping, IPropertyContainer {
 }

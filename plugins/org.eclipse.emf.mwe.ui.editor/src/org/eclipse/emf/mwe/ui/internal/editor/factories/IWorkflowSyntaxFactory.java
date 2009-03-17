@@ -16,15 +16,16 @@ import java.util.Collection;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public interface IWorkflowSyntaxFactory {
@@ -32,6 +33,8 @@ public interface IWorkflowSyntaxFactory {
 	Collection<IAutoEditStrategy> newAutoEditStrategyCollection();
 
 	IContentAssistProcessor newContentAssistProcessor(WorkflowEditor editor, ColorManager colorManager);
+
+	IPropertyContainer newPropertyContainer();
 
 	IWorkflowAttribute newWorkflowAttribute(AbstractWorkflowElement element, String name, String value);
 
