@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
@@ -76,9 +76,9 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#propertyCount()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyCount()
 	 */
-	public int propertyCount() {
+	public int getPropertyCount() {
 		return properties.size();
 	}
 
@@ -149,7 +149,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperties()
 	 */
 	public boolean hasProperties() {
-		return propertyCount() > 0;
+		return getPropertyCount() > 0;
 	}
 
 	/**

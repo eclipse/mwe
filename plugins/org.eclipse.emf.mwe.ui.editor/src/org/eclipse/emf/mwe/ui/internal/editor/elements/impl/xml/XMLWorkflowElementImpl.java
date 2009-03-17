@@ -34,7 +34,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -301,52 +301,96 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperties()
 	 */
 	public Collection<Property> getProperties() {
-		return isPropertyContainerInitialized() ? propertyContainer.getProperties() : new LinkedList<Property>();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getProperties();
+		else if (hasParent())
+			return getParent().getProperties();
+		else
+			return new ArrayList<Property>();
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperty(java.lang.String)
 	 */
 	public Property getProperty(String name) {
-		return isPropertyContainerInitialized() ? propertyContainer.getProperty(name) : null;
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getProperty(name);
+		else if (hasParent())
+			return getParent().getProperty(name);
+		else
+			return null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyCount()
+	 */
+	public int getPropertyCount() {
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getPropertyCount();
+		else if (hasParent())
+			return getParent().getPropertyCount();
+		else
+			return 0;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyNames()
 	 */
 	public Set<String> getPropertyNames() {
-		return isPropertyContainerInitialized() ? propertyContainer.getPropertyNames() : new HashSet<String>();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getPropertyNames();
+		else if (hasParent())
+			return getParent().getPropertyNames();
+		else
+			return new HashSet<String>();
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
 	 */
 	public Collection<Property> getReferenceProperties() {
-		return isPropertyContainerInitialized() ? propertyContainer.getReferenceProperties()
-				: new LinkedList<Property>();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getReferenceProperties();
+		else if (hasParent())
+			return getParent().getReferenceProperties();
+		else
+			return new ArrayList<Property>();
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferencePropertyNames()
 	 */
 	public Set<String> getReferencePropertyNames() {
-		return propertyContainer.getReferencePropertyNames();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getReferencePropertyNames();
+		else if (hasParent())
+			return getParent().getReferencePropertyNames();
+		else
+			return new HashSet<String>();
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValueProperties()
 	 */
 	public Collection<Property> getSimpleValueProperties() {
-		return isPropertyContainerInitialized() ? propertyContainer.getSimpleValueProperties()
-				: new LinkedList<Property>();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getSimpleValueProperties();
+		else if (hasParent())
+			return getParent().getSimpleValueProperties();
+		else
+			return new ArrayList<Property>();
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValuePropertyNames()
 	 */
 	public Set<String> getSimpleValuePropertyNames() {
-		return isPropertyContainerInitialized() ? propertyContainer.getSimpleValuePropertyNames()
-				: new HashSet<String>();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.getSimpleValuePropertyNames();
+		else if (hasParent())
+			return getParent().getSimpleValuePropertyNames();
+		else
+			return new HashSet<String>();
 	}
 
 	/**
@@ -402,28 +446,49 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperties()
 	 */
 	public boolean hasProperties() {
-		return propertyContainer.hasProperties();
+		if (isPropertyContainerInitialized())
+			return propertyContainer.hasProperties();
+		else if (hasParent())
+			return getParent().hasProperties();
+		else
+			return false;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
 	 */
 	public boolean hasProperty(String name) {
-		return propertyContainer.hasProperty(name);
+		if (isPropertyContainerInitialized())
+			return propertyContainer.hasProperty(name);
+		else if (hasParent())
+			return getParent().hasProperties();
+		else
+			return false;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
 	 */
 	public boolean hasReferenceProperty(String name) {
-		return isPropertyContainerInitialized() ? propertyContainer.hasReferenceProperty(name) : false;
+		if (isPropertyContainerInitialized())
+			return propertyContainer.hasReferenceProperty(name);
+		else if (hasParent())
+			return getParent().hasReferenceProperty(name);
+		else
+			return false;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
 	 */
 	public boolean hasSimpleValueProperty(String name) {
-		return isPropertyContainerInitialized() ? propertyContainer.hasSimpleValueProperty(name) : false;
+		if (isPropertyContainerInitialized())
+			return propertyContainer.hasSimpleValueProperty(name);
+		else if (hasParent())
+			return getParent().hasSimpleValueProperty(name);
+		else
+			return false;
+
 	}
 
 	/**
@@ -530,13 +595,6 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 */
 	public boolean isWorkflowFile() {
 		return getComputedElementType() == WorkflowElementType.WORKFLOWFILE;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#propertyCount()
-	 */
-	public int propertyCount() {
-		return isPropertyContainerInitialized() ? propertyContainer.propertyCount() : 0;
 	}
 
 	/**

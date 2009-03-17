@@ -16,7 +16,7 @@ import java.util.Set;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public interface IPropertyContainer {
@@ -65,7 +65,7 @@ public interface IPropertyContainer {
 	 * 
 	 * @return number of properties in the container
 	 */
-	int propertyCount();
+	int getPropertyCount();
 
 	/**
 	 * Returns a set containing the names of all properties in the container.
