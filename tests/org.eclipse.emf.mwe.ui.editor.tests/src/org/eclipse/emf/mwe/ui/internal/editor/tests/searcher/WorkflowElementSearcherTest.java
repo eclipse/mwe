@@ -12,7 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -49,9 +49,9 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 
 	public void testFindContainerCompleteWorkflow() {
 		final IDocument document = createDocument(WORKFLOW1);
-		final IWorkflowElement root = parse(document);
+		final AbstractWorkflowElement root = parse(document);
 		final int offset = 160;
-		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -60,9 +60,9 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 
 	public void testFindContainerPartialWorkflow1() {
 		final IDocument document = createDocument(WORKFLOW2);
-		final IWorkflowElement root = parse(document);
+		final AbstractWorkflowElement root = parse(document);
 		final int offset = 160;
-		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -71,10 +71,10 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 
 	public void testFindContainerPartialWorkflow2() {
 		final IDocument document = createDocument(WORKFLOW3);
-		final IWorkflowElement root = parse(document);
+		final AbstractWorkflowElement root = parse(document);
 		int offset = document.getLength() - 1;
 		offset -= 12;
-		final IWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -85,7 +85,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 		return new Document(text);
 	}
 
-	private IWorkflowElement parse(final IDocument document) {
+	private AbstractWorkflowElement parse(final IDocument document) {
 		return DocumentParser.parse(document, project);
 	}
 

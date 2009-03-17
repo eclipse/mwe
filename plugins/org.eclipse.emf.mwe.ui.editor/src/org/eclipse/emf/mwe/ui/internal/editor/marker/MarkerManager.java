@@ -22,7 +22,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public final class MarkerManager {
 
@@ -60,7 +60,7 @@ public final class MarkerManager {
 		}
 	}
 
-	public static void createMarker(final IFile file, final IDocument document, final IWorkflowElement element,
+	public static void createMarker(final IFile file, final IDocument document, final AbstractWorkflowElement element,
 			final String message, final boolean isError) {
 		final ElementPositionRange firstLineRange = element.getFirstLineRange();
 		if (firstLineRange == null)

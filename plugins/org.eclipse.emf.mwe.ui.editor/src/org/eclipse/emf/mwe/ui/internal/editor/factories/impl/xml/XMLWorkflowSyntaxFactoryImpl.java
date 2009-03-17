@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.XMLTagConte
 import org.eclipse.emf.mwe.ui.internal.editor.editor.ColorManager;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowAttributeImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
@@ -53,11 +53,11 @@ public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 
 	}
 
-	public IWorkflowAttribute newWorkflowAttribute(final IWorkflowElement element, final String name, final String value) {
+	public IWorkflowAttribute newWorkflowAttribute(final AbstractWorkflowElement element, final String name, final String value) {
 		return new XMLWorkflowAttributeImpl(element, name, value);
 	}
 
-	public IWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project, final IDocument document,
+	public AbstractWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project, final IDocument document,
 			final String name) {
 		return new XMLWorkflowElementImpl(editor, project, document, name);
 	}

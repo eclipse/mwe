@@ -15,7 +15,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends
@@ -34,14 +34,14 @@ public class AssignmentPropertyContentProposalComputer extends
 
 		private final int offset;
 
-		private final IWorkflowElement element;
+		private final AbstractWorkflowElement element;
 
-		public ContainerCache(final IWorkflowElement element, final int offset) {
+		public ContainerCache(final AbstractWorkflowElement element, final int offset) {
 			this.element = element;
 			this.offset = offset;
 		}
 
-		public IWorkflowElement getElement() {
+		public AbstractWorkflowElement getElement() {
 			return element;
 		}
 
@@ -72,7 +72,7 @@ public class AssignmentPropertyContentProposalComputer extends
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = createEmptySet();
-		final IWorkflowElement container = getContainer(offset);
+		final AbstractWorkflowElement container = getContainer(offset);
 		if (container != null) {
 			final String className =
 					container.getAttributeValue(CLASS_ATTRIBUTE);
@@ -89,15 +89,15 @@ public class AssignmentPropertyContentProposalComputer extends
 		return resultSet;
 	}
 
-	private void cacheElement(final IWorkflowElement element, final int offset) {
+	private void cacheElement(final AbstractWorkflowElement element, final int offset) {
 		containerCache = new ContainerCache(element, offset);
 	}
 
-	private IWorkflowElement getContainer(final int offset) {
+	private AbstractWorkflowElement getContainer(final int offset) {
 		if (containerCache != null && containerCache.isCached(offset))
 			return containerCache.getElement();
 
-		final IWorkflowElement element =
+		final AbstractWorkflowElement element =
 				WorkflowElementSearcher.searchContainerElement(editor,
 						document, offset);
 

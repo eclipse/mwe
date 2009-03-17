@@ -17,25 +17,25 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
 
-	private final IWorkflowElement element;
+	private final AbstractWorkflowElement element;
 
 	private final String name;
 
 	private final String value;
 
-	public XMLWorkflowAttributeImpl(final IWorkflowElement element, final String name,
+	public XMLWorkflowAttributeImpl(final AbstractWorkflowElement element, final String name,
 			final String value) {
 		if (element == null || name == null || value == null
 				|| name.length() == 0)
@@ -127,7 +127,7 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	 *
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getElement()
 	 */
-	public IWorkflowElement getElement() {
+	public AbstractWorkflowElement getElement() {
 		return element;
 	}
 

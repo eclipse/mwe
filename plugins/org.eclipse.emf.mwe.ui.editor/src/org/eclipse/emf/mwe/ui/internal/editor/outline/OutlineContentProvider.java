@@ -14,7 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.outline;
 import java.util.List;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.text.BadPositionCategoryException;
@@ -29,13 +29,13 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
 	protected IPositionUpdater positionUpdater;
 
-	private IWorkflowElement rootElement;
+	private AbstractWorkflowElement rootElement;
 
 	private IEditorInput input;
 
@@ -58,13 +58,13 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (parentElement == input) {
 			if (rootElement == null)
 				return new Object[0];
-			final List<IWorkflowElement> childList =
+			final List<AbstractWorkflowElement> childList =
 					rootElement.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		} else {
-			final IWorkflowElement parent = (IWorkflowElement) parentElement;
-			final List<IWorkflowElement> childList = parent.getChildrenList();
+			final AbstractWorkflowElement parent = (AbstractWorkflowElement) parentElement;
+			final List<AbstractWorkflowElement> childList = parent.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
 		}
@@ -77,7 +77,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 
 	public Object getParent(final Object element) {
 		if (element instanceof XMLWorkflowElementImpl)
-			return ((IWorkflowElement) element).getParent();
+			return ((AbstractWorkflowElement) element).getParent();
 
 		return null;
 	}
@@ -109,7 +109,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 				document.addPositionUpdater(positionUpdater);
 
 				final WorkflowEditor wfEditor = (WorkflowEditor) editor;
-				final IWorkflowElement rootElement =
+				final AbstractWorkflowElement rootElement =
 						wfEditor.parseRootElement(document);
 				if (rootElement != null) {
 					this.rootElement = rootElement;

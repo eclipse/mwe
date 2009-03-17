@@ -19,88 +19,18 @@ import org.eclipse.jface.text.IDocument;
 
 public interface IWorkflowElement {
 
-	String WORKFLOWFILE_TAG = "workflowfile";
-
-	String FRAGMENT_TAG = "fragment";
-
-	String FILE_ATTRIBUTE = "file";
-
-	String VALUE_ATTRIBUTE = "value";
-
-	String NAME_ATTRIBUTE = "name";
-
-	String CLASS_ATTRIBUTE = "class";
-
-	String ID_REF_ATTRIBUTE = "idRef";
-
-	String ID_ATTRIBUTE = "id";
-
-	String PROPERTY_TAG = "property";
-
-	String WORKFLOW_TAG = "workflow";
-
-	String COMPONENT_TAG = "component";
-
-	String COMPOSE_TAG = "compose";
-
-	String IF_COMPONENT_TAG = "if";
-
-	/**
-	 * Adds an attribute to the current element.
-	 * 
-	 * @param attribute
-	 *            attribute added to current element
-	 */
-	void addAttribute(final IWorkflowAttribute attribute);
-
 	/**
 	 * Add child element to the current element.
 	 * 
 	 * @param element
 	 *            child element added to current element
 	 */
-	void addChild(final IWorkflowElement element);
+	void addChild(final AbstractWorkflowElement element);
 
 	/**
 	 * Deletes all attributes and children of the current element.
 	 */
 	void clear();
-
-	/**
-	 * Returns the specified attribute of the current element.
-	 * 
-	 * @param name
-	 *            name of the requested attribute
-	 * @return the requested attribute or <code>null</code>, if no attribute
-	 *         with the specified name is found
-	 */
-	IWorkflowAttribute getAttribute(final String name);
-
-	/**
-	 * Number of attributes of the current element.
-	 * 
-	 * @return number of attributes
-	 */
-	int getAttributeCount();
-
-	/**
-	 * Returns a list containing all attribute elements. Please notice that the
-	 * order of attributes within the collection does not necessarily match the
-	 * order in which the attributes were defined.
-	 * 
-	 * @return list of attribute elements
-	 */
-	List<IWorkflowAttribute> getAttributeList();
-
-	/**
-	 * Returns the value of an attribute of the current element.
-	 * 
-	 * @param name
-	 *            local name of attribute
-	 * @return value of attribute or <code>null</code>, if no attribute with the
-	 *         specified name is found
-	 */
-	String getAttributeValue(final String name);
 
 	/**
 	 * Returns child element of the current element at the position
@@ -110,7 +40,7 @@ public interface IWorkflowElement {
 	 *            the index position
 	 * @return child element at position <code>index</code>
 	 */
-	IWorkflowElement getChild(final int index);
+	AbstractWorkflowElement getChild(final int index);
 
 	/**
 	 * Number of child elements of the current element.
@@ -124,7 +54,7 @@ public interface IWorkflowElement {
 	 * 
 	 * @return list of child elements
 	 */
-	List<IWorkflowElement> getChildrenList();
+	List<AbstractWorkflowElement> getChildrenList();
 
 	/**
 	 * Returns the document
@@ -132,41 +62,6 @@ public interface IWorkflowElement {
 	 * @return the document
 	 */
 	IDocument getDocument();
-
-	/**
-	 * Returns the position range of the whole element.
-	 * 
-	 * @return position range of whole element
-	 */
-	ElementPositionRange getElementRange();
-
-	/**
-	 * Returns the type of the current element.
-	 * 
-	 * @return type of current element
-	 */
-	WorkflowElementType getElementType();
-
-	/**
-	 * Returns the type of the current element as a string.
-	 * 
-	 * @return string representation of the type of the current element
-	 */
-	String getElementTypeString();
-
-	/**
-	 * Returns the position range of the end element.
-	 * 
-	 * @return position range of end element
-	 */
-	ElementPositionRange getEndElementRange();
-
-	/**
-	 * Returns the position range of the first line of the start element.
-	 * 
-	 * @return position range of the first line of the start element
-	 */
-	ElementPositionRange getFirstLineRange();
 
 	/**
 	 * Returns the name of the icon image of the current element.
@@ -201,7 +96,7 @@ public interface IWorkflowElement {
 	 * 
 	 * @return value of <code>parent</code>.
 	 */
-	IWorkflowElement getParent();
+	AbstractWorkflowElement getParent();
 
 	/**
 	 * Returns the attached source file reference, if any.
@@ -210,31 +105,6 @@ public interface IWorkflowElement {
 	 *         exists
 	 */
 	IProject getProject();
-
-	/**
-	 * Returns the value of field <code>startElementRange</code>.
-	 * 
-	 * @return value of <code>startElementRange</code>
-	 */
-	ElementPositionRange getStartElementRange();
-
-	/**
-	 * Checks if the current element has a certain attribute.
-	 * 
-	 * @param name
-	 *            name of attribute
-	 * @return <code>true</code> if the current element has an attribute named
-	 *         <code>name</code>, otherwise <code>false</code>
-	 */
-	boolean hasAttribute(final String name);
-
-	/**
-	 * Checks if the current element has any attributes attached.
-	 * 
-	 * @return <code>true</code> if current elements has attributes, otherwise
-	 *         <code>false</code>
-	 */
-	boolean hasAttributes();
 
 	/**
 	 * Checks if the current element has any children attached.
@@ -269,102 +139,6 @@ public interface IWorkflowElement {
 	boolean hasProject();
 
 	/**
-	 * Checks if the current element is an assignment.
-	 * 
-	 * @return <code>true</code> if current element is an assignment, otherwise
-	 *         <code>false</code>.
-	 */
-	boolean isAssignment();
-
-	/**
-	 * Checks if the current element is an assignment property.
-	 * 
-	 * @return <code>true</code> if current element is an assignment property,
-	 *         otherwise <code>false</code>.
-	 */
-	boolean isAssignmentProperty();
-
-	/**
-	 * Checks if the current element is a component.
-	 * 
-	 * @return <code>true</code> if current element is a component, otherwise
-	 *         <code>false</code>.
-	 */
-	boolean isComponent();
-
-	/**
-	 * Checks if the current element is a compose.
-	 * 
-	 * @return <code>true</code> if current element is a compose, otherwise
-	 *         <code>false</code>
-	 */
-	boolean isCompose();
-
-	/**
-	 * Checks if the current element is a file property.
-	 * 
-	 * @return <code>true</code> if current element is a file property,
-	 *         otherwise <code>false</code>
-	 */
-	boolean isFileProperty();
-
-	/**
-	 * Checks if the current element is a fragment.
-	 * 
-	 * @return <code>true</code> if current element is a fragment, otherwise
-	 *         <code>false</code>
-	 */
-	boolean isFragment();
-
-	/**
-	 * Checks if the current element is an if-component.
-	 * 
-	 * @return <code>true</code> if current element is an if-component,
-	 *         otherwise <code>false</code>.
-	 */
-	boolean isIfComponent();
-
-	/**
-	 * This method overrides the implementation of <code>isInRange</code>
-	 * inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck#isInRange(int)
-	 */
-	boolean isInRange(final int offset);
-
-	/**
-	 * Checks if the current element can be instantiated from within a workflow.
-	 * 
-	 * @return <code>true</code> if the current element can be instantiated from
-	 *         within a workflow, otherwise <code>false</code>
-	 */
-	boolean isInstantiable();
-
-	/**
-	 * Checks if the current element is a leaf element.
-	 * 
-	 * @return <code>true</code> if current element has no child elements,
-	 *         otherwise <code>false</code>
-	 */
-	boolean isLeaf();
-
-	/**
-	 * Checks if the current element is a property.
-	 * 
-	 * @return <code>true</code> if current element is a property, otherwise
-	 *         <code>false</code>
-	 */
-	boolean isProperty();
-
-	/**
-	 * Checks if the current element is a simple property.
-	 * 
-	 * @return <code>true</code> if current element is a simple property,
-	 *         otherwise <code>false</code>
-	 */
-	boolean isSimpleProperty();
-
-	/**
 	 * Checks if the current element is a valid child element for
 	 * <code>parentElement</code>.
 	 * 
@@ -373,31 +147,7 @@ public interface IWorkflowElement {
 	 * @return <code>true</code> if the current element is a valid child for
 	 *         <code>parentElement</code>, otherwise <code>false</code>
 	 */
-	boolean isValidChildFor(final IWorkflowElement parentElement);
-
-	/**
-	 * Checks if the current element is a workflow container.
-	 * 
-	 * @return <code>true</code> if current element is a workflow container,
-	 *         otherwise <code>false</code>
-	 */
-	boolean isWorkflow();
-
-	/**
-	 * Checks if the current element is a workflow file container.
-	 * 
-	 * @return <code>true</code> if current element is a workflow file
-	 *         container, otherwise <code>false</code>
-	 */
-	boolean isWorkflowFile();
-
-	/**
-	 * Sets the position range of the end element.
-	 * 
-	 * @param endElementRange
-	 *            position range of end element
-	 */
-	void setEndElementRange(final ElementPositionRange endElementRange);
+	boolean isValidChildFor(final AbstractWorkflowElement parentElement);
 
 	/**
 	 * Sets the image of the current element.
@@ -413,22 +163,5 @@ public interface IWorkflowElement {
 	 * @param parent
 	 *            the parent element
 	 */
-	void setParent(final IWorkflowElement parent);
-
-	/**
-	 * Sets the position range of the start element.
-	 * 
-	 * @param startElementRange
-	 *            position range of start element
-	 */
-	void setStartElementRange(final ElementPositionRange startElementRange);
-
-	/**
-	 * Sets the type of the current element.
-	 * 
-	 * @param type
-	 *            the type
-	 */
-	void setType(final WorkflowElementType type);
-
+	void setParent(final AbstractWorkflowElement parent);
 }

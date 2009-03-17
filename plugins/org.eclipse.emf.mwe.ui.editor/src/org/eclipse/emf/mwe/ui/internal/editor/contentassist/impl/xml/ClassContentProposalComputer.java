@@ -16,7 +16,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -28,7 +28,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
@@ -37,7 +37,7 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 
 	private static final String OLD_WORKFLOW_BASE_CLASS = "org.openarchitectureware.workflow.WorkflowComponent";
 
-	private static final String[] TRIGGER_ATTRIBUTES = { IWorkflowElement.CLASS_ATTRIBUTE };
+	private static final String[] TRIGGER_ATTRIBUTES = { AbstractWorkflowElement.CLASS_ATTRIBUTE };
 
 	private static final String COMPONENT_TAG = "component";
 

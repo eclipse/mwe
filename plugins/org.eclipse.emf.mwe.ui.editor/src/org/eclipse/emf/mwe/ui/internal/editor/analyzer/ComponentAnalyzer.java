@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IMethod;
@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -46,15 +46,15 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final IWorkflowElement element) {
+	public void checkValidity(final AbstractWorkflowElement element) {
 		workflowAbstract = isWorkflowAbstract(element);
 
-		if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)
-				&& element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
+		if (element.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)
+				&& element.hasAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE)) {
 			createMarker(element, FILE_AND_CLASS_MSG);
 		}
-		else if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
-			final String className = element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
+		else if (element.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)) {
+			final String className = element.getAttributeValue(AbstractWorkflowElement.CLASS_ATTRIBUTE);
 			final String resolvedClassName = PackageShortcutResolver.resolve(className);
 			final IType mappedType = getType(resolvedClassName);
 			if (mappedType != null) {
@@ -70,7 +70,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 						+ "' is not allowed, if a 'class' attribute is specified");
 			}
 		}
-		else if (element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
+		else if (element.hasAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE)) {
 			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
 				final IWorkflowAttribute inheritAttr = element.getAttribute(INHERIT_ALL_ATTRIBUTE);
 				final String valType = TypeUtils.getValueType(inheritAttr.getValue());
@@ -94,7 +94,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.XMLWorkflowAttributeImpl)
 	 */
 	@Override
-	protected void checkAttribute(final IType mappedType, final IWorkflowElement element,
+	protected void checkAttribute(final IType mappedType, final AbstractWorkflowElement element,
 			final IWorkflowAttribute attribute) {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
@@ -102,8 +102,8 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		final String name = attribute.getName();
 		final String value = attribute.getValue();
 
-		if (name.equals(IWorkflowElement.CLASS_ATTRIBUTE) || name.equals(IWorkflowElement.ID_ATTRIBUTE)
-				|| name.equals(IWorkflowElement.ID_REF_ATTRIBUTE))
+		if (name.equals(AbstractWorkflowElement.CLASS_ATTRIBUTE) || name.equals(AbstractWorkflowElement.ID_ATTRIBUTE)
+				|| name.equals(AbstractWorkflowElement.ID_REF_ATTRIBUTE))
 			return;
 
 		final String attrType = TypeUtils.getValueType(value);
@@ -135,7 +135,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 *      IType)
 	 */
 	@Override
-	protected void checkAttributes(final IWorkflowElement element, final IType mappedType) {
+	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
 		for (int i = 0; i < element.getAttributeCount(); i++) {
 			for (final IWorkflowAttribute attr : element.getAttributeList()) {
 				checkAttribute(mappedType, element, attr);
@@ -143,7 +143,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		}
 	}
 
-	protected void checkAttributes(final IWorkflowElement element, final String filePath, final String content) {
+	protected void checkAttributes(final AbstractWorkflowElement element, final String filePath, final String content) {
 		if (element == null || filePath == null || content == null)
 			throw new IllegalArgumentException();
 
@@ -156,15 +156,15 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		return "\\$\\{" + name + "\\}";
 	}
 
-	protected boolean isWorkflowAbstract(final IWorkflowElement element) {
+	protected boolean isWorkflowAbstract(final AbstractWorkflowElement element) {
 		boolean res = false;
-		IWorkflowElement e = element;
+		AbstractWorkflowElement e = element;
 
-		while (e.hasParent() && !e.getName().equals(IWorkflowElement.WORKFLOW_TAG)) {
+		while (e.hasParent() && !e.getName().equals(AbstractWorkflowElement.WORKFLOW_TAG)) {
 			e = e.getParent();
 		}
 
-		if (e.getName().equals(IWorkflowElement.WORKFLOW_TAG) && e.hasAttribute(ABSTRACT_ATTRIBUTE)
+		if (e.getName().equals(AbstractWorkflowElement.WORKFLOW_TAG) && e.hasAttribute(ABSTRACT_ATTRIBUTE)
 				&& e.getAttributeValue(ABSTRACT_ATTRIBUTE).equalsIgnoreCase(TypeUtils.TRUE_VALUE)) {
 			res = true;
 		}

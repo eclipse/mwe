@@ -32,7 +32,7 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	 * 
 	 * @return value of <code>element</code>.
 	 */
-	IWorkflowElement getElement();
+	AbstractWorkflowElement getElement();
 
 	/**
 	 * Returns the value of field <code>name</code>.

@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.utils;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 
 public final class DocumentParser {
@@ -38,11 +38,11 @@ public final class DocumentParser {
 		throw new UnsupportedOperationException();
 	}
 
-	public static IWorkflowElement parse(final IDocument document) {
+	public static AbstractWorkflowElement parse(final IDocument document) {
 		return parse(document, (IProject) null);
 	}
 
-	public static IWorkflowElement parse(final IDocument document, final WorkflowEditor editor) {
+	public static AbstractWorkflowElement parse(final IDocument document, final WorkflowEditor editor) {
 		if (document == null)
 			return null;
 
@@ -65,11 +65,11 @@ public final class DocumentParser {
 				Log.logError(e);
 			}
 		}
-		final IWorkflowElement root = xmlParser.getRootElement();
+		final AbstractWorkflowElement root = xmlParser.getRootElement();
 		return root;
 	}
 
-	public static IWorkflowElement parse(final IDocument document, IProject project) {
+	public static AbstractWorkflowElement parse(final IDocument document, IProject project) {
 		if (document == null)
 			return null;
 
@@ -87,7 +87,7 @@ public final class DocumentParser {
 		catch (final SAXException e) {
 			Log.logError(e);
 		}
-		final IWorkflowElement root = xmlParser.getRootElement();
+		final AbstractWorkflowElement root = xmlParser.getRootElement();
 		return root;
 	}
 }

@@ -12,13 +12,13 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
@@ -37,7 +37,7 @@ public class IfComponentAnalyzer extends ComponentAnalyzer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.ComponentAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final IWorkflowElement element) {
+	public void checkValidity(final AbstractWorkflowElement element) {
 		if (element.getAttributeCount() != 1 || !element.hasAttribute(COND_ATTRIBUTE)) {
 			createMarker(element, COND_ONLY_MSG);
 			return;

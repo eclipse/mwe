@@ -12,7 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.xml.sax.SAXException;
 
 public class AssignmentTest extends ParserTestBase {
@@ -46,14 +46,14 @@ public class AssignmentTest extends ParserTestBase {
 	public void testCompleteWorkflow() throws SAXException {
 		setUpDocument(WORKFLOW1);
 		parser.parse(WORKFLOW1);
-		final IWorkflowElement root = parser.getRootElement();
+		final AbstractWorkflowElement root = parser.getRootElement();
 		assertEquals(1, root.getChildrenCount());
-		final IWorkflowElement workflow = root.getChild(0);
+		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertEquals(5, workflow.getChildrenCount());
 		int properties = 0;
 		int components = 0;
 		for (int i = 0; i < workflow.getChildrenCount(); i++) {
-			final IWorkflowElement element = workflow.getChild(i);
+			final AbstractWorkflowElement element = workflow.getChild(i);
 			if (element.isProperty()) {
 				properties++;
 			}

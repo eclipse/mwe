@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
@@ -51,8 +51,8 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public boolean isApplicable(final IWorkflowElement element) {
-		return element != null && element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+	public boolean isApplicable(final AbstractWorkflowElement element) {
+		return element != null && element.hasAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
 	}
 
 	/**
@@ -62,8 +62,8 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	protected void doAnalyze(final IWorkflowElement element) {
-		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+	protected void doAnalyze(final AbstractWorkflowElement element) {
+		final IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
 			return;
@@ -85,7 +85,7 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 			contentHandler.setDocumentLocator(new LocatorImpl());
 			try {
 				parser.parse(referencedContent);
-				final IWorkflowElement root = parser.getRootElement();
+				final AbstractWorkflowElement root = parser.getRootElement();
 				final ReferenceAnalyzer analyzer = new ReferenceAnalyzer(file, document, store);
 				analyzer.analyzeElement(root);
 			}

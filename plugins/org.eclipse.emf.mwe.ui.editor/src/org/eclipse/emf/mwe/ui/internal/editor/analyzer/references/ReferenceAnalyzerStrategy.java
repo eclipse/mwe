@@ -12,12 +12,12 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ReferenceAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -33,9 +33,9 @@ public class ReferenceAnalyzerStrategy extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public boolean isApplicable(final IWorkflowElement element) {
+	public boolean isApplicable(final AbstractWorkflowElement element) {
 		return element != null
-				&& element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE);
+				&& element.hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE);
 	}
 
 	/**
@@ -45,7 +45,7 @@ public class ReferenceAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	protected void doAnalyze(final IWorkflowElement element) {
+	protected void doAnalyze(final AbstractWorkflowElement element) {
 		store.addReference(element);
 	}
 }

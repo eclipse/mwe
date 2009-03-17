@@ -11,11 +11,11 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public interface IReferenceAnalyzerStrategy {
 
@@ -25,7 +25,7 @@ public interface IReferenceAnalyzerStrategy {
 	 * 
 	 * @param element
 	 */
-	void analyzeElement(IWorkflowElement element);
+	void analyzeElement(AbstractWorkflowElement element);
 
 	/**
 	 * Clear all cached information.
@@ -40,7 +40,7 @@ public interface IReferenceAnalyzerStrategy {
 	 * @return <code>true</code> if <code>element</code> is applicable,
 	 *         otherwise <code>false</code>.
 	 */
-	boolean isApplicable(IWorkflowElement element);
+	boolean isApplicable(AbstractWorkflowElement element);
 
 	/**
 	 * Sets the reference information store.

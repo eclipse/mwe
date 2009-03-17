@@ -15,12 +15,12 @@ import java.util.Collection;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public final class WorkflowElementSearcher {
@@ -32,7 +32,7 @@ public final class WorkflowElementSearcher {
 		throw new UnsupportedOperationException();
 	}
 
-	public static IWorkflowElement searchContainerElement(final IWorkflowElement root, final IDocument document,
+	public static AbstractWorkflowElement searchContainerElement(final AbstractWorkflowElement root, final IDocument document,
 			final int offset) {
 		if (root == null || document == null)
 			throw new IllegalArgumentException();
@@ -40,34 +40,34 @@ public final class WorkflowElementSearcher {
 		if (!root.hasChildren())
 			return null;
 
-		final IWorkflowElement workflow = root.getChild(0);
-		final Collection<IWorkflowElement> allElements = workflow.getChildrenList();
+		final AbstractWorkflowElement workflow = root.getChild(0);
+		final Collection<AbstractWorkflowElement> allElements = workflow.getChildrenList();
 		if (allElements == null)
 			return null;
 
-		IWorkflowElement element = internalSearchContainerElement(allElements, offset);
-		while (element != null && !element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
+		AbstractWorkflowElement element = internalSearchContainerElement(allElements, offset);
+		while (element != null && !element.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)) {
 			element = element.getParent();
 		}
 		return element;
 	}
 
-	public static IWorkflowElement searchContainerElement(final WorkflowEditor editor, final IDocument document,
+	public static AbstractWorkflowElement searchContainerElement(final WorkflowEditor editor, final IDocument document,
 			final int offset) {
 		if (editor != null || document != null) {
-			final IWorkflowElement root = editor.getRootElement();
+			final AbstractWorkflowElement root = editor.getRootElement();
 			if (root != null)
 				return searchContainerElement(root, document, offset);
 		}
 		return null;
 	}
 
-	private static IWorkflowElement internalSearchContainerElement(final Collection<IWorkflowElement> allElements,
+	private static AbstractWorkflowElement internalSearchContainerElement(final Collection<AbstractWorkflowElement> allElements,
 			final int offset) {
-		IWorkflowElement foundElement = null;
+		AbstractWorkflowElement foundElement = null;
 		int foundOffset = -1;
 
-		for (final IWorkflowElement e : allElements) {
+		for (final AbstractWorkflowElement e : allElements) {
 			final ElementPositionRange range = e.getElementRange();
 			final int startOffset = range.getStartOffset();
 			final int endOffset = range.getEndOffset();

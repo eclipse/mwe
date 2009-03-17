@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public final class HierarchyChecker {
 
@@ -24,7 +24,7 @@ public final class HierarchyChecker {
 		throw new UnsupportedOperationException();
 	}
 
-	public static boolean checkChildValidity(final IWorkflowElement parentElement, final IWorkflowElement childElement) {
+	public static boolean checkChildValidity(final AbstractWorkflowElement parentElement, final AbstractWorkflowElement childElement) {
 		boolean res = true;
 
 		if (parentElement == null)

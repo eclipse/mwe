@@ -12,14 +12,14 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class WorkflowAnalyzer extends DefaultAnalyzer {
 
@@ -31,7 +31,7 @@ public class WorkflowAnalyzer extends DefaultAnalyzer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final IWorkflowElement element) {
+	public void checkValidity(final AbstractWorkflowElement element) {
 		final String mappedTypeName = element.getMappedClassName();
 		final IType mappedType = TypeUtils.findType(getFile(), mappedTypeName);
 		checkAttributes(element, mappedType);

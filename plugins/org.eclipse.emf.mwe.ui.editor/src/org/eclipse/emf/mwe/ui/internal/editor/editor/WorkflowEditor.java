@@ -32,7 +32,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
@@ -62,7 +62,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.48 $
+ * @version $Revision: 1.49 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -109,9 +109,9 @@ public class WorkflowEditor extends TextEditor {
 
 	private Job initializerJob;
 	
-	private IWorkflowElement rootElement;
+	private AbstractWorkflowElement rootElement;
 
-	private Collection<IWorkflowElement> elements;
+	private Collection<AbstractWorkflowElement> elements;
 
 	private Collection<IWorkflowAttribute> attributes;
 
@@ -190,7 +190,7 @@ public class WorkflowEditor extends TextEditor {
 	 * 
 	 * @return value of <code>elements</code>.
 	 */
-	public Collection<IWorkflowElement> getElements() {
+	public Collection<AbstractWorkflowElement> getElements() {
 		return elements;
 	}
 
@@ -232,7 +232,7 @@ public class WorkflowEditor extends TextEditor {
 	 * 
 	 * @return value of <code>rootElement</code>.
 	 */
-	public IWorkflowElement getRootElement() {
+	public AbstractWorkflowElement getRootElement() {
 		return rootElement;
 	}
 
@@ -244,7 +244,7 @@ public class WorkflowEditor extends TextEditor {
 		return getVerticalRuler();
 	}
 
-	public IWorkflowElement parseRootElement(final IDocument document) {
+	public AbstractWorkflowElement parseRootElement(final IDocument document) {
 		try {
 			return DocumentParser.parse(document, this);
 		}
@@ -261,7 +261,7 @@ public class WorkflowEditor extends TextEditor {
 	 * @param newRootElement
 	 *            new value for <code>rootElement</code>.
 	 */
-	public void setRootElement(final IWorkflowElement newRootElement) {
+	public void setRootElement(final AbstractWorkflowElement newRootElement) {
 		this.rootElement = newRootElement;
 	}
 
@@ -282,7 +282,7 @@ public class WorkflowEditor extends TextEditor {
 	public void validateAndMark() {
 		final IDocument document = getInputDocument();
 		MarkerManager.deleteMarkers(getInputFile());
-		final IWorkflowElement newRootElement = parseRootElement(document);
+		final AbstractWorkflowElement newRootElement = parseRootElement(document);
 		final ElementIterator iterator = new ElementIterator(getInputFile(), getInputDocument());
 
 		if (newRootElement != null) {

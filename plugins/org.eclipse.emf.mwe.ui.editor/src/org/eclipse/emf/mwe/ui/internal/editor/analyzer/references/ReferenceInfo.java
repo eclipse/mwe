@@ -13,21 +13,21 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ReferenceInfo {
 
 	private final IFile file;
 
-	private final IWorkflowElement element;
+	private final AbstractWorkflowElement element;
 
 	private final IWorkflowAttribute attribute;
 
-	public ReferenceInfo(final IFile file, final IWorkflowElement element,
+	public ReferenceInfo(final IFile file, final AbstractWorkflowElement element,
 			final IWorkflowAttribute attribute) {
 		if (element == null || attribute == null)
 			throw new IllegalArgumentException();
@@ -77,7 +77,7 @@ public class ReferenceInfo {
 	 * 
 	 * @return value of <code>element</code>.
 	 */
-	public IWorkflowElement getElement() {
+	public AbstractWorkflowElement getElement() {
 		return element;
 	}
 

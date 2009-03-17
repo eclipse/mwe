@@ -16,13 +16,13 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -41,20 +41,20 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	public void checkValidity(final IWorkflowElement element) {
-		if (element.getName().equals(IWorkflowElement.PROPERTY_TAG) && !element.isProperty()) {
+	public void checkValidity(final AbstractWorkflowElement element) {
+		if (element.getName().equals(AbstractWorkflowElement.PROPERTY_TAG) && !element.isProperty()) {
 			createMarker(element, INVALID_PROPERTY_MSG);
 		}
 		if (element.isSimpleProperty()) {
-			propertyStore.add(element.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE));
+			propertyStore.add(element.getAttributeValue(AbstractWorkflowElement.NAME_ATTRIBUTE));
 		}
 		else if (element.isFileProperty()) {
 			parseFileProperties(element);
 		}
 	}
 
-	private void parseFileProperties(final IWorkflowElement element) {
-		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+	private void parseFileProperties(final AbstractWorkflowElement element) {
+		final IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
 		final String content = TypeUtils.getFileContent(getFile(), attribute);
 		if (content == null)
 			return;

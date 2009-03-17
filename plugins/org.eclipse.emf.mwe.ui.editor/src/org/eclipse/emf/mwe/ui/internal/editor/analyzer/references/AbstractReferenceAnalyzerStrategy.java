@@ -12,12 +12,12 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public abstract class AbstractReferenceAnalyzerStrategy implements
 		IReferenceAnalyzerStrategy {
@@ -44,7 +44,7 @@ public abstract class AbstractReferenceAnalyzerStrategy implements
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#analyzeElement(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public void analyzeElement(final IWorkflowElement element) {
+	public void analyzeElement(final AbstractWorkflowElement element) {
 		if (element == null || !isApplicable(element))
 			throw new IllegalArgumentException();
 
@@ -82,6 +82,6 @@ public abstract class AbstractReferenceAnalyzerStrategy implements
 	 * @param element
 	 *            the element.
 	 */
-	protected abstract void doAnalyze(IWorkflowElement element);
+	protected abstract void doAnalyze(AbstractWorkflowElement element);
 
 }

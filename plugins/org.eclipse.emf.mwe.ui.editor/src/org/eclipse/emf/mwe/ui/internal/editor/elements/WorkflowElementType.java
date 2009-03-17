@@ -13,8 +13,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public enum WorkflowElementType {
-	WORKFLOWFILE, WORKFLOW, PROPERTY, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT, ASSIGNMENTPROPERTY, COMPONENT, COMPOSE, IF_COMPONENT
+	WORKFLOWFILE, WORKFLOW, PROPERTY, SIMPLE_PROPERTY, FILE_PROPERTY, ASSIGNMENT, ASSIGNMENTPROPERTY, COMPONENT, COMPOSE, IF_COMPONENT, FRAGMENT
 }

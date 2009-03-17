@@ -19,11 +19,11 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class ReferenceInfoStore {
 
@@ -39,8 +39,8 @@ public class ReferenceInfoStore {
 		this.file = file;
 	}
 
-	public boolean addDefinition(final IWorkflowElement element) {
-		if (element == null || !element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE))
+	public boolean addDefinition(final AbstractWorkflowElement element) {
+		if (element == null || !element.hasAttribute(AbstractWorkflowElement.ID_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -54,8 +54,8 @@ public class ReferenceInfoStore {
 		return fileNameSet.add(name);
 	}
 
-	public void addReference(final IWorkflowElement element) {
-		if (element == null || !element.hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
+	public void addReference(final AbstractWorkflowElement element) {
+		if (element == null || !element.hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -84,16 +84,16 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean isDefined(final ReferenceInfo info) {
-		if (info == null || !info.getElement().hasAttribute(IWorkflowElement.ID_REF_ATTRIBUTE))
+		if (info == null || !info.getElement().hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		return definitionSet.contains(info);
 	}
 
-	private ReferenceInfo createReferenceInfo(final IWorkflowElement element) {
-		IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
+	private ReferenceInfo createReferenceInfo(final AbstractWorkflowElement element) {
+		IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
 		if (attribute == null) {
-			attribute = element.getAttribute(IWorkflowElement.ID_REF_ATTRIBUTE);
+			attribute = element.getAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE);
 		}
 
 		if (attribute == null)

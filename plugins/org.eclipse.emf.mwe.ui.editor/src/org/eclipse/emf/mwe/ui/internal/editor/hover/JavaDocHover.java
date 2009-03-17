@@ -16,7 +16,7 @@ import java.util.Collection;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowPartitionScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.ui.text.java.hover.IJavaEditorTextHover;
@@ -27,7 +27,7 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover {
@@ -58,11 +58,11 @@ public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover 
 			final ITypedRegion region = getDocument().getPartition(offset);
 			if (region.getType().equals(WorkflowPartitionScanner.XML_START_TAG)) {
 
-				final Collection<IWorkflowElement> allElements = wfEditor.getElements();
+				final Collection<AbstractWorkflowElement> allElements = wfEditor.getElements();
 				if (allElements != null) {
-					final IWorkflowElement element = findElements(allElements, region);
-					if (element != null && element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
-						final String className = element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
+					final AbstractWorkflowElement element = findElements(allElements, region);
+					if (element != null && element.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)) {
+						final String className = element.getAttributeValue(AbstractWorkflowElement.CLASS_ATTRIBUTE);
 						final IFile file = wfEditor.getInputFile();
 						final String javaDoc = TypeUtils.getJavaDoc(file, className);
 						return javaDoc;
@@ -76,14 +76,14 @@ public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover 
 		return null;
 	}
 
-	private IWorkflowElement findElements(final Collection<IWorkflowElement> allElements, final ITypedRegion region) {
+	private AbstractWorkflowElement findElements(final Collection<AbstractWorkflowElement> allElements, final ITypedRegion region) {
 		if (allElements == null || region == null)
 			throw new IllegalArgumentException();
 
 		final int start = region.getOffset();
 		final int end = start + region.getLength() - 1;
-		for (final IWorkflowElement element : allElements) {
-			if (IWorkflowElement.WORKFLOW_TAG.equals(element.getName())) {
+		for (final AbstractWorkflowElement element : allElements) {
+			if (AbstractWorkflowElement.WORKFLOW_TAG.equals(element.getName())) {
 				continue;
 			}
 

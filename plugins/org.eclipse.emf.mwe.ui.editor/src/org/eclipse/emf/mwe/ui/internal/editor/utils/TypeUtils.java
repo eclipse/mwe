@@ -33,7 +33,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.Flags;
@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public final class TypeUtils {
 
@@ -331,11 +331,11 @@ public final class TypeUtils {
 		return method;
 	}
 
-	public static IType getSetterParameter(IFile file, final IWorkflowElement element, IType mappedType) {
+	public static IType getSetterParameter(IFile file, final AbstractWorkflowElement element, IType mappedType) {
 		return getSetterParameter(file.getProject(), element, mappedType);
 	}
 
-	public static IType getSetterParameter(IProject project, final IWorkflowElement element, IType mappedType) {
+	public static IType getSetterParameter(IProject project, final AbstractWorkflowElement element, IType mappedType) {
 		if (project == null)
 			return null;
 

@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IMethod;
@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.38 $
+ * @version $Revision: 1.39 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -60,11 +60,11 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.IElementAnalyzer#checkValidity(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public void checkValidity(final IWorkflowElement element) {
+	public void checkValidity(final AbstractWorkflowElement element) {
 		if (!element.hasParent())
 			return;
 
-		final IWorkflowElement parent = element.getParent();
+		final AbstractWorkflowElement parent = element.getParent();
 		final IType parentType = parent.getMappedClassType();
 		if (parentType == null) {
 			createMarker(parent, "Element '" + parent.getName() + "' could not be mapped");
@@ -111,7 +111,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return file;
 	}
 
-	protected void checkAttribute(final IType mappedType, final IWorkflowElement element,
+	protected void checkAttribute(final IType mappedType, final AbstractWorkflowElement element,
 			final IWorkflowAttribute attribute) {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
@@ -153,10 +153,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected void checkAttributes(final IWorkflowElement element, final IType mappedType) {
+	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
 		for (final IWorkflowAttribute attr : element.getAttributeList()) {
-			if (!attr.getName().equals(IWorkflowElement.CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(IWorkflowElement.VALUE_ATTRIBUTE)) {
+			if (!attr.getName().equals(AbstractWorkflowElement.CLASS_ATTRIBUTE)
+					&& !attr.getName().equals(AbstractWorkflowElement.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
 			}
 		}
@@ -174,7 +174,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected IType computeComponentType(final IWorkflowElement element) {
+	protected IType computeComponentType(final AbstractWorkflowElement element) {
 		final IType type = element.getMappedClassType();
 		return type;
 	}
@@ -186,7 +186,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, false, true);
 	}
 
-	protected void createMarker(final IWorkflowElement element, final String message) {
+	protected void createMarker(final AbstractWorkflowElement element, final String message) {
 		MarkerManager.createMarker(getFile(), getDocument(), element, message, true);
 	}
 

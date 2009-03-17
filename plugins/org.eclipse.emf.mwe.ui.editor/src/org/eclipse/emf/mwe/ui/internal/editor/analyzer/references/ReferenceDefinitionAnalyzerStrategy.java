@@ -13,13 +13,13 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ReferenceDefinitionAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -35,9 +35,9 @@ public class ReferenceDefinitionAnalyzerStrategy extends
 	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
-	public boolean isApplicable(final IWorkflowElement element) {
+	public boolean isApplicable(final AbstractWorkflowElement element) {
 		return element != null
-				&& element.hasAttribute(IWorkflowElement.ID_ATTRIBUTE);
+				&& element.hasAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
 	}
 
 	/**
@@ -47,10 +47,10 @@ public class ReferenceDefinitionAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.AbstractReferenceAnalyzerStrategy#doAnalyze(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	@Override
-	protected void doAnalyze(final IWorkflowElement element) {
+	protected void doAnalyze(final AbstractWorkflowElement element) {
 		if (store.addDefinition(element)) {
 			final IWorkflowAttribute attribute =
-					element.getAttribute(IWorkflowElement.ID_ATTRIBUTE);
+					element.getAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
 			MarkerManager
 					.createMarker(file, document, attribute, "Duplicate ID '"
 							+ attribute.getValue() + "'", true, false);
