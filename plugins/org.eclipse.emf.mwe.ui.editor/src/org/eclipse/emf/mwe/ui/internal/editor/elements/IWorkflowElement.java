@@ -19,6 +19,18 @@ import org.eclipse.jface.text.IDocument;
 
 public interface IWorkflowElement {
 
+	String FILE_ATTRIBUTE = "file";
+
+	String VALUE_ATTRIBUTE = "value";
+
+	String NAME_ATTRIBUTE = "name";
+
+	String CLASS_ATTRIBUTE = "class";
+
+	String ID_REF_ATTRIBUTE = "idRef";
+
+	String ID_ATTRIBUTE = "id";
+
 	/**
 	 * Add child element to the current element.
 	 * 

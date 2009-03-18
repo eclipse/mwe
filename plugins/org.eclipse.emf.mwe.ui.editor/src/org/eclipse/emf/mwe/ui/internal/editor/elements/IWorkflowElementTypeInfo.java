@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public interface IWorkflowElementTypeInfo {
@@ -21,18 +21,6 @@ public interface IWorkflowElementTypeInfo {
 	String WORKFLOWFILE_TAG = "workflowfile";
 
 	String FRAGMENT_TAG = "fragment";
-
-	String FILE_ATTRIBUTE = "file";
-
-	String VALUE_ATTRIBUTE = "value";
-
-	String NAME_ATTRIBUTE = "name";
-
-	String CLASS_ATTRIBUTE = "class";
-
-	String ID_REF_ATTRIBUTE = "idRef";
-
-	String ID_ATTRIBUTE = "id";
 
 	String PROPERTY_TAG = "property";
 
