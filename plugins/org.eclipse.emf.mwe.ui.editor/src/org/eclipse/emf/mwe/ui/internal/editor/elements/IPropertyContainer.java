@@ -16,10 +16,26 @@ import java.util.Set;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public interface IPropertyContainer {
+
+	/**
+	 * Adds all properties in a collection to the container.
+	 * 
+	 * @param collection
+	 *            the collection of properties to add
+	 */
+	void addProperties(Collection<Property> collection);
+
+	/**
+	 * Adds all properties from another container to the current container.
+	 * 
+	 * @param container
+	 *            the container to add
+	 */
+	void addProperties(IPropertyContainer container);
 
 	/**
 	 * Adds a property to the container.
@@ -30,17 +46,19 @@ public interface IPropertyContainer {
 	void addProperty(Property property);
 
 	/**
-	 * Adds all properties in a collection to the container.
-	 * 
-	 * @param collection
-	 *            collection of properties to add
-	 */
-	void addProperties(Collection<Property> collection);
-
-	/**
 	 * Removes all properties from the container.
 	 */
 	void clear();
+
+	/**
+	 * Disables property inheritance.
+	 */
+	void disablePropertyInheritance();
+
+	/**
+	 * Enables property inheritance.
+	 */
+	void enablePropertyInheritance();
 
 	/**
 	 * Returns a set containing all properties in the container.
@@ -150,4 +168,20 @@ public interface IPropertyContainer {
 	 *         <code>name</code>, otherwise <code>false</code>
 	 */
 	boolean hasSimpleValueProperty(String name);
+
+	/**
+	 * Checks if property container is empty.
+	 * 
+	 * @return <code>true</code> if property container is empty, otherwise
+	 *         <code>false</code>
+	 */
+	boolean isEmpty();
+
+	/**
+	 * Checks if property inheritance is enabled.
+	 * 
+	 * @return <code>true</code> if property inheritance is enabled, otherwise
+	 *         <code>false</code>
+	 */
+	boolean isPropertyInheritanceEnabled();
 }

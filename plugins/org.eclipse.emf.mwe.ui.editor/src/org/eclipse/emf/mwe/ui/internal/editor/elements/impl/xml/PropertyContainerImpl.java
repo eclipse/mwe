@@ -24,12 +24,14 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
 
 	private Map<String, Property> properties = new HashMap<String, Property>();
+
+	private boolean inheritProperties;
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
@@ -181,4 +183,42 @@ public class PropertyContainerImpl implements IPropertyContainer {
 		return false;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isEmpty()
+	 */
+	public boolean isEmpty() {
+		return getPropertyCount() == 0;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#disablePropertyInheritance()
+	 */
+	public void disablePropertyInheritance() {
+		inheritProperties = false;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#enablePropertyInheritance()
+	 */
+	public void enablePropertyInheritance() {
+		inheritProperties = true;
+
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyInheritanceEnabled()
+	 */
+	public boolean isPropertyInheritanceEnabled() {
+		return inheritProperties;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
+	 */
+	public void addProperties(IPropertyContainer container) {
+		if (container == null)
+			throw new IllegalArgumentException();
+
+		addProperties(container.getProperties());
+	}
 }
