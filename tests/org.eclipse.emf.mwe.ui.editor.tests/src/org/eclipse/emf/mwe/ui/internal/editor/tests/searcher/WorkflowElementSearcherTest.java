@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -51,7 +51,8 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 		final IDocument document = createDocument(WORKFLOW1);
 		final AbstractWorkflowElement root = parse(document);
 		final int offset = 160;
-		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
+				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -62,7 +63,8 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 		final IDocument document = createDocument(WORKFLOW2);
 		final AbstractWorkflowElement root = parse(document);
 		final int offset = 160;
-		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
+				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -74,7 +76,8 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 		final AbstractWorkflowElement root = parse(document);
 		int offset = document.getLength() - 1;
 		offset -= 12;
-		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document, offset);
+		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
+				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
 		assertTrue(foundElement.hasAttribute("class"));
@@ -86,7 +89,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 	}
 
 	private AbstractWorkflowElement parse(final IDocument document) {
-		return DocumentParser.parse(document, project);
+		return DocumentParser.parse(document, null, project);
 	}
 
 }
