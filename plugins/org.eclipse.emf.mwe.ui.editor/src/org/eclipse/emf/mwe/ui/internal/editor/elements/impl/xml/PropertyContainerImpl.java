@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
@@ -32,17 +32,6 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	private Map<String, Property> properties = new HashMap<String, Property>();
 
 	private boolean inheritProperties;
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
-	 */
-	public void addProperty(Property property) {
-		if (property == null)
-			throw new IllegalArgumentException();
-
-		properties.put(property.getName(), property);
-
-	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
@@ -57,10 +46,46 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
+	 */
+	public void addProperties(IPropertyContainer container) {
+		if (container == null)
+			throw new IllegalArgumentException();
+
+		addProperties(container.getProperties());
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
+	 */
+	public void addProperty(Property property) {
+		if (property == null || !property.isComplete())
+			throw new IllegalArgumentException();
+
+		properties.put(property.getName(), property);
+
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#clear()
 	 */
 	public void clear() {
 		properties.clear();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#disablePropertyInheritance()
+	 */
+	public void disablePropertyInheritance() {
+		inheritProperties = false;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#enablePropertyInheritance()
+	 */
+	public void enablePropertyInheritance() {
+		inheritProperties = true;
+
 	}
 
 	/**
@@ -127,7 +152,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	public Collection<Property> getSimpleValueProperties() {
 		List<Property> result = new ArrayList<Property>();
 		for (Property p : properties.values()) {
-			if (p.isSimpleValue()) {
+			if (p.isSimple()) {
 				result.add(p);
 			}
 		}
@@ -140,7 +165,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	public Set<String> getSimpleValuePropertyNames() {
 		Set<String> result = new HashSet<String>();
 		for (Property p : properties.values()) {
-			if (p.isSimpleValue()) {
+			if (p.isSimple()) {
 				result.add(p.getName());
 			}
 		}
@@ -177,7 +202,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public boolean hasSimpleValueProperty(String name) {
 		for (Property p : properties.values()) {
-			if (p.isSimpleValue())
+			if (p.isSimple())
 				return true;
 		}
 		return false;
@@ -191,34 +216,9 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#disablePropertyInheritance()
-	 */
-	public void disablePropertyInheritance() {
-		inheritProperties = false;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#enablePropertyInheritance()
-	 */
-	public void enablePropertyInheritance() {
-		inheritProperties = true;
-
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyInheritanceEnabled()
 	 */
 	public boolean isPropertyInheritanceEnabled() {
 		return inheritProperties;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
-	 */
-	public void addProperties(IPropertyContainer container) {
-		if (container == null)
-			throw new IllegalArgumentException();
-
-		addProperties(container.getProperties());
 	}
 }

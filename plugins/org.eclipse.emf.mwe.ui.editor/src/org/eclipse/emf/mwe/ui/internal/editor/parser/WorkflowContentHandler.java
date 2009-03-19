@@ -13,14 +13,21 @@ package org.eclipse.emf.mwe.ui.internal.editor.parser;
 
 import java.util.regex.Pattern;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -31,7 +38,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -46,6 +53,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	protected WorkflowEditor editor;
 
 	protected IProject project;
+
+	protected IPropertyContainer propertyContainer;
 
 	protected IDocument document;
 
@@ -80,6 +89,23 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + qName, true);
 
 		currentElement.setEndElementRange(createPositionRange());
+		if (hasFileReference(currentElement)) {
+			boolean inherit = isInheritAllSet(currentElement);
+			parseReferencedContent(currentElement);
+			if (inherit && currentElement.hasParent()) {
+				AbstractWorkflowElement parent = currentElement.getParent();
+				currentElement.enablePropertyInheritance();
+				parent.setPropertyContainer(getPropertyContainer());
+			}
+			else {
+				currentElement.setPropertyContainer(getPropertyContainer());
+			}
+
+		}
+		else if (currentElement.isProperty() && propertyContainer != null) {
+			addProperty(currentElement);
+		}
+
 		if (currentElement.hasParent()) {
 			currentElement = currentElement.getParent();
 		}
@@ -155,6 +181,16 @@ public class WorkflowContentHandler extends DefaultHandler {
 	}
 
 	/**
+	 * Sets a new value for field <code>propertyContainer</code>.
+	 * 
+	 * @param propertyContainer
+	 *            new value for <code>propertyContainer</code>.
+	 */
+	public void setPropertyContainer(IPropertyContainer propertyContainer) {
+		this.propertyContainer = propertyContainer;
+	}
+
+	/**
 	 * This method overrides the implementation of <code>startDocument</code>
 	 * inherited from the superclass.
 	 * 
@@ -200,6 +236,37 @@ public class WorkflowContentHandler extends DefaultHandler {
 		currentElement = element;
 	}
 
+	/**
+	 * Returns the value of field <code>propertyContainer</code>.
+	 * 
+	 * @return value of <code>propertyContainer</code>.
+	 */
+	protected IPropertyContainer getPropertyContainer() {
+		return propertyContainer;
+	}
+
+	private void addProperty(AbstractWorkflowElement element) {
+		if (element == null)
+			throw new IllegalArgumentException();
+
+		Property property = new Property(element);
+		try {
+			propertyContainer.addProperty(property);
+		}
+		catch (IllegalArgumentException e) {
+			IFile file = getFile();
+			String propName = property.getName();
+			String propNameString = (propName != null && propName.length() > 0) ? " '" + propName + "'" : "";
+			String msg = "Incompletely specified property" + propNameString;
+			if (file != null && file.exists()) {
+				MarkerManager.createMarker(file, document, element, msg, true);
+			}
+			else {
+				Log.logError(msg, e);
+			}
+		}
+	}
+
 	private ElementPositionRange createPositionRange() {
 		final int line = locator.getLineNumber() - 1;
 		final int offset = getOffsetFromLine(line);
@@ -222,6 +289,74 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 	private Integer getCharStart(final int offset) {
 		return searchChar(offset, '<', true);
+	}
+
+	private IFile getFile() {
+		return (editor != null) ? editor.getInputFile() : null;
+	}
+
+	private int getOffsetFromLine(final int lineNumber) {
+		int offset = 0;
+		try {
+			offset = document.getLineOffset(lineNumber);
+		}
+		catch (final BadLocationException e) {
+			try {
+				offset = document.getLineOffset(lineNumber - 1);
+			}
+			catch (final BadLocationException e1) {
+			}
+		}
+		return offset;
+	}
+
+	private IProject getProject() {
+		if (editor != null && editor.getInputFile() != null)
+			return editor.getInputFile().getProject();
+
+		return project;
+	}
+
+	private boolean hasFileReference(AbstractWorkflowElement element) {
+		return (element != null) ? !element.isProperty() && element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)
+				: false;
+	}
+
+	private boolean isIllegalName(final String name) {
+		return !Pattern.matches(TAG_NAME_PATTERN, name);
+	}
+
+	private boolean isInheritAllSet(AbstractWorkflowElement element) {
+		if (!hasFileReference(element))
+			return false;
+
+		String inheritVal = element.getAttributeValue(IWorkflowElement.INHERIT_ALL_ATTRIBUTE);
+		return Boolean.parseBoolean(inheritVal);
+	}
+
+	private AbstractWorkflowElement newWorkflowElement(String name) {
+		return WorkflowSyntaxFactory.getInstance().newWorkflowElement(editor, getProject(), document, name);
+	}
+
+	private void parseReferencedContent(AbstractWorkflowElement element) {
+		if (element == null || !hasFileReference(element))
+			throw new IllegalArgumentException();
+
+		IWorkflowAttribute attribute = element.getAttribute(IWorkflowElement.FILE_ATTRIBUTE);
+		String content = TypeUtils.getFileContent(getProject(), attribute);
+		if (content == null) {
+			if (element.getFile().equals(getFile())) {
+				MarkerManager.createMarker(getFile(), document, attribute, "Resource '" + attribute.getValue()
+						+ "' cannot be resolved", true, true);
+			}
+			else
+				return;
+		}
+		WorkflowContentHandler contentHandler = new WorkflowContentHandler();
+		IPropertyContainer propCont = (propertyContainer != null) ? propertyContainer : WorkflowSyntaxFactory
+				.getInstance().newPropertyContainer();
+		contentHandler.setPropertyContainer(propCont);
+		DocumentParser.parse(document, contentHandler, getProject());
 	}
 
 	private Integer searchChar(int offset, char stopChar, boolean backwards) {
@@ -256,36 +391,5 @@ public class WorkflowContentHandler extends DefaultHandler {
 			Log.logError("", e);
 			return -1;
 		}
-	}
-
-	private int getOffsetFromLine(final int lineNumber) {
-		int offset = 0;
-		try {
-			offset = document.getLineOffset(lineNumber);
-		}
-		catch (final BadLocationException e) {
-			try {
-				offset = document.getLineOffset(lineNumber - 1);
-			}
-			catch (final BadLocationException e1) {
-			}
-		}
-		return offset;
-	}
-
-	private boolean isIllegalName(final String name) {
-		return !Pattern.matches(TAG_NAME_PATTERN, name);
-	}
-
-	private AbstractWorkflowElement newWorkflowElement(String name) {
-		final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
-		AbstractWorkflowElement element;
-		if (editor != null && editor.getInputFile() != null) {
-			element = factory.newWorkflowElement(editor, editor.getInputFile().getProject(), document, name);
-		}
-		else {
-			element = factory.newWorkflowElement(null, project, document, name);
-		}
-		return element;
 	}
 }

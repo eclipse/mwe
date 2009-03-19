@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
@@ -27,9 +28,11 @@ public interface IWorkflowElement {
 
 	String CLASS_ATTRIBUTE = "class";
 
+	String ID_ATTRIBUTE = "id";
+
 	String ID_REF_ATTRIBUTE = "idRef";
 
-	String ID_ATTRIBUTE = "id";
+	String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	/**
 	 * Add child element to the current element.
@@ -74,6 +77,14 @@ public interface IWorkflowElement {
 	 * @return the document
 	 */
 	IDocument getDocument();
+
+	/**
+	 * Returns the file that the current element is associated with.
+	 * 
+	 * @return the associated file or <code>null</code> if no such association
+	 *         exists.
+	 */
+	IFile getFile();
 
 	/**
 	 * Returns the name of the icon image of the current element.
@@ -176,4 +187,12 @@ public interface IWorkflowElement {
 	 *            the parent element
 	 */
 	void setParent(final AbstractWorkflowElement parent);
+
+	/**
+	 * Attaches a property container to the current element.
+	 * 
+	 * @param container
+	 *            the container to attach
+	 */
+	void setPropertyContainer(IPropertyContainer container);
 }

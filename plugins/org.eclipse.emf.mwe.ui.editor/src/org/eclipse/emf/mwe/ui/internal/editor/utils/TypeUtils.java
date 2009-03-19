@@ -32,8 +32,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
 import org.eclipse.jdt.core.Flags;
@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public final class TypeUtils {
 
@@ -199,8 +199,12 @@ public final class TypeUtils {
 	}
 
 	public static String getFileContent(final IFile file, final IWorkflowAttribute attribute) {
+		return getFileContent(file.getProject(), attribute);
+	}
+
+	public static String getFileContent(final IProject project, final IWorkflowAttribute attribute) {
 		final String filePath = attribute.getValue();
-		final ClassLoader loader = getResourceLoader(file);
+		final ClassLoader loader = getResourceLoader(project);
 
 		if (loader == null)
 			throw new RuntimeException("Could not obtain resource loader");
@@ -216,7 +220,6 @@ public final class TypeUtils {
 				}
 			}
 			else {
-				final IProject project = file.getProject();
 				if (project != null) {
 					final File projectPath = project.getLocation().toFile();
 					final File foundFile = findFile(projectPath, filePath);
@@ -274,7 +277,10 @@ public final class TypeUtils {
 	}
 
 	public static ClassLoader getResourceLoader(final IFile file) {
-		final IProject project = file.getProject();
+		return getResourceLoader(file.getProject());
+	}
+
+	public static ClassLoader getResourceLoader(final IProject project) {
 		ClassLoader loader = null;
 		try {
 			final ProjectIncludingResourceLoader l = new ProjectIncludingResourceLoader(project);

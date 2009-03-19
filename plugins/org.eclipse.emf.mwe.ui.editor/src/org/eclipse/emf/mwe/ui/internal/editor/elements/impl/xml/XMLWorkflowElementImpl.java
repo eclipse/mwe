@@ -9,6 +9,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
@@ -17,7 +18,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.19 $
+ * @version $Revision: 1.20 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -43,6 +44,13 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 		super(document, name);
 		this.editor = editor;
 		this.project = project;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getFile()
+	 */
+	public IFile getFile() {
+		return (editor != null) ? editor.getInputFile() : null;
 	}
 
 	/**
@@ -160,5 +168,4 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	public void setImage(final String image) {
 		this.image = image;
 	}
-
 }

@@ -11,11 +11,10 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
-import org.eclipse.core.resources.IFile;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class Property {
@@ -24,26 +23,35 @@ public class Property {
 
 	private String value;
 
-	private IFile file;
+	private String file;
+
+	public Property(AbstractWorkflowElement element) {
+		if (element == null || !element.isProperty())
+			throw new IllegalArgumentException();
+
+		name = element.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE);
+		if (element.isSimpleProperty()) {
+			setValue(element.getAttributeValue(IWorkflowElement.VALUE_ATTRIBUTE));
+		}
+		else if (element.isFileProperty()) {
+			setFile(element.getAttributeValue(IWorkflowElement.FILE_ATTRIBUTE));
+		}
+		else
+			throw new RuntimeException("Incomplete property specification");
+
+	}
 
 	public Property(String name) {
-		this(name, (String) null);
+		this.name = name;
 	}
 
-	public Property(String name, String value) {
-		if (name == null || name.length() == 0)
-			throw new IllegalArgumentException();
-
-		this.name = name;
-		this.value = (value != null) ? value : "";
-	}
-
-	public Property(String name, IFile file) {
-		if (name == null || name.length() == 0 || file == null)
-			throw new IllegalArgumentException();
-
-		this.name = name;
-		this.file = file;
+	/**
+	 * Returns the value of field <code>file</code>.
+	 * 
+	 * @return value of <code>file</code>.
+	 */
+	public String getFile() {
+		return file;
 	}
 
 	/**
@@ -65,22 +73,13 @@ public class Property {
 	}
 
 	/**
-	 * Returns the value of field <code>file</code>.
+	 * Checks if the specification of the current property is complete.
 	 * 
-	 * @return value of <code>file</code>.
+	 * @return <code>true</code> if the specification of the current property is
+	 *         complete, otherwise <code>false</code>
 	 */
-	public IFile getFile() {
-		return file;
-	}
-
-	/**
-	 * Checks if property holds a simple value.
-	 * 
-	 * @return <code>true</code> if the current property holds a simple value,
-	 *         otherwise <code>false</code>
-	 */
-	public boolean isSimpleValue() {
-		return value != null && file == null;
+	public boolean isComplete() {
+		return isSimple() ^ isReference();
 	}
 
 	/**
@@ -93,4 +92,33 @@ public class Property {
 		return value != null && file == null;
 	}
 
+	/**
+	 * Checks if property holds a simple value.
+	 * 
+	 * @return <code>true</code> if the current property holds a simple value,
+	 *         otherwise <code>false</code>
+	 */
+	public boolean isSimple() {
+		return value != null && file == null;
+	}
+
+	/**
+	 * Sets a new value for field <code>file</code>.
+	 * 
+	 * @param file
+	 *            new value for <code>file</code>.
+	 */
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	/**
+	 * Sets a new value for field <code>value</code>.
+	 * 
+	 * @param value
+	 *            new value for <code>value</code>.
+	 */
+	public void setValue(String value) {
+		this.value = (value != null) ? value : "";
+	}
 }

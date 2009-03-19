@@ -26,7 +26,7 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttributeContainer,
-		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping, IPropertyContainer {
+		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping, IPropertyContainerAccess {
 
 	protected final String name;
 
@@ -72,28 +72,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		element.setParent(this);
 		children.add(element);
 		recomputeTypeInfo = true;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
-	 */
-	public void addProperties(Collection<Property> collection) {
-		propertyContainer.addProperties(collection);
-	}
-
-	/**
-	 * @param container
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
-	 */
-	public void addProperties(IPropertyContainer container) {
-		propertyContainer.addProperties(container);
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
-	 */
-	public void addProperty(Property property) {
-		propertyContainer.addProperty(property);
 	}
 
 	/**
@@ -445,6 +423,16 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setPropertyContainer(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
+	 */
+	public void setPropertyContainer(IPropertyContainer propertyContainer) {
+		if (propertyContainer == null)
+			throw new IllegalArgumentException();
+
+		this.propertyContainer = propertyContainer;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#setStartElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setStartElementRange(final ElementPositionRange startElementRange) {
@@ -488,11 +476,10 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		}
 		else if (isPropertyInheritanceEnabled()) {
 			IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-			result.addProperties(getParent());
+			result.addProperties(getParent().getPropertyContainer());
 			result.addProperties(propertyContainer);
 			return result;
 		}
 		return propertyContainer;
 	}
-
 }

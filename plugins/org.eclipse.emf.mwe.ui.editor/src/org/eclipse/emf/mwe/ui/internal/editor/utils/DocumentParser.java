@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 
 public final class DocumentParser {
@@ -38,15 +38,16 @@ public final class DocumentParser {
 		throw new UnsupportedOperationException();
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document) {
-		return parse(document, (IProject) null);
+	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler) {
+		return parse(document, handler, (IProject) null);
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document, final WorkflowEditor editor) {
+	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler,
+			final WorkflowEditor editor) {
 		if (document == null)
 			return null;
 
-		final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
+		final WorkflowContentHandler contentHandler = (handler != null) ? handler : new WorkflowContentHandler();
 		contentHandler.setDocument(document);
 		contentHandler.setEditor(editor);
 		contentHandler.setPositionCategory(TAG_POSITIONS);
@@ -69,13 +70,14 @@ public final class DocumentParser {
 		return root;
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document, IProject project) {
+	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler,
+			IProject project) {
 		if (document == null)
 			return null;
 
-		final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
-		contentHandler.setDocument(document);
+		final WorkflowContentHandler contentHandler = (handler != null) ? handler : new WorkflowContentHandler();
 		contentHandler.setProject(project);
+		contentHandler.setDocument(document);
 		contentHandler.setPositionCategory(TAG_POSITIONS);
 		contentHandler.setDocumentLocator(new LocatorImpl());
 		final String text = document.get();

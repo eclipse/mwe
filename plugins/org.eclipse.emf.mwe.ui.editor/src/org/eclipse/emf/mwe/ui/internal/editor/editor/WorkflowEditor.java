@@ -30,9 +30,9 @@ import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.ClassContentProposalComputer;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
@@ -62,7 +62,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.49 $
+ * @version $Revision: 1.50 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -71,10 +71,12 @@ public class WorkflowEditor extends TextEditor {
 		public InitializerJob(String name, IResource resource) {
 			super(name);
 			setPriority(Job.LONG);
-			if (resource != null)
+			if (resource != null) {
 				setRule(resource);
-			else
+			}
+			else {
 				setRule(ResourcesPlugin.getWorkspace().getRoot());
+			}
 		}
 
 		@Override
@@ -108,7 +110,7 @@ public class WorkflowEditor extends TextEditor {
 	private Job validationJob;
 
 	private Job initializerJob;
-	
+
 	private AbstractWorkflowElement rootElement;
 
 	private Collection<AbstractWorkflowElement> elements;
@@ -151,15 +153,17 @@ public class WorkflowEditor extends TextEditor {
 		if (outlinePage != null) {
 			outlinePage.setInput(null);
 		}
-		if (initializerJob != null)
+		if (initializerJob != null) {
 			initializerJob.cancel();
+		}
 		TypeUtils.clearCache();
 		super.dispose();
 	}
 
 	/**
 	 * This method overrides the implementation of <code>getAdapter</code>
-	 * inherited from the superclass to provide an adapter for IContentOutlinePage.
+	 * inherited from the superclass to provide an adapter for
+	 * IContentOutlinePage.
 	 * 
 	 * @see org.eclipse.ui.editors.text.TextEditor#getAdapter(java.lang.Class)
 	 */
@@ -199,7 +203,7 @@ public class WorkflowEditor extends TextEditor {
 		final IFile file = ife.getFile();
 		return file;
 	}
-	
+
 	@Override
 	protected void doSetInput(IEditorInput input) throws CoreException {
 		super.doSetInput(input);
@@ -246,7 +250,7 @@ public class WorkflowEditor extends TextEditor {
 
 	public AbstractWorkflowElement parseRootElement(final IDocument document) {
 		try {
-			return DocumentParser.parse(document, this);
+			return DocumentParser.parse(document, null, this);
 		}
 		catch (ValidationException e) {
 			int line = e.getLineNumber() - 1;
