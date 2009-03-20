@@ -9,8 +9,13 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
+import java.io.File;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IWorkspaceRoot;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
@@ -18,7 +23,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.20 $
+ * @version $Revision: 1.21 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -49,8 +54,27 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getFile()
 	 */
-	public IFile getFile() {
-		return (editor != null) ? editor.getInputFile() : null;
+	@Override
+	public File getFile() {
+		File f = super.getFile();
+		if (f != null)
+			return f;
+		else if (editor != null && editor.getInputFile() != null)
+			return convertToFile(editor.getInputFile());
+
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getIFile()
+	 */
+	public IFile getIFile() {
+		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		if (root != null && getFile() != null) {
+			IFile f = root.getFile(new Path(getFile().getAbsolutePath()));
+			return f;
+		}
+		return null;
 	}
 
 	/**
@@ -168,4 +192,5 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	public void setImage(final String image) {
 		this.image = image;
 	}
+
 }

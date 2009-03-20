@@ -19,7 +19,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ReferenceDefinitionAnalyzerStrategy extends
 		AbstractReferenceAnalyzerStrategy {
@@ -37,7 +37,7 @@ public class ReferenceDefinitionAnalyzerStrategy extends
 	 */
 	public boolean isApplicable(final AbstractWorkflowElement element) {
 		return element != null
-				&& element.hasAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
+				&& element.hasAttribute(IWorkflowAttribute.ID_ATTRIBUTE);
 	}
 
 	/**
@@ -50,7 +50,7 @@ public class ReferenceDefinitionAnalyzerStrategy extends
 	protected void doAnalyze(final AbstractWorkflowElement element) {
 		if (store.addDefinition(element)) {
 			final IWorkflowAttribute attribute =
-					element.getAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
+					element.getAttribute(IWorkflowAttribute.ID_ATTRIBUTE);
 			MarkerManager
 					.createMarker(file, document, attribute, "Duplicate ID '"
 							+ attribute.getValue() + "'", true, false);

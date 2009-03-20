@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementTypeComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
@@ -37,6 +40,8 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	private AbstractWorkflowElement parent;
 
 	private WorkflowElementType type;
+
+	private File file;
 
 	private IPropertyContainer propertyContainer;
 
@@ -197,6 +202,15 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public ElementPositionRange getEndElementRange() {
 		return endElementRange;
+	}
+
+	/**
+	 * Returns the value of field <code>file</code>.
+	 * 
+	 * @return value of <code>file</code>.
+	 */
+	public File getFile() {
+		return file;
 	}
 
 	/**
@@ -416,6 +430,26 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * Sets a new value for field <code>file</code>.
+	 * 
+	 * @param file
+	 *            new value for <code>file</code>.
+	 */
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	/**
+	 * Sets a new value for field <code>file</code>.
+	 * 
+	 * @param file
+	 *            new value for <code>file</code>.
+	 */
+	public void setFile(IFile file) {
+		this.file = convertToFile(file);
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setParent(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement)
 	 */
 	public void setParent(final AbstractWorkflowElement parent) {
@@ -455,6 +489,24 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 		recomputeTypeInfo = false;
 		WorkflowElementTypeComputer.computeTypeInfo(this);
+	}
+
+	/**
+	 * Converts an <codeIFile</code> object to a <code>File</code> object.
+	 * 
+	 * @param file
+	 *            the <code>IFile</code> object
+	 * @return the converted <code>File</code> object
+	 */
+	protected File convertToFile(IFile file) {
+		if (file == null)
+			return null;
+
+		URI uri = file.getLocationURI();
+		if (uri != null)
+			return new File(uri);
+
+		return null;
 	}
 
 	/**

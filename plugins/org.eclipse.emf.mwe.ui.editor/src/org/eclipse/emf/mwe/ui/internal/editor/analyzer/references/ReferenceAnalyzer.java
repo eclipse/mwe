@@ -16,12 +16,13 @@ import java.util.LinkedList;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
@@ -33,8 +34,7 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 
 	private final IDocument document;
 
-	public ReferenceAnalyzer(final IFile file, final IDocument document,
-			final ReferenceInfoStore store) {
+	public ReferenceAnalyzer(final IFile file, final IDocument document, final ReferenceInfoStore store) {
 		if (file == null || document == null || store == null)
 			throw new IllegalArgumentException();
 
@@ -85,20 +85,17 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 	}
 
 	public boolean isValid(final AbstractWorkflowElement element) {
-		return element == null
-				|| element.hasAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE)
-				^ element.hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE)
-				^ element.hasAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
+		return element == null || element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)
+				^ element.hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE)
+				^ element.hasAttribute(IWorkflowAttribute.ID_ATTRIBUTE);
 	}
 
 	public void markUnresolvedReferences() {
 		final Collection<ReferenceInfo> references = store.getReferences();
 		for (final ReferenceInfo info : references) {
 			if (!store.isDefined(info)) {
-				MarkerManager.createMarker(info.getFile(), info.getElement()
-						.getDocument(), info.getAttribute(),
-						"Unresolved reference '" + info.getReferenceValue()
-								+ "'", true, false);
+				MarkerManager.createMarker(info.getFile(), info.getElement().getDocument(), info.getAttribute(),
+						"Unresolved reference '" + info.getReferenceValue() + "'", true, false);
 			}
 		}
 	}
@@ -114,10 +111,8 @@ public class ReferenceAnalyzer implements IReferenceAnalyzerStrategy {
 	}
 
 	private void init() {
-		strategies.add(new ReferenceDefinitionAnalyzerStrategy(file, document,
-				store));
+		strategies.add(new ReferenceDefinitionAnalyzerStrategy(file, document, store));
 		strategies.add(new ReferenceAnalyzerStrategy(file, document, store));
-		strategies
-				.add(new FileReferenceAnalyzerStrategy(file, document, store));
+		strategies.add(new FileReferenceAnalyzerStrategy(file, document, store));
 	}
 }

@@ -14,7 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class Property {
@@ -29,12 +29,12 @@ public class Property {
 		if (element == null || !element.isProperty())
 			throw new IllegalArgumentException();
 
-		name = element.getAttributeValue(IWorkflowElement.NAME_ATTRIBUTE);
+		name = element.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE);
 		if (element.isSimpleProperty()) {
-			setValue(element.getAttributeValue(IWorkflowElement.VALUE_ATTRIBUTE));
+			setValue(element.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE));
 		}
 		else if (element.isFileProperty()) {
-			setFile(element.getAttributeValue(IWorkflowElement.FILE_ATTRIBUTE));
+			setFile(element.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE));
 		}
 		else
 			throw new RuntimeException("Incomplete property specification");

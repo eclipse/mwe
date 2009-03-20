@@ -15,7 +15,7 @@ import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -46,8 +46,8 @@ public final class WorkflowElementTypeComputer {
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
 			name = Workflow.class.getCanonicalName();
 		}
-		else if (element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
-			name = element.getAttributeValue(IWorkflowElement.CLASS_ATTRIBUTE);
+		else if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
+			name = element.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);
 		}
 		else if (element.hasProject() && element.hasParent()) {
 			IMethod method = null;
@@ -117,7 +117,7 @@ public final class WorkflowElementTypeComputer {
 			type = WorkflowElementType.WORKFLOWFILE;
 		}
 		else if (name.equals(IWorkflowElementTypeInfo.COMPONENT_TAG)
-				|| element.hasAttribute(IWorkflowElement.CLASS_ATTRIBUTE)) {
+				|| element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 			type = WorkflowElementType.COMPONENT;
 		}
 		else if (name.equals(IWorkflowElementTypeInfo.IF_COMPONENT_TAG)) {
@@ -134,12 +134,12 @@ public final class WorkflowElementTypeComputer {
 			type = WorkflowElementType.FRAGMENT;
 		}
 		else if (name.equals(IWorkflowElementTypeInfo.PROPERTY_TAG)) {
-			if (element.getAttributeCount() == 2 && element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)
-					&& element.hasAttribute(IWorkflowElement.VALUE_ATTRIBUTE) || element.getAttributeCount() == 1
-					&& element.hasAttribute(IWorkflowElement.NAME_ATTRIBUTE)) {
+			if (element.getAttributeCount() == 2 && element.hasAttribute(IWorkflowAttribute.NAME_ATTRIBUTE)
+					&& element.hasAttribute(IWorkflowAttribute.VALUE_ATTRIBUTE) || element.getAttributeCount() == 1
+					&& element.hasAttribute(IWorkflowAttribute.NAME_ATTRIBUTE)) {
 				type = WorkflowElementType.SIMPLE_PROPERTY;
 			}
-			else if (element.getAttributeCount() == 1 && element.hasAttribute(IWorkflowElement.FILE_ATTRIBUTE)) {
+			else if (element.getAttributeCount() == 1 && element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)) {
 				type = WorkflowElementType.FILE_PROPERTY;
 			}
 			else if (!element.isLeaf()) {

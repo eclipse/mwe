@@ -13,6 +13,20 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 public interface IWorkflowAttribute extends IRangeCheck {
 
+	String FILE_ATTRIBUTE = "file";
+
+	String VALUE_ATTRIBUTE = "value";
+
+	String NAME_ATTRIBUTE = "name";
+
+	String CLASS_ATTRIBUTE = "class";
+
+	String ID_ATTRIBUTE = "id";
+
+	String ID_REF_ATTRIBUTE = "idRef";
+
+	String INHERIT_ALL_ATTRIBUTE = "inheritAll";
+
 	/**
 	 * Returns the position range of the whole attribute.
 	 * 

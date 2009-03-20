@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
@@ -52,7 +52,7 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	public boolean isApplicable(final AbstractWorkflowElement element) {
-		return element != null && element.hasAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
+		return element != null && element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 	 */
 	@Override
 	protected void doAnalyze(final AbstractWorkflowElement element) {
-		final IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
+		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
 		final String fileName = attribute.getValue();
 		if (store.containsFileName(fileName))
 			return;

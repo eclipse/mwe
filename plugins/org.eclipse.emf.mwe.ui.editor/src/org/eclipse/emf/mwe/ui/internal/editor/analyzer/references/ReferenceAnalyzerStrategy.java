@@ -13,17 +13,16 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
-public class ReferenceAnalyzerStrategy extends
-		AbstractReferenceAnalyzerStrategy {
+public class ReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
-	public ReferenceAnalyzerStrategy(final IFile file,
-			final IDocument document, final ReferenceInfoStore store) {
+	public ReferenceAnalyzerStrategy(final IFile file, final IDocument document, final ReferenceInfoStore store) {
 		super(file, document, store);
 	}
 
@@ -34,8 +33,7 @@ public class ReferenceAnalyzerStrategy extends
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.IReferenceAnalyzerStrategy#isApplicable(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl)
 	 */
 	public boolean isApplicable(final AbstractWorkflowElement element) {
-		return element != null
-				&& element.hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE);
+		return element != null && element.hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE);
 	}
 
 	/**

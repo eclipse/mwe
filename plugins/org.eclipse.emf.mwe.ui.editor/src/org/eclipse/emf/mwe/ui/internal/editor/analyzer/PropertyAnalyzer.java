@@ -15,14 +15,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -42,11 +43,11 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final AbstractWorkflowElement element) {
-		if (element.getName().equals(AbstractWorkflowElement.PROPERTY_TAG) && !element.isProperty()) {
+		if (element.getName().equals(IWorkflowElementTypeInfo.PROPERTY_TAG) && !element.isProperty()) {
 			createMarker(element, INVALID_PROPERTY_MSG);
 		}
 		if (element.isSimpleProperty()) {
-			propertyStore.add(element.getAttributeValue(AbstractWorkflowElement.NAME_ATTRIBUTE));
+			propertyStore.add(element.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE));
 		}
 		else if (element.isFileProperty()) {
 			parseFileProperties(element);
@@ -54,7 +55,7 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	}
 
 	private void parseFileProperties(final AbstractWorkflowElement element) {
-		final IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.FILE_ATTRIBUTE);
+		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
 		final String content = TypeUtils.getFileContent(getFile(), attribute);
 		if (content == null)
 			return;

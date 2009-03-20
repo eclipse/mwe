@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
+import java.io.File;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
@@ -19,20 +20,6 @@ import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 public interface IWorkflowElement {
-
-	String FILE_ATTRIBUTE = "file";
-
-	String VALUE_ATTRIBUTE = "value";
-
-	String NAME_ATTRIBUTE = "name";
-
-	String CLASS_ATTRIBUTE = "class";
-
-	String ID_ATTRIBUTE = "id";
-
-	String ID_REF_ATTRIBUTE = "idRef";
-
-	String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	/**
 	 * Add child element to the current element.
@@ -82,9 +69,18 @@ public interface IWorkflowElement {
 	 * Returns the file that the current element is associated with.
 	 * 
 	 * @return the associated file or <code>null</code> if no such association
-	 *         exists.
+	 *         exists
 	 */
-	IFile getFile();
+	File getFile();
+
+	/**
+	 * Returns the file that the current element is associated with as an
+	 * <code>IFile</code> object.
+	 * 
+	 * @return the associated file or <code>null</code> if no such association
+	 *         exists
+	 */
+	IFile getIFile();
 
 	/**
 	 * Returns the name of the icon image of the current element.
@@ -171,6 +167,22 @@ public interface IWorkflowElement {
 	 *         <code>parentElement</code>, otherwise <code>false</code>
 	 */
 	boolean isValidChildFor(final AbstractWorkflowElement parentElement);
+
+	/**
+	 * Sets the file that the current element is associated with.
+	 * 
+	 * @param file
+	 *            the associated file
+	 */
+	void setFile(File file);
+
+	/**
+	 * Sets the file that the current element is associated with.
+	 * 
+	 * @param file
+	 *            the associated file
+	 */
+	void setFile(IFile file);
 
 	/**
 	 * Sets the image of the current element.

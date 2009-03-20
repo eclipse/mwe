@@ -15,8 +15,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IMethod;
@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.39 $
+ * @version $Revision: 1.40 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -80,13 +80,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 			if (element.getAttributeCount() > 1) {
 				for (IWorkflowAttribute attr : element.getAttributeList()) {
-					boolean hasErrors = false;
 					if (CLASS_ATTRIBUTE.equals(attr.getName()) || FILE_ATTRIBUTE.equals(attr.getName())
 							|| INHERIT_ALL_ATTRIBUTE.equals(attr.getName())) {
 						continue;
 					}
 
-					hasErrors = true;
+					createMarker(attr, "Invalid attribute: " + attr.getName());
 				}
 			}
 		}
@@ -155,8 +154,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
 		for (final IWorkflowAttribute attr : element.getAttributeList()) {
-			if (!attr.getName().equals(AbstractWorkflowElement.CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(AbstractWorkflowElement.VALUE_ATTRIBUTE)) {
+			if (!attr.getName().equals(IWorkflowAttribute.CLASS_ATTRIBUTE)
+					&& !attr.getName().equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
 			}
 		}

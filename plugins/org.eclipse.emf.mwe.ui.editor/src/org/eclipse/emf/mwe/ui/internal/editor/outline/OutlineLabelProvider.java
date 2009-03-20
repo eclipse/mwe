@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.outline;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.XMLWorkflowElementImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -20,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
@@ -49,40 +50,28 @@ public class OutlineLabelProvider implements ILabelProvider {
 		String text = null;
 
 		if (workflowElement.isSimpleProperty()) {
-			text =
-					workflowElement
-							.getAttributeValue(AbstractWorkflowElement.NAME_ATTRIBUTE);
-			if (workflowElement
-					.getAttributeValue(AbstractWorkflowElement.VALUE_ATTRIBUTE) != null) {
-				text +=
-						" = "
-								+ workflowElement
-										.getAttributeValue(AbstractWorkflowElement.VALUE_ATTRIBUTE);
+			text = workflowElement.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE);
+			if (workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE) != null) {
+				text += " = " + workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
 			}
-		} else if (workflowElement.isFileProperty()) {
-			text =
-					PROPERTY_FILE_LABEL
-							+ " "
-							+ workflowElement
-									.getAttributeValue(AbstractWorkflowElement.FILE_ATTRIBUTE);
-		} else if (workflowElement.isComponent()) {
-			if (workflowElement.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)) {
-				final String classFQN =
-						workflowElement
-								.getAttributeValue(AbstractWorkflowElement.CLASS_ATTRIBUTE);
+		}
+		else if (workflowElement.isFileProperty()) {
+			text = PROPERTY_FILE_LABEL + " " + workflowElement.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE);
+		}
+		else if (workflowElement.isComponent()) {
+			if (workflowElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
+				final String classFQN = workflowElement.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);
 				final int lastDot = classFQN.lastIndexOf('.');
 				text = classFQN.substring(lastDot + 1);
-			} else {
+			}
+			else {
 				text = workflowElement.getName();
 			}
-		} else {
+		}
+		else {
 			text = workflowElement.getName();
-			if (workflowElement
-					.getAttributeValue(AbstractWorkflowElement.VALUE_ATTRIBUTE) != null) {
-				text +=
-						" = "
-								+ workflowElement
-										.getAttributeValue(AbstractWorkflowElement.VALUE_ATTRIBUTE);
+			if (workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE) != null) {
+				text += " = " + workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
 			}
 		}
 		return text;

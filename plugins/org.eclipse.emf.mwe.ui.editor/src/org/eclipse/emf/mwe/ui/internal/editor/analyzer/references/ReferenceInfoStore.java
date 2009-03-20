@@ -23,7 +23,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class ReferenceInfoStore {
 
@@ -40,7 +40,7 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean addDefinition(final AbstractWorkflowElement element) {
-		if (element == null || !element.hasAttribute(AbstractWorkflowElement.ID_ATTRIBUTE))
+		if (element == null || !element.hasAttribute(IWorkflowAttribute.ID_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -55,7 +55,7 @@ public class ReferenceInfoStore {
 	}
 
 	public void addReference(final AbstractWorkflowElement element) {
-		if (element == null || !element.hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE))
+		if (element == null || !element.hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		final ReferenceInfo info = createReferenceInfo(element);
@@ -84,16 +84,16 @@ public class ReferenceInfoStore {
 	}
 
 	public boolean isDefined(final ReferenceInfo info) {
-		if (info == null || !info.getElement().hasAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE))
+		if (info == null || !info.getElement().hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 
 		return definitionSet.contains(info);
 	}
 
 	private ReferenceInfo createReferenceInfo(final AbstractWorkflowElement element) {
-		IWorkflowAttribute attribute = element.getAttribute(AbstractWorkflowElement.ID_ATTRIBUTE);
+		IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.ID_ATTRIBUTE);
 		if (attribute == null) {
-			attribute = element.getAttribute(AbstractWorkflowElement.ID_REF_ATTRIBUTE);
+			attribute = element.getAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE);
 		}
 
 		if (attribute == null)

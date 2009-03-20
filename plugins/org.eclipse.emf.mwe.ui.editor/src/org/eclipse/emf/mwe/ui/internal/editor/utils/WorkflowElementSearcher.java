@@ -14,13 +14,14 @@ package org.eclipse.emf.mwe.ui.internal.editor.utils;
 import java.util.Collection;
 
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public final class WorkflowElementSearcher {
@@ -32,8 +33,8 @@ public final class WorkflowElementSearcher {
 		throw new UnsupportedOperationException();
 	}
 
-	public static AbstractWorkflowElement searchContainerElement(final AbstractWorkflowElement root, final IDocument document,
-			final int offset) {
+	public static AbstractWorkflowElement searchContainerElement(final AbstractWorkflowElement root,
+			final IDocument document, final int offset) {
 		if (root == null || document == null)
 			throw new IllegalArgumentException();
 
@@ -46,7 +47,7 @@ public final class WorkflowElementSearcher {
 			return null;
 
 		AbstractWorkflowElement element = internalSearchContainerElement(allElements, offset);
-		while (element != null && !element.hasAttribute(AbstractWorkflowElement.CLASS_ATTRIBUTE)) {
+		while (element != null && !element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 			element = element.getParent();
 		}
 		return element;
@@ -62,8 +63,8 @@ public final class WorkflowElementSearcher {
 		return null;
 	}
 
-	private static AbstractWorkflowElement internalSearchContainerElement(final Collection<AbstractWorkflowElement> allElements,
-			final int offset) {
+	private static AbstractWorkflowElement internalSearchContainerElement(
+			final Collection<AbstractWorkflowElement> allElements, final int offset) {
 		AbstractWorkflowElement foundElement = null;
 		int foundOffset = -1;
 
