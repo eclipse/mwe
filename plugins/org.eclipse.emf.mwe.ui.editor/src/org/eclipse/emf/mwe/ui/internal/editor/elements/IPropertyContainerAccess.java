@@ -17,16 +17,6 @@ import java.util.Set;
 public interface IPropertyContainerAccess {
 
 	/**
-	 * Disables property inheritance.
-	 */
-	void disablePropertyInheritance();
-
-	/**
-	 * Enables property inheritance.
-	 */
-	void enablePropertyInheritance();
-
-	/**
 	 * Returns a set containing all properties in the container.
 	 * 
 	 * @return set containing all properties in the container or an empty
@@ -125,7 +115,7 @@ public interface IPropertyContainerAccess {
 	boolean hasReferenceProperty(String name);
 
 	/**
-	 * Checks if the container has a simple value property with the name
+	 * Checks if the container has a simple property with the name
 	 * <code>name</code>.
 	 * 
 	 * @param name
@@ -133,7 +123,7 @@ public interface IPropertyContainerAccess {
 	 * @return <code>true</code> if the container holds a simple value property
 	 *         <code>name</code>, otherwise <code>false</code>
 	 */
-	boolean hasSimpleValueProperty(String name);
+	boolean hasSimpleProperty(String name);
 
 	/**
 	 * Checks if property container is empty.
@@ -142,12 +132,4 @@ public interface IPropertyContainerAccess {
 	 *         <code>false</code>
 	 */
 	boolean isEmpty();
-
-	/**
-	 * Checks if property inheritance is enabled.
-	 * 
-	 * @return <code>true</code> if property inheritance is enabled, otherwise
-	 *         <code>false</code>
-	 */
-	boolean isPropertyInheritanceEnabled();
 }

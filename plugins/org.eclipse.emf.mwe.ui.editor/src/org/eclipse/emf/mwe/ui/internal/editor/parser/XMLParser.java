@@ -1,4 +1,4 @@
-/*
+/* 
  * Copyright (c) 2008 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -31,12 +31,11 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public class XMLParser {
 
-	public static final String VALIDATION_FEATURE =
-			"http://xml.org/sax/features/validation";
+	public static final String VALIDATION_FEATURE = "http://xml.org/sax/features/validation";
 
 	private ErrorHandler errorHandler;
 
@@ -56,7 +55,8 @@ public class XMLParser {
 		InputSource inputSource = null;
 		try {
 			inputSource = new InputSource(new FileReader(xmlFilePath));
-		} catch (final FileNotFoundException e) {
+		}
+		catch (final FileNotFoundException e) {
 			Log.logError(e);
 		}
 		parse(inputSource);
@@ -69,20 +69,23 @@ public class XMLParser {
 			reader.setContentHandler(contentHandler);
 			reader.setFeature(VALIDATION_FEATURE, true);
 			reader.parse(inputSource);
-		} catch (final SAXNotRecognizedException e) {
+		}
+		catch (final SAXNotRecognizedException e) {
 			Log.logError(e);
-		} catch (final SAXNotSupportedException e) {
+		}
+		catch (final SAXNotSupportedException e) {
 			Log.logError(e);
-		} catch (final IOException e) {
+		}
+		catch (final IOException e) {
 			Log.logError(e);
-		} catch (ParserConfigurationException e) {
+		}
+		catch (ParserConfigurationException e) {
 			Log.logError(e);
 		}
 	}
 
 	public void parse(final String xmlText) throws SAXException {
-		final InputSource inputSource =
-				new InputSource(new StringReader(xmlText));
+		final InputSource inputSource = new InputSource(new StringReader(xmlText));
 		parse(inputSource);
 	}
 

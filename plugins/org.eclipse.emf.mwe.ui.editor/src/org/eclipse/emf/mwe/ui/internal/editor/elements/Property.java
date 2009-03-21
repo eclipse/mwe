@@ -11,10 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
-
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class Property {
@@ -89,7 +88,7 @@ public class Property {
 	 *         otherwise <code>false</code>
 	 */
 	public boolean isReference() {
-		return value != null && file == null;
+		return value == null && file != null;
 	}
 
 	/**

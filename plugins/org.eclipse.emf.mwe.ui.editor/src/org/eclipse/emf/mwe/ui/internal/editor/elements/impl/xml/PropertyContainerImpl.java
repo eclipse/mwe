@@ -24,14 +24,12 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
 
 	private Map<String, Property> properties = new HashMap<String, Property>();
-
-	private boolean inheritProperties;
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
@@ -71,21 +69,6 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public void clear() {
 		properties.clear();
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#disablePropertyInheritance()
-	 */
-	public void disablePropertyInheritance() {
-		inheritProperties = false;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#enablePropertyInheritance()
-	 */
-	public void enablePropertyInheritance() {
-		inheritProperties = true;
-
 	}
 
 	/**
@@ -198,9 +181,9 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
 	 */
-	public boolean hasSimpleValueProperty(String name) {
+	public boolean hasSimpleProperty(String name) {
 		for (Property p : properties.values()) {
 			if (p.isSimple())
 				return true;
@@ -213,12 +196,5 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public boolean isEmpty() {
 		return getPropertyCount() == 0;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyInheritanceEnabled()
-	 */
-	public boolean isPropertyInheritanceEnabled() {
-		return inheritProperties;
 	}
 }

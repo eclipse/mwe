@@ -89,22 +89,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#disablePropertyInheritance()
-	 */
-	public void disablePropertyInheritance() {
-		propertyContainer.disablePropertyInheritance();
-	}
-
-	/**
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#enablePropertyInheritance()
-	 */
-	public void enablePropertyInheritance() {
-		propertyContainer.enablePropertyInheritance();
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IAttributeContainer#getAttribute(java.lang.String)
 	 */
 	public IWorkflowAttribute getAttribute(final String name) {
@@ -377,10 +361,10 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
 	 */
-	public boolean hasSimpleValueProperty(String name) {
-		return getPropertyContainer().hasSimpleValueProperty(name);
+	public boolean hasSimpleProperty(String name) {
+		return getPropertyContainer().hasSimpleProperty(name);
 
 	}
 
@@ -405,14 +389,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	public boolean isInstantiable() {
 		IType type = getMappedClassType();
 		return (type != null) ? TypeUtils.isInstantiable(type) : false;
-	}
-
-	/**
-	 * @return
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyInheritanceEnabled()
-	 */
-	public boolean isPropertyInheritanceEnabled() {
-		return propertyContainer.isPropertyInheritanceEnabled();
 	}
 
 	/**
@@ -525,12 +501,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		if (propertyContainer.isEmpty()) {
 			if (hasParent())
 				return getParent().getPropertyContainer();
-		}
-		else if (isPropertyInheritanceEnabled()) {
-			IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-			result.addProperties(getParent().getPropertyContainer());
-			result.addProperties(propertyContainer);
-			return result;
 		}
 		return propertyContainer;
 	}
