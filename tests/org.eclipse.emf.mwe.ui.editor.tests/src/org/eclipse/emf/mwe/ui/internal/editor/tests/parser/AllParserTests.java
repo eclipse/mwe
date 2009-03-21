@@ -8,24 +8,20 @@
  * Contributors:
  *    committers of openArchitectureWare - initial API and implementation
  */
- 
+
 package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-
 public class AllParserTests {
 
 	public static Test suite() {
-		TestSuite suite =
-				new TestSuite(
-						"Test for org.eclipse.emf.mwe.ui.internal.editor.tests.parser");
-		//$JUnit-BEGIN$
+		TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.parser");
+		// $JUnit-BEGIN$
 		suite.addTestSuite(AssignmentTest.class);
 		suite.addTestSuite(PropertyTest.class);
-		//$JUnit-END$
+		// $JUnit-END$
 		return suite;
 	}
 

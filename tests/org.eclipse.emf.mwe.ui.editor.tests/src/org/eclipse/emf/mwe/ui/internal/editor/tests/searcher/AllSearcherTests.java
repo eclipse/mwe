@@ -8,23 +8,19 @@
  * Contributors:
  *    committers of openArchitectureWare - initial API and implementation
  */
- 
+
 package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-
-public class AllWorkflowElementSearcherTests {
+public class AllSearcherTests {
 
 	public static Test suite() {
-		TestSuite suite =
-				new TestSuite(
-						"Test for org.eclipse.emf.mwe.ui.internal.editor.tests.searcher");
-		//$JUnit-BEGIN$
+		TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.searcher");
+		// $JUnit-BEGIN$
 		suite.addTestSuite(WorkflowElementSearcherTest.class);
-		//$JUnit-END$
+		// $JUnit-END$
 		return suite;
 	}
 

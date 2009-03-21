@@ -22,7 +22,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.ProjectCreator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public abstract class PluginTestBase extends TestCase {
@@ -30,6 +30,8 @@ public abstract class PluginTestBase extends TestCase {
 	private static final String MWE_UTILS_PROJECT = "org.eclipse.emf.mwe.utils";
 
 	private static final String XTEND_PROJECT = "org.eclipse.xtend";
+
+	private static final String XTEXT_GENERATOR_PROJECT = "org.eclipse.xtext.generator";
 
 	protected IProject project;
 
@@ -51,6 +53,7 @@ public abstract class PluginTestBase extends TestCase {
 
 	private void createProject(final String projectName) {
 		final Set<String> requiredBundles = new HashSet<String>();
+		requiredBundles.add(XTEXT_GENERATOR_PROJECT);
 		requiredBundles.add(XTEND_PROJECT);
 		requiredBundles.add(MWE_UTILS_PROJECT);
 

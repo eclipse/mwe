@@ -15,19 +15,19 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.emf.mwe.ui.internal.editor.tests.parser.AllParserTests;
-import org.eclipse.emf.mwe.ui.internal.editor.tests.searcher.AllWorkflowElementSearcherTests;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.references.AllReferencesTests;
+import org.eclipse.emf.mwe.ui.internal.editor.tests.searcher.AllSearcherTests;
 import org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils.AllTypeUtilsTests;
 
 public class AllTests {
 
 	public static Test suite() {
-		final TestSuite suite =
-				new TestSuite(
-						"Test for org.eclipse.emf.mwe.ui.internal.editor.tests");
+		final TestSuite suite = new TestSuite("Test for org.eclipse.emf.mwe.ui.internal.editor.tests");
 		// $JUnit-BEGIN$
 		suite.addTest(AllParserTests.suite());
-		suite.addTest(AllWorkflowElementSearcherTests.suite());
+		suite.addTest(AllSearcherTests.suite());
 		suite.addTest(AllTypeUtilsTests.suite());
+		suite.addTest(AllReferencesTests.suite());
 		// $JUnit-END$
 		return suite;
 	}

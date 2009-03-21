@@ -8,25 +8,21 @@
  * Contributors:
  *    committers of openArchitectureWare - initial API and implementation
  */
- 
+
 package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-
-
 public class AllTypeUtilsTests {
 
 	public static Test suite() {
-		TestSuite suite =
-				new TestSuite(
-						"Test for org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils");
-		//$JUnit-BEGIN$
+		TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils");
+		// $JUnit-BEGIN$
 		suite.addTestSuite(PropertyNamesTest.class);
 		suite.addTestSuite(TypeUtilsTest.class);
 		suite.addTestSuite(ClassHierarchyTest.class);
-		//$JUnit-END$
+		// $JUnit-END$
 		return suite;
 	}
 

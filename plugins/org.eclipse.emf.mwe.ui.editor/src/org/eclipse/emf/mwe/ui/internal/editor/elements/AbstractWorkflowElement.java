@@ -45,7 +45,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 	private IPropertyContainer propertyContainer;
 
-	private boolean recomputeTypeInfo;
+	private boolean recomputeTypeInfo = true;
 
 	private final List<AbstractWorkflowElement> children = new ArrayList<AbstractWorkflowElement>();
 

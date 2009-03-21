@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -44,7 +44,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n";
 
 	private static final String WORKFLOW3 = "<workflow>\n" + "	<property file=\'generate.properties\'/>\n"
-			+ "	<component file=\'org/openarchitectureware/xtext/Generator.oaw\' inheritAll=\'true\'/>\n"
+			+ "	<component file=\'org/eclipse/xtext/generator/StandardRuntimeFragments.mwe\' inheritAll=\'true\'/>\n"
 			+ "	<component class=\'org.eclipse.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
 
 	public void testFindContainerCompleteWorkflow() {
