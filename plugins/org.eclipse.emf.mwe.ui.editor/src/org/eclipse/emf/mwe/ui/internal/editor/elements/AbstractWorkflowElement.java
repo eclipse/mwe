@@ -208,6 +208,14 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @return
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getImportedProperties()
+	 */
+	public IPropertyContainer getImportedProperties() {
+		return propertyContainer.getImportedProperties();
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getMappedClassName()
 	 */
 	public String getMappedClassName() {
@@ -504,4 +512,5 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		}
 		return propertyContainer;
 	}
+
 }

@@ -13,7 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class Property {
@@ -23,6 +23,8 @@ public class Property {
 	private String value;
 
 	private String file;
+
+	private boolean imported;
 
 	public Property(AbstractWorkflowElement element) {
 		if (element == null || !element.isProperty())
@@ -82,6 +84,15 @@ public class Property {
 	}
 
 	/**
+	 * Returns the value of field <code>imported</code>.
+	 * 
+	 * @return value of <code>imported</code>.
+	 */
+	public boolean isImported() {
+		return imported;
+	}
+
+	/**
 	 * Checks if property holds a reference.
 	 * 
 	 * @return <code>true</code> if the current property holds a reference,
@@ -109,6 +120,16 @@ public class Property {
 	 */
 	public void setFile(String file) {
 		this.file = file;
+	}
+
+	/**
+	 * Sets a new value for field <code>imported</code>.
+	 * 
+	 * @param imported
+	 *            new value for <code>imported</code>.
+	 */
+	public void setImported(boolean imported) {
+		this.imported = imported;
 	}
 
 	/**

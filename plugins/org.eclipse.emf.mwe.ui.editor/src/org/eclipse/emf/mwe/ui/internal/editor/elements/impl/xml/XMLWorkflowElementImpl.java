@@ -23,7 +23,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -192,5 +192,4 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	public void setImage(final String image) {
 		this.image = image;
 	}
-
 }

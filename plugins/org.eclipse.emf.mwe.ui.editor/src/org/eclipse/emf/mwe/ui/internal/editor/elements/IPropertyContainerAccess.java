@@ -132,4 +132,13 @@ public interface IPropertyContainerAccess {
 	 *         <code>false</code>
 	 */
 	boolean isEmpty();
+
+	/**
+	 * Returns a property container that holds all imported properties that are
+	 * in the current container.
+	 * 
+	 * @return property container holding all imported properties of the current
+	 *         container or empty container, if there are no imported properties
+	 */
+	IPropertyContainer getImportedProperties();
 }
