@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -104,7 +104,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			}
 
 		}
-		else if (currentElement.isProperty() && propertyContainer != null) {
+		else if (currentElement.isProperty()) {
 			try {
 				addProperty(currentElement);
 			}
@@ -267,6 +267,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new IllegalArgumentException();
 
 		Property property = new Property(element);
+		if (propertyContainer != null) {
+			property.setImported(true);
+		}
+
 		try {
 			if (property.isSimple()) {
 				propertyContainer.addProperty(property);
