@@ -20,6 +20,7 @@ public class AllReferencesTests {
 		TestSuite suite = new TestSuite("Test suite sfor org.eclipse.emf.mwe.ui.internal.editor.tests.references");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(SimpleReferencesTest.class);
+		suite.addTestSuite(AdvancedReferencesTest.class);
 		// $JUnit-END$
 		return suite;
 	}
