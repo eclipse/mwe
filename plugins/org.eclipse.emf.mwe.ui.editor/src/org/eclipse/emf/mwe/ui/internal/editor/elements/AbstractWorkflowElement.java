@@ -212,7 +212,14 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getImportedProperties()
 	 */
 	public IPropertyContainer getImportedProperties() {
-		return propertyContainer.getImportedProperties();
+		return getPropertyContainer().getImportedProperties();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getLocalProperties()
+	 */
+	public IPropertyContainer getLocalProperties() {
+		return getPropertyContainer().getLocalProperties();
 	}
 
 	/**
@@ -377,7 +384,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @return
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isEmpty()
 	 */
 	public boolean isEmpty() {
@@ -506,11 +512,10 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	protected IPropertyContainer getPropertyContainer() {
-		if (propertyContainer.isEmpty()) {
-			if (hasParent())
-				return getParent().getPropertyContainer();
+		if (hasParent()) {
+			propertyContainer.addProperties(getParent().getLocalProperties());
 		}
+
 		return propertyContainer;
 	}
-
 }

@@ -25,7 +25,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
@@ -79,6 +79,19 @@ public class PropertyContainerImpl implements IPropertyContainer {
 		IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
 		for (Property p : getProperties()) {
 			if (p.isImported()) {
+				result.addProperty(p);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getLocalProperties()
+	 */
+	public IPropertyContainer getLocalProperties() {
+		IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		for (Property p : getProperties()) {
+			if (!p.isImported()) {
 				result.addProperty(p);
 			}
 		}
@@ -211,5 +224,4 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	public boolean isEmpty() {
 		return getPropertyCount() == 0;
 	}
-
 }

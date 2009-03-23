@@ -141,4 +141,13 @@ public interface IPropertyContainerAccess {
 	 *         container or empty container, if there are no imported properties
 	 */
 	IPropertyContainer getImportedProperties();
+
+	/**
+	 * Returns a property container that holds all local properties that are in
+	 * the current container.
+	 * 
+	 * @return property container holding all local properties of the current
+	 *         container or empty container, if there are no local properties
+	 */
+	IPropertyContainer getLocalProperties();
 }
