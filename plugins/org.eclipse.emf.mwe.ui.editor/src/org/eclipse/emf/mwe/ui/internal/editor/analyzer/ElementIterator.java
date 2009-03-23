@@ -19,14 +19,14 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class ElementIterator {
 
@@ -42,14 +42,12 @@ public class ElementIterator {
 
 	private final List<IWorkflowAttribute> attributeList = new ArrayList<IWorkflowAttribute>();
 
-	private final PropertyStore propertyStore = new PropertyStore();
-
 	private final ReferenceInfoStore referenceInfoStore;
 
 	public ElementIterator(final IFile file, final IDocument document) {
 		this.file = file;
 		this.document = document;
-		analyzer = new ElementAnalyzerRegistry(file, document, propertyStore);
+		analyzer = new ElementAnalyzerRegistry(file, document);
 		referenceInfoStore = new ReferenceInfoStore(file);
 	}
 
@@ -85,15 +83,6 @@ public class ElementIterator {
 	 */
 	public List<AbstractWorkflowElement> getElementList() {
 		return elementList;
-	}
-
-	/**
-	 * Returns the value of field <code>propertyNameList</code>.
-	 * 
-	 * @return value of <code>propertyNameList</code>.
-	 */
-	public List<String> getPropertyNameList() {
-		return analyzer.getPropertyNameList();
 	}
 
 	public Collection<ReferenceInfo> getReferenceDefinitions() {

@@ -17,13 +17,12 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class WorkflowFileAnalyzer extends DefaultAnalyzer {
 
-	public WorkflowFileAnalyzer(final IFile file, final IDocument document,
-			final PropertyStore propertyStore) {
-		super(file, document, propertyStore);
+	public WorkflowFileAnalyzer(final IFile file, final IDocument document) {
+		super(file, document);
 	}
 
 	/**

@@ -12,18 +12,18 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 
-	public AssignmentPropertyAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
-		super(file, document, propertyStore);
+	public AssignmentPropertyAnalyzer(final IFile file, final IDocument document) {
+		super(file, document);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class AssignmentPropertyAnalyzer extends DefaultAnalyzer {
 				continue;
 			}
 
-			checkPropertyReference(attr);
+			checkPropertyReference(element, attr);
 		}
 	}
 }

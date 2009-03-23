@@ -62,7 +62,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.50 $
+ * @version $Revision: 1.51 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -116,8 +116,6 @@ public class WorkflowEditor extends TextEditor {
 	private Collection<AbstractWorkflowElement> elements;
 
 	private Collection<IWorkflowAttribute> attributes;
-
-	private Collection<String> propertyNames;
 
 	private Collection<ReferenceInfo> references;
 
@@ -214,15 +212,6 @@ public class WorkflowEditor extends TextEditor {
 		}
 	}
 
-	/**
-	 * Returns the value of field <code>propertyNames</code>.
-	 * 
-	 * @return value of <code>propertyNames</code>.
-	 */
-	public Collection<String> getPropertyNames() {
-		return propertyNames;
-	}
-
 	public Collection<ReferenceInfo> getReferenceDefinitions() {
 		return referenceDefinitions;
 	}
@@ -299,7 +288,6 @@ public class WorkflowEditor extends TextEditor {
 		iterator.checkValidity(getRootElement());
 		elements = iterator.getElementList();
 		attributes = iterator.getAttributeList();
-		propertyNames = iterator.getPropertyNameList();
 		references = iterator.getReferences();
 		referenceDefinitions = iterator.getReferenceDefinitions();
 	}

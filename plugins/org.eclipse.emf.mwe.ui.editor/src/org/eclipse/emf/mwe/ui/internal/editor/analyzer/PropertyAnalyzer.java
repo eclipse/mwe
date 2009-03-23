@@ -11,19 +11,14 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
 
@@ -31,8 +26,8 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 
 	private static final String INVALID_PROPERTY_MSG = "Property not valid";
 
-	public PropertyAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
-		super(file, document, propertyStore);
+	public PropertyAnalyzer(final IFile file, final IDocument document) {
+		super(file, document);
 	}
 
 	/**
@@ -45,26 +40,6 @@ public class PropertyAnalyzer extends DefaultAnalyzer {
 	public void checkValidity(final AbstractWorkflowElement element) {
 		if (element.getName().equals(IWorkflowElementTypeInfo.PROPERTY_TAG) && !element.isProperty()) {
 			createMarker(element, INVALID_PROPERTY_MSG);
-		}
-		if (element.isSimpleProperty()) {
-			propertyStore.add(element.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE));
-		}
-		else if (element.isFileProperty()) {
-			parseFileProperties(element);
-		}
-	}
-
-	private void parseFileProperties(final AbstractWorkflowElement element) {
-		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
-		final String content = TypeUtils.getFileContent(getFile(), attribute);
-		if (content == null)
-			return;
-
-		final Pattern p = Pattern.compile(PROPERTY_REGEX, Pattern.MULTILINE);
-		final Matcher m = p.matcher(content);
-		while (m.find()) {
-			final String propertyName = m.group(1);
-			propertyStore.add(propertyName);
 		}
 	}
 }

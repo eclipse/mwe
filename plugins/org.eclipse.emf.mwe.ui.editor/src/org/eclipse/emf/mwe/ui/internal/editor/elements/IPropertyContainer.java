@@ -15,7 +15,7 @@ import java.util.Collection;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public interface IPropertyContainer extends IPropertyContainerAccess {
@@ -27,14 +27,6 @@ public interface IPropertyContainer extends IPropertyContainerAccess {
 	 *            the collection of properties to add
 	 */
 	void addProperties(Collection<Property> collection);
-
-	/**
-	 * Adds all properties from another container to the current container.
-	 * 
-	 * @param container
-	 *            the container to add
-	 */
-	void addProperties(IPropertyContainer container);
 
 	/**
 	 * Adds a property to the container.

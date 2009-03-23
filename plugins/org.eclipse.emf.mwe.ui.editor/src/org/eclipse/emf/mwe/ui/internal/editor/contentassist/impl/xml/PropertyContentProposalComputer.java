@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
@@ -24,14 +23,12 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
-public class PropertyContentProposalComputer extends
-AbstractStringContentProposalComputer {
+public class PropertyContentProposalComputer extends AbstractStringContentProposalComputer {
 
-	public PropertyContentProposalComputer(final IFile file,
-			final WorkflowEditor editor, final IDocument document,
+	public PropertyContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
@@ -41,7 +38,8 @@ AbstractStringContentProposalComputer {
 		String text = null;
 		if (useContractedElementCompletion(offset, document)) {
 			text = name;
-		} else {
+		}
+		else {
 			text = "${" + name + "}";
 		}
 		return text;
@@ -50,13 +48,14 @@ AbstractStringContentProposalComputer {
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> result = createEmptySet();
-		final Collection<String> propertyNames = editor.getPropertyNames();
-		if (propertyNames != null) {
-			for (final String name : propertyNames) {
-				final String proposalText = createProposalText(name, offset);
-				result.add(proposalText);
-			}
-		}
+		// TODO Reimplement
+		// final Collection<String> propertyNames = editor.getPropertyNames();
+		// if (propertyNames != null) {
+		// for (final String name : propertyNames) {
+		// final String proposalText = createProposalText(name, offset);
+		// result.add(proposalText);
+		// }
+		// }
 		return result;
 	}
 
@@ -68,16 +67,14 @@ AbstractStringContentProposalComputer {
 	 *      int)
 	 */
 	@Override
-	protected List<ICompletionProposal> removeNonMatchingEntries(
-			final List<ICompletionProposal> proposalSet, final int offset) {
-		final List<ICompletionProposal> resultSet =
-			new ArrayList<ICompletionProposal>();
+	protected List<ICompletionProposal> removeNonMatchingEntries(final List<ICompletionProposal> proposalSet,
+			final int offset) {
+		final List<ICompletionProposal> resultSet = new ArrayList<ICompletionProposal>();
 		final int o = offset > 0 ? offset - 1 : offset;
 		final TextInfo currentText = currentText(document, o);
 		final String startText = currentText.getText();
 		for (final ICompletionProposal p : proposalSet) {
-			if ("".equals(startText)
-					|| p.getDisplayString().startsWith(startText)) {
+			if ("".equals(startText) || p.getDisplayString().startsWith(startText)) {
 				resultSet.add(p);
 			}
 		}

@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -43,15 +43,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected final IDocument document;
 
-	protected PropertyStore propertyStore;
-
-	public DefaultAnalyzer(final IFile file, final IDocument document, final PropertyStore propertyStore) {
-		if (file == null || document == null || propertyStore == null)
+	public DefaultAnalyzer(final IFile file, final IDocument document) {
+		if (file == null || document == null)
 			throw new IllegalArgumentException();
 
 		this.file = file;
 		this.document = document;
-		this.propertyStore = propertyStore;
 	}
 
 	/**
@@ -148,7 +145,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			return;
 		}
 		if (isPropertyReference(attribute)) {
-			checkPropertyReference(attribute);
+			checkPropertyReference(element, attribute);
 		}
 	}
 
@@ -161,13 +158,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 	}
 
-	protected void checkPropertyReference(final IWorkflowAttribute attribute) {
+	protected void checkPropertyReference(AbstractWorkflowElement element, final IWorkflowAttribute attribute) {
 		final String attrValue = attribute.getValue();
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attrValue);
 		while (m.find()) {
 			final String value = m.group(1);
-			if (!propertyStore.contains(value)) {
+			if (!element.hasProperty(value)) {
 				createMarker(attribute, "Undefined property reference '" + value + "'");
 			}
 		}

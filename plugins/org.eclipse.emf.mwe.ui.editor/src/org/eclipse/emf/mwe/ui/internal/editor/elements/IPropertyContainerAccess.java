@@ -17,6 +17,32 @@ import java.util.Set;
 public interface IPropertyContainerAccess {
 
 	/**
+	 * Adds all properties from another container to the current container.
+	 * 
+	 * @param container
+	 *            the container to add
+	 */
+	void addProperties(IPropertyContainer container);
+
+	/**
+	 * Returns a property container that holds all imported properties that are
+	 * in the current container.
+	 * 
+	 * @return property container holding all imported properties of the current
+	 *         container or empty container, if there are no imported properties
+	 */
+	IPropertyContainer getImportedProperties();
+
+	/**
+	 * Returns a property container that holds all local properties that are in
+	 * the current container.
+	 * 
+	 * @return property container holding all local properties of the current
+	 *         container or empty container, if there are no local properties
+	 */
+	IPropertyContainer getLocalProperties();
+
+	/**
 	 * Returns a set containing all properties in the container.
 	 * 
 	 * @return set containing all properties in the container or an empty
@@ -132,22 +158,4 @@ public interface IPropertyContainerAccess {
 	 *         <code>false</code>
 	 */
 	boolean isEmpty();
-
-	/**
-	 * Returns a property container that holds all imported properties that are
-	 * in the current container.
-	 * 
-	 * @return property container holding all imported properties of the current
-	 *         container or empty container, if there are no imported properties
-	 */
-	IPropertyContainer getImportedProperties();
-
-	/**
-	 * Returns a property container that holds all local properties that are in
-	 * the current container.
-	 * 
-	 * @return property container holding all local properties of the current
-	 *         container or empty container, if there are no local properties
-	 */
-	IPropertyContainer getLocalProperties();
 }

@@ -19,11 +19,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -60,7 +61,7 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 		if (f != null)
 			return f;
 		else if (editor != null && editor.getInputFile() != null)
-			return convertToFile(editor.getInputFile());
+			return FileUtils.convertToFile(editor.getInputFile());
 
 		return null;
 	}

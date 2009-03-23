@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 import java.io.File;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -24,6 +23,7 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementTypeComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
@@ -77,6 +77,14 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		element.setParent(this);
 		children.add(element);
 		recomputeTypeInfo = true;
+	}
+
+	/**
+	 * @param container
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
+	 */
+	public void addProperties(IPropertyContainer container) {
+		propertyContainer.addProperties(container);
 	}
 
 	/**
@@ -436,7 +444,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 *            new value for <code>file</code>.
 	 */
 	public void setFile(IFile file) {
-		this.file = convertToFile(file);
+		this.file = FileUtils.convertToFile(file);
 	}
 
 	/**
@@ -482,24 +490,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * Converts an <codeIFile</code> object to a <code>File</code> object.
-	 * 
-	 * @param file
-	 *            the <code>IFile</code> object
-	 * @return the converted <code>File</code> object
-	 */
-	protected File convertToFile(IFile file) {
-		if (file == null)
-			return null;
-
-		URI uri = file.getLocationURI();
-		if (uri != null)
-			return new File(uri);
-
-		return null;
-	}
-
-	/**
 	 * Returns the computed type of the current workflow element.
 	 * 
 	 * @return computed type of current element.
@@ -518,4 +508,5 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 		return propertyContainer;
 	}
+
 }

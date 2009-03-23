@@ -12,7 +12,6 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.util.HashMap;
-import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
@@ -22,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
@@ -30,18 +29,18 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 
 	private final HashMap<WorkflowElementType, IElementAnalyzer> map = new HashMap<WorkflowElementType, IElementAnalyzer>();
 
-	public ElementAnalyzerRegistry(final IFile file, final IDocument document, final PropertyStore propertyStore) {
-		super(file, document, propertyStore);
-		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.PROPERTY, new PropertyAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.COMPOSE, new ComponentAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file, document, propertyStore));
-		map.put(WorkflowElementType.ASSIGNMENTPROPERTY, new AssignmentPropertyAnalyzer(file, document, propertyStore));
+	public ElementAnalyzerRegistry(final IFile file, final IDocument document) {
+		super(file, document);
+		map.put(WorkflowElementType.WORKFLOWFILE, new WorkflowFileAnalyzer(file, document));
+		map.put(WorkflowElementType.WORKFLOW, new WorkflowAnalyzer(file, document));
+		map.put(WorkflowElementType.PROPERTY, new PropertyAnalyzer(file, document));
+		map.put(WorkflowElementType.SIMPLE_PROPERTY, new PropertyAnalyzer(file, document));
+		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file, document));
+		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file, document));
+		map.put(WorkflowElementType.COMPOSE, new ComponentAnalyzer(file, document));
+		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(file, document));
+		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file, document));
+		map.put(WorkflowElementType.ASSIGNMENTPROPERTY, new AssignmentPropertyAnalyzer(file, document));
 	}
 
 	/**
@@ -63,9 +62,5 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 		else
 			throw new ValidationException(element.getStartElementRange().getStartLine(), element.getStartElementRange()
 					.getStartColumn(), ERROR_MSG + " '" + element.getElementTypeString() + "'!", true);
-	}
-
-	public List<String> getPropertyNameList() {
-		return propertyStore.getNames();
 	}
 }
