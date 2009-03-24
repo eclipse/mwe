@@ -62,13 +62,13 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.51 $
+ * @version $Revision: 1.52 $
  */
 public class WorkflowEditor extends TextEditor {
 
 	private class InitializerJob extends Job {
 
-		public InitializerJob(String name, IResource resource) {
+		public InitializerJob(final String name, final IResource resource) {
 			super(name);
 			setPriority(Job.LONG);
 			if (resource != null) {
@@ -80,7 +80,7 @@ public class WorkflowEditor extends TextEditor {
 		}
 
 		@Override
-		protected IStatus run(IProgressMonitor monitor) {
+		protected IStatus run(final IProgressMonitor monitor) {
 			if (monitor.isCanceled())
 				return Status.CANCEL_STATUS;
 			try {
@@ -88,8 +88,8 @@ public class WorkflowEditor extends TextEditor {
 				if (monitor.isCanceled())
 					return Status.CANCEL_STATUS;
 			}
-			catch (CoreException e) {
-				IDocument document = getInputDocument();
+			catch (final CoreException e) {
+				final IDocument document = getInputDocument();
 				MarkerManager.createMarkerFromRange(getInputFile(), document, e.getMessage(), new ElementPositionRange(
 						document), true);
 			}
@@ -203,10 +203,10 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	@Override
-	protected void doSetInput(IEditorInput input) throws CoreException {
+	protected void doSetInput(final IEditorInput input) throws CoreException {
 		super.doSetInput(input);
 		if (input instanceof IFileEditorInput) {
-			IFile file = getInputFile();
+			final IFile file = getInputFile();
 			initializerJob = new InitializerJob("Initializing editor...", file);
 			initializerJob.schedule();
 		}
@@ -241,9 +241,10 @@ public class WorkflowEditor extends TextEditor {
 		try {
 			return DocumentParser.parse(document, null, this);
 		}
-		catch (ValidationException e) {
-			int line = e.getLineNumber() - 1;
-			createMarker(document, e.getDetailedMessage(), line, 0);
+		catch (final ValidationException e) {
+			final int line = e.getLineNumber() - 1;
+			final int column = e.getColumnNumber();
+			createMarker(document, e.getDetailedMessage(), line, column);
 			return null;
 		}
 	}
@@ -389,7 +390,7 @@ public class WorkflowEditor extends TextEditor {
 		return WorkflowEditorPlugin.getDefault();
 	}
 
-	private void preloadClassNameCache(IProgressMonitor monitor) throws CoreException {
+	private void preloadClassNameCache(final IProgressMonitor monitor) throws CoreException {
 		final IFile file = getInputFile();
 		final IType baseType = ClassContentProposalComputer.getWorkflowBaseClass(file);
 		if (baseType == null)

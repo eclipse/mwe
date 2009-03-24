@@ -14,17 +14,17 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeCheck;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
@@ -35,10 +35,8 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 
 	private final String value;
 
-	public XMLWorkflowAttributeImpl(final AbstractWorkflowElement element, final String name,
-			final String value) {
-		if (element == null || name == null || value == null
-				|| name.length() == 0)
+	public XMLWorkflowAttributeImpl(final AbstractWorkflowElement element, final String name, final String value) {
+		if (element == null || name == null || value == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
 		this.element = element;
@@ -47,9 +45,9 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>getAttributeRange</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttributeRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getAttributeRange()
 	 */
 	public ElementPositionRange getAttributeRange() {
@@ -60,34 +58,30 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 		String text;
 		try {
 			text = document.get(start, length);
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Invalid document location", e);
 			return null;
 		}
 
-		final String singleQuotepattern =
-				name + "\\s*=\\s*\'" + quote(value) + "\'";
-		final String doubleQuotepattern =
-				name + "\\s*=\\s*\"" + quote(value) + "\"";
+		final String singleQuotepattern = name + "\\s*=\\s*\'" + quote(value) + "\'";
+		final String doubleQuotepattern = name + "\\s*=\\s*\"" + quote(value) + "\"";
 		final Pattern singleQuotePattern = Pattern.compile(singleQuotepattern);
 		final Pattern doubleQuotePattern = Pattern.compile(doubleQuotepattern);
 		final Matcher singleQuoteMatcher = singleQuotePattern.matcher(text);
 		final Matcher doubleQuoteMatcher = doubleQuotePattern.matcher(text);
-		ElementPositionRange range =
-				getElementPositionRange(singleQuoteMatcher, document, start);
+		ElementPositionRange range = getElementPositionRange(singleQuoteMatcher, document, start);
 		if (range == null) {
-			range =
-					getElementPositionRange(doubleQuoteMatcher, document,
-							start);
+			range = getElementPositionRange(doubleQuoteMatcher, document, start);
 		}
 
 		return range;
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>getAttributeValueRange</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getAttributeValueRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getAttributeValueRange()
 	 */
 	public ElementPositionRange getAttributeValueRange() {
@@ -101,12 +95,11 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 
 		try {
 			// Skip everything to the opening quote
-			while (start <= end
-					&& (document.getChar(start) != '"' && document
-							.getChar(start) != '\'')) {
+			while (start <= end && (document.getChar(start) != '"' && document.getChar(start) != '\'')) {
 				start++;
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -122,9 +115,9 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>getElement</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getElement</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getElement()
 	 */
 	public AbstractWorkflowElement getElement() {
@@ -132,9 +125,9 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>getName</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getName</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getName()
 	 */
 	public String getName() {
@@ -142,9 +135,9 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>getValue</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>getValue</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getValue()
 	 */
 	public String getValue() {
@@ -152,17 +145,17 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
-	 * This automatically generated method overrides the implementation 
-	 * of <code>isInRange</code> inherited from the superclass.
-	 *
+	 * This automatically generated method overrides the implementation of
+	 * <code>isInRange</code> inherited from the superclass.
+	 * 
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#isInRange(int)
 	 */
 	public boolean isInRange(final int offset) {
 		return getAttributeValueRange().isInRange(offset);
 	}
 
-	private ElementPositionRange getElementPositionRange(
-			final Matcher matcher, final IDocument document, final int start) {
+	private ElementPositionRange getElementPositionRange(final Matcher matcher, final IDocument document,
+			final int start) {
 		if (matcher.find()) {
 			final int attrStart = start + matcher.start();
 			final int attrEnd = start + matcher.end();
@@ -181,5 +174,13 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 			res = res + ch;
 		}
 		return res;
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getName() + " = " + getValue();
 	}
 }

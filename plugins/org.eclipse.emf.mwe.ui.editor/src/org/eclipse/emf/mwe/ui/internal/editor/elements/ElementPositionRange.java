@@ -17,7 +17,7 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class ElementPositionRange implements IRangeCheck {
 
@@ -49,8 +49,7 @@ public class ElementPositionRange implements IRangeCheck {
 	 * @param position
 	 *            the position range.
 	 */
-	public ElementPositionRange(final IDocument document,
-			final ElementPositionRange position) {
+	public ElementPositionRange(final IDocument document, final ElementPositionRange position) {
 		if (document == null || position == null)
 			throw new IllegalArgumentException();
 
@@ -71,15 +70,13 @@ public class ElementPositionRange implements IRangeCheck {
 	 * @param endPosition
 	 *            the position range of the end element.
 	 */
-	public ElementPositionRange(final IDocument document,
-			final ElementPositionRange startPosition,
+	public ElementPositionRange(final IDocument document, final ElementPositionRange startPosition,
 			final ElementPositionRange endPosition) {
 		if (document == null || startPosition == null)
 			throw new IllegalArgumentException();
 
-		final ElementPositionRange endPos =
-				endPosition != null ? endPosition : new ElementPositionRange(
-						document, 0, 0);
+		final ElementPositionRange endPos = endPosition != null ? endPosition
+				: new ElementPositionRange(document, 0, 0);
 
 		this.document = document;
 		startOffset = startPosition.getStartOffset();
@@ -100,8 +97,7 @@ public class ElementPositionRange implements IRangeCheck {
 	 * @param endOffset
 	 *            the end offset.
 	 */
-	public ElementPositionRange(final IDocument document,
-			final int startOffset, final int endOffset) {
+	public ElementPositionRange(final IDocument document, final int startOffset, final int endOffset) {
 		if (document == null)
 			throw new IllegalArgumentException();
 
@@ -134,7 +130,8 @@ public class ElementPositionRange implements IRangeCheck {
 			final int line = getEndLine();
 			final int lineOffset = document.getLineOffset(line);
 			return endOffset - lineOffset;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 	}
@@ -143,7 +140,8 @@ public class ElementPositionRange implements IRangeCheck {
 		try {
 			final int line = document.getLineOfOffset(endOffset);
 			return line;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 	}
@@ -160,10 +158,18 @@ public class ElementPositionRange implements IRangeCheck {
 	public ElementPositionRange getFirstLine() {
 		try {
 			final int line = document.getLineOfOffset(getStartOffset());
-			final int lineOffset = document.getLineOffset(line);
-			final int end = lineOffset + document.getLineLength(line);
-			return new ElementPositionRange(document, lineOffset, end);
-		} catch (final BadLocationException e) {
+			int start = document.getLineOffset(line);
+			if (start < getStartOffset()) {
+				start = getStartOffset();
+			}
+
+			int end = start + document.getLineLength(line);
+			if (end > getEndOffset()) {
+				end = getEndOffset();
+			}
+			return new ElementPositionRange(document, start, end);
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 
@@ -178,7 +184,8 @@ public class ElementPositionRange implements IRangeCheck {
 			final int line = getStartLine();
 			final int lineOffset = document.getLineOffset(line);
 			return startOffset - lineOffset;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 	}
@@ -187,7 +194,8 @@ public class ElementPositionRange implements IRangeCheck {
 		try {
 			final int line = document.getLineOfOffset(startOffset);
 			return line;
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			return null;
 		}
 	}
@@ -234,20 +242,20 @@ public class ElementPositionRange implements IRangeCheck {
 
 	public ElementPositionRange trimWhitespace() {
 		try {
-			while (startOffset < document.getLength()
-					&& Character.isWhitespace(document.getChar(startOffset))) {
+			while (startOffset < document.getLength() && Character.isWhitespace(document.getChar(startOffset))) {
 				startOffset++;
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			// Do nothing
 		}
 
 		try {
-			while (endOffset > 0 && endOffset > startOffset
-					&& Character.isWhitespace(document.getChar(endOffset))) {
+			while (endOffset > 0 && endOffset > startOffset && Character.isWhitespace(document.getChar(endOffset))) {
 				endOffset--;
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			// Do nothing
 		}
 		return this;

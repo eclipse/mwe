@@ -36,7 +36,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.utils.PropertyFileReader;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.jface.text.IRegion;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
@@ -44,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -98,7 +97,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 		currentElement.setEndElementRange(createPositionRange());
 		if (hasFileReference(currentElement)) {
-			boolean inherit = isInheritAllSet(currentElement);
+			final boolean inherit = isInheritAllSet(currentElement);
 			parseReferencedContent(currentElement);
 			if (inherit && propertyContainer != null) {
 				currentElement.setPropertyContainer(propertyContainer);
@@ -109,7 +108,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			try {
 				addProperty(currentElement);
 			}
-			catch (ParserProblemException e) {
+			catch (final ParserProblemException e) {
 				handleParseException(e, currentElement);
 			}
 		}
@@ -164,7 +163,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * @param editor
 	 *            new value for <code>editor</code>.
 	 */
-	public void setEditor(WorkflowEditor editor) {
+	public void setEditor(final WorkflowEditor editor) {
 		this.editor = editor;
 	}
 
@@ -174,7 +173,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * @param file
 	 *            new value for <code>file</code>.
 	 */
-	public void setFile(File file) {
+	public void setFile(final File file) {
 		this.file = file;
 	}
 
@@ -194,7 +193,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * @param project
 	 *            new value for <code>project</code>.
 	 */
-	public void setProject(IProject project) {
+	public void setProject(final IProject project) {
 		this.project = project;
 	}
 
@@ -204,7 +203,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 * @param propertyContainer
 	 *            new value for <code>propertyContainer</code>.
 	 */
-	public void setPropertyContainer(IPropertyContainer propertyContainer) {
+	public void setPropertyContainer(final IPropertyContainer propertyContainer) {
 		this.propertyContainer = propertyContainer;
 	}
 
@@ -240,7 +239,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		for (int i = 0; i < attributes.getLength(); i++) {
 			final String attrName = attributes.getQName(i);
 			final String attrValue = attributes.getValue(i);
-			IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
+			final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
 			final IWorkflowAttribute attr = factory.newWorkflowAttribute(element, attrName, attrValue);
 			element.addAttribute(attr);
 		}
@@ -263,11 +262,11 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return propertyContainer;
 	}
 
-	private void addProperty(AbstractWorkflowElement element) {
+	private void addProperty(final AbstractWorkflowElement element) {
 		if (element == null)
 			throw new IllegalArgumentException();
 
-		Property property = new Property(element);
+		final Property property = new Property(element);
 		if (!isInTopMostFile(element)) {
 			property.setImported(true);
 		}
@@ -278,7 +277,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			}
 			else if (property.isReference()) {
 				try {
-					IPropertyContainer fileContainer = PropertyFileReader.parse(getProject(), element);
+					final IPropertyContainer fileContainer = PropertyFileReader.parse(getProject(), element);
 					if (isInTopMostFile(element)) {
 						if (element.hasParent()) {
 							element.getParent().addProperties(fileContainer);
@@ -288,17 +287,17 @@ public class WorkflowContentHandler extends DefaultHandler {
 						propertyContainer.addProperties(fileContainer);
 					}
 				}
-				catch (FileNotFoundException e) {
+				catch (final FileNotFoundException e) {
 					throw new ParserProblemException(e.getMessage(), e);
 				}
 			}
 
 		}
-		catch (IllegalArgumentException e) {
-			IFile file = getFile();
-			String propName = property.getName();
-			String propNameString = (propName != null && propName.length() > 0) ? " '" + propName + "'" : "";
-			String msg = "Incompletely specified property" + propNameString;
+		catch (final IllegalArgumentException e) {
+			final IFile file = getFile();
+			final String propName = property.getName();
+			final String propNameString = (propName != null && propName.length() > 0) ? " '" + propName + "'" : "";
+			final String msg = "Incompletely specified property" + propNameString;
 			if (file != null && file.exists()) {
 				MarkerManager.createMarker(file, document, element, msg, true);
 			}
@@ -310,44 +309,31 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 	private ElementPositionRange createPositionRange() {
 		final int line = locator.getLineNumber() - 1;
-		final int offset = getOffsetFromLine(line);
-		final int startOffset = getCharStart(offset);
-		final int endOffset = getCharEnd(offset);
+		int endOffset = getOffsetFromLine(line) + locator.getColumnNumber() - 1;
+		if (endOffset > 0) {
+			endOffset--;
+		}
+
+		final int startOffset = searchChar(endOffset, '<', true);
 		return new ElementPositionRange(document, startOffset, endOffset);
-	}
-
-	private Integer getCharEnd(final int offset) {
-		try {
-			final IRegion region = document.getLineInformationOfOffset(offset);
-			final int endChar = region.getOffset() + region.getLength();
-			return endChar;
-		}
-		catch (final BadLocationException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	private Integer getCharStart(final int offset) {
-		return searchChar(offset, '<', true);
 	}
 
 	private IFile getFile() {
 		return (editor != null) ? editor.getInputFile() : null;
 	}
 
-	private File getFile(IProject project, IWorkflowAttribute attribute) {
+	private File getFile(final IProject project, final IWorkflowAttribute attribute) {
 		if (project == null || attribute == null || !IWorkflowAttribute.FILE_ATTRIBUTE.equals(attribute.getName()))
 			return null;
 
-		ClassLoader loader = TypeUtils.getResourceLoader(project);
-		URL url = loader.getResource(attribute.getValue());
+		final ClassLoader loader = TypeUtils.getResourceLoader(project);
+		final URL url = loader.getResource(attribute.getValue());
 		if (url != null) {
 			try {
-				File file = new File(url.toURI());
+				final File file = new File(url.toURI());
 				return (file.exists()) ? file : null;
 			}
-			catch (URISyntaxException e) {
+			catch (final URISyntaxException e) {
 				Log.logError("", e);
 				return null;
 			}
@@ -377,7 +363,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return project;
 	}
 
-	private void handleParseException(ParserProblemException e, AbstractWorkflowElement element) {
+	private void handleParseException(final ParserProblemException e, final AbstractWorkflowElement element) {
 		if (e == null || element == null)
 			throw new IllegalArgumentException();
 
@@ -390,7 +376,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw e;
 	}
 
-	private boolean hasFileReference(AbstractWorkflowElement element) {
+	private boolean hasFileReference(final AbstractWorkflowElement element) {
 		return (element != null) ? !element.isProperty() && element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)
 				: false;
 	}
@@ -399,37 +385,37 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return !Pattern.matches(TAG_NAME_PATTERN, name);
 	}
 
-	private boolean isInheritAllSet(AbstractWorkflowElement element) {
+	private boolean isInheritAllSet(final AbstractWorkflowElement element) {
 		if (!hasFileReference(element))
 			return false;
 
-		String inheritVal = element.getAttributeValue(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
+		final String inheritVal = element.getAttributeValue(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
 		return Boolean.parseBoolean(inheritVal);
 	}
 
-	private boolean isInTopMostFile(AbstractWorkflowElement element) {
+	private boolean isInTopMostFile(final AbstractWorkflowElement element) {
 		if (element != null) {
-			File file1 = element.getFile();
-			File file2 = FileUtils.convertToFile(getFile());
+			final File file1 = element.getFile();
+			final File file2 = FileUtils.convertToFile(getFile());
 			if (file1 != null && file1.equals(file2))
 				return true;
 		}
 		return false;
 	}
 
-	private AbstractWorkflowElement newWorkflowElement(String name) {
-		AbstractWorkflowElement element = WorkflowSyntaxFactory.getInstance().newWorkflowElement(editor, getProject(),
-				document, name);
+	private AbstractWorkflowElement newWorkflowElement(final String name) {
+		final AbstractWorkflowElement element = WorkflowSyntaxFactory.getInstance().newWorkflowElement(editor,
+				getProject(), document, name);
 		element.setFile(file);
 		return element;
 	}
 
-	private void parseReferencedContent(AbstractWorkflowElement element) {
+	private void parseReferencedContent(final AbstractWorkflowElement element) {
 		if (element == null || !hasFileReference(element))
 			throw new IllegalArgumentException();
 
-		IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
-		String content = TypeUtils.getFileContent(getProject(), attribute);
+		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
+		final String content = TypeUtils.getFileContent(getProject(), attribute);
 		if (content == null) {
 			if (isInTopMostFile(element)) {
 				MarkerManager.createMarker(getFile(), document, attribute, "Resource '" + attribute.getValue()
@@ -440,26 +426,26 @@ public class WorkflowContentHandler extends DefaultHandler {
 				throw new ParserProblemException("Resource '" + attribute.getValue() + "' cannot be resolved");
 		}
 		try {
-			IDocument refDoc = new org.eclipse.jface.text.Document(content);
-			WorkflowContentHandler contentHandler = new WorkflowContentHandler();
-			File refFile = getFile(getProject(), attribute);
+			final IDocument refDoc = new org.eclipse.jface.text.Document(content);
+			final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
+			final File refFile = getFile(getProject(), attribute);
 			contentHandler.setPropertyContainer(propertyContainer);
 			contentHandler.setFile(refFile);
 			DocumentParser.parse(refDoc, contentHandler, getProject());
 		}
-		catch (ParserProblemException e) {
+		catch (final ParserProblemException e) {
 			handleParseException(e, element);
 		}
 	}
 
-	private Integer searchChar(int offset, char stopChar, boolean backwards) {
+	private Integer searchChar(final int offset, final char stopChar, final boolean backwards) {
 		try {
 			int singleQuotes = 0;
 			int doubleQuotes = 0;
 			int i = offset;
 
 			while (i >= 0 && i <= document.getLength() - 1) {
-				char ch = document.getChar(i);
+				final char ch = document.getChar(i);
 				if (ch == '"') {
 					doubleQuotes++;
 				}
@@ -480,7 +466,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			}
 			return i;
 		}
-		catch (BadLocationException e) {
+		catch (final BadLocationException e) {
 			Log.logError("", e);
 			return -1;
 		}

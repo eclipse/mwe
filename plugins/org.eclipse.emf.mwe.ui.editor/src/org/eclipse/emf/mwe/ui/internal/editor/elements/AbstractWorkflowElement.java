@@ -53,7 +53,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 	private final IDocument document;
 
-	public AbstractWorkflowElement(IDocument document, String name) {
+	public AbstractWorkflowElement(final IDocument document, final String name) {
 		if (document == null || name == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
@@ -83,7 +83,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @param container
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
 	 */
-	public void addProperties(IPropertyContainer container) {
+	public void addProperties(final IPropertyContainer container) {
 		propertyContainer.addProperties(container);
 	}
 
@@ -117,8 +117,8 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IAttributeContainer#getAttributeList()
 	 */
 	public List<IWorkflowAttribute> getAttributeList() {
-		List<IWorkflowAttribute> result = new LinkedList<IWorkflowAttribute>();
-		for (IWorkflowAttribute attr : attributes.values()) {
+		final List<IWorkflowAttribute> result = new LinkedList<IWorkflowAttribute>();
+		for (final IWorkflowAttribute attr : attributes.values()) {
 			result.add(attr);
 		}
 		return result;
@@ -242,7 +242,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public IType getMappedClassType() {
 		IType type = null;
-		String name = getMappedClassName();
+		final String name = getMappedClassName();
 		if (hasProject() && name != null) {
 			type = TypeUtils.findType(getProject(), name);
 		}
@@ -274,7 +274,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperty(java.lang.String)
 	 */
-	public Property getProperty(String name) {
+	public Property getProperty(final String name) {
 		return getPropertyContainer().getProperty(name);
 	}
 
@@ -372,21 +372,21 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
 	 */
-	public boolean hasProperty(String name) {
+	public boolean hasProperty(final String name) {
 		return getPropertyContainer().hasProperty(name);
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
 	 */
-	public boolean hasReferenceProperty(String name) {
+	public boolean hasReferenceProperty(final String name) {
 		return getPropertyContainer().hasReferenceProperty(name);
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
 	 */
-	public boolean hasSimpleProperty(String name) {
+	public boolean hasSimpleProperty(final String name) {
 		return getPropertyContainer().hasSimpleProperty(name);
 
 	}
@@ -409,7 +409,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo#isInstantiable()
 	 */
 	public boolean isInstantiable() {
-		IType type = getMappedClassType();
+		final IType type = getMappedClassType();
 		return (type != null) ? TypeUtils.isInstantiable(type) : false;
 	}
 
@@ -433,7 +433,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @param file
 	 *            new value for <code>file</code>.
 	 */
-	public void setFile(File file) {
+	public void setFile(final File file) {
 		this.file = file;
 	}
 
@@ -443,7 +443,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @param file
 	 *            new value for <code>file</code>.
 	 */
-	public void setFile(IFile file) {
+	public void setFile(final IFile file) {
 		this.file = FileUtils.convertToFile(file);
 	}
 
@@ -457,7 +457,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setPropertyContainer(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
 	 */
-	public void setPropertyContainer(IPropertyContainer propertyContainer) {
+	public void setPropertyContainer(final IPropertyContainer propertyContainer) {
 		if (propertyContainer == null)
 			throw new IllegalArgumentException();
 
@@ -476,6 +476,18 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public void setType(final WorkflowElementType type) {
 		this.type = type;
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		String attrList = "";
+		for (final IWorkflowAttribute attr : getAttributeList()) {
+			attrList += " " + attr.getName() + "=\"" + attr.getValue() + "\"";
+		}
+		return "<" + getName() + attrList + "/>";
 	}
 
 	/**
