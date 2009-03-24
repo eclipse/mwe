@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime">
+  <parameters>
+    <key href="My.workflow#//@components.0/@parameters.1"/>
+    <value xsi:type="ecore:EString">Hello</value>
+  </parameters>
+  <parameters>
+    <key href="My.workflow#//@components.0/@parameters.0"/>
+    <value xsi:type="ecore:EString">workflow</value>
+  </parameters>
+  <parameters>
+    <key href="My.workflow#//@components.1/@parameters.0"/>
+    <value xsi:type="ecore:EString">world</value>
+  </parameters>
+</org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext>

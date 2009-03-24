@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="org.eclipse.emf.mwe.ewm.launcher.core.workflowLaunchConfigurationType">
+<stringAttribute key="org.eclipse.emf.mwe.ewm.launcher.core.ContextURI" value="platform:/resource/org.eclipse.emf.mwe.ewm.examples.models/My.runtime"/>
+<stringAttribute key="org.eclipse.emf.mwe.ewm.launcher.core.WorkflowURI" value="platform:/resource/org.eclipse.emf.mwe.ewm.examples.models/My.workflow"/>
+</launchConfiguration>
