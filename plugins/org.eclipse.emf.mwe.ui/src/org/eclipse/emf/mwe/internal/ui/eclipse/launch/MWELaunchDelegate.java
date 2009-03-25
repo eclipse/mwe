@@ -181,6 +181,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 						return Status.OK_STATUS;
 					}
 				}.schedule();
+				DebugPlugin.getDefault().removeDebugEventListener(this);
 			}
 		}
 		super.handleDebugEvents(events);
