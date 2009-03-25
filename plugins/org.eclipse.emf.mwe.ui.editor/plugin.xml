@@ -14,7 +14,7 @@
       </editor>
    </extension>
    <extension
-         id="workflowerror"
+         id="org.eclipse.emf.mwe.ui.editor.workflowerror"
          name="Workflow error"
          point="org.eclipse.core.resources.markers">
       <super
