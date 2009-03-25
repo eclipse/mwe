@@ -11,9 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.44 $
+ * @version $Revision: 1.45 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -163,16 +161,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
 		final List<IWorkflowAttribute> attrList = element.getAttributeList();
-		final Set<String> attrNames = new HashSet<String>();
 
 		for (final IWorkflowAttribute attr : attrList) {
 			final String name = attr.getName();
-			if (attrNames.contains(name)) {
-				createMarker(attr, "Duplicate attribute '" + name + "'");
-			}
-			else {
-				attrNames.add(name);
-			}
 
 			if (!attr.getName().equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);

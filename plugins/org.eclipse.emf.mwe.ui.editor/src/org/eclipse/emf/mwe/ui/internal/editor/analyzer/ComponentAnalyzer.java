@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.28 $
+ * @version $Revision: 1.29 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -120,22 +120,6 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 					+ "'");
 		}
 
-	}
-
-	/**
-	 * This method overrides the implementation of <code>checkAttributes</code>
-	 * inherited from the superclass.
-	 * 
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkAttributes(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementImpl,
-	 *      IType)
-	 */
-	@Override
-	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
-		for (int i = 0; i < element.getAttributeCount(); i++) {
-			for (final IWorkflowAttribute attr : element.getAttributeList()) {
-				checkAttribute(mappedType, element, attr);
-			}
-		}
 	}
 
 	protected void checkAttributes(final AbstractWorkflowElement element, final String filePath, final String content) {
