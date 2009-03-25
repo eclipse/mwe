@@ -9,7 +9,6 @@ Require-Bundle: org.eclipse.emf.mwe.di,
  org.eclipse.core.runtime,
  org.eclipse.xtext.ui.core,
  org.apache.commons.logging,
- org.eclipse.emf.mwe.di.tests,
  org.eclipse.xtext.ui.common,
  org.eclipse.xtext.xtend;resolution:=optional
 Export-Package: org.eclipse.emf.mwe.di.ui.analyze;x-friends:="org.eclipse.emf.mwe.di.ui.tests",
