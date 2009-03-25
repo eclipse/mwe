@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.42 $
+ * @version $Revision: 1.43 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -149,11 +149,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
-		if (!IsAllowedFragmentAttribute(attribute)) {
-			createMarker(attribute, "Invalid attribute '" + attribute.getName() + "'");
-			return;
-		}
-
 		final SettableResult result = isSettable(attribute, mappedType);
 		if (!result.isSettableFound()) {
 			createMarker(element, "No field '" + result.getName() + "' available in class '"
@@ -214,26 +209,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return TypeUtils.findType(getFile(), mappedClassName);
 	}
 
-	protected boolean IsAllowedFragmentAttribute(final IWorkflowAttribute attribute) {
-		if (attribute == null)
-			throw new IllegalArgumentException();
-
-		if ((FILE_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
-				|| (CLASS_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
-				|| (INHERIT_ALL_ATTRIBUTE.equals(attribute.getName()) && !isBooleanValue(attribute)))
-			return false;
-
-		return true;
-	}
-
 	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attribute.getValue());
 		return m.matches();
-	}
-
-	private boolean isBooleanValue(final IWorkflowAttribute attribute) {
-		return TypeUtils.computeAttributeType(attribute).contains("boolean");
 	}
 
 	private SettableResult isSettable(final AbstractWorkflowElement element, final IType mappedType) {
@@ -280,9 +259,5 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final boolean hasProperty = (element.hasParent()) ? element.getParent().hasProperty(tagName) : false;
 		final boolean result = (method != null) || hasProperty;
 		return new SettableResult(result, tagName, mt);
-	}
-
-	private boolean isStringValue(final IWorkflowAttribute attribute) {
-		return TypeUtils.computeAttributeType(attribute).contains("String");
 	}
 }
