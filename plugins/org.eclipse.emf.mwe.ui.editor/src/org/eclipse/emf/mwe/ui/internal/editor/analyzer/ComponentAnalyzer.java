@@ -20,13 +20,12 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
-import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -48,6 +47,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	public void checkValidity(final AbstractWorkflowElement element) {
+		super.checkValidity(element);
 		workflowAbstract = isWorkflowAbstract(element);
 
 		if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)
@@ -65,18 +65,18 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 				createMarker(element, "Class '" + className + "' cannot be resolved");
 				return;
 			}
-			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
-				final IWorkflowAttribute inheritAttr = element.getAttribute(INHERIT_ALL_ATTRIBUTE);
-				createMarkerForValue(inheritAttr, "Attribute '" + INHERIT_ALL_ATTRIBUTE
+			if (element.hasAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE)) {
+				final IWorkflowAttribute inheritAttr = element.getAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
+				createMarkerForValue(inheritAttr, "Attribute '" + IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE
 						+ "' is not allowed, if a 'class' attribute is specified");
 			}
 		}
 		else if (element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)) {
-			if (element.hasAttribute(INHERIT_ALL_ATTRIBUTE)) {
-				final IWorkflowAttribute inheritAttr = element.getAttribute(INHERIT_ALL_ATTRIBUTE);
+			if (element.hasAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE)) {
+				final IWorkflowAttribute inheritAttr = element.getAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
 				final String valType = TypeUtils.getValueType(inheritAttr.getValue());
 				if (!"Boolean".equals(valType)) {
-					createMarkerForValue(inheritAttr, "Attribute '" + INHERIT_ALL_ATTRIBUTE
+					createMarkerForValue(inheritAttr, "Attribute '" + IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE
 							+ "' must have a boolean value");
 				}
 			}
@@ -100,18 +100,12 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
+		super.checkAttribute(mappedType, element, attribute);
 		final String name = attribute.getName();
-		final String value = attribute.getValue();
 
 		if (name.equals(IWorkflowAttribute.CLASS_ATTRIBUTE) || name.equals(IWorkflowAttribute.ID_ATTRIBUTE)
 				|| name.equals(IWorkflowAttribute.ID_REF_ATTRIBUTE))
 			return;
-
-		final String attrType = TypeUtils.getValueType(value);
-		final IMethod method = TypeUtils.getSetter(getFile(), mappedType, name, attrType);
-		if (method == null) {
-			createMarker(attribute, "No attribute '" + name + "' in class '" + mappedType.getFullyQualifiedName() + "'");
-		}
 	}
 
 	protected void checkAttribute(final IWorkflowAttribute attribute, final String filePath, final String content) {

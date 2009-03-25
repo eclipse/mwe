@@ -11,6 +11,9 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,11 +28,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.43 $
+ * @version $Revision: 1.44 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
-	private class SettableResult {
+	private class SettableCheckResult {
 
 		private final boolean settableFound;
 
@@ -37,7 +40,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		private final IType type;
 
-		public SettableResult(final boolean settableFound, final String name, final IType type) {
+		public SettableCheckResult(final boolean settableFound, final String name, final IType type) {
 			if (name == null || type == null)
 				throw new IllegalArgumentException();
 
@@ -60,12 +63,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected static final String MAPPING_ERROR_MSG = "Could not determine a class mapping for element";
-
-	protected static final String CLASS_ATTRIBUTE = "class";
-
-	protected static final String INHERIT_ALL_ATTRIBUTE = "inheritAll";
-
-	protected static final String FILE_ATTRIBUTE = "file";
 
 	static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
 
@@ -91,6 +88,10 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (!element.hasParent())
 			return;
 
+		final boolean res = checkFragmentValidity(element);
+		if (!res)
+			return;
+
 		final AbstractWorkflowElement parent = element.getParent();
 		final IType parentType = parent.getMappedClassType();
 		if (parentType == null) {
@@ -98,27 +99,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			return;
 		}
 
-		if (element.isFragment()) {
-			if (!(element.hasAttribute(CLASS_ATTRIBUTE) ^ element.hasAttribute(FILE_ATTRIBUTE))) {
-				createMarker(element, "<" + element.getName() + "> needs either a '" + CLASS_ATTRIBUTE + "' or a '"
-						+ FILE_ATTRIBUTE + "' attribute.");
-				return;
-			}
-
-			if (element.getAttributeCount() > 1) {
-				for (final IWorkflowAttribute attr : element.getAttributeList()) {
-					if (CLASS_ATTRIBUTE.equals(attr.getName()) || FILE_ATTRIBUTE.equals(attr.getName())
-							|| INHERIT_ALL_ATTRIBUTE.equals(attr.getName())) {
-						continue;
-					}
-
-					createMarker(attr, "Invalid attribute: " + attr.getName());
-				}
-			}
-		}
-		final SettableResult result = isSettable(element, parentType);
+		final SettableCheckResult result = isSettable(element, parentType);
 		if (!result.isSettableFound()) {
-			createMarker(element, "No field '" + result.getName() + "' available in class '"
+			createMarker(element, "No setter for '" + result.getName() + "' available in class '"
 					+ result.getType().getElementName() + "'");
 			return;
 		}
@@ -149,11 +132,28 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
-		final SettableResult result = isSettable(attribute, mappedType);
-		if (!result.isSettableFound()) {
-			createMarker(element, "No field '" + result.getName() + "' available in class '"
-					+ result.getType().getElementName() + "'");
+		final boolean res = checkFragmentAttribute(element, attribute);
+		if (!res)
 			return;
+
+		if (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attribute.getName())) {
+			final IType type = TypeUtils.findType(getFile(), attribute.getValue());
+			if (type == null) {
+				createMarker(attribute, "Class '" + attribute.getValue() + "' could not be resolved");
+			}
+		}
+		else {
+			IType referenceType = mappedType;
+			if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
+				referenceType = TypeUtils.findType(getFile(), element
+						.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
+			}
+			final SettableCheckResult result = isSettable(attribute, referenceType);
+			if (!result.isSettableFound()) {
+				createMarker(element, "No attribute '" + result.getName() + "' available in class '"
+						+ result.getType().getElementName() + "'");
+				return;
+			}
 		}
 
 		if (isPropertyReference(attribute)) {
@@ -162,9 +162,19 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkAttributes(final AbstractWorkflowElement element, final IType mappedType) {
-		for (final IWorkflowAttribute attr : element.getAttributeList()) {
-			if (!attr.getName().equals(IWorkflowAttribute.CLASS_ATTRIBUTE)
-					&& !attr.getName().equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
+		final List<IWorkflowAttribute> attrList = element.getAttributeList();
+		final Set<String> attrNames = new HashSet<String>();
+
+		for (final IWorkflowAttribute attr : attrList) {
+			final String name = attr.getName();
+			if (attrNames.contains(name)) {
+				createMarker(attr, "Duplicate attribute '" + name + "'");
+			}
+			else {
+				attrNames.add(name);
+			}
+
+			if (!attr.getName().equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
 			}
 		}
@@ -191,11 +201,22 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		MarkerManager.createMarker(getFile(), getDocument(), element, message, true);
 	}
 
+	protected void createMarker(final AbstractWorkflowElement element, final String message, final boolean warning) {
+		MarkerManager.createMarker(getFile(), getDocument(), element, message, warning);
+	}
+
 	protected void createMarker(final IWorkflowAttribute attribute, final String message) {
 		if (attribute == null || message == null || message.length() == 0)
 			throw new IllegalArgumentException();
 
 		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, false, true);
+	}
+
+	protected void createMarker(final IWorkflowAttribute attribute, final String message, final boolean warning) {
+		if (attribute == null || message == null || message.length() == 0)
+			throw new IllegalArgumentException();
+
+		MarkerManager.createMarker(getFile(), getDocument(), attribute, message, false, warning);
 	}
 
 	protected void createMarkerForValue(final IWorkflowAttribute attribute, final String message) {
@@ -209,26 +230,68 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return TypeUtils.findType(getFile(), mappedClassName);
 	}
 
+	protected boolean IsAllowedFragmentAttribute(final IWorkflowAttribute attribute) {
+		if (attribute == null)
+			throw new IllegalArgumentException();
+
+		if ((IWorkflowAttribute.FILE_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
+				|| (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attribute.getName()) && !isStringValue(attribute))
+				|| (IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE.equals(attribute.getName()) && !isBooleanValue(attribute)))
+			return false;
+
+		return true;
+
+	}
+
 	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attribute.getValue());
 		return m.matches();
 	}
 
-	private SettableResult isSettable(final AbstractWorkflowElement element, final IType mappedType) {
-		final String type = TypeUtils.WILDCARD;
-		final String name = element.getName();
-		return internalIsSettable(element, mappedType, name, type);
+	private boolean checkFragmentAttribute(final AbstractWorkflowElement element, final IWorkflowAttribute attribute) {
+		if (element.isFragment()) {
+			if (!IsAllowedFragmentAttribute(attribute)) {
+				createMarker(attribute, "Invalid attribute '" + attribute.getName() + "'");
+				return false;
+			}
+		}
+		return true;
 	}
 
-	private SettableResult isSettable(final IWorkflowAttribute attribute, final IType mappedType) {
-		final AbstractWorkflowElement element = attribute.getElement();
-		final String type = TypeUtils.computeAttributeType(attribute);
-		final String name = attribute.getName();
-		return internalIsSettable(element, mappedType, name, type);
+	private boolean checkFragmentValidity(final AbstractWorkflowElement element) {
+		if (element.isFragment()) {
+			if (!(element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE) ^ element
+					.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE))) {
+				createMarker(element, "<" + element.getName() + "> needs either a '"
+						+ IWorkflowAttribute.CLASS_ATTRIBUTE + "' or a '" + IWorkflowAttribute.FILE_ATTRIBUTE
+						+ "' attribute.");
+				return false;
+			}
+			if (!(element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE) ^ element
+					.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE))) {
+				createMarker(element, "<" + element.getName() + "> needs either a '"
+						+ IWorkflowAttribute.CLASS_ATTRIBUTE + "' or a '" + IWorkflowAttribute.FILE_ATTRIBUTE
+						+ "' attribute.");
+				return false;
+			}
+
+			if (element.getAttributeCount() > 1) {
+				for (final IWorkflowAttribute attr : element.getAttributeList()) {
+					if (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attr.getName())
+							|| IWorkflowAttribute.FILE_ATTRIBUTE.equals(attr.getName())
+							|| IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE.equals(attr.getName())) {
+						continue;
+					}
+
+					createMarker(attr, "Invalid attribute: " + attr.getName());
+				}
+			}
+		}
+		return true;
 	}
 
-	private SettableResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
+	private SettableCheckResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
 			final String tagName, final String type) {
 		IMethod method = TypeUtils.getSetter(getFile(), mappedType, tagName, type);
 		IType mt = null;
@@ -258,6 +321,27 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		final boolean hasProperty = (element.hasParent()) ? element.getParent().hasProperty(tagName) : false;
 		final boolean result = (method != null) || hasProperty;
-		return new SettableResult(result, tagName, mt);
+		return new SettableCheckResult(result, tagName, mt);
+	}
+
+	private boolean isBooleanValue(final IWorkflowAttribute attribute) {
+		return TypeUtils.computeAttributeType(attribute).contains("boolean");
+	}
+
+	private SettableCheckResult isSettable(final AbstractWorkflowElement element, final IType mappedType) {
+		final String type = TypeUtils.WILDCARD;
+		final String name = element.getName();
+		return internalIsSettable(element, mappedType, name, type);
+	}
+
+	private SettableCheckResult isSettable(final IWorkflowAttribute attribute, final IType mappedType) {
+		final AbstractWorkflowElement element = attribute.getElement();
+		final String type = TypeUtils.computeAttributeType(attribute);
+		final String name = attribute.getName();
+		return internalIsSettable(element, mappedType, name, type);
+	}
+
+	private boolean isStringValue(final IWorkflowAttribute attribute) {
+		return TypeUtils.computeAttributeType(attribute).contains("String");
 	}
 }
