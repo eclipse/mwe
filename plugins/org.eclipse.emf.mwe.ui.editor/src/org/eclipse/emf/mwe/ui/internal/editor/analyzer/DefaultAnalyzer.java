@@ -26,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.45 $
+ * @version $Revision: 1.46 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -148,7 +148,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			}
 			final SettableCheckResult result = isSettable(attribute, referenceType);
 			if (!result.isSettableFound()) {
-				createMarker(element, "No attribute '" + result.getName() + "' available in class '"
+				createMarker(attribute, "No attribute '" + result.getName() + "' available in class '"
 						+ result.getType().getElementName() + "'");
 				return;
 			}
@@ -165,7 +165,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		for (final IWorkflowAttribute attr : attrList) {
 			final String name = attr.getName();
 
-			if (!attr.getName().equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
+			if (!name.equals(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
 				checkAttribute(mappedType, element, attr);
 			}
 		}
