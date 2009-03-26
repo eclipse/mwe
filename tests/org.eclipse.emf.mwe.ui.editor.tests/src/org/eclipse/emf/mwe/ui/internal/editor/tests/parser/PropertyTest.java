@@ -13,18 +13,17 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.ParserProblemException;
 import org.xml.sax.SAXException;
 
 public class PropertyTest extends ParserTestBase {
 
 	private static final String WORKFLOW1 = "<workflow>\n" + "</workflow>";
 
-	private static final String WORKFLOW2 =
-			"<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
-					+ "</workflow>";
+	private static final String WORKFLOW2 = "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
+			+ "</workflow>";
 
-	private static final String WORKFLOW3 =
-			"<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
+	private static final String WORKFLOW3 = "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
 
 	public void testEmptyWorkflow() throws SAXException {
 		setUpDocument(WORKFLOW1);
@@ -37,14 +36,19 @@ public class PropertyTest extends ParserTestBase {
 
 	public void testFileProperty() throws SAXException {
 		setUpDocument(WORKFLOW3);
-		parser.parse(WORKFLOW3);
-		final AbstractWorkflowElement root = parser.getRootElement();
-		assertEquals(1, root.getChildrenCount());
-		final AbstractWorkflowElement workflow = root.getChild(0);
-		assertEquals(1, workflow.getChildrenCount());
-		final AbstractWorkflowElement property = workflow.getChild(0);
-		assertEquals(1, property.getAttributeCount());
-		assertEquals("foo", property.getAttributeValue("file"));
+		try {
+			parser.parse(WORKFLOW3);
+			fail("Exception expected");
+		}
+		catch (final ParserProblemException e) {
+			final AbstractWorkflowElement root = parser.getRootElement();
+			assertEquals(1, root.getChildrenCount());
+			final AbstractWorkflowElement workflow = root.getChild(0);
+			assertEquals(1, workflow.getChildrenCount());
+			final AbstractWorkflowElement property = workflow.getChild(0);
+			assertEquals(1, property.getAttributeCount());
+			assertEquals("foo", property.getAttributeValue("file"));
+		}
 	}
 
 	public void testParserSetup() {

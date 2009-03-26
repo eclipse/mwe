@@ -20,7 +20,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class ClassHierarchyTest extends TypeTestBase {
@@ -29,7 +29,7 @@ public class ClassHierarchyTest extends TypeTestBase {
 		final Set<String> allClasses = TypeUtils.getAllClasses(project, new NullProgressMonitor());
 		assertNotNull(allClasses);
 
-		assertTrue(allClasses.size() >= 8000);
+		assertTrue(allClasses.size() >= 6000);
 		assertTrue(allClasses.contains("org.eclipse.xtend.XtendComponent"));
 		assertTrue(allClasses.contains("java.lang.String"));
 		assertTrue(checkForSubstring(allClasses, "org.eclipse.emf.mwe.utils"));

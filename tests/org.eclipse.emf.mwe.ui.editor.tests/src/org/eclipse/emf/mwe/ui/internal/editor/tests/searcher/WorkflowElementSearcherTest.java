@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.Document;
@@ -20,7 +21,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -43,7 +44,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 			+ "	\n" + "	<component class=\"org.eclipse.xtext.parser.ParserComponent\">\n"
 			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n";
 
-	private static final String WORKFLOW3 = "<workflow>\n" + "	<property file=\'generate.properties\'/>\n"
+	private static final String WORKFLOW3 = "<workflow>\n"
 			+ "	<component file=\'org/eclipse/xtext/generator/StandardRuntimeFragments.mwe\' inheritAll=\'true\'/>\n"
 			+ "	<component class=\'org.eclipse.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
 
@@ -55,8 +56,9 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
-		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
+		assertTrue(foundElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE));
+		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement
+				.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 	}
 
 	public void testFindContainerPartialWorkflow1() {
@@ -67,8 +69,9 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
-		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement.getAttributeValue("class"));
+		assertTrue(foundElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE));
+		assertEquals("org.eclipse.xtext.parser.ParserComponent", foundElement
+				.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 	}
 
 	public void testFindContainerPartialWorkflow2() {
@@ -80,8 +83,9 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 				offset);
 		assertNotNull(foundElement);
 		assertEquals("component", foundElement.getName());
-		assertTrue(foundElement.hasAttribute("class"));
-		assertEquals("org.eclipse.xtend.XtendComponent", foundElement.getAttributeValue("class"));
+		assertTrue(foundElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE));
+		assertEquals("org.eclipse.xtend.XtendComponent", foundElement
+				.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 	}
 
 	private IDocument createDocument(final String text) {
