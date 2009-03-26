@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -52,7 +52,7 @@ public final class WorkflowElementTypeComputer {
 		else if (element.hasProject() && element.hasParent()) {
 			IMethod method = null;
 
-			IType parentType = element.getParent().getMappedClassType();
+			final IType parentType = element.getParent().getMappedClassType();
 			if (parentType != null) {
 				if (element.hasAttributes()) {
 					method = TypeUtils.getSetter(element.getProject(), parentType, element.getName(),
@@ -116,8 +116,7 @@ public final class WorkflowElementTypeComputer {
 		if (name.equals(IWorkflowElementTypeInfo.WORKFLOWFILE_TAG)) {
 			type = WorkflowElementType.WORKFLOWFILE;
 		}
-		else if (name.equals(IWorkflowElementTypeInfo.COMPONENT_TAG)
-				|| element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
+		else if (name.equals(IWorkflowElementTypeInfo.COMPONENT_TAG)) {
 			type = WorkflowElementType.COMPONENT;
 		}
 		else if (name.equals(IWorkflowElementTypeInfo.IF_COMPONENT_TAG)) {

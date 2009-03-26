@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public final class TypeUtils {
 
@@ -160,11 +160,11 @@ public final class TypeUtils {
 		}
 	}
 
-	public static Set<String> getAllClasses(final IFile file, IProgressMonitor monitor) {
+	public static Set<String> getAllClasses(final IFile file, final IProgressMonitor monitor) {
 		return getAllClasses(getProject(file), monitor);
 	}
 
-	public static Set<String> getAllClasses(final IProject project, IProgressMonitor monitor) {
+	public static Set<String> getAllClasses(final IProject project, final IProgressMonitor monitor) {
 		if (project == null)
 			throw new IllegalArgumentException();
 
@@ -337,18 +337,20 @@ public final class TypeUtils {
 		return method;
 	}
 
-	public static IType getSetterParameter(IFile file, final AbstractWorkflowElement element, IType mappedType) {
+	public static IType getSetterParameter(final IFile file, final AbstractWorkflowElement element,
+			final IType mappedType) {
 		return getSetterParameter(file.getProject(), element, mappedType);
 	}
 
-	public static IType getSetterParameter(IProject project, final AbstractWorkflowElement element, IType mappedType) {
+	public static IType getSetterParameter(final IProject project, final AbstractWorkflowElement element,
+			final IType mappedType) {
 		if (project == null)
 			return null;
 
 		IType mt = null;
-		IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD);
+		final IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD);
 		if (method != null) {
-			String[] params = method.getParameterTypes();
+			final String[] params = method.getParameterTypes();
 			if (params.length == 1) {
 				String paramType = params[0];
 				paramType = paramType.substring(1, paramType.length() - 1);
@@ -369,11 +371,11 @@ public final class TypeUtils {
 			return fqn;
 	}
 
-	public static Set<String> getSubClasses(final IFile file, final IType baseType, IProgressMonitor monitor) {
+	public static Set<String> getSubClasses(final IFile file, final IType baseType, final IProgressMonitor monitor) {
 		return getSubClasses(getProject(file), baseType, monitor);
 	}
 
-	public static Set<String> getSubClasses(final IProject project, final IType baseType, IProgressMonitor monitor) {
+	public static Set<String> getSubClasses(final IProject project, final IType baseType, final IProgressMonitor monitor) {
 		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
 
@@ -391,31 +393,37 @@ public final class TypeUtils {
 		return subClasses;
 	}
 
-	public static Set<IType> getSuperTypes(IFile file, IType type) {
-		return getSuperTypes(getProject(file), type);
+	public static Set<IType> getSuperTypes(final IFile file, final IType type, final boolean recursive) {
+		return getSuperTypes(getProject(file), type, recursive);
 	}
 
-	public static Set<IType> getSuperTypes(IProject project, IType type) {
+	public static Set<IType> getSuperTypes(final IProject project, final IType type, final boolean recursive) {
 		if (project == null || type == null)
 			throw new IllegalArgumentException();
 
-		Set<IType> result = new HashSet<IType>();
+		final Set<IType> result = new HashSet<IType>();
 		try {
-			String superClass = type.getSuperclassName();
+			final String superClass = type.getSuperclassName();
 			IType superType = (superClass != null) ? findType(project, superClass) : null;
 			if (superType != null) {
 				result.add(superType);
 			}
 
-			String[] interfaces = type.getSuperInterfaceNames();
-			for (String ifn : interfaces) {
+			final String[] interfaces = type.getSuperInterfaceNames();
+			for (final String ifn : interfaces) {
 				superType = findType(project, ifn);
 				if (superType != null) {
 					result.add(superType);
 				}
 			}
+			if (recursive && !result.isEmpty()) {
+				for (final IType t : result) {
+					result.addAll(getSuperTypes(project, t, recursive));
+				}
+			}
+
 		}
-		catch (JavaModelException e) {
+		catch (final JavaModelException e) {
 			Log.logError("", e);
 		}
 		return result;
@@ -435,20 +443,20 @@ public final class TypeUtils {
 		return type;
 	}
 
-	public static boolean isInstantiable(IType type) {
+	public static boolean isInstantiable(final IType type) {
 		if (type == null)
 			return false;
 
 		try {
-			int modifiers = type.getFlags();
+			final int modifiers = type.getFlags();
 			if (Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
-				String name = type.getElementName();
-				IMethod[] methods = type.getMethods();
+				final String name = type.getElementName();
+				final IMethod[] methods = type.getMethods();
 				int count = 0;
-				for (IMethod m : methods) {
+				for (final IMethod m : methods) {
 					if (name.equals(m.getElementName())) {
 						count++;
-						String[] parameterTypes = m.getParameterTypes();
+						final String[] parameterTypes = m.getParameterTypes();
 						if (parameterTypes.length == 0)
 							return true;
 					}
@@ -458,7 +466,7 @@ public final class TypeUtils {
 			}
 			return false;
 		}
-		catch (JavaModelException e) {
+		catch (final JavaModelException e) {
 			Log.logError("", e);
 			return false;
 		}
@@ -518,7 +526,8 @@ public final class TypeUtils {
 		}
 	}
 
-	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type, IProgressMonitor monitor) {
+	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type,
+			final IProgressMonitor monitor) {
 		try {
 			final IJavaProject jp = JavaCore.create(project);
 			return type.newTypeHierarchy(jp, monitor);
@@ -608,7 +617,7 @@ public final class TypeUtils {
 		return propertyName;
 	}
 
-	private static IMethod internalGetMethod(IProject project, final IType type, final String name,
+	private static IMethod internalGetMethod(final IProject project, final IType type, final String name,
 			final String[] paramTypes) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
@@ -616,26 +625,26 @@ public final class TypeUtils {
 		final String[] parameterTypeSignature = convertParameterTypes(paramTypes);
 		if (parameterTypeSignature.length == 1 && WILDCARD.equals(parameterTypeSignature[0])) {
 			try {
-				IMethod[] methods = type.getMethods();
-				for (IMethod m : methods) {
+				final IMethod[] methods = type.getMethods();
+				for (final IMethod m : methods) {
 					if (name.equals(m.getElementName()))
 						return m;
 				}
 
 			}
-			catch (JavaModelException e) {
+			catch (final JavaModelException e) {
 				Log.logError("", e);
 				return null;
 			}
 		}
 		else {
-			IMethod method = type.getMethod(name, parameterTypeSignature);
+			final IMethod method = type.getMethod(name, parameterTypeSignature);
 			if (method != null)
 				return method;
 		}
-		Set<IType> superTypes = getSuperTypes(project, type);
-		for (IType t : superTypes) {
-			IMethod method = internalGetMethod(project, t, name, paramTypes);
+		final Set<IType> superTypes = getSuperTypes(project, type, true);
+		for (final IType t : superTypes) {
+			final IMethod method = internalGetMethod(project, t, name, paramTypes);
 			if (method != null)
 				return method;
 		}

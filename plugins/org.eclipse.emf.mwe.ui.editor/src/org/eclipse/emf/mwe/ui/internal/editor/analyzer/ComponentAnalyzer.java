@@ -25,11 +25,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected static final String ABSTRACT_ATTRIBUTE = "abstract";
+
+	private static final String WORKFLOW_ROOT_CLASS = "org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent";
 
 	protected static final String FILE_AND_CLASS_MSG = "A component cannot have a 'class' and a 'file' attribute at the same time";
 
@@ -61,10 +63,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			if (mappedType != null) {
 				checkAttributes(element, mappedType);
 			}
-			else {
-				createMarker(element, "Class '" + className + "' cannot be resolved");
-				return;
-			}
+
 			if (element.hasAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE)) {
 				final IWorkflowAttribute inheritAttr = element.getAttribute(IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
 				createMarkerForValue(inheritAttr, "Attribute '" + IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE
@@ -148,5 +147,22 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			res = true;
 		}
 		return res;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.analyzer.DefaultAnalyzer#checkClassAttribute(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement,
+	 *      org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute)
+	 */
+	@Override
+	protected void checkClassAttribute(final IWorkflowAttribute attribute) {
+		final IType type = TypeUtils.findType(getFile(), attribute.getValue());
+		if (type == null) {
+			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' could not be resolved");
+			return;
+		}
+
+		if (!inherits(type, WORKFLOW_ROOT_CLASS)) {
+			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' is not a valid workflow component");
+		}
 	}
 }
