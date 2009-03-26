@@ -20,9 +20,9 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public final class MarkerManager {
 
@@ -69,7 +69,7 @@ public final class MarkerManager {
 		createMarkerFromRange(file, document, message, firstLineRange, isError);
 	}
 
-	public static void createMarkerFromParserException(IFile file, final IDocument document,
+	public static void createMarkerFromParserException(final IFile file, final IDocument document,
 			final SAXException exception) {
 		if (exception instanceof SAXParseException) {
 			final SAXParseException ex = (SAXParseException) exception;
@@ -81,12 +81,30 @@ public final class MarkerManager {
 		}
 	}
 
-	public static void createMarker(IFile file, IDocument document, String msg, int line, int column) {
+	public static void createMarker(final IFile file, final IDocument document, final String msg, final int line,
+			final int column) {
 		try {
 			final int lineOffset = document.getLineOffset(line);
-			final int start = lineOffset + column;
-			int lineLength = document.getLineLength(line);
+			int start = lineOffset;
+			final int lineLength = document.getLineLength(line);
 			int end = start + lineLength;
+			if (start + column < lineLength) {
+				start += column;
+				end -= column;
+			}
+			else {
+				char ch = document.getChar(start);
+				while (Character.isWhitespace(ch)) {
+					start++;
+					end--;
+					ch = document.getChar(start);
+				}
+				ch = document.getChar(end);
+				while (Character.isWhitespace(ch)) {
+					end--;
+					ch = document.getChar(end);
+				}
+			}
 
 			final ElementPositionRange range = new ElementPositionRange(document, start, end);
 			createMarkerFromRange(file, document, msg, range, true);

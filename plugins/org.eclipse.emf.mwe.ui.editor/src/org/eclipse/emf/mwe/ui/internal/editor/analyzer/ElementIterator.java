@@ -21,12 +21,11 @@ import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 public class ElementIterator {
 
@@ -52,8 +51,6 @@ public class ElementIterator {
 	}
 
 	public void checkValidity(final AbstractWorkflowElement workflowElement) {
-		MarkerManager.deleteMarkers(file);
-
 		elementList = flatten(workflowElement);
 		for (final AbstractWorkflowElement element : elementList) {
 			analyzer.checkValidity(element);
