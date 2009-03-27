@@ -19,10 +19,10 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
-public class TypeTestBase extends PluginTestBase {
+public class TypeTestBase extends ParserTestBase {
 
 	protected String[] checkForStringArray(final Set<String> nameSet, final String[] expected) {
 		final Set<String> result = new HashSet<String>();

@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.references;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ReferencesTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.xml.sax.SAXException;
 
 public class SimpleReferencesTest extends ReferencesTestBase {
 
@@ -32,26 +31,24 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 
 	public static final String RESOURCE_PROP1 = "fa1=foo\n" + "fa2 = bar";
 
-	public void testParseReferencedWorkflow1() throws SAXException {
-		setUpDocument(WORKFLOW1);
-		parser.parse(WORKFLOW1);
-		AbstractWorkflowElement root = parser.getRootElement();
+	public void testParseReferencedWorkflow1() {
+		final AbstractWorkflowElement root = parse(WORKFLOW1);
 		assertNotNull(root);
-		AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
+		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
+		assertTrue(fragment.isFragment());
 		assertTrue(fragment.hasProperties());
 		assertEquals(2, fragment.getPropertyCount());
 		assertTrue(fragment.hasSimpleProperty("a1"));
 		assertTrue(fragment.hasSimpleProperty("a2"));
 	}
 
-	public void testParseReferencedWorkflow2() throws SAXException {
-		setUpDocument(WORKFLOW2);
-		parser.parse(WORKFLOW2);
-		AbstractWorkflowElement root = parser.getRootElement();
+	public void testParseReferencedWorkflow2() {
+		final AbstractWorkflowElement root = parse(WORKFLOW2);
 		assertNotNull(root);
-		AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
+		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
+		assertTrue(fragment.isFragment());
 		assertTrue(fragment.hasProperties());
 		assertEquals(4, fragment.getPropertyCount());
 		assertTrue(fragment.hasSimpleProperty("b1"));

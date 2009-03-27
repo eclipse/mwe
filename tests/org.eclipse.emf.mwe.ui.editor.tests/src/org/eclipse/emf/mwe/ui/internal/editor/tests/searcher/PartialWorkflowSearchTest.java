@@ -15,6 +15,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
+import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 
 public class PartialWorkflowSearchTest extends ParserTestBase {
@@ -72,7 +73,7 @@ public class PartialWorkflowSearchTest extends ParserTestBase {
 	}
 
 	private void search(final String workflow, final int offset, final String tag) {
-		final IDocument document = createDocument(workflow);
+		final IDocument document = new Document(workflow);
 		final AbstractWorkflowElement root = parse(document);
 		assertNotNull(root);
 		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchCompleteParentElement(root,

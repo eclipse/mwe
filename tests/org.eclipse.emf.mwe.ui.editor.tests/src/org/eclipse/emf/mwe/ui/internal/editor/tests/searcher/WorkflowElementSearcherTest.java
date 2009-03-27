@@ -15,11 +15,12 @@ import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
+import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -47,7 +48,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 			+ "	<component class=\'org.eclipse.xtend.XtendComponent\'>\n" + "	<\n" + "</workflow>";
 
 	public void testFindContainerCompleteWorkflow() {
-		final IDocument document = createDocument(WORKFLOW1);
+		final IDocument document = new Document(WORKFLOW1);
 		final AbstractWorkflowElement root = parse(document);
 		final int offset = 160;
 		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
@@ -62,7 +63,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 	public void testFindContainerPartialWorkflow1() {
 		IDocument document;
 		AbstractWorkflowElement root = null;
-		document = createDocument(WORKFLOW2);
+		document = new Document(WORKFLOW2);
 		root = parse(document);
 		final int offset = 160;
 		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
@@ -75,7 +76,7 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 	}
 
 	public void testFindContainerPartialWorkflow2() {
-		final IDocument document = createDocument(WORKFLOW3);
+		final IDocument document = new Document(WORKFLOW3);
 		final AbstractWorkflowElement root = parse(document);
 		int offset = document.getLength() - 1;
 		offset -= 12;

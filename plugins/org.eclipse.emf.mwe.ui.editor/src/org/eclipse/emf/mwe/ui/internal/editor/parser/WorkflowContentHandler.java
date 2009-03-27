@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.35 $
+ * @version $Revision: 1.36 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -101,7 +101,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		if (hasFileReference(currentElement)) {
 			final boolean inherit = isInheritAllSet(currentElement);
 			parseReferencedContent(currentElement);
-			if (inherit && propertyContainer != null) {
+			if (inherit) {
 				currentElement.setPropertyContainer(propertyContainer);
 			}
 

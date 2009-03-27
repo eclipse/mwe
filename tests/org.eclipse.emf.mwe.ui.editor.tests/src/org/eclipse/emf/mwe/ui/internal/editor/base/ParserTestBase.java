@@ -14,19 +14,17 @@ package org.eclipse.emf.mwe.ui.internal.editor.base;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
+import org.eclipse.emf.mwe.ui.internal.editor.parser.ParserProblemException;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ParserTestBase extends PluginTestBase {
-
-	protected XMLParser parser;
 
 	private WorkflowContentHandler contentHandler;
 
@@ -34,17 +32,8 @@ public class ParserTestBase extends PluginTestBase {
 	protected void setUp() throws Exception {
 		super.setUp();
 		WorkflowSyntaxFactory.installFactory(new XMLWorkflowSyntaxFactoryImpl());
-		parser = new XMLParser();
 		contentHandler = new WorkflowContentHandler();
 		contentHandler.setProject(project);
-		parser.setContentHandler(contentHandler);
-	}
-
-	// Helper methods
-
-	protected void setUpDocument(final String content) {
-		final Document document = new Document(content);
-		contentHandler.setDocument(document);
 	}
 
 	/**
@@ -55,12 +44,21 @@ public class ParserTestBase extends PluginTestBase {
 		return "org.eclipse.emf.mwe.ui.editor";
 	}
 
-	protected IDocument createDocument(final String text) {
-		return new Document(text);
+	// Helper methods
+
+	protected AbstractWorkflowElement parse(final String workflow) {
+		final IDocument document = new Document(workflow);
+		return parse(document);
 	}
 
 	protected AbstractWorkflowElement parse(final IDocument document) {
-		return DocumentParser.parse(document, null, project);
+		contentHandler.setDocument(document);
+		try {
+			return DocumentParser.parse(document, contentHandler, project);
+		}
+		catch (final ParserProblemException e) {
+			return DocumentParser.getRootElement();
+		}
 	}
 
 }

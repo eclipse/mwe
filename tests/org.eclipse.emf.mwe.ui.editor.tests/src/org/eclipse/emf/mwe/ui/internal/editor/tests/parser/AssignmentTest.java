@@ -44,9 +44,7 @@ public class AssignmentTest extends ParserTestBase {
 			+ "    </component>\n" + "    \n" + "</workflow>\n";
 
 	public void testCompleteWorkflow() throws SAXException {
-		setUpDocument(WORKFLOW1);
-		parser.parse(WORKFLOW1);
-		final AbstractWorkflowElement root = parser.getRootElement();
+		final AbstractWorkflowElement root = parse(WORKFLOW1);
 		assertEquals(1, root.getChildrenCount());
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertEquals(5, workflow.getChildrenCount());

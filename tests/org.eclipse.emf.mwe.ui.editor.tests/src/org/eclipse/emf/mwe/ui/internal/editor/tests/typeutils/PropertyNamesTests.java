@@ -19,10 +19,10 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.1 $
  */
 
-public class PropertyNamesTest extends TypeTestBase {
+public class PropertyNamesTests extends TypeTestBase {
 
 	public void testSettablePropertyNames() {
 		final IType type = getType("org.eclipse.xtend.XtendComponent");

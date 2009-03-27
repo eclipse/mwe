@@ -13,8 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.ParserProblemException;
-import org.xml.sax.SAXException;
 
 public class PropertyTest extends ParserTestBase {
 
@@ -23,42 +21,30 @@ public class PropertyTest extends ParserTestBase {
 	private static final String WORKFLOW2 = "<workflow>\n" + "    <property name=\"foo\" value=\"bar\"/>\n"
 			+ "</workflow>";
 
-	private static final String WORKFLOW3 = "<workflow>\n" + "    <property file=\"foo\"/>\n" + "</workflow>";
+	private static final String WORKFLOW3 = "<workflow>\n" + "    <property file=\"prop1.properties\"/>\n"
+			+ "</workflow>";
 
-	public void testEmptyWorkflow() throws SAXException {
-		setUpDocument(WORKFLOW1);
-		parser.parse(WORKFLOW1);
-		final AbstractWorkflowElement root = parser.getRootElement();
+	public static final String RESOURCE_PROP1 = "a=b";
+
+	public void testEmptyWorkflow() {
+		final AbstractWorkflowElement root = parse(WORKFLOW1);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertTrue(root.isWorkflowFile());
 		assertTrue(workflow.isWorkflow());
 	}
 
-	public void testFileProperty() throws SAXException {
-		setUpDocument(WORKFLOW3);
-		try {
-			parser.parse(WORKFLOW3);
-			fail("Exception expected");
-		}
-		catch (final ParserProblemException e) {
-			final AbstractWorkflowElement root = parser.getRootElement();
-			assertEquals(1, root.getChildrenCount());
-			final AbstractWorkflowElement workflow = root.getChild(0);
-			assertEquals(1, workflow.getChildrenCount());
-			final AbstractWorkflowElement property = workflow.getChild(0);
-			assertEquals(1, property.getAttributeCount());
-			assertEquals("foo", property.getAttributeValue("file"));
-		}
+	public void testFileProperty() {
+		final AbstractWorkflowElement root = parse(WORKFLOW3);
+		assertEquals(1, root.getChildrenCount());
+		final AbstractWorkflowElement workflow = root.getChild(0);
+		assertEquals(1, workflow.getChildrenCount());
+		final AbstractWorkflowElement property = workflow.getChild(0);
+		assertEquals(1, property.getAttributeCount());
+		assertEquals("prop1.properties", property.getAttributeValue("file"));
 	}
 
-	public void testParserSetup() {
-		assertNotNull(parser);
-	}
-
-	public void testSimpleProperty() throws SAXException {
-		setUpDocument(WORKFLOW2);
-		parser.parse(WORKFLOW2);
-		final AbstractWorkflowElement root = parser.getRootElement();
+	public void testSimpleProperty() {
+		final AbstractWorkflowElement root = parse(WORKFLOW2);
 		assertEquals(1, root.getChildrenCount());
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertEquals(1, workflow.getChildrenCount());

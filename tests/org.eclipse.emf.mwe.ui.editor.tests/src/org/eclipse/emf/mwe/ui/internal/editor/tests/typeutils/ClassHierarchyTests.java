@@ -20,10 +20,10 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.1 $
  */
 
-public class ClassHierarchyTest extends TypeTestBase {
+public class ClassHierarchyTests extends TypeTestBase {
 
 	public void testGetAllClasses() {
 		final Set<String> allClasses = TypeUtils.getAllClasses(project, new NullProgressMonitor());
