@@ -29,7 +29,7 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 
@@ -46,8 +46,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 	public OutlineContentProvider(final TextEditor editor) {
 		this.editor = editor;
 		documentProvider = editor.getDocumentProvider();
-		positionUpdater =
-				new DefaultPositionUpdater(DocumentParser.TAG_POSITIONS);
+		positionUpdater = new DefaultPositionUpdater(DocumentParser.TAG_POSITIONS);
 	}
 
 	public void dispose() {
@@ -58,11 +57,11 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		if (parentElement == input) {
 			if (rootElement == null)
 				return new Object[0];
-			final List<AbstractWorkflowElement> childList =
-					rootElement.getChildrenList();
+			final List<AbstractWorkflowElement> childList = rootElement.getChildrenList();
 			if (childList != null)
 				return childList.toArray();
-		} else {
+		}
+		else {
 			final AbstractWorkflowElement parent = (AbstractWorkflowElement) parentElement;
 			final List<AbstractWorkflowElement> childList = parent.getChildrenList();
 			if (childList != null)
@@ -86,15 +85,14 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		return getChildren(element).length > 0;
 	}
 
-	public void inputChanged(final Viewer viewer, final Object oldInput,
-			final Object newInput) {
+	public void inputChanged(final Viewer viewer, final Object oldInput, final Object newInput) {
 		if (oldInput != null) {
 			final IDocument document = documentProvider.getDocument(oldInput);
 			if (document != null) {
 				try {
-					document
-							.removePositionCategory(DocumentParser.TAG_POSITIONS);
-				} catch (final BadPositionCategoryException x) {
+					document.removePositionCategory(DocumentParser.TAG_POSITIONS);
+				}
+				catch (final BadPositionCategoryException x) {
 				}
 				document.removePositionUpdater(positionUpdater);
 			}
@@ -109,8 +107,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 				document.addPositionUpdater(positionUpdater);
 
 				final WorkflowEditor wfEditor = (WorkflowEditor) editor;
-				final AbstractWorkflowElement rootElement =
-						wfEditor.parseRootElement(document);
+				final AbstractWorkflowElement rootElement = wfEditor.parseRootElement(document);
 				if (rootElement != null) {
 					this.rootElement = rootElement;
 				}
@@ -118,7 +115,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		}
 	}
 
-	public void setInput(final IEditorInput input) {
+	public void setInput(@SuppressWarnings("unused") final IEditorInput input) {
 		// do nothing
 	}
 }

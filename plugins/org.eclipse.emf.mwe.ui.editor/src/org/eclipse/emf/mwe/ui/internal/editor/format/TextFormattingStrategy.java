@@ -13,25 +13,22 @@ package org.eclipse.emf.mwe.ui.internal.editor.format;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class TextFormattingStrategy extends DefaultFormattingStrategy {
-
-	private static final String LINE_SEPARATOR =
-			System.getProperty("line.separator");
 
 	public TextFormattingStrategy() {
 		super();
 	}
 
 	@Override
-	public String format(final String content, final boolean isLineStart,
-			final String indentation, final int[] positions) {
+	public String format(final String content, final boolean isLineStart, final String indentation,
+			final int[] positions) {
 		if (indentation.length() == 0)
 			return content;
 
-		return TextFormattingStrategy.LINE_SEPARATOR + content.trim()
-				+ TextFormattingStrategy.LINE_SEPARATOR + indentation;
+		return TextFormattingStrategy.LINE_SEPARATOR + content.trim() + TextFormattingStrategy.LINE_SEPARATOR
+				+ indentation;
 	}
 
 }
