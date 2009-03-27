@@ -17,9 +17,10 @@ import junit.framework.TestSuite;
 public class AllSearcherTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.searcher");
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.searcher");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(WorkflowElementSearcherTest.class);
+		suite.addTestSuite(PartialWorkflowSearchTest.class);
 		// $JUnit-END$
 		return suite;
 	}

@@ -18,14 +18,14 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class DefaultContentProposalComputer extends TagContentProposalComputer {
 
 	private static final String WORKFLOW_TAG_NAME = "workflow";
 
-	public DefaultContentProposalComputer(IFile file, final WorkflowEditor editor, final IDocument document,
+	public DefaultContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
@@ -42,7 +42,7 @@ public class DefaultContentProposalComputer extends TagContentProposalComputer {
 			text = name;
 		}
 		else {
-			text = "<" + name + "></" + name + ">";
+			text = "<" + name + ">\n</" + name + ">";
 			if (!WORKFLOW_TAG_NAME.equals(name)) {
 				text = "\t" + text;
 			}

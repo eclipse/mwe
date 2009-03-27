@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -70,6 +70,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	private AbstractWorkflowElement currentElement;
 
 	private String positionCategory;
+
+	private ElementPositionRange documentEnd;
 
 	/**
 	 * This method overrides the implementation of <code>endDocument</code>
@@ -143,6 +145,20 @@ public class WorkflowContentHandler extends DefaultHandler {
 	 *            new value for <code>document</code>.
 	 */
 	public void setDocument(final IDocument document) {
+		if (document != null) {
+			try {
+				final int lastLine = document.getNumberOfLines() - 1;
+				final int startOffset = document.getLineOffset(lastLine);
+				final int endOffset = document.getLength() - 1;
+				documentEnd = new ElementPositionRange(document, startOffset, endOffset);
+			}
+			catch (final BadLocationException e) {
+				Log.logError("", e);
+			}
+		}
+		else {
+			documentEnd = null;
+		}
 		this.document = document;
 	}
 
@@ -230,12 +246,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 	@Override
 	public void startElement(final String uri, final String ln, final String qName, final Attributes attributes)
 			throws SAXException {
-
 		final AbstractWorkflowElement element = newWorkflowElement(qName);
 		if (isIllegalName(qName))
 			throw new ValidationException(locator, ILLEGAL_TAG_NAME_MSG + " " + qName, true);
 
 		element.setStartElementRange(createPositionRange());
+		element.setEndElementRange(documentEnd);
 		for (int i = 0; i < attributes.getLength(); i++) {
 			final String attrName = attributes.getQName(i);
 			final String attrValue = attributes.getValue(i);

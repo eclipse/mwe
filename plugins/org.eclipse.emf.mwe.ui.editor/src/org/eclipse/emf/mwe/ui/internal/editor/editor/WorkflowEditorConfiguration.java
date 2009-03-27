@@ -37,6 +37,8 @@ import org.eclipse.jface.text.ITextHover;
 import org.eclipse.jface.text.IUndoManager;
 import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.jface.text.TextViewerUndoManager;
+import org.eclipse.jface.text.contentassist.ContentAssistant;
+import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.formatter.ContentFormatter;
 import org.eclipse.jface.text.formatter.IContentFormatter;
@@ -52,7 +54,7 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 
@@ -133,25 +135,18 @@ public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 	 */
 	@Override
 	public IContentAssistant getContentAssistant(final ISourceViewer sourceViewer) {
-		// TODO Content assist temporarily disabled for Galileo M6. Renabled
-		// after milestone.
-		/*
-		 * final ContentAssistant assistant = new ContentAssistant();
-		 * 
-		 * IContentAssistProcessor contentAssistProcessor =
-		 * factory.newContentAssistProcessor(editor, colorManager);
-		 * assistant.setContentAssistProcessor(contentAssistProcessor,
-		 * IDocument.DEFAULT_CONTENT_TYPE); contentAssistProcessor =
-		 * factory.newContentAssistProcessor(editor, colorManager);
-		 * assistant.setContentAssistProcessor(contentAssistProcessor,
-		 * WorkflowPartitionScanner.XML_START_TAG);
-		 * assistant.enableAutoActivation(true);
-		 * assistant.setAutoActivationDelay(500); assistant
-		 * .setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
-		 * assistant.setContextInformationPopupOrientation(IContentAssistant.
-		 * CONTEXT_INFO_BELOW); return assistant;
-		 */
-		return super.getContentAssistant(sourceViewer);
+
+		final ContentAssistant assistant = new ContentAssistant();
+
+		IContentAssistProcessor contentAssistProcessor = factory.newContentAssistProcessor(editor, colorManager);
+		assistant.setContentAssistProcessor(contentAssistProcessor, IDocument.DEFAULT_CONTENT_TYPE);
+		contentAssistProcessor = factory.newContentAssistProcessor(editor, colorManager);
+		assistant.setContentAssistProcessor(contentAssistProcessor, WorkflowPartitionScanner.XML_START_TAG);
+		assistant.enableAutoActivation(true);
+		assistant.setAutoActivationDelay(500);
+		assistant.setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+		assistant.setContextInformationPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+		return assistant;
 	}
 
 	/**

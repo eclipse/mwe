@@ -11,28 +11,23 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
-public class TagContentProposalComputer extends
-		AbstractContentProposalComputer {
+public class TagContentProposalComputer extends AbstractContentProposalComputer {
 
-	protected static final String[] DEFAULT_PROPOSALS =
-			{ "workflow", "property", "component", "bean" };
+	protected static final String[] DEFAULT_PROPOSALS = { "workflow", "compose", "component", "fragment" };
 
-	public TagContentProposalComputer(final IFile file,
-			final WorkflowEditor editor, final IDocument document,
+	public TagContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
@@ -47,7 +42,7 @@ public class TagContentProposalComputer extends
 		return isTag();
 	}
 
-	protected Set<String> createDefaultProposals(final int offset) {
+	protected Set<String> createDefaultProposals(@SuppressWarnings("unused") final int offset) {
 		final Set<String> resultSet = createEmptySet();
 		for (final String s : DEFAULT_PROPOSALS) {
 			resultSet.add(s);
@@ -60,7 +55,8 @@ public class TagContentProposalComputer extends
 		String text = null;
 		if (useContractedElementCompletion(offset, document)) {
 			text = name;
-		} else {
+		}
+		else {
 			text = "<" + name + ">";
 		}
 		return text;
@@ -69,15 +65,6 @@ public class TagContentProposalComputer extends
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = createDefaultProposals(offset);
-		final Collection<AbstractWorkflowElement> allElements = editor.getElements();
-
-		if (allElements != null) {
-			for (final Object el : allElements) {
-				final AbstractWorkflowElement element = (AbstractWorkflowElement) el;
-				final String name = element.getName();
-				resultSet.add(name);
-			}
-		}
 		return resultSet;
 	}
 }

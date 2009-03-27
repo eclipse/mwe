@@ -11,15 +11,18 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.base;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.impl.xml.XMLWorkflowSyntaxFactoryImpl;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.jface.text.Document;
+import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ParserTestBase extends PluginTestBase {
 
@@ -50,6 +53,14 @@ public class ParserTestBase extends PluginTestBase {
 	@Override
 	protected String getProjectName() {
 		return "org.eclipse.emf.mwe.ui.editor";
+	}
+
+	protected IDocument createDocument(final String text) {
+		return new Document(text);
+	}
+
+	protected AbstractWorkflowElement parse(final IDocument document) {
+		return DocumentParser.parse(document, null, project);
 	}
 
 }

@@ -14,14 +14,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.searcher;
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
-import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -62,8 +60,10 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 	}
 
 	public void testFindContainerPartialWorkflow1() {
-		final IDocument document = createDocument(WORKFLOW2);
-		final AbstractWorkflowElement root = parse(document);
+		IDocument document;
+		AbstractWorkflowElement root = null;
+		document = createDocument(WORKFLOW2);
+		root = parse(document);
 		final int offset = 160;
 		final AbstractWorkflowElement foundElement = WorkflowElementSearcher.searchContainerElement(root, document,
 				offset);
@@ -86,14 +86,6 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 		assertTrue(foundElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE));
 		assertEquals("org.eclipse.xtend.XtendComponent", foundElement
 				.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
-	}
-
-	private IDocument createDocument(final String text) {
-		return new Document(text);
-	}
-
-	private AbstractWorkflowElement parse(final IDocument document) {
-		return DocumentParser.parse(document, null, project);
 	}
 
 }

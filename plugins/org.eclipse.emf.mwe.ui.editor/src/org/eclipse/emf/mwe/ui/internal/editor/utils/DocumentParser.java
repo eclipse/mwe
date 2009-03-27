@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 
 public final class DocumentParser {
@@ -38,11 +38,11 @@ public final class DocumentParser {
 		throw new UnsupportedOperationException();
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler) {
+	public static AbstractWorkflowElement parse(final IDocument document, final WorkflowContentHandler handler) {
 		return parse(document, handler, (IProject) null);
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler,
+	public static AbstractWorkflowElement parse(final IDocument document, final WorkflowContentHandler handler,
 			final WorkflowEditor editor) {
 		if (document == null)
 			return null;
@@ -70,8 +70,8 @@ public final class DocumentParser {
 		return root;
 	}
 
-	public static AbstractWorkflowElement parse(final IDocument document, WorkflowContentHandler handler,
-			IProject project) {
+	public static AbstractWorkflowElement parse(final IDocument document, final WorkflowContentHandler handler,
+			final IProject project) {
 		if (document == null)
 			return null;
 
@@ -87,7 +87,7 @@ public final class DocumentParser {
 			xmlParser.parse(text);
 		}
 		catch (final SAXException e) {
-			Log.logError(e);
+			Log.logError("", e);
 		}
 		final AbstractWorkflowElement root = xmlParser.getRootElement();
 		return root;
