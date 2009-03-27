@@ -12,8 +12,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.WorkflowContentHandler;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.XMLParser;
@@ -24,7 +24,7 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.18 $
+ * @version $Revision: 1.19 $
  */
 public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStrategy {
 
@@ -71,7 +71,7 @@ public class FileReferenceAnalyzerStrategy extends AbstractReferenceAnalyzerStra
 		store.addFileName(fileName);
 
 		if (!fileName.endsWith(PROPERTIES_EXTENSION)) {
-			final String referencedContent = TypeUtils.getFileContent(file, attribute);
+			final String referencedContent = TypeUtils.getFileContent(file.getProject(), attribute);
 			if (referencedContent == null) {
 				MarkerManager.createMarker(file, document, attribute, "File '" + attribute.getValue()
 						+ "' could not be found", true, false);

@@ -25,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -155,7 +155,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	protected void checkClassAttribute(final IWorkflowAttribute attribute) {
-		final IType type = TypeUtils.findType(getFile(), attribute.getValue());
+		final IType type = TypeUtils.findType(getFile().getProject(), attribute.getValue());
 		if (type == null) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' could not be resolved");
 			return;

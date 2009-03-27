@@ -48,7 +48,7 @@ public class FragmentAnalyzer extends DefaultAnalyzer {
 	 */
 	@Override
 	protected void checkClassAttribute(final IWorkflowAttribute attribute) {
-		final IType type = TypeUtils.findType(getFile(), attribute.getValue());
+		final IType type = TypeUtils.findType(getFile().getProject(), attribute.getValue());
 		if (type == null) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' could not be resolved");
 		}

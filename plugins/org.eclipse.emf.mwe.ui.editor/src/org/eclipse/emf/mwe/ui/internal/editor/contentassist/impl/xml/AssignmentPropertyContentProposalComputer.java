@@ -24,11 +24,10 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
-public class AssignmentPropertyContentProposalComputer extends
-		TagContentProposalComputer {
+public class AssignmentPropertyContentProposalComputer extends TagContentProposalComputer {
 
 	private class ContainerCache {
 
@@ -58,9 +57,8 @@ public class AssignmentPropertyContentProposalComputer extends
 
 	private ContainerCache containerCache;
 
-	public AssignmentPropertyContentProposalComputer(final IFile file,
-			final WorkflowEditor editor, final IDocument document,
-			final WorkflowTagScanner tagScanner) {
+	public AssignmentPropertyContentProposalComputer(final IFile file, final WorkflowEditor editor,
+			final IDocument document, final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
 
@@ -74,15 +72,13 @@ public class AssignmentPropertyContentProposalComputer extends
 		final Set<String> resultSet = createEmptySet();
 		final AbstractWorkflowElement container = getContainer(offset);
 		if (container != null) {
-			final String className =
-					container.getAttributeValue(CLASS_ATTRIBUTE);
+			final String className = container.getAttributeValue(CLASS_ATTRIBUTE);
 			if (className == null)
 				throw new IllegalStateException();
 
-			final IType type = TypeUtils.findType(getFile(), className);
+			final IType type = TypeUtils.findType(getFile().getProject(), className);
 			if (type != null) {
-				final Set<String> settableProperties =
-						TypeUtils.getSettableProperties(type);
+				final Set<String> settableProperties = TypeUtils.getSettableProperties(type);
 				resultSet.addAll(settableProperties);
 			}
 		}
@@ -97,9 +93,8 @@ public class AssignmentPropertyContentProposalComputer extends
 		if (containerCache != null && containerCache.isCached(offset))
 			return containerCache.getElement();
 
-		final AbstractWorkflowElement element =
-				WorkflowElementSearcher.searchContainerElement(editor,
-						document, offset);
+		final AbstractWorkflowElement element = WorkflowElementSearcher
+				.searchContainerElement(editor, document, offset);
 
 		if (element != null) {
 			cacheElement(element, offset);

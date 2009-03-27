@@ -28,7 +28,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
@@ -51,9 +51,9 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 		if (file == null)
 			throw new IllegalArgumentException();
 
-		IType baseType = TypeUtils.findType(file, WORKFLOW_BASE_CLASS);
+		IType baseType = TypeUtils.findType(file.getProject(), WORKFLOW_BASE_CLASS);
 		if (baseType == null) {
-			baseType = TypeUtils.findType(file, OLD_WORKFLOW_BASE_CLASS);
+			baseType = TypeUtils.findType(file.getProject(), OLD_WORKFLOW_BASE_CLASS);
 		}
 		return baseType;
 	}
@@ -81,8 +81,8 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 			Log.logError("Bad document location", e);
 		}
 
-		String simpleName = TypeUtils.getSimpleClassName(text);
-		int length = text.length() - simpleName.length() - 1;
+		final String simpleName = TypeUtils.getSimpleClassName(text);
+		final int length = text.length() - simpleName.length() - 1;
 		String packageName = null;
 		if (length >= 0) {
 			packageName = text.substring(0, length);
@@ -122,11 +122,11 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 		if (COMPONENT_TAG.equals(tag)) {
 			final IType baseType = getWorkflowBaseClass(file);
 			if (baseType != null) {
-				classNames = TypeUtils.getSubClasses(file, baseType, new NullProgressMonitor());
+				classNames = TypeUtils.getSubClasses(file.getProject(), baseType, new NullProgressMonitor());
 			}
 		}
 		else {
-			classNames = TypeUtils.getAllClasses(file, new NullProgressMonitor());
+			classNames = TypeUtils.getAllClasses(file.getProject(), new NullProgressMonitor());
 		}
 
 		return classNames;

@@ -29,7 +29,7 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover {
@@ -66,7 +66,7 @@ public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover 
 					if (element != null && element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 						final String className = element.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);
 						final IFile file = wfEditor.getInputFile();
-						final String javaDoc = TypeUtils.getJavaDoc(file, className);
+						final String javaDoc = TypeUtils.getJavaDoc(file.getProject(), className);
 						return javaDoc;
 					}
 				}

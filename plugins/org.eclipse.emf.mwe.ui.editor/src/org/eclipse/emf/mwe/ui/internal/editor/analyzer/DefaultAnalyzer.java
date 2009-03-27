@@ -17,6 +17,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
@@ -27,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.47 $
+ * @version $Revision: 1.48 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -123,6 +124,13 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		return file;
 	}
 
+	public IProject getProject() {
+		if (getFile() != null)
+			return getFile().getProject();
+
+		return null;
+	}
+
 	protected void checkAttribute(final IType mappedType, final AbstractWorkflowElement element,
 			final IWorkflowAttribute attribute) {
 		if (mappedType == null || element == null || attribute == null)
@@ -134,7 +142,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		else {
 			IType referenceType = mappedType;
 			if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
-				referenceType = TypeUtils.findType(getFile(), element
+				referenceType = TypeUtils.findType(getProject(), element
 						.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 			}
 			final SettableCheckResult result = isSettable(attribute, referenceType);
@@ -163,7 +171,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected void checkClassAttribute(final IWorkflowAttribute attribute) {
-		final IType type = TypeUtils.findType(getFile(), attribute.getValue());
+		final IType type = TypeUtils.findType(getProject(), attribute.getValue());
 		if (type == null) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' could not be resolved");
 		}
@@ -216,14 +224,14 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected IType getType(final String mappedClassName) {
-		return TypeUtils.findType(getFile(), mappedClassName);
+		return TypeUtils.findType(getProject(), mappedClassName);
 	}
 
 	protected boolean inherits(final IType type, final String rootClassName) {
 		if (type == null || rootClassName == null)
 			throw new IllegalArgumentException();
 
-		final Set<IType> superTypes = TypeUtils.getSuperTypes(getFile(), type, true);
+		final Set<IType> superTypes = TypeUtils.getSuperTypes(getProject(), type, true);
 		for (final IType t : superTypes) {
 			final String fqn = t.getFullyQualifiedName();
 			if (rootClassName.equals(fqn))
@@ -240,25 +248,25 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	private SettableCheckResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
 			final String tagName, final String type) {
-		IMethod method = TypeUtils.getSetter(getFile(), mappedType, tagName, type);
+		IMethod method = TypeUtils.getSetter(getProject(), mappedType, tagName, type);
 		IType mt = null;
 
 		if (method == null) {
-			mt = TypeUtils.getSetterParameter(getFile(), element, mappedType);
+			mt = TypeUtils.getSetterParameter(getProject(), element, mappedType);
 			if (mt == null) {
 				mt = mappedType;
 			}
 			else {
-				method = TypeUtils.getSetter(getFile(), mt, tagName, type);
+				method = TypeUtils.getSetter(getProject(), mt, tagName, type);
 			}
 		}
 		if (method == null && element.hasParent()) {
-			mt = TypeUtils.getSetterParameter(getFile(), element.getParent(), mappedType);
+			mt = TypeUtils.getSetterParameter(getProject(), element.getParent(), mappedType);
 			if (mt != null) {
 				final String name = element.getName();
-				method = TypeUtils.getSetter(getFile(), mt, name, type);
+				method = TypeUtils.getSetter(getProject(), mt, name, type);
 				if (method == null) {
-					method = TypeUtils.getSetter(getFile(), mt, name, TypeUtils.WILDCARD);
+					method = TypeUtils.getSetter(getProject(), mt, name, TypeUtils.WILDCARD);
 				}
 			}
 		}

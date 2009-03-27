@@ -62,7 +62,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.52 $
+ * @version $Revision: 1.53 $
  */
 public class WorkflowEditor extends TextEditor {
 
@@ -397,7 +397,7 @@ public class WorkflowEditor extends TextEditor {
 			throw new CoreException(WorkflowEditorPlugin.createErrorStatus(
 					"Please add the MWE runtime to the classpath", null));
 
-		TypeUtils.getSubClasses(file, baseType, monitor);
-		TypeUtils.getAllClasses(file, monitor);
+		TypeUtils.getSubClasses(file.getProject(), baseType, monitor);
+		TypeUtils.getAllClasses(file.getProject(), monitor);
 	}
 }

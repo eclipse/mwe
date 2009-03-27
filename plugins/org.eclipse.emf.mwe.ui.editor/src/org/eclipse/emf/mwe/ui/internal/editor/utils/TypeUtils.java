@@ -27,7 +27,6 @@ import java.util.TreeSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -53,7 +52,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public final class TypeUtils {
 
@@ -138,13 +137,6 @@ public final class TypeUtils {
 		return getValueType(value);
 	}
 
-	public static IType findType(final IFile file, final String typeName) {
-		if (file == null || typeName == null)
-			throw new IllegalArgumentException();
-
-		return findType(file.getProject(), typeName);
-	}
-
 	public static IType findType(final IProject project, final String typeName) {
 		if (project == null || typeName == null)
 			throw new IllegalArgumentException();
@@ -158,10 +150,6 @@ public final class TypeUtils {
 		catch (final JavaModelException e) {
 			return null;
 		}
-	}
-
-	public static Set<String> getAllClasses(final IFile file, final IProgressMonitor monitor) {
-		return getAllClasses(getProject(file), monitor);
 	}
 
 	public static Set<String> getAllClasses(final IProject project, final IProgressMonitor monitor) {
@@ -196,10 +184,6 @@ public final class TypeUtils {
 			return OAW_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
 		else
 			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
-	}
-
-	public static String getFileContent(final IFile file, final IWorkflowAttribute attribute) {
-		return getFileContent(file.getProject(), attribute);
 	}
 
 	public static String getFileContent(final IProject project, final IWorkflowAttribute attribute) {
@@ -252,13 +236,6 @@ public final class TypeUtils {
 		return null;
 	}
 
-	public static String getJavaDoc(final IFile file, final String className) {
-		if (file == null || className == null)
-			return null;
-
-		return getJavaDoc(file.getProject(), className);
-	}
-
 	public static String getJavaDoc(final IProject project, final String className) {
 		if (project == null || className == null)
 			return null;
@@ -274,10 +251,6 @@ public final class TypeUtils {
 			Log.logError("Java Model Exception", e);
 			return null;
 		}
-	}
-
-	public static ClassLoader getResourceLoader(final IFile file) {
-		return getResourceLoader(file.getProject());
 	}
 
 	public static ClassLoader getResourceLoader(final IProject project) {
@@ -316,13 +289,6 @@ public final class TypeUtils {
 		return result;
 	}
 
-	public static IMethod getSetter(final IFile file, final IType type, final String name, final String argType) {
-		if (file == null || type == null || name == null)
-			throw new IllegalArgumentException();
-
-		return getSetter(file.getProject(), type, name, argType);
-	}
-
 	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
@@ -335,11 +301,6 @@ public final class TypeUtils {
 		}
 
 		return method;
-	}
-
-	public static IType getSetterParameter(final IFile file, final AbstractWorkflowElement element,
-			final IType mappedType) {
-		return getSetterParameter(file.getProject(), element, mappedType);
 	}
 
 	public static IType getSetterParameter(final IProject project, final AbstractWorkflowElement element,
@@ -371,10 +332,6 @@ public final class TypeUtils {
 			return fqn;
 	}
 
-	public static Set<String> getSubClasses(final IFile file, final IType baseType, final IProgressMonitor monitor) {
-		return getSubClasses(getProject(file), baseType, monitor);
-	}
-
 	public static Set<String> getSubClasses(final IProject project, final IType baseType, final IProgressMonitor monitor) {
 		if (project == null || baseType == null)
 			throw new IllegalArgumentException();
@@ -391,10 +348,6 @@ public final class TypeUtils {
 
 		cacheSubClasses(project, baseType, subClasses);
 		return subClasses;
-	}
-
-	public static Set<IType> getSuperTypes(final IFile file, final IType type, final boolean recursive) {
-		return getSuperTypes(getProject(file), type, recursive);
 	}
 
 	public static Set<IType> getSuperTypes(final IProject project, final IType type, final boolean recursive) {
@@ -598,13 +551,6 @@ public final class TypeUtils {
 			Log.logError("", e);
 		}
 		return method;
-	}
-
-	private static IProject getProject(final IFile file) {
-		if (file == null)
-			return null;
-
-		return file.getProject();
 	}
 
 	private static String getPropertyName(final String methodName) {
