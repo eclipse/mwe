@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.workflow.util.ProjectIncludingResourceLoader;
@@ -52,9 +53,11 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public final class TypeUtils {
+
+	private static final String VOID_SIGNATURE = "V";
 
 	private static class ClassNameComparator implements Comparator<String> {
 
@@ -350,7 +353,7 @@ public final class TypeUtils {
 		return subClasses;
 	}
 
-	public static Set<IType> getSuperTypes(final IProject project, final IType type, final boolean recursive) {
+	public static Set<IType> getSuperTypes(final IProject project, final IType type, final boolean wholeHierarchy) {
 		if (project == null || type == null)
 			throw new IllegalArgumentException();
 
@@ -369,9 +372,9 @@ public final class TypeUtils {
 					result.add(superType);
 				}
 			}
-			if (recursive && !result.isEmpty()) {
+			if (wholeHierarchy && !result.isEmpty()) {
 				for (final IType t : result) {
-					result.addAll(getSuperTypes(project, t, recursive));
+					result.addAll(getSuperTypes(project, t, wholeHierarchy));
 				}
 			}
 
@@ -643,5 +646,57 @@ public final class TypeUtils {
 			return name.toUpperCase();
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
+	}
+
+	public static Set<String> getSetters(final IProject project, final AbstractWorkflowElement element,
+			final boolean includePropertyImports, final boolean wholeHierarchy) {
+		if (project == null || element == null)
+			throw new IllegalArgumentException();
+
+		final Set<String> result = new HashSet<String>();
+		final IType type = element.getMappedClassType();
+		if (type == null)
+			return result;
+
+		Set<String> setters = internalGetSetters(type);
+		result.addAll(setters);
+
+		if (includePropertyImports) {
+			final IPropertyContainer importedProperties = element.getImportedProperties();
+			result.addAll(importedProperties.getPropertyNames());
+		}
+
+		if (wholeHierarchy) {
+			final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
+			for (final IType t : superTypes) {
+				setters = internalGetSetters(t);
+				result.addAll(setters);
+			}
+		}
+		return result;
+	}
+
+	private static Set<String> internalGetSetters(final IType type) {
+		if (type == null)
+			throw new IllegalArgumentException();
+
+		final Set<String> result = new HashSet<String>();
+		try {
+			final IMethod[] methods = type.getMethods();
+			for (final IMethod m : methods) {
+				final String name = m.getElementName();
+				final int flags = m.getFlags();
+				if (Flags.isPublic(flags) && !Flags.isAbstract(flags) && m.getNumberOfParameters() == 1
+						&& VOID_SIGNATURE.equals(m.getReturnType())
+						&& (name.startsWith(SETTER_PREFIX) || name.startsWith(ADDER_PREFIX))) {
+					final String setterName = toLowerCaseFirst(name.substring(SETTER_PREFIX.length() - 1));
+					result.add(setterName);
+				}
+			}
+		}
+		catch (final JavaModelException e) {
+			Log.logError("", e);
+		}
+		return result;
 	}
 }
