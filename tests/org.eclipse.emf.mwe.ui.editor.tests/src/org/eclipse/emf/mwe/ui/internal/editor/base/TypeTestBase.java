@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.base;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
@@ -18,13 +19,24 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class TypeTestBase extends PluginTestBase {
 
-	protected boolean checkForSubstring(final Set<String> classNameSet,
-			final String substring) {
+	protected String[] checkForStringArray(final Set<String> nameSet, final String[] expected) {
+		final Set<String> result = new HashSet<String>();
+		if (nameSet != null && expected != null) {
+			for (final String s : expected) {
+				if (nameSet.contains(s)) {
+					result.add(s);
+				}
+			}
+		}
+		return result.toArray(new String[result.size()]);
+	}
+
+	protected boolean checkForSubstring(final Set<String> classNameSet, final String substring) {
 		if (classNameSet == null || substring == null)
 			throw new IllegalArgumentException();
 
