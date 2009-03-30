@@ -53,11 +53,9 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public final class TypeUtils {
-
-	private static final String VOID_SIGNATURE = "V";
 
 	private static class ClassNameComparator implements Comparator<String> {
 
@@ -94,6 +92,8 @@ public final class TypeUtils {
 		}
 
 	}
+
+	private static final String VOID_SIGNATURE = "V";
 
 	private static final String BUILTIN_BOOLEAN_TYPE = "boolean";
 
@@ -280,6 +280,7 @@ public final class TypeUtils {
 				final String methodName = m.getElementName();
 				final int modifiers = m.getFlags();
 				if (methodName.length() > SETTER_PREFIX.length() && Flags.isPublic(modifiers)
+						&& m.getNumberOfParameters() == 1 && VOID_SIGNATURE.equals(m.getReturnType())
 						&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))) {
 					final String propertyName = getPropertyName(methodName);
 					result.add(propertyName);
@@ -322,6 +323,34 @@ public final class TypeUtils {
 			}
 		}
 		return mt;
+	}
+
+	public static Set<String> getSetters(final IProject project, final AbstractWorkflowElement element,
+			final boolean includePropertyImports, final boolean wholeHierarchy) {
+		if (project == null || element == null)
+			throw new IllegalArgumentException();
+
+		final Set<String> result = new HashSet<String>();
+		final IType type = element.getMappedClassType();
+		if (type != null) {
+			Set<String> setters = getSettableProperties(type);
+			result.addAll(setters);
+
+			if (wholeHierarchy) {
+				final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
+				for (final IType t : superTypes) {
+					setters = getSettableProperties(t);
+					result.addAll(setters);
+				}
+			}
+		}
+
+		if (includePropertyImports) {
+			final IPropertyContainer importedProperties = element.getImportedProperties();
+			result.addAll(importedProperties.getPropertyNames());
+		}
+
+		return result;
 	}
 
 	public static String getSimpleClassName(final String fqn) {
@@ -646,57 +675,5 @@ public final class TypeUtils {
 			return name.toUpperCase();
 
 		return name.substring(0, 1).toUpperCase() + name.substring(1);
-	}
-
-	public static Set<String> getSetters(final IProject project, final AbstractWorkflowElement element,
-			final boolean includePropertyImports, final boolean wholeHierarchy) {
-		if (project == null || element == null)
-			throw new IllegalArgumentException();
-
-		final Set<String> result = new HashSet<String>();
-		final IType type = element.getMappedClassType();
-		if (type == null)
-			return result;
-
-		Set<String> setters = internalGetSetters(type);
-		result.addAll(setters);
-
-		if (includePropertyImports) {
-			final IPropertyContainer importedProperties = element.getImportedProperties();
-			result.addAll(importedProperties.getPropertyNames());
-		}
-
-		if (wholeHierarchy) {
-			final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
-			for (final IType t : superTypes) {
-				setters = internalGetSetters(t);
-				result.addAll(setters);
-			}
-		}
-		return result;
-	}
-
-	private static Set<String> internalGetSetters(final IType type) {
-		if (type == null)
-			throw new IllegalArgumentException();
-
-		final Set<String> result = new HashSet<String>();
-		try {
-			final IMethod[] methods = type.getMethods();
-			for (final IMethod m : methods) {
-				final String name = m.getElementName();
-				final int flags = m.getFlags();
-				if (Flags.isPublic(flags) && !Flags.isAbstract(flags) && m.getNumberOfParameters() == 1
-						&& VOID_SIGNATURE.equals(m.getReturnType())
-						&& (name.startsWith(SETTER_PREFIX) || name.startsWith(ADDER_PREFIX))) {
-					final String setterName = toLowerCaseFirst(name.substring(SETTER_PREFIX.length() - 1));
-					result.add(setterName);
-				}
-			}
-		}
-		catch (final JavaModelException e) {
-			Log.logError("", e);
-		}
-		return result;
 	}
 }
