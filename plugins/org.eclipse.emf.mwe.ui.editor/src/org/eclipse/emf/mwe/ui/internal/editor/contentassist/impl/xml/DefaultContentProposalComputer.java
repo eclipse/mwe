@@ -18,7 +18,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class DefaultContentProposalComputer extends TagContentProposalComputer {
@@ -38,14 +38,9 @@ public class DefaultContentProposalComputer extends TagContentProposalComputer {
 	@Override
 	protected String createProposalText(final String name, final int offset) {
 		String text = null;
-		if (useContractedElementCompletion(offset, document)) {
-			text = name;
-		}
-		else {
-			text = "<" + name + ">\n</" + name + ">";
-			if (!WORKFLOW_TAG_NAME.equals(name)) {
-				text = "\t" + text;
-			}
+		text = "<" + name + ">";
+		if (!WORKFLOW_TAG_NAME.equals(name)) {
+			text = "\t" + text;
 		}
 		return text;
 	}

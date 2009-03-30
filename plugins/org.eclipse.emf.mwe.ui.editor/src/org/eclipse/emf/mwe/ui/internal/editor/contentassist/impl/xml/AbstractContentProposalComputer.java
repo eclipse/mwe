@@ -21,6 +21,7 @@ import java.util.TreeSet;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextType;
@@ -28,12 +29,13 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.rules.ICharacterScanner;
 import org.eclipse.jface.text.rules.IToken;
 import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
@@ -218,7 +220,7 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 				end--;
 			}
 
-			String substring = partitionText.substring(start, end + 1);
+			final String substring = partitionText.substring(start, end + 1);
 			return new TextInfo(substring, partitionOffset + start, false);
 		}
 		catch (final BadLocationException e) {
@@ -332,19 +334,15 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 				token = tagScanner.nextToken();
 			}
 
-			final char c = (char) 0;
-			while (c == tagScanner.read()) {
-				// TODO dead code because c is = 0 ever!
-				// if (c == ICharacterScanner.EOF) {
-				// break;
-				// }
-				// if (c == '<') {
-				// break;
-				// }
+			int c = 0;
+			while (c != ICharacterScanner.EOF) {
+				c = tagScanner.read();
+				if (c == '<') {
+					break;
+				}
 				if (!Character.isWhitespace(c)) {
 					textReached = true;
 				}
-
 			}
 		}
 		catch (final BadLocationException e) {
@@ -355,5 +353,12 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			return true;
 
 		return false;
+	}
+
+	protected AbstractWorkflowElement getRoot() {
+		if (editor != null)
+			return editor.getRootElement();
+
+		return null;
 	}
 }

@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.25 $
+ * @version $Revision: 1.26 $
  */
 public final class TypeUtils {
 
@@ -331,17 +331,14 @@ public final class TypeUtils {
 			throw new IllegalArgumentException();
 
 		final Set<String> result = new HashSet<String>();
-		final IType type = element.getMappedClassType();
+		IType type = element.getMappedClassType();
 		if (type != null) {
-			Set<String> setters = getSettableProperties(type);
-			result.addAll(setters);
-
-			if (wholeHierarchy) {
-				final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
-				for (final IType t : superTypes) {
-					setters = getSettableProperties(t);
-					result.addAll(setters);
-				}
+			result.addAll(internalGeSetters(project, type, wholeHierarchy));
+		}
+		else if (element.hasParent()) {
+			type = getSetterParameter(project, element, element.getParent().getMappedClassType());
+			if (type != null) {
+				result.addAll(internalGeSetters(project, type, wholeHierarchy));
 			}
 		}
 
@@ -349,7 +346,6 @@ public final class TypeUtils {
 			final IPropertyContainer importedProperties = element.getImportedProperties();
 			result.addAll(importedProperties.getPropertyNames());
 		}
-
 		return result;
 	}
 
@@ -593,6 +589,21 @@ public final class TypeUtils {
 		String propertyName = methodName.substring(FIRST_PROPERTY_CHAR);
 		propertyName = toLowerCaseFirst(propertyName);
 		return propertyName;
+	}
+
+	private static Set<String> internalGeSetters(final IProject project, final IType type, final boolean wholeHierarchy) {
+		final Set<String> result = new HashSet<String>();
+		Set<String> setters = getSettableProperties(type);
+		result.addAll(setters);
+
+		if (wholeHierarchy) {
+			final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
+			for (final IType t : superTypes) {
+				setters = getSettableProperties(t);
+				result.addAll(setters);
+			}
+		}
+		return result;
 	}
 
 	private static IMethod internalGetMethod(final IProject project, final IType type, final String name,

@@ -15,12 +15,15 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class TagContentProposalComputer extends AbstractContentProposalComputer {
@@ -52,19 +55,22 @@ public class TagContentProposalComputer extends AbstractContentProposalComputer 
 
 	@Override
 	protected String createProposalText(final String name, final int offset) {
-		String text = null;
-		if (useContractedElementCompletion(offset, document)) {
-			text = name;
-		}
-		else {
-			text = "<" + name + ">";
-		}
+		final String text = "<" + name + ">";
 		return text;
 	}
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> resultSet = createDefaultProposals(offset);
+		Set<String> resultSet;
+		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRoot(),
+				document, offset);
+		if (element != null) {
+			resultSet = TypeUtils.getSetters(file.getProject(), element, true, true);
+		}
+		else {
+			resultSet = createDefaultProposals(offset);
+		}
+
 		return resultSet;
 	}
 }

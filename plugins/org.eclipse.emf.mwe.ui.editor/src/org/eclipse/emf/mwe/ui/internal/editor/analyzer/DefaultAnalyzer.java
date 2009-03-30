@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.48 $
+ * @version $Revision: 1.49 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -91,7 +91,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final AbstractWorkflowElement parent = element.getParent();
 		final IType parentType = parent.getMappedClassType();
 		if (parentType == null) {
-			createMarker(parent, "Element '" + parent.getName() + "' could not be mapped");
+			createMarker(element, "Element '" + parent.getName() + "' could not be mapped");
 			return;
 		}
 

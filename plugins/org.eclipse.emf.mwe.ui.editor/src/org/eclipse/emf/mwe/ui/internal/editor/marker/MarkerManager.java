@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.22 $
+ * @version $Revision: 1.23 $
  */
 public final class MarkerManager {
 
@@ -87,7 +87,7 @@ public final class MarkerManager {
 			final int lineOffset = document.getLineOffset(line);
 			int start = lineOffset;
 			final int lineLength = document.getLineLength(line);
-			int end = start + lineLength;
+			int end = start + lineLength - 1;
 			if (start + column < lineLength) {
 				start += column;
 				end -= column;

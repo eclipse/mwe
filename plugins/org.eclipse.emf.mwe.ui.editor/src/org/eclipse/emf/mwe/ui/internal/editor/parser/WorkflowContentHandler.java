@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.36 $
+ * @version $Revision: 1.37 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -352,6 +352,9 @@ public class WorkflowContentHandler extends DefaultHandler {
 			catch (final URISyntaxException e) {
 				Log.logError("", e);
 				return null;
+			}
+			catch (final IllegalArgumentException e) {
+				throw new ParserProblemException(e.getMessage(), e);
 			}
 		}
 		return null;
