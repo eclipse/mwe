@@ -19,22 +19,10 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.3 $
+ * @version $Revision: 1.4 $
  */
 
 public class TypeTestBase extends ParserTestBase {
-
-	protected String[] checkForStringArray(final Set<String> nameSet, final String[] expected) {
-		final Set<String> result = new HashSet<String>();
-		if (nameSet != null && expected != null) {
-			for (final String s : expected) {
-				if (nameSet.contains(s)) {
-					result.add(s);
-				}
-			}
-		}
-		return result.toArray(new String[result.size()]);
-	}
 
 	protected boolean checkForSubstring(final Set<String> classNameSet, final String substring) {
 		if (classNameSet == null || substring == null)
@@ -45,6 +33,14 @@ public class TypeTestBase extends ParserTestBase {
 				return true;
 		}
 		return false;
+	}
+
+	protected boolean equalElements(final String[] expected, final Set<String> actual) {
+		if (expected == null || actual == null || actual.size() != expected.length)
+			return false;
+
+		final Set<String> expectedSet = createSet(expected);
+		return expectedSet.equals(actual);
 	}
 
 	@Override
@@ -58,5 +54,26 @@ public class TypeTestBase extends ParserTestBase {
 
 		final IType type = TypeUtils.findType(project, className);
 		return type;
+	}
+
+	protected boolean isSubset(final String[] expected, final Set<String> actual) {
+		if (expected == null || actual == null)
+			return false;
+
+		for (final String element : expected) {
+			if (!actual.contains(element))
+				return false;
+		}
+		return true;
+	}
+
+	private Set<String> createSet(final String[] array) {
+		final Set<String> result = new HashSet<String>();
+		if (array != null) {
+			for (final String element : array) {
+				result.add(element);
+			}
+		}
+		return result;
 	}
 }

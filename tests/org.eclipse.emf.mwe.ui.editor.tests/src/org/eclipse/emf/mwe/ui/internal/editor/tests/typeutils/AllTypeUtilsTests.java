@@ -17,11 +17,12 @@ import junit.framework.TestSuite;
 public class AllTypeUtilsTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils");
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(PropertyNamesTests.class);
 		suite.addTestSuite(TypeUtilsTests.class);
 		suite.addTestSuite(ClassHierarchyTests.class);
+		suite.addTestSuite(GetSetterTests.class);
 		// $JUnit-END$
 		return suite;
 	}
