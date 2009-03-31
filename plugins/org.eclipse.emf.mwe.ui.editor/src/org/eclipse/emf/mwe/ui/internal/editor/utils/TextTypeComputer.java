@@ -18,7 +18,7 @@ import org.eclipse.jface.text.ITypedRegion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public final class TextTypeComputer {
@@ -30,8 +30,7 @@ public final class TextTypeComputer {
 		throw new UnsupportedOperationException();
 	}
 
-	public static TextType computeType(final IDocument document,
-			final int offset) {
+	public static TextType computeType(final IDocument document, final int offset) {
 		TextType type = TextType.UNDEFINED;
 		try {
 			final ITypedRegion region = document.getPartition(offset);
@@ -44,8 +43,7 @@ public final class TextTypeComputer {
 				char ch = 0;
 				while (o >= partitionOffset) {
 					ch = document.getChar(o);
-					if (quoteChar > 0 && ch == quoteChar || quoteChar == 0
-							&& (ch == '"' || ch == '\'')) {
+					if (quoteChar > 0 && ch == quoteChar || quoteChar == 0 && (ch == '"' || ch == '\'')) {
 						if (quoteChar == 0) {
 							quoteChar = ch;
 						}
@@ -54,38 +52,43 @@ public final class TextTypeComputer {
 
 					if (Character.isWhitespace(ch)) {
 						hasWhitespace = true;
-					} else if (ch == '<')
+					}
+					else if (ch == '<') {
 						break;
+					}
 
 					o--;
 				}
 
 				if (quoteCount % 2 > 0) {
 					type = TextType.STRING;
-				} else if (o > partitionOffset && hasWhitespace) {
+				}
+				else if (o >= partitionOffset && hasWhitespace) {
 					type = TextType.ATTRIBUTE;
-				} else if (ch == '<') {
+				}
+				else if (ch == '<') {
 					type = TextType.TAG;
-				} else {
+				}
+				else {
 					type = TextType.OUTSIDE_TAG;
 				}
-			} else {
+			}
+			else {
 				type = TextType.OUTSIDE_TAG;
 			}
-		} catch (final BadLocationException e) {
+		}
+		catch (final BadLocationException e) {
 			Log.logError("Bad document location", e);
 		}
 		return type;
 	}
 
-	public static boolean isAttribute(final IDocument document,
-			final int offset) {
+	public static boolean isAttribute(final IDocument document, final int offset) {
 		final TextType type = computeType(document, offset);
 		return type == TextType.ATTRIBUTE;
 	}
 
-	public static boolean isOutsideTag(final IDocument document,
-			final int offset) {
+	public static boolean isOutsideTag(final IDocument document, final int offset) {
 		final TextType type = computeType(document, offset);
 		return type == TextType.OUTSIDE_TAG;
 	}
