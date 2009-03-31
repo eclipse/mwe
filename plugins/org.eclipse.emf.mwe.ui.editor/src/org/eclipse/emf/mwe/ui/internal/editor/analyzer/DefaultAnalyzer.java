@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.49 $
+ * @version $Revision: 1.50 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -90,20 +90,23 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		final AbstractWorkflowElement parent = element.getParent();
 		final IType parentType = parent.getMappedClassType();
-		if (parentType == null) {
-			createMarker(element, "Element '" + parent.getName() + "' could not be mapped");
+		final IType elementType = element.getMappedClassType();
+		if (elementType == null && !parent.isFragment()) {
+			createMarker(element, "Element '" + element.getName() + "' could not be mapped");
 			return;
 		}
 
-		if (!element.isFragment()) {
-			final SettableCheckResult result = isSettable(element, parentType);
-			if (!result.isSettableFound()) {
-				createMarker(element, "No setter for '" + result.getName() + "' available in class '"
-						+ result.getType().getElementName() + "'");
-				return;
+		if (parentType != null) {
+			if (!element.isFragment()) {
+				final SettableCheckResult result = isSettable(element, parentType);
+				if (!result.isSettableFound()) {
+					createMarker(element, "No setter for '" + result.getName() + "' available in class '"
+							+ result.getType().getElementName() + "'");
+					return;
+				}
 			}
+			checkAttributes(element, parentType);
 		}
-		checkAttributes(element, parentType);
 	}
 
 	/**
