@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -22,7 +23,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 
 public class IDRefContentProposalComputer extends
@@ -55,7 +56,7 @@ AbstractSpecializedStringContentProposalComputer {
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> resultSet = createEmptySet();
+		final Set<String> resultSet = new HashSet<String>();
 		final Collection<ReferenceInfo> referenceDefinitions =
 			editor.getReferenceDefinitions();
 

@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -23,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class TagContentProposalComputer extends AbstractContentProposalComputer {
@@ -46,7 +47,7 @@ public class TagContentProposalComputer extends AbstractContentProposalComputer 
 	}
 
 	protected Set<String> createDefaultProposals(@SuppressWarnings("unused") final int offset) {
-		final Set<String> resultSet = createEmptySet();
+		final Set<String> resultSet = new HashSet<String>();
 		for (final String s : DEFAULT_PROPOSALS) {
 			resultSet.add(s);
 		}

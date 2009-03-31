@@ -12,11 +12,11 @@
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.TreeSet;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.IContentProposalComputer;
@@ -35,10 +35,24 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
+
+	private class ProposalComparator implements Comparator<ICompletionProposal> {
+
+		public int compare(final ICompletionProposal proposal1, final ICompletionProposal proposal2) {
+			if (proposal1 == proposal2)
+				return 0;
+			else if (proposal1 == null)
+				return -1;
+			else if (proposal2 == null)
+				return 1;
+
+			return proposal1.getDisplayString().compareTo(proposal2.getDisplayString());
+		}
+	}
 
 	public class StringComparator implements Comparator<String> {
 
@@ -95,10 +109,12 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 		if (proposals != null) {
 			for (final String rawText : proposals) {
 				final String proposalText = createProposalText(rawText, offset);
-				final ICompletionProposal proposal = createProposal(proposalText, offset);
-				results.add(proposal);
+				results.addAll(createProposal(proposalText, offset));
 			}
 			results = removeNonMatchingEntries(results, offset);
+		}
+		if (needsSorting) {
+			Collections.sort(results, new ProposalComparator());
 		}
 		return results;
 	}
@@ -144,14 +160,8 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 		this.textType = textType;
 	}
 
-	protected Set<String> createEmptySet() {
-		if (needsSorting)
-			return new TreeSet<String>(new StringComparator());
-		else
-			return new HashSet<String>();
-	}
-
-	protected ExtendedCompletionProposal createProposal(final String text, final int offset) {
+	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
+		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
 		int o = offset;
 		try {
 			if (o > 0 && document.getChar(o - 1) != '>') {
@@ -163,8 +173,9 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 		}
 
 		final TextInfo currentText = currentText(document, o);
-		return new ExtendedCompletionProposal(text, currentText.getDocumentOffset(), currentText.getText().length(),
-				text.length());
+		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
+				currentText.getText().length(), text.length()));
+		return result;
 	}
 
 	protected abstract String createProposalText(final String name, final int offset);
@@ -220,7 +231,11 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 				end--;
 			}
 
-			final String substring = partitionText.substring(start, end + 1);
+			String substring = partitionText.substring(start, end + 1);
+			if ("'".equals(substring) || "\"".equals(substring)) {
+				substring = "";
+				start++;
+			}
 			return new TextInfo(substring, partitionOffset + start, false);
 		}
 		catch (final BadLocationException e) {

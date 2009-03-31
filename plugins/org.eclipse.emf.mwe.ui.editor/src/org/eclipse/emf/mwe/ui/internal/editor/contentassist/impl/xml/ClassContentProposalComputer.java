@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -28,7 +30,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
@@ -44,7 +46,6 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 	public ClassContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
-		turnOffSorting();
 	}
 
 	public static IType getWorkflowBaseClass(final IFile file) {
@@ -70,7 +71,8 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 	}
 
 	@Override
-	protected ExtendedCompletionProposal createProposal(final String text, final int offset) {
+	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
+		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
 		int o = offset;
 		try {
 			if (o > 0 && document.getChar(o - 1) != '>') {
@@ -92,8 +94,11 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 				+ ((packageName != null && packageName.length() > 0) ? " (" + packageName + ")" : "");
 		final TextInfo currentText = currentText(document, o);
 		final Image img = EditorImages.getImage(EditorImages.COMPONENT);
-		return new ExtendedCompletionProposal(text, currentText.getDocumentOffset(), currentText.getText().length(),
-				text.length(), img, displayText, null, null);
+		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
+				currentText.getText().length(), text.length(), img, displayText, null, null));
+		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
+				currentText.getText().length(), text.length(), img, text, null, null));
+		return result;
 	}
 
 	/**

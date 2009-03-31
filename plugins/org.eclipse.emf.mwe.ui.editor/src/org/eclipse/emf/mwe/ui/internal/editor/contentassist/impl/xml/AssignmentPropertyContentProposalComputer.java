@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
@@ -24,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends TagContentProposalComputer {
@@ -69,7 +70,7 @@ public class AssignmentPropertyContentProposalComputer extends TagContentProposa
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
-		final Set<String> resultSet = createEmptySet();
+		final Set<String> resultSet = new HashSet<String>();
 		final AbstractWorkflowElement container = getContainer(offset);
 		if (container != null) {
 			final String className = container.getAttributeValue(CLASS_ATTRIBUTE);
