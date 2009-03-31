@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.50 $
+ * @version $Revision: 1.51 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -142,6 +142,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attribute.getName())) {
 			checkClassAttribute(attribute);
 		}
+		else if (IWorkflowAttribute.FILE_ATTRIBUTE.equals(attribute.getName())) {
+			checkFileAttribute(attribute);
+		}
 		else {
 			IType referenceType = mappedType;
 			if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
@@ -186,7 +189,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final Matcher m = p.matcher(attrValue);
 		while (m.find()) {
 			final String value = m.group(1);
-			if (!element.hasProperty(value)) {
+			if (hasProperty(element, value)) {
 				createMarker(attribute, "Undefined property reference '" + value + "'");
 			}
 		}
@@ -247,6 +250,22 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
 		final Matcher m = p.matcher(attribute.getValue());
 		return m.matches();
+	}
+
+	private void checkFileAttribute(final IWorkflowAttribute attribute) {
+		final String content = TypeUtils.getFileContent(getProject(), attribute);
+		if (content == null) {
+			createMarkerForValue(attribute, "Could not load file '" + attribute.getValue() + "'");
+		}
+	}
+
+	private boolean hasProperty(final AbstractWorkflowElement element, final String name) {
+		boolean result = element.hasProperty(name);
+		if (!result && element.hasParent()) {
+			result = element.getParent().hasProperty(name);
+		}
+
+		return result;
 	}
 
 	private SettableCheckResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
