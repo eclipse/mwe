@@ -13,11 +13,13 @@ package org.eclipse.emf.mwe.ui.internal.editor.editor;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
@@ -39,31 +41,42 @@ import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.internal.ui.javaeditor.IJavaAnnotation;
+import org.eclipse.jdt.internal.ui.javaeditor.JavaAnnotationIterator;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextListener;
+import org.eclipse.jface.text.ITextSelection;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.jface.text.source.IAnnotationModelExtension2;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.text.source.IVerticalRuler;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotation;
 import org.eclipse.jface.text.source.projection.ProjectionAnnotationModel;
 import org.eclipse.jface.text.source.projection.ProjectionSupport;
 import org.eclipse.jface.text.source.projection.ProjectionViewer;
+import org.eclipse.jface.viewers.IPostSelectionProvider;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.ISelectionProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
+import org.eclipse.ui.texteditor.MarkerAnnotation;
 import org.eclipse.ui.texteditor.TextOperationAction;
 import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.53 $
+ * @version $Revision: 1.54 $
  */
+@SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
 
 	private class InitializerJob extends Job {
@@ -111,6 +124,8 @@ public class WorkflowEditor extends TextEditor {
 
 	private Job initializerJob;
 
+	private ISelectionChangedListener selectionChangedListener;
+
 	private AbstractWorkflowElement rootElement;
 
 	private Collection<AbstractWorkflowElement> elements;
@@ -129,6 +144,17 @@ public class WorkflowEditor extends TextEditor {
 		setDocumentProvider(new WorkflowDocumentProvider());
 	}
 
+	private static boolean isProblemMarkerAnnotation(final Annotation annotation) {
+		if (!(annotation instanceof MarkerAnnotation))
+			return false;
+		try {
+			return (((MarkerAnnotation) annotation).getMarker().isSubtypeOf(IMarker.PROBLEM));
+		}
+		catch (final CoreException e) {
+			return false;
+		}
+	}
+
 	public void createMarker(final IDocument document, final String msg, final int line, final int column) {
 		final IFile file = getInputFile();
 		MarkerManager.createMarker(file, document, msg, line, column);
@@ -143,11 +169,35 @@ public class WorkflowEditor extends TextEditor {
 		projectSupport.install();
 		viewer.doOperation(ProjectionViewer.TOGGLE);
 		annotationModel = viewer.getProjectionAnnotationModel();
+		selectionChangedListener = new ISelectionChangedListener() {
+			public void selectionChanged(final SelectionChangedEvent event) {
+				updateStatusLine();
+			}
+		};
+		final ISelectionProvider selectionProvider = getSelectionProvider();
+		if (selectionProvider instanceof IPostSelectionProvider) {
+			final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+			postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
+		}
+		else {
+			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
+		}
 	}
 
 	@Override
 	public void dispose() {
 		colorManager.dispose();
+		if (selectionChangedListener != null) {
+			final ISelectionProvider selectionProvider = getSelectionProvider();
+			if (selectionProvider instanceof IPostSelectionProvider) {
+				final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+				postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
+			}
+			else {
+				getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
+			}
+		}
+
 		if (outlinePage != null) {
 			outlinePage.setInput(null);
 		}
@@ -200,16 +250,6 @@ public class WorkflowEditor extends TextEditor {
 		final IFileEditorInput ife = (IFileEditorInput) getEditorInput();
 		final IFile file = ife.getFile();
 		return file;
-	}
-
-	@Override
-	protected void doSetInput(final IEditorInput input) throws CoreException {
-		super.doSetInput(input);
-		if (input instanceof IFileEditorInput) {
-			final IFile file = getInputFile();
-			initializerJob = new InitializerJob("Initializing editor...", file);
-			initializerJob.schedule();
-		}
 	}
 
 	public Collection<ReferenceInfo> getReferenceDefinitions() {
@@ -343,6 +383,16 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	@Override
+	protected void doSetInput(final IEditorInput input) throws CoreException {
+		super.doSetInput(input);
+		if (input instanceof IFileEditorInput) {
+			final IFile file = getInputFile();
+			initializerJob = new InitializerJob("Initializing editor...", file);
+			initializerJob.schedule();
+		}
+	}
+
+	@Override
 	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe"));
 		super.editorContextMenuAboutToShow(menu);
@@ -384,6 +434,43 @@ public class WorkflowEditor extends TextEditor {
 		super.rulerContextMenuAboutToShow(menu);
 
 		actionGroup.fillContextMenu(menu);
+	}
+
+	protected void updateStatusLine() {
+		final ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
+		final Annotation annotation = getAnnotation(selection.getOffset(), selection.getLength());
+		String message = null;
+		if (annotation != null) {
+			updateMarkerViews(annotation);
+			if (annotation instanceof IJavaAnnotation && ((IJavaAnnotation) annotation).isProblem()
+					|| isProblemMarkerAnnotation(annotation)) {
+				message = annotation.getText();
+			}
+		}
+		setStatusLineMessage(message);
+	}
+
+	private Annotation getAnnotation(final int offset, final int length) {
+		final IAnnotationModel model = getDocumentProvider().getAnnotationModel(getEditorInput());
+		if (model == null)
+			return null;
+
+		Iterator parent;
+		if (model instanceof IAnnotationModelExtension2) {
+			parent = ((IAnnotationModelExtension2) model).getAnnotationIterator(offset, length, true, true);
+		}
+		else {
+			parent = model.getAnnotationIterator();
+		}
+
+		final Iterator e = new JavaAnnotationIterator(parent, false);
+		while (e.hasNext()) {
+			final Annotation a = (Annotation) e.next();
+			final Position p = model.getPosition(a);
+			if (p != null && p.overlapsWith(offset, length))
+				return a;
+		}
+		return null;
 	}
 
 	private WorkflowEditorPlugin getPlugin() {
