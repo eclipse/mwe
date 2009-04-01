@@ -21,12 +21,10 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
-
-	private static final String PROPERTY_FILE_LABEL = "file:";
 
 	public void addListener(final ILabelProviderListener listener) {
 	}
@@ -55,10 +53,25 @@ public class OutlineLabelProvider implements ILabelProvider {
 				text += " = " + workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
 			}
 		}
-		else if (workflowElement.isFileProperty()) {
-			text = PROPERTY_FILE_LABEL + " " + workflowElement.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE);
+		else if (workflowElement.isFragment()) {
+			text = workflowElement.getName();
+			IWorkflowAttribute attr = null;
+			if (workflowElement.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)) {
+				attr = workflowElement.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
+			}
+			else if (workflowElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
+				attr = workflowElement.getAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE);
+			}
+
+			if (attr != null) {
+				text += ": " + attr.getName() + "=" + attr.getValue();
+			}
 		}
-		else if (workflowElement.isComponent()) {
+		else if (workflowElement.isFileProperty()) {
+			text = IWorkflowAttribute.FILE_ATTRIBUTE + " "
+					+ workflowElement.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE);
+		}
+		else if (workflowElement.isComponent() || workflowElement.isCompose()) {
 			if (workflowElement.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 				final String classFQN = workflowElement.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);
 				final int lastDot = classFQN.lastIndexOf('.');

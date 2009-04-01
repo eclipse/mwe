@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -93,10 +93,10 @@ public final class WorkflowElementTypeComputer {
 		if (element.isWorkflow()) {
 			imageName = EditorImages.WORKFLOW;
 		}
-		else if (element.isComponent()) {
+		else if (element.isComponent() || element.isCompose()) {
 			imageName = EditorImages.COMPONENT;
 		}
-		else if (element.isProperty() || element.isAssignmentProperty()) {
+		else if (element.isProperty() || element.isAssignmentProperty() || element.isFragment()) {
 			imageName = EditorImages.PROPERTY;
 		}
 		else if (element.isAssignment()) {
