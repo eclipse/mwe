@@ -20,12 +20,11 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends TagContentProposalComputer {
@@ -77,11 +76,8 @@ public class AssignmentPropertyContentProposalComputer extends TagContentProposa
 			if (className == null)
 				throw new IllegalStateException();
 
-			final IType type = TypeUtils.findType(getFile().getProject(), className);
-			if (type != null) {
-				final Set<String> settableProperties = TypeUtils.getSettableProperties(type);
-				resultSet.addAll(settableProperties);
-			}
+			final Set<String> settableProperties = TypeUtils.getSetters(getFile().getProject(), container, true, false);
+			resultSet.addAll(settableProperties);
 		}
 		return resultSet;
 	}
