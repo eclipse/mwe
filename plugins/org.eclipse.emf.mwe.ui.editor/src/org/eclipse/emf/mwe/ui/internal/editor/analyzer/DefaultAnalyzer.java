@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.51 $
+ * @version $Revision: 1.52 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -189,8 +189,8 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final Matcher m = p.matcher(attrValue);
 		while (m.find()) {
 			final String value = m.group(1);
-			if (hasProperty(element, value)) {
-				createMarker(attribute, "Undefined property reference '" + value + "'");
+			if (!element.hasProperty(value)) {
+				createMarkerForValue(attribute, "Undefined property reference '" + value + "'");
 			}
 		}
 	}
@@ -257,15 +257,6 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (content == null) {
 			createMarkerForValue(attribute, "Could not load file '" + attribute.getValue() + "'");
 		}
-	}
-
-	private boolean hasProperty(final AbstractWorkflowElement element, final String name) {
-		boolean result = element.hasProperty(name);
-		if (!result && element.hasParent()) {
-			result = element.getParent().hasProperty(name);
-		}
-
-		return result;
 	}
 
 	private SettableCheckResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
