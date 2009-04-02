@@ -21,46 +21,16 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.SettableCheckResult;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
-import org.eclipse.jdt.core.IMethod;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.52 $
+ * @version $Revision: 1.53 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
-
-	private class SettableCheckResult {
-
-		private final boolean settableFound;
-
-		private final String name;
-
-		private final IType type;
-
-		public SettableCheckResult(final boolean settableFound, final String name, final IType type) {
-			if (name == null || type == null)
-				throw new IllegalArgumentException();
-
-			this.settableFound = settableFound;
-			this.name = name;
-			this.type = type;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public IType getType() {
-			return type;
-		}
-
-		public boolean isSettableFound() {
-			return settableFound;
-		}
-	}
 
 	protected static final String MAPPING_ERROR_MSG = "Could not determine a class mapping for element";
 
@@ -98,7 +68,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		if (parentType != null) {
 			if (!element.isFragment()) {
-				final SettableCheckResult result = isSettable(element, parentType);
+				final SettableCheckResult result = TypeUtils.isSettable(getProject(), element, parentType);
 				if (!result.isSettableFound()) {
 					createMarker(element, "No setter for '" + result.getName() + "' available in class '"
 							+ result.getType().getElementName() + "'");
@@ -151,7 +121,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				referenceType = TypeUtils.findType(getProject(), element
 						.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 			}
-			final SettableCheckResult result = isSettable(attribute, referenceType);
+			final SettableCheckResult result = TypeUtils.isSettable(getProject(), attribute, referenceType);
 			if (!result.isSettableFound()) {
 				createMarker(attribute, "No attribute '" + result.getName() + "' available in class '"
 						+ result.getType().getElementName() + "'");
@@ -258,51 +228,4 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			createMarkerForValue(attribute, "Could not load file '" + attribute.getValue() + "'");
 		}
 	}
-
-	private SettableCheckResult internalIsSettable(final AbstractWorkflowElement element, final IType mappedType,
-			final String tagName, final String type) {
-		IMethod method = TypeUtils.getSetter(getProject(), mappedType, tagName, type);
-		IType mt = null;
-
-		if (method == null) {
-			mt = TypeUtils.getSetterParameter(getProject(), element, mappedType);
-			if (mt == null) {
-				mt = mappedType;
-			}
-			else {
-				method = TypeUtils.getSetter(getProject(), mt, tagName, type);
-			}
-		}
-		if (method == null && element.hasParent()) {
-			mt = TypeUtils.getSetterParameter(getProject(), element.getParent(), mappedType);
-			if (mt != null) {
-				final String name = element.getName();
-				method = TypeUtils.getSetter(getProject(), mt, name, type);
-				if (method == null) {
-					method = TypeUtils.getSetter(getProject(), mt, name, TypeUtils.WILDCARD);
-				}
-			}
-		}
-		if (mt == null) {
-			mt = mappedType;
-		}
-
-		final boolean hasProperty = (element.hasParent()) ? element.getParent().hasProperty(tagName) : false;
-		final boolean result = (method != null) || hasProperty;
-		return new SettableCheckResult(result, tagName, mt);
-	}
-
-	private SettableCheckResult isSettable(final AbstractWorkflowElement element, final IType mappedType) {
-		final String type = TypeUtils.WILDCARD;
-		final String name = element.getName();
-		return internalIsSettable(element, mappedType, name, type);
-	}
-
-	private SettableCheckResult isSettable(final IWorkflowAttribute attribute, final IType mappedType) {
-		final AbstractWorkflowElement element = attribute.getElement();
-		final String type = TypeUtils.computeAttributeType(attribute);
-		final String name = attribute.getName();
-		return internalIsSettable(element, mappedType, name, type);
-	}
-
 }

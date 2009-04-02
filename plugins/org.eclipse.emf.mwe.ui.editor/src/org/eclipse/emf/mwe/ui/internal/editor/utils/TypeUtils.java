@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.26 $
+ * @version $Revision: 1.27 $
  */
 public final class TypeUtils {
 
@@ -453,6 +453,21 @@ public final class TypeUtils {
 		}
 	}
 
+	public static SettableCheckResult isSettable(final IProject project, final AbstractWorkflowElement element,
+			final IType mappedType) {
+		final String type = TypeUtils.WILDCARD;
+		final String name = element.getName();
+		return internalIsSettable(project, element, mappedType, name, type);
+	}
+
+	public static SettableCheckResult isSettable(final IProject project, final IWorkflowAttribute attribute,
+			final IType mappedType) {
+		final AbstractWorkflowElement element = attribute.getElement();
+		final String type = TypeUtils.computeAttributeType(attribute);
+		final String name = attribute.getName();
+		return internalIsSettable(project, element, mappedType, name, type);
+	}
+
 	private static String adderName(final String name) {
 		return ADDER_PREFIX + toUpperCaseFirst(name);
 	}
@@ -638,6 +653,39 @@ public final class TypeUtils {
 				return method;
 		}
 		return null;
+	}
+
+	private static SettableCheckResult internalIsSettable(final IProject project,
+			final AbstractWorkflowElement element, final IType mappedType, final String tagName, final String type) {
+		IMethod method = TypeUtils.getSetter(project, mappedType, tagName, type);
+		IType mt = null;
+
+		if (method == null) {
+			mt = TypeUtils.getSetterParameter(project, element, mappedType);
+			if (mt == null) {
+				mt = mappedType;
+			}
+			else {
+				method = TypeUtils.getSetter(project, mt, tagName, type);
+			}
+		}
+		if (method == null && element.hasParent()) {
+			mt = TypeUtils.getSetterParameter(project, element.getParent(), mappedType);
+			if (mt != null) {
+				final String name = element.getName();
+				method = TypeUtils.getSetter(project, mt, name, type);
+				if (method == null) {
+					method = TypeUtils.getSetter(project, mt, name, TypeUtils.WILDCARD);
+				}
+			}
+		}
+		if (mt == null) {
+			mt = mappedType;
+		}
+
+		final boolean hasProperty = (element.hasParent()) ? element.getParent().hasProperty(tagName) : false;
+		final boolean result = (method != null) || hasProperty;
+		return new SettableCheckResult(result, tagName, mt);
 	}
 
 	private static boolean isBooleanValue(final String value) {
