@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.37 $
+ * @version $Revision: 1.38 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -100,9 +100,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 		currentElement.setEndElementRange(createPositionRange());
 		if (hasFileReference(currentElement)) {
 			final boolean inherit = isInheritAllSet(currentElement);
-			parseReferencedContent(currentElement);
+			parseReferencedContent(currentElement, inherit);
 			if (inherit) {
-				currentElement.setPropertyContainer(propertyContainer);
 			}
 
 		}
@@ -114,6 +113,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 				handleParseException(e, currentElement);
 			}
 		}
+
+		currentElement.setPropertyContainer(propertyContainer);
 
 		if (currentElement.hasParent()) {
 			currentElement = currentElement.getParent();
@@ -429,7 +430,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return element;
 	}
 
-	private void parseReferencedContent(final AbstractWorkflowElement element) {
+	private void parseReferencedContent(final AbstractWorkflowElement element, final boolean inherit) {
 		if (element == null || !hasFileReference(element))
 			throw new IllegalArgumentException();
 
@@ -448,7 +449,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final IDocument refDoc = new org.eclipse.jface.text.Document(content);
 			final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
 			final File refFile = getFile(getProject(), attribute);
-			contentHandler.setPropertyContainer(propertyContainer);
+			if (inherit) {
+				contentHandler.setPropertyContainer(propertyContainer);
+			}
+
 			contentHandler.setFile(refFile);
 			DocumentParser.parse(refDoc, contentHandler, getProject());
 		}

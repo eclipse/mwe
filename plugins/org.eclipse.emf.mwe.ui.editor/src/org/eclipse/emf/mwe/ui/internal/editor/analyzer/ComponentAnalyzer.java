@@ -25,13 +25,15 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected static final String ABSTRACT_ATTRIBUTE = "abstract";
 
 	private static final String WORKFLOW_ROOT_CLASS = "org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent";
+
+	private static final String FRAGMENT_ROOT_INTERFACE = "org.eclipse.xtext.generator.IGeneratorFragment";
 
 	protected static final String FILE_AND_CLASS_MSG = "A component cannot have a 'class' and a 'file' attribute at the same time";
 
@@ -161,7 +163,7 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			return;
 		}
 
-		if (!inherits(type, WORKFLOW_ROOT_CLASS)) {
+		if (!inherits(type, WORKFLOW_ROOT_CLASS) && !inherits(type, FRAGMENT_ROOT_INTERFACE)) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' is not a valid workflow component");
 		}
 	}
