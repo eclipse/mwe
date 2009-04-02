@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {
@@ -47,10 +47,11 @@ public class OutlineLabelProvider implements ILabelProvider {
 		final AbstractWorkflowElement workflowElement = (AbstractWorkflowElement) element;
 		String text = null;
 
+		final String value = workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
 		if (workflowElement.isSimpleProperty()) {
 			text = workflowElement.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE);
-			if (workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE) != null) {
-				text += " = " + workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
+			if (value != null && value.length() > 0) {
+				text += " = " + value;
 			}
 		}
 		else if (workflowElement.isFragment()) {
@@ -83,8 +84,8 @@ public class OutlineLabelProvider implements ILabelProvider {
 		}
 		else {
 			text = workflowElement.getName();
-			if (workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE) != null) {
-				text += " = " + workflowElement.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE);
+			if (value != null) {
+				text += " = " + value;
 			}
 		}
 		return text;
