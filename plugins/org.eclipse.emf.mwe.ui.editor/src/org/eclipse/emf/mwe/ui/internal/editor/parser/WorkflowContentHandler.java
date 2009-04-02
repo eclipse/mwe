@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.38 $
+ * @version $Revision: 1.39 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -284,7 +284,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new IllegalArgumentException();
 
 		final Property property = new Property(element);
-		if (!isInTopMostFile(element)) {
+		if (element.getFile() != null && !isInTopMostFile(element)) {
 			property.setImported(true);
 		}
 
@@ -298,6 +298,9 @@ public class WorkflowContentHandler extends DefaultHandler {
 					if (isInTopMostFile(element)) {
 						if (element.hasParent()) {
 							element.getParent().addProperties(fileContainer);
+						}
+						else {
+							propertyContainer.addProperties(fileContainer);
 						}
 					}
 					else {
@@ -417,10 +420,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 		if (element != null) {
 			final File file1 = element.getFile();
 			final File file2 = FileUtils.convertToFile(getFile());
-			if (file1 != null && file1.equals(file2))
-				return true;
+			if (file == null || (file1 != null && !file1.equals(file2)))
+				return false;
 		}
-		return false;
+		return true;
 	}
 
 	private AbstractWorkflowElement newWorkflowElement(final String name) {
