@@ -25,7 +25,7 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public interface IWorkflowSyntaxFactory {
@@ -36,7 +36,7 @@ public interface IWorkflowSyntaxFactory {
 
 	IPropertyContainer newPropertyContainer();
 
-	IWorkflowAttribute newWorkflowAttribute(AbstractWorkflowElement element, String name, String value);
+	IWorkflowAttribute newWorkflowAttribute(String name, String value);
 
 	AbstractWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project, IDocument document, String name);
 }

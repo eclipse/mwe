@@ -24,22 +24,21 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
 
-	private final AbstractWorkflowElement element;
+	private AbstractWorkflowElement element;
 
 	private final String name;
 
 	private final String value;
 
-	public XMLWorkflowAttributeImpl(final AbstractWorkflowElement element, final String name, final String value) {
-		if (element == null || name == null || value == null || name.length() == 0)
+	public XMLWorkflowAttributeImpl(final String name, final String value) {
+		if (name == null || value == null || name.length() == 0)
 			throw new IllegalArgumentException();
 
-		this.element = element;
 		this.name = name;
 		this.value = value;
 	}
@@ -183,4 +182,12 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	public String toString() {
 		return getName() + " = " + getValue();
 	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#setElement(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement)
+	 */
+	public void setElement(final AbstractWorkflowElement element) {
+		this.element = element;
+	}
+
 }

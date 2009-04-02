@@ -61,4 +61,12 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	 * @return value of <code>value</code>.
 	 */
 	String getValue();
+
+	/**
+	 * Sets the workflow element that the current attribute is attached to.
+	 * 
+	 * @param element
+	 *            the element
+	 */
+	void setElement(AbstractWorkflowElement element);
 }

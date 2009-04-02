@@ -66,6 +66,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IAttributeContainer#addAttribute(org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute)
 	 */
 	public void addAttribute(final IWorkflowAttribute attribute) {
+		attribute.setElement(this);
 		attributes.put(attribute.getName(), attribute);
 		recomputeTypeInfo = true;
 	}
@@ -425,6 +426,15 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#remove()
+	 */
+	public void remove() {
+		if (hasParent()) {
+			getParent().removeChild(this);
+		}
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#setEndElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setEndElementRange(final ElementPositionRange endElementRange) {
@@ -525,4 +535,22 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		return propertyContainer;
 	}
 
+	protected void removeChild(final AbstractWorkflowElement element) {
+		if (element == null)
+			throw new IllegalArgumentException();
+
+		int index = -1;
+		for (int i = 0; i < getChildrenCount(); i++) {
+			final AbstractWorkflowElement e = getChild(i);
+			if (e == element) {
+				index = i;
+				break;
+			}
+		}
+
+		if (index >= 0) {
+			element.setParent(null);
+			children.remove(index);
+		}
+	}
 }

@@ -43,15 +43,15 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.39 $
+ * @version $Revision: 1.40 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
+
+	public static final String TAG_NAME_PATTERN = "[a-zA-Z0-9\\.\\-]+";
 
 	private static final String NO_VALID_CHILD_ELEMENT_MSG = "is no valid child element for element";
 
 	private static final String ILLEGAL_TAG_NAME_MSG = "Illegal tag name:";
-
-	private static final String TAG_NAME_PATTERN = "[a-zA-Z0-9\\.\\-]+";
 
 	protected Locator locator;
 
@@ -257,7 +257,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final String attrName = attributes.getQName(i);
 			final String attrValue = attributes.getValue(i);
 			final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
-			final IWorkflowAttribute attr = factory.newWorkflowAttribute(element, attrName, attrValue);
+			final IWorkflowAttribute attr = factory.newWorkflowAttribute(attrName, attrValue);
 			element.addAttribute(attr);
 		}
 

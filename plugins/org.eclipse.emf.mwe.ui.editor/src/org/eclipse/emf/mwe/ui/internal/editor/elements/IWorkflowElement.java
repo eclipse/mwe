@@ -207,4 +207,9 @@ public interface IWorkflowElement {
 	 *            the container to attach
 	 */
 	void setPropertyContainer(IPropertyContainer container);
+
+	/**
+	 * Remove current element from parent.
+	 */
+	void remove();
 }

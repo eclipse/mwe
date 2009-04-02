@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.27 $
+ * @version $Revision: 1.28 $
  */
 public final class TypeUtils {
 
@@ -92,6 +92,10 @@ public final class TypeUtils {
 		}
 
 	}
+
+	private static final String STRING_SIGNATURE = "Ljava.lang.String;";
+
+	private static final String BOOLEAN_SIGNATURE = "Z";
 
 	private static final String VOID_SIGNATURE = "V";
 
@@ -269,7 +273,7 @@ public final class TypeUtils {
 		return loader;
 	}
 
-	public static Set<String> getSettableProperties(final IType type) {
+	public static Set<String> getSettableProperties(final IType type, final boolean simpleParametersOnly) {
 		if (type == null)
 			return null;
 
@@ -281,7 +285,8 @@ public final class TypeUtils {
 				final int modifiers = m.getFlags();
 				if (methodName.length() > SETTER_PREFIX.length() && Flags.isPublic(modifiers)
 						&& m.getNumberOfParameters() == 1 && VOID_SIGNATURE.equals(m.getReturnType())
-						&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))) {
+						&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))
+						&& (!simpleParametersOnly || hasSimpleParameter(m))) {
 					final String propertyName = getPropertyName(methodName);
 					result.add(propertyName);
 				}
@@ -326,19 +331,19 @@ public final class TypeUtils {
 	}
 
 	public static Set<String> getSetters(final IProject project, final AbstractWorkflowElement element,
-			final boolean includePropertyImports, final boolean wholeHierarchy) {
+			final boolean simpleParametersOnly, final boolean includePropertyImports, final boolean wholeHierarchy) {
 		if (project == null || element == null)
 			throw new IllegalArgumentException();
 
 		final Set<String> result = new HashSet<String>();
 		IType type = element.getMappedClassType();
 		if (type != null) {
-			result.addAll(internalGeSetters(project, type, wholeHierarchy));
+			result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy));
 		}
 		else if (element.hasParent()) {
 			type = getSetterParameter(project, element, element.getParent().getMappedClassType());
 			if (type != null) {
-				result.addAll(internalGeSetters(project, type, wholeHierarchy));
+				result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy));
 			}
 		}
 
@@ -496,7 +501,7 @@ public final class TypeUtils {
 		for (int i = 0; i < paramType.length; i++) {
 			final String param = paramType[i];
 			if (param.endsWith(BUILTIN_BOOLEAN_TYPE)) {
-				result[i] = "Z";
+				result[i] = BOOLEAN_SIGNATURE;
 			}
 			else if (WILDCARD.equals(param)) {
 				result[i] = param;
@@ -606,15 +611,27 @@ public final class TypeUtils {
 		return propertyName;
 	}
 
-	private static Set<String> internalGeSetters(final IProject project, final IType type, final boolean wholeHierarchy) {
+	private static boolean hasSimpleParameter(final IMethod method) {
+		if (method == null)
+			throw new IllegalArgumentException();
+
+		if (method.getNumberOfParameters() != 1)
+			return false;
+
+		final String signature = method.getParameterTypes()[0];
+		return BOOLEAN_SIGNATURE.equals(signature) || STRING_SIGNATURE.equals(signature);
+	}
+
+	private static Set<String> internalGeSetters(final IProject project, final IType type,
+			final boolean simpleParametersOnly, final boolean wholeHierarchy) {
 		final Set<String> result = new HashSet<String>();
-		Set<String> setters = getSettableProperties(type);
+		Set<String> setters = getSettableProperties(type, simpleParametersOnly);
 		result.addAll(setters);
 
 		if (wholeHierarchy) {
 			final Set<IType> superTypes = getSuperTypes(project, type, wholeHierarchy);
 			for (final IType t : superTypes) {
-				setters = getSettableProperties(t);
+				setters = getSettableProperties(t, simpleParametersOnly);
 				result.addAll(setters);
 			}
 		}

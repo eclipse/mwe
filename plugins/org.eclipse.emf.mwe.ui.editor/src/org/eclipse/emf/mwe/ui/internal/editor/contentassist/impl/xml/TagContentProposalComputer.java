@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class TagContentProposalComputer extends AbstractContentProposalComputer {
@@ -66,7 +66,7 @@ public class TagContentProposalComputer extends AbstractContentProposalComputer 
 		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRoot(),
 				document, offset);
 		if (element != null) {
-			resultSet = TypeUtils.getSetters(file.getProject(), element, true, true);
+			resultSet = TypeUtils.getSetters(file.getProject(), element, false, true, true);
 		}
 		else {
 			resultSet = createDefaultProposals(offset);

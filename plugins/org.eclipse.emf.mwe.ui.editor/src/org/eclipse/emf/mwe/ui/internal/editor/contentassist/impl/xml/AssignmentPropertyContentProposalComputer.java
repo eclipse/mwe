@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class AssignmentPropertyContentProposalComputer extends TagContentProposalComputer {
@@ -76,7 +76,8 @@ public class AssignmentPropertyContentProposalComputer extends TagContentProposa
 			if (className == null)
 				throw new IllegalStateException();
 
-			final Set<String> settableProperties = TypeUtils.getSetters(getFile().getProject(), container, true, false);
+			final Set<String> settableProperties = TypeUtils.getSetters(getFile().getProject(), container, false, true,
+					false);
 			resultSet.addAll(settableProperties);
 		}
 		return resultSet;

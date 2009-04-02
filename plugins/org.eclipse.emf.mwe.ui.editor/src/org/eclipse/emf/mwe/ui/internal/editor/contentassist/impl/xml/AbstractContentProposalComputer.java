@@ -29,13 +29,10 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITypedRegion;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.jface.text.rules.ICharacterScanner;
-import org.eclipse.jface.text.rules.IToken;
-import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
@@ -221,7 +218,7 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			c = partitionText.charAt(end);
 
 			moved = false;
-			while (!isTerminal(terminalSet(), c) && end < documentOffset) {
+			while (!isTerminal(terminalSet(), c) && end < partitionLength) {
 				moved = true;
 				end++;
 				c = partitionText.charAt(end);
@@ -317,57 +314,6 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 
 	protected void turnOffSorting() {
 		needsSorting = false;
-	}
-
-	protected boolean useContractedElementCompletion(final int documentOffset, final IDocument document) {
-		boolean textReached = false;
-		boolean isRemainingWhiteSpace = true;
-		try {
-			final ITypedRegion region = document.getPartition(documentOffset);
-			final int partitionOffset = region.getOffset();
-			final int partitionLength = region.getLength();
-
-			final int readLength = documentOffset - partitionOffset;
-			final int remainingLength = partitionLength - readLength;
-
-			if (document.getLength() >= documentOffset + 1) {
-				final String firstTwo = document.get(partitionOffset, 2);
-				if (firstTwo.equals("<<"))
-					return false;
-			}
-
-			tagScanner.setRange(document, documentOffset, remainingLength);
-			IToken token = tagScanner.nextToken();
-			while (token != Token.WHITESPACE && token != Token.EOF) {
-				isRemainingWhiteSpace = false;
-				token = tagScanner.nextToken();
-			}
-
-			token = tagScanner.nextToken();
-			while (token == Token.WHITESPACE && token != Token.EOF) {
-				isRemainingWhiteSpace = true;
-				token = tagScanner.nextToken();
-			}
-
-			int c = 0;
-			while (c != ICharacterScanner.EOF) {
-				c = tagScanner.read();
-				if (c == '<') {
-					break;
-				}
-				if (!Character.isWhitespace(c)) {
-					textReached = true;
-				}
-			}
-		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
-		if (textReached || !isRemainingWhiteSpace)
-			return true;
-
-		return false;
 	}
 
 	protected AbstractWorkflowElement getRoot() {

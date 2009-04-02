@@ -62,12 +62,11 @@ public class XMLWorkflowSyntaxFactoryImpl implements IWorkflowSyntaxFactory {
 		return new PropertyContainerImpl();
 	}
 
-	public IWorkflowAttribute newWorkflowAttribute(final AbstractWorkflowElement element, final String name,
-			final String value) {
-		return new XMLWorkflowAttributeImpl(element, name, value);
+	public IWorkflowAttribute newWorkflowAttribute(final String name, final String value) {
+		return new XMLWorkflowAttributeImpl(name, value);
 	}
 
-	public AbstractWorkflowElement newWorkflowElement(WorkflowEditor editor, IProject project,
+	public AbstractWorkflowElement newWorkflowElement(final WorkflowEditor editor, final IProject project,
 			final IDocument document, final String name) {
 		return new XMLWorkflowElementImpl(editor, project, document, name);
 	}
