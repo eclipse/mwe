@@ -29,7 +29,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.54 $
+ * @version $Revision: 1.55 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -116,6 +116,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		}
 		else if (IWorkflowAttribute.FILE_ATTRIBUTE.equals(attribute.getName())) {
 			checkFileAttribute(attribute);
+		}
+		else if (IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE.equals(attribute.getName())) {
+			final String value = attribute.getValue();
+			if (!TypeUtils.isBooleanValue(value)) {
+				createMarkerForValue(attribute, "Boolean value required");
+			}
 		}
 		else {
 			IType referenceType = mappedType;

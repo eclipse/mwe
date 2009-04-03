@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.40 $
+ * @version $Revision: 1.41 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -100,10 +100,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 		currentElement.setEndElementRange(createPositionRange());
 		if (hasFileReference(currentElement)) {
 			final boolean inherit = isInheritAllSet(currentElement);
-			parseReferencedContent(currentElement, inherit);
-			if (inherit) {
+			try {
+				parseReferencedContent(currentElement, inherit);
 			}
-
+			catch (final ParserProblemException e) {
+				MarkerManager.createMarker(getFile(), document, currentElement, e.getMessage(), true);
+			}
 		}
 		else if (currentElement.isProperty()) {
 			try {

@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.29 $
+ * @version $Revision: 1.30 $
  */
 public final class TypeUtils {
 
@@ -418,6 +418,10 @@ public final class TypeUtils {
 		return type;
 	}
 
+	public static boolean isBooleanValue(final String value) {
+		return value.equalsIgnoreCase(TRUE_VALUE) ^ value.equalsIgnoreCase(FALSE_VALUE);
+	}
+
 	public static boolean isInstantiable(final IType type) {
 		if (type == null)
 			return false;
@@ -712,10 +716,6 @@ public final class TypeUtils {
 		final boolean hasProperty = (element.hasParent()) ? element.getParent().hasProperty(tagName) : false;
 		final boolean result = (method != null) || hasProperty;
 		return new SettableCheckResult(result, tagName, mt);
-	}
-
-	private static boolean isBooleanValue(final String value) {
-		return value.equalsIgnoreCase(TRUE_VALUE) ^ value.equalsIgnoreCase(FALSE_VALUE);
 	}
 
 	private static Set<String> queryAllClassesCache(final IProject project) {
