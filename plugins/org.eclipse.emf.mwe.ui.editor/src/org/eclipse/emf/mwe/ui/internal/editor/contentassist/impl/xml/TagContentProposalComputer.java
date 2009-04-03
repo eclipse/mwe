@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
@@ -24,7 +25,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class TagContentProposalComputer extends AbstractContentProposalComputer {
@@ -66,7 +67,7 @@ public class TagContentProposalComputer extends AbstractContentProposalComputer 
 		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRoot(),
 				document, offset);
 		if (element != null) {
-			resultSet = TypeUtils.getSetters(file.getProject(), element, false, true, true);
+			resultSet = TypeUtils.getSetters(file.getProject(), element, false, true, true, new NullProgressMonitor());
 		}
 		else {
 			resultSet = createDefaultProposals(offset);

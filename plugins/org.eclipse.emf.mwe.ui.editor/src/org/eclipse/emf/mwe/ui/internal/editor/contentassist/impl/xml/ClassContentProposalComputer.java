@@ -30,7 +30,7 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
@@ -123,11 +123,13 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 	protected Set<String> getProposalSet(final int offset) {
 		final String tag = getTag(offset);
 
+		Set<IType> classes = null;
 		Set<String> classNames = null;
 		if (COMPONENT_TAG.equals(tag)) {
 			final IType baseType = getWorkflowBaseClass(file);
 			if (baseType != null) {
-				classNames = TypeUtils.getSubClasses(file.getProject(), baseType, new NullProgressMonitor());
+				classes = TypeUtils.getSubTypes(file.getProject(), baseType, new NullProgressMonitor());
+				classNames = TypeUtils.createClassNameSet(classes);
 			}
 		}
 		else {

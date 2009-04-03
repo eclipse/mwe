@@ -20,7 +20,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class ClassHierarchyTests extends TypeTestBase {
@@ -38,9 +38,9 @@ public class ClassHierarchyTests extends TypeTestBase {
 	public void testGetSubClasses() {
 		final IType baseType = getType("org.eclipse.emf.mwe.core.WorkflowComponent");
 		assertNotNull(baseType);
-		final Set<String> subClasses = TypeUtils.getSubClasses(project, baseType, new NullProgressMonitor());
+		final Set<IType> subClasses = TypeUtils.getSubTypes(project, baseType, new NullProgressMonitor());
 		assertNotNull(subClasses);
 		assertTrue(subClasses.size() >= 10);
-		assertTrue(subClasses.contains("org.eclipse.xtend.XtendComponent"));
+		assertTrue(TypeUtils.createClassNameSet(subClasses).contains("org.eclipse.xtend.XtendComponent"));
 	}
 }

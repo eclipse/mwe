@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.internal.core.Workflow;
@@ -25,7 +26,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
+ * @version $Revision: 1.16 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -54,20 +55,25 @@ public final class WorkflowElementTypeComputer {
 
 			final IType parentType = element.getParent().getMappedClassType();
 			if (parentType != null) {
-				method = TypeUtils.getSetter(element.getProject(), parentType, element.getName(), TypeUtils.WILDCARD);
+				method = TypeUtils.getSetter(element.getProject(), parentType, element.getName(), TypeUtils.WILDCARD,
+						new NullProgressMonitor());
 				IType mt = parentType;
 				if (method == null) {
-					mt = TypeUtils.getSetterParameter(element.getProject(), element, parentType);
+					mt = TypeUtils.getSetterParameter(element.getProject(), element, parentType,
+							new NullProgressMonitor());
 					if (mt == null) {
 						mt = parentType;
 					}
-					method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD);
+					method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD,
+							new NullProgressMonitor());
 				}
 				if (method == null && element.hasParent()) {
-					mt = TypeUtils.getSetterParameter(element.getProject(), element.getParent(), parentType);
+					mt = TypeUtils.getSetterParameter(element.getProject(), element.getParent(), parentType,
+							new NullProgressMonitor());
 					if (mt != null) {
 						name = element.getName();
-						method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD);
+						method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD,
+								new NullProgressMonitor());
 					}
 					if (mt == null) {
 						mt = parentType;
