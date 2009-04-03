@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public final class TypeUtils {
 
@@ -385,6 +385,7 @@ public final class TypeUtils {
 		if (hierarchy != null) {
 			final IType[] types = hierarchy.getAllSubtypes(baseType);
 			classes.addAll(createClassSet(types));
+
 		}
 
 		return classes;
@@ -397,8 +398,6 @@ public final class TypeUtils {
 		if (hierarchy != null) {
 			final IType[] types = hierarchy.getAllSupertypes(baseType);
 			classes.addAll(createClassSet(types));
-			// types = hierarchy.getAllSuperInterfaces(baseType);
-			// classes.addAll(createClassSet(types));
 		}
 
 		return classes;
@@ -507,20 +506,11 @@ public final class TypeUtils {
 	}
 
 	private static Set<IType> createClassSet(final IType[] type) {
-		try {
-			final Set<IType> result = new HashSet<IType>();
-			for (final IType t : type) {
-				final int modifiers = t.getFlags();
-				if (Flags.isPublic(modifiers) && !Flags.isAbstract(modifiers)) {
-					result.add(t);
-				}
-			}
-			return result;
+		final Set<IType> result = new HashSet<IType>();
+		for (final IType t : type) {
+			result.add(t);
 		}
-		catch (final JavaModelException e) {
-			Log.logError("Java Model Exception", e);
-			return new HashSet<IType>();
-		}
+		return result;
 	}
 
 	private static ITypeHierarchy createTypeHierarchy(final IProject project, final IType type,
