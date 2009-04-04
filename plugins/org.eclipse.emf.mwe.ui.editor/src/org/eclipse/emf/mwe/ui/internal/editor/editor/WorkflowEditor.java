@@ -74,7 +74,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.55 $
+ * @version $Revision: 1.56 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
@@ -479,7 +479,7 @@ public class WorkflowEditor extends TextEditor {
 
 	private void preloadClassNameCache(final IProgressMonitor monitor) throws CoreException {
 		final IFile file = getInputFile();
-		final IType baseType = ClassContentProposalComputer.getWorkflowBaseClass(file);
+		final IType baseType = ClassContentProposalComputer.getWorkflowComponentBaseClass(file);
 		if (baseType == null)
 			throw new CoreException(WorkflowEditorPlugin.createErrorStatus(
 					"Please add the MWE runtime to the classpath", null));

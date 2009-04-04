@@ -32,24 +32,10 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
-
-	private class ProposalComparator implements Comparator<ICompletionProposal> {
-
-		public int compare(final ICompletionProposal proposal1, final ICompletionProposal proposal2) {
-			if (proposal1 == proposal2)
-				return 0;
-			else if (proposal1 == null)
-				return -1;
-			else if (proposal2 == null)
-				return 1;
-
-			return proposal1.getDisplayString().compareTo(proposal2.getDisplayString());
-		}
-	}
 
 	public class StringComparator implements Comparator<String> {
 
@@ -62,6 +48,20 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 				return 1;
 
 			return str1.compareTo(str2);
+		}
+	}
+
+	private class ProposalComparator implements Comparator<ICompletionProposal> {
+
+		public int compare(final ICompletionProposal proposal1, final ICompletionProposal proposal2) {
+			if (proposal1 == proposal2)
+				return 0;
+			else if (proposal1 == null)
+				return -1;
+			else if (proposal2 == null)
+				return 1;
+
+			return proposal1.getDisplayString().compareTo(proposal2.getDisplayString());
 		}
 	}
 
@@ -159,17 +159,8 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 
 	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
 		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
-		int o = offset;
-		try {
-			if (o > 0 && document.getChar(o - 1) != '>') {
-				o--;
-			}
-		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
 
-		final TextInfo currentText = currentText(document, o);
+		final TextInfo currentText = currentText(document, offset);
 		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
 				currentText.getText().length(), text.length()));
 		return result;
@@ -190,17 +181,20 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			final ITypedRegion region = document.getPartition(documentOffset);
 			final int partitionOffset = region.getOffset();
 			final int partitionLength = region.getLength();
-			final int index = documentOffset - partitionOffset;
+			int index = documentOffset - partitionOffset;
+
+			if (documentOffset > partitionOffset && !isTerminal(terminalSet(), document.getChar(documentOffset - 1))) {
+				index--;
+			}
 
 			final String partitionText = document.get(partitionOffset, partitionLength);
 
 			if (partitionText.length() == 0)
 				return new TextInfo("", 0, true);
 
-			char c = partitionText.charAt(index);
-
 			int start = index;
-			c = partitionText.charAt(start);
+
+			char c = partitionText.charAt(start);
 
 			boolean moved = false;
 			while (!isTerminal(terminalSet(), c) && start >= 0) {
@@ -218,7 +212,7 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			c = partitionText.charAt(end);
 
 			moved = false;
-			while (!isTerminal(terminalSet(), c) && end < partitionLength) {
+			while (!isTerminal(terminalSet(), c) && end < partitionLength - 1) {
 				moved = true;
 				end++;
 				c = partitionText.charAt(end);
@@ -229,14 +223,19 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			}
 
 			String substring = partitionText.substring(start, end + 1);
-			if ("'".equals(substring) || "\"".equals(substring)) {
+			int startOffset = partitionOffset + start;
+			final int length = documentOffset - startOffset;
+			substring = substring.substring(0, length);
+			if ("'".equals(substring) || "\"".equals(substring) || "\r".equals(substring) || "\n".equals(substring)) {
 				substring = "";
 				start++;
+				startOffset++;
 			}
-			return new TextInfo(substring, partitionOffset + start, false);
+
+			return new TextInfo(substring, startOffset, false);
 		}
 		catch (final BadLocationException e) {
-			e.printStackTrace();
+			Log.logError(e);
 		}
 		return null;
 	}
@@ -256,6 +255,13 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 
 	protected abstract Set<String> getProposalSet(final int offset);
 
+	protected AbstractWorkflowElement getRoot() {
+		if (editor != null)
+			return editor.getRootElement();
+
+		return null;
+	}
+
 	protected boolean isAttribute() {
 		return getTextType() == TextType.ATTRIBUTE;
 	}
@@ -265,7 +271,9 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 	}
 
 	protected boolean isProposalIncluded(final String proposalText, final String currentText) {
-		return proposalText.startsWith(currentText);
+		final String prop = proposalText.toLowerCase();
+		final String curr = currentText.toLowerCase();
+		return prop.trim().startsWith(curr.trim());
 	}
 
 	protected boolean isString() {
@@ -280,28 +288,18 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 		if (terminals == null)
 			throw new IllegalArgumentException();
 
-		return terminals.contains(ch) || Character.isWhitespace(ch);
+		return terminals.contains(ch) || Character.isWhitespace(ch) || ch == '\r';
 	}
 
 	protected List<ICompletionProposal> removeNonMatchingEntries(final List<ICompletionProposal> results,
 			final int offset) {
 		final List<ICompletionProposal> cleanedResults = new ArrayList<ICompletionProposal>();
-		try {
-			if (offset > 0 && !isTerminal(extendedTerminalSet(), document.getChar(offset - 1))) {
-				final TextInfo currentText = currentText(document, offset - 1);
-				for (final ICompletionProposal p : results) {
-					if (isProposalIncluded(p.getDisplayString(), currentText.getText())) {
-						cleanedResults.add(p);
-					}
-				}
+		final TextInfo currentText = currentText(document, offset);
+		for (final ICompletionProposal p : results) {
+			if (isProposalIncluded(p.getDisplayString(), currentText.getText())) {
+				cleanedResults.add(p);
 			}
-			else
-				return results;
 		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
 		return cleanedResults;
 	}
 
@@ -314,12 +312,5 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 
 	protected void turnOffSorting() {
 		needsSorting = false;
-	}
-
-	protected AbstractWorkflowElement getRoot() {
-		if (editor != null)
-			return editor.getRootElement();
-
-		return null;
 	}
 }

@@ -19,42 +19,41 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.images.EditorImages;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
 
-	private static final String WORKFLOW_BASE_CLASS = "org.eclipse.emf.mwe.core.WorkflowComponent";
+	private static final String WORKFLOW_COMPONENT_BASE_CLASS = "org.eclipse.emf.mwe.core.WorkflowComponent";
 
-	private static final String OLD_WORKFLOW_BASE_CLASS = "org.openarchitectureware.workflow.WorkflowComponent";
+	private static final String OLD_WORKFLOW_COMPONENT_BASE_CLASS = "org.openarchitectureware.workflow.WorkflowComponent";
+
+	private static final String FRAGMENT_ROOT = "org.eclipse.xtext.generator.IGeneratorFragment";
 
 	private static final String[] TRIGGER_ATTRIBUTES = { IWorkflowAttribute.CLASS_ATTRIBUTE };
-
-	private static final String COMPONENT_TAG = "component";
 
 	public ClassContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
 
-	public static IType getWorkflowBaseClass(final IFile file) {
+	public static IType getWorkflowComponentBaseClass(final IFile file) {
 		if (file == null)
 			throw new IllegalArgumentException();
 
-		IType baseType = TypeUtils.findType(file.getProject(), WORKFLOW_BASE_CLASS);
+		IType baseType = TypeUtils.findType(file.getProject(), WORKFLOW_COMPONENT_BASE_CLASS);
 		if (baseType == null) {
-			baseType = TypeUtils.findType(file.getProject(), OLD_WORKFLOW_BASE_CLASS);
+			baseType = TypeUtils.findType(file.getProject(), OLD_WORKFLOW_COMPONENT_BASE_CLASS);
 		}
 		return baseType;
 	}
@@ -73,16 +72,6 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 	@Override
 	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
 		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
-		int o = offset;
-		try {
-			if (o > 0 && document.getChar(o - 1) != '>') {
-				o--;
-			}
-		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
 		final String simpleName = TypeUtils.getSimpleClassName(text);
 		final int length = text.length() - simpleName.length() - 1;
 		String packageName = null;
@@ -92,7 +81,7 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 
 		final String displayText = simpleName
 				+ ((packageName != null && packageName.length() > 0) ? " (" + packageName + ")" : "");
-		final TextInfo currentText = currentText(document, o);
+		final TextInfo currentText = currentText(document, offset);
 		final Image img = EditorImages.getImage(EditorImages.COMPONENT);
 		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
 				currentText.getText().length(), text.length(), img, displayText, null, null));
@@ -123,19 +112,30 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 	protected Set<String> getProposalSet(final int offset) {
 		final String tag = getTag(offset);
 
-		Set<IType> classes = null;
 		Set<String> classNames = null;
-		if (COMPONENT_TAG.equals(tag)) {
-			final IType baseType = getWorkflowBaseClass(file);
-			if (baseType != null) {
-				classes = TypeUtils.getSubTypes(file.getProject(), baseType, new NullProgressMonitor());
-				classNames = TypeUtils.createClassNameSet(classes);
-			}
+		IType baseType = null;
+		if (IWorkflowElementTypeInfo.COMPONENT_TAG.equals(tag)) {
+			baseType = getWorkflowComponentBaseClass(file);
+			classNames = getSubTypes(baseType);
 		}
-		else {
+		else if (IWorkflowElementTypeInfo.FRAGMENT_TAG.equals(tag)) {
+			baseType = TypeUtils.findType(file.getProject(), FRAGMENT_ROOT);
+			classNames = getSubTypes(baseType);
+		}
+
+		if (classNames == null) {
 			classNames = TypeUtils.getAllClasses(file.getProject(), new NullProgressMonitor());
 		}
 
 		return classNames;
+	}
+
+	private Set<String> getSubTypes(final IType baseType) {
+		if (baseType != null) {
+			final Set<IType> classes = TypeUtils.getSubTypes(file.getProject(), baseType, new NullProgressMonitor());
+			final Set<String> classNames = TypeUtils.createClassNameSet(classes);
+			return classNames;
+		}
+		return null;
 	}
 }

@@ -19,16 +19,14 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
-import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class PropertyContentProposalComputer extends AbstractStringContentProposalComputer {
@@ -52,17 +50,7 @@ public class PropertyContentProposalComputer extends AbstractStringContentPropos
 	@Override
 	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
 		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
-		int o = offset;
-		try {
-			if (o > 0 && document.getChar(o - 1) != '>') {
-				o--;
-			}
-		}
-		catch (final BadLocationException e) {
-			Log.logError("Bad document location", e);
-		}
-
-		final TextInfo currentText = currentText(document, o);
+		final TextInfo currentText = currentText(document, offset);
 		String displayText = null;
 		if (!currentText.getText().startsWith("$")) {
 			displayText = text.substring(2, text.length() - 1);

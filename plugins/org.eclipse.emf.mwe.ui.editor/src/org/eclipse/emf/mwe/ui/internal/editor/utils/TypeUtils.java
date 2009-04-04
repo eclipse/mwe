@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.31 $
+ * @version $Revision: 1.32 $
  */
 public final class TypeUtils {
 
@@ -150,7 +150,8 @@ public final class TypeUtils {
 
 		final Set<String> result = new HashSet<String>();
 		for (final IType t : classes) {
-			result.add(t.getFullyQualifiedName());
+			final String fqn = t.getFullyQualifiedName();
+			result.add(fqn);
 		}
 		return result;
 	}

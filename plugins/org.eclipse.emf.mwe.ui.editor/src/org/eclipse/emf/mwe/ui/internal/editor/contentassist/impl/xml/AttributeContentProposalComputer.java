@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +37,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class AttributeContentProposalComputer extends AbstractContentProposalComputer {
@@ -68,9 +69,28 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 	}
 
 	@Override
+	protected List<ExtendedCompletionProposal> createProposal(final String text, final int offset) {
+		final List<ExtendedCompletionProposal> result = new ArrayList<ExtendedCompletionProposal>();
+		final String displayText = text.substring(0, text.indexOf('=')).trim();
+		final TextInfo currentText = currentText(document, offset);
+		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
+				currentText.getText().length(), text.length() - 1, null, displayText, null, null));
+		return result;
+	}
+
+	@Override
 	protected String createProposalText(final String name, final int offset) {
-		String text = null;
-		text = " " + name;
+		String text = name + "=\"\"";
+		final TextInfo currentText = currentText(document, offset);
+		try {
+			if (offset > 0 && !Character.isWhitespace(document.getChar(currentText.getDocumentOffset() - 1))) {
+				text = " " + text;
+			}
+		}
+		catch (final BadLocationException e) {
+			Log.logError("Bad document location", e);
+		}
+
 		return text;
 	}
 
