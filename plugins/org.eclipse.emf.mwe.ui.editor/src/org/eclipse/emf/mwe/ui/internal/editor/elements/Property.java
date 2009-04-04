@@ -13,12 +13,12 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class Property {
 
-	private String name;
+	private final String name;
 
 	private String value;
 
@@ -26,7 +26,7 @@ public class Property {
 
 	private boolean imported;
 
-	public Property(AbstractWorkflowElement element) {
+	public Property(final AbstractWorkflowElement element) {
 		if (element == null || !element.isProperty())
 			throw new IllegalArgumentException();
 
@@ -42,7 +42,7 @@ public class Property {
 
 	}
 
-	public Property(String name) {
+	public Property(final String name) {
 		this.name = name;
 	}
 
@@ -71,16 +71,6 @@ public class Property {
 	 */
 	public String getValue() {
 		return value;
-	}
-
-	/**
-	 * Checks if the specification of the current property is complete.
-	 * 
-	 * @return <code>true</code> if the specification of the current property is
-	 *         complete, otherwise <code>false</code>
-	 */
-	public boolean isComplete() {
-		return isSimple() ^ isReference();
 	}
 
 	/**
@@ -118,7 +108,7 @@ public class Property {
 	 * @param file
 	 *            new value for <code>file</code>.
 	 */
-	public void setFile(String file) {
+	public void setFile(final String file) {
 		this.file = file;
 	}
 
@@ -128,7 +118,7 @@ public class Property {
 	 * @param imported
 	 *            new value for <code>imported</code>.
 	 */
-	public void setImported(boolean imported) {
+	public void setImported(final boolean imported) {
 		this.imported = imported;
 	}
 
@@ -138,7 +128,7 @@ public class Property {
 	 * @param value
 	 *            new value for <code>value</code>.
 	 */
-	public void setValue(String value) {
+	public void setValue(final String value) {
 		this.value = (value != null) ? value : "";
 	}
 }

@@ -25,21 +25,21 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
 
-	private Map<String, Property> properties = new HashMap<String, Property>();
+	private final Map<String, Property> properties = new HashMap<String, Property>();
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
 	 */
-	public void addProperties(Collection<Property> collection) {
+	public void addProperties(final Collection<Property> collection) {
 		if (collection == null)
 			throw new IllegalArgumentException();
 
-		for (Property p : collection) {
+		for (final Property p : collection) {
 			addProperty(p);
 		}
 	}
@@ -47,7 +47,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
 	 */
-	public void addProperties(IPropertyContainer container) {
+	public void addProperties(final IPropertyContainer container) {
 		if (container == null)
 			throw new IllegalArgumentException();
 
@@ -57,8 +57,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
 	 */
-	public void addProperty(Property property) {
-		if (property == null || !property.isComplete())
+	public void addProperty(final Property property) {
+		if (property == null)
 			throw new IllegalArgumentException();
 
 		properties.put(property.getName(), property);
@@ -76,8 +76,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getImportedProperties()
 	 */
 	public IPropertyContainer getImportedProperties() {
-		IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-		for (Property p : getProperties()) {
+		final IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		for (final Property p : getProperties()) {
 			if (p.isImported()) {
 				result.addProperty(p);
 			}
@@ -89,8 +89,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getLocalProperties()
 	 */
 	public IPropertyContainer getLocalProperties() {
-		IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-		for (Property p : getProperties()) {
+		final IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		for (final Property p : getProperties()) {
 			if (!p.isImported()) {
 				result.addProperty(p);
 			}
@@ -108,7 +108,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperty(java.lang.String)
 	 */
-	public Property getProperty(String name) {
+	public Property getProperty(final String name) {
 		return properties.get(name);
 	}
 
@@ -123,8 +123,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyNames()
 	 */
 	public Set<String> getPropertyNames() {
-		Set<String> result = new HashSet<String>();
-		for (Property p : properties.values()) {
+		final Set<String> result = new HashSet<String>();
+		for (final Property p : properties.values()) {
 			result.add(p.getName());
 		}
 		return result;
@@ -134,8 +134,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
 	 */
 	public Collection<Property> getReferenceProperties() {
-		List<Property> result = new ArrayList<Property>();
-		for (Property p : properties.values()) {
+		final List<Property> result = new ArrayList<Property>();
+		for (final Property p : properties.values()) {
 			if (p.isReference()) {
 				result.add(p);
 			}
@@ -147,8 +147,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferencePropertyNames()
 	 */
 	public Set<String> getReferencePropertyNames() {
-		Set<String> result = new HashSet<String>();
-		for (Property p : properties.values()) {
+		final Set<String> result = new HashSet<String>();
+		for (final Property p : properties.values()) {
 			if (p.isReference()) {
 				result.add(p.getName());
 			}
@@ -160,8 +160,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValueProperties()
 	 */
 	public Collection<Property> getSimpleValueProperties() {
-		List<Property> result = new ArrayList<Property>();
-		for (Property p : properties.values()) {
+		final List<Property> result = new ArrayList<Property>();
+		for (final Property p : properties.values()) {
 			if (p.isSimple()) {
 				result.add(p);
 			}
@@ -173,8 +173,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getSimpleValuePropertyNames()
 	 */
 	public Set<String> getSimpleValuePropertyNames() {
-		Set<String> result = new HashSet<String>();
-		for (Property p : properties.values()) {
+		final Set<String> result = new HashSet<String>();
+		for (final Property p : properties.values()) {
 			if (p.isSimple()) {
 				result.add(p.getName());
 			}
@@ -192,15 +192,15 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
 	 */
-	public boolean hasProperty(String name) {
+	public boolean hasProperty(final String name) {
 		return properties.containsKey(name);
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
 	 */
-	public boolean hasReferenceProperty(String name) {
-		for (Property p : properties.values()) {
+	public boolean hasReferenceProperty(final String name) {
+		for (final Property p : properties.values()) {
 			if (p.isReference())
 				return true;
 		}
@@ -210,8 +210,8 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
 	 */
-	public boolean hasSimpleProperty(String name) {
-		for (Property p : properties.values()) {
+	public boolean hasSimpleProperty(final String name) {
+		for (final Property p : properties.values()) {
 			if (p.isSimple())
 				return true;
 		}

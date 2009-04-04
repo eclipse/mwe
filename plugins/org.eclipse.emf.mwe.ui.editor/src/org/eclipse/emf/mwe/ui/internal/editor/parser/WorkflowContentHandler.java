@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.41 $
+ * @version $Revision: 1.42 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -286,6 +286,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new IllegalArgumentException();
 
 		final Property property = new Property(element);
+
 		if (element.getFile() != null && !isInTopMostFile(element)) {
 			property.setImported(true);
 		}

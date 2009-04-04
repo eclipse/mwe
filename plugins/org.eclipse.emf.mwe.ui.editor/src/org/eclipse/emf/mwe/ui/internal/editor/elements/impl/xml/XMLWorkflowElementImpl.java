@@ -24,13 +24,13 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
-	private IProject project;
+	private final IProject project;
 
-	private WorkflowEditor editor;
+	private final WorkflowEditor editor;
 
 	private String image;
 
@@ -46,7 +46,8 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 * @param name
 	 *            the name
 	 */
-	public XMLWorkflowElementImpl(WorkflowEditor editor, IProject project, final IDocument document, final String name) {
+	public XMLWorkflowElementImpl(final WorkflowEditor editor, final IProject project, final IDocument document,
+			final String name) {
 		super(document, name);
 		this.editor = editor;
 		this.project = project;
@@ -57,7 +58,7 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 */
 	@Override
 	public File getFile() {
-		File f = super.getFile();
+		final File f = super.getFile();
 		if (f != null)
 			return f;
 		else if (editor != null && editor.getInputFile() != null)
@@ -70,9 +71,9 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getIFile()
 	 */
 	public IFile getIFile() {
-		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+		final IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 		if (root != null && getFile() != null) {
-			IFile f = root.getFile(new Path(getFile().getAbsolutePath()));
+			final IFile f = root.getFile(new Path(getFile().getAbsolutePath()));
 			return f;
 		}
 		return null;
@@ -163,7 +164,7 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo#isProperty()
 	 */
 	public boolean isProperty() {
-		return isSimpleProperty() || isFileProperty();
+		return isSimpleProperty() ^ isFileProperty();
 	}
 
 	/**
