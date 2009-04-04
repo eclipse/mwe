@@ -528,11 +528,12 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	protected IPropertyContainer getPropertyContainer() {
+		final IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
 		if (hasParent()) {
-			propertyContainer.addProperties(getParent().getLocalProperties());
+			result.addProperties(getParent().getLocalProperties());
 		}
-
-		return propertyContainer;
+		result.addProperties(propertyContainer);
+		return result;
 	}
 
 	protected void removeChild(final AbstractWorkflowElement element) {

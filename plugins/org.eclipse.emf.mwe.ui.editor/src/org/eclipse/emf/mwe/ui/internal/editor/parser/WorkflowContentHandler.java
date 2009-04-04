@@ -43,7 +43,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.42 $
+ * @version $Revision: 1.43 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -116,7 +116,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			}
 		}
 
-		currentElement.setPropertyContainer(propertyContainer);
+		currentElement.addProperties(propertyContainer);
 
 		if (currentElement.hasParent()) {
 			currentElement = currentElement.getParent();
@@ -423,7 +423,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 		if (element != null) {
 			final File file1 = element.getFile();
 			final File file2 = FileUtils.convertToFile(getFile());
-			if (file == null || (file1 != null && !file1.equals(file2)))
+			if (file1 == null)
+				return false;
+
+			final String fileName1 = file1.getAbsolutePath();
+			final String fileName2 = file2.getAbsolutePath();
+			if (!fileName1.equals(fileName2))
 				return false;
 		}
 		return true;

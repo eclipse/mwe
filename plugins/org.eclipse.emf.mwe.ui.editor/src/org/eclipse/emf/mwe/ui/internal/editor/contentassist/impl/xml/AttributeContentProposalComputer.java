@@ -37,7 +37,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class AttributeContentProposalComputer extends AbstractContentProposalComputer {
@@ -112,14 +112,14 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 				element = (tempElement.hasParent()) ? tempElement.getParent() : null;
 			}
 
-			if (element != null) {
-				final IType type = element.getMappedClassType();
-				if (type != null) {
-					final SettableCheckResult settableCheck = TypeUtils.isSettable(file.getProject(), tempElement,
-							type, new NullProgressMonitor());
-					if (settableCheck.isSettableFound()) {
-						result.addAll(TypeUtils.getSettableProperties(tempElement.getMappedClassType(), true));
-					}
+			final IType type = element.getMappedClassType();
+			if (type != null) {
+				final SettableCheckResult settableCheck = TypeUtils.isSettable(file.getProject(), tempElement, type,
+						new NullProgressMonitor());
+				if (settableCheck.isSettableFound()) {
+					final IType param = TypeUtils.getSetterParameter(file.getProject(), tempElement, type,
+							new NullProgressMonitor());
+					result.addAll(TypeUtils.getSettableProperties(param, true));
 				}
 			}
 			if (tempInserted) {
@@ -143,12 +143,16 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 				addDefault(result, element, IWorkflowAttribute.VALUE_ATTRIBUTE);
 			}
 		}
-		else if (element.isCompose() || element.isFragment()) {
+		else if (element.isComponent() || element.isCompose() || element.isFragment()) {
 			if (!element.hasAttributes()) {
 				addDefault(result, element, IWorkflowAttribute.CLASS_ATTRIBUTE, IWorkflowAttribute.FILE_ATTRIBUTE);
 			}
 			else if (element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)) {
 				addDefault(result, element, IWorkflowAttribute.INHERIT_ALL_ATTRIBUTE);
+			}
+			if (element.isComponent()) {
+				addDefault(result, element, IWorkflowAttribute.ID_ATTRIBUTE);
+				addDefault(result, element, IWorkflowAttribute.ID_REF_ATTRIBUTE);
 			}
 		}
 		return result;
