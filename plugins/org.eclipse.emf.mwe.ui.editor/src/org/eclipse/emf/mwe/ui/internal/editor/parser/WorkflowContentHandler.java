@@ -46,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.44 $
+ * @version $Revision: 1.45 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -447,10 +447,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 			if (file1 == null)
 				return false;
 
-			final String fileName1 = file1.getAbsolutePath();
-			final String fileName2 = file2.getAbsolutePath();
-			if (!fileName1.equals(fileName2))
-				return false;
+			if (file2 != null) {
+				final String fileName1 = file1.getAbsolutePath();
+				final String fileName2 = file2.getAbsolutePath();
+				if (!fileName1.equals(fileName2))
+					return false;
+			}
 		}
 		return true;
 	}
