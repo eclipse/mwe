@@ -22,7 +22,6 @@ Bundle-Activator: org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe.ui.internal.editor;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.analyzer;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
- org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.autoedit;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.contentassist;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.editor;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
@@ -37,6 +36,7 @@ Export-Package: org.eclipse.emf.mwe.ui.internal.editor;x-friends:="org.eclipse.e
  org.eclipse.emf.mwe.ui.internal.editor.marker;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.outline;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.parser;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
+ org.eclipse.emf.mwe.ui.internal.editor.references;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.rules;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.scanners;x-friends:="org.eclipse.emf.mwe.ui.editor.tests",
  org.eclipse.emf.mwe.ui.internal.editor.utils;x-friends:="org.eclipse.emf.mwe.ui.editor.tests"

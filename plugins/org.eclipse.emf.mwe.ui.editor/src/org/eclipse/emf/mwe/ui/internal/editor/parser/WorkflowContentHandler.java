@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Collection;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
@@ -30,6 +31,8 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PropertyFileReader;
@@ -43,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.43 $
+ * @version $Revision: 1.44 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -82,6 +85,12 @@ public class WorkflowContentHandler extends DefaultHandler {
 	@Override
 	public void endDocument() throws SAXException {
 		assert currentElement == rootElement;
+		final Collection<ReferenceInfo> unresolved = rootElement.getUnresolvedReferences();
+		for (final ReferenceInfo info : unresolved) {
+			MarkerManager.createMarker(getFile(), document, info.getElement(), "Unresolved element '"
+					+ info.getReferenceValue() + "'", true);
+		}
+
 		rootElement.setEndElementRange(createPositionRange());
 	}
 
@@ -117,6 +126,17 @@ public class WorkflowContentHandler extends DefaultHandler {
 		}
 
 		currentElement.addProperties(propertyContainer);
+
+		if (currentElement.hasReferenceDefinition()) {
+			final boolean res = rootElement.addReferenceDefinition(currentElement);
+			if (!res) {
+				MarkerManager.createMarker(getFile(), document, currentElement, "Duplicate element ID '"
+						+ currentElement.getAttributeValue(IWorkflowAttribute.ID_ATTRIBUTE) + "'", true);
+			}
+		}
+		else if (currentElement.hasReference()) {
+			rootElement.addReference(currentElement);
+		}
 
 		if (currentElement.hasParent()) {
 			currentElement = currentElement.getParent();
@@ -235,6 +255,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 	@Override
 	public void startDocument() throws SAXException {
 		rootElement = newWorkflowElement(IWorkflowElementTypeInfo.WORKFLOWFILE_TAG);
+		rootElement.setReferenceInfoStore(new ReferenceInfoStore(getFile()));
 		currentElement = rootElement;
 		rootElement.setStartElementRange(createPositionRange());
 	}

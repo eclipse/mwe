@@ -10,6 +10,8 @@
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -19,12 +21,13 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
+ * @version $Revision: 1.25 $
  */
 public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 
@@ -95,6 +98,16 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 			return editor.getInputFile().getProject();
 
 		return project;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#getReferenceDefinitions()
+	 */
+	public Collection<ReferenceInfo> getReferenceDefinitions() {
+		if (hasReferenceInfoStore())
+			return getReferenceInfoStore().getDefinitions();
+
+		return new ArrayList<ReferenceInfo>();
 	}
 
 	/**
@@ -194,4 +207,5 @@ public class XMLWorkflowElementImpl extends AbstractWorkflowElement {
 	public void setImage(final String image) {
 		this.image = image;
 	}
+
 }

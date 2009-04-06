@@ -23,13 +23,16 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementTypeComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.IDocument;
 
 public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttributeContainer,
-		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping, IPropertyContainerAccess {
+		IWorkflowElementTypeInfo, IRangeCheck, IRangeInfo, IClassMapping, IPropertyContainerAccess,
+		IWorkflowElementReference {
 
 	protected final String name;
 
@@ -38,6 +41,10 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	private ElementPositionRange endElementRange;
 
 	private AbstractWorkflowElement parent;
+
+	private AbstractWorkflowElement root;
+
+	private ReferenceInfoStore referenceInfoStore;
 
 	private WorkflowElementType type;
 
@@ -60,6 +67,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		this.document = document;
 		this.name = name;
 		propertyContainer = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		root = this;
 	}
 
 	/**
@@ -76,6 +84,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public void addChild(final AbstractWorkflowElement element) {
 		element.setParent(this);
+		element.setRoot(root);
 		children.add(element);
 		recomputeTypeInfo = true;
 	}
@@ -86,6 +95,33 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public void addProperties(final IPropertyContainer container) {
 		propertyContainer.addProperties(container);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#addReference(AbstractWorkflowElement)
+	 */
+	public void addReference(final AbstractWorkflowElement element) {
+		if (hasReferenceInfoStore()) {
+			getReferenceInfoStore().addReference(element);
+		}
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#addReferenceDefinition(AbstractWorkflowElement)
+	 */
+	public boolean addReferenceDefinition(final AbstractWorkflowElement element) {
+		if (element == null || !element.hasReferenceDefinition())
+			throw new IllegalArgumentException();
+
+		if (hasReferenceInfoStore()) {
+			final ReferenceInfoStore store = getReferenceInfoStore();
+			if (!store.hasDefinition(element)) {
+				store.addDefinition(element);
+				return true;
+			}
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -298,6 +334,17 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#getReferencedElement()
+	 */
+	public AbstractWorkflowElement getReferencedElement() {
+		if (hasReferenceInfoStore() && hasReference() && hasResolvedReference()) {
+			getReferenceInfoStore().getReferencedElement(this);
+		}
+
+		return null;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
 	 */
 	public Collection<Property> getReferenceProperties() {
@@ -309,6 +356,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public Set<String> getReferencePropertyNames() {
 		return getPropertyContainer().getReferencePropertyNames();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getRoot()
+	 */
+	public AbstractWorkflowElement getRoot() {
+		return root;
 	}
 
 	/**
@@ -330,6 +384,16 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public ElementPositionRange getStartElementRange() {
 		return startElementRange;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#getUnresolvedReferences()
+	 */
+	public Collection<ReferenceInfo> getUnresolvedReferences() {
+		if (hasReferenceInfoStore())
+			return getReferenceInfoStore().getUnresolvedReferences();
+
+		return new ArrayList<ReferenceInfo>();
 	}
 
 	/**
@@ -382,10 +446,34 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#hasReference()
+	 */
+	public boolean hasReference() {
+		return hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#hasReferenceDefinition()
+	 */
+	public boolean hasReferenceDefinition() {
+		return hasAttribute(IWorkflowAttribute.ID_ATTRIBUTE);
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
 	 */
 	public boolean hasReferenceProperty(final String name) {
 		return getPropertyContainer().hasReferenceProperty(name);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#hasResolvedReference()
+	 */
+	public boolean hasResolvedReference() {
+		if (hasReferenceInfoStore())
+			return hasReference() && getReferenceInfoStore().isResolvable(this);
+
+		return false;
 	}
 
 	/**
@@ -479,6 +567,25 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#setReferenceInfoStore(org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfoStore)
+	 */
+	public void setReferenceInfoStore(final ReferenceInfoStore store) {
+		if (hasParent()) {
+			getRoot().setReferenceInfoStore(store);
+		}
+		else {
+			referenceInfoStore = store;
+		}
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#setRoot(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement)
+	 */
+	public void setRoot(final AbstractWorkflowElement rootElement) {
+		root = rootElement;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#setStartElementRange(org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange)
 	 */
 	public void setStartElementRange(final ElementPositionRange startElementRange) {
@@ -536,6 +643,17 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		return result;
 	}
 
+	protected ReferenceInfoStore getReferenceInfoStore() {
+		if (hasParent())
+			return getRoot().getReferenceInfoStore();
+
+		return referenceInfoStore;
+	}
+
+	protected boolean hasReferenceInfoStore() {
+		return getReferenceInfoStore() != null;
+	}
+
 	protected void removeChild(final AbstractWorkflowElement element) {
 		if (element == null)
 			throw new IllegalArgumentException();
@@ -551,7 +669,9 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 		if (index >= 0) {
 			element.setParent(null);
+			element.setRoot(element);
 			children.remove(index);
 		}
 	}
+
 }

@@ -9,8 +9,9 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
+package org.eclipse.emf.mwe.ui.internal.editor.references;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -18,12 +19,12 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.1 $
  */
 public class ReferenceInfoStore {
 
@@ -32,8 +33,6 @@ public class ReferenceInfoStore {
 	private final Set<ReferenceInfo> definitionSet = new HashSet<ReferenceInfo>();
 
 	private final List<ReferenceInfo> references = new LinkedList<ReferenceInfo>();
-
-	private final Set<String> fileNameSet = new HashSet<String>();
 
 	public ReferenceInfoStore(final IFile file) {
 		this.file = file;
@@ -47,13 +46,6 @@ public class ReferenceInfoStore {
 		return !definitionSet.add(info);
 	}
 
-	public boolean addFileName(final String name) {
-		if (name == null)
-			throw new IllegalArgumentException();
-
-		return fileNameSet.add(name);
-	}
-
 	public void addReference(final AbstractWorkflowElement element) {
 		if (element == null || !element.hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
@@ -65,25 +57,61 @@ public class ReferenceInfoStore {
 	public void clear() {
 		definitionSet.clear();
 		references.clear();
-		fileNameSet.clear();
 	}
 
-	public boolean containsFileName(final String name) {
-		if (name == null)
-			return false;
-
-		return fileNameSet.contains(name);
-	}
-
-	public Collection<ReferenceInfo> getReferenceDefinitions() {
+	public Collection<ReferenceInfo> getDefinitions() {
 		return definitionSet;
+	}
+
+	public AbstractWorkflowElement getReferencedElement(final AbstractWorkflowElement element) {
+		if (element == null || !element.hasReference())
+			throw new IllegalArgumentException();
+
+		final String idRef = element.getAttributeValue(IWorkflowAttribute.ID_REF_ATTRIBUTE);
+		for (final ReferenceInfo info : definitionSet) {
+			final IWorkflowAttribute attr = info.getAttribute();
+			if (idRef.equals(attr.getValue()))
+				return info.getElement();
+		}
+		return null;
 	}
 
 	public Collection<ReferenceInfo> getReferences() {
 		return references;
 	}
 
-	public boolean isDefined(final ReferenceInfo info) {
+	public Collection<ReferenceInfo> getUnresolvedReferences() {
+		final List<ReferenceInfo> result = new ArrayList<ReferenceInfo>();
+
+		for (final ReferenceInfo info : references) {
+			if (!isResolvable(info)) {
+				result.add(info);
+			}
+		}
+		return result;
+	}
+
+	public boolean hasDefinition(final AbstractWorkflowElement element) {
+		if (element == null | !element.hasReferenceDefinition())
+			throw new IllegalArgumentException();
+
+		final String id = element.getAttributeValue(IWorkflowAttribute.ID_ATTRIBUTE);
+		for (final ReferenceInfo info : definitionSet) {
+			final IWorkflowAttribute attr = info.getAttribute();
+			if (id.equals(attr.getValue()))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean isResolvable(final AbstractWorkflowElement element) {
+		if (element == null || !element.hasReference())
+			throw new IllegalArgumentException();
+
+		return isResolvable(createReferenceInfo(element));
+	}
+
+	public boolean isResolvable(final ReferenceInfo info) {
 		if (info == null || !info.getElement().hasAttribute(IWorkflowAttribute.ID_REF_ATTRIBUTE))
 			throw new IllegalArgumentException();
 

@@ -9,15 +9,15 @@
  *    committers of openArchitectureWare - initial API and implementation
  */
 
-package org.eclipse.emf.mwe.ui.internal.editor.analyzer.references;
+package org.eclipse.emf.mwe.ui.internal.editor.references;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.1 $
  */
 public class ReferenceInfo {
 
@@ -27,8 +27,7 @@ public class ReferenceInfo {
 
 	private final IWorkflowAttribute attribute;
 
-	public ReferenceInfo(final IFile file, final AbstractWorkflowElement element,
-			final IWorkflowAttribute attribute) {
+	public ReferenceInfo(final IFile file, final AbstractWorkflowElement element, final IWorkflowAttribute attribute) {
 		if (element == null || attribute == null)
 			throw new IllegalArgumentException();
 
@@ -38,12 +37,11 @@ public class ReferenceInfo {
 	}
 
 	/**
-	 * This method overrides the implementation of <code>equals</code>
-	 * inherited from the superclass.
+	 * This method overrides the implementation of <code>equals</code> inherited
+	 * from the superclass.
 	 * 
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
-	// CHECKSTYLE:OFF
 	@Override
 	public boolean equals(final Object obj) {
 		if (this == obj)
@@ -56,12 +54,11 @@ public class ReferenceInfo {
 		if (getReferenceValue() == null) {
 			if (other.getReferenceValue() != null)
 				return false;
-		} else if (!getReferenceValue().equals(other.getReferenceValue()))
+		}
+		else if (!getReferenceValue().equals(other.getReferenceValue()))
 			return false;
 		return true;
 	}
-
-	// CHECKSTYLE:ON
 
 	/**
 	 * Returns the value of field <code>attribute</code>.
@@ -109,11 +106,7 @@ public class ReferenceInfo {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result =
-				prime
-						* result
-						+ ((getReferenceValue() == null) ? 0
-								: getReferenceValue().hashCode());
+		result = prime * result + ((getReferenceValue() == null) ? 0 : getReferenceValue().hashCode());
 		return result;
 	}
 }

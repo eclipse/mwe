@@ -29,7 +29,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.55 $
+ * @version $Revision: 1.56 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -110,6 +110,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 			final IWorkflowAttribute attribute) {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
+
+		if (IWorkflowAttribute.ID_REF_ATTRIBUTE.equals(attribute.getName()))
+			return;
 
 		if (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attribute.getName())) {
 			checkClassAttribute(attribute);

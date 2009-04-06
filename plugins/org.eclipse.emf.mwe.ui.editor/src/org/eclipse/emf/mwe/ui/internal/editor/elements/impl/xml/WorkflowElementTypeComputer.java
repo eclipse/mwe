@@ -26,7 +26,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.16 $
+ * @version $Revision: 1.17 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -43,6 +43,9 @@ public final class WorkflowElementTypeComputer {
 	}
 
 	public static String getDefaultClass(final AbstractWorkflowElement element) {
+		if (element == null)
+			return null;
+
 		String name = null;
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
 			name = Workflow.class.getCanonicalName();
@@ -50,6 +53,8 @@ public final class WorkflowElementTypeComputer {
 		else if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 			name = element.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);
 		}
+		else if (element.hasReference() && element.hasResolvedReference())
+			return getDefaultClass(element.getReferencedElement());
 		else if (element.hasProject() && element.hasParent()) {
 			IMethod method = null;
 

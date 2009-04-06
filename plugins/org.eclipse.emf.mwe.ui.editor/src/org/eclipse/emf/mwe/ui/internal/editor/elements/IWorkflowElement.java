@@ -126,6 +126,13 @@ public interface IWorkflowElement {
 	IProject getProject();
 
 	/**
+	 * Returns the root element.
+	 * 
+	 * @return the root element
+	 */
+	AbstractWorkflowElement getRoot();
+
+	/**
 	 * Checks if the current element has any children attached.
 	 * 
 	 * @return <code>true</code> if current elements has children, otherwise
@@ -169,6 +176,11 @@ public interface IWorkflowElement {
 	boolean isValidChildFor(final AbstractWorkflowElement parentElement);
 
 	/**
+	 * Remove current element from parent.
+	 */
+	void remove();
+
+	/**
 	 * Sets the file that the current element is associated with.
 	 * 
 	 * @param file
@@ -209,7 +221,10 @@ public interface IWorkflowElement {
 	void setPropertyContainer(IPropertyContainer container);
 
 	/**
-	 * Remove current element from parent.
+	 * Sets the reference to the root element for the current element.
+	 * 
+	 * @param rootElement
+	 *            the root element
 	 */
-	void remove();
+	void setRoot(AbstractWorkflowElement rootElement);
 }

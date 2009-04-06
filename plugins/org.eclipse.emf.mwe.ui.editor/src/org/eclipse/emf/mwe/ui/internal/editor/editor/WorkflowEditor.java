@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
-import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
@@ -74,7 +73,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.56 $
+ * @version $Revision: 1.57 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
@@ -131,10 +130,6 @@ public class WorkflowEditor extends TextEditor {
 	private Collection<AbstractWorkflowElement> elements;
 
 	private Collection<IWorkflowAttribute> attributes;
-
-	private Collection<ReferenceInfo> references;
-
-	private Collection<ReferenceInfo> referenceDefinitions;
 
 	public WorkflowEditor() {
 		super();
@@ -252,14 +247,6 @@ public class WorkflowEditor extends TextEditor {
 		return file;
 	}
 
-	public Collection<ReferenceInfo> getReferenceDefinitions() {
-		return referenceDefinitions;
-	}
-
-	public Collection<ReferenceInfo> getReferences() {
-		return references;
-	}
-
 	/**
 	 * Returns the value of field <code>rootElement</code>.
 	 * 
@@ -329,8 +316,6 @@ public class WorkflowEditor extends TextEditor {
 		iterator.checkValidity(getRootElement());
 		elements = iterator.getElementList();
 		attributes = iterator.getAttributeList();
-		references = iterator.getReferences();
-		referenceDefinitions = iterator.getReferenceDefinitions();
 	}
 
 	@Override

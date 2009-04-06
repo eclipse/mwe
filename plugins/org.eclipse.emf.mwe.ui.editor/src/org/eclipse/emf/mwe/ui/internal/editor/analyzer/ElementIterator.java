@@ -12,28 +12,20 @@
 package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceAnalyzer;
-import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
-import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.30 $
+ * @version $Revision: 1.31 $
  */
 public class ElementIterator {
 
 	private static final String[] EXCLUDED_TAGS = { "workflowfile" };
-
-	private final IFile file;
-
-	private final IDocument document;
 
 	private final ElementAnalyzerRegistry analyzer;
 
@@ -41,13 +33,8 @@ public class ElementIterator {
 
 	private final List<IWorkflowAttribute> attributeList = new ArrayList<IWorkflowAttribute>();
 
-	private final ReferenceInfoStore referenceInfoStore;
-
 	public ElementIterator(final IFile file, final IDocument document) {
-		this.file = file;
-		this.document = document;
 		analyzer = new ElementAnalyzerRegistry(file, document);
-		referenceInfoStore = new ReferenceInfoStore(file);
 	}
 
 	public void checkValidity(final AbstractWorkflowElement workflowElement) {
@@ -55,13 +42,6 @@ public class ElementIterator {
 		for (final AbstractWorkflowElement element : elementList) {
 			analyzer.checkValidity(element);
 		}
-
-		final ReferenceAnalyzer referenceAnalyzer = new ReferenceAnalyzer(file, document, referenceInfoStore);
-
-		for (final AbstractWorkflowElement element : elementList) {
-			referenceAnalyzer.analyzeElement(element);
-		}
-		referenceAnalyzer.markUnresolvedReferences();
 	}
 
 	/**
@@ -80,14 +60,6 @@ public class ElementIterator {
 	 */
 	public List<AbstractWorkflowElement> getElementList() {
 		return elementList;
-	}
-
-	public Collection<ReferenceInfo> getReferenceDefinitions() {
-		return referenceInfoStore.getReferenceDefinitions();
-	}
-
-	public Collection<ReferenceInfo> getReferences() {
-		return referenceInfoStore.getReferences();
 	}
 
 	private void addChild(final List<AbstractWorkflowElement> list, final AbstractWorkflowElement element) {

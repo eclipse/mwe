@@ -16,23 +16,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.mwe.ui.internal.editor.analyzer.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.scanners.WorkflowTagScanner;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
-public class IDRefContentProposalComputer extends
-AbstractSpecializedStringContentProposalComputer {
+public class IDRefContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
 
 	private static final String[] TRIGGER_ATTRIBUTES = { "idRef" };
 
-	public IDRefContentProposalComputer(final IFile file,
-			final WorkflowEditor editor, final IDocument document,
+	public IDRefContentProposalComputer(final IFile file, final WorkflowEditor editor, final IDocument document,
 			final WorkflowTagScanner tagScanner) {
 		super(file, editor, document, tagScanner);
 	}
@@ -51,14 +50,17 @@ AbstractSpecializedStringContentProposalComputer {
 	 */
 	@Override
 	protected String createProposalText(final String name, final int offset) {
-		return "'" + name + "'";
+		return name;
 	}
 
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> resultSet = new HashSet<String>();
-		final Collection<ReferenceInfo> referenceDefinitions =
-			editor.getReferenceDefinitions();
+		final AbstractWorkflowElement rootElement = editor.getRootElement();
+		Collection<ReferenceInfo> referenceDefinitions = null;
+		if (rootElement != null) {
+			referenceDefinitions = rootElement.getReferenceDefinitions();
+		}
 
 		if (referenceDefinitions != null) {
 			for (final ReferenceInfo info : referenceDefinitions) {
@@ -68,5 +70,4 @@ AbstractSpecializedStringContentProposalComputer {
 		}
 		return resultSet;
 	}
-
 }
