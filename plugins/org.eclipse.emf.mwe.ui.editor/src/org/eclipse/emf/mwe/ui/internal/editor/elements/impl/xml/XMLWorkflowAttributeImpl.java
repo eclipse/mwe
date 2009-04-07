@@ -24,10 +24,12 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
+
+	private static final Pattern PROPERTY_REFERENCE_PATTERN = Pattern.compile("\\$\\{([a-zA-Z0-9._\\-]+)\\}");
 
 	private AbstractWorkflowElement element;
 
@@ -140,6 +142,12 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getValue()
 	 */
 	public String getValue() {
+		if (hasPropertyReference()) {
+			if (hasResolvedPropertyReference())
+				return getPropertyReferenceValue();
+
+			return "";
+		}
 		return value;
 	}
 
@@ -190,4 +198,41 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 		this.element = element;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasPropertyReference()
+	 */
+	public boolean hasPropertyReference() {
+		return getPropertyReferenceName() != null;
+	}
+
+	private String getPropertyReferenceName() {
+		final Matcher m = PROPERTY_REFERENCE_PATTERN.matcher(value);
+		if (m.find())
+			return m.group(1);
+
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasResolvedPropertyReference()
+	 */
+	public boolean hasResolvedPropertyReference() {
+		final String propName = getPropertyReferenceName();
+		if (propName != null && getElement() != null)
+			return getElement().hasProperty(propName);
+
+		return false;
+	}
+
+	private String getPropertyReferenceValue() {
+		if (hasResolvedPropertyReference()) {
+			final String propName = getPropertyReferenceName();
+			if (propName != null && getElement() != null) {
+				final Property p = getElement().getProperty(propName);
+				if (p.isSimple())
+					return p.getValue();
+			}
+		}
+		return null;
+	}
 }

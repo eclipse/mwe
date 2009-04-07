@@ -14,6 +14,8 @@ package org.eclipse.emf.mwe.ui.internal.editor.elements;
 import java.util.Collection;
 import java.util.Set;
 
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
+
 public interface IPropertyContainerAccess {
 
 	/**
@@ -23,6 +25,14 @@ public interface IPropertyContainerAccess {
 	 *            the container to add
 	 */
 	void addProperties(IPropertyContainer container);
+
+	/**
+	 * Adds a property to the current property container.
+	 * 
+	 * @param property
+	 *            the property to add
+	 */
+	void addProperty(Property property);
 
 	/**
 	 * Returns a property container that holds all imported properties that are

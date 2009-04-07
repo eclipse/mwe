@@ -20,12 +20,11 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
@@ -55,7 +54,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.Property)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property)
 	 */
 	public void addProperty(final Property property) {
 		if (property == null)

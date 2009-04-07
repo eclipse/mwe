@@ -69,4 +69,20 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	 *            the element
 	 */
 	void setElement(AbstractWorkflowElement element);
+
+	/**
+	 * Checks if current attribute contains a property reference.
+	 * 
+	 * @return <code>true</code> if current attribute contains a property
+	 *         reference, otherwise <code>false</code>
+	 */
+	boolean hasPropertyReference();
+
+	/**
+	 * Checks if current attribute contains a resolved property reference.
+	 * 
+	 * @return <code>true</code> if current attribute contains a resolved
+	 *         property reference, otherwise <code>false</code>
+	 */
+	boolean hasResolvedPropertyReference();
 }

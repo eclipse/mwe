@@ -26,7 +26,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.IWorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
@@ -34,7 +34,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
 import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
-import org.eclipse.emf.mwe.ui.internal.editor.utils.FileUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PropertyFileReader;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jface.text.BadLocationException;
@@ -46,7 +45,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.45 $
+ * @version $Revision: 1.46 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -63,6 +62,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	protected IProject project;
 
 	private File file;
+
+	private boolean isSubProcess;
 
 	protected IPropertyContainer propertyContainer = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
 
@@ -247,6 +248,16 @@ public class WorkflowContentHandler extends DefaultHandler {
 	}
 
 	/**
+	 * Sets a new value for field <code>isSubProcess</code>.
+	 * 
+	 * @param isSubProcess
+	 *            new value for <code>isSubProcess</code>.
+	 */
+	public void setSubProcess(final boolean isSubProcess) {
+		this.isSubProcess = isSubProcess;
+	}
+
+	/**
 	 * This method overrides the implementation of <code>startDocument</code>
 	 * inherited from the superclass.
 	 * 
@@ -308,18 +319,28 @@ public class WorkflowContentHandler extends DefaultHandler {
 
 		final Property property = new Property(element);
 
-		if (element.getFile() != null && !isInTopMostFile(element)) {
+		if (isSubProcess) {
 			property.setImported(true);
 		}
 
 		try {
 			if (property.isSimple()) {
-				propertyContainer.addProperty(property);
+				if (!isSubProcess) {
+					if (element.hasParent()) {
+						element.getParent().addProperty(property);
+					}
+					else {
+						propertyContainer.addProperty(property);
+					}
+				}
+				else {
+					propertyContainer.addProperty(property);
+				}
 			}
 			else if (property.isReference()) {
 				try {
 					final IPropertyContainer fileContainer = PropertyFileReader.parse(getProject(), element);
-					if (isInTopMostFile(element)) {
+					if (!isSubProcess) {
 						if (element.hasParent()) {
 							element.getParent().addProperties(fileContainer);
 						}
@@ -415,7 +436,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new IllegalArgumentException();
 
 		e.addElement(element);
-		if (isInTopMostFile(element)) {
+		if (!isSubProcess) {
 			MarkerManager.createMarker(getFile(), document, element, e.getMessage(), true);
 			Log.logError(e.getElementTrace(), e);
 		}
@@ -440,23 +461,6 @@ public class WorkflowContentHandler extends DefaultHandler {
 		return Boolean.parseBoolean(inheritVal);
 	}
 
-	private boolean isInTopMostFile(final AbstractWorkflowElement element) {
-		if (element != null) {
-			final File file1 = element.getFile();
-			final File file2 = FileUtils.convertToFile(getFile());
-			if (file1 == null)
-				return false;
-
-			if (file2 != null) {
-				final String fileName1 = file1.getAbsolutePath();
-				final String fileName2 = file2.getAbsolutePath();
-				if (!fileName1.equals(fileName2))
-					return false;
-			}
-		}
-		return true;
-	}
-
 	private AbstractWorkflowElement newWorkflowElement(final String name) {
 		final AbstractWorkflowElement element = WorkflowSyntaxFactory.getInstance().newWorkflowElement(editor,
 				getProject(), document, name);
@@ -471,7 +475,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
 		final String content = TypeUtils.getFileContent(getProject(), attribute);
 		if (content == null) {
-			if (isInTopMostFile(element)) {
+			if (!isSubProcess) {
 				MarkerManager.createMarker(getFile(), document, attribute, "Resource '" + attribute.getValue()
 						+ "' cannot be resolved", true, true);
 				return;
@@ -488,6 +492,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			}
 
 			contentHandler.setFile(refFile);
+			contentHandler.setSubProcess(true);
 			DocumentParser.parse(refDoc, contentHandler, getProject());
 		}
 		catch (final ParserProblemException e) {

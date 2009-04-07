@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.32 $
+ * @version $Revision: 1.33 $
  */
 public final class TypeUtils {
 
@@ -310,28 +310,27 @@ public final class TypeUtils {
 		return result;
 	}
 
-	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType,
-			final IProgressMonitor monitor) {
+	public static IMethod getSetter(final IProject project, final IType type, final String name, final String argType) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
 		IMethod method = null;
 
-		method = getMethod(project, type, setterName(name), argType, monitor);
+		method = getMethod(project, type, setterName(name), argType);
 		if (method == null) {
-			method = getMethod(project, type, adderName(name), argType, monitor);
+			method = getMethod(project, type, adderName(name), argType);
 		}
 
 		return method;
 	}
 
 	public static IType getSetterParameter(final IProject project, final AbstractWorkflowElement element,
-			final IType mappedType, final IProgressMonitor monitor) {
+			final IType mappedType) {
 		if (project == null)
 			return null;
 
 		IType mt = null;
-		final IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD, monitor);
+		final IMethod method = TypeUtils.getSetter(project, mappedType, element.getName(), TypeUtils.WILDCARD);
 		if (method != null) {
 			final String[] params = method.getParameterTypes();
 			if (params.length == 1) {
@@ -344,20 +343,19 @@ public final class TypeUtils {
 	}
 
 	public static Set<String> getSetters(final IProject project, final AbstractWorkflowElement element,
-			final boolean simpleParametersOnly, final boolean includePropertyImports, final boolean wholeHierarchy,
-			final IProgressMonitor monitor) {
+			final boolean simpleParametersOnly, final boolean includePropertyImports, final boolean wholeHierarchy) {
 		if (project == null || element == null)
 			throw new IllegalArgumentException();
 
 		final Set<String> result = new HashSet<String>();
 		IType type = element.getMappedClassType();
 		if (type != null) {
-			result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy, monitor));
+			result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy));
 		}
 		else if (element.hasParent()) {
-			type = getSetterParameter(project, element, element.getParent().getMappedClassType(), monitor);
+			type = getSetterParameter(project, element, element.getParent().getMappedClassType());
 			if (type != null) {
-				result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy, monitor));
+				result.addAll(internalGeSetters(project, type, simpleParametersOnly, wholeHierarchy));
 			}
 		}
 
@@ -392,16 +390,43 @@ public final class TypeUtils {
 		return classes;
 	}
 
-	public static Set<IType> getSuperTypes(final IProject project, final IType baseType, final IProgressMonitor monitor) {
-		final Set<IType> classes = new HashSet<IType>();
-		final ITypeHierarchy hierarchy = getClassHierarchy(project, baseType, monitor);
+	public static Set<IType> getSuperTypes(final IProject project, final IType baseType) {
+		if (project == null || baseType == null)
+			throw new IllegalArgumentException();
 
-		if (hierarchy != null) {
-			final IType[] types = hierarchy.getAllSupertypes(baseType);
-			classes.addAll(createClassSet(types));
+		final Set<IType> result = new HashSet<IType>();
+		try {
+			final Set<String> typeNames = new HashSet<String>();
+			final String superclassName = baseType.getSuperclassName();
+			if (superclassName != null) {
+				typeNames.add(superclassName);
+			}
+
+			final String[] interfaceNames = baseType.getSuperInterfaceNames();
+			for (final String n : interfaceNames) {
+				typeNames.add(n);
+			}
+
+			for (final String n : typeNames) {
+				final IType type = findType(project, n);
+				if (type != null) {
+					result.add(type);
+				}
+				else
+					throw new RuntimeException("Cannot find type '" + n + "'");
+			}
+
+			final Set<IType> superTypes = new HashSet<IType>();
+			for (final IType t : result) {
+				superTypes.addAll(getSuperTypes(project, t));
+			}
+			result.addAll(superTypes);
+		}
+		catch (final JavaModelException e) {
+			Log.logError("", e);
 		}
 
-		return classes;
+		return result;
 	}
 
 	public static String getValueType(final String value) {
@@ -452,18 +477,18 @@ public final class TypeUtils {
 	}
 
 	public static SettableCheckResult isSettable(final IProject project, final AbstractWorkflowElement element,
-			final IType mappedType, final IProgressMonitor monitor) {
+			final IType mappedType) {
 		final String type = TypeUtils.WILDCARD;
 		final String name = element.getName();
-		return internalIsSettable(project, element, mappedType, name, type, monitor);
+		return internalIsSettable(project, element, mappedType, name, type);
 	}
 
 	public static SettableCheckResult isSettable(final IProject project, final IWorkflowAttribute attribute,
-			final IType mappedType, final IProgressMonitor monitor) {
+			final IType mappedType) {
 		final AbstractWorkflowElement element = attribute.getElement();
 		final String type = TypeUtils.computeAttributeType(attribute);
 		final String name = attribute.getName();
-		return internalIsSettable(project, element, mappedType, name, type, monitor);
+		return internalIsSettable(project, element, mappedType, name, type);
 	}
 
 	private static String adderName(final String name) {
@@ -570,8 +595,7 @@ public final class TypeUtils {
 		return hierarchy;
 	}
 
-	private static IMethod getMethod(final IProject project, final IType type, final String name, final String argType,
-			final IProgressMonitor monitor) {
+	private static IMethod getMethod(final IProject project, final IType type, final String name, final String argType) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
@@ -582,13 +606,13 @@ public final class TypeUtils {
 			if (argType != null) {
 				final String[] param = new String[1];
 				param[0] = argType;
-				m = internalGetMethod(project, type, name, param, monitor);
+				m = internalGetMethod(project, type, name, param);
 			}
 
 			if (m == null) {
 				final String[] objectParam = new String[1];
 				objectParam[0] = OBJECT_CLASS_NAME;
-				m = internalGetMethod(project, type, name, objectParam, monitor);
+				m = internalGetMethod(project, type, name, objectParam);
 			}
 
 			if (m != null && m.exists()) {
@@ -626,13 +650,13 @@ public final class TypeUtils {
 	}
 
 	private static Set<String> internalGeSetters(final IProject project, final IType type,
-			final boolean simpleParametersOnly, final boolean wholeHierarchy, final IProgressMonitor monitor) {
+			final boolean simpleParametersOnly, final boolean wholeHierarchy) {
 		final Set<String> result = new HashSet<String>();
 		Set<String> setters = getSettableProperties(type, simpleParametersOnly);
 		result.addAll(setters);
 
 		if (wholeHierarchy) {
-			final Set<IType> superTypes = getSuperTypes(project, type, monitor);
+			final Set<IType> superTypes = getSuperTypes(project, type);
 			for (final IType t : superTypes) {
 				setters = getSettableProperties(t, simpleParametersOnly);
 				result.addAll(setters);
@@ -642,7 +666,7 @@ public final class TypeUtils {
 	}
 
 	private static IMethod internalGetMethod(final IProject project, final IType type, final String name,
-			final String[] paramTypes, final IProgressMonitor monitor) {
+			final String[] paramTypes) {
 		if (project == null || type == null || name == null)
 			throw new IllegalArgumentException();
 
@@ -666,9 +690,9 @@ public final class TypeUtils {
 			if (method != null)
 				return method;
 		}
-		final Set<IType> superTypes = getSuperTypes(project, type, monitor);
+		final Set<IType> superTypes = getSuperTypes(project, type);
 		for (final IType t : superTypes) {
-			final IMethod method = internalGetMethod(project, t, name, paramTypes, monitor);
+			final IMethod method = internalGetMethod(project, t, name, paramTypes);
 			if (method != null)
 				return method;
 		}
@@ -676,27 +700,26 @@ public final class TypeUtils {
 	}
 
 	private static SettableCheckResult internalIsSettable(final IProject project,
-			final AbstractWorkflowElement element, final IType mappedType, final String tagName, final String type,
-			final IProgressMonitor monitor) {
-		IMethod method = TypeUtils.getSetter(project, mappedType, tagName, type, monitor);
+			final AbstractWorkflowElement element, final IType mappedType, final String tagName, final String type) {
+		IMethod method = TypeUtils.getSetter(project, mappedType, tagName, type);
 		IType mt = null;
 
 		if (method == null) {
-			mt = TypeUtils.getSetterParameter(project, element, mappedType, monitor);
+			mt = TypeUtils.getSetterParameter(project, element, mappedType);
 			if (mt == null) {
 				mt = mappedType;
 			}
 			else {
-				method = TypeUtils.getSetter(project, mt, tagName, type, monitor);
+				method = TypeUtils.getSetter(project, mt, tagName, type);
 			}
 		}
 		if (method == null && element.hasParent()) {
-			mt = TypeUtils.getSetterParameter(project, element.getParent(), mappedType, monitor);
+			mt = TypeUtils.getSetterParameter(project, element.getParent(), mappedType);
 			if (mt != null) {
 				final String name = element.getName();
-				method = TypeUtils.getSetter(project, mt, name, type, monitor);
+				method = TypeUtils.getSetter(project, mt, name, type);
 				if (method == null) {
-					method = TypeUtils.getSetter(project, mt, name, TypeUtils.WILDCARD, monitor);
+					method = TypeUtils.getSetter(project, mt, name, TypeUtils.WILDCARD);
 				}
 			}
 		}

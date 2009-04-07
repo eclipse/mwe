@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.WorkflowElementTypeComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfo;
@@ -95,6 +96,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public void addProperties(final IPropertyContainer container) {
 		propertyContainer.addProperties(container);
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#addProperty(org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property)
+	 */
+	public void addProperty(final Property property) {
+		propertyContainer.addProperty(property);
 	}
 
 	/**
@@ -673,5 +681,4 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 			children.remove(index);
 		}
 	}
-
 }

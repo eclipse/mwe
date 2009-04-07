@@ -11,7 +11,6 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.core.container.IfComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.internal.core.Workflow;
@@ -26,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -60,25 +59,20 @@ public final class WorkflowElementTypeComputer {
 
 			final IType parentType = element.getParent().getMappedClassType();
 			if (parentType != null) {
-				method = TypeUtils.getSetter(element.getProject(), parentType, element.getName(), TypeUtils.WILDCARD,
-						new NullProgressMonitor());
+				method = TypeUtils.getSetter(element.getProject(), parentType, element.getName(), TypeUtils.WILDCARD);
 				IType mt = parentType;
 				if (method == null) {
-					mt = TypeUtils.getSetterParameter(element.getProject(), element, parentType,
-							new NullProgressMonitor());
+					mt = TypeUtils.getSetterParameter(element.getProject(), element, parentType);
 					if (mt == null) {
 						mt = parentType;
 					}
-					method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD,
-							new NullProgressMonitor());
+					method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD);
 				}
 				if (method == null && element.hasParent()) {
-					mt = TypeUtils.getSetterParameter(element.getProject(), element.getParent(), parentType,
-							new NullProgressMonitor());
+					mt = TypeUtils.getSetterParameter(element.getProject(), element.getParent(), parentType);
 					if (mt != null) {
 						name = element.getName();
-						method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD,
-								new NullProgressMonitor());
+						method = TypeUtils.getSetter(element.getProject(), mt, element.getName(), TypeUtils.WILDCARD);
 					}
 					if (mt == null) {
 						mt = parentType;

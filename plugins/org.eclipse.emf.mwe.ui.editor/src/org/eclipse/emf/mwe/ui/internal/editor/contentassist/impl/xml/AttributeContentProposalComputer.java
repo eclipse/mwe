@@ -19,7 +19,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
@@ -37,7 +36,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 
 public class AttributeContentProposalComputer extends AbstractContentProposalComputer {
@@ -114,11 +113,9 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 
 			final IType type = element.getMappedClassType();
 			if (type != null) {
-				final SettableCheckResult settableCheck = TypeUtils.isSettable(file.getProject(), tempElement, type,
-						new NullProgressMonitor());
+				final SettableCheckResult settableCheck = TypeUtils.isSettable(file.getProject(), tempElement, type);
 				if (settableCheck.isSettableFound()) {
-					final IType param = TypeUtils.getSetterParameter(file.getProject(), tempElement, type,
-							new NullProgressMonitor());
+					final IType param = TypeUtils.getSetterParameter(file.getProject(), tempElement, type);
 					result.addAll(TypeUtils.getSettableProperties(param, true));
 				}
 			}

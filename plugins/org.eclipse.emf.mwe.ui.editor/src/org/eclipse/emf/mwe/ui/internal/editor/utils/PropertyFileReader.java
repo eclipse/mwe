@@ -19,12 +19,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.Property;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public final class PropertyFileReader {

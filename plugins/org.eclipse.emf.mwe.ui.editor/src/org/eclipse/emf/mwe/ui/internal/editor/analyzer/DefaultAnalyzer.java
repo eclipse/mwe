@@ -18,7 +18,6 @@ import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
@@ -29,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.56 $
+ * @version $Revision: 1.57 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -69,8 +68,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 		if (parentType != null) {
 			if (!element.isFragment()) {
-				final SettableCheckResult result = TypeUtils.isSettable(getProject(), element, parentType,
-						new NullProgressMonitor());
+				final SettableCheckResult result = TypeUtils.isSettable(getProject(), element, parentType);
 				if (!result.isSettableFound()) {
 					createMarker(element, "No setter for '" + result.getName() + "' available in class '"
 							+ result.getType().getElementName() + "'");
@@ -132,8 +130,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 				referenceType = TypeUtils.findType(getProject(), element
 						.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE));
 			}
-			final SettableCheckResult result = TypeUtils.isSettable(getProject(), attribute, referenceType,
-					new NullProgressMonitor());
+			final SettableCheckResult result = TypeUtils.isSettable(getProject(), attribute, referenceType);
 			if (!result.isSettableFound()) {
 				createMarker(attribute, "No attribute '" + result.getName() + "' available in class '"
 						+ result.getType().getElementName() + "'");
@@ -219,7 +216,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (type == null || rootClassName == null)
 			throw new IllegalArgumentException();
 
-		final Set<IType> superTypes = TypeUtils.getSuperTypes(getProject(), type, new NullProgressMonitor());
+		final Set<IType> superTypes = TypeUtils.getSuperTypes(getProject(), type);
 		for (final IType t : superTypes) {
 			final String fqn = t.getFullyQualifiedName();
 			if (rootClassName.equals(fqn))

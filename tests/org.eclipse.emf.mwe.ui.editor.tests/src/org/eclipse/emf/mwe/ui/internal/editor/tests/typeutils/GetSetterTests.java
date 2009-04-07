@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.typeutils;
 
 import java.util.Set;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.mwe.ui.internal.editor.base.TypeTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
@@ -36,8 +35,7 @@ public class GetSetterTests extends TypeTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertNotNull(workflow);
-		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, false, false,
-				new NullProgressMonitor());
+		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, false, false);
 		final String[] expected = new String[] { "abstract" };
 		assertTrue(equalElements(expected, actual));
 	}
@@ -47,8 +45,7 @@ public class GetSetterTests extends TypeTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertNotNull(workflow);
-		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, true, false,
-				new NullProgressMonitor());
+		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, true, false);
 		final String[] expected = new String[] { "abstract" };
 		assertTrue(equalElements(expected, actual));
 	}
@@ -58,8 +55,7 @@ public class GetSetterTests extends TypeTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertNotNull(workflow);
-		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, true, false,
-				new NullProgressMonitor());
+		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, true, false);
 		final String[] expected = new String[] { "abstract" };
 		assertTrue(equalElements(expected, actual));
 	}
@@ -69,8 +65,7 @@ public class GetSetterTests extends TypeTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertNotNull(workflow);
-		final Set<String> actual = TypeUtils
-				.getSetters(project, workflow, false, true, true, new NullProgressMonitor());
+		final Set<String> actual = TypeUtils.getSetters(project, workflow, false, true, true);
 		final String[] expected = new String[] { "abstract", "location", "ownLocation", "bean", "feature", "if" };
 		assertTrue(isSubset(expected, actual));
 	}
@@ -80,7 +75,7 @@ public class GetSetterTests extends TypeTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement workflow = root.getChild(0);
 		assertNotNull(workflow);
-		final Set<String> actual = TypeUtils.getSetters(project, workflow, true, true, true, new NullProgressMonitor());
+		final Set<String> actual = TypeUtils.getSetters(project, workflow, true, true, true);
 		final String[] expected = new String[] { "abstract", "resource", "id" };
 		assertTrue(equalElements(expected, actual));
 	}
@@ -93,9 +88,9 @@ public class GetSetterTests extends TypeTestBase {
 		final AbstractWorkflowElement fragment = workflow.getChild(0);
 		assertNotNull(fragment);
 		assertTrue(fragment.isFragment());
-		final Set<String> actual = TypeUtils
-				.getSetters(project, fragment, false, true, true, new NullProgressMonitor());
-		final String[] expected = new String[] { "file.extensions" };
+		final Set<String> actual = TypeUtils.getSetters(project, fragment, false, true, true);
+		final String[] expected = new String[] { "file.extensions", "component", "container", "abstract", "if",
+				"feature", "location", "resource", "cartridge", "bean", "ownLocation", "id" };
 		assertTrue(isSubset(expected, actual));
 	}
 }

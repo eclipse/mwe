@@ -9,11 +9,14 @@
  *     committers of openArchitectureWare - initial API and implementation
  *******************************************************************************/
 
-package org.eclipse.emf.mwe.ui.internal.editor.elements;
+package org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml;
+
+import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.1 $
  */
 
 public class Property {
