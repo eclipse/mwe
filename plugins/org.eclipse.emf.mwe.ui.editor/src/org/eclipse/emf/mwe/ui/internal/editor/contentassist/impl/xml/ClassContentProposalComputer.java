@@ -29,10 +29,12 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public class ClassContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {
+
+	private static final String BINARY_PREFIX = "bin.";
 
 	private static final String WORKFLOW_COMPONENT_BASE_CLASS = "org.eclipse.emf.mwe.core.WorkflowComponent";
 
@@ -83,10 +85,12 @@ public class ClassContentProposalComputer extends AbstractSpecializedStringConte
 				+ ((packageName != null && packageName.length() > 0) ? " (" + packageName + ")" : "");
 		final TextInfo currentText = currentText(document, offset);
 		final Image img = EditorImages.getImage(EditorImages.COMPONENT);
-		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
-				currentText.getText().length(), text.length(), img, displayText, null, null));
-		result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(),
-				currentText.getText().length(), text.length(), img, text, null, null));
+		if (packageName == null || !packageName.startsWith(BINARY_PREFIX)) {
+			result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(), currentText.getText()
+					.length(), text.length(), img, displayText, null, null));
+			result.add(new ExtendedCompletionProposal(text, currentText.getDocumentOffset(), currentText.getText()
+					.length(), text.length(), img, text, null, null));
+		}
 		return result;
 	}
 

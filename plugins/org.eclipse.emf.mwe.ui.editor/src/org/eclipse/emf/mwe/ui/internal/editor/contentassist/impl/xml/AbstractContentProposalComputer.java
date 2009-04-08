@@ -32,7 +32,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
+ * @version $Revision: 1.13 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {
@@ -183,9 +183,11 @@ public abstract class AbstractContentProposalComputer implements IContentProposa
 			final int partitionLength = region.getLength();
 			int index = documentOffset - partitionOffset;
 
-			if (documentOffset > partitionOffset && !isTerminal(terminalSet(), document.getChar(documentOffset))
-					&& !isTerminal(terminalSet(), document.getChar(documentOffset - 1))) {
-				index--;
+			if (documentOffset > partitionOffset) {
+				final char ch = document.getChar(documentOffset - 1);
+				if (!isTerminal(terminalSet(), ch)) {
+					index--;
+				}
 			}
 
 			final String partitionText = document.get(partitionOffset, partitionLength);

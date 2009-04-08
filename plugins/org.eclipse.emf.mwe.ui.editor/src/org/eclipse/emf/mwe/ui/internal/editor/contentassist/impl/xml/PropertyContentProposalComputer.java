@@ -26,7 +26,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class PropertyContentProposalComputer extends AbstractStringContentProposalComputer {
@@ -90,8 +90,7 @@ public class PropertyContentProposalComputer extends AbstractStringContentPropos
 	protected List<ICompletionProposal> removeNonMatchingEntries(final List<ICompletionProposal> proposalSet,
 			final int offset) {
 		final List<ICompletionProposal> resultSet = new ArrayList<ICompletionProposal>();
-		final int o = offset > 0 ? offset - 1 : offset;
-		final TextInfo currentText = currentText(document, o);
+		final TextInfo currentText = currentText(document, offset);
 		final String startText = currentText.getText();
 		for (final ICompletionProposal p : proposalSet) {
 			if ("".equals(startText) || p.getDisplayString().startsWith(startText)) {
