@@ -93,40 +93,46 @@
    </extension>
 
    <!-- launch shortcut -->
+   <!-- launch shortcut -->
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             label="MWE Workflow"
             icon="icons/oawlaunch.gif"
             category="org.eclipse.ui.externaltools"
-            class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
+
+class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
             modes="run, debug"
             id="org.eclipse.emf.mwe.ui.debug.launching.shortcut">
         <contextualLaunch>
            <enablement>
              <with variable="selection">
                <count value="1"/>
-               <iterate>
-                 <or>
-                    <test
-                          property="org.eclipse.debug.ui.matchesPattern"
-                          value="*.oaw">
-                    </test>
-                    <test
-                          property="org.eclipse.debug.ui.matchesPattern"
-                          value="*.mwe">
-                    </test>
-                 </or>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <adapt
+                        type="org.eclipse.core.resources.IFile">
+                  </adapt>
+<!--
+                  <test
+                        forcePluginActivation="false"
+
+property="org.eclipse.core.resources.contentTypeId"
+
+value="org.eclipse.emf.mwe.ui.contentType.workflow">
+                  </test>
+-->
                </iterate>
              </with>
            </enablement>
            <contextLabel
-         	  mode="run"
-         	  label="MWE Workflow"/>
+              mode="run"
+              label="MWE Workflow"/>
           <contextLabel
-         	  mode="debug"
-         	  label="MWE Workflow"/>
-  		 </contextualLaunch>
+              mode="debug"
+              label="MWE Workflow"/>
+         </contextualLaunch>
       </shortcut>
    </extension>
 
@@ -175,19 +181,19 @@
             pluginClass="org.eclipse.emf.mwe.internal.ui.workflow.debug.MWEPluginAdapter"
             runtimeClass="org.eclipse.emf.mwe.internal.core.debug.mwe.WorkflowElementAdapter"/>
    </extension>
-   <extension
+   
+    <!-- content type definition -->
+    <extension
          point="org.eclipse.core.contenttype.contentTypes">
       <content-type
             base-type="org.eclipse.core.runtime.xml"
-            describer="org.eclipse.core.runtime.content.XMLRootElementContentDescriber"
             file-extensions="mwe,oaw"
-            id="org.eclipse.emf.mwe.ui.content-type"
+            id="org.eclipse.emf.mwe.ui.contentType.workflow"
             name="%contentType"
             priority="high">
-         <property
-               default="%rootElement"
-               name="element">
-         </property>
+            <describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
+                <parameter name="element" value="%rootElement"/>
+            </describer>
       </content-type>
    </extension>
 </plugin>
