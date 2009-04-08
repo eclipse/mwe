@@ -1,0 +1,48 @@
+/*******************************************************************************
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     committers of openArchitectureWare - initial API and implementation
+ *******************************************************************************/
+
+package org.eclipse.emf.mwe.internal.ui.debug.launching.ui.launchable;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
+
+/**
+ * @author Patrick Schoenbach - Initial API and implementation
+ * @version $Revision: 1.1 $
+ */
+
+public class XMLContentHandler extends DefaultHandler {
+
+	private String rootName;
+
+	/**
+	 * Returns the value of field <code>rootName</code>.
+	 * 
+	 * @return value of <code>rootName</code>.
+	 */
+	public String getRootName() {
+		return rootName;
+	}
+
+	/**
+	 * @see org.xml.sax.helpers.DefaultHandler#startElement(java.lang.String,
+	 *      java.lang.String, java.lang.String, org.xml.sax.Attributes)
+	 */
+	@Override
+	public void startElement(final String uri, final String localName, final String name, final Attributes attributes)
+			throws SAXException {
+		if (rootName == null) {
+			rootName = name;
+		}
+	}
+
+}

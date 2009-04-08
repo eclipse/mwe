@@ -111,18 +111,15 @@ class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
                <iterate
                      ifEmpty="false"
                      operator="and">
-                  <adapt
-                        type="org.eclipse.core.resources.IFile">
-                  </adapt>
-<!--
-                  <test
-                        forcePluginActivation="false"
-
-property="org.eclipse.core.resources.contentTypeId"
-
-value="org.eclipse.emf.mwe.ui.contentType.workflow">
-                  </test>
--->
+                  <adapt type="org.eclipse.core.resources.IFile"/>
+                  <or>
+                    <test property="org.eclipse.debug.ui.matchesPattern"
+                          value="*.oaw"/>
+                    <test property="org.eclipse.debug.ui.matchesPattern"
+                          value="*.mwe"/>
+                 </or>
+                  <test forcePluginActivation="false"
+                        property="org.eclipse.emf.mwe.ui.launchable"/>
                </iterate>
              </with>
            </enablement>
@@ -181,19 +178,14 @@ value="org.eclipse.emf.mwe.ui.contentType.workflow">
             pluginClass="org.eclipse.emf.mwe.internal.ui.workflow.debug.MWEPluginAdapter"
             runtimeClass="org.eclipse.emf.mwe.internal.core.debug.mwe.WorkflowElementAdapter"/>
    </extension>
-   
-    <!-- content type definition -->
-    <extension
-         point="org.eclipse.core.contenttype.contentTypes">
-      <content-type
-            base-type="org.eclipse.core.runtime.xml"
-            file-extensions="mwe,oaw"
-            id="org.eclipse.emf.mwe.ui.contentType.workflow"
-            name="%contentType"
-            priority="high">
-            <describer class="org.eclipse.core.runtime.content.XMLRootElementContentDescriber">
-                <parameter name="element" value="%rootElement"/>
-            </describer>
-      </content-type>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.emf.mwe.internal.ui.debug.launching.ui.launchable.LaunchableTester"
+            id="org.eclipse.emf.mwe.ui.launchableTester"
+            namespace="org.eclipse.emf.mwe.ui"
+            properties="launchable"
+            type="org.eclipse.core.runtime.IAdaptable">
+      </propertyTester>
    </extension>
 </plugin>
