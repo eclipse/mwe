@@ -20,8 +20,6 @@ import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -30,16 +28,13 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
-import org.eclipse.emf.mwe.ui.internal.editor.contentassist.impl.xml.ClassContentProposalComputer;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
-import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.internal.ui.javaeditor.IJavaAnnotation;
 import org.eclipse.jdt.internal.ui.javaeditor.JavaAnnotationIterator;
 import org.eclipse.jface.action.IAction;
@@ -63,7 +58,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
@@ -73,41 +67,10 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.57 $
+ * @version $Revision: 1.58 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
-
-	private class InitializerJob extends Job {
-
-		public InitializerJob(final String name, final IResource resource) {
-			super(name);
-			setPriority(Job.LONG);
-			if (resource != null) {
-				setRule(resource);
-			}
-			else {
-				setRule(ResourcesPlugin.getWorkspace().getRoot());
-			}
-		}
-
-		@Override
-		protected IStatus run(final IProgressMonitor monitor) {
-			if (monitor.isCanceled())
-				return Status.CANCEL_STATUS;
-			try {
-				preloadClassNameCache(monitor);
-				if (monitor.isCanceled())
-					return Status.CANCEL_STATUS;
-			}
-			catch (final CoreException e) {
-				final IDocument document = getInputDocument();
-				MarkerManager.createMarkerFromRange(getInputFile(), document, e.getMessage(), new ElementPositionRange(
-						document), true);
-			}
-			return Status.OK_STATUS;
-		}
-	}
 
 	private ProjectionAnnotationModel annotationModel;
 
@@ -120,8 +83,6 @@ public class WorkflowEditor extends TextEditor {
 	private WorkflowContentOutlinePage outlinePage;
 
 	private Job validationJob;
-
-	private Job initializerJob;
 
 	private ISelectionChangedListener selectionChangedListener;
 
@@ -195,9 +156,6 @@ public class WorkflowEditor extends TextEditor {
 
 		if (outlinePage != null) {
 			outlinePage.setInput(null);
-		}
-		if (initializerJob != null) {
-			initializerJob.cancel();
 		}
 		TypeUtils.clearCache();
 		super.dispose();
@@ -368,16 +326,6 @@ public class WorkflowEditor extends TextEditor {
 	}
 
 	@Override
-	protected void doSetInput(final IEditorInput input) throws CoreException {
-		super.doSetInput(input);
-		if (input instanceof IFileEditorInput) {
-			final IFile file = getInputFile();
-			initializerJob = new InitializerJob("Initializing editor...", file);
-			initializerJob.schedule();
-		}
-	}
-
-	@Override
 	protected void editorContextMenuAboutToShow(final IMenuManager menu) {
 		menu.add(new Separator("mwe"));
 		super.editorContextMenuAboutToShow(menu);
@@ -460,16 +408,5 @@ public class WorkflowEditor extends TextEditor {
 
 	private WorkflowEditorPlugin getPlugin() {
 		return WorkflowEditorPlugin.getDefault();
-	}
-
-	private void preloadClassNameCache(final IProgressMonitor monitor) throws CoreException {
-		final IFile file = getInputFile();
-		final IType baseType = ClassContentProposalComputer.getWorkflowComponentBaseClass(file);
-		if (baseType == null)
-			throw new CoreException(WorkflowEditorPlugin.createErrorStatus(
-					"Please add the MWE runtime to the classpath", null));
-
-		TypeUtils.getSubTypes(file.getProject(), baseType, monitor);
-		TypeUtils.getAllClasses(file.getProject(), monitor);
 	}
 }
