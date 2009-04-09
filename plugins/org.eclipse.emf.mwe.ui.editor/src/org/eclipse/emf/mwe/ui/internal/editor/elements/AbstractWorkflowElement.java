@@ -142,6 +142,43 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof AbstractWorkflowElement))
+			return false;
+		final AbstractWorkflowElement other = (AbstractWorkflowElement) obj;
+		if (attributes == null) {
+			if (other.attributes != null)
+				return false;
+		}
+		else if (!attributes.equals(other.attributes))
+			return false;
+		if (children == null) {
+			if (other.children != null)
+				return false;
+		}
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		}
+		else if (!name.equals(other.name))
+			return false;
+		if (getElementType() == null) {
+			if (other.getElementType() != null)
+				return false;
+		}
+		else if (!getElementType().equals(other.getElementType()))
+			return false;
+		return true;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IAttributeContainer#getAttribute(java.lang.String)
 	 */
 	public IWorkflowAttribute getAttribute(final String name) {
@@ -426,6 +463,19 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((attributes == null) ? 0 : attributes.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((getElementType() == null) ? 0 : getElementType().hashCode());
+		return result;
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#hasMappedClass()
 	 */
 	public boolean hasMappedClass() {
@@ -681,4 +731,5 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 			children.remove(index);
 		}
 	}
+
 }

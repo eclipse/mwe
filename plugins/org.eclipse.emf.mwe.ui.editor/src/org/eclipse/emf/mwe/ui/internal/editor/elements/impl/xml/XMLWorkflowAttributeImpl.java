@@ -24,7 +24,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
@@ -43,6 +43,33 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 
 		this.name = name;
 		this.value = value;
+	}
+
+	/**
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof XMLWorkflowAttributeImpl))
+			return false;
+		final XMLWorkflowAttributeImpl other = (XMLWorkflowAttributeImpl) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		}
+		else if (!name.equals(other.name))
+			return false;
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		}
+		else if (!value.equals(other.value))
+			return false;
+		return true;
 	}
 
 	/**
@@ -152,6 +179,36 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
+		return result;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasPropertyReference()
+	 */
+	public boolean hasPropertyReference() {
+		return getPropertyReferenceName() != null;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasResolvedPropertyReference()
+	 */
+	public boolean hasResolvedPropertyReference() {
+		final String propName = getPropertyReferenceName();
+		if (propName != null && getElement() != null)
+			return getElement().hasProperty(propName);
+
+		return false;
+	}
+
+	/**
 	 * This automatically generated method overrides the implementation of
 	 * <code>isInRange</code> inherited from the superclass.
 	 * 
@@ -161,12 +218,47 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 		return getAttributeValueRange().isInRange(offset);
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#setElement(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement)
+	 */
+	public void setElement(final AbstractWorkflowElement element) {
+		this.element = element;
+	}
+
+	/**
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return getName() + " = " + getValue();
+	}
+
 	private ElementPositionRange getElementPositionRange(final Matcher matcher, final IDocument document,
 			final int start) {
 		if (matcher.find()) {
 			final int attrStart = start + matcher.start();
 			final int attrEnd = start + matcher.end();
 			return new ElementPositionRange(document, attrStart, attrEnd);
+		}
+		return null;
+	}
+
+	private String getPropertyReferenceName() {
+		final Matcher m = PROPERTY_REFERENCE_PATTERN.matcher(value);
+		if (m.find())
+			return m.group(1);
+
+		return null;
+	}
+
+	private String getPropertyReferenceValue() {
+		if (hasResolvedPropertyReference()) {
+			final String propName = getPropertyReferenceName();
+			if (propName != null && getElement() != null) {
+				final Property p = getElement().getProperty(propName);
+				if (p.isSimple())
+					return p.getValue();
+			}
 		}
 		return null;
 	}
@@ -181,58 +273,5 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 			res = res + ch;
 		}
 		return res;
-	}
-
-	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return getName() + " = " + getValue();
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#setElement(org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement)
-	 */
-	public void setElement(final AbstractWorkflowElement element) {
-		this.element = element;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasPropertyReference()
-	 */
-	public boolean hasPropertyReference() {
-		return getPropertyReferenceName() != null;
-	}
-
-	private String getPropertyReferenceName() {
-		final Matcher m = PROPERTY_REFERENCE_PATTERN.matcher(value);
-		if (m.find())
-			return m.group(1);
-
-		return null;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#hasResolvedPropertyReference()
-	 */
-	public boolean hasResolvedPropertyReference() {
-		final String propName = getPropertyReferenceName();
-		if (propName != null && getElement() != null)
-			return getElement().hasProperty(propName);
-
-		return false;
-	}
-
-	private String getPropertyReferenceValue() {
-		if (hasResolvedPropertyReference()) {
-			final String propName = getPropertyReferenceName();
-			if (propName != null && getElement() != null) {
-				final Property p = getElement().getProperty(propName);
-				if (p.isSimple())
-					return p.getValue();
-			}
-		}
-		return null;
 	}
 }

@@ -35,6 +35,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
 import org.eclipse.jdt.internal.ui.javaeditor.IJavaAnnotation;
 import org.eclipse.jdt.internal.ui.javaeditor.JavaAnnotationIterator;
 import org.eclipse.jface.action.IAction;
@@ -43,6 +44,7 @@ import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.ITextSelection;
+import org.eclipse.jface.text.ITextViewerExtension5;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
@@ -57,8 +59,12 @@ import org.eclipse.jface.viewers.IPostSelectionProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IPartService;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
@@ -67,7 +73,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.58 $
+ * @version $Revision: 1.59 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
@@ -128,6 +134,7 @@ public class WorkflowEditor extends TextEditor {
 		selectionChangedListener = new ISelectionChangedListener() {
 			public void selectionChanged(final SelectionChangedEvent event) {
 				updateStatusLine();
+				updateOutlineSelection();
 			}
 		};
 		final ISelectionProvider selectionProvider = getSelectionProvider();
@@ -138,6 +145,43 @@ public class WorkflowEditor extends TextEditor {
 		else {
 			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
 		}
+	}
+
+	protected void updateOutlineSelection() {
+		if (outlinePage != null && isEditorActive()) {
+			final AbstractWorkflowElement element = computeHighlightedElement();
+			synchronizeOutlinePage(element);
+		}
+	}
+
+	private void synchronizeOutlinePage(final AbstractWorkflowElement element) {
+		if (outlinePage != null && element != null) {
+			outlinePage.select(element);
+		}
+
+	}
+
+	private AbstractWorkflowElement computeHighlightedElement() {
+		final ISourceViewer sourceViewer = getSourceViewer();
+		if (sourceViewer == null)
+			return null;
+
+		final StyledText styledText = sourceViewer.getTextWidget();
+		if (styledText == null)
+			return null;
+
+		int caret = 0;
+		if (sourceViewer instanceof ITextViewerExtension5) {
+			final ITextViewerExtension5 extension = (ITextViewerExtension5) sourceViewer;
+			caret = extension.widgetOffset2ModelOffset(styledText.getCaretOffset());
+		}
+		else {
+			final int offset = sourceViewer.getVisibleRegion().getOffset();
+			caret = offset + styledText.getCaretOffset();
+		}
+		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRootElement(),
+				getInputDocument(), caret);
+		return element;
 	}
 
 	@Override
@@ -408,5 +452,17 @@ public class WorkflowEditor extends TextEditor {
 
 	private WorkflowEditorPlugin getPlugin() {
 		return WorkflowEditorPlugin.getDefault();
+	}
+
+	private boolean isEditorActive() {
+		final IWorkbenchPart part = getActivePart();
+		return part == this;
+	}
+
+	private IWorkbenchPart getActivePart() {
+		final IWorkbenchWindow window = getSite().getWorkbenchWindow();
+		final IPartService service = window.getPartService();
+		final IWorkbenchPart part = service.getActivePart();
+		return part;
 	}
 }
