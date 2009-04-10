@@ -42,13 +42,16 @@ public class WorkflowFactory extends EFactoryImpl
 	 */
 	public static WorkflowFactory init()
 	{
-		try {
+		try
+		{
 			WorkflowFactory theWorkflowFactory = (WorkflowFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/workflow"); 
-			if (theWorkflowFactory != null) {
+			if (theWorkflowFactory != null)
+			{
 				return theWorkflowFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new WorkflowFactory();
@@ -73,7 +76,8 @@ public class WorkflowFactory extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case WorkflowPackage.WORKFLOW_COMPOSITE_COMPONENT: return createWorkflowCompositeComponent();
 			case WorkflowPackage.WORKFLOW_PARAMETER: return createWorkflowParameter();
 			case WorkflowPackage.WORKFLOW_PARAMETER_VALUE_STRATEGY: return createWorkflowParameterValueStrategy();

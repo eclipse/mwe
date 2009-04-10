@@ -38,7 +38,9 @@ public class TestWorkflowEngine extends WorkflowTestHarness
 		getEngine().setWorkflow(component);
 		getEngine().run();
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(2));
 		getEngine().reset();
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(0));
 	}
 }

@@ -1,13 +1,9 @@
-/*******************************************************************************
- * Copyright (c) 2008 Bryan Hunt.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
+ * </copyright>
  *
- * Contributors:
- *    Bryan Hunt - initial API and implementation
- *******************************************************************************/
+ * $Id: WorkflowLogResetter.java,v 1.1 2009/04/10 05:36:57 bhunt Exp $
+ */
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -19,25 +15,24 @@ import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StateFactory;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Workflow State Resetter</b></em>'.
+ * A representation of the model object '<em><b>Workflow Log Resetter</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowStateResetter()
+ * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogResetter()
  * @model kind="class"
  * @generated
  */
-public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisitor
+public class WorkflowLogResetter extends EObjectImpl implements IWorkflowVisitor
 {
 	/**
 	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
@@ -54,7 +49,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WorkflowStateResetter()
+	protected WorkflowLogResetter()
 	{
 		super();
 	}
@@ -67,7 +62,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RuntimePackage.Literals.WORKFLOW_STATE_RESETTER;
+		return RuntimePackage.Literals.WORKFLOW_LOG_RESETTER;
 	}
 
 	/**
@@ -80,7 +75,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(WorkflowContext)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowStateResetter_Context()
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogResetter_Context()
 	 * @model required="true"
 	 * @generated
 	 */
@@ -93,7 +88,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 			if (context != oldContext)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT, oldContext, context));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT, oldContext, context));
 			}
 		}
 		return context;
@@ -110,7 +105,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter#getContext <em>Context</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter#getContext <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Context</em>' reference.
@@ -122,7 +117,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 		WorkflowContext oldContext = context;
 		context = newContext;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT, oldContext, context));
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT, oldContext, context));
 	}
 
 	/**
@@ -133,7 +128,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 */
 	public void visitUnitOfWork(WorkflowUnitOfWork unitOfWork)
 	{
-		getContext().getStates().put(unitOfWork, StateFactory.eINSTANCE.createWorkflowIdleState());
+		getContext().getLog().get(unitOfWork).getEntries().clear();
 	}
 
 	/**
@@ -144,7 +139,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 */
 	public void visitComposite(WorkflowCompositeComponent composite)
 	{
-		getContext().getStates().put(composite, StateFactory.eINSTANCE.createWorkflowIdleState());
+		getContext().getLog().get(composite).getEntries().clear();
 
 		for(WorkflowComponent component : composite.getComponents())
 			component.accept(this);
@@ -160,7 +155,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
+			case RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();
 		}
@@ -177,7 +172,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
+			case RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT:
 				setContext((WorkflowContext)newValue);
 				return;
 		}
@@ -194,7 +189,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
+			case RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT:
 				setContext((WorkflowContext)null);
 				return;
 		}
@@ -211,10 +206,10 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_STATE_RESETTER__CONTEXT:
+			case RuntimePackage.WORKFLOW_LOG_RESETTER__CONTEXT:
 				return context != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-} // WorkflowStateResetter
+} // WorkflowLogResetter

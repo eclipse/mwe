@@ -49,7 +49,8 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	 */
 	public OrchestrationAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = OrchestrationPackage.eINSTANCE;
 		}
 	}
@@ -65,10 +66,12 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -81,37 +84,46 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected OrchestrationSwitch<Adapter> modelSwitch =
-		new OrchestrationSwitch<Adapter>() {
+		new OrchestrationSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseWorkflowSerialOrchestrationStrategy(WorkflowSerialOrchestrationStrategy object) {
+			public Adapter caseWorkflowSerialOrchestrationStrategy(WorkflowSerialOrchestrationStrategy object)
+			{
 				return createWorkflowSerialOrchestrationStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParallelOrchestrationStrategy(WorkflowParallelOrchestrationStrategy object) {
+			public Adapter caseWorkflowParallelOrchestrationStrategy(WorkflowParallelOrchestrationStrategy object)
+			{
 				return createWorkflowParallelOrchestrationStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowCompositeOrchestrationStrategy(WorkflowCompositeOrchestrationStrategy object) {
+			public Adapter caseWorkflowCompositeOrchestrationStrategy(WorkflowCompositeOrchestrationStrategy object)
+			{
 				return createWorkflowCompositeOrchestrationStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy object) {
+			public Adapter caseWorkflowComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy object)
+			{
 				return createWorkflowComponentOrchestrationStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowConditionalComponentOrchestrationStrategy(WorkflowConditionalComponentOrchestrationStrategy object) {
+			public Adapter caseWorkflowConditionalComponentOrchestrationStrategy(WorkflowConditionalComponentOrchestrationStrategy object)
+			{
 				return createWorkflowConditionalComponentOrchestrationStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowExecutionPredicate(WorkflowExecutionPredicate object) {
+			public Adapter caseWorkflowExecutionPredicate(WorkflowExecutionPredicate object)
+			{
 				return createWorkflowExecutionPredicateAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRerunPredicate(WorkflowRerunPredicate object) {
+			public Adapter caseWorkflowRerunPredicate(WorkflowRerunPredicate object)
+			{
 				return createWorkflowRerunPredicateAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008 Bryan Hunt.
+ * Copyright (c) 2009 Bryan Hunt.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -19,11 +19,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
+import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Parameter Map</b></em>'.
+ * A representation of the model object '<em><b>Workflow Log Map</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
@@ -34,12 +34,12 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowParameterMap()
- * @model keyType="org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter" keyRequired="true"
- *        valueType="org.eclipse.emf.ecore.EObject" valueContainment="true" valueRequired="true"
+ * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap()
+ * @model keyType="org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent" keyRequired="true"
+ *        valueType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog" valueContainment="true" valueRequired="true"
  * @generated
  */
-public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry<WorkflowParameter,EObject>, EObject
+public class WorkflowLogMap extends EObjectImpl implements BasicEMap.Entry<WorkflowComponent,WorkflowLog>, EObject
 {
 	/**
 	 * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
@@ -49,7 +49,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * @generated
 	 * @ordered
 	 */
-	protected WorkflowParameter key;
+	protected WorkflowComponent key;
 
 	/**
 	 * The cached value of the '{@link #getTypedValue() <em>Value</em>}' containment reference.
@@ -59,14 +59,14 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject value;
+	protected WorkflowLog value;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected WorkflowParameterMap()
+	protected WorkflowLogMap()
 	{
 		super();
 	}
@@ -79,7 +79,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	@Override
 	protected EClass eStaticClass()
 	{
-		return RuntimePackage.Literals.WORKFLOW_PARAMETER_MAP;
+		return RuntimePackage.Literals.WORKFLOW_LOG_MAP;
 	}
 
 	/**
@@ -91,21 +91,21 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Key</em>' reference.
-	 * @see #setTypedKey(WorkflowParameter)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowParameterMap_Key()
+	 * @see #setTypedKey(WorkflowComponent)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap_Key()
 	 * @model required="true"
 	 * @generated
 	 */
-	public WorkflowParameter getTypedKey()
+	public WorkflowComponent getTypedKey()
 	{
 		if (key != null && key.eIsProxy())
 		{
 			InternalEObject oldKey = (InternalEObject)key;
-			key = (WorkflowParameter)eResolveProxy(oldKey);
+			key = (WorkflowComponent)eResolveProxy(oldKey);
 			if (key != oldKey)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY, oldKey, key));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_LOG_MAP__KEY, oldKey, key));
 			}
 		}
 		return key;
@@ -116,7 +116,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetTypedKey()
+	public WorkflowComponent basicGetTypedKey()
 	{
 		return key;
 	}
@@ -129,29 +129,29 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * @see #getTypedKey()
 	 * @generated
 	 */
-	public void setTypedKey(WorkflowParameter newKey)
+	public void setTypedKey(WorkflowComponent newKey)
 	{
-		WorkflowParameter oldKey = key;
+		WorkflowComponent oldKey = key;
 		key = newKey;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY, oldKey, key));
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_LOG_MAP__KEY, oldKey, key));
 	}
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Value</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Value</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Value</em>' containment reference.
-	 * @see #setTypedValue(EObject)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowParameterMap_Value()
+	 * @see #setTypedValue(WorkflowLog)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap_Value()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	public EObject getTypedValue()
+	public WorkflowLog getTypedValue()
 	{
 		return value;
 	}
@@ -161,13 +161,13 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTypedValue(EObject newValue, NotificationChain msgs)
+	public NotificationChain basicSetTypedValue(WorkflowLog newValue, NotificationChain msgs)
 	{
-		EObject oldValue = value;
+		WorkflowLog oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, oldValue, newValue);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_LOG_MAP__VALUE, oldValue, newValue);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -181,20 +181,20 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * @see #getTypedValue()
 	 * @generated
 	 */
-	public void setTypedValue(EObject newValue)
+	public void setTypedValue(WorkflowLog newValue)
 	{
 		if (newValue != value)
 		{
 			NotificationChain msgs = null;
 			if (value != null)
-				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, null, msgs);
+				msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_LOG_MAP__VALUE, null, msgs);
 			if (newValue != null)
-				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, null, msgs);
+				msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_LOG_MAP__VALUE, null, msgs);
 			msgs = basicSetTypedValue(newValue, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE, newValue, newValue));
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_LOG_MAP__VALUE, newValue, newValue));
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
+			case RuntimePackage.WORKFLOW_LOG_MAP__VALUE:
 				return basicSetTypedValue(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -223,10 +223,10 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
+			case RuntimePackage.WORKFLOW_LOG_MAP__KEY:
 				if (resolve) return getTypedKey();
 				return basicGetTypedKey();
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
+			case RuntimePackage.WORKFLOW_LOG_MAP__VALUE:
 				return getTypedValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -242,11 +242,11 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
-				setTypedKey((WorkflowParameter)newValue);
+			case RuntimePackage.WORKFLOW_LOG_MAP__KEY:
+				setTypedKey((WorkflowComponent)newValue);
 				return;
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
-				setTypedValue((EObject)newValue);
+			case RuntimePackage.WORKFLOW_LOG_MAP__VALUE:
+				setTypedValue((WorkflowLog)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -262,11 +262,11 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
-				setTypedKey((WorkflowParameter)null);
+			case RuntimePackage.WORKFLOW_LOG_MAP__KEY:
+				setTypedKey((WorkflowComponent)null);
 				return;
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
-				setTypedValue((EObject)null);
+			case RuntimePackage.WORKFLOW_LOG_MAP__VALUE:
+				setTypedValue((WorkflowLog)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -282,9 +282,9 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	{
 		switch (featureID)
 		{
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__KEY:
+			case RuntimePackage.WORKFLOW_LOG_MAP__KEY:
 				return key != null;
-			case RuntimePackage.WORKFLOW_PARAMETER_MAP__VALUE:
+			case RuntimePackage.WORKFLOW_LOG_MAP__VALUE:
 				return value != null;
 		}
 		return super.eIsSet(featureID);
@@ -327,7 +327,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter getKey()
+	public WorkflowComponent getKey()
 	{
 		return getTypedKey();
 	}
@@ -337,7 +337,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setKey(WorkflowParameter key)
+	public void setKey(WorkflowComponent key)
 	{
 		setTypedKey(key);
 	}
@@ -347,7 +347,7 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject getValue()
+	public WorkflowLog getValue()
 	{
 		return getTypedValue();
 	}
@@ -357,9 +357,9 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EObject setValue(EObject value)
+	public WorkflowLog setValue(WorkflowLog value)
 	{
-		EObject oldValue = getValue();
+		WorkflowLog oldValue = getValue();
 		setTypedValue(value);
 		return oldValue;
 	}
@@ -370,10 +370,10 @@ public class WorkflowParameterMap extends EObjectImpl implements BasicEMap.Entry
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public EMap<WorkflowParameter, EObject> getEMap()
+	public EMap<WorkflowComponent, WorkflowLog> getEMap()
 	{
 		EObject container = eContainer();
-		return container == null ? null : (EMap<WorkflowParameter, EObject>)container.eGet(eContainmentFeature());
+		return container == null ? null : (EMap<WorkflowComponent, WorkflowLog>)container.eGet(eContainmentFeature());
 	}
 
-} // ParameterMap
+} // WorkflowLogMap

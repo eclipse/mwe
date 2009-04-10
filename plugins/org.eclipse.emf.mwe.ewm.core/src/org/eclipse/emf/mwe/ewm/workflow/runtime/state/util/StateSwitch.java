@@ -54,7 +54,8 @@ public class StateSwitch<T>
 	 */
 	public StateSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = StatePackage.eINSTANCE;
 		}
 	}
@@ -80,10 +81,12 @@ public class StateSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else {
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -101,35 +104,41 @@ public class StateSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case StatePackage.WORKFLOW_STATE: {
+		switch (classifierID)
+		{
+			case StatePackage.WORKFLOW_STATE:
+			{
 				WorkflowState workflowState = (WorkflowState)theEObject;
 				T result = caseWorkflowState(workflowState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_IDLE_STATE: {
+			case StatePackage.WORKFLOW_IDLE_STATE:
+			{
 				WorkflowIdleState workflowIdleState = (WorkflowIdleState)theEObject;
 				T result = caseWorkflowIdleState(workflowIdleState);
 				if (result == null) result = caseWorkflowState(workflowIdleState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_RUNNING_STATE: {
+			case StatePackage.WORKFLOW_RUNNING_STATE:
+			{
 				WorkflowRunningState workflowRunningState = (WorkflowRunningState)theEObject;
 				T result = caseWorkflowRunningState(workflowRunningState);
 				if (result == null) result = caseWorkflowState(workflowRunningState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_DONE_STATE: {
+			case StatePackage.WORKFLOW_DONE_STATE:
+			{
 				WorkflowDoneState workflowDoneState = (WorkflowDoneState)theEObject;
 				T result = caseWorkflowDoneState(workflowDoneState);
 				if (result == null) result = caseWorkflowState(workflowDoneState);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_SUCCESS_STATE: {
+			case StatePackage.WORKFLOW_SUCCESS_STATE:
+			{
 				WorkflowSuccessState workflowSuccessState = (WorkflowSuccessState)theEObject;
 				T result = caseWorkflowSuccessState(workflowSuccessState);
 				if (result == null) result = caseWorkflowDoneState(workflowSuccessState);
@@ -137,7 +146,8 @@ public class StateSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_FAILED_STATE: {
+			case StatePackage.WORKFLOW_FAILED_STATE:
+			{
 				WorkflowFailedState workflowFailedState = (WorkflowFailedState)theEObject;
 				T result = caseWorkflowFailedState(workflowFailedState);
 				if (result == null) result = caseWorkflowDoneState(workflowFailedState);
@@ -145,7 +155,8 @@ public class StateSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case StatePackage.WORKFLOW_ERROR_STATE: {
+			case StatePackage.WORKFLOW_ERROR_STATE:
+			{
 				WorkflowErrorState workflowErrorState = (WorkflowErrorState)theEObject;
 				T result = caseWorkflowErrorState(workflowErrorState);
 				if (result == null) result = caseWorkflowDoneState(workflowErrorState);

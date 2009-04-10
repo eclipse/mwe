@@ -99,10 +99,12 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	 */
 	public WorkflowParameter getOutput()
 	{
-		if (output != null && output.eIsProxy()) {
+		if (output != null && output.eIsProxy())
+		{
 			InternalEObject oldOutput = (InternalEObject)output;
 			output = (WorkflowParameter)eResolveProxy(oldOutput);
-			if (output != oldOutput) {
+			if (output != oldOutput)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT, oldOutput, output));
 			}
@@ -154,7 +156,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	 */
 	public EList<WorkflowParameter> getInputs()
 	{
-		if (inputs == null) {
+		if (inputs == null)
+		{
 			inputs = new EObjectWithInverseResolvingEList<WorkflowParameter>(WorkflowParameter.class, this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION);
 		}
 		return inputs;
@@ -169,7 +172,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
 				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInputs()).basicAdd(otherEnd, msgs);
 		}
@@ -184,7 +188,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
 				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
 		}
@@ -199,7 +204,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
 				if (resolve) return getOutput();
 				return basicGetOutput();
@@ -218,7 +224,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
 				setOutput((WorkflowParameter)newValue);
 				return;
@@ -238,7 +245,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
 				setOutput((WorkflowParameter)null);
 				return;
@@ -257,7 +265,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
 				return output != null;
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:

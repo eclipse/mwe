@@ -92,10 +92,12 @@ public class WorkflowRunner extends WorkflowRunnable
 	 */
 	public WorkflowContext getContext()
 	{
-		if (context != null && context.eIsProxy()) {
+		if (context != null && context.eIsProxy())
+		{
 			InternalEObject oldContext = (InternalEObject)context;
 			context = (WorkflowContext)eResolveProxy(oldContext);
-			if (context != oldContext) {
+			if (context != oldContext)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_RUNNER__CONTEXT, oldContext, context));
 			}
@@ -145,10 +147,12 @@ public class WorkflowRunner extends WorkflowRunnable
 	 */
 	public WorkflowComponent getComponent()
 	{
-		if (component != null && component.eIsProxy()) {
+		if (component != null && component.eIsProxy())
+		{
 			InternalEObject oldComponent = (InternalEObject)component;
 			component = (WorkflowComponent)eResolveProxy(oldComponent);
-			if (component != oldComponent) {
+			if (component != oldComponent)
+			{
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_RUNNER__COMPONENT, oldComponent, component));
 			}
@@ -190,7 +194,8 @@ public class WorkflowRunner extends WorkflowRunnable
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RuntimePackage.WORKFLOW_RUNNER__CONTEXT:
 				if (resolve) return getContext();
 				return basicGetContext();
@@ -209,7 +214,8 @@ public class WorkflowRunner extends WorkflowRunnable
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RuntimePackage.WORKFLOW_RUNNER__CONTEXT:
 				setContext((WorkflowContext)newValue);
 				return;
@@ -228,7 +234,8 @@ public class WorkflowRunner extends WorkflowRunnable
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RuntimePackage.WORKFLOW_RUNNER__CONTEXT:
 				setContext((WorkflowContext)null);
 				return;
@@ -247,7 +254,8 @@ public class WorkflowRunner extends WorkflowRunnable
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case RuntimePackage.WORKFLOW_RUNNER__CONTEXT:
 				return context != null;
 			case RuntimePackage.WORKFLOW_RUNNER__COMPONENT:

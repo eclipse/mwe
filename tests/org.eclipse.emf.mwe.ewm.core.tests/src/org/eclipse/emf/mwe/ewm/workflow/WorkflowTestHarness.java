@@ -22,6 +22,7 @@ import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestra
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 import org.junit.After;
 
@@ -55,6 +56,7 @@ public class WorkflowTestHarness
 		{
 			context.getParameters().clear();
 			context.getStates().clear();
+			context.getLog().clear();
 		}
 	}
 
@@ -132,8 +134,11 @@ public class WorkflowTestHarness
 	public WorkflowContext getContext()
 	{
 		if (context == null)
+		{
 			context = RuntimeFactory.eINSTANCE.createWorkflowContext();
-
+			context.setLogLevel(WorkflowLogEntryType.INFO);
+		}
+		
 		return context;
 	}
 

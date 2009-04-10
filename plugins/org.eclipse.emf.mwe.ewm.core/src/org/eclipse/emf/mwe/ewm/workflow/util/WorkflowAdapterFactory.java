@@ -14,6 +14,7 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
@@ -49,7 +50,8 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 */
 	public WorkflowAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = WorkflowPackage.eINSTANCE;
 		}
 	}
@@ -65,10 +67,12 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -81,37 +85,51 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected WorkflowSwitch<Adapter> modelSwitch =
-		new WorkflowSwitch<Adapter>() {
+		new WorkflowSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseWorkflowComponent(WorkflowComponent object) {
+			public Adapter caseWorkflowComponent(WorkflowComponent object)
+			{
 				return createWorkflowComponentAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowCompositeComponent(WorkflowCompositeComponent object) {
+			public Adapter caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
+			{
 				return createWorkflowCompositeComponentAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowUnitOfWork(WorkflowUnitOfWork object) {
+			public Adapter caseWorkflowUnitOfWork(WorkflowUnitOfWork object)
+			{
 				return createWorkflowUnitOfWorkAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameter(WorkflowParameter object) {
+			public Adapter caseWorkflowParameter(WorkflowParameter object)
+			{
 				return createWorkflowParameterAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterValueStrategy(WorkflowParameterValueStrategy object) {
+			public Adapter caseWorkflowParameterValueStrategy(WorkflowParameterValueStrategy object)
+			{
 				return createWorkflowParameterValueStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterConnection(WorkflowParameterConnection object) {
+			public Adapter caseWorkflowParameterConnection(WorkflowParameterConnection object)
+			{
 				return createWorkflowParameterConnectionAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object) {
+			public Adapter caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object)
+			{
 				return createWorkflowParameterSimpleValueStrategyAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object)
+			{
+				return createIWorkflowVisitorAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
@@ -232,6 +250,21 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowParameterSimpleValueStrategyAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
+	 * @generated
+	 */
+	public Adapter createIWorkflowVisitorAdapter()
 	{
 		return null;
 	}

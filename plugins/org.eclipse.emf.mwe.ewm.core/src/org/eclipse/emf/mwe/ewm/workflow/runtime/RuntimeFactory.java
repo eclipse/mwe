@@ -49,13 +49,16 @@ public class RuntimeFactory extends EFactoryImpl
 	 */
 	public static RuntimeFactory init()
 	{
-		try {
+		try
+		{
 			RuntimeFactory theRuntimeFactory = (RuntimeFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"); 
-			if (theRuntimeFactory != null) {
+			if (theRuntimeFactory != null)
+			{
 				return theRuntimeFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new RuntimeFactory();
@@ -80,7 +83,8 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case RuntimePackage.WORKFLOW_CONTEXT: return createWorkflowContext();
 			case RuntimePackage.WORKFLOW_ENGINE: return createWorkflowEngine();
 			case RuntimePackage.WORKFLOW_STATE_MAP: return (EObject)createWorkflowStateMap();
@@ -89,6 +93,10 @@ public class RuntimeFactory extends EFactoryImpl
 			case RuntimePackage.WORKFLOW_RUNNABLE: return (EObject)createWorkflowRunnable();
 			case RuntimePackage.WORKFLOW_RUNNER: return createWorkflowRunner();
 			case RuntimePackage.WORKFLOW_STATE_RESETTER: return createWorkflowStateResetter();
+			case RuntimePackage.WORKFLOW_LOG: return createWorkflowLog();
+			case RuntimePackage.WORKFLOW_LOG_ENTRY: return createWorkflowLogEntry();
+			case RuntimePackage.WORKFLOW_LOG_MAP: return (EObject)createWorkflowLogMap();
+			case RuntimePackage.WORKFLOW_LOG_RESETTER: return createWorkflowLogResetter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -102,7 +110,10 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
+			case RuntimePackage.WORKFLOW_LOG_ENTRY_TYPE:
+				return createWorkflowLogEntryTypeFromString(eDataType, initialValue);
 			case RuntimePackage.EXECUTOR_SERVICE:
 				return createExecutorServiceFromString(eDataType, initialValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:
@@ -120,7 +131,10 @@ public class RuntimeFactory extends EFactoryImpl
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue)
 	{
-		switch (eDataType.getClassifierID()) {
+		switch (eDataType.getClassifierID())
+		{
+			case RuntimePackage.WORKFLOW_LOG_ENTRY_TYPE:
+				return convertWorkflowLogEntryTypeToString(eDataType, instanceValue);
 			case RuntimePackage.EXECUTOR_SERVICE:
 				return convertExecutorServiceToString(eDataType, instanceValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:
@@ -216,6 +230,72 @@ public class RuntimeFactory extends EFactoryImpl
 	{
 		WorkflowStateResetter workflowStateResetter = new WorkflowStateResetter();
 		return workflowStateResetter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowLog createWorkflowLog()
+	{
+		WorkflowLog workflowLog = new WorkflowLog();
+		return workflowLog;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowLogEntry createWorkflowLogEntry()
+	{
+		WorkflowLogEntry workflowLogEntry = new WorkflowLogEntry();
+		return workflowLogEntry;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<WorkflowComponent, WorkflowLog> createWorkflowLogMap()
+	{
+		WorkflowLogMap workflowLogMap = new WorkflowLogMap();
+		return workflowLogMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowLogResetter createWorkflowLogResetter()
+	{
+		WorkflowLogResetter workflowLogResetter = new WorkflowLogResetter();
+		return workflowLogResetter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowLogEntryType createWorkflowLogEntryTypeFromString(EDataType eDataType, String initialValue)
+	{
+		WorkflowLogEntryType result = WorkflowLogEntryType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertWorkflowLogEntryTypeToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

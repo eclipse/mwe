@@ -18,8 +18,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
@@ -262,7 +263,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	{
 		WorkflowComponentOrchestrationStrategy oldComponentOrchestrationStrategy = componentOrchestrationStrategy;
 		componentOrchestrationStrategy = newComponentOrchestrationStrategy;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
+		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY, oldComponentOrchestrationStrategy, newComponentOrchestrationStrategy);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -279,7 +281,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public void setComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy newComponentOrchestrationStrategy)
 	{
-		if (newComponentOrchestrationStrategy != componentOrchestrationStrategy) {
+		if (newComponentOrchestrationStrategy != componentOrchestrationStrategy)
+		{
 			NotificationChain msgs = null;
 			if (componentOrchestrationStrategy != null)
 				msgs = ((InternalEObject)componentOrchestrationStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY, null, msgs);
@@ -303,6 +306,26 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	public WorkflowLog getLog(WorkflowContext context)
+	{
+		WorkflowLog log = context.getLog().get(this);
+		
+		if(log == null)
+		{
+			log = RuntimeFactory.eINSTANCE.createWorkflowLog();
+			log.setLogLevel(context.getLogLevel());
+			context.getLog().put(this, log);
+		}
+		
+		return log;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * Clients must override this function and call the appropriate visitor function.
 	 * <!-- end-user-doc -->
 	 * @model
@@ -318,7 +341,10 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public final void start(WorkflowContext context)
 	{
+		
+		getLog(context).logInfo("Component " + getName() + " started");
 		getComponentOrchestrationStrategy().run(this, context);
+		getLog(context).logInfo("Component " + getName() + " finished");
 	}
 
 	/**
@@ -329,7 +355,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
 				return basicSetComponentOrchestrationStrategy(null, msgs);
 		}
@@ -343,7 +370,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return getName();
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
@@ -363,7 +391,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName((String)newValue);
 				return;
@@ -387,7 +416,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -411,7 +441,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:

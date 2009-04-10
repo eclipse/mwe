@@ -16,6 +16,7 @@ import java.util.concurrent.ExecutorService;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -113,13 +114,31 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__STATES = 2;
 
 	/**
+	 * The feature id for the '<em><b>Log</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__LOG = 3;
+
+	/**
+	 * The feature id for the '<em><b>Log Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__LOG_LEVEL = 4;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 3;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -308,25 +327,6 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_RUNNER_FEATURE_COUNT = WORKFLOW_RUNNABLE_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor <em>IWorkflow Visitor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getIWorkflowVisitor()
-	 * @generated
-	 */
-	public static final int IWORKFLOW_VISITOR = 7;
-
-	/**
-	 * The number of structural features of the '<em>IWorkflow Visitor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IWORKFLOW_VISITOR_FEATURE_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter <em>Workflow State Resetter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -334,7 +334,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowStateResetter()
 	 * @generated
 	 */
-	public static final int WORKFLOW_STATE_RESETTER = 8;
+	public static final int WORKFLOW_STATE_RESETTER = 7;
 
 	/**
 	 * The feature id for the '<em><b>Context</b></em>' reference.
@@ -343,7 +343,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_STATE_RESETTER__CONTEXT = IWORKFLOW_VISITOR_FEATURE_COUNT + 0;
+	public static final int WORKFLOW_STATE_RESETTER__CONTEXT = WorkflowPackage.IWORKFLOW_VISITOR_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Workflow State Resetter</em>' class.
@@ -352,7 +352,201 @@ public class RuntimePackage extends EPackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_STATE_RESETTER_FEATURE_COUNT = IWORKFLOW_VISITOR_FEATURE_COUNT + 1;
+	public static final int WORKFLOW_STATE_RESETTER_FEATURE_COUNT = WorkflowPackage.IWORKFLOW_VISITOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog <em>Workflow Log</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLog()
+	 * @generated
+	 */
+	public static final int WORKFLOW_LOG = 8;
+
+	/**
+	 * The feature id for the '<em><b>Entries</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__ENTRIES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Errors</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__ERRORS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Warnings</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__WARNINGS = 2;
+
+	/**
+	 * The feature id for the '<em><b>Infos</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__INFOS = 3;
+
+	/**
+	 * The feature id for the '<em><b>Debugs</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__DEBUGS = 4;
+
+	/**
+	 * The feature id for the '<em><b>Log Level</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG__LOG_LEVEL = 5;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Log</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_FEATURE_COUNT = 6;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry <em>Workflow Log Entry</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntry()
+	 * @generated
+	 */
+	public static final int WORKFLOW_LOG_ENTRY = 9;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_ENTRY__TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_ENTRY__TIMESTAMP = 1;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_ENTRY__MESSAGE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Log Entry</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_ENTRY_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogMap <em>Workflow Log Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogMap
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap()
+	 * @generated
+	 */
+	public static final int WORKFLOW_LOG_MAP = 10;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Log Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_MAP_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter <em>Workflow Log Resetter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogResetter()
+	 * @generated
+	 */
+	public static final int WORKFLOW_LOG_RESETTER = 11;
+
+	/**
+	 * The feature id for the '<em><b>Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_RESETTER__CONTEXT = WorkflowPackage.IWORKFLOW_VISITOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Log Resetter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOG_RESETTER_FEATURE_COUNT = WorkflowPackage.IWORKFLOW_VISITOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntryType()
+	 * @generated
+	 */
+	public static final int WORKFLOW_LOG_ENTRY_TYPE = 12;
 
 	/**
 	 * The meta object id for the '<em>Executor Service</em>' data type.
@@ -362,7 +556,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getExecutorService()
 	 * @generated
 	 */
-	public static final int EXECUTOR_SERVICE = 9;
+	public static final int EXECUTOR_SERVICE = 13;
 
 	/**
 	 * The meta object id for the '<em>Workflow Runtime Exception</em>' data type.
@@ -372,7 +566,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowRuntimeException()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RUNTIME_EXCEPTION = 10;
+	public static final int WORKFLOW_RUNTIME_EXCEPTION = 14;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -428,14 +622,42 @@ public class RuntimePackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass iWorkflowVisitorEClass = null;
+	private EClass workflowStateResetterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass workflowStateResetterEClass = null;
+	private EClass workflowLogEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowLogEntryEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowLogMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowLogResetterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum workflowLogEntryTypeEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -591,6 +813,36 @@ public class RuntimePackage extends EPackageImpl
 	{
 		return (EReference)workflowContextEClass.getEStructuralFeatures().get(2);
 	}
+
+	/**
+	 * Returns the meta object for the map '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog <em>Log</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Log</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EReference getWorkflowContext_Log()
+	{
+		return (EReference)workflowContextEClass.getEStructuralFeatures().get(3);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Log Level</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EAttribute getWorkflowContext_LogLevel()
+	{
+		return (EAttribute)workflowContextEClass.getEStructuralFeatures().get(4);
+	}
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}'.
@@ -799,20 +1051,6 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IWorkflow Visitor</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor
-	 * @generated
-	 */
-	public EClass getIWorkflowVisitor()
-	{
-		return iWorkflowVisitorEClass;
-	}
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter <em>Workflow State Resetter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -838,6 +1076,258 @@ public class RuntimePackage extends EPackageImpl
 	public EReference getWorkflowStateResetter_Context()
 	{
 		return (EReference)workflowStateResetterEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog <em>Workflow Log</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Log</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog
+	 * @generated
+	 */
+	public EClass getWorkflowLog()
+	{
+		return workflowLogEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getEntries <em>Entries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Entries</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getEntries()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EAttribute getWorkflowLog_Entries()
+	{
+		return (EAttribute)workflowLogEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getErrors <em>Errors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Errors</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getErrors()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EReference getWorkflowLog_Errors()
+	{
+		return (EReference)workflowLogEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getWarnings <em>Warnings</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Warnings</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getWarnings()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EReference getWorkflowLog_Warnings()
+	{
+		return (EReference)workflowLogEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getInfos <em>Infos</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Infos</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getInfos()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EReference getWorkflowLog_Infos()
+	{
+		return (EReference)workflowLogEClass.getEStructuralFeatures().get(3);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getDebugs <em>Debugs</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Debugs</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getDebugs()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EReference getWorkflowLog_Debugs()
+	{
+		return (EReference)workflowLogEClass.getEStructuralFeatures().get(4);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getLogLevel <em>Log Level</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Log Level</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog#getLogLevel()
+	 * @see #getWorkflowLog()
+	 * @generated
+	 */
+	public EAttribute getWorkflowLog_LogLevel()
+	{
+		return (EAttribute)workflowLogEClass.getEStructuralFeatures().get(5);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry <em>Workflow Log Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Log Entry</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry
+	 * @generated
+	 */
+	public EClass getWorkflowLogEntry()
+	{
+		return workflowLogEntryEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getType()
+	 * @see #getWorkflowLogEntry()
+	 * @generated
+	 */
+	public EAttribute getWorkflowLogEntry_Type()
+	{
+		return (EAttribute)workflowLogEntryEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getTimestamp <em>Timestamp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timestamp</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getTimestamp()
+	 * @see #getWorkflowLogEntry()
+	 * @generated
+	 */
+	public EAttribute getWorkflowLogEntry_Timestamp()
+	{
+		return (EAttribute)workflowLogEntryEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry#getMessage()
+	 * @see #getWorkflowLogEntry()
+	 * @generated
+	 */
+	public EAttribute getWorkflowLogEntry_Message()
+	{
+		return (EAttribute)workflowLogEntryEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Workflow Log Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Log Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent" keyRequired="true"
+	 *        valueType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog" valueContainment="true" valueRequired="true"
+	 * @generated
+	 */
+	public EClass getWorkflowLogMap()
+	{
+		return workflowLogMapEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getWorkflowLogMap()
+	 * @generated
+	 */
+	public EReference getWorkflowLogMap_Key()
+	{
+		return (EReference)workflowLogMapEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getWorkflowLogMap()
+	 * @generated
+	 */
+	public EReference getWorkflowLogMap_Value()
+	{
+		return (EReference)workflowLogMapEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter <em>Workflow Log Resetter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Log Resetter</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter
+	 * @generated
+	 */
+	public EClass getWorkflowLogResetter()
+	{
+		return workflowLogResetterEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter#getContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Context</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter#getContext()
+	 * @see #getWorkflowLogResetter()
+	 * @generated
+	 */
+	public EReference getWorkflowLogResetter_Context()
+	{
+		return (EReference)workflowLogResetterEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Workflow Log Entry Type</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
+	 * @generated
+	 */
+	public EEnum getWorkflowLogEntryType()
+	{
+		return workflowLogEntryTypeEEnum;
 	}
 
 
@@ -907,6 +1397,8 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__PARAMETERS);
 		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__THREAD_POOL);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__STATES);
+		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__LOG);
+		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__LOG_LEVEL);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -928,10 +1420,31 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowRunnerEClass, WORKFLOW_RUNNER__CONTEXT);
 		createEReference(workflowRunnerEClass, WORKFLOW_RUNNER__COMPONENT);
 
-		iWorkflowVisitorEClass = createEClass(IWORKFLOW_VISITOR);
-
 		workflowStateResetterEClass = createEClass(WORKFLOW_STATE_RESETTER);
 		createEReference(workflowStateResetterEClass, WORKFLOW_STATE_RESETTER__CONTEXT);
+
+		workflowLogEClass = createEClass(WORKFLOW_LOG);
+		createEAttribute(workflowLogEClass, WORKFLOW_LOG__ENTRIES);
+		createEReference(workflowLogEClass, WORKFLOW_LOG__ERRORS);
+		createEReference(workflowLogEClass, WORKFLOW_LOG__WARNINGS);
+		createEReference(workflowLogEClass, WORKFLOW_LOG__INFOS);
+		createEReference(workflowLogEClass, WORKFLOW_LOG__DEBUGS);
+		createEAttribute(workflowLogEClass, WORKFLOW_LOG__LOG_LEVEL);
+
+		workflowLogEntryEClass = createEClass(WORKFLOW_LOG_ENTRY);
+		createEAttribute(workflowLogEntryEClass, WORKFLOW_LOG_ENTRY__TYPE);
+		createEAttribute(workflowLogEntryEClass, WORKFLOW_LOG_ENTRY__TIMESTAMP);
+		createEAttribute(workflowLogEntryEClass, WORKFLOW_LOG_ENTRY__MESSAGE);
+
+		workflowLogMapEClass = createEClass(WORKFLOW_LOG_MAP);
+		createEReference(workflowLogMapEClass, WORKFLOW_LOG_MAP__KEY);
+		createEReference(workflowLogMapEClass, WORKFLOW_LOG_MAP__VALUE);
+
+		workflowLogResetterEClass = createEClass(WORKFLOW_LOG_RESETTER);
+		createEReference(workflowLogResetterEClass, WORKFLOW_LOG_RESETTER__CONTEXT);
+
+		// Create enums
+		workflowLogEntryTypeEEnum = createEEnum(WORKFLOW_LOG_ENTRY_TYPE);
 
 		// Create data types
 		executorServiceEDataType = createEDataType(EXECUTOR_SERVICE);
@@ -977,15 +1490,24 @@ public class RuntimePackage extends EPackageImpl
 		// Add supertypes to classes
 		workflowEngineEClass.getESuperTypes().add(this.getWorkflowRunnable());
 		workflowRunnerEClass.getESuperTypes().add(this.getWorkflowRunnable());
-		workflowStateResetterEClass.getESuperTypes().add(this.getIWorkflowVisitor());
+		workflowStateResetterEClass.getESuperTypes().add(theWorkflowPackage.getIWorkflowVisitor());
+		workflowLogResetterEClass.getESuperTypes().add(theWorkflowPackage.getIWorkflowVisitor());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(workflowContextEClass, WorkflowContext.class, "WorkflowContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowContext_Parameters(), this.getWorkflowParameterMap(), null, "parameters", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowContext_ThreadPool(), this.getExecutorService(), "threadPool", null, 0, 1, WorkflowContext.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_States(), this.getWorkflowStateMap(), null, "states", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowContext_Log(), this.getWorkflowLogMap(), null, "log", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowContext_LogLevel(), this.getWorkflowLogEntryType(), "logLevel", null, 0, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "resetState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "resetLog", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowEngineEClass, WorkflowEngine.class, "WorkflowEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1020,14 +1542,6 @@ public class RuntimePackage extends EPackageImpl
 
 		addEOperation(workflowRunnerEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(iWorkflowVisitorEClass, IWorkflowVisitor.class, "IWorkflowVisitor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = addEOperation(iWorkflowVisitorEClass, null, "visitUnitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowUnitOfWork(), "unitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(iWorkflowVisitorEClass, null, "visitComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(workflowStateResetterEClass, WorkflowStateResetter.class, "WorkflowStateResetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowStateResetter_Context(), this.getWorkflowContext(), null, "context", null, 1, 1, WorkflowStateResetter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1037,9 +1551,104 @@ public class RuntimePackage extends EPackageImpl
 		op = addEOperation(workflowStateResetterEClass, null, "visitComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		initEClass(workflowLogEClass, WorkflowLog.class, "WorkflowLog", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowLog_Entries(), ecorePackage.getEFeatureMapEntry(), "entries", null, 0, -1, WorkflowLog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLog_Errors(), this.getWorkflowLogEntry(), null, "errors", null, 0, -1, WorkflowLog.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLog_Warnings(), this.getWorkflowLogEntry(), null, "warnings", null, 0, -1, WorkflowLog.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLog_Infos(), this.getWorkflowLogEntry(), null, "infos", null, 0, -1, WorkflowLog.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLog_Debugs(), this.getWorkflowLogEntry(), null, "debugs", null, 0, -1, WorkflowLog.class, IS_TRANSIENT, IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowLog_LogLevel(), this.getWorkflowLogEntryType(), "logLevel", null, 0, 1, WorkflowLog.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(workflowLogEClass, null, "logError", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowLogEClass, null, "logWarning", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowLogEClass, null, "logInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowLogEClass, null, "logDebug", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(workflowLogEntryEClass, WorkflowLogEntry.class, "WorkflowLogEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowLogEntry_Type(), this.getWorkflowLogEntryType(), "type", null, 1, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowLogEntry_Timestamp(), theEcorePackage.getELong(), "timestamp", null, 0, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowLogEntry_Message(), theEcorePackage.getEString(), "message", null, 1, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowLogMapEClass, Map.Entry.class, "WorkflowLogMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkflowLogMap_Key(), theWorkflowPackage.getWorkflowComponent(), null, "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLogMap_Value(), this.getWorkflowLog(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowLogResetterEClass, WorkflowLogResetter.class, "WorkflowLogResetter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkflowLogResetter_Context(), this.getWorkflowContext(), null, "context", null, 1, 1, WorkflowLogResetter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		op = addEOperation(workflowLogResetterEClass, null, "visitUnitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowUnitOfWork(), "unitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowLogResetterEClass, null, "visitComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(workflowLogEntryTypeEEnum, WorkflowLogEntryType.class, "WorkflowLogEntryType");
+		addEEnumLiteral(workflowLogEntryTypeEEnum, WorkflowLogEntryType.ERROR);
+		addEEnumLiteral(workflowLogEntryTypeEEnum, WorkflowLogEntryType.WARNING);
+		addEEnumLiteral(workflowLogEntryTypeEEnum, WorkflowLogEntryType.INFO);
+		addEEnumLiteral(workflowLogEntryTypeEEnum, WorkflowLogEntryType.DEBUG);
+
 		// Initialize data types
 		initEDataType(executorServiceEDataType, ExecutorService.class, "ExecutorService", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(workflowRuntimeExceptionEDataType, WorkflowRuntimeException.class, "WorkflowRuntimeException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+
+		// Create annotations
+		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
+		createExtendedMetaDataAnnotations();
+	}
+
+	/**
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void createExtendedMetaDataAnnotations()
+	{
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData";		
+		addAnnotation
+		  (getWorkflowLog_Entries(), 
+		   source, 
+		   new String[] 
+		   {
+			 "kind", "group"
+		   });		
+		addAnnotation
+		  (getWorkflowLog_Errors(), 
+		   source, 
+		   new String[] 
+		   {
+			 "group", "#entries"
+		   });		
+		addAnnotation
+		  (getWorkflowLog_Warnings(), 
+		   source, 
+		   new String[] 
+		   {
+			 "group", "#entries"
+		   });		
+		addAnnotation
+		  (getWorkflowLog_Infos(), 
+		   source, 
+		   new String[] 
+		   {
+			 "group", "#entries"
+		   });		
+		addAnnotation
+		  (getWorkflowLog_Debugs(), 
+		   source, 
+		   new String[] 
+		   {
+			 "group", "#entries"
+		   });
 	}
 
 	/**
@@ -1089,6 +1698,22 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_CONTEXT__STATES = eINSTANCE.getWorkflowContext_States();
+
+		/**
+		 * The meta object literal for the '<em><b>Log</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_CONTEXT__LOG = eINSTANCE.getWorkflowContext_Log();
+
+		/**
+		 * The meta object literal for the '<em><b>Log Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_CONTEXT__LOG_LEVEL = eINSTANCE.getWorkflowContext_LogLevel();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -1215,16 +1840,6 @@ public class RuntimePackage extends EPackageImpl
 		public static final EReference WORKFLOW_RUNNER__COMPONENT = eINSTANCE.getWorkflowRunner_Component();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor <em>IWorkflow Visitor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor
-		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getIWorkflowVisitor()
-		 * @generated
-		 */
-		public static final EClass IWORKFLOW_VISITOR = eINSTANCE.getIWorkflowVisitor();
-
-		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter <em>Workflow State Resetter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1241,6 +1856,152 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_STATE_RESETTER__CONTEXT = eINSTANCE.getWorkflowStateResetter_Context();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog <em>Workflow Log</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLog()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_LOG = eINSTANCE.getWorkflowLog();
+
+		/**
+		 * The meta object literal for the '<em><b>Entries</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_LOG__ENTRIES = eINSTANCE.getWorkflowLog_Entries();
+
+		/**
+		 * The meta object literal for the '<em><b>Errors</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG__ERRORS = eINSTANCE.getWorkflowLog_Errors();
+
+		/**
+		 * The meta object literal for the '<em><b>Warnings</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG__WARNINGS = eINSTANCE.getWorkflowLog_Warnings();
+
+		/**
+		 * The meta object literal for the '<em><b>Infos</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG__INFOS = eINSTANCE.getWorkflowLog_Infos();
+
+		/**
+		 * The meta object literal for the '<em><b>Debugs</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG__DEBUGS = eINSTANCE.getWorkflowLog_Debugs();
+
+		/**
+		 * The meta object literal for the '<em><b>Log Level</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_LOG__LOG_LEVEL = eINSTANCE.getWorkflowLog_LogLevel();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry <em>Workflow Log Entry</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntry()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_LOG_ENTRY = eINSTANCE.getWorkflowLogEntry();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_LOG_ENTRY__TYPE = eINSTANCE.getWorkflowLogEntry_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Timestamp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_LOG_ENTRY__TIMESTAMP = eINSTANCE.getWorkflowLogEntry_Timestamp();
+
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_LOG_ENTRY__MESSAGE = eINSTANCE.getWorkflowLogEntry_Message();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogMap <em>Workflow Log Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogMap
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_LOG_MAP = eINSTANCE.getWorkflowLogMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG_MAP__KEY = eINSTANCE.getWorkflowLogMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG_MAP__VALUE = eINSTANCE.getWorkflowLogMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter <em>Workflow Log Resetter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogResetter()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_LOG_RESETTER = eINSTANCE.getWorkflowLogResetter();
+
+		/**
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_LOG_RESETTER__CONTEXT = eINSTANCE.getWorkflowLogResetter_Context();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntryType()
+		 * @generated
+		 */
+		public static final EEnum WORKFLOW_LOG_ENTRY_TYPE = eINSTANCE.getWorkflowLogEntryType();
 
 		/**
 		 * The meta object literal for the '<em>Executor Service</em>' data type.

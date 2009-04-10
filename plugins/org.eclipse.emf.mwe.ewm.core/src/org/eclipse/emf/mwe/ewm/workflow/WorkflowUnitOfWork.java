@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -87,7 +86,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	 */
 	public EList<WorkflowParameter> getParameters()
 	{
-		if (parameters == null) {
+		if (parameters == null)
+		{
 			parameters = new EObjectContainmentEList<WorkflowParameter>(WorkflowParameter.class, this, WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS);
 		}
 		return parameters;
@@ -101,7 +101,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS:
 				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 		}
@@ -116,7 +117,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS:
 				return getParameters();
 		}
@@ -132,7 +134,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS:
 				getParameters().clear();
 				getParameters().addAll((Collection<? extends WorkflowParameter>)newValue);
@@ -149,7 +152,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	@Override
 	public void eUnset(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS:
 				getParameters().clear();
 				return;
@@ -165,7 +169,8 @@ public abstract class WorkflowUnitOfWork extends WorkflowComponent
 	@Override
 	public boolean eIsSet(int featureID)
 	{
-		switch (featureID) {
+		switch (featureID)
+		{
 			case WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
 		}

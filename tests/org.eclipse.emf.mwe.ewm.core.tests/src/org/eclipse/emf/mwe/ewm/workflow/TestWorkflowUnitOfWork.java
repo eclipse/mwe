@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StateFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowDoneState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowRunningState;
@@ -51,6 +52,21 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		getEngine().run();
 		assertThat(component.getRunningState(), is(instanceOf(WorkflowRunningState.class)));
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
+	}
+	
+	/**
+	 * Test that the start and end times are logged when the log level is set to INFO
+	 */
+	@Test
+	public void testLog()
+	{
+		getEngine().setWorkflow(component);
+		getEngine().run();
+		WorkflowLog log = getContext().getLog().get(component);
+		assertThat(log, is(notNullValue()));
+		assertThat(log.getInfos().size(), is(2));
+		assertThat(log.getInfos().get(0).getMessage(), is("Component " + component.getName() + " started"));
+		assertThat(log.getInfos().get(1).getMessage(), is("Component " + component.getName() + " finished"));
 	}
 	
 	/**

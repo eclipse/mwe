@@ -15,6 +15,8 @@ import java.util.concurrent.ExecutorService;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
 /**
@@ -30,4 +32,8 @@ public interface WorkflowContextValidator
 	boolean validateParameters(EMap<WorkflowParameter, Object> value);
 	boolean validateThreadPool(ExecutorService value);
 	boolean validateStates(EMap<WorkflowComponent, WorkflowState> value);
+
+	boolean validateLog(EMap<WorkflowComponent, WorkflowLog> value);
+
+	boolean validateLogLevel(WorkflowLogEntryType value);
 }

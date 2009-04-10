@@ -54,7 +54,8 @@ public class OrchestrationSwitch<T>
 	 */
 	public OrchestrationSwitch()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = OrchestrationPackage.eINSTANCE;
 		}
 	}
@@ -80,10 +81,12 @@ public class OrchestrationSwitch<T>
 	 */
 	protected T doSwitch(EClass theEClass, EObject theEObject)
 	{
-		if (theEClass.eContainer() == modelPackage) {
+		if (theEClass.eContainer() == modelPackage)
+		{
 			return doSwitch(theEClass.getClassifierID(), theEObject);
 		}
-		else {
+		else
+		{
 			List<EClass> eSuperTypes = theEClass.getESuperTypes();
 			return
 				eSuperTypes.isEmpty() ?
@@ -101,47 +104,55 @@ public class OrchestrationSwitch<T>
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject)
 	{
-		switch (classifierID) {
-			case OrchestrationPackage.WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY: {
+		switch (classifierID)
+		{
+			case OrchestrationPackage.WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY:
+			{
 				WorkflowSerialOrchestrationStrategy workflowSerialOrchestrationStrategy = (WorkflowSerialOrchestrationStrategy)theEObject;
 				T result = caseWorkflowSerialOrchestrationStrategy(workflowSerialOrchestrationStrategy);
 				if (result == null) result = caseWorkflowCompositeOrchestrationStrategy(workflowSerialOrchestrationStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY: {
+			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY:
+			{
 				WorkflowParallelOrchestrationStrategy workflowParallelOrchestrationStrategy = (WorkflowParallelOrchestrationStrategy)theEObject;
 				T result = caseWorkflowParallelOrchestrationStrategy(workflowParallelOrchestrationStrategy);
 				if (result == null) result = caseWorkflowCompositeOrchestrationStrategy(workflowParallelOrchestrationStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY: {
+			case OrchestrationPackage.WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY:
+			{
 				WorkflowCompositeOrchestrationStrategy workflowCompositeOrchestrationStrategy = (WorkflowCompositeOrchestrationStrategy)theEObject;
 				T result = caseWorkflowCompositeOrchestrationStrategy(workflowCompositeOrchestrationStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY: {
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY:
+			{
 				WorkflowComponentOrchestrationStrategy workflowComponentOrchestrationStrategy = (WorkflowComponentOrchestrationStrategy)theEObject;
 				T result = caseWorkflowComponentOrchestrationStrategy(workflowComponentOrchestrationStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY: {
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY:
+			{
 				WorkflowConditionalComponentOrchestrationStrategy workflowConditionalComponentOrchestrationStrategy = (WorkflowConditionalComponentOrchestrationStrategy)theEObject;
 				T result = caseWorkflowConditionalComponentOrchestrationStrategy(workflowConditionalComponentOrchestrationStrategy);
 				if (result == null) result = caseWorkflowComponentOrchestrationStrategy(workflowConditionalComponentOrchestrationStrategy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_EXECUTION_PREDICATE: {
+			case OrchestrationPackage.WORKFLOW_EXECUTION_PREDICATE:
+			{
 				WorkflowExecutionPredicate workflowExecutionPredicate = (WorkflowExecutionPredicate)theEObject;
 				T result = caseWorkflowExecutionPredicate(workflowExecutionPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_RERUN_PREDICATE: {
+			case OrchestrationPackage.WORKFLOW_RERUN_PREDICATE:
+			{
 				WorkflowRerunPredicate workflowRerunPredicate = (WorkflowRerunPredicate)theEObject;
 				T result = caseWorkflowRerunPredicate(workflowRerunPredicate);
 				if (result == null) result = caseWorkflowExecutionPredicate(workflowRerunPredicate);

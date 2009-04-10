@@ -16,12 +16,15 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResolutionStrategy;
@@ -53,7 +56,8 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 */
 	public RuntimeAdapterFactory()
 	{
-		if (modelPackage == null) {
+		if (modelPackage == null)
+		{
 			modelPackage = RuntimePackage.eINSTANCE;
 		}
 	}
@@ -69,10 +73,12 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	@Override
 	public boolean isFactoryForType(Object object)
 	{
-		if (object == modelPackage) {
+		if (object == modelPackage)
+		{
 			return true;
 		}
-		if (object instanceof EObject) {
+		if (object instanceof EObject)
+		{
 			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
@@ -85,45 +91,76 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	protected RuntimeSwitch<Adapter> modelSwitch =
-		new RuntimeSwitch<Adapter>() {
+		new RuntimeSwitch<Adapter>()
+		{
 			@Override
-			public Adapter caseWorkflowContext(WorkflowContext object) {
+			public Adapter caseWorkflowContext(WorkflowContext object)
+			{
 				return createWorkflowContextAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowEngine(WorkflowEngine object) {
+			public Adapter caseWorkflowEngine(WorkflowEngine object)
+			{
 				return createWorkflowEngineAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowStateMap(Map.Entry<WorkflowComponent, WorkflowState> object) {
+			public Adapter caseWorkflowStateMap(Map.Entry<WorkflowComponent, WorkflowState> object)
+			{
 				return createWorkflowStateMapAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object) {
+			public Adapter caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object)
+			{
 				return createWorkflowParameterMapAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowStateResolutionStrategy(WorkflowStateResolutionStrategy object) {
+			public Adapter caseWorkflowStateResolutionStrategy(WorkflowStateResolutionStrategy object)
+			{
 				return createWorkflowStateResolutionStrategyAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRunnable(Runnable object) {
+			public Adapter caseWorkflowRunnable(Runnable object)
+			{
 				return createWorkflowRunnableAdapter();
 			}
 			@Override
-			public Adapter caseWorkflowRunner(WorkflowRunner object) {
+			public Adapter caseWorkflowRunner(WorkflowRunner object)
+			{
 				return createWorkflowRunnerAdapter();
 			}
 			@Override
-			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object) {
-				return createIWorkflowVisitorAdapter();
-			}
-			@Override
-			public Adapter caseWorkflowStateResetter(WorkflowStateResetter object) {
+			public Adapter caseWorkflowStateResetter(WorkflowStateResetter object)
+			{
 				return createWorkflowStateResetterAdapter();
 			}
 			@Override
-			public Adapter defaultCase(EObject object) {
+			public Adapter caseWorkflowLog(WorkflowLog object)
+			{
+				return createWorkflowLogAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowLogEntry(WorkflowLogEntry object)
+			{
+				return createWorkflowLogEntryAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowLogMap(Map.Entry<WorkflowComponent, WorkflowLog> object)
+			{
+				return createWorkflowLogMapAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowLogResetter(WorkflowLogResetter object)
+			{
+				return createWorkflowLogResetterAdapter();
+			}
+			@Override
+			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object)
+			{
+				return createIWorkflowVisitorAdapter();
+			}
+			@Override
+			public Adapter defaultCase(EObject object)
+			{
 				return createEObjectAdapter();
 			}
 		};
@@ -249,13 +286,13 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.IWorkflowVisitor
+	 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
 	 * @generated
 	 */
 	public Adapter createIWorkflowVisitorAdapter()
@@ -274,6 +311,66 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowStateResetterAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog <em>Workflow Log</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog
+	 * @generated
+	 */
+	public Adapter createWorkflowLogAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry <em>Workflow Log Entry</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry
+	 * @generated
+	 */
+	public Adapter createWorkflowLogEntryAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Workflow Log Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createWorkflowLogMapAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter <em>Workflow Log Resetter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter
+	 * @generated
+	 */
+	public Adapter createWorkflowLogResetterAdapter()
 	{
 		return null;
 	}

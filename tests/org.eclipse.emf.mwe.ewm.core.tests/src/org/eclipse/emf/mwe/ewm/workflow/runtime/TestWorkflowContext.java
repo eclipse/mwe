@@ -29,17 +29,43 @@ import org.junit.Test;
  */
 public class TestWorkflowContext extends WorkflowTestHarness
 {
+	@Test
+	public void testLogResetOnComponent()
+	{
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		getEngine().setWorkflow(component);
+		getEngine().run();
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(2));
+		getContext().resetLog(component);
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(0));
+	}
+	
+	@Test
+	public void testLogResetOnComposite()
+	{
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		WorkflowCompositeComponent composite = createSerialComposite("Composite");
+		composite.getComponents().add(component);
+		getEngine().setWorkflow(composite);
+		getEngine().run();
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(2));
+		assertThat(getContext().getLog().get(composite).getEntries().size(), is(2));
+		getContext().resetLog(composite);
+		assertThat(getContext().getLog().get(component).getEntries().size(), is(0));
+		assertThat(getContext().getLog().get(composite).getEntries().size(), is(0));
+	}
+
 	/**
 	 * Test that reset of a component resets its state back to Idle
 	 */
 	@Test
-	public void testResetOnComponent()
+	public void testStateResetOnComponent()
 	{
 		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
 		getEngine().setWorkflow(component);
 		getEngine().run();
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
-		getContext().reset(component);
+		getContext().resetState(component);
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));
 	}
 
@@ -47,7 +73,7 @@ public class TestWorkflowContext extends WorkflowTestHarness
 	 * Test that a reset of a composite resets the states of all components back to Idle
 	 */
 	@Test
-	public void testResetOnComposite()
+	public void testStateResetOnComposite()
 	{
 		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
 		WorkflowCompositeComponent composite = createSerialComposite(null);
@@ -56,7 +82,7 @@ public class TestWorkflowContext extends WorkflowTestHarness
 		getEngine().run();
 		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowDoneState.class)));
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowDoneState.class)));
-		getContext().reset(composite);
+		getContext().resetState(composite);
 		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowIdleState.class)));
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));		
 	}

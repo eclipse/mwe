@@ -42,13 +42,16 @@ public class OrchestrationFactory extends EFactoryImpl
 	 */
 	public static OrchestrationFactory init()
 	{
-		try {
+		try
+		{
 			OrchestrationFactory theOrchestrationFactory = (OrchestrationFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration"); 
-			if (theOrchestrationFactory != null) {
+			if (theOrchestrationFactory != null)
+			{
 				return theOrchestrationFactory;
 			}
 		}
-		catch (Exception exception) {
+		catch (Exception exception)
+		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OrchestrationFactory();
@@ -73,7 +76,8 @@ public class OrchestrationFactory extends EFactoryImpl
 	@Override
 	public EObject create(EClass eClass)
 	{
-		switch (eClass.getClassifierID()) {
+		switch (eClass.getClassifierID())
+		{
 			case OrchestrationPackage.WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY: return createWorkflowSerialOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY: return createWorkflowParallelOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowComponentOrchestrationStrategy();

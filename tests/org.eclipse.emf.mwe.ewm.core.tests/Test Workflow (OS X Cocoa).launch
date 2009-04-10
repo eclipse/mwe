@@ -14,7 +14,7 @@
 <listAttribute key="com.mountainminds.eclemma.core.INSTRUMENTATION_PATHS">
 <listEntry value="/org.eclipse.emf.workflow.core/bin"/>
 </listAttribute>
-<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Test Workflow (OS X)"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/Test Workflow (OS X Cocoa)"/>
 <booleanAttribute key="default" value="false"/>
 <booleanAttribute key="includeOptional" value="false"/>
 <stringAttribute key="location" value="${workspace_loc}/../test/junit"/>
@@ -35,9 +35,10 @@
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="com.ibm.team.concert.product"/>
-<stringAttribute key="selected_target_plugins" value="org.eclipse.help,org.eclipse.ui,org.eclipse.emf.common,org.junit4,org.eclipse.core.filesystem,org.eclipse.core.databinding,com.ibm.icu,org.eclipse.ui.ide,org.eclipse.swt.carbon.macosx,org.eclipse.text,org.eclipse.ui.workbench,org.eclipse.core.runtime.compatibility.registry,org.eclipse.osgi,org.eclipse.jface,org.eclipse.swt,org.eclipse.core.runtime,org.eclipse.core.expressions,org.eclipse.core.contenttype,org.eclipse.core.commands,org.eclipse.equinox.preferences,org.eclipse.emf.ecore,org.eclipse.equinox.registry,org.eclipse.jface.text,org.eclipse.equinox.common,org.eclipse.jface.databinding,org.eclipse.core.jobs,org.eclipse.emf.ecore.xmi,org.eclipse.equinox.app,org.eclipse.ui.carbon,org.eclipse.core.filesystem.macosx"/>
-<stringAttribute key="selected_workspace_plugins" value="org.eclipse.emf.mwe.ewm.core,org.eclipse.emf.mwe.ewm.core.tests"/>
-<booleanAttribute key="show_selected_only" value="false"/>
+<booleanAttribute key="run_in_ui_thread" value="true"/>
+<stringAttribute key="selected_target_plugins" value="org.eclipse.core.jobs@default:default,org.eclipse.osgi.services@default:default,org.eclipse.equinox.app@default:default,org.eclipse.help@default:default,org.eclipse.core.commands@default:default,org.eclipse.core.databinding.property@default:default,org.eclipse.equinox.registry@default:default,org.eclipse.jface.databinding@default:default,org.eclipse.jface.text@default:default,org.eclipse.ecf.ssl@default:false,org.eclipse.ecf@default:default,org.eclipse.ui@default:default,org.eclipse.core.expressions@default:default,org.eclipse.equinox.preferences@default:default,org.eclipse.equinox.p2.jarprocessor@default:default,org.junit4@default:default,org.eclipse.equinox.p2.metadata@default:default,org.eclipse.core.runtime@default:true,org.eclipse.osgi@:,org.eclipse.ui.ide@default:default,org.eclipse.core.filesystem@default:default,org.eclipse.ecf.filetransfer@default:default,org.eclipse.ui.cocoa@default:false,org.eclipse.text@default:default,com.ibm.icu@default:default,org.eclipse.swt@default:default,org.eclipse.emf.ecore.xmi@default:default,org.eclipse.core.runtime.compatibility.registry@default:false,org.eclipse.equinox.common@default:default,org.eclipse.jface@default:default,org.eclipse.swt.cocoa.macosx@default:false,org.eclipse.core.contenttype@default:default,org.eclipse.ui.workbench@default:default,org.eclipse.ecf.identity@default:default,org.eclipse.emf.common@default:default,org.eclipse.emf.ecore@default:default,org.eclipse.equinox.p2.engine@default:default,org.eclipse.equinox.p2.metadata.repository@default:default,org.eclipse.equinox.security@default:default,org.eclipse.core.filesystem.macosx@default:false,org.eclipse.core.databinding@default:default,org.eclipse.equinox.security.macosx@default:false,org.eclipse.equinox.p2.artifact.repository@default:default,org.eclipse.core.databinding.observable@default:default,org.eclipse.equinox.p2.core@default:default"/>
+<stringAttribute key="selected_workspace_plugins" value="org.eclipse.emf.mwe.ewm.core@default:default,org.eclipse.emf.mwe.ewm.core.tests@default:default"/>
+<booleanAttribute key="show_selected_only" value="true"/>
 <stringAttribute key="templateConfig" value="${target_home}/configuration/config.ini"/>
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useDefaultConfig" value="true"/>

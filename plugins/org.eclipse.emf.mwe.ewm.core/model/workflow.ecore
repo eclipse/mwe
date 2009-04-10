@@ -5,12 +5,15 @@
     nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow" nsPrefix="org.eclipse.emf.mwe.ewm.workflow">
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponent" abstract="true">
     <eOperations name="accept">
-      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
     </eOperations>
     <eOperations name="start">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+    </eOperations>
+    <eOperations name="getLog" eType="#//runtime/WorkflowLog">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -21,7 +24,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowCompositeComponent" eSuperTypes="#//WorkflowComponent">
     <eOperations name="accept">
-      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
     </eOperations>
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
@@ -41,7 +44,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowUnitOfWork" abstract="true"
       eSuperTypes="#//WorkflowComponent">
     <eOperations name="accept">
-      <eParameters name="visitor" eType="#//runtime/IWorkflowVisitor"/>
+      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
     </eOperations>
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
@@ -98,6 +101,14 @@
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       <eParameters name="parameter" eType="#//WorkflowParameter"/>
       <eParameters name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IWorkflowVisitor" abstract="true" interface="true">
+    <eOperations name="visitUnitOfWork">
+      <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
+    </eOperations>
+    <eOperations name="visitComposite">
+      <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
     </eOperations>
   </eClassifiers>
   <eSubpackages name="orchestration" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration"
@@ -157,12 +168,21 @@
       <eOperations name="reset">
         <eParameters name="component" eType="#//WorkflowComponent"/>
       </eOperations>
+      <eOperations name="resetState">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="resetLog">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
           eType="#//runtime/WorkflowParameterMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="#//runtime/ExecutorService"
           changeable="false" transient="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
           eType="#//runtime/WorkflowStateMap" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="log" upperBound="-1"
+          eType="#//runtime/WorkflowLogMap" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="logLevel" eType="#//runtime/WorkflowLogEntryType"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowEngine" eSuperTypes="#//runtime/WorkflowRunnable">
       <eOperations name="run"/>
@@ -200,16 +220,84 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
           eType="#//WorkflowComponent"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IWorkflowVisitor" abstract="true"
-        interface="true">
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResetter" eSuperTypes="#//IWorkflowVisitor">
       <eOperations name="visitUnitOfWork">
         <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
       </eOperations>
       <eOperations name="visitComposite">
         <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
       </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+          eType="#//runtime/WorkflowContext"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResetter" eSuperTypes="#//runtime/IWorkflowVisitor">
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLog">
+      <eOperations name="logError">
+        <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logWarning">
+        <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logInfo">
+        <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logDebug">
+        <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="entries" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="kind" value="group"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="errors" upperBound="-1"
+          eType="#//runtime/WorkflowLogEntry" volatile="true" transient="true" derived="true"
+          containment="true">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="group" value="#entries"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="warnings" upperBound="-1"
+          eType="#//runtime/WorkflowLogEntry" volatile="true" transient="true" derived="true"
+          containment="true">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="group" value="#entries"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="infos" upperBound="-1"
+          eType="#//runtime/WorkflowLogEntry" volatile="true" transient="true" derived="true"
+          containment="true">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="group" value="#entries"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="debugs" upperBound="-1"
+          eType="#//runtime/WorkflowLogEntry" volatile="true" transient="true" derived="true"
+          containment="true">
+        <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
+          <details key="group" value="#entries"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="logLevel" eType="#//runtime/WorkflowLogEntryType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLogEntry">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
+          eType="#//runtime/WorkflowLogEntryType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLogMap" instanceClassName="java.util.Map$Entry">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="key" lowerBound="1" eType="#//WorkflowComponent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//runtime/WorkflowLog" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="WorkflowLogEntryType">
+      <eLiterals name="ERROR"/>
+      <eLiterals name="WARNING" value="1"/>
+      <eLiterals name="INFO" value="2"/>
+      <eLiterals name="DEBUG" value="3"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLogResetter" eSuperTypes="#//IWorkflowVisitor">
       <eOperations name="visitUnitOfWork">
         <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
       </eOperations>

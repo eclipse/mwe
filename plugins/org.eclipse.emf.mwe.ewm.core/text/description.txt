@@ -15,6 +15,7 @@ Package workflow <http://www.eclipse.org/emf/mwe/ewm/workflow>
     Operation accept(IWorkflowVisitor) : void
     Operation start(WorkflowContext) : void
     Operation run(WorkflowContext) : WorkflowState
+    Operation getLog(WorkflowContext) : WorkflowLog
 
   Class WorkflowCompositeComponent -> WorkflowComponent
     Reference components : WorkflowComponent<<0..*>>
@@ -51,3 +52,7 @@ Package workflow <http://www.eclipse.org/emf/mwe/ewm/workflow>
   Class WorkflowParameterSimpleValueStrategy -> WorkflowParameterValueStrategy
     Operation getValue(WorkflowContext, WorkflowParameter) : EJavaObject
     Operation setValue(WorkflowContext, WorkflowParameter, EJavaObject) : void
+
+  Class IWorkflowVisitor
+    Operation visitUnitOfWork(WorkflowUnitOfWork) : void
+    Operation visitComposite(WorkflowCompositeComponent) : void
