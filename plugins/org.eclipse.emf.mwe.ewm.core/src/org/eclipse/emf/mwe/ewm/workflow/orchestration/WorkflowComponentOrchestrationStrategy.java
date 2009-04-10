@@ -66,8 +66,9 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		{
 			context.getStates().put(component, component.run(context));
 		}
-		catch (WorkflowRuntimeException e)
+		catch (Exception e)
 		{
+			context.getLog().get(component).logError("Runtime Exception: " + e.getLocalizedMessage());
 			context.getStates().put(component, StateFactory.eINSTANCE.createWorkflowErrorState());
 		}
 	}

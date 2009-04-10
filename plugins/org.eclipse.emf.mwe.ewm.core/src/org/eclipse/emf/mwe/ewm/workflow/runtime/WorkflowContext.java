@@ -261,7 +261,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @param value the new value of the '<em>Log Level</em>' attribute.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
 	 * @see #getLogLevel()
-	 * @generated
+	 * @generated NOT
 	 */
 	public void setLogLevel(WorkflowLogEntryType newLogLevel)
 	{
@@ -269,6 +269,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		logLevel = newLogLevel == null ? LOG_LEVEL_EDEFAULT : newLogLevel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL, oldLogLevel, logLevel));
+		
+		for(WorkflowLog log : getLog().values())
+			log.setLogLevel(newLogLevel);
 	}
 
 	/**
