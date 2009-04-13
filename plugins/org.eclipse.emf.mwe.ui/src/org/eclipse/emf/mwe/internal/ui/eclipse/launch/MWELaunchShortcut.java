@@ -25,16 +25,10 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.search.IJavaSearchConstants;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
 import org.eclipse.jdt.core.search.SearchMatch;
-import org.eclipse.jdt.core.search.SearchParticipant;
-import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,9 +37,10 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 
 /**
- * This class is an action handler that responds to a context menu run or debug action.<br>
- * It creates a launchConfiguration if there is non already for the specified workflow file, stores it and
- * starts it in the resp. mode
+ * This class is an action handler that responds to a context menu run or debug
+ * action.<br>
+ * It creates a launchConfiguration if there is non already for the specified
+ * workflow file, stores it and starts it in the resp. mode
  * 
  */
 public class MWELaunchShortcut implements ILaunchShortcut {
@@ -74,18 +69,19 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	private void launch(final String mode) {
 		try {
 			locateWfRunner(currFile);
-		} catch (CoreException e) {
+		}
+		catch (final CoreException e) {
 			Activator.logError(e);
 			Activator.showError(e.getStatus());
 			return;
 		}
 
-		LaunchConfigurationInfo info = new LaunchConfigurationInfo(currFile);
+		final LaunchConfigurationInfo info = new LaunchConfigurationInfo(currFile);
 		ILaunchConfiguration[] configs;
 		ILaunchConfiguration config = null;
 		try {
 			configs = launchManager.getLaunchConfigurations();
-			for (ILaunchConfiguration configuration : configs) {
+			for (final ILaunchConfiguration configuration : configs) {
 				if (info.configEquals(configuration)) {
 					config = configuration;
 					break;
@@ -96,7 +92,8 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 			}
 			DebugUITools.launch(config, mode);
 			currFile.getProject().refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
-		} catch (CoreException e) {
+		}
+		catch (final CoreException e) {
 			Activator.logError(e);
 			Activator.showError(e.getStatus());
 			return;
@@ -104,25 +101,15 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	}
 
 	private void locateWfRunner(final IResource resource) throws CoreException {
-//		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName())) {
-//			throw new DebugException(Activator.createErrorStatus(
-//					"Can't execute.\n MWE release jars are required in the project's classpath! --> aborting",
-//					null));
-//		}
+		if (!checkClasspathEntries(resource, WorkflowRunner.class.getName()))
+			throw new DebugException(Activator.createErrorStatus(
+					"Can't execute.\n MWE release jars are required in the project's classpath! --> aborting", null));
 	}
 
 	private boolean checkClasspathEntries(final IResource resource, final String classNameToFind) throws CoreException {
 		final IJavaProject project = JavaCore.create(resource.getProject());
-		final SearchPattern pattern = SearchPattern
-				.createPattern(classNameToFind, IJavaSearchConstants.TYPE, IJavaSearchConstants.DECLARATIONS,
-						SearchPattern.R_PATTERN_MATCH | SearchPattern.R_CASE_SENSITIVE);
-		final IJavaSearchScope scope = SearchEngine.createJavaSearchScope(new IJavaElement[] { project }, true);
-		final TypeDeclarationSearchRequestor requestor = new TypeDeclarationSearchRequestor();
-
-		final SearchEngine searchEngine = new SearchEngine();
-		searchEngine.search(pattern, new SearchParticipant[] { SearchEngine.getDefaultSearchParticipant() },
-				scope, requestor, null);
-		return requestor.match();
+		final IType type = project.findType(classNameToFind);
+		return type != null;
 	}
 
 	public class TypeDeclarationSearchRequestor extends SearchRequestor {
