@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.tests.parser;
 
 import org.eclipse.emf.mwe.ui.internal.editor.base.ParserTestBase;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
-import org.xml.sax.SAXException;
 
 public class AssignmentTest extends ParserTestBase {
 
@@ -43,7 +42,7 @@ public class AssignmentTest extends ParserTestBase {
 			+ "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
 			+ "    </component>\n" + "    \n" + "</workflow>\n";
 
-	public void testCompleteWorkflow() throws SAXException {
+	public void testCompleteWorkflow() {
 		final AbstractWorkflowElement root = parse(WORKFLOW1);
 		assertEquals(1, root.getChildrenCount());
 		final AbstractWorkflowElement workflow = root.getChild(0);
