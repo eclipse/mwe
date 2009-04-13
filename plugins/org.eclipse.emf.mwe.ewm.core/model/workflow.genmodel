@@ -3,18 +3,20 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.mwe.ewm.core/src"
     editDirectory="/org.eclipse.emf.mwe.ewm.edit/src" editorDirectory="/org.eclipse.emf.mwe.ewm.editor/src"
-    modelPluginID="org.eclipse.emf.mwe.ewm.core" modelName="Workflow" editPluginClass="org.eclipse.emf.mwe.ewm.workflow.provider.WorkflowEditPlugin"
-    editorPluginClass="org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowEditorPlugin"
-    suppressInterfaces="true" testSuiteClass="org.eclipse.emf.mwe.ewm.workflow.tests.WorkflowAllTests"
+    modelPluginID="org.eclipse.emf.mwe.ewm.core" modelName="Workflow" editPluginClass="org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin"
+    editorPluginClass="org.eclipse.emf.mwe.ewm.presentation.WorkflowEditorPlugin"
+    suppressInterfaces="true" testSuiteClass="org.eclipse.emf.mwe.ewm.tests.WorkflowAllTests"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
-    providerRootExtendsClass="" editPluginID="org.eclipse.emf.mwe.ewm.workflow.edit"
-    editorPluginID="org.eclipse.emf.mwe.ewm.workflow.editor" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.ecore/model/XMLType.genmodel#//type">
+    providerRootExtendsClass="" editPluginID="org.eclipse.emf.mwe.ewm.edit" editorPluginID="org.eclipse.emf.mwe.ewm.editor"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.emf.ecore/model/XMLType.genmodel#//type">
   <foreignModel>workflow.ecore</foreignModel>
   <genPackages prefix="Workflow" basePackage="org.eclipse.emf.mwe.ewm" disposableProviderFactory="true"
       multipleEditorPages="false" extensibleProviderFactory="true" childCreationExtenders="true"
       ecorePackage="workflow.ecore#/">
     <genClasses image="false" ecoreClass="workflow.ecore#//WorkflowComponent">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//WorkflowComponent/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//WorkflowComponent/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//WorkflowComponent/description"/>
       <genFeatures property="None" children="true" createChild="true" propertyDescription=""
           ecoreFeature="ecore:EReference workflow.ecore#//WorkflowComponent/componentOrchestrationStrategy"/>
       <genOperations ecoreOperation="workflow.ecore#//WorkflowComponent/accept">
@@ -25,6 +27,9 @@
       </genOperations>
       <genOperations ecoreOperation="workflow.ecore#//WorkflowComponent/run">
         <genParameters ecoreParameter="workflow.ecore#//WorkflowComponent/run/context"/>
+      </genOperations>
+      <genOperations ecoreOperation="workflow.ecore#//WorkflowComponent/getLog">
+        <genParameters ecoreParameter="workflow.ecore#//WorkflowComponent/getLog/context"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="workflow.ecore#//WorkflowCompositeComponent">
@@ -92,6 +97,14 @@
         <genParameters ecoreParameter="workflow.ecore#//WorkflowParameterSimpleValueStrategy/setValue/value"/>
       </genOperations>
     </genClasses>
+    <genClasses image="false" ecoreClass="workflow.ecore#//IWorkflowVisitor">
+      <genOperations ecoreOperation="workflow.ecore#//IWorkflowVisitor/visitUnitOfWork">
+        <genParameters ecoreParameter="workflow.ecore#//IWorkflowVisitor/visitUnitOfWork/unitOfWork"/>
+      </genOperations>
+      <genOperations ecoreOperation="workflow.ecore#//IWorkflowVisitor/visitComposite">
+        <genParameters ecoreParameter="workflow.ecore#//IWorkflowVisitor/visitComposite/composite"/>
+      </genOperations>
+    </genClasses>
     <nestedGenPackages prefix="Orchestration" basePackage="org.eclipse.emf.mwe.ewm.workflow"
         disposableProviderFactory="true" multipleEditorPages="false" generateModelWizard="false"
         extensibleProviderFactory="true" ecorePackage="workflow.ecore#//orchestration">
@@ -142,14 +155,28 @@
     <nestedGenPackages prefix="Runtime" basePackage="org.eclipse.emf.mwe.ewm.workflow"
         disposableProviderFactory="true" multipleEditorPages="false" extensibleProviderFactory="true"
         childCreationExtenders="true" ecorePackage="workflow.ecore#//runtime">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="workflow.ecore#//runtime/WorkflowLogEntryType">
+        <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//runtime/WorkflowLogEntryType/ERROR"/>
+        <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//runtime/WorkflowLogEntryType/WARNING"/>
+        <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//runtime/WorkflowLogEntryType/INFO"/>
+        <genEnumLiterals ecoreEnumLiteral="workflow.ecore#//runtime/WorkflowLogEntryType/DEBUG"/>
+      </genEnums>
       <genDataTypes ecoreDataType="workflow.ecore#//runtime/ExecutorService"/>
       <genDataTypes ecoreDataType="workflow.ecore#//runtime/WorkflowRuntimeException"/>
       <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowContext">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowContext/parameters"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowContext/threadPool"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowContext/states"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowContext/log"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowContext/logLevel"/>
         <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowContext/reset">
           <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowContext/reset/component"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowContext/resetState">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowContext/resetState/component"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowContext/resetLog">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowContext/resetLog/component"/>
         </genOperations>
       </genClasses>
       <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowEngine">
@@ -184,14 +211,6 @@
             ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowRunner/component"/>
         <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowRunner/run"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="workflow.ecore#//runtime/IWorkflowVisitor">
-        <genOperations ecoreOperation="workflow.ecore#//runtime/IWorkflowVisitor/visitUnitOfWork">
-          <genParameters ecoreParameter="workflow.ecore#//runtime/IWorkflowVisitor/visitUnitOfWork/unitOfWork"/>
-        </genOperations>
-        <genOperations ecoreOperation="workflow.ecore#//runtime/IWorkflowVisitor/visitComposite">
-          <genParameters ecoreParameter="workflow.ecore#//runtime/IWorkflowVisitor/visitComposite/composite"/>
-        </genOperations>
-      </genClasses>
       <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowStateResetter">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowStateResetter/context"/>
@@ -200,6 +219,46 @@
         </genOperations>
         <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowStateResetter/visitComposite">
           <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowStateResetter/visitComposite/composite"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowLog">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowLog/entries"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLog/errors"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLog/warnings"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLog/infos"/>
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLog/debugs"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowLog/logLevel"/>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLog/logError">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLog/logError/message"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLog/logWarning">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLog/logWarning/message"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLog/logInfo">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLog/logInfo/message"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLog/logDebug">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLog/logDebug/message"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowLogEntry">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowLogEntry/type"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowLogEntry/timestamp"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workflow.ecore#//runtime/WorkflowLogEntry/message"/>
+      </genClasses>
+      <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowLogMap">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLogMap/key"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLogMap/value"/>
+      </genClasses>
+      <genClasses ecoreClass="workflow.ecore#//runtime/WorkflowLogResetter">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference workflow.ecore#//runtime/WorkflowLogResetter/context"/>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLogResetter/visitUnitOfWork">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLogResetter/visitUnitOfWork/unitOfWork"/>
+        </genOperations>
+        <genOperations ecoreOperation="workflow.ecore#//runtime/WorkflowLogResetter/visitComposite">
+          <genParameters ecoreParameter="workflow.ecore#//runtime/WorkflowLogResetter/visitComposite/composite"/>
         </genOperations>
       </genClasses>
       <nestedGenPackages prefix="State" basePackage="org.eclipse.emf.mwe.ewm.workflow.runtime"

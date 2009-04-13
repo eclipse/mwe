@@ -1,20 +1,20 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.emf.mwe.ewm.workflow.editor;singleton:=true
+Bundle-SymbolicName: org.eclipse.emf.mwe.ewm.editor;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.emf.mwe.ewm.workflow.presentation.WorkflowEditorPlugin$Implementation
+Bundle-Activator: org.eclipse.emf.mwe.ewm.presentation.WorkflowEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.emf.mwe.ewm.workflow.orchestration.presentation,
- org.eclipse.emf.mwe.ewm.workflow.presentation,
- org.eclipse.emf.mwe.ewm.workflow.runtime.presentation,
- org.eclipse.emf.mwe.ewm.workflow.runtime.state.presentation
+Export-Package: org.eclipse.emf.mwe.ewm.orchestration.presentation,
+ org.eclipse.emf.mwe.ewm.presentation,
+ org.eclipse.emf.mwe.ewm.runtime.presentation,
+ org.eclipse.emf.mwe.ewm.runtime.state.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.emf.mwe.ewm.workflow.edit;visibility:=reexport,
+ org.eclipse.emf.mwe.ewm.edit;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
