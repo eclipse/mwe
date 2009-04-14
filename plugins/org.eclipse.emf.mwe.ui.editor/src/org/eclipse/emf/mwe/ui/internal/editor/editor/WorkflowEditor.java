@@ -41,6 +41,7 @@ import org.eclipse.jdt.internal.ui.javaeditor.JavaAnnotationIterator;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextListener;
 import org.eclipse.jface.text.ITextSelection;
@@ -61,11 +62,16 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IPartService;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.ITextEditorActionDefinitionIds;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 import org.eclipse.ui.texteditor.TextOperationAction;
@@ -73,7 +79,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.59 $
+ * @version $Revision: 1.60 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
@@ -101,9 +107,27 @@ public class WorkflowEditor extends TextEditor {
 	public WorkflowEditor() {
 		super();
 		colorManager = new ColorManager();
+	}
+
+	/**
+	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#init(org.eclipse.ui.IEditorSite,
+	 *      org.eclipse.ui.IEditorInput)
+	 */
+	@Override
+	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
+		// do document provider setup
 		setSourceViewerConfiguration(new WorkflowEditorConfiguration(WorkflowEditorPlugin.getDefault(), colorManager,
 				this));
+
+		// source viewer setup
 		setDocumentProvider(new WorkflowDocumentProvider());
+
+		// create chained pref. store
+		final IPreferenceStore store = new ChainedPreferenceStore(new IPreferenceStore[] {
+				WorkflowEditorPlugin.getDefault().getPreferenceStore(), EditorsUI.getPreferenceStore() });
+		setPreferenceStore(store);
+
+		super.init(site, input);
 	}
 
 	private static boolean isProblemMarkerAnnotation(final Annotation annotation) {
