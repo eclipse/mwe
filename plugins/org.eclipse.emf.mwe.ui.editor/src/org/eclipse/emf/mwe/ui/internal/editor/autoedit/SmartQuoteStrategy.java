@@ -12,13 +12,15 @@
 package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
 
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAbstractAutoEditStrategy;
+import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextTypeComputer;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentCommand;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
@@ -30,13 +32,19 @@ public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
 	 * @see org.eclipse.jface.text.IAutoEditStrategy#customizeDocumentCommand(org.eclipse.jface.text.IDocument,
 	 *      org.eclipse.jface.text.DocumentCommand)
 	 */
-	public void customizeDocumentCommand(final IDocument document,
-			final DocumentCommand command) {
+	public void customizeDocumentCommand(final IDocument document, final DocumentCommand command) {
 		final int offset = command.offset;
 		final String text = command.text;
-		if (!TextTypeComputer.isString(document, offset)
-				&& (text.startsWith("'") || text.startsWith("\""))) {
-			duplicateQuote(command);
+		if (startsWithQuote(text)) {
+			if (!TextTypeComputer.isString(document, offset) && !followedByQuote(document, command)) {
+				duplicateQuote(command);
+			}
+			else if (TextTypeComputer.isString(document, offset) && followedByQuote(document, command)) {
+				command.text = "";
+				command.caretOffset = command.offset + 1;
+				command.shiftsCaret = true;
+			}
+
 		}
 	}
 
@@ -46,6 +54,25 @@ public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
 		command.text += quote.toString();
 		command.caretOffset = caretPos;
 		command.shiftsCaret = false;
+	}
+
+	private boolean followedByQuote(final IDocument document, final DocumentCommand command) {
+		if (command.caretOffset > document.getLength() - 1)
+			return false;
+
+		try {
+			final int nextPos = command.offset;
+			final String text = document.get(nextPos, 1);
+			return startsWithQuote(text);
+		}
+		catch (final BadLocationException e) {
+			Log.logError("", e);
+			return false;
+		}
+	}
+
+	private boolean startsWithQuote(final String text) {
+		return text != null && (text.startsWith("'") || text.startsWith("\""));
 	}
 
 }
