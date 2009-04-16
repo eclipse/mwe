@@ -28,18 +28,18 @@ public class AssignmentTest extends ParserTestBase {
 			+ "    \n"
 			+ "    <component class=\"oaw.xtend.XtendComponent\">\n"
 			+ "       <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
-			+ "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
+			+ "        <invoke value=\"org::eclipse::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
 			+ "    </component>\n"
 			+ "    \n"
 			+ "    <component class=\"oaw.xtext.CheckComponent2\">\n"
 			+ "        <metaModel idRef=\"mm\"/>\n"
 			+ "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
-			+ "       <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n"
+			+ "       <checkFile value=\"org::eclipse::xtext::Checks\"/>\n"
 			+ "    </component>\n"
 			+ "    \n"
 			+ "    <component class=\"oaw.xtend.XtendComponent\">\n"
 			+ "        <metaModel idRef=\"mm\"/>\n"
-			+ "        <invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
+			+ "        <invoke value=\"org::eclipse::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
 			+ "    </component>\n" + "    \n" + "</workflow>\n";
 
 	public void testCompleteWorkflow() {

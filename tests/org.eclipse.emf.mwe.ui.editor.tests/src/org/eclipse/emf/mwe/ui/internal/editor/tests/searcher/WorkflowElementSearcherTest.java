@@ -20,7 +20,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
+ * @version $Revision: 1.18 $
  */
 
 public class WorkflowElementSearcherTest extends ParserTestBase {
@@ -30,13 +30,13 @@ public class WorkflowElementSearcherTest extends ParserTestBase {
 			+ "		<modelFile value=\"${modelFile}\"/>\n" + "		<outputSlot value=\"${outputSlot}\"/>\n"
 			+ "	</component>\n" + "	\n" + "	<component class=\"oaw.xtend.XtendComponent\">\n"
 			+ "	   <metaModel id=\"mm\" class=\"org.eclipse.m2t.type.emf.EmfRegistryMetaModel\"/>\n"
-			+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
+			+ "		<invoke value=\"org::eclipse::xtext::XtextExtensions::fixTypes(${outputSlot})\"/>\n"
 			+ "	</component>\n" + "	\n" + "	<component class=\"oaw.xtext.CheckComponent2\">\n"
 			+ "	 	<metaModel idRef=\"mm\"/>\n"
 			+ "       <expression value=\"${outputSlot}.eAllContents.union({${outputSlot}})\"/>\n"
-			+ "	   <checkFile value=\"org::openarchitectureware::xtext::Checks\"/>\n" + "	</component>\n" + "	\n"
+			+ "	   <checkFile value=\"org::eclipse::xtext::Checks\"/>\n" + "	</component>\n" + "	\n"
 			+ "	<component class=\"oaw.xtend.XtendComponent\">\n" + "	 	<metaModel idRef=\"mm\"/>\n"
-			+ "		<invoke value=\"org::openarchitectureware::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
+			+ "		<invoke value=\"org::eclipse::xtext::XtextExtensions::complete(${outputSlot})\"/>\n"
 			+ "	</component>\n" + "	\n" + "</workflow>\n";
 
 	private static final String WORKFLOW2 = "<workflow>\n" + "	\n" + "	<property name=\"platformURI\" value=\"..\"/>\n"
