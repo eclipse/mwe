@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.33 $
+ * @version $Revision: 1.34 $
  */
 public final class TypeUtils {
 
@@ -286,26 +286,26 @@ public final class TypeUtils {
 	}
 
 	public static Set<String> getSettableProperties(final IType type, final boolean simpleParametersOnly) {
-		if (type == null)
-			return null;
-
 		final Set<String> result = new HashSet<String>();
-		try {
-			final IMethod[] methods = type.getMethods();
-			for (final IMethod m : methods) {
-				final String methodName = m.getElementName();
-				final int modifiers = m.getFlags();
-				if (methodName.length() > SETTER_PREFIX.length() && Flags.isPublic(modifiers)
-						&& m.getNumberOfParameters() == 1 && VOID_SIGNATURE.equals(m.getReturnType())
-						&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))
-						&& (!simpleParametersOnly || hasSimpleParameter(m))) {
-					final String propertyName = getPropertyName(methodName);
-					result.add(propertyName);
+
+		if (type != null) {
+			try {
+				final IMethod[] methods = type.getMethods();
+				for (final IMethod m : methods) {
+					final String methodName = m.getElementName();
+					final int modifiers = m.getFlags();
+					if (methodName.length() > SETTER_PREFIX.length() && Flags.isPublic(modifiers)
+							&& m.getNumberOfParameters() == 1 && VOID_SIGNATURE.equals(m.getReturnType())
+							&& (methodName.startsWith(ADDER_PREFIX) || methodName.startsWith(SETTER_PREFIX))
+							&& (!simpleParametersOnly || hasSimpleParameter(m))) {
+						final String propertyName = getPropertyName(methodName);
+						result.add(propertyName);
+					}
 				}
 			}
-		}
-		catch (final JavaModelException e) {
-			Log.logError("Java Model Exception", e);
+			catch (final JavaModelException e) {
+				Log.logError("Java Model Exception", e);
+			}
 		}
 		return result;
 	}

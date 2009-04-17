@@ -36,7 +36,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class AttributeContentProposalComputer extends AbstractContentProposalComputer {
@@ -96,8 +96,8 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 	@Override
 	protected Set<String> getProposalSet(final int offset) {
 		final Set<String> result = new HashSet<String>();
-		AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(editor.getRootElement(),
-				document, offset);
+		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(editor
+				.getRootElement(), document, offset);
 		AbstractWorkflowElement tempElement = createTemporaryElement(offset);
 
 		if (element != null && tempElement != null) {
@@ -108,7 +108,6 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 			}
 			else {
 				tempElement = element;
-				element = (tempElement.hasParent()) ? tempElement.getParent() : null;
 			}
 
 			final IType type = element.getMappedClassType();
@@ -117,6 +116,9 @@ public class AttributeContentProposalComputer extends AbstractContentProposalCom
 				if (settableCheck.isSettableFound()) {
 					final IType param = TypeUtils.getSetterParameter(file.getProject(), tempElement, type);
 					result.addAll(TypeUtils.getSettableProperties(param, true));
+				}
+				else {
+					result.addAll(TypeUtils.getSettableProperties(type, true));
 				}
 			}
 			if (tempInserted) {
