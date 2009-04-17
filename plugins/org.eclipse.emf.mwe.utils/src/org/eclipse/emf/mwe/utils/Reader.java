@@ -35,22 +35,22 @@ public class Reader extends AbstractEMFWorkflowComponent {
 	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		ctx.set(getModelSlot(), load(resourceSet, uri, firstElementOnly));
 		if (makeEPackagesGlobal) {
-			for (String k : resourceSet.getPackageRegistry().keySet()) {
+			for (final String k : resourceSet.getPackageRegistry().keySet()) {
 				EPackage.Registry.INSTANCE.put(k, resourceSet.getPackageRegistry().get(k));
 			}
 		}
 	}
 
 	@Override
-	public void checkConfiguration(Issues issues) {
+	public void checkConfiguration(final Issues issues) {
 		super.checkConfiguration(issues);
 		if (uri == null) {
 			issues.addError("URI not set");
 		}
 	}
 
-	public static Object load(ResourceSet resourceSet, String uri, boolean firstElementOnly) {
-		Resource res = resourceSet.getResource(URI.createURI(uri), true);
+	public static Object load(final ResourceSet resourceSet, final String uri, final boolean firstElementOnly) {
+		final Resource res = resourceSet.getResource(URI.createURI(uri), true);
 		if (res == null)
 			throw new WorkflowInterruptedException("Couldn't find resource under " + uri);
 		try {
@@ -58,32 +58,39 @@ public class Reader extends AbstractEMFWorkflowComponent {
 				res.load(Collections.EMPTY_MAP);
 			}
 		}
-		catch (IOException e) {
+		catch (final IOException e) {
 			throw new WorkflowInterruptedException("Couldn't find resource under " + uri + " : " + e.getMessage());
 		}
-		EList result = res.getContents();
+		final EList result = res.getContents();
 		if (firstElementOnly) {
 			if (result.isEmpty())
 				return null;
 			return result.iterator().next();
 		}
 		else
-		return result;
+			return result;
 	}
 
-	public void setFirstElementOnly(boolean firstElementOnly) {
+	public void setFirstElementOnly(final boolean firstElementOnly) {
 		this.firstElementOnly = firstElementOnly;
 	}
 
-	public void setMakeEPackagesGlobal(boolean makeEPackagesGlobal) {
+	public void setMakeEPackagesGlobal(final boolean makeEPackagesGlobal) {
 		this.makeEPackagesGlobal = makeEPackagesGlobal;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
 	@Override
 	public String getLogMessage() {
 		return "Loading model from " + uri;
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getComponentName()
+	 */
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

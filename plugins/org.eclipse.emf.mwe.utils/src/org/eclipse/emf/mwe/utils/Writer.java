@@ -39,7 +39,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	private boolean OPTION_SCHEMA_LOCATION_IMPLEMENTATION = true;
 
-	private String encoding = null;
+	private final String encoding = null;
 
 	private boolean multipleResourcesInCaseOfList = false;
 
@@ -71,15 +71,15 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		}
 
 		if (slotContent instanceof EObject) {
-			EObject sc = (EObject) slotContent;
+			final EObject sc = (EObject) slotContent;
 			if (cloneSlotContents) {
 				if (sc.eResource() == null) {
 					issues.addWarning(this, "model in slot '" + getModelSlot()
 							+ "' is not yet associated with a resource; cloning it is most likely an error!");
 				}
 				else {
-					EcoreUtil.Copier copier = new EcoreUtil.Copier();
-					EObject copy = copier.copy(sc);
+					final EcoreUtil.Copier copier = new EcoreUtil.Copier();
+					final EObject copy = copier.copy(sc);
 					copier.copyReferences();
 					slotContent = copy;
 				}
@@ -95,7 +95,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*", new XMIResourceFactoryImpl());
 
 		if (!multipleResourcesInCaseOfList) {
-			Resource r = getResourceSet().createResource(URI.createURI(getUri()));
+			final Resource r = getResourceSet().createResource(URI.createURI(getUri()));
 			if (slotContent instanceof Collection<?>) {
 				r.getContents().addAll((Collection) slotContent);
 			}
@@ -106,20 +106,20 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		}
 		else {
 			if (slotContent instanceof Collection<?>) {
-				Collection coll = (Collection) slotContent;
-				Collection<Resource> resources = new ArrayList<Resource>();
-				for (Object object : coll) {
-					EObject eo = (EObject) object;
-					Resource r = getResourceSet().createResource(URI.createURI(createResourceName(eo)));
+				final Collection coll = (Collection) slotContent;
+				final Collection<Resource> resources = new ArrayList<Resource>();
+				for (final Object object : coll) {
+					final EObject eo = (EObject) object;
+					final Resource r = getResourceSet().createResource(URI.createURI(createResourceName(eo)));
 					r.getContents().add(eo);
 					resources.add(r);
 				}
-				for (Resource r : resources) {
+				for (final Resource r : resources) {
 					write(r);
 				}
 			}
 			else {
-				Resource r = getResourceSet().createResource(URI.createURI(getUri()));
+				final Resource r = getResourceSet().createResource(URI.createURI(getUri()));
 				r.getContents().add((EObject) slotContent);
 				write(r);
 			}
@@ -136,7 +136,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	private void write(final Resource r) {
 		try {
-			Map<String, Object> options = new HashMap<String, Object>();
+			final Map<String, Object> options = new HashMap<String, Object>();
 			if (OPTION_SCHEMA_LOCATION) {
 				options.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 			}
@@ -153,6 +153,9 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		}
 	}
 
+	/**
+	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
+	 */
 	@Override
 	public String getLogMessage() {
 		return "Writing model to " + uri;
@@ -161,6 +164,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
 	 */
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
