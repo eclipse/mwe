@@ -56,27 +56,32 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 	@Override
 	public void run(WorkflowCompositeComponent composite, WorkflowContext context)
 	{
-		ExecutorService threadPool = context.getThreadPool();
-		ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
-
-		for (WorkflowComponent component : composite.getComponents())
-		{
-			WorkflowRunner runner = RuntimeFactory.eINSTANCE.createWorkflowRunner();
-			runner.setComponent(component);
-			runner.setContext(context);
-			futures.add(threadPool.submit(runner));
-		}
+		// Accessing the WorkflowContext is currently not thread safe, so I'm disabling
+		// parallel execution until I learn about EMF Transactions
 		
-		for (Future<?> future : futures)
-		{
-			try
-			{
-				future.get();
-			}
-			catch (Exception e)
-			{
-				continue;
-			}
-		}
+		throw new UnsupportedOperationException("Parallel execution has been temporarily disabled");
+		
+//		ExecutorService threadPool = context.getThreadPool();
+//		ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
+//
+//		for (WorkflowComponent component : composite.getComponents())
+//		{
+//			WorkflowRunner runner = RuntimeFactory.eINSTANCE.createWorkflowRunner();
+//			runner.setComponent(component);
+//			runner.setContext(context);
+//			futures.add(threadPool.submit(runner));
+//		}
+//		
+//		for (Future<?> future : futures)
+//		{
+//			try
+//			{
+//				future.get();
+//			}
+//			catch (Exception e)
+//			{
+//				continue;
+//			}
+//		}
 	}
 } // ParallelWorkflowOrchestrator
