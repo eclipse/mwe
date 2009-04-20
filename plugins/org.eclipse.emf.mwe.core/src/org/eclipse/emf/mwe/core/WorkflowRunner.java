@@ -17,6 +17,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.jar.Manifest;
 
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.OptionBuilder;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
+import org.apache.commons.cli.PosixParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -27,14 +35,6 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
-import org.eclipse.emf.mwe.internal.core.cli.CommandLine;
-import org.eclipse.emf.mwe.internal.core.cli.CommandLineParser;
-import org.eclipse.emf.mwe.internal.core.cli.HelpFormatter;
-import org.eclipse.emf.mwe.internal.core.cli.Option;
-import org.eclipse.emf.mwe.internal.core.cli.OptionBuilder;
-import org.eclipse.emf.mwe.internal.core.cli.Options;
-import org.eclipse.emf.mwe.internal.core.cli.ParseException;
-import org.eclipse.emf.mwe.internal.core.cli.PosixParser;
 
 /**
  * Main class to run a workflow.
@@ -146,10 +146,7 @@ public class WorkflowRunner {
 			URL wfUrl;
 			int index = 0;
 			do {
-				// TODO BK change to resource loader factory
-				// wfUrl = ResourceLoaderFactory.createResourceLoader()
-				// .getResource(wfFile);
-				wfUrl = Thread.currentThread().getContextClassLoader().getResource(wfFile);
+				wfUrl = ResourceLoaderFactory.createResourceLoader().getResource(wfFile);
 				if (wfUrl == null) {
 					index = wfFile.indexOf('/');
 					if (index >= 0) {
