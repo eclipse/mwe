@@ -31,6 +31,7 @@ public abstract class AbstractWorkflowComponent2 extends AbstractWorkflowCompone
 	 *            skipped if previous errors occurred, otherwise, the component
 	 *            is executed as usual.
 	 */
+	@Override
 	public void setSkipOnErrors(final boolean skip) {
 		skipOnErrors = skip;
 	}

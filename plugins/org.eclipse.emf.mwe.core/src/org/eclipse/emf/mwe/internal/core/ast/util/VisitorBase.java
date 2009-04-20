@@ -24,58 +24,58 @@ import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 
 public abstract class VisitorBase {
 
-    protected Log log = LogFactory.getLog(getClass());
+	protected Log log = LogFactory.getLog(getClass());
 
-    protected ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
+	protected ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
 	public final Object visit(final AbstractASTBase ele) {
 		Object result = visitAbstractASTBase(ele);
-        if (result == null && ele instanceof InclusionAST) {
+		if (result == null && ele instanceof InclusionAST) {
 			result = visitInclusionAST((InclusionAST) ele);
 		}
-        if (result == null && ele instanceof ComponentAST) {
+		if (result == null && ele instanceof ComponentAST) {
 			result = visitComponentAST((ComponentAST) ele);
 		}
-        if (result == null && ele instanceof DeclaredPropertyAST) {
+		if (result == null && ele instanceof DeclaredPropertyAST) {
 			result = visitDeclaredPropertyAST((DeclaredPropertyAST) ele);
 		}
-        if (result == null && ele instanceof DeclaredPropertyFileAST) {
+		if (result == null && ele instanceof DeclaredPropertyFileAST) {
 			result = visitDeclaredPropertyFileAST((DeclaredPropertyFileAST) ele);
 		}
-        if (result == null && ele instanceof ReferenceAST) {
+		if (result == null && ele instanceof ReferenceAST) {
 			result = visitReferenceAST((ReferenceAST) ele);
 		}
-        if (result == null && ele instanceof SimpleParamAST) {
+		if (result == null && ele instanceof SimpleParamAST) {
 			result = visitSimpleParamAST((SimpleParamAST) ele);
 		}
 		return result;
 	}
 
-    public Object visitAbstractASTBase(final AbstractASTBase ele) {
+	public Object visitAbstractASTBase(@SuppressWarnings("unused") final AbstractASTBase ele) {
 		return null;
 	}
 
-    public Object visitComponentAST(final ComponentAST ele) {
+	public Object visitComponentAST(@SuppressWarnings("unused") final ComponentAST ele) {
 		return null;
 	}
 
-    public Object visitInclusionAST(final InclusionAST ele) {
+	public Object visitInclusionAST(@SuppressWarnings("unused") final InclusionAST ele) {
 		return null;
 	}
 
-    public Object visitDeclaredPropertyAST(final DeclaredPropertyAST ele) {
+	public Object visitDeclaredPropertyAST(@SuppressWarnings("unused") final DeclaredPropertyAST ele) {
 		return null;
 	}
 
-    public Object visitDeclaredPropertyFileAST(final DeclaredPropertyFileAST ele) {
+	public Object visitDeclaredPropertyFileAST(@SuppressWarnings("unused") final DeclaredPropertyFileAST ele) {
 		return null;
 	}
 
-    public Object visitReferenceAST(final ReferenceAST ele) {
+	public Object visitReferenceAST(@SuppressWarnings("unused") final ReferenceAST ele) {
 		return null;
 	}
 
-    public Object visitSimpleParamAST(final SimpleParamAST ele) {
+	public Object visitSimpleParamAST(@SuppressWarnings("unused") final SimpleParamAST ele) {
 		return null;
 	}
 

@@ -11,22 +11,23 @@ import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
 import test.res.Component;
 
 public class VisitorAnalyzerTest extends AbstractWorkflowParsingTestBase {
-    VisitorAnalyzer analyzer;
-    
-    @SuppressWarnings("unchecked")
-	public void setUp () throws Exception {
-    	super.setUp();
-    	Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>();
-    	Class<Component> currentComponentClass = test.res.Component.class;
-    	analyzer = new VisitorAnalyzer(issues, converter, currentComponentClass);
-    }
+	VisitorAnalyzer analyzer;
 
-    public void testVisitComponentAST () {
+	@Override
+	@SuppressWarnings("unchecked")
+	public void setUp() throws Exception {
+		super.setUp();
+		final Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>();
+		final Class<Component> currentComponentClass = test.res.Component.class;
+		analyzer = new VisitorAnalyzer(issues, converter, currentComponentClass);
+	}
 
-        Location loc = new Location(0,0,"nothing");
-        ComponentAST componentAST = new ComponentAST(loc, "types", "test.res.SubComponent", "test");
-        analyzer.visitComponentAST(componentAST);
-        assertFalse("Analyzer should find no errors", issues.hasErrors());
-    }
-    
+	public void testVisitComponentAST() {
+
+		final Location loc = new Location(0, 0, "nothing");
+		final ComponentAST componentAST = new ComponentAST(loc, "types", "test.res.SubComponent", "test");
+		analyzer.visitComponentAST(componentAST);
+		assertFalse("Analyzer should find no errors", issues.hasErrors());
+	}
+
 }

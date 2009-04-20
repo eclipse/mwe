@@ -17,8 +17,6 @@ import java.util.Map;
 import org.eclipse.emf.mwe.core.customizer.CustomizationException;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
-import org.eclipse.emf.mwe.core.resources.ResourceLoader;
-import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.ast.AbstractASTBase;
 import org.eclipse.emf.mwe.internal.core.ast.ComponentAST;
 import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
@@ -33,15 +31,15 @@ public class VisitorAnalyzer extends VisitorBase {
 		return ana;
 	}
 
-    private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class, Converter>
+	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class,
+																						// Converter>
 
 	private Class<?> currentComponentClass = null;
 
 	private Issues issues = new IssuesImpl();
 
-	private final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
-
-    public VisitorAnalyzer(final Issues issues, final Map<Class<?>, Converter> converter, final Class<?> currentComponentClass) {
+	public VisitorAnalyzer(final Issues issues, final Map<Class<?>, Converter> converter,
+			final Class<?> currentComponentClass) {
 		if (currentComponentClass == null)
 			throw new NullPointerException("currentComponentClass");
 		this.issues = issues;
@@ -51,28 +49,30 @@ public class VisitorAnalyzer extends VisitorBase {
 
 	@Override
 	public Object visitComponentAST(final ComponentAST componentAST) {
-		String elementName = componentAST.getName();
+		final String elementName = componentAST.getName();
 		Class<?> expected = null;
 		try {
 			expected = getTypeForProperty(elementName);
-        } catch ( CustomizationException ex ) {
-        	issues.addError( ex.getMessage(), componentAST );
+		}
+		catch (final CustomizationException ex) {
+			issues.addError(ex.getMessage(), componentAST);
 			return null;
 		}
 		if (expected == null) {
-        	if ( expected == null ) {
-				issues.addError("No getter or adder method for property '" + elementName + "' in clazz '"
-						+ currentComponentClass.getName() + "' found. Forgot to customize?", componentAST);
-			}
-        } else {
+			issues.addError("No getter or adder method for property '" + elementName + "' in clazz '"
+					+ currentComponentClass.getName() + "' found. Forgot to customize?", componentAST);
+		}
+		else {
 			if (componentAST.getClazz() != null) {
 				final Class<?> actual = loader.loadClass(componentAST.getClazz());
 				if (actual == null) {
 					issues.addError("Class not found: '" + componentAST.getClazz() + "'", componentAST);
-                } else if (!expected.isAssignableFrom(actual)) {
+				}
+				else if (!expected.isAssignableFrom(actual)) {
 					issues.addError("Incompatible Classes: '" + componentAST.getClazz()
 							+ "' is not a subclass of the expected class '" + expected.getName() + "'.", componentAST);
-                } else {
+				}
+				else {
 					expected = actual;
 				}
 			}
@@ -90,8 +90,9 @@ public class VisitorAnalyzer extends VisitorBase {
 		Class<?> expected = null;
 		try {
 			expected = getTypeForProperty(ele.getName());
-        } catch ( CustomizationException ex ) {
-        	issues.addError( ex.getMessage(), ele );
+		}
+		catch (final CustomizationException ex) {
+			issues.addError(ex.getMessage(), ele);
 			return null;
 		}
 		if (expected == null) {
@@ -102,7 +103,8 @@ public class VisitorAnalyzer extends VisitorBase {
 
 		if (ele.getReference() == null) {
 			issues.addError("Reference to bean with id " + ele.getIdRef() + " not resolved!", ele);
-        } else {
+		}
+		else {
 			final Class<?> c = (Class<?>) ele.getReference().getAnalyzedType();
 			if (c != null && !expected.isAssignableFrom(c)) {
 				issues.addWarning("The type of the referred bean (" + c.getName() + ") is not assignable to "
@@ -118,14 +120,16 @@ public class VisitorAnalyzer extends VisitorBase {
 		Class<?> expected = null;
 		try {
 			expected = getTypeForProperty(ele.getName());
-        } catch ( CustomizationException ex ) {
-        	issues.addError( ex.getMessage(), ele );
+		}
+		catch (final CustomizationException ex) {
+			issues.addError(ex.getMessage(), ele);
 			return null;
 		}
 		if (expected == null) {
 			issues.addError("No getter or adder method for property '" + ele.getName() + "' in clazz '"
 					+ getCurrClassName() + "' found.", ele);
-        } else if (!converter.containsKey(expected)) {
+		}
+		else if (!converter.containsKey(expected)) {
 			issues.addError("Cannot convert from String to '" + expected.getName()
 					+ "'. You need to register a corresponding Converter.", ele);
 		}

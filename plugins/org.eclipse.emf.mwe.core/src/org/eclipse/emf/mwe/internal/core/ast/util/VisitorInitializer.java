@@ -42,7 +42,8 @@ public class VisitorInitializer extends VisitorBase {
 		return newOne;
 	}
 
-	public VisitorInitializer(final Issues issues, final Map<String, String> initialProperties, final Map<String, ComponentAST> initialBeans) {
+	public VisitorInitializer(final Issues issues, final Map<String, String> initialProperties,
+			final Map<String, ComponentAST> initialBeans) {
 		this.issues = issues;
 		initialProps = new HashMap<String, String>(initialProperties);
 		props = new HashMap<String, String>();
@@ -100,10 +101,12 @@ public class VisitorInitializer extends VisitorBase {
 			if (o instanceof SimpleParamAST) {
 				final SimpleParamAST p = (SimpleParamAST) o;
 				params.put(p.getName(), p.getValue());
-			} else if (o instanceof ComponentAST) {
+			}
+			else if (o instanceof ComponentAST) {
 				final ComponentAST p = (ComponentAST) o;
 				paramBeans.put(p.getName(), p);
-			} else if (o instanceof ReferenceAST) {
+			}
+			else if (o instanceof ReferenceAST) {
 				final ReferenceAST ref = (ReferenceAST) o;
 				paramBeans.put(ref.getName(), ref.getReference());
 			}
@@ -134,12 +137,13 @@ public class VisitorInitializer extends VisitorBase {
 		return comp;
 	}
 
-	private String translateFileURI(String file) {
-		if (file.indexOf("::")!=-1) {
-			file = file.replaceAll("::", "/");
-			file +=".mwe";
+	private String translateFileURI(final String file) {
+		String fileName = new String(file);
+		if (fileName.indexOf("::") != -1) {
+			fileName = fileName.replaceAll("::", "/");
+			fileName += ".mwe";
 		}
-		return file;
+		return fileName;
 	}
 
 	@Override
@@ -148,7 +152,8 @@ public class VisitorInitializer extends VisitorBase {
 		final ComponentAST ref = beans.get(comp.getIdRef());
 		if (ref == null) {
 			issues.addError("Couldn't find bean with id '" + comp.getIdRef() + "'", comp);
-		} else {
+		}
+		else {
 			comp.setReference(ref);
 		}
 		return comp;
@@ -165,8 +170,9 @@ public class VisitorInitializer extends VisitorBase {
 		if (prop.getValue() != null) {
 			final String n = replaceProperties(prop.getName(), prop);
 			if (!initialProps.containsKey(n)) {
-				props.put(n, replaceProperties(prop.getValue(), prop ));
-			} else {
+				props.put(n, replaceProperties(prop.getValue(), prop));
+			}
+			else {
 				if (!declaredPropertyNames.add(n)) {
 					issues.addError("Duplicate property " + n, prop);
 				}
@@ -182,13 +188,15 @@ public class VisitorInitializer extends VisitorBase {
 		if (properties == null) {
 			issues.addError("Couldn't resolve properties file!", propFile);
 			return new HashMap<Object, Object>();
-		} else {
+		}
+		else {
 			for (final Iterator<String> iter = propFile.getPropertyNames(loader).iterator(); iter.hasNext();) {
-				final String name = replaceProperties(iter.next(), propFile );
+				final String name = replaceProperties(iter.next(), propFile);
 				final String val = replaceProperties((String) properties.get(name), propFile);
 				if (!initialProps.containsKey(name)) {
 					props.put(name, val);
-				} else {
+				}
+				else {
 					if (!declaredPropertyNames.add(name)) {
 						issues.addError("Duplicate property " + name, propFile);
 					}
@@ -202,13 +210,13 @@ public class VisitorInitializer extends VisitorBase {
 
 	private static final Pattern[] PROPERTY_WARN_PATTERN = { Pattern.compile("\\$\\(([\\w_\\.-]+)\\)") };
 
-	protected String replaceProperties(final String toResolve, AbstractASTBase ast) {
+	protected String replaceProperties(final String toResolve, final AbstractASTBase ast) {
 		return replaceProperties(toResolve, true, ast);
 	}
 
 	private final Stack<String> currentProp = new Stack<String>();
 
-	protected String replaceProperties(final String toResolve, final boolean logIssues, AbstractASTBase ast) {
+	protected String replaceProperties(final String toResolve, final boolean logIssues, final AbstractASTBase ast) {
 		if (toResolve == null)
 			return null;
 		// if (currentProp.contains(toResolve)) {
@@ -220,12 +228,13 @@ public class VisitorInitializer extends VisitorBase {
 		currentProp.push(toResolve);
 
 		// check for expressions the user probably didn't want to use
-		if(logIssues) {
-			for(Pattern p: PROPERTY_WARN_PATTERN) {
+		if (logIssues) {
+			for (final Pattern p : PROPERTY_WARN_PATTERN) {
 				final Matcher m = p.matcher(toResolve);
-				while(m.find()) {
-					issues.addWarning("The expression \"" + m.group(0)+"\" is not a valid property and therefore not resolved."+
-					" Properties need to be enclosed in curly brackets, like: ${myProperty}");
+				while (m.find()) {
+					issues.addWarning("The expression \"" + m.group(0)
+							+ "\" is not a valid property and therefore not resolved."
+							+ " Properties need to be enclosed in curly brackets, like: ${myProperty}");
 				}
 			}
 		}
@@ -238,11 +247,13 @@ public class VisitorInitializer extends VisitorBase {
 			String propValue = propGet(varName);
 			if (propValue == null) {
 				if (logIssues) {
-					issues.addError("property " + varName + " not specified. Dereferenced at "+ast.getLocation().toString());
+					issues.addError("property " + varName + " not specified. Dereferenced at "
+							+ ast.getLocation().toString());
 				}
 
 				return null;
-			} else {
+			}
+			else {
 				propValue = replaceProperties(propValue, logIssues, ast);
 			}
 			final int start = m.start();
@@ -260,7 +271,7 @@ public class VisitorInitializer extends VisitorBase {
 	}
 
 	private String propGet(final String varName) {
-		String val = initialProps.get(varName);
+		final String val = initialProps.get(varName);
 		if (val != null)
 			return val;
 

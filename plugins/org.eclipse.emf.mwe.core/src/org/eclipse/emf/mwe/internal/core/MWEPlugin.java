@@ -56,14 +56,14 @@ public class MWEPlugin extends EMFPlugin {
 	/**
 	 * Use the platform, if available, to convert to a local URI.
 	 */
-	public static URI asLocalURI(URI uri) {
+	public static URI asLocalURI(final URI uri) {
 		return plugin == null ? uri : Implementation.asLocalURI(uri);
 	}
 
 	/**
 	 * Use the platform, if available, to resolve the URI.
 	 */
-	public static URI resolve(URI uri) {
+	public static URI resolve(final URI uri) {
 		return plugin == null ? uri : Implementation.resolve(uri);
 	}
 
@@ -71,10 +71,8 @@ public class MWEPlugin extends EMFPlugin {
 	 * Use the platform, if available, to load the named class using the right
 	 * class loader.
 	 */
-	public static Class<?> loadClass(String pluginID, String className)
-			throws ClassNotFoundException {
-		return plugin == null ? Class.forName(className) : Implementation
-				.loadClass(pluginID, className);
+	public static Class<?> loadClass(final String pluginID, final String className) throws ClassNotFoundException {
+		return plugin == null ? Class.forName(className) : Implementation.loadClass(pluginID, className);
 	}
 
 	/**
@@ -95,13 +93,13 @@ public class MWEPlugin extends EMFPlugin {
 		/**
 		 * Use the platform to convert to a local URI.
 		 */
-		protected static URI asLocalURI(URI uri) {
+		protected static URI asLocalURI(final URI uri) {
 			try {
-				String fragment = uri.fragment();
-				URL url = FileLocator.toFileURL(new URL(uri.trimFragment()
-						.toString()));
+				final String fragment = uri.fragment();
+				final URL url = FileLocator.toFileURL(new URL(uri.trimFragment().toString()));
 				return fix(url, fragment);
-			} catch (IOException exception) {
+			}
+			catch (final IOException exception) {
 				// Ignore the exception and return the original URI.
 			}
 			return uri;
@@ -110,47 +108,41 @@ public class MWEPlugin extends EMFPlugin {
 		/**
 		 * Use the platform to convert to a local URI.
 		 */
-		protected static URI resolve(URI uri) {
-			String fragment = uri.fragment();
-			URI uriWithoutFragment = uri.trimFragment();
+		protected static URI resolve(final URI uri) {
+			final String fragment = uri.fragment();
+			final URI uriWithoutFragment = uri.trimFragment();
 			String uriWithoutFragmentToString = uriWithoutFragment.toString();
 
 			URL url = null;
 			try {
 				url = FileLocator.resolve(new URL(uriWithoutFragmentToString));
-			} catch (IOException exception1) {
+			}
+			catch (final IOException exception1) {
 				// Platform.resolve() doesn't work if the project is encoded.
 				//
 				try {
-					uriWithoutFragmentToString = URI
-							.decode(uriWithoutFragmentToString);
-					url = FileLocator.resolve(new URL(
-							uriWithoutFragmentToString));
-				} catch (IOException exception2) {
+					uriWithoutFragmentToString = URI.decode(uriWithoutFragmentToString);
+					url = FileLocator.resolve(new URL(uriWithoutFragmentToString));
+				}
+				catch (final IOException exception2) {
 					// Continue with the unresolved URI.
 				}
 			}
-			if (url != null) {
-				try {
-					return fix(url, fragment);
-				} catch (IOException exception) {
-					// Return the original URI.
-				}
-			}
+			if (url != null)
+				return fix(url, fragment);
 
 			return uri;
 		}
 
-		protected static URI fix(URL url, String fragment) throws IOException {
+		protected static URI fix(final URL url, final String fragment) {
 			// Only file-scheme URIs will be re-encoded. If a URI was decoded in
 			// the workaround
 			// above, and Platform.resolve() didn't return a file-scheme URI,
 			// then this will return
 			// an decoded URI.
 			//
-			URI result = "file".equalsIgnoreCase(url.getProtocol()) ? URI
-					.createFileURI(URI.decode(url.getFile())) : URI
-					.createURI(url.toString());
+			URI result = "file".equalsIgnoreCase(url.getProtocol()) ? URI.createFileURI(URI.decode(url.getFile()))
+					: URI.createURI(url.toString());
 			if (fragment != null) {
 				result = result.appendFragment(fragment);
 			}
@@ -161,8 +153,7 @@ public class MWEPlugin extends EMFPlugin {
 		 * Use the platform to load the named class using the right class
 		 * loader.
 		 */
-		public static Class<?> loadClass(String pluginID, String className)
-				throws ClassNotFoundException {
+		public static Class<?> loadClass(final String pluginID, final String className) throws ClassNotFoundException {
 			return Platform.getBundle(pluginID).loadClass(className);
 		}
 	}

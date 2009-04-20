@@ -21,34 +21,34 @@ import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 
 public abstract class AbstractWorkflowParsingTestBase extends TestCase {
-    protected Issues issues;
+	protected Issues issues;
 
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
-        issues = new IssuesImpl();
-    }
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		issues = new IssuesImpl();
+	}
 
-    protected void assertNoIssues() {
-        if (issues.hasErrors()) {
-            fail(issues.toString());
-        }
-    }
+	protected void assertNoIssues() {
+		if (issues.hasErrors()) {
+			fail(issues.toString());
+		}
+	}
 
-    protected Workflow parseWorkflow(String fileName, final Map<String, String> params) {
-        if (fileName.indexOf('/') == -1) {
-            fileName = qualify(fileName);
-        }
-        return new WorkflowFactory()
-                .parseInitAndCreate(fileName, params, WorkflowFactory.getDefaultConverter(), issues);
-    }
+	protected Workflow parseWorkflow(final String fileName, final Map<String, String> params) {
+		String fqn = new String(fileName);
+		if (fqn.indexOf('/') == -1) {
+			fqn = qualify(fqn);
+		}
+		return new WorkflowFactory().parseInitAndCreate(fqn, params, WorkflowFactory.getDefaultConverter(), issues);
+	}
 
-    protected Workflow parseWorkflow(final StringInputStream stream, final Map<String, String> params) {
-        return new WorkflowFactory().parseInitAndCreate(stream, "unkown", params,
-                WorkflowFactory.getDefaultConverter(), issues);
-    }
+	protected Workflow parseWorkflow(final StringInputStream stream, final Map<String, String> params) {
+		return new WorkflowFactory().parseInitAndCreate(stream, "unkown", params,
+				WorkflowFactory.getDefaultConverter(), issues);
+	}
 
-    protected String qualify(final String name) {
-        return getClass().getPackage().getName().replace('.', '/') + "/" + name;
-    }
+	protected String qualify(final String name) {
+		return getClass().getPackage().getName().replace('.', '/') + "/" + name;
+	}
 }

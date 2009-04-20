@@ -13,17 +13,17 @@ package org.eclipse.emf.mwe.internal.core.ast.util;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 
 public class WorkflowContainer {
-    private Object root = null;
+	private Object root = null;
 
-    public void setWorkflow(final Workflow workflow) {
-        root = workflow;
-    }
+	public void setWorkflow(final Workflow workflow) {
+		root = workflow;
+	}
 
-    public void put(final String name, final Object value) {
-        root = value;
-    }
+	public void put(@SuppressWarnings("unused") final String name, final Object value) {
+		root = value;
+	}
 
-    public Object getRoot() {
-        return root;
-    }
+	public Object getRoot() {
+		return root;
+	}
 }

@@ -13,44 +13,45 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
  * Test for {@link AbstractWorkflowComponent}.
  */
 public class AbstractWorkflowComponentTest extends TestCase {
-	private AbstractWorkflowComponent comp = new AbstractWorkflowComponent() {
+	private final AbstractWorkflowComponent comp = new AbstractWorkflowComponent() {
 
-		public void checkConfiguration(Issues issues) {
+		public void checkConfiguration(final Issues issues) {
 		}
 
-		public void invokeInternal(WorkflowContext ctx, ProgressMonitor monitor, Issues issues) {
+		@Override
+		public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		}
 	};
-	
+
 	private Issues issues;
-	
-	public void setUp () {
+
+	@Override
+	public void setUp() {
 		issues = new IssuesImpl();
 	}
-	
-	public void testCheckRequiredConfigProperty () {
+
+	public void testCheckRequiredConfigProperty() {
 		issues = new IssuesImpl();
 		comp.checkRequiredConfigProperty("test", null, issues);
 		assertTrue(hasIssue("'test' not specified."));
-		
+
 		issues = new IssuesImpl();
 		comp.checkRequiredConfigProperty("test", "", issues);
 		assertTrue(hasIssue("'test' not specified."));
-		
+
 		issues = new IssuesImpl();
 		comp.checkRequiredConfigProperty("test", "   	", issues);
 		assertTrue(hasIssue("'test' not specified."));
-		
+
 		issues = new IssuesImpl();
 		comp.checkRequiredConfigProperty("test", "good :-)", issues);
 		assertFalse(hasIssue("'test' not specified."));
 	}
-	
-	private boolean hasIssue (String msg) {
-		for (Diagnostic issue : issues.getErrors()) {
-			if (issue.getMessage().matches(msg)) {
+
+	private boolean hasIssue(final String msg) {
+		for (final Diagnostic issue : issues.getErrors()) {
+			if (issue.getMessage().matches(msg))
 				return true;
-			}
 		}
 		return false;
 	}
