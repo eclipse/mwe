@@ -28,7 +28,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.57 $
+ * @version $Revision: 1.58 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
@@ -62,7 +62,9 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		final IType parentType = parent.getMappedClassType();
 		final IType elementType = element.getMappedClassType();
 		if (elementType == null && !parent.isFragment()) {
-			createMarker(element, "Element '" + element.getName() + "' could not be mapped");
+			// TODO this is a nasty workaround
+			if (parent.isComponent() && !parent.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE))
+				createMarker(element, "Element '" + element.getName() + "' could not be mapped");
 			return;
 		}
 

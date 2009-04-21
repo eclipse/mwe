@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  */
 public final class TypeUtils {
 
@@ -239,14 +239,14 @@ public final class TypeUtils {
 
 		if (reader != null) {
 			try {
-				String content = new String();
+				StringBuilder content = new StringBuilder();
 				String line = reader.readLine();
 				while (line != null) {
-					content += line + "\n";
+					content.append(line).append('\n');
 					line = reader.readLine();
 				}
 				reader.close();
-				return content;
+				return content.toString();
 			}
 			catch (final IOException e) {
 				Log.logError("I/O error", e);
