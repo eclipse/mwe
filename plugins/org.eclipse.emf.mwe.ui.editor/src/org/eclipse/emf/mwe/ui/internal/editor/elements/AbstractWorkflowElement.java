@@ -316,7 +316,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getMappedClassName()
 	 */
 	public String getMappedClassName() {
-		final String name = WorkflowElementTypeComputer.getDefaultClass(this);
+		final String name = WorkflowElementTypeComputer.computeClassName(this);
 		if (name == null && hasParent())
 			return getParent().getMappedClassName();
 
