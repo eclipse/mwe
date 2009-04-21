@@ -32,7 +32,7 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.23 $
+ * @version $Revision: 1.24 $
  */
 public final class MarkerManager {
 
@@ -125,11 +125,11 @@ public final class MarkerManager {
 		final Map map = new HashMap();
 		Integer lineNumber;
 		try {
-			if (range.getStartOffset() <= document.getLength()) {
+			if (range.getStartOffset() < document.getLength()) {
 				lineNumber = document.getLineOfOffset(range.getStartOffset());
 			}
 			else {
-				lineNumber = document.getNumberOfLines();
+				lineNumber = document.getNumberOfLines() - 1;
 			}
 		}
 		catch (final BadLocationException e) {
