@@ -16,15 +16,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer;
-import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
 import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public final class PropertyFileReader {
@@ -38,23 +36,22 @@ public final class PropertyFileReader {
 		throw new UnsupportedOperationException();
 	}
 
-	public static IPropertyContainer parse(IProject project, final AbstractWorkflowElement element)
+	public static IPropertyContainer parse(final IProject project, final Property property)
 			throws FileNotFoundException {
-		if (project == null || element == null || !element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE))
+		if (project == null || property == null || !property.isFileReference())
 			throw new IllegalArgumentException();
 
-		IPropertyContainer container = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
-		final String content = TypeUtils.getFileContent(project, attribute);
+		final IPropertyContainer container = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		final String content = TypeUtils.getFileContent(project, property.getValue());
 		if (content == null)
-			throw new FileNotFoundException("File '" + attribute.getValue() + "' not found");
+			throw new FileNotFoundException("File '" + property.getValue() + "' not found");
 
 		final Pattern p = Pattern.compile(PROPERTY_REGEX, Pattern.MULTILINE);
 		final Matcher m = p.matcher(content);
 		while (m.find()) {
 			final String propertyName = m.group(1);
-			String propertyValue = m.group(2);
-			Property prop = new Property(propertyName);
+			final String propertyValue = m.group(2);
+			final Property prop = new Property(propertyName);
 			prop.setValue(propertyValue);
 			container.addProperty(prop);
 		}

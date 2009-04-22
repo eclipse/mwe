@@ -18,11 +18,9 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
+ * @version $Revision: 1.15 $
  */
 public class PropertyAnalyzer extends DefaultAnalyzer {
-
-	protected static final String PROPERTY_REGEX = "^(.*?)\\s*=\\s*.*$";
 
 	private static final String INVALID_PROPERTY_MSG = "Property not valid";
 

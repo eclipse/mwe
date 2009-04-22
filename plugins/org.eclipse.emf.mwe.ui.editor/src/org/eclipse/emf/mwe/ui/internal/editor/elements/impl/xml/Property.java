@@ -16,12 +16,12 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 
 public class Property {
 
-	private final String name;
+	private String name;
 
 	private String value;
 
@@ -29,20 +29,29 @@ public class Property {
 
 	private boolean imported;
 
+	private boolean valueReference;
+
 	public Property(final AbstractWorkflowElement element) {
-		if (element == null || !element.isProperty())
+		if (element == null || (!element.isProperty() && !element.hasAttribute(IWorkflowAttribute.VALUE_ATTRIBUTE)))
 			throw new IllegalArgumentException();
 
-		name = element.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE);
-		if (element.isSimpleProperty()) {
-			setValue(element.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE));
+		if (element.hasAttribute(IWorkflowAttribute.NAME_ATTRIBUTE)) {
+			name = element.getAttributeValue(IWorkflowAttribute.NAME_ATTRIBUTE);
+			if (element.isSimpleProperty()) {
+				setValue(element.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE));
+			}
+			else if (element.isFileProperty()) {
+				setFile(element.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE));
+			}
+			else
+				throw new RuntimeException("Incomplete property specification");
 		}
-		else if (element.isFileProperty()) {
-			setFile(element.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE));
+		else if (element.getAttributeCount() == 1 && element.hasAttribute(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
+			name = element.getName();
+			setValue(element.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE));
 		}
 		else
 			throw new RuntimeException("Incomplete property specification");
-
 	}
 
 	public Property(final String name) {
@@ -77,22 +86,22 @@ public class Property {
 	}
 
 	/**
+	 * Checks if property holds a file valueReference.
+	 * 
+	 * @return <code>true</code> if the current property holds a file
+	 *         valueReference, otherwise <code>false</code>
+	 */
+	public boolean isFileReference() {
+		return value == null && file != null;
+	}
+
+	/**
 	 * Returns the value of field <code>imported</code>.
 	 * 
 	 * @return value of <code>imported</code>.
 	 */
 	public boolean isImported() {
 		return imported;
-	}
-
-	/**
-	 * Checks if property holds a reference.
-	 * 
-	 * @return <code>true</code> if the current property holds a reference,
-	 *         otherwise <code>false</code>
-	 */
-	public boolean isReference() {
-		return value == null && file != null;
 	}
 
 	/**
@@ -103,6 +112,16 @@ public class Property {
 	 */
 	public boolean isSimple() {
 		return value != null && file == null;
+	}
+
+	/**
+	 * Checks if property holds a value valueReference.
+	 * 
+	 * @return <code>true</code> if the current property holds a value
+	 *         valueReference, otherwise <code>false</code>
+	 */
+	public boolean isValueReference() {
+		return file == null && valueReference;
 	}
 
 	/**
@@ -132,6 +151,16 @@ public class Property {
 	 *            new value for <code>value</code>.
 	 */
 	public void setValue(final String value) {
-		this.value = (value != null) ? value : "";
+		this.value = value;
+	}
+
+	/**
+	 * Sets a new value for field <code>valueReference</code>.
+	 * 
+	 * @param valueReference
+	 *            new value for <code>valueReference</code>.
+	 */
+	public void setValueReference(final boolean valueReference) {
+		this.valueReference = valueReference;
 	}
 }

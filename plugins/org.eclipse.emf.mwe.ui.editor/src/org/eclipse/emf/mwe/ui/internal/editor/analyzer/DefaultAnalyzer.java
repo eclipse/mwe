@@ -14,7 +14,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.analyzer;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -28,13 +27,11 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.58 $
+ * @version $Revision: 1.59 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected static final String MAPPING_ERROR_MSG = "Could not determine a class mapping for element";
-
-	static final String PROPERTY_REF_REGEX = "\\$\\{(.*?)\\}";
 
 	protected final IFile file;
 
@@ -58,13 +55,17 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (!element.hasParent())
 			return;
 
+		if (element.hasUnresolvedReferenceProperties()) {
+			final Set<String> propertyNames = element.getUnresolvedReferencePropertyNames();
+			for (final String name : propertyNames) {
+				createMarker(element, "Missing definition for property '" + name + "'", false);
+			}
+		}
 		final AbstractWorkflowElement parent = element.getParent();
 		final IType parentType = parent.getMappedClassType();
 		final IType elementType = element.getMappedClassType();
 		if (elementType == null && !parent.isFragment()) {
-			// TODO this is a nasty workaround
-			if (parent.isComponent() && !parent.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE))
-				createMarker(element, "Element '" + element.getName() + "' could not be mapped");
+			createMarker(element, "Element '" + element.getName() + "' could not be mapped");
 			return;
 		}
 
@@ -166,8 +167,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 
 	protected void checkPropertyReference(final AbstractWorkflowElement element, final IWorkflowAttribute attribute) {
 		final String attrValue = attribute.getValue();
-		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
-		final Matcher m = p.matcher(attrValue);
+		final Matcher m = IWorkflowAttribute.PROPERTY_REFERENCE_PATTERN.matcher(attrValue);
 		while (m.find()) {
 			final String value = m.group(1);
 			if (!element.hasProperty(value)) {
@@ -228,13 +228,12 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 	}
 
 	protected boolean isPropertyReference(final IWorkflowAttribute attribute) {
-		final Pattern p = Pattern.compile(PROPERTY_REF_REGEX);
-		final Matcher m = p.matcher(attribute.getValue());
+		final Matcher m = IWorkflowAttribute.PROPERTY_REFERENCE_PATTERN.matcher(attribute.getValue());
 		return m.matches();
 	}
 
 	private void checkFileAttribute(final IWorkflowAttribute attribute) {
-		final String content = TypeUtils.getFileContent(getProject(), attribute);
+		final String content = TypeUtils.getFileContent(getProject(), attribute.getValue());
 		if (content == null) {
 			createMarkerForValue(attribute, "Could not load file '" + attribute.getValue() + "'");
 		}

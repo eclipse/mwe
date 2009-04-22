@@ -24,12 +24,14 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
 
-	private final Map<String, Property> properties = new HashMap<String, Property>();
+	private final Map<String, Property> propertyDefinitions = new HashMap<String, Property>();
+
+	private final Map<String, Property> propertyReferences = new HashMap<String, Property>();
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#addProperties(java.util.Collection)
@@ -60,7 +62,12 @@ public class PropertyContainerImpl implements IPropertyContainer {
 		if (property == null)
 			throw new IllegalArgumentException();
 
-		properties.put(property.getName(), property);
+		if (property.isValueReference()) {
+			propertyReferences.put(property.getName(), property);
+		}
+		else {
+			propertyDefinitions.put(property.getName(), property);
+		}
 
 	}
 
@@ -68,7 +75,34 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#clear()
 	 */
 	public void clear() {
-		properties.clear();
+		propertyDefinitions.clear();
+		propertyReferences.clear();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getFileReferenceProperties()
+	 */
+	public Collection<Property> getFileReferenceProperties() {
+		final List<Property> result = new ArrayList<Property>();
+		for (final Property p : propertyDefinitions.values()) {
+			if (p.isFileReference()) {
+				result.add(p);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getFileReferencePropertyNames()
+	 */
+	public Set<String> getFileReferencePropertyNames() {
+		final Set<String> result = new HashSet<String>();
+		for (final Property p : propertyDefinitions.values()) {
+			if (p.isFileReference()) {
+				result.add(p.getName());
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -101,21 +135,27 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperties()
 	 */
 	public Collection<Property> getProperties() {
-		return properties.values();
+		final Collection<Property> result = new HashSet<Property>();
+		result.addAll(propertyDefinitions.values());
+		result.addAll(propertyReferences.values());
+		return result;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getProperty(java.lang.String)
 	 */
 	public Property getProperty(final String name) {
-		return properties.get(name);
+		if (propertyDefinitions.containsKey(name))
+			return propertyDefinitions.get(name);
+
+		return propertyReferences.get(name);
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getPropertyCount()
 	 */
 	public int getPropertyCount() {
-		return properties.size();
+		return propertyDefinitions.size() + propertyReferences.size();
 	}
 
 	/**
@@ -123,33 +163,20 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public Set<String> getPropertyNames() {
 		final Set<String> result = new HashSet<String>();
-		for (final Property p : properties.values()) {
+		for (final Property p : getProperties()) {
 			result.add(p.getName());
 		}
 		return result;
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getPropertyValueReferences()
 	 */
-	public Collection<Property> getReferenceProperties() {
-		final List<Property> result = new ArrayList<Property>();
-		for (final Property p : properties.values()) {
-			if (p.isReference()) {
-				result.add(p);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferencePropertyNames()
-	 */
-	public Set<String> getReferencePropertyNames() {
-		final Set<String> result = new HashSet<String>();
-		for (final Property p : properties.values()) {
-			if (p.isReference()) {
-				result.add(p.getName());
+	public IPropertyContainer getPropertyValueReferences() {
+		final IPropertyContainer result = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
+		for (final Property p : propertyReferences.values()) {
+			if (p.isValueReference()) {
+				result.addProperty(p);
 			}
 		}
 		return result;
@@ -160,7 +187,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public Collection<Property> getSimpleValueProperties() {
 		final List<Property> result = new ArrayList<Property>();
-		for (final Property p : properties.values()) {
+		for (final Property p : propertyDefinitions.values()) {
 			if (p.isSimple()) {
 				result.add(p);
 			}
@@ -173,7 +200,7 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public Set<String> getSimpleValuePropertyNames() {
 		final Set<String> result = new HashSet<String>();
-		for (final Property p : properties.values()) {
+		for (final Property p : propertyDefinitions.values()) {
 			if (p.isSimple()) {
 				result.add(p.getName());
 			}
@@ -182,39 +209,76 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperties()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getUnresolvedReferencePropertyNames()
 	 */
-	public boolean hasProperties() {
-		return getPropertyCount() > 0;
+	public Set<String> getUnresolvedReferencePropertyNames() {
+		final Set<String> result = new HashSet<String>();
+		final Set<String> importedRefNames = getImportedProperties().getValueReferencePropertyNames();
+		for (final String name : importedRefNames) {
+			if (!hasSimpleValueProperty(name)) {
+				result.add(name);
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getValueReferencePropertyNames()
+	 */
+	public Set<String> getValueReferencePropertyNames() {
+		return propertyReferences.keySet();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasFileReferenceProperty(java.lang.String)
+	 */
+	public boolean hasFileReferenceProperty(final String name) {
+		if (name == null)
+			return false;
+
+		for (final Property p : propertyDefinitions.values()) {
+			if (p.isFileReference() && name.equals(p.getName()))
+				return true;
+		}
+		return false;
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
 	 */
 	public boolean hasProperty(final String name) {
-		return properties.containsKey(name);
+		final Map<String, Property> result = new HashMap<String, Property>();
+		result.putAll(propertyDefinitions);
+		result.putAll(propertyReferences);
+		return result.containsKey(name);
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
 	 */
-	public boolean hasReferenceProperty(final String name) {
-		for (final Property p : properties.values()) {
-			if (p.isReference())
+	public boolean hasSimpleValueProperty(final String name) {
+		if (name == null)
+			return false;
+
+		for (final Property p : propertyDefinitions.values()) {
+			if (p.isSimple() && name.equals(p.getName()))
 				return true;
 		}
 		return false;
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#hasUnresolvedReferenceProperties()
 	 */
-	public boolean hasSimpleProperty(final String name) {
-		for (final Property p : properties.values()) {
-			if (p.isSimple())
-				return true;
-		}
-		return false;
+	public boolean hasUnresolvedReferenceProperties() {
+		return !getUnresolvedReferencePropertyNames().isEmpty();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#hasValueReferenceProperty(java.lang.String)
+	 */
+	public boolean hasValueReferenceProperty(final String name) {
+		return propertyReferences.containsKey(name);
 	}
 
 	/**
@@ -222,5 +286,15 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	 */
 	public boolean isEmpty() {
 		return getPropertyCount() == 0;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#isResolved(java.lang.String)
+	 */
+	public boolean isResolved(final String name) {
+		if (!hasSimpleValueProperty(name))
+			throw new IllegalArgumentException("'" + name + "' is not a simple value property");
+
+		return hasValueReferenceProperty(name);
 	}
 }

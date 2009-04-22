@@ -91,7 +91,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @param container
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#addProperties(org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer)
 	 */
 	public void addProperties(final IPropertyContainer container) {
@@ -288,6 +287,20 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getFileReferenceProperties()
+	 */
+	public Collection<Property> getFileReferenceProperties() {
+		return getPropertyContainer().getFileReferenceProperties();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getFileReferencePropertyNames()
+	 */
+	public Set<String> getFileReferencePropertyNames() {
+		return getPropertyContainer().getFileReferencePropertyNames();
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IRangeInfo#getFirstLineRange()
 	 */
 	public ElementPositionRange getFirstLineRange() {
@@ -298,7 +311,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @return
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getImportedProperties()
 	 */
 	public IPropertyContainer getImportedProperties() {
@@ -390,20 +402,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferenceProperties()
-	 */
-	public Collection<Property> getReferenceProperties() {
-		return getPropertyContainer().getReferenceProperties();
-	}
-
-	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#getReferencePropertyNames()
-	 */
-	public Set<String> getReferencePropertyNames() {
-		return getPropertyContainer().getReferencePropertyNames();
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getRoot()
 	 */
 	public AbstractWorkflowElement getRoot() {
@@ -432,6 +430,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getUnresolvedReferencePropertyNames()
+	 */
+	public Set<String> getUnresolvedReferencePropertyNames() {
+		return getPropertyContainer().getUnresolvedReferencePropertyNames();
+	}
+
+	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#getUnresolvedReferences()
 	 */
 	public Collection<ReferenceInfo> getUnresolvedReferences() {
@@ -439,6 +444,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 			return getReferenceInfoStore().getUnresolvedReferences();
 
 		return new ArrayList<ReferenceInfo>();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#getValueReferencePropertyNames()
+	 */
+	public Set<String> getValueReferencePropertyNames() {
+		return getPropertyContainer().getValueReferencePropertyNames();
 	}
 
 	/**
@@ -460,6 +472,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 */
 	public boolean hasChildren() {
 		return getChildrenCount() > 0;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasFileReferenceProperty(java.lang.String)
+	 */
+	public boolean hasFileReferenceProperty(final String name) {
+		return getPropertyContainer().hasFileReferenceProperty(name);
 	}
 
 	/**
@@ -490,13 +509,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperties()
-	 */
-	public boolean hasProperties() {
-		return getPropertyContainer().hasProperties();
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasProperty(java.lang.String)
 	 */
 	public boolean hasProperty(final String name) {
@@ -518,13 +530,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasReferenceProperty(java.lang.String)
-	 */
-	public boolean hasReferenceProperty(final String name) {
-		return getPropertyContainer().hasReferenceProperty(name);
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementReference#hasResolvedReference()
 	 */
 	public boolean hasResolvedReference() {
@@ -535,11 +540,25 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleProperty(java.lang.String)
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#hasSimpleValueProperty(java.lang.String)
 	 */
-	public boolean hasSimpleProperty(final String name) {
-		return getPropertyContainer().hasSimpleProperty(name);
+	public boolean hasSimpleValueProperty(final String name) {
+		return getPropertyContainer().hasSimpleValueProperty(name);
 
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#hasUnresolvedReferenceProperties()
+	 */
+	public boolean hasUnresolvedReferenceProperties() {
+		return getPropertyContainer().hasUnresolvedReferenceProperties();
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#hasValueReferenceProperty(java.lang.String)
+	 */
+	public boolean hasValueReferenceProperty(final String name) {
+		return getPropertyContainer().hasValueReferenceProperty(name);
 	}
 
 	/**
@@ -562,6 +581,13 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	public boolean isInstantiable() {
 		final IType type = getMappedClassType();
 		return (type != null) ? TypeUtils.isInstantiable(type) : false;
+	}
+
+	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainerAccess#isResolved(java.lang.String)
+	 */
+	public boolean isResolved(final String name) {
+		return getPropertyContainer().isResolved(name);
 	}
 
 	/**
@@ -731,5 +757,4 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 			children.remove(index);
 		}
 	}
-
 }

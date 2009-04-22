@@ -37,10 +37,10 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
 		assertTrue(fragment.isFragment());
-		assertTrue(fragment.hasProperties());
+		assertFalse(fragment.isEmpty());
 		assertEquals(2, fragment.getPropertyCount());
-		assertTrue(fragment.hasSimpleProperty("a1"));
-		assertTrue(fragment.hasSimpleProperty("a2"));
+		assertTrue(fragment.hasSimpleValueProperty("a1"));
+		assertTrue(fragment.hasSimpleValueProperty("a2"));
 	}
 
 	public void testParseReferencedWorkflow2() {
@@ -49,11 +49,11 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
 		assertTrue(fragment.isFragment());
-		assertTrue(fragment.hasProperties());
+		assertFalse(fragment.isEmpty());
 		assertEquals(4, fragment.getPropertyCount());
-		assertTrue(fragment.hasSimpleProperty("b1"));
-		assertTrue(fragment.hasSimpleProperty("b2"));
-		assertTrue(fragment.hasSimpleProperty("fa1"));
-		assertTrue(fragment.hasSimpleProperty("fa2"));
+		assertTrue(fragment.hasSimpleValueProperty("b1"));
+		assertTrue(fragment.hasSimpleValueProperty("b2"));
+		assertTrue(fragment.hasSimpleValueProperty("fa1"));
+		assertTrue(fragment.hasSimpleValueProperty("fa2"));
 	}
 }

@@ -53,7 +53,7 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.35 $
+ * @version $Revision: 1.36 $
  */
 public final class TypeUtils {
 
@@ -205,8 +205,10 @@ public final class TypeUtils {
 			return MWE_CONTAINER_PACKAGE + "." + toUpperCaseFirst(name) + COMPONENT_SUFFIX;
 	}
 
-	public static String getFileContent(final IProject project, final IWorkflowAttribute attribute) {
-		final String filePath = attribute.getValue();
+	public static String getFileContent(final IProject project, final String filePath) {
+		if (filePath == null)
+			return null;
+
 		final ClassLoader loader = getResourceLoader(project);
 
 		if (loader == null)
@@ -239,7 +241,7 @@ public final class TypeUtils {
 
 		if (reader != null) {
 			try {
-				StringBuilder content = new StringBuilder();
+				final StringBuilder content = new StringBuilder();
 				String line = reader.readLine();
 				while (line != null) {
 					content.append(line).append('\n');

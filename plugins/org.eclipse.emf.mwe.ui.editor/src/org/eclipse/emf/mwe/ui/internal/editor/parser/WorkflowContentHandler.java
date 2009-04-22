@@ -45,7 +45,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.46 $
+ * @version $Revision: 1.47 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -64,6 +64,8 @@ public class WorkflowContentHandler extends DefaultHandler {
 	private File file;
 
 	private boolean isSubProcess;
+
+	private boolean inheritAll;
 
 	protected IPropertyContainer propertyContainer = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
 
@@ -127,6 +129,15 @@ public class WorkflowContentHandler extends DefaultHandler {
 		}
 
 		currentElement.addProperties(propertyContainer);
+
+		if (currentElement.hasChildren()) {
+			for (final AbstractWorkflowElement e : currentElement.getChildrenList()) {
+				if (e.hasAttribute(IWorkflowAttribute.VALUE_ATTRIBUTE)
+						&& currentElement.hasValueReferenceProperty(e.getName())) {
+					addProperty(e);
+				}
+			}
+		}
 
 		if (currentElement.hasReferenceDefinition()) {
 			final boolean res = rootElement.addReferenceDefinition(currentElement);
@@ -218,6 +229,16 @@ public class WorkflowContentHandler extends DefaultHandler {
 	}
 
 	/**
+	 * Sets a new value for field <code>inheritAll</code>.
+	 * 
+	 * @param inheritAll
+	 *            new value for <code>inheritAll</code>.
+	 */
+	public void setInheritAll(final boolean inheritAll) {
+		this.inheritAll = inheritAll;
+	}
+
+	/**
 	 * Sets a new value for field <code>positionCategory</code>.
 	 * 
 	 * @param positionCategory
@@ -292,6 +313,13 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final String attrValue = attributes.getValue(i);
 			final IWorkflowSyntaxFactory factory = WorkflowSyntaxFactory.getInstance();
 			final IWorkflowAttribute attr = factory.newWorkflowAttribute(attrName, attrValue);
+			if (attr.hasPropertyReference()) {
+				final Property p = new Property(attr.getPropertyReferenceName());
+				p.setValueReference(true);
+				p.setImported(isSubProcess);
+				addProperty(element, p);
+
+			}
 			element.addAttribute(attr);
 		}
 
@@ -323,23 +351,32 @@ public class WorkflowContentHandler extends DefaultHandler {
 			property.setImported(true);
 		}
 
+		addProperty(element, property);
+	}
+
+	private void addProperty(final AbstractWorkflowElement element, final Property property) {
+		if (element == null || property == null)
+			throw new IllegalArgumentException();
+
 		try {
-			if (property.isSimple()) {
+			if (property.isSimple() || property.isValueReference()) {
 				if (!isSubProcess) {
 					if (element.hasParent()) {
 						element.getParent().addProperty(property);
 					}
 					else {
-						propertyContainer.addProperty(property);
+						if (inheritAll || property.isValueReference()) {
+							propertyContainer.addProperty(property);
+						}
 					}
 				}
 				else {
 					propertyContainer.addProperty(property);
 				}
 			}
-			else if (property.isReference()) {
+			else if (property.isFileReference()) {
 				try {
-					final IPropertyContainer fileContainer = PropertyFileReader.parse(getProject(), element);
+					final IPropertyContainer fileContainer = PropertyFileReader.parse(getProject(), property);
 					if (!isSubProcess) {
 						if (element.hasParent()) {
 							element.getParent().addProperties(fileContainer);
@@ -349,14 +386,15 @@ public class WorkflowContentHandler extends DefaultHandler {
 						}
 					}
 					else {
-						propertyContainer.addProperties(fileContainer);
+						if (inheritAll) {
+							propertyContainer.addProperties(fileContainer);
+						}
 					}
 				}
 				catch (final FileNotFoundException e) {
 					throw new ParserProblemException(e.getMessage(), e);
 				}
 			}
-
 		}
 		catch (final IllegalArgumentException e) {
 			final IFile file = getFile();
@@ -473,7 +511,7 @@ public class WorkflowContentHandler extends DefaultHandler {
 			throw new IllegalArgumentException();
 
 		final IWorkflowAttribute attribute = element.getAttribute(IWorkflowAttribute.FILE_ATTRIBUTE);
-		final String content = TypeUtils.getFileContent(getProject(), attribute);
+		final String content = TypeUtils.getFileContent(getProject(), attribute.getValue());
 		if (content == null) {
 			if (!isSubProcess) {
 				MarkerManager.createMarker(getFile(), document, attribute, "Resource '" + attribute.getValue()
@@ -487,12 +525,10 @@ public class WorkflowContentHandler extends DefaultHandler {
 			final IDocument refDoc = new org.eclipse.jface.text.Document(content);
 			final WorkflowContentHandler contentHandler = new WorkflowContentHandler();
 			final File refFile = getFile(getProject(), attribute);
-			if (inherit) {
-				contentHandler.setPropertyContainer(propertyContainer);
-			}
-
+			contentHandler.setPropertyContainer(propertyContainer);
 			contentHandler.setFile(refFile);
 			contentHandler.setSubProcess(true);
+			contentHandler.setInheritAll(inherit);
 			DocumentParser.parse(refDoc, contentHandler, getProject());
 		}
 		catch (final ParserProblemException e) {

@@ -24,12 +24,10 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 
 public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute {
-
-	private static final Pattern PROPERTY_REFERENCE_PATTERN = Pattern.compile("\\$\\{([a-zA-Z0-9._\\-]+)\\}");
 
 	private AbstractWorkflowElement element;
 
@@ -163,6 +161,17 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	}
 
 	/**
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute#getPropertyReferenceName()
+	 */
+	public String getPropertyReferenceName() {
+		final Matcher m = PROPERTY_REFERENCE_PATTERN.matcher(value);
+		if (m.find())
+			return m.group(1);
+
+		return null;
+	}
+
+	/**
 	 * This automatically generated method overrides the implementation of
 	 * <code>getValue</code> inherited from the superclass.
 	 * 
@@ -203,7 +212,7 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 	public boolean hasResolvedPropertyReference() {
 		final String propName = getPropertyReferenceName();
 		if (propName != null && getElement() != null)
-			return getElement().hasProperty(propName);
+			return getElement().hasSimpleValueProperty(propName);
 
 		return false;
 	}
@@ -240,14 +249,6 @@ public class XMLWorkflowAttributeImpl implements IRangeCheck, IWorkflowAttribute
 			final int attrEnd = start + matcher.end();
 			return new ElementPositionRange(document, attrStart, attrEnd);
 		}
-		return null;
-	}
-
-	private String getPropertyReferenceName() {
-		final Matcher m = PROPERTY_REFERENCE_PATTERN.matcher(value);
-		if (m.find())
-			return m.group(1);
-
 		return null;
 	}
 

@@ -35,6 +35,24 @@ public interface IPropertyContainerAccess {
 	void addProperty(Property property);
 
 	/**
+	 * Returns a collection containing all reference properties in the
+	 * container.
+	 * 
+	 * @return collection containing all reference properties in the container
+	 *         or an empty collection if no such property exists
+	 */
+	Collection<Property> getFileReferenceProperties();
+
+	/**
+	 * Returns a set containing the names of all reference properties in the
+	 * container.
+	 * 
+	 * @return set containing the names of all reference properties in the
+	 *         container or an empty set if no such property exists
+	 */
+	Set<String> getFileReferencePropertyNames();
+
+	/**
 	 * Returns a property container that holds all imported properties that are
 	 * in the current container.
 	 * 
@@ -86,24 +104,6 @@ public interface IPropertyContainerAccess {
 	Set<String> getPropertyNames();
 
 	/**
-	 * Returns a collection containing all reference properties in the
-	 * container.
-	 * 
-	 * @return collection containing all reference properties in the container
-	 *         or an empty collection if no such property exists
-	 */
-	Collection<Property> getReferenceProperties();
-
-	/**
-	 * Returns a set containing the names of all reference properties in the
-	 * container.
-	 * 
-	 * @return set containing the names of all reference properties in the
-	 *         container or an empty set if no such property exists
-	 */
-	Set<String> getReferencePropertyNames();
-
-	/**
 	 * Returns a collection containing all simple value properties in the
 	 * container.
 	 * 
@@ -122,12 +122,34 @@ public interface IPropertyContainerAccess {
 	Set<String> getSimpleValuePropertyNames();
 
 	/**
-	 * Checks if the container holds any properties?
+	 * Returns a set containing the names of all unresolved imported value
+	 * references in the container.
 	 * 
-	 * @return <code>true</code> if the container holds any properties,
-	 *         otherwise <code>false</code>
+	 * @return set containing the names of all unresolved imported value
+	 *         references in the container or an empty set if no such property
+	 *         exists
 	 */
-	boolean hasProperties();
+	Set<String> getUnresolvedReferencePropertyNames();
+
+	/**
+	 * Returns a set containing the names of all value reference properties in
+	 * the container.
+	 * 
+	 * @return set containing the names of all value reference properties in the
+	 *         container or an empty set if no such property exists
+	 */
+	Set<String> getValueReferencePropertyNames();
+
+	/**
+	 * Checks if the container has a reference property with the name
+	 * <code>name</code>.
+	 * 
+	 * @param name
+	 *            name of property
+	 * @return <code>true</code> if the container holds a reference property
+	 *         <code>name</code>, otherwise <code>false</code>
+	 */
+	boolean hasFileReferenceProperty(String name);
 
 	/**
 	 * Checks if the container has a property with the name <code>name</code>.
@@ -140,18 +162,7 @@ public interface IPropertyContainerAccess {
 	boolean hasProperty(String name);
 
 	/**
-	 * Checks if the container has a reference property with the name
-	 * <code>name</code>.
-	 * 
-	 * @param name
-	 *            name of property
-	 * @return <code>true</code> if the container holds a reference property
-	 *         <code>name</code>, otherwise <code>false</code>
-	 */
-	boolean hasReferenceProperty(String name);
-
-	/**
-	 * Checks if the container has a simple property with the name
+	 * Checks if the container has a simple value property with the name
 	 * <code>name</code>.
 	 * 
 	 * @param name
@@ -159,7 +170,27 @@ public interface IPropertyContainerAccess {
 	 * @return <code>true</code> if the container holds a simple value property
 	 *         <code>name</code>, otherwise <code>false</code>
 	 */
-	boolean hasSimpleProperty(String name);
+	boolean hasSimpleValueProperty(String name);
+
+	/**
+	 * Checks if the current property container contains unresolved reference
+	 * properties.
+	 * 
+	 * @return <code>true</code> if current property container contains
+	 *         unresolved reference properties, otherwise <code>false</code>
+	 */
+	boolean hasUnresolvedReferenceProperties();
+
+	/**
+	 * Checks if the container has a value reference property with the name
+	 * <code>name</code>.
+	 * 
+	 * @param name
+	 *            name of property
+	 * @return <code>true</code> if the container holds a value reference
+	 *         property <code>name</code>, otherwise <code>false</code>
+	 */
+	boolean hasValueReferenceProperty(String name);
 
 	/**
 	 * Checks if property container is empty.
@@ -168,4 +199,14 @@ public interface IPropertyContainerAccess {
 	 *         <code>false</code>
 	 */
 	boolean isEmpty();
+
+	/**
+	 * Checks if the simple value property <code>name</code> is resolved.
+	 * 
+	 * @param name
+	 *            name of property
+	 * @return <code>true</code> if simple value property is resolved, otherwise
+	 *         <code>false</code>
+	 */
+	boolean isResolved(String name);
 }

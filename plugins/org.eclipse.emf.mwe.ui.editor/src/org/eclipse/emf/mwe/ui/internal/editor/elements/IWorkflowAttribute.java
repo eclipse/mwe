@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.elements;
 
+import java.util.regex.Pattern;
+
 public interface IWorkflowAttribute extends IRangeCheck {
 
 	String FILE_ATTRIBUTE = "file";
@@ -26,6 +28,8 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	String ID_REF_ATTRIBUTE = "idRef";
 
 	String INHERIT_ALL_ATTRIBUTE = "inheritAll";
+
+	Pattern PROPERTY_REFERENCE_PATTERN = Pattern.compile("\\$\\{([a-zA-Z0-9._\\-]+)\\}");
 
 	/**
 	 * Returns the position range of the whole attribute.
@@ -56,19 +60,19 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	String getName();
 
 	/**
+	 * Returns the name of the property reference, if any exists.
+	 * 
+	 * @return name of property reference or <code>null</code> if attribute
+	 *         holds no property reference
+	 */
+	String getPropertyReferenceName();
+
+	/**
 	 * Returns the value of field <code>value</code>.
 	 * 
 	 * @return value of <code>value</code>.
 	 */
 	String getValue();
-
-	/**
-	 * Sets the workflow element that the current attribute is attached to.
-	 * 
-	 * @param element
-	 *            the element
-	 */
-	void setElement(AbstractWorkflowElement element);
 
 	/**
 	 * Checks if current attribute contains a property reference.
@@ -85,4 +89,12 @@ public interface IWorkflowAttribute extends IRangeCheck {
 	 *         property reference, otherwise <code>false</code>
 	 */
 	boolean hasResolvedPropertyReference();
+
+	/**
+	 * Sets the workflow element that the current attribute is attached to.
+	 * 
+	 * @param element
+	 *            the element
+	 */
+	void setElement(AbstractWorkflowElement element);
 }
