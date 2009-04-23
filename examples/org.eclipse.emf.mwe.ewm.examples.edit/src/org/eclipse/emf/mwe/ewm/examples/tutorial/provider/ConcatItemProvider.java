@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: ConcatItemProvider.java,v 1.1 2009/03/24 19:59:09 bhunt Exp $
+ * $Id: ConcatItemProvider.java,v 1.2 2009/04/23 05:07:12 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.examples.tutorial.provider;
 
@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,12 +20,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.examples.provider.TutorialEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.examples.tutorial.Concat;
 import org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.provider.WorkflowUnitOfWorkItemProvider;
 
 /**
@@ -62,7 +57,8 @@ public class ConcatItemProvider
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if (itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null)
+		{
 			super.getPropertyDescriptors(object);
 
 			addInputMessagePropertyDescriptor(object);

@@ -18,18 +18,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Engine</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Engine</b></em>'. <!-- end-user-doc -->
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getWorkflow <em>Workflow</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getContext <em>Context</em>}</li>
+ * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getWorkflow <em>Workflow</em>}</li>
+ * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowEngine()
  * @model kind="class" superTypes="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunnable"
  * @generated
@@ -37,9 +35,8 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 public class WorkflowEngine extends WorkflowRunnable
 {
 	/**
-	 * The cached value of the '{@link #getWorkflow() <em>Workflow</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getWorkflow() <em>Workflow</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getWorkflow()
 	 * @generated
 	 * @ordered
@@ -47,9 +44,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	protected WorkflowComponent workflow;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
@@ -57,8 +53,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	protected WorkflowContext context;
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkflowEngine()
@@ -67,8 +63,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -78,13 +74,12 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Workflow</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Workflow</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Workflow</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Workflow</em>' containment reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Workflow</em>' containment reference.
 	 * @see #setWorkflow(WorkflowComponent)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowEngine_Workflow()
@@ -97,8 +92,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetWorkflow(WorkflowComponent newWorkflow, NotificationChain msgs)
@@ -108,16 +103,19 @@ public class WorkflowEngine extends WorkflowRunnable
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, oldWorkflow, newWorkflow);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getWorkflow <em>Workflow</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Workflow</em>' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getWorkflow <em>Workflow</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *          the new value of the '<em>Workflow</em>' containment reference.
 	 * @see #getWorkflow()
 	 * @generated
 	 */
@@ -127,24 +125,24 @@ public class WorkflowEngine extends WorkflowRunnable
 		{
 			NotificationChain msgs = null;
 			if (workflow != null)
-				msgs = ((InternalEObject)workflow).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, null, msgs);
+				msgs = ((InternalEObject) workflow).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, null, msgs);
 			if (newWorkflow != null)
-				msgs = ((InternalEObject)newWorkflow).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, null, msgs);
+				msgs = ((InternalEObject) newWorkflow).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, null, msgs);
 			msgs = basicSetWorkflow(newWorkflow, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null)
+				msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__WORKFLOW, newWorkflow, newWorkflow));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Context</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Context</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Context</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Context</em>' containment reference.
 	 * @see #setContext(WorkflowContext)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowEngine_Context()
@@ -157,8 +155,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetContext(WorkflowContext newContext, NotificationChain msgs)
@@ -168,16 +166,19 @@ public class WorkflowEngine extends WorkflowRunnable
 		if (eNotificationRequired())
 		{
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__CONTEXT, oldContext, newContext);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getContext <em>Context</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine#getContext <em>Context</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value
+	 *          the new value of the '<em>Context</em>' containment reference.
 	 * @see #getContext()
 	 * @generated
 	 */
@@ -187,30 +188,32 @@ public class WorkflowEngine extends WorkflowRunnable
 		{
 			NotificationChain msgs = null;
 			if (context != null)
-				msgs = ((InternalEObject)context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__CONTEXT, null, msgs);
+				msgs = ((InternalEObject) context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__CONTEXT, null, msgs);
 			if (newContext != null)
-				msgs = ((InternalEObject)newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__CONTEXT, null, msgs);
+				msgs = ((InternalEObject) newContext).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - RuntimePackage.WORKFLOW_ENGINE__CONTEXT, null, msgs);
 			msgs = basicSetContext(newContext, msgs);
-			if (msgs != null) msgs.dispatch();
+			if (msgs != null)
+				msgs.dispatch();
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_ENGINE__CONTEXT, newContext, newContext));
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated NOT
 	 */
 	public void run()
 	{
+		getContext().setWorkflow(getWorkflow());
 		getWorkflow().start(getContext());
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated NOT
 	 */
@@ -220,8 +223,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,8 +241,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,8 +259,8 @@ public class WorkflowEngine extends WorkflowRunnable
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -266,18 +269,18 @@ public class WorkflowEngine extends WorkflowRunnable
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
-				setWorkflow((WorkflowComponent)newValue);
+				setWorkflow((WorkflowComponent) newValue);
 				return;
 			case RuntimePackage.WORKFLOW_ENGINE__CONTEXT:
-				setContext((WorkflowContext)newValue);
+				setContext((WorkflowContext) newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,18 +289,18 @@ public class WorkflowEngine extends WorkflowRunnable
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_ENGINE__WORKFLOW:
-				setWorkflow((WorkflowComponent)null);
+				setWorkflow((WorkflowComponent) null);
 				return;
 			case RuntimePackage.WORKFLOW_ENGINE__CONTEXT:
-				setContext((WorkflowContext)null);
+				setContext((WorkflowContext) null);
 				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

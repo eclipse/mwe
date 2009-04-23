@@ -10,16 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Parallel Workflow Orchestrator</b></em>'. <!-- end-user-doc -->

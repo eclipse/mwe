@@ -2,16 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowEditorPlugin.java,v 1.1 2009/04/13 03:23:16 bhunt Exp $
+ * $Id: WorkflowEditorPlugin.java,v 1.2 2009/04/23 05:07:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.presentation;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**

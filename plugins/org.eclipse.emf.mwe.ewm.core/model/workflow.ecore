@@ -182,7 +182,12 @@
           eType="#//runtime/WorkflowStateMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="log" upperBound="-1"
           eType="#//runtime/WorkflowLogMap" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="logLevel" eType="#//runtime/WorkflowLogEntryType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="logLevel" lowerBound="1"
+          eType="#//runtime/WorkflowLogEntryType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workflow" lowerBound="1"
+          eType="#//WorkflowComponent"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="activeComponents" upperBound="-1"
+          eType="#//WorkflowComponent"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowEngine" eSuperTypes="#//runtime/WorkflowRunnable">
       <eOperations name="run"/>

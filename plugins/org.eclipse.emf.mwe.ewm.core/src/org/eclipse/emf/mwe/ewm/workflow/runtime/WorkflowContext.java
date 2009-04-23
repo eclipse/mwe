@@ -10,11 +10,13 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
+import java.util.Collection;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -22,6 +24,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
@@ -41,6 +44,8 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getStates <em>States</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog <em>Log</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
  * </ul>
  * </p>
  *
@@ -118,6 +123,26 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected WorkflowLogEntryType logLevel = LOG_LEVEL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getWorkflow() <em>Workflow</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWorkflow()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkflowComponent workflow;
+
+	/**
+	 * The cached value of the '{@link #getActiveComponents() <em>Active Components</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActiveComponents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<WorkflowComponent> activeComponents;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -246,7 +271,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
 	 * @see #setLogLevel(WorkflowLogEntryType)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_LogLevel()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	public WorkflowLogEntryType getLogLevel()
@@ -272,6 +297,84 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		
 		for(WorkflowLog log : getLog().values())
 			log.setLogLevel(newLogLevel);
+	}
+
+	/**
+	 * Returns the value of the '<em><b>Workflow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Workflow</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Workflow</em>' reference.
+	 * @see #setWorkflow(WorkflowComponent)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_Workflow()
+	 * @model required="true"
+	 * @generated
+	 */
+	public WorkflowComponent getWorkflow()
+	{
+		if (workflow != null && workflow.eIsProxy())
+		{
+			InternalEObject oldWorkflow = (InternalEObject)workflow;
+			workflow = (WorkflowComponent)eResolveProxy(oldWorkflow);
+			if (workflow != oldWorkflow)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW, oldWorkflow, workflow));
+			}
+		}
+		return workflow;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowComponent basicGetWorkflow()
+	{
+		return workflow;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workflow</em>' reference.
+	 * @see #getWorkflow()
+	 * @generated
+	 */
+	public void setWorkflow(WorkflowComponent newWorkflow)
+	{
+		WorkflowComponent oldWorkflow = workflow;
+		workflow = newWorkflow;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW, oldWorkflow, workflow));
+	}
+
+	/**
+	 * Returns the value of the '<em><b>Active Components</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Active Components</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Active Components</em>' reference list.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_ActiveComponents()
+	 * @model
+	 * @generated
+	 */
+	public EList<WorkflowComponent> getActiveComponents()
+	{
+		if (activeComponents == null)
+		{
+			activeComponents = new EObjectResolvingEList<WorkflowComponent>(WorkflowComponent.class, this, RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
+		}
+		return activeComponents;
 	}
 
 	/**
@@ -355,6 +458,11 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				else return getLog().map();
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
 				return getLogLevel();
+			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
+				if (resolve) return getWorkflow();
+				return basicGetWorkflow();
+			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
+				return getActiveComponents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -364,6 +472,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -380,6 +489,13 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
 				setLogLevel((WorkflowLogEntryType)newValue);
+				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
+				setWorkflow((WorkflowComponent)newValue);
+				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
+				getActiveComponents().clear();
+				getActiveComponents().addAll((Collection<? extends WorkflowComponent>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -407,6 +523,12 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
 				setLogLevel(LOG_LEVEL_EDEFAULT);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
+				setWorkflow((WorkflowComponent)null);
+				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
+				getActiveComponents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -431,6 +553,10 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return log != null && !log.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
 				return logLevel != LOG_LEVEL_EDEFAULT;
+			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
+				return workflow != null;
+			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
+				return activeComponents != null && !activeComponents.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

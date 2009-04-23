@@ -2,17 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialEditPlugin.java,v 1.1 2009/03/24 19:59:10 bhunt Exp $
+ * $Id: TutorialEditPlugin.java,v 1.2 2009/04/23 05:07:13 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.examples.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
-import org.eclipse.emf.mwe.ewm.workflow.provider.WorkflowEditPlugin;
+import org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin;
 
 /**
  * This is the central singleton for the Tutorial edit plugin.
@@ -45,7 +42,8 @@ public final class TutorialEditPlugin extends EMFPlugin {
 	 */
 	public TutorialEditPlugin() {
 		super
-		  (new ResourceLocator [] {
+		  (new ResourceLocator [] 
+		   {
 		     EcoreEditPlugin.INSTANCE,
 		     WorkflowEditPlugin.INSTANCE,
 		   });

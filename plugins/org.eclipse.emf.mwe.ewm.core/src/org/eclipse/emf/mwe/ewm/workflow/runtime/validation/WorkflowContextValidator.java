@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.ewm.workflow.runtime.validation;
 
 import java.util.concurrent.ExecutorService;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
@@ -36,4 +37,8 @@ public interface WorkflowContextValidator
 	boolean validateLog(EMap<WorkflowComponent, WorkflowLog> value);
 
 	boolean validateLogLevel(WorkflowLogEntryType value);
+
+	boolean validateWorkflow(WorkflowComponent value);
+
+	boolean validateActiveComponents(EList<WorkflowComponent> value);
 }

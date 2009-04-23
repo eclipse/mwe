@@ -45,4 +45,10 @@ public class WorkflowSuccessState extends WorkflowDoneState
 		return StatePackage.Literals.WORKFLOW_SUCCESS_STATE;
 	}
 
+	@Override
+	public String getDisplayName()
+	{
+		return "Success";
+	}
+
 } // WorkflowSuccessState

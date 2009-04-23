@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialItemProviderAdapterFactory.java,v 1.1 2009/03/24 19:59:09 bhunt Exp $
+ * $Id: TutorialItemProviderAdapterFactory.java,v 1.2 2009/04/23 05:07:12 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.examples.tutorial.provider;
 
@@ -13,15 +13,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -34,21 +29,14 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.examples.provider.TutorialEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialFactory;
-
 import org.eclipse.emf.mwe.ewm.examples.tutorial.util.TutorialAdapterFactory;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.util.RuntimeSwitch;
-
 import org.eclipse.emf.mwe.ewm.workflow.util.WorkflowSwitch;
 
 /**
@@ -115,7 +103,8 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 	 */
 	@Override
 	public Adapter createConcatAdapter() {
-		if (concatItemProvider == null) {
+		if (concatItemProvider == null)
+		{
 			concatItemProvider = new ConcatItemProvider(this);
 		}
 
@@ -170,9 +159,11 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if (isFactoryForType(type)) {
+		if (isFactoryForType(type))
+		{
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter)))
+			{
 				return adapter;
 			}
 		}
@@ -209,7 +200,8 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
 
-		if (parentAdapterFactory != null) {
+		if (parentAdapterFactory != null)
+		{
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
@@ -270,7 +262,8 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 			 * @generated
 			 */
 			@Override
-			public Object caseWorkflowCompositeComponent(WorkflowCompositeComponent object) {
+			public Object caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
+			{
 				newChildDescriptors.add
 					(createChildParameter
 						(WorkflowPackage.Literals.WORKFLOW_COMPOSITE_COMPONENT__COMPONENTS,
@@ -278,7 +271,6 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->
@@ -357,7 +349,8 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 			 * @generated
 			 */
 			@Override
-			public Object caseWorkflowEngine(WorkflowEngine object) {
+			public Object caseWorkflowEngine(WorkflowEngine object)
+			{
 				newChildDescriptors.add
 					(createChildParameter
 						(RuntimePackage.Literals.WORKFLOW_ENGINE__WORKFLOW,
@@ -365,7 +358,6 @@ public class TutorialItemProviderAdapterFactory extends TutorialAdapterFactory i
 
 				return null;
 			}
- 
 			/**
 			 * <!-- begin-user-doc -->
 			 * <!-- end-user-doc -->

@@ -48,7 +48,7 @@ public class WorkflowDoneState extends WorkflowState
 	@Override
 	public String getDisplayName()
 	{
-		return "done";
+		return "Done";
 	}
 
 	

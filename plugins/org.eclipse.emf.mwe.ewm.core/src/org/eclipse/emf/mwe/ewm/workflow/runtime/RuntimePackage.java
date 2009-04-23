@@ -132,13 +132,31 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__LOG_LEVEL = 4;
 
 	/**
+	 * The feature id for the '<em><b>Workflow</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__WORKFLOW = 5;
+
+	/**
+	 * The feature id for the '<em><b>Active Components</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__ACTIVE_COMPONENTS = 6;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 5;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -845,6 +863,36 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Workflow</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EReference getWorkflowContext_Workflow()
+	{
+		return (EReference)workflowContextEClass.getEStructuralFeatures().get(5);
+	}
+
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Active Components</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EReference getWorkflowContext_ActiveComponents()
+	{
+		return (EReference)workflowContextEClass.getEStructuralFeatures().get(6);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1399,6 +1447,8 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__STATES);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__LOG);
 		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__LOG_LEVEL);
+		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__WORKFLOW);
+		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -1499,7 +1549,9 @@ public class RuntimePackage extends EPackageImpl
 		initEAttribute(getWorkflowContext_ThreadPool(), this.getExecutorService(), "threadPool", null, 0, 1, WorkflowContext.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_States(), this.getWorkflowStateMap(), null, "states", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_Log(), this.getWorkflowLogMap(), null, "log", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkflowContext_LogLevel(), this.getWorkflowLogEntryType(), "logLevel", null, 0, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowContext_LogLevel(), this.getWorkflowLogEntryType(), "logLevel", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowContext_Workflow(), theWorkflowPackage.getWorkflowComponent(), null, "workflow", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowContext_ActiveComponents(), theWorkflowPackage.getWorkflowComponent(), null, "activeComponents", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1714,6 +1766,22 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EAttribute WORKFLOW_CONTEXT__LOG_LEVEL = eINSTANCE.getWorkflowContext_LogLevel();
+
+		/**
+		 * The meta object literal for the '<em><b>Workflow</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_CONTEXT__WORKFLOW = eINSTANCE.getWorkflowContext_Workflow();
+
+		/**
+		 * The meta object literal for the '<em><b>Active Components</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_CONTEXT__ACTIVE_COMPONENTS = eINSTANCE.getWorkflowContext_ActiveComponents();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.

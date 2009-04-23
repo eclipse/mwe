@@ -55,4 +55,10 @@ public abstract class WorkflowState extends EObjectImpl implements EObject
 	 * @generated NOT
 	 */
 	public abstract String getDisplayName();
+	
+	@Override
+	public String toString()
+	{
+		return getDisplayName();
+	}
 }
