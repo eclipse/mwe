@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="orchestration" name="Workflow Orchestration" schema="schema/orchestration.exsd"/>
+   <extension-point id="parameter" name="Workflow Parameter" schema="schema/parameter.exsd"/>
+   <extension
+         point="org.eclipse.emf.mwe.ewm.ui.orchestration">
+      <component
+            class="org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy"
+            displayName="Default"
+            nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration">
+      </component>
+      <component
+            class="org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy"
+            displayName="Conditional"
+            nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration">
+      </component>
+   </extension>
+   <extension
+         point="org.eclipse.emf.mwe.ewm.ui.parameter">
+      <type
+            class="org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter"
+            helper="org.eclipse.emf.mwe.ewm.ui.editor.WorkflowParameterEditorHelper"
+            name="Default">
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            class="org.eclipse.emf.mwe.ewm.ui.views.WorkflowStatusView"
+            id="org.eclipse.emf.mwe.ewm.ui.workflowStatusView"
+            name="Workflow Status"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.emf.mwe.ewm.ui.viewWorkflowStatus"
+            name="View Workflow Status">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.emf.mwe.ewm.ui.viewWorkflowStatus"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.mwe.ewm.ui.views.ShowWorkflowStatusHandler"
+            commandId="org.eclipse.emf.mwe.ewm.ui.viewWorkflowStatus">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.core.resources.IFile">
+                     </instanceof>
+                     <test
+                           property="org.eclipse.core.resources.extension"
+                           value="runtime">
+                     </test>
+                  </and>
+               </iterate>
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+
+</plugin>
