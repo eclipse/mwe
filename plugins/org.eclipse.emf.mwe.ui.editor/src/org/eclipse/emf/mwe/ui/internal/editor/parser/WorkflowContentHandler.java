@@ -45,7 +45,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.47 $
+ * @version $Revision: 1.48 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -476,7 +476,6 @@ public class WorkflowContentHandler extends DefaultHandler {
 		e.addElement(element);
 		if (!isSubProcess) {
 			MarkerManager.createMarker(getFile(), document, element, e.getMessage(), true);
-			Log.logError(e.getElementTrace(), e);
 		}
 		else
 			throw e;

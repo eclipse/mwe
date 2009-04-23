@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 
 public class Property {
@@ -40,11 +40,11 @@ public class Property {
 			if (element.isSimpleProperty()) {
 				setValue(element.getAttributeValue(IWorkflowAttribute.VALUE_ATTRIBUTE));
 			}
-			else if (element.isFileProperty()) {
-				setFile(element.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE));
-			}
 			else
 				throw new RuntimeException("Incomplete property specification");
+		}
+		else if (element.isFileProperty()) {
+			setFile(element.getAttributeValue(IWorkflowAttribute.FILE_ATTRIBUTE));
 		}
 		else if (element.getAttributeCount() == 1 && element.hasAttribute(IWorkflowAttribute.VALUE_ATTRIBUTE)) {
 			name = element.getName();
