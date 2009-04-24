@@ -33,6 +33,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.marker.MarkerManager;
 import org.eclipse.emf.mwe.ui.internal.editor.outline.WorkflowContentOutlinePage;
 import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
+import org.eclipse.emf.mwe.ui.internal.editor.preferences.PreferenceConstants;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
@@ -79,7 +80,7 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.60 $
+ * @version $Revision: 1.61 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
@@ -107,27 +108,6 @@ public class WorkflowEditor extends TextEditor {
 	public WorkflowEditor() {
 		super();
 		colorManager = new ColorManager();
-	}
-
-	/**
-	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#init(org.eclipse.ui.IEditorSite,
-	 *      org.eclipse.ui.IEditorInput)
-	 */
-	@Override
-	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
-		// do document provider setup
-		setSourceViewerConfiguration(new WorkflowEditorConfiguration(WorkflowEditorPlugin.getDefault(), colorManager,
-				this));
-
-		// source viewer setup
-		setDocumentProvider(new WorkflowDocumentProvider());
-
-		// create chained pref. store
-		final IPreferenceStore store = new ChainedPreferenceStore(new IPreferenceStore[] {
-				WorkflowEditorPlugin.getDefault().getPreferenceStore(), EditorsUI.getPreferenceStore() });
-		setPreferenceStore(store);
-
-		super.init(site, input);
 	}
 
 	private static boolean isProblemMarkerAnnotation(final Annotation annotation) {
@@ -169,43 +149,6 @@ public class WorkflowEditor extends TextEditor {
 		else {
 			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
 		}
-	}
-
-	protected void updateOutlineSelection() {
-		if (outlinePage != null && isEditorActive()) {
-			final AbstractWorkflowElement element = computeHighlightedElement();
-			synchronizeOutlinePage(element);
-		}
-	}
-
-	private void synchronizeOutlinePage(final AbstractWorkflowElement element) {
-		if (outlinePage != null && element != null) {
-			outlinePage.select(element);
-		}
-
-	}
-
-	private AbstractWorkflowElement computeHighlightedElement() {
-		final ISourceViewer sourceViewer = getSourceViewer();
-		if (sourceViewer == null)
-			return null;
-
-		final StyledText styledText = sourceViewer.getTextWidget();
-		if (styledText == null)
-			return null;
-
-		int caret = 0;
-		if (sourceViewer instanceof ITextViewerExtension5) {
-			final ITextViewerExtension5 extension = (ITextViewerExtension5) sourceViewer;
-			caret = extension.widgetOffset2ModelOffset(styledText.getCaretOffset());
-		}
-		else {
-			final int offset = sourceViewer.getVisibleRegion().getOffset();
-			caret = offset + styledText.getCaretOffset();
-		}
-		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRootElement(),
-				getInputDocument(), caret);
-		return element;
 	}
 
 	@Override
@@ -280,6 +223,27 @@ public class WorkflowEditor extends TextEditor {
 	 */
 	public AbstractWorkflowElement getRootElement() {
 		return rootElement;
+	}
+
+	/**
+	 * @see org.eclipse.ui.texteditor.AbstractTextEditor#init(org.eclipse.ui.IEditorSite,
+	 *      org.eclipse.ui.IEditorInput)
+	 */
+	@Override
+	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
+		// do document provider setup
+		setSourceViewerConfiguration(new WorkflowEditorConfiguration(WorkflowEditorPlugin.getDefault(), colorManager,
+				this));
+
+		// source viewer setup
+		setDocumentProvider(new WorkflowDocumentProvider());
+
+		// create chained pref. store
+		final IPreferenceStore store = new ChainedPreferenceStore(new IPreferenceStore[] {
+				WorkflowEditorPlugin.getDefault().getPreferenceStore(), EditorsUI.getPreferenceStore() });
+		setPreferenceStore(store);
+
+		super.init(site, input);
 	}
 
 	public ISourceViewer internalGetSourceViewer() {
@@ -437,6 +401,13 @@ public class WorkflowEditor extends TextEditor {
 		actionGroup.fillContextMenu(menu);
 	}
 
+	protected void updateOutlineSelection() {
+		if (isOutlineUpdatingEnabled() && outlinePage != null && isEditorActive()) {
+			final AbstractWorkflowElement element = computeHighlightedElement();
+			synchronizeOutlinePage(element);
+		}
+	}
+
 	protected void updateStatusLine() {
 		final ITextSelection selection = (ITextSelection) getSelectionProvider().getSelection();
 		final Annotation annotation = getAnnotation(selection.getOffset(), selection.getLength());
@@ -449,6 +420,36 @@ public class WorkflowEditor extends TextEditor {
 			}
 		}
 		setStatusLineMessage(message);
+	}
+
+	private AbstractWorkflowElement computeHighlightedElement() {
+		final ISourceViewer sourceViewer = getSourceViewer();
+		if (sourceViewer == null)
+			return null;
+
+		final StyledText styledText = sourceViewer.getTextWidget();
+		if (styledText == null)
+			return null;
+
+		int caret = 0;
+		if (sourceViewer instanceof ITextViewerExtension5) {
+			final ITextViewerExtension5 extension = (ITextViewerExtension5) sourceViewer;
+			caret = extension.widgetOffset2ModelOffset(styledText.getCaretOffset());
+		}
+		else {
+			final int offset = sourceViewer.getVisibleRegion().getOffset();
+			caret = offset + styledText.getCaretOffset();
+		}
+		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRootElement(),
+				getInputDocument(), caret);
+		return element;
+	}
+
+	private IWorkbenchPart getActivePart() {
+		final IWorkbenchWindow window = getSite().getWorkbenchWindow();
+		final IPartService service = window.getPartService();
+		final IWorkbenchPart part = service.getActivePart();
+		return part;
 	}
 
 	private Annotation getAnnotation(final int offset, final int length) {
@@ -483,10 +484,15 @@ public class WorkflowEditor extends TextEditor {
 		return part == this;
 	}
 
-	private IWorkbenchPart getActivePart() {
-		final IWorkbenchWindow window = getSite().getWorkbenchWindow();
-		final IPartService service = window.getPartService();
-		final IWorkbenchPart part = service.getActivePart();
-		return part;
+	private boolean isOutlineUpdatingEnabled() {
+		final IPreferenceStore store = WorkflowEditorPlugin.getDefault().getCombinedPreferenceStore();
+		return store.getBoolean(PreferenceConstants.SYNCHRONIZE_OUTLINE_VIEW);
+	}
+
+	private void synchronizeOutlinePage(final AbstractWorkflowElement element) {
+		if (outlinePage != null && element != null) {
+			outlinePage.select(element);
+		}
+
 	}
 }

@@ -11,16 +11,19 @@
 
 package org.eclipse.emf.mwe.ui.internal.editor.autoedit;
 
+import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.autoedit.impl.xml.XMLAbstractAutoEditStrategy;
 import org.eclipse.emf.mwe.ui.internal.editor.logging.Log;
+import org.eclipse.emf.mwe.ui.internal.editor.preferences.PreferenceConstants;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TextTypeComputer;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.DocumentCommand;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 
 public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
@@ -33,6 +36,9 @@ public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
 	 *      org.eclipse.jface.text.DocumentCommand)
 	 */
 	public void customizeDocumentCommand(final IDocument document, final DocumentCommand command) {
+		if (!isAutoQuoteClosingEnabled())
+			return;
+
 		final int offset = command.offset;
 		final String text = command.text;
 		if (startsWithQuote(text)) {
@@ -46,6 +52,11 @@ public class SmartQuoteStrategy extends XMLAbstractAutoEditStrategy {
 			}
 
 		}
+	}
+
+	private boolean isAutoQuoteClosingEnabled() {
+		final IPreferenceStore store = WorkflowEditorPlugin.getDefault().getCombinedPreferenceStore();
+		return store.getBoolean(PreferenceConstants.AUTO_CLOSE_QUOTES);
 	}
 
 	private void duplicateQuote(final DocumentCommand command) {
