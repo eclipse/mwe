@@ -133,7 +133,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 */
 	public void visitUnitOfWork(WorkflowUnitOfWork unitOfWork)
 	{
-		getContext().getStates().put(unitOfWork, StateFactory.eINSTANCE.createWorkflowIdleState());
+		unitOfWork.setState(getContext(), StateFactory.eINSTANCE.createWorkflowIdleState());
 	}
 
 	/**
@@ -144,7 +144,7 @@ public class WorkflowStateResetter extends EObjectImpl implements IWorkflowVisit
 	 */
 	public void visitComposite(WorkflowCompositeComponent composite)
 	{
-		getContext().getStates().put(composite, StateFactory.eINSTANCE.createWorkflowIdleState());
+		composite.setState(getContext(), StateFactory.eINSTANCE.createWorkflowIdleState());
 
 		for(WorkflowComponent component : composite.getComponents())
 			component.accept(this);

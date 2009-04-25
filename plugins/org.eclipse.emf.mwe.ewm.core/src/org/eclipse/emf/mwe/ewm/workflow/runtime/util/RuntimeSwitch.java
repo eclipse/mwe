@@ -19,6 +19,7 @@ import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
@@ -190,6 +191,20 @@ public class RuntimeSwitch<T>
 				WorkflowLogResetter workflowLogResetter = (WorkflowLogResetter)theEObject;
 				T result = caseWorkflowLogResetter(workflowLogResetter);
 				if (result == null) result = caseIWorkflowVisitor(workflowLogResetter);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO:
+			{
+				WorkflowComponentExecutionInfo workflowComponentExecutionInfo = (WorkflowComponentExecutionInfo)theEObject;
+				T result = caseWorkflowComponentExecutionInfo(workflowComponentExecutionInfo);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP:
+			{
+				@SuppressWarnings("unchecked") Map.Entry<WorkflowComponent, WorkflowComponentExecutionInfo> workflowComponentExecutionInfoMap = (Map.Entry<WorkflowComponent, WorkflowComponentExecutionInfo>)theEObject;
+				T result = caseWorkflowComponentExecutionInfoMap(workflowComponentExecutionInfoMap);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -401,6 +416,38 @@ public class RuntimeSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowLogResetter(WorkflowLogResetter object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Component Execution Info</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Component Execution Info</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowComponentExecutionInfo(WorkflowComponentExecutionInfo object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Component Execution Info Map</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Component Execution Info Map</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowComponentExecutionInfoMap(Map.Entry<WorkflowComponent, WorkflowComponentExecutionInfo> object)
 	{
 		return null;
 	}

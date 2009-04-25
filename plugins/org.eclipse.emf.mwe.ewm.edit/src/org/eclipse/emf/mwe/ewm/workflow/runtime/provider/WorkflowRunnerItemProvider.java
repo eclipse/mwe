@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowRunnerItemProvider.java,v 1.3 2009/04/23 05:06:40 bhunt Exp $
+ * $Id: WorkflowRunnerItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,7 +19,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 
 /**

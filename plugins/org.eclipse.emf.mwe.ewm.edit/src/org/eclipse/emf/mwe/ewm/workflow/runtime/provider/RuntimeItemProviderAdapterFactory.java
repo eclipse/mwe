@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeItemProviderAdapterFactory.java,v 1.3 2009/04/23 05:06:41 bhunt Exp $
+ * $Id: RuntimeItemProviderAdapterFactory.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -13,11 +13,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -31,11 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.util.RuntimeAdapterFactory;
 
 /**
@@ -397,6 +391,56 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowComponentExecutionInfoItemProvider workflowComponentExecutionInfoItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowComponentExecutionInfoAdapter()
+	{
+		if (workflowComponentExecutionInfoItemProvider == null)
+		{
+			workflowComponentExecutionInfoItemProvider = new WorkflowComponentExecutionInfoItemProvider(this);
+		}
+
+		return workflowComponentExecutionInfoItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowComponentExecutionInfoMapItemProvider workflowComponentExecutionInfoMapItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link java.util.Map.Entry}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowComponentExecutionInfoMapAdapter()
+	{
+		if (workflowComponentExecutionInfoMapItemProvider == null)
+		{
+			workflowComponentExecutionInfoMapItemProvider = new WorkflowComponentExecutionInfoMapItemProvider(this);
+		}
+
+		return workflowComponentExecutionInfoMapItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -549,6 +593,8 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 		if (workflowLogEntryItemProvider != null) workflowLogEntryItemProvider.dispose();
 		if (workflowLogMapItemProvider != null) workflowLogMapItemProvider.dispose();
 		if (workflowLogResetterItemProvider != null) workflowLogResetterItemProvider.dispose();
+		if (workflowComponentExecutionInfoItemProvider != null) workflowComponentExecutionInfoItemProvider.dispose();
+		if (workflowComponentExecutionInfoMapItemProvider != null) workflowComponentExecutionInfoMapItemProvider.dispose();
 	}
 
 }

@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
@@ -310,6 +311,17 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 * @model
 	 * @generated NOT
 	 */
+	public void clearLog(WorkflowContext context)
+	{
+		context.getLog().get(this).getEntries().clear();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
 	public WorkflowLog getLog(WorkflowContext context)
 	{
 		WorkflowLog log = context.getLog().get(this);
@@ -322,6 +334,50 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		}
 		
 		return log;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	public WorkflowState getState(WorkflowContext context)
+	{
+		return context.getStates().get(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	public void setState(WorkflowContext context, WorkflowState state)
+	{
+		context.getStates().put(this, state);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	public WorkflowComponentExecutionInfo getExecutionInfo(WorkflowContext context)
+	{
+		return context.getExecutionInfo().get(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated NOT
+	 */
+	public void setExecutionInfo(WorkflowContext context, WorkflowComponentExecutionInfo executionInfo)
+	{
+		context.getExecutionInfo().put(this, executionInfo);
 	}
 
 	/**
@@ -341,10 +397,15 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public final void start(WorkflowContext context)
 	{
+		WorkflowComponentExecutionInfo executionInfo = RuntimeFactory.eINSTANCE.createWorkflowComponentExecutionInfo();
+		executionInfo.setStartTime(System.currentTimeMillis());
 		
 		getLog(context).logInfo("Component " + getName() + " started");
 		getComponentOrchestrationStrategy().run(this, context);
 		getLog(context).logInfo("Component " + getName() + " finished");
+
+		executionInfo.setEndTime(System.currentTimeMillis());
+		setExecutionInfo(context, executionInfo);
 	}
 
 	/**

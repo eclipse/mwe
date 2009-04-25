@@ -15,7 +15,12 @@ Package workflow <http://www.eclipse.org/emf/mwe/ewm/workflow>
     Operation accept(IWorkflowVisitor) : void
     Operation start(WorkflowContext) : void
     Operation run(WorkflowContext) : WorkflowState
+    Operation clearLog(WorkflowContext) : void
     Operation getLog(WorkflowContext) : WorkflowLog
+    Operation getState(WorkflowContext) : WorkflowState
+    Operation setState(WorkflowContext, WorkflowState) : void
+    Operation getExecutionInfo(WorkflowContext) : WorkflowComponentExecutionInfo
+    Operation setExecutionInfo(WorkflowContext, WorkflowComponentExecutionInfo) : void
 
   Class WorkflowCompositeComponent -> WorkflowComponent
     Reference components : WorkflowComponent<<0..*>>
@@ -56,3 +61,6 @@ Package workflow <http://www.eclipse.org/emf/mwe/ewm/workflow>
   Class IWorkflowVisitor
     Operation visitUnitOfWork(WorkflowUnitOfWork) : void
     Operation visitComposite(WorkflowCompositeComponent) : void
+
+  Class WorkflowComponentProxy -> WorkflowComponent
+    Reference targetComponent : WorkflowComponent<<1..1>>

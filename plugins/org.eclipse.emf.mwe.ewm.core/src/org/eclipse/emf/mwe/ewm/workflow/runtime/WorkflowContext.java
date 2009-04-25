@@ -46,6 +46,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
  * </ul>
  * </p>
  *
@@ -143,6 +144,16 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected EList<WorkflowComponent> activeComponents;
+
+	/**
+	 * The cached value of the '{@link #getExecutionInfo() <em>Execution Info</em>}' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExecutionInfo()
+	 * @generated
+	 * @ordered
+	 */
+	protected EMap<WorkflowComponent, WorkflowComponentExecutionInfo> executionInfo;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -378,6 +389,30 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Execution Info</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent},
+	 * and the value is of type {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo},
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Execution Info</em>' map isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Execution Info</em>' map.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_ExecutionInfo()
+	 * @model mapType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap<org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent, org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo>"
+	 * @generated
+	 */
+	public EMap<WorkflowComponent, WorkflowComponentExecutionInfo> getExecutionInfo()
+	{
+		if (executionInfo == null)
+		{
+			executionInfo = new EcoreEMap<WorkflowComponent,WorkflowComponentExecutionInfo>(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP, WorkflowComponentExecutionInfoMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO);
+		}
+		return executionInfo;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
@@ -431,6 +466,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return ((InternalEList<?>)getStates()).basicRemove(otherEnd, msgs);
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
 				return ((InternalEList<?>)getLog()).basicRemove(otherEnd, msgs);
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
+				return ((InternalEList<?>)getExecutionInfo()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -463,6 +500,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return basicGetWorkflow();
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				return getActiveComponents();
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
+				if (coreType) return getExecutionInfo();
+				else return getExecutionInfo().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -497,6 +537,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				getActiveComponents().clear();
 				getActiveComponents().addAll((Collection<? extends WorkflowComponent>)newValue);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
+				((EStructuralFeature.Setting)getExecutionInfo()).set(newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -529,6 +572,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				getActiveComponents().clear();
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
+				getExecutionInfo().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -557,6 +603,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return workflow != null;
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				return activeComponents != null && !activeComponents.isEmpty();
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
+				return executionInfo != null && !executionInfo.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

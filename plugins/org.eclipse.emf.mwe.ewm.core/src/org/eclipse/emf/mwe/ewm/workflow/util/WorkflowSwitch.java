@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
+import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
@@ -166,6 +167,14 @@ public class WorkflowSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case WorkflowPackage.WORKFLOW_COMPONENT_PROXY:
+			{
+				WorkflowComponentProxy workflowComponentProxy = (WorkflowComponentProxy)theEObject;
+				T result = caseWorkflowComponentProxy(workflowComponentProxy);
+				if (result == null) result = caseWorkflowComponent(workflowComponentProxy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -294,6 +303,22 @@ public class WorkflowSwitch<T>
 	 * @generated
 	 */
 	public T caseIWorkflowVisitor(IWorkflowVisitor object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Component Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Component Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowComponentProxy(WorkflowComponentProxy object)
 	{
 		return null;
 	}

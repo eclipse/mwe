@@ -83,6 +83,7 @@ public class WorkflowFactory extends EFactoryImpl
 			case WorkflowPackage.WORKFLOW_PARAMETER_VALUE_STRATEGY: return createWorkflowParameterValueStrategy();
 			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION: return createWorkflowParameterConnection();
 			case WorkflowPackage.WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY: return createWorkflowParameterSimpleValueStrategy();
+			case WorkflowPackage.WORKFLOW_COMPONENT_PROXY: return createWorkflowComponentProxy();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -141,6 +142,17 @@ public class WorkflowFactory extends EFactoryImpl
 	{
 		WorkflowParameterSimpleValueStrategy workflowParameterSimpleValueStrategy = new WorkflowParameterSimpleValueStrategy();
 		return workflowParameterSimpleValueStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowComponentProxy createWorkflowComponentProxy()
+	{
+		WorkflowComponentProxy workflowComponentProxy = new WorkflowComponentProxy();
+		return workflowComponentProxy;
 	}
 
 	/**

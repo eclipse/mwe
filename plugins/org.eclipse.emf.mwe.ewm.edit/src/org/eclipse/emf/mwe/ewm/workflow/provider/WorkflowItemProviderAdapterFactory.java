@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowItemProviderAdapterFactory.java,v 1.3 2009/04/23 05:07:10 bhunt Exp $
+ * $Id: WorkflowItemProviderAdapterFactory.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.provider;
 
@@ -13,11 +13,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -31,11 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.util.WorkflowAdapterFactory;
 
 /**
@@ -222,6 +216,31 @@ public class WorkflowItemProviderAdapterFactory extends WorkflowAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowComponentProxyItemProvider workflowComponentProxyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowComponentProxyAdapter()
+	{
+		if (workflowComponentProxyItemProvider == null)
+		{
+			workflowComponentProxyItemProvider = new WorkflowComponentProxyItemProvider(this);
+		}
+
+		return workflowComponentProxyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -367,6 +386,7 @@ public class WorkflowItemProviderAdapterFactory extends WorkflowAdapterFactory i
 		if (workflowParameterValueStrategyItemProvider != null) workflowParameterValueStrategyItemProvider.dispose();
 		if (workflowParameterConnectionItemProvider != null) workflowParameterConnectionItemProvider.dispose();
 		if (workflowParameterSimpleValueStrategyItemProvider != null) workflowParameterSimpleValueStrategyItemProvider.dispose();
+		if (workflowComponentProxyItemProvider != null) workflowComponentProxyItemProvider.dispose();
 	}
 
 }

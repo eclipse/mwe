@@ -51,7 +51,7 @@ public class WorkflowRerunPredicate extends WorkflowExecutionPredicate
 	@Override
 	public boolean evaluate(WorkflowComponent component, WorkflowContext context)
 	{
-		return !(context.getStates().get(component) instanceof WorkflowSuccessState);
+		return !(component.getState(context) instanceof WorkflowSuccessState);
 	}
 
 } // WorkflowRerunPredicate

@@ -11,6 +11,8 @@
 
 package org.eclipse.emf.mwe.ewm.ui.views;
 
+import java.util.Calendar;
+
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -45,11 +47,33 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				return component.getName();
 				
 			case 1:
-				return "";
+			{
+				Calendar calendar = Calendar.getInstance();
+				long startTime = context.getExecutionInfo().get(component).getStartTime();
 				
+				if(startTime != 0)
+				{
+					calendar.setTimeInMillis(startTime);
+					return calendar.toString();
+				}
+				
+				return "Unknown";
+			}
+			
 			case 2:
-				return "";
+			{
+				Calendar calendar = Calendar.getInstance();
+				long endTime = context.getExecutionInfo().get(component).getEndTime();
 				
+				if(endTime != 0)
+				{
+					calendar.setTimeInMillis(endTime);
+					return calendar.toString();
+				}
+				
+				return "Unknown";
+			}
+			
 			case 3:
 				return context.getStates().get(component).getDisplayName();
 		}

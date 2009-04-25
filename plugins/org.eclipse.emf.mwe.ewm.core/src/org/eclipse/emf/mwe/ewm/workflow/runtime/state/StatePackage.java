@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
@@ -310,7 +309,6 @@ public class StatePackage extends EPackageImpl
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-		XMLTypePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		WorkflowPackage theWorkflowPackage = (WorkflowPackage)(EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI) instanceof WorkflowPackage ? EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI) : WorkflowPackage.eINSTANCE);

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowFailedStateItemProvider.java,v 1.3 2009/04/23 05:07:07 bhunt Exp $
+ * $Id: WorkflowFailedStateItemProvider.java,v 1.4 2009/04/25 04:21:31 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.state.provider;
 
@@ -12,7 +12,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;

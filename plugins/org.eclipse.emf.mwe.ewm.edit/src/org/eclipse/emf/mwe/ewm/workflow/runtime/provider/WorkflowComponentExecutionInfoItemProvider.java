@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLogEntryItemProvider.java,v 1.2 2009/04/25 04:21:31 bhunt Exp $
+ * $Id: WorkflowComponentExecutionInfoItemProvider.java,v 1.1 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -25,16 +25,15 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry} object.
+ * This is the item provider adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkflowLogEntryItemProvider
+public class WorkflowComponentExecutionInfoItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -49,7 +48,7 @@ public class WorkflowLogEntryItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowLogEntryItemProvider(AdapterFactory adapterFactory)
+	public WorkflowComponentExecutionInfoItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -67,51 +66,27 @@ public class WorkflowLogEntryItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addTypePropertyDescriptor(object);
-			addTimestampPropertyDescriptor(object);
-			addMessagePropertyDescriptor(object);
+			addStartTimePropertyDescriptor(object);
+			addEndTimePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature.
+	 * This adds a property descriptor for the Start Time feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object)
+	protected void addStartTimePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowLogEntry_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowLogEntry_type_feature", "_UI_WorkflowLogEntry_type"),
-				 RuntimePackage.Literals.WORKFLOW_LOG_ENTRY__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Timestamp feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTimestampPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkflowLogEntry_timestamp_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowLogEntry_timestamp_feature", "_UI_WorkflowLogEntry_type"),
-				 RuntimePackage.Literals.WORKFLOW_LOG_ENTRY__TIMESTAMP,
+				 getString("_UI_WorkflowComponentExecutionInfo_startTime_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponentExecutionInfo_startTime_feature", "_UI_WorkflowComponentExecutionInfo_type"),
+				 RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME,
 				 true,
 				 false,
 				 false,
@@ -121,30 +96,30 @@ public class WorkflowLogEntryItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Message feature.
+	 * This adds a property descriptor for the End Time feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMessagePropertyDescriptor(Object object)
+	protected void addEndTimePropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowLogEntry_message_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowLogEntry_message_feature", "_UI_WorkflowLogEntry_type"),
-				 RuntimePackage.Literals.WORKFLOW_LOG_ENTRY__MESSAGE,
+				 getString("_UI_WorkflowComponentExecutionInfo_endTime_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponentExecutionInfo_endTime_feature", "_UI_WorkflowComponentExecutionInfo_type"),
+				 RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME,
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
 				 null,
 				 null));
 	}
 
 	/**
-	 * This returns WorkflowLogEntry.gif.
+	 * This returns WorkflowComponentExecutionInfo.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -152,7 +127,7 @@ public class WorkflowLogEntryItemProvider
 	@Override
 	public Object getImage(Object object)
 	{
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkflowLogEntry"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkflowComponentExecutionInfo"));
 	}
 
 	/**
@@ -164,11 +139,8 @@ public class WorkflowLogEntryItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		WorkflowLogEntryType labelValue = ((WorkflowLogEntry)object).getType();
-		String label = labelValue == null ? null : labelValue.toString();
-		return label == null || label.length() == 0 ?
-			getString("_UI_WorkflowLogEntry_type") :
-			getString("_UI_WorkflowLogEntry_type") + " " + label;
+		WorkflowComponentExecutionInfo workflowComponentExecutionInfo = (WorkflowComponentExecutionInfo)object;
+		return getString("_UI_WorkflowComponentExecutionInfo_type") + " " + workflowComponentExecutionInfo.getStartTime();
 	}
 
 	/**
@@ -183,11 +155,10 @@ public class WorkflowLogEntryItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(WorkflowLogEntry.class))
+		switch (notification.getFeatureID(WorkflowComponentExecutionInfo.class))
 		{
-			case RuntimePackage.WORKFLOW_LOG_ENTRY__TYPE:
-			case RuntimePackage.WORKFLOW_LOG_ENTRY__TIMESTAMP:
-			case RuntimePackage.WORKFLOW_LOG_ENTRY__MESSAGE:
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME:
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

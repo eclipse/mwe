@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowEngineItemProvider.java,v 1.3 2009/04/23 05:06:37 bhunt Exp $
+ * $Id: WorkflowEngineItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -12,9 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
@@ -22,9 +20,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowFactory;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
@@ -168,6 +164,11 @@ public class WorkflowEngineItemProvider
 			(createChildParameter
 				(RuntimePackage.Literals.WORKFLOW_ENGINE__WORKFLOW,
 				 WorkflowFactory.eINSTANCE.createWorkflowCompositeComponent()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RuntimePackage.Literals.WORKFLOW_ENGINE__WORKFLOW,
+				 WorkflowFactory.eINSTANCE.createWorkflowComponentProxy()));
 
 		newChildDescriptors.add
 			(createChildParameter

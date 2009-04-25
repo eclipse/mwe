@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StateItemProviderAdapterFactory.java,v 1.3 2009/04/23 05:07:07 bhunt Exp $
+ * $Id: StateItemProviderAdapterFactory.java,v 1.4 2009/04/25 04:21:31 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.state.provider;
 
@@ -13,11 +13,8 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -31,11 +28,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.util.StateAdapterFactory;
 
 /**

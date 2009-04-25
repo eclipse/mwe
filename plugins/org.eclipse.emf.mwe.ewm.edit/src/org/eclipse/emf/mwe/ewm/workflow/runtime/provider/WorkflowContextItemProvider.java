@@ -2,23 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowContextItemProvider.java,v 1.3 2009/04/23 05:06:38 bhunt Exp $
+ * $Id: WorkflowContextItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
 
 import java.util.Collection;
 import java.util.List;
-
 import java.util.concurrent.ExecutorService;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,7 +26,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
@@ -191,6 +186,7 @@ public class WorkflowContextItemProvider
 			childrenFeatures.add(RuntimePackage.Literals.WORKFLOW_CONTEXT__PARAMETERS);
 			childrenFeatures.add(RuntimePackage.Literals.WORKFLOW_CONTEXT__STATES);
 			childrenFeatures.add(RuntimePackage.Literals.WORKFLOW_CONTEXT__LOG);
+			childrenFeatures.add(RuntimePackage.Literals.WORKFLOW_CONTEXT__EXECUTION_INFO);
 		}
 		return childrenFeatures;
 	}
@@ -258,6 +254,7 @@ public class WorkflowContextItemProvider
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
+			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -290,6 +287,11 @@ public class WorkflowContextItemProvider
 			(createChildParameter
 				(RuntimePackage.Literals.WORKFLOW_CONTEXT__LOG,
 				 RuntimeFactory.eINSTANCE.create(RuntimePackage.Literals.WORKFLOW_LOG_MAP)));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RuntimePackage.Literals.WORKFLOW_CONTEXT__EXECUTION_INFO,
+				 RuntimeFactory.eINSTANCE.create(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP)));
 	}
 
 	/**

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
@@ -150,13 +149,22 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__ACTIVE_COMPONENTS = 6;
 
 	/**
+	 * The feature id for the '<em><b>Execution Info</b></em>' map.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__EXECUTION_INFO = 7;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 7;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -557,6 +565,80 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_LOG_RESETTER_FEATURE_COUNT = WorkflowPackage.IWORKFLOW_VISITOR_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo <em>Workflow Component Execution Info</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfo()
+	 * @generated
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO = 12;
+
+	/**
+	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME = 0;
+
+	/**
+	 * The feature id for the '<em><b>End Time</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Component Execution Info</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap <em>Workflow Component Execution Info Map</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfoMap()
+	 * @generated
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP = 13;
+
+	/**
+	 * The feature id for the '<em><b>Key</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__KEY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Component Execution Info Map</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP_FEATURE_COUNT = 2;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -564,7 +646,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntryType()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOG_ENTRY_TYPE = 12;
+	public static final int WORKFLOW_LOG_ENTRY_TYPE = 14;
 
 	/**
 	 * The meta object id for the '<em>Executor Service</em>' data type.
@@ -574,7 +656,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getExecutorService()
 	 * @generated
 	 */
-	public static final int EXECUTOR_SERVICE = 13;
+	public static final int EXECUTOR_SERVICE = 15;
 
 	/**
 	 * The meta object id for the '<em>Workflow Runtime Exception</em>' data type.
@@ -584,7 +666,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowRuntimeException()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RUNTIME_EXCEPTION = 14;
+	public static final int WORKFLOW_RUNTIME_EXCEPTION = 16;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -675,6 +757,20 @@ public class RuntimePackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass workflowComponentExecutionInfoEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowComponentExecutionInfoMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EEnum workflowLogEntryTypeEEnum = null;
 
 	/**
@@ -751,7 +847,6 @@ public class RuntimePackage extends EPackageImpl
 
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-		XMLTypePackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		WorkflowPackage theWorkflowPackage = (WorkflowPackage)(EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI) instanceof WorkflowPackage ? EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI) : WorkflowPackage.eINSTANCE);
@@ -889,6 +984,21 @@ public class RuntimePackage extends EPackageImpl
 	public EReference getWorkflowContext_ActiveComponents()
 	{
 		return (EReference)workflowContextEClass.getEStructuralFeatures().get(6);
+	}
+
+
+	/**
+	 * Returns the meta object for the map '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the map '<em>Execution Info</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EReference getWorkflowContext_ExecutionInfo()
+	{
+		return (EReference)workflowContextEClass.getEStructuralFeatures().get(7);
 	}
 
 
@@ -1366,6 +1476,96 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo <em>Workflow Component Execution Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Component Execution Info</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo
+	 * @generated
+	 */
+	public EClass getWorkflowComponentExecutionInfo()
+	{
+		return workflowComponentExecutionInfoEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo#getStartTime <em>Start Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Time</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo#getStartTime()
+	 * @see #getWorkflowComponentExecutionInfo()
+	 * @generated
+	 */
+	public EAttribute getWorkflowComponentExecutionInfo_StartTime()
+	{
+		return (EAttribute)workflowComponentExecutionInfoEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo#getEndTime <em>End Time</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Time</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo#getEndTime()
+	 * @see #getWorkflowComponentExecutionInfo()
+	 * @generated
+	 */
+	public EAttribute getWorkflowComponentExecutionInfo_EndTime()
+	{
+		return (EAttribute)workflowComponentExecutionInfoEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link java.util.Map.Entry <em>Workflow Component Execution Info Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Component Execution Info Map</em>'.
+	 * @see java.util.Map.Entry
+	 * @model keyType="org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent" keyRequired="true"
+	 *        valueType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo" valueContainment="true" valueRequired="true"
+	 * @generated
+	 */
+	public EClass getWorkflowComponentExecutionInfoMap()
+	{
+		return workflowComponentExecutionInfoMapEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Key</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getWorkflowComponentExecutionInfoMap()
+	 * @generated
+	 */
+	public EReference getWorkflowComponentExecutionInfoMap_Key()
+	{
+		return (EReference)workflowComponentExecutionInfoMapEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
+	 * Returns the meta object for the containment reference '{@link java.util.Map.Entry <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see java.util.Map.Entry
+	 * @see #getWorkflowComponentExecutionInfoMap()
+	 * @generated
+	 */
+	public EReference getWorkflowComponentExecutionInfoMap_Value()
+	{
+		return (EReference)workflowComponentExecutionInfoMapEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
 	 * Returns the meta object for enum '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1449,6 +1649,7 @@ public class RuntimePackage extends EPackageImpl
 		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__LOG_LEVEL);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__WORKFLOW);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
+		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__EXECUTION_INFO);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -1492,6 +1693,14 @@ public class RuntimePackage extends EPackageImpl
 
 		workflowLogResetterEClass = createEClass(WORKFLOW_LOG_RESETTER);
 		createEReference(workflowLogResetterEClass, WORKFLOW_LOG_RESETTER__CONTEXT);
+
+		workflowComponentExecutionInfoEClass = createEClass(WORKFLOW_COMPONENT_EXECUTION_INFO);
+		createEAttribute(workflowComponentExecutionInfoEClass, WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME);
+		createEAttribute(workflowComponentExecutionInfoEClass, WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME);
+
+		workflowComponentExecutionInfoMapEClass = createEClass(WORKFLOW_COMPONENT_EXECUTION_INFO_MAP);
+		createEReference(workflowComponentExecutionInfoMapEClass, WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__KEY);
+		createEReference(workflowComponentExecutionInfoMapEClass, WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE);
 
 		// Create enums
 		workflowLogEntryTypeEEnum = createEEnum(WORKFLOW_LOG_ENTRY_TYPE);
@@ -1552,6 +1761,7 @@ public class RuntimePackage extends EPackageImpl
 		initEAttribute(getWorkflowContext_LogLevel(), this.getWorkflowLogEntryType(), "logLevel", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_Workflow(), theWorkflowPackage.getWorkflowComponent(), null, "workflow", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ActiveComponents(), theWorkflowPackage.getWorkflowComponent(), null, "activeComponents", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowContext_ExecutionInfo(), this.getWorkflowComponentExecutionInfoMap(), null, "executionInfo", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1640,6 +1850,14 @@ public class RuntimePackage extends EPackageImpl
 
 		op = addEOperation(workflowLogResetterEClass, null, "visitComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(workflowComponentExecutionInfoEClass, WorkflowComponentExecutionInfo.class, "WorkflowComponentExecutionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowComponentExecutionInfo_StartTime(), theEcorePackage.getELong(), "startTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowComponentExecutionInfo_EndTime(), theEcorePackage.getELong(), "endTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowComponentExecutionInfoMapEClass, Map.Entry.class, "WorkflowComponentExecutionInfoMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkflowComponentExecutionInfoMap_Key(), theWorkflowPackage.getWorkflowComponent(), null, "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowComponentExecutionInfoMap_Value(), this.getWorkflowComponentExecutionInfo(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(workflowLogEntryTypeEEnum, WorkflowLogEntryType.class, "WorkflowLogEntryType");
@@ -1782,6 +2000,14 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_CONTEXT__ACTIVE_COMPONENTS = eINSTANCE.getWorkflowContext_ActiveComponents();
+
+		/**
+		 * The meta object literal for the '<em><b>Execution Info</b></em>' map feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_CONTEXT__EXECUTION_INFO = eINSTANCE.getWorkflowContext_ExecutionInfo();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -2060,6 +2286,58 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_LOG_RESETTER__CONTEXT = eINSTANCE.getWorkflowLogResetter_Context();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo <em>Workflow Component Execution Info</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfo()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_COMPONENT_EXECUTION_INFO = eINSTANCE.getWorkflowComponentExecutionInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME = eINSTANCE.getWorkflowComponentExecutionInfo_StartTime();
+
+		/**
+		 * The meta object literal for the '<em><b>End Time</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME = eINSTANCE.getWorkflowComponentExecutionInfo_EndTime();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap <em>Workflow Component Execution Info Map</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfoMap()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_COMPONENT_EXECUTION_INFO_MAP = eINSTANCE.getWorkflowComponentExecutionInfoMap();
+
+		/**
+		 * The meta object literal for the '<em><b>Key</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__KEY = eINSTANCE.getWorkflowComponentExecutionInfoMap_Key();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE = eINSTANCE.getWorkflowComponentExecutionInfoMap_Value();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType <em>Workflow Log Entry Type</em>}' enum.

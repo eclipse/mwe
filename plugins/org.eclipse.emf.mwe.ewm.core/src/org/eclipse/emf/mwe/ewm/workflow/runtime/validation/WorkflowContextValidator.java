@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -41,4 +42,6 @@ public interface WorkflowContextValidator
 	boolean validateWorkflow(WorkflowComponent value);
 
 	boolean validateActiveComponents(EList<WorkflowComponent> value);
+
+	boolean validateExecutionInfo(EMap<WorkflowComponent, WorkflowComponentExecutionInfo> value);
 }

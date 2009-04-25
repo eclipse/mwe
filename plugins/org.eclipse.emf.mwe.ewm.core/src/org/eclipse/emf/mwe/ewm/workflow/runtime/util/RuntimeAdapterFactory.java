@@ -20,6 +20,7 @@ import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
@@ -152,6 +153,16 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowLogResetter(WorkflowLogResetter object)
 			{
 				return createWorkflowLogResetterAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowComponentExecutionInfo(WorkflowComponentExecutionInfo object)
+			{
+				return createWorkflowComponentExecutionInfoAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowComponentExecutionInfoMap(Map.Entry<WorkflowComponent, WorkflowComponentExecutionInfo> object)
+			{
+				return createWorkflowComponentExecutionInfoMapAdapter();
 			}
 			@Override
 			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object)
@@ -371,6 +382,36 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowLogResetterAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo <em>Workflow Component Execution Info</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo
+	 * @generated
+	 */
+	public Adapter createWorkflowComponentExecutionInfoAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Workflow Component Execution Info Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see java.util.Map.Entry
+	 * @generated
+	 */
+	public Adapter createWorkflowComponentExecutionInfoMapAdapter()
 	{
 		return null;
 	}

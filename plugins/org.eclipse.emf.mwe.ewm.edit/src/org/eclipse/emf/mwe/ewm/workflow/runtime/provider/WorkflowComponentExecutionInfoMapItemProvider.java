@@ -2,13 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowComponentExecutionInfoMapItemProvider.java,v 1.1 2009/04/25 04:21:32 bhunt Exp $
  */
-package org.eclipse.emf.mwe.ewm.workflow.provider;
+package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -22,20 +23,18 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
-import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationFactory;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent} object.
+ * This is the item provider adapter for a {@link java.util.Map.Entry} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class WorkflowComponentItemProvider
+public class WorkflowComponentExecutionInfoMapItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +49,7 @@ public class WorkflowComponentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowComponentItemProvider(AdapterFactory adapterFactory)
+	public WorkflowComponentExecutionInfoMapItemProvider(AdapterFactory adapterFactory)
 	{
 		super(adapterFactory);
 	}
@@ -68,78 +67,30 @@ public class WorkflowComponentItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addNamePropertyDescriptor(object);
-			addTypePropertyDescriptor(object);
-			addDescriptionPropertyDescriptor(object);
+			addKeyPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Key feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object)
+	protected void addKeyPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowComponent_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponent_name_feature", "_UI_WorkflowComponent_type"),
-				 WorkflowPackage.Literals.WORKFLOW_COMPONENT__NAME,
+				 getString("_UI_WorkflowComponentExecutionInfoMap_key_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponentExecutionInfoMap_key_feature", "_UI_WorkflowComponentExecutionInfoMap_type"),
+				 RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__KEY,
 				 true,
 				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 true,
 				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Type feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTypePropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkflowComponent_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponent_type_feature", "_UI_WorkflowComponent_type"),
-				 WorkflowPackage.Literals.WORKFLOW_COMPONENT__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addDescriptionPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkflowComponent_description_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowComponent_description_feature", "_UI_WorkflowComponent_type"),
-				 WorkflowPackage.Literals.WORKFLOW_COMPONENT__DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -158,7 +109,7 @@ public class WorkflowComponentItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(WorkflowPackage.Literals.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY);
+			childrenFeatures.add(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE);
 		}
 		return childrenFeatures;
 	}
@@ -178,6 +129,18 @@ public class WorkflowComponentItemProvider
 	}
 
 	/**
+	 * This returns WorkflowComponentExecutionInfoMap.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object)
+	{
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/WorkflowComponentExecutionInfoMap"));
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -186,10 +149,8 @@ public class WorkflowComponentItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		String label = ((WorkflowComponent)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_WorkflowComponent_type") :
-			getString("_UI_WorkflowComponent_type") + " " + label;
+		Map.Entry<?, ?> workflowComponentExecutionInfoMap = (Map.Entry<?, ?>)object;
+		return "" + workflowComponentExecutionInfoMap.getKey() + " -> " + workflowComponentExecutionInfoMap.getValue();
 	}
 
 	/**
@@ -204,14 +165,9 @@ public class WorkflowComponentItemProvider
 	{
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(WorkflowComponent.class))
+		switch (notification.getFeatureID(Map.Entry.class))
 		{
-			case WorkflowPackage.WORKFLOW_COMPONENT__NAME:
-			case WorkflowPackage.WORKFLOW_COMPONENT__TYPE:
-			case WorkflowPackage.WORKFLOW_COMPONENT__DESCRIPTION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case WorkflowPackage.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY:
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -232,13 +188,8 @@ public class WorkflowComponentItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(WorkflowPackage.Literals.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY,
-				 OrchestrationFactory.eINSTANCE.createWorkflowComponentOrchestrationStrategy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(WorkflowPackage.Literals.WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY,
-				 OrchestrationFactory.eINSTANCE.createWorkflowConditionalComponentOrchestrationStrategy()));
+				(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP__VALUE,
+				 RuntimeFactory.eINSTANCE.createWorkflowComponentExecutionInfo()));
 	}
 
 	/**

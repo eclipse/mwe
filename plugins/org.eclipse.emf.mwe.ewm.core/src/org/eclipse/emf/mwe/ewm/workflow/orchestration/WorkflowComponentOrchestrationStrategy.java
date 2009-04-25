@@ -60,16 +60,16 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 	 */
 	public void run(WorkflowComponent component, WorkflowContext context)
 	{
-		context.getStates().put(component, StateFactory.eINSTANCE.createWorkflowRunningState());
+		component.setState(context, StateFactory.eINSTANCE.createWorkflowRunningState());
 		
 		try
 		{
-			context.getStates().put(component, component.run(context));
+			component.setState(context, component.run(context));
 		}
 		catch (Exception e)
 		{
-			context.getLog().get(component).logError("Runtime Exception: " + e.getLocalizedMessage());
-			context.getStates().put(component, StateFactory.eINSTANCE.createWorkflowErrorState());
+			component.getLog(context).logError("Runtime Exception: " + e.getLocalizedMessage());
+			component.setState(context, StateFactory.eINSTANCE.createWorkflowErrorState());
 		}
 	}
 } // WorkflowComponentOrchestrationStrategy

@@ -97,6 +97,8 @@ public class RuntimeFactory extends EFactoryImpl
 			case RuntimePackage.WORKFLOW_LOG_ENTRY: return createWorkflowLogEntry();
 			case RuntimePackage.WORKFLOW_LOG_MAP: return (EObject)createWorkflowLogMap();
 			case RuntimePackage.WORKFLOW_LOG_RESETTER: return createWorkflowLogResetter();
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO: return createWorkflowComponentExecutionInfo();
+			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP: return (EObject)createWorkflowComponentExecutionInfoMap();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -274,6 +276,28 @@ public class RuntimeFactory extends EFactoryImpl
 	{
 		WorkflowLogResetter workflowLogResetter = new WorkflowLogResetter();
 		return workflowLogResetter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowComponentExecutionInfo createWorkflowComponentExecutionInfo()
+	{
+		WorkflowComponentExecutionInfo workflowComponentExecutionInfo = new WorkflowComponentExecutionInfo();
+		return workflowComponentExecutionInfo;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map.Entry<WorkflowComponent, WorkflowComponentExecutionInfo> createWorkflowComponentExecutionInfoMap()
+	{
+		WorkflowComponentExecutionInfoMap workflowComponentExecutionInfoMap = new WorkflowComponentExecutionInfoMap();
+		return workflowComponentExecutionInfoMap;
 	}
 
 	/**

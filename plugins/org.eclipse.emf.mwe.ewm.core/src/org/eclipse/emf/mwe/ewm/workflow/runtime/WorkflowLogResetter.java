@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLogResetter.java,v 1.1 2009/04/10 05:36:57 bhunt Exp $
+ * $Id: WorkflowLogResetter.java,v 1.2 2009/04/25 04:21:34 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
@@ -128,7 +128,7 @@ public class WorkflowLogResetter extends EObjectImpl implements IWorkflowVisitor
 	 */
 	public void visitUnitOfWork(WorkflowUnitOfWork unitOfWork)
 	{
-		getContext().getLog().get(unitOfWork).getEntries().clear();
+		unitOfWork.clearLog(getContext());
 	}
 
 	/**
@@ -139,7 +139,7 @@ public class WorkflowLogResetter extends EObjectImpl implements IWorkflowVisitor
 	 */
 	public void visitComposite(WorkflowCompositeComponent composite)
 	{
-		getContext().getLog().get(composite).getEntries().clear();
+		composite.clearLog(getContext());
 
 		for(WorkflowComponent component : composite.getComponents())
 			component.accept(this);
