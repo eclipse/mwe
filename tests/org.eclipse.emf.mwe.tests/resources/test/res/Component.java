@@ -99,6 +99,8 @@ public class Component implements WorkflowComponent {
 		INVOCATIONS++;
 	}
 
+	public static int CHECKS = 0;
+
 	public int checks = 0;
 
 	private CompositeComponent container;
@@ -107,6 +109,7 @@ public class Component implements WorkflowComponent {
 
 	public void checkConfiguration(final Issues issues) {
 		checks++;
+		CHECKS++;
 	}
 
 	public CompositeComponent getContainer() {

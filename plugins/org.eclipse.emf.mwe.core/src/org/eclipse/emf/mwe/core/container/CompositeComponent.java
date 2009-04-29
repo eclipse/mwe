@@ -88,6 +88,10 @@ public class CompositeComponent implements WorkflowComponentWithID {
 
 	private void internalInvoke(final WorkflowContext model, final ProgressMonitor monitor, final Issues issues) {
 		for (final WorkflowComponent comp : components) {
+			if ((monitor != null) && monitor.isCanceled()) {
+				return;
+			}
+			
 			if ((!(comp instanceof AbstractWorkflowAdvice))) {
 				comp.setContainer(this);
 				if (monitor != null) {
@@ -143,8 +147,9 @@ public class CompositeComponent implements WorkflowComponentWithID {
 			while (current != null) {
 				if (current instanceof WorkflowConditional) {
 					final WorkflowConditional cond = (WorkflowConditional) current;
-					if (!cond.evaluate())
+					if (!cond.evaluate()) {
 						return false;
+					}
 				}
 				current = current.getContainer();
 			}
@@ -250,7 +255,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	 * @param obj
 	 *            the bean
 	 */
-	public void addBean(@SuppressWarnings("unused") final Object obj) {
+	public void addBean(final Object obj) {
 		// noop
 	}
 

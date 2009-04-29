@@ -46,6 +46,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
 
 	public void testSimpleWorkflow() {
 		Component.INVOCATIONS = 0;
+		Component.CHECKS = 0;
         final Workflow cont = parseWorkflow(new StringInputStream(simpleWorkflow1), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
@@ -66,6 +67,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         assertEquals(2, Component.INVOCATIONS);
 
         assertEquals(1, comp.checks);
+        assertEquals(2, Component.CHECKS);
     }
 
     String conditional = "<workflow>                                                      "
@@ -172,4 +174,38 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
 
         
     }
+    
+    String propertyOverwriting = "<workflow>"
+        + "   <component file='test/res/complex/importingWorkflow2.mwe' inheritAll='true'>"
+        + "   <property name='string' value='value1' />"
+        + "	  </component>"
+        + "   <component file='test/res/complex/importingWorkflow2.mwe' inheritAll='true'>"
+        + "   <property name='string' value='value2' />"
+        + "	  </component>"
+        + "   <component file='test/res/complex/importingWorkflow2.mwe' inheritAll='true'>"
+        + "   <string value='value3' />"
+        + "	  </component>"
+        + "</workflow>";
+
+    public final void testPropertyOverwriting() {
+        final Workflow cont = parseWorkflow(new StringInputStream(propertyOverwriting), Collections.EMPTY_MAP);
+        assertNoIssues();
+        assertNotNull(cont);
+        final IssuesImpl issues = new IssuesImpl();
+        cont.checkConfiguration(issues);
+        cont.invoke(null, null, null);
+        
+        Workflow workflow1 = (Workflow) cont.getComponents().get(0);
+        Workflow workflow2 = (Workflow) cont.getComponents().get(1);
+        Workflow workflow3 = (Workflow) cont.getComponents().get(2);
+
+        Component comp1 = (Component) workflow1.getComponents().get(0);
+        Component comp2 = (Component) workflow2.getComponents().get(0);
+        Component comp3 = (Component) workflow3.getComponents().get(0);
+        
+        assertEquals("value1", comp1.stringParam);
+        assertEquals("value2", comp2.stringParam);
+        assertEquals("value3", comp3.stringParam);
+    }
+
 }

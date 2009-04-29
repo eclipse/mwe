@@ -54,7 +54,8 @@ public class WorkflowAntTask extends Java {
 	 */
 	@Override
 	public void execute() throws BuildException {
-		// add Parameter as arg instances to Java task
+		log("Adding param: " + getFile());
+		super.createArg().setValue(getFile());
 		for (Parameter param : params) {
 			if (param != null) {
 				final String paramString = "-p" + param.getName() + "=" + param.getValue();
@@ -62,8 +63,6 @@ public class WorkflowAntTask extends Java {
 				log("Adding param: " + paramString);
 			}
 		}
-		log("Adding param: " + getFile());
-		super.createArg().setValue(getFile());
 		log("Adding param: --ant");
 		super.createArg().setValue("--ant");
 		super.setFailonerror(true);

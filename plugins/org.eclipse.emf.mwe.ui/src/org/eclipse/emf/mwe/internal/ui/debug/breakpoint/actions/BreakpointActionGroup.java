@@ -108,27 +108,41 @@ public class BreakpointActionGroup extends ActionGroup {
 		// (see AbstractTextEditor.createPartCOntrol(): createVerticalRuler() is
 		// before createActions()
 		rulerSelected = true;
-		lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
-		lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
+		final int oldLine = lastSelectedLine;
+		final int oldOffset = lastSelectedOffset;
+		try {
+			lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
+			lastSelectedOffset = textWidget
+					.getOffsetAtLocation(new Point(0, y));
+		} catch (IllegalArgumentException e) {
+			// Restore original values
+			lastSelectedLine = oldLine;
+			lastSelectedOffset = oldOffset;
+		}
 	}
 
 	private void updateLastSelectedOffset(final int x, final int y) {
 		rulerSelected = false;
-		lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
+		final int oldLine = lastSelectedLine;
 		try {
-			lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(x, y));
-		}
-		catch (Exception e) {
+			lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
 			try {
-				// If we got the offset, move to the end of the line.
-				lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
-				int lineIndex = textWidget.getLineAtOffset(lastSelectedOffset);
-				lastSelectedOffset += textWidget.getLine(lineIndex).length();
+				lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(x, y));
 			}
-			catch (Exception e2) {
-				// Otherwise, create an offset to the end of the entire text.
-				lastSelectedOffset = textWidget.getText().length();
+			catch (Exception e) {
+				try {
+					// If we got the offset, move to the end of the line.
+					lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
+					int lineIndex = textWidget.getLineAtOffset(lastSelectedOffset);
+					lastSelectedOffset += textWidget.getLine(lineIndex).length();
+				}
+				catch (Exception e2) {
+					// Otherwise, create an offset to the end of the entire text.
+					lastSelectedOffset = textWidget.getText().length();
+				}
 			}
+		} catch(Exception e) {
+			lastSelectedLine = oldLine;
 		}
 	}
 

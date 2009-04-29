@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.internal.core.ast.util;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
@@ -61,8 +60,8 @@ public class VisitorInitializer extends VisitorBase {
 	private Map<String, String> initialProps = null;
 
 	private void traverseChildren(final ComponentAST c) {
-		for (final Iterator<?> iter = c.getChildren().iterator(); iter.hasNext();) {
-			final AbstractASTBase element = (AbstractASTBase) iter.next();
+		for (final Object name : c.getChildren()) {
+			final AbstractASTBase element = (AbstractASTBase) name;
 			element.accept(cloneThis());
 		}
 	}
@@ -96,8 +95,7 @@ public class VisitorInitializer extends VisitorBase {
 			params.putAll(this.props);
 			paramBeans.putAll(this.beans);
 		}
-		for (final Iterator<?> iter = comp.getChildren().iterator(); iter.hasNext();) {
-			final Object o = iter.next();
+		for (final Object o : comp.getChildren()) {
 			if (o instanceof SimpleParamAST) {
 				final SimpleParamAST p = (SimpleParamAST) o;
 				params.put(p.getName(), p.getValue());
@@ -141,6 +139,8 @@ public class VisitorInitializer extends VisitorBase {
 		String fileName = new String(file);
 		if (fileName.indexOf("::") != -1) {
 			fileName = fileName.replaceAll("::", "/");
+		}
+		if (!fileName.toLowerCase().endsWith(".mwe")) {
 			fileName += ".mwe";
 		}
 		return fileName;
@@ -190,8 +190,8 @@ public class VisitorInitializer extends VisitorBase {
 			return new HashMap<Object, Object>();
 		}
 		else {
-			for (final Iterator<String> iter = propFile.getPropertyNames(loader).iterator(); iter.hasNext();) {
-				final String name = replaceProperties(iter.next(), propFile);
+			for (final String string : propFile.getPropertyNames(loader)) {
+				final String name = replaceProperties(string, propFile);
 				final String val = replaceProperties((String) properties.get(name), propFile);
 				if (!initialProps.containsKey(name)) {
 					props.put(name, val);
@@ -217,8 +217,9 @@ public class VisitorInitializer extends VisitorBase {
 	private final Stack<String> currentProp = new Stack<String>();
 
 	protected String replaceProperties(final String toResolve, final boolean logIssues, final AbstractASTBase ast) {
-		if (toResolve == null)
+		if (toResolve == null) {
 			return null;
+		}
 		// if (currentProp.contains(toResolve)) {
 		// issues.addError("property "+toResolve+" not found!");
 		// return null;
@@ -272,8 +273,9 @@ public class VisitorInitializer extends VisitorBase {
 
 	private String propGet(final String varName) {
 		final String val = initialProps.get(varName);
-		if (val != null)
+		if (val != null) {
 			return val;
+		}
 
 		return props.get(varName);
 	}

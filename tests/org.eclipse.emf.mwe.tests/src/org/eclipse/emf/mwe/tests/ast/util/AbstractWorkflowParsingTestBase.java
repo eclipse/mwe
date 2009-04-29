@@ -40,12 +40,13 @@ public abstract class AbstractWorkflowParsingTestBase extends TestCase {
 		if (fqn.indexOf('/') == -1) {
 			fqn = qualify(fqn);
 		}
-		return new WorkflowFactory().parseInitAndCreate(fqn, params, WorkflowFactory.getDefaultConverter(), issues);
+		return new WorkflowFactory()
+				.parseInitAndCreate(fqn, params, WorkflowFactory.getDefaultConverter(), issues);
 	}
 
 	protected Workflow parseWorkflow(final StringInputStream stream, final Map<String, String> params) {
-		return new WorkflowFactory().parseInitAndCreate(stream, "unkown", params,
-				WorkflowFactory.getDefaultConverter(), issues);
+		return new WorkflowFactory().parseInitAndCreate(stream, "unknown", params, WorkflowFactory
+				.getDefaultConverter(), issues);
 	}
 
 	protected String qualify(final String name) {

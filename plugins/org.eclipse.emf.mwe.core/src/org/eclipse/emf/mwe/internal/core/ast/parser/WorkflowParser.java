@@ -30,10 +30,11 @@ import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
 import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 import org.xml.sax.Attributes;
+import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class WorkflowParser extends DefaultHandler {
+public class WorkflowParser extends DefaultHandler implements ContentHandler {
 	private static final Log log = LogFactory.getLog(WorkflowParser.class);
 
 	// reserved element names
@@ -163,7 +164,7 @@ public class WorkflowParser extends DefaultHandler {
 		}
 		else {
 			issues.addError("Either 'name' or 'file' attribute is mandatory for element " + PROPERTY, getLocation());
-			return new DeclaredPropertyAST(getLocation(), "__UNKOWN__");
+			return new DeclaredPropertyAST(getLocation(), "__UNKNOWN__");
 		}
 	}
 
@@ -176,7 +177,7 @@ public class WorkflowParser extends DefaultHandler {
 			final String name = attributes.getQName(i);
 			if ((name != null) && !name.trim().equals("")) {
 				if (!(mandatorySet.contains(name) || optionalSet.contains(name))) {
-					issues.addError("Unkown attribute " + name + " for element " + eleName, getLocation());
+					issues.addError("Unknown attribute " + name + " for element " + eleName, getLocation());
 				}
 			}
 			if (mandatorySet.contains(name)) {

@@ -48,7 +48,8 @@ public class ToggleBreakpointAction extends Action {
 
 		int line = group.getLastSelectedLine() + 1;
 		int start = group.getLastSelectedOffset();
-		int end = group.isRulerSelected() ? group.getOffsetAtLine(line) : start;
+		int end = calculateEnd(line, start);
+		
 		if (group.isRulerSelected()) {
 			setEnabled(true);
 		} else {
@@ -77,8 +78,7 @@ public class ToggleBreakpointAction extends Action {
 		}
 
 		// check if a BP already exists on that line and remove it
-		boolean isRulerSelected = group.isRulerSelected();
-		int end = isRulerSelected ? group.getOffsetAtLine(line) /* Hint: offset after selected line */: start;
+		int end = calculateEnd(line, start); 
 		IBreakpointManager breakpointManager = DebugPlugin.getDefault().getBreakpointManager();
 		IBreakpoint[] breakpoints = breakpointManager.getBreakpoints(MWEBreakpoint.DEBUG_MODEL_ID);
 		IBreakpoint bp = adapter.checkBreakpoints(breakpoints,resource,start, end, line);
@@ -94,4 +94,15 @@ public class ToggleBreakpointAction extends Action {
 		breakpointManager.addBreakpoint(bp);
 		
 	}
+	
+	private int calculateEnd(int line, int start) {
+        int end;
+        try {
+            end = group.isRulerSelected() ? group.getOffsetAtLine(line) : start;
+        } catch (IllegalArgumentException e) {
+            end = start;
+        }
+        return end;
+    }
+	
 }

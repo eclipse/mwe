@@ -13,7 +13,9 @@ package org.eclipse.emf.mwe.core;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.jar.Manifest;
 
@@ -35,6 +37,7 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
+import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
 
 /**
  * Main class to run a workflow.
@@ -54,7 +57,9 @@ public class WorkflowRunner {
 
 	private static final String ANT = "a";
 
-	private WorkflowContextDefaultImpl wfContext;
+	private static final String CMDL = "c";
+
+	private WorkflowContextDefaultImpl wfContext = new WorkflowContextDefaultImpl();
 
 	private ProgressMonitor monitor;
 
@@ -72,6 +77,12 @@ public class WorkflowRunner {
 	 */
 	@SuppressWarnings("static-access")
 	public static void main(final String[] args) {
+		// workaround for MacOSX classloader issue
+		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=211167
+		// if omitted, "Run as oAW workflow" action immediately terminates when
+		// SWT libraries are in the classpath
+		new Object();
+		// end workaround
 
 		// // only for test: to be able to connect remote java debugger right
 		// from the beginning
@@ -85,92 +96,158 @@ public class WorkflowRunner {
 		// System.out.println("starting");
 
 		final Options options = new Options();
+
 		options
 				.addOption(OptionBuilder
 						.hasArgs()
 						.withArgName("className,moreArgs")
 						.withDescription(
 								"the name of a class that implements ProgressMonitor. More arguments can be appended that will be injected to the monitor,"
-										+ " if it has a init(String[] args) method.").withLongOpt("monitorClass")
-						.withValueSeparator(',').create(MONITOR));
-		options.addOption(OptionBuilder.withLongOpt("ant").withDescription("must be set when using in Ant context")
-				.create(ANT));
-		final Option paramOption = OptionBuilder.withArgName("key=value").withDescription(
-				"external property that is handled as workflow property").hasArgs().create(PARAM);
+										+ " if it has a init(String[] args) method.")
+						.withLongOpt("monitorClass").withValueSeparator(',')
+						.create(MONITOR));
+
+		options.addOption(OptionBuilder.withLongOpt("ant").withDescription(
+				"must be set when using in Ant context").create(ANT));
+
+		final Option paramOption = OptionBuilder
+				.withArgName("key=value")
+				.withDescription(
+						"external property that is handled as workflow property")
+				.hasArgs().create(PARAM);
 		paramOption.setLongOpt("param");
 		options.addOption(paramOption);
+
+		options
+				.addOption(OptionBuilder
+						.hasArgs()
+						.withArgName("className")
+						.withDescription(
+								"the name of a class that implements a public method 'public void processCmdLine(String[] cmdLineArgs, Map paramsToUseInWorkflow, WorkflowContext ctx)'.")
+						.withLongOpt("cmdLineProcessor").create(CMDL));
 
 		// create the parser
 		final CommandLineParser parser = new PosixParser();
 		CommandLine line = null;
 		try {
 			line = parser.parse(options, args);
-		}
-		catch (final ParseException exp) {
-			System.err.println("Parsing arguments failed.  Reason: " + exp.getMessage());
+		} catch (final ParseException exp) {
+			System.err.println("Parsing arguments failed.  Reason: "
+					+ exp.getMessage());
 			wrongCall(options);
 			return;
 		}
-		if (line.getArgs().length != 1) {
+
+		final WorkflowRunner runner = new WorkflowRunner();
+		Map<String, String> params = new HashMap<String, String>();
+		String wfFile = null;
+		final String[] monitorOptValues = line.getOptionValues(MONITOR);
+
+		if (line.hasOption(CMDL)) {
+			try {
+				// removed option --cmdLineProcessor
+				final List<String> unprocessedArgs = new ArrayList<String>();
+				for (int i = 0; i < args.length; i++) {
+					final String arg = args[i];
+					if (arg.equals("-" + CMDL)
+							|| arg.equals("--cmdLineProcessor")) {
+						i++; // ignore this and next element
+					} else if (arg.equals("-" + MONITOR)
+							|| arg.equals("--monitorClass")) {
+						// i++; // ignore this and next element
+						i = i + monitorOptValues.length;
+					} else if (arg.endsWith(".oaw")) {
+						if (wfFile != null) {
+							System.err.println("Workflowfile already defined!");
+							System.exit(1);
+						}
+						wfFile = arg;
+						; // continue the loop (will be handled later)
+					} else {
+						unprocessedArgs.add(arg);
+					}
+				}
+
+				final Class<?> cmdLineProcessor = ResourceLoaderFactory
+						.createResourceLoader().loadClass(
+								line.getOptionValue(CMDL));
+				if (cmdLineProcessor == null) {
+					System.err.println("cannot find class '"
+							+ line.getOptionValue(CMDL)
+							+ "' for command line processing.");
+					System.exit(1);
+				}
+				final Method method = cmdLineProcessor.getMethod("processCmdLine",
+						String[].class, Map.class, WorkflowContext.class);
+				method.invoke(cmdLineProcessor.newInstance(), unprocessedArgs
+						.toArray(new String[0]), params, runner.getContext());
+			} catch (final Exception e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
+		} else {
+			params = resolveParams(line.getOptionValues(PARAM));
+			wfFile = line.getArgs()[0];
+		}
+
+		if ((wfFile == null)
+				|| !(wfFile.endsWith(".oaw") || wfFile.endsWith(".mwe"))) {
 			wrongCall(options);
 		}
-		else {
-			ProgressMonitor monitor = null;
 
-			final String[] monitorOptValues = line.getOptionValues(MONITOR);
-			if (monitorOptValues != null) {
-				try {
-					final Class<?> clazz = ResourceLoaderFactory.createResourceLoader().loadClass(monitorOptValues[0]);
-					if (clazz == null)
-						throw new ClassNotFoundException("Didn't find class " + monitorOptValues[0]);
-					monitor = (ProgressMonitor) clazz.newInstance();
-					final Method method = monitor.getClass().getMethod("init", new Class[] { String[].class });
-					if (method != null) {
-						method.invoke(monitor, new Object[] { monitorOptValues });
-					}
+		ProgressMonitor monitor = null;
+
+		if (monitorOptValues != null) {
+			try {
+				final Class<?> clazz = ResourceLoaderFactory
+						.createResourceLoader().loadClass(monitorOptValues[0]);
+				if (clazz == null) {
+					throw new ClassNotFoundException("Didn't find class "
+							+ monitorOptValues[0]);
 				}
-				catch (final Exception e) {
-					logger.error(e.getMessage(), e);
-					if (line.hasOption(ANT)) {
-						System.exit(1);
-					}
-					return;
+				monitor = (ProgressMonitor) clazz.newInstance();
+				final Method method = monitor.getClass().getMethod("init",
+						new Class[] { String[].class });
+				if (method != null) {
+					method.invoke(monitor, new Object[] { monitorOptValues });
 				}
-			}
-
-			final Map<String, String> params = resolveParams(line.getOptionValues(PARAM));
-			String wfFile = line.getArgs()[0];
-
-			// normalize wfFile name so that it can be found in the class path
-			// (necessary for debugger source lookup)
-			URL wfUrl;
-			int index = 0;
-			do {
-				wfUrl = ResourceLoaderFactory.createResourceLoader().getResource(wfFile);
-				if (wfUrl == null) {
-					index = wfFile.indexOf('/');
-					if (index >= 0) {
-						wfFile = wfFile.substring(index + 1);
-					}
-				}
-			} while (wfUrl == null && index >= 0);
-
-			final WorkflowRunner runner = new WorkflowRunner();
-
-			if (wfUrl == null) {
-				runner.logger.error("can't find the workflow file '" + line.getArgs()[0]
-						+ "' in the current class path");
+			} catch (final Exception e) {
+				logger.error(e.getMessage(), e);
 				if (line.hasOption(ANT)) {
 					System.exit(1);
 				}
 				return;
 			}
+		}
 
-			final boolean success = runner.run(wfFile, monitor, params, null);
-			if (!success && line.hasOption(ANT)) {
+		// normalize wfFile name so that it can be found in the class path
+		// (necessary for debugger source lookup)
+		URL wfUrl;
+		int index = 0;
+		do {
+			wfUrl = ResourceLoaderFactory.createResourceLoader().getResource(wfFile);
+			if (wfUrl == null) {
+				index = wfFile.indexOf('/');
+				if (index >= 0) {
+					wfFile = wfFile.substring(index + 1);
+				}
+			}
+		} while ((wfUrl == null) && (index >= 0));
+
+		if (wfUrl == null) {
+			runner.logger.error("can't find the workflow file '"
+					+ line.getArgs()[0] + "' in the current class path");
+			if (line.hasOption(ANT)) {
 				System.exit(1);
 			}
+			return;
 		}
+
+		final boolean success = runner.run(wfFile, monitor, params, null);
+		if (!success && line.hasOption(ANT)) {
+			System.exit(1);
+		}
+
 	}
 
 	/**
@@ -183,12 +260,15 @@ public class WorkflowRunner {
 	 */
 	private static Map<String, String> resolveParams(final String[] args) {
 		final Map<String, String> params = new HashMap<String, String>();
-		if (args == null)
+		if (args == null) {
 			return params;
+		}
 		for (final String element : args) {
 			final String[] string = element.split("=", 2);
-			if (string.length != 2)
-				throw new IllegalArgumentException("wrong param syntax (-pkey=value). was : " + element);
+			if (string.length != 2) {
+				throw new IllegalArgumentException(
+						"wrong param syntax (-pkey=value). was : " + element);
+			}
 			params.put(string[0], string[1]);
 		}
 		return params;
@@ -201,8 +281,10 @@ public class WorkflowRunner {
 	 */
 	private static void wrongCall(final Options options) {
 		final HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp("java " + WorkflowRunner.class.getName() + " some_workflow_file.mwe [options]\nor\njava "
-				+ WorkflowRunner.class.getName() + " some_workflow_file.(mwe|oaw) [options]\n", options);
+		formatter.printHelp("java " + WorkflowRunner.class.getName()
+				+ " some_workflow_file.mwe [options]\nor\njava "
+				+ WorkflowRunner.class.getName()
+				+ " some_workflow_file.oaw [options]\n", options);
 		System.exit(0);
 	}
 
@@ -212,36 +294,42 @@ public class WorkflowRunner {
 	 * @param logger
 	 * @param params
 	 */
-	public boolean run(final String workFlowFile, final ProgressMonitor theMonitor,
-			final Map<String, String> theParams, final Map<String, ?> externalSlotContents) {
+	public boolean run(final String workFlowFile,
+			final ProgressMonitor theMonitor,
+			final Map<String, String> theParams,
+			final Map<String, ?> externalSlotContents) {
 		final boolean configOK = prepare(workFlowFile, theMonitor, theParams);
 		final Issues issues = new IssuesImpl();
-		if (configOK)
+		if (configOK) {
 			return executeWorkflow(externalSlotContents, issues);
+		}
 		return false;
 	}
 
-	public boolean prepare(final String workFlowFile, final ProgressMonitor theMonitor,
+	public boolean prepare(final String workFlowFile,
+			final ProgressMonitor theMonitor,
 			final Map<String, String> theParams) {
-		if (workFlowFile == null)
+		if (workFlowFile == null) {
 			throw new NullPointerException("workflowFile is null");
+		}
 
 		if (theMonitor == null) {
 			monitor = new NullProgressMonitor();
-		}
-		else {
+		} else {
 			monitor = theMonitor;
 		}
 		params = theParams;
 
-		logger.info("--------------------------------------------------------------------------------------");
+		logger
+				.info("--------------------------------------------------------------------------------------");
 		logger.info("EMF Modeling Workflow Engine " + getVersion());
 		logger.info("(c) 2005-2009 openarchitectureware.org and contributors");
-		logger.info("--------------------------------------------------------------------------------------");
+		logger
+				.info("--------------------------------------------------------------------------------------");
 		logger.info("running workflow: " + workFlowFile);
 		logger.info("");
 
-		if (!params.isEmpty()) {
+		if (logger.isDebugEnabled() && !params.isEmpty()) {
 			logger.debug("Params:" + params.toString());
 		}
 		final Issues issues = new IssuesImpl();
@@ -254,17 +342,18 @@ public class WorkflowRunner {
 			// a configuration problem.
 			// Detect this very special case
 			try {
-				workflow = factory.parseInitAndCreate(workFlowFile, params, WorkflowFactory.getDefaultConverter(),
-						issues);
-			}
-			catch (final IllegalArgumentException illegalArg) {
-				if (illegalArg.getMessage().startsWith("Couldn't load file"))
+				workflow = factory.parseInitAndCreate(workFlowFile, params,
+						getConverters(), issues);
+			} catch (final IllegalArgumentException illegalArg) {
+				if (illegalArg.getMessage().startsWith("Couldn't load file")) {
 					throw new ConfigurationException(illegalArg.getMessage());
+				}
 				throw illegalArg;
 			}
 			logIssues(logger, issues);
 			if (issues.hasErrors()) {
-				logger.error("Workflow interrupted because of configuration errors.");
+				logger
+						.error("Workflow interrupted because of configuration errors.");
 				return false;
 			}
 			if (workflow != null) {
@@ -272,11 +361,11 @@ public class WorkflowRunner {
 			}
 			logIssues(logger, issues);
 			if (issues.hasErrors()) {
-				logger.error("Workflow interrupted because of configuration errors.");
+				logger
+						.error("Workflow interrupted because of configuration errors.");
 				return false;
 			}
-		}
-		catch (final ConfigurationException ex) {
+		} catch (final ConfigurationException ex) {
 			logger.fatal(ex.getMessage(), ex);
 			logIssues(logger, issues);
 			return false;
@@ -286,7 +375,51 @@ public class WorkflowRunner {
 
 	}
 
-	public boolean executeWorkflow(final Map<?, ?> externalSlotContents, final Issues issues) {
+	/**
+	 * This method delivers the Converter implementations currently used to
+	 * inject values into the workflow components.
+	 * 
+	 * @return A map between injection types and converter implementations. Not
+	 *         <code>null</code>.
+	 */
+	@SuppressWarnings("unchecked")
+	private Map<Class<?>, Converter> getConverters() {
+		Map<Class<?>, Converter> result = getCustomConverters();
+		final Map<Class<?>, Converter> defaults = WorkflowFactory
+				.getDefaultConverter();
+		if (result == null) {
+			// go with the default values
+			result = defaults;
+		} else {
+			// add default Converter implementations if we don't have a custom
+			// implementation yet
+			for (final Map.Entry<Class<?>, Converter> record : defaults.entrySet()) {
+				if (!result.containsKey(record.getKey())) {
+					result.put(record.getKey(), record.getValue());
+				}
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Returns a map of custom Converter implementations used for the injection
+	 * process. If the result is <code>null</code> the default Converter
+	 * implementations are used. It's not necessary to provide custom Converter
+	 * implementations for the default types since they will be added if they're
+	 * missing (f.e. it might be useful to support lists which are splitted
+	 * using other characters than a comma).
+	 * 
+	 * @return A map of custom Converter implementations. Maybe
+	 *         <code>null</code>.
+	 */
+	@SuppressWarnings("unchecked")
+	protected Map<Class<?>, Converter> getCustomConverters() {
+		return null;
+	}
+
+	public boolean executeWorkflow(final Map<?, ?> externalSlotContents,
+			final Issues issues) {
 		try {
 			wfContext = new WorkflowContextDefaultImpl();
 			addExternalSlotContents(externalSlotContents);
@@ -296,27 +429,26 @@ public class WorkflowRunner {
 			monitor.finished(workflow, wfContext);
 			final long duration = System.currentTimeMillis() - time;
 			logger.info("workflow completed in " + duration + "ms!");
-			if (issues.getErrors().length > 0)
+			if (issues.getErrors().length > 0) {
 				return false;
+			}
 			return true;
-		}
-		catch (final Exception e) {
+		} catch (final Exception e) {
 			if (e.getClass().getName().indexOf("Interrupt") > -1) {
 				logger.error("Workflow interrupted. Reason: " + e.getMessage());
-			}
-			else {
+			} else {
 				logger.error(e.getMessage(), e);
 			}
-		}
-		finally {
+		} finally {
 			logIssues(logger, issues);
 		}
 		return false;
 	}
 
 	private void addExternalSlotContents(final Map<?, ?> slotContents) {
-		if (slotContents == null)
+		if (slotContents == null) {
 			return;
+		}
 		for (final Object name : slotContents.keySet()) {
 			final String key = (String) name;
 			wfContext.set(key, slotContents.get(key));
@@ -356,22 +488,26 @@ public class WorkflowRunner {
 
 		// get all META-INF/MANIFEST.MF found in the classpath
 		try {
-			final Manifest manifest = new Manifest(ResourceLoaderFactory.createResourceLoader().getResource(
-					"META-INF/MANIFEST.MF").openStream());
+			final Manifest manifest = new Manifest(ResourceLoaderFactory
+					.createResourceLoader().getResource("META-INF/MANIFEST.MF")
+					.openStream());
 			// identify the manifest from core.workflow plugin
-			final String bundleName = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
+			final String bundleName = manifest.getMainAttributes().getValue(
+					"Bundle-SymbolicName");
 			if (bundleName.startsWith("org.eclipse.emf.mwe.core")) {
 				// Read bundle version an split it.
 				// Original value : "4.1.1.200609291913"
 				// Resulting value : "4.1.1, Build 200609291913"
-				version = manifest.getMainAttributes().getValue("Bundle-Version");
+				version = manifest.getMainAttributes().getValue(
+						"Bundle-Version");
 				final int lastPoint = version.lastIndexOf('.');
-				version = version.substring(0, lastPoint) + ", Build " + version.substring(lastPoint + 1);
+				version = version.substring(0, lastPoint) + ", Build "
+						+ version.substring(lastPoint + 1);
 				return version;
 			}
-		}
-		catch (final IOException e) {
-			logger.debug("Failed to read Manifest file. Unable to retrieve version");
+		} catch (final IOException e) {
+			logger
+					.debug("Failed to read Manifest file. Unable to retrieve version");
 		}
 		// build version not detected from manifest, fallback
 		// this will only occur in developer's workbench

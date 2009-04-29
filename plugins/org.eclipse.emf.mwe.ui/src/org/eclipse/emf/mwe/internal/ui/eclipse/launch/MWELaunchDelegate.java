@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.internal.ui.eclipse.launch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -28,9 +31,12 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.core.model.RuntimeProcess;
 import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor;
+import org.eclipse.emf.mwe.internal.ui.debug.model.DebugTarget;
+import org.eclipse.emf.mwe.internal.ui.debug.model.DebugThread;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
@@ -49,6 +55,18 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 	private static final String wfRunnerClassName = WorkflowRunner.class.getName();
 
 	private String wfFileName;
+
+	private Job refreshJob = new Job("refresh resources") {
+		@Override
+		protected IStatus run(IProgressMonitor monitor) {
+			try {
+				ResourcesPlugin.getWorkspace().getRoot().refreshLocal(
+						IResource.DEPTH_INFINITE, monitor);
+			} catch (CoreException e) {
+			}
+			return Status.OK_STATUS;
+		}
+	};
 
 	public void launch(final ILaunchConfiguration configuration, final String mode, final ILaunch launch, final IProgressMonitor monitor)
 			throws CoreException {
@@ -103,8 +121,11 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			}
 
 			wc.setAttributes(configuration.getAttributes());
+			String programArguments = configuration.getAttribute(
+					IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS,
+					"");
 			wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, wfRunnerClassName);
-			wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, "\"" + wfFileName + "\"");
+			wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, "\"" + wfFileName + "\" " + programArguments);
 			wc.setAttribute(IJavaLaunchConfigurationConstants.ID_JAVA_APPLICATION, "workflow - " + wfFileName);
 
 			monitor.worked(1);
@@ -140,10 +161,21 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			}
 
 			// program arguments
-			String[] progArgs = new String[3];
-			progArgs[0] = wfFileName;
-			progArgs[1] = "-m";
-			progArgs[2] = DebugMonitor.class.getName();
+			String attribute = configuration.getAttribute(
+					IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS,
+					"");
+			List<String> progArgs = new ArrayList<String>();
+			progArgs.add(wfFileName);
+			progArgs.add("-m");
+			progArgs.add(DebugMonitor.class.getName());
+			if (!attribute.equals("")) {
+				String[] split = attribute.split("\\s");
+				for (String string : split) {
+					if ( !string.equals("")) {
+						progArgs.add(string);
+					}
+				}
+			}
 
 			String vmArgs = configuration.getAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS,
 					(String) null);
@@ -151,7 +183,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			// bundle config
 			VMRunnerConfiguration runnerConfig = new VMRunnerConfiguration(wfRunnerClassName, classpath);
 			runnerConfig.setWorkingDirectory(workingDirName);
-			runnerConfig.setProgramArguments(progArgs);
+			runnerConfig.setProgramArguments(progArgs.toArray(new String[0]));
 			runnerConfig.setVMArguments(DebugPlugin.parseArguments(vmArgs));
 
 			monitor.worked(1);
@@ -169,20 +201,14 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 	@Override
 	public void handleDebugEvents(final DebugEvent[] events) {
 		for (DebugEvent event : events) {
-			if (event.getKind() == DebugEvent.TERMINATE) {
-				new Job("refresh resources") {
-					@Override
-					protected IStatus run(final IProgressMonitor monitor) {
-						try {
-							ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE,
-									monitor);
-						} catch (CoreException e) {
-						}
-						return Status.OK_STATUS;
-					}
-				}.schedule();
-				DebugPlugin.getDefault().removeDebugEventListener(this);
-			}
+			if (((event.getSource() instanceof DebugTarget)
+                    || (event.getSource() instanceof DebugThread) || (event
+                    .getSource() instanceof RuntimeProcess))
+                    && event.getKind() == DebugEvent.TERMINATE) {
+                if (refreshJob.getState() != Job.WAITING) {
+                    refreshJob.schedule();
+                }
+            }
 		}
 		super.handleDebugEvents(events);
 	}
