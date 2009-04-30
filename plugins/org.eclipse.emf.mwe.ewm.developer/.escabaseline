@@ -1,0 +1,3 @@
+# Enerjy Software baseline data (files=1, problems=1).
+path: /org.eclipse.emf.workflow.developer/src/org/eclipse/emf/wf/developer/RunWorkflowAction.java
+problem: JAVA0137:JAVA0137 Non-abstract class 'RunWorkflowAction' missing constructor

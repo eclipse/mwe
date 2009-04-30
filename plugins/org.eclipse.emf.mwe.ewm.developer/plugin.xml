@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.emf.mwe.ewm.developer.runWorkflow"
+            name="Run Workflow">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.eclipse.emf.mwe.ewm.developer.RunWorkflowHandler"
+            commandId="org.eclipse.emf.mwe.ewm.developer.runWorkflow">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.core.resources.IFile">
+                     </instanceof>
+                     <test
+                           property="org.eclipse.core.resources.extension"
+                           value="workflow">
+                     </test>
+                  </and>
+               </iterate>
+            </with>
+         </enabledWhen>
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <command
+               commandId="org.eclipse.emf.mwe.ewm.developer.runWorkflow"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>
