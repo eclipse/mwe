@@ -54,7 +54,7 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				if(startTime != 0)
 				{
 					calendar.setTimeInMillis(startTime);
-					return calendar.toString();
+					return calendar.getTime().toString();
 				}
 				
 				return "Unknown";
@@ -68,7 +68,7 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				if(endTime != 0)
 				{
 					calendar.setTimeInMillis(endTime);
-					return calendar.toString();
+					return calendar.getTime().toString();
 				}
 				
 				return "Unknown";
