@@ -14,19 +14,23 @@ package org.eclipse.emf.mwe.ewm.ui.views;
 import java.util.Calendar;
 
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author bhunt
- *
+ * 
  */
 public class WorkflowStatusLabelProvider extends LabelProvider implements ITableLabelProvider
 {
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnImage(java.lang.Object, int)
 	 */
 	public Image getColumnImage(Object element, int columnIndex)
@@ -34,50 +38,61 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 		return null;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.eclipse.jface.viewers.ITableLabelProvider#getColumnText(java.lang.Object, int)
 	 */
 	public String getColumnText(Object element, int columnIndex)
 	{
 		WorkflowComponent component = (WorkflowComponent) element;
-		
-		switch(columnIndex)
+
+		switch (columnIndex)
 		{
 			case 0:
 				return component.getName();
-				
+
 			case 1:
 			{
 				Calendar calendar = Calendar.getInstance();
-				long startTime = context.getExecutionInfo().get(component).getStartTime();
-				
-				if(startTime != 0)
+				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
+
+				if (info != null)
 				{
-					calendar.setTimeInMillis(startTime);
-					return calendar.getTime().toString();
+					long startTime = info.getStartTime();
+
+					if (startTime != 0)
+					{
+						calendar.setTimeInMillis(startTime);
+						return calendar.getTime().toString();
+					}
 				}
-				
-				return "Unknown";
+				return "";
 			}
-			
+
 			case 2:
 			{
 				Calendar calendar = Calendar.getInstance();
-				long endTime = context.getExecutionInfo().get(component).getEndTime();
-				
-				if(endTime != 0)
+				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
+
+				if (info != null)
 				{
-					calendar.setTimeInMillis(endTime);
-					return calendar.getTime().toString();
+					long endTime = info.getEndTime();
+
+					if (endTime != 0)
+					{
+						calendar.setTimeInMillis(endTime);
+						return calendar.getTime().toString();
+					}
 				}
-				
-				return "Unknown";
+				return "";
 			}
-			
+
 			case 3:
-				return context.getStates().get(component).getDisplayName();
+				WorkflowState state = context.getStates().get(component);
+				return state != null ? state.getDisplayName() : "Idle";
 		}
-		
+
 		return null;
 	}
 
@@ -85,6 +100,6 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 	{
 		this.context = context;
 	}
-	
+
 	private WorkflowContext context;
 }

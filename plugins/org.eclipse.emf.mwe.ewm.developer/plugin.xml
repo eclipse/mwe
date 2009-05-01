@@ -7,6 +7,10 @@
             id="org.eclipse.emf.mwe.ewm.developer.runWorkflow"
             name="Run Workflow">
       </command>
+      <command
+            id="org.eclipse.emf.mwe.ewm.developer.resetWorkflowState"
+            name="Reset Workflow State">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
@@ -30,6 +34,26 @@
             </with>
          </enabledWhen>
       </handler>
+      <handler
+            class="org.eclipse.emf.mwe.ewm.developer.ResetWorkflowStateHandler"
+            commandId="org.eclipse.emf.mwe.ewm.developer.resetWorkflowState">
+         <enabledWhen>
+            <with
+                  variable="selection">
+               <iterate>
+                  <and>
+                     <instanceof
+                           value="org.eclipse.core.resources.IFile">
+                     </instanceof>
+                     <test
+                           property="org.eclipse.core.resources.extension"
+                           value="runtime">
+                     </test>
+                  </and>
+               </iterate>
+            </with>
+         </enabledWhen>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.menus">
@@ -37,6 +61,10 @@
             locationURI="popup:org.eclipse.ui.popup.any?after=additions">
          <command
                commandId="org.eclipse.emf.mwe.ewm.developer.runWorkflow"
+               style="push">
+         </command>
+         <command
+               commandId="org.eclipse.emf.mwe.ewm.developer.resetWorkflowState"
                style="push">
          </command>
       </menuContribution>
