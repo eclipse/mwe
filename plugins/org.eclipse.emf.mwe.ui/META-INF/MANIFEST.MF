@@ -19,7 +19,7 @@ Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.emf.mwe.internal.ui.workflow.Activator
-Export-Package: org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions;x-friends:="org.eclipse.emf.mwe.ui.editor",
+Export-Package: org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions;x-friends:="org.eclipse.emf.mwe.ui.editor,org.eclipse.emf.mwe.ui.simpleEditor",
  org.eclipse.emf.mwe.internal.ui.debug.launching.ui;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.debug.model;x-internal:=true,
  org.eclipse.emf.mwe.internal.ui.debug.model.ui;x-internal:=true,
