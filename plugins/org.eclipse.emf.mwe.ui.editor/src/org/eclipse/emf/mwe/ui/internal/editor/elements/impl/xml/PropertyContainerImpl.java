@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
+ * @version $Revision: 1.12 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {
@@ -282,9 +282,9 @@ public class PropertyContainerImpl implements IPropertyContainer {
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyContainerEmpty()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isEmpty()
 	 */
-	public boolean isPropertyContainerEmpty() {
+	public boolean isEmpty() {
 		return getPropertyCount() == 0;
 	}
 

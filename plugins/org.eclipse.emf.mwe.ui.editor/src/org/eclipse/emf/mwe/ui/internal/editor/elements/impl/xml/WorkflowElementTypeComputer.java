@@ -25,7 +25,7 @@ import org.eclipse.jdt.core.IType;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public final class WorkflowElementTypeComputer {
 
@@ -49,11 +49,9 @@ public final class WorkflowElementTypeComputer {
 		if (element.getElementType() == WorkflowElementType.WORKFLOW) {
 			name = Workflow.class.getCanonicalName();
 		}
-		else if (element.getElementType() == WorkflowElementType.IF_COMPONENT) {
-			name = IfComponent.class.getCanonicalName();
-		}
-		else if (element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE) && element.getClassType() != null) {
-			name = element.getClassType().getFullyQualifiedName();
+		else if (element.getElementType() == WorkflowElementType.COMPONENT
+				&& element.hasAttribute(IWorkflowAttribute.FILE_ATTRIBUTE)) {
+			name = AbstractWorkflowComponent.class.getCanonicalName();
 		}
 		else if (element.hasAttribute(IWorkflowAttribute.CLASS_ATTRIBUTE)) {
 			name = element.getAttributeValue(IWorkflowAttribute.CLASS_ATTRIBUTE);

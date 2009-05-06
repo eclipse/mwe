@@ -47,11 +47,9 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 
 	private ReferenceInfoStore referenceInfoStore;
 
-	private WorkflowElementType elementType;
+	private WorkflowElementType type;
 
 	private File file;
-
-	private IType classType;
 
 	private IPropertyContainer propertyContainer;
 
@@ -241,15 +239,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * Returns the value of field <code>classType</code>.
-	 * 
-	 * @return value of <code>classType</code>.
-	 */
-	public IType getClassType() {
-		return classType;
-	}
-
-	/**
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getDocument()
 	 */
 	public IDocument getDocument() {
@@ -271,7 +260,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 			computeTypeInfo();
 		}
 
-		return elementType;
+		return type;
 	}
 
 	/**
@@ -350,9 +339,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElement#getMappedClassType()
 	 */
 	public IType getMappedClassType() {
-		if (classType != null)
-			return classType;
-
 		IType type = null;
 		final String name = getMappedClassName();
 		if (hasProject() && name != null) {
@@ -576,10 +562,10 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isPropertyContainerEmpty()
+	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IPropertyContainer#isEmpty()
 	 */
-	public boolean isPropertyContainerEmpty() {
-		return getPropertyContainer().isPropertyContainerEmpty();
+	public boolean isEmpty() {
+		return getPropertyContainer().isEmpty();
 	}
 
 	/**
@@ -618,16 +604,6 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 		if (hasParent()) {
 			getParent().removeChild(this);
 		}
-	}
-
-	/**
-	 * Sets a new value for field <code>classType</code>.
-	 * 
-	 * @param classType
-	 *            new value for <code>classType</code>.
-	 */
-	public void setClassType(final IType classType) {
-		this.classType = classType;
 	}
 
 	/**
@@ -704,7 +680,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	 * @see org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo#setType(org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType)
 	 */
 	public void setType(final WorkflowElementType type) {
-		this.elementType = type;
+		this.type = type;
 	}
 
 	/**
@@ -720,7 +696,7 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * Computes the elementType information for the current element.
+	 * Computes the type information for the current element.
 	 */
 	protected void computeTypeInfo() {
 		if (!recomputeTypeInfo)
@@ -731,15 +707,15 @@ public abstract class AbstractWorkflowElement implements IWorkflowElement, IAttr
 	}
 
 	/**
-	 * Returns the computed elementType of the current workflow element.
+	 * Returns the computed type of the current workflow element.
 	 * 
-	 * @return computed elementType of current element.
+	 * @return computed type of current element.
 	 */
 	protected WorkflowElementType getComputedElementType() {
 		if (recomputeTypeInfo) {
 			computeTypeInfo();
 		}
-		return elementType;
+		return type;
 	}
 
 	protected IPropertyContainer getPropertyContainer() {

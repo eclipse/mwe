@@ -27,8 +27,6 @@ public interface IWorkflowAttribute extends IRangeCheck {
 
 	String ID_REF_ATTRIBUTE = "idRef";
 
-	String COND_ATTRIBUTE = "cond";
-
 	String INHERIT_ALL_ATTRIBUTE = "inheritAll";
 
 	Pattern PROPERTY_REFERENCE_PATTERN = Pattern.compile("\\$\\{([a-zA-Z0-9._\\-]+)\\}");

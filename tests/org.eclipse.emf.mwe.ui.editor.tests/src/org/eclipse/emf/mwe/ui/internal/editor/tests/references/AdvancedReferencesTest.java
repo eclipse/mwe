@@ -30,7 +30,7 @@ public class AdvancedReferencesTest extends ReferencesTestBase {
 		assertNotNull(root);
 		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
-		assertFalse(fragment.isPropertyContainerEmpty());
+		assertFalse(fragment.isEmpty());
 		assertEquals(2, fragment.getPropertyCount());
 		assertTrue(fragment.hasSimpleValueProperty("a1"));
 		assertTrue(fragment.hasSimpleValueProperty("a2"));
