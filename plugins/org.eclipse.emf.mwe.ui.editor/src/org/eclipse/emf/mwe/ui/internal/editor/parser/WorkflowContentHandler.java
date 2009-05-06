@@ -36,6 +36,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.references.ReferenceInfoStore;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PropertyFileReader;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.xml.sax.Attributes;
@@ -45,7 +46,7 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.48 $
+ * @version $Revision: 1.49 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 
@@ -365,13 +366,15 @@ public class WorkflowContentHandler extends DefaultHandler {
 						element.getParent().addProperty(property);
 					}
 					else {
-						if (inheritAll || property.isValueReference()) {
+						if (property.isValueReference()) {
 							propertyContainer.addProperty(property);
 						}
 					}
 				}
 				else {
-					propertyContainer.addProperty(property);
+					if (inheritAll) {
+						propertyContainer.addProperty(property);
+					}
 				}
 			}
 			else if (property.isFileReference()) {
@@ -528,7 +531,13 @@ public class WorkflowContentHandler extends DefaultHandler {
 			contentHandler.setFile(refFile);
 			contentHandler.setSubProcess(true);
 			contentHandler.setInheritAll(inherit);
-			DocumentParser.parse(refDoc, contentHandler, getProject());
+			final AbstractWorkflowElement root = DocumentParser.parse(refDoc, contentHandler, getProject());
+			final IType rootType = (root != null) ? root.getMappedClassType() : null;
+			if (rootType != null) {
+				element.setClassType(rootType);
+			}
+			else
+				throw new ParserProblemException("Type of referenced workflow could now be determined");
 		}
 		catch (final ParserProblemException e) {
 			handleParseException(e, element);

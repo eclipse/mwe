@@ -198,7 +198,7 @@ public interface IPropertyContainerAccess {
 	 * @return <code>true</code> if property container is empty, otherwise
 	 *         <code>false</code>
 	 */
-	boolean isEmpty();
+	boolean isPropertyContainerEmpty();
 
 	/**
 	 * Checks if the simple value property <code>name</code> is resolved.

@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
@@ -25,7 +26,7 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.32 $
+ * @version $Revision: 1.33 $
  */
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
@@ -163,7 +164,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			return;
 		}
 
-		if (!inherits(type, WORKFLOW_ROOT_CLASS) && !inherits(type, FRAGMENT_ROOT_INTERFACE)) {
+		if (!inherits(type, WORKFLOW_ROOT_CLASS)
+				&& (attribute.getElement().getElementType() == WorkflowElementType.FRAGMENT && !inherits(type,
+						FRAGMENT_ROOT_INTERFACE))) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' is not a valid workflow component");
 		}
 	}

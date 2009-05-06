@@ -16,16 +16,13 @@ import java.util.HashMap;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
-import org.eclipse.emf.mwe.ui.internal.editor.parser.ValidationException;
 import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.21 $
+ * @version $Revision: 1.22 $
  */
 public class ElementAnalyzerRegistry extends DefaultAnalyzer {
-
-	private static final String ERROR_MSG = "No analyzer registered for element type";
 
 	private final HashMap<WorkflowElementType, IElementAnalyzer> map = new HashMap<WorkflowElementType, IElementAnalyzer>();
 
@@ -38,9 +35,7 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 		map.put(WorkflowElementType.FILE_PROPERTY, new PropertyAnalyzer(file, document));
 		map.put(WorkflowElementType.COMPONENT, new ComponentAnalyzer(file, document));
 		map.put(WorkflowElementType.COMPOSE, new ComponentAnalyzer(file, document));
-		map.put(WorkflowElementType.FRAGMENT, new FragmentAnalyzer(file, document));
-		map.put(WorkflowElementType.IF_COMPONENT, new IfComponentAnalyzer(file, document));
-		map.put(WorkflowElementType.ASSIGNMENT, new DefaultAnalyzer(file, document));
+		map.put(WorkflowElementType.FRAGMENT, new ComponentAnalyzer(file, document));
 		map.put(WorkflowElementType.ASSIGNMENTPROPERTY, new AssignmentPropertyAnalyzer(file, document));
 	}
 
@@ -60,8 +55,8 @@ public class ElementAnalyzerRegistry extends DefaultAnalyzer {
 		if (analyzer != null) {
 			analyzer.checkValidity(element);
 		}
-		else
-			throw new ValidationException(element.getStartElementRange().getStartLine(), element.getStartElementRange()
-					.getStartColumn(), ERROR_MSG + " '" + element.getElementTypeString() + "'!", true);
+		else {
+			super.checkValidity(element);
+		}
 	}
 }
