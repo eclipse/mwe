@@ -53,6 +53,10 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				return component.getName();
 
 			case 1:
+				WorkflowState state = context.getStates().get(component);
+				return state != null ? state.getDisplayName() : "Idle";
+
+			case 2:
 			{
 				Calendar calendar = Calendar.getInstance();
 				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
@@ -70,7 +74,7 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				return "";
 			}
 
-			case 2:
+			case 3:
 			{
 				Calendar calendar = Calendar.getInstance();
 				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
@@ -87,10 +91,6 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 				}
 				return "";
 			}
-
-			case 3:
-				WorkflowState state = context.getStates().get(component);
-				return state != null ? state.getDisplayName() : "Idle";
 		}
 
 		return null;

@@ -48,6 +48,10 @@ public class WorkflowStatusView extends ViewPart
 		nameColumn.setText("Stage");
 		nameColumn.setWidth(150);
 		
+		TreeColumn status = new TreeColumn(tree, SWT.NONE);
+		status.setText("Status");
+		status.setWidth(150);
+		
 		TreeColumn startTime = new TreeColumn(tree, SWT.NONE);
 		startTime.setText("Start");
 		startTime.setWidth(250);
@@ -55,10 +59,6 @@ public class WorkflowStatusView extends ViewPart
 		TreeColumn endTime = new TreeColumn(tree, SWT.NONE);
 		endTime.setText("End");
 		endTime.setWidth(250);
-		
-		TreeColumn status = new TreeColumn(tree, SWT.NONE);
-		status.setText("Status");
-		status.setWidth(150);
 		
 		viewer.setContentProvider(new WorkflowStatusContentProvider());
 		labelProvider = new WorkflowStatusLabelProvider();
