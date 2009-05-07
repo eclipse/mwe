@@ -17,7 +17,7 @@ import junit.framework.TestSuite;
 public class AllReferencesTests {
 
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test suite sfor org.eclipse.emf.mwe.ui.internal.editor.tests.references");
+		final TestSuite suite = new TestSuite("Test suite for org.eclipse.emf.mwe.ui.internal.editor.tests.references");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(SimpleReferencesTest.class);
 		suite.addTestSuite(AdvancedReferencesTest.class);

@@ -22,6 +22,9 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 	public static final String WORKFLOW2 = "<workflow>\n"
 			+ "    <fragment file=\"/res/import2.mwe\" inheritAll=\"true\"/>\n" + "</workflow>\n";
 
+	public static final String WORKFLOW3 = "<workflow>\n" + "    <fragment file=\"/res/import2.mwe\"/>\n"
+			+ "</workflow>\n";
+
 	public static final String RESOURCE_IMPORT1 = "<workflow>\n" + "    <property name=\"a1\" value=\"\"/>\n"
 			+ "    <property name=\"a2\" value=\"\"/>\n" + "</workflow>\n";
 
@@ -37,7 +40,7 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
 		assertTrue(fragment.isFragment());
-		assertFalse(fragment.isEmpty());
+		assertFalse(fragment.isPropertyContainerEmpty());
 		assertEquals(2, fragment.getPropertyCount());
 		assertTrue(fragment.hasSimpleValueProperty("a1"));
 		assertTrue(fragment.hasSimpleValueProperty("a2"));
@@ -49,11 +52,20 @@ public class SimpleReferencesTest extends ReferencesTestBase {
 		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
 		assertNotNull(fragment);
 		assertTrue(fragment.isFragment());
-		assertFalse(fragment.isEmpty());
+		assertFalse(fragment.isPropertyContainerEmpty());
 		assertEquals(4, fragment.getPropertyCount());
 		assertTrue(fragment.hasSimpleValueProperty("b1"));
 		assertTrue(fragment.hasSimpleValueProperty("b2"));
 		assertTrue(fragment.hasSimpleValueProperty("fa1"));
 		assertTrue(fragment.hasSimpleValueProperty("fa2"));
+	}
+
+	public void testParseReferencedWorkflow3() {
+		final AbstractWorkflowElement root = parse(WORKFLOW3);
+		assertNotNull(root);
+		final AbstractWorkflowElement fragment = root.getChild(0).getChild(0);
+		assertNotNull(fragment);
+		assertTrue(fragment.isFragment());
+		assertEquals(0, fragment.getPropertyCount());
 	}
 }
