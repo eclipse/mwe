@@ -22,7 +22,7 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 
 public final class PropertyFileReader {
@@ -42,7 +42,7 @@ public final class PropertyFileReader {
 			throw new IllegalArgumentException();
 
 		final IPropertyContainer container = WorkflowSyntaxFactory.getInstance().newPropertyContainer();
-		final String content = TypeUtils.getFileContent(project, property.getValue());
+		final String content = TypeUtils.getFileContent(project, property.getFile());
 		if (content == null)
 			throw new FileNotFoundException("File '" + property.getValue() + "' not found");
 

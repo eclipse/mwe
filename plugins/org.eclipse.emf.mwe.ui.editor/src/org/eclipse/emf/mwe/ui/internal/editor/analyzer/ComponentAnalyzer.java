@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowElementTypeInfo;
+import org.eclipse.emf.mwe.ui.internal.editor.elements.WorkflowElementType;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.PackageShortcutResolver;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.jdt.core.IType;
@@ -25,8 +26,15 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.34 $
+ * @version $Revision: 1.35 $
  */
+
+// FIXME [pschoenb] On the long run, the checking of attribute availability and
+// attribute combination that is now hardcoded into this class has to be
+// replaced by introducing suitable annotations into the component classes of
+// the MWE core engine. After this has been implemented, this class will become
+// obsolete and its functionality will be replaced by a generic checking
+// mechanism in the default analyzer.
 public class ComponentAnalyzer extends DefaultAnalyzer {
 
 	protected static final String ABSTRACT_ATTRIBUTE = "abstract";
@@ -163,7 +171,9 @@ public class ComponentAnalyzer extends DefaultAnalyzer {
 			return;
 		}
 
-		if (!inherits(type, WORKFLOW_ROOT_CLASS) && !inherits(type, FRAGMENT_ROOT_INTERFACE)) {
+		if (!inherits(type, WORKFLOW_ROOT_CLASS)
+				&& (attribute.getElement().getElementType() == WorkflowElementType.FRAGMENT && !inherits(type,
+						FRAGMENT_ROOT_INTERFACE))) {
 			createMarkerForValue(attribute, "Class '" + attribute.getValue() + "' is not a valid workflow component");
 		}
 	}

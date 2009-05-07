@@ -18,8 +18,15 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
+ * @version $Revision: 1.14 $
  */
+
+// FIXME [pschoenb] On the long run, the checking of attribute availability and
+// attribute combination that is now hardcoded into this class has to be
+// replaced by introducing suitable annotations into the component classes of
+// the MWE core engine. After this has been implemented, this class will become
+// obsolete and its functionality will be replaced by a generic checking
+// mechanism in the default analyzer.
 public class IfComponentAnalyzer extends ComponentAnalyzer {
 
 	protected static final String COND_ONLY_MSG = "The component 'if' only accepts an attribute 'cond'";
