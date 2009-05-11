@@ -314,7 +314,7 @@ public class OrchestrationPackage extends EPackageImpl
 		if (isInited) return (OrchestrationPackage)EPackage.Registry.INSTANCE.getEPackage(OrchestrationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OrchestrationPackage theOrchestrationPackage = (OrchestrationPackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof OrchestrationPackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new OrchestrationPackage());
+		OrchestrationPackage theOrchestrationPackage = (OrchestrationPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OrchestrationPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new OrchestrationPackage());
 
 		isInited = true;
 

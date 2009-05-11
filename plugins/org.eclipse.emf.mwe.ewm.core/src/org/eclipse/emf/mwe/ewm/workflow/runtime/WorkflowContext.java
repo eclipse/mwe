@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +48,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain <em>Editing Domain</em>}</li>
  * </ul>
  * </p>
  *
@@ -154,6 +156,26 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected EMap<WorkflowComponent, WorkflowComponentExecutionInfo> executionInfo;
+
+	/**
+	 * The default value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEditingDomain()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final TransactionalEditingDomain EDITING_DOMAIN_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEditingDomain()
+	 * @generated
+	 * @ordered
+	 */
+	protected TransactionalEditingDomain editingDomain = EDITING_DOMAIN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -413,6 +435,41 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Editing Domain</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Editing Domain</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Editing Domain</em>' attribute.
+	 * @see #setEditingDomain(TransactionalEditingDomain)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_EditingDomain()
+	 * @model dataType="org.eclipse.emf.mwe.ewm.workflow.runtime.TransactionalEditingDomain" required="true" transient="true"
+	 * @generated
+	 */
+	public TransactionalEditingDomain getEditingDomain()
+	{
+		return editingDomain;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Editing Domain</em>' attribute.
+	 * @see #getEditingDomain()
+	 * @generated
+	 */
+	public void setEditingDomain(TransactionalEditingDomain newEditingDomain)
+	{
+		TransactionalEditingDomain oldEditingDomain = editingDomain;
+		editingDomain = newEditingDomain;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN, oldEditingDomain, editingDomain));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model
@@ -503,6 +560,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				if (coreType) return getExecutionInfo();
 				else return getExecutionInfo().map();
+			case RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN:
+				return getEditingDomain();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -540,6 +599,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				((EStructuralFeature.Setting)getExecutionInfo()).set(newValue);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN:
+				setEditingDomain((TransactionalEditingDomain)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -575,6 +637,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				getExecutionInfo().clear();
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN:
+				setEditingDomain(EDITING_DOMAIN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -605,6 +670,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return activeComponents != null && !activeComponents.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				return executionInfo != null && !executionInfo.isEmpty();
+			case RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN:
+				return EDITING_DOMAIN_EDEFAULT == null ? editingDomain != null : !EDITING_DOMAIN_EDEFAULT.equals(editingDomain);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -624,6 +691,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		result.append(threadPool);
 		result.append(", logLevel: ");
 		result.append(logLevel);
+		result.append(", editingDomain: ");
+		result.append(editingDomain);
 		result.append(')');
 		return result.toString();
 	}

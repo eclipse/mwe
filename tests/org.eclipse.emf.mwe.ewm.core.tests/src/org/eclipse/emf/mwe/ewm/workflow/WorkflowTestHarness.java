@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.After;
 
 /**
@@ -136,6 +137,7 @@ public class WorkflowTestHarness
 		if (context == null)
 		{
 			context = RuntimeFactory.eINSTANCE.createWorkflowContext();
+			context.setEditingDomain(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain());
 			context.setLogLevel(WorkflowLogEntryType.INFO);
 		}
 		

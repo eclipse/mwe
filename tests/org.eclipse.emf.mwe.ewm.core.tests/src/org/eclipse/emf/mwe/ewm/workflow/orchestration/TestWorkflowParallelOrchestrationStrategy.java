@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StateFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -34,7 +33,6 @@ public class TestWorkflowParallelOrchestrationStrategy extends WorkflowTestHarne
 	 * Test that all components in a parallel workflow are executed
 	 */
 	@Test
-	@Ignore // FIXME remove when parallel execution is thread-safe
 	public void testExecution()
 	{
 		WorkflowCompositeComponent composite = createComposite("Test", OrchestrationFactory.eINSTANCE.createWorkflowParallelOrchestrationStrategy());

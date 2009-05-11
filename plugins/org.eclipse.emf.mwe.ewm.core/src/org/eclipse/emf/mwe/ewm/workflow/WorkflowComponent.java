@@ -23,6 +23,11 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetExecutionInfoCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetLogCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetStateCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowSetExecutionInfoCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowSetStateCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
 /**
@@ -324,16 +329,20 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public WorkflowLog getLog(WorkflowContext context)
 	{
-		WorkflowLog log = context.getLog().get(this);
+		WorkflowGetLogCommand command = new WorkflowGetLogCommand(context, this);
 		
-		if(log == null)
+		try
 		{
-			log = RuntimeFactory.eINSTANCE.createWorkflowLog();
-			log.setLogLevel(context.getLogLevel());
-			context.getLog().put(this, log);
+			context.getEditingDomain().runExclusive(command);
+			return command.getResult();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
-		return log;
+		return null;
 	}
 
 	/**
@@ -344,7 +353,20 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public WorkflowState getState(WorkflowContext context)
 	{
-		return context.getStates().get(this);
+		WorkflowGetStateCommand command = new WorkflowGetStateCommand(context, this);
+		
+		try
+		{
+			context.getEditingDomain().runExclusive(command);
+			return command.getResult();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	/**
@@ -355,7 +377,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public void setState(WorkflowContext context, WorkflowState state)
 	{
-		context.getStates().put(this, state);
+		WorkflowSetStateCommand command = new WorkflowSetStateCommand(context, this, state);
+		context.getEditingDomain().getCommandStack().execute(command);
 	}
 
 	/**
@@ -366,7 +389,20 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public WorkflowComponentExecutionInfo getExecutionInfo(WorkflowContext context)
 	{
-		return context.getExecutionInfo().get(this);
+		WorkflowGetExecutionInfoCommand command = new WorkflowGetExecutionInfoCommand(context, this);
+		
+		try
+		{
+			context.getEditingDomain().runExclusive(command);
+			return  command.getResult();
+		}
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
 	}
 
 	/**
@@ -377,7 +413,8 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public void setExecutionInfo(WorkflowContext context, WorkflowComponentExecutionInfo executionInfo)
 	{
-		context.getExecutionInfo().put(this, executionInfo);
+		WorkflowSetExecutionInfoCommand command = new WorkflowSetExecutionInfoCommand(context, this, executionInfo);
+		context.getEditingDomain().getCommandStack().execute(command);
 	}
 
 	/**

@@ -10,14 +10,21 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Parallel Workflow Orchestrator</b></em>'. <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParallelOrchestrationStrategy()
  * @model kind="class"
  * @generated
@@ -26,6 +33,7 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkflowParallelOrchestrationStrategy()
@@ -35,6 +43,7 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -47,34 +56,50 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 	 * @generated NOT
 	 */
 	@Override
-	public void run(WorkflowCompositeComponent composite, WorkflowContext context)
+	public void run(final WorkflowCompositeComponent composite, final WorkflowContext context)
 	{
-		// Accessing the WorkflowContext is currently not thread safe, so I'm disabling
-		// parallel execution until I learn about EMF Transactions
-		
-		throw new UnsupportedOperationException("Parallel execution has been temporarily disabled");
-		
-//		ExecutorService threadPool = context.getThreadPool();
-//		ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
-//
-//		for (WorkflowComponent component : composite.getComponents())
-//		{
-//			WorkflowRunner runner = RuntimeFactory.eINSTANCE.createWorkflowRunner();
-//			runner.setComponent(component);
-//			runner.setContext(context);
-//			futures.add(threadPool.submit(runner));
-//		}
-//		
-//		for (Future<?> future : futures)
-//		{
-//			try
-//			{
-//				future.get();
-//			}
-//			catch (Exception e)
-//			{
-//				continue;
-//			}
-//		}
+		final ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
+
+		try
+		{
+			context.getEditingDomain().runExclusive(new Runnable()
+			{
+				/*
+				 * (non-Javadoc)
+				 * 
+				 * @see java.lang.Runnable#run()
+				 */
+				public void run()
+				{
+					ExecutorService threadPool = context.getThreadPool();
+
+					for (WorkflowComponent component : composite.getComponents())
+					{
+						WorkflowRunner runner = RuntimeFactory.eINSTANCE.createWorkflowRunner();
+						runner.setComponent(component);
+						runner.setContext(context);
+						futures.add(threadPool.submit(runner));
+					}
+				}
+			});
+		}
+		catch (InterruptedException e1)
+		{
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+
+		for (Future<?> future : futures)
+		{
+			try
+			{
+				future.get();
+			}
+			catch (Exception e)
+			{
+				continue;
+			}
+		}
 	}
 } // ParallelWorkflowOrchestrator

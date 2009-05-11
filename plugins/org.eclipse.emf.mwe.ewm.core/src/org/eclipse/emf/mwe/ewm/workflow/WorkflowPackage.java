@@ -637,7 +637,7 @@ public class WorkflowPackage extends EPackageImpl
 		if (isInited) return (WorkflowPackage)EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI);
 
 		// Obtain or create and register package
-		WorkflowPackage theWorkflowPackage = (WorkflowPackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof WorkflowPackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new WorkflowPackage());
+		WorkflowPackage theWorkflowPackage = (WorkflowPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof WorkflowPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new WorkflowPackage());
 
 		isInited = true;
 

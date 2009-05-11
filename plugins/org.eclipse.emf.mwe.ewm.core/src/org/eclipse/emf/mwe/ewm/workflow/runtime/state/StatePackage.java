@@ -303,7 +303,7 @@ public class StatePackage extends EPackageImpl
 		if (isInited) return (StatePackage)EPackage.Registry.INSTANCE.getEPackage(StatePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StatePackage theStatePackage = (StatePackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof StatePackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new StatePackage());
+		StatePackage theStatePackage = (StatePackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StatePackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new StatePackage());
 
 		isInited = true;
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -158,13 +159,22 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__EXECUTION_INFO = 7;
 
 	/**
+	 * The feature id for the '<em><b>Editing Domain</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__EDITING_DOMAIN = 8;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 8;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -669,6 +679,16 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_RUNTIME_EXCEPTION = 16;
 
 	/**
+	 * The meta object id for the '<em>Transactional Editing Domain</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTransactionalEditingDomain()
+	 * @generated
+	 */
+	public static final int TRANSACTIONAL_EDITING_DOMAIN = 17;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -788,6 +808,13 @@ public class RuntimePackage extends EPackageImpl
 	private EDataType workflowRuntimeExceptionEDataType = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType transactionalEditingDomainEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -841,7 +868,7 @@ public class RuntimePackage extends EPackageImpl
 		if (isInited) return (RuntimePackage)EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RuntimePackage theRuntimePackage = (RuntimePackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RuntimePackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new RuntimePackage());
+		RuntimePackage theRuntimePackage = (RuntimePackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RuntimePackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RuntimePackage());
 
 		isInited = true;
 
@@ -999,6 +1026,21 @@ public class RuntimePackage extends EPackageImpl
 	public EReference getWorkflowContext_ExecutionInfo()
 	{
 		return (EReference)workflowContextEClass.getEStructuralFeatures().get(7);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain <em>Editing Domain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Editing Domain</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EAttribute getWorkflowContext_EditingDomain()
+	{
+		return (EAttribute)workflowContextEClass.getEStructuralFeatures().get(8);
 	}
 
 
@@ -1610,6 +1652,21 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.emf.transaction.TransactionalEditingDomain <em>Transactional Editing Domain</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Transactional Editing Domain</em>'.
+	 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
+	 * @model instanceClass="org.eclipse.emf.transaction.TransactionalEditingDomain"
+	 * @generated
+	 */
+	public EDataType getTransactionalEditingDomain()
+	{
+		return transactionalEditingDomainEDataType;
+	}
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1650,6 +1707,7 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__WORKFLOW);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__EXECUTION_INFO);
+		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__EDITING_DOMAIN);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -1708,6 +1766,7 @@ public class RuntimePackage extends EPackageImpl
 		// Create data types
 		executorServiceEDataType = createEDataType(EXECUTOR_SERVICE);
 		workflowRuntimeExceptionEDataType = createEDataType(WORKFLOW_RUNTIME_EXCEPTION);
+		transactionalEditingDomainEDataType = createEDataType(TRANSACTIONAL_EDITING_DOMAIN);
 	}
 
 	/**
@@ -1762,6 +1821,7 @@ public class RuntimePackage extends EPackageImpl
 		initEReference(getWorkflowContext_Workflow(), theWorkflowPackage.getWorkflowComponent(), null, "workflow", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ActiveComponents(), theWorkflowPackage.getWorkflowComponent(), null, "activeComponents", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ExecutionInfo(), this.getWorkflowComponentExecutionInfoMap(), null, "executionInfo", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowContext_EditingDomain(), this.getTransactionalEditingDomain(), "editingDomain", null, 1, 1, WorkflowContext.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1869,6 +1929,7 @@ public class RuntimePackage extends EPackageImpl
 		// Initialize data types
 		initEDataType(executorServiceEDataType, ExecutorService.class, "ExecutorService", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(workflowRuntimeExceptionEDataType, WorkflowRuntimeException.class, "WorkflowRuntimeException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(transactionalEditingDomainEDataType, TransactionalEditingDomain.class, "TransactionalEditingDomain", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
@@ -2008,6 +2069,14 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_CONTEXT__EXECUTION_INFO = eINSTANCE.getWorkflowContext_ExecutionInfo();
+
+		/**
+		 * The meta object literal for the '<em><b>Editing Domain</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_CONTEXT__EDITING_DOMAIN = eINSTANCE.getWorkflowContext_EditingDomain();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -2368,6 +2437,16 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EDataType WORKFLOW_RUNTIME_EXCEPTION = eINSTANCE.getWorkflowRuntimeException();
+
+		/**
+		 * The meta object literal for the '<em>Transactional Editing Domain</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTransactionalEditingDomain()
+		 * @generated
+		 */
+		public static final EDataType TRANSACTIONAL_EDITING_DOMAIN = eINSTANCE.getTransactionalEditingDomain();
 
 	}
 

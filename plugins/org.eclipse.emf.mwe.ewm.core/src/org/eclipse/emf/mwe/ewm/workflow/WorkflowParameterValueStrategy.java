@@ -15,6 +15,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetParameterValueCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowSetParameterValueCommand;
 
 
 /**
@@ -58,7 +60,17 @@ public class WorkflowParameterValueStrategy extends EObjectImpl implements EObje
 	 */
 	public Object getValue(WorkflowContext context, WorkflowParameter parameter) throws WorkflowRuntimeException
 	{
-		return context.getParameters().get(parameter);
+		WorkflowGetParameterValueCommand command = new WorkflowGetParameterValueCommand(context, parameter);
+		
+		try
+		{
+			context.getEditingDomain().runExclusive(command);
+			return command.getResult();
+		}
+		catch (InterruptedException e)
+		{
+			throw new WorkflowRuntimeException(e);
+		}
 	}
 
 	/**
@@ -72,7 +84,8 @@ public class WorkflowParameterValueStrategy extends EObjectImpl implements EObje
 		if(!(value instanceof EObject))
 			throw new WorkflowRuntimeException("Value is not of type EObject");
 		
-		context.getParameters().put(parameter, (EObject) value);
+		WorkflowSetParameterValueCommand command = new WorkflowSetParameterValueCommand(context, parameter, (EObject) value);
+		context.getEditingDomain().getCommandStack().execute(command);
 	}
 
 } // WorkflowParameterValueStrategy
