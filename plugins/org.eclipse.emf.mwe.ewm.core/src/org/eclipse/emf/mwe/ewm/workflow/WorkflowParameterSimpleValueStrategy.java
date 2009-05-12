@@ -12,7 +12,6 @@ package org.eclipse.emf.mwe.ewm.workflow;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.xml.type.SimpleAnyType;
 import org.eclipse.emf.ecore.xml.type.XMLTypeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
@@ -60,7 +59,7 @@ public class WorkflowParameterSimpleValueStrategy extends WorkflowParameterValue
 	@Override
 	public Object getValue(WorkflowContext context, WorkflowParameter parameter) throws WorkflowRuntimeException
 	{
-		EObject value = context.getParameters().get(parameter);
+		Object value = super.getValue(context, parameter);
 		
 		if(value == null)
 			return null;
@@ -87,7 +86,7 @@ public class WorkflowParameterSimpleValueStrategy extends WorkflowParameterValue
 		SimpleAnyType type = XMLTypeFactory.eINSTANCE.createSimpleAnyType();
 		type.setInstanceType((EDataType) parameter.getType());
 		type.setValue(value);
-		context.getParameters().put(parameter, type);
+		super.setValue(context, parameter, type);
 	}
 
 } // WorkflowParameterSimpleValueStrategy
