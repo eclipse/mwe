@@ -46,7 +46,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 	public void testNoExecute() throws WorkflowRuntimeException
 	{
 		WorkflowParameterPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowParameterPredicate();
-		strategy.setCondition(predicate);
+		strategy.setLoopCondition(predicate);
 		
 		WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
 		parameter.setType(EcorePackage.Literals.EBOOLEAN);
@@ -63,7 +63,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 	public void testExecuteOnce() throws WorkflowRuntimeException
 	{
 		WorkflowParameterPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowParameterPredicate();
-		strategy.setCondition(predicate);
+		strategy.setLoopCondition(predicate);
 		
 		WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
 		parameter.setType(EcorePackage.Literals.EBOOLEAN);
@@ -82,7 +82,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 	public void testExecuteNTimes() throws WorkflowRuntimeException
 	{
 		WorkflowLoopCountPredicate predicate = OrchestrationFactory.eINSTANCE.createWorkflowLoopCountPredicate();
-		strategy.setCondition(predicate);
+		strategy.setLoopCondition(predicate);
 		
 		WorkflowParameter currentCountParameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
 		currentCountParameter.setType(EcorePackage.Literals.EINT);

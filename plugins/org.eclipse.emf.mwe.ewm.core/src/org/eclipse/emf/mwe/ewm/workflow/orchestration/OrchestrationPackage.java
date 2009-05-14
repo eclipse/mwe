@@ -137,41 +137,22 @@ public class OrchestrationPackage extends EPackageImpl
 	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY = 3;
 
 	/**
-	 * The number of structural features of the '<em>Workflow Component Orchestration Strategy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy <em>Workflow Conditional Component Orchestration Strategy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowConditionalComponentOrchestrationStrategy()
-	 * @generated
-	 */
-	public static final int WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY = 4;
-
-	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 0;
+	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = 0;
 
 	/**
-	 * The number of structural features of the '<em>Workflow Conditional Component Orchestration Strategy</em>' class.
+	 * The number of structural features of the '<em>Workflow Component Orchestration Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 1;
+	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}' class.
@@ -181,7 +162,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopComponentOrchestrationStrategy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY = 5;
+	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -190,7 +171,16 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 0;
+	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Loop Condition</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Loop Component Orchestration Strategy</em>' class.
@@ -209,7 +199,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowExecutionPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_EXECUTION_PREDICATE = 6;
+	public static final int WORKFLOW_EXECUTION_PREDICATE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Execution Predicate</em>' class.
@@ -228,7 +218,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowRerunPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RERUN_PREDICATE = 7;
+	public static final int WORKFLOW_RERUN_PREDICATE = 6;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Rerun Predicate</em>' class.
@@ -247,7 +237,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParameterPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PARAMETER_PREDICATE = 8;
+	public static final int WORKFLOW_PARAMETER_PREDICATE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -275,7 +265,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowPredicateOR()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PREDICATE_OR = 9;
+	public static final int WORKFLOW_PREDICATE_OR = 8;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -303,7 +293,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowPredicateAND()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PREDICATE_AND = 10;
+	public static final int WORKFLOW_PREDICATE_AND = 9;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -331,7 +321,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopCountPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOOP_COUNT_PREDICATE = 11;
+	public static final int WORKFLOW_LOOP_COUNT_PREDICATE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Current Count</b></em>' containment reference.
@@ -387,13 +377,6 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @generated
 	 */
 	private EClass workflowComponentOrchestrationStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass workflowConditionalComponentOrchestrationStrategyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -586,31 +569,17 @@ public class OrchestrationPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy <em>Workflow Conditional Component Orchestration Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Workflow Conditional Component Orchestration Strategy</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy
-	 * @generated
-	 */
-	public EClass getWorkflowConditionalComponentOrchestrationStrategy()
-	{
-		return workflowConditionalComponentOrchestrationStrategyEClass;
-	}
-
-
-	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getCondition <em>Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy#getCondition()
-	 * @see #getWorkflowConditionalComponentOrchestrationStrategy()
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getCondition()
+	 * @see #getWorkflowComponentOrchestrationStrategy()
 	 * @generated
 	 */
-	public EReference getWorkflowConditionalComponentOrchestrationStrategy_Condition()
+	public EReference getWorkflowComponentOrchestrationStrategy_Condition()
 	{
-		return (EReference)workflowConditionalComponentOrchestrationStrategyEClass.getEStructuralFeatures().get(0);
+		return (EReference)workflowComponentOrchestrationStrategyEClass.getEStructuralFeatures().get(0);
 	}
 
 
@@ -629,15 +598,15 @@ public class OrchestrationPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getLoopCondition <em>Loop Condition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Condition</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getCondition()
+	 * @return the meta object for the containment reference '<em>Loop Condition</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getLoopCondition()
 	 * @see #getWorkflowLoopComponentOrchestrationStrategy()
 	 * @generated
 	 */
-	public EReference getWorkflowLoopComponentOrchestrationStrategy_Condition()
+	public EReference getWorkflowLoopComponentOrchestrationStrategy_LoopCondition()
 	{
 		return (EReference)workflowLoopComponentOrchestrationStrategyEClass.getEStructuralFeatures().get(0);
 	}
@@ -841,12 +810,10 @@ public class OrchestrationPackage extends EPackageImpl
 		workflowCompositeOrchestrationStrategyEClass = createEClass(WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY);
 
 		workflowComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY);
-
-		workflowConditionalComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY);
-		createEReference(workflowConditionalComponentOrchestrationStrategyEClass, WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
+		createEReference(workflowComponentOrchestrationStrategyEClass, WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
 
 		workflowLoopComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY);
-		createEReference(workflowLoopComponentOrchestrationStrategyEClass, WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
+		createEReference(workflowLoopComponentOrchestrationStrategyEClass, WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION);
 
 		workflowExecutionPredicateEClass = createEClass(WORKFLOW_EXECUTION_PREDICATE);
 
@@ -901,7 +868,6 @@ public class OrchestrationPackage extends EPackageImpl
 		// Add supertypes to classes
 		workflowSerialOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowCompositeOrchestrationStrategy());
 		workflowParallelOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowCompositeOrchestrationStrategy());
-		workflowConditionalComponentOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowComponentOrchestrationStrategy());
 		workflowLoopComponentOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowComponentOrchestrationStrategy());
 		workflowRerunPredicateEClass.getESuperTypes().add(this.getWorkflowExecutionPredicate());
 		workflowParameterPredicateEClass.getESuperTypes().add(this.getWorkflowExecutionPredicate());
@@ -929,20 +895,14 @@ public class OrchestrationPackage extends EPackageImpl
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowComponentOrchestrationStrategyEClass, WorkflowComponentOrchestrationStrategy.class, "WorkflowComponentOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkflowComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 1, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowComponentOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(workflowConditionalComponentOrchestrationStrategyEClass, WorkflowConditionalComponentOrchestrationStrategy.class, "WorkflowConditionalComponentOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkflowConditionalComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 1, 1, WorkflowConditionalComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(workflowConditionalComponentOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(workflowLoopComponentOrchestrationStrategyEClass, WorkflowLoopComponentOrchestrationStrategy.class, "WorkflowLoopComponentOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkflowLoopComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 1, 1, WorkflowLoopComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowLoopComponentOrchestrationStrategy_LoopCondition(), this.getWorkflowExecutionPredicate(), null, "loopCondition", null, 1, 1, WorkflowLoopComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowLoopComponentOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1048,22 +1008,12 @@ public class OrchestrationPackage extends EPackageImpl
 		public static final EClass WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY = eINSTANCE.getWorkflowComponentOrchestrationStrategy();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy <em>Workflow Conditional Component Orchestration Strategy</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy
-		 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowConditionalComponentOrchestrationStrategy()
-		 * @generated
-		 */
-		public static final EClass WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY = eINSTANCE.getWorkflowConditionalComponentOrchestrationStrategy();
-
-		/**
 		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public static final EReference WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = eINSTANCE.getWorkflowConditionalComponentOrchestrationStrategy_Condition();
+		public static final EReference WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = eINSTANCE.getWorkflowComponentOrchestrationStrategy_Condition();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}' class.
@@ -1076,12 +1026,12 @@ public class OrchestrationPackage extends EPackageImpl
 		public static final EClass WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY = eINSTANCE.getWorkflowLoopComponentOrchestrationStrategy();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Loop Condition</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public static final EReference WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = eINSTANCE.getWorkflowLoopComponentOrchestrationStrategy_Condition();
+		public static final EReference WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION = eINSTANCE.getWorkflowLoopComponentOrchestrationStrategy_LoopCondition();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate <em>Workflow Execution Predicate</em>}' class.

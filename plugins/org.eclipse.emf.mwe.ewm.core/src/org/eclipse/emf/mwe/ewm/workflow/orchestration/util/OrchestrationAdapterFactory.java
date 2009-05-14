@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
@@ -110,11 +109,6 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy object)
 			{
 				return createWorkflowComponentOrchestrationStrategyAdapter();
-			}
-			@Override
-			public Adapter caseWorkflowConditionalComponentOrchestrationStrategy(WorkflowConditionalComponentOrchestrationStrategy object)
-			{
-				return createWorkflowConditionalComponentOrchestrationStrategyAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowLoopComponentOrchestrationStrategy(WorkflowLoopComponentOrchestrationStrategy object)
@@ -229,21 +223,6 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowComponentOrchestrationStrategyAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy <em>Workflow Conditional Component Orchestration Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy
-	 * @generated
-	 */
-	public Adapter createWorkflowConditionalComponentOrchestrationStrategyAdapter()
 	{
 		return null;
 	}

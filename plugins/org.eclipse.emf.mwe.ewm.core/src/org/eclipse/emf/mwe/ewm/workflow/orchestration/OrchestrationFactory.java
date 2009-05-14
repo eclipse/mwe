@@ -81,7 +81,6 @@ public class OrchestrationFactory extends EFactoryImpl
 			case OrchestrationPackage.WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY: return createWorkflowSerialOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY: return createWorkflowParallelOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowComponentOrchestrationStrategy();
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowConditionalComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowLoopComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_RERUN_PREDICATE: return createWorkflowRerunPredicate();
 			case OrchestrationPackage.WORKFLOW_PARAMETER_PREDICATE: return createWorkflowParameterPredicate();
@@ -124,17 +123,6 @@ public class OrchestrationFactory extends EFactoryImpl
 	{
 		WorkflowComponentOrchestrationStrategy workflowComponentOrchestrationStrategy = new WorkflowComponentOrchestrationStrategy();
 		return workflowComponentOrchestrationStrategy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkflowConditionalComponentOrchestrationStrategy createWorkflowConditionalComponentOrchestrationStrategy()
-	{
-		WorkflowConditionalComponentOrchestrationStrategy workflowConditionalComponentOrchestrationStrategy = new WorkflowConditionalComponentOrchestrationStrategy();
-		return workflowConditionalComponentOrchestrationStrategy;
 	}
 
 	/**

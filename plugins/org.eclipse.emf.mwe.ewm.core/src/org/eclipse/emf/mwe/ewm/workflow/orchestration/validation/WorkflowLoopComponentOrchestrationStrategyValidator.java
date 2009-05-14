@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopComponentOrchestrationStrategyValidator.java,v 1.1 2009/05/14 04:12:29 bhunt Exp $
+ * $Id: WorkflowLoopComponentOrchestrationStrategyValidator.java,v 1.2 2009/05/14 05:25:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.validation;
 
@@ -18,6 +18,8 @@ import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate
 public interface WorkflowLoopComponentOrchestrationStrategyValidator
 {
 	boolean validate();
+
+	boolean validateLoopCondition(WorkflowExecutionPredicate value);
 
 	boolean validateCondition(WorkflowExecutionPredicate value);
 

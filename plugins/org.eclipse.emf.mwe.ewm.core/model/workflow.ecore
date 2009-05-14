@@ -160,13 +160,6 @@
         <eParameters name="component" eType="#//WorkflowComponent"/>
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowConditionalComponentOrchestrationStrategy"
-        eSuperTypes="#//orchestration/WorkflowComponentOrchestrationStrategy">
-      <eOperations name="run">
-        <eParameters name="component" eType="#//WorkflowComponent"/>
-        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
           eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
     </eClassifiers>
@@ -176,7 +169,7 @@
         <eParameters name="component" eType="#//WorkflowComponent"/>
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="loopCondition" lowerBound="1"
           eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowExecutionPredicate" abstract="true">

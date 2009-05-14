@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.validation;
 
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
+
 
 /**
  * A sample validator interface for {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy}.
@@ -20,5 +22,7 @@ package org.eclipse.emf.mwe.ewm.workflow.orchestration.validation;
 public interface WorkflowComponentOrchestrationStrategyValidator
 {
 	boolean validate();
+
+	boolean validateCondition(WorkflowExecutionPredicate value);
 
 }

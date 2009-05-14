@@ -1927,7 +1927,7 @@ public class RuntimePackage extends EPackageImpl
 		addEParameter(op, theEcorePackage.getEString(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(workflowLogEClass, null, "logException", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getException(), "message", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getException(), "e", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowLogEntryEClass, WorkflowLogEntry.class, "WorkflowLogEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowLogEntry_Type(), this.getWorkflowLogEntryType(), "type", null, 1, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

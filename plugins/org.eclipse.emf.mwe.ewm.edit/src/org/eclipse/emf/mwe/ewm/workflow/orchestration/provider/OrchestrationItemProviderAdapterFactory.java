@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.4 2009/05/14 04:12:25 bhunt Exp $
+ * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.5 2009/05/14 05:25:18 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -163,31 +163,6 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 		}
 
 		return workflowComponentOrchestrationStrategyItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected WorkflowConditionalComponentOrchestrationStrategyItemProvider workflowConditionalComponentOrchestrationStrategyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createWorkflowConditionalComponentOrchestrationStrategyAdapter()
-	{
-		if (workflowConditionalComponentOrchestrationStrategyItemProvider == null)
-		{
-			workflowConditionalComponentOrchestrationStrategyItemProvider = new WorkflowConditionalComponentOrchestrationStrategyItemProvider(this);
-		}
-
-		return workflowConditionalComponentOrchestrationStrategyItemProvider;
 	}
 
 	/**
@@ -484,7 +459,6 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 		if (workflowSerialOrchestrationStrategyItemProvider != null) workflowSerialOrchestrationStrategyItemProvider.dispose();
 		if (workflowParallelOrchestrationStrategyItemProvider != null) workflowParallelOrchestrationStrategyItemProvider.dispose();
 		if (workflowComponentOrchestrationStrategyItemProvider != null) workflowComponentOrchestrationStrategyItemProvider.dispose();
-		if (workflowConditionalComponentOrchestrationStrategyItemProvider != null) workflowConditionalComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowLoopComponentOrchestrationStrategyItemProvider != null) workflowLoopComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowRerunPredicateItemProvider != null) workflowRerunPredicateItemProvider.dispose();
 		if (workflowParameterPredicateItemProvider != null) workflowParameterPredicateItemProvider.dispose();

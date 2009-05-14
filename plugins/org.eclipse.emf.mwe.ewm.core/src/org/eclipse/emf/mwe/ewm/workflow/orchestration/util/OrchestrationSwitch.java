@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
@@ -141,14 +140,6 @@ public class OrchestrationSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY:
-			{
-				WorkflowConditionalComponentOrchestrationStrategy workflowConditionalComponentOrchestrationStrategy = (WorkflowConditionalComponentOrchestrationStrategy)theEObject;
-				T result = caseWorkflowConditionalComponentOrchestrationStrategy(workflowConditionalComponentOrchestrationStrategy);
-				if (result == null) result = caseWorkflowComponentOrchestrationStrategy(workflowConditionalComponentOrchestrationStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY:
 			{
 				WorkflowLoopComponentOrchestrationStrategy workflowLoopComponentOrchestrationStrategy = (WorkflowLoopComponentOrchestrationStrategy)theEObject;
@@ -268,22 +259,6 @@ public class OrchestrationSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowComponentOrchestrationStrategy(WorkflowComponentOrchestrationStrategy object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Workflow Conditional Component Orchestration Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Workflow Conditional Component Orchestration Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkflowConditionalComponentOrchestrationStrategy(WorkflowConditionalComponentOrchestrationStrategy object)
 	{
 		return null;
 	}

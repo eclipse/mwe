@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopComponentOrchestrationStrategy.java,v 1.1 2009/05/14 04:12:28 bhunt Exp $
+ * $Id: WorkflowLoopComponentOrchestrationStrategy.java,v 1.2 2009/05/14 05:25:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getLoopCondition <em>Loop Condition</em>}</li>
  * </ul>
  * </p>
  *
@@ -35,14 +35,14 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
 public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponentOrchestrationStrategy
 {
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
+	 * The cached value of the '{@link #getLoopCondition() <em>Loop Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCondition()
+	 * @see #getLoopCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected WorkflowExecutionPredicate condition;
+	protected WorkflowExecutionPredicate loopCondition;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,22 +65,22 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Loop Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Loop Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' containment reference.
-	 * @see #setCondition(WorkflowExecutionPredicate)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopComponentOrchestrationStrategy_Condition()
+	 * @return the value of the '<em>Loop Condition</em>' containment reference.
+	 * @see #setLoopCondition(WorkflowExecutionPredicate)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopComponentOrchestrationStrategy_LoopCondition()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	public WorkflowExecutionPredicate getCondition()
+	public WorkflowExecutionPredicate getLoopCondition()
 	{
-		return condition;
+		return loopCondition;
 	}
 
 	/**
@@ -88,40 +88,40 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(WorkflowExecutionPredicate newCondition, NotificationChain msgs)
+	public NotificationChain basicSetLoopCondition(WorkflowExecutionPredicate newLoopCondition, NotificationChain msgs)
 	{
-		WorkflowExecutionPredicate oldCondition = condition;
-		condition = newCondition;
+		WorkflowExecutionPredicate oldLoopCondition = loopCondition;
+		loopCondition = newLoopCondition;
 		if (eNotificationRequired())
 		{
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, oldCondition, newCondition);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION, oldLoopCondition, newLoopCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getCondition <em>Condition</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy#getLoopCondition <em>Loop Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' containment reference.
-	 * @see #getCondition()
+	 * @param value the new value of the '<em>Loop Condition</em>' containment reference.
+	 * @see #getLoopCondition()
 	 * @generated
 	 */
-	public void setCondition(WorkflowExecutionPredicate newCondition)
+	public void setLoopCondition(WorkflowExecutionPredicate newLoopCondition)
 	{
-		if (newCondition != condition)
+		if (newLoopCondition != loopCondition)
 		{
 			NotificationChain msgs = null;
-			if (condition != null)
-				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, null, msgs);
-			if (newCondition != null)
-				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, null, msgs);
-			msgs = basicSetCondition(newCondition, msgs);
+			if (loopCondition != null)
+				msgs = ((InternalEObject)loopCondition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION, null, msgs);
+			if (newLoopCondition != null)
+				msgs = ((InternalEObject)newLoopCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION, null, msgs);
+			msgs = basicSetLoopCondition(newLoopCondition, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, newCondition, newCondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION, newLoopCondition, newLoopCondition));
 	}
 
 	/**
@@ -134,8 +134,8 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
-				return basicSetCondition(null, msgs);
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
+				return basicSetLoopCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -150,8 +150,8 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
-				return getCondition();
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
+				return getLoopCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -166,8 +166,8 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
-				setCondition((WorkflowExecutionPredicate)newValue);
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
+				setLoopCondition((WorkflowExecutionPredicate)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -183,8 +183,8 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
-				setCondition((WorkflowExecutionPredicate)null);
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
+				setLoopCondition((WorkflowExecutionPredicate)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -200,8 +200,8 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
-				return condition != null;
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
+				return loopCondition != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -214,7 +214,7 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 	{
 		boolean runOnce = false;
 		
-		while(getCondition().evaluate(component, context))
+		while(getLoopCondition().evaluate(component, context))
 		{
 			runOnce = true;
 			super.run(component, context);

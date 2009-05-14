@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopComponentOrchestrationStrategyItemProvider.java,v 1.1 2009/05/14 04:12:24 bhunt Exp $
+ * $Id: WorkflowLoopComponentOrchestrationStrategyItemProvider.java,v 1.2 2009/05/14 05:25:18 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -81,7 +81,7 @@ public class WorkflowLoopComponentOrchestrationStrategyItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
+			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -138,7 +138,7 @@ public class WorkflowLoopComponentOrchestrationStrategyItemProvider
 
 		switch (notification.getFeatureID(WorkflowLoopComponentOrchestrationStrategy.class))
 		{
-			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -159,28 +159,53 @@ public class WorkflowLoopComponentOrchestrationStrategyItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowParameterPredicate()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowPredicateOR()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowPredicateAND()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				(OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowLoopCountPredicate()));
+	}
+
+	/**
+	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection)
+	{
+		Object childFeature = feature;
+		Object childObject = child;
+
+		boolean qualify =
+			childFeature == OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION ||
+			childFeature == OrchestrationPackage.Literals.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION;
+
+		if (qualify)
+		{
+			return getString
+				("_UI_CreateChild_text2",
+				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
+		}
+		return super.getCreateChildText(owner, feature, child, selection);
 	}
 
 }

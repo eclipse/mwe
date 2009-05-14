@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopCountPredicate.java,v 1.2 2009/05/14 04:53:53 bhunt Exp $
+ * $Id: WorkflowLoopCountPredicate.java,v 1.3 2009/05/14 05:25:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
@@ -15,7 +15,8 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowErrorState;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowFailedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
 /**
@@ -290,7 +291,7 @@ public class WorkflowLoopCountPredicate extends WorkflowExecutionPredicate
 		{
 			WorkflowState currentState = component.getState(context);
 			
-			if (currentState == null || currentState instanceof WorkflowIdleState)
+			if (currentState == null || currentState instanceof WorkflowFailedState || currentState instanceof WorkflowErrorState)
 				getCurrentCount().setValue(context, new Integer(0));
 
 			int current = (Integer) getCurrentCount().getValue(context);
