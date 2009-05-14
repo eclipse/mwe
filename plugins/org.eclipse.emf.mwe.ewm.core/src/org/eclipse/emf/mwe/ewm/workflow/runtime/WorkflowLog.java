@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintWriter;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -285,6 +287,20 @@ public class WorkflowLog extends EObjectImpl implements EObject
 	{
 		if(getLogLevel().getValue() >= WorkflowLogEntryType.DEBUG_VALUE)
 			getDebugs().add(createLogEntry(WorkflowLogEntryType.DEBUG, message));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model messageDataType="org.eclipse.emf.mwe.ewm.workflow.runtime.Exception"
+	 * @generated NOT
+	 */
+	public void logException(Exception e)
+	{
+		logError("Runtime Exception: " + e.getLocalizedMessage());
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		e.printStackTrace(new PrintWriter(out));
+		logError(out.toString());
 	}
 
 	/**

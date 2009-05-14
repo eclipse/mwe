@@ -319,6 +319,9 @@
       <eOperations name="logDebug">
         <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       </eOperations>
+      <eOperations name="logException">
+        <eParameters name="e" eType="#//runtime/Exception"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="entries" upperBound="-1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry">
         <eAnnotations source="http:///org/eclipse/emf/ecore/util/ExtendedMetaData">
@@ -397,6 +400,7 @@
           eType="#//runtime/WorkflowComponentExecutionInfo" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="TransactionalEditingDomain" instanceClassName="org.eclipse.emf.transaction.TransactionalEditingDomain"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
     <eSubpackages name="state" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state"
         nsPrefix="org.eclipse.emf.mwe.ewm.workflow.runtime.state">
       <eClassifiers xsi:type="ecore:EClass" name="WorkflowState" abstract="true">

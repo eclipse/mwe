@@ -10,9 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintWriter;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -71,10 +68,7 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		}
 		catch (Exception e)
 		{
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			e.printStackTrace(new PrintWriter(out));
-			component.getLog(context).logError("Runtime Exception: " + e.getLocalizedMessage());
-			component.getLog(context).logError(out.toString());
+			component.getLog(context).logException(e);
 			component.setState(context, StateFactory.eINSTANCE.createWorkflowErrorState());
 		}
 	}
