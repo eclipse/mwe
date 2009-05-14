@@ -23,8 +23,8 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Parallel Workflow Orchestrator</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParallelOrchestrationStrategy()
  * @model kind="class"
  * @generated
@@ -33,7 +33,6 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkflowParallelOrchestrationStrategy()
@@ -43,7 +42,6 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

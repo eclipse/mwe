@@ -19,7 +19,12 @@ import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestra
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowRerunPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowSerialOrchestrationStrategy;
 
@@ -112,6 +117,11 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 				return createWorkflowConditionalComponentOrchestrationStrategyAdapter();
 			}
 			@Override
+			public Adapter caseWorkflowLoopComponentOrchestrationStrategy(WorkflowLoopComponentOrchestrationStrategy object)
+			{
+				return createWorkflowLoopComponentOrchestrationStrategyAdapter();
+			}
+			@Override
 			public Adapter caseWorkflowExecutionPredicate(WorkflowExecutionPredicate object)
 			{
 				return createWorkflowExecutionPredicateAdapter();
@@ -120,6 +130,26 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowRerunPredicate(WorkflowRerunPredicate object)
 			{
 				return createWorkflowRerunPredicateAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowParameterPredicate(WorkflowParameterPredicate object)
+			{
+				return createWorkflowParameterPredicateAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowPredicateOR(WorkflowPredicateOR object)
+			{
+				return createWorkflowPredicateORAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowPredicateAND(WorkflowPredicateAND object)
+			{
+				return createWorkflowPredicateANDAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowLoopCountPredicate(WorkflowLoopCountPredicate object)
+			{
+				return createWorkflowLoopCountPredicateAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -219,6 +249,21 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy
+	 * @generated
+	 */
+	public Adapter createWorkflowLoopComponentOrchestrationStrategyAdapter()
+	{
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate <em>Workflow Execution Predicate</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -244,6 +289,66 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowRerunPredicateAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate <em>Workflow Parameter Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate
+	 * @generated
+	 */
+	public Adapter createWorkflowParameterPredicateAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR <em>Workflow Predicate OR</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR
+	 * @generated
+	 */
+	public Adapter createWorkflowPredicateORAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND <em>Workflow Predicate AND</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND
+	 * @generated
+	 */
+	public Adapter createWorkflowPredicateANDAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate <em>Workflow Loop Count Predicate</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate
+	 * @generated
+	 */
+	public Adapter createWorkflowLoopCountPredicateAdapter()
 	{
 		return null;
 	}

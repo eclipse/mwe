@@ -80,6 +80,7 @@ public class StateFactory extends EFactoryImpl
 		{
 			case StatePackage.WORKFLOW_IDLE_STATE: return createWorkflowIdleState();
 			case StatePackage.WORKFLOW_RUNNING_STATE: return createWorkflowRunningState();
+			case StatePackage.WORKFLOW_SKIPPED_STATE: return createWorkflowSkippedState();
 			case StatePackage.WORKFLOW_DONE_STATE: return createWorkflowDoneState();
 			case StatePackage.WORKFLOW_SUCCESS_STATE: return createWorkflowSuccessState();
 			case StatePackage.WORKFLOW_FAILED_STATE: return createWorkflowFailedState();
@@ -109,6 +110,17 @@ public class StateFactory extends EFactoryImpl
 	{
 		WorkflowRunningState workflowRunningState = new WorkflowRunningState();
 		return workflowRunningState;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowSkippedState createWorkflowSkippedState()
+	{
+		WorkflowSkippedState workflowSkippedState = new WorkflowSkippedState();
+		return workflowSkippedState;
 	}
 
 	/**

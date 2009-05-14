@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.3 2009/04/23 05:07:08 bhunt Exp $
+ * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.4 2009/05/14 04:12:25 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -191,6 +191,31 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowLoopComponentOrchestrationStrategyItemProvider workflowLoopComponentOrchestrationStrategyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowLoopComponentOrchestrationStrategyAdapter()
+	{
+		if (workflowLoopComponentOrchestrationStrategyItemProvider == null)
+		{
+			workflowLoopComponentOrchestrationStrategyItemProvider = new WorkflowLoopComponentOrchestrationStrategyItemProvider(this);
+		}
+
+		return workflowLoopComponentOrchestrationStrategyItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowRerunPredicate} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -213,6 +238,106 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 		}
 
 		return workflowRerunPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowParameterPredicateItemProvider workflowParameterPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowParameterPredicateAdapter()
+	{
+		if (workflowParameterPredicateItemProvider == null)
+		{
+			workflowParameterPredicateItemProvider = new WorkflowParameterPredicateItemProvider(this);
+		}
+
+		return workflowParameterPredicateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowPredicateORItemProvider workflowPredicateORItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowPredicateORAdapter()
+	{
+		if (workflowPredicateORItemProvider == null)
+		{
+			workflowPredicateORItemProvider = new WorkflowPredicateORItemProvider(this);
+		}
+
+		return workflowPredicateORItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowPredicateANDItemProvider workflowPredicateANDItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowPredicateANDAdapter()
+	{
+		if (workflowPredicateANDItemProvider == null)
+		{
+			workflowPredicateANDItemProvider = new WorkflowPredicateANDItemProvider(this);
+		}
+
+		return workflowPredicateANDItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowLoopCountPredicateItemProvider workflowLoopCountPredicateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowLoopCountPredicateAdapter()
+	{
+		if (workflowLoopCountPredicateItemProvider == null)
+		{
+			workflowLoopCountPredicateItemProvider = new WorkflowLoopCountPredicateItemProvider(this);
+		}
+
+		return workflowLoopCountPredicateItemProvider;
 	}
 
 	/**
@@ -360,7 +485,12 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 		if (workflowParallelOrchestrationStrategyItemProvider != null) workflowParallelOrchestrationStrategyItemProvider.dispose();
 		if (workflowComponentOrchestrationStrategyItemProvider != null) workflowComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowConditionalComponentOrchestrationStrategyItemProvider != null) workflowConditionalComponentOrchestrationStrategyItemProvider.dispose();
+		if (workflowLoopComponentOrchestrationStrategyItemProvider != null) workflowLoopComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowRerunPredicateItemProvider != null) workflowRerunPredicateItemProvider.dispose();
+		if (workflowParameterPredicateItemProvider != null) workflowParameterPredicateItemProvider.dispose();
+		if (workflowPredicateORItemProvider != null) workflowPredicateORItemProvider.dispose();
+		if (workflowPredicateANDItemProvider != null) workflowPredicateANDItemProvider.dispose();
+		if (workflowLoopCountPredicateItemProvider != null) workflowLoopCountPredicateItemProvider.dispose();
 	}
 
 }

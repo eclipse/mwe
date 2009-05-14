@@ -17,9 +17,7 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Workflow Execution Predicate</b></em>'.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Workflow Execution Predicate</b></em>'. <!-- end-user-doc -->
  *
  *
  * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowExecutionPredicate()
@@ -29,8 +27,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 public abstract class WorkflowExecutionPredicate extends EObjectImpl implements EObject
 {
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected WorkflowExecutionPredicate()
@@ -39,8 +36,7 @@ public abstract class WorkflowExecutionPredicate extends EObjectImpl implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -50,10 +46,19 @@ public abstract class WorkflowExecutionPredicate extends EObjectImpl implements 
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @model
 	 * @generated NOT
 	 */
 	public abstract boolean evaluate(WorkflowComponent component, WorkflowContext context);
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @model
+	 * @generated NOT
+	 */
+	public void reset(WorkflowContext context)
+	{}
 } // WorkflowExecutionPredicate

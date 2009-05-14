@@ -167,12 +167,24 @@
         <eParameters name="component" eType="#//WorkflowComponent"/>
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" upperBound="-1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
+          eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLoopComponentOrchestrationStrategy"
+        eSuperTypes="#//orchestration/WorkflowComponentOrchestrationStrategy">
+      <eOperations name="run">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
           eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowExecutionPredicate" abstract="true">
       <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
         <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eOperations name="reset">
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
     </eClassifiers>
@@ -181,6 +193,40 @@
         <eParameters name="component" eType="#//WorkflowComponent"/>
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterPredicate" eSuperTypes="#//orchestration/WorkflowExecutionPredicate">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+          eType="#//WorkflowParameter"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowPredicateOR" eSuperTypes="#//orchestration/WorkflowExecutionPredicate">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" lowerBound="1"
+          upperBound="-1" eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowPredicateAND" eSuperTypes="#//orchestration/WorkflowExecutionPredicate">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="conditions" lowerBound="1"
+          upperBound="-1" eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLoopCountPredicate" eSuperTypes="#//orchestration/WorkflowExecutionPredicate">
+      <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+        <eParameters name="component" eType="#//WorkflowComponent"/>
+        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      </eOperations>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="currentCount" lowerBound="1"
+          eType="#//WorkflowParameter" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="loopCount" lowerBound="1"
+          eType="#//WorkflowParameter" containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="runtime" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"
@@ -360,6 +406,9 @@
         <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="WorkflowRunningState" eSuperTypes="#//runtime/state/WorkflowState">
+        <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="WorkflowSkippedState" eSuperTypes="#//runtime/state/WorkflowState">
         <eOperations name="getDisplayName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="WorkflowDoneState" eSuperTypes="#//runtime/state/WorkflowState">

@@ -120,7 +120,7 @@ public class PredicateTestHarness extends WorkflowExecutionPredicate
 		switch (featureID)
 		{
 			case JunitPackage.PREDICATE_TEST_HARNESS__EXECUTION_ALLOWED:
-				return isExecutionAllowed() ? Boolean.TRUE : Boolean.FALSE;
+				return isExecutionAllowed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -136,7 +136,7 @@ public class PredicateTestHarness extends WorkflowExecutionPredicate
 		switch (featureID)
 		{
 			case JunitPackage.PREDICATE_TEST_HARNESS__EXECUTION_ALLOWED:
-				setExecutionAllowed(((Boolean)newValue).booleanValue());
+				setExecutionAllowed((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

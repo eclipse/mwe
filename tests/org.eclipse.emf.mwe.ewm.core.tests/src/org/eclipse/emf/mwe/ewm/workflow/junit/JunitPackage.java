@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
@@ -88,6 +89,24 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__NAME = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIT_OF_WORK_TEST_HARNESS__TYPE = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIT_OF_WORK_TEST_HARNESS__DESCRIPTION = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__DESCRIPTION;
+
+	/**
 	 * The feature id for the '<em><b>Component Orchestration Strategy</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -124,13 +143,31 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Conditional Loop Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIT_OF_WORK_TEST_HARNESS__CONDITIONAL_LOOP_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Execution Count</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Unit Of Work Test Harness</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNIT_OF_WORK_TEST_HARNESS_FEATURE_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 2;
+	public static final int UNIT_OF_WORK_TEST_HARNESS_FEATURE_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness <em>Predicate Test Harness</em>}' class.
@@ -228,7 +265,7 @@ public class JunitPackage extends EPackageImpl
 		if (isInited) return (JunitPackage)EPackage.Registry.INSTANCE.getEPackage(JunitPackage.eNS_URI);
 
 		// Obtain or create and register package
-		JunitPackage theJunitPackage = (JunitPackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof JunitPackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new JunitPackage());
+		JunitPackage theJunitPackage = (JunitPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof JunitPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new JunitPackage());
 
 		isInited = true;
 
@@ -288,6 +325,36 @@ public class JunitPackage extends EPackageImpl
 	public EReference getUnitOfWorkTestHarness_RunningState()
 	{
 		return (EReference)unitOfWorkTestHarnessEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getConditionalLoopParameter <em>Conditional Loop Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Conditional Loop Parameter</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getConditionalLoopParameter()
+	 * @see #getUnitOfWorkTestHarness()
+	 * @generated
+	 */
+	public EReference getUnitOfWorkTestHarness_ConditionalLoopParameter()
+	{
+		return (EReference)unitOfWorkTestHarnessEClass.getEStructuralFeatures().get(2);
+	}
+
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getExecutionCount <em>Execution Count</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Execution Count</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getExecutionCount()
+	 * @see #getUnitOfWorkTestHarness()
+	 * @generated
+	 */
+	public EAttribute getUnitOfWorkTestHarness_ExecutionCount()
+	{
+		return (EAttribute)unitOfWorkTestHarnessEClass.getEStructuralFeatures().get(3);
 	}
 
 
@@ -355,6 +422,8 @@ public class JunitPackage extends EPackageImpl
 		unitOfWorkTestHarnessEClass = createEClass(UNIT_OF_WORK_TEST_HARNESS);
 		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__END_STATE);
 		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE);
+		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__CONDITIONAL_LOOP_PARAMETER);
+		createEAttribute(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT);
 
 		predicateTestHarnessEClass = createEClass(PREDICATE_TEST_HARNESS);
 		createEAttribute(predicateTestHarnessEClass, PREDICATE_TEST_HARNESS__EXECUTION_ALLOWED);
@@ -387,6 +456,7 @@ public class JunitPackage extends EPackageImpl
 		// Obtain other dependent packages
 		WorkflowPackage theWorkflowPackage = (WorkflowPackage)EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI);
 		StatePackage theStatePackage = (StatePackage)EPackage.Registry.INSTANCE.getEPackage(StatePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		OrchestrationPackage theOrchestrationPackage = (OrchestrationPackage)EPackage.Registry.INSTANCE.getEPackage(OrchestrationPackage.eNS_URI);
 
 		// Create type parameters
@@ -401,6 +471,8 @@ public class JunitPackage extends EPackageImpl
 		initEClass(unitOfWorkTestHarnessEClass, UnitOfWorkTestHarness.class, "UnitOfWorkTestHarness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUnitOfWorkTestHarness_EndState(), theStatePackage.getWorkflowState(), null, "endState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUnitOfWorkTestHarness_RunningState(), theStatePackage.getWorkflowState(), null, "runningState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnitOfWorkTestHarness_ConditionalLoopParameter(), theWorkflowPackage.getWorkflowParameter(), null, "conditionalLoopParameter", null, 0, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnitOfWorkTestHarness_ExecutionCount(), theEcorePackage.getEInt(), "executionCount", null, 0, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(predicateTestHarnessEClass, PredicateTestHarness.class, "PredicateTestHarness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPredicateTestHarness_ExecutionAllowed(), ecorePackage.getEBoolean(), "executionAllowed", null, 1, 1, PredicateTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -448,6 +520,22 @@ public class JunitPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE = eINSTANCE.getUnitOfWorkTestHarness_RunningState();
+
+		/**
+		 * The meta object literal for the '<em><b>Conditional Loop Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference UNIT_OF_WORK_TEST_HARNESS__CONDITIONAL_LOOP_PARAMETER = eINSTANCE.getUnitOfWorkTestHarness_ConditionalLoopParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Execution Count</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT = eINSTANCE.getUnitOfWorkTestHarness_ExecutionCount();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness <em>Predicate Test Harness</em>}' class.

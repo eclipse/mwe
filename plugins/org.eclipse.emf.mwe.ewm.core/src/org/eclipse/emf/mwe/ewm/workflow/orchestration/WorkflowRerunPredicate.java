@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
 
 /**
@@ -51,7 +52,7 @@ public class WorkflowRerunPredicate extends WorkflowExecutionPredicate
 	@Override
 	public boolean evaluate(WorkflowComponent component, WorkflowContext context)
 	{
-		return !(component.getState(context) instanceof WorkflowSuccessState);
+		return !(component.getState(context) instanceof WorkflowSuccessState) && !(component.getState(context) instanceof WorkflowSkippedState);
 	}
 
 } // WorkflowRerunPredicate

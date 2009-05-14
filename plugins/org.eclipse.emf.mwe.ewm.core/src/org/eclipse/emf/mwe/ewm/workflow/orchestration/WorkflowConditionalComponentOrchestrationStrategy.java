@@ -10,16 +10,14 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
-import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StateFactory;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,7 +27,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy#getConditions <em>Conditions</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,15 +38,14 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowComponentOrchestrationStrategy
 {
 	/**
-	 * The cached value of the '{@link #getConditions() <em>Conditions</em>}' containment reference list.
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConditions()
+	 * @see #getCondition()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<WorkflowExecutionPredicate> conditions;
-
+	protected WorkflowExecutionPredicate condition;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -71,26 +68,63 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Conditions</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate}.
+	 * Returns the value of the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Conditions</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Condition</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Conditions</em>' containment reference list.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowConditionalComponentOrchestrationStrategy_Conditions()
-	 * @model containment="true"
+	 * @return the value of the '<em>Condition</em>' containment reference.
+	 * @see #setCondition(WorkflowExecutionPredicate)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowConditionalComponentOrchestrationStrategy_Condition()
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	public EList<WorkflowExecutionPredicate> getConditions()
+	public WorkflowExecutionPredicate getCondition()
 	{
-		if (conditions == null)
+		return condition;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCondition(WorkflowExecutionPredicate newCondition, NotificationChain msgs)
+	{
+		WorkflowExecutionPredicate oldCondition = condition;
+		condition = newCondition;
+		if (eNotificationRequired())
 		{
-			conditions = new EObjectContainmentEList<WorkflowExecutionPredicate>(WorkflowExecutionPredicate.class, this, OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, oldCondition, newCondition);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
-		return conditions;
+		return msgs;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy#getCondition <em>Condition</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
+	 * @see #getCondition()
+	 * @generated
+	 */
+	public void setCondition(WorkflowExecutionPredicate newCondition)
+	{
+		if (newCondition != condition)
+		{
+			NotificationChain msgs = null;
+			if (condition != null)
+				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, null, msgs);
+			if (newCondition != null)
+				msgs = ((InternalEObject)newCondition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, null, msgs);
+			msgs = basicSetCondition(newCondition, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION, newCondition, newCondition));
 	}
 
 	/**
@@ -103,8 +137,8 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
-				return ((InternalEList<?>)getConditions()).basicRemove(otherEnd, msgs);
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+				return basicSetCondition(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -119,8 +153,8 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
-				return getConditions();
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+				return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,15 +164,13 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
-				getConditions().clear();
-				getConditions().addAll((Collection<? extends WorkflowExecutionPredicate>)newValue);
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+				setCondition((WorkflowExecutionPredicate)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,8 +186,8 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
-				getConditions().clear();
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+				setCondition((WorkflowExecutionPredicate)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -171,8 +203,8 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	{
 		switch (featureID)
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
-				return conditions != null && !conditions.isEmpty();
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+				return condition != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -180,10 +212,10 @@ public class WorkflowConditionalComponentOrchestrationStrategy extends WorkflowC
 	@Override
 	public void run(WorkflowComponent component, WorkflowContext context)
 	{
-		for(WorkflowExecutionPredicate condition : getConditions())
+		if(!getCondition().evaluate(component, context))
 		{
-			if(!condition.evaluate(component, context))
-				return;
+			component.setState(context, StateFactory.eINSTANCE.createWorkflowSkippedState());
+			return;
 		}
 		
 		super.run(component, context);

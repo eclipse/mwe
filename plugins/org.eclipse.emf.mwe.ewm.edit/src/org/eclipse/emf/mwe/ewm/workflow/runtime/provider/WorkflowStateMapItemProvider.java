@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowStateMapItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowStateMapItemProvider.java,v 1.5 2009/05/14 04:12:25 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -195,6 +195,11 @@ public class WorkflowStateMapItemProvider
 			(createChildParameter
 				(RuntimePackage.Literals.WORKFLOW_STATE_MAP__VALUE,
 				 StateFactory.eINSTANCE.createWorkflowRunningState()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(RuntimePackage.Literals.WORKFLOW_STATE_MAP__VALUE,
+				 StateFactory.eINSTANCE.createWorkflowSkippedState()));
 
 		newChildDescriptors.add
 			(createChildParameter

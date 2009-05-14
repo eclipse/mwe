@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowConditionalComponentOrchestrationStrategyItemProvider.java,v 1.3 2009/04/23 05:07:08 bhunt Exp $
+ * $Id: WorkflowConditionalComponentOrchestrationStrategyItemProvider.java,v 1.4 2009/05/14 04:12:25 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -81,7 +81,7 @@ public class WorkflowConditionalComponentOrchestrationStrategyItemProvider
 		if (childrenFeatures == null)
 		{
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS);
+			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
 		}
 		return childrenFeatures;
 	}
@@ -138,7 +138,7 @@ public class WorkflowConditionalComponentOrchestrationStrategyItemProvider
 
 		switch (notification.getFeatureID(WorkflowConditionalComponentOrchestrationStrategy.class))
 		{
-			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS:
+			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -159,8 +159,28 @@ public class WorkflowConditionalComponentOrchestrationStrategyItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITIONS,
+				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowRerunPredicate()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				 OrchestrationFactory.eINSTANCE.createWorkflowParameterPredicate()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				 OrchestrationFactory.eINSTANCE.createWorkflowPredicateOR()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				 OrchestrationFactory.eINSTANCE.createWorkflowPredicateAND()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
+				 OrchestrationFactory.eINSTANCE.createWorkflowLoopCountPredicate()));
 	}
 
 }

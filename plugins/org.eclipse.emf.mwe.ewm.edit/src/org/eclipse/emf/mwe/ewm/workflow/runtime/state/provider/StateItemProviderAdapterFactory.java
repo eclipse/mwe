@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: StateItemProviderAdapterFactory.java,v 1.4 2009/04/25 04:21:31 bhunt Exp $
+ * $Id: StateItemProviderAdapterFactory.java,v 1.5 2009/05/14 04:12:25 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.state.provider;
 
@@ -138,6 +138,31 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 		}
 
 		return workflowRunningStateItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowSkippedStateItemProvider workflowSkippedStateItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowSkippedStateAdapter()
+	{
+		if (workflowSkippedStateItemProvider == null)
+		{
+			workflowSkippedStateItemProvider = new WorkflowSkippedStateItemProvider(this);
+		}
+
+		return workflowSkippedStateItemProvider;
 	}
 
 	/**
@@ -383,6 +408,7 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 	{
 		if (workflowIdleStateItemProvider != null) workflowIdleStateItemProvider.dispose();
 		if (workflowRunningStateItemProvider != null) workflowRunningStateItemProvider.dispose();
+		if (workflowSkippedStateItemProvider != null) workflowSkippedStateItemProvider.dispose();
 		if (workflowDoneStateItemProvider != null) workflowDoneStateItemProvider.dispose();
 		if (workflowSuccessStateItemProvider != null) workflowSuccessStateItemProvider.dispose();
 		if (workflowFailedStateItemProvider != null) workflowFailedStateItemProvider.dispose();

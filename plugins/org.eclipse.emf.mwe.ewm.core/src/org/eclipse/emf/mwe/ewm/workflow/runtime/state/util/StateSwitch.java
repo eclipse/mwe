@@ -20,6 +20,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowErrorState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowFailedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowRunningState;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
 
@@ -129,6 +130,14 @@ public class StateSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case StatePackage.WORKFLOW_SKIPPED_STATE:
+			{
+				WorkflowSkippedState workflowSkippedState = (WorkflowSkippedState)theEObject;
+				T result = caseWorkflowSkippedState(workflowSkippedState);
+				if (result == null) result = caseWorkflowState(workflowSkippedState);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case StatePackage.WORKFLOW_DONE_STATE:
 			{
 				WorkflowDoneState workflowDoneState = (WorkflowDoneState)theEObject;
@@ -212,6 +221,22 @@ public class StateSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowRunningState(WorkflowRunningState object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Skipped State</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Skipped State</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowSkippedState(WorkflowSkippedState object)
 	{
 		return null;
 	}

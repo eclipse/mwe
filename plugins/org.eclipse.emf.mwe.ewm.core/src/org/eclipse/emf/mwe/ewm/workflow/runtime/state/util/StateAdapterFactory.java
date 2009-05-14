@@ -20,6 +20,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowErrorState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowFailedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowRunningState;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSuccessState;
 
@@ -100,6 +101,11 @@ public class StateAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowRunningState(WorkflowRunningState object)
 			{
 				return createWorkflowRunningStateAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowSkippedState(WorkflowSkippedState object)
+			{
+				return createWorkflowSkippedStateAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowDoneState(WorkflowDoneState object)
@@ -184,6 +190,21 @@ public class StateAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowRunningStateAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState <em>Workflow Skipped State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState
+	 * @generated
+	 */
+	public Adapter createWorkflowSkippedStateAdapter()
 	{
 		return null;
 	}

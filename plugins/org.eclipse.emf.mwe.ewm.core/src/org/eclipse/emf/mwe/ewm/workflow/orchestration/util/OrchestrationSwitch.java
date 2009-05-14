@@ -19,7 +19,12 @@ import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestra
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND;
+import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowRerunPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowSerialOrchestrationStrategy;
 
@@ -144,6 +149,14 @@ public class OrchestrationSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY:
+			{
+				WorkflowLoopComponentOrchestrationStrategy workflowLoopComponentOrchestrationStrategy = (WorkflowLoopComponentOrchestrationStrategy)theEObject;
+				T result = caseWorkflowLoopComponentOrchestrationStrategy(workflowLoopComponentOrchestrationStrategy);
+				if (result == null) result = caseWorkflowComponentOrchestrationStrategy(workflowLoopComponentOrchestrationStrategy);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OrchestrationPackage.WORKFLOW_EXECUTION_PREDICATE:
 			{
 				WorkflowExecutionPredicate workflowExecutionPredicate = (WorkflowExecutionPredicate)theEObject;
@@ -156,6 +169,38 @@ public class OrchestrationSwitch<T>
 				WorkflowRerunPredicate workflowRerunPredicate = (WorkflowRerunPredicate)theEObject;
 				T result = caseWorkflowRerunPredicate(workflowRerunPredicate);
 				if (result == null) result = caseWorkflowExecutionPredicate(workflowRerunPredicate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OrchestrationPackage.WORKFLOW_PARAMETER_PREDICATE:
+			{
+				WorkflowParameterPredicate workflowParameterPredicate = (WorkflowParameterPredicate)theEObject;
+				T result = caseWorkflowParameterPredicate(workflowParameterPredicate);
+				if (result == null) result = caseWorkflowExecutionPredicate(workflowParameterPredicate);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OrchestrationPackage.WORKFLOW_PREDICATE_OR:
+			{
+				WorkflowPredicateOR workflowPredicateOR = (WorkflowPredicateOR)theEObject;
+				T result = caseWorkflowPredicateOR(workflowPredicateOR);
+				if (result == null) result = caseWorkflowExecutionPredicate(workflowPredicateOR);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OrchestrationPackage.WORKFLOW_PREDICATE_AND:
+			{
+				WorkflowPredicateAND workflowPredicateAND = (WorkflowPredicateAND)theEObject;
+				T result = caseWorkflowPredicateAND(workflowPredicateAND);
+				if (result == null) result = caseWorkflowExecutionPredicate(workflowPredicateAND);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OrchestrationPackage.WORKFLOW_LOOP_COUNT_PREDICATE:
+			{
+				WorkflowLoopCountPredicate workflowLoopCountPredicate = (WorkflowLoopCountPredicate)theEObject;
+				T result = caseWorkflowLoopCountPredicate(workflowLoopCountPredicate);
+				if (result == null) result = caseWorkflowExecutionPredicate(workflowLoopCountPredicate);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -244,6 +289,22 @@ public class OrchestrationSwitch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Loop Component Orchestration Strategy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Loop Component Orchestration Strategy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowLoopComponentOrchestrationStrategy(WorkflowLoopComponentOrchestrationStrategy object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Workflow Execution Predicate</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -271,6 +332,70 @@ public class OrchestrationSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowRerunPredicate(WorkflowRerunPredicate object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Parameter Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Parameter Predicate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowParameterPredicate(WorkflowParameterPredicate object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Predicate OR</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Predicate OR</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowPredicateOR(WorkflowPredicateOR object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Predicate AND</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Predicate AND</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowPredicateAND(WorkflowPredicateAND object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Loop Count Predicate</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Loop Count Predicate</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowLoopCountPredicate(WorkflowLoopCountPredicate object)
 	{
 		return null;
 	}

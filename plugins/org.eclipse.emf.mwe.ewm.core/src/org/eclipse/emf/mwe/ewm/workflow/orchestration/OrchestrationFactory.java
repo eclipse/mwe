@@ -82,7 +82,12 @@ public class OrchestrationFactory extends EFactoryImpl
 			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY: return createWorkflowParallelOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_CONDITIONAL_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowConditionalComponentOrchestrationStrategy();
+			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowLoopComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_RERUN_PREDICATE: return createWorkflowRerunPredicate();
+			case OrchestrationPackage.WORKFLOW_PARAMETER_PREDICATE: return createWorkflowParameterPredicate();
+			case OrchestrationPackage.WORKFLOW_PREDICATE_OR: return createWorkflowPredicateOR();
+			case OrchestrationPackage.WORKFLOW_PREDICATE_AND: return createWorkflowPredicateAND();
+			case OrchestrationPackage.WORKFLOW_LOOP_COUNT_PREDICATE: return createWorkflowLoopCountPredicate();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -137,10 +142,65 @@ public class OrchestrationFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public WorkflowLoopComponentOrchestrationStrategy createWorkflowLoopComponentOrchestrationStrategy()
+	{
+		WorkflowLoopComponentOrchestrationStrategy workflowLoopComponentOrchestrationStrategy = new WorkflowLoopComponentOrchestrationStrategy();
+		return workflowLoopComponentOrchestrationStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public WorkflowRerunPredicate createWorkflowRerunPredicate()
 	{
 		WorkflowRerunPredicate workflowRerunPredicate = new WorkflowRerunPredicate();
 		return workflowRerunPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowParameterPredicate createWorkflowParameterPredicate()
+	{
+		WorkflowParameterPredicate workflowParameterPredicate = new WorkflowParameterPredicate();
+		return workflowParameterPredicate;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowPredicateOR createWorkflowPredicateOR()
+	{
+		WorkflowPredicateOR workflowPredicateOR = new WorkflowPredicateOR();
+		return workflowPredicateOR;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowPredicateAND createWorkflowPredicateAND()
+	{
+		WorkflowPredicateAND workflowPredicateAND = new WorkflowPredicateAND();
+		return workflowPredicateAND;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowLoopCountPredicate createWorkflowLoopCountPredicate()
+	{
+		WorkflowLoopCountPredicate workflowLoopCountPredicate = new WorkflowLoopCountPredicate();
+		return workflowLoopCountPredicate;
 	}
 
 	/**

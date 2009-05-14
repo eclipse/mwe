@@ -23,5 +23,7 @@ public interface WorkflowConditionalComponentOrchestrationStrategyValidator
 {
 	boolean validate();
 
+	boolean validateCondition(WorkflowExecutionPredicate value);
+
 	boolean validateConditions(EList<WorkflowExecutionPredicate> value);
 }

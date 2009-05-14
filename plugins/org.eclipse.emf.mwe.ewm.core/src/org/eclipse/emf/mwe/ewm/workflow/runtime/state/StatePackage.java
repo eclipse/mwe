@@ -125,6 +125,25 @@ public class StatePackage extends EPackageImpl
 	public static final int WORKFLOW_RUNNING_STATE_FEATURE_COUNT = WORKFLOW_STATE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState <em>Workflow Skipped State</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowSkippedState()
+	 * @generated
+	 */
+	public static final int WORKFLOW_SKIPPED_STATE = 3;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Skipped State</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_SKIPPED_STATE_FEATURE_COUNT = WORKFLOW_STATE_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowDoneState <em>Workflow Done State</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,7 +151,7 @@ public class StatePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowDoneState()
 	 * @generated
 	 */
-	public static final int WORKFLOW_DONE_STATE = 3;
+	public static final int WORKFLOW_DONE_STATE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Done State</em>' class.
@@ -151,7 +170,7 @@ public class StatePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowSuccessState()
 	 * @generated
 	 */
-	public static final int WORKFLOW_SUCCESS_STATE = 4;
+	public static final int WORKFLOW_SUCCESS_STATE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Success State</em>' class.
@@ -170,7 +189,7 @@ public class StatePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowFailedState()
 	 * @generated
 	 */
-	public static final int WORKFLOW_FAILED_STATE = 5;
+	public static final int WORKFLOW_FAILED_STATE = 6;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Failed State</em>' class.
@@ -189,7 +208,7 @@ public class StatePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowErrorState()
 	 * @generated
 	 */
-	public static final int WORKFLOW_ERROR_STATE = 6;
+	public static final int WORKFLOW_ERROR_STATE = 7;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Error State</em>' class.
@@ -220,6 +239,13 @@ public class StatePackage extends EPackageImpl
 	 * @generated
 	 */
 	private EClass workflowRunningStateEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowSkippedStateEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -374,6 +400,20 @@ public class StatePackage extends EPackageImpl
 	}
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState <em>Workflow Skipped State</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Skipped State</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState
+	 * @generated
+	 */
+	public EClass getWorkflowSkippedState()
+	{
+		return workflowSkippedStateEClass;
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowDoneState <em>Workflow Done State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -463,6 +503,8 @@ public class StatePackage extends EPackageImpl
 
 		workflowRunningStateEClass = createEClass(WORKFLOW_RUNNING_STATE);
 
+		workflowSkippedStateEClass = createEClass(WORKFLOW_SKIPPED_STATE);
+
 		workflowDoneStateEClass = createEClass(WORKFLOW_DONE_STATE);
 
 		workflowSuccessStateEClass = createEClass(WORKFLOW_SUCCESS_STATE);
@@ -503,6 +545,7 @@ public class StatePackage extends EPackageImpl
 		// Add supertypes to classes
 		workflowIdleStateEClass.getESuperTypes().add(this.getWorkflowState());
 		workflowRunningStateEClass.getESuperTypes().add(this.getWorkflowState());
+		workflowSkippedStateEClass.getESuperTypes().add(this.getWorkflowState());
 		workflowDoneStateEClass.getESuperTypes().add(this.getWorkflowState());
 		workflowSuccessStateEClass.getESuperTypes().add(this.getWorkflowDoneState());
 		workflowFailedStateEClass.getESuperTypes().add(this.getWorkflowDoneState());
@@ -520,6 +563,10 @@ public class StatePackage extends EPackageImpl
 		initEClass(workflowRunningStateEClass, WorkflowRunningState.class, "WorkflowRunningState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		addEOperation(workflowRunningStateEClass, ecorePackage.getEString(), "getDisplayName", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(workflowSkippedStateEClass, WorkflowSkippedState.class, "WorkflowSkippedState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		addEOperation(workflowSkippedStateEClass, ecorePackage.getEString(), "getDisplayName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowDoneStateEClass, WorkflowDoneState.class, "WorkflowDoneState", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -581,6 +628,16 @@ public class StatePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EClass WORKFLOW_RUNNING_STATE = eINSTANCE.getWorkflowRunningState();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState <em>Workflow Skipped State</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage#getWorkflowSkippedState()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_SKIPPED_STATE = eINSTANCE.getWorkflowSkippedState();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowDoneState <em>Workflow Done State</em>}' class.
