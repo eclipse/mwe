@@ -24,7 +24,6 @@ import org.xml.sax.helpers.LocatorImpl;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.19 $
  */
 
 public final class DocumentParser {

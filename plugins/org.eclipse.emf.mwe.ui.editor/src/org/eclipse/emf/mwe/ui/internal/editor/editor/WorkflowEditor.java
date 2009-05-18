@@ -80,7 +80,6 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.61 $
  */
 @SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {

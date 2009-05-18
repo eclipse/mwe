@@ -16,7 +16,6 @@ import java.util.Map;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public final class PackageShortcutResolver {
 

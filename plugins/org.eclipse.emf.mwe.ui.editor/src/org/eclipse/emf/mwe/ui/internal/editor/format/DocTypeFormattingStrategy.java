@@ -13,7 +13,6 @@ package org.eclipse.emf.mwe.ui.internal.editor.format;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class DocTypeFormattingStrategy extends DefaultFormattingStrategy {
 

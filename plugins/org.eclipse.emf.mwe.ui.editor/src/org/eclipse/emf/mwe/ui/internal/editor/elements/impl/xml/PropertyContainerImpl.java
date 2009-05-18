@@ -24,7 +24,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
  */
 
 public class PropertyContainerImpl implements IPropertyContainer {

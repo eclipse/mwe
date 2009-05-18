@@ -29,7 +29,6 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.10 $
  */
 
 public class JavaDocHover extends AbstractHover implements IJavaEditorTextHover {

@@ -20,7 +20,6 @@ import org.eclipse.ui.editors.text.FileDocumentProvider;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
  */
 public class WorkflowDocumentProvider extends FileDocumentProvider {
 

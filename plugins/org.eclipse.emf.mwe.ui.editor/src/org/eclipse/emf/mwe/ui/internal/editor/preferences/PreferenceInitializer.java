@@ -17,7 +17,6 @@ import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
  */
 
 public class PreferenceInitializer extends AbstractPreferenceInitializer {

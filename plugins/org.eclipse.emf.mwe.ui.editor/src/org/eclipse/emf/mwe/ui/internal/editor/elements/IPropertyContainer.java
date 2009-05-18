@@ -17,7 +17,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.impl.xml.Property;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
  */
 
 public interface IPropertyContainer extends IPropertyContainerAccess {

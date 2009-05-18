@@ -24,7 +24,6 @@ import org.eclipse.jface.text.rules.WhitespaceRule;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class WorkflowScanner extends RuleBasedScanner {
 

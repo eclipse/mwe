@@ -26,7 +26,6 @@ import org.eclipse.swt.custom.StyleRange;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class NonRuleBasedDamagerRepairer implements IPresentationDamager,
 		IPresentationRepairer {

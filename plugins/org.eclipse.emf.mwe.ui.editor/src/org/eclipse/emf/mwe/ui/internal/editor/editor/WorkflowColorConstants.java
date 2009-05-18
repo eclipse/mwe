@@ -15,7 +15,6 @@ import org.eclipse.swt.graphics.RGB;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.7 $
  */
 public final class WorkflowColorConstants {
 	public static final RGB XML_COMMENT = new RGB(128, 0, 0);

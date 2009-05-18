@@ -22,7 +22,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.factories.WorkflowSyntaxFactory;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
  */
 
 public final class PropertyFileReader {

@@ -25,7 +25,6 @@ import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.11 $
  */
 
 public interface IWorkflowSyntaxFactory {

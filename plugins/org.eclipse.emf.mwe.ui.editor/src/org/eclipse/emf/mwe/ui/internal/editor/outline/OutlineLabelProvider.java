@@ -21,7 +21,6 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
  */
 
 public class OutlineLabelProvider implements ILabelProvider {

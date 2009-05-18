@@ -17,7 +17,6 @@ import org.eclipse.jface.text.IRegion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
  */
 public class ElementPositionRange implements IRangeCheck {
 

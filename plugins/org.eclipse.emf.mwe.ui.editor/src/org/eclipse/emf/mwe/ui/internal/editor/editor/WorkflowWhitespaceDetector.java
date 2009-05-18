@@ -15,7 +15,6 @@ import org.eclipse.jface.text.rules.IWhitespaceDetector;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class WorkflowWhitespaceDetector implements IWhitespaceDetector {
 

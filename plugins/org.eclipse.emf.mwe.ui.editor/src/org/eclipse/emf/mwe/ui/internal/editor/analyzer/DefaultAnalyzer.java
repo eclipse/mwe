@@ -27,7 +27,6 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.62 $
  */
 public class DefaultAnalyzer implements IElementAnalyzer {
 

@@ -53,7 +53,6 @@ import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.36 $
  */
 public final class TypeUtils {
 

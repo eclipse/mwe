@@ -32,7 +32,6 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.13 $
  */
 
 public abstract class AbstractContentProposalComputer implements IContentProposalComputer {

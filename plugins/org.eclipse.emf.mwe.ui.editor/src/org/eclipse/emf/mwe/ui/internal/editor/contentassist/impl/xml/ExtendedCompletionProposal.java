@@ -20,7 +20,6 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
  */
 
 public class ExtendedCompletionProposal implements ICompletionProposal {

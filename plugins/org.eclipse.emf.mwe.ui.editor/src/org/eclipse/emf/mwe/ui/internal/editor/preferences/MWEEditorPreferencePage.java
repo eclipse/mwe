@@ -21,7 +21,6 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.1 $
  */
 
 public class MWEEditorPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {

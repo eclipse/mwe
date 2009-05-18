@@ -29,7 +29,6 @@ import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.19 $
  */
 public class OutlineContentProvider implements ITreeContentProvider {
 

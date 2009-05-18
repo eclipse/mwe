@@ -36,7 +36,6 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.12 $
  */
 
 public class AttributeContentProposalComputer extends AbstractContentProposalComputer {

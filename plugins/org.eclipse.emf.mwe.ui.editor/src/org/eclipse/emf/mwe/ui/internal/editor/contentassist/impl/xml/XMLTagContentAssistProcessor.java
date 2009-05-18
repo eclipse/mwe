@@ -27,7 +27,6 @@ import org.eclipse.jface.text.contentassist.IContextInformationValidator;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class XMLTagContentAssistProcessor implements IContentAssistProcessor {
 

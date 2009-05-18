@@ -18,7 +18,6 @@ import org.eclipse.jface.text.ITypedRegion;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 
 public final class TextTypeComputer {

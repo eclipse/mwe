@@ -46,7 +46,6 @@ import org.xml.sax.helpers.DefaultHandler;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.51 $
  */
 public class WorkflowContentHandler extends DefaultHandler {
 

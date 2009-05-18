@@ -15,7 +15,6 @@ import org.eclipse.jface.text.formatter.IFormattingStrategy;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class DefaultFormattingStrategy implements IFormattingStrategy {
 	protected static final String LINE_SEPARATOR =

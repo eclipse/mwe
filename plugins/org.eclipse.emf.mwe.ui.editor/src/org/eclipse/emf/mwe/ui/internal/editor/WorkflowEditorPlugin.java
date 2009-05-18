@@ -29,11 +29,9 @@ import org.osgi.framework.BundleContext;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
  */
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.9 $
  */
 public class WorkflowEditorPlugin extends AbstractUIPlugin {
 

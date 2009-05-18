@@ -32,7 +32,6 @@ import org.xml.sax.SAXParseException;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.24 $
  */
 public final class MarkerManager {
 

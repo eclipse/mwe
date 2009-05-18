@@ -54,7 +54,6 @@ import org.eclipse.ui.editors.text.TextSourceViewerConfiguration;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.25 $
  */
 public class WorkflowEditorConfiguration extends TextSourceViewerConfiguration {
 

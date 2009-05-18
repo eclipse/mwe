@@ -19,7 +19,6 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.15 $
  */
 public class WorkflowAnalyzer extends DefaultAnalyzer {
 

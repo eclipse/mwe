@@ -18,7 +18,6 @@ import org.eclipse.jface.text.rules.Token;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.5 $
  */
 public class NonMatchingRule implements IPredicateRule {
 

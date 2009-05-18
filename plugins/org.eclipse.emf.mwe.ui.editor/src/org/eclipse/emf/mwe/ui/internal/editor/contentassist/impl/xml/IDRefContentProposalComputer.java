@@ -24,7 +24,6 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
  */
 
 public class IDRefContentProposalComputer extends AbstractSpecializedStringContentProposalComputer {

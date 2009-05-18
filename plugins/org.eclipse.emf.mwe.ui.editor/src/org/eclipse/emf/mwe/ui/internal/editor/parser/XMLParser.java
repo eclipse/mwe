@@ -31,7 +31,6 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.17 $
  */
 public class XMLParser {
 

@@ -15,7 +15,6 @@ import org.eclipse.jface.text.IAutoEditStrategy;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.4 $
  */
 
 public abstract class XMLAbstractAutoEditStrategy implements

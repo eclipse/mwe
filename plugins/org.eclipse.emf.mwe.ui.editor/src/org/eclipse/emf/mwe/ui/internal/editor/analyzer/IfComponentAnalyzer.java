@@ -18,7 +18,6 @@ import org.eclipse.jface.text.IDocument;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.14 $
  */
 
 // FIXME [pschoenb] On the long run, the checking of attribute availability and

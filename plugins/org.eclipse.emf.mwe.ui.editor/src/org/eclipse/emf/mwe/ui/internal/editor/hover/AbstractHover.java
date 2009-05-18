@@ -27,7 +27,6 @@ import org.eclipse.swt.graphics.Point;
 
 /**
  * @author Patrick Schoenbach - Initial API and implementation
- * @version $Revision: 1.6 $
  */
 
 public abstract class AbstractHover implements IAnnotationHover, ITextHover, ITextHoverExtension2 {
