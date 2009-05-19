@@ -413,8 +413,6 @@ public final class TypeUtils {
 				if (type != null) {
 					result.add(type);
 				}
-				else
-					throw new RuntimeException("Cannot find type '" + n + "'");
 			}
 
 			final Set<IType> superTypes = new HashSet<IType>();
