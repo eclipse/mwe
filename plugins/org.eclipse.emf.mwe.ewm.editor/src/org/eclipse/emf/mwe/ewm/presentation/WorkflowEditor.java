@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowEditor.java,v 1.4 2009/05/20 21:46:18 bhunt Exp $
+ * $Id: WorkflowEditor.java,v 1.5 2009/05/20 21:53:34 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.presentation;
 
@@ -1321,7 +1321,7 @@ public class WorkflowEditor
 	 * This is for implementing {@link IEditorPart} and simply saves the model file.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor)
