@@ -439,8 +439,10 @@ public class WorkflowEditor extends TextEditor {
 			final int offset = sourceViewer.getVisibleRegion().getOffset();
 			caret = offset + styledText.getCaretOffset();
 		}
-		final AbstractWorkflowElement element = WorkflowElementSearcher.searchCompleteParentElement(getRootElement(),
-				getInputDocument(), caret);
+		AbstractWorkflowElement element = null;
+		if (getRootElement() != null && getInputDocument() != null) {
+			element = WorkflowElementSearcher.searchCompleteParentElement(getRootElement(), getInputDocument(), caret);
+		}
 		return element;
 	}
 
