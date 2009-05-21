@@ -25,13 +25,16 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.ui.DebugUITools;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
@@ -57,7 +60,8 @@ public class RunWorkflowHandler extends AbstractHandler
 		if (dialog.open() == Window.CANCEL)
 			return null;
 
-		ResourceSet resourceSet = new ResourceSetImpl();
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+		ResourceSet resourceSet = editingDomain.getResourceSet();
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
 		IFile workflowFile = (IFile) selection.getFirstElement();
@@ -69,8 +73,10 @@ public class RunWorkflowHandler extends AbstractHandler
 		URI contextURI = URI.createPlatformResourceURI(contextFile.getFullPath().toString(), false);
 		final Resource contextResource = resourceSet.getResource(contextURI, true);
 		final WorkflowContext context = (WorkflowContext) contextResource.getContents().get(0);
-
-		context.setWorkflow(workflow);
+		Command command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__EDITING_DOMAIN, editingDomain);
+		editingDomain.getCommandStack().execute(command);
+		command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__WORKFLOW, workflow);
+		editingDomain.getCommandStack().execute(command);
 
 		final WorkspaceModifyOperation operation = new WorkspaceModifyOperation()
 		{

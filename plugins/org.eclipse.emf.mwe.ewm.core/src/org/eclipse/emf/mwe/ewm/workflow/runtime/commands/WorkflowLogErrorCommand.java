@@ -12,40 +12,26 @@
 package org.eclipse.emf.mwe.ewm.workflow.runtime.commands;
 
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
-import org.eclipse.emf.transaction.RunnableWithResult;
 
 /**
  * @author bhunt
  *
  */
-public class WorkflowGetLogCommand extends RunnableWithResult.Impl<WorkflowLog>
+public class WorkflowLogErrorCommand extends WorkflowBaseLogCommand
 {
-	public WorkflowGetLogCommand(WorkflowContext context, WorkflowComponent component)
+	public WorkflowLogErrorCommand(WorkflowContext context, WorkflowComponent component, String message)
 	{
-		this.context = context;
-		this.component = component;
+		super(context, component);
+		this.message = message;
 	}
 	
-	/* (non-Javadoc)
-	 * @see java.lang.Runnable#run()
-	 */
-	public void run()
+	public void doExecute()
 	{
-		WorkflowLog log = context.getLog().get(component);
-		
-		if(log == null)
-		{
-			log = RuntimeFactory.eINSTANCE.createWorkflowLog();
-			log.setLogLevel(context.getLogLevel());
-			context.getLog().put(component, log);
-		}
-		
-		setResult(log);
+		WorkflowLog log = getLog();
+		log.logError(message);
 	}
 
-	private WorkflowContext context;
-	private WorkflowComponent component;
+	private String message;
 }

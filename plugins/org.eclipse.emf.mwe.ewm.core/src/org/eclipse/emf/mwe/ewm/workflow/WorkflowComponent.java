@@ -21,11 +21,15 @@ import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestra
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowClearLogCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetExecutionInfoCommand;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetLogCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowGetStateCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowLogDebugCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowLogErrorCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowLogExceptionCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowLogInfoCommand;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowLogWarningCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowSetExecutionInfoCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.commands.WorkflowSetStateCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -318,31 +322,68 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	 */
 	public void clearLog(WorkflowContext context)
 	{
-		context.getLog().get(this).getEntries().clear();
+		WorkflowClearLogCommand command = new WorkflowClearLogCommand(context, this);
+		context.getEditingDomain().getCommandStack().execute(command);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model
+	 * @model messageRequired="true"
 	 * @generated NOT
 	 */
-	public WorkflowLog getLog(WorkflowContext context)
+	public void logError(WorkflowContext context, String message)
 	{
-		WorkflowGetLogCommand command = new WorkflowGetLogCommand(context, this);
-		
-		try
-		{
-			context.getEditingDomain().runExclusive(command);
-			return command.getResult();
-		}
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return null;
+		WorkflowLogErrorCommand command = new WorkflowLogErrorCommand(context, this, message);
+		context.getEditingDomain().getCommandStack().execute(command);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model messageRequired="true"
+	 * @generated NOT
+	 */
+	public void logWarning(WorkflowContext context, String message)
+	{
+		WorkflowLogWarningCommand command = new WorkflowLogWarningCommand(context, this, message);
+		context.getEditingDomain().getCommandStack().execute(command);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model messageRequired="true"
+	 * @generated NOT
+	 */
+	public void logInfo(WorkflowContext context, String message)
+	{
+		WorkflowLogInfoCommand command = new WorkflowLogInfoCommand(context, this, message);
+		context.getEditingDomain().getCommandStack().execute(command);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model messageRequired="true"
+	 * @generated NOT
+	 */
+	public void logDebug(WorkflowContext context, String message)
+	{
+		WorkflowLogDebugCommand command = new WorkflowLogDebugCommand(context, this, message);
+		context.getEditingDomain().getCommandStack().execute(command);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model eDataType="org.eclipse.emf.mwe.ewm.workflow.runtime.Exception" eRequired="true"
+	 * @generated NOT
+	 */
+	public void logException(WorkflowContext context, Exception e)
+	{
+		WorkflowLogExceptionCommand command = new WorkflowLogExceptionCommand(context, this, e);
+		context.getEditingDomain().getCommandStack().execute(command);
 	}
 
 	/**
@@ -437,9 +478,9 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 		WorkflowComponentExecutionInfo executionInfo = RuntimeFactory.eINSTANCE.createWorkflowComponentExecutionInfo();
 		executionInfo.setStartTime(System.currentTimeMillis());
 		
-		getLog(context).logInfo("Component " + getName() + " started");
+		logInfo(context, "Component " + getName() + " started");
 		getComponentOrchestrationStrategy().run(this, context);
-		getLog(context).logInfo("Component " + getName() + " finished");
+		logInfo(context, "Component " + getName() + " finished");
 
 		executionInfo.setEndTime(System.currentTimeMillis());
 		setExecutionInfo(context, executionInfo);

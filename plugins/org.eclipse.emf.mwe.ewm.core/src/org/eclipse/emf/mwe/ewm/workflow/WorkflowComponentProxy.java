@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentProxy.java,v 1.1 2009/04/25 04:21:35 bhunt Exp $
+ * $Id: WorkflowComponentProxy.java,v 1.2 2009/05/21 06:04:31 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow;
 
@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
@@ -234,12 +233,48 @@ public class WorkflowComponentProxy extends WorkflowComponent
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getLog(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logDebug(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
 	 */
 	@Override
-	public WorkflowLog getLog(WorkflowContext context)
+	public void logDebug(WorkflowContext context, String message)
 	{
-		return getTargetComponent().getLog(context);
+		getTargetComponent().logDebug(context, message);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logError(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
+	 */
+	@Override
+	public void logError(WorkflowContext context, String message)
+	{
+		getTargetComponent().logError(context, message);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logException(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.Exception)
+	 */
+	@Override
+	public void logException(WorkflowContext context, Exception e)
+	{
+		getTargetComponent().logException(context, e);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logInfo(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
+	 */
+	@Override
+	public void logInfo(WorkflowContext context, String message)
+	{
+		getTargetComponent().logInfo(context, message);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logWarning(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
+	 */
+	@Override
+	public void logWarning(WorkflowContext context, String message)
+	{
+		getTargetComponent().logWarning(context, message);
 	}
 
 	/* (non-Javadoc)

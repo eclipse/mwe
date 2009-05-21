@@ -16,8 +16,25 @@
     <eOperations name="clearLog">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
-    <eOperations name="getLog" eType="#//runtime/WorkflowLog">
+    <eOperations name="logError">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="logWarning">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="logInfo">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="logDebug">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
+    <eOperations name="logException">
+      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
+      <eParameters name="e" lowerBound="1" eType="#//runtime/Exception"/>
     </eOperations>
     <eOperations name="getState" eType="#//runtime/state/WorkflowState">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>

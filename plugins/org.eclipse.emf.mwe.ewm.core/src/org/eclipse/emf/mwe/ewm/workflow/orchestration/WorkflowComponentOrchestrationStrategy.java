@@ -156,7 +156,7 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		}
 		catch (Exception e)
 		{
-			component.getLog(context).logException(e);
+			component.logException(context, e);
 			component.setState(context, StateFactory.eINSTANCE.createWorkflowErrorState());
 		}
 	}

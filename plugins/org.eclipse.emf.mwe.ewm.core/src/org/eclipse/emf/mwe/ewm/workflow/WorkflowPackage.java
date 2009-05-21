@@ -1210,8 +1210,25 @@ public class WorkflowPackage extends EPackageImpl
 		op = addEOperation(workflowComponentEClass, null, "clearLog", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(workflowComponentEClass, theRuntimePackage.getWorkflowLog(), "getLog", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(workflowComponentEClass, null, "logError", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowComponentEClass, null, "logWarning", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowComponentEClass, null, "logInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowComponentEClass, null, "logDebug", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowComponentEClass, null, "logException", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage.getException(), "e", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(workflowComponentEClass, theStatePackage.getWorkflowState(), "getState", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);

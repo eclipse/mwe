@@ -20,14 +20,17 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
@@ -45,13 +48,17 @@ public class ResetWorkflowStateHandler extends AbstractHandler
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
 
-		ResourceSet resourceSet = new ResourceSetImpl();
+		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
+		ResourceSet resourceSet = editingDomain.getResourceSet();
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
 		IFile contextFile = (IFile) selection.getFirstElement();
 		URI contextURI = URI.createPlatformResourceURI(contextFile.getFullPath().toString(), false);
 		final Resource contextResource = resourceSet.getResource(contextURI, true);
 		WorkflowContext context = (WorkflowContext) contextResource.getContents().get(0);
+		Command command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__EDITING_DOMAIN, editingDomain);
+		editingDomain.getCommandStack().execute(command);
+		
 		WorkflowStateResetter resetter = RuntimeFactory.eINSTANCE.createWorkflowStateResetter();
 		resetter.setContext(context);
 		context.getWorkflow().accept(resetter);

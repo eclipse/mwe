@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopCountPredicate.java,v 1.3 2009/05/14 05:25:21 bhunt Exp $
+ * $Id: WorkflowLoopCountPredicate.java,v 1.4 2009/05/21 06:04:30 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
@@ -305,7 +305,7 @@ public class WorkflowLoopCountPredicate extends WorkflowExecutionPredicate
 		}
 		catch (WorkflowRuntimeException e)
 		{
-			component.getLog(context).logException(e);
+			component.logException(context, e);
 		}
 
 		return false;
