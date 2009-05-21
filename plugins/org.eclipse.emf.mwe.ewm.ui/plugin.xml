@@ -10,11 +10,6 @@
             displayName="Default"
             nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration">
       </component>
-      <component
-            class="org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowConditionalComponentOrchestrationStrategy"
-            displayName="Conditional"
-            nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration">
-      </component>
    </extension>
    <extension
          point="org.eclipse.emf.mwe.ewm.ui.parameter">
