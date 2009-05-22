@@ -11,8 +11,6 @@
 
 package org.eclipse.emf.mwe.ewm.ui.views;
 
-import java.util.Date;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -44,7 +42,7 @@ public class WorkflowLogLabelProvider extends LabelProvider implements ITableLab
 			case 0:
 				return logEntry.getMessage();
 			case 1:
-				return new Date(logEntry.getTimestamp()).toString();
+				return logEntry.getTimestamp().toString();
 		}
 		
 		return null;

@@ -371,7 +371,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowLogEntry">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1"
           eType="#//runtime/WorkflowLogEntryType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="timestamp" eType="#//runtime/Timestamp"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" lowerBound="1"
           eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
@@ -399,9 +399,9 @@
     <eClassifiers xsi:type="ecore:EDataType" name="WorkflowRuntimeException" instanceClassName="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException"/>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentExecutionInfo">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" lowerBound="1"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+          eType="#//runtime/Timestamp"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" lowerBound="1"
-          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//ELong"/>
+          eType="#//runtime/Timestamp"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentExecutionInfoMap"
         instanceClassName="java.util.Map$Entry">
@@ -411,6 +411,7 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="TransactionalEditingDomain" instanceClassName="org.eclipse.emf.transaction.TransactionalEditingDomain"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Timestamp" instanceClassName="java.sql.Timestamp"/>
     <eSubpackages name="state" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state"
         nsPrefix="org.eclipse.emf.mwe.ewm.workflow.runtime.state">
       <eClassifiers xsi:type="ecore:EClass" name="WorkflowState" abstract="true">

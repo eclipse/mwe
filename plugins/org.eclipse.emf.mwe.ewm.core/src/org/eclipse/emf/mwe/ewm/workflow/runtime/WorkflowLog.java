@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -472,7 +473,7 @@ public class WorkflowLog extends EObjectImpl implements EObject
 	{
 		WorkflowLogEntry entry = RuntimeFactory.eINSTANCE.createWorkflowLogEntry();
 		entry.setType(type);
-		entry.setTimestamp(System.currentTimeMillis());
+		entry.setTimestamp(new Timestamp(System.currentTimeMillis()));
 		entry.setMessage(message);
 		return entry;
 	}

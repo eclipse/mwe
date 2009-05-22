@@ -11,7 +11,7 @@
 
 package org.eclipse.emf.mwe.ewm.ui.views;
 
-import java.util.Calendar;
+import java.sql.Timestamp;
 
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
@@ -58,36 +58,28 @@ public class WorkflowStatusLabelProvider extends LabelProvider implements ITable
 
 			case 2:
 			{
-				Calendar calendar = Calendar.getInstance();
 				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
 
 				if (info != null)
 				{
-					long startTime = info.getStartTime();
+					Timestamp startTime = info.getStartTime();
 
-					if (startTime != 0)
-					{
-						calendar.setTimeInMillis(startTime);
-						return calendar.getTime().toString();
-					}
+					if (startTime != null)
+						return startTime.toString();
 				}
 				return "";
 			}
 
 			case 3:
 			{
-				Calendar calendar = Calendar.getInstance();
 				WorkflowComponentExecutionInfo info = context.getExecutionInfo().get(component);
 
 				if (info != null)
 				{
-					long endTime = info.getEndTime();
+					Timestamp endTime = info.getEndTime();
 
-					if (endTime != 0)
-					{
-						calendar.setTimeInMillis(endTime);
-						return calendar.getTime().toString();
-					}
+					if (endTime != null)
+						return endTime.toString();
 				}
 				return "";
 			}

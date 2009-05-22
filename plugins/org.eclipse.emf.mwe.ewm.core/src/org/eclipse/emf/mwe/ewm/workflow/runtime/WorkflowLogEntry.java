@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
+import java.sql.Timestamp;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -64,7 +66,7 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long TIMESTAMP_EDEFAULT = 0L;
+	protected static final Timestamp TIMESTAMP_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTimestamp() <em>Timestamp</em>}' attribute.
@@ -74,7 +76,7 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 	 * @generated
 	 * @ordered
 	 */
-	protected long timestamp = TIMESTAMP_EDEFAULT;
+	protected Timestamp timestamp = TIMESTAMP_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMessage() <em>Message</em>}' attribute.
@@ -164,12 +166,12 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Timestamp</em>' attribute.
-	 * @see #setTimestamp(long)
+	 * @see #setTimestamp(Timestamp)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntry_Timestamp()
-	 * @model
+	 * @model dataType="org.eclipse.emf.mwe.ewm.workflow.runtime.Timestamp"
 	 * @generated
 	 */
-	public long getTimestamp()
+	public Timestamp getTimestamp()
 	{
 		return timestamp;
 	}
@@ -182,9 +184,9 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 	 * @see #getTimestamp()
 	 * @generated
 	 */
-	public void setTimestamp(long newTimestamp)
+	public void setTimestamp(Timestamp newTimestamp)
 	{
-		long oldTimestamp = timestamp;
+		Timestamp oldTimestamp = timestamp;
 		timestamp = newTimestamp;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_LOG_ENTRY__TIMESTAMP, oldTimestamp, timestamp));
@@ -259,7 +261,7 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 				setType((WorkflowLogEntryType)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_LOG_ENTRY__TIMESTAMP:
-				setTimestamp((Long)newValue);
+				setTimestamp((Timestamp)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_LOG_ENTRY__MESSAGE:
 				setMessage((String)newValue);
@@ -304,7 +306,7 @@ public class WorkflowLogEntry extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_LOG_ENTRY__TYPE:
 				return type != TYPE_EDEFAULT;
 			case RuntimePackage.WORKFLOW_LOG_ENTRY__TIMESTAMP:
-				return timestamp != TIMESTAMP_EDEFAULT;
+				return TIMESTAMP_EDEFAULT == null ? timestamp != null : !TIMESTAMP_EDEFAULT.equals(timestamp);
 			case RuntimePackage.WORKFLOW_LOG_ENTRY__MESSAGE:
 				return MESSAGE_EDEFAULT == null ? message != null : !MESSAGE_EDEFAULT.equals(message);
 		}

@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
@@ -699,6 +700,16 @@ public class RuntimePackage extends EPackageImpl
 	public static final int EXCEPTION = 18;
 
 	/**
+	 * The meta object id for the '<em>Timestamp</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.sql.Timestamp
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTimestamp()
+	 * @generated
+	 */
+	public static final int TIMESTAMP = 19;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -830,6 +841,13 @@ public class RuntimePackage extends EPackageImpl
 	 * @generated
 	 */
 	private EDataType exceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType timestampEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1699,6 +1717,21 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for data type '{@link java.sql.Timestamp <em>Timestamp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Timestamp</em>'.
+	 * @see java.sql.Timestamp
+	 * @model instanceClass="java.sql.Timestamp"
+	 * @generated
+	 */
+	public EDataType getTimestamp()
+	{
+		return timestampEDataType;
+	}
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1800,6 +1833,7 @@ public class RuntimePackage extends EPackageImpl
 		workflowRuntimeExceptionEDataType = createEDataType(WORKFLOW_RUNTIME_EXCEPTION);
 		transactionalEditingDomainEDataType = createEDataType(TRANSACTIONAL_EDITING_DOMAIN);
 		exceptionEDataType = createEDataType(EXCEPTION);
+		timestampEDataType = createEDataType(TIMESTAMP);
 	}
 
 	/**
@@ -1931,7 +1965,7 @@ public class RuntimePackage extends EPackageImpl
 
 		initEClass(workflowLogEntryEClass, WorkflowLogEntry.class, "WorkflowLogEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowLogEntry_Type(), this.getWorkflowLogEntryType(), "type", null, 1, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkflowLogEntry_Timestamp(), theEcorePackage.getELong(), "timestamp", null, 0, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowLogEntry_Timestamp(), this.getTimestamp(), "timestamp", null, 0, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowLogEntry_Message(), theEcorePackage.getEString(), "message", null, 1, 1, WorkflowLogEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workflowLogMapEClass, Map.Entry.class, "WorkflowLogMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
@@ -1948,8 +1982,8 @@ public class RuntimePackage extends EPackageImpl
 		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowComponentExecutionInfoEClass, WorkflowComponentExecutionInfo.class, "WorkflowComponentExecutionInfo", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWorkflowComponentExecutionInfo_StartTime(), theEcorePackage.getELong(), "startTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkflowComponentExecutionInfo_EndTime(), theEcorePackage.getELong(), "endTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowComponentExecutionInfo_StartTime(), this.getTimestamp(), "startTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowComponentExecutionInfo_EndTime(), this.getTimestamp(), "endTime", null, 1, 1, WorkflowComponentExecutionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workflowComponentExecutionInfoMapEClass, Map.Entry.class, "WorkflowComponentExecutionInfoMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowComponentExecutionInfoMap_Key(), theWorkflowPackage.getWorkflowComponent(), null, "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1967,6 +2001,7 @@ public class RuntimePackage extends EPackageImpl
 		initEDataType(workflowRuntimeExceptionEDataType, WorkflowRuntimeException.class, "WorkflowRuntimeException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(transactionalEditingDomainEDataType, TransactionalEditingDomain.class, "TransactionalEditingDomain", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(timestampEDataType, Timestamp.class, "Timestamp", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create annotations
 		// http:///org/eclipse/emf/ecore/util/ExtendedMetaData
@@ -2494,6 +2529,16 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EDataType EXCEPTION = eINSTANCE.getException();
+
+		/**
+		 * The meta object literal for the '<em>Timestamp</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.sql.Timestamp
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTimestamp()
+		 * @generated
+		 */
+		public static final EDataType TIMESTAMP = eINSTANCE.getTimestamp();
 
 	}
 

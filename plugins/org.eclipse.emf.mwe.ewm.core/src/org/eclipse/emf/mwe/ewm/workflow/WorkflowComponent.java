@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow;
 
+import java.sql.Timestamp;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -476,13 +478,13 @@ public abstract class WorkflowComponent extends EObjectImpl implements EObject
 	public final void start(WorkflowContext context)
 	{
 		WorkflowComponentExecutionInfo executionInfo = RuntimeFactory.eINSTANCE.createWorkflowComponentExecutionInfo();
-		executionInfo.setStartTime(System.currentTimeMillis());
+		executionInfo.setStartTime(new Timestamp(System.currentTimeMillis()));
 		
 		logInfo(context, "Component " + getName() + " started");
 		getComponentOrchestrationStrategy().run(this, context);
 		logInfo(context, "Component " + getName() + " finished");
 
-		executionInfo.setEndTime(System.currentTimeMillis());
+		executionInfo.setEndTime(new Timestamp(System.currentTimeMillis()));
 		setExecutionInfo(context, executionInfo);
 	}
 

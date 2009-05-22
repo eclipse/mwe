@@ -2,9 +2,11 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentExecutionInfo.java,v 1.1 2009/04/25 04:21:34 bhunt Exp $
+ * $Id: WorkflowComponentExecutionInfo.java,v 1.2 2009/05/22 18:16:23 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
+
+import java.sql.Timestamp;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -39,7 +41,7 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long START_TIME_EDEFAULT = 0L;
+	protected static final Timestamp START_TIME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getStartTime() <em>Start Time</em>}' attribute.
@@ -49,7 +51,7 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @generated
 	 * @ordered
 	 */
-	protected long startTime = START_TIME_EDEFAULT;
+	protected Timestamp startTime = START_TIME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getEndTime() <em>End Time</em>}' attribute.
@@ -59,7 +61,7 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @generated
 	 * @ordered
 	 */
-	protected static final long END_TIME_EDEFAULT = 0L;
+	protected static final Timestamp END_TIME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getEndTime() <em>End Time</em>}' attribute.
@@ -69,7 +71,7 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @generated
 	 * @ordered
 	 */
-	protected long endTime = END_TIME_EDEFAULT;
+	protected Timestamp endTime = END_TIME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,12 +103,12 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Time</em>' attribute.
-	 * @see #setStartTime(long)
+	 * @see #setStartTime(Timestamp)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfo_StartTime()
-	 * @model required="true"
+	 * @model dataType="org.eclipse.emf.mwe.ewm.workflow.runtime.Timestamp" required="true"
 	 * @generated
 	 */
-	public long getStartTime()
+	public Timestamp getStartTime()
 	{
 		return startTime;
 	}
@@ -119,9 +121,9 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @see #getStartTime()
 	 * @generated
 	 */
-	public void setStartTime(long newStartTime)
+	public void setStartTime(Timestamp newStartTime)
 	{
-		long oldStartTime = startTime;
+		Timestamp oldStartTime = startTime;
 		startTime = newStartTime;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME, oldStartTime, startTime));
@@ -136,12 +138,12 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Time</em>' attribute.
-	 * @see #setEndTime(long)
+	 * @see #setEndTime(Timestamp)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfo_EndTime()
-	 * @model required="true"
+	 * @model dataType="org.eclipse.emf.mwe.ewm.workflow.runtime.Timestamp" required="true"
 	 * @generated
 	 */
-	public long getEndTime()
+	public Timestamp getEndTime()
 	{
 		return endTime;
 	}
@@ -154,9 +156,9 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 	 * @see #getEndTime()
 	 * @generated
 	 */
-	public void setEndTime(long newEndTime)
+	public void setEndTime(Timestamp newEndTime)
 	{
-		long oldEndTime = endTime;
+		Timestamp oldEndTime = endTime;
 		endTime = newEndTime;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME, oldEndTime, endTime));
@@ -191,10 +193,10 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME:
-				setStartTime((Long)newValue);
+				setStartTime((Timestamp)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME:
-				setEndTime((Long)newValue);
+				setEndTime((Timestamp)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -231,9 +233,9 @@ public class WorkflowComponentExecutionInfo extends EObjectImpl implements EObje
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__START_TIME:
-				return startTime != START_TIME_EDEFAULT;
+				return START_TIME_EDEFAULT == null ? startTime != null : !START_TIME_EDEFAULT.equals(startTime);
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO__END_TIME:
-				return endTime != END_TIME_EDEFAULT;
+				return END_TIME_EDEFAULT == null ? endTime != null : !END_TIME_EDEFAULT.equals(endTime);
 		}
 		return super.eIsSet(featureID);
 	}

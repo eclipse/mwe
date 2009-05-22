@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLogEntryItemProvider.java,v 1.2 2009/04/25 04:21:31 bhunt Exp $
+ * $Id: WorkflowLogEntryItemProvider.java,v 1.3 2009/05/22 18:16:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -115,7 +115,7 @@ public class WorkflowLogEntryItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}

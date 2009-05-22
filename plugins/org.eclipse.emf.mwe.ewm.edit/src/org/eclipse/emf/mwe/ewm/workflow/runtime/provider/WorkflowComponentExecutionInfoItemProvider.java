@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentExecutionInfoItemProvider.java,v 1.1 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowComponentExecutionInfoItemProvider.java,v 1.2 2009/05/22 18:16:21 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -90,7 +91,7 @@ public class WorkflowComponentExecutionInfoItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -113,7 +114,7 @@ public class WorkflowComponentExecutionInfoItemProvider
 				 true,
 				 false,
 				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -139,8 +140,11 @@ public class WorkflowComponentExecutionInfoItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		WorkflowComponentExecutionInfo workflowComponentExecutionInfo = (WorkflowComponentExecutionInfo)object;
-		return getString("_UI_WorkflowComponentExecutionInfo_type") + " " + workflowComponentExecutionInfo.getStartTime();
+		Timestamp labelValue = ((WorkflowComponentExecutionInfo)object).getStartTime();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WorkflowComponentExecutionInfo_type") :
+			getString("_UI_WorkflowComponentExecutionInfo_type") + " " + label;
 	}
 
 	/**

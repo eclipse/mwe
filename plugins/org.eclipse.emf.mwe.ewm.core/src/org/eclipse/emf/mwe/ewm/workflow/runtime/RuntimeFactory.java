@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
+import java.sql.Timestamp;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
@@ -125,6 +126,8 @@ public class RuntimeFactory extends EFactoryImpl
 				return createTransactionalEditingDomainFromString(eDataType, initialValue);
 			case RuntimePackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
+			case RuntimePackage.TIMESTAMP:
+				return createTimestampFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -150,6 +153,8 @@ public class RuntimeFactory extends EFactoryImpl
 				return convertTransactionalEditingDomainToString(eDataType, instanceValue);
 			case RuntimePackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
+			case RuntimePackage.TIMESTAMP:
+				return convertTimestampToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -407,6 +412,26 @@ public class RuntimeFactory extends EFactoryImpl
 	 * @generated
 	 */
 	public String convertExceptionToString(EDataType eDataType, Object instanceValue)
+	{
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Timestamp createTimestampFromString(EDataType eDataType, String initialValue)
+	{
+		return (Timestamp)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertTimestampToString(EDataType eDataType, Object instanceValue)
 	{
 		return super.convertToString(eDataType, instanceValue);
 	}
