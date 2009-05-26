@@ -79,7 +79,7 @@ public class WorkflowRunner {
 	public static void main(final String[] args) {
 		// workaround for MacOSX classloader issue
 		// see https://bugs.eclipse.org/bugs/show_bug.cgi?id=211167
-		// if omitted, "Run as oAW workflow" action immediately terminates when
+		// if omitted, "Run as MWE workflow" action immediately terminates when
 		// SWT libraries are in the classpath
 		new Object();
 		// end workaround
