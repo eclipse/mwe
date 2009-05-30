@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions.BreakpointActionGroup;
+import org.eclipse.emf.mwe.ui.internal.editor.Messages;
 import org.eclipse.emf.mwe.ui.internal.editor.WorkflowEditorPlugin;
 import org.eclipse.emf.mwe.ui.internal.editor.analyzer.ElementIterator;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
@@ -331,7 +332,7 @@ public class WorkflowEditor extends TextEditor {
 		final ISourceViewer viewer = new ProjectionViewer(parent, ruler, getOverviewRuler(), isOverviewRulerVisible(),
 				styles);
 		getSourceViewerDecorationSupport(viewer);
-		validationJob = new Job("parsing document") {
+		validationJob = new Job(Messages.WorkflowEditor_StatusLine_Parsing) {
 
 			@Override
 			protected IStatus run(final IProgressMonitor monitor) {

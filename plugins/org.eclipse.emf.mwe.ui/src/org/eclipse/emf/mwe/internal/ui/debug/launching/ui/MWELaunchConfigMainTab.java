@@ -20,6 +20,7 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchConfigurationConstants;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.Messages;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -72,7 +73,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 	// ********************************************************** create Control
 
 	public String getName() {
-		return "Main";
+		return Messages.MWELaunchConfigMainTab_Main;
 	}
 
 	public void createControl(final Composite parent) {
@@ -86,16 +87,16 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		comp.setFont(font);
 
 		// Project group
-		projButton = createPushButton(parent, "&Browse...", null);
-		projText = createGroup(comp, "&Project:", projButton, null);
+		projButton = createPushButton(parent, Messages.MWELaunchConfigMainTab_Browse, null);
+		projText = createGroup(comp, Messages.MWELaunchConfigMainTab_Project, projButton, null);
 
 		createVerticalSpacer(comp, 1);
 
 		// workflow group
-		wfButton = createPushButton(parent, "&Search...", null);
-		stopInMainCheckbox = createCheckButton(parent, "St&op in main");
-		javaDebugCheckbox = createCheckButton(parent, "Java Debug");
-		wfText = createGroup(comp, "initial Workflow File", wfButton, new Button[] { stopInMainCheckbox,
+		wfButton = createPushButton(parent, Messages.MWELaunchConfigMainTab_Search, null);
+		stopInMainCheckbox = createCheckButton(parent, Messages.MWELaunchConfigMainTab_StopInMain);
+		javaDebugCheckbox = createCheckButton(parent, Messages.MWELaunchConfigMainTab_JavaDebug);
+		wfText = createGroup(comp, Messages.MWELaunchConfigMainTab_initialWorkflowFile, wfButton, new Button[] { stopInMainCheckbox,
 				javaDebugCheckbox });
 	}
 
@@ -174,11 +175,11 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		String text = wfText.getText().trim();
 		if (text.length() > 0) {
 			if (getWorkspaceRoot().findMember(wfPath) == null) {
-				setErrorMessage("Specified file does not exist");
+				setErrorMessage(Messages.MWELaunchConfigMainTab_NoSuchFile);
 				return false;
 			}
 		} else {
-			setMessage("Specify a workflow file");
+			setMessage(Messages.MWELaunchConfigMainTab_WorkflowPrompt);
 		}
 		return super.isValid(launchConfig);
 	}
@@ -210,8 +211,8 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 	private void handleWfButtonSelected() {
 		ResourceListSelectionDialog dialog = new ResourceListSelectionDialog(getShell(), getWorkspaceRoot(),
 				IResource.FILE);
-		dialog.setTitle("select starting workflow file");
-		dialog.setMessage("select starting workflow file");
+		dialog.setTitle(Messages.MWELaunchConfigMainTab_WorkflowSelectDlgTitle);
+		dialog.setMessage(Messages.MWELaunchConfigMainTab_WorkflowSelectDlgMessage);
 		if (dialog.open() == Window.OK) {
 			Object[] files = dialog.getResult();
 			IFile file = (IFile) files[0];
@@ -231,8 +232,8 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 	private IJavaProject chooseJavaProject() {
 		ILabelProvider labelProvider = new JavaElementLabelProvider(JavaElementLabelProvider.SHOW_DEFAULT);
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
-		dialog.setTitle("Project Selection");
-		dialog.setMessage("Select a project to constrain your search.");
+		dialog.setTitle(Messages.MWELaunchConfigMainTab_ProjectSelectDlgTitle);
+		dialog.setMessage(Messages.MWELaunchConfigMainTab_ProjectSelectDlgMessage);
 		try {
 			dialog.setElements(JavaCore.create(getWorkspaceRoot()).getJavaProjects());
 		} catch (JavaModelException jme) {

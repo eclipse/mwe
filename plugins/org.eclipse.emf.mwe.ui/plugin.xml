@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <plugin >
-   <extension-point id="debugHandlers" name="Debugger Handlers" schema="schema/handlers.exsd"/>
-   <extension-point id="debugAdapters" name="Debugger Adapters" schema="schema/adapters.exsd"/>
+   <extension-point id="debugHandlers" name="%extension-point.debugger.handler.name" schema="schema/handlers.exsd"/>
+   <extension-point id="debugAdapters" name="%extension-point.debugger.adapter.name" schema="schema/adapters.exsd"/>
 
 	<extension
          point="org.eclipse.team.core.fileTypes">
@@ -25,16 +25,16 @@
 	      point = "org.eclipse.ui.newWizards">
 		<category 
 		   id = "org.eclipse.emf.mwe.ui.newWizards"
-		   name="Modeling Workflow Engine">
+		   name="%category.name">
 	</category>
 		 <wizard
          category="org.eclipse.emf.mwe.ui.newWizards"
          class="org.eclipse.emf.mwe.internal.ui.wizard.NewWorkflowFileWizard"
          icon="icons/workflowfile.gif"
          id="org.eclipse.emf.mwe.internal.ui.wizard.NewWorkflowFileWizard"
-         name="Workflow File"
+         name="%wizard.name"
          >
-	       <description>Create a new MWE Workflow File</description>
+	       <description>%wizard.description</description>
 		   <selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>
@@ -70,7 +70,7 @@
       <launchConfigurationType
             id="org.eclipse.emf.mwe.ui.MWELaunchConfigType"
             modes="run, debug"
-            name="MWE Workflow"
+            name="%launchConfigurationType.name"
             delegate="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchDelegate"
             sourceLocatorId="org.eclipse.emf.mwe.ui.debug.sourceLookupDirector"
             sourcePathComputerId="org.eclipse.emf.mwe.ui.debug.sourcePathComputer"/>
@@ -97,7 +97,7 @@
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
-            label="MWE Workflow"
+            label="%shortcut.label"
             icon="icons/oawlaunch.gif"
             category="org.eclipse.ui.externaltools"
 
@@ -125,10 +125,10 @@ class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
            </enablement>
            <contextLabel
               mode="run"
-              label="MWE Workflow"/>
+              label="%contextLabel.run.label"/>
           <contextLabel
               mode="debug"
-              label="MWE Workflow"/>
+              label="%contextLabel.debug.label"/>
          </contextualLaunch>
       </shortcut>
    </extension>
@@ -138,7 +138,7 @@ class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
          point="org.eclipse.debug.core.sourceLocators">
       <sourceLocator
             id="org.eclipse.emf.mwe.ui.debug.sourceLookupDirector"
-            name="MWE debug Source Lookup Director"
+            name="%sourceLocator.name"
             class="org.eclipse.emf.mwe.internal.ui.debug.sourcelookup.MWESourceLookupDirector"/>
    </extension>
 

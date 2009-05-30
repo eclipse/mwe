@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IBreakpointManager;
 import org.eclipse.debug.core.model.IBreakpoint;
+import org.eclipse.emf.mwe.ui.Messages;
 import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 import org.eclipse.emf.mwe.ui.debug.processing.PluginAdapter;
 import org.eclipse.emf.mwe.ui.debug.processing.PluginExtensionManager;
@@ -34,8 +35,8 @@ public class ToggleBreakpointAction extends Action {
 	public ToggleBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
-		setText("Toggle Breakpoint");
-		setToolTipText("set or delete breakpoint");
+		setText(Messages.ToggleBreakpointAction_Title);
+		setToolTipText(Messages.ToggleBreakpointAction_Description);
 	}
 
 	public void updateText() {

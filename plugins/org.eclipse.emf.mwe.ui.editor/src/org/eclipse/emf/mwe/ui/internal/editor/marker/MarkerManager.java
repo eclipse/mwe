@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.mwe.ui.internal.editor.Messages;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.AbstractWorkflowElement;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.ElementPositionRange;
 import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
@@ -138,7 +139,7 @@ public final class MarkerManager {
 
 		MarkerUtilities.setLineNumber(map, lineNumber + 1);
 		MarkerUtilities.setMessage(map, message);
-		map.put(IMarker.LOCATION, "line : " + (lineNumber + 1));
+		map.put(IMarker.LOCATION, Messages.MarkerManager_Line + (lineNumber + 1));
 
 		map.put(IMarker.CHAR_START, range.getStartOffset());
 		map.put(IMarker.CHAR_END, range.getEndOffset());

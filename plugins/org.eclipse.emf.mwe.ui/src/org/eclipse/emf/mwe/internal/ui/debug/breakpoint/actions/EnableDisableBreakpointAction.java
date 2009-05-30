@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.model.IBreakpoint;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.Messages;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -38,7 +39,7 @@ public class EnableDisableBreakpointAction extends Action {
 	protected EnableDisableBreakpointAction(final TextEditor editor, final BreakpointActionGroup group) {
 		this.editor = editor;
 		this.group = group;
-		setToolTipText("enable or disable breakpoint");
+		setToolTipText(Messages.EnableDisableBreakpointAction_Description);
 	}
 
 	public void updateText() {
@@ -47,14 +48,14 @@ public class EnableDisableBreakpointAction extends Action {
 		if (fBreakpoint != null) {
 			try {
 				if (fBreakpoint.isEnabled()) {
-					setText("Disable Breakpoint");
+					setText(Messages.EnableDisableBreakpointAction_DisableAction);
 				} else {
-					setText("Enable Breakpoint");
+					setText(Messages.EnableDisableBreakpointAction_EnableAction);
 				}
 			} catch (CoreException e) {
 			}
 		} else {
-			setText("Disable Breakpoint");
+			setText(Messages.EnableDisableBreakpointAction_DisableAction);
 		}
 	}
 

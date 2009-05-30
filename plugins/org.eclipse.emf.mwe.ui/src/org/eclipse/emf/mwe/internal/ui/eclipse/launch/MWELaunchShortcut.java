@@ -25,6 +25,7 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.Messages;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -110,8 +111,8 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	private void locateWfRunner(final IResource resource, String mode) throws CoreException {
 		final IJavaProject project = JavaCore.create(resource.getProject());
 		if (!isOnClasspath(WorkflowRunner.class.getName(), project)) {
-			throw new DebugException(Activator.createErrorStatus("Could not execute workflow: "
-					+ WorkflowRunner.class.getName() + " needs to be on the class path.", null));
+			throw new DebugException(Activator.createErrorStatus(Messages.MWELaunchShortcut_ExecutionError
+					+ WorkflowRunner.class.getName() + Messages.MWELaunchShortcut_NeededonClasspath, null));
 		}
 	}
 
@@ -173,7 +174,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 		wc.setAttribute(MWELaunchConfigurationConstants.ATTR_MWE_JAVA_DEBUG_MODE, false);
 
 		// the values displayed in the VM arguments field
-		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, "-Xms40m\n-Xmx256m");
+		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_VM_ARGUMENTS, Messages.MWELaunchShortcut_NeededVMArguments);
 
 		config = wc.doSave();
 

@@ -10,7 +10,7 @@
             extensions="mwe, oaw"
             icon="icons/workflowfile.gif"
             id="org.eclipse.emf.mwe.ui.internal.simpleEditor.WorkflowEditor"
-            name="MWE Workflow Editor (Simple)"/>
+            name="%editor.name"/>
    </extension>
 
 </plugin>

@@ -15,6 +15,7 @@ import java.io.InputStream;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
+import org.eclipse.emf.mwe.ui.Messages;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbench;
@@ -29,7 +30,7 @@ import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	private Page mainPage;
 
-	private final String extension = "mwe";
+	private final String extension = Messages.NewWorkflowFileWizard_Extension;
 
 	String initialContents = "";
 
@@ -50,7 +51,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 	@Override
 	public void init(final IWorkbench workbench, final IStructuredSelection currentSelection) {
 		super.init(workbench, currentSelection);
-		setWindowTitle("New File");
+		setWindowTitle(Messages.NewWorkflowFileWizard_DialogTitle);
 		setNeedsProgressMonitor(true);
 	}
 
@@ -98,15 +99,15 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 
 		public Page(final IStructuredSelection selection) {
 			super("newFilePage1", selection);
-			setFileName("newWorkflowFile." + extension);
-			setTitle("New Workflow File");
-			setDescription("Creates a new Workflow File");
+			setFileName(Messages.NewWorkflowFileWizard_DefaultFileName + extension);
+			setTitle(Messages.NewWorkflowFileWizard_WindowTitle);
+			setDescription(Messages.NewWorkflowFileWizard_WindowDescription);
 		}
 
 		@Override
 		public String getErrorMessage() {
 			if (!getFileName().endsWith("." + extension))
-				return "file extension must be ." + extension;
+				return Messages.NewWorkflowFileWizard_WrongExtension + extension;
 			return null;
 		}
 

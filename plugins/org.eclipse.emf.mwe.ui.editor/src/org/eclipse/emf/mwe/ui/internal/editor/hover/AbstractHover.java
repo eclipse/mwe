@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ui.internal.editor.hover;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.mwe.ui.internal.editor.Messages;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -74,7 +75,7 @@ public abstract class AbstractHover implements IAnnotationHover, ITextHover, ITe
 	protected String formatInfo(final List<String> messages) {
 		final StringBuffer buffer = new StringBuffer();
 		if (messages.size() > 1) {
-			buffer.append("Multiple markers at this line\n");
+			buffer.append(Messages.AbstractHover_MultipleMarkers);
 			final Iterator<String> e = messages.iterator();
 			while (e.hasNext()) {
 				splitInfo("- " + e.next() + "\n", buffer);
