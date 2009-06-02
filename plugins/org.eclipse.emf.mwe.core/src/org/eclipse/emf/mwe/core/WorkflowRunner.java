@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 - 2007 committers of openArchitectureWare and others.
+ * Copyright (c) 2005 - 2009 committers of openArchitectureWare and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -152,9 +152,9 @@ public class WorkflowRunner {
 						// i++; // ignore this and next element
 						i = i + monitorOptValues.length;
 					}
-					else if (arg.endsWith(".oaw")) {
+					else if (arg.endsWith(".oaw") || arg.endsWith(".mwe")) {
 						if (wfFile != null) {
-							System.err.println("Workflowfile already defined!");
+							System.err.println("Workflow file already defined as '" + wfFile + "'!");
 							System.exit(1);
 						}
 						wfFile = arg;
