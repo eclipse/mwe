@@ -140,7 +140,7 @@ public class VisitorInitializer extends VisitorBase {
 		if (fileName.indexOf("::") != -1) {
 			fileName = fileName.replaceAll("::", "/");
 		}
-		if (!fileName.toLowerCase().endsWith(".mwe")) {
+		if (!fileName.toLowerCase().endsWith(".mwe") && !fileName.toLowerCase().endsWith(".oaw")) {
 			fileName += ".mwe";
 		}
 		return fileName;
