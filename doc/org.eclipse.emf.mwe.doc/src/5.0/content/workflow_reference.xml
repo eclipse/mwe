@@ -5,7 +5,7 @@
   <section id="workflow_reference_introduction">
     <title>Introduction</title>
 
-    <para>The oAW 4 workflow engine is a declarative configurable generator
+    <para>The Modeling Workflow Engine (MWE) is a declarative configurable generator
     engine. It provides a simple, XML-based configuration language with which
     all kinds of generator workflows can be described. A generator workflow
     consists of a number of so-called workflow components that are executed
@@ -18,7 +18,7 @@
     <para>At the heart of the workflow engine lies the
     <classname>WorkflowComponent</classname>. A workflow component represents
     a part of a generator process. Such parts are typically model parsers,
-    model validators, model transformers and code generators. oAW 4 ships with
+    model validators, model transformers and code generators. MWE ships with
     different workflow components which should be used where suitable, but you
     can also implement your own. The only thing you have to do is to implement
     the
@@ -135,10 +135,10 @@
     <programlisting>&lt;workflow&gt;
 	&lt;property name='genPath' value='/home/user/target'/&gt;
 	&lt;property name='model' value='/home/user/model.xmi'/&gt;
-	&lt;component class='oaw.emf.XmiReader'&gt;
+	&lt;component class='org.eclipse.xtend.typesystem.emf.XmiReader'&gt;
 		&lt;model value='${model}'/&gt;
 	&lt;/component&gt;
-	&lt;component class='oaw.xpand2.Generator'&gt;
+	&lt;component class='org.eclipse.xtend.typesystem.xpand2.Generator'&gt;
 		&lt;outlet&gt;
 			&lt;path value='${genPath}'/&gt;
 		&lt;/outlet&gt;
@@ -294,7 +294,7 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         <programlisting>&lt;workflow&gt;
 	&lt;component class='my.Checker'&gt;
 		&lt;metaModel id='mm' class='my.MetaModel'
-			metaModelPackage='org.oaw.metamodel'/&gt;
+			metaModelPackage='org.eclipse.emf.mwe.metamodel'/&gt;
 	&lt;/component&gt;
 	&lt;component class='my.Generator'&gt;
 		&lt;metaModel idRef='mm'/&gt;
@@ -388,29 +388,29 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         handled as an inclusion. Using an inclusion, one can inject a graph
         described in another workflow file. Here is an example:</para>
 
-        <para>file 1: mybean.oaw</para>
+        <para>file 1: mybean.mwe</para>
 
         <programlisting>&lt;anyname class='MyClass'/&gt;</programlisting>
 
-        <para>file 2: workflow.oaw</para>
+        <para>file 2: workflow.mwe</para>
 
         <programlisting>&lt;comp class='MyBean'&gt;
-	&lt;bean file='mybean.oaw'/&gt;
+	&lt;bean file='mybean.mwe'/&gt;
 &lt;/comp&gt;</programlisting>
 
         <para>One can pass properties and components into the included file in
         the usual way.</para>
 
-        <para>file 1: mybean.oaw</para>
+        <para>file 1: mybean.mwe</para>
 
         <programlisting>&lt;anyname class='MyClass' aProp='${myParam}'&gt;
 	&lt;bean idRef='myComponent'/&gt;
 &lt;/anyname&gt;</programlisting>
 
-        <para>file 2: workflow.oaw</para>
+        <para>file 2: workflow.mwe</para>
 
         <programlisting>&lt;comp class='MyBean'&gt;
-	&lt;bean file='mybean.oaw'&gt;
+	&lt;bean file='mybean.mwe'&gt;
 		&lt;myParam value='foo'/&gt;
 		&lt;myComponent class='MyBean'/&gt;
 	&lt;/bean&gt;
@@ -444,7 +444,7 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         properties and beans that are visible to the actual workflow file also
         visible to the included workflow file.</para>
 
-        <programlisting>&lt;component file="my/included/workflow.oaw" inheritAll="true"/&gt;</programlisting>
+        <programlisting>&lt;component file="my/included/workflow.mwe" inheritAll="true"/&gt;</programlisting>
       </section>
     </section>
 
@@ -607,9 +607,9 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
 
           <programlisting>&lt;workflow&gt;
 
-	&lt;cartridge file="workflow.oaw"/&gt;
+	&lt;cartridge file="workflow.mwe"/&gt;
 		&lt;component adviceTarget="generator"
-			class="oaw.xpand2.GeneratorAdvice"&gt;
+			class=".xpand2.GeneratorAdvice"&gt;
 			&lt;advices value="templates::Advices"/&gt;
 		&lt;/component&gt;
 	&lt;/workflow&gt;</programlisting>
@@ -632,11 +632,11 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         is the main entry point if you want to run the workflow from the
         command line. Take a look at the following example:</para>
 
-        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner path/workflow.oaw</programlisting>
+        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner path/workflow.mwe</programlisting>
 
         <para>You can override properties using the -p option:</para>
 
-        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner -pbasedir=/base/ path/workflow.oaw</programlisting>
+        <programlisting>java org.eclipse.emf.mwe.core.WorkflowRunner -pbasedir=/base/ path/workflow.mwe</programlisting>
       </section>
 
       <section id="workflow_reference_starting_with_ant">
@@ -646,7 +646,7 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
 
         <programlisting>	&lt;target name='generate'&gt;
 		&lt;taskdef name="workflow" classname="org.eclipse.emf.mwe.core.ant.WorkflowAntTask"/&gt;
-			&lt;workflow file='path/workflow.oaw'&gt;
+			&lt;workflow file='path/workflow.mwe'&gt;
 				&lt;param name='baseDir' value='/base/'/&gt;
 			&lt;/workflow&gt;
 			...
@@ -671,12 +671,12 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
           <listitem>
             <para>The slotContents map allows you to fill stuff into the
             workflow from your application. This is a typical use case: you
-            run oAW from within your app because you already have a model in
+            run MWE from within your app because you already have a model in
             memory.</para>
           </listitem>
         </orderedlist>
 
-        <programlisting>	String wfFile = "somePath\\workflow.oaw";
+        <programlisting>	String wfFile = "somePath\\workflow.mwe";
 	Map properties = new HashMap();
 	Map slotContents = new HashMap();
 	new WorkflowRunner().run(wfFile ,
@@ -687,13 +687,13 @@ pathToModel = ${baseDir}/${model}.xmi</programlisting>
         <title>Starting from Eclipse</title>
 
         <para>You can also run a workflow file from within Eclipse if you have installed the
-          oAW plugins. Just right-click on the workflow file
-          (<filename>whatever.oaw</filename>) and select <menuchoice> <guimenu>Run
-          As</guimenu> <guimenuitem>oAW Workflow</guimenuitem> </menuchoice>. See
+          MWE plugins. Just right-click on the workflow file
+          (<filename>whatever.mwe</filename>) and select <menuchoice> <guimenu>Run
+          As</guimenu> <guimenuitem>MWE Workflow</guimenuitem> </menuchoice>. See
           the section <emphasis><phrase condition="main"><xref
             linkend="eclipse_integration_running_a_workflow"/></phrase> <phrase
             condition="individual">Running a workflow</phrase></emphasis> in the
-          documentation of the Eclipse integration of oAW for details.</para>
+          documentation of the Eclipse integration of MWE for details.</para>
       </section>
     </section>
   </section>
