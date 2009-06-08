@@ -15,7 +15,7 @@
 	<property name="plugin" value="org.eclipse.emf.mwe" />
 	<property name="docPlugin" value="${plugin}.doc" />
 	<property name="filesToInclude"
-	          value="META-INF/**,images/**,tasks/**,gettingStarted/**,references/**,tutorials/**,notices.html,about.*,eclipse*.gif,ModelingFeature*.png,eclipse_lg.gif,plugin.*,book.css,toc*.xml,topics_*.xml,index/**" />
+	          value="META-INF/**,images/**,tasks/**,gettingStarted/**,references/**,tutorials/**,notices.html,about.*,eclipse*.gif,ModelingFeature*.png,eclipse_lg.gif,plugin.*,book.css,toc*.xml,topics_*.xml,index/**,*.png,*.gif" />
 
 	<!-- ========== Properties: User Defined Options ========================= -->
 
