@@ -11,11 +11,10 @@
     contact him at: christian.bauer@bluemars.de
     
     This version of the stylesheet works with Apache FOP 0.93 and has been 
-    tuned by Peter Friese (peter.friese@gentleware.org).
+    tuned by Peter Friese (peter@peterfriese.de).
 -->
 
 <!DOCTYPE xsl:stylesheet [
-    <!ENTITY db_xsl_path        "../../../lib/docbook/xsl">
     <!ENTITY admon_gfx_path     "../images/admons/">
     <!ENTITY copyright "&#xA9;">
 ]>
@@ -25,8 +24,8 @@
                 xmlns="http://www.w3.org/TR/xhtml1/transitional"
                 xmlns:fo="http://www.w3.org/1999/XSL/Format"
                 exclude-result-prefixes="#default">
-                
-<xsl:import href="&db_xsl_path;/fo/docbook.xsl"/>
+<xsl:import href="docbook.xsl" />                
+
 
 <!--###################################################
                    Custom Title Page
@@ -83,7 +82,7 @@
                     <fo:table-row>
                         <fo:table-cell text-align="center">
                             <fo:block>
-                                <fo:external-graphic src="file:images/logo/building.jpg" content-width="21cm"/>
+                                <fo:external-graphic src="file:build/images/logo/xtext_logo.jpg"/>
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -100,7 +99,7 @@
                     <fo:table-row>
                         <fo:table-cell text-align="right">
                             <fo:block padding-before="50mm">
-                                <fo:external-graphic src="file:images/logo/logo.tif" />
+                                <fo:external-graphic src="file:build/images/logo/logo.tif" />
                             </fo:block>
                         </fo:table-cell>
                     </fo:table-row>
@@ -174,7 +173,7 @@
         <xsl:variable name="Version">
             <xsl:choose>
                 <xsl:when test="//releaseinfo">
-                        <xsl:text>MWE </xsl:text><xsl:value-of select="//releaseinfo"/>
+                        <xsl:text>oAW </xsl:text><xsl:value-of select="//releaseinfo"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <!-- nop -->

@@ -1,13 +1,19 @@
-<?xml version="1.0"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<?xml version='1.0'?>
+<xsl:stylesheet 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:l="http://docbook.sourceforge.net/xmlns/l10n/1.0"
+    version="1.0">
 
     <xsl:import href="eclipse.xsl" />
 	<xsl:output method="xml" indent="yes" encoding="ISO-8859-1" omit-xml-declaration="yes" />
 
-    <xsl:param name="html.stylesheet">../book.css</xsl:param>
+    <xsl:param name="manifest.in.base.dir" select="0" />
+    <xsl:param name="eclipse.autolabel" select="1" />
+
+    <xsl:param name="html.stylesheet">book.css</xsl:param>
     <xsl:param name="chunk.first.sections" select="0" />
     <xsl:param name="chunk.section.depth" select="1" />
-    <xsl:param name="base.dir" select="'contents/'"></xsl:param>
+    <xsl:param name="base.dir" select="'help/'"></xsl:param>
     <xsl:param name="use.id.as.filename" select="1" />
     <xsl:param name="suppress.navigation" select="1" />
     <xsl:param name="chapter.autolabel" select="0" />
@@ -41,37 +47,12 @@
         set       toc,title
     </xsl:param>
     
-    <xsl:param name="eclipse.plugin.extensions">
-    <![CDATA[
-   <extension
-   	  point="org.eclipse.ui.intro.configExtension">
-   	  <configExtension
-         configId="org.eclipse.ui.intro.universalConfig"
-         content="intro/overviewExtensionContext.xml">
-      </configExtension>
-   	  <configExtension
-         configId="org.eclipse.ui.intro.universalConfig"
-         content="intro/newsExtensionContext.xml">
-   	  </configExtension>
-   	  <configExtension
-         configId="org.eclipse.ui.intro.universalConfig"
-         content="intro/tutorialsExtensionContext.xml">
-   	  </configExtension> 
-   </extension>
-   <extension
-   	  point="org.eclipse.ui.cheatsheets.cheatSheetContent">
-   	  <category
-         id="org.openarchitectureware"
-         name="openArchitectureWare"/>
-   	  <cheatsheet
-         category="org.openarchitectureware"
-         composite="false"
-         contentFile="$nl$/cheatsheets/CreatingAnOAWProject.xml"
-         id="org.openarchitectureware.create.project.oaw"
-         name="Creating an oAW generator project">
-   	  </cheatsheet>
-   </extension>
-   ]]>
-	</xsl:param>
-
+    <xsl:param name="ulink.target" select="'_new'"/>
+    
+    <!-- Make sure each chunk has a decent (visible!) heading -->
+	<xsl:template name="user.header.content">
+		<h1><xsl:value-of select="./title"/></h1>
+    </xsl:template>
+    
+ 
 </xsl:stylesheet>
