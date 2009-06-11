@@ -11,14 +11,13 @@
 		Global vars
 	-->
 	<property name="document.name" value="workflow_reference" />
-	<property name="document.name.combined" value="${document.name}_combined" />
 	<property name="src.dir" value="${basedir}/src/5.0/structure" />
 	<property name="styles.dir" value="src/styles" />
 	<property name="xslt.dir" value="${styles.dir}/xslt" />
 	<property name="css.dir" value="${styles.dir}/css" />
 
 	<property name="document.stylesheet" value="${xslt.dir}/article.xsl" />
-	<property name="document.pdf.stylesheet" value="${xslt.dir}/fopdf.xsl" />
+	<property name="document.pdf.stylesheet" value="${xslt.dir}/xmpp.xsl" />
 
 	<property name="document.eclipse.stylesheet"
 	          value="${xslt.dir}/eclipsehelp.xsl" />
@@ -162,14 +161,14 @@
 	</target>
 
 	<target name="check-merge">
-		<available file="${build.dir}/${document.name.combined}.xml"
+		<available file="${build.dir}/${document.name}.xml"
 		           property="isMerged" />
 	</target>
 
 	<target name="merge" depends="check-merge,get-xom" unless="isMerged">
 		<echo>Nerging article parts...</echo>
 		<xinclude in="${src.dir}/${document.name}.xml"
-		          out="${build.dir}/${document.name.combined}.xml" />
+		          out="${build.dir}/${document.name}.xml" />
 	</target>
 
 	<target name="docbook2html" depends="get-fop,get-docbook-xsl,merge">
@@ -186,7 +185,7 @@
 		</copy>
 		<copy file="${html-css.file}" todir="${basedir}/html" />
 
-		<xslt in="${build.dir}${file.separator}${document.name.combined}.xml"
+		<xslt in="${build.dir}${file.separator}${document.name}.xml"
 		      extension="xml"
 		      out="${basedir}/html${file.separator}${document.name}.html"
 		      style="${document.stylesheet}">
@@ -212,7 +211,7 @@
 		<delete file="${build.dir}${file.separator}${document.name}.fo" />
 		<mkdir dir="manual" />
 
-		<xslt in="${build.dir}${file.separator}${document.name.combined}.xml"
+		<xslt in="${build.dir}${file.separator}${document.name}.xml"
 		      extension="xml"
 		      out="${build.dir}${file.separator}${document.name}.fo"
 		      style="${document.pdf.stylesheet}">
@@ -257,7 +256,7 @@
 		      destdir="${basedir}"
 		      style="${document.eclipse.stylesheet}">
 			<param name="chunk.quietly" expression="1" />
-			<include name="${document.name.combined}.xml" />
+			<include name="${document.name}.xml" />
 			<factory name="org.apache.xalan.processor.TransformerFactoryImpl">
 				<attribute name="http://xml.apache.org/xalan/features/optimize"
 				           value="true" />
@@ -281,7 +280,7 @@
 		<delete>
 			<fileset dir="${build.dir}">
 				<include name="*.fo" />
-				<include name="*_combined.xml" />
+				<include name="*.xml" />
 			</fileset>
 		</delete>
 	</target>
