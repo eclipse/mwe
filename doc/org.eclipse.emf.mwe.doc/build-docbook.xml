@@ -283,6 +283,7 @@
 				<include name="*.xml" />
 			</fileset>
 		</delete>
+		<delete file="${basedir}/${document.name}.html"/>
 	</target>
 
 </project>
