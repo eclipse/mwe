@@ -24,5 +24,12 @@
       <toc file="toc.xml" primary="true"/>
       <index path="index"/>
    </extension>
+   
+    <extension
+         point="org.eclipse.help.index">
+      <index
+            file="help/index.xml">
+      </index>
+   </extension>
 </plugin>
 
