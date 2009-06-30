@@ -110,17 +110,6 @@ public class WorkflowEditor extends TextEditor {
 		colorManager = new ColorManager();
 	}
 
-	private static boolean isProblemMarkerAnnotation(final Annotation annotation) {
-		if (!(annotation instanceof MarkerAnnotation))
-			return false;
-		try {
-			return (((MarkerAnnotation) annotation).getMarker().isSubtypeOf(IMarker.PROBLEM));
-		}
-		catch (final CoreException e) {
-			return false;
-		}
-	}
-
 	public void createMarker(final IDocument document, final String msg, final int line, final int column) {
 		final IFile file = getInputFile();
 		MarkerManager.createMarker(file, document, msg, line, column);
@@ -489,6 +478,17 @@ public class WorkflowEditor extends TextEditor {
 	private boolean isOutlineUpdatingEnabled() {
 		final IPreferenceStore store = WorkflowEditorPlugin.getDefault().getCombinedPreferenceStore();
 		return store.getBoolean(PreferenceConstants.SYNCHRONIZE_OUTLINE_VIEW);
+	}
+
+	private boolean isProblemMarkerAnnotation(final Annotation annotation) {
+		if (!(annotation instanceof MarkerAnnotation))
+			return false;
+		try {
+			return (((MarkerAnnotation) annotation).getMarker().isSubtypeOf(IMarker.PROBLEM));
+		}
+		catch (final CoreException e) {
+			return false;
+		}
 	}
 
 	private void synchronizeOutlinePage(final AbstractWorkflowElement element) {
