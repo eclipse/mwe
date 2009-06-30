@@ -147,10 +147,10 @@ public class WorkflowEditor extends TextEditor {
 			final ISelectionProvider selectionProvider = getSelectionProvider();
 			if (selectionProvider instanceof IPostSelectionProvider) {
 				final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
-				postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
+				postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
 			}
 			else {
-				getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
+				getSelectionProvider().removeSelectionChangedListener(selectionChangedListener);
 			}
 		}
 
