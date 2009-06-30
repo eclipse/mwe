@@ -38,8 +38,6 @@ import org.eclipse.emf.mwe.ui.internal.editor.preferences.PreferenceConstants;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.DocumentParser;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.TypeUtils;
 import org.eclipse.emf.mwe.ui.internal.editor.utils.WorkflowElementSearcher;
-import org.eclipse.jdt.internal.ui.javaeditor.IJavaAnnotation;
-import org.eclipse.jdt.internal.ui.javaeditor.JavaAnnotationIterator;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -82,7 +80,6 @@ import org.eclipse.ui.views.contentoutline.IContentOutlinePage;
 /**
  * @author Patrick Schoenbach - Initial API and implementation
  */
-@SuppressWarnings("restriction")
 public class WorkflowEditor extends TextEditor {
 
 	private ProjectionAnnotationModel annotationModel;
@@ -403,8 +400,7 @@ public class WorkflowEditor extends TextEditor {
 		String message = null;
 		if (annotation != null) {
 			updateMarkerViews(annotation);
-			if (annotation instanceof IJavaAnnotation && ((IJavaAnnotation) annotation).isProblem()
-					|| isProblemMarkerAnnotation(annotation)) {
+			if (isProblemMarkerAnnotation(annotation)) {
 				message = annotation.getText();
 			}
 		}
@@ -448,17 +444,16 @@ public class WorkflowEditor extends TextEditor {
 		if (model == null)
 			return null;
 
-		Iterator parent;
+		Iterator iterator;
 		if (model instanceof IAnnotationModelExtension2) {
-			parent = ((IAnnotationModelExtension2) model).getAnnotationIterator(offset, length, true, true);
+			iterator = ((IAnnotationModelExtension2) model).getAnnotationIterator(offset, length, true, true);
 		}
 		else {
-			parent = model.getAnnotationIterator();
+			iterator = model.getAnnotationIterator();
 		}
 
-		final Iterator e = new JavaAnnotationIterator(parent, false);
-		while (e.hasNext()) {
-			final Annotation a = (Annotation) e.next();
+		while (iterator.hasNext()) {
+			final Annotation a = (Annotation) iterator.next();
 			final Position p = model.getPosition(a);
 			if (p != null && p.overlapsWith(offset, length))
 				return a;
