@@ -7,7 +7,7 @@
       <editor
             name="%editor.name"
             extensions="mwe, oaw"
-            icon="icons/workflow.gif"
+            icon="icons/workflowfile.gif"
             contributorClass="org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditorContributor"
             class="org.eclipse.emf.mwe.ui.internal.editor.editor.WorkflowEditor"
             id="org.eclipse.emf.mwe.ui.neweditor.editors.WorkflowEditor">
