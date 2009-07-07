@@ -14,6 +14,14 @@
    <version>0.7.0</version>
    <description />
 
+   <licenses>
+      <license>
+         <name>Eclipse Public License</name>
+         <url>http://www.eclipse.org/legal/epl-v10.html</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
+
    <dependencies>
       <!-- Apache stuff -->
       <dependency>
