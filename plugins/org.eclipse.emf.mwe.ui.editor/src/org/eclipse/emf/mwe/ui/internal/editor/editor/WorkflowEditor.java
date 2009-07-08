@@ -127,34 +127,14 @@ public class WorkflowEditor extends TextEditor {
 				updateOutlineSelection();
 			}
 		};
-		final ISelectionProvider selectionProvider = getSelectionProvider();
-		if (selectionProvider instanceof IPostSelectionProvider) {
-			final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
-			postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
-		}
-		else {
-			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
-		}
+		installSelectionChangedListener();
 	}
 
 	@Override
 	public void dispose() {
 		colorManager.dispose();
-		if (selectionChangedListener != null) {
-			final ISelectionProvider selectionProvider = getSelectionProvider();
-			if (selectionProvider instanceof IPostSelectionProvider) {
-				final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
-				postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
-			}
-			else {
-				getSelectionProvider().removeSelectionChangedListener(selectionChangedListener);
-			}
-		}
-
-		if (outlinePage != null) {
-			outlinePage.setInput(null);
-		}
 		TypeUtils.clearCache();
+		uninstallSelectionChangedListener();
 		super.dispose();
 	}
 
@@ -465,6 +445,17 @@ public class WorkflowEditor extends TextEditor {
 		return WorkflowEditorPlugin.getDefault();
 	}
 
+	private void installSelectionChangedListener() {
+		final ISelectionProvider selectionProvider = getSelectionProvider();
+		if (selectionProvider instanceof IPostSelectionProvider) {
+			final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+			postSelectionProvider.addPostSelectionChangedListener(selectionChangedListener);
+		}
+		else {
+			getSelectionProvider().addSelectionChangedListener(selectionChangedListener);
+		}
+	}
+
 	private boolean isEditorActive() {
 		final IWorkbenchPart part = getActivePart();
 		return part == this;
@@ -491,5 +482,24 @@ public class WorkflowEditor extends TextEditor {
 			outlinePage.select(element);
 		}
 
+	}
+
+	private void uninstallSelectionChangedListener() {
+		if (selectionChangedListener != null) {
+			final ISelectionProvider selectionProvider = getSelectionProvider();
+			if (selectionProvider != null) {
+				if (selectionProvider instanceof IPostSelectionProvider) {
+					final IPostSelectionProvider postSelectionProvider = (IPostSelectionProvider) selectionProvider;
+					postSelectionProvider.removePostSelectionChangedListener(selectionChangedListener);
+				}
+				else {
+					selectionProvider.removeSelectionChangedListener(selectionChangedListener);
+				}
+			}
+		}
+
+		if (outlinePage != null) {
+			outlinePage.setInput(null);
+		}
 	}
 }
