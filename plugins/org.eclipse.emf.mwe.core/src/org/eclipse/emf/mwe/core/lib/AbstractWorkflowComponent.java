@@ -111,11 +111,23 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 *      org.eclipse.emf.mwe.core.issues.Issues)
 	 */
 	public final void invoke(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-		if (skipOnErrors && issues.hasErrors()) {
-			log.info("execution skipped, since there are errors and skipOnErrors is set.");
-			return;
+		if (monitor != null) {
+			if (monitor.isCanceled())
+				return;
+			monitor.beginTask("Running " + getComponentName() + "...", ProgressMonitor.UNKNOWN);
 		}
-		invokeInternal(ctx, monitor, issues);
+		try {
+			if (skipOnErrors && issues.hasErrors()) {
+				log.info("execution skipped, since there are errors and skipOnErrors is set.");
+				return;
+			}
+			invokeInternal(ctx, monitor, issues);
+		} finally {
+			if (monitor != null) {
+				monitor.done();
+			}
+		}
+		
 	}
 
 	/**
