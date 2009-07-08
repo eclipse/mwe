@@ -31,7 +31,7 @@
       <xsl:value-of select="@label"/>
     </xsl:when>
     <xsl:otherwise>
-      <xsl:number format="1" from="section" level="any"/>
+      <xsl:number format="1" from="chapter" level="any"/>
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
