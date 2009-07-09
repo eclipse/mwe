@@ -1,5 +1,5 @@
 Bundle-SymbolicName: org.eclipse.emf.mwe.ui;singleton:=true
-Bundle-Version: 0.7.0.qualifier
+Bundle-Version: 0.7.1.qualifier
 Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
