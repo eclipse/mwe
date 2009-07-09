@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe.internal.core.util.WeakCache;
  * @author Sven Efftinge - Initial contribution and API
  *
  */
-public class CachingResourceLoaderImpl {
+public class CachingResourceLoaderImpl implements ResourceLoader {
 	private ResourceLoader delegate;
 	
 	public CachingResourceLoaderImpl(ResourceLoader delegate) {
