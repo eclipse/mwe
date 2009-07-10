@@ -243,6 +243,76 @@
         </table>
     </section>
 
+    <section id="workflow_reference_standalonesetup">
+      <title>StandaloneSetup (org.eclipse.emf.mwe.utils.StandaloneSetup)</title>
+      
+      <para>
+      The StandaloneSetup class is not a workflow component in the narrow sense. However,
+      this class needs to be referenced from within the workflow in order to set up the
+      EMF metamodel in standalone mode.
+      </para>
+      
+      <para>
+      StandaloneSetup provides the following properties:
+      </para>
+      
+       <table frame='all' id="properties_standalonesetup">
+            <title>Properties</title>
+            <tgroup cols='2' align='left' colsep='1' rowsep='1'>
+                <colspec colname='standalonesetup_property_name'/>
+                <colspec colname='standalonesetup_property_description'/>
+                <thead>
+                    <row>
+                        <entry>Name of property</entry>
+                        <entry>Description</entry>
+                    </row>
+                </thead>
+                <tbody>
+                    <row>
+                        <entry>
+                            platformUri                        
+                        </entry>
+                        <entry>
+                            Sets the path to the platform. In general, this should be
+                            set to the path of the current workspace.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                            uriMap                            
+                        </entry>
+                        <entry>
+                        Registers a URI mapping that allows to map one URI to another.
+                        </entry>
+                    </row>
+                    <row>
+                        <entry>
+                          extension  
+                        </entry>
+                        <entry>
+                        Allows to register a factory class for a certain file extension.
+                        </entry>
+                    </row>                    
+                     <row>
+                        <entry>
+                            registerGeneratedEPackage
+                        </entry>
+                        <entry>
+                            Allows to register an externally generated EPackage.
+                        </entry>
+                    </row>
+                     <row>
+                        <entry>
+                            registerEcoreFile                            
+                        </entry>
+                        <entry>
+                            Allows to register an Ecore file.
+                        </entry>
+                    </row>
+                </tbody>
+            </tgroup>
+        </table>
+    </section>
 
     <section id="workflow_reference_writer">
       <title>Writer (org.eclipse.emf.mwe.utils.Writer)</title>
