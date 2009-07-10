@@ -189,7 +189,7 @@
     </section>
 
     <section id="workflow_reference_ifcomponent">
-      <title>IfComponent (org.eclipse.emf.mwe.core,container.IfComponent)</title>
+      <title>IfComponent (org.eclipse.emf.mwe.core.container.IfComponent)</title>
       <para>
       The IfComponent is a very simple component that allows e.g. to temporarily disable
       one or more subcomponents.
