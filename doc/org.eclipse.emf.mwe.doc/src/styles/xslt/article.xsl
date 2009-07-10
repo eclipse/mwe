@@ -1,12 +1,13 @@
 <?xml version='1.0'?>
 <!--
-        $Id: article.xsl,v 1.1 2009/06/11 12:19:23 pschonbac Exp $
+        $Id: article.xsl,v 1.2 2009/07/10 15:29:41 pschonbac Exp $
         author: Chris Aniszczyk <zx@us.ibm.com>
         author: Lawrence Mandel <lmandel@ca.ibm.com>
 -->
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	version="1.0">
 	<xsl:import href="docbook.xsl" />
+    <xsl:include href="inline.xsl" />
 	
 	<xsl:param name="html.stylesheet" select="'book.css'" />
 	<xsl:param name="admon.graphics" select="1" />
