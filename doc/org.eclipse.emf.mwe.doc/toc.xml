@@ -5,6 +5,12 @@
 <topic href="help/workflow_reference_workflow_components.html#workflow_reference_components_with_IDs" label="Workflow Components with IDs"/>
 <topic href="help/workflow_reference_workflow_components.html#workflow_reference_convenience" label="More convenience"/>
 </topic>
+<topic href="help/workflow_reference_included_workflow_components.html" label="Included Workflow Components">
+<topic href="help/workflow_reference_included_workflow_components.html#workflow_reference_directorycleaner" label="DirectoryCleaner (org.eclipse.emf.mwe.utils.DirectoryCleaner)"/>
+<topic href="help/workflow_reference_included_workflow_components.html#workflow_reference_ifcomponent" label="IfComponent (org.eclipse.emf.mwe.core.container.IfComponent)"/>
+<topic href="help/workflow_reference_included_workflow_components.html#workflow_reference_standalonesetup" label="StandaloneSetup (org.eclipse.emf.mwe.utils.StandaloneSetup)"/>
+<topic href="help/workflow_reference_included_workflow_components.html#workflow_reference_writer" label="Writer (org.eclipse.emf.mwe.utils.Writer)"/>
+</topic>
 <topic href="help/workflow_reference_workflow_configuration.html" label="Workflow Configuration">
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_properties" label="Properties">
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_components" label="Components">
@@ -22,14 +28,14 @@
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_context" label="The Workflow Context"/>
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_issues" label="Issues"/>
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_controlling_workflow" label="Controlling the Workflow">
-<topic href="help/workflow_reference_workflow_configuration.html#N101B6" label="Using Aspect Orientation wih Workflows"/>
+<topic href="help/workflow_reference_workflow_configuration.html#N1027B" label="Using Aspect Orientation wih Workflows"/>
 </topic>
 </topic>
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_invoking_a_workflow" label="Invoking a workflow">
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_workflowrunner" label="Starting the WorkflowRunner"/>
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_starting_with_ant" label="Starting with Ant"/>
 <topic href="help/workflow_reference_workflow_configuration.html#workflow_reference_starting_from_your_own_code" label="Starting from you own code"/>
-<topic href="help/workflow_reference_workflow_configuration.html#N101F8" label="Starting from Eclipse"/>
+<topic href="help/workflow_reference_workflow_configuration.html#N102BD" label="Starting from Eclipse"/>
 </topic>
 </topic>
 </toc>

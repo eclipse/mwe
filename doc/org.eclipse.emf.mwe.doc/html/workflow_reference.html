@@ -1,4 +1,4 @@
-<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference</title><link href="book.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.75.1" name="generator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="chapter" title="Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference"><div class="titlepage"><div><div><h2 class="title"><a name="workflow_reference_chapter"></a>Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#workflow_reference_introduction">Introduction</a></span></dt><dt><span class="section"><a href="#workflow_reference_workflow_components">Workflow components</a></span></dt><dd><dl><dt><span class="section"><a href="#workflow_reference_workflow">Workflow</a></span></dt><dt><span class="section"><a href="#workflow_reference_components_with_IDs">Workflow Components with IDs</a></span></dt><dt><span class="section"><a href="#workflow_reference_convenience">More convenience</a></span></dt></dl></dd><dt><span class="section"><a href="#workflow_reference_workflow_configuration">Workflow Configuration</a></span></dt><dd><dl><dt><span class="section"><a href="#workflow_reference_properties">Properties</a></span></dt><dt><span class="section"><a href="#workflow_reference_component_implementation">Component Implementation and Workflow Execution</a></span></dt><dt><span class="section"><a href="#workflow_reference_invoking_a_workflow">Invoking a workflow</a></span></dt></dl></dd></dl></div><div class="section" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="workflow_reference_introduction"></a>Introduction</h2></div></div></div><p>The Modeling Workflow Engine (MWE) is a declarative configurable generator
+<html><head><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference</title><link href="book.css" rel="stylesheet" type="text/css"><meta content="DocBook XSL Stylesheets V1.75.1" name="generator"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="chapter" title="Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference"><div class="titlepage"><div><div><h2 class="title"><a name="workflow_reference_chapter"></a>Chapter&nbsp;1.&nbsp;Modeling Workflow Engine Reference</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="#workflow_reference_introduction">Introduction</a></span></dt><dt><span class="section"><a href="#workflow_reference_workflow_components">Workflow components</a></span></dt><dd><dl><dt><span class="section"><a href="#workflow_reference_workflow">Workflow</a></span></dt><dt><span class="section"><a href="#workflow_reference_components_with_IDs">Workflow Components with IDs</a></span></dt><dt><span class="section"><a href="#workflow_reference_convenience">More convenience</a></span></dt></dl></dd><dt><span class="section"><a href="#workflow_reference_included_workflow_components">Included Workflow Components</a></span></dt><dd><dl><dt><span class="section"><a href="#workflow_reference_directorycleaner">DirectoryCleaner (org.eclipse.emf.mwe.utils.DirectoryCleaner)</a></span></dt><dt><span class="section"><a href="#workflow_reference_ifcomponent">IfComponent (org.eclipse.emf.mwe.core.container.IfComponent)</a></span></dt><dt><span class="section"><a href="#workflow_reference_standalonesetup">StandaloneSetup (org.eclipse.emf.mwe.utils.StandaloneSetup)</a></span></dt><dt><span class="section"><a href="#workflow_reference_writer">Writer (org.eclipse.emf.mwe.utils.Writer)</a></span></dt></dl></dd><dt><span class="section"><a href="#workflow_reference_workflow_configuration">Workflow Configuration</a></span></dt><dd><dl><dt><span class="section"><a href="#workflow_reference_properties">Properties</a></span></dt><dt><span class="section"><a href="#workflow_reference_component_implementation">Component Implementation and Workflow Execution</a></span></dt><dt><span class="section"><a href="#workflow_reference_invoking_a_workflow">Invoking a workflow</a></span></dt></dl></dd></dl></div><div class="section" title="Introduction"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="workflow_reference_introduction"></a>Introduction</h2></div></div></div><p>The Modeling Workflow Engine (MWE) is a declarative configurable generator
     engine. It provides a simple, XML-based configuration language with which
     all kinds of generator workflows can be described. A generator workflow
     consists of a number of so-called workflow components that are executed
@@ -75,7 +75,108 @@
       <code class="methodname">invokeInternal(...)</code> and
       <code class="methodname">checkConfigurationInternal(...)</code>. This is
       necessary to allow the framework to intercept the invocation and stop it
-      when there are errors in the workflow.</p></div></div><div class="section" title="Workflow Configuration"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="workflow_reference_workflow_configuration"></a>Workflow Configuration</h2></div></div></div><p>A workflow is wired up using an XML configuration language based on
+      when there are errors in the workflow.</p></div></div><div class="section" title="Included Workflow Components"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="workflow_reference_included_workflow_components"></a>Included Workflow Components</h2></div></div></div>
+    
+    The Modeling Workflow Engine comes with several useful workflow components. Some of
+    these components need to be described in detail.
+    
+    <div class="section" title="DirectoryCleaner (org.eclipse.emf.mwe.utils.DirectoryCleaner)"><div class="titlepage"><div><div><h3 class="title"><a name="workflow_reference_directorycleaner"></a>DirectoryCleaner (org.eclipse.emf.mwe.utils.DirectoryCleaner)</h3></div></div></div><p>
+      This component allows you to clean up a directory that contains generated artifacts
+      before (re-)generating these artifacts.
+      </p><p>
+      The DirectoryCleaner component provides the following configuration properties:
+      </p><div class="table"><a name="properties_directorycleaner"></a><p class="title"><b>Table&nbsp;1.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                            directory
+                        </td><td align="left">
+                            Sets the path to the directory that should be cleaned. All subdirectories
+                            will be cleaned up as well.
+                        </td></tr><tr><td align="left">
+                            useDefaultExcludes
+                        </td><td align="left">
+                            This boolean value determines if directories that are internally used by 
+                            version control systems, should be excluded from the cleanup. If this
+                            property is enabled, the directories that are used internally by 
+                            i.e. Subversion will <span class="emphasis"><em>not</em></span> be cleaned up.
+                        </td></tr><tr><td align="left">
+                            excludes
+                        </td><td align="left">
+                            This property allows to add further directories that should be excluded
+                            from the cleanup process.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="IfComponent (org.eclipse.emf.mwe.core.container.IfComponent)"><div class="titlepage"><div><div><h3 class="title"><a name="workflow_reference_ifcomponent"></a>IfComponent (org.eclipse.emf.mwe.core.container.IfComponent)</h3></div></div></div><p>
+      The IfComponent is a very simple component that allows e.g. to temporarily disable
+      one or more subcomponents.
+      </p><p>
+      For example:
+      </p><pre class="programlisting">&lt;workflow&gt;
+     &lt;component class="my.first.WorkflowComponent"&gt;
+            &lt;aProp value="test"/&gt;
+     &lt;/component&gt;
+     &lt;if cond="false"&gt;
+     &lt;component class="my.second.WorkflowComponent"&gt;
+            &lt;anotherProp value="test2"/&gt;
+     &lt;/component&gt;
+     &lt;/if&gt;
+     &lt;component class="my.third.WorkflowComponent"&gt;
+            &lt;prop value="test"/&gt;
+     &lt;/component&gt;
+     &lt;/workflow&gt;</pre><p>
+      This components provides only a single property:
+      </p><div class="table"><a name="properties_ifcomponent"></a><p class="title"><b>Table&nbsp;2.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                            cond
+                        </td><td align="left">
+                            Determines if the subcomponents will be executed or not. Only
+                            the values <span class="emphasis"><em>true</em></span> or <span class="emphasis"><em>false</em></span>
+                            are allowed.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="StandaloneSetup (org.eclipse.emf.mwe.utils.StandaloneSetup)"><div class="titlepage"><div><div><h3 class="title"><a name="workflow_reference_standalonesetup"></a>StandaloneSetup (org.eclipse.emf.mwe.utils.StandaloneSetup)</h3></div></div></div><p>
+      The StandaloneSetup class is not a workflow component in the narrow sense. However,
+      this class needs to be referenced from within the workflow in order to set up the
+      EMF metamodel in standalone mode.
+      </p><p>
+      StandaloneSetup provides the following properties:
+      </p><div class="table"><a name="properties_standalonesetup"></a><p class="title"><b>Table&nbsp;3.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                            platformUri                        
+                        </td><td align="left">
+                            Sets the path to the platform. In general, this should be
+                            set to the path of the current workspace.
+                        </td></tr><tr><td align="left">
+                            uriMap                            
+                        </td><td align="left">
+                        Registers a URI mapping that allows to map one URI to another.
+                        </td></tr><tr><td align="left">
+                          extension  
+                        </td><td align="left">
+                        Allows to register a factory class for a certain file extension.
+                        </td></tr><tr><td align="left">
+                            registerGeneratedEPackage
+                        </td><td align="left">
+                            Allows to register an externally generated EPackage.
+                        </td></tr><tr><td align="left">
+                            registerEcoreFile                            
+                        </td><td align="left">
+                            Allows to register an Ecore file.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div><div class="section" title="Writer (org.eclipse.emf.mwe.utils.Writer)"><div class="titlepage"><div><div><h3 class="title"><a name="workflow_reference_writer"></a>Writer (org.eclipse.emf.mwe.utils.Writer)</h3></div></div></div><p>
+      The Writer component allows you to write out models stored in a model slot into a file.
+      </p><p>
+      The Writer component provides the following configuration properties:
+      </p><div class="table"><a name="properties_writer"></a><p class="title"><b>Table&nbsp;4.&nbsp;Properties</b></p><div class="table-contents"><table summary="Properties" border="1"><colgroup><col align="left"><col align="left"></colgroup><thead><tr><th align="left">Name of property</th><th align="left">Description</th></tr></thead><tbody><tr><td align="left">
+                            modelSlot
+                        </td><td align="left">
+                            Sets the name of the model slot that will be written out.
+                        </td></tr><tr><td align="left">
+                            cloneSlotContents
+                        </td><td align="left">
+                            This boolean value determines if the model contained in the
+                            specified slot will be cloned before it will be written out
+                            into a resource.
+                        </td></tr><tr><td align="left">
+                            multipleResourcesInCaseOfLists
+                        </td><td align="left">
+                            This boolean property specifies the writing behavior in the case
+                            that the specified model slot contains a list of models. If this property
+                            is set to <span class="emphasis"><em>true</em></span>, each model will be written into a
+                            separate resource. Otherwise, all models will be written into a single
+                            resource.
+                        </td></tr></tbody></table></div></div><br class="table-break"></div></div><div class="section" title="Workflow Configuration"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="workflow_reference_workflow_configuration"></a>Workflow Configuration</h2></div></div></div><p>A workflow is wired up using an XML configuration language based on
     the dependency injection pattern (DI). Here is an example (not working,
     just an example!):</p><pre class="programlisting">&lt;workflow&gt;
 	&lt;property name='genPath' value='/home/user/target'/&gt;
@@ -91,7 +192,7 @@
 &lt;/workflow&gt;</pre><p>The root element is named <span class="emphasis"><em>workflow</em></span>, then there
     are some property declarations followed by the declaration of two
     components.</p><p>Here is a tree representation of the resulting Java object
-    graph:</p><div class="figure"><a name="workflow_reference_java_object_graph"></a><p class="title"><b>Figure&nbsp;1.1.&nbsp;Java Object Graph</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/workflow_reference/java_object_graph.gif" width="534.6" alt="Java Object Graph"></div></div></div><p><br class="figure-break"> The configuration language expresses four different
+    graph:</p><div class="figure"><a name="workflow_reference_java_object_graph"></a><p class="title"><b>Figure&nbsp;1.&nbsp;Java Object Graph</b></p><div class="figure-contents"><div class="mediaobject"><img src="images/workflow_reference/java_object_graph.gif" width="534.6" alt="Java Object Graph"></div></div></div><p><br class="figure-break"> The configuration language expresses four different
     concepts:</p><div class="section" title="Properties"><div class="titlepage"><div><div><h3 class="title"><a name="workflow_reference_properties"></a>Properties</h3></div></div></div><p>Borrowing from Apache Ant, we use the concept of properties.
       Properties can be declared anywhere in a workflow file. They will be
       available after declaration.</p><p>We have two different kinds of properties</p><div class="orderedlist"><ol class="orderedlist" type="1"><li class="listitem"><p>simple properties</p></li><li class="listitem"><p>property files</p></li></ol></div><p>Here is an example:</p><pre class="programlisting">&lt;workflow&gt;
@@ -265,7 +366,7 @@ pathToModel = ${baseDir}/${model}.xmi</pre><div class="section" title="Component
         any workflow component, the workflow will not start running.</p><p>There is also an explicit way of terminating the execution of
         the workflow: if any invoke operation throws a
         <code class="classname">WorkflowInterruptedException</code> (a runtime
-        exception) the workflow will terminate immediately.</p><div class="section" title="Using Aspect Orientation wih Workflows"><div class="titlepage"><div><div><h5 class="title"><a name="N101B6"></a>Using Aspect Orientation wih Workflows</h5></div></div></div><p>It is sometimes necessary to enhance existing workflow
+        exception) the workflow will terminate immediately.</p><div class="section" title="Using Aspect Orientation wih Workflows"><div class="titlepage"><div><div><h5 class="title"><a name="N1027B"></a>Using Aspect Orientation wih Workflows</h5></div></div></div><p>It is sometimes necessary to enhance existing workflow
           component declarations with additional properties. This is
           exemplified in the Template AOP example. To implement such an advice
           component, you have to extend the
@@ -323,7 +424,7 @@ pathToModel = ${baseDir}/${model}.xmi</pre><div class="section" title="Component
 	Map properties = new HashMap();
 	Map slotContents = new HashMap();
 	new WorkflowRunner().run(wfFile ,
-		new NullProgressMonitor(), properties, slotContents)</pre></div><div class="section" title="Starting from Eclipse"><div class="titlepage"><div><div><h4 class="title"><a name="N101F8"></a>Starting from Eclipse</h4></div></div></div><p>You can also run a workflow file from within Eclipse if you have installed the
+		new NullProgressMonitor(), properties, slotContents)</pre></div><div class="section" title="Starting from Eclipse"><div class="titlepage"><div><div><h4 class="title"><a name="N102BD"></a>Starting from Eclipse</h4></div></div></div><p>You can also run a workflow file from within Eclipse if you have installed the
           MWE plugins. Just right-click on the workflow file
           (<code class="filename">whatever.mwe</code>) and select <span class="guimenu">Run
           As</span> &rarr; <span class="guimenuitem">MWE Workflow</span>. See
