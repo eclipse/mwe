@@ -143,7 +143,7 @@
       </para>
       
             <table frame='all' id="properties_directorycleaner">
-            <title>Properties of DirectoryCleaner</title>
+            <title>Properties of <classname>DirectoryCleaner</classname> </title>
             <tgroup cols='2' align='left' colsep='1' rowsep='1'>
                 <colspec colname='directorycleaner_property_name'/>
                 <colspec colname='directorycleaner_property_description'/>
@@ -217,7 +217,7 @@
       This components provides only a single property:
       </para>
        <table frame='all' id="properties_ifcomponent">
-            <title>Properties of IfComponent</title>
+            <title>Properties of <classname>IfComponent</classname></title>
             <tgroup cols='2' align='left' colsep='1' rowsep='1'>
                 <colspec colname='ifcomponent_property_name'/>
                 <colspec colname='ifcomponent_property_description'/>
@@ -257,7 +257,7 @@
       </para>
       
        <table frame='all' id="properties_standalonesetup">
-            <title>Properties of StandaloneSetup</title>
+            <title>Properties of <classname>StandaloneSetup</classname></title>
             <tgroup cols='2' align='left' colsep='1' rowsep='1'>
                 <colspec colname='standalonesetup_property_name'/>
                 <colspec colname='standalonesetup_property_description'/>
@@ -325,7 +325,7 @@
       </para>
       
        <table frame='all' id="properties_writer">
-            <title>Properties of Writer</title>
+            <title>Properties of <classname>Writer</classname></title>
             <tgroup cols='2' align='left' colsep='1' rowsep='1'>
                 <colspec colname='writer_property_name'/>
                 <colspec colname='writer_property_description'/>
