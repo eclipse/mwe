@@ -5,13 +5,13 @@
    <parent>
       <groupId>org.eclipse.emf.mwe</groupId>
       <artifactId>emf-mwe</artifactId>
-      <version>0.7.0</version>
+      <version>0.7.1</version>
    </parent>
 
    <groupId>org.eclipse.emf.mwe</groupId>
    <artifactId>emf-mwe-core</artifactId>
    <name>Eclipse Modeling Workflow Engine Core</name>
-   <version>0.7.0</version>
+   <version>0.7.1</version>
    <description />
 
    <licenses>
