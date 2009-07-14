@@ -240,7 +240,7 @@
 	</target>
 
 	<target name="docbook2eclipsehelp" depends="get-fop,get-docbook-xsl,merge">
-		<echo>Converting article to Eclipe Help...</echo>
+		<echo>Converting article to Eclipse Help...</echo>
 		<delete dir="${basedir}/help"
 		        failonerror="false"
 		        excludes="CVS"
