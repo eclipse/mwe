@@ -36,12 +36,15 @@ public class CachingResourceLoaderImpl implements ResourceLoader {
 		}
 	};
 
-	public InputStream getResourceAsStream(String uri) {
-		try {
-			return getResource(uri).openStream();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
+	public final InputStream getResourceAsStream(String uri) {
+		URL resource = getResource(uri);
+		if (resource != null) {
+			try {
+				return resource.openStream();
+			} catch (IOException ignore) {
+			}
 		}
+		return null;
 	}
 
 	public Class<?> loadClass(String clazzName) {
