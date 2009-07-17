@@ -98,13 +98,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" lowerBound="1"
-        eType="#//WorkflowParameterConnection" eOpposite="#//WorkflowParameterConnection/inputs"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//WorkflowParameterConnection"
+        eOpposite="#//WorkflowParameterConnection/inputs"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="valueStrategy" lowerBound="1"
         eType="#//WorkflowParameterValueStrategy" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="direction" lowerBound="1"
+        eType="#//WorkflowParameterDirection"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterValueStrategy">
     <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
@@ -148,6 +150,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentProxy" eSuperTypes="#//WorkflowComponent">
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetComponent" lowerBound="1"
         eType="#//WorkflowComponent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="WorkflowParameterDirection">
+    <eLiterals name="IN_OUT" literal="IN_OUT"/>
+    <eLiterals name="IN" value="1" literal="IN"/>
+    <eLiterals name="OUT" value="2" literal="OUT"/>
   </eClassifiers>
   <eSubpackages name="orchestration" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration"
       nsPrefix="org.eclipse.emf.mwe.ewm.workflow.orchestration">

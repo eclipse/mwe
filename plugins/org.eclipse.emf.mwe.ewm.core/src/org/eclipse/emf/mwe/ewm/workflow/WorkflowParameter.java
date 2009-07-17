@@ -35,6 +35,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#isRequired <em>Required</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getValueStrategy <em>Value Strategy</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getDirection <em>Direction</em>}</li>
  * </ul>
  * </p>
  *
@@ -133,6 +134,26 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected WorkflowParameterValueStrategy valueStrategy;
+
+	/**
+	 * The default value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final WorkflowParameterDirection DIRECTION_EDEFAULT = WorkflowParameterDirection.IN_OUT;
+
+	/**
+	 * The cached value of the '{@link #getDirection() <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDirection()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkflowParameterDirection direction = DIRECTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,6 +292,44 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Direction</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Direction</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Direction</em>' attribute.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection
+	 * @see #setDirection(WorkflowParameterDirection)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameter_Direction()
+	 * @model required="true"
+	 * @generated
+	 */
+	public WorkflowParameterDirection getDirection()
+	{
+		return direction;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getDirection <em>Direction</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Direction</em>' attribute.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection
+	 * @see #getDirection()
+	 * @generated
+	 */
+	public void setDirection(WorkflowParameterDirection newDirection)
+	{
+		WorkflowParameterDirection oldDirection = direction;
+		direction = newDirection == null ? DIRECTION_EDEFAULT : newDirection;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION, oldDirection, direction));
+	}
+
+	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -353,7 +412,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 * @see #setConnection(WorkflowParameterConnection)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameter_Connection()
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs
-	 * @model opposite="inputs" required="true"
+	 * @model opposite="inputs"
 	 * @generated
 	 */
 	public WorkflowParameterConnection getConnection()
@@ -558,6 +617,8 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 				return basicGetType();
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:
 				return getValueStrategy();
+			case WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION:
+				return getDirection();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -589,6 +650,9 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 				return;
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:
 				setValueStrategy((WorkflowParameterValueStrategy)newValue);
+				return;
+			case WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION:
+				setDirection((WorkflowParameterDirection)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -622,6 +686,9 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:
 				setValueStrategy((WorkflowParameterValueStrategy)null);
 				return;
+			case WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION:
+				setDirection(DIRECTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -648,6 +715,8 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 				return type != null;
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:
 				return valueStrategy != null;
+			case WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION:
+				return direction != DIRECTION_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}

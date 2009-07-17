@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.1/notation">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation">
   <notation:Diagram xmi:id="_Sr9B0DDyEd2Lo9NzFLNhaA" type="EcoreTools" name="workflow.ecorediag" measurementUnit="Pixel">
     <children xmi:type="notation:Node" xmi:id="_Ssw6IDDyEd2Lo9NzFLNhaA" type="1001">
       <children xmi:type="notation:Node" xmi:id="_SsxhMDDyEd2Lo9NzFLNhaA" type="4001"/>
@@ -165,7 +165,7 @@
       </children>
       <styles xmi:type="notation:ShapeStyle" xmi:id="_J8cIMXhoEd2v-aRyO1gVCg" fontName="Lucida Grande" fontHeight="10" fillColor="12451583" lineColor="0"/>
       <element xmi:type="ecore:EClass" href="workflow.ecore#//WorkflowParameterValueStrategy"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J8cIMnhoEd2v-aRyO1gVCg" x="355" y="531"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_J8cIMnhoEd2v-aRyO1gVCg" x="515" y="468"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_OOWCQHhoEd2v-aRyO1gVCg" type="1001">
       <children xmi:type="notation:Node" xmi:id="_OOWpUHhoEd2v-aRyO1gVCg" type="4001"/>
@@ -181,7 +181,7 @@
       </children>
       <styles xmi:type="notation:ShapeStyle" xmi:id="_OOWCQXhoEd2v-aRyO1gVCg" fontName="Lucida Grande" fontHeight="10" fillColor="12451583" lineColor="0"/>
       <element xmi:type="ecore:EClass" href="workflow.ecore#//WorkflowParameterSimpleValueStrategy"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OOWCQnhoEd2v-aRyO1gVCg" x="355" y="665"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_OOWCQnhoEd2v-aRyO1gVCg" x="499" y="558"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_pY1BIHhpEd2v-aRyO1gVCg" type="1001">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_pY1oMHhpEd2v-aRyO1gVCg" source="Shortcut">
@@ -200,7 +200,7 @@
       </children>
       <styles xmi:type="notation:ShapeStyle" xmi:id="_pY1BIXhpEd2v-aRyO1gVCg" fontName="Lucida Grande" fontHeight="10" fillColor="16761523" lineColor="0"/>
       <element xmi:type="ecore:EClass" href="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pY1BInhpEd2v-aRyO1gVCg" x="882" y="373"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pY1BInhpEd2v-aRyO1gVCg" x="846" y="360"/>
     </children>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_Sr9B0TDyEd2Lo9NzFLNhaA"/>
     <element xmi:type="ecore:EPackage" href="workflow.ecore#/"/>
@@ -286,9 +286,9 @@
       <styles xmi:type="notation:ConnectorStyle" xmi:id="_Ss-VgTDyEd2Lo9NzFLNhaA" lineColor="0"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_Ss-VgjDyEd2Lo9NzFLNhaA" fontName="Lucida Grande" fontHeight="10"/>
       <element xmi:type="ecore:EReference" href="workflow.ecore#//WorkflowParameter/connection"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ss-VgzDyEd2Lo9NzFLNhaA" points="[0, 0, 149, -60]$[-149, 60, 0, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9c82wHhpEd2v-aRyO1gVCg" id="(0.004962779,0.50980395)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_9c82wXhpEd2v-aRyO1gVCg" id="(0.98245615,0.475)"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ss-VgzDyEd2Lo9NzFLNhaA" points="[-1, 0, 124, -15]$[-122, 14, 3, -1]"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q02-YHJnEd6CD7vgzNdN8g" id="(0.004962779,0.50980395)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_Q02-YXJnEd6CD7vgzNdN8g" id="(0.98245615,0.475)"/>
     </edges>
     <edges xmi:type="notation:Edge" xmi:id="_Ss-ViDDyEd2Lo9NzFLNhaA" type="3002" source="_Ss0kiDDyEd2Lo9NzFLNhaA" target="_Ssz9cjDyEd2Lo9NzFLNhaA">
       <children xmi:type="notation:Node" xmi:id="_Ss-8kDDyEd2Lo9NzFLNhaA" type="4011">
@@ -314,7 +314,7 @@
       <styles xmi:type="notation:ConnectorStyle" xmi:id="_Ss-8lTDyEd2Lo9NzFLNhaA" lineColor="0"/>
       <styles xmi:type="notation:FontStyle" xmi:id="_Ss-8ljDyEd2Lo9NzFLNhaA" fontName="Lucida Grande" fontHeight="10"/>
       <element xmi:type="ecore:EReference" href="workflow.ecore#//WorkflowParameterConnection/inputs"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ss-8lzDyEd2Lo9NzFLNhaA" points="[0, 0, -149, 60]$[149, -60, 0, 0]"/>
+      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Ss-8lzDyEd2Lo9NzFLNhaA" points="[3, -1, -122, 14]$[124, -15, -1, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pZgWkHhpEd2v-aRyO1gVCg" id="(0.98245615,0.475)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_pZgWkXhpEd2v-aRyO1gVCg" id="(0.004962779,0.50980395)"/>
     </edges>
@@ -689,30 +689,6 @@
       <element xmi:type="ecore:EClass" href="workflow.ecore#//runtime/WorkflowRunner"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xEtnbXhsEd2v-aRyO1gVCg" x="234" y="160"/>
     </children>
-    <children xmi:type="notation:Node" xmi:id="_xEtnd3hsEd2v-aRyO1gVCg" type="1001">
-      <children xmi:type="notation:Node" xmi:id="_xEuOcHhsEd2v-aRyO1gVCg" type="4001"/>
-      <children xmi:type="notation:Node" xmi:id="_xEuOcXhsEd2v-aRyO1gVCg" type="5001">
-        <styles xmi:type="notation:DrawerStyle" xmi:id="_xEuOcnhsEd2v-aRyO1gVCg"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_xEuOc3hsEd2v-aRyO1gVCg"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_xEuOdHhsEd2v-aRyO1gVCg"/>
-      </children>
-      <children xmi:type="notation:Node" xmi:id="_xEuOdXhsEd2v-aRyO1gVCg" type="5002">
-        <children xmi:type="notation:Node" xmi:id="_xEuOeXhsEd2v-aRyO1gVCg" type="2002">
-          <element xmi:type="ecore:EOperation" href="workflow.ecore#//runtime/IWorkflowVisitor/visitUnitOfWork"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_xEuOenhsEd2v-aRyO1gVCg"/>
-        </children>
-        <children xmi:type="notation:Node" xmi:id="_xEuOe3hsEd2v-aRyO1gVCg" type="2002">
-          <element xmi:type="ecore:EOperation" href="workflow.ecore#//runtime/IWorkflowVisitor/visitComposite"/>
-          <layoutConstraint xmi:type="notation:Location" xmi:id="_xEuOfHhsEd2v-aRyO1gVCg"/>
-        </children>
-        <styles xmi:type="notation:DrawerStyle" xmi:id="_xEuOdnhsEd2v-aRyO1gVCg"/>
-        <styles xmi:type="notation:SortingStyle" xmi:id="_xEuOd3hsEd2v-aRyO1gVCg"/>
-        <styles xmi:type="notation:FilteringStyle" xmi:id="_xEuOeHhsEd2v-aRyO1gVCg"/>
-      </children>
-      <styles xmi:type="notation:ShapeStyle" xmi:id="_xEtneHhsEd2v-aRyO1gVCg" fontName="Lucida Grande" fontHeight="10" fillColor="11578879" lineColor="0"/>
-      <element xmi:type="ecore:EClass" href="workflow.ecore#//runtime/IWorkflowVisitor"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_xEtneXhsEd2v-aRyO1gVCg" x="441" y="148"/>
-    </children>
     <children xmi:type="notation:Node" xmi:id="_xEuOfXhsEd2v-aRyO1gVCg" type="1001">
       <children xmi:type="notation:Node" xmi:id="_xEuOgHhsEd2v-aRyO1gVCg" type="4001"/>
       <children xmi:type="notation:Node" xmi:id="_xEuOgXhsEd2v-aRyO1gVCg" type="5001">
@@ -835,14 +811,6 @@
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xEyf43hsEd2v-aRyO1gVCg" points="[0, 0, 87, 69]$[-87, -69, 0, 0]"/>
       <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xFTdQHhsEd2v-aRyO1gVCg" id="(0.0,0.53968257)"/>
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xFTdQXhsEd2v-aRyO1gVCg" id="(0.9700599,0.5)"/>
-    </edges>
-    <edges xmi:type="notation:Edge" xmi:id="_xEyf6HhsEd2v-aRyO1gVCg" type="3003" source="_xEuOfXhsEd2v-aRyO1gVCg" target="_xEtnd3hsEd2v-aRyO1gVCg">
-      <styles xmi:type="notation:ConnectorStyle" xmi:id="_xEyf6XhsEd2v-aRyO1gVCg" lineColor="0"/>
-      <styles xmi:type="notation:FontStyle" xmi:id="_xEyf6nhsEd2v-aRyO1gVCg" fontName="Lucida Grande"/>
-      <element xsi:nil="true"/>
-      <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xEyf63hsEd2v-aRyO1gVCg" points="[0, 0, 1, 60]$[0, -60, 1, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xFUEUHhsEd2v-aRyO1gVCg" id="(0.49618322,0.0)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xFUEUXhsEd2v-aRyO1gVCg" id="(0.5,0.984127)"/>
     </edges>
   </notation:Diagram>
   <notation:Diagram xmi:id="_CggI0HhtEd2v-aRyO1gVCg" type="EcoreTools" name="state_Diagram0" measurementUnit="Pixel">

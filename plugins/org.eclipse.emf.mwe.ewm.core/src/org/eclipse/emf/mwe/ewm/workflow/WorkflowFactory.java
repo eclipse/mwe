@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.ewm.workflow;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -94,6 +95,40 @@ public class WorkflowFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case WorkflowPackage.WORKFLOW_PARAMETER_DIRECTION:
+				return createWorkflowParameterDirectionFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue)
+	{
+		switch (eDataType.getClassifierID())
+		{
+			case WorkflowPackage.WORKFLOW_PARAMETER_DIRECTION:
+				return convertWorkflowParameterDirectionToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public WorkflowCompositeComponent createWorkflowCompositeComponent()
 	{
 		WorkflowCompositeComponent workflowCompositeComponent = new WorkflowCompositeComponent();
@@ -153,6 +188,28 @@ public class WorkflowFactory extends EFactoryImpl
 	{
 		WorkflowComponentProxy workflowComponentProxy = new WorkflowComponentProxy();
 		return workflowComponentProxy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowParameterDirection createWorkflowParameterDirectionFromString(EDataType eDataType, String initialValue)
+	{
+		WorkflowParameterDirection result = WorkflowParameterDirection.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertWorkflowParameterDirectionToString(EDataType eDataType, Object instanceValue)
+	{
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowParameterItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowParameterItemProvider.java,v 1.5 2009/07/17 01:09:14 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.provider;
 
@@ -73,6 +73,7 @@ public class WorkflowParameterItemProvider
 			addConnectionPropertyDescriptor(object);
 			addRequiredPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
+			addDirectionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -193,6 +194,29 @@ public class WorkflowParameterItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Direction feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDirectionPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkflowParameter_direction_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowParameter_direction_feature", "_UI_WorkflowParameter_type"),
+				 WorkflowPackage.Literals.WORKFLOW_PARAMETER__DIRECTION,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -270,6 +294,7 @@ public class WorkflowParameterItemProvider
 			case WorkflowPackage.WORKFLOW_PARAMETER__DESCRIPTION:
 			case WorkflowPackage.WORKFLOW_PARAMETER__REQUIRED:
 			case WorkflowPackage.WORKFLOW_PARAMETER__TYPE:
+			case WorkflowPackage.WORKFLOW_PARAMETER__DIRECTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case WorkflowPackage.WORKFLOW_PARAMETER__VALUE_STRATEGY:

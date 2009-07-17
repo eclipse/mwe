@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.ewm.workflow;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -354,13 +355,22 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_PARAMETER__VALUE_STRATEGY = 5;
 
 	/**
+	 * The feature id for the '<em><b>Direction</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_PARAMETER__DIRECTION = 6;
+
+	/**
 	 * The number of structural features of the '<em>Parameter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_PARAMETER_FEATURE_COUNT = 6;
+	public static final int WORKFLOW_PARAMETER_FEATURE_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterValueStrategy <em>Parameter Value Strategy</em>}' class.
@@ -521,6 +531,16 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_COMPONENT_PROXY_FEATURE_COUNT = WORKFLOW_COMPONENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection <em>Parameter Direction</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterDirection()
+	 * @generated
+	 */
+	public static final int WORKFLOW_PARAMETER_DIRECTION = 9;
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -584,6 +604,13 @@ public class WorkflowPackage extends EPackageImpl
 	private EClass workflowComponentProxyEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum workflowParameterDirectionEEnum = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -611,20 +638,10 @@ public class WorkflowPackage extends EPackageImpl
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link WorkflowPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -664,6 +681,9 @@ public class WorkflowPackage extends EPackageImpl
 		// Mark meta-data to indicate it can't be changed
 		theWorkflowPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(WorkflowPackage.eNS_URI, theWorkflowPackage);
 		return theWorkflowPackage;
 	}
 
@@ -902,6 +922,21 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getDirection <em>Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Direction</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getDirection()
+	 * @see #getWorkflowParameter()
+	 * @generated
+	 */
+	public EAttribute getWorkflowParameter_Direction()
+	{
+		return (EAttribute)workflowParameterEClass.getEStructuralFeatures().get(6);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterValueStrategy <em>Parameter Value Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1077,6 +1112,20 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for enum '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection <em>Parameter Direction</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Parameter Direction</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection
+	 * @generated
+	 */
+	public EEnum getWorkflowParameterDirection()
+	{
+		return workflowParameterDirectionEEnum;
+	}
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1131,6 +1180,7 @@ public class WorkflowPackage extends EPackageImpl
 		createEAttribute(workflowParameterEClass, WORKFLOW_PARAMETER__REQUIRED);
 		createEReference(workflowParameterEClass, WORKFLOW_PARAMETER__TYPE);
 		createEReference(workflowParameterEClass, WORKFLOW_PARAMETER__VALUE_STRATEGY);
+		createEAttribute(workflowParameterEClass, WORKFLOW_PARAMETER__DIRECTION);
 
 		workflowParameterValueStrategyEClass = createEClass(WORKFLOW_PARAMETER_VALUE_STRATEGY);
 
@@ -1144,6 +1194,9 @@ public class WorkflowPackage extends EPackageImpl
 
 		workflowComponentProxyEClass = createEClass(WORKFLOW_COMPONENT_PROXY);
 		createEReference(workflowComponentProxyEClass, WORKFLOW_COMPONENT_PROXY__TARGET_COMPONENT);
+
+		// Create enums
+		workflowParameterDirectionEEnum = createEEnum(WORKFLOW_PARAMETER_DIRECTION);
 	}
 
 	/**
@@ -1271,10 +1324,11 @@ public class WorkflowPackage extends EPackageImpl
 		initEClass(workflowParameterEClass, WorkflowParameter.class, "WorkflowParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowParameter_Description(), ecorePackage.getEString(), "description", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkflowParameter_Connection(), this.getWorkflowParameterConnection(), this.getWorkflowParameterConnection_Inputs(), "connection", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowParameter_Connection(), this.getWorkflowParameterConnection(), this.getWorkflowParameterConnection_Inputs(), "connection", null, 0, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowParameter_Required(), ecorePackage.getEBoolean(), "required", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowParameter_Type(), theEcorePackage.getEClassifier(), null, "type", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowParameter_ValueStrategy(), this.getWorkflowParameterValueStrategy(), null, "valueStrategy", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowParameter_Direction(), this.getWorkflowParameterDirection(), "direction", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowParameterEClass, ecorePackage.getEJavaObject(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1325,6 +1379,12 @@ public class WorkflowPackage extends EPackageImpl
 
 		initEClass(workflowComponentProxyEClass, WorkflowComponentProxy.class, "WorkflowComponentProxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowComponentProxy_TargetComponent(), this.getWorkflowComponent(), null, "targetComponent", null, 1, 1, WorkflowComponentProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(workflowParameterDirectionEEnum, WorkflowParameterDirection.class, "WorkflowParameterDirection");
+		addEEnumLiteral(workflowParameterDirectionEEnum, WorkflowParameterDirection.IN_OUT);
+		addEEnumLiteral(workflowParameterDirectionEEnum, WorkflowParameterDirection.IN);
+		addEEnumLiteral(workflowParameterDirectionEEnum, WorkflowParameterDirection.OUT);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -1481,6 +1541,14 @@ public class WorkflowPackage extends EPackageImpl
 		public static final EReference WORKFLOW_PARAMETER__VALUE_STRATEGY = eINSTANCE.getWorkflowParameter_ValueStrategy();
 
 		/**
+		 * The meta object literal for the '<em><b>Direction</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_PARAMETER__DIRECTION = eINSTANCE.getWorkflowParameter_Direction();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterValueStrategy <em>Parameter Value Strategy</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1585,6 +1653,16 @@ public class WorkflowPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_COMPONENT_PROXY__TARGET_COMPONENT = eINSTANCE.getWorkflowComponentProxy_TargetComponent();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection <em>Parameter Direction</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterDirection
+		 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterDirection()
+		 * @generated
+		 */
+		public static final EEnum WORKFLOW_PARAMETER_DIRECTION = eINSTANCE.getWorkflowParameterDirection();
 
 	}
 
