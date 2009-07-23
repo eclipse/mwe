@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -200,13 +201,12 @@ public class StandaloneSetup {
 		List<EObject> result = res.getContents();
 		for (EObject object : result) {
 			if (object instanceof EPackage) {
-				String nsUri = ((EPackage) object).getNsURI();
-				if (registry.get(nsUri) == null) {
-					registry.put(nsUri, object);
-					log.info("Adding dynamic EPackage '" + nsUri + "' from '" + fileName + "'");
-				}
-				else if (log.isDebugEnabled()) {
-					log.debug("Dynamic EPackage '" + nsUri + "' from '" + fileName + "' already in the registry!");
+				registerPackage(fileName, object);
+			}
+			for (final TreeIterator<EObject> it = object.eAllContents(); it.hasNext(); ) {
+				EObject child = it.next();
+				if (child instanceof EPackage) {
+					registerPackage(fileName, child);
 				}
 			}
 		}
@@ -226,5 +226,16 @@ public class StandaloneSetup {
 			return resolvedURI;
 		}
 		return uri;
+	}
+	
+	private void registerPackage(String fileName, EObject object) {
+		String nsUri = ((EPackage) object).getNsURI();
+		if (registry.get(nsUri) == null) {
+			registry.put(nsUri, object);
+			log.info("Adding dynamic EPackage '" + nsUri + "' from '" + fileName + "'");
+		}
+		else if (log.isDebugEnabled()) {
+			log.debug("Dynamic EPackage '" + nsUri + "' from '" + fileName + "' already in the registry!");
+		}
 	}
 }

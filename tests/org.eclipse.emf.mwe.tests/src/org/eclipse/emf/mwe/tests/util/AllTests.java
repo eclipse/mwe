@@ -11,6 +11,7 @@ public class AllTests {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(ReaderTest.class);
 		suite.addTestSuite(ResourceLoaderFactoryTest.class);
+		suite.addTestSuite(StandaloneSetupTest.class);
 		suite.addTestSuite(WriterTest.class);
 		//$JUnit-END$
 		return suite;
