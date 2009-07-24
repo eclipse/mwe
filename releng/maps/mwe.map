@@ -6,6 +6,9 @@ plugin@org.eclipse.test=v20070226,:pserver:anonymous@dev.eclipse.org:/cvsroot/ec
 fragment@org.eclipse.ant.optional.junit=v20050226,:pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,
 
 !*** Project's plugins, features and fragments
+!*** ORBIT
+plugin@org.apache.commons.cli=v20080604-1500,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/org.apache.commons.cli
+
 
 !***DOCUMENTAION
 feature@org.eclipse.emf.mwe.doc=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.mwe/doc/org.eclipse.emf.mwe.doc-feature

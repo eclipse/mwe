@@ -11,12 +11,12 @@ echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${
 # BEGIN CONFIGURATION
 
 buildTimestamp="`date +%Y%m%d%H%M`"
-projectid="emf.query"
+projectid="emf.mwe"
 version="1.3.0"
 
 # leave blank to use assumed values (which may be wrong!)
 projRelengRoot='-projRelengRoot :pserver:anonymous@dev.eclipse.org:/cvsroot/modeling'
-projRelengPath='-projRelengPath org.eclipse.emf/org.eclipse.emf.query/releng'
+projRelengPath='-projRelengPath org.eclipse.emf/org.eclipse.emf.mwe/releng'
 
 # where should we look for pre-checked out project sources for org.eclipse.dash.common.releng and org.eclipse.releng.basebuilder ?
 cvsProjectBaseDir=/opt/public/cbi/build # build.eclipse.org
