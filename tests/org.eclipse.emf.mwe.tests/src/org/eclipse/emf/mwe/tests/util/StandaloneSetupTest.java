@@ -26,7 +26,7 @@ public class StandaloneSetupTest extends TestCase {
 	public void testRegisterNestedPackage() {
 		Registry registry = EPackage.Registry.INSTANCE;
 		StandaloneSetup setup = new StandaloneSetup();
-		setup.addRegisterEcoreFile("resources/test/res/test.ecore");
+		setup.addRegisterEcoreFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.ecore");
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test/nested"));
 	}
 }
