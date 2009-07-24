@@ -12,7 +12,7 @@ echo "[`date +%Y/%m/%d\ %H:%M`] Hudson job ${JOBNAME} build #${BUILD_NUMBER} (${
 
 buildTimestamp="`date +%Y%m%d%H%M`"
 projectid="emf.mwe"
-version="1.3.0"
+version="0.7.1"
 
 # leave blank to use assumed values (which may be wrong!)
 projRelengRoot='-projRelengRoot :pserver:anonymous@dev.eclipse.org:/cvsroot/modeling'
