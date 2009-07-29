@@ -350,7 +350,7 @@ public class DebugMonitor implements ProgressMonitor {
 		//
 	}
 
-	public void setBlocked(@SuppressWarnings("unused") final Diagnostic reason) {
+	public void setBlocked(final Diagnostic reason) {
 		//
 	}
 
