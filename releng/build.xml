@@ -1,4 +1,4 @@
-<project default="run" name="org.eclipse.gef.releng/build.xml - Run a GEF build using the Athena CBI">
+<project default="run" name="org.eclipse.mwe.releng/build.xml - Run a MWE build using the Athena CBI">
 	<target name="run">
 		<!-- 
 			1. You must check out the following projects to your workspace:
