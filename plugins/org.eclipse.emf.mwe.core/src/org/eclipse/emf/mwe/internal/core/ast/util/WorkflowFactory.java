@@ -11,6 +11,7 @@
 
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -26,6 +27,7 @@ import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.BooleanConverter;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
+import org.eclipse.emf.mwe.internal.core.ast.util.converter.FileConverter;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.IntegerConverter;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.StringArrayConverter;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.StringConverter;
@@ -128,6 +130,7 @@ public class WorkflowFactory {
 		m.put(Integer.class, new IntegerConverter());
 		m.put(Integer.TYPE, new IntegerConverter());
 		m.put(String[].class, new StringArrayConverter());
+		m.put(File.class, new FileConverter());
 		return m;
 	}
 
