@@ -160,7 +160,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 			arguments.add(element);
 		}
 
-		arguments.add("" + commPort);
+		arguments.add("port=" + commPort);
 
 		String[] cmdLine = new String[arguments.size()];
 		arguments.toArray(cmdLine);
