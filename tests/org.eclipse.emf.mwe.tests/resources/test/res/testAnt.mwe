@@ -1,0 +1,4 @@
+<workflow>
+	<property name="base" value="${baseDir}"/>
+	<property name="foo" value="${blah}"/>
+</workflow>

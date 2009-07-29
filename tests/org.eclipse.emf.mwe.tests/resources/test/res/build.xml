@@ -1,0 +1,11 @@
+<project name="mwe-test" basedir="." default="generate">
+
+	<target name='generate'>
+		<taskdef name="workflow" classname="org.eclipse.emf.mwe.core.ant.WorkflowAntTask" />
+		<workflow file='test/res/testAnt.mwe'>
+			<param name='baseDir' value='/base/' />
+			<param name="blah" value="dah"/>
+		</workflow>
+	</target>
+
+</project>
