@@ -109,7 +109,7 @@ public class DefaultAnalyzer implements IElementAnalyzer {
 		if (mappedType == null || element == null || attribute == null)
 			throw new IllegalArgumentException();
 
-		if (IWorkflowAttribute.ID_REF_ATTRIBUTE.equals(attribute.getName()))
+		if (IWorkflowAttribute.ID_REF_ATTRIBUTE.equals(attribute.getName()) || IWorkflowAttribute.ID_ATTRIBUTE.equals(attribute.getName()))
 			return;
 
 		if (IWorkflowAttribute.CLASS_ATTRIBUTE.equals(attribute.getName())) {
