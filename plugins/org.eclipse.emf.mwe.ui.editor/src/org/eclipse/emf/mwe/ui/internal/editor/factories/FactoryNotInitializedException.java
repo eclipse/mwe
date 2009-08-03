@@ -13,6 +13,11 @@ package org.eclipse.emf.mwe.ui.internal.editor.factories;
 
 public class FactoryNotInitializedException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4200576521690442515L;
+
 	public FactoryNotInitializedException() {
 		super();
 	}

@@ -45,7 +45,7 @@ public class TagContentProposalComputer extends AbstractContentProposalComputer 
 		return isTag();
 	}
 
-	protected Set<String> createDefaultProposals(@SuppressWarnings("unused") final int offset) {
+	protected Set<String> createDefaultProposals(final int offset) {
 		final Set<String> resultSet = new HashSet<String>();
 		for (final String s : DEFAULT_PROPOSALS) {
 			resultSet.add(s);

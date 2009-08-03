@@ -38,7 +38,7 @@ public final class MarkerManager {
 
 	private static final String ERROR_MARKER_ID = "org.eclipse.emf.mwe.ui.editor.workflowerror";
 
-	private static final Set<Map> knownMarkers = new HashSet<Map>();
+	private static final Set<Map<String,Object>> knownMarkers = new HashSet<Map<String,Object>>();
 
 	/**
 	 * Don't allow instantiation.
@@ -122,7 +122,7 @@ public final class MarkerManager {
 		if (document == null || message == null || range == null)
 			throw new IllegalArgumentException();
 
-		final Map map = new HashMap();
+		final Map<String,Object> map = new HashMap<String,Object>();
 		Integer lineNumber;
 		try {
 			if (range.getStartOffset() < document.getLength()) {

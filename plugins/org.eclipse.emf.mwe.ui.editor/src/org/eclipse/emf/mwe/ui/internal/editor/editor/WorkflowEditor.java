@@ -424,7 +424,7 @@ public class WorkflowEditor extends TextEditor {
 		if (model == null)
 			return null;
 
-		Iterator iterator;
+		Iterator<?> iterator;
 		if (model instanceof IAnnotationModelExtension2) {
 			iterator = ((IAnnotationModelExtension2) model).getAnnotationIterator(offset, length, true, true);
 		}

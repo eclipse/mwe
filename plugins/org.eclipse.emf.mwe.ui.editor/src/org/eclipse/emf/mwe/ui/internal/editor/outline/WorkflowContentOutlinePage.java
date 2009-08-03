@@ -91,7 +91,7 @@ public class WorkflowContentOutlinePage extends ContentOutlinePage {
 			ISelection s = viewer.getSelection();
 			if (s instanceof IStructuredSelection) {
 				final IStructuredSelection ss = (IStructuredSelection) s;
-				final List elements = ss.toList();
+				final List<?> elements = ss.toList();
 				if (!elements.contains(element)) {
 					TreePath path = null;
 					if (element != null) {

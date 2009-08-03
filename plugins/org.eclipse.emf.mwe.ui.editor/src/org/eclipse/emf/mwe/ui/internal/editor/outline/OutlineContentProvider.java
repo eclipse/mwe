@@ -114,7 +114,7 @@ public class OutlineContentProvider implements ITreeContentProvider {
 		}
 	}
 
-	public void setInput(@SuppressWarnings("unused") final IEditorInput input) {
+	public void setInput(final IEditorInput input) {
 		// do nothing
 	}
 }

@@ -25,6 +25,10 @@ import org.eclipse.emf.mwe.ui.internal.editor.elements.IWorkflowAttribute;
 
 public class ParserProblemException extends RuntimeException {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -746617143901049067L;
 	private Queue<AbstractWorkflowElement> elementTrace = new LinkedList<AbstractWorkflowElement>();
 
 	public ParserProblemException() {
