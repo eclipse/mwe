@@ -57,7 +57,6 @@ public class StandaloneSetup {
 	 * 
 	 * @param pathToPlatform
 	 */
-	@SuppressWarnings("unchecked")
 	public void setPlatformUri(String pathToPlatform) {
 		File f = new File(pathToPlatform);
 		if (!f.exists())
@@ -100,7 +99,6 @@ public class StandaloneSetup {
 	 * 
 	 * @param uriMap
 	 */
-	@SuppressWarnings("unchecked")
 	public void addUriMap(final Mapping uriMap) {
 		log.info("Adding URI mapping from '" + uriMap.getFrom() + "' to '" + uriMap.getTo() + "'");
 		final URI baseUri = URI.createURI(uriMap.getFrom());
@@ -157,7 +155,7 @@ public class StandaloneSetup {
 	}
 
 	public void addRegisterGeneratedEPackage(String interfacename) {
-		Class clazz = ResourceLoaderFactory.createResourceLoader().loadClass(interfacename);
+		Class<?> clazz = ResourceLoaderFactory.createResourceLoader().loadClass(interfacename);
 		if (clazz == null)
 			throw new ConfigurationException("Couldn't find an interface " + interfacename);
 		try {

@@ -57,6 +57,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		OPTION_SCHEMA_LOCATION_IMPLEMENTATION = option_schema_location_implementation;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		Object slotContent = ctx.get(getModelSlot());
@@ -106,7 +107,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		}
 		else {
 			if (slotContent instanceof Collection<?>) {
-				final Collection coll = (Collection) slotContent;
+				final Collection<?> coll = (Collection<?>) slotContent;
 				final Collection<Resource> resources = new ArrayList<Resource>();
 				for (final Object object : coll) {
 					final EObject eo = (EObject) object;

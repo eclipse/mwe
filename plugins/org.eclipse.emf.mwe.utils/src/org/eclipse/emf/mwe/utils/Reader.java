@@ -15,6 +15,7 @@ import java.util.Collections;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -61,7 +62,7 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		catch (final IOException e) {
 			throw new WorkflowInterruptedException("Couldn't find resource under " + uri + " : " + e.getMessage());
 		}
-		final EList result = res.getContents();
+		final EList<EObject> result = res.getContents();
 		if (firstElementOnly) {
 			if (result.isEmpty())
 				return null;

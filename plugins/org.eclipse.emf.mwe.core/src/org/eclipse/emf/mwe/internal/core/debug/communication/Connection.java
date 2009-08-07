@@ -145,6 +145,7 @@ public class Connection {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	private AbstractPackage instantiatePackage(final String className) throws IOException {
 		Class<? extends AbstractPackage> packetClass = null;
 		AbstractPackage packet = null;
@@ -156,8 +157,8 @@ public class Connection {
 		}
 
 		if (msg == null) {
-			Constructor c = packetClass.getConstructors()[0];
-			Class[] parmTypes = c.getParameterTypes();
+			Constructor<?> c = packetClass.getConstructors()[0];
+			Class<?>[] parmTypes = c.getParameterTypes();
 			Object[] initargs = new Object[parmTypes.length];
 			for (int i = 0; i < parmTypes.length; i++) {
 				if (parmTypes[i] == int.class) {

@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe.internal.core.ast.util.VisitorInitializer;
 /**
  * @author Peter Friese - Initial contribution and API
  */
+@SuppressWarnings("unchecked")
 public class VisitorInitializerTest extends TestCase {
 
 	private static String invokePrivateMethod(Class targetClass, Object targetInstance, String methodName, Class[] argClasses, Object[] argObjects)

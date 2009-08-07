@@ -321,7 +321,7 @@ public class CompositeComponent implements WorkflowComponentWithID {
 	 * @param comp
 	 *            the component
 	 */
-	public void put(@SuppressWarnings("unused") final String name, final WorkflowComponent comp) {
+	public void put(final String name, final WorkflowComponent comp) {
 		addComponent(comp);
 	}
 

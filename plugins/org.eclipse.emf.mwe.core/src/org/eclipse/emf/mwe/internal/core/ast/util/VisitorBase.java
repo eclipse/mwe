@@ -51,31 +51,31 @@ public abstract class VisitorBase {
 		return result;
 	}
 
-	public Object visitAbstractASTBase(@SuppressWarnings("unused") final AbstractASTBase ele) {
+	public Object visitAbstractASTBase(final AbstractASTBase ele) {
 		return null;
 	}
 
-	public Object visitComponentAST(@SuppressWarnings("unused") final ComponentAST ele) {
+	public Object visitComponentAST(final ComponentAST ele) {
 		return null;
 	}
 
-	public Object visitInclusionAST(@SuppressWarnings("unused") final InclusionAST ele) {
+	public Object visitInclusionAST(final InclusionAST ele) {
 		return null;
 	}
 
-	public Object visitDeclaredPropertyAST(@SuppressWarnings("unused") final DeclaredPropertyAST ele) {
+	public Object visitDeclaredPropertyAST(final DeclaredPropertyAST ele) {
 		return null;
 	}
 
-	public Object visitDeclaredPropertyFileAST(@SuppressWarnings("unused") final DeclaredPropertyFileAST ele) {
+	public Object visitDeclaredPropertyFileAST(final DeclaredPropertyFileAST ele) {
 		return null;
 	}
 
-	public Object visitReferenceAST(@SuppressWarnings("unused") final ReferenceAST ele) {
+	public Object visitReferenceAST(final ReferenceAST ele) {
 		return null;
 	}
 
-	public Object visitSimpleParamAST(@SuppressWarnings("unused") final SimpleParamAST ele) {
+	public Object visitSimpleParamAST(final SimpleParamAST ele) {
 		return null;
 	}
 

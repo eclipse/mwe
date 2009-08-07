@@ -24,7 +24,6 @@ public class WriterTest extends TestCase {
 
 	
 	
-	@SuppressWarnings("unchecked")
 	public void testLoadSimpleModel() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
 		Writer writer = new Writer();

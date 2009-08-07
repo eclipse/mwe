@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.core.container;
 
 public class ConditionEvaluationException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
 
 	public ConditionEvaluationException() {
 		super();

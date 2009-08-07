@@ -11,6 +11,7 @@
 package org.eclipse.emf.mwe.core.customizer;
 
 public class CustomizationException extends RuntimeException {
+	private static final long serialVersionUID = 1L;
 
 	public CustomizationException() {
 		super();
