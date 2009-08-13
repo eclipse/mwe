@@ -9,6 +9,7 @@ public class AllTests {
 		TestSuite suite = new TestSuite(
 				"Test for org.eclipse.emf.mwe.tests.util");
 		//$JUnit-BEGIN$
+		suite.addTestSuite(FileCopyTest.class);
 		suite.addTestSuite(ReaderTest.class);
 		suite.addTestSuite(ResourceLoaderFactoryTest.class);
 		suite.addTestSuite(StandaloneSetupTest.class);
