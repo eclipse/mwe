@@ -15,6 +15,7 @@ import java.util.Collections;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -31,10 +32,12 @@ public class Reader extends AbstractEMFWorkflowComponent {
 	private boolean makeEPackagesGlobal = true;
 
 	private boolean firstElementOnly = true;
+	
+	private boolean ignoreMissingModel = false;
 
 	@Override
 	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
-		ctx.set(getModelSlot(), load(resourceSet, uri, firstElementOnly));
+		ctx.set(getModelSlot(), load(resourceSet, uri, firstElementOnly, ignoreMissingModel));
 		if (makeEPackagesGlobal) {
 			for (final String k : resourceSet.getPackageRegistry().keySet()) {
 				EPackage.Registry.INSTANCE.put(k, resourceSet.getPackageRegistry().get(k));
@@ -51,16 +54,31 @@ public class Reader extends AbstractEMFWorkflowComponent {
 	}
 
 	public static Object load(final ResourceSet resourceSet, final String uri, final boolean firstElementOnly) {
-		final Resource res = resourceSet.getResource(URI.createURI(uri), true);
-		if (res == null)
-			throw new WorkflowInterruptedException("Couldn't find resource under " + uri);
+		return load(resourceSet, uri, firstElementOnly, false);
+	}
+
+	public static Object load(final ResourceSet resourceSet, final String uri, final boolean firstElementOnly,
+			boolean ignoreMissingModel) {
+		final Resource res;
 		try {
+			res = resourceSet.getResource(URI.createURI(uri), true);
+			if (res == null)
+				throw new WorkflowInterruptedException("Couldn't find resource under " + uri);
 			if (!res.isLoaded()) {
 				res.load(Collections.EMPTY_MAP);
 			}
 		}
+		catch (final WrappedException e) {
+			if (ignoreMissingModel) {
+				return null;
+			}
+			throw new WorkflowInterruptedException("Couldn't load resource under " + uri + " : " + e.getMessage());
+		}
 		catch (final IOException e) {
-			throw new WorkflowInterruptedException("Couldn't find resource under " + uri + " : " + e.getMessage());
+			if (ignoreMissingModel) {
+				return null;
+			}
+			throw new WorkflowInterruptedException("Couldn't load resource under " + uri + " : " + e.getMessage());
 		}
 		final EList<EObject> result = res.getContents();
 		if (firstElementOnly) {
@@ -71,7 +89,7 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		else
 			return result;
 	}
-
+	
 	public void setFirstElementOnly(final boolean firstElementOnly) {
 		this.firstElementOnly = firstElementOnly;
 	}
@@ -80,6 +98,10 @@ public class Reader extends AbstractEMFWorkflowComponent {
 		this.makeEPackagesGlobal = makeEPackagesGlobal;
 	}
 
+	public void setIgnoreMissingModel(boolean ignoreMissingModel) {
+		this.ignoreMissingModel = ignoreMissingModel;
+	}
+	
 	/**
 	 * @see org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent#getLogMessage()
 	 */
