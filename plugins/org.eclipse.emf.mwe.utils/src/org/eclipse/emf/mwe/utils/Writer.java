@@ -44,6 +44,12 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	private boolean multipleResourcesInCaseOfList = false;
 
 	private boolean cloneSlotContents = false;
+	
+	private boolean ignoreEmptySlot = false;
+
+	public void setIgnoreEmptySlot(boolean ignoreEmptySlot) {
+		this.ignoreEmptySlot = ignoreEmptySlot;
+	}
 
 	public void setMultipleResourcesInCaseOfList(final boolean b) {
 		multipleResourcesInCaseOfList = b;
@@ -62,7 +68,12 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	public void invokeInternal(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		Object slotContent = ctx.get(getModelSlot());
 		if (slotContent == null) {
-			issues.addError(this, "slot '" + getModelSlot() + "' is empty.");
+			if (ignoreEmptySlot) {
+				issues.addWarning(this, "slot '" + getModelSlot() + "' is empty. Not writing anything.");
+			}
+			else {
+				issues.addError(this, "slot '" + getModelSlot() + "' is empty.");
+			}
 			return;
 		}
 		if (!((slotContent instanceof Collection<?>) || (slotContent instanceof EObject))) {

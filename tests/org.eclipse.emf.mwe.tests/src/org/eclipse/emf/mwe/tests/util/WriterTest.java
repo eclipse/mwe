@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
+import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.utils.Reader;
@@ -22,9 +23,7 @@ public class WriterTest extends TestCase {
 	private String relative = "testmodel.ecore";
 	private String tempfile = "file:/"+System.getProperty("java.io.tmpdir") +"/"+relative;
 
-	
-	
-	public void testLoadSimpleModel() throws Exception {
+	public void testWriteSimpleModel() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
 		Writer writer = new Writer();
 		writer.setModelSlot("x");
@@ -58,4 +57,28 @@ public class WriterTest extends TestCase {
 		new File(relative).delete();
 		
 	}
+	
+	public void testIgnoreEmptySlot() {
+		ResourceSet rs = new ResourceSetImpl();
+		Writer writer = new Writer();
+		writer.setModelSlot("x");
+		writer.setUri(tempfile);
+		writer.setResourceSet(rs);
+		writer.setIgnoreEmptySlot(true);
+		new StandaloneSetup().setPlatformUri(new File("..").getAbsolutePath());
+		
+		WorkflowContext ctx = new WorkflowContextDefaultImpl();
+		Issues issues = new IssuesImpl(); 
+		writer.checkConfiguration(issues);
+		assertFalse(issues.hasErrors());
+		// we cannot know about empty slot contents at this time
+		assertFalse(issues.hasWarnings());
+		writer.invoke(ctx, new NullProgressMonitor(), issues);
+		assertFalse(issues.hasErrors());
+		assertTrue(issues.hasWarnings());
+		 		
+		File f = new File(relative);
+		assertFalse(f.exists());
+	}
+
 }
