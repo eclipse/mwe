@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
@@ -35,6 +34,7 @@ import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
@@ -244,8 +244,7 @@ public class WorkflowRunner {
 	}
 
 	/**
-	 * Convert type line arguments into a hashmap. Each parameter is expected in
-	 * format -pkey=value
+	 * Convert type line arguments into a hashmap. Each parameter is expected in format -pkey=value
 	 * 
 	 * @param args
 	 *            Program arguments
@@ -361,11 +360,9 @@ public class WorkflowRunner {
 	}
 
 	/**
-	 * This method delivers the Converter implementations currently used to
-	 * inject values into the workflow components.
+	 * This method delivers the Converter implementations currently used to inject values into the workflow components.
 	 * 
-	 * @return A map between injection types and converter implementations. Not
-	 *         <code>null</code>.
+	 * @return A map between injection types and converter implementations. Not <code>null</code>.
 	 */
 	@SuppressWarnings("unchecked")
 	private Map<Class<?>, Converter> getConverters() {
@@ -388,15 +385,12 @@ public class WorkflowRunner {
 	}
 
 	/**
-	 * Returns a map of custom Converter implementations used for the injection
-	 * process. If the result is <code>null</code> the default Converter
-	 * implementations are used. It's not necessary to provide custom Converter
-	 * implementations for the default types since they will be added if they're
-	 * missing (f.e. it might be useful to support lists which are splitted
-	 * using other characters than a comma).
+	 * Returns a map of custom Converter implementations used for the injection process. If the result is
+	 * <code>null</code> the default Converter implementations are used. It's not necessary to provide custom Converter
+	 * implementations for the default types since they will be added if they're missing (f.e. it might be useful to
+	 * support lists which are splitted using other characters than a comma).
 	 * 
-	 * @return A map of custom Converter implementations. Maybe
-	 *         <code>null</code>.
+	 * @return A map of custom Converter implementations. Maybe <code>null</code>.
 	 */
 	@SuppressWarnings("unchecked")
 	protected Map<Class<?>, Converter> getCustomConverters() {
@@ -463,45 +457,24 @@ public class WorkflowRunner {
 	}
 
 	/**
-	 * Tries to read the exact build version from the Manifest of the
-	 * core.workflow plugin. Therefore the Manifest file is located and the
-	 * version is read from the attribute 'Bundle-Version'.
+	 * Tries to read the exact build version from the Manifest of the core.workflow plugin. Therefore the Manifest file
+	 * is located and the version is read from the attribute 'Bundle-Version'.
 	 * 
 	 * @return The build version string, format "4.1.1, Build 200609291913"
 	 */
 	private String getVersion() {
-
-		String version = null;
-
-		// FIXME find a proper way to resolve the version
-		// get all META-INF/MANIFEST.MF found in the classpath
 		try {
-			final Manifest manifest = new Manifest(ResourceLoaderFactory.createResourceLoader().getResource(
-					"META-INF/MANIFEST.MF").openStream());
-			// identify the manifest from core.workflow plugin
-			final String bundleName = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
-			if (bundleName != null) {
-				if (bundleName.startsWith("org.eclipse.emf.mwe.core")) {
-
-					// Read bundle version an split it.
-					// Original value : "4.1.1.200609291913"
-					// Resulting value : "4.1.1, Build 200609291913"
-					version = manifest.getMainAttributes().getValue("Bundle-Version");
-					final int lastPoint = version.lastIndexOf('.');
-					version = version.substring(0, lastPoint) + ", Build " + version.substring(lastPoint + 1);
-					return version;
-				}
-			}
-			else {
-				logger.warn("Manifest does not contains 'Bundle-SymbolicName' attribute");
-			}
+			URL url = new URL(MWEPlugin.INSTANCE.getBaseURL() + "META-INF/MANIFEST.MF");
+			final Manifest manifest = new Manifest(url.openStream());
+			// Original value : "4.1.1.200609291913"
+			// Resulting value : "4.1.1, Build 200609291913"
+			String version = manifest.getMainAttributes().getValue("Bundle-Version");
+			final int lastPoint = version.lastIndexOf('.');
+			return version.substring(0, lastPoint) + ", Build " + version.substring(lastPoint + 1);
+		} catch (Exception e) {
+			logger.error("Couldn't compute version of mwe.core bundle.",e);
+			return "unkown version";
 		}
-		catch (final IOException e) {
-			logger.debug("Failed to read Manifest file. Unable to retrieve version");
-		}
-		// build version not detected from manifest, fallback
-		// this will only occur in developer's workbench
-		return "Development-Snapshot";
 	}
 
 }
