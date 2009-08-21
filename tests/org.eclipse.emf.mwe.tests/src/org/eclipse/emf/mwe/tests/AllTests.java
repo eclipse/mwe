@@ -1,5 +1,7 @@
 package org.eclipse.emf.mwe.tests;
 
+import org.eclipse.emf.mwe.core.ant.WorkflowAntTaskTest;
+
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
@@ -11,6 +13,7 @@ public class AllTests {
 		//$JUnit-BEGIN$
 		suite.addTestSuite(WorkflowRunnerTest.class);
 		suite.addTestSuite(IssuesTest.class);
+		suite.addTestSuite(WorkflowAntTaskTest.class);
 		//$JUnit-END$
 		return suite;
 	}
