@@ -1,5 +1,10 @@
 package org.eclipse.emf.mwe.core.ant;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+
 import junit.framework.TestCase;
 
 import org.eclipse.ant.core.AntRunner;
@@ -8,7 +13,7 @@ import org.eclipse.ant.core.AntRunner;
  * Test for {@link WorkflowAntTask}.
  * 
  * @author kthoms
- * @see http 
+ * @see http
  *      ://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/
  *      package -summary.html
  */
@@ -19,8 +24,10 @@ public class WorkflowAntTaskTest extends TestCase {
 	 */
 	public void testBug212994() throws Exception {
 		AntRunner runner = new AntRunner();
+		String resourceClassPath = "test/res/build.xml";
+		File f = createTempFileFromClasspathResource(resourceClassPath);
 		// Set up the Ant project with test workflow and use of WorkflowAntTask
-		runner.setBuildFileLocation("./resources/test/res/build.xml");
+		runner.setBuildFileLocation(f.getAbsolutePath());
 
 		// WorkflowRunner will fail with System.exit if something would be wrong.
 		// This would lead to failing unit test with stacktrace:
@@ -28,5 +35,24 @@ public class WorkflowAntTaskTest extends TestCase {
 		//   at org.apache.tools.ant.taskdefs.Java.execute(Java.java:108)
 		//   at org.eclipse.emf.mwe.core.ant.WorkflowAntTask.execute(WorkflowAntTask.java:71)
 		runner.run();
+		f.delete();
+	}
+
+	private File createTempFileFromClasspathResource(String resourceClassPath) throws IOException {
+		InputStream istr = getClass().getClassLoader().getResourceAsStream(resourceClassPath);
+		File f = File.createTempFile(getClass().getSimpleName(), null);
+		FileWriter fileWriter = new FileWriter(f);
+		try {
+			int i = istr.read();
+			while (i != -1) {
+				fileWriter.write(i);
+				i = istr.read();
+			}
+		}
+		finally {
+			fileWriter.close();
+			istr.close();
+		}
+		return f;
 	}
 }
