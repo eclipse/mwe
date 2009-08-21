@@ -1,28 +1,27 @@
 package org.eclipse.emf.mwe.core.ant;
 
-import java.io.File;
-
 import junit.framework.TestCase;
 
 import org.eclipse.ant.core.AntRunner;
 
 /**
  * Test for {@link WorkflowAntTask}.
+ * 
  * @author kthoms
- * @see http://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/package-summary.html
+ * @see http 
+ *      ://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/
+ *      package -summary.html
  */
 public class WorkflowAntTaskTest extends TestCase {
 	/**
-	 * When adding more then one <tt>param</tt> tag the WorkflowAntTasks will fail with a Usage description. 
-	 * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=212994
+	 * When adding more then one <tt>param</tt> tag the WorkflowAntTasks will fail with a Usage description. See
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=212994
 	 */
-	public void testBug212994 () throws Exception {
+	public void testBug212994() throws Exception {
 		AntRunner runner = new AntRunner();
 		// Set up the Ant project with test workflow and use of WorkflowAntTask
-		File buildFile = new File("resources/test/res/build.xml");
+		runner.setBuildFileLocation("./resources/test/res/build.xml");
 
-		runner.setBuildFileLocation(buildFile.getAbsolutePath());
-		
 		// WorkflowRunner will fail with System.exit if something would be wrong.
 		// This would lead to failing unit test with stacktrace:
 		// Caused by: .../org.eclipse.emf.mwe.tests/resources/test/res/build.xml:5: Java returned: 1
