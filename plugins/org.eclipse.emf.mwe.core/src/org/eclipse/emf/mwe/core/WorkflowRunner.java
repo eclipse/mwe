@@ -472,7 +472,7 @@ public class WorkflowRunner {
 			final int lastPoint = version.lastIndexOf('.');
 			return version.substring(0, lastPoint) + ", Build " + version.substring(lastPoint + 1);
 		} catch (Exception e) {
-			logger.error("Couldn't compute version of mwe.core bundle.",e);
+			logger.warn("Couldn't compute version of mwe.core bundle.",e);
 			return "unkown version";
 		}
 	}
