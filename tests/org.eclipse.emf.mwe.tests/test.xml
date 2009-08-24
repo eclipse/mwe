@@ -26,7 +26,7 @@
     <ant target="core-test" antfile="${library-file}" dir="${eclipse-home}">
       <property name="data-dir" value="${emf-folder}"/>
       <property name="plugin-name" value="${plugin-name}"/>
-      <property name="classname" value="org.eclipse.emf.mwe.tests.AllAllTests"/>
+      <property name="classname" value="org.eclipse.emf.mwe.tests.AllTests"/>
     </ant>
   </target>
 

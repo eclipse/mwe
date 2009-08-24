@@ -10,7 +10,7 @@ import junit.framework.TestSuite;
  */
 public class AllTests {
    public static Test suite() {
-      TestSuite suite = new TestSuite("Tests for org.eclipse.emf.mwe.tests.AllTests");
+      TestSuite suite = new TestSuite("Tests for org.eclipse.emf.mwe.tests");
       suite.addTestSuite(org.eclipse.emf.mwe.core.ant.WorkflowAntTaskTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.core.resources.CachingResourceLoaderTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.ast.parser.XmlLocationAnalyserTest.class);
