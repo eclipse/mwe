@@ -19,7 +19,6 @@ public class AllTests {
       suite.addTestSuite(org.eclipse.emf.mwe.tests.ast.util.WorkflowFactoryTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.ast.WorkflowParserTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.IssuesTest.class);
-      suite.addTestSuite(org.eclipse.emf.mwe.tests.lib.AbstractWorkflowComponentTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.util.FileCopyTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.util.ReaderTest.class);
       suite.addTestSuite(org.eclipse.emf.mwe.tests.util.ResourceLoaderFactoryTest.class);
