@@ -15,6 +15,7 @@ import java.util.Map;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
+import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 
@@ -24,8 +25,8 @@ import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
  */
 public class WorkflowFacade {
 
-	private static Workflow workflow;
-	final Issues issues = new IssuesImpl();
+	protected final Workflow workflow;
+	protected final Issues issues = new IssuesImpl();
 
 	public Issues getIssues() {
 		return issues;
@@ -58,21 +59,25 @@ public class WorkflowFacade {
 	}
 
 	public Issues run(final Map<String, Object> slotContents) {
+		return run(slotContents, new NullProgressMonitor());
+	}
+	
+	public Issues run(final Map<String, Object> slotContents, ProgressMonitor monitor) {
 		WorkflowContext ctx = new WorkflowContext() {
-
+			
 			public Object get(String slotName) {
 				return slotContents.get(slotName);
 			}
-
+			
 			public String[] getSlotNames() {
 				return slotContents.keySet().toArray(new String[0]);
 			}
-
+			
 			public void set(String slotName, Object value) {
 				slotContents.put(slotName, value);
 			}
 		};
-
+		
 		workflow.invoke(ctx, new NullProgressMonitor(), issues);
 		return issues;
 	}
