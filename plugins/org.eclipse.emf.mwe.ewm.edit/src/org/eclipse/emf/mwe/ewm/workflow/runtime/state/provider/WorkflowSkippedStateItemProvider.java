@@ -2,11 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowSkippedStateItemProvider.java,v 1.1 2009/05/14 04:12:25 bhunt Exp $
+ * $Id: WorkflowSkippedStateItemProvider.java,v 1.2 2009/10/15 15:01:05 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.state.provider;
 
 
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowSkippedState} object.
@@ -83,7 +85,11 @@ public class WorkflowSkippedStateItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		return getString("_UI_WorkflowSkippedState_type");
+		Timestamp labelValue = ((WorkflowSkippedState)object).getTimestamp();
+		String label = labelValue == null ? null : labelValue.toString();
+		return label == null || label.length() == 0 ?
+			getString("_UI_WorkflowSkippedState_type") :
+			getString("_UI_WorkflowSkippedState_type") + " " + label;
 	}
 
 	/**

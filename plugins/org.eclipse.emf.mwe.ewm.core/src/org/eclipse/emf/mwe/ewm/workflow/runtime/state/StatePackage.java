@@ -10,6 +10,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.runtime.state;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -78,13 +79,22 @@ public class StatePackage extends EPackageImpl
 	public static final int WORKFLOW_STATE = 0;
 
 	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_STATE__TIMESTAMP = 0;
+
+	/**
 	 * The number of structural features of the '<em>Workflow State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_STATE_FEATURE_COUNT = 0;
+	public static final int WORKFLOW_STATE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState <em>Workflow Idle State</em>}' class.
@@ -95,6 +105,15 @@ public class StatePackage extends EPackageImpl
 	 * @generated
 	 */
 	public static final int WORKFLOW_IDLE_STATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_IDLE_STATE__TIMESTAMP = WORKFLOW_STATE__TIMESTAMP;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Idle State</em>' class.
@@ -116,6 +135,15 @@ public class StatePackage extends EPackageImpl
 	public static final int WORKFLOW_RUNNING_STATE = 2;
 
 	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_RUNNING_STATE__TIMESTAMP = WORKFLOW_STATE__TIMESTAMP;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Running State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -133,6 +161,15 @@ public class StatePackage extends EPackageImpl
 	 * @generated
 	 */
 	public static final int WORKFLOW_SKIPPED_STATE = 3;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_SKIPPED_STATE__TIMESTAMP = WORKFLOW_STATE__TIMESTAMP;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Skipped State</em>' class.
@@ -154,6 +191,15 @@ public class StatePackage extends EPackageImpl
 	public static final int WORKFLOW_DONE_STATE = 4;
 
 	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_DONE_STATE__TIMESTAMP = WORKFLOW_STATE__TIMESTAMP;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Done State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +217,15 @@ public class StatePackage extends EPackageImpl
 	 * @generated
 	 */
 	public static final int WORKFLOW_SUCCESS_STATE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_SUCCESS_STATE__TIMESTAMP = WORKFLOW_DONE_STATE__TIMESTAMP;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Success State</em>' class.
@@ -192,6 +247,15 @@ public class StatePackage extends EPackageImpl
 	public static final int WORKFLOW_FAILED_STATE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_FAILED_STATE__TIMESTAMP = WORKFLOW_DONE_STATE__TIMESTAMP;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Failed State</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -209,6 +273,15 @@ public class StatePackage extends EPackageImpl
 	 * @generated
 	 */
 	public static final int WORKFLOW_ERROR_STATE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_ERROR_STATE__TIMESTAMP = WORKFLOW_DONE_STATE__TIMESTAMP;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Error State</em>' class.
@@ -367,6 +440,21 @@ public class StatePackage extends EPackageImpl
 	}
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState#getTimestamp <em>Timestamp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Timestamp</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState#getTimestamp()
+	 * @see #getWorkflowState()
+	 * @generated
+	 */
+	public EAttribute getWorkflowState_Timestamp()
+	{
+		return (EAttribute)workflowStateEClass.getEStructuralFeatures().get(0);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState <em>Workflow Idle State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -491,6 +579,7 @@ public class StatePackage extends EPackageImpl
 
 		// Create classes and their features
 		workflowStateEClass = createEClass(WORKFLOW_STATE);
+		createEAttribute(workflowStateEClass, WORKFLOW_STATE__TIMESTAMP);
 
 		workflowIdleStateEClass = createEClass(WORKFLOW_IDLE_STATE);
 
@@ -531,6 +620,9 @@ public class StatePackage extends EPackageImpl
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		RuntimePackage theRuntimePackage = (RuntimePackage)EPackage.Registry.INSTANCE.getEPackage(RuntimePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -546,6 +638,7 @@ public class StatePackage extends EPackageImpl
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(workflowStateEClass, WorkflowState.class, "WorkflowState", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getWorkflowState_Timestamp(), theRuntimePackage.getTimestamp(), "timestamp", null, 1, 1, WorkflowState.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(workflowStateEClass, ecorePackage.getEString(), "getDisplayName", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -601,6 +694,14 @@ public class StatePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EClass WORKFLOW_STATE = eINSTANCE.getWorkflowState();
+
+		/**
+		 * The meta object literal for the '<em><b>Timestamp</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_STATE__TIMESTAMP = eINSTANCE.getWorkflowState_Timestamp();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowIdleState <em>Workflow Idle State</em>}' class.
