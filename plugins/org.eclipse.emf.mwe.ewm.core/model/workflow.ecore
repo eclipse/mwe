@@ -90,7 +90,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connection" eType="#//WorkflowParameterConnection"
-        eOpposite="#//WorkflowParameterConnection/inputs"/>
+        eOpposite="#//WorkflowParameterConnection/targetParameters"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="required" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClassifier"/>
@@ -112,9 +112,9 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterConnection">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="output" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceParameter" lowerBound="1"
         eType="#//WorkflowParameter"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="inputs" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetParameters" lowerBound="1"
         upperBound="-1" eType="#//WorkflowParameter" eOpposite="#//WorkflowParameter/connection"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterSimpleValueStrategy"

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowParameterConnectionItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowParameterConnectionItemProvider.java,v 1.5 2009/10/15 21:26:36 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.provider;
 
@@ -63,27 +63,27 @@ public class WorkflowParameterConnectionItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addOutputPropertyDescriptor(object);
-			addInputsPropertyDescriptor(object);
+			addSourceParameterPropertyDescriptor(object);
+			addTargetParametersPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Output feature.
+	 * This adds a property descriptor for the Source Parameter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOutputPropertyDescriptor(Object object)
+	protected void addSourceParameterPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowParameterConnection_output_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowParameterConnection_output_feature", "_UI_WorkflowParameterConnection_type"),
-				 WorkflowPackage.Literals.WORKFLOW_PARAMETER_CONNECTION__OUTPUT,
+				 getString("_UI_WorkflowParameterConnection_sourceParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowParameterConnection_sourceParameter_feature", "_UI_WorkflowParameterConnection_type"),
+				 WorkflowPackage.Literals.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER,
 				 true,
 				 false,
 				 true,
@@ -93,20 +93,20 @@ public class WorkflowParameterConnectionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Inputs feature.
+	 * This adds a property descriptor for the Target Parameters feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInputsPropertyDescriptor(Object object)
+	protected void addTargetParametersPropertyDescriptor(Object object)
 	{
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_WorkflowParameterConnection_inputs_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowParameterConnection_inputs_feature", "_UI_WorkflowParameterConnection_type"),
-				 WorkflowPackage.Literals.WORKFLOW_PARAMETER_CONNECTION__INPUTS,
+				 getString("_UI_WorkflowParameterConnection_targetParameters_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowParameterConnection_targetParameters_feature", "_UI_WorkflowParameterConnection_type"),
+				 WorkflowPackage.Literals.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS,
 				 true,
 				 false,
 				 true,

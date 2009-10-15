@@ -50,8 +50,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowParameter output = c1.getParameters().get(1);
 		WorkflowParameter input = c2.getParameters().get(0);
 		WorkflowParameterConnection connection = WorkflowFactory.eINSTANCE.createWorkflowParameterConnection();
-		connection.setOutput(output);
-		connection.getInputs().add(input);
+		connection.setSourceParameter(output);
+		connection.getTargetParameters().add(input);
 		
 		c1.getParameters().get(0).setValue(getContext(), "Hello");
 		getEngine().setWorkflow(composite);
@@ -78,8 +78,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowParameter output = c1.getParameters().get(1);
 		WorkflowParameter input = c2.getParameters().get(0);
 		WorkflowParameterConnection connection = WorkflowFactory.eINSTANCE.createWorkflowParameterConnection();
-		connection.setOutput(output);
-		connection.getInputs().add(input);
+		connection.setSourceParameter(output);
+		connection.getTargetParameters().add(input);
 		
 		c1.getParameters().get(0).setValue(getContext(), "Hello");
 		getEngine().setWorkflow(composite);
@@ -105,8 +105,8 @@ public class TestWorkflowSerialOrchestrationStrategy extends WorkflowTestHarness
 		WorkflowParameter output = c1.getParameters().get(1);
 		WorkflowParameter input = c2.getParameters().get(0);
 		WorkflowParameterConnection connection = WorkflowFactory.eINSTANCE.createWorkflowParameterConnection();
-		connection.setOutput(output);
-		connection.getInputs().add(input);
+		connection.setSourceParameter(output);
+		connection.getTargetParameters().add(input);
 		
 		c1.getParameters().get(0).setValue(getContext(), "Hello");
 		getEngine().setWorkflow(composite);

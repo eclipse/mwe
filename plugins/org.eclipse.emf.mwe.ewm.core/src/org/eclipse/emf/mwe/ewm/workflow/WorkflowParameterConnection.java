@@ -31,8 +31,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getOutput <em>Output</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs <em>Inputs</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getSourceParameter <em>Source Parameter</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getTargetParameters <em>Target Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,24 +43,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class WorkflowParameterConnection extends EObjectImpl implements EObject
 {
 	/**
-	 * The cached value of the '{@link #getOutput() <em>Output</em>}' reference.
+	 * The cached value of the '{@link #getSourceParameter() <em>Source Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOutput()
+	 * @see #getSourceParameter()
 	 * @generated
 	 * @ordered
 	 */
-	protected WorkflowParameter output;
+	protected WorkflowParameter sourceParameter;
 
 	/**
-	 * The cached value of the '{@link #getInputs() <em>Inputs</em>}' reference list.
+	 * The cached value of the '{@link #getTargetParameters() <em>Target Parameters</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInputs()
+	 * @see #getTargetParameters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<WorkflowParameter> inputs;
+	protected EList<WorkflowParameter> targetParameters;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -84,32 +84,32 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Output</b></em>' reference.
+	 * Returns the value of the '<em><b>Source Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Output</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output</em>' reference.
-	 * @see #setOutput(WorkflowParameter)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterConnection_Output()
+	 * @return the value of the '<em>Source Parameter</em>' reference.
+	 * @see #setSourceParameter(WorkflowParameter)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterConnection_SourceParameter()
 	 * @model required="true"
 	 * @generated
 	 */
-	public WorkflowParameter getOutput()
+	public WorkflowParameter getSourceParameter()
 	{
-		if (output != null && output.eIsProxy())
+		if (sourceParameter != null && sourceParameter.eIsProxy())
 		{
-			InternalEObject oldOutput = (InternalEObject)output;
-			output = (WorkflowParameter)eResolveProxy(oldOutput);
-			if (output != oldOutput)
+			InternalEObject oldSourceParameter = (InternalEObject)sourceParameter;
+			sourceParameter = (WorkflowParameter)eResolveProxy(oldSourceParameter);
+			if (sourceParameter != oldSourceParameter)
 			{
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT, oldOutput, output));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER, oldSourceParameter, sourceParameter));
 			}
 		}
-		return output;
+		return sourceParameter;
 	}
 
 	/**
@@ -117,29 +117,29 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetOutput()
+	public WorkflowParameter basicGetSourceParameter()
 	{
-		return output;
+		return sourceParameter;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getOutput <em>Output</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getSourceParameter <em>Source Parameter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Output</em>' reference.
-	 * @see #getOutput()
+	 * @param value the new value of the '<em>Source Parameter</em>' reference.
+	 * @see #getSourceParameter()
 	 * @generated
 	 */
-	public void setOutput(WorkflowParameter newOutput)
+	public void setSourceParameter(WorkflowParameter newSourceParameter)
 	{
-		WorkflowParameter oldOutput = output;
-		output = newOutput;
+		WorkflowParameter oldSourceParameter = sourceParameter;
+		sourceParameter = newSourceParameter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT, oldOutput, output));
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER, oldSourceParameter, sourceParameter));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Inputs</b></em>' reference list.
+	 * Returns the value of the '<em><b>Target Parameters</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getConnection <em>Connection</em>}'.
 	 * <!-- begin-user-doc -->
@@ -148,19 +148,19 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inputs</em>' reference list.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterConnection_Inputs()
+	 * @return the value of the '<em>Target Parameters</em>' reference list.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterConnection_TargetParameters()
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter#getConnection
 	 * @model opposite="connection" required="true"
 	 * @generated
 	 */
-	public EList<WorkflowParameter> getInputs()
+	public EList<WorkflowParameter> getTargetParameters()
 	{
-		if (inputs == null)
+		if (targetParameters == null)
 		{
-			inputs = new EObjectWithInverseResolvingEList<WorkflowParameter>(WorkflowParameter.class, this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION);
+			targetParameters = new EObjectWithInverseResolvingEList<WorkflowParameter>(WorkflowParameter.class, this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS, WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION);
 		}
-		return inputs;
+		return targetParameters;
 	}
 
 	/**
@@ -174,8 +174,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getInputs()).basicAdd(otherEnd, msgs);
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getTargetParameters()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -190,8 +190,8 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				return ((InternalEList<?>)getInputs()).basicRemove(otherEnd, msgs);
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				return ((InternalEList<?>)getTargetParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -206,11 +206,11 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
-				if (resolve) return getOutput();
-				return basicGetOutput();
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				return getInputs();
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER:
+				if (resolve) return getSourceParameter();
+				return basicGetSourceParameter();
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				return getTargetParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -226,12 +226,12 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
-				setOutput((WorkflowParameter)newValue);
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER:
+				setSourceParameter((WorkflowParameter)newValue);
 				return;
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				getInputs().clear();
-				getInputs().addAll((Collection<? extends WorkflowParameter>)newValue);
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				getTargetParameters().clear();
+				getTargetParameters().addAll((Collection<? extends WorkflowParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,11 +247,11 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
-				setOutput((WorkflowParameter)null);
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER:
+				setSourceParameter((WorkflowParameter)null);
 				return;
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				getInputs().clear();
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				getTargetParameters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -267,10 +267,10 @@ public class WorkflowParameterConnection extends EObjectImpl implements EObject
 	{
 		switch (featureID)
 		{
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__OUTPUT:
-				return output != null;
-			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS:
-				return inputs != null && !inputs.isEmpty();
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER:
+				return sourceParameter != null;
+			case WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS:
+				return targetParameters != null && !targetParameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

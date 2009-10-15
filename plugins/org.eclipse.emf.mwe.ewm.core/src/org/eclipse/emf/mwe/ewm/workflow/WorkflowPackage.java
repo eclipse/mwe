@@ -402,22 +402,22 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_PARAMETER_CONNECTION = 5;
 
 	/**
-	 * The feature id for the '<em><b>Output</b></em>' reference.
+	 * The feature id for the '<em><b>Source Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_PARAMETER_CONNECTION__OUTPUT = 0;
+	public static final int WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Inputs</b></em>' reference list.
+	 * The feature id for the '<em><b>Target Parameters</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_PARAMETER_CONNECTION__INPUTS = 1;
+	public static final int WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS = 1;
 
 	/**
 	 * The number of structural features of the '<em>Parameter Connection</em>' class.
@@ -999,30 +999,30 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getOutput <em>Output</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getSourceParameter <em>Source Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Output</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getOutput()
+	 * @return the meta object for the reference '<em>Source Parameter</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getSourceParameter()
 	 * @see #getWorkflowParameterConnection()
 	 * @generated
 	 */
-	public EReference getWorkflowParameterConnection_Output()
+	public EReference getWorkflowParameterConnection_SourceParameter()
 	{
 		return (EReference)workflowParameterConnectionEClass.getEStructuralFeatures().get(0);
 	}
 
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs <em>Inputs</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getTargetParameters <em>Target Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Inputs</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs()
+	 * @return the meta object for the reference list '<em>Target Parameters</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getTargetParameters()
 	 * @see #getWorkflowParameterConnection()
 	 * @generated
 	 */
-	public EReference getWorkflowParameterConnection_Inputs()
+	public EReference getWorkflowParameterConnection_TargetParameters()
 	{
 		return (EReference)workflowParameterConnectionEClass.getEStructuralFeatures().get(1);
 	}
@@ -1145,8 +1145,8 @@ public class WorkflowPackage extends EPackageImpl
 		workflowParameterValueStrategyEClass = createEClass(WORKFLOW_PARAMETER_VALUE_STRATEGY);
 
 		workflowParameterConnectionEClass = createEClass(WORKFLOW_PARAMETER_CONNECTION);
-		createEReference(workflowParameterConnectionEClass, WORKFLOW_PARAMETER_CONNECTION__OUTPUT);
-		createEReference(workflowParameterConnectionEClass, WORKFLOW_PARAMETER_CONNECTION__INPUTS);
+		createEReference(workflowParameterConnectionEClass, WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER);
+		createEReference(workflowParameterConnectionEClass, WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS);
 
 		workflowParameterSimpleValueStrategyEClass = createEClass(WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY);
 
@@ -1273,7 +1273,7 @@ public class WorkflowPackage extends EPackageImpl
 		initEClass(workflowParameterEClass, WorkflowParameter.class, "WorkflowParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowParameter_Name(), ecorePackage.getEString(), "name", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowParameter_Description(), ecorePackage.getEString(), "description", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkflowParameter_Connection(), this.getWorkflowParameterConnection(), this.getWorkflowParameterConnection_Inputs(), "connection", null, 0, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowParameter_Connection(), this.getWorkflowParameterConnection(), this.getWorkflowParameterConnection_TargetParameters(), "connection", null, 0, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowParameter_Required(), ecorePackage.getEBoolean(), "required", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowParameter_Type(), theEcorePackage.getEClassifier(), null, "type", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowParameter_ValueStrategy(), this.getWorkflowParameterValueStrategy(), null, "valueStrategy", null, 1, 1, WorkflowParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1302,8 +1302,8 @@ public class WorkflowPackage extends EPackageImpl
 		addEException(op, theRuntimePackage.getWorkflowRuntimeException());
 
 		initEClass(workflowParameterConnectionEClass, WorkflowParameterConnection.class, "WorkflowParameterConnection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkflowParameterConnection_Output(), this.getWorkflowParameter(), null, "output", null, 1, 1, WorkflowParameterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getWorkflowParameterConnection_Inputs(), this.getWorkflowParameter(), this.getWorkflowParameter_Connection(), "inputs", null, 1, -1, WorkflowParameterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowParameterConnection_SourceParameter(), this.getWorkflowParameter(), null, "sourceParameter", null, 1, 1, WorkflowParameterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowParameterConnection_TargetParameters(), this.getWorkflowParameter(), this.getWorkflowParameter_Connection(), "targetParameters", null, 1, -1, WorkflowParameterConnection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workflowParameterSimpleValueStrategyEClass, WorkflowParameterSimpleValueStrategy.class, "WorkflowParameterSimpleValueStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1542,20 +1542,20 @@ public class WorkflowPackage extends EPackageImpl
 		public static final EClass WORKFLOW_PARAMETER_CONNECTION = eINSTANCE.getWorkflowParameterConnection();
 
 		/**
-		 * The meta object literal for the '<em><b>Output</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Source Parameter</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public static final EReference WORKFLOW_PARAMETER_CONNECTION__OUTPUT = eINSTANCE.getWorkflowParameterConnection_Output();
+		public static final EReference WORKFLOW_PARAMETER_CONNECTION__SOURCE_PARAMETER = eINSTANCE.getWorkflowParameterConnection_SourceParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Inputs</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Target Parameters</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		public static final EReference WORKFLOW_PARAMETER_CONNECTION__INPUTS = eINSTANCE.getWorkflowParameterConnection_Inputs();
+		public static final EReference WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS = eINSTANCE.getWorkflowParameterConnection_TargetParameters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterSimpleValueStrategy <em>Parameter Simple Value Strategy</em>}' class.

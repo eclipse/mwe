@@ -35,8 +35,8 @@ public class TestWorkflowParameterConnection extends WorkflowTestHarness
 		WorkflowParameter in = createStringParameter(null);
 		
 		WorkflowParameterConnection connection = WorkflowFactory.eINSTANCE.createWorkflowParameterConnection();
-		connection.setOutput(out);
-		connection.getInputs().add(in);
+		connection.setSourceParameter(out);
+		connection.getTargetParameters().add(in);
 		
 		WorkflowContext context = getContext();
 		out.setValue(context, "Hello");

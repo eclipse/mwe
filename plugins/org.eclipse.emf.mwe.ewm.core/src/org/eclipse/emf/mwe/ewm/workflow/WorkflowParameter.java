@@ -401,7 +401,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 
 	/**
 	 * Returns the value of the '<em><b>Connection</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs <em>Inputs</em>}'.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getTargetParameters <em>Target Parameters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connection</em>' reference isn't clear,
@@ -411,8 +411,8 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 * @return the value of the '<em>Connection</em>' reference.
 	 * @see #setConnection(WorkflowParameterConnection)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameter_Connection()
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getInputs
-	 * @model opposite="inputs"
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowParameterConnection#getTargetParameters
+	 * @model opposite="targetParameters"
 	 * @generated
 	 */
 	public WorkflowParameterConnection getConnection()
@@ -471,9 +471,9 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 		{
 			NotificationChain msgs = null;
 			if (connection != null)
-				msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowParameterConnection.class, msgs);
+				msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS, WorkflowParameterConnection.class, msgs);
 			if (newConnection != null)
-				msgs = ((InternalEObject)newConnection).eInverseAdd(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowParameterConnection.class, msgs);
+				msgs = ((InternalEObject)newConnection).eInverseAdd(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS, WorkflowParameterConnection.class, msgs);
 			msgs = basicSetConnection(newConnection, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -527,7 +527,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public final Object getValue(WorkflowContext context) throws WorkflowRuntimeException
 	{
-		Object value = getConnection() != null ? getConnection().getOutput().getValue(context) : doGetValue(context);
+		Object value = getConnection() != null ? getConnection().getSourceParameter().getValue(context) : doGetValue(context);
 		
 		if(isRequired() && value == null)
 			throw new WorkflowRuntimeException("Required parameter: '" + getName() + "' does not have a value");
@@ -569,7 +569,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 		{
 			case WorkflowPackage.WORKFLOW_PARAMETER__CONNECTION:
 				if (connection != null)
-					msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__INPUTS, WorkflowParameterConnection.class, msgs);
+					msgs = ((InternalEObject)connection).eInverseRemove(this, WorkflowPackage.WORKFLOW_PARAMETER_CONNECTION__TARGET_PARAMETERS, WorkflowParameterConnection.class, msgs);
 				return basicSetConnection((WorkflowParameterConnection)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
