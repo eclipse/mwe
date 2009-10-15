@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2009/10/15 21:53:16 bhunt Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <factory
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/examples/build"
+            class="org.eclipse.emf.mwe.ewm.examples.build.provider.BuildItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <extender
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow"
+            class="org.eclipse.emf.mwe.ewm.examples.build.provider.BuildItemProviderAdapterFactory$WorkflowChildCreationExtender"/>
+      <extender
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"
+            class="org.eclipse.emf.mwe.ewm.examples.build.provider.BuildItemProviderAdapterFactory$RuntimeChildCreationExtender"/>
+   </extension>
+
+</plugin>
