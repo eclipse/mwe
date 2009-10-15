@@ -241,6 +241,7 @@
       <eOperations name="resetLog">
         <eParameters name="component" eType="#//WorkflowComponent"/>
       </eOperations>
+      <eOperations name="initializeState"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
           eType="#//runtime/WorkflowParameterMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="#//runtime/ExecutorService"

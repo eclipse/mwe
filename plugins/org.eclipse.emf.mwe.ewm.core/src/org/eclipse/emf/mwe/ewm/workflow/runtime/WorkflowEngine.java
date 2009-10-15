@@ -194,6 +194,7 @@ public class WorkflowEngine extends WorkflowRunnable
 	public void run()
 	{
 		getContext().setWorkflow(getWorkflow());
+		getContext().initializeState();
 		getWorkflow().start(getContext());
 	}
 

@@ -12,6 +12,8 @@ package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
@@ -85,5 +87,15 @@ public class TestWorkflowContext extends WorkflowTestHarness
 		getContext().resetState(composite);
 		assertThat(getContext().getStates().get(composite), is(instanceOf(WorkflowIdleState.class)));
 		assertThat(getContext().getStates().get(component), is(instanceOf(WorkflowIdleState.class)));		
+	}
+	
+	@Test
+	public void testStateInitialization()
+	{
+		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
+		assertThat(component.getState(getContext()), is(nullValue()));
+		getContext().setWorkflow(component);
+		getContext().initializeState();
+		assertThat(component.getState(getContext()), is(notNullValue()));
 	}
 }
