@@ -32,6 +32,6 @@
     </parameters>
   </components>
   <compositeOrchestrationStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow.orchestration:WorkflowSerialOrchestrationStrategy"/>
-  <connections output="//@components.0/@parameters.2" inputs="//@components.1/@parameters.1"/>
+  <connections sourceParameter="//@components.0/@parameters.2" targetParameters="//@components.1/@parameters.1"/>
   <stateResolutionStrategy/>
 </org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent>
