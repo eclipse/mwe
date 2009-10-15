@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowLogResetter;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -489,9 +491,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 */
 	public void resetState(WorkflowComponent component)
 	{
-		WorkflowStateResetter resetter = RuntimeFactory.eINSTANCE.createWorkflowStateResetter();
-		resetter.setContext(this);
-		component.accept(resetter);
+		WorkflowStateResetter resetter = new WorkflowStateResetter(this);
+		resetter.doSwitch(component);
 	}
 
 	/**
@@ -502,9 +503,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 */
 	public void resetLog(WorkflowComponent component)
 	{
-		WorkflowLogResetter resetter = RuntimeFactory.eINSTANCE.createWorkflowLogResetter();
-		resetter.setContext(this);
-		component.accept(resetter);
+		WorkflowLogResetter resetter = new WorkflowLogResetter(this);
+		resetter.doSwitch(component);
 	}
 
 	/**

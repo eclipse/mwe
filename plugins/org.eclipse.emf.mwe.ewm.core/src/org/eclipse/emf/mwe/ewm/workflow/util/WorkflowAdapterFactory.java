@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
@@ -122,11 +121,6 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object)
 			{
 				return createWorkflowParameterSimpleValueStrategyAdapter();
-			}
-			@Override
-			public Adapter caseIWorkflowVisitor(IWorkflowVisitor object)
-			{
-				return createIWorkflowVisitorAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowComponentProxy(WorkflowComponentProxy object)
@@ -256,21 +250,6 @@ public class WorkflowAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowParameterSimpleValueStrategyAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
-	 * @generated
-	 */
-	public Adapter createIWorkflowVisitorAdapter()
 	{
 		return null;
 	}

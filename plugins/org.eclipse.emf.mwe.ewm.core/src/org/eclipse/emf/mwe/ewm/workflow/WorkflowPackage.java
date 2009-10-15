@@ -448,25 +448,6 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY_FEATURE_COUNT = WORKFLOW_PARAMETER_VALUE_STRATEGY_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getIWorkflowVisitor()
-	 * @generated
-	 */
-	public static final int IWORKFLOW_VISITOR = 7;
-
-	/**
-	 * The number of structural features of the '<em>IWorkflow Visitor</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int IWORKFLOW_VISITOR_FEATURE_COUNT = 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy <em>Component Proxy</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,7 +455,7 @@ public class WorkflowPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowComponentProxy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_COMPONENT_PROXY = 8;
+	public static final int WORKFLOW_COMPONENT_PROXY = 7;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -538,7 +519,7 @@ public class WorkflowPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowParameterDirection()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PARAMETER_DIRECTION = 9;
+	public static final int WORKFLOW_PARAMETER_DIRECTION = 8;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -588,13 +569,6 @@ public class WorkflowPackage extends EPackageImpl
 	 * @generated
 	 */
 	private EClass workflowParameterSimpleValueStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass iWorkflowVisitorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1069,20 +1043,6 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>IWorkflow Visitor</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
-	 * @generated
-	 */
-	public EClass getIWorkflowVisitor()
-	{
-		return iWorkflowVisitorEClass;
-	}
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy <em>Component Proxy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1190,8 +1150,6 @@ public class WorkflowPackage extends EPackageImpl
 
 		workflowParameterSimpleValueStrategyEClass = createEClass(WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY);
 
-		iWorkflowVisitorEClass = createEClass(IWORKFLOW_VISITOR);
-
 		workflowComponentProxyEClass = createEClass(WORKFLOW_COMPONENT_PROXY);
 		createEReference(workflowComponentProxyEClass, WORKFLOW_COMPONENT_PROXY__TARGET_COMPONENT);
 
@@ -1250,10 +1208,7 @@ public class WorkflowPackage extends EPackageImpl
 		initEAttribute(getWorkflowComponent_Description(), ecorePackage.getEString(), "description", null, 0, 1, WorkflowComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowComponent_ComponentOrchestrationStrategy(), theOrchestrationPackage.getWorkflowComponentOrchestrationStrategy(), null, "componentOrchestrationStrategy", null, 0, 1, WorkflowComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(workflowComponentEClass, null, "accept", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getIWorkflowVisitor(), "visitor", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(workflowComponentEClass, null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(workflowComponentEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1304,18 +1259,12 @@ public class WorkflowPackage extends EPackageImpl
 		initEReference(getWorkflowCompositeComponent_Connections(), this.getWorkflowParameterConnection(), null, "connections", null, 0, -1, WorkflowCompositeComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowCompositeComponent_StateResolutionStrategy(), theRuntimePackage.getWorkflowStateResolutionStrategy(), null, "stateResolutionStrategy", null, 1, 1, WorkflowCompositeComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(workflowCompositeComponentEClass, null, "accept", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getIWorkflowVisitor(), "visitor", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = addEOperation(workflowCompositeComponentEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theRuntimePackage.getWorkflowRuntimeException());
 
 		initEClass(workflowUnitOfWorkEClass, WorkflowUnitOfWork.class, "WorkflowUnitOfWork", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowUnitOfWork_Parameters(), this.getWorkflowParameter(), null, "parameters", null, 0, -1, WorkflowUnitOfWork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(workflowUnitOfWorkEClass, null, "accept", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getIWorkflowVisitor(), "visitor", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		op = addEOperation(workflowUnitOfWorkEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1368,14 +1317,6 @@ public class WorkflowPackage extends EPackageImpl
 		addEParameter(op, this.getWorkflowParameter(), "parameter", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEcorePackage.getEJavaObject(), "value", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theRuntimePackage.getWorkflowRuntimeException());
-
-		initEClass(iWorkflowVisitorEClass, IWorkflowVisitor.class, "IWorkflowVisitor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = addEOperation(iWorkflowVisitorEClass, null, "visitUnitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getWorkflowUnitOfWork(), "unitOfWork", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(iWorkflowVisitorEClass, null, "visitComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowComponentProxyEClass, WorkflowComponentProxy.class, "WorkflowComponentProxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowComponentProxy_TargetComponent(), this.getWorkflowComponent(), null, "targetComponent", null, 1, 1, WorkflowComponentProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1625,16 +1566,6 @@ public class WorkflowPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EClass WORKFLOW_PARAMETER_SIMPLE_VALUE_STRATEGY = eINSTANCE.getWorkflowParameterSimpleValueStrategy();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor <em>IWorkflow Visitor</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor
-		 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getIWorkflowVisitor()
-		 * @generated
-		 */
-		public static final EClass IWORKFLOW_VISITOR = eINSTANCE.getIWorkflowVisitor();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy <em>Component Proxy</em>}' class.

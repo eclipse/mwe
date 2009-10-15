@@ -26,10 +26,9 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -59,9 +58,8 @@ public class ResetWorkflowStateHandler extends AbstractHandler
 		Command command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__EDITING_DOMAIN, editingDomain);
 		editingDomain.getCommandStack().execute(command);
 		
-		WorkflowStateResetter resetter = RuntimeFactory.eINSTANCE.createWorkflowStateResetter();
-		resetter.setContext(context);
-		context.getWorkflow().accept(resetter);
+		WorkflowStateResetter resetter = new WorkflowStateResetter(context);
+		resetter.doSwitch(context.getWorkflow());
 
 		WorkspaceModifyOperation operation = new WorkspaceModifyOperation()
 		{

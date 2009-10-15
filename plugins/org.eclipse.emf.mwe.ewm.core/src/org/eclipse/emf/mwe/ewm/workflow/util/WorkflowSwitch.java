@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
@@ -160,13 +159,6 @@ public class WorkflowSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case WorkflowPackage.IWORKFLOW_VISITOR:
-			{
-				IWorkflowVisitor iWorkflowVisitor = (IWorkflowVisitor)theEObject;
-				T result = caseIWorkflowVisitor(iWorkflowVisitor);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case WorkflowPackage.WORKFLOW_COMPONENT_PROXY:
 			{
 				WorkflowComponentProxy workflowComponentProxy = (WorkflowComponentProxy)theEObject;
@@ -287,22 +279,6 @@ public class WorkflowSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowParameterSimpleValueStrategy(WorkflowParameterSimpleValueStrategy object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IWorkflow Visitor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IWorkflow Visitor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIWorkflowVisitor(IWorkflowVisitor object)
 	{
 		return null;
 	}

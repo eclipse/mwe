@@ -15,7 +15,6 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.IWorkflowVisitor;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
@@ -24,9 +23,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResolutionStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 
@@ -157,14 +154,6 @@ public class RuntimeSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimePackage.WORKFLOW_STATE_RESETTER:
-			{
-				WorkflowStateResetter workflowStateResetter = (WorkflowStateResetter)theEObject;
-				T result = caseWorkflowStateResetter(workflowStateResetter);
-				if (result == null) result = caseIWorkflowVisitor(workflowStateResetter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case RuntimePackage.WORKFLOW_LOG:
 			{
 				WorkflowLog workflowLog = (WorkflowLog)theEObject;
@@ -183,14 +172,6 @@ public class RuntimeSwitch<T>
 			{
 				@SuppressWarnings("unchecked") Map.Entry<WorkflowComponent, WorkflowLog> workflowLogMap = (Map.Entry<WorkflowComponent, WorkflowLog>)theEObject;
 				T result = caseWorkflowLogMap(workflowLogMap);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case RuntimePackage.WORKFLOW_LOG_RESETTER:
-			{
-				WorkflowLogResetter workflowLogResetter = (WorkflowLogResetter)theEObject;
-				T result = caseWorkflowLogResetter(workflowLogResetter);
-				if (result == null) result = caseIWorkflowVisitor(workflowLogResetter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -325,38 +306,6 @@ public class RuntimeSwitch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>IWorkflow Visitor</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>IWorkflow Visitor</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIWorkflowVisitor(IWorkflowVisitor object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Workflow State Resetter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Workflow State Resetter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkflowStateResetter(WorkflowStateResetter object)
-	{
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Workflow Log</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -400,22 +349,6 @@ public class RuntimeSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowLogMap(Map.Entry<WorkflowComponent, WorkflowLog> object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Workflow Log Resetter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Workflow Log Resetter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkflowLogResetter(WorkflowLogResetter object)
 	{
 		return null;
 	}

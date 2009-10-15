@@ -94,11 +94,9 @@ public class RuntimeFactory extends EFactoryImpl
 			case RuntimePackage.WORKFLOW_STATE_RESOLUTION_STRATEGY: return createWorkflowStateResolutionStrategy();
 			case RuntimePackage.WORKFLOW_RUNNABLE: return (EObject)createWorkflowRunnable();
 			case RuntimePackage.WORKFLOW_RUNNER: return createWorkflowRunner();
-			case RuntimePackage.WORKFLOW_STATE_RESETTER: return createWorkflowStateResetter();
 			case RuntimePackage.WORKFLOW_LOG: return createWorkflowLog();
 			case RuntimePackage.WORKFLOW_LOG_ENTRY: return createWorkflowLogEntry();
 			case RuntimePackage.WORKFLOW_LOG_MAP: return (EObject)createWorkflowLogMap();
-			case RuntimePackage.WORKFLOW_LOG_RESETTER: return createWorkflowLogResetter();
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO: return createWorkflowComponentExecutionInfo();
 			case RuntimePackage.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP: return (EObject)createWorkflowComponentExecutionInfoMap();
 			default:
@@ -242,17 +240,6 @@ public class RuntimeFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowStateResetter createWorkflowStateResetter()
-	{
-		WorkflowStateResetter workflowStateResetter = new WorkflowStateResetter();
-		return workflowStateResetter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public WorkflowLog createWorkflowLog()
 	{
 		WorkflowLog workflowLog = new WorkflowLog();
@@ -279,17 +266,6 @@ public class RuntimeFactory extends EFactoryImpl
 	{
 		WorkflowLogMap workflowLogMap = new WorkflowLogMap();
 		return workflowLogMap;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkflowLogResetter createWorkflowLogResetter()
-	{
-		WorkflowLogResetter workflowLogResetter = new WorkflowLogResetter();
-		return workflowLogResetter;
 	}
 
 	/**

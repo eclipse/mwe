@@ -4,9 +4,6 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="workflow"
     nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow" nsPrefix="org.eclipse.emf.mwe.ewm.workflow">
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponent" abstract="true">
-    <eOperations name="accept">
-      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
-    </eOperations>
     <eOperations name="start">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
@@ -57,9 +54,6 @@
         eType="#//orchestration/WorkflowComponentOrchestrationStrategy" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowCompositeComponent" eSuperTypes="#//WorkflowComponent">
-    <eOperations name="accept">
-      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
-    </eOperations>
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
@@ -77,9 +71,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowUnitOfWork" abstract="true"
       eSuperTypes="#//WorkflowComponent">
-    <eOperations name="accept">
-      <eParameters name="visitor" eType="#//IWorkflowVisitor"/>
-    </eOperations>
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
@@ -137,14 +128,6 @@
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       <eParameters name="parameter" eType="#//WorkflowParameter"/>
       <eParameters name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-    </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IWorkflowVisitor" abstract="true" interface="true">
-    <eOperations name="visitUnitOfWork">
-      <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
-    </eOperations>
-    <eOperations name="visitComposite">
-      <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentProxy" eSuperTypes="#//WorkflowComponent">
@@ -313,16 +296,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
           eType="#//WorkflowComponent"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResetter" eSuperTypes="#//IWorkflowVisitor">
-      <eOperations name="visitUnitOfWork">
-        <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
-      </eOperations>
-      <eOperations name="visitComposite">
-        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-          eType="#//runtime/WorkflowContext"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowLog">
       <eOperations name="logError">
         <eParameters name="message" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
@@ -392,16 +365,6 @@
       <eLiterals name="WARNING" value="1"/>
       <eLiterals name="INFO" value="2"/>
       <eLiterals name="DEBUG" value="3"/>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowLogResetter" eSuperTypes="#//IWorkflowVisitor">
-      <eOperations name="visitUnitOfWork">
-        <eParameters name="unitOfWork" eType="#//WorkflowUnitOfWork"/>
-      </eOperations>
-      <eOperations name="visitComposite">
-        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
-      </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
-          eType="#//runtime/WorkflowContext"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EDataType" name="WorkflowRuntimeException" instanceClassName="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException"/>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowComponentExecutionInfo">

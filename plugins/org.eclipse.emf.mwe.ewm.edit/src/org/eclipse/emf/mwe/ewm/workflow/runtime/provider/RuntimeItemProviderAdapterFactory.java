@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeItemProviderAdapterFactory.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: RuntimeItemProviderAdapterFactory.java,v 1.5 2009/10/15 14:51:22 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -266,31 +266,6 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected WorkflowStateResetterItemProvider workflowStateResetterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResetter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createWorkflowStateResetterAdapter()
-	{
-		if (workflowStateResetterItemProvider == null)
-		{
-			workflowStateResetterItemProvider = new WorkflowStateResetterItemProvider(this);
-		}
-
-		return workflowStateResetterItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -363,31 +338,6 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 		}
 
 		return workflowLogMapItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected WorkflowLogResetterItemProvider workflowLogResetterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogResetter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createWorkflowLogResetterAdapter()
-	{
-		if (workflowLogResetterItemProvider == null)
-		{
-			workflowLogResetterItemProvider = new WorkflowLogResetterItemProvider(this);
-		}
-
-		return workflowLogResetterItemProvider;
 	}
 
 	/**
@@ -588,11 +538,9 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 		if (workflowStateResolutionStrategyItemProvider != null) workflowStateResolutionStrategyItemProvider.dispose();
 		if (workflowRunnableItemProvider != null) workflowRunnableItemProvider.dispose();
 		if (workflowRunnerItemProvider != null) workflowRunnerItemProvider.dispose();
-		if (workflowStateResetterItemProvider != null) workflowStateResetterItemProvider.dispose();
 		if (workflowLogItemProvider != null) workflowLogItemProvider.dispose();
 		if (workflowLogEntryItemProvider != null) workflowLogEntryItemProvider.dispose();
 		if (workflowLogMapItemProvider != null) workflowLogMapItemProvider.dispose();
-		if (workflowLogResetterItemProvider != null) workflowLogResetterItemProvider.dispose();
 		if (workflowComponentExecutionInfoItemProvider != null) workflowComponentExecutionInfoItemProvider.dispose();
 		if (workflowComponentExecutionInfoMapItemProvider != null) workflowComponentExecutionInfoMapItemProvider.dispose();
 	}
