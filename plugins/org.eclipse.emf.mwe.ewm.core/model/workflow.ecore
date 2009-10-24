@@ -169,6 +169,8 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
           eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="childStrategy" eType="#//orchestration/WorkflowComponentOrchestrationStrategy"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowLoopComponentOrchestrationStrategy"
         eSuperTypes="#//orchestration/WorkflowComponentOrchestrationStrategy">

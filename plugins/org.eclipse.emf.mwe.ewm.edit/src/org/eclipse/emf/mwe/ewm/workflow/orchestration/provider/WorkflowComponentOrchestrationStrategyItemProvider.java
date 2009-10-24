@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentOrchestrationStrategyItemProvider.java,v 1.4 2009/05/14 05:25:18 bhunt Exp $
+ * $Id: WorkflowComponentOrchestrationStrategyItemProvider.java,v 1.5 2009/10/24 20:01:27 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -85,6 +85,7 @@ public class WorkflowComponentOrchestrationStrategyItemProvider
 		{
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
+			childrenFeatures.add(OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY);
 		}
 		return childrenFeatures;
 	}
@@ -130,6 +131,7 @@ public class WorkflowComponentOrchestrationStrategyItemProvider
 		switch (notification.getFeatureID(WorkflowComponentOrchestrationStrategy.class))
 		{
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -172,6 +174,16 @@ public class WorkflowComponentOrchestrationStrategyItemProvider
 			(createChildParameter
 				(OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION,
 				 OrchestrationFactory.eINSTANCE.createWorkflowLoopCountPredicate()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY,
+				 OrchestrationFactory.eINSTANCE.createWorkflowComponentOrchestrationStrategy()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(OrchestrationPackage.Literals.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY,
+				 OrchestrationFactory.eINSTANCE.createWorkflowLoopComponentOrchestrationStrategy()));
 	}
 
 	/**

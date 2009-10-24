@@ -31,6 +31,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StateFactory;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getChildStrategy <em>Child Strategy</em>}</li>
  * </ul>
  * </p>
  *
@@ -49,6 +50,16 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 	 * @ordered
 	 */
 	protected WorkflowExecutionPredicate condition;
+
+	/**
+	 * The cached value of the '{@link #getChildStrategy() <em>Child Strategy</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getChildStrategy()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkflowComponentOrchestrationStrategy childStrategy;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,6 +143,66 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Child Strategy</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Child Strategy</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Child Strategy</em>' containment reference.
+	 * @see #setChildStrategy(WorkflowComponentOrchestrationStrategy)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowComponentOrchestrationStrategy_ChildStrategy()
+	 * @model containment="true"
+	 * @generated
+	 */
+	public WorkflowComponentOrchestrationStrategy getChildStrategy()
+	{
+		return childStrategy;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetChildStrategy(WorkflowComponentOrchestrationStrategy newChildStrategy, NotificationChain msgs)
+	{
+		WorkflowComponentOrchestrationStrategy oldChildStrategy = childStrategy;
+		childStrategy = newChildStrategy;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY, oldChildStrategy, newChildStrategy);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getChildStrategy <em>Child Strategy</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Child Strategy</em>' containment reference.
+	 * @see #getChildStrategy()
+	 * @generated
+	 */
+	public void setChildStrategy(WorkflowComponentOrchestrationStrategy newChildStrategy)
+	{
+		if (newChildStrategy != childStrategy)
+		{
+			NotificationChain msgs = null;
+			if (childStrategy != null)
+				msgs = ((InternalEObject)childStrategy).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY, null, msgs);
+			if (newChildStrategy != null)
+				msgs = ((InternalEObject)newChildStrategy).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY, null, msgs);
+			msgs = basicSetChildStrategy(newChildStrategy, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY, newChildStrategy, newChildStrategy));
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @throws WorkflowRuntimeException 
@@ -148,6 +219,12 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 			return;
 		}
 
+		if(getChildStrategy() != null)
+		{
+			getChildStrategy().run(component, context);
+			return;
+		}
+		
 		component.setState(context, StateFactory.eINSTANCE.createWorkflowRunningState());
 		
 		try
@@ -173,6 +250,8 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		{
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				return basicSetCondition(null, msgs);
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
+				return basicSetChildStrategy(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -189,6 +268,8 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		{
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				return getCondition();
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
+				return getChildStrategy();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -205,6 +286,9 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		{
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				setCondition((WorkflowExecutionPredicate)newValue);
+				return;
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
+				setChildStrategy((WorkflowComponentOrchestrationStrategy)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -223,6 +307,9 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				setCondition((WorkflowExecutionPredicate)null);
 				return;
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
+				setChildStrategy((WorkflowComponentOrchestrationStrategy)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -239,6 +326,8 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		{
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION:
 				return condition != null;
+			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY:
+				return childStrategy != null;
 		}
 		return super.eIsSet(featureID);
 	}

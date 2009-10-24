@@ -146,13 +146,22 @@ public class OrchestrationPackage extends EPackageImpl
 	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Child Strategy</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY = 1;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Component Orchestration Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT = 1;
+	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}' class.
@@ -172,6 +181,15 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @ordered
 	 */
 	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION;
+
+	/**
+	 * The feature id for the '<em><b>Child Strategy</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY = WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY;
 
 	/**
 	 * The feature id for the '<em><b>Loop Condition</b></em>' containment reference.
@@ -577,6 +595,21 @@ public class OrchestrationPackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getChildStrategy <em>Child Strategy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Child Strategy</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy#getChildStrategy()
+	 * @see #getWorkflowComponentOrchestrationStrategy()
+	 * @generated
+	 */
+	public EReference getWorkflowComponentOrchestrationStrategy_ChildStrategy()
+	{
+		return (EReference)workflowComponentOrchestrationStrategyEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -804,6 +837,7 @@ public class OrchestrationPackage extends EPackageImpl
 
 		workflowComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY);
 		createEReference(workflowComponentOrchestrationStrategyEClass, WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION);
+		createEReference(workflowComponentOrchestrationStrategyEClass, WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY);
 
 		workflowLoopComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY);
 		createEReference(workflowLoopComponentOrchestrationStrategyEClass, WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY__LOOP_CONDITION);
@@ -889,6 +923,7 @@ public class OrchestrationPackage extends EPackageImpl
 
 		initEClass(workflowComponentOrchestrationStrategyEClass, WorkflowComponentOrchestrationStrategy.class, "WorkflowComponentOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 1, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowComponentOrchestrationStrategy_ChildStrategy(), this.getWorkflowComponentOrchestrationStrategy(), null, "childStrategy", null, 0, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowComponentOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1007,6 +1042,14 @@ public class OrchestrationPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CONDITION = eINSTANCE.getWorkflowComponentOrchestrationStrategy_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Child Strategy</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY__CHILD_STRATEGY = eINSTANCE.getWorkflowComponentOrchestrationStrategy_ChildStrategy();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy <em>Workflow Loop Component Orchestration Strategy</em>}' class.
