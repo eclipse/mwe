@@ -31,7 +31,7 @@
                      </instanceof>
                      <test
                            property="org.eclipse.core.resources.extension"
-                           value="workflow">
+                           value="runtime">
                      </test>
                   </and>
                </iterate>

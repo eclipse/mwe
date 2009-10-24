@@ -18,7 +18,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -31,16 +30,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
-import org.eclipse.ui.dialogs.ResourceSelectionDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 
 public class RunWorkflowHandler extends AbstractHandler
@@ -55,27 +51,16 @@ public class RunWorkflowHandler extends AbstractHandler
 		DebugUITools.getSelectedResource();
 		final IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindow(event);
 		IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
-		ResourceSelectionDialog dialog = new ResourceSelectionDialog(window.getShell(), ResourcesPlugin.getWorkspace().getRoot(), "Select the workflow context");
-
-		if (dialog.open() == Window.CANCEL)
-			return null;
 
 		TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain();
 		ResourceSet resourceSet = editingDomain.getResourceSet();
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 
-		IFile workflowFile = (IFile) selection.getFirstElement();
-		URI workflowURI = URI.createPlatformResourceURI(workflowFile.getFullPath().toString(), false);
-		Resource workflowResource = resourceSet.getResource(workflowURI, true);
-		final WorkflowComponent workflow = (WorkflowComponent) workflowResource.getContents().get(0);
-
-		IFile contextFile = (IFile) dialog.getResult()[0];
-		URI contextURI = URI.createPlatformResourceURI(contextFile.getFullPath().toString(), false);
+		IFile workflowContextFile = (IFile) selection.getFirstElement();
+		URI contextURI = URI.createPlatformResourceURI(workflowContextFile.getFullPath().toString(), false);
 		final Resource contextResource = resourceSet.getResource(contextURI, true);
 		final WorkflowContext context = (WorkflowContext) contextResource.getContents().get(0);
 		Command command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__EDITING_DOMAIN, editingDomain);
-		editingDomain.getCommandStack().execute(command);
-		command = SetCommand.create(editingDomain, context, RuntimePackage.Literals.WORKFLOW_CONTEXT__WORKFLOW, workflow);
 		editingDomain.getCommandStack().execute(command);
 
 		final WorkspaceModifyOperation operation = new WorkspaceModifyOperation()
@@ -96,12 +81,12 @@ public class RunWorkflowHandler extends AbstractHandler
 			}
 		};
 
-		Job job = new Job("Workflow: " + workflow.getName())
+		Job job = new Job("Workflow: " + context.getWorkflow().getName())
 		{
 			@Override
 			protected IStatus run(IProgressMonitor monitor)
 			{
-				workflow.start(context);
+				context.getWorkflow().start(context);
 
 				Display.getDefault().asyncExec(new Runnable()
 				{
