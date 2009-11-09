@@ -30,11 +30,10 @@ import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
 import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 import org.xml.sax.Attributes;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.helpers.DefaultHandler;
 
-public class WorkflowParser extends DefaultHandler implements ContentHandler {
+public class WorkflowParser extends DefaultHandler {
 	private static final Log log = LogFactory.getLog(WorkflowParser.class);
 
 	// reserved element names

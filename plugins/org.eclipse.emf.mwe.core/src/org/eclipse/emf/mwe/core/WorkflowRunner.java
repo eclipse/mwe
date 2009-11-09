@@ -158,7 +158,7 @@ public class WorkflowRunner {
 							System.exit(1);
 						}
 						wfFile = arg;
-						; // continue the loop (will be handled later)
+						// continue the loop (will be handled later)
 					}
 					else {
 						unprocessedArgs.add(arg);
@@ -171,6 +171,7 @@ public class WorkflowRunner {
 					System.err.println("cannot find class '" + line.getOptionValue(CMDL)
 							+ "' for command line processing.");
 					System.exit(1);
+					return;
 				}
 				final Method method = cmdLineProcessor.getMethod("processCmdLine", String[].class, Map.class,
 						WorkflowContext.class);
@@ -189,6 +190,7 @@ public class WorkflowRunner {
 
 		if ((wfFile == null) || !(wfFile.endsWith(".oaw") || wfFile.endsWith(".mwe"))) {
 			wrongCall(options);
+			return;
 		}
 
 		ProgressMonitor monitor = null;

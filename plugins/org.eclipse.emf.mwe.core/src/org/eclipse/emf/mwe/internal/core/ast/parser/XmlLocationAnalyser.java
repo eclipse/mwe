@@ -248,7 +248,7 @@ public class XmlLocationAnalyser {
 			for (XmlTagValues value : values) {
 				if (name1 == null && line == value.firstLineOfTag && col >= value.firstColumn && col <= value.endColumn)
 					name1 = value.name;
-				if (name1 == null && line < value.firstLineOfTag)
+				if (name1 == null && line < value.firstLineOfTag && potentialValue != null)
 					name1 = potentialValue.name;
 				else if (value.name.equals(name1) && value.isClosingTag) {
 					Location loc = new Location(value.firstLineOfTag, 0, rawLoc.getResource());
@@ -282,7 +282,7 @@ public class XmlLocationAnalyser {
 				value = nextValue; // TODO: CK: low: check when we can break
 			}
 			// last tag
-			if (potentialValues.isEmpty() || line == value.firstLineOfTag)
+			if (potentialValues.isEmpty() || (value != null && line == value.firstLineOfTag))
 				potentialValues.add(value);
 			value = handleColumns(col, potentialValues);
 			return value;

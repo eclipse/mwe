@@ -156,7 +156,7 @@ public class Connection {
 			msg = "Couldn't find " + className + " in the classpath.";
 		}
 
-		if (msg == null) {
+		if (msg == null && packetClass != null) {
 			Constructor<?> c = packetClass.getConstructors()[0];
 			Class<?>[] parmTypes = c.getParameterTypes();
 			Object[] initargs = new Object[parmTypes.length];

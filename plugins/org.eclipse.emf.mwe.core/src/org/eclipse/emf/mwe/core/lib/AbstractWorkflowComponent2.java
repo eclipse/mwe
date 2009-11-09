@@ -20,6 +20,7 @@ public abstract class AbstractWorkflowComponent2 extends AbstractWorkflowCompone
 	public final void checkConfiguration(final Issues issues) {
 		checkConfigurationInternal(issues);
 	}
-	protected void checkConfigurationInternal(Issues issues) {};
+	
+	protected void checkConfigurationInternal(Issues issues) {}
 
 }

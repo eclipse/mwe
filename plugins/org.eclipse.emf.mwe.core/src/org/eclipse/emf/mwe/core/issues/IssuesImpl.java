@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 
 public class IssuesImpl implements Issues {
@@ -55,7 +56,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public MWEDiagnostic[] getErrors() {
-		return filterIssues(MWEDiagnostic.ERROR);
+		return filterIssues(Diagnostic.ERROR);
 	}
 
 	public void addWarning(final WorkflowComponent ctx, final String msg) {
@@ -85,7 +86,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public MWEDiagnostic[] getWarnings() {
-		return filterIssues(MWEDiagnostic.WARNING);
+		return filterIssues(Diagnostic.WARNING);
 	}
 
 	public boolean hasWarnings() {
@@ -119,7 +120,7 @@ public class IssuesImpl implements Issues {
 	}
 
 	public MWEDiagnostic[] getInfos() {
-		return filterIssues(MWEDiagnostic.INFO);
+		return filterIssues(Diagnostic.INFO);
 	}
 
 	public boolean hasInfos() {
@@ -156,22 +157,21 @@ public class IssuesImpl implements Issues {
 
 	static MWEDiagnostic createInfo(final WorkflowComponent ctx, final String msg, final Object element,
 			final String featureName, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.INFO, ctx, msg, element, featureName, t,
+		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.INFO, ctx, msg, element, featureName, t,
 				additionalData);
 		return diagnostic;
 	}
 
 	private static MWEDiagnostic createWarning(final WorkflowComponent ctx, final String msg, final Object element,
 			String feature, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.WARNING, ctx, msg, element, feature, t,
+		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.WARNING, ctx, msg, element, feature, t,
 				additionalData);
-		;
 		return diagnostic;
 	}
 
 	private static MWEDiagnostic createError(final WorkflowComponent ctx, final String msg, final Object element,
 			final String feature, final Throwable t, final List<Object> additionalData) {
-		MWEDiagnostic diagnostic = createDiagnostic(MWEDiagnostic.ERROR, ctx, msg, element, feature, t, additionalData);
+		MWEDiagnostic diagnostic = createDiagnostic(Diagnostic.ERROR, ctx, msg, element, feature, t, additionalData);
 		return diagnostic;
 	}
 

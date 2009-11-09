@@ -31,6 +31,7 @@ public class VisitorAnalyzer extends VisitorBase {
 		return ana;
 	}
 
+	@SuppressWarnings("unchecked")
 	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class,
 																						// Converter>
 
@@ -38,6 +39,7 @@ public class VisitorAnalyzer extends VisitorBase {
 
 	private Issues issues = new IssuesImpl();
 
+	@SuppressWarnings("unchecked")
 	public VisitorAnalyzer(final Issues issues, final Map<Class<?>, Converter> converter,
 			final Class<?> currentComponentClass) {
 		if (currentComponentClass == null)
