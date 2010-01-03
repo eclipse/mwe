@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowLoopComponentOrchestrationStrategy.java,v 1.2 2009/05/14 05:25:21 bhunt Exp $
+ * $Id: WorkflowLoopComponentOrchestrationStrategy.java,v 1.3 2010/01/03 21:25:13 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
@@ -219,12 +219,12 @@ public class WorkflowLoopComponentOrchestrationStrategy extends WorkflowComponen
 			runOnce = true;
 			super.run(component, context);
 			
-			if(!(component.getState(context) instanceof WorkflowSuccessState))
+			if(!(context.getState(component) instanceof WorkflowSuccessState))
 				break;
 		}
 		
 		if(!runOnce)
-			component.setState(context, StateFactory.eINSTANCE.createWorkflowSkippedState());
+			context.setState(component, StateFactory.eINSTANCE.createWorkflowSkippedState());
 	}
 
 	

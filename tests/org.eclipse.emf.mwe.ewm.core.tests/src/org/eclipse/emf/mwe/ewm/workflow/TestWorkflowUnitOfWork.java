@@ -87,7 +87,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(predicate);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 	}
 	
 	/**
@@ -101,7 +101,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(predicate);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSkippedState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSkippedState.class)));
 	}
 
 	/**
@@ -123,7 +123,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(and);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 	}
 
 	/**
@@ -145,7 +145,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(or);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSkippedState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSkippedState.class)));
 	}
 
 	/**
@@ -173,7 +173,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		
 		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSkippedState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSkippedState.class)));
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(or);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 		
 		component.setEndState(StateFactory.eINSTANCE.createWorkflowSuccessState());
 		component.setRunningState(null);
@@ -204,7 +204,7 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		
 		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 	}
 
 	/**
@@ -217,12 +217,12 @@ public class TestWorkflowUnitOfWork extends WorkflowTestHarness
 		component.getComponentOrchestrationStrategy().setCondition(predicate);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(notNullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 		
 		component.setRunningState(null);
 		getEngine().run();
 		assertThat(component.getRunningState(), is(nullValue()));
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSkippedState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSkippedState.class)));
 	}
 	
 	/**

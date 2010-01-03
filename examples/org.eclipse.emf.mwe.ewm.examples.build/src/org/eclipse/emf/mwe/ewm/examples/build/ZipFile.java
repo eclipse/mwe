@@ -396,13 +396,13 @@ public class ZipFile extends WorkflowUnitOfWork
 		
 		try
 		{
-			logDebug(context, "Executing command: zip " + command[1] + " " + command[2]);
+			context.logDebug(this, "Executing command: zip " + command[1] + " " + command[2]);
 			Process process = Runtime.getRuntime().exec(command, null, workingDirectory);
 			rc = process.waitFor();
 		}
 		catch (Exception e)
 		{
-			logException(context, e);
+			context.logException(this, e);
 			return StateFactory.eINSTANCE.createWorkflowErrorState();
 		}
 		

@@ -20,7 +20,6 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * A sample validator interface for {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext}.
@@ -45,6 +44,4 @@ public interface WorkflowContextValidator
 	boolean validateActiveComponents(EList<WorkflowComponent> value);
 
 	boolean validateExecutionInfo(EMap<WorkflowComponent, WorkflowComponentExecutionInfo> value);
-
-	boolean validateEditingDomain(TransactionalEditingDomain value);
 }

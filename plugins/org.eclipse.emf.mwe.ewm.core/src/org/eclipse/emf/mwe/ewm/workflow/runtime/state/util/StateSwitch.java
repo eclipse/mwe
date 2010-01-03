@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.state.*;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowDoneState;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowErrorState;

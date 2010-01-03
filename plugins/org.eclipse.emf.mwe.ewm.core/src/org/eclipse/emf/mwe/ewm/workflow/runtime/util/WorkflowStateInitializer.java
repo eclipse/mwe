@@ -17,8 +17,8 @@ public class WorkflowStateInitializer extends WorkflowSwitch<Boolean>
 	@Override
 	public Boolean caseWorkflowUnitOfWork(WorkflowUnitOfWork object)
 	{
-		if(object.getState(context) == null)
-			object.setState(context, StateFactory.eINSTANCE.createWorkflowIdleState());
+		if(context.getState(object) == null)
+			context.setState(object, StateFactory.eINSTANCE.createWorkflowIdleState());
 		
 		return Boolean.TRUE;
 	}
@@ -26,8 +26,8 @@ public class WorkflowStateInitializer extends WorkflowSwitch<Boolean>
 	@Override
 	public Boolean caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
 	{
-		if(object.getState(context) == null)
-			object.setState(context, StateFactory.eINSTANCE.createWorkflowIdleState());
+		if(context.getState(object) == null)
+			context.setState(object, StateFactory.eINSTANCE.createWorkflowIdleState());
 
 		for(WorkflowComponent component : object.getComponents())
 			doSwitch(component);

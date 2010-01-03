@@ -14,7 +14,6 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.*;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;

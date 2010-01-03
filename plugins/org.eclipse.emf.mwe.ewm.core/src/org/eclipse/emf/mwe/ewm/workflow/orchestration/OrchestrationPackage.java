@@ -77,7 +77,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowCompositeOrchestrationStrategy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY = 2;
+	public static final int WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY = 1;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Composite Orchestration Strategy</em>' class.
@@ -108,25 +108,6 @@ public class OrchestrationPackage extends EPackageImpl
 	public static final int WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY_FEATURE_COUNT = WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy <em>Workflow Parallel Orchestration Strategy</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParallelOrchestrationStrategy()
-	 * @generated
-	 */
-	public static final int WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY = 1;
-
-	/**
-	 * The number of structural features of the '<em>Workflow Parallel Orchestration Strategy</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY_FEATURE_COUNT = WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY_FEATURE_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy <em>Workflow Component Orchestration Strategy</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -134,7 +115,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowComponentOrchestrationStrategy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY = 3;
+	public static final int WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -171,7 +152,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopComponentOrchestrationStrategy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY = 4;
+	public static final int WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY = 3;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -217,7 +198,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowExecutionPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_EXECUTION_PREDICATE = 5;
+	public static final int WORKFLOW_EXECUTION_PREDICATE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Execution Predicate</em>' class.
@@ -236,7 +217,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowRerunPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RERUN_PREDICATE = 6;
+	public static final int WORKFLOW_RERUN_PREDICATE = 5;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Rerun Predicate</em>' class.
@@ -255,7 +236,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParameterPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PARAMETER_PREDICATE = 7;
+	public static final int WORKFLOW_PARAMETER_PREDICATE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Parameter</b></em>' reference.
@@ -283,7 +264,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowPredicateOR()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PREDICATE_OR = 8;
+	public static final int WORKFLOW_PREDICATE_OR = 7;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -311,7 +292,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowPredicateAND()
 	 * @generated
 	 */
-	public static final int WORKFLOW_PREDICATE_AND = 9;
+	public static final int WORKFLOW_PREDICATE_AND = 8;
 
 	/**
 	 * The feature id for the '<em><b>Conditions</b></em>' containment reference list.
@@ -339,7 +320,7 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowLoopCountPredicate()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOOP_COUNT_PREDICATE = 10;
+	public static final int WORKFLOW_LOOP_COUNT_PREDICATE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Current Count</b></em>' containment reference.
@@ -374,13 +355,6 @@ public class OrchestrationPackage extends EPackageImpl
 	 * @generated
 	 */
 	private EClass workflowSerialOrchestrationStrategyEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass workflowParallelOrchestrationStrategyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -534,20 +508,6 @@ public class OrchestrationPackage extends EPackageImpl
 	public EClass getWorkflowSerialOrchestrationStrategy()
 	{
 		return workflowSerialOrchestrationStrategyEClass;
-	}
-
-
-	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy <em>Workflow Parallel Orchestration Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Workflow Parallel Orchestration Strategy</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy
-	 * @generated
-	 */
-	public EClass getWorkflowParallelOrchestrationStrategy()
-	{
-		return workflowParallelOrchestrationStrategyEClass;
 	}
 
 
@@ -831,8 +791,6 @@ public class OrchestrationPackage extends EPackageImpl
 		// Create classes and their features
 		workflowSerialOrchestrationStrategyEClass = createEClass(WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY);
 
-		workflowParallelOrchestrationStrategyEClass = createEClass(WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY);
-
 		workflowCompositeOrchestrationStrategyEClass = createEClass(WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY);
 
 		workflowComponentOrchestrationStrategyEClass = createEClass(WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY);
@@ -894,7 +852,6 @@ public class OrchestrationPackage extends EPackageImpl
 
 		// Add supertypes to classes
 		workflowSerialOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowCompositeOrchestrationStrategy());
-		workflowParallelOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowCompositeOrchestrationStrategy());
 		workflowLoopComponentOrchestrationStrategyEClass.getESuperTypes().add(this.getWorkflowComponentOrchestrationStrategy());
 		workflowRerunPredicateEClass.getESuperTypes().add(this.getWorkflowExecutionPredicate());
 		workflowParameterPredicateEClass.getESuperTypes().add(this.getWorkflowExecutionPredicate());
@@ -906,12 +863,6 @@ public class OrchestrationPackage extends EPackageImpl
 		initEClass(workflowSerialOrchestrationStrategyEClass, WorkflowSerialOrchestrationStrategy.class, "WorkflowSerialOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(workflowSerialOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(workflowParallelOrchestrationStrategyEClass, WorkflowParallelOrchestrationStrategy.class, "WorkflowParallelOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		op = addEOperation(workflowParallelOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowCompositeComponent(), "composite", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -1004,16 +955,6 @@ public class OrchestrationPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EClass WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY = eINSTANCE.getWorkflowSerialOrchestrationStrategy();
-
-		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy <em>Workflow Parallel Orchestration Strategy</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy
-		 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowParallelOrchestrationStrategy()
-		 * @generated
-		 */
-		public static final EClass WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY = eINSTANCE.getWorkflowParallelOrchestrationStrategy();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy <em>Workflow Composite Orchestration Strategy</em>}' class.

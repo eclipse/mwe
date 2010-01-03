@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.*;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;

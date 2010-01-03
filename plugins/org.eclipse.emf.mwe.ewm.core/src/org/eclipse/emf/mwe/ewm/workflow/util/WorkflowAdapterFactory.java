@@ -14,7 +14,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.*;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponentProxy;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;

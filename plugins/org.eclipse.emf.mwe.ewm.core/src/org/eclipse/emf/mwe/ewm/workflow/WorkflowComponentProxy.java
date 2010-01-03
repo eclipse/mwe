@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowComponentProxy.java,v 1.2 2009/05/21 06:04:31 bhunt Exp $
+ * $Id: WorkflowComponentProxy.java,v 1.3 2010/01/03 21:25:13 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow;
 
@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
-import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -197,15 +196,6 @@ public class WorkflowComponentProxy extends WorkflowComponent
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#clearLog(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext)
-	 */
-	@Override
-	public void clearLog(WorkflowContext context)
-	{
-		getTargetComponent().clearLog(context);
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getComponentOrchestrationStrategy()
 	 */
 	@Override
@@ -224,75 +214,12 @@ public class WorkflowComponentProxy extends WorkflowComponent
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getExecutionInfo(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext)
-	 */
-	@Override
-	public WorkflowComponentExecutionInfo getExecutionInfo(WorkflowContext context)
-	{
-		return getTargetComponent().getExecutionInfo(context);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logDebug(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
-	 */
-	@Override
-	public void logDebug(WorkflowContext context, String message)
-	{
-		getTargetComponent().logDebug(context, message);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logError(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
-	 */
-	@Override
-	public void logError(WorkflowContext context, String message)
-	{
-		getTargetComponent().logError(context, message);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logException(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.Exception)
-	 */
-	@Override
-	public void logException(WorkflowContext context, Exception e)
-	{
-		getTargetComponent().logException(context, e);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logInfo(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
-	 */
-	@Override
-	public void logInfo(WorkflowContext context, String message)
-	{
-		getTargetComponent().logInfo(context, message);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#logWarning(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, java.lang.String)
-	 */
-	@Override
-	public void logWarning(WorkflowContext context, String message)
-	{
-		getTargetComponent().logWarning(context, message);
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getName()
 	 */
 	@Override
 	public String getName()
 	{
 		return getTargetComponent().getName();
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#getState(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext)
-	 */
-	@Override
-	public WorkflowState getState(WorkflowContext context)
-	{
-		return getTargetComponent().getState(context);
 	}
 
 	/* (non-Javadoc)
@@ -332,30 +259,12 @@ public class WorkflowComponentProxy extends WorkflowComponent
 	}
 
 	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#setExecutionInfo(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo)
-	 */
-	@Override
-	public void setExecutionInfo(WorkflowContext context, WorkflowComponentExecutionInfo executionInfo)
-	{
-		getTargetComponent().setExecutionInfo(context, executionInfo);
-	}
-
-	/* (non-Javadoc)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#setName(java.lang.String)
 	 */
 	@Override
 	public void setName(String newName)
 	{
 		getTargetComponent().setName(newName);
-	}
-
-	/* (non-Javadoc)
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent#SetState(org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext, org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState)
-	 */
-	@Override
-	public void setState(WorkflowContext context, WorkflowState state)
-	{
-		getTargetComponent().setState(context, state);
 	}
 
 	/* (non-Javadoc)

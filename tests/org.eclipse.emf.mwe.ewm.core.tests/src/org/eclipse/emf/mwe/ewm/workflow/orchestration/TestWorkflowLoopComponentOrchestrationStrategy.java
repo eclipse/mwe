@@ -56,7 +56,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 
 		parameter.setValue(getContext(), Boolean.FALSE);
 		getEngine().run();
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSkippedState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSkippedState.class)));
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 
 		parameter.setValue(getContext(), Boolean.TRUE);
 		getEngine().run();
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 		assertThat(component.getExecutionCount(), is(1));
 	}
 	
@@ -96,7 +96,7 @@ public class TestWorkflowLoopComponentOrchestrationStrategy extends WorkflowTest
 
 		loopCountParameter.setValue(getContext(), 3);
 		getEngine().run();
-		assertThat(component.getState(getContext()), is(instanceOf(WorkflowSuccessState.class)));
+		assertThat(getContext().getState(component), is(instanceOf(WorkflowSuccessState.class)));
 		assertThat(component.getExecutionCount(), is(3));
 	}
 	

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.5 2009/05/14 05:25:18 bhunt Exp $
+ * $Id: OrchestrationItemProviderAdapterFactory.java,v 1.6 2010/01/03 21:25:07 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration.provider;
 
@@ -113,31 +113,6 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 		}
 
 		return workflowSerialOrchestrationStrategyItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected WorkflowParallelOrchestrationStrategyItemProvider workflowParallelOrchestrationStrategyItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createWorkflowParallelOrchestrationStrategyAdapter()
-	{
-		if (workflowParallelOrchestrationStrategyItemProvider == null)
-		{
-			workflowParallelOrchestrationStrategyItemProvider = new WorkflowParallelOrchestrationStrategyItemProvider(this);
-		}
-
-		return workflowParallelOrchestrationStrategyItemProvider;
 	}
 
 	/**
@@ -457,7 +432,6 @@ public class OrchestrationItemProviderAdapterFactory extends OrchestrationAdapte
 	public void dispose()
 	{
 		if (workflowSerialOrchestrationStrategyItemProvider != null) workflowSerialOrchestrationStrategyItemProvider.dispose();
-		if (workflowParallelOrchestrationStrategyItemProvider != null) workflowParallelOrchestrationStrategyItemProvider.dispose();
 		if (workflowComponentOrchestrationStrategyItemProvider != null) workflowComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowLoopComponentOrchestrationStrategyItemProvider != null) workflowLoopComponentOrchestrationStrategyItemProvider.dispose();
 		if (workflowRerunPredicateItemProvider != null) workflowRerunPredicateItemProvider.dispose();

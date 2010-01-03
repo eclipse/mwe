@@ -14,14 +14,12 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.*;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR;
@@ -95,11 +93,6 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowSerialOrchestrationStrategy(WorkflowSerialOrchestrationStrategy object)
 			{
 				return createWorkflowSerialOrchestrationStrategyAdapter();
-			}
-			@Override
-			public Adapter caseWorkflowParallelOrchestrationStrategy(WorkflowParallelOrchestrationStrategy object)
-			{
-				return createWorkflowParallelOrchestrationStrategyAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowCompositeOrchestrationStrategy(WorkflowCompositeOrchestrationStrategy object)
@@ -179,21 +172,6 @@ public class OrchestrationAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowSerialOrchestrationStrategyAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy <em>Workflow Parallel Orchestration Strategy</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy
-	 * @generated
-	 */
-	public Adapter createWorkflowParallelOrchestrationStrategyAdapter()
 	{
 		return null;
 	}

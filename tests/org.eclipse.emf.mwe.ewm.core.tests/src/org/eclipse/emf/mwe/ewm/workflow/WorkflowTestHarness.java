@@ -24,7 +24,6 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.After;
 
 /**
@@ -136,8 +135,7 @@ public class WorkflowTestHarness
 	{
 		if (context == null)
 		{
-			context = RuntimeFactory.eINSTANCE.createWorkflowContext();
-			context.setEditingDomain(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain());
+			context = createWorkflowContext();
 			context.setLogLevel(WorkflowLogEntryType.INFO);
 		}
 		
@@ -155,6 +153,11 @@ public class WorkflowTestHarness
 		return engine;
 	}
 
+	protected WorkflowContext createWorkflowContext()
+	{
+		return RuntimeFactory.eINSTANCE.createWorkflowContext();
+	}
+	
 	private WorkflowEngine engine;
 	private WorkflowContext context;
 	private ArrayList<File> tempFiles = new ArrayList<File>();

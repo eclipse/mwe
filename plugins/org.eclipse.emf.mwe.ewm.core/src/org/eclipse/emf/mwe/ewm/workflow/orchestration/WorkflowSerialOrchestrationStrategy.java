@@ -56,7 +56,7 @@ public class WorkflowSerialOrchestrationStrategy extends WorkflowCompositeOrches
 		{
 			component.start(context);
 			
-			if(!(component.getState(context) instanceof WorkflowSuccessState))
+			if(!(context.getState(component) instanceof WorkflowSuccessState))
 				break;
 		}
 	}

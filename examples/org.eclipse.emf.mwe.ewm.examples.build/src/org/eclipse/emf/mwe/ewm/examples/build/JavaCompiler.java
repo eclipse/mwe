@@ -393,13 +393,13 @@ public class JavaCompiler extends WorkflowUnitOfWork
 		
 		try
 		{
-			logDebug(context, "Executing command: javac -cp " + command[2] + " " + command[3]);
+			context.logDebug(this, "Executing command: javac -cp " + command[2] + " " + command[3]);
 			Process process = Runtime.getRuntime().exec(command, null, workingDirectory);
 			rc = process.waitFor();
 		}
 		catch (Exception e)
 		{
-			logException(context, e);
+			context.logException(this, e);
 			return StateFactory.eINSTANCE.createWorkflowErrorState();
 		}
 		

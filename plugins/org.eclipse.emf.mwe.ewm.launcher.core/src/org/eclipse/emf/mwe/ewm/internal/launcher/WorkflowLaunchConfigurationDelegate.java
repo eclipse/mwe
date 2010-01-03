@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.mwe.ewm.launcher.IWorkflowLauncherConstants;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 public class WorkflowLaunchConfigurationDelegate implements ILaunchConfigurationDelegate
 {
@@ -83,7 +82,6 @@ public class WorkflowLaunchConfigurationDelegate implements ILaunchConfiguration
 		{
 			workflow = (WorkflowComponent) workflowResource.getContents().get(0);
 			context = (WorkflowContext) contextResource.getContents().get(0);
-			context.setEditingDomain(TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain());
 		}
 		catch (Exception e)
 		{

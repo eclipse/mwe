@@ -10,43 +10,6 @@
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
-    <eOperations name="clearLog">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-    </eOperations>
-    <eOperations name="logError">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eOperations>
-    <eOperations name="logWarning">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eOperations>
-    <eOperations name="logInfo">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eOperations>
-    <eOperations name="logDebug">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    </eOperations>
-    <eOperations name="logException">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="e" lowerBound="1" eType="#//runtime/Exception"/>
-    </eOperations>
-    <eOperations name="getState" eType="#//runtime/state/WorkflowState">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-    </eOperations>
-    <eOperations name="setState">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="state" eType="#//runtime/state/WorkflowState"/>
-    </eOperations>
-    <eOperations name="getExecutionInfo" eType="#//runtime/WorkflowComponentExecutionInfo">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-    </eOperations>
-    <eOperations name="setExecutionInfo">
-      <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      <eParameters name="executionInfo" eType="#//runtime/WorkflowComponentExecutionInfo"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -146,13 +109,6 @@
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="WorkflowParallelOrchestrationStrategy"
-        eSuperTypes="#//orchestration/WorkflowCompositeOrchestrationStrategy">
-      <eOperations name="run">
-        <eParameters name="composite" eType="#//WorkflowCompositeComponent"/>
-        <eParameters name="context" eType="#//runtime/WorkflowContext"/>
-      </eOperations>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowCompositeOrchestrationStrategy"
         abstract="true">
       <eOperations name="run">
@@ -232,16 +188,61 @@
   <eSubpackages name="runtime" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime"
       nsPrefix="org.eclipse.emf.mwe.ewm.workflow.runtime">
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowContext">
-      <eOperations name="reset">
-        <eParameters name="component" eType="#//WorkflowComponent"/>
-      </eOperations>
-      <eOperations name="resetState">
-        <eParameters name="component" eType="#//WorkflowComponent"/>
-      </eOperations>
-      <eOperations name="resetLog">
-        <eParameters name="component" eType="#//WorkflowComponent"/>
+      <eOperations name="clearLog">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
       </eOperations>
       <eOperations name="initializeState"/>
+      <eOperations name="getExecutionInfo" eType="#//runtime/WorkflowComponentExecutionInfo">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="getParameterValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"
+          eExceptions="#//runtime/WorkflowRuntimeException">
+        <eParameters name="parameter" lowerBound="1" eType="#//WorkflowParameter"/>
+      </eOperations>
+      <eOperations name="getState" eType="#//runtime/state/WorkflowState">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="logError">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logWarning">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logInfo">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logDebug">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="message" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      </eOperations>
+      <eOperations name="logException">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="exception" lowerBound="1" eType="#//runtime/Exception"/>
+      </eOperations>
+      <eOperations name="reset">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="resetState">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="resetLog">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+      </eOperations>
+      <eOperations name="setExecutionInfo">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="executionInfo" lowerBound="1" eType="#//runtime/WorkflowComponentExecutionInfo"/>
+      </eOperations>
+      <eOperations name="setParameterValue" eExceptions="#//runtime/WorkflowRuntimeException">
+        <eParameters name="parameter" lowerBound="1" eType="#//WorkflowParameter"/>
+        <eParameters name="value" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+      </eOperations>
+      <eOperations name="setState">
+        <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
+        <eParameters name="state" lowerBound="1" eType="#//runtime/state/WorkflowState"/>
+      </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
           eType="#//runtime/WorkflowParameterMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="#//runtime/ExecutorService"
@@ -258,8 +259,6 @@
           eType="#//WorkflowComponent"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="executionInfo" upperBound="-1"
           eType="#//runtime/WorkflowComponentExecutionInfoMap" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="editingDomain" lowerBound="1"
-          eType="#//runtime/TransactionalEditingDomain" transient="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowEngine" eSuperTypes="#//runtime/WorkflowRunnable">
       <eOperations name="run"/>
@@ -380,7 +379,6 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
           eType="#//runtime/WorkflowComponentExecutionInfo" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EDataType" name="TransactionalEditingDomain" instanceClassName="org.eclipse.emf.transaction.TransactionalEditingDomain"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"/>
     <eClassifiers xsi:type="ecore:EDataType" name="Timestamp" instanceClassName="java.sql.Timestamp"/>
     <eSubpackages name="state" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state"

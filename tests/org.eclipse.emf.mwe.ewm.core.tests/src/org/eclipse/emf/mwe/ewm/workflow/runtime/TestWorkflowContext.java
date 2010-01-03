@@ -93,9 +93,9 @@ public class TestWorkflowContext extends WorkflowTestHarness
 	public void testStateInitialization()
 	{
 		UnitOfWorkTestHarness component = createComponent("Component", 0, StateFactory.eINSTANCE.createWorkflowDoneState());
-		assertThat(component.getState(getContext()), is(nullValue()));
+		assertThat(getContext().getState(component), is(nullValue()));
 		getContext().setWorkflow(component);
 		getContext().initializeState();
-		assertThat(component.getState(getContext()), is(notNullValue()));
+		assertThat(getContext().getState(component), is(notNullValue()));
 	}
 }

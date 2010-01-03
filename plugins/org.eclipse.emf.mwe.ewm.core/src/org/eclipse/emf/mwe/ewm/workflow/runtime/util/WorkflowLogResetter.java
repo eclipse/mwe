@@ -31,7 +31,7 @@ public class WorkflowLogResetter extends WorkflowSwitch<Boolean>
 	@Override
 	public Boolean caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
 	{
-		object.clearLog(context);
+		context.clearLog(object);
 
 		for(WorkflowComponent component : object.getComponents())
 			doSwitch(component);
@@ -42,7 +42,7 @@ public class WorkflowLogResetter extends WorkflowSwitch<Boolean>
 	@Override
 	public Boolean caseWorkflowUnitOfWork(WorkflowUnitOfWork object)
 	{
-		object.clearLog(context);
+		context.clearLog(object);
 		return Boolean.TRUE;
 	}
 

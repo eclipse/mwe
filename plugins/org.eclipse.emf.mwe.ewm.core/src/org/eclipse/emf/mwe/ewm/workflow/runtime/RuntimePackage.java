@@ -26,7 +26,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -160,22 +159,13 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__EXECUTION_INFO = 7;
 
 	/**
-	 * The feature id for the '<em><b>Editing Domain</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKFLOW_CONTEXT__EDITING_DOMAIN = 8;
-
-	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 9;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -624,16 +614,6 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_RUNTIME_EXCEPTION = 14;
 
 	/**
-	 * The meta object id for the '<em>Transactional Editing Domain</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTransactionalEditingDomain()
-	 * @generated
-	 */
-	public static final int TRANSACTIONAL_EDITING_DOMAIN = 15;
-
-	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -641,7 +621,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getException()
 	 * @generated
 	 */
-	public static final int EXCEPTION = 16;
+	public static final int EXCEPTION = 15;
 
 	/**
 	 * The meta object id for the '<em>Timestamp</em>' data type.
@@ -651,7 +631,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTimestamp()
 	 * @generated
 	 */
-	public static final int TIMESTAMP = 17;
+	public static final int TIMESTAMP = 16;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -757,13 +737,6 @@ public class RuntimePackage extends EPackageImpl
 	 * @generated
 	 */
 	private EDataType workflowRuntimeExceptionEDataType = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EDataType transactionalEditingDomainEDataType = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -984,21 +957,6 @@ public class RuntimePackage extends EPackageImpl
 	public EReference getWorkflowContext_ExecutionInfo()
 	{
 		return (EReference)workflowContextEClass.getEStructuralFeatures().get(7);
-	}
-
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain <em>Editing Domain</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Editing Domain</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getEditingDomain()
-	 * @see #getWorkflowContext()
-	 * @generated
-	 */
-	public EAttribute getWorkflowContext_EditingDomain()
-	{
-		return (EAttribute)workflowContextEClass.getEStructuralFeatures().get(8);
 	}
 
 
@@ -1552,21 +1510,6 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.transaction.TransactionalEditingDomain <em>Transactional Editing Domain</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Transactional Editing Domain</em>'.
-	 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
-	 * @model instanceClass="org.eclipse.emf.transaction.TransactionalEditingDomain"
-	 * @generated
-	 */
-	public EDataType getTransactionalEditingDomain()
-	{
-		return transactionalEditingDomainEDataType;
-	}
-
-
-	/**
 	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1637,7 +1580,6 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__WORKFLOW);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__EXECUTION_INFO);
-		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__EDITING_DOMAIN);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -1690,7 +1632,6 @@ public class RuntimePackage extends EPackageImpl
 		// Create data types
 		executorServiceEDataType = createEDataType(EXECUTOR_SERVICE);
 		workflowRuntimeExceptionEDataType = createEDataType(WORKFLOW_RUNTIME_EXCEPTION);
-		transactionalEditingDomainEDataType = createEDataType(TRANSACTIONAL_EDITING_DOMAIN);
 		exceptionEDataType = createEDataType(EXCEPTION);
 		timestampEDataType = createEDataType(TIMESTAMP);
 	}
@@ -1745,18 +1686,63 @@ public class RuntimePackage extends EPackageImpl
 		initEReference(getWorkflowContext_Workflow(), theWorkflowPackage.getWorkflowComponent(), null, "workflow", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ActiveComponents(), theWorkflowPackage.getWorkflowComponent(), null, "activeComponents", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ExecutionInfo(), this.getWorkflowComponentExecutionInfoMap(), null, "executionInfo", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getWorkflowContext_EditingDomain(), this.getTransactionalEditingDomain(), "editingDomain", null, 1, 1, WorkflowContext.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowContextEClass, null, "resetState", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowContextEClass, null, "resetLog", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(workflowContextEClass, null, "clearLog", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(workflowContextEClass, null, "initializeState", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, this.getWorkflowComponentExecutionInfo(), "getExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, theEcorePackage.getEJavaObject(), "getParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getWorkflowRuntimeException());
+
+		op = addEOperation(workflowContextEClass, theStatePackage.getWorkflowState(), "getState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "logError", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "logWarning", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "logInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "logDebug", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "logException", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getException(), "exception", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "reset", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "resetState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "resetLog", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "setExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getWorkflowComponentExecutionInfo(), "executionInfo", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowContextEClass, null, "setParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEJavaObject(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, this.getWorkflowRuntimeException());
+
+		op = addEOperation(workflowContextEClass, null, "setState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theStatePackage.getWorkflowState(), "state", 1, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowEngineEClass, WorkflowEngine.class, "WorkflowEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowEngine_Workflow(), theWorkflowPackage.getWorkflowComponent(), null, "workflow", null, 1, 1, WorkflowEngine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1840,7 +1826,6 @@ public class RuntimePackage extends EPackageImpl
 		// Initialize data types
 		initEDataType(executorServiceEDataType, ExecutorService.class, "ExecutorService", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(workflowRuntimeExceptionEDataType, WorkflowRuntimeException.class, "WorkflowRuntimeException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
-		initEDataType(transactionalEditingDomainEDataType, TransactionalEditingDomain.class, "TransactionalEditingDomain", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(exceptionEDataType, Exception.class, "Exception", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(timestampEDataType, Timestamp.class, "Timestamp", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
@@ -1982,14 +1967,6 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_CONTEXT__EXECUTION_INFO = eINSTANCE.getWorkflowContext_ExecutionInfo();
-
-		/**
-		 * The meta object literal for the '<em><b>Editing Domain</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public static final EAttribute WORKFLOW_CONTEXT__EDITING_DOMAIN = eINSTANCE.getWorkflowContext_EditingDomain();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -2314,16 +2291,6 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EDataType WORKFLOW_RUNTIME_EXCEPTION = eINSTANCE.getWorkflowRuntimeException();
-
-		/**
-		 * The meta object literal for the '<em>Transactional Editing Domain</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.transaction.TransactionalEditingDomain
-		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTransactionalEditingDomain()
-		 * @generated
-		 */
-		public static final EDataType TRANSACTIONAL_EDITING_DOMAIN = eINSTANCE.getTransactionalEditingDomain();
 
 		/**
 		 * The meta object literal for the '<em>Exception</em>' data type.

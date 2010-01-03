@@ -62,8 +62,8 @@ public class WorkflowStateResolutionStrategy extends EObjectImpl implements EObj
 	{
 		for(WorkflowComponent component : workflow.getComponents())
 		{
-			if(!(component.getState(context) instanceof WorkflowSuccessState))
-				return (WorkflowState) StateFactory.eINSTANCE.create(component.getState(context).eClass());
+			if(!(context.getState(component) instanceof WorkflowSuccessState))
+				return (WorkflowState) StateFactory.eINSTANCE.create(context.getState(component).eClass());
 		}
 		
 		return StateFactory.eINSTANCE.createWorkflowSuccessState();

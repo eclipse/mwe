@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowCompositeComponentItemProvider.java,v 1.4 2009/04/25 04:21:32 bhunt Exp $
+ * $Id: WorkflowCompositeComponentItemProvider.java,v 1.5 2010/01/03 21:25:08 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.provider;
 
@@ -188,11 +188,6 @@ public class WorkflowCompositeComponentItemProvider
 			(createChildParameter
 				(WorkflowPackage.Literals.WORKFLOW_COMPOSITE_COMPONENT__COMPOSITE_ORCHESTRATION_STRATEGY,
 				 OrchestrationFactory.eINSTANCE.createWorkflowSerialOrchestrationStrategy()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(WorkflowPackage.Literals.WORKFLOW_COMPOSITE_COMPONENT__COMPOSITE_ORCHESTRATION_STRATEGY,
-				 OrchestrationFactory.eINSTANCE.createWorkflowParallelOrchestrationStrategy()));
 
 		newChildDescriptors.add
 			(createChildParameter

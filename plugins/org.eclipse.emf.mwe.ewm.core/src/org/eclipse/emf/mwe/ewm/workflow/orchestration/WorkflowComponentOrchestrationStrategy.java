@@ -215,7 +215,7 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 		
 		if(condition != null && !condition.evaluate(component, context))
 		{
-			component.setState(context, StateFactory.eINSTANCE.createWorkflowSkippedState());
+			context.setState(component, StateFactory.eINSTANCE.createWorkflowSkippedState());
 			return;
 		}
 
@@ -225,16 +225,16 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 			return;
 		}
 		
-		component.setState(context, StateFactory.eINSTANCE.createWorkflowRunningState());
+		context.setState(component, StateFactory.eINSTANCE.createWorkflowRunningState());
 		
 		try
 		{
-			component.setState(context, component.run(context));
+			context.setState(component, component.run(context));
 		}
 		catch (Exception e)
 		{
-			component.logException(context, e);
-			component.setState(context, StateFactory.eINSTANCE.createWorkflowErrorState());
+			context.logException(component, e);
+			context.setState(component, StateFactory.eINSTANCE.createWorkflowErrorState());
 		}
 	}
 

@@ -396,13 +396,13 @@ public class JavaJar extends WorkflowUnitOfWork
 		
 		try
 		{
-			logDebug(context, "Executing command: jar -cf " + command[2] + " " + command[3]);
+			context.logDebug(this, "Executing command: jar -cf " + command[2] + " " + command[3]);
 			Process process = Runtime.getRuntime().exec(command, null, workingDirectory);
 			rc = process.waitFor();
 		}
 		catch (Exception e)
 		{
-			logException(context, e);
+			context.logException(this, e);
 			return StateFactory.eINSTANCE.createWorkflowErrorState();
 		}
 		

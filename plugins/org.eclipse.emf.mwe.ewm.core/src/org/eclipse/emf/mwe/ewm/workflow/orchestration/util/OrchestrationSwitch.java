@@ -14,14 +14,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.*;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowExecutionPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopComponentOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowLoopCountPredicate;
-import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParallelOrchestrationStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowParameterPredicate;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateAND;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowPredicateOR;
@@ -119,14 +117,6 @@ public class OrchestrationSwitch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY:
-			{
-				WorkflowParallelOrchestrationStrategy workflowParallelOrchestrationStrategy = (WorkflowParallelOrchestrationStrategy)theEObject;
-				T result = caseWorkflowParallelOrchestrationStrategy(workflowParallelOrchestrationStrategy);
-				if (result == null) result = caseWorkflowCompositeOrchestrationStrategy(workflowParallelOrchestrationStrategy);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OrchestrationPackage.WORKFLOW_COMPOSITE_ORCHESTRATION_STRATEGY:
 			{
 				WorkflowCompositeOrchestrationStrategy workflowCompositeOrchestrationStrategy = (WorkflowCompositeOrchestrationStrategy)theEObject;
@@ -212,22 +202,6 @@ public class OrchestrationSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowSerialOrchestrationStrategy(WorkflowSerialOrchestrationStrategy object)
-	{
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Workflow Parallel Orchestration Strategy</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Workflow Parallel Orchestration Strategy</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkflowParallelOrchestrationStrategy(WorkflowParallelOrchestrationStrategy object)
 	{
 		return null;
 	}

@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowParameterPredicate.java,v 1.3 2009/05/21 06:04:30 bhunt Exp $
+ * $Id: WorkflowParameterPredicate.java,v 1.4 2010/01/03 21:25:13 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.orchestration;
 
@@ -198,7 +198,7 @@ public class WorkflowParameterPredicate extends WorkflowExecutionPredicate
 		}
 		catch (WorkflowRuntimeException e)
 		{
-			component.logException(context, e);
+			context.logException(component, e);
 		}
 		
 		return false;

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id: plugin.xml,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/transaction"
+            class="org.eclipse.emf.mwe.ewm.workflow.transaction.TransactionPackage"
+            genModel="model/transaction.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/transaction/runtime"
+            class="org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage"
+            genModel="model/transaction.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="runtime"
+            class="org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.util.RuntimeResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/emf/mwe/ewm/workflow/transaction/orchestration"
+            class="org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration.OrchestrationPackage"
+            genModel="model/transaction.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="orchestration"
+            class="org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration.util.OrchestrationResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

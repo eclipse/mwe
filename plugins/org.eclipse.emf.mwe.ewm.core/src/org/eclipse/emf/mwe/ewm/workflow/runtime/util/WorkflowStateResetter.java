@@ -17,14 +17,14 @@ public class WorkflowStateResetter extends WorkflowSwitch<Boolean>
 	@Override
 	public Boolean caseWorkflowUnitOfWork(WorkflowUnitOfWork object)
 	{
-		object.setState(context, StateFactory.eINSTANCE.createWorkflowIdleState());
+		context.setState(object, StateFactory.eINSTANCE.createWorkflowIdleState());
 		return Boolean.TRUE;
 	}
 
 	@Override
 	public Boolean caseWorkflowCompositeComponent(WorkflowCompositeComponent object)
 	{
-		object.setState(context, StateFactory.eINSTANCE.createWorkflowIdleState());
+		context.setState(object, StateFactory.eINSTANCE.createWorkflowIdleState());
 
 		for(WorkflowComponent component : object.getComponents())
 			doSwitch(component);

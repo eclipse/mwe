@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowContextItemProvider.java,v 1.5 2009/05/14 04:12:25 bhunt Exp $
+ * $Id: WorkflowContextItemProvider.java,v 1.6 2010/01/03 21:25:07 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -73,7 +73,6 @@ public class WorkflowContextItemProvider
 			addLogLevelPropertyDescriptor(object);
 			addWorkflowPropertyDescriptor(object);
 			addActiveComponentsPropertyDescriptor(object);
-			addEditingDomainPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -171,29 +170,6 @@ public class WorkflowContextItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Editing Domain feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addEditingDomainPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkflowContext_editingDomain_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowContext_editingDomain_feature", "_UI_WorkflowContext_type"),
-				 RuntimePackage.Literals.WORKFLOW_CONTEXT__EDITING_DOMAIN,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -273,7 +249,6 @@ public class WorkflowContextItemProvider
 		{
 			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
-			case RuntimePackage.WORKFLOW_CONTEXT__EDITING_DOMAIN:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:

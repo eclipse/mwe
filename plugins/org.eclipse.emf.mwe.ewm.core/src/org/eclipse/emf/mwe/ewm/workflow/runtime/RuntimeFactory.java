@@ -23,7 +23,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,8 +119,6 @@ public class RuntimeFactory extends EFactoryImpl
 				return createExecutorServiceFromString(eDataType, initialValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:
 				return createWorkflowRuntimeExceptionFromString(eDataType, initialValue);
-			case RuntimePackage.TRANSACTIONAL_EDITING_DOMAIN:
-				return createTransactionalEditingDomainFromString(eDataType, initialValue);
 			case RuntimePackage.EXCEPTION:
 				return createExceptionFromString(eDataType, initialValue);
 			case RuntimePackage.TIMESTAMP:
@@ -147,8 +144,6 @@ public class RuntimeFactory extends EFactoryImpl
 				return convertExecutorServiceToString(eDataType, instanceValue);
 			case RuntimePackage.WORKFLOW_RUNTIME_EXCEPTION:
 				return convertWorkflowRuntimeExceptionToString(eDataType, instanceValue);
-			case RuntimePackage.TRANSACTIONAL_EDITING_DOMAIN:
-				return convertTransactionalEditingDomainToString(eDataType, instanceValue);
 			case RuntimePackage.EXCEPTION:
 				return convertExceptionToString(eDataType, instanceValue);
 			case RuntimePackage.TIMESTAMP:
@@ -348,26 +343,6 @@ public class RuntimeFactory extends EFactoryImpl
 	 * @generated
 	 */
 	public String convertWorkflowRuntimeExceptionToString(EDataType eDataType, Object instanceValue)
-	{
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public TransactionalEditingDomain createTransactionalEditingDomainFromString(EDataType eDataType, String initialValue)
-	{
-		return (TransactionalEditingDomain)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertTransactionalEditingDomainToString(EDataType eDataType, Object instanceValue)
 	{
 		return super.convertToString(eDataType, instanceValue);
 	}

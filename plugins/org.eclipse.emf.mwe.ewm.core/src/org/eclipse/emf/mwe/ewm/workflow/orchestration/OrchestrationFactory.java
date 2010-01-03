@@ -79,7 +79,6 @@ public class OrchestrationFactory extends EFactoryImpl
 		switch (eClass.getClassifierID())
 		{
 			case OrchestrationPackage.WORKFLOW_SERIAL_ORCHESTRATION_STRATEGY: return createWorkflowSerialOrchestrationStrategy();
-			case OrchestrationPackage.WORKFLOW_PARALLEL_ORCHESTRATION_STRATEGY: return createWorkflowParallelOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_LOOP_COMPONENT_ORCHESTRATION_STRATEGY: return createWorkflowLoopComponentOrchestrationStrategy();
 			case OrchestrationPackage.WORKFLOW_RERUN_PREDICATE: return createWorkflowRerunPredicate();
@@ -101,17 +100,6 @@ public class OrchestrationFactory extends EFactoryImpl
 	{
 		WorkflowSerialOrchestrationStrategy workflowSerialOrchestrationStrategy = new WorkflowSerialOrchestrationStrategy();
 		return workflowSerialOrchestrationStrategy;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public WorkflowParallelOrchestrationStrategy createWorkflowParallelOrchestrationStrategy()
-	{
-		WorkflowParallelOrchestrationStrategy workflowParallelOrchestrationStrategy = new WorkflowParallelOrchestrationStrategy();
-		return workflowParallelOrchestrationStrategy;
 	}
 
 	/**
