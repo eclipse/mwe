@@ -1,72 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mwe.ewm.workflow="http://www.eclipse.org/emf/mwe/ewm/workflow" xmlns:org.eclipse.emf.mwe.ewm.workflow.examples.build="http://www.eclipse.org/emf/mwe/ewm/workflow/examples/build" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime.state="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state" logLevel="DEBUG">
   <parameters>
-    <key href="build.workflow#//@components.0/@parameters.2"/>
+    <key href="build.workflow#//@components.0/@classNameParameter"/>
     <value xsi:type="ecore:EString">Bye</value>
   </parameters>
   <parameters>
-    <key href="build.workflow#//@components.0/@parameters.1"/>
+    <key href="build.workflow#//@components.0/@classpathParameter"/>
     <value xsi:type="ecore:EString">.</value>
   </parameters>
   <parameters>
-    <key href="build.workflow#//@components.0/@parameters.0"/>
+    <key href="build.workflow#//@components.0/@workingDirectoryParameter"/>
     <value xsi:type="ecore:EString">/tmp/build</value>
   </parameters>
   <parameters>
-    <key href="build.workflow#//@components.1/@parameters.1"/>
+    <key href="build.workflow#//@components.1/@outputFileParameter"/>
     <value xsi:type="ecore:EString">bye.jar</value>
   </parameters>
   <parameters>
-    <key href="build.workflow#//@components.2/@parameters.0"/>
+    <key href="build.workflow#//@components.2/@outputFileParameter"/>
     <value xsi:type="ecore:EString">bye.zip</value>
   </parameters>
-  <states>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="build.workflow#/"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2009-10-15 16:41:30.104"/>
-  </states>
-  <states>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaCompiler" href="build.workflow#//@components.0"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2009-10-15 16:41:30.104"/>
-  </states>
-  <states>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaJar" href="build.workflow#//@components.1"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2009-10-15 16:41:30.105"/>
-  </states>
-  <states>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:ZipFile" href="build.workflow#//@components.2"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2009-10-15 16:41:30.105"/>
-  </states>
-  <log>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="build.workflow#/"/>
-    <value logLevel="DEBUG"/>
-  </log>
-  <log>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaCompiler" href="build.workflow#//@components.0"/>
-    <value logLevel="DEBUG"/>
-  </log>
-  <log>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaJar" href="build.workflow#//@components.1"/>
-    <value logLevel="DEBUG"/>
-  </log>
-  <log>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:ZipFile" href="build.workflow#//@components.2"/>
-    <value logLevel="DEBUG"/>
-  </log>
   <workflow xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="build.workflow#/"/>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaCompiler" href="build.workflow#//@components.0"/>
-    <value startTime="2009-10-15 13:55:13.467" endTime="2009-10-15 13:55:14.116"/>
-  </executionInfo>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaJar" href="build.workflow#//@components.1"/>
-    <value startTime="2009-10-15 13:55:14.117" endTime="2009-10-15 13:55:14.375"/>
-  </executionInfo>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:ZipFile" href="build.workflow#//@components.2"/>
-    <value startTime="2009-10-15 13:55:14.376" endTime="2009-10-15 13:55:14.425"/>
-  </executionInfo>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="build.workflow#/"/>
-    <value startTime="2009-10-15 13:55:13.452" endTime="2009-10-15 13:55:14.427"/>
-  </executionInfo>
 </org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext>

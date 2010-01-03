@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mwe.ewm.workflow="http://www.eclipse.org/emf/mwe/ewm/workflow" xmlns:org.eclipse.emf.mwe.ewm.workflow.examples.build="http://www.eclipse.org/emf/mwe/ewm/workflow/examples/build" xmlns:org.eclipse.emf.mwe.ewm.workflow.orchestration="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration" name="Java Build" type="">
   <componentOrchestrationStrategy/>
-  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaCompiler" name="Java Compiler" classNameParameter="//@components.0/@parameters.2" classpathParameter="//@components.0/@parameters.1" workingDirectoryParameter="//@components.0/@parameters.0">
+  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaCompiler" name="Java Compiler">
     <componentOrchestrationStrategy/>
-    <parameters name="Java Compiler Working Directory" required="true" direction="IN">
+    <classNameParameter name="Java Compiler Class Name" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Java Compiler Classpath" required="true" direction="IN">
+    </classNameParameter>
+    <classpathParameter name="Java Compiler Classpath" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Java Compiler Class Name" required="true" direction="IN">
+    </classpathParameter>
+    <workingDirectoryParameter name="Java Compiler Working Directory" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
+    </workingDirectoryParameter>
   </components>
-  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaJar" name="Java Jar" classNameParameter="//@components.1/@parameters.2" workingDirectoryParameter="//@components.1/@parameters.0" outputFileParameter="//@components.1/@parameters.1">
+  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:JavaJar" name="Java Jar">
     <componentOrchestrationStrategy/>
-    <parameters name="Java Jar Working Directory" connection="//@connections.1" required="true" direction="IN">
+    <classNameParameter name="Java Jar Class Name" connection="//@connections.2" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Java Jar Output FIle Name" required="true">
+    </classNameParameter>
+    <workingDirectoryParameter name="Java Jar Working Directory" connection="//@connections.1" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Java Jar Class Name" connection="//@connections.2" required="true" direction="IN">
+    </workingDirectoryParameter>
+    <outputFileParameter name="Java Jar Output FIle Name" required="true">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
+    </outputFileParameter>
   </components>
-  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:ZipFile" name="Zip File" type="" workingDirectoryParameter="//@components.2/@parameters.2" inputFileParameter="//@components.2/@parameters.1" outputFileParameter="//@components.2/@parameters.0">
+  <components xsi:type="org.eclipse.emf.mwe.ewm.workflow.examples.build:ZipFile" name="Zip File">
     <componentOrchestrationStrategy/>
-    <parameters name="Zip Output FIle Name" required="true">
+    <workingDirectoryParameter name="Zip Working Directory" connection="//@connections.1" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Zip Input FIle Name" connection="//@connections.0" required="true" direction="IN">
+    </workingDirectoryParameter>
+    <inputFileParameter name="Zip Input FIle Name" connection="//@connections.0" required="true" direction="IN">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="Zip Working Directory" connection="//@connections.1" required="true" direction="IN">
+    </inputFileParameter>
+    <outputFileParameter name="Zip Output FIle Name" required="true">
       <type xsi:type="ecore:EDataType" href="../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
+    </outputFileParameter>
   </components>
   <compositeOrchestrationStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow.orchestration:WorkflowSerialOrchestrationStrategy"/>
-  <connections sourceParameter="//@components.1/@parameters.1" targetParameters="//@components.2/@parameters.1"/>
-  <connections sourceParameter="//@components.0/@parameters.0" targetParameters="//@components.1/@parameters.0 //@components.2/@parameters.2"/>
-  <connections sourceParameter="//@components.0/@parameters.2" targetParameters="//@components.1/@parameters.2"/>
+  <connections sourceParameter="//@components.1/@outputFileParameter" targetParameters="//@components.2/@inputFileParameter"/>
+  <connections sourceParameter="//@components.0/@workingDirectoryParameter" targetParameters="//@components.1/@workingDirectoryParameter //@components.2/@workingDirectoryParameter"/>
+  <connections sourceParameter="//@components.0/@classNameParameter" targetParameters="//@components.1/@classNameParameter"/>
   <stateResolutionStrategy/>
 </org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent>

@@ -20,41 +20,5 @@
     <key href="My.workflow#//@components.1/@outputMessage"/>
     <value xsi:type="ecore:EString">Hello workflow world</value>
   </parameters>
-  <states>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.365"/>
-  </states>
-  <states>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.366"/>
-  </states>
-  <states>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
-    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.366"/>
-  </states>
-  <log>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
-    <value/>
-  </log>
-  <log>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
-    <value/>
-  </log>
-  <log>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
-    <value/>
-  </log>
   <workflow xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
-    <value startTime="2010-01-03 10:10:30.89" endTime="2010-01-03 10:10:30.892"/>
-  </executionInfo>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
-    <value startTime="2010-01-03 10:10:30.893" endTime="2010-01-03 10:10:30.895"/>
-  </executionInfo>
-  <executionInfo>
-    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
-    <value startTime="2010-01-03 10:10:30.881" endTime="2010-01-03 10:10:30.896"/>
-  </executionInfo>
 </org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext>
