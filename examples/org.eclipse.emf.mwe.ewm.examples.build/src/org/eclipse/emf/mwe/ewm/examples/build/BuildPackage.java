@@ -119,16 +119,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_COMPILER__COMPONENT_ORCHESTRATION_STRATEGY = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int JAVA_COMPILER__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Class Name Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Class Name Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -137,7 +128,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_COMPILER__CLASS_NAME_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Classpath Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Classpath Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -146,7 +137,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_COMPILER__CLASSPATH_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -210,16 +201,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_JAR__COMPONENT_ORCHESTRATION_STRATEGY = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int JAVA_JAR__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Class Name Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Class Name Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -228,7 +210,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_JAR__CLASS_NAME_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -237,7 +219,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int JAVA_JAR__WORKING_DIRECTORY_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Output File Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Output File Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -301,16 +283,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int ZIP_FILE__COMPONENT_ORCHESTRATION_STRATEGY = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int ZIP_FILE__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Working Directory Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -319,7 +292,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int ZIP_FILE__WORKING_DIRECTORY_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Input File Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Input File Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -328,7 +301,7 @@ public class BuildPackage extends EPackageImpl
 	public static final int ZIP_FILE__INPUT_FILE_PARAMETER = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Output File Parameter</b></em>' reference.
+	 * The feature id for the '<em><b>Output File Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -447,10 +420,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClassNameParameter <em>Class Name Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClassNameParameter <em>Class Name Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Class Name Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Class Name Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClassNameParameter()
 	 * @see #getJavaCompiler()
 	 * @generated
@@ -461,10 +434,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClasspathParameter <em>Classpath Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClasspathParameter <em>Classpath Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Classpath Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Classpath Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClasspathParameter()
 	 * @see #getJavaCompiler()
 	 * @generated
@@ -475,10 +448,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Working Directory Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Working Directory Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getWorkingDirectoryParameter()
 	 * @see #getJavaCompiler()
 	 * @generated
@@ -502,10 +475,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getClassNameParameter <em>Class Name Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getClassNameParameter <em>Class Name Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Class Name Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Class Name Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getClassNameParameter()
 	 * @see #getJavaJar()
 	 * @generated
@@ -516,10 +489,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Working Directory Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Working Directory Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getWorkingDirectoryParameter()
 	 * @see #getJavaJar()
 	 * @generated
@@ -530,10 +503,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getOutputFileParameter <em>Output File Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getOutputFileParameter <em>Output File Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Output File Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Output File Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.JavaJar#getOutputFileParameter()
 	 * @see #getJavaJar()
 	 * @generated
@@ -557,10 +530,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Working Directory Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Working Directory Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getWorkingDirectoryParameter()
 	 * @see #getZipFile()
 	 * @generated
@@ -571,10 +544,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getInputFileParameter <em>Input File Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getInputFileParameter <em>Input File Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Input File Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Input File Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getInputFileParameter()
 	 * @see #getZipFile()
 	 * @generated
@@ -585,10 +558,10 @@ public class BuildPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getOutputFileParameter <em>Output File Parameter</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getOutputFileParameter <em>Output File Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Output File Parameter</em>'.
+	 * @return the meta object for the containment reference '<em>Output File Parameter</em>'.
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getOutputFileParameter()
 	 * @see #getZipFile()
 	 * @generated
@@ -686,25 +659,25 @@ public class BuildPackage extends EPackageImpl
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(javaCompilerEClass, JavaCompiler.class, "JavaCompiler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJavaCompiler_ClassNameParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classNameParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJavaCompiler_ClasspathParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classpathParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJavaCompiler_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaCompiler_ClassNameParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classNameParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaCompiler_ClasspathParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classpathParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaCompiler_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, JavaCompiler.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(javaCompilerEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(javaJarEClass, JavaJar.class, "JavaJar", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJavaJar_ClassNameParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classNameParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJavaJar_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJavaJar_OutputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "outputFileParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaJar_ClassNameParameter(), theWorkflowPackage.getWorkflowParameter(), null, "classNameParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaJar_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getJavaJar_OutputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "outputFileParameter", null, 1, 1, JavaJar.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(javaJarEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(zipFileEClass, ZipFile.class, "ZipFile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getZipFile_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getZipFile_InputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "inputFileParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getZipFile_OutputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "outputFileParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getZipFile_WorkingDirectoryParameter(), theWorkflowPackage.getWorkflowParameter(), null, "workingDirectoryParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getZipFile_InputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "inputFileParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getZipFile_OutputFileParameter(), theWorkflowPackage.getWorkflowParameter(), null, "outputFileParameter", null, 1, 1, ZipFile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(zipFileEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -738,7 +711,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EClass JAVA_COMPILER = eINSTANCE.getJavaCompiler();
 
 		/**
-		 * The meta object literal for the '<em><b>Class Name Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Class Name Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -746,7 +719,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference JAVA_COMPILER__CLASS_NAME_PARAMETER = eINSTANCE.getJavaCompiler_ClassNameParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Classpath Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Classpath Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -754,7 +727,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference JAVA_COMPILER__CLASSPATH_PARAMETER = eINSTANCE.getJavaCompiler_ClasspathParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -772,7 +745,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EClass JAVA_JAR = eINSTANCE.getJavaJar();
 
 		/**
-		 * The meta object literal for the '<em><b>Class Name Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Class Name Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -780,7 +753,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference JAVA_JAR__CLASS_NAME_PARAMETER = eINSTANCE.getJavaJar_ClassNameParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -788,7 +761,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference JAVA_JAR__WORKING_DIRECTORY_PARAMETER = eINSTANCE.getJavaJar_WorkingDirectoryParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Output File Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Output File Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -806,7 +779,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EClass ZIP_FILE = eINSTANCE.getZipFile();
 
 		/**
-		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Working Directory Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -814,7 +787,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference ZIP_FILE__WORKING_DIRECTORY_PARAMETER = eINSTANCE.getZipFile_WorkingDirectoryParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Input File Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Input File Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -822,7 +795,7 @@ public class BuildPackage extends EPackageImpl
 		public static final EReference ZIP_FILE__INPUT_FILE_PARAMETER = eINSTANCE.getZipFile_InputFileParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Output File Parameter</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Output File Parameter</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime">
+<org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mew.ewm.examples.concat="http://www.eclipse.org/emf/mwe/ewm/examples/concat" xmlns:org.eclipse.emf.mwe.ewm.workflow="http://www.eclipse.org/emf/mwe/ewm/workflow" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime" xmlns:org.eclipse.emf.mwe.ewm.workflow.runtime.state="http://www.eclipse.org/emf/mwe/ewm/workflow/runtime/state">
   <parameters>
-    <key href="My.workflow#//@components.0/@parameters.1"/>
+    <key href="My.workflow#//@components.0/@inputMessage"/>
     <value xsi:type="ecore:EString">Hello</value>
   </parameters>
   <parameters>
-    <key href="My.workflow#//@components.0/@parameters.0"/>
+    <key href="My.workflow#//@components.0/@inputAppendMessage"/>
     <value xsi:type="ecore:EString">workflow</value>
   </parameters>
   <parameters>
-    <key href="My.workflow#//@components.1/@parameters.0"/>
+    <key href="My.workflow#//@components.1/@inputAppendMessage"/>
     <value xsi:type="ecore:EString">world</value>
   </parameters>
+  <parameters>
+    <key href="My.workflow#//@components.0/@outputMessage"/>
+    <value xsi:type="ecore:EString">Hello workflow</value>
+  </parameters>
+  <parameters>
+    <key href="My.workflow#//@components.1/@outputMessage"/>
+    <value xsi:type="ecore:EString">Hello workflow world</value>
+  </parameters>
+  <states>
+    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
+    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.365"/>
+  </states>
+  <states>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
+    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.366"/>
+  </states>
+  <states>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
+    <value xsi:type="org.eclipse.emf.mwe.ewm.workflow.runtime.state:WorkflowIdleState" timestamp="2010-01-03 10:11:06.366"/>
+  </states>
+  <log>
+    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
+    <value/>
+  </log>
+  <log>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
+    <value/>
+  </log>
+  <log>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
+    <value/>
+  </log>
+  <workflow xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
+  <executionInfo>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.0"/>
+    <value startTime="2010-01-03 10:10:30.89" endTime="2010-01-03 10:10:30.892"/>
+  </executionInfo>
+  <executionInfo>
+    <key xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" href="My.workflow#//@components.1"/>
+    <value startTime="2010-01-03 10:10:30.893" endTime="2010-01-03 10:10:30.895"/>
+  </executionInfo>
+  <executionInfo>
+    <key xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent" href="My.workflow#/"/>
+    <value startTime="2010-01-03 10:10:30.881" endTime="2010-01-03 10:10:30.896"/>
+  </executionInfo>
 </org.eclipse.emf.mwe.ewm.workflow.runtime:WorkflowContext>

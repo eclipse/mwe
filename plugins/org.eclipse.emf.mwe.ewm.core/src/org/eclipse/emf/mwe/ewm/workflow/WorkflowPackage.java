@@ -273,22 +273,13 @@ public class WorkflowPackage extends EPackageImpl
 	public static final int WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY = WORKFLOW_COMPONENT__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKFLOW_UNIT_OF_WORK__PARAMETERS = WORKFLOW_COMPONENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The number of structural features of the '<em>Unit Of Work</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT = WORKFLOW_COMPONENT_FEATURE_COUNT + 1;
+	public static final int WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT = WORKFLOW_COMPONENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter <em>Parameter</em>}' class.
@@ -837,21 +828,6 @@ public class WorkflowPackage extends EPackageImpl
 
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork#getParameters <em>Parameters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork#getParameters()
-	 * @see #getWorkflowUnitOfWork()
-	 * @generated
-	 */
-	public EReference getWorkflowUnitOfWork_Parameters()
-	{
-		return (EReference)workflowUnitOfWorkEClass.getEStructuralFeatures().get(0);
-	}
-
-
-	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1131,7 +1107,6 @@ public class WorkflowPackage extends EPackageImpl
 		createEReference(workflowCompositeComponentEClass, WORKFLOW_COMPOSITE_COMPONENT__STATE_RESOLUTION_STRATEGY);
 
 		workflowUnitOfWorkEClass = createEClass(WORKFLOW_UNIT_OF_WORK);
-		createEReference(workflowUnitOfWorkEClass, WORKFLOW_UNIT_OF_WORK__PARAMETERS);
 
 		workflowParameterEClass = createEClass(WORKFLOW_PARAMETER);
 		createEAttribute(workflowParameterEClass, WORKFLOW_PARAMETER__NAME);
@@ -1264,7 +1239,6 @@ public class WorkflowPackage extends EPackageImpl
 		addEException(op, theRuntimePackage.getWorkflowRuntimeException());
 
 		initEClass(workflowUnitOfWorkEClass, WorkflowUnitOfWork.class, "WorkflowUnitOfWork", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkflowUnitOfWork_Parameters(), this.getWorkflowParameter(), null, "parameters", null, 0, -1, WorkflowUnitOfWork.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowUnitOfWorkEClass, theStatePackage.getWorkflowState(), "run", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1446,14 +1420,6 @@ public class WorkflowPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EClass WORKFLOW_UNIT_OF_WORK = eINSTANCE.getWorkflowUnitOfWork();
-
-		/**
-		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public static final EReference WORKFLOW_UNIT_OF_WORK__PARAMETERS = eINSTANCE.getWorkflowUnitOfWork_Parameters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter <em>Parameter</em>}' class.

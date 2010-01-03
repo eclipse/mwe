@@ -93,7 +93,7 @@ public class WorkflowComponentOrchestrationStrategy extends EObjectImpl implemen
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(WorkflowExecutionPredicate)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.orchestration.OrchestrationPackage#getWorkflowComponentOrchestrationStrategy_Condition()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	public WorkflowExecutionPredicate getCondition()

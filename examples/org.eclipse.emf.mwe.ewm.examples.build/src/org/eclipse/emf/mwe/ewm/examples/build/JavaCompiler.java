@@ -13,6 +13,7 @@ package org.eclipse.emf.mwe.ewm.examples.build;
 import java.io.File;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -44,7 +45,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 public class JavaCompiler extends WorkflowUnitOfWork
 {
 	/**
-	 * The cached value of the '{@link #getClassNameParameter() <em>Class Name Parameter</em>}' reference.
+	 * The cached value of the '{@link #getClassNameParameter() <em>Class Name Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getClassNameParameter()
@@ -54,7 +55,7 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	protected WorkflowParameter classNameParameter;
 
 	/**
-	 * The cached value of the '{@link #getClasspathParameter() <em>Classpath Parameter</em>}' reference.
+	 * The cached value of the '{@link #getClasspathParameter() <em>Classpath Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getClasspathParameter()
@@ -64,7 +65,7 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	protected WorkflowParameter classpathParameter;
 
 	/**
-	 * The cached value of the '{@link #getWorkingDirectoryParameter() <em>Working Directory Parameter</em>}' reference.
+	 * The cached value of the '{@link #getWorkingDirectoryParameter() <em>Working Directory Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getWorkingDirectoryParameter()
@@ -95,31 +96,21 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Class Name Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Class Name Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Class Name Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Class Name Parameter</em>' reference.
+	 * @return the value of the '<em>Class Name Parameter</em>' containment reference.
 	 * @see #setClassNameParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getJavaCompiler_ClassNameParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getClassNameParameter()
 	{
-		if (classNameParameter != null && classNameParameter.eIsProxy())
-		{
-			InternalEObject oldClassNameParameter = (InternalEObject)classNameParameter;
-			classNameParameter = (WorkflowParameter)eResolveProxy(oldClassNameParameter);
-			if (classNameParameter != oldClassNameParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, oldClassNameParameter, classNameParameter));
-			}
-		}
 		return classNameParameter;
 	}
 
@@ -128,53 +119,58 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetClassNameParameter()
+	public NotificationChain basicSetClassNameParameter(WorkflowParameter newClassNameParameter, NotificationChain msgs)
 	{
-		return classNameParameter;
+		WorkflowParameter oldClassNameParameter = classNameParameter;
+		classNameParameter = newClassNameParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, oldClassNameParameter, newClassNameParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClassNameParameter <em>Class Name Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClassNameParameter <em>Class Name Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Class Name Parameter</em>' reference.
+	 * @param value the new value of the '<em>Class Name Parameter</em>' containment reference.
 	 * @see #getClassNameParameter()
 	 * @generated
 	 */
 	public void setClassNameParameter(WorkflowParameter newClassNameParameter)
 	{
-		WorkflowParameter oldClassNameParameter = classNameParameter;
-		classNameParameter = newClassNameParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, oldClassNameParameter, classNameParameter));
+		if (newClassNameParameter != classNameParameter)
+		{
+			NotificationChain msgs = null;
+			if (classNameParameter != null)
+				msgs = ((InternalEObject)classNameParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, null, msgs);
+			if (newClassNameParameter != null)
+				msgs = ((InternalEObject)newClassNameParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, null, msgs);
+			msgs = basicSetClassNameParameter(newClassNameParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER, newClassNameParameter, newClassNameParameter));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Classpath Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Classpath Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Classpath Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Classpath Parameter</em>' reference.
+	 * @return the value of the '<em>Classpath Parameter</em>' containment reference.
 	 * @see #setClasspathParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getJavaCompiler_ClasspathParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getClasspathParameter()
 	{
-		if (classpathParameter != null && classpathParameter.eIsProxy())
-		{
-			InternalEObject oldClasspathParameter = (InternalEObject)classpathParameter;
-			classpathParameter = (WorkflowParameter)eResolveProxy(oldClasspathParameter);
-			if (classpathParameter != oldClasspathParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, oldClasspathParameter, classpathParameter));
-			}
-		}
 		return classpathParameter;
 	}
 
@@ -183,53 +179,58 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetClasspathParameter()
+	public NotificationChain basicSetClasspathParameter(WorkflowParameter newClasspathParameter, NotificationChain msgs)
 	{
-		return classpathParameter;
+		WorkflowParameter oldClasspathParameter = classpathParameter;
+		classpathParameter = newClasspathParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, oldClasspathParameter, newClasspathParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClasspathParameter <em>Classpath Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getClasspathParameter <em>Classpath Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Classpath Parameter</em>' reference.
+	 * @param value the new value of the '<em>Classpath Parameter</em>' containment reference.
 	 * @see #getClasspathParameter()
 	 * @generated
 	 */
 	public void setClasspathParameter(WorkflowParameter newClasspathParameter)
 	{
-		WorkflowParameter oldClasspathParameter = classpathParameter;
-		classpathParameter = newClasspathParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, oldClasspathParameter, classpathParameter));
+		if (newClasspathParameter != classpathParameter)
+		{
+			NotificationChain msgs = null;
+			if (classpathParameter != null)
+				msgs = ((InternalEObject)classpathParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, null, msgs);
+			if (newClasspathParameter != null)
+				msgs = ((InternalEObject)newClasspathParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, null, msgs);
+			msgs = basicSetClasspathParameter(newClasspathParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER, newClasspathParameter, newClasspathParameter));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Working Directory Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Working Directory Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Working Directory Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Working Directory Parameter</em>' reference.
+	 * @return the value of the '<em>Working Directory Parameter</em>' containment reference.
 	 * @see #setWorkingDirectoryParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getJavaCompiler_WorkingDirectoryParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getWorkingDirectoryParameter()
 	{
-		if (workingDirectoryParameter != null && workingDirectoryParameter.eIsProxy())
-		{
-			InternalEObject oldWorkingDirectoryParameter = (InternalEObject)workingDirectoryParameter;
-			workingDirectoryParameter = (WorkflowParameter)eResolveProxy(oldWorkingDirectoryParameter);
-			if (workingDirectoryParameter != oldWorkingDirectoryParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, workingDirectoryParameter));
-			}
-		}
 		return workingDirectoryParameter;
 	}
 
@@ -238,25 +239,60 @@ public class JavaCompiler extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetWorkingDirectoryParameter()
+	public NotificationChain basicSetWorkingDirectoryParameter(WorkflowParameter newWorkingDirectoryParameter, NotificationChain msgs)
 	{
-		return workingDirectoryParameter;
+		WorkflowParameter oldWorkingDirectoryParameter = workingDirectoryParameter;
+		workingDirectoryParameter = newWorkingDirectoryParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, newWorkingDirectoryParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.JavaCompiler#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Working Directory Parameter</em>' reference.
+	 * @param value the new value of the '<em>Working Directory Parameter</em>' containment reference.
 	 * @see #getWorkingDirectoryParameter()
 	 * @generated
 	 */
 	public void setWorkingDirectoryParameter(WorkflowParameter newWorkingDirectoryParameter)
 	{
-		WorkflowParameter oldWorkingDirectoryParameter = workingDirectoryParameter;
-		workingDirectoryParameter = newWorkingDirectoryParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, workingDirectoryParameter));
+		if (newWorkingDirectoryParameter != workingDirectoryParameter)
+		{
+			NotificationChain msgs = null;
+			if (workingDirectoryParameter != null)
+				msgs = ((InternalEObject)workingDirectoryParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, null, msgs);
+			if (newWorkingDirectoryParameter != null)
+				msgs = ((InternalEObject)newWorkingDirectoryParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, null, msgs);
+			msgs = basicSetWorkingDirectoryParameter(newWorkingDirectoryParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER, newWorkingDirectoryParameter, newWorkingDirectoryParameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER:
+				return basicSetClassNameParameter(null, msgs);
+			case BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER:
+				return basicSetClasspathParameter(null, msgs);
+			case BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER:
+				return basicSetWorkingDirectoryParameter(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -270,14 +306,11 @@ public class JavaCompiler extends WorkflowUnitOfWork
 		switch (featureID)
 		{
 			case BuildPackage.JAVA_COMPILER__CLASS_NAME_PARAMETER:
-				if (resolve) return getClassNameParameter();
-				return basicGetClassNameParameter();
+				return getClassNameParameter();
 			case BuildPackage.JAVA_COMPILER__CLASSPATH_PARAMETER:
-				if (resolve) return getClasspathParameter();
-				return basicGetClasspathParameter();
+				return getClasspathParameter();
 			case BuildPackage.JAVA_COMPILER__WORKING_DIRECTORY_PARAMETER:
-				if (resolve) return getWorkingDirectoryParameter();
-				return basicGetWorkingDirectoryParameter();
+				return getWorkingDirectoryParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

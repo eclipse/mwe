@@ -922,7 +922,7 @@ public class OrchestrationPackage extends EPackageImpl
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(workflowComponentOrchestrationStrategyEClass, WorkflowComponentOrchestrationStrategy.class, "WorkflowComponentOrchestrationStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getWorkflowComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 1, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowComponentOrchestrationStrategy_Condition(), this.getWorkflowExecutionPredicate(), null, "condition", null, 0, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowComponentOrchestrationStrategy_ChildStrategy(), this.getWorkflowComponentOrchestrationStrategy(), null, "childStrategy", null, 0, 1, WorkflowComponentOrchestrationStrategy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(workflowComponentOrchestrationStrategyEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED);

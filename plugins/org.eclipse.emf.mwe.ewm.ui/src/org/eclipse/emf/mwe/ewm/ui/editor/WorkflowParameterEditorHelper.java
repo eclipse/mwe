@@ -3,8 +3,6 @@ package org.eclipse.emf.mwe.ewm.ui.editor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.edit.command.AddCommand;
-import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowFactory;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
@@ -15,7 +13,8 @@ public class WorkflowParameterEditorHelper implements IWorkflowParameterEditorHe
 {
 	public Command createAddCommand(EditingDomain editingDomain, WorkflowUnitOfWork component, WorkflowParameter parameter)
 	{
-		return AddCommand.create(editingDomain, component, WorkflowPackage.Literals.WORKFLOW_UNIT_OF_WORK__PARAMETERS, parameter);
+//		return AddCommand.create(editingDomain, component, WorkflowPackage.Literals.WORKFLOW_UNIT_OF_WORK__PARAMETERS, parameter);
+		return null;
 	}
 
 	public WorkflowParameter createParameter()
@@ -28,7 +27,8 @@ public class WorkflowParameterEditorHelper implements IWorkflowParameterEditorHe
 
 	public Command createRemove(EditingDomain editingDomain, WorkflowUnitOfWork component, WorkflowParameter parameter)
 	{
-		return RemoveCommand.create(editingDomain, component, WorkflowPackage.Literals.WORKFLOW_UNIT_OF_WORK__PARAMETERS, parameter);
+//		return RemoveCommand.create(editingDomain, component, WorkflowPackage.Literals.WORKFLOW_UNIT_OF_WORK__PARAMETERS, parameter);
+		return null;
 	}
 
 	public EClass getParameterEClass()

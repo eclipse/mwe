@@ -8,32 +8,41 @@
       <eParameters name="context" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/WorkflowContext"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classNameParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classpathParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workingDirectoryParameter"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JavaJar" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowUnitOfWork">
     <eOperations name="run" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState">
       <eParameters name="context" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/WorkflowContext"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="classNameParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workingDirectoryParameter"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputFileParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ZipFile" eSuperTypes="../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowUnitOfWork">
     <eOperations name="run" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/state/WorkflowState">
       <eParameters name="context" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/WorkflowContext"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="workingDirectoryParameter"
-        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        lowerBound="1" eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="inputFileParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="outputFileParameter" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"/>
+        eType="ecore:EClass ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//WorkflowParameter"
+        containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

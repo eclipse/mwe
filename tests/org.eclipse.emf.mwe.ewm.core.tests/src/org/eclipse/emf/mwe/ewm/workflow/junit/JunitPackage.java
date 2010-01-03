@@ -116,15 +116,6 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__COMPONENT_ORCHESTRATION_STRATEGY = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int UNIT_OF_WORK_TEST_HARNESS__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
-
-	/**
 	 * The feature id for the '<em><b>End State</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -161,13 +152,22 @@ public class JunitPackage extends EPackageImpl
 	public static final int UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNIT_OF_WORK_TEST_HARNESS__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Unit Of Work Test Harness</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNIT_OF_WORK_TEST_HARNESS_FEATURE_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 4;
+	public static final int UNIT_OF_WORK_TEST_HARNESS_FEATURE_COUNT = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness <em>Predicate Test Harness</em>}' class.
@@ -239,20 +239,10 @@ public class JunitPackage extends EPackageImpl
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link JunitPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -281,6 +271,9 @@ public class JunitPackage extends EPackageImpl
 		// Mark meta-data to indicate it can't be changed
 		theJunitPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(JunitPackage.eNS_URI, theJunitPackage);
 		return theJunitPackage;
 	}
 
@@ -359,6 +352,21 @@ public class JunitPackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getParameters <em>Parameters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parameters</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getParameters()
+	 * @see #getUnitOfWorkTestHarness()
+	 * @generated
+	 */
+	public EReference getUnitOfWorkTestHarness_Parameters()
+	{
+		return (EReference)unitOfWorkTestHarnessEClass.getEStructuralFeatures().get(4);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness <em>Predicate Test Harness</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -424,6 +432,7 @@ public class JunitPackage extends EPackageImpl
 		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE);
 		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__CONDITIONAL_LOOP_PARAMETER);
 		createEAttribute(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT);
+		createEReference(unitOfWorkTestHarnessEClass, UNIT_OF_WORK_TEST_HARNESS__PARAMETERS);
 
 		predicateTestHarnessEClass = createEClass(PREDICATE_TEST_HARNESS);
 		createEAttribute(predicateTestHarnessEClass, PREDICATE_TEST_HARNESS__EXECUTION_ALLOWED);
@@ -473,6 +482,7 @@ public class JunitPackage extends EPackageImpl
 		initEReference(getUnitOfWorkTestHarness_RunningState(), theStatePackage.getWorkflowState(), null, "runningState", null, 1, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUnitOfWorkTestHarness_ConditionalLoopParameter(), theWorkflowPackage.getWorkflowParameter(), null, "conditionalLoopParameter", null, 0, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getUnitOfWorkTestHarness_ExecutionCount(), theEcorePackage.getEInt(), "executionCount", null, 0, 1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUnitOfWorkTestHarness_Parameters(), theWorkflowPackage.getWorkflowParameter(), null, "parameters", null, 0, -1, UnitOfWorkTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(predicateTestHarnessEClass, PredicateTestHarness.class, "PredicateTestHarness", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPredicateTestHarness_ExecutionAllowed(), ecorePackage.getEBoolean(), "executionAllowed", null, 1, 1, PredicateTestHarness.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -536,6 +546,14 @@ public class JunitPackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EAttribute UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT = eINSTANCE.getUnitOfWorkTestHarness_ExecutionCount();
+
+		/**
+		 * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference UNIT_OF_WORK_TEST_HARNESS__PARAMETERS = eINSTANCE.getUnitOfWorkTestHarness_Parameters();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.junit.PredicateTestHarness <em>Predicate Test Harness</em>}' class.

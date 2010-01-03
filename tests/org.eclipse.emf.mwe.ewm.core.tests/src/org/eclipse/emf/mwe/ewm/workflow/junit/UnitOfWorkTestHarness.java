@@ -10,12 +10,17 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.ewm.workflow.junit;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
@@ -32,6 +37,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getRunningState <em>Running State</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getConditionalLoopParameter <em>Conditional Loop Parameter</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getExecutionCount <em>Execution Count</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness#getParameters <em>Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -89,6 +95,16 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	 * @ordered
 	 */
 	protected int executionCount = EXECUTION_COUNT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParameters()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<WorkflowParameter> parameters;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -318,6 +334,29 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parameters</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parameters</em>' containment reference list.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.junit.JunitPackage#getUnitOfWorkTestHarness_Parameters()
+	 * @model containment="true"
+	 * @generated
+	 */
+	public EList<WorkflowParameter> getParameters()
+	{
+		if (parameters == null)
+		{
+			parameters = new EObjectContainmentEList<WorkflowParameter>(WorkflowParameter.class, this, JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS);
+		}
+		return parameters;
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -331,6 +370,8 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 				return basicSetEndState(null, msgs);
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__RUNNING_STATE:
 				return basicSetRunningState(null, msgs);
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS:
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -353,6 +394,8 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 				return basicGetConditionalLoopParameter();
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT:
 				return getExecutionCount();
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS:
+				return getParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -361,6 +404,7 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue)
 	{
@@ -377,6 +421,10 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 				return;
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT:
 				setExecutionCount((Integer)newValue);
+				return;
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS:
+				getParameters().clear();
+				getParameters().addAll((Collection<? extends WorkflowParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -403,6 +451,9 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT:
 				setExecutionCount(EXECUTION_COUNT_EDEFAULT);
 				return;
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS:
+				getParameters().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -424,6 +475,8 @@ public class UnitOfWorkTestHarness extends WorkflowUnitOfWork
 				return conditionalLoopParameter != null;
 			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__EXECUTION_COUNT:
 				return executionCount != EXECUTION_COUNT_EDEFAULT;
+			case JunitPackage.UNIT_OF_WORK_TEST_HARNESS__PARAMETERS:
+				return parameters != null && !parameters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

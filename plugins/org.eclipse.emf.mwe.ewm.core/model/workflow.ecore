@@ -74,8 +74,6 @@
     <eOperations name="run" eType="#//runtime/state/WorkflowState" eExceptions="#//runtime/WorkflowRuntimeException">
       <eParameters name="context" eType="#//runtime/WorkflowContext"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//WorkflowParameter" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameter">
     <eOperations name="getValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"
@@ -167,8 +165,8 @@
         <eParameters name="component" eType="#//WorkflowComponent"/>
         <eParameters name="context" eType="#//runtime/WorkflowContext"/>
       </eOperations>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" lowerBound="1"
-          eType="#//orchestration/WorkflowExecutionPredicate" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="condition" eType="#//orchestration/WorkflowExecutionPredicate"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="childStrategy" eType="#//orchestration/WorkflowComponentOrchestrationStrategy"
           containment="true"/>
     </eClassifiers>

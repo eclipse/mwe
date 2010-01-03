@@ -14,6 +14,7 @@ import java.io.File;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -47,7 +48,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
 public class ZipFile extends WorkflowUnitOfWork
 {
 	/**
-	 * The cached value of the '{@link #getWorkingDirectoryParameter() <em>Working Directory Parameter</em>}' reference.
+	 * The cached value of the '{@link #getWorkingDirectoryParameter() <em>Working Directory Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getWorkingDirectoryParameter()
@@ -57,7 +58,7 @@ public class ZipFile extends WorkflowUnitOfWork
 	protected WorkflowParameter workingDirectoryParameter;
 
 	/**
-	 * The cached value of the '{@link #getInputFileParameter() <em>Input File Parameter</em>}' reference.
+	 * The cached value of the '{@link #getInputFileParameter() <em>Input File Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getInputFileParameter()
@@ -67,7 +68,7 @@ public class ZipFile extends WorkflowUnitOfWork
 	protected WorkflowParameter inputFileParameter;
 
 	/**
-	 * The cached value of the '{@link #getOutputFileParameter() <em>Output File Parameter</em>}' reference.
+	 * The cached value of the '{@link #getOutputFileParameter() <em>Output File Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOutputFileParameter()
@@ -98,31 +99,21 @@ public class ZipFile extends WorkflowUnitOfWork
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Working Directory Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Working Directory Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Working Directory Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Working Directory Parameter</em>' reference.
+	 * @return the value of the '<em>Working Directory Parameter</em>' containment reference.
 	 * @see #setWorkingDirectoryParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getZipFile_WorkingDirectoryParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getWorkingDirectoryParameter()
 	{
-		if (workingDirectoryParameter != null && workingDirectoryParameter.eIsProxy())
-		{
-			InternalEObject oldWorkingDirectoryParameter = (InternalEObject)workingDirectoryParameter;
-			workingDirectoryParameter = (WorkflowParameter)eResolveProxy(oldWorkingDirectoryParameter);
-			if (workingDirectoryParameter != oldWorkingDirectoryParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, workingDirectoryParameter));
-			}
-		}
 		return workingDirectoryParameter;
 	}
 
@@ -131,53 +122,58 @@ public class ZipFile extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetWorkingDirectoryParameter()
+	public NotificationChain basicSetWorkingDirectoryParameter(WorkflowParameter newWorkingDirectoryParameter, NotificationChain msgs)
 	{
-		return workingDirectoryParameter;
+		WorkflowParameter oldWorkingDirectoryParameter = workingDirectoryParameter;
+		workingDirectoryParameter = newWorkingDirectoryParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, newWorkingDirectoryParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getWorkingDirectoryParameter <em>Working Directory Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Working Directory Parameter</em>' reference.
+	 * @param value the new value of the '<em>Working Directory Parameter</em>' containment reference.
 	 * @see #getWorkingDirectoryParameter()
 	 * @generated
 	 */
 	public void setWorkingDirectoryParameter(WorkflowParameter newWorkingDirectoryParameter)
 	{
-		WorkflowParameter oldWorkingDirectoryParameter = workingDirectoryParameter;
-		workingDirectoryParameter = newWorkingDirectoryParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, oldWorkingDirectoryParameter, workingDirectoryParameter));
+		if (newWorkingDirectoryParameter != workingDirectoryParameter)
+		{
+			NotificationChain msgs = null;
+			if (workingDirectoryParameter != null)
+				msgs = ((InternalEObject)workingDirectoryParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, null, msgs);
+			if (newWorkingDirectoryParameter != null)
+				msgs = ((InternalEObject)newWorkingDirectoryParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, null, msgs);
+			msgs = basicSetWorkingDirectoryParameter(newWorkingDirectoryParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER, newWorkingDirectoryParameter, newWorkingDirectoryParameter));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Input File Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Input File Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Input File Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Input File Parameter</em>' reference.
+	 * @return the value of the '<em>Input File Parameter</em>' containment reference.
 	 * @see #setInputFileParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getZipFile_InputFileParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getInputFileParameter()
 	{
-		if (inputFileParameter != null && inputFileParameter.eIsProxy())
-		{
-			InternalEObject oldInputFileParameter = (InternalEObject)inputFileParameter;
-			inputFileParameter = (WorkflowParameter)eResolveProxy(oldInputFileParameter);
-			if (inputFileParameter != oldInputFileParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, oldInputFileParameter, inputFileParameter));
-			}
-		}
 		return inputFileParameter;
 	}
 
@@ -186,53 +182,58 @@ public class ZipFile extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetInputFileParameter()
+	public NotificationChain basicSetInputFileParameter(WorkflowParameter newInputFileParameter, NotificationChain msgs)
 	{
-		return inputFileParameter;
+		WorkflowParameter oldInputFileParameter = inputFileParameter;
+		inputFileParameter = newInputFileParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, oldInputFileParameter, newInputFileParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getInputFileParameter <em>Input File Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getInputFileParameter <em>Input File Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Input File Parameter</em>' reference.
+	 * @param value the new value of the '<em>Input File Parameter</em>' containment reference.
 	 * @see #getInputFileParameter()
 	 * @generated
 	 */
 	public void setInputFileParameter(WorkflowParameter newInputFileParameter)
 	{
-		WorkflowParameter oldInputFileParameter = inputFileParameter;
-		inputFileParameter = newInputFileParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, oldInputFileParameter, inputFileParameter));
+		if (newInputFileParameter != inputFileParameter)
+		{
+			NotificationChain msgs = null;
+			if (inputFileParameter != null)
+				msgs = ((InternalEObject)inputFileParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, null, msgs);
+			if (newInputFileParameter != null)
+				msgs = ((InternalEObject)newInputFileParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, null, msgs);
+			msgs = basicSetInputFileParameter(newInputFileParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER, newInputFileParameter, newInputFileParameter));
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Output File Parameter</b></em>' reference.
+	 * Returns the value of the '<em><b>Output File Parameter</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Output File Parameter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output File Parameter</em>' reference.
+	 * @return the value of the '<em>Output File Parameter</em>' containment reference.
 	 * @see #setOutputFileParameter(WorkflowParameter)
 	 * @see org.eclipse.emf.mwe.ewm.examples.build.BuildPackage#getZipFile_OutputFileParameter()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
 	public WorkflowParameter getOutputFileParameter()
 	{
-		if (outputFileParameter != null && outputFileParameter.eIsProxy())
-		{
-			InternalEObject oldOutputFileParameter = (InternalEObject)outputFileParameter;
-			outputFileParameter = (WorkflowParameter)eResolveProxy(oldOutputFileParameter);
-			if (outputFileParameter != oldOutputFileParameter)
-			{
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, oldOutputFileParameter, outputFileParameter));
-			}
-		}
 		return outputFileParameter;
 	}
 
@@ -241,25 +242,60 @@ public class ZipFile extends WorkflowUnitOfWork
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WorkflowParameter basicGetOutputFileParameter()
+	public NotificationChain basicSetOutputFileParameter(WorkflowParameter newOutputFileParameter, NotificationChain msgs)
 	{
-		return outputFileParameter;
+		WorkflowParameter oldOutputFileParameter = outputFileParameter;
+		outputFileParameter = newOutputFileParameter;
+		if (eNotificationRequired())
+		{
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, oldOutputFileParameter, newOutputFileParameter);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getOutputFileParameter <em>Output File Parameter</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.examples.build.ZipFile#getOutputFileParameter <em>Output File Parameter</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Output File Parameter</em>' reference.
+	 * @param value the new value of the '<em>Output File Parameter</em>' containment reference.
 	 * @see #getOutputFileParameter()
 	 * @generated
 	 */
 	public void setOutputFileParameter(WorkflowParameter newOutputFileParameter)
 	{
-		WorkflowParameter oldOutputFileParameter = outputFileParameter;
-		outputFileParameter = newOutputFileParameter;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, oldOutputFileParameter, outputFileParameter));
+		if (newOutputFileParameter != outputFileParameter)
+		{
+			NotificationChain msgs = null;
+			if (outputFileParameter != null)
+				msgs = ((InternalEObject)outputFileParameter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, null, msgs);
+			if (newOutputFileParameter != null)
+				msgs = ((InternalEObject)newOutputFileParameter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, null, msgs);
+			msgs = basicSetOutputFileParameter(newOutputFileParameter, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER, newOutputFileParameter, newOutputFileParameter));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+	{
+		switch (featureID)
+		{
+			case BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER:
+				return basicSetWorkingDirectoryParameter(null, msgs);
+			case BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER:
+				return basicSetInputFileParameter(null, msgs);
+			case BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER:
+				return basicSetOutputFileParameter(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -273,14 +309,11 @@ public class ZipFile extends WorkflowUnitOfWork
 		switch (featureID)
 		{
 			case BuildPackage.ZIP_FILE__WORKING_DIRECTORY_PARAMETER:
-				if (resolve) return getWorkingDirectoryParameter();
-				return basicGetWorkingDirectoryParameter();
+				return getWorkingDirectoryParameter();
 			case BuildPackage.ZIP_FILE__INPUT_FILE_PARAMETER:
-				if (resolve) return getInputFileParameter();
-				return basicGetInputFileParameter();
+				return getInputFileParameter();
 			case BuildPackage.ZIP_FILE__OUTPUT_FILE_PARAMETER:
-				if (resolve) return getOutputFileParameter();
-				return basicGetOutputFileParameter();
+				return getOutputFileParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

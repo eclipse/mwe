@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mew.ewm.examples.tutorial="http://www.eclipse.org/emf/mwe/ewm/examples/tutorial" xmlns:org.eclipse.emf.mwe.ewm.workflow="http://www.eclipse.org/emf/mwe/ewm/workflow" xmlns:org.eclipse.emf.mwe.ewm.workflow.orchestration="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration">
+<org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:org.eclipse.emf.mew.ewm.examples.concat="http://www.eclipse.org/emf/mwe/ewm/examples/concat" xmlns:org.eclipse.emf.mwe.ewm.workflow="http://www.eclipse.org/emf/mwe/ewm/workflow" xmlns:org.eclipse.emf.mwe.ewm.workflow.orchestration="http://www.eclipse.org/emf/mwe/ewm/workflow/orchestration" name="Workflow" type="Workflow">
   <componentOrchestrationStrategy/>
-  <components xsi:type="org.eclipse.emf.mew.ewm.examples.tutorial:Concat" name="ConcatA" inputMessage="//@components.0/@parameters.1" inputAppendMessage="//@components.0/@parameters.0" outputMessage="//@components.0/@parameters.2">
+  <components xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" name="ConcatA" type="Concat">
     <componentOrchestrationStrategy/>
-    <parameters name="InputAppendMessageA">
+    <inputMessage name="InputMessageA" description="Input message for node A">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="InputMessageA">
+    </inputMessage>
+    <inputAppendMessage name="InputAppendMessageA" description="Input append message for node A">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="OutputMessageA">
+    </inputAppendMessage>
+    <outputMessage name="OutputMessageA" description="Output message for node A">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
+    </outputMessage>
   </components>
-  <components xsi:type="org.eclipse.emf.mew.ewm.examples.tutorial:Concat" name="ConcatB" inputMessage="//@components.1/@parameters.1" inputAppendMessage="//@components.1/@parameters.0" outputMessage="//@components.1/@parameters.2">
+  <components xsi:type="org.eclipse.emf.mew.ewm.examples.concat:Concat" name="ConcatB" type="Concat">
     <componentOrchestrationStrategy/>
-    <parameters name="InputAppendMessageB">
+    <inputMessage name="InputMessageB" description="Input message for node B" connection="//@connections.0">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="InputMessageB" connection="//@connections.0">
+    </inputMessage>
+    <inputAppendMessage name="InputAppendMessageB" description="Input append message for node B">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
-    <parameters name="OutputMessageB">
+    </inputAppendMessage>
+    <outputMessage name="OutputMessageB" description="Output message for node B">
       <type xsi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <valueStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow:WorkflowParameterSimpleValueStrategy"/>
-    </parameters>
+    </outputMessage>
   </components>
   <compositeOrchestrationStrategy xsi:type="org.eclipse.emf.mwe.ewm.workflow.orchestration:WorkflowSerialOrchestrationStrategy"/>
-  <connections sourceParameter="//@components.0/@parameters.2" targetParameters="//@components.1/@parameters.1"/>
+  <connections sourceParameter="//@components.0/@outputMessage" targetParameters="//@components.1/@inputMessage"/>
   <stateResolutionStrategy/>
 </org.eclipse.emf.mwe.ewm.workflow:WorkflowCompositeComponent>
