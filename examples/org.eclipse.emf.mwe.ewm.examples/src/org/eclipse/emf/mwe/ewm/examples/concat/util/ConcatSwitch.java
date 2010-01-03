@@ -2,16 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialSwitch.java,v 1.1 2009/02/15 19:18:45 bhunt Exp $
+ * $Id: ConcatSwitch.java,v 1.1 2010/01/03 16:36:02 bhunt Exp $
  */
-package org.eclipse.emf.mwe.ewm.examples.tutorial.util;
+package org.eclipse.emf.mwe.ewm.examples.concat.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.examples.tutorial.Concat;
-import org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage;
+import org.eclipse.emf.mwe.ewm.examples.concat.Concat;
+import org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
 
@@ -25,10 +25,10 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage
+ * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage
  * @generated
  */
-public class TutorialSwitch<T>
+public class ConcatSwitch<T>
 {
 	/**
 	 * The cached model package
@@ -36,7 +36,7 @@ public class TutorialSwitch<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static TutorialPackage modelPackage;
+	protected static ConcatPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -44,11 +44,11 @@ public class TutorialSwitch<T>
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TutorialSwitch()
+	public ConcatSwitch()
 	{
 		if (modelPackage == null)
 		{
-			modelPackage = TutorialPackage.eINSTANCE;
+			modelPackage = ConcatPackage.eINSTANCE;
 		}
 	}
 
@@ -98,7 +98,7 @@ public class TutorialSwitch<T>
 	{
 		switch (classifierID)
 		{
-			case TutorialPackage.CONCAT:
+			case ConcatPackage.CONCAT:
 			{
 				Concat concat = (Concat)theEObject;
 				T result = caseConcat(concat);
@@ -175,4 +175,4 @@ public class TutorialSwitch<T>
 		return null;
 	}
 
-} //TutorialSwitch
+} //ConcatSwitch

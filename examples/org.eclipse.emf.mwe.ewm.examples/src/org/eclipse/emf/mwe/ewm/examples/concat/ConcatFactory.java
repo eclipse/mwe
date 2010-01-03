@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialFactory.java,v 1.1 2009/02/15 19:18:45 bhunt Exp $
+ * $Id: ConcatFactory.java,v 1.1 2010/01/03 16:36:02 bhunt Exp $
  */
-package org.eclipse.emf.mwe.ewm.examples.tutorial;
+package org.eclipse.emf.mwe.ewm.examples.concat;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -17,10 +17,10 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage
+ * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage
  * @generated
  */
-public class TutorialFactory extends EFactoryImpl
+public class ConcatFactory extends EFactoryImpl
 {
 	/**
 	 * The singleton instance of the factory.
@@ -28,7 +28,7 @@ public class TutorialFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final TutorialFactory eINSTANCE = init();
+	public static final ConcatFactory eINSTANCE = init();
 
 	/**
 	 * Creates the default factory implementation.
@@ -36,21 +36,21 @@ public class TutorialFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static TutorialFactory init()
+	public static ConcatFactory init()
 	{
 		try
 		{
-			TutorialFactory theTutorialFactory = (TutorialFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/examples/tutorial"); 
-			if (theTutorialFactory != null)
+			ConcatFactory theConcatFactory = (ConcatFactory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/emf/mwe/ewm/examples/concat"); 
+			if (theConcatFactory != null)
 			{
-				return theTutorialFactory;
+				return theConcatFactory;
 			}
 		}
 		catch (Exception exception)
 		{
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new TutorialFactory();
+		return new ConcatFactory();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class TutorialFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TutorialFactory()
+	public ConcatFactory()
 	{
 		super();
 	}
@@ -74,7 +74,7 @@ public class TutorialFactory extends EFactoryImpl
 	{
 		switch (eClass.getClassifierID())
 		{
-			case TutorialPackage.CONCAT: return createConcat();
+			case ConcatPackage.CONCAT: return createConcat();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,9 +96,9 @@ public class TutorialFactory extends EFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TutorialPackage getTutorialPackage()
+	public ConcatPackage getConcatPackage()
 	{
-		return (TutorialPackage)getEPackage();
+		return (ConcatPackage)getEPackage();
 	}
 
 	/**
@@ -108,9 +108,9 @@ public class TutorialFactory extends EFactoryImpl
 	 * @generated
 	 */
 	@Deprecated
-	public static TutorialPackage getPackage()
+	public static ConcatPackage getPackage()
 	{
-		return TutorialPackage.eINSTANCE;
+		return ConcatPackage.eINSTANCE;
 	}
 
-} //TutorialFactory
+} //ConcatFactory

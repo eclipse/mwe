@@ -2,16 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialAdapterFactory.java,v 1.1 2009/02/15 19:18:45 bhunt Exp $
+ * $Id: ConcatAdapterFactory.java,v 1.1 2010/01/03 16:36:02 bhunt Exp $
  */
-package org.eclipse.emf.mwe.ewm.examples.tutorial.util;
+package org.eclipse.emf.mwe.ewm.examples.concat.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe.ewm.examples.tutorial.Concat;
-import org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage;
+import org.eclipse.emf.mwe.ewm.examples.concat.Concat;
+import org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
 
@@ -20,10 +20,10 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowUnitOfWork;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage
+ * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage
  * @generated
  */
-public class TutorialAdapterFactory extends AdapterFactoryImpl
+public class ConcatAdapterFactory extends AdapterFactoryImpl
 {
 	/**
 	 * The cached model package.
@@ -31,7 +31,7 @@ public class TutorialAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static TutorialPackage modelPackage;
+	protected static ConcatPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -39,11 +39,11 @@ public class TutorialAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TutorialAdapterFactory()
+	public ConcatAdapterFactory()
 	{
 		if (modelPackage == null)
 		{
-			modelPackage = TutorialPackage.eINSTANCE;
+			modelPackage = ConcatPackage.eINSTANCE;
 		}
 	}
 
@@ -75,8 +75,8 @@ public class TutorialAdapterFactory extends AdapterFactoryImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TutorialSwitch<Adapter> modelSwitch =
-		new TutorialSwitch<Adapter>()
+	protected ConcatSwitch<Adapter> modelSwitch =
+		new ConcatSwitch<Adapter>()
 		{
 			@Override
 			public Adapter caseConcat(Concat object)
@@ -116,13 +116,13 @@ public class TutorialAdapterFactory extends AdapterFactoryImpl
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat <em>Concat</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat <em>Concat</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat
 	 * @generated
 	 */
 	public Adapter createConcatAdapter()
@@ -173,4 +173,4 @@ public class TutorialAdapterFactory extends AdapterFactoryImpl
 		return null;
 	}
 
-} //TutorialAdapterFactory
+} //ConcatAdapterFactory

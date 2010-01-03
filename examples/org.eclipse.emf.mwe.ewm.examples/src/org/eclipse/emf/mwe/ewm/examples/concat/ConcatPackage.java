@@ -2,9 +2,9 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TutorialPackage.java,v 1.1 2009/02/15 19:18:45 bhunt Exp $
+ * $Id: ConcatPackage.java,v 1.1 2010/01/03 16:36:02 bhunt Exp $
  */
-package org.eclipse.emf.mwe.ewm.examples.tutorial;
+package org.eclipse.emf.mwe.ewm.examples.concat;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,11 +23,11 @@ import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialFactory
+ * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatFactory
  * @model kind="package"
  * @generated
  */
-public class TutorialPackage extends EPackageImpl
+public class ConcatPackage extends EPackageImpl
 {
 	/**
 	 * The package name.
@@ -35,7 +35,7 @@ public class TutorialPackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNAME = "tutorial";
+	public static final String eNAME = "concat";
 
 	/**
 	 * The package namespace URI.
@@ -43,7 +43,7 @@ public class TutorialPackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_URI = "http://www.eclipse.org/emf/mwe/ewm/examples/tutorial";
+	public static final String eNS_URI = "http://www.eclipse.org/emf/mwe/ewm/examples/concat";
 
 	/**
 	 * The package namespace name.
@@ -51,7 +51,7 @@ public class TutorialPackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final String eNS_PREFIX = "org.eclipse.emf.mew.ewm.examples.tutorial";
+	public static final String eNS_PREFIX = "org.eclipse.emf.mew.ewm.examples.concat";
 
 	/**
 	 * The singleton instance of the package.
@@ -59,14 +59,14 @@ public class TutorialPackage extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final TutorialPackage eINSTANCE = org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage.init();
+	public static final ConcatPackage eINSTANCE = org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat <em>Concat</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat <em>Concat</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage#getConcat()
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage#getConcat()
 	 * @generated
 	 */
 	public static final int CONCAT = 0;
@@ -108,16 +108,7 @@ public class TutorialPackage extends EPackageImpl
 	public static final int CONCAT__COMPONENT_ORCHESTRATION_STRATEGY = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__COMPONENT_ORCHESTRATION_STRATEGY;
 
 	/**
-	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CONCAT__PARAMETERS = WorkflowPackage.WORKFLOW_UNIT_OF_WORK__PARAMETERS;
-
-	/**
-	 * The feature id for the '<em><b>Input Message</b></em>' reference.
+	 * The feature id for the '<em><b>Input Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -126,7 +117,7 @@ public class TutorialPackage extends EPackageImpl
 	public static final int CONCAT__INPUT_MESSAGE = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Input Append Message</b></em>' reference.
+	 * The feature id for the '<em><b>Input Append Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -135,7 +126,7 @@ public class TutorialPackage extends EPackageImpl
 	public static final int CONCAT__INPUT_APPEND_MESSAGE = WorkflowPackage.WORKFLOW_UNIT_OF_WORK_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Output Message</b></em>' reference.
+	 * The feature id for the '<em><b>Output Message</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -170,13 +161,13 @@ public class TutorialPackage extends EPackageImpl
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage#eNS_URI
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private TutorialPackage()
+	private ConcatPackage()
 	{
-		super(eNS_URI, TutorialFactory.eINSTANCE);
+		super(eNS_URI, ConcatFactory.eINSTANCE);
 	}
 
 	/**
@@ -187,20 +178,10 @@ public class TutorialPackage extends EPackageImpl
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link ConcatPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -208,12 +189,12 @@ public class TutorialPackage extends EPackageImpl
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static TutorialPackage init()
+	public static ConcatPackage init()
 	{
-		if (isInited) return (TutorialPackage)EPackage.Registry.INSTANCE.getEPackage(TutorialPackage.eNS_URI);
+		if (isInited) return (ConcatPackage)EPackage.Registry.INSTANCE.getEPackage(ConcatPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TutorialPackage theTutorialPackage = (TutorialPackage)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TutorialPackage ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new TutorialPackage());
+		ConcatPackage theConcatPackage = (ConcatPackage)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ConcatPackage ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ConcatPackage());
 
 		isInited = true;
 
@@ -221,24 +202,27 @@ public class TutorialPackage extends EPackageImpl
 		WorkflowPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theTutorialPackage.createPackageContents();
+		theConcatPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theTutorialPackage.initializePackageContents();
+		theConcatPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theTutorialPackage.freeze();
+		theConcatPackage.freeze();
 
-		return theTutorialPackage;
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(ConcatPackage.eNS_URI, theConcatPackage);
+		return theConcatPackage;
 	}
 
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat <em>Concat</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat <em>Concat</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Concat</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat
 	 * @generated
 	 */
 	public EClass getConcat()
@@ -247,11 +231,11 @@ public class TutorialPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getInputMessage <em>Input Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat#getInputMessage <em>Input Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Input Message</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getInputMessage()
+	 * @return the meta object for the containment reference '<em>Input Message</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat#getInputMessage()
 	 * @see #getConcat()
 	 * @generated
 	 */
@@ -261,11 +245,11 @@ public class TutorialPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getInputAppendMessage <em>Input Append Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat#getInputAppendMessage <em>Input Append Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Input Append Message</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getInputAppendMessage()
+	 * @return the meta object for the containment reference '<em>Input Append Message</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat#getInputAppendMessage()
 	 * @see #getConcat()
 	 * @generated
 	 */
@@ -275,11 +259,11 @@ public class TutorialPackage extends EPackageImpl
 	}
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getOutputMessage <em>Output Message</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat#getOutputMessage <em>Output Message</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Output Message</em>'.
-	 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat#getOutputMessage()
+	 * @return the meta object for the containment reference '<em>Output Message</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat#getOutputMessage()
 	 * @see #getConcat()
 	 * @generated
 	 */
@@ -295,9 +279,9 @@ public class TutorialPackage extends EPackageImpl
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	public TutorialFactory getTutorialFactory()
+	public ConcatFactory getConcatFactory()
 	{
-		return (TutorialFactory)getEFactoryInstance();
+		return (ConcatFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -362,9 +346,9 @@ public class TutorialPackage extends EPackageImpl
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(concatEClass, Concat.class, "Concat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getConcat_InputMessage(), theWorkflowPackage.getWorkflowParameter(), null, "inputMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConcat_InputAppendMessage(), theWorkflowPackage.getWorkflowParameter(), null, "inputAppendMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConcat_OutputMessage(), theWorkflowPackage.getWorkflowParameter(), null, "outputMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcat_InputMessage(), theWorkflowPackage.getWorkflowParameter(), null, "inputMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcat_InputAppendMessage(), theWorkflowPackage.getWorkflowParameter(), null, "inputAppendMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getConcat_OutputMessage(), theWorkflowPackage.getWorkflowParameter(), null, "outputMessage", null, 0, 1, Concat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -385,17 +369,17 @@ public class TutorialPackage extends EPackageImpl
 	public interface Literals
 	{
 		/**
-		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.examples.tutorial.Concat <em>Concat</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.examples.concat.Concat <em>Concat</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.Concat
-		 * @see org.eclipse.emf.mwe.ewm.examples.tutorial.TutorialPackage#getConcat()
+		 * @see org.eclipse.emf.mwe.ewm.examples.concat.Concat
+		 * @see org.eclipse.emf.mwe.ewm.examples.concat.ConcatPackage#getConcat()
 		 * @generated
 		 */
 		public static final EClass CONCAT = eINSTANCE.getConcat();
 
 		/**
-		 * The meta object literal for the '<em><b>Input Message</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Input Message</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -403,7 +387,7 @@ public class TutorialPackage extends EPackageImpl
 		public static final EReference CONCAT__INPUT_MESSAGE = eINSTANCE.getConcat_InputMessage();
 
 		/**
-		 * The meta object literal for the '<em><b>Input Append Message</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Input Append Message</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -411,7 +395,7 @@ public class TutorialPackage extends EPackageImpl
 		public static final EReference CONCAT__INPUT_APPEND_MESSAGE = eINSTANCE.getConcat_InputAppendMessage();
 
 		/**
-		 * The meta object literal for the '<em><b>Output Message</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Output Message</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -420,4 +404,4 @@ public class TutorialPackage extends EPackageImpl
 
 	}
 
-} //TutorialPackage
+} //ConcatPackage
