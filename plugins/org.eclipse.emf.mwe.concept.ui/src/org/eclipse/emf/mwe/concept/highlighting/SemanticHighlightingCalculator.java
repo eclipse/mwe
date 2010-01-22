@@ -6,7 +6,7 @@ import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.common.editor.syntaxcoloring.DefaultLexicalHighlightingConfiguration;
+import org.eclipse.xtext.ui.common.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.common.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.common.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
@@ -27,7 +27,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 				highlightNode(abstractNode, SemanticHighlightingConfiguration.PROPERTY_REF, acceptor);
 				EObject semanticObject = NodeUtil.getNearestSemanticObject(abstractNode);
 				if (semanticObject != null) {
-					highlightNode(abstractNode, DefaultLexicalHighlightingConfiguration.STRING_ID, acceptor);
+					highlightNode(abstractNode, DefaultHighlightingConfiguration.STRING_ID, acceptor);
 				}
 			}
 		}

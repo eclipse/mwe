@@ -2,7 +2,7 @@ package org.eclipse.emf.mwe.concept.highlighting;
 
 import java.util.Set;
 
-import org.eclipse.xtext.ui.common.editor.syntaxcoloring.DefaultLexicalHighlightingConfiguration;
+import org.eclipse.xtext.ui.common.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.common.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 
 import com.google.common.collect.ImmutableSet;
@@ -21,10 +21,10 @@ public class TokenToAttributeMapper extends DefaultAntlrTokenToAttributeIdMapper
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
 		if(keywords.contains(tokenName)) {
-			return DefaultLexicalHighlightingConfiguration.KEYWORD_ID;
+			return DefaultHighlightingConfiguration.KEYWORD_ID;
 		}
 		if (tokenName.startsWith("KEYWORD_"))
-			return DefaultLexicalHighlightingConfiguration.PUNCTUATION_ID;
+			return DefaultHighlightingConfiguration.PUNCTUATION_ID;
 		return super.calculateId(tokenName, tokenType);
 	}
 
