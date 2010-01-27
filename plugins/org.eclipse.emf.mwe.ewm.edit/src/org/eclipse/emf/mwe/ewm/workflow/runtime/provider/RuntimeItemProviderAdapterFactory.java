@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeItemProviderAdapterFactory.java,v 1.5 2009/10/15 14:51:22 bhunt Exp $
+ * $Id: RuntimeItemProviderAdapterFactory.java,v 1.6 2010/01/27 22:01:28 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -188,6 +188,31 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 		}
 
 		return workflowParameterMapItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WorkflowParameterValueProxyItemProvider workflowParameterValueProxyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkflowParameterValueProxyAdapter()
+	{
+		if (workflowParameterValueProxyItemProvider == null)
+		{
+			workflowParameterValueProxyItemProvider = new WorkflowParameterValueProxyItemProvider(this);
+		}
+
+		return workflowParameterValueProxyItemProvider;
 	}
 
 	/**
@@ -535,6 +560,7 @@ public class RuntimeItemProviderAdapterFactory extends RuntimeAdapterFactory imp
 		if (workflowEngineItemProvider != null) workflowEngineItemProvider.dispose();
 		if (workflowStateMapItemProvider != null) workflowStateMapItemProvider.dispose();
 		if (workflowParameterMapItemProvider != null) workflowParameterMapItemProvider.dispose();
+		if (workflowParameterValueProxyItemProvider != null) workflowParameterValueProxyItemProvider.dispose();
 		if (workflowStateResolutionStrategyItemProvider != null) workflowStateResolutionStrategyItemProvider.dispose();
 		if (workflowRunnableItemProvider != null) workflowRunnableItemProvider.dispose();
 		if (workflowRunnerItemProvider != null) workflowRunnerItemProvider.dispose();

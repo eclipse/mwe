@@ -11,8 +11,11 @@
 package org.eclipse.emf.mwe.ewm.workflow;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.assertThat;
 
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException;
 import org.junit.Test;
 
@@ -30,9 +33,18 @@ public class TestWorkflowParameter extends WorkflowTestHarness
 	@Test
 	public void testGetValue() throws WorkflowRuntimeException
 	{
-		WorkflowParameter parameter = createStringParameter(null);
+		WorkflowParameter parameter = createStringParameter("Parm");
 		parameter.setValue(getContext(), "Hello");
 		assertThat(getContext().getParameters().size(), is(1));
 		assertThat((String) parameter.getValue(getContext()), is("Hello"));
+	}
+	
+	@Test
+	public void testGetProxyValue() throws WorkflowRuntimeException
+	{
+		WorkflowParameter parameter = createParameter("Parm", EcorePackage.Literals.EOBJECT, null);
+		getContext().getParameters().put(parameter, RuntimeFactory.eINSTANCE.createWorkflowParameterValueProxy());
+		parameter.setValue(getContext(), parameter);
+		assertThat((WorkflowParameter) parameter.getValue(getContext()), is(sameInstance(parameter)));		
 	}
 }

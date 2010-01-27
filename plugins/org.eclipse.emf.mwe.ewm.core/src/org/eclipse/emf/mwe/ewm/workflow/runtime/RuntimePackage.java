@@ -205,7 +205,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowStateResolutionStrategy()
 	 * @generated
 	 */
-	public static final int WORKFLOW_STATE_RESOLUTION_STRATEGY = 4;
+	public static final int WORKFLOW_STATE_RESOLUTION_STRATEGY = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner <em>Workflow Runner</em>}' class.
@@ -215,7 +215,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowRunner()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RUNNER = 6;
+	public static final int WORKFLOW_RUNNER = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunnable <em>Workflow Runnable</em>}' class.
@@ -225,7 +225,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowRunnable()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RUNNABLE = 5;
+	public static final int WORKFLOW_RUNNABLE = 6;
 
 	/**
 	 * The number of structural features of the '<em>Workflow Runnable</em>' class.
@@ -318,6 +318,34 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_PARAMETER_MAP_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy <em>Workflow Parameter Value Proxy</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowParameterValueProxy()
+	 * @generated
+	 */
+	public static final int WORKFLOW_PARAMETER_VALUE_PROXY = 4;
+
+	/**
+	 * The feature id for the '<em><b>Target</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_PARAMETER_VALUE_PROXY__TARGET = 0;
+
+	/**
+	 * The number of structural features of the '<em>Workflow Parameter Value Proxy</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_PARAMETER_VALUE_PROXY_FEATURE_COUNT = 1;
+
+	/**
 	 * The number of structural features of the '<em>Workflow State Resolution Strategy</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -361,7 +389,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLog()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOG = 7;
+	public static final int WORKFLOW_LOG = 8;
 
 	/**
 	 * The feature id for the '<em><b>Entries</b></em>' attribute list.
@@ -434,7 +462,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntry()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOG_ENTRY = 8;
+	public static final int WORKFLOW_LOG_ENTRY = 9;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -480,7 +508,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogMap()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOG_MAP = 9;
+	public static final int WORKFLOW_LOG_MAP = 10;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
@@ -517,7 +545,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfo()
 	 * @generated
 	 */
-	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO = 10;
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO = 11;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
@@ -554,7 +582,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowComponentExecutionInfoMap()
 	 * @generated
 	 */
-	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP = 11;
+	public static final int WORKFLOW_COMPONENT_EXECUTION_INFO_MAP = 12;
 
 	/**
 	 * The feature id for the '<em><b>Key</b></em>' reference.
@@ -591,7 +619,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowLogEntryType()
 	 * @generated
 	 */
-	public static final int WORKFLOW_LOG_ENTRY_TYPE = 12;
+	public static final int WORKFLOW_LOG_ENTRY_TYPE = 13;
 
 	/**
 	 * The meta object id for the '<em>Executor Service</em>' data type.
@@ -601,7 +629,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getExecutorService()
 	 * @generated
 	 */
-	public static final int EXECUTOR_SERVICE = 13;
+	public static final int EXECUTOR_SERVICE = 14;
 
 	/**
 	 * The meta object id for the '<em>Workflow Runtime Exception</em>' data type.
@@ -611,7 +639,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowRuntimeException()
 	 * @generated
 	 */
-	public static final int WORKFLOW_RUNTIME_EXCEPTION = 14;
+	public static final int WORKFLOW_RUNTIME_EXCEPTION = 15;
 
 	/**
 	 * The meta object id for the '<em>Exception</em>' data type.
@@ -621,7 +649,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getException()
 	 * @generated
 	 */
-	public static final int EXCEPTION = 15;
+	public static final int EXCEPTION = 16;
 
 	/**
 	 * The meta object id for the '<em>Timestamp</em>' data type.
@@ -631,7 +659,7 @@ public class RuntimePackage extends EPackageImpl
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getTimestamp()
 	 * @generated
 	 */
-	public static final int TIMESTAMP = 16;
+	public static final int TIMESTAMP = 17;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -660,6 +688,13 @@ public class RuntimePackage extends EPackageImpl
 	 * @generated
 	 */
 	private EClass workflowParameterMapEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass workflowParameterValueProxyEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1090,6 +1125,35 @@ public class RuntimePackage extends EPackageImpl
 	public EReference getWorkflowParameterMap_Value()
 	{
 		return (EReference)workflowParameterMapEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy <em>Workflow Parameter Value Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Workflow Parameter Value Proxy</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy
+	 * @generated
+	 */
+	public EClass getWorkflowParameterValueProxy()
+	{
+		return workflowParameterValueProxyEClass;
+	}
+
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Target</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy#getTarget()
+	 * @see #getWorkflowParameterValueProxy()
+	 * @generated
+	 */
+	public EReference getWorkflowParameterValueProxy_Target()
+	{
+		return (EReference)workflowParameterValueProxyEClass.getEStructuralFeatures().get(0);
 	}
 
 
@@ -1593,6 +1657,9 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowParameterMapEClass, WORKFLOW_PARAMETER_MAP__KEY);
 		createEReference(workflowParameterMapEClass, WORKFLOW_PARAMETER_MAP__VALUE);
 
+		workflowParameterValueProxyEClass = createEClass(WORKFLOW_PARAMETER_VALUE_PROXY);
+		createEReference(workflowParameterValueProxyEClass, WORKFLOW_PARAMETER_VALUE_PROXY__TARGET);
+
 		workflowStateResolutionStrategyEClass = createEClass(WORKFLOW_STATE_RESOLUTION_STRATEGY);
 
 		workflowRunnableEClass = createEClass(WORKFLOW_RUNNABLE);
@@ -1695,7 +1762,7 @@ public class RuntimePackage extends EPackageImpl
 		op = addEOperation(workflowContextEClass, this.getWorkflowComponentExecutionInfo(), "getExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(workflowContextEClass, theEcorePackage.getEJavaObject(), "getParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(workflowContextEClass, theEcorePackage.getEObject(), "getParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getWorkflowRuntimeException());
 
@@ -1737,7 +1804,7 @@ public class RuntimePackage extends EPackageImpl
 
 		op = addEOperation(workflowContextEClass, null, "setParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEJavaObject(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEObject(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, this.getWorkflowRuntimeException());
 
 		op = addEOperation(workflowContextEClass, null, "setState", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1759,6 +1826,9 @@ public class RuntimePackage extends EPackageImpl
 		initEClass(workflowParameterMapEClass, Map.Entry.class, "WorkflowParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowParameterMap_Key(), theWorkflowPackage.getWorkflowParameter(), null, "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowParameterMap_Value(), theEcorePackage.getEObject(), null, "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(workflowParameterValueProxyEClass, WorkflowParameterValueProxy.class, "WorkflowParameterValueProxy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkflowParameterValueProxy_Target(), theEcorePackage.getEObject(), null, "target", null, 1, 1, WorkflowParameterValueProxy.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(workflowStateResolutionStrategyEClass, WorkflowStateResolutionStrategy.class, "WorkflowStateResolutionStrategy", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -2045,6 +2115,24 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EReference WORKFLOW_PARAMETER_MAP__VALUE = eINSTANCE.getWorkflowParameterMap_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy <em>Workflow Parameter Value Proxy</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy
+		 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowParameterValueProxy()
+		 * @generated
+		 */
+		public static final EClass WORKFLOW_PARAMETER_VALUE_PROXY = eINSTANCE.getWorkflowParameterValueProxy();
+
+		/**
+		 * The meta object literal for the '<em><b>Target</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_PARAMETER_VALUE_PROXY__TARGET = eINSTANCE.getWorkflowParameterValueProxy_Target();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResolutionStrategy <em>Workflow State Resolution Strategy</em>}' class.

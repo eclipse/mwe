@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.mwe.ewm.workflow.junit.JunitFactory;
 import org.eclipse.emf.mwe.ewm.workflow.junit.UnitOfWorkTestHarness;
@@ -117,10 +118,20 @@ public class WorkflowTestHarness
 
 	public WorkflowParameter createStringParameter(String name)
 	{
+		return createParameter(name, EcorePackage.Literals.ESTRING, WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
+	}
+
+	public WorkflowParameter createParameter(String name, EClassifier type, WorkflowParameterValueStrategy valueStrategy)
+	{
 		WorkflowParameter parameter = WorkflowFactory.eINSTANCE.createWorkflowParameter();
 		parameter.setName(name);
-		parameter.setType(EcorePackage.Literals.ESTRING);
-		parameter.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterSimpleValueStrategy());
+		parameter.setType(type);
+		
+		if(valueStrategy != null)
+			parameter.setValueStrategy(valueStrategy);
+		else
+			parameter.setValueStrategy(WorkflowFactory.eINSTANCE.createWorkflowParameterValueStrategy());
+		
 		return parameter;
 	}
 

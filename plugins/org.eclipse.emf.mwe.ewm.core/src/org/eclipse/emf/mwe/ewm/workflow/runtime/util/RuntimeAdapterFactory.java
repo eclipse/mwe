@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResolutionStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -110,6 +111,11 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 			public Adapter caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object)
 			{
 				return createWorkflowParameterMapAdapter();
+			}
+			@Override
+			public Adapter caseWorkflowParameterValueProxy(WorkflowParameterValueProxy object)
+			{
+				return createWorkflowParameterValueProxyAdapter();
 			}
 			@Override
 			public Adapter caseWorkflowStateResolutionStrategy(WorkflowStateResolutionStrategy object)
@@ -229,6 +235,21 @@ public class RuntimeAdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createWorkflowParameterMapAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy <em>Workflow Parameter Value Proxy</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy
+	 * @generated
+	 */
+	public Adapter createWorkflowParameterValueProxyAdapter()
 	{
 		return null;
 	}

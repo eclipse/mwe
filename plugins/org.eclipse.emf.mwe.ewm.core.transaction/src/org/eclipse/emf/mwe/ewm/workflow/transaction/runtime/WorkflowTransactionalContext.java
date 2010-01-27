@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowTransactionalContext.java,v 1.1 2010/01/03 21:22:53 bhunt Exp $
+ * $Id: WorkflowTransactionalContext.java,v 1.2 2010/01/27 22:01:34 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime;
 
@@ -208,7 +208,7 @@ public class WorkflowTransactionalContext extends WorkflowContext
 	}
 
 	@Override
-	public Object getParameterValue(WorkflowParameter parameter) throws WorkflowRuntimeException
+	public EObject getParameterValue(WorkflowParameter parameter) throws WorkflowRuntimeException
 	{
 		WorkflowGetParameterValueCommand command = new WorkflowGetParameterValueCommand(this, parameter);
 
@@ -224,12 +224,9 @@ public class WorkflowTransactionalContext extends WorkflowContext
 	}
 
 	@Override
-	public void setParameterValue(WorkflowParameter parameter, Object value) throws WorkflowRuntimeException
+	public void setParameterValue(WorkflowParameter parameter, EObject value) throws WorkflowRuntimeException
 	{
-		if (!(value instanceof EObject))
-			throw new WorkflowRuntimeException("Value is not of type EObject");
-
-		WorkflowSetParameterValueCommand command = new WorkflowSetParameterValueCommand(this, parameter, (EObject) value);
+		WorkflowSetParameterValueCommand command = new WorkflowSetParameterValueCommand(this, parameter, value);
 		getEditingDomain().getCommandStack().execute(command);
 	}
 

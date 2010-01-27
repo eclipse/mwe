@@ -69,7 +69,10 @@ public class WorkflowParameterValueStrategy extends EObjectImpl implements EObje
 	 */
 	public void setValue(WorkflowContext context, WorkflowParameter parameter, Object value) throws WorkflowRuntimeException
 	{
-		context.setParameterValue(parameter, value);
+		if(!(value instanceof EObject))
+			throw new WorkflowRuntimeException("Parameter value must be of type EObject");
+		
+		context.setParameterValue(parameter, (EObject) value);
 	}
 
 } // WorkflowParameterValueStrategy

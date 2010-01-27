@@ -1190,43 +1190,6 @@ public class WorkflowPackage extends EPackageImpl
 		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEException(op, theRuntimePackage.getWorkflowRuntimeException());
 
-		op = addEOperation(workflowComponentEClass, null, "clearLog", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "logError", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "logWarning", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "logInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "logDebug", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "logException", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getException(), "e", 1, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, theStatePackage.getWorkflowState(), "getState", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "setState", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theStatePackage.getWorkflowState(), "state", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, theRuntimePackage.getWorkflowComponentExecutionInfo(), "getExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(workflowComponentEClass, null, "setExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theRuntimePackage.getWorkflowComponentExecutionInfo(), "executionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(workflowCompositeComponentEClass, WorkflowCompositeComponent.class, "WorkflowCompositeComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkflowCompositeComponent_Components(), this.getWorkflowComponent(), null, "components", null, 0, -1, WorkflowCompositeComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowCompositeComponent_Parameters(), this.getWorkflowParameter(), null, "parameters", null, 0, -1, WorkflowCompositeComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

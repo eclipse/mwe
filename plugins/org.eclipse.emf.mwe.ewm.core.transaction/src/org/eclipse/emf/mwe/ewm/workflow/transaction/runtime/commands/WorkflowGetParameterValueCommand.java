@@ -11,15 +11,17 @@
 
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.commands;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy;
 import org.eclipse.emf.transaction.RunnableWithResult;
 
 /**
  * @author bhunt
  *
  */
-public class WorkflowGetParameterValueCommand extends RunnableWithResult.Impl<Object>
+public class WorkflowGetParameterValueCommand extends RunnableWithResult.Impl<EObject>
 {
 	public WorkflowGetParameterValueCommand(WorkflowContext context, WorkflowParameter parameter)
 	{
@@ -32,7 +34,15 @@ public class WorkflowGetParameterValueCommand extends RunnableWithResult.Impl<Ob
 	 */
 	public void run()
 	{
-		setResult(context.getParameters().get(parameter));
+		EObject currentValue = context.getParameters().get(parameter);
+		
+		if(currentValue instanceof WorkflowParameterValueProxy)
+		{
+			WorkflowParameterValueProxy proxy = (WorkflowParameterValueProxy) currentValue;
+			setResult(proxy.getTarget());
+		}
+		else
+			setResult(currentValue);
 	}
 
 	private WorkflowContext context;

@@ -90,6 +90,7 @@ public class RuntimeFactory extends EFactoryImpl
 			case RuntimePackage.WORKFLOW_ENGINE: return createWorkflowEngine();
 			case RuntimePackage.WORKFLOW_STATE_MAP: return (EObject)createWorkflowStateMap();
 			case RuntimePackage.WORKFLOW_PARAMETER_MAP: return (EObject)createWorkflowParameterMap();
+			case RuntimePackage.WORKFLOW_PARAMETER_VALUE_PROXY: return createWorkflowParameterValueProxy();
 			case RuntimePackage.WORKFLOW_STATE_RESOLUTION_STRATEGY: return createWorkflowStateResolutionStrategy();
 			case RuntimePackage.WORKFLOW_RUNNABLE: return (EObject)createWorkflowRunnable();
 			case RuntimePackage.WORKFLOW_RUNNER: return createWorkflowRunner();
@@ -195,6 +196,17 @@ public class RuntimeFactory extends EFactoryImpl
 	{
 		WorkflowParameterMap workflowParameterMap = new WorkflowParameterMap();
 		return workflowParameterMap;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowParameterValueProxy createWorkflowParameterValueProxy()
+	{
+		WorkflowParameterValueProxy workflowParameterValueProxy = new WorkflowParameterValueProxy();
+		return workflowParameterValueProxy;
 	}
 
 	/**

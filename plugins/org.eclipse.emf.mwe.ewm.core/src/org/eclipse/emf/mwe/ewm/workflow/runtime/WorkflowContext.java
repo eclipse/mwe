@@ -36,21 +36,21 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Context</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParameters <em>Parameters</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getThreadPool <em>Thread Pool</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getStates <em>States</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog <em>Log</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getThreadPool <em>Thread Pool</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getStates <em>States</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog <em>Log</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext()
  * @model kind="class"
  * @generated
@@ -58,8 +58,8 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
 public class WorkflowContext extends EObjectImpl implements EObject
 {
 	/**
-	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getParameters() <em>Parameters</em>}' map.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getParameters()
 	 * @generated
 	 * @ordered
@@ -67,16 +67,16 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected EMap<WorkflowParameter, EObject> parameters;
 
 	/**
-	 * The default value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getThreadPool()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final ExecutorService THREAD_POOL_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getThreadPool()
 	 * @generated
 	 * @ordered
@@ -84,8 +84,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected ExecutorService threadPool = THREAD_POOL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getStates() <em>States</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getStates() <em>States</em>}' map.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getStates()
 	 * @generated
 	 * @ordered
@@ -93,8 +93,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected EMap<WorkflowComponent, WorkflowState> states;
 
 	/**
-	 * The cached value of the '{@link #getLog() <em>Log</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getLog() <em>Log</em>}' map.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLog()
 	 * @generated
 	 * @ordered
@@ -102,8 +102,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected EMap<WorkflowComponent, WorkflowLog> log;
 
 	/**
-	 * The default value of the '{@link #getLogLevel() <em>Log Level</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getLogLevel() <em>Log Level</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLogLevel()
 	 * @generated
 	 * @ordered
@@ -111,8 +111,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected static final WorkflowLogEntryType LOG_LEVEL_EDEFAULT = WorkflowLogEntryType.ERROR;
 
 	/**
-	 * The cached value of the '{@link #getLogLevel() <em>Log Level</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getLogLevel() <em>Log Level</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getLogLevel()
 	 * @generated
 	 * @ordered
@@ -120,8 +120,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected WorkflowLogEntryType logLevel = LOG_LEVEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getWorkflow() <em>Workflow</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getWorkflow() <em>Workflow</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getWorkflow()
 	 * @generated
 	 * @ordered
@@ -129,8 +129,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected WorkflowComponent workflow;
 
 	/**
-	 * The cached value of the '{@link #getActiveComponents() <em>Active Components</em>}' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getActiveComponents() <em>Active Components</em>}' reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getActiveComponents()
 	 * @generated
 	 * @ordered
@@ -138,8 +138,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected EList<WorkflowComponent> activeComponents;
 
 	/**
-	 * The cached value of the '{@link #getExecutionInfo() <em>Execution Info</em>}' map. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getExecutionInfo() <em>Execution Info</em>}' map.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getExecutionInfo()
 	 * @generated
 	 * @ordered
@@ -148,7 +148,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkflowContext()
@@ -158,7 +157,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,13 +166,14 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Parameters</b></em>' map. The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter}, and the value is of type
-	 * {@link org.eclipse.emf.ecore.EObject}, <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Parameters</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter},
+	 * and the value is of type {@link org.eclipse.emf.ecore.EObject},
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Parameters</em>' map isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Parameters</em>' map.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_Parameters()
 	 * @model mapType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterMap<org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter, org.eclipse.emf.ecore.EObject>"
@@ -184,7 +183,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	{
 		if (parameters == null)
 		{
-			parameters = new EcoreEMap<WorkflowParameter, EObject>(RuntimePackage.Literals.WORKFLOW_PARAMETER_MAP, WorkflowParameterMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS);
+			parameters = new EcoreEMap<WorkflowParameter,EObject>(RuntimePackage.Literals.WORKFLOW_PARAMETER_MAP, WorkflowParameterMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS);
 		}
 		return parameters;
 	}
@@ -210,13 +209,14 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>States</b></em>' map. The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}, and the value is of type
-	 * {@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState}, <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>States</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent},
+	 * and the value is of type {@link org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState},
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>States</em>' map isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>States</em>' map.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_States()
 	 * @model mapType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateMap<org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent, org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState>"
@@ -226,19 +226,20 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	{
 		if (states == null)
 		{
-			states = new EcoreEMap<WorkflowComponent, WorkflowState>(RuntimePackage.Literals.WORKFLOW_STATE_MAP, WorkflowStateMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__STATES);
+			states = new EcoreEMap<WorkflowComponent,WorkflowState>(RuntimePackage.Literals.WORKFLOW_STATE_MAP, WorkflowStateMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__STATES);
 		}
 		return states;
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Log</b></em>' map. The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}, and the value is of type
-	 * {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog}, <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Log</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent},
+	 * and the value is of type {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog},
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Log</em>' map isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Log</em>' map.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_Log()
 	 * @model mapType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogMap<org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent, org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog>"
@@ -248,19 +249,20 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	{
 		if (log == null)
 		{
-			log = new EcoreEMap<WorkflowComponent, WorkflowLog>(RuntimePackage.Literals.WORKFLOW_LOG_MAP, WorkflowLogMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__LOG);
+			log = new EcoreEMap<WorkflowComponent,WorkflowLog>(RuntimePackage.Literals.WORKFLOW_LOG_MAP, WorkflowLogMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__LOG);
 		}
 		return log;
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Log Level</b></em>' attribute. The literals are from the enumeration {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType}. <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Log Level</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType}.
+	 * <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Log Level</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Log Level</em>' attribute.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntryType
 	 * @see #setLogLevel(WorkflowLogEntryType)
@@ -294,12 +296,12 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Workflow</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Workflow</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Workflow</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Workflow</em>' reference.
 	 * @see #setWorkflow(WorkflowComponent)
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_Workflow()
@@ -310,8 +312,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	{
 		if (workflow != null && workflow.eIsProxy())
 		{
-			InternalEObject oldWorkflow = (InternalEObject) workflow;
-			workflow = (WorkflowComponent) eResolveProxy(oldWorkflow);
+			InternalEObject oldWorkflow = (InternalEObject)workflow;
+			workflow = (WorkflowComponent)eResolveProxy(oldWorkflow);
 			if (workflow != oldWorkflow)
 			{
 				if (eNotificationRequired())
@@ -323,7 +325,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WorkflowComponent basicGetWorkflow()
@@ -332,10 +333,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *          the new value of the '<em>Workflow</em>' reference.
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Workflow</em>' reference.
 	 * @see #getWorkflow()
 	 * @generated
 	 */
@@ -348,12 +348,13 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Active Components</b></em>' reference list. The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Active Components</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Active Components</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Active Components</em>' reference list.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_ActiveComponents()
 	 * @model
@@ -369,13 +370,14 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
-	 * Returns the value of the '<em><b>Execution Info</b></em>' map. The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent}, and the value is of type
-	 * {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo}, <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Execution Info</b></em>' map.
+	 * The key is of type {@link org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent},
+	 * and the value is of type {@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo},
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Execution Info</em>' map isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Execution Info</em>' map.
 	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_ExecutionInfo()
 	 * @model mapType="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfoMap<org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent, org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowComponentExecutionInfo>"
@@ -385,8 +387,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	{
 		if (executionInfo == null)
 		{
-			executionInfo = new EcoreEMap<WorkflowComponent, WorkflowComponentExecutionInfo>(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP, WorkflowComponentExecutionInfoMap.class, this,
-					RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO);
+			executionInfo = new EcoreEMap<WorkflowComponent,WorkflowComponentExecutionInfo>(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP, WorkflowComponentExecutionInfoMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO);
 		}
 		return executionInfo;
 	}
@@ -411,9 +412,17 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @model exceptions="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException" parameterRequired="true"
 	 * @generated NOT
 	 */
-	public Object getParameterValue(WorkflowParameter parameter) throws WorkflowRuntimeException
+	public EObject getParameterValue(WorkflowParameter parameter) throws WorkflowRuntimeException
 	{
-		return getParameters().get(parameter);
+		EObject currentValue = getParameters().get(parameter);
+		
+		if(currentValue instanceof WorkflowParameterValueProxy)
+		{
+			WorkflowParameterValueProxy proxy = (WorkflowParameterValueProxy) currentValue;
+			return proxy.getTarget();
+		}
+		
+		return currentValue;
 	}
 
 	/**
@@ -493,12 +502,17 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @model exceptions="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException" parameterRequired="true" valueRequired="true"
 	 * @generated NOT
 	 */
-	public void setParameterValue(WorkflowParameter parameter, Object value) throws WorkflowRuntimeException
+	public void setParameterValue(WorkflowParameter parameter, EObject value) throws WorkflowRuntimeException
 	{
-		if (!(value instanceof EObject))
-			throw new WorkflowRuntimeException("Value is not of type EObject");
-
-		getParameters().put(parameter, (EObject) value);
+		EObject currentValue = getParameters().get(parameter);
+		
+		if(currentValue instanceof WorkflowParameterValueProxy)
+		{
+			WorkflowParameterValueProxy proxy = (WorkflowParameterValueProxy) currentValue;
+			proxy.setTarget(value);
+		}
+		else
+			getParameters().put(parameter, value);
 	}
 
 	/**
@@ -584,7 +598,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -593,20 +606,19 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
-				return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
-				return ((InternalEList<?>) getStates()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getStates()).basicRemove(otherEnd, msgs);
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
-				return ((InternalEList<?>) getLog()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getLog()).basicRemove(otherEnd, msgs);
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
-				return ((InternalEList<?>) getExecutionInfo()).basicRemove(otherEnd, msgs);
+				return ((InternalEList<?>)getExecutionInfo()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -615,42 +627,32 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
-				if (coreType)
-					return getParameters();
-				else
-					return getParameters().map();
+				if (coreType) return getParameters();
+				else return getParameters().map();
 			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:
 				return getThreadPool();
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
-				if (coreType)
-					return getStates();
-				else
-					return getStates().map();
+				if (coreType) return getStates();
+				else return getStates().map();
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
-				if (coreType)
-					return getLog();
-				else
-					return getLog().map();
+				if (coreType) return getLog();
+				else return getLog().map();
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
 				return getLogLevel();
 			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
-				if (resolve)
-					return getWorkflow();
+				if (resolve) return getWorkflow();
 				return basicGetWorkflow();
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				return getActiveComponents();
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
-				if (coreType)
-					return getExecutionInfo();
-				else
-					return getExecutionInfo().map();
+				if (coreType) return getExecutionInfo();
+				else return getExecutionInfo().map();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -660,26 +662,26 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
-				((EStructuralFeature.Setting) getParameters()).set(newValue);
+				((EStructuralFeature.Setting)getParameters()).set(newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
-				((EStructuralFeature.Setting) getStates()).set(newValue);
+				((EStructuralFeature.Setting)getStates()).set(newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
-				((EStructuralFeature.Setting) getLog()).set(newValue);
+				((EStructuralFeature.Setting)getLog()).set(newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
-				setLogLevel((WorkflowLogEntryType) newValue);
+				setLogLevel((WorkflowLogEntryType)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
-				setWorkflow((WorkflowComponent) newValue);
+				setWorkflow((WorkflowComponent)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				getActiveComponents().clear();
-				getActiveComponents().addAll((Collection<? extends WorkflowComponent>) newValue);
+				getActiveComponents().addAll((Collection<? extends WorkflowComponent>)newValue);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
-				((EStructuralFeature.Setting) getExecutionInfo()).set(newValue);
+				((EStructuralFeature.Setting)getExecutionInfo()).set(newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -687,7 +689,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -708,7 +709,7 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				setLogLevel(LOG_LEVEL_EDEFAULT);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__WORKFLOW:
-				setWorkflow((WorkflowComponent) null);
+				setWorkflow((WorkflowComponent)null);
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__ACTIVE_COMPONENTS:
 				getActiveComponents().clear();
@@ -722,7 +723,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -752,14 +752,12 @@ public class WorkflowContext extends EObjectImpl implements EObject
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (threadPool: ");

@@ -195,7 +195,7 @@
       <eOperations name="getExecutionInfo" eType="#//runtime/WorkflowComponentExecutionInfo">
         <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
       </eOperations>
-      <eOperations name="getParameterValue" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"
+      <eOperations name="getParameterValue" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
           eExceptions="#//runtime/WorkflowRuntimeException">
         <eParameters name="parameter" lowerBound="1" eType="#//WorkflowParameter"/>
       </eOperations>
@@ -237,7 +237,7 @@
       </eOperations>
       <eOperations name="setParameterValue" eExceptions="#//runtime/WorkflowRuntimeException">
         <eParameters name="parameter" lowerBound="1" eType="#//WorkflowParameter"/>
-        <eParameters name="value" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+        <eParameters name="value" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
       </eOperations>
       <eOperations name="setState">
         <eParameters name="component" lowerBound="1" eType="#//WorkflowComponent"/>
@@ -279,6 +279,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
           eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"
           containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkflowParameterValueProxy">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowStateResolutionStrategy">
       <eOperations name="resolve" eType="#//runtime/state/WorkflowState">

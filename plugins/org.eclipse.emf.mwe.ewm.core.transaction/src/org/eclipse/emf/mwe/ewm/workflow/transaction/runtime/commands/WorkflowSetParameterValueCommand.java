@@ -14,6 +14,7 @@ package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowParameter;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy;
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext;
 import org.eclipse.emf.transaction.RecordingCommand;
 
@@ -42,7 +43,15 @@ public class WorkflowSetParameterValueCommand extends RecordingCommand
 	@Override
 	protected void doExecute()
 	{
-		context.getParameters().put(parameter, value);
+		EObject currentValue = context.getParameters().get(parameter);
+		
+		if(currentValue instanceof WorkflowParameterValueProxy)
+		{
+			WorkflowParameterValueProxy proxy = (WorkflowParameterValueProxy) currentValue;
+			proxy.setTarget(value);
+		}
+		else
+			context.getParameters().put(parameter, value);
 	}
 
 	private WorkflowContext context;

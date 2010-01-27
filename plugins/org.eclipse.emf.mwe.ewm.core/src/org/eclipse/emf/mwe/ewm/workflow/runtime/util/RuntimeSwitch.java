@@ -23,6 +23,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLog;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowLogEntry;
+import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowParameterValueProxy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRunner;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowStateResolutionStrategy;
 import org.eclipse.emf.mwe.ewm.workflow.runtime.state.WorkflowState;
@@ -136,6 +137,13 @@ public class RuntimeSwitch<T>
 			{
 				@SuppressWarnings("unchecked") Map.Entry<WorkflowParameter, EObject> workflowParameterMap = (Map.Entry<WorkflowParameter, EObject>)theEObject;
 				T result = caseWorkflowParameterMap(workflowParameterMap);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RuntimePackage.WORKFLOW_PARAMETER_VALUE_PROXY:
+			{
+				WorkflowParameterValueProxy workflowParameterValueProxy = (WorkflowParameterValueProxy)theEObject;
+				T result = caseWorkflowParameterValueProxy(workflowParameterValueProxy);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -253,6 +261,22 @@ public class RuntimeSwitch<T>
 	 * @generated
 	 */
 	public T caseWorkflowParameterMap(Map.Entry<WorkflowParameter, EObject> object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workflow Parameter Value Proxy</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workflow Parameter Value Proxy</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkflowParameterValueProxy(WorkflowParameterValueProxy object)
 	{
 		return null;
 	}
