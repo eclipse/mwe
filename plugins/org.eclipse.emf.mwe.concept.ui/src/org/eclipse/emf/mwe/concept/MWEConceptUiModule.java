@@ -4,7 +4,7 @@
 package org.eclipse.emf.mwe.concept;
 
 import org.eclipse.emf.mwe.concept.highlighting.SemanticHighlightingCalculator;
-import org.eclipse.emf.mwe.concept.highlighting.SemanticHighlightingConfiguration;
+import org.eclipse.emf.mwe.concept.highlighting.MweHighlightingConfiguration;
 import org.eclipse.emf.mwe.concept.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe.concept.highlighting.TokenToAttributeMapper;
 import org.eclipse.emf.mwe.concept.scoping.NamespaceAwareScopeProvider;
@@ -29,8 +29,9 @@ public class MWEConceptUiModule extends org.eclipse.emf.mwe.concept.AbstractMWEC
 		return SemanticHighlightingCalculator.class;
 	}
 	
-	public Class<? extends org.eclipse.xtext.ui.common.editor.syntaxcoloring.ISemanticHighlightingConfiguration> bindISemanticHighlightingConfiguration() {
-		return SemanticHighlightingConfiguration.class;
+	
+	public Class<? extends org.eclipse.xtext.ui.common.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
+		return MweHighlightingConfiguration.class;
 	}
 	
 	// contributed by org.eclipse.xtext.ui.generator.scoping.QualifiedNameBasedScopingFragment

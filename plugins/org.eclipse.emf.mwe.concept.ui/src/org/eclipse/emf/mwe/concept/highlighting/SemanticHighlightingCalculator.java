@@ -24,7 +24,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		Iterable<AbstractNode> allNodes = NodeUtil.getAllContents(resource.getParseResult().getRootNode());
 		for (AbstractNode abstractNode : allNodes) {
 			if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getPropertyPropertyEntryCrossReference_0()) {
-				highlightNode(abstractNode, SemanticHighlightingConfiguration.PROPERTY_REF, acceptor);
+				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
 				EObject semanticObject = NodeUtil.getNearestSemanticObject(abstractNode);
 				if (semanticObject != null) {
 					highlightNode(abstractNode, DefaultHighlightingConfiguration.STRING_ID, acceptor);
