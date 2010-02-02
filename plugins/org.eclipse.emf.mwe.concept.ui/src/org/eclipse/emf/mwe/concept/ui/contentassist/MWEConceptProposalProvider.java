@@ -17,8 +17,8 @@ import org.eclipse.xtext.common.types.Type;
 import org.eclipse.xtext.common.types.xtext.ui.TypeMatchFilters;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.ui.core.editor.contentassist.ContentAssistContext;
-import org.eclipse.xtext.ui.core.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
 import com.google.common.base.Function;
 import com.google.inject.Inject;

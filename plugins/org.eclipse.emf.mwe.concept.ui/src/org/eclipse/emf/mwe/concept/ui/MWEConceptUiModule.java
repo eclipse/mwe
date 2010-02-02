@@ -8,7 +8,7 @@ import org.eclipse.emf.mwe.concept.ui.highlighting.SemanticHighlightingCalculato
 import org.eclipse.emf.mwe.concept.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe.concept.ui.highlighting.TokenToAttributeMapper;
 import org.eclipse.emf.mwe.concept.ui.scoping.NamespaceAwareScopeProvider;
-import org.eclipse.xtext.ui.common.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
 
@@ -18,19 +18,19 @@ import com.google.inject.Binder;
 public class MWEConceptUiModule extends org.eclipse.emf.mwe.concept.ui.AbstractMWEConceptUiModule {
 	@Override
 	public void configureHighlightingTokenDefProvider(Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.ITokenDefProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.core.LexerUIBindings.HIGHLIGHTING)).to(TokenDefProvider.class);
+		binder.bind(org.eclipse.xtext.parser.antlr.ITokenDefProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(TokenDefProvider.class);
 	}
 	
 	public Class<? extends AbstractAntlrTokenToAttributeIdMapper> bindAbstractAntlrTokenToAttributeIdMapper() {
 		return TokenToAttributeMapper.class;
 	}
 	
-	public Class<? extends org.eclipse.xtext.ui.common.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return SemanticHighlightingCalculator.class;
 	}
 	
 	
-	public Class<? extends org.eclipse.xtext.ui.common.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
+	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return MweHighlightingConfiguration.class;
 	}
 	

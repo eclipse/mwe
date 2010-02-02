@@ -6,8 +6,7 @@ Bundle-Version: 0.8.0
 Bundle-SymbolicName: org.eclipse.emf.mwe.concept.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.mwe.concept;visibility:=reexport,
- org.eclipse.xtext.ui.core,
- org.eclipse.xtext.ui.common,
+ org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.5.0",
  org.eclipse.ui.ide;bundle-version="3.5.0",
  org.eclipse.ui,

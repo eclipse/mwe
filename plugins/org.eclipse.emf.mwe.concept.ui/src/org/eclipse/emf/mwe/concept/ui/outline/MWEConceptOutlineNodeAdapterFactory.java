@@ -3,7 +3,7 @@
 */
 package org.eclipse.emf.mwe.concept.ui.outline;
 
-import org.eclipse.xtext.ui.common.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
+import org.eclipse.xtext.ui.editor.outline.actions.DefaultContentOutlineNodeAdapterFactory;
 
 public class MWEConceptOutlineNodeAdapterFactory extends DefaultContentOutlineNodeAdapterFactory {
 
