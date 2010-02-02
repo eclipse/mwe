@@ -35,7 +35,7 @@ public class MWEConceptActivator extends AbstractUIPlugin {
 		try {
 			
 			injectors.put("org.eclipse.emf.mwe.concept.MWEConcept", Guice.createInjector(
-				new org.eclipse.emf.mwe.concept.MWEConceptUiModule(),
+				new org.eclipse.emf.mwe.concept.ui.MWEConceptUiModule(),
 				createUIPluginModule()
 			));
 			

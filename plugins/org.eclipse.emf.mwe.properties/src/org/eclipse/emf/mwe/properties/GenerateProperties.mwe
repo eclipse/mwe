@@ -45,9 +45,6 @@
                 <composedCheck value="org.eclipse.xtext.validation.ImportUriValidator"/>
             </fragment>
             
-			<!-- scoping API -->
-			<fragment class="org.eclipse.xtext.generator.scoping.JavaScopingFragment"/>
-			
 			<!-- formatter API -->
 			<fragment class="org.eclipse.xtext.generator.formatting.FormatterFragment"/>
 

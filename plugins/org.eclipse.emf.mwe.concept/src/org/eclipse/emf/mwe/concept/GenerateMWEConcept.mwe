@@ -84,7 +84,7 @@
 				<fragment class="org.eclipse.xtext.generator.builder.BuilderIntegrationFragment"/>
 			<fragment class="org.eclipse.xtext.generator.exporting.QualifiedNamesFragment"/>
 			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment"
-				lexerGrammar="org.eclipse.emf.mwe.concept.highlighting.MweHighlighting"
+				lexerGrammar="org.eclipse.emf.mwe.concept.ui.highlighting.MweHighlighting"
 				highlighting="true"
 			/>
 		</language>

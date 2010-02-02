@@ -35,7 +35,7 @@ public class MWEPropertiesActivator extends AbstractUIPlugin {
 		try {
 			
 			injectors.put("org.eclipse.emf.mwe.properties.MWEProperties", Guice.createInjector(
-				new org.eclipse.emf.mwe.properties.MWEPropertiesUiModule(),
+				new org.eclipse.emf.mwe.properties.ui.MWEPropertiesUiModule(),
 				createUIPluginModule()
 			));
 			
