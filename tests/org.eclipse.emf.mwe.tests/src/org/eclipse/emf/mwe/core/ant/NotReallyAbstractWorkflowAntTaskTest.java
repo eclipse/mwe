@@ -17,7 +17,7 @@ import org.eclipse.ant.core.AntRunner;
  *      ://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/
  *      package -summary.html
  */
-public class WorkflowAntTaskTest extends TestCase {
+public class NotReallyAbstractWorkflowAntTaskTest extends TestCase {
 	/**
 	 * When adding more then one <tt>param</tt> tag the WorkflowAntTasks will fail with a Usage description. See
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=212994
