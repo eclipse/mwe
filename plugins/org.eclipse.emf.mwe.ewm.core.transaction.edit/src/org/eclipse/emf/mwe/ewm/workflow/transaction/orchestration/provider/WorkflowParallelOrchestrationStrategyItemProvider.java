@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowParallelOrchestrationStrategyItemProvider.java,v 1.1 2010/01/03 21:23:55 bhunt Exp $
+ * $Id: WorkflowParallelOrchestrationStrategyItemProvider.java,v 1.2 2010/02/15 22:53:41 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration.provider;
 
@@ -12,14 +12,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.provider.WorkflowCompositeOrchestrationStrategyItemProvider;
 
 /**

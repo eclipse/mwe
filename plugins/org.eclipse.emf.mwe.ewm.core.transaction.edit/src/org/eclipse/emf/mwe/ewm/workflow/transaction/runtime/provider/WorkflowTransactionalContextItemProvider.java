@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowTransactionalContextItemProvider.java,v 1.1 2010/01/03 21:23:55 bhunt Exp $
+ * $Id: WorkflowTransactionalContextItemProvider.java,v 1.2 2010/02/15 22:53:41 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.provider;
 
@@ -10,11 +10,8 @@ package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.provider;
 import java.util.Collection;
 import java.util.List;
 
-import java.util.concurrent.ExecutorService;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -24,9 +21,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.provider.WorkflowContextItemProvider;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage;
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext;
 
@@ -70,6 +65,7 @@ public class WorkflowTransactionalContextItemProvider
 			super.getPropertyDescriptors(object);
 
 			addEditingDomainPropertyDescriptor(object);
+			addThreadPoolPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -98,6 +94,29 @@ public class WorkflowTransactionalContextItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Thread Pool feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addThreadPoolPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkflowTransactionalContext_threadPool_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowTransactionalContext_threadPool_feature", "_UI_WorkflowTransactionalContext_type"),
+				 RuntimePackage.Literals.WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL,
+				 false,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns WorkflowTransactionalContext.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -118,8 +137,7 @@ public class WorkflowTransactionalContextItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		ExecutorService labelValue = ((WorkflowTransactionalContext)object).getThreadPool();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((WorkflowTransactionalContext)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_WorkflowTransactionalContext_type") :
 			getString("_UI_WorkflowTransactionalContext_type") + " " + label;
@@ -140,6 +158,7 @@ public class WorkflowTransactionalContextItemProvider
 		switch (notification.getFeatureID(WorkflowTransactionalContext.class))
 		{
 			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN:
+			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

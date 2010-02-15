@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeItemProviderAdapterFactory.java,v 1.1 2010/01/03 21:23:55 bhunt Exp $
+ * $Id: RuntimeItemProviderAdapterFactory.java,v 1.2 2010/02/15 22:53:41 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.provider;
 
@@ -13,15 +13,10 @@ import java.util.List;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -35,16 +30,11 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.util.RuntimeSwitch;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.provider.TransactionEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimeFactory;
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.util.RuntimeAdapterFactory;
 
 /**

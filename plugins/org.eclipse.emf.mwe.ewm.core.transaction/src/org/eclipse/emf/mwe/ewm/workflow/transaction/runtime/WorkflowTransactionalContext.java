@@ -2,9 +2,12 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowTransactionalContext.java,v 1.2 2010/01/27 22:01:34 bhunt Exp $
+ * $Id: WorkflowTransactionalContext.java,v 1.3 2010/02/15 22:53:36 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
@@ -32,14 +35,15 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Workflow Transactional Context</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getEditingDomain <em>Editing Domain</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getEditingDomain <em>Editing Domain</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getThreadPool <em>Thread Pool</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage#getWorkflowTransactionalContext()
  * @model kind="class"
  * @generated
@@ -47,8 +51,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 public class WorkflowTransactionalContext extends WorkflowContext
 {
 	/**
-	 * The default value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The default value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEditingDomain()
 	 * @generated
 	 * @ordered
@@ -56,8 +60,8 @@ public class WorkflowTransactionalContext extends WorkflowContext
 	protected static final TransactionalEditingDomain EDITING_DOMAIN_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The cached value of the '{@link #getEditingDomain() <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see #getEditingDomain()
 	 * @generated
 	 * @ordered
@@ -65,8 +69,27 @@ public class WorkflowTransactionalContext extends WorkflowContext
 	protected TransactionalEditingDomain editingDomain = EDITING_DOMAIN_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadPool()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final ExecutorService THREAD_POOL_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getThreadPool()
+	 * @generated
+	 * @ordered
+	 */
+	protected ExecutorService threadPool = THREAD_POOL_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected WorkflowTransactionalContext()
@@ -76,7 +99,6 @@ public class WorkflowTransactionalContext extends WorkflowContext
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -107,11 +129,30 @@ public class WorkflowTransactionalContext extends WorkflowContext
 	}
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getEditingDomain <em>Editing Domain</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns the value of the '<em><b>Thread Pool</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Thread Pool</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * 
-	 * @param value
-	 *          the new value of the '<em>Editing Domain</em>' attribute.
+	 * @return the value of the '<em>Thread Pool</em>' attribute.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowContext_ThreadPool()
+	 * @model dataType="org.eclipse.emf.workflow.ExecutorService" transient="true" changeable="false"
+	 * @generated NOT
+	 */
+	public ExecutorService getThreadPool()
+	{
+		if (threadPool == null)
+			threadPool = Executors.newCachedThreadPool();
+
+		return threadPool;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getEditingDomain <em>Editing Domain</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @param value the new value of the '<em>Editing Domain</em>' attribute.
 	 * @see #getEditingDomain()
 	 * @generated
 	 */
@@ -125,7 +166,6 @@ public class WorkflowTransactionalContext extends WorkflowContext
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -135,13 +175,14 @@ public class WorkflowTransactionalContext extends WorkflowContext
 		{
 			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN:
 				return getEditingDomain();
+			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL:
+				return getThreadPool();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -150,7 +191,7 @@ public class WorkflowTransactionalContext extends WorkflowContext
 		switch (featureID)
 		{
 			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN:
-				setEditingDomain((TransactionalEditingDomain) newValue);
+				setEditingDomain((TransactionalEditingDomain)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -158,7 +199,6 @@ public class WorkflowTransactionalContext extends WorkflowContext
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -175,7 +215,6 @@ public class WorkflowTransactionalContext extends WorkflowContext
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,24 +224,26 @@ public class WorkflowTransactionalContext extends WorkflowContext
 		{
 			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN:
 				return EDITING_DOMAIN_EDEFAULT == null ? editingDomain != null : !EDITING_DOMAIN_EDEFAULT.equals(editingDomain);
+			case RuntimePackage.WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL:
+				return THREAD_POOL_EDEFAULT == null ? threadPool != null : !THREAD_POOL_EDEFAULT.equals(threadPool);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString()
 	{
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (editingDomain: ");
 		result.append(editingDomain);
+		result.append(", threadPool: ");
+		result.append(threadPool);
 		result.append(')');
 		return result.toString();
 	}
@@ -221,6 +262,19 @@ public class WorkflowTransactionalContext extends WorkflowContext
 		{
 			throw new WorkflowRuntimeException(e);
 		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model exceptions="org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowRuntimeException" parameterRequired="true" valueRequired="true"
+	 * @generated
+	 */
+	public void setParameterValue(WorkflowParameter parameter, Object value) throws WorkflowRuntimeException
+	{
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	@Override

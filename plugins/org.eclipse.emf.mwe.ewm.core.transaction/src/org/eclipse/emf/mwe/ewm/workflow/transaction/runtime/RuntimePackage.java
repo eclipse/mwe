@@ -2,20 +2,19 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimePackage.java,v 1.1 2010/01/03 21:22:53 bhunt Exp $
+ * $Id: RuntimePackage.java,v 1.2 2010/02/15 22:53:35 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
-
+import org.eclipse.emf.mwe.ewm.workflow.runtime.state.StatePackage;
 import org.eclipse.emf.mwe.ewm.workflow.transaction.TransactionPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration.OrchestrationPackage;
 
 /**
@@ -87,15 +86,6 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__PARAMETERS = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS;
 
 	/**
-	 * The feature id for the '<em><b>Thread Pool</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL;
-
-	/**
 	 * The feature id for the '<em><b>States</b></em>' map.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -150,6 +140,15 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__EXECUTION_INFO = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__NAME = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Editing Domain</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -159,13 +158,22 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Thread Pool</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Transactional Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT_FEATURE_COUNT = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT_FEATURE_COUNT + 1;
+	public static final int WORKFLOW_TRANSACTIONAL_CONTEXT_FEATURE_COUNT = org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.WORKFLOW_CONTEXT_FEATURE_COUNT + 2;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -277,6 +285,21 @@ public class RuntimePackage extends EPackageImpl
 	}
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getThreadPool <em>Thread Pool</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Thread Pool</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext#getThreadPool()
+	 * @see #getWorkflowTransactionalContext()
+	 * @generated
+	 */
+	public EAttribute getWorkflowTransactionalContext_ThreadPool()
+	{
+		return (EAttribute)workflowTransactionalContextEClass.getEStructuralFeatures().get(1);
+	}
+
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -310,6 +333,7 @@ public class RuntimePackage extends EPackageImpl
 		// Create classes and their features
 		workflowTransactionalContextEClass = createEClass(WORKFLOW_TRANSACTIONAL_CONTEXT);
 		createEAttribute(workflowTransactionalContextEClass, WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN);
+		createEAttribute(workflowTransactionalContextEClass, WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL);
 	}
 
 	/**
@@ -339,6 +363,9 @@ public class RuntimePackage extends EPackageImpl
 		// Obtain other dependent packages
 		org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage theRuntimePackage_1 = (org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage.eNS_URI);
 		TransactionPackage theTransactionPackage = (TransactionPackage)EPackage.Registry.INSTANCE.getEPackage(TransactionPackage.eNS_URI);
+		WorkflowPackage theWorkflowPackage = (WorkflowPackage)EPackage.Registry.INSTANCE.getEPackage(WorkflowPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		StatePackage theStatePackage = (StatePackage)EPackage.Registry.INSTANCE.getEPackage(StatePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -350,6 +377,53 @@ public class RuntimePackage extends EPackageImpl
 		// Initialize classes and features; add operations and parameters
 		initEClass(workflowTransactionalContextEClass, WorkflowTransactionalContext.class, "WorkflowTransactionalContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWorkflowTransactionalContext_EditingDomain(), theTransactionPackage.getTransactionalEditingDomain(), "editingDomain", null, 1, 1, WorkflowTransactionalContext.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getWorkflowTransactionalContext_ThreadPool(), theRuntimePackage_1.getExecutorService(), "threadPool", null, 0, 1, WorkflowTransactionalContext.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = addEOperation(workflowTransactionalContextEClass, null, "clearLog", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, theRuntimePackage_1.getWorkflowComponentExecutionInfo(), "getExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, theEcorePackage.getEJavaObject(), "getParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theRuntimePackage_1.getWorkflowRuntimeException());
+
+		op = addEOperation(workflowTransactionalContextEClass, theStatePackage.getWorkflowState(), "getState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "logError", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "logWarning", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "logInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "logDebug", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEString(), "message", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "logException", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage_1.getException(), "exception", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "setExecutionInfo", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theRuntimePackage_1.getWorkflowComponentExecutionInfo(), "executionInfo", 1, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "setParameterValue", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowParameter(), "parameter", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEJavaObject(), "value", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEException(op, theRuntimePackage_1.getWorkflowRuntimeException());
+
+		op = addEOperation(workflowTransactionalContextEClass, null, "setState", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theStatePackage.getWorkflowState(), "state", 1, 1, IS_UNIQUE, IS_ORDERED);
 	}
 
 	/**
@@ -383,6 +457,14 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EAttribute WORKFLOW_TRANSACTIONAL_CONTEXT__EDITING_DOMAIN = eINSTANCE.getWorkflowTransactionalContext_EditingDomain();
+
+		/**
+		 * The meta object literal for the '<em><b>Thread Pool</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EAttribute WORKFLOW_TRANSACTIONAL_CONTEXT__THREAD_POOL = eINSTANCE.getWorkflowTransactionalContext_ThreadPool();
 
 	}
 

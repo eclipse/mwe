@@ -2,20 +2,17 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeAdapterFactory.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: RuntimeAdapterFactory.java,v 1.2 2010/02/15 22:53:37 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext;
-
-import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.*;
+import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage;
+import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.WorkflowTransactionalContext;
 
 /**
  * <!-- begin-user-doc -->

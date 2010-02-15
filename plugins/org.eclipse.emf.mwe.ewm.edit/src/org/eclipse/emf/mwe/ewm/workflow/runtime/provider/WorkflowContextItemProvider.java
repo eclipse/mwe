@@ -2,14 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowContextItemProvider.java,v 1.6 2010/01/03 21:25:07 bhunt Exp $
+ * $Id: WorkflowContextItemProvider.java,v 1.7 2010/02/15 22:53:33 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
 
 import java.util.Collection;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -69,35 +68,12 @@ public class WorkflowContextItemProvider
 		{
 			super.getPropertyDescriptors(object);
 
-			addThreadPoolPropertyDescriptor(object);
 			addLogLevelPropertyDescriptor(object);
 			addWorkflowPropertyDescriptor(object);
 			addActiveComponentsPropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Thread Pool feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addThreadPoolPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_WorkflowContext_threadPool_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowContext_threadPool_feature", "_UI_WorkflowContext_type"),
-				 RuntimePackage.Literals.WORKFLOW_CONTEXT__THREAD_POOL,
-				 false,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -170,6 +146,29 @@ public class WorkflowContextItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addNamePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkflowContext_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowContext_name_feature", "_UI_WorkflowContext_type"),
+				 RuntimePackage.Literals.WORKFLOW_CONTEXT__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -226,8 +225,7 @@ public class WorkflowContextItemProvider
 	@Override
 	public String getText(Object object)
 	{
-		ExecutorService labelValue = ((WorkflowContext)object).getThreadPool();
-		String label = labelValue == null ? null : labelValue.toString();
+		String label = ((WorkflowContext)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_WorkflowContext_type") :
 			getString("_UI_WorkflowContext_type") + " " + label;
@@ -247,8 +245,8 @@ public class WorkflowContextItemProvider
 
 		switch (notification.getFeatureID(WorkflowContext.class))
 		{
-			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG_LEVEL:
+			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:

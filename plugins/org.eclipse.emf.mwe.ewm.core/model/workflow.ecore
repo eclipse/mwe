@@ -245,8 +245,6 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
           eType="#//runtime/WorkflowParameterMap" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="#//runtime/ExecutorService"
-          changeable="false" transient="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="states" upperBound="-1"
           eType="#//runtime/WorkflowStateMap" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="log" upperBound="-1"
@@ -259,6 +257,8 @@
           eType="#//WorkflowComponent"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="executionInfo" upperBound="-1"
           eType="#//runtime/WorkflowComponentExecutionInfoMap" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WorkflowEngine" eSuperTypes="#//runtime/WorkflowRunnable">
       <eOperations name="run"/>

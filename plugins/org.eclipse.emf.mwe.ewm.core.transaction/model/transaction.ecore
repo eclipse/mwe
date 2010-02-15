@@ -54,6 +54,8 @@
       </eOperations>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="editingDomain" lowerBound="1"
           eType="#//TransactionalEditingDomain" transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="threadPool" eType="ecore:EDataType ../../org.eclipse.emf.mwe.ewm.core/model/workflow.ecore#//runtime/ExecutorService"
+          changeable="false" transient="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="orchestration" nsURI="http://www.eclipse.org/emf/mwe/ewm/workflow/transaction/orchestration"

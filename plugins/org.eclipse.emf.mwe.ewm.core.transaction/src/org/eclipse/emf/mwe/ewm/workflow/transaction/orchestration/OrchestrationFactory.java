@@ -2,16 +2,14 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationFactory.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: OrchestrationFactory.java,v 1.2 2010/02/15 22:53:39 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**

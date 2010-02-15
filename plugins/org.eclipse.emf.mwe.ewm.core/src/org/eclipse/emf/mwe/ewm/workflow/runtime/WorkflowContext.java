@@ -11,8 +11,6 @@
 package org.eclipse.emf.mwe.ewm.workflow.runtime;
 
 import java.util.Collection;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -41,13 +39,13 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getThreadPool <em>Thread Pool</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getStates <em>States</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLog <em>Log</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getLogLevel <em>Log Level</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getWorkflow <em>Workflow</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -65,23 +63,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected EMap<WorkflowParameter, EObject> parameters;
-
-	/**
-	 * The default value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getThreadPool()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final ExecutorService THREAD_POOL_EDEFAULT = null;
-	/**
-	 * The cached value of the '{@link #getThreadPool() <em>Thread Pool</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #getThreadPool()
-	 * @generated
-	 * @ordered
-	 */
-	protected ExecutorService threadPool = THREAD_POOL_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getStates() <em>States</em>}' map.
@@ -147,6 +128,26 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	protected EMap<WorkflowComponent, WorkflowComponentExecutionInfo> executionInfo;
 
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -186,26 +187,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			parameters = new EcoreEMap<WorkflowParameter,EObject>(RuntimePackage.Literals.WORKFLOW_PARAMETER_MAP, WorkflowParameterMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS);
 		}
 		return parameters;
-	}
-
-	/**
-	 * Returns the value of the '<em><b>Thread Pool</b></em>' attribute. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Thread Pool</em>' attribute isn't clear, there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Thread Pool</em>' attribute.
-	 * @see org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage#getWorkflowContext_ThreadPool()
-	 * @model dataType="org.eclipse.emf.workflow.ExecutorService" transient="true" changeable="false"
-	 * @generated NOT
-	 */
-	public ExecutorService getThreadPool()
-	{
-		if (threadPool == null)
-			threadPool = Executors.newCachedThreadPool();
-
-		return threadPool;
 	}
 
 	/**
@@ -390,6 +371,41 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			executionInfo = new EcoreEMap<WorkflowComponent,WorkflowComponentExecutionInfo>(RuntimePackage.Literals.WORKFLOW_COMPONENT_EXECUTION_INFO_MAP, WorkflowComponentExecutionInfoMap.class, this, RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO);
 		}
 		return executionInfo;
+	}
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_Name()
+	 * @model required="true"
+	 * @generated
+	 */
+	public String getName()
+	{
+		return name;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	public void setName(String newName)
+	{
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_CONTEXT__NAME, oldName, name));
 	}
 
 	/**
@@ -629,8 +645,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				if (coreType) return getParameters();
 				else return getParameters().map();
-			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:
-				return getThreadPool();
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
 				if (coreType) return getStates();
 				else return getStates().map();
@@ -647,6 +661,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				if (coreType) return getExecutionInfo();
 				else return getExecutionInfo().map();
+			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -683,6 +699,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				((EStructuralFeature.Setting)getExecutionInfo()).set(newValue);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
+				setName((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -717,6 +736,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				getExecutionInfo().clear();
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -732,8 +754,6 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		{
 			case RuntimePackage.WORKFLOW_CONTEXT__PARAMETERS:
 				return parameters != null && !parameters.isEmpty();
-			case RuntimePackage.WORKFLOW_CONTEXT__THREAD_POOL:
-				return THREAD_POOL_EDEFAULT == null ? threadPool != null : !THREAD_POOL_EDEFAULT.equals(threadPool);
 			case RuntimePackage.WORKFLOW_CONTEXT__STATES:
 				return states != null && !states.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__LOG:
@@ -746,6 +766,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return activeComponents != null && !activeComponents.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__EXECUTION_INFO:
 				return executionInfo != null && !executionInfo.isEmpty();
+			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -760,10 +782,10 @@ public class WorkflowContext extends EObjectImpl implements EObject
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (threadPool: ");
-		result.append(threadPool);
-		result.append(", logLevel: ");
+		result.append(" (logLevel: ");
 		result.append(logLevel);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

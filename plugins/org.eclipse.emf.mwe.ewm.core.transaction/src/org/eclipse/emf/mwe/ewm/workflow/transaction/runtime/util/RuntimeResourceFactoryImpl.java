@@ -2,16 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeResourceFactoryImpl.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: RuntimeResourceFactoryImpl.java,v 1.2 2010/02/15 22:53:36 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**

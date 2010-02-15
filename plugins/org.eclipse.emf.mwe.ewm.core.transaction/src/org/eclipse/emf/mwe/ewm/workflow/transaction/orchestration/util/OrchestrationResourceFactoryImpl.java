@@ -2,16 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationResourceFactoryImpl.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: OrchestrationResourceFactoryImpl.java,v 1.2 2010/02/15 22:53:38 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
-
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**

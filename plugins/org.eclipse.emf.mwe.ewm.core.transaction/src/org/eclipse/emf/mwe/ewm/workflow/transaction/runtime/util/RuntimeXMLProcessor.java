@@ -2,18 +2,15 @@
  * <copyright>
  * </copyright>
  *
- * $Id: RuntimeXMLProcessor.java,v 1.1 2010/01/03 21:22:53 bhunt Exp $
+ * $Id: RuntimeXMLProcessor.java,v 1.2 2010/02/15 22:53:36 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.util;
 
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.resource.Resource;
-
 import org.eclipse.emf.ecore.xmi.util.XMLProcessor;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage;
 
 /**

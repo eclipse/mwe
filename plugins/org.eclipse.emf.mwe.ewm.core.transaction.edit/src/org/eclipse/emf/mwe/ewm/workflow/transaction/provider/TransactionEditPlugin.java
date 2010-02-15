@@ -2,16 +2,13 @@
  * <copyright>
  * </copyright>
  *
- * $Id: TransactionEditPlugin.java,v 1.1 2010/01/03 21:23:55 bhunt Exp $
+ * $Id: TransactionEditPlugin.java,v 1.2 2010/02/15 22:53:40 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 import org.eclipse.emf.mwe.ewm.provider.WorkflowEditPlugin;
 
 /**

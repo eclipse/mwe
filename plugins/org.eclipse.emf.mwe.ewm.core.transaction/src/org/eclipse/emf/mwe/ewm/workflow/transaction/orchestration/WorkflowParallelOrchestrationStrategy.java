@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowParallelOrchestrationStrategy.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: WorkflowParallelOrchestrationStrategy.java,v 1.2 2010/02/15 22:53:39 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration;
 
@@ -12,7 +12,6 @@ import java.util.concurrent.Future;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowComponent;
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowCompositeComponent;
 import org.eclipse.emf.mwe.ewm.workflow.orchestration.WorkflowCompositeOrchestrationStrategy;
@@ -61,7 +60,7 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 	public void run(final WorkflowCompositeComponent composite, final WorkflowContext context)
 	{
 		Assert.isTrue(context instanceof WorkflowTransactionalContext, "You must use WorkflowTransactionalContext with a parallel workflow");
-		WorkflowTransactionalContext transactionalContext = (WorkflowTransactionalContext) context;
+		final WorkflowTransactionalContext transactionalContext = (WorkflowTransactionalContext) context;
 		final ArrayList<Future<?>> futures = new ArrayList<Future<?>>();
 		
 		try
@@ -75,7 +74,7 @@ public class WorkflowParallelOrchestrationStrategy extends WorkflowCompositeOrch
 				 */
 				public void run()
 				{
-					ExecutorService threadPool = context.getThreadPool();
+					ExecutorService threadPool = transactionalContext.getThreadPool();
 
 					for (WorkflowComponent component : composite.getComponents())
 					{

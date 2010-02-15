@@ -2,20 +2,16 @@
  * <copyright>
  * </copyright>
  *
- * $Id: OrchestrationPackage.java,v 1.1 2010/01/03 21:22:54 bhunt Exp $
+ * $Id: OrchestrationPackage.java,v 1.2 2010/02/15 22:53:39 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.transaction.orchestration;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.emf.mwe.ewm.workflow.WorkflowPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.TransactionPackage;
-
 import org.eclipse.emf.mwe.ewm.workflow.transaction.runtime.RuntimePackage;
 
 /**
