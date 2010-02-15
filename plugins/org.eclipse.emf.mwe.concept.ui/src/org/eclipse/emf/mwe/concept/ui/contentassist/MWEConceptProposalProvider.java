@@ -53,7 +53,7 @@ public class MWEConceptProposalProvider extends AbstractMWEConceptProposalProvid
 					Operation containerFeature = setting.getFeature();
 					if (containerFeature != null) {
 						FormalParameter parameter = containerFeature.getParameters().get(0);
-						type = parameter.getParameterType();
+						type = parameter.getParameterType().getType();
 					}
 				}
 			}
@@ -79,7 +79,7 @@ public class MWEConceptProposalProvider extends AbstractMWEConceptProposalProvid
 			Setting attribute = (Setting) model;
 			if (attribute.getFeature() == null || attribute.getFeature().eIsProxy())
 				return;
-			Type parameterType = attribute.getFeature().getParameters().get(0).getParameterType();
+			Type parameterType = attribute.getFeature().getParameters().get(0).getParameterType().getType();
 			typeProposalProvider.createSubTypeProposals(parameterType, this, context, TypeMatchFilters.canInstantiate(), acceptor);
 		}
 	}

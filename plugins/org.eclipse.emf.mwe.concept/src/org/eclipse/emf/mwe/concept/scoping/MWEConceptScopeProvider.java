@@ -184,7 +184,7 @@ public class MWEConceptScopeProvider extends AbstractDeclarativeScopeProvider {
 				Operation containerFeature = setting.getFeature();
 				if (containerFeature != null) {
 					FormalParameter parameter = containerFeature.getParameters().get(0);
-					containerType = parameter.getParameterType();
+					containerType = parameter.getParameterType().getType();
 				}
 			}
 		}
