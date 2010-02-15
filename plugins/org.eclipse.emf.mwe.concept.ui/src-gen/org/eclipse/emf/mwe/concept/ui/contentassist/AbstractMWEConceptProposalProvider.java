@@ -7,8 +7,8 @@ import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.ui.editor.contentassist.AbstractJavaBasedContentProposalProvider;
-import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 
 /**
  * Represents a generated, default implementation of interface {@link IProposalProvider}.
@@ -17,525 +17,216 @@ import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
  */
 public class AbstractMWEConceptProposalProvider extends AbstractJavaBasedContentProposalProvider {
 		
-	private final static Logger logger = Logger.getLogger(AbstractMWEConceptProposalProvider.class);
-	
 	public void completeMWEFile_Imports(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeMWEFile_Imports feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeMWEFile_Root(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeMWEFile_Root feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeImport_ImportedNamespace(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeImport_ImportedNamespace feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSetting_Feature(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSetting_Feature feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSetting_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSetting_Value feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponent_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponent_Type feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponent_FileRef(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponent_FileRef feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponent_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponent_Name feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponent_Elements(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponent_Elements feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponentWithType_Type(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponentWithType_Type feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponentWithType_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponentWithType_Name feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeComponentWithType_Elements(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeComponentWithType_Elements feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeAttributeList_Content(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeAttributeList_Content feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSimpleProperty_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSimpleProperty_Name feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSimpleProperty_Delimiter(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSimpleProperty_Delimiter feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void completeSimpleProperty_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSimpleProperty_Value feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completePropertyFile_FileRef(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completePropertyFile_FileRef feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeSimpleAttribute_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeSimpleAttribute_Value feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeReference_Component(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeReference_Component feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeMWEString_Parts(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeMWEString_Parts feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeMWEString_Begin(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeMWEString_Begin feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeMWEString_End(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeMWEString_End feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeBoolean_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeBoolean_Value feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		// subclasses may override
 		// subclasses may override
 	}
 	public void completeReplaceableString_Property(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeReplaceableString_Property feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completePropertyReference_Property(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completePropertyReference_Property feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		lookupCrossReference(((CrossReference)assignment.getTerminal()), context, acceptor);
 	}
 	public void completePlainString_Value(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completePlainString_Value feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeFileRef_FilePath(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("completeFileRef_FilePath feature '" + assignment.getFeature() + "' terminal '"
-					+ assignment.getTerminal() + "' cardinality '" + assignment.getCardinality() + "' and prefix '"
-					+ context.getPrefix() + "'");
-		}
 		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
     
 	public void complete_MWEFile(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_MWEFile '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Import(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Import '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ImportedFQN(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ImportedFQN '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Setting(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Setting '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Component(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Component '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ComponentWithType(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ComponentWithType '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ConfigurationElement(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ConfigurationElement '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Literal(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Literal '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_AttributeList(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_AttributeList '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Property(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Property '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_PropertyEntry(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_PropertyEntry '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_SimpleProperty(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_SimpleProperty '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_PropertyFile(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_PropertyFile '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Attribute(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Attribute '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_SimpleAttribute(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_SimpleAttribute '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Reference(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Reference '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ValidID(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ValidID '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_FQN(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_FQN '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_CompoundString(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_CompoundString '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_MWEString(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_MWEString '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_CompoundStringPart(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_CompoundStringPart '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_MWEStringPart(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_MWEStringPart '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Boolean(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Boolean '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ReplaceableString(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ReplaceableString '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_PropertyReference(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_PropertyReference '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_PlainString(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_PlainString '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_FileRef(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_FileRef '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ConstantValue(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ConstantValue '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Colon(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Colon '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Dot(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Dot '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_SingleQuote(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_SingleQuote '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_EscapedSingleQuote(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_EscapedSingleQuote '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_DoubleQuote(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_DoubleQuote '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_EscapedDoubleQuote(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_EscapedDoubleQuote '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_Backslash(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_Backslash '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_EscapedBackslash(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_EscapedBackslash '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_OpeningBrace(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_OpeningBrace '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ClosingBrace(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ClosingBrace '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ID(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ID '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ML_COMMENT(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ML_COMMENT '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_SL_COMMENT(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_SL_COMMENT '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_WS(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_WS '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 	public void complete_ANY_OTHER(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("complete_ANY_OTHER '" + ruleCall.getRule().getName() + "' cardinality '" + ruleCall.getCardinality()
-					+ "' for model '" + context.getCurrentModel() + "' and prefix '" + context.getPrefix() + "'");
-		}
 		// subclasses may override
 	}
 }

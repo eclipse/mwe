@@ -13,8 +13,8 @@ public abstract class AbstractMWEConceptUiModule extends MWEConceptRuntimeModule
 	
 	
 	// contributed by org.eclipse.xtext.ui.generator.ImplicitUiFragment
-	public Class<? extends org.eclipse.xtext.ui.ILocationInFileProvider> bindILocationInFileProvider() {
-		return org.eclipse.xtext.ui.DefaultLocationInFileProvider.class;
+	public Class<? extends org.eclipse.xtext.resource.ILocationInFileProvider> bindILocationInFileProvider() {
+		return org.eclipse.xtext.resource.DefaultLocationInFileProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.ImplicitUiFragment
@@ -209,17 +209,17 @@ public abstract class AbstractMWEConceptUiModule extends MWEConceptRuntimeModule
 
 	// contributed by de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.contentassist.antlr.IContentAssistParser> bindIContentAssistParser() {
-		return org.eclipse.emf.mwe.concept.contentassist.antlr.MWEConceptParser.class;
+		return org.eclipse.emf.mwe.concept.ui.contentassist.antlr.MWEConceptParser.class;
 	}
 
 	// contributed by de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment
 	public void configureContentAssistLexerProvider(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.emf.mwe.concept.contentassist.antlr.internal.InternalMWEConceptLexer.class).toProvider(org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.emf.mwe.concept.contentassist.antlr.internal.InternalMWEConceptLexer.class));
+		binder.bind(org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal.InternalMWEConceptLexer.class).toProvider(org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal.InternalMWEConceptLexer.class));
 	}
 
 	// contributed by de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment
 	public void configureContentAssistLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe.concept.contentassist.antlr.internal.InternalMWEConceptLexer.class);
+		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal.InternalMWEConceptLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment

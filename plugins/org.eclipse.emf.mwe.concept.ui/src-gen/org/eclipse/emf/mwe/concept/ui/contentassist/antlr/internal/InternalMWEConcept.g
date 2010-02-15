@@ -9,7 +9,7 @@ options {
 }
 
 @lexer::header {
-package org.eclipse.emf.mwe.concept.contentassist.antlr.internal;
+package org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
@@ -17,7 +17,7 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
 @parser::header {
-package org.eclipse.emf.mwe.concept.contentassist.antlr.internal; 
+package org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal; 
 
 import java.io.InputStream;
 import org.eclipse.xtext.*;
@@ -66,7 +66,7 @@ entryRuleMWEFile
 ;
 
 // Rule MWEFile
-ruleMWEFile 
+ruleMWEFile
     @init {
 		int stackSize = keepStackSize();
     }
@@ -94,7 +94,7 @@ entryRuleImport
 ;
 
 // Rule Import
-ruleImport 
+ruleImport
     @init {
 		int stackSize = keepStackSize();
     }
@@ -122,7 +122,7 @@ entryRuleImportedFQN
 ;
 
 // Rule ImportedFQN
-ruleImportedFQN 
+ruleImportedFQN
     @init {
 		int stackSize = keepStackSize();
     }
@@ -150,7 +150,7 @@ entryRuleSetting
 ;
 
 // Rule Setting
-ruleSetting 
+ruleSetting
     @init {
 		int stackSize = keepStackSize();
     }
@@ -178,7 +178,7 @@ entryRuleComponent
 ;
 
 // Rule Component
-ruleComponent 
+ruleComponent
     @init {
 		int stackSize = keepStackSize();
     }
@@ -206,7 +206,7 @@ entryRuleComponentWithType
 ;
 
 // Rule ComponentWithType
-ruleComponentWithType 
+ruleComponentWithType
     @init {
 		int stackSize = keepStackSize();
     }
@@ -234,7 +234,7 @@ entryRuleConfigurationElement
 ;
 
 // Rule ConfigurationElement
-ruleConfigurationElement 
+ruleConfigurationElement
     @init {
 		int stackSize = keepStackSize();
     }
@@ -264,7 +264,7 @@ entryRuleAttributeList
 ;
 
 // Rule AttributeList
-ruleAttributeList 
+ruleAttributeList
     @init {
 		int stackSize = keepStackSize();
     }
@@ -292,7 +292,7 @@ entryRuleProperty
 ;
 
 // Rule Property
-ruleProperty 
+ruleProperty
     @init {
 		int stackSize = keepStackSize();
     }
@@ -322,7 +322,7 @@ entryRuleSimpleProperty
 ;
 
 // Rule SimpleProperty
-ruleSimpleProperty 
+ruleSimpleProperty
     @init {
 		int stackSize = keepStackSize();
     }
@@ -350,7 +350,7 @@ entryRulePropertyFile
 ;
 
 // Rule PropertyFile
-rulePropertyFile 
+rulePropertyFile
     @init {
 		int stackSize = keepStackSize();
     }
@@ -378,7 +378,7 @@ entryRuleAttribute
 ;
 
 // Rule Attribute
-ruleAttribute 
+ruleAttribute
     @init {
 		int stackSize = keepStackSize();
     }
@@ -406,7 +406,7 @@ entryRuleSimpleAttribute
 ;
 
 // Rule SimpleAttribute
-ruleSimpleAttribute 
+ruleSimpleAttribute
     @init {
 		int stackSize = keepStackSize();
     }
@@ -434,7 +434,7 @@ entryRuleReference
 ;
 
 // Rule Reference
-ruleReference 
+ruleReference
     @init {
 		int stackSize = keepStackSize();
     }
@@ -462,7 +462,7 @@ entryRuleValidID
 ;
 
 // Rule ValidID
-ruleValidID 
+ruleValidID
     @init {
 		int stackSize = keepStackSize();
     }
@@ -490,7 +490,7 @@ entryRuleFQN
 ;
 
 // Rule FQN
-ruleFQN 
+ruleFQN
     @init {
 		int stackSize = keepStackSize();
     }
@@ -526,7 +526,7 @@ finally {
 }
 
 // Rule MWEString
-ruleMWEString 
+ruleMWEString
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
@@ -558,7 +558,7 @@ entryRuleMWEStringPart
 ;
 
 // Rule MWEStringPart
-ruleMWEStringPart 
+ruleMWEStringPart
     @init {
 		int stackSize = keepStackSize();
     }
@@ -586,7 +586,7 @@ entryRuleBoolean
 ;
 
 // Rule Boolean
-ruleBoolean 
+ruleBoolean
     @init {
 		int stackSize = keepStackSize();
     }
@@ -614,7 +614,7 @@ entryRuleReplaceableString
 ;
 
 // Rule ReplaceableString
-ruleReplaceableString 
+ruleReplaceableString
     @init {
 		int stackSize = keepStackSize();
     }
@@ -648,7 +648,7 @@ finally {
 }
 
 // Rule PropertyReference
-rulePropertyReference 
+rulePropertyReference
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
 		int stackSize = keepStackSize();
@@ -678,7 +678,7 @@ entryRulePlainString
 ;
 
 // Rule PlainString
-rulePlainString 
+rulePlainString
     @init {
 		int stackSize = keepStackSize();
     }
@@ -712,7 +712,7 @@ finally {
 }
 
 // Rule FileRef
-ruleFileRef 
+ruleFileRef
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS");
 		int stackSize = keepStackSize();
@@ -742,7 +742,7 @@ entryRuleConstantValue
 ;
 
 // Rule ConstantValue
-ruleConstantValue 
+ruleConstantValue
     @init {
 		int stackSize = keepStackSize();
     }
@@ -770,7 +770,7 @@ entryRuleColon
 ;
 
 // Rule Colon
-ruleColon 
+ruleColon
     @init {
 		int stackSize = keepStackSize();
     }
@@ -800,7 +800,7 @@ entryRuleDot
 ;
 
 // Rule Dot
-ruleDot 
+ruleDot
     @init {
 		int stackSize = keepStackSize();
     }
@@ -830,7 +830,7 @@ entryRuleSingleQuote
 ;
 
 // Rule SingleQuote
-ruleSingleQuote 
+ruleSingleQuote
     @init {
 		int stackSize = keepStackSize();
     }
@@ -866,7 +866,7 @@ finally {
 }
 
 // Rule EscapedSingleQuote
-ruleEscapedSingleQuote 
+ruleEscapedSingleQuote
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
@@ -896,7 +896,7 @@ entryRuleDoubleQuote
 ;
 
 // Rule DoubleQuote
-ruleDoubleQuote 
+ruleDoubleQuote
     @init {
 		int stackSize = keepStackSize();
     }
@@ -932,7 +932,7 @@ finally {
 }
 
 // Rule EscapedDoubleQuote
-ruleEscapedDoubleQuote 
+ruleEscapedDoubleQuote
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
@@ -962,7 +962,7 @@ entryRuleBackslash
 ;
 
 // Rule Backslash
-ruleBackslash 
+ruleBackslash
     @init {
 		int stackSize = keepStackSize();
     }
@@ -998,7 +998,7 @@ finally {
 }
 
 // Rule EscapedBackslash
-ruleEscapedBackslash 
+ruleEscapedBackslash
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
@@ -1028,7 +1028,7 @@ entryRuleOpeningBrace
 ;
 
 // Rule OpeningBrace
-ruleOpeningBrace 
+ruleOpeningBrace
     @init {
 		int stackSize = keepStackSize();
     }
@@ -1058,7 +1058,7 @@ entryRuleClosingBrace
 ;
 
 // Rule ClosingBrace
-ruleClosingBrace 
+ruleClosingBrace
     @init {
 		int stackSize = keepStackSize();
     }
@@ -2897,6 +2897,7 @@ rule__EscapedBackslash__Group__1
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 
 

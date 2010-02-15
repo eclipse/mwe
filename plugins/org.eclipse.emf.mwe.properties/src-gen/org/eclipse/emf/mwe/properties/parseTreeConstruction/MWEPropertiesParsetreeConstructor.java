@@ -446,7 +446,7 @@ protected class PropertyComment_ValueAssignment_1 extends AssignmentToken  {
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("value",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for lexer rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.LRC;
 			element = grammarAccess.getPropertyCommentAccess().getValueSL_COMMENTTerminalRuleCall_1_0();
 			return obj;
@@ -563,7 +563,7 @@ protected class PropertyEntry_NameAssignment_1 extends AssignmentToken  {
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("name",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("name");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
 			element = grammarAccess.getPropertyEntryAccess().getNameKeyParserRuleCall_1_0();
 			return obj;
@@ -643,7 +643,7 @@ protected class PropertyEntry_DelimiterAssignment_2_0_0 extends AssignmentToken 
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("delimiter",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("delimiter");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
 			element = grammarAccess.getPropertyEntryAccess().getDelimiterDelimiterParserRuleCall_2_0_0_0();
 			return obj;
@@ -746,7 +746,7 @@ protected class PropertyEntry_DelimiterAssignment_2_1_0 extends AssignmentToken 
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("delimiter",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("delimiter");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
 			element = grammarAccess.getPropertyEntryAccess().getDelimiterSimpleDelimiterParserRuleCall_2_1_0_0();
 			return obj;
@@ -1532,7 +1532,7 @@ protected class CompoundStringPartLeadingDelimiter_ValueAssignment extends Assig
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("value",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
 			element = grammarAccess.getCompoundStringPartLeadingDelimiterAccess().getValueCompoundStringPartLeadingDelimiterValueParserRuleCall_0();
 			return obj;
@@ -1581,7 +1581,7 @@ protected class CompoundStringPart_ValueAssignment extends AssignmentToken  {
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("value",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(Boolean.TRUE.booleanValue()) { // org::eclipse::xtext::impl::RuleCallImpl FIXME: check if value is valid for datatype rule
+		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
 			element = grammarAccess.getCompoundStringPartAccess().getValueCompoundStringPartValueParserRuleCall_0();
 			return obj;

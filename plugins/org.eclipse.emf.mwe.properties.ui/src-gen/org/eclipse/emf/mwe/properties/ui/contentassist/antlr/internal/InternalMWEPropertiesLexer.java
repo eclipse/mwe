@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.properties.contentassist.antlr.internal;
+package org.eclipse.emf.mwe.properties.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
@@ -29,14 +29,14 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public InternalMWEPropertiesLexer(CharStream input) {
         super(input);
     }
-    public String getGrammarFileName() { return "../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g"; }
 
     // $ANTLR start T9
     public final void mT9() throws RecognitionException {
         try {
             int _type = T9;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:10:4: ( '=' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:10:6: '='
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:10:4: ( '=' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:10:6: '='
             {
             match('='); 
 
@@ -53,8 +53,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT10() throws RecognitionException {
         try {
             int _type = T10;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:11:5: ( ':' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:11:7: ':'
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:11:5: ( ':' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:11:7: ':'
             {
             match(':'); 
 
@@ -71,8 +71,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT11() throws RecognitionException {
         try {
             int _type = T11;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:12:5: ( '\\\\:' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:12:7: '\\\\:'
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:12:5: ( '\\\\:' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:12:7: '\\\\:'
             {
             match("\\:"); 
 
@@ -90,8 +90,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT12() throws RecognitionException {
         try {
             int _type = T12;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:13:5: ( '\\\\=' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:13:7: '\\\\='
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:13:5: ( '\\\\=' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:13:7: '\\\\='
             {
             match("\\="); 
 
@@ -109,8 +109,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT13() throws RecognitionException {
         try {
             int _type = T13;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:14:5: ( '/' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:14:7: '/'
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:14:5: ( '/' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:14:7: '/'
             {
             match('/'); 
 
@@ -127,8 +127,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:15:5: ( '\\\\' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:15:7: '\\\\'
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:15:5: ( '\\\\' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:15:7: '\\\\'
             {
             match('\\'); 
 
@@ -145,8 +145,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:16:5: ( '.' )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:16:7: '.'
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:16:5: ( '.' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:16:7: '.'
             {
             match('.'); 
 
@@ -163,10 +163,10 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mRULE_LINE_TERMINATOR() throws RecognitionException {
         try {
             int _type = RULE_LINE_TERMINATOR;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:22: ( ( '\\r' ( '\\n' )? | '\\n' ) )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:24: ( '\\r' ( '\\n' )? | '\\n' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:22: ( ( '\\r' ( '\\n' )? | '\\n' ) )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:24: ( '\\r' ( '\\n' )? | '\\n' )
             {
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:24: ( '\\r' ( '\\n' )? | '\\n' )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:24: ( '\\r' ( '\\n' )? | '\\n' )
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -178,16 +178,16 @@ public class InternalMWEPropertiesLexer extends Lexer {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1941:24: ( '\\r' ( '\\n' )? | '\\n' )", 2, 0, input);
+                    new NoViableAltException("1942:24: ( '\\r' ( '\\n' )? | '\\n' )", 2, 0, input);
 
                 throw nvae;
             }
             switch (alt2) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:25: '\\r' ( '\\n' )?
+                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:25: '\\r' ( '\\n' )?
                     {
                     match('\r'); 
-                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:30: ( '\\n' )?
+                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:30: ( '\\n' )?
                     int alt1=2;
                     int LA1_0 = input.LA(1);
 
@@ -196,7 +196,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
                     }
                     switch (alt1) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:30: '\\n'
+                            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:30: '\\n'
                             {
                             match('\n'); 
 
@@ -209,7 +209,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1941:36: '\\n'
+                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1942:36: '\\n'
                     {
                     match('\n'); 
 
@@ -232,10 +232,10 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1943:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1943:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1944:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1944:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1943:11: ( '^' )?
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1944:11: ( '^' )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -244,7 +244,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1943:11: '^'
+                    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1944:11: '^'
                     {
                     match('^'); 
 
@@ -263,7 +263,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1943:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1944:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop4:
             do {
                 int alt4=2;
@@ -276,7 +276,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:
+            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -311,8 +311,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1945:17: ( ( '#' | '!' ) (~ ( ( '\\n' | '\\r' ) ) )* )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1945:19: ( '#' | '!' ) (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1946:17: ( ( '#' | '!' ) (~ ( ( '\\n' | '\\r' ) ) )* )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1946:19: ( '#' | '!' ) (~ ( ( '\\n' | '\\r' ) ) )*
             {
             if ( input.LA(1)=='!'||input.LA(1)=='#' ) {
                 input.consume();
@@ -324,7 +324,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1945:29: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1946:29: (~ ( ( '\\n' | '\\r' ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -337,7 +337,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1945:29: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1946:29: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -372,10 +372,10 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1947:9: ( ( ' ' | '\\t' )+ )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1947:11: ( ' ' | '\\t' )+
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1948:9: ( ( ' ' | '\\t' )+ )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1948:11: ( ' ' | '\\t' )+
             {
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1947:11: ( ' ' | '\\t' )+
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1948:11: ( ' ' | '\\t' )+
             int cnt6=0;
             loop6:
             do {
@@ -389,7 +389,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:
+            	    // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:
             	    {
             	    if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -428,8 +428,8 @@ public class InternalMWEPropertiesLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1949:16: ( . )
-            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1949:18: .
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1950:16: ( . )
+            // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1950:18: .
             {
             matchAny(); 
 
@@ -443,7 +443,7 @@ public class InternalMWEPropertiesLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | RULE_LINE_TERMINATOR | RULE_ID | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | RULE_LINE_TERMINATOR | RULE_ID | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt7=12;
         int LA7_0 = input.LA(1);
 
@@ -510,84 +510,84 @@ public class InternalMWEPropertiesLexer extends Lexer {
         }
         switch (alt7) {
             case 1 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:10: T9
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:10: T9
                 {
                 mT9(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:13: T10
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:13: T10
                 {
                 mT10(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:17: T11
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:17: T11
                 {
                 mT11(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:21: T12
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:21: T12
                 {
                 mT12(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:25: T13
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:25: T13
                 {
                 mT13(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:29: T14
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:29: T14
                 {
                 mT14(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:33: T15
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:33: T15
                 {
                 mT15(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:37: RULE_LINE_TERMINATOR
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:37: RULE_LINE_TERMINATOR
                 {
                 mRULE_LINE_TERMINATOR(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:58: RULE_ID
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:58: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:66: RULE_SL_COMMENT
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:66: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:82: RULE_WS
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:82: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/contentassist/antlr/internal/InternalMWEProperties.g:1:90: RULE_ANY_OTHER
+                // ../org.eclipse.emf.mwe.properties.ui/src-gen/org/eclipse/emf/mwe/properties/ui/contentassist/antlr/internal/InternalMWEProperties.g:1:90: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

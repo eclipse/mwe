@@ -9,7 +9,7 @@ options {
 }
 
 @lexer::header {
-package org.eclipse.emf.mwe.properties.contentassist.antlr.internal;
+package org.eclipse.emf.mwe.properties.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
@@ -17,7 +17,7 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
 @parser::header {
-package org.eclipse.emf.mwe.properties.contentassist.antlr.internal; 
+package org.eclipse.emf.mwe.properties.ui.contentassist.antlr.internal; 
 
 import java.io.InputStream;
 import org.eclipse.xtext.*;
@@ -66,7 +66,7 @@ entryRulePropertyFile
 ;
 
 // Rule PropertyFile
-rulePropertyFile 
+rulePropertyFile
     @init {
 		int stackSize = keepStackSize();
     }
@@ -94,7 +94,7 @@ entryRuleNaturalLine
 ;
 
 // Rule NaturalLine
-ruleNaturalLine 
+ruleNaturalLine
     @init {
 		int stackSize = keepStackSize();
     }
@@ -122,7 +122,7 @@ entryRuleBlankLine
 ;
 
 // Rule BlankLine
-ruleBlankLine 
+ruleBlankLine
     @init {
 		int stackSize = keepStackSize();
     }
@@ -150,7 +150,7 @@ entryRulePropertyComment
 ;
 
 // Rule PropertyComment
-rulePropertyComment 
+rulePropertyComment
     @init {
 		int stackSize = keepStackSize();
     }
@@ -178,7 +178,7 @@ entryRulePropertyEntry
 ;
 
 // Rule PropertyEntry
-rulePropertyEntry 
+rulePropertyEntry
     @init {
 		int stackSize = keepStackSize();
     }
@@ -206,7 +206,7 @@ entryRuleDelimiter
 ;
 
 // Rule Delimiter
-ruleDelimiter 
+ruleDelimiter
     @init {
 		int stackSize = keepStackSize();
     }
@@ -234,7 +234,7 @@ entryRuleSimpleDelimiter
 ;
 
 // Rule SimpleDelimiter
-ruleSimpleDelimiter 
+ruleSimpleDelimiter
     @init {
 		int stackSize = keepStackSize();
     }
@@ -262,7 +262,7 @@ entryRuleCompoundString
 ;
 
 // Rule CompoundString
-ruleCompoundString 
+ruleCompoundString
     @init {
 		int stackSize = keepStackSize();
     }
@@ -290,7 +290,7 @@ entryRuleCompoundStringLeadingDelimiter
 ;
 
 // Rule CompoundStringLeadingDelimiter
-ruleCompoundStringLeadingDelimiter 
+ruleCompoundStringLeadingDelimiter
     @init {
 		int stackSize = keepStackSize();
     }
@@ -318,7 +318,7 @@ entryRuleCompoundStringPartLeadingDelimiter
 ;
 
 // Rule CompoundStringPartLeadingDelimiter
-ruleCompoundStringPartLeadingDelimiter 
+ruleCompoundStringPartLeadingDelimiter
     @init {
 		int stackSize = keepStackSize();
     }
@@ -346,7 +346,7 @@ entryRuleCompoundStringPartLeadingDelimiterValue
 ;
 
 // Rule CompoundStringPartLeadingDelimiterValue
-ruleCompoundStringPartLeadingDelimiterValue 
+ruleCompoundStringPartLeadingDelimiterValue
     @init {
 		int stackSize = keepStackSize();
     }
@@ -374,7 +374,7 @@ entryRuleCompoundStringPart
 ;
 
 // Rule CompoundStringPart
-ruleCompoundStringPart 
+ruleCompoundStringPart
     @init {
 		int stackSize = keepStackSize();
     }
@@ -402,7 +402,7 @@ entryRuleCompoundStringPartValue
 ;
 
 // Rule CompoundStringPartValue
-ruleCompoundStringPartValue 
+ruleCompoundStringPartValue
     @init {
 		int stackSize = keepStackSize();
     }
@@ -430,7 +430,7 @@ entryRuleNonWSConstant
 ;
 
 // Rule NonWSConstant
-ruleNonWSConstant 
+ruleNonWSConstant
     @init {
 		int stackSize = keepStackSize();
     }
@@ -458,7 +458,7 @@ entryRuleNonWsNonCommentConstant
 ;
 
 // Rule NonWsNonCommentConstant
-ruleNonWsNonCommentConstant 
+ruleNonWsNonCommentConstant
     @init {
 		int stackSize = keepStackSize();
     }
@@ -486,7 +486,7 @@ entryRuleKey
 ;
 
 // Rule Key
-ruleKey 
+ruleKey
     @init {
 		int stackSize = keepStackSize();
     }
@@ -521,7 +521,7 @@ entryRuleFQN
 ;
 
 // Rule FQN
-ruleFQN 
+ruleFQN
     @init {
 		int stackSize = keepStackSize();
     }
@@ -1736,6 +1736,7 @@ rule__FQN__Group_1__1
 finally {
 	restoreStackSize(stackSize);
 }
+
 
 
 

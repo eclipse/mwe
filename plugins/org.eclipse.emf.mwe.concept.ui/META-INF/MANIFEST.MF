@@ -17,4 +17,4 @@ Require-Bundle: org.eclipse.emf.mwe.concept;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.emf.mwe.concept.internal.MWEConceptActivator
-Export-Package: org.eclipse.emf.mwe.concept.contentassist.antlr
+Export-Package: org.eclipse.emf.mwe.concept.ui.contentassist.antlr

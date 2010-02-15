@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe.concept.contentassist.antlr.internal;
+package org.eclipse.emf.mwe.concept.ui.contentassist.antlr.internal;
 
 // Hack: Use our own Lexer superclass by means of import. 
 // Currently there is no other way to specify the superclass for the lexer.
@@ -40,14 +40,14 @@ public class InternalMWEConceptLexer extends Lexer {
     public InternalMWEConceptLexer(CharStream input) {
         super(input);
     }
-    public String getGrammarFileName() { return "../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g"; }
+    public String getGrammarFileName() { return "../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g"; }
 
     // $ANTLR start T9
     public final void mT9() throws RecognitionException {
         try {
             int _type = T9;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:10:4: ( ':' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:10:6: ':'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:10:4: ( ':' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:10:6: ':'
             {
             match(':'); 
 
@@ -64,8 +64,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT10() throws RecognitionException {
         try {
             int _type = T10;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:11:5: ( '.' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:11:7: '.'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:11:5: ( '.' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:11:7: '.'
             {
             match('.'); 
 
@@ -82,8 +82,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT11() throws RecognitionException {
         try {
             int _type = T11;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:12:5: ( '\\'' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:12:7: '\\''
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:12:5: ( '\\'' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:12:7: '\\''
             {
             match('\''); 
 
@@ -100,8 +100,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT12() throws RecognitionException {
         try {
             int _type = T12;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:13:5: ( '\"' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:13:7: '\"'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:13:5: ( '\"' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:13:7: '\"'
             {
             match('\"'); 
 
@@ -118,8 +118,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT13() throws RecognitionException {
         try {
             int _type = T13;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:14:5: ( '\\\\' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:14:7: '\\\\'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:14:5: ( '\\\\' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:14:7: '\\\\'
             {
             match('\\'); 
 
@@ -136,8 +136,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT14() throws RecognitionException {
         try {
             int _type = T14;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:15:5: ( '{' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:15:7: '{'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:15:5: ( '{' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:15:7: '{'
             {
             match('{'); 
 
@@ -154,8 +154,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT15() throws RecognitionException {
         try {
             int _type = T15;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:16:5: ( '}' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:16:7: '}'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:16:5: ( '}' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:16:7: '}'
             {
             match('}'); 
 
@@ -172,8 +172,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT16() throws RecognitionException {
         try {
             int _type = T16;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:17:5: ( ';' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:17:7: ';'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:17:5: ( ';' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:17:7: ';'
             {
             match(';'); 
 
@@ -190,8 +190,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT17() throws RecognitionException {
         try {
             int _type = T17;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:18:5: ( 'property' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:18:7: 'property'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:18:5: ( 'property' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:18:7: 'property'
             {
             match("property"); 
 
@@ -209,8 +209,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT18() throws RecognitionException {
         try {
             int _type = T18;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:19:5: ( 'file' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:19:7: 'file'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:19:5: ( 'file' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:19:7: 'file'
             {
             match("file"); 
 
@@ -228,8 +228,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT19() throws RecognitionException {
         try {
             int _type = T19;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:20:5: ( 'true' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:20:7: 'true'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:20:5: ( 'true' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:20:7: 'true'
             {
             match("true"); 
 
@@ -247,8 +247,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT20() throws RecognitionException {
         try {
             int _type = T20;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:21:5: ( 'false' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:21:7: 'false'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:21:5: ( 'false' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:21:7: 'false'
             {
             match("false"); 
 
@@ -266,8 +266,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT21() throws RecognitionException {
         try {
             int _type = T21;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:22:5: ( '=' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:22:7: '='
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:22:5: ( '=' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:22:7: '='
             {
             match('='); 
 
@@ -284,8 +284,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:23:5: ( 'import' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:23:7: 'import'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:23:5: ( 'import' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:23:7: 'import'
             {
             match("import"); 
 
@@ -303,8 +303,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:24:5: ( '.*' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:24:7: '.*'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:24:5: ( '.*' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:24:7: '.*'
             {
             match(".*"); 
 
@@ -322,8 +322,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:25:5: ( 'as' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:25:7: 'as'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:25:5: ( 'as' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:25:7: 'as'
             {
             match("as"); 
 
@@ -341,8 +341,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:26:5: ( ',' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:26:7: ','
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:26:5: ( ',' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:26:7: ','
             {
             match(','); 
 
@@ -359,8 +359,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mT26() throws RecognitionException {
         try {
             int _type = T26;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:27:5: ( '${' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:27:7: '${'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:27:5: ( '${' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:27:7: '${'
             {
             match("${"); 
 
@@ -378,10 +378,10 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3431:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3431:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3432:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3432:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3431:11: ( '^' )?
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3432:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -390,7 +390,7 @@ public class InternalMWEConceptLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3431:11: '^'
+                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3432:11: '^'
                     {
                     match('^'); 
 
@@ -409,7 +409,7 @@ public class InternalMWEConceptLexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3431:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3432:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -422,7 +422,7 @@ public class InternalMWEConceptLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:
+            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -457,12 +457,12 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3433:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3433:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3434:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3434:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3433:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3434:24: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -487,7 +487,7 @@ public class InternalMWEConceptLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3433:52: .
+            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3434:52: .
             	    {
             	    matchAny(); 
 
@@ -515,12 +515,12 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop4:
             do {
                 int alt4=2;
@@ -533,7 +533,7 @@ public class InternalMWEConceptLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -554,7 +554,7 @@ public class InternalMWEConceptLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:40: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -563,9 +563,9 @@ public class InternalMWEConceptLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:41: ( '\\r' )?
+                    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:41: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -574,7 +574,7 @@ public class InternalMWEConceptLexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3435:41: '\\r'
+                            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3436:41: '\\r'
                             {
                             match('\r'); 
 
@@ -604,10 +604,10 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3437:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3437:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3438:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3438:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3437:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3438:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt7=0;
             loop7:
             do {
@@ -621,7 +621,7 @@ public class InternalMWEConceptLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:
+            	    // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -660,8 +660,8 @@ public class InternalMWEConceptLexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3439:16: ( . )
-            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:3439:18: .
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3440:16: ( . )
+            // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:3440:18: .
             {
             matchAny(); 
 
@@ -675,7 +675,7 @@ public class InternalMWEConceptLexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt8=23;
         int LA8_0 = input.LA(1);
 
@@ -956,161 +956,161 @@ public class InternalMWEConceptLexer extends Lexer {
         }
         switch (alt8) {
             case 1 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:10: T9
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:10: T9
                 {
                 mT9(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:13: T10
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:13: T10
                 {
                 mT10(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:17: T11
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:17: T11
                 {
                 mT11(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:21: T12
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:21: T12
                 {
                 mT12(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:25: T13
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:25: T13
                 {
                 mT13(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:29: T14
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:29: T14
                 {
                 mT14(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:33: T15
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:33: T15
                 {
                 mT15(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:37: T16
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:37: T16
                 {
                 mT16(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:41: T17
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:41: T17
                 {
                 mT17(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:45: T18
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:45: T18
                 {
                 mT18(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:49: T19
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:49: T19
                 {
                 mT19(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:53: T20
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:53: T20
                 {
                 mT20(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:57: T21
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:57: T21
                 {
                 mT21(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:61: T22
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:61: T22
                 {
                 mT22(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:65: T23
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:65: T23
                 {
                 mT23(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:69: T24
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:69: T24
                 {
                 mT24(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:73: T25
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:73: T25
                 {
                 mT25(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:77: T26
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:77: T26
                 {
                 mT26(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:81: RULE_ID
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:81: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:89: RULE_ML_COMMENT
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:89: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:105: RULE_SL_COMMENT
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:105: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:121: RULE_WS
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:121: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 23 :
-                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/contentassist/antlr/internal/InternalMWEConcept.g:1:129: RULE_ANY_OTHER
+                // ../org.eclipse.emf.mwe.concept.ui/src-gen/org/eclipse/emf/mwe/concept/ui/contentassist/antlr/internal/InternalMWEConcept.g:1:129: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

@@ -25,6 +25,7 @@ public class MWEConceptParser extends org.eclipse.xtext.parser.antlr.AbstractAnt
 		tokenStream.setInitialHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
 		org.eclipse.emf.mwe.concept.parser.antlr.internal.InternalMWEConceptParser parser = createParser(tokenStream);
 		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
+		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
 		try {
 			if(ruleName != null)
 				return parser.parse(ruleName);

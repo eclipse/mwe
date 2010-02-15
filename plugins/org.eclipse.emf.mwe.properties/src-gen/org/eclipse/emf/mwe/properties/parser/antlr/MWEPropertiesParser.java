@@ -25,6 +25,7 @@ public class MWEPropertiesParser extends org.eclipse.xtext.parser.antlr.Abstract
 		tokenStream.setInitialHiddenTokens();
 		org.eclipse.emf.mwe.properties.parser.antlr.internal.InternalMWEPropertiesParser parser = createParser(tokenStream);
 		parser.setTokenTypeMap(getTokenDefProvider().getTokenDefMap());
+		parser.setSyntaxErrorProvider(getSyntaxErrorProvider());
 		try {
 			if(ruleName != null)
 				return parser.parse(ruleName);
