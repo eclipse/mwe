@@ -527,7 +527,7 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	public final Object getValue(WorkflowContext context) throws WorkflowRuntimeException
 	{
-		Object value = getConnection() != null ? getConnection().getSourceParameter().getValue(context) : doGetValue(context);
+		Object value = doGetValue(context);
 		
 		if(isRequired() && value == null)
 			throw new WorkflowRuntimeException("Required parameter: '" + getName() + "' does not have a value");
@@ -554,7 +554,8 @@ public class WorkflowParameter extends EObjectImpl implements EObject
 	 */
 	protected Object doGetValue(WorkflowContext context) throws WorkflowRuntimeException
 	{
-		return getValueStrategy().getValue(context, this);
+		WorkflowParameter targetParameter = getConnection() != null ? getConnection().getSourceParameter() : this;
+		return getValueStrategy().getValue(context, targetParameter);
 	}
 	
 	/**
