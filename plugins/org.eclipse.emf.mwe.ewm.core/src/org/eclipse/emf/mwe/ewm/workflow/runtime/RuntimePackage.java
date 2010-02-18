@@ -159,13 +159,22 @@ public class RuntimePackage extends EPackageImpl
 	public static final int WORKFLOW_CONTEXT__NAME = 7;
 
 	/**
+	 * The feature id for the '<em><b>Parent Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKFLOW_CONTEXT__PARENT_CONTEXT = 8;
+
+	/**
 	 * The number of structural features of the '<em>Workflow Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 8;
+	public static final int WORKFLOW_CONTEXT_FEATURE_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.
@@ -997,6 +1006,21 @@ public class RuntimePackage extends EPackageImpl
 
 
 	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParentContext <em>Parent Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Parent Context</em>'.
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParentContext()
+	 * @see #getWorkflowContext()
+	 * @generated
+	 */
+	public EReference getWorkflowContext_ParentContext()
+	{
+		return (EReference)workflowContextEClass.getEStructuralFeatures().get(8);
+	}
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1645,6 +1669,7 @@ public class RuntimePackage extends EPackageImpl
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__ACTIVE_COMPONENTS);
 		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__EXECUTION_INFO);
 		createEAttribute(workflowContextEClass, WORKFLOW_CONTEXT__NAME);
+		createEReference(workflowContextEClass, WORKFLOW_CONTEXT__PARENT_CONTEXT);
 
 		workflowEngineEClass = createEClass(WORKFLOW_ENGINE);
 		createEReference(workflowEngineEClass, WORKFLOW_ENGINE__WORKFLOW);
@@ -1754,6 +1779,7 @@ public class RuntimePackage extends EPackageImpl
 		initEReference(getWorkflowContext_ActiveComponents(), theWorkflowPackage.getWorkflowComponent(), null, "activeComponents", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getWorkflowContext_ExecutionInfo(), this.getWorkflowComponentExecutionInfoMap(), null, "executionInfo", null, 0, -1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkflowContext_Name(), theEcorePackage.getEString(), "name", null, 1, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getWorkflowContext_ParentContext(), this.getWorkflowContext(), null, "parentContext", null, 0, 1, WorkflowContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(workflowContextEClass, null, "clearLog", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theWorkflowPackage.getWorkflowComponent(), "component", 1, 1, IS_UNIQUE, IS_ORDERED);
@@ -2038,6 +2064,14 @@ public class RuntimePackage extends EPackageImpl
 		 * @generated
 		 */
 		public static final EAttribute WORKFLOW_CONTEXT__NAME = eINSTANCE.getWorkflowContext_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Parent Context</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		public static final EReference WORKFLOW_CONTEXT__PARENT_CONTEXT = eINSTANCE.getWorkflowContext_ParentContext();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowEngine <em>Workflow Engine</em>}' class.

@@ -46,6 +46,7 @@ import org.eclipse.emf.mwe.ewm.workflow.runtime.util.WorkflowStateResetter;
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getActiveComponents <em>Active Components</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getExecutionInfo <em>Execution Info</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParentContext <em>Parent Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -146,6 +147,16 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getParentContext() <em>Parent Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getParentContext()
+	 * @generated
+	 * @ordered
+	 */
+	protected WorkflowContext parentContext;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -409,6 +420,61 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	}
 
 	/**
+	 * Returns the value of the '<em><b>Parent Context</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Parent Context</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Parent Context</em>' reference.
+	 * @see #setParentContext(WorkflowContext)
+	 * @see org.eclipse.emf.mwe.ewm.workflow.runtime.RuntimePackage#getWorkflowContext_ParentContext()
+	 * @model
+	 * @generated
+	 */
+	public WorkflowContext getParentContext()
+	{
+		if (parentContext != null && parentContext.eIsProxy())
+		{
+			InternalEObject oldParentContext = (InternalEObject)parentContext;
+			parentContext = (WorkflowContext)eResolveProxy(oldParentContext);
+			if (parentContext != oldParentContext)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT, oldParentContext, parentContext));
+			}
+		}
+		return parentContext;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WorkflowContext basicGetParentContext()
+	{
+		return parentContext;
+	}
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.emf.mwe.ewm.workflow.runtime.WorkflowContext#getParentContext <em>Parent Context</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Parent Context</em>' reference.
+	 * @see #getParentContext()
+	 * @generated
+	 */
+	public void setParentContext(WorkflowContext newParentContext)
+	{
+		WorkflowContext oldParentContext = parentContext;
+		parentContext = newParentContext;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT, oldParentContext, parentContext));
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @model componentRequired="true"
@@ -431,6 +497,13 @@ public class WorkflowContext extends EObjectImpl implements EObject
 	public EObject getParameterValue(WorkflowParameter parameter) throws WorkflowRuntimeException
 	{
 		EObject currentValue = getParameters().get(parameter);
+		WorkflowContext parent = getParentContext();
+		
+		while(currentValue == null && parent != null)
+		{
+			currentValue = parent.getParameters().get(parameter);
+			parent = parent.getParentContext();
+		}
 		
 		if(currentValue instanceof WorkflowParameterValueProxy)
 		{
@@ -663,6 +736,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				else return getExecutionInfo().map();
 			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
 				return getName();
+			case RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT:
+				if (resolve) return getParentContext();
+				return basicGetParentContext();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -702,6 +778,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
 				setName((String)newValue);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT:
+				setParentContext((WorkflowContext)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -739,6 +818,9 @@ public class WorkflowContext extends EObjectImpl implements EObject
 			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT:
+				setParentContext((WorkflowContext)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -768,6 +850,8 @@ public class WorkflowContext extends EObjectImpl implements EObject
 				return executionInfo != null && !executionInfo.isEmpty();
 			case RuntimePackage.WORKFLOW_CONTEXT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case RuntimePackage.WORKFLOW_CONTEXT__PARENT_CONTEXT:
+				return parentContext != null;
 		}
 		return super.eIsSet(featureID);
 	}

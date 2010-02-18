@@ -36,6 +36,14 @@ public class WorkflowGetParameterValueCommand extends RunnableWithResult.Impl<EO
 	{
 		EObject currentValue = context.getParameters().get(parameter);
 		
+		WorkflowContext parent = context.getParentContext();
+		
+		while(currentValue == null && parent != null)
+		{
+			currentValue = parent.getParameters().get(parameter);
+			parent = parent.getParentContext();
+		}
+		
 		if(currentValue instanceof WorkflowParameterValueProxy)
 		{
 			WorkflowParameterValueProxy proxy = (WorkflowParameterValueProxy) currentValue;

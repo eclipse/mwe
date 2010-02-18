@@ -2,7 +2,7 @@
  * <copyright>
  * </copyright>
  *
- * $Id: WorkflowContextItemProvider.java,v 1.7 2010/02/15 22:53:33 bhunt Exp $
+ * $Id: WorkflowContextItemProvider.java,v 1.8 2010/02/18 04:09:18 bhunt Exp $
  */
 package org.eclipse.emf.mwe.ewm.workflow.runtime.provider;
 
@@ -72,6 +72,7 @@ public class WorkflowContextItemProvider
 			addWorkflowPropertyDescriptor(object);
 			addActiveComponentsPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addParentContextPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -164,6 +165,29 @@ public class WorkflowContextItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Parent Context feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addParentContextPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_WorkflowContext_parentContext_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_WorkflowContext_parentContext_feature", "_UI_WorkflowContext_type"),
+				 RuntimePackage.Literals.WORKFLOW_CONTEXT__PARENT_CONTEXT,
+				 true,
+				 false,
+				 true,
+				 null,
 				 null,
 				 null));
 	}
