@@ -3,14 +3,14 @@
 */
 package org.eclipse.emf.mwe.concept.ui.labeling;
 
-import org.eclipse.xtext.ui.DefaultLabelProvider;
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
+
 
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
-public class MWEConceptLabelProvider extends DefaultLabelProvider {
+public class MWEConceptLabelProvider extends DefaultEObjectLabelProvider {
 /*
-	
 	//Labels and icons can be computed like this:
 	
 	String text(MyModel ele) {
@@ -20,6 +20,5 @@ public class MWEConceptLabelProvider extends DefaultLabelProvider {
     String image(MyModel ele) {
       return "MyModel.gif";
     }
-	 
 */
 }

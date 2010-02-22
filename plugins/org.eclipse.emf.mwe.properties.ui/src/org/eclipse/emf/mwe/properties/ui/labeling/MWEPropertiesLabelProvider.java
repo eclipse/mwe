@@ -3,14 +3,13 @@
 */
 package org.eclipse.emf.mwe.properties.ui.labeling;
 
-import org.eclipse.xtext.ui.DefaultLabelProvider;
+import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 /**
  * see http://www.eclipse.org/Xtext/documentation/latest/xtext.html#labelProvider
  */
-public class MWEPropertiesLabelProvider extends DefaultLabelProvider {
+public class MWEPropertiesLabelProvider extends DefaultEObjectLabelProvider {
 /*
-	
 	//Labels and icons can be computed like this:
 	
 	String text(MyModel ele) {
