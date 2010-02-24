@@ -8,6 +8,7 @@ import org.eclipse.emf.mwe.concept.ui.highlighting.SemanticHighlightingCalculato
 import org.eclipse.emf.mwe.concept.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe.concept.ui.highlighting.TokenToAttributeMapper;
 import org.eclipse.emf.mwe.concept.ui.scoping.NamespaceAwareScopeProvider;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
@@ -16,6 +17,10 @@ import com.google.inject.Binder;
  * Use this class to register components to be used within the IDE.
  */
 public class MWEConceptUiModule extends org.eclipse.emf.mwe.concept.ui.AbstractMWEConceptUiModule {
+	public MWEConceptUiModule(AbstractUIPlugin plugin) {
+		super(plugin);
+	}
+
 	@Override
 	public void configureHighlightingTokenDefProvider(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.ITokenDefProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(TokenDefProvider.class);

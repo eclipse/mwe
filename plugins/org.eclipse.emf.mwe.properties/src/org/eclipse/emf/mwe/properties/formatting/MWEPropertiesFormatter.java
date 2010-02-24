@@ -18,8 +18,7 @@ public class MWEPropertiesFormatter extends AbstractDeclarativeFormatter {
 	
 	@Override
 	protected void configureFormatting(FormattingConfig c) {
-		org.eclipse.emf.mwe.properties.services.MWEPropertiesGrammarAccess f = (org.eclipse.emf.mwe.properties.services.MWEPropertiesGrammarAccess) getGrammarAccess();
-
-		//...
+//		org.eclipse.emf.mwe.properties.services.MWEPropertiesGrammarAccess f = (org.eclipse.emf.mwe.properties.services.MWEPropertiesGrammarAccess) getGrammarAccess();
+		
 	}
 }
