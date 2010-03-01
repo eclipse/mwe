@@ -1,0 +1,35 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.eclipse.emf.mwe2.language
+Bundle-Vendor: Eclipse Modeling
+Bundle-Version: 0.8.0
+Bundle-SymbolicName: org.eclipse.emf.mwe2.language;singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.generator;resolution:=optional,
+ de.itemis.xtext.antlr;resolution:=optional,
+ org.apache.commons.logging;resolution:=optional,
+ org.eclipse.emf.codegen.ecore;resolution:=optional,
+ org.eclipse.emf.mwe.utils;resolution:=optional,
+ org.eclipse.emf.mwe.core;resolution:=optional,
+ com.ibm.icu;resolution:=optional,
+ org.eclipse.xtext.xtend;resolution:=optional,
+ org.eclipse.xtext.common.types;bundle-version="0.8.0",
+ org.eclipse.xtext.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.common,
+ org.antlr.runtime
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.eclipse.emf.mwe2.language,
+ org.eclipse.emf.mwe2.language.formatting,
+ org.eclipse.emf.mwe2.language.parser.antlr,
+ org.eclipse.emf.mwe2.language.parser.antlr.internal,
+ org.eclipse.emf.mwe2.language.parseTreeConstruction,
+ org.eclipse.emf.mwe2.language.scoping,
+ org.eclipse.emf.mwe2.language.services,
+ org.eclipse.emf.mwe2.language.validation,
+ org.eclipse.emf.mwe2.language.mwe2,
+ org.eclipse.emf.mwe2.language.mwe2.impl,
+ org.eclipse.emf.mwe2.language.mwe2.util
+

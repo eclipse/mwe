@@ -1,0 +1,115 @@
+grammar org.eclipse.emf.mwe2.language.Mwe2 hidden (WS, ML_COMMENT, SL_COMMENT)
+
+generate mwe2 "http://www.eclipse.org/xtext/common/mwe2/Mwe2"
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
+
+Module:
+  {Module} 
+  ('module' canonicalName=FQN ';')? 
+  imports+=Import* 
+  (declaredProperties+=DeclaredProperty)* 
+  root=Component;
+
+Referrable:
+  DeclaredProperty |
+  Component;
+
+DeclaredProperty:
+  'property' (type=[types::Type|FQN])? name=FQN ('=' default=Value)? ';';
+
+Component:
+  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN])? ('as' name=FQN)? (autoInject?='auto-inject')? 
+  '{'
+  	assignment+=Assignment* 
+  	'}';
+
+Import:
+  'import' importedNamespace=ImportedFQN;
+
+ImportedFQN:
+  FQN ('.*')?;
+
+Assignment:
+  feature=[types::Operation|ID] '=' value=Value ';';
+
+Value:
+  Component|
+  StringLiteral|
+  BooleanLiteral|
+  Reference;
+
+StringLiteral:
+  value=MWEString;
+
+BooleanLiteral:
+  {BooleanLiteral} (isTrue?='true'|'false');
+
+Reference:
+  referable=[Referrable];
+
+FQN:
+  ID ('.' ID)*;
+
+MWEString hidden ( ):
+  begin=SingleQuote parts+=MWEStringPart* end=SingleQuote|
+  begin=DoubleQuote parts+=MWEStringPart* end=DoubleQuote;
+
+MWEStringPart:
+  ReplaceableString|PlainString;
+
+ReplaceableString:
+  '${' property=Value '}';
+
+PlainString:
+  value=ConstantValue;
+
+ConstantValue:
+  WS|
+  ':'|
+  "{"|
+  "}"|
+  EscapedDoubleQuote|
+  EscapedSingleQuote|
+  ANY_OTHER|
+  EscapedBackslash|
+  ID|
+  'true'|
+  'false'|
+  '='|
+  'import'|
+  'module'|
+  '.';
+
+SingleQuote:
+  "'";
+
+EscapedSingleQuote hidden ( ):
+  Backslash SingleQuote;
+
+DoubleQuote:
+  '"';
+
+EscapedDoubleQuote hidden ( ):
+  Backslash DoubleQuote;
+
+Backslash:
+  "\\";
+
+EscapedBackslash hidden ( ):
+  Backslash Backslash;
+
+terminal ID:
+  '^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+
+terminal ML_COMMENT:
+  '/*'->'*/';
+
+terminal SL_COMMENT:
+  '//' !('\n' | '\r')* ('\r'? '\n')?;
+
+terminal WS:
+  (' ' | '\t' | '\r' | '\n')+;
+
+terminal ANY_OTHER:
+  .;

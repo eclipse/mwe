@@ -1,0 +1,23 @@
+module foo.bar.Baz;
+
+import org.eclipse.xpand.*;
+
+var String name = "empty";
+var projectName='my.project.name${name}';
+var generator = XpandGenerator {};
+//property file org/eclipse/emf/mwe/concept/MweConcept.properties
+
+Workflow {
+    component = DirectoryCleaner {
+    	directory = "${projectDir}./src-gen/"
+    	foo = projectDir
+    }
+	component = generator;
+}
+
+module foo.bar.BazFacade
+
+var name="holla"
+var projectName="holla.${name}"
+
+@foo.bar.Baz auto-inject
