@@ -7,20 +7,21 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttri
 
 import com.google.common.collect.ImmutableSet;
 
-public class TokenToAttributeMapper extends DefaultAntlrTokenToAttributeIdMapper {
-	
+public class TokenToAttributeMapper extends
+		DefaultAntlrTokenToAttributeIdMapper {
+
 	private final Set<String> keywords = ImmutableSet.of(
 			"KEYWORD_TRUE",
-			"KEYWORD_FALSE",
-			"KEYWORD_AS",
-			"KEYWORD_PROPERTY",
+			"KEYWORD_FALSE", 
+			"KEYWORD_AS", 
+			"KEYWORD_VAR", 
 			"KEYWORD_IMPORT",
-			"KEYWORD_FILE"
-	);
-	
+			"KEYWORD_MODULE", 
+			"KEYWORD_AUTO_INJECT");
+
 	@Override
 	protected String calculateId(String tokenName, int tokenType) {
-		if(keywords.contains(tokenName)) {
+		if (keywords.contains(tokenName)) {
 			return DefaultHighlightingConfiguration.KEYWORD_ID;
 		}
 		if (tokenName.startsWith("KEYWORD_"))

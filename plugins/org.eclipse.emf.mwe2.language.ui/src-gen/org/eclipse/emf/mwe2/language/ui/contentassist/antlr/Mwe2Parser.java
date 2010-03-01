@@ -45,7 +45,6 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getMWEStringPartAccess().getAlternatives(), "rule__MWEStringPart__Alternatives");
 					put(grammarAccess.getConstantValueAccess().getAlternatives(), "rule__ConstantValue__Alternatives");
 					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
-					put(grammarAccess.getModuleAccess().getGroup_1(), "rule__Module__Group_1__0");
 					put(grammarAccess.getDeclaredPropertyAccess().getGroup(), "rule__DeclaredProperty__Group__0");
 					put(grammarAccess.getDeclaredPropertyAccess().getGroup_3(), "rule__DeclaredProperty__Group_3__0");
 					put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
@@ -63,10 +62,10 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getEscapedSingleQuoteAccess().getGroup(), "rule__EscapedSingleQuote__Group__0");
 					put(grammarAccess.getEscapedDoubleQuoteAccess().getGroup(), "rule__EscapedDoubleQuote__Group__0");
 					put(grammarAccess.getEscapedBackslashAccess().getGroup(), "rule__EscapedBackslash__Group__0");
-					put(grammarAccess.getModuleAccess().getCanonicalNameAssignment_1_1(), "rule__Module__CanonicalNameAssignment_1_1");
-					put(grammarAccess.getModuleAccess().getImportsAssignment_2(), "rule__Module__ImportsAssignment_2");
-					put(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_3(), "rule__Module__DeclaredPropertiesAssignment_3");
-					put(grammarAccess.getModuleAccess().getRootAssignment_4(), "rule__Module__RootAssignment_4");
+					put(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2(), "rule__Module__CanonicalNameAssignment_2");
+					put(grammarAccess.getModuleAccess().getImportsAssignment_4(), "rule__Module__ImportsAssignment_4");
+					put(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_5(), "rule__Module__DeclaredPropertiesAssignment_5");
+					put(grammarAccess.getModuleAccess().getRootAssignment_6(), "rule__Module__RootAssignment_6");
 					put(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1(), "rule__DeclaredProperty__TypeAssignment_1");
 					put(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2(), "rule__DeclaredProperty__NameAssignment_2");
 					put(grammarAccess.getDeclaredPropertyAccess().getDefaultAssignment_3_1(), "rule__DeclaredProperty__DefaultAssignment_3_1");

@@ -58,12 +58,12 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Module ****************
  *
  * Module:
- *   {Module} ("module" canonicalName=FQN ";")? imports+=Import* declaredProperties+=
+ *   {Module} "module" canonicalName=FQN ";" imports+=Import* declaredProperties+=
  *   DeclaredProperty* root=Component;
  *
  **/
 
-// {Module} ("module" canonicalName=FQN ";")? imports+=Import* declaredProperties+=
+// {Module} "module" canonicalName=FQN ";" imports+=Import* declaredProperties+=
 // DeclaredProperty* root=Component
 protected class Module_Group extends GroupToken {
 	
@@ -79,7 +79,7 @@ protected class Module_Group extends GroupToken {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Module_RootAssignment_4(parent, this, 0, inst);
+			case 0: return new Module_RootAssignment_6(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -119,38 +119,16 @@ protected class Module_ModuleAction_0 extends ActionToken  {
 	}
 }
 
-// ("module" canonicalName=FQN ";")?
-protected class Module_Group_1 extends GroupToken {
-	
-	public Module_Group_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Group getGrammarElement() {
-		return grammarAccess.getModuleAccess().getGroup_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Module_SemicolonKeyword_1_2(parent, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-}
-
 // "module"
-protected class Module_ModuleKeyword_1_0 extends KeywordToken  {
+protected class Module_ModuleKeyword_1 extends KeywordToken  {
 	
-	public Module_ModuleKeyword_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_ModuleKeyword_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getModuleAccess().getModuleKeyword_1_0();
+		return grammarAccess.getModuleAccess().getModuleKeyword_1();
 	}
 
     @Override
@@ -164,32 +142,32 @@ protected class Module_ModuleKeyword_1_0 extends KeywordToken  {
 }
 
 // canonicalName=FQN
-protected class Module_CanonicalNameAssignment_1_1 extends AssignmentToken  {
+protected class Module_CanonicalNameAssignment_2 extends AssignmentToken  {
 	
-	public Module_CanonicalNameAssignment_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_CanonicalNameAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModuleAccess().getCanonicalNameAssignment_1_1();
+		return grammarAccess.getModuleAccess().getCanonicalNameAssignment_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Module_ModuleKeyword_1_0(parent, this, 0, inst);
+			case 0: return new Module_ModuleKeyword_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
     @Override	
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("canonicalName",false)) == null) return null;
+		if((value = current.getConsumable("canonicalName",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("canonicalName");
 		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
-			element = grammarAccess.getModuleAccess().getCanonicalNameFQNParserRuleCall_1_1_0();
+			element = grammarAccess.getModuleAccess().getCanonicalNameFQNParserRuleCall_2_0();
 			return obj;
 		}
 		return null;
@@ -198,38 +176,37 @@ protected class Module_CanonicalNameAssignment_1_1 extends AssignmentToken  {
 }
 
 // ";"
-protected class Module_SemicolonKeyword_1_2 extends KeywordToken  {
+protected class Module_SemicolonKeyword_3 extends KeywordToken  {
 	
-	public Module_SemicolonKeyword_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_SemicolonKeyword_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getModuleAccess().getSemicolonKeyword_1_2();
+		return grammarAccess.getModuleAccess().getSemicolonKeyword_3();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Module_CanonicalNameAssignment_1_1(parent, this, 0, inst);
+			case 0: return new Module_CanonicalNameAssignment_2(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
 }
 
-
 // imports+=Import*
-protected class Module_ImportsAssignment_2 extends AssignmentToken  {
+protected class Module_ImportsAssignment_4 extends AssignmentToken  {
 	
-	public Module_ImportsAssignment_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_ImportsAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModuleAccess().getImportsAssignment_2();
+		return grammarAccess.getModuleAccess().getImportsAssignment_4();
 	}
 
     @Override
@@ -248,7 +225,7 @@ protected class Module_ImportsAssignment_2 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getImportRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModuleAccess().getImportsImportParserRuleCall_2_0(); 
+				element = grammarAccess.getModuleAccess().getImportsImportParserRuleCall_4_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -260,24 +237,23 @@ protected class Module_ImportsAssignment_2 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Module_ImportsAssignment_2(parent, next, actIndex, consumed);
-			case 1: return new Module_Group_1(parent, next, actIndex, consumed);
-			case 2: return new Module_ModuleAction_0(parent, next, actIndex, consumed);
+			case 0: return new Module_ImportsAssignment_4(parent, next, actIndex, consumed);
+			case 1: return new Module_SemicolonKeyword_3(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // declaredProperties+=DeclaredProperty*
-protected class Module_DeclaredPropertiesAssignment_3 extends AssignmentToken  {
+protected class Module_DeclaredPropertiesAssignment_5 extends AssignmentToken  {
 	
-	public Module_DeclaredPropertiesAssignment_3(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_DeclaredPropertiesAssignment_5(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_3();
+		return grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_5();
 	}
 
     @Override
@@ -296,7 +272,7 @@ protected class Module_DeclaredPropertiesAssignment_3 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getDeclaredPropertyRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModuleAccess().getDeclaredPropertiesDeclaredPropertyParserRuleCall_3_0(); 
+				element = grammarAccess.getModuleAccess().getDeclaredPropertiesDeclaredPropertyParserRuleCall_5_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -308,25 +284,24 @@ protected class Module_DeclaredPropertiesAssignment_3 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Module_DeclaredPropertiesAssignment_3(parent, next, actIndex, consumed);
-			case 1: return new Module_ImportsAssignment_2(parent, next, actIndex, consumed);
-			case 2: return new Module_Group_1(parent, next, actIndex, consumed);
-			case 3: return new Module_ModuleAction_0(parent, next, actIndex, consumed);
+			case 0: return new Module_DeclaredPropertiesAssignment_5(parent, next, actIndex, consumed);
+			case 1: return new Module_ImportsAssignment_4(parent, next, actIndex, consumed);
+			case 2: return new Module_SemicolonKeyword_3(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // root=Component
-protected class Module_RootAssignment_4 extends AssignmentToken  {
+protected class Module_RootAssignment_6 extends AssignmentToken  {
 	
-	public Module_RootAssignment_4(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Module_RootAssignment_6(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getModuleAccess().getRootAssignment_4();
+		return grammarAccess.getModuleAccess().getRootAssignment_6();
 	}
 
     @Override
@@ -345,7 +320,7 @@ protected class Module_RootAssignment_4 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getComponentRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getModuleAccess().getRootComponentParserRuleCall_4_0(); 
+				element = grammarAccess.getModuleAccess().getRootComponentParserRuleCall_6_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -357,10 +332,9 @@ protected class Module_RootAssignment_4 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new Module_DeclaredPropertiesAssignment_3(parent, next, actIndex, consumed);
-			case 1: return new Module_ImportsAssignment_2(parent, next, actIndex, consumed);
-			case 2: return new Module_Group_1(parent, next, actIndex, consumed);
-			case 3: return new Module_ModuleAction_0(parent, next, actIndex, consumed);
+			case 0: return new Module_DeclaredPropertiesAssignment_5(parent, next, actIndex, consumed);
+			case 1: return new Module_ImportsAssignment_4(parent, next, actIndex, consumed);
+			case 2: return new Module_SemicolonKeyword_3(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
@@ -482,11 +456,11 @@ protected class Referrable_ComponentParserRuleCall_1 extends RuleCallToken {
 /************ begin Rule DeclaredProperty ****************
  *
  * DeclaredProperty:
- *   "property" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
+ *   "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
  *
  **/
 
-// "property" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";"
+// "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";"
 protected class DeclaredProperty_Group extends GroupToken {
 	
 	public DeclaredProperty_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -513,16 +487,16 @@ protected class DeclaredProperty_Group extends GroupToken {
 	}
 }
 
-// "property"
-protected class DeclaredProperty_PropertyKeyword_0 extends KeywordToken  {
+// "var"
+protected class DeclaredProperty_VarKeyword_0 extends KeywordToken  {
 	
-	public DeclaredProperty_PropertyKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public DeclaredProperty_VarKeyword_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getDeclaredPropertyAccess().getPropertyKeyword_0();
+		return grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0();
 	}
 
     @Override
@@ -549,7 +523,7 @@ protected class DeclaredProperty_TypeAssignment_1 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new DeclaredProperty_PropertyKeyword_0(parent, this, 0, inst);
+			case 0: return new DeclaredProperty_VarKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -587,7 +561,7 @@ protected class DeclaredProperty_NameAssignment_2 extends AssignmentToken  {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new DeclaredProperty_TypeAssignment_1(parent, this, 0, inst);
-			case 1: return new DeclaredProperty_PropertyKeyword_0(parent, this, 1, inst);
+			case 1: return new DeclaredProperty_VarKeyword_0(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	

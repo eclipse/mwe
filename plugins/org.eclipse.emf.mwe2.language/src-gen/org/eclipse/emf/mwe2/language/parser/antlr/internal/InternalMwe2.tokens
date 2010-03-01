@@ -4,7 +4,6 @@ RULE_WS=5
 RULE_ANY_OTHER=6
 RULE_SL_COMMENT=8
 '"'=26
-'property'=11
 '@'=13
 ';'=10
 '{'=16
@@ -16,6 +15,7 @@ RULE_SL_COMMENT=8
 ':'=24
 '${'=23
 '.'=22
+'var'=11
 'auto-inject'=15
 '\''=25
 '='=12

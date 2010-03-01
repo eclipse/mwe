@@ -20,62 +20,58 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Module");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cModuleAction_0 = (Action)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cModuleKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cCanonicalNameAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cCanonicalNameFQNParserRuleCall_1_1_0 = (RuleCall)cCanonicalNameAssignment_1_1.eContents().get(0);
-		private final Keyword cSemicolonKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
-		private final Assignment cImportsAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cImportsImportParserRuleCall_2_0 = (RuleCall)cImportsAssignment_2.eContents().get(0);
-		private final Assignment cDeclaredPropertiesAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cDeclaredPropertiesDeclaredPropertyParserRuleCall_3_0 = (RuleCall)cDeclaredPropertiesAssignment_3.eContents().get(0);
-		private final Assignment cRootAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cRootComponentParserRuleCall_4_0 = (RuleCall)cRootAssignment_4.eContents().get(0);
+		private final Keyword cModuleKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cCanonicalNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCanonicalNameFQNParserRuleCall_2_0 = (RuleCall)cCanonicalNameAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cImportsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cImportsImportParserRuleCall_4_0 = (RuleCall)cImportsAssignment_4.eContents().get(0);
+		private final Assignment cDeclaredPropertiesAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cDeclaredPropertiesDeclaredPropertyParserRuleCall_5_0 = (RuleCall)cDeclaredPropertiesAssignment_5.eContents().get(0);
+		private final Assignment cRootAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cRootComponentParserRuleCall_6_0 = (RuleCall)cRootAssignment_6.eContents().get(0);
 		
 		//Module:
-		//  {Module} ("module" canonicalName=FQN ";")? imports+=Import* declaredProperties+=
+		//  {Module} "module" canonicalName=FQN ";" imports+=Import* declaredProperties+=
 		//  DeclaredProperty* root=Component;
 		public ParserRule getRule() { return rule; }
 
-		//{Module} ("module" canonicalName=FQN ";")? imports+=Import* declaredProperties+=
+		//{Module} "module" canonicalName=FQN ";" imports+=Import* declaredProperties+=
 		//DeclaredProperty* root=Component
 		public Group getGroup() { return cGroup; }
 
 		//{Module}
 		public Action getModuleAction_0() { return cModuleAction_0; }
 
-		//("module" canonicalName=FQN ";")?
-		public Group getGroup_1() { return cGroup_1; }
-
 		//"module"
-		public Keyword getModuleKeyword_1_0() { return cModuleKeyword_1_0; }
+		public Keyword getModuleKeyword_1() { return cModuleKeyword_1; }
 
 		//canonicalName=FQN
-		public Assignment getCanonicalNameAssignment_1_1() { return cCanonicalNameAssignment_1_1; }
+		public Assignment getCanonicalNameAssignment_2() { return cCanonicalNameAssignment_2; }
 
 		//FQN
-		public RuleCall getCanonicalNameFQNParserRuleCall_1_1_0() { return cCanonicalNameFQNParserRuleCall_1_1_0; }
+		public RuleCall getCanonicalNameFQNParserRuleCall_2_0() { return cCanonicalNameFQNParserRuleCall_2_0; }
 
 		//";"
-		public Keyword getSemicolonKeyword_1_2() { return cSemicolonKeyword_1_2; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 
 		//imports+=Import*
-		public Assignment getImportsAssignment_2() { return cImportsAssignment_2; }
+		public Assignment getImportsAssignment_4() { return cImportsAssignment_4; }
 
 		//Import
-		public RuleCall getImportsImportParserRuleCall_2_0() { return cImportsImportParserRuleCall_2_0; }
+		public RuleCall getImportsImportParserRuleCall_4_0() { return cImportsImportParserRuleCall_4_0; }
 
 		//declaredProperties+=DeclaredProperty*
-		public Assignment getDeclaredPropertiesAssignment_3() { return cDeclaredPropertiesAssignment_3; }
+		public Assignment getDeclaredPropertiesAssignment_5() { return cDeclaredPropertiesAssignment_5; }
 
 		//DeclaredProperty
-		public RuleCall getDeclaredPropertiesDeclaredPropertyParserRuleCall_3_0() { return cDeclaredPropertiesDeclaredPropertyParserRuleCall_3_0; }
+		public RuleCall getDeclaredPropertiesDeclaredPropertyParserRuleCall_5_0() { return cDeclaredPropertiesDeclaredPropertyParserRuleCall_5_0; }
 
 		//root=Component
-		public Assignment getRootAssignment_4() { return cRootAssignment_4; }
+		public Assignment getRootAssignment_6() { return cRootAssignment_6; }
 
 		//Component
-		public RuleCall getRootComponentParserRuleCall_4_0() { return cRootComponentParserRuleCall_4_0; }
+		public RuleCall getRootComponentParserRuleCall_6_0() { return cRootComponentParserRuleCall_6_0; }
 	}
 
 	public class ReferrableElements extends AbstractParserRuleElementFinder {
@@ -101,7 +97,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	public class DeclaredPropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DeclaredProperty");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cPropertyKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cTypeTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
 		private final RuleCall cTypeTypeFQNParserRuleCall_1_0_1 = (RuleCall)cTypeTypeCrossReference_1_0.eContents().get(1);
@@ -114,14 +110,14 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//DeclaredProperty:
-		//  "property" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
+		//  "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
 		public ParserRule getRule() { return rule; }
 
-		//"property" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";"
+		//"var" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";"
 		public Group getGroup() { return cGroup; }
 
-		//"property"
-		public Keyword getPropertyKeyword_0() { return cPropertyKeyword_0; }
+		//"var"
+		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
 
 		//type=[types::Type|FQN]?
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
@@ -597,25 +593,32 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cColonKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
 		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final RuleCall cEscapedDoubleQuoteParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final RuleCall cEscapedSingleQuoteParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cANY_OTHERTerminalRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cEscapedBackslashParserRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cIDTerminalRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final Keyword cTrueKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cFalseKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cEqualsSignKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		private final Keyword cImportKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cModuleKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cFullStopKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cCommercialAtKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final RuleCall cEscapedDoubleQuoteParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cEscapedSingleQuoteParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
+		private final RuleCall cANY_OTHERTerminalRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
+		private final RuleCall cEscapedBackslashParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
+		private final RuleCall cIDTerminalRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final Keyword cTrueKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cFalseKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cEqualsSignKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
+		private final Keyword cImportKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
+		private final Keyword cModuleKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cAutoInjectKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
+		private final Keyword cVarKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
+		private final Keyword cAsKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
+		private final Keyword cSemicolonKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cFullStopKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
 		
 		//ConstantValue returns ecore::EString:
-		//  WS|":"|"{"|"}"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|EscapedBackslash|
-		//  ID|"true"|"false"|"="|"import"|"module"|".";
+		//  WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
+		//  EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+		//  "as"|";"|".";
 		public ParserRule getRule() { return rule; }
 
-		//WS|":"|"{"|"}"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|EscapedBackslash|
-		//ID|"true"|"false"|"="|"import"|"module"|"."
+		//WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
+		//EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+		//"as"|";"|"."
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
@@ -630,38 +633,53 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
 
+		//"@"
+		public Keyword getCommercialAtKeyword_4() { return cCommercialAtKeyword_4; }
+
 		//EscapedDoubleQuote
-		public RuleCall getEscapedDoubleQuoteParserRuleCall_4() { return cEscapedDoubleQuoteParserRuleCall_4; }
+		public RuleCall getEscapedDoubleQuoteParserRuleCall_5() { return cEscapedDoubleQuoteParserRuleCall_5; }
 
 		//EscapedSingleQuote
-		public RuleCall getEscapedSingleQuoteParserRuleCall_5() { return cEscapedSingleQuoteParserRuleCall_5; }
+		public RuleCall getEscapedSingleQuoteParserRuleCall_6() { return cEscapedSingleQuoteParserRuleCall_6; }
 
 		//ANY_OTHER
-		public RuleCall getANY_OTHERTerminalRuleCall_6() { return cANY_OTHERTerminalRuleCall_6; }
+		public RuleCall getANY_OTHERTerminalRuleCall_7() { return cANY_OTHERTerminalRuleCall_7; }
 
 		//EscapedBackslash
-		public RuleCall getEscapedBackslashParserRuleCall_7() { return cEscapedBackslashParserRuleCall_7; }
+		public RuleCall getEscapedBackslashParserRuleCall_8() { return cEscapedBackslashParserRuleCall_8; }
 
 		//ID
-		public RuleCall getIDTerminalRuleCall_8() { return cIDTerminalRuleCall_8; }
+		public RuleCall getIDTerminalRuleCall_9() { return cIDTerminalRuleCall_9; }
 
 		//"true"
-		public Keyword getTrueKeyword_9() { return cTrueKeyword_9; }
+		public Keyword getTrueKeyword_10() { return cTrueKeyword_10; }
 
 		//"false"
-		public Keyword getFalseKeyword_10() { return cFalseKeyword_10; }
+		public Keyword getFalseKeyword_11() { return cFalseKeyword_11; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_11() { return cEqualsSignKeyword_11; }
+		public Keyword getEqualsSignKeyword_12() { return cEqualsSignKeyword_12; }
 
 		//"import"
-		public Keyword getImportKeyword_12() { return cImportKeyword_12; }
+		public Keyword getImportKeyword_13() { return cImportKeyword_13; }
 
 		//"module"
-		public Keyword getModuleKeyword_13() { return cModuleKeyword_13; }
+		public Keyword getModuleKeyword_14() { return cModuleKeyword_14; }
+
+		//"auto-inject"
+		public Keyword getAutoInjectKeyword_15() { return cAutoInjectKeyword_15; }
+
+		//"var"
+		public Keyword getVarKeyword_16() { return cVarKeyword_16; }
+
+		//"as"
+		public Keyword getAsKeyword_17() { return cAsKeyword_17; }
+
+		//";"
+		public Keyword getSemicolonKeyword_18() { return cSemicolonKeyword_18; }
 
 		//"."
-		public Keyword getFullStopKeyword_14() { return cFullStopKeyword_14; }
+		public Keyword getFullStopKeyword_19() { return cFullStopKeyword_19; }
 	}
 
 	public class SingleQuoteElements extends AbstractParserRuleElementFinder {
@@ -804,7 +822,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//  {Module} ("module" canonicalName=FQN ";")? imports+=Import* declaredProperties+=
+	//  {Module} "module" canonicalName=FQN ";" imports+=Import* declaredProperties+=
 	//  DeclaredProperty* root=Component;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
@@ -825,7 +843,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeclaredProperty:
-	//  "property" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
+	//  "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)? ";";
 	public DeclaredPropertyElements getDeclaredPropertyAccess() {
 		return (pDeclaredProperty != null) ? pDeclaredProperty : (pDeclaredProperty = new DeclaredPropertyElements());
 	}
@@ -967,8 +985,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantValue returns ecore::EString:
-	//  WS|":"|"{"|"}"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|EscapedBackslash|
-	//  ID|"true"|"false"|"="|"import"|"module"|".";
+	//  WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
+	//  EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+	//  "as"|";"|".";
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}

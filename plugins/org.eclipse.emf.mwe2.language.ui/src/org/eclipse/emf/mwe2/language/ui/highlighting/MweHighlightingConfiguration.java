@@ -11,7 +11,7 @@ public class MweHighlightingConfiguration extends DefaultHighlightingConfigurati
 
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
 		super.configure(acceptor);
-		acceptor.acceptDefaultHighlighting(PROPERTY_REF, "Property reference", propertyReferenceTextStyle());
+		acceptor.acceptDefaultHighlighting(PROPERTY_REF, "Variable reference", propertyReferenceTextStyle());
 	}
 
 	public TextStyle propertyReferenceTextStyle() {

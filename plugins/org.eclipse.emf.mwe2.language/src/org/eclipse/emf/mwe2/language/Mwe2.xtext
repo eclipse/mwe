@@ -6,7 +6,7 @@ import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 
 Module:
   {Module} 
-  ('module' canonicalName=FQN ';')? 
+  'module' canonicalName=FQN ';' 
   imports+=Import* 
   (declaredProperties+=DeclaredProperty)* 
   root=Component;
@@ -16,13 +16,13 @@ Referrable:
   Component;
 
 DeclaredProperty:
-  'property' (type=[types::Type|FQN])? name=FQN ('=' default=Value)? ';';
+  'var' (type=[types::Type|FQN])? name=FQN ('=' default=Value)? ';';
 
 Component:
   {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN])? ('as' name=FQN)? (autoInject?='auto-inject')? 
   '{'
-  	assignment+=Assignment* 
-  	'}';
+    assignment+=Assignment* 
+  '}';
 
 Import:
   'import' importedNamespace=ImportedFQN;
@@ -69,6 +69,7 @@ ConstantValue:
   ':'|
   "{"|
   "}"|
+  "@"|
   EscapedDoubleQuote|
   EscapedSingleQuote|
   ANY_OTHER|
@@ -79,6 +80,10 @@ ConstantValue:
   '='|
   'import'|
   'module'|
+  'auto-inject'|
+  'var'|
+  'as'|
+  ';'|
   '.';
 
 SingleQuote:

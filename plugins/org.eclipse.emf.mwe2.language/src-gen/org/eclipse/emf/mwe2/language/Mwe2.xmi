@@ -19,13 +19,11 @@
           <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/mwe2/Mwe2#//Module"/>
         </type>
       </elements>
-      <elements xsi:type="xtext:Group" cardinality="?">
-        <elements xsi:type="xtext:Keyword" value="module"/>
-        <elements xsi:type="xtext:Assignment" feature="canonicalName" operator="=">
-          <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
-        </elements>
-        <elements xsi:type="xtext:Keyword" value=";"/>
+      <elements xsi:type="xtext:Keyword" value="module"/>
+      <elements xsi:type="xtext:Assignment" feature="canonicalName" operator="=">
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.11"/>
       </elements>
+      <elements xsi:type="xtext:Keyword" value=";"/>
       <elements xsi:type="xtext:Assignment" cardinality="*" feature="imports" operator="+=">
         <terminal xsi:type="xtext:RuleCall" rule="//@rules.4"/>
       </elements>
@@ -51,7 +49,7 @@
       <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/mwe2/Mwe2#//DeclaredProperty"/>
     </type>
     <alternatives xsi:type="xtext:Group">
-      <elements xsi:type="xtext:Keyword" value="property"/>
+      <elements xsi:type="xtext:Keyword" value="var"/>
       <elements xsi:type="xtext:Assignment" cardinality="?" feature="type" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.2">
@@ -288,6 +286,7 @@
       <elements xsi:type="xtext:Keyword" value=":"/>
       <elements xsi:type="xtext:Keyword" value="{"/>
       <elements xsi:type="xtext:Keyword" value="}"/>
+      <elements xsi:type="xtext:Keyword" value="@"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.20"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.18"/>
       <elements xsi:type="xtext:RuleCall" rule="//@rules.27"/>
@@ -298,6 +297,10 @@
       <elements xsi:type="xtext:Keyword" value="="/>
       <elements xsi:type="xtext:Keyword" value="import"/>
       <elements xsi:type="xtext:Keyword" value="module"/>
+      <elements xsi:type="xtext:Keyword" value="auto-inject"/>
+      <elements xsi:type="xtext:Keyword" value="var"/>
+      <elements xsi:type="xtext:Keyword" value="as"/>
+      <elements xsi:type="xtext:Keyword" value=";"/>
       <elements xsi:type="xtext:Keyword" value="."/>
     </alternatives>
   </rules>

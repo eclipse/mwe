@@ -15,9 +15,11 @@ import org.eclipse.xtext.parser.antlr.Lexer;
 
 KEYWORD_IMPORT : 'import';
 
-KEYWORD_PROPERTY : 'property';
+KEYWORD_AUTO_INJECT : 'auto-inject';
 
-KEYWORD_FILE : 'file';
+KEYWORD_VAR : 'var';
+
+KEYWORD_MODULE : 'module';
 
 KEYWORD_FALSE : 'false';
 
@@ -26,6 +28,10 @@ KEYWORD_TRUE : 'true';
 KEYWORD_AS : 'as';
 
 KEYWORD_DOT : '.';
+
+KEYWORD_STAR : '*';
+
+KEYWORD_AT : '@';
 
 KEYWORD_COLON : ':';
 
