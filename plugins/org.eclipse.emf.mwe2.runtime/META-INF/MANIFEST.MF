@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: MWE2 Runtime bundle
+Bundle-SymbolicName: org.eclipse.emf.mwe2.runtime
+Bundle-Version: 0.8.0.qualifier
+Bundle-Vendor: Eclipse Modeling
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: com.google.guice;bundle-version="2.0.0",
+ com.google.collect;bundle-version="0.8.0"
