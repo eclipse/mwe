@@ -38,6 +38,7 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getReferrableAccess().getAlternatives(), "rule__Referrable__Alternatives");
+					put(grammarAccess.getRootComponentAccess().getAlternatives_1(), "rule__RootComponent__Alternatives_1");
 					put(grammarAccess.getComponentAccess().getAlternatives_1(), "rule__Component__Alternatives_1");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
@@ -47,6 +48,9 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
 					put(grammarAccess.getDeclaredPropertyAccess().getGroup(), "rule__DeclaredProperty__Group__0");
 					put(grammarAccess.getDeclaredPropertyAccess().getGroup_3(), "rule__DeclaredProperty__Group_3__0");
+					put(grammarAccess.getRootComponentAccess().getGroup(), "rule__RootComponent__Group__0");
+					put(grammarAccess.getRootComponentAccess().getGroup_1_1(), "rule__RootComponent__Group_1_1__0");
+					put(grammarAccess.getRootComponentAccess().getGroup_2(), "rule__RootComponent__Group_2__0");
 					put(grammarAccess.getComponentAccess().getGroup(), "rule__Component__Group__0");
 					put(grammarAccess.getComponentAccess().getGroup_1_1(), "rule__Component__Group_1_1__0");
 					put(grammarAccess.getComponentAccess().getGroup_2(), "rule__Component__Group_2__0");
@@ -63,12 +67,17 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getEscapedDoubleQuoteAccess().getGroup(), "rule__EscapedDoubleQuote__Group__0");
 					put(grammarAccess.getEscapedBackslashAccess().getGroup(), "rule__EscapedBackslash__Group__0");
 					put(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2(), "rule__Module__CanonicalNameAssignment_2");
-					put(grammarAccess.getModuleAccess().getImportsAssignment_4(), "rule__Module__ImportsAssignment_4");
-					put(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_5(), "rule__Module__DeclaredPropertiesAssignment_5");
-					put(grammarAccess.getModuleAccess().getRootAssignment_6(), "rule__Module__RootAssignment_6");
+					put(grammarAccess.getModuleAccess().getImportsAssignment_3(), "rule__Module__ImportsAssignment_3");
+					put(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_4(), "rule__Module__DeclaredPropertiesAssignment_4");
+					put(grammarAccess.getModuleAccess().getRootAssignment_5(), "rule__Module__RootAssignment_5");
 					put(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1(), "rule__DeclaredProperty__TypeAssignment_1");
 					put(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2(), "rule__DeclaredProperty__NameAssignment_2");
 					put(grammarAccess.getDeclaredPropertyAccess().getDefaultAssignment_3_1(), "rule__DeclaredProperty__DefaultAssignment_3_1");
+					put(grammarAccess.getRootComponentAccess().getTypeAssignment_1_0(), "rule__RootComponent__TypeAssignment_1_0");
+					put(grammarAccess.getRootComponentAccess().getModuleAssignment_1_1_1(), "rule__RootComponent__ModuleAssignment_1_1_1");
+					put(grammarAccess.getRootComponentAccess().getNameAssignment_2_1(), "rule__RootComponent__NameAssignment_2_1");
+					put(grammarAccess.getRootComponentAccess().getAutoInjectAssignment_3(), "rule__RootComponent__AutoInjectAssignment_3");
+					put(grammarAccess.getRootComponentAccess().getAssignmentAssignment_5(), "rule__RootComponent__AssignmentAssignment_5");
 					put(grammarAccess.getComponentAccess().getTypeAssignment_1_0(), "rule__Component__TypeAssignment_1_0");
 					put(grammarAccess.getComponentAccess().getModuleAssignment_1_1_1(), "rule__Component__ModuleAssignment_1_1_1");
 					put(grammarAccess.getComponentAccess().getNameAssignment_2_1(), "rule__Component__NameAssignment_2_1");

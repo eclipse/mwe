@@ -6,20 +6,26 @@ import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
 
 Module:
   {Module} 
-  'module' canonicalName=FQN ';' 
+  'module' canonicalName=FQN 
   imports+=Import* 
   (declaredProperties+=DeclaredProperty)* 
-  root=Component;
+  root=RootComponent;
 
 Referrable:
   DeclaredProperty |
   Component;
 
 DeclaredProperty:
-  'var' (type=[types::Type|FQN])? name=FQN ('=' default=Value)? ';';
+  'var' (type=[types::Type|FQN])? name=FQN ('=' default=Value)?;
 
+RootComponent returns Component:
+  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')? 
+  '{'
+    assignment+=Assignment* 
+  '}';
+  
 Component:
-  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN])? ('as' name=FQN)? (autoInject?='auto-inject')? 
+  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')? 
   '{'
     assignment+=Assignment* 
   '}';
@@ -31,7 +37,7 @@ ImportedFQN:
   FQN ('.*')?;
 
 Assignment:
-  feature=[types::Operation|ID] '=' value=Value ';';
+  feature=[types::Operation|ID] '=' value=Value;
 
 Value:
   Component|
@@ -82,8 +88,6 @@ ConstantValue:
   'module'|
   'auto-inject'|
   'var'|
-  'as'|
-  ';'|
   '.';
 
 SingleQuote:
