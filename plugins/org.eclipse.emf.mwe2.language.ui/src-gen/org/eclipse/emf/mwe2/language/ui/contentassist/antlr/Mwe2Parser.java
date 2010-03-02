@@ -41,8 +41,8 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getComponentAccess().getAlternatives_1(), "rule__Component__Alternatives_1");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
-					put(grammarAccess.getMWEStringAccess().getAlternatives(), "rule__MWEString__Alternatives");
-					put(grammarAccess.getMWEStringPartAccess().getAlternatives(), "rule__MWEStringPart__Alternatives");
+					put(grammarAccess.getCompoundStringAccess().getAlternatives(), "rule__CompoundString__Alternatives");
+					put(grammarAccess.getStringPartAccess().getAlternatives(), "rule__StringPart__Alternatives");
 					put(grammarAccess.getConstantValueAccess().getAlternatives(), "rule__ConstantValue__Alternatives");
 					put(grammarAccess.getModuleAccess().getGroup(), "rule__Module__Group__0");
 					put(grammarAccess.getDeclaredPropertyAccess().getGroup(), "rule__DeclaredProperty__Group__0");
@@ -59,9 +59,9 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getBooleanLiteralAccess().getGroup(), "rule__BooleanLiteral__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");
-					put(grammarAccess.getMWEStringAccess().getGroup_0(), "rule__MWEString__Group_0__0");
-					put(grammarAccess.getMWEStringAccess().getGroup_1(), "rule__MWEString__Group_1__0");
-					put(grammarAccess.getReplaceableStringAccess().getGroup(), "rule__ReplaceableString__Group__0");
+					put(grammarAccess.getCompoundStringAccess().getGroup_0(), "rule__CompoundString__Group_0__0");
+					put(grammarAccess.getCompoundStringAccess().getGroup_1(), "rule__CompoundString__Group_1__0");
+					put(grammarAccess.getPropertyReferenceAccess().getGroup(), "rule__PropertyReference__Group__0");
 					put(grammarAccess.getEscapedSingleQuoteAccess().getGroup(), "rule__EscapedSingleQuote__Group__0");
 					put(grammarAccess.getEscapedDoubleQuoteAccess().getGroup(), "rule__EscapedDoubleQuote__Group__0");
 					put(grammarAccess.getEscapedBackslashAccess().getGroup(), "rule__EscapedBackslash__Group__0");
@@ -88,13 +88,13 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getStringLiteralAccess().getValueAssignment(), "rule__StringLiteral__ValueAssignment");
 					put(grammarAccess.getBooleanLiteralAccess().getIsTrueAssignment_1_0(), "rule__BooleanLiteral__IsTrueAssignment_1_0");
 					put(grammarAccess.getReferenceAccess().getReferableAssignment(), "rule__Reference__ReferableAssignment");
-					put(grammarAccess.getMWEStringAccess().getBeginAssignment_0_0(), "rule__MWEString__BeginAssignment_0_0");
-					put(grammarAccess.getMWEStringAccess().getPartsAssignment_0_1(), "rule__MWEString__PartsAssignment_0_1");
-					put(grammarAccess.getMWEStringAccess().getEndAssignment_0_2(), "rule__MWEString__EndAssignment_0_2");
-					put(grammarAccess.getMWEStringAccess().getBeginAssignment_1_0(), "rule__MWEString__BeginAssignment_1_0");
-					put(grammarAccess.getMWEStringAccess().getPartsAssignment_1_1(), "rule__MWEString__PartsAssignment_1_1");
-					put(grammarAccess.getMWEStringAccess().getEndAssignment_1_2(), "rule__MWEString__EndAssignment_1_2");
-					put(grammarAccess.getReplaceableStringAccess().getPropertyAssignment_1(), "rule__ReplaceableString__PropertyAssignment_1");
+					put(grammarAccess.getCompoundStringAccess().getBeginAssignment_0_0(), "rule__CompoundString__BeginAssignment_0_0");
+					put(grammarAccess.getCompoundStringAccess().getPartsAssignment_0_1(), "rule__CompoundString__PartsAssignment_0_1");
+					put(grammarAccess.getCompoundStringAccess().getEndAssignment_0_2(), "rule__CompoundString__EndAssignment_0_2");
+					put(grammarAccess.getCompoundStringAccess().getBeginAssignment_1_0(), "rule__CompoundString__BeginAssignment_1_0");
+					put(grammarAccess.getCompoundStringAccess().getPartsAssignment_1_1(), "rule__CompoundString__PartsAssignment_1_1");
+					put(grammarAccess.getCompoundStringAccess().getEndAssignment_1_2(), "rule__CompoundString__EndAssignment_1_2");
+					put(grammarAccess.getPropertyReferenceAccess().getPropertyAssignment_1(), "rule__PropertyReference__PropertyAssignment_1");
 					put(grammarAccess.getPlainStringAccess().getValueAssignment(), "rule__PlainString__ValueAssignment");
 				}
 			};

@@ -3,7 +3,7 @@ package org.eclipse.emf.mwe2.language.ui.contentassist;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.mwe2.language.ui.scoping.NamespaceAwareScopeProvider;
+import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.common.types.xtext.ui.JdtTypesProposalProvider;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider.ImportNormalizer;

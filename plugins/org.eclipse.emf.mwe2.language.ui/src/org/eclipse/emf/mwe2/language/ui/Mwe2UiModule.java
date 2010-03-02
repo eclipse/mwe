@@ -7,7 +7,6 @@ import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingConfiguratio
 import org.eclipse.emf.mwe2.language.ui.highlighting.SemanticHighlightingCalculator;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenToAttributeMapper;
-import org.eclipse.emf.mwe2.language.ui.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
@@ -34,14 +33,8 @@ public class Mwe2UiModule extends org.eclipse.emf.mwe2.language.ui.AbstractMwe2U
 		return SemanticHighlightingCalculator.class;
 	}
 	
-	
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return MweHighlightingConfiguration.class;
 	}
 	
-	// contributed by org.eclipse.xtext.ui.generator.scoping.QualifiedNameBasedScopingFragment
-	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
-//		binder.bind(IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.IScopeProvider.delegate")).to(NamespaceAwareScopeProvider.class);
-		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(NamespaceAwareScopeProvider.class);
-	}
 }

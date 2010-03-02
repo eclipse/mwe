@@ -25,8 +25,6 @@ KEYWORD_FALSE : 'false';
 
 KEYWORD_TRUE : 'true';
 
-KEYWORD_AS : 'as';
-
 KEYWORD_DOT : '.';
 
 KEYWORD_STAR : '*';

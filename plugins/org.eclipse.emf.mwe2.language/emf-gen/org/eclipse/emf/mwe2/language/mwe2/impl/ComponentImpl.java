@@ -40,7 +40,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
  *
  * @generated
  */
-public class ComponentImpl extends ReferrableImpl implements Component
+public class ComponentImpl extends ReferrableImplCustom implements Component
 {
   /**
    * The cached value of the '{@link #getModule() <em>Module</em>}' reference.

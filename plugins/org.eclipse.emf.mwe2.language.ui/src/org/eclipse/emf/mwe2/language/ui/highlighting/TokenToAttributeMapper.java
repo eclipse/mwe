@@ -13,7 +13,6 @@ public class TokenToAttributeMapper extends
 	private final Set<String> keywords = ImmutableSet.of(
 			"KEYWORD_TRUE",
 			"KEYWORD_FALSE", 
-			"KEYWORD_AS", 
 			"KEYWORD_VAR", 
 			"KEYWORD_IMPORT",
 			"KEYWORD_MODULE", 

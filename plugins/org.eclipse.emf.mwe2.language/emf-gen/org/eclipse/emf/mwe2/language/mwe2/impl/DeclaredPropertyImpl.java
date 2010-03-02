@@ -34,7 +34,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Value;
  *
  * @generated
  */
-public class DeclaredPropertyImpl extends ReferrableImpl implements DeclaredProperty
+public class DeclaredPropertyImpl extends ReferrableImplCustom implements DeclaredProperty
 {
   /**
    * The cached value of the '{@link #getDefault() <em>Default</em>}' containment reference.
@@ -158,6 +158,18 @@ public class DeclaredPropertyImpl extends ReferrableImpl implements DeclaredProp
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.DECLARED_PROPERTY__MODULE, newModule, newModule));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getSimpleName()
+  {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

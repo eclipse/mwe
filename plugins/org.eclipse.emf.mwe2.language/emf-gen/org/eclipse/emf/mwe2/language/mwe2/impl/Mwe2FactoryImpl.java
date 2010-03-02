@@ -103,7 +103,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public Referrable createReferrable()
   {
-    ReferrableImpl referrable = new ReferrableImpl();
+    ReferrableImplCustom referrable = new ReferrableImplCustom();
     return referrable;
   }
 

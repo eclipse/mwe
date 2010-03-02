@@ -421,17 +421,17 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	public class StringLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteral");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueMWEStringParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueCompoundStringParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//StringLiteral:
-		//  value=MWEString;
+		//  value=CompoundString;
 		public ParserRule getRule() { return rule; }
 
-		//value=MWEString
+		//value=CompoundString
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		//MWEString
-		public RuleCall getValueMWEStringParserRuleCall_0() { return cValueMWEStringParserRuleCall_0; }
+		//CompoundString
+		public RuleCall getValueCompoundStringParserRuleCall_0() { return cValueCompoundStringParserRuleCall_0; }
 	}
 
 	public class BooleanLiteralElements extends AbstractParserRuleElementFinder {
@@ -514,34 +514,34 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 
-	public class MWEStringElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MWEString");
+	public class CompoundStringElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompoundString");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cBeginAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cBeginSingleQuoteParserRuleCall_0_0_0 = (RuleCall)cBeginAssignment_0_0.eContents().get(0);
 		private final Assignment cPartsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cPartsMWEStringPartParserRuleCall_0_1_0 = (RuleCall)cPartsAssignment_0_1.eContents().get(0);
+		private final RuleCall cPartsStringPartParserRuleCall_0_1_0 = (RuleCall)cPartsAssignment_0_1.eContents().get(0);
 		private final Assignment cEndAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cEndSingleQuoteParserRuleCall_0_2_0 = (RuleCall)cEndAssignment_0_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Assignment cBeginAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cBeginDoubleQuoteParserRuleCall_1_0_0 = (RuleCall)cBeginAssignment_1_0.eContents().get(0);
 		private final Assignment cPartsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPartsMWEStringPartParserRuleCall_1_1_0 = (RuleCall)cPartsAssignment_1_1.eContents().get(0);
+		private final RuleCall cPartsStringPartParserRuleCall_1_1_0 = (RuleCall)cPartsAssignment_1_1.eContents().get(0);
 		private final Assignment cEndAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cEndDoubleQuoteParserRuleCall_1_2_0 = (RuleCall)cEndAssignment_1_2.eContents().get(0);
 		
-		//MWEString hidden ( ):
-		//  begin=SingleQuote parts+=MWEStringPart* end=SingleQuote|begin=DoubleQuote parts+=
-		//  MWEStringPart* end=DoubleQuote;
+		//CompoundString hidden ( ):
+		//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
+		//  StringPart* end=DoubleQuote;
 		public ParserRule getRule() { return rule; }
 
-		//begin=SingleQuote parts+=MWEStringPart* end=SingleQuote|begin=DoubleQuote parts+=
-		//MWEStringPart* end=DoubleQuote
+		//begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
+		//StringPart* end=DoubleQuote
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//begin=SingleQuote parts+=MWEStringPart* end=SingleQuote
+		//begin=SingleQuote parts+=StringPart* end=SingleQuote
 		public Group getGroup_0() { return cGroup_0; }
 
 		//begin=SingleQuote
@@ -550,11 +550,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//SingleQuote
 		public RuleCall getBeginSingleQuoteParserRuleCall_0_0_0() { return cBeginSingleQuoteParserRuleCall_0_0_0; }
 
-		//parts+=MWEStringPart*
+		//parts+=StringPart*
 		public Assignment getPartsAssignment_0_1() { return cPartsAssignment_0_1; }
 
-		//MWEStringPart
-		public RuleCall getPartsMWEStringPartParserRuleCall_0_1_0() { return cPartsMWEStringPartParserRuleCall_0_1_0; }
+		//StringPart
+		public RuleCall getPartsStringPartParserRuleCall_0_1_0() { return cPartsStringPartParserRuleCall_0_1_0; }
 
 		//end=SingleQuote
 		public Assignment getEndAssignment_0_2() { return cEndAssignment_0_2; }
@@ -562,7 +562,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//SingleQuote
 		public RuleCall getEndSingleQuoteParserRuleCall_0_2_0() { return cEndSingleQuoteParserRuleCall_0_2_0; }
 
-		//begin=DoubleQuote parts+=MWEStringPart* end=DoubleQuote
+		//begin=DoubleQuote parts+=StringPart* end=DoubleQuote
 		public Group getGroup_1() { return cGroup_1; }
 
 		//begin=DoubleQuote
@@ -571,11 +571,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//DoubleQuote
 		public RuleCall getBeginDoubleQuoteParserRuleCall_1_0_0() { return cBeginDoubleQuoteParserRuleCall_1_0_0; }
 
-		//parts+=MWEStringPart*
+		//parts+=StringPart*
 		public Assignment getPartsAssignment_1_1() { return cPartsAssignment_1_1; }
 
-		//MWEStringPart
-		public RuleCall getPartsMWEStringPartParserRuleCall_1_1_0() { return cPartsMWEStringPartParserRuleCall_1_1_0; }
+		//StringPart
+		public RuleCall getPartsStringPartParserRuleCall_1_1_0() { return cPartsStringPartParserRuleCall_1_1_0; }
 
 		//end=DoubleQuote
 		public Assignment getEndAssignment_1_2() { return cEndAssignment_1_2; }
@@ -584,28 +584,28 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getEndDoubleQuoteParserRuleCall_1_2_0() { return cEndDoubleQuoteParserRuleCall_1_2_0; }
 	}
 
-	public class MWEStringPartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "MWEStringPart");
+	public class StringPartElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringPart");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cReplaceableStringParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
+		private final RuleCall cPropertyReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cPlainStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//MWEStringPart:
-		//  ReplaceableString|PlainString;
+		//StringPart:
+		//  PropertyReference|PlainString;
 		public ParserRule getRule() { return rule; }
 
-		//ReplaceableString|PlainString
+		//PropertyReference|PlainString
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//ReplaceableString
-		public RuleCall getReplaceableStringParserRuleCall_0() { return cReplaceableStringParserRuleCall_0; }
+		//PropertyReference
+		public RuleCall getPropertyReferenceParserRuleCall_0() { return cPropertyReferenceParserRuleCall_0; }
 
 		//PlainString
 		public RuleCall getPlainStringParserRuleCall_1() { return cPlainStringParserRuleCall_1; }
 	}
 
-	public class ReplaceableStringElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ReplaceableString");
+	public class PropertyReferenceElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
@@ -613,7 +613,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//ReplaceableString:
+		//PropertyReference:
 		//  "${" property=[DeclaredProperty] "}";
 		public ParserRule getRule() { return rule; }
 
@@ -857,9 +857,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private BooleanLiteralElements pBooleanLiteral;
 	private ReferenceElements pReference;
 	private FQNElements pFQN;
-	private MWEStringElements pMWEString;
-	private MWEStringPartElements pMWEStringPart;
-	private ReplaceableStringElements pReplaceableString;
+	private CompoundStringElements pCompoundString;
+	private StringPartElements pStringPart;
+	private PropertyReferenceElements pPropertyReference;
 	private PlainStringElements pPlainString;
 	private ConstantValueElements pConstantValue;
 	private SingleQuoteElements pSingleQuote;
@@ -971,7 +971,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral:
-	//  value=MWEString;
+	//  value=CompoundString;
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -1010,35 +1010,35 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getFQNAccess().getRule();
 	}
 
-	//MWEString hidden ( ):
-	//  begin=SingleQuote parts+=MWEStringPart* end=SingleQuote|begin=DoubleQuote parts+=
-	//  MWEStringPart* end=DoubleQuote;
-	public MWEStringElements getMWEStringAccess() {
-		return (pMWEString != null) ? pMWEString : (pMWEString = new MWEStringElements());
+	//CompoundString hidden ( ):
+	//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
+	//  StringPart* end=DoubleQuote;
+	public CompoundStringElements getCompoundStringAccess() {
+		return (pCompoundString != null) ? pCompoundString : (pCompoundString = new CompoundStringElements());
 	}
 	
-	public ParserRule getMWEStringRule() {
-		return getMWEStringAccess().getRule();
+	public ParserRule getCompoundStringRule() {
+		return getCompoundStringAccess().getRule();
 	}
 
-	//MWEStringPart:
-	//  ReplaceableString|PlainString;
-	public MWEStringPartElements getMWEStringPartAccess() {
-		return (pMWEStringPart != null) ? pMWEStringPart : (pMWEStringPart = new MWEStringPartElements());
+	//StringPart:
+	//  PropertyReference|PlainString;
+	public StringPartElements getStringPartAccess() {
+		return (pStringPart != null) ? pStringPart : (pStringPart = new StringPartElements());
 	}
 	
-	public ParserRule getMWEStringPartRule() {
-		return getMWEStringPartAccess().getRule();
+	public ParserRule getStringPartRule() {
+		return getStringPartAccess().getRule();
 	}
 
-	//ReplaceableString:
+	//PropertyReference:
 	//  "${" property=[DeclaredProperty] "}";
-	public ReplaceableStringElements getReplaceableStringAccess() {
-		return (pReplaceableString != null) ? pReplaceableString : (pReplaceableString = new ReplaceableStringElements());
+	public PropertyReferenceElements getPropertyReferenceAccess() {
+		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
 	}
 	
-	public ParserRule getReplaceableStringRule() {
-		return getReplaceableStringAccess().getRule();
+	public ParserRule getPropertyReferenceRule() {
+		return getPropertyReferenceAccess().getRule();
 	}
 
 	//PlainString:

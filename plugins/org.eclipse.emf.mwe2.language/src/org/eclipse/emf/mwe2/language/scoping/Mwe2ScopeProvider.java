@@ -3,7 +3,25 @@
  */
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Value;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
+
+import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 
 /**
  * This class contains custom scoping description.
@@ -13,5 +31,79 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
  *
  */
 public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
+	
+	@Inject
+	private IInjectableFeatureLookup featureLookup;
+	
+	public IScope scope_Assignment_feature(Assignment context, EReference reference) {
+		if (context.eContainer() == null)
+			throw new IllegalStateException("context.eContainer may not be null");
+		if (!(context.eContainer() instanceof Component))
+			throw new IllegalStateException("context.eContainer has to be instance of Component");
+		Component container = (Component) context.eContainer();
+		return createComponentFeaturesScope(container);
+	}
+	
+	public IScope scope_PropertyReference_property(Value owner, EReference reference) {
+		return createReferenceScopeUpTo(owner, false);
+	}
+
+	public IScope scope_Reference_referable(DeclaredProperty owner, EReference reference) {
+		return createReferenceScopeUpTo(owner, true);
+	}
+	
+	public IScope scope_Reference_referable(Assignment owner, EReference reference) {
+		return createReferenceScopeUpTo(owner, true);
+	}
+	
+	public IScope createReferenceScopeUpTo(EObject object, boolean allowObjects) {
+		Module module = EcoreUtil2.getContainerOfType(object, Module.class);
+		List<EObject> result = Lists.newArrayList();
+		for(DeclaredProperty prop: module.getDeclaredProperties()) {
+			if (prop == object || prop.getDefault() == object)
+				return Scopes.scopeFor(result);
+			if (isAllowed(prop.getDefault(), allowObjects))
+				result.add(prop);
+		}
+		if (allowObjects)
+			collectReferablesUpTo(module.getRoot(), object, result);
+		return Scopes.scopeFor(result);
+	}
+	
+	protected boolean isAllowed(Value value, boolean allowObjects) {
+		return allowObjects || !(value instanceof Component); // TODO: discuss how we handle component references in strings
+	}
+
+	public boolean collectReferablesUpTo(Component component, EObject object, List<EObject> result) {
+		result.add(component);
+		for(Assignment assignment: component.getAssignment()) {
+			if (assignment == object)
+				return false;
+			if (assignment.getValue() instanceof Component) {
+				if (!collectReferablesUpTo((Component) assignment.getValue(), object, result))
+					return false;
+			}
+		}
+		return true;
+	}
+
+	public IScope createComponentFeaturesScope(Component container) {
+		if (container.getModule() != null) {
+			return Scopes.scopeFor(container.getModule().getDeclaredProperties());
+		} else {
+			JvmType containerType = container.getActualType();
+			Map<String, JvmFeature> features = featureLookup.getInjectableFeatures(containerType);
+			return new MapBasedScope(features);
+		}
+	}
+
+	public void setFeatureLookup(IInjectableFeatureLookup featureLookup) {
+		this.featureLookup = featureLookup;
+	}
+
+	public IInjectableFeatureLookup getFeatureLookup() {
+		return featureLookup;
+	}
+	
 	
 }
