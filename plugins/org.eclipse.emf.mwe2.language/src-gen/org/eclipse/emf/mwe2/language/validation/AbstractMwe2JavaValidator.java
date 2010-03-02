@@ -13,7 +13,6 @@ public class AbstractMwe2JavaValidator extends AbstractDeclarativeValidator {
     @Override
     protected List<EPackage> getEPackages() {
         List<EPackage> result = new ArrayList<EPackage>();
-        result.add(org.eclipse.emf.mwe2.language.mwe2.Mwe2Package.eINSTANCE);
         return result;
     }
 

@@ -18,11 +18,6 @@
 			<!-- Java API to access grammar elements (required by several other fragments) -->
 			<fragment class="org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment"/>
 			
-			<!-- generates Java API for the generated EPackages -->
-			<fragment class="org.eclipse.xtext.generator.ecore.EcoreGeneratorFragment">
-			  <genModels value="platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel"/>
-			</fragment>
-			
 			<!-- the serialization component -->
 			<fragment class="org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment"/>
 			

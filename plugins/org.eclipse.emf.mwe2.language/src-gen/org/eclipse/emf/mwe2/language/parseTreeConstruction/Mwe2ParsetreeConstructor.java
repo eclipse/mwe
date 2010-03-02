@@ -36,20 +36,19 @@ protected class ThisRootNode extends RootToken {
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
 			case 0: return new Module_Group(this, this, 0, inst);
-			case 1: return new Referrable_Alternatives(this, this, 1, inst);
-			case 2: return new DeclaredProperty_Group(this, this, 2, inst);
-			case 3: return new RootComponent_Group(this, this, 3, inst);
-			case 4: return new Component_Group(this, this, 4, inst);
-			case 5: return new Import_Group(this, this, 5, inst);
-			case 6: return new Assignment_Group(this, this, 6, inst);
-			case 7: return new Value_Alternatives(this, this, 7, inst);
-			case 8: return new StringLiteral_ValueAssignment(this, this, 8, inst);
-			case 9: return new BooleanLiteral_Group(this, this, 9, inst);
-			case 10: return new Reference_ReferableAssignment(this, this, 10, inst);
-			case 11: return new MWEString_Alternatives(this, this, 11, inst);
-			case 12: return new MWEStringPart_Alternatives(this, this, 12, inst);
-			case 13: return new ReplaceableString_Group(this, this, 13, inst);
-			case 14: return new PlainString_ValueAssignment(this, this, 14, inst);
+			case 1: return new DeclaredProperty_Group(this, this, 1, inst);
+			case 2: return new RootComponent_Group(this, this, 2, inst);
+			case 3: return new Component_Group(this, this, 3, inst);
+			case 4: return new Import_Group(this, this, 4, inst);
+			case 5: return new Assignment_Group(this, this, 5, inst);
+			case 6: return new Value_Alternatives(this, this, 6, inst);
+			case 7: return new StringLiteral_ValueAssignment(this, this, 7, inst);
+			case 8: return new BooleanLiteral_Group(this, this, 8, inst);
+			case 9: return new Reference_ReferableAssignment(this, this, 9, inst);
+			case 10: return new MWEString_Alternatives(this, this, 10, inst);
+			case 11: return new MWEStringPart_Alternatives(this, this, 11, inst);
+			case 12: return new ReplaceableString_Group(this, this, 12, inst);
+			case 13: return new PlainString_ValueAssignment(this, this, 13, inst);
 			default: return null;
 		}	
 	}	
@@ -323,123 +322,14 @@ protected class Module_RootAssignment_5 extends AssignmentToken  {
 /************ end Rule Module ****************/
 
 
-/************ begin Rule Referrable ****************
- *
- * Referrable:
- *   DeclaredProperty|Component;
- *
- **/
-
-// DeclaredProperty|Component
-protected class Referrable_Alternatives extends AlternativesToken {
-
-	public Referrable_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getReferrableAccess().getAlternatives();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Referrable_DeclaredPropertyParserRuleCall_0(parent, this, 0, inst);
-			case 1: return new Referrable_ComponentParserRuleCall_1(parent, this, 1, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getReferrableRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
-}
-
-// DeclaredProperty
-protected class Referrable_DeclaredPropertyParserRuleCall_0 extends RuleCallToken {
-	
-	public Referrable_DeclaredPropertyParserRuleCall_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getReferrableAccess().getDeclaredPropertyParserRuleCall_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new DeclaredProperty_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(DeclaredProperty_Group.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getDeclaredPropertyRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// Component
-protected class Referrable_ComponentParserRuleCall_1 extends RuleCallToken {
-	
-	public Referrable_ComponentParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getReferrableAccess().getComponentParserRuleCall_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new Component_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(Component_Group.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getComponentRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-
-/************ end Rule Referrable ****************/
-
-
 /************ begin Rule DeclaredProperty ****************
  *
  * DeclaredProperty:
- *   "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)?;
+ *   "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
  *
  **/
 
-// "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)?
+// "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?
 protected class DeclaredProperty_Group extends GroupToken {
 	
 	public DeclaredProperty_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -488,7 +378,7 @@ protected class DeclaredProperty_VarKeyword_0 extends KeywordToken  {
 		
 }
 
-// type=[types::Type|FQN]?
+// type=[types::JvmType|FQN]?
 protected class DeclaredProperty_TypeAssignment_1 extends AssignmentToken  {
 	
 	public DeclaredProperty_TypeAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -514,9 +404,9 @@ protected class DeclaredProperty_TypeAssignment_1 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getDeclaredPropertyAccess().getTypeTypeCrossReference_1_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getDeclaredPropertyAccess().getTypeJvmTypeCrossReference_1_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getDeclaredPropertyAccess().getTypeTypeCrossReference_1_0(); 
+				element = grammarAccess.getDeclaredPropertyAccess().getTypeJvmTypeCrossReference_1_0(); 
 				return obj;
 			}
 		}
@@ -658,12 +548,12 @@ protected class DeclaredProperty_DefaultAssignment_3_1 extends AssignmentToken  
 /************ begin Rule RootComponent ****************
  *
  * RootComponent returns Component:
- *   {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN]) ("as" name=FQN)?
+ *   {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
  *   autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
  *
  **/
 
-// {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN]) ("as" name=FQN)?
+// {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
 // autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
 protected class RootComponent_Group extends GroupToken {
 	
@@ -719,7 +609,7 @@ protected class RootComponent_ComponentAction_0 extends ActionToken  {
 	}
 }
 
-// type=[types::Type|FQN]|"@" module=[Module|FQN]
+// type=[types::JvmType|FQN]|"@" module=[Module|FQN]
 protected class RootComponent_Alternatives_1 extends AlternativesToken {
 
 	public RootComponent_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -742,7 +632,7 @@ protected class RootComponent_Alternatives_1 extends AlternativesToken {
 		
 }
 
-// type=[types::Type|FQN]
+// type=[types::JvmType|FQN]
 protected class RootComponent_TypeAssignment_1_0 extends AssignmentToken  {
 	
 	public RootComponent_TypeAssignment_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -768,9 +658,9 @@ protected class RootComponent_TypeAssignment_1_0 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getRootComponentAccess().getTypeTypeCrossReference_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getRootComponentAccess().getTypeTypeCrossReference_1_0_0(); 
+				element = grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0(); 
 				return obj;
 			}
 		}
@@ -862,7 +752,7 @@ protected class RootComponent_ModuleAssignment_1_1_1 extends AssignmentToken  {
 
 
 
-// ("as" name=FQN)?
+// (":" name=FQN)?
 protected class RootComponent_Group_2 extends GroupToken {
 	
 	public RootComponent_Group_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -884,16 +774,16 @@ protected class RootComponent_Group_2 extends GroupToken {
 		
 }
 
-// "as"
-protected class RootComponent_AsKeyword_2_0 extends KeywordToken  {
+// ":"
+protected class RootComponent_ColonKeyword_2_0 extends KeywordToken  {
 	
-	public RootComponent_AsKeyword_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public RootComponent_ColonKeyword_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getRootComponentAccess().getAsKeyword_2_0();
+		return grammarAccess.getRootComponentAccess().getColonKeyword_2_0();
 	}
 
     @Override
@@ -921,7 +811,7 @@ protected class RootComponent_NameAssignment_2_1 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new RootComponent_AsKeyword_2_0(parent, this, 0, inst);
+			case 0: return new RootComponent_ColonKeyword_2_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -1077,12 +967,12 @@ protected class RootComponent_RightCurlyBracketKeyword_6 extends KeywordToken  {
 /************ begin Rule Component ****************
  *
  * Component:
- *   {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN])? ("as" name=FQN)?
+ *   {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
  *   autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
  *
  **/
 
-// {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN])? ("as" name=FQN)?
+// {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
 // autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
 protected class Component_Group extends GroupToken {
 	
@@ -1138,7 +1028,7 @@ protected class Component_ComponentAction_0 extends ActionToken  {
 	}
 }
 
-// (type=[types::Type|FQN]|"@" module=[Module|FQN])?
+// (type=[types::JvmType|FQN]|"@" module=[Module|FQN])?
 protected class Component_Alternatives_1 extends AlternativesToken {
 
 	public Component_Alternatives_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1161,7 +1051,7 @@ protected class Component_Alternatives_1 extends AlternativesToken {
 		
 }
 
-// type=[types::Type|FQN]
+// type=[types::JvmType|FQN]
 protected class Component_TypeAssignment_1_0 extends AssignmentToken  {
 	
 	public Component_TypeAssignment_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1187,9 +1077,9 @@ protected class Component_TypeAssignment_1_0 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("type");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getComponentAccess().getTypeTypeCrossReference_1_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getComponentAccess().getTypeTypeCrossReference_1_0_0(); 
+				element = grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0(); 
 				return obj;
 			}
 		}
@@ -1281,7 +1171,7 @@ protected class Component_ModuleAssignment_1_1_1 extends AssignmentToken  {
 
 
 
-// ("as" name=FQN)?
+// (":" name=FQN)?
 protected class Component_Group_2 extends GroupToken {
 	
 	public Component_Group_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1303,16 +1193,16 @@ protected class Component_Group_2 extends GroupToken {
 		
 }
 
-// "as"
-protected class Component_AsKeyword_2_0 extends KeywordToken  {
+// ":"
+protected class Component_ColonKeyword_2_0 extends KeywordToken  {
 	
-	public Component_AsKeyword_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public Component_ColonKeyword_2_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Keyword getGrammarElement() {
-		return grammarAccess.getComponentAccess().getAsKeyword_2_0();
+		return grammarAccess.getComponentAccess().getColonKeyword_2_0();
 	}
 
     @Override
@@ -1341,7 +1231,7 @@ protected class Component_NameAssignment_2_1 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Component_AsKeyword_2_0(parent, this, 0, inst);
+			case 0: return new Component_ColonKeyword_2_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -1593,11 +1483,11 @@ protected class Import_ImportedNamespaceAssignment_1 extends AssignmentToken  {
 /************ begin Rule Assignment ****************
  *
  * Assignment:
- *   feature=[types::Operation] "=" value=Value;
+ *   feature=[types::JvmFeature] "=" value=Value;
  *
  **/
 
-// feature=[types::Operation] "=" value=Value
+// feature=[types::JvmFeature] "=" value=Value
 protected class Assignment_Group extends GroupToken {
 	
 	public Assignment_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1624,7 +1514,7 @@ protected class Assignment_Group extends GroupToken {
 	}
 }
 
-// feature=[types::Operation]
+// feature=[types::JvmFeature]
 protected class Assignment_FeatureAssignment_0 extends AssignmentToken  {
 	
 	public Assignment_FeatureAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1649,9 +1539,9 @@ protected class Assignment_FeatureAssignment_0 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("feature");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getAssignmentAccess().getFeatureOperationCrossReference_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getAssignmentAccess().getFeatureOperationCrossReference_0_0(); 
+				element = grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0(); 
 				return obj;
 			}
 		}
@@ -2600,11 +2490,11 @@ protected class MWEStringPart_PlainStringParserRuleCall_1 extends RuleCallToken 
 /************ begin Rule ReplaceableString ****************
  *
  * ReplaceableString:
- *   "${" property=Value "}";
+ *   "${" property=[DeclaredProperty] "}";
  *
  **/
 
-// "${" property=Value "}"
+// "${" property=[DeclaredProperty] "}"
 protected class ReplaceableString_Group extends GroupToken {
 	
 	public ReplaceableString_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2652,7 +2542,7 @@ protected class ReplaceableString_DollarSignLeftCurlyBracketKeyword_0 extends Ke
 		
 }
 
-// property=Value
+// property=[DeclaredProperty]
 protected class ReplaceableString_PropertyAssignment_1 extends AssignmentToken  {
 	
 	public ReplaceableString_PropertyAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2667,7 +2557,7 @@ protected class ReplaceableString_PropertyAssignment_1 extends AssignmentToken  
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new Value_Alternatives(this, this, 0, inst);
+			case 0: return new ReplaceableString_DollarSignLeftCurlyBracketKeyword_0(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2676,26 +2566,17 @@ protected class ReplaceableString_PropertyAssignment_1 extends AssignmentToken  
 	protected IInstanceDescription tryConsumeVal() {
 		if((value = current.getConsumable("property",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("property");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getValueRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getReplaceableStringAccess().getPropertyValueParserRuleCall_1_0(); 
-				consumed = obj;
-				return param;
+			if(param.isInstanceOf(grammarAccess.getReplaceableStringAccess().getPropertyDeclaredPropertyCrossReference_1_0().getType().getClassifier())) {
+				type = AssignmentType.CR;
+				element = grammarAccess.getReplaceableStringAccess().getPropertyDeclaredPropertyCrossReference_1_0(); 
+				return obj;
 			}
 		}
 		return null;
 	}
 
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
-		switch(index) {
-			case 0: return new ReplaceableString_DollarSignLeftCurlyBracketKeyword_0(parent, next, actIndex, consumed);
-			default: return null;
-		}	
-	}	
 }
 
 // "}"

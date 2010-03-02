@@ -37,9 +37,6 @@ public class Mwe2StandaloneSetup implements ISetup {
 	}
 	
 	public void register(Injector injector) {
-	if (!EPackage.Registry.INSTANCE.containsKey("http://www.eclipse.org/xtext/common/mwe2/Mwe2")) {
-		EPackage.Registry.INSTANCE.put("http://www.eclipse.org/xtext/common/mwe2/Mwe2", org.eclipse.emf.mwe2.language.mwe2.Mwe2Package.eINSTANCE);
-	}
 
 		org.eclipse.xtext.resource.IResourceFactory resourceFactory = injector.getInstance(org.eclipse.xtext.resource.IResourceFactory.class);
 		org.eclipse.xtext.resource.IResourceServiceProvider serviceProvider = injector.getInstance(org.eclipse.xtext.resource.IResourceServiceProvider.class);

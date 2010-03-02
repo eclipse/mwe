@@ -1,0 +1,71 @@
+@namespace(uri="http://www.eclipse.org/xtext/common/mwe2/Mwe2", prefix="mwe2")
+package mwe2;
+
+import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore";
+
+class Module {
+  attr String canonicalName;
+  val Import[*] imports;
+  val DeclaredProperty[*]#module declaredProperties;
+  val Component root;
+}
+
+class Referrable {
+  ref types.JvmType type;
+  attr String name;
+  op types.JvmType getActualType();
+}
+
+class DeclaredProperty extends Referrable, types.JvmFeature {
+  val Value default;
+  ref Module#declaredProperties module;
+}
+
+class Component extends Referrable, Value {
+  ref Module module;
+  attr boolean autoInject;
+  val Assignment[*] assignment;
+}
+
+class Import {
+  attr String importedNamespace;
+}
+
+class Assignment {
+  ref types.JvmFeature feature;
+  val Value value;
+}
+
+abstract class Value {
+}
+
+class StringLiteral extends Value {
+  val CompoundString value;
+}
+
+class BooleanLiteral extends Value {
+  attr boolean isTrue;
+}
+
+class Reference extends Value {
+  ref Referrable referable;
+}
+
+class CompoundString {
+  attr String begin;
+  val StringPart[*] parts;
+  attr String end;
+  op String getResolvedString();
+}
+
+class StringPart {
+}
+
+class PropertyReference extends StringPart {
+  ref DeclaredProperty property;
+}
+
+class PlainString extends StringPart {
+  attr String value;
+}
+

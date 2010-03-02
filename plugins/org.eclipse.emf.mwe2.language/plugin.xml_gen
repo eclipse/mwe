@@ -3,15 +3,6 @@
 
 <plugin>
 
-  <extension point="org.eclipse.emf.ecore.generated_package">
-    <package 
-       uri = "http://www.eclipse.org/xtext/common/mwe2/Mwe2" 
-       class = "org.eclipse.emf.mwe2.language.mwe2.Mwe2Package"
-       genModel = "org/eclipse/emf/mwe2/language/Mwe2.genmodel" /> 
-	
-  </extension>
-
-
 
 
 </plugin>

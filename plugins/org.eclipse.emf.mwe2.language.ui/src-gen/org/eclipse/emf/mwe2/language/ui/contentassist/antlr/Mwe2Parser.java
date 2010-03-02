@@ -37,7 +37,6 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getReferrableAccess().getAlternatives(), "rule__Referrable__Alternatives");
 					put(grammarAccess.getRootComponentAccess().getAlternatives_1(), "rule__RootComponent__Alternatives_1");
 					put(grammarAccess.getComponentAccess().getAlternatives_1(), "rule__Component__Alternatives_1");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");

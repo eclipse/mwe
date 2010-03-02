@@ -20,7 +20,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 	@Override
 	protected IScope getGlobalScope(EObject context, EReference reference) {
 		EClass referenceType = reference.getEReferenceType();
-		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.TYPE, referenceType)) {
+		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
 			ResourceSet resourceSet = context.eResource().getResourceSet();
 			ITypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
 			if (typeProvider == null)

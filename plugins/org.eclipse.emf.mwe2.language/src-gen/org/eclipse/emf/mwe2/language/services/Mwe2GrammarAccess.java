@@ -70,33 +70,13 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getRootRootComponentParserRuleCall_5_0() { return cRootRootComponentParserRuleCall_5_0; }
 	}
 
-	public class ReferrableElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Referrable");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cDeclaredPropertyParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cComponentParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//Referrable:
-		//  DeclaredProperty|Component;
-		public ParserRule getRule() { return rule; }
-
-		//DeclaredProperty|Component
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//DeclaredProperty
-		public RuleCall getDeclaredPropertyParserRuleCall_0() { return cDeclaredPropertyParserRuleCall_0; }
-
-		//Component
-		public RuleCall getComponentParserRuleCall_1() { return cComponentParserRuleCall_1; }
-	}
-
 	public class DeclaredPropertyElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DeclaredProperty");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cVarKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cTypeTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
-		private final RuleCall cTypeTypeFQNParserRuleCall_1_0_1 = (RuleCall)cTypeTypeCrossReference_1_0.eContents().get(1);
+		private final CrossReference cTypeJvmTypeCrossReference_1_0 = (CrossReference)cTypeAssignment_1.eContents().get(0);
+		private final RuleCall cTypeJvmTypeFQNParserRuleCall_1_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_0.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cNameFQNParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
@@ -105,23 +85,23 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDefaultValueParserRuleCall_3_1_0 = (RuleCall)cDefaultAssignment_3_1.eContents().get(0);
 		
 		//DeclaredProperty:
-		//  "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)?;
+		//  "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
 		public ParserRule getRule() { return rule; }
 
-		//"var" type=[types::Type|FQN]? name=FQN ("=" default=Value)?
+		//"var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?
 		public Group getGroup() { return cGroup; }
 
 		//"var"
 		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
 
-		//type=[types::Type|FQN]?
+		//type=[types::JvmType|FQN]?
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
 
-		//[types::Type|FQN]
-		public CrossReference getTypeTypeCrossReference_1_0() { return cTypeTypeCrossReference_1_0; }
+		//[types::JvmType|FQN]
+		public CrossReference getTypeJvmTypeCrossReference_1_0() { return cTypeJvmTypeCrossReference_1_0; }
 
 		//FQN
-		public RuleCall getTypeTypeFQNParserRuleCall_1_0_1() { return cTypeTypeFQNParserRuleCall_1_0_1; }
+		public RuleCall getTypeJvmTypeFQNParserRuleCall_1_0_1() { return cTypeJvmTypeFQNParserRuleCall_1_0_1; }
 
 		//name=FQN
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
@@ -148,15 +128,15 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cComponentAction_0 = (Action)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final CrossReference cTypeTypeCrossReference_1_0_0 = (CrossReference)cTypeAssignment_1_0.eContents().get(0);
-		private final RuleCall cTypeTypeFQNParserRuleCall_1_0_0_1 = (RuleCall)cTypeTypeCrossReference_1_0_0.eContents().get(1);
+		private final CrossReference cTypeJvmTypeCrossReference_1_0_0 = (CrossReference)cTypeAssignment_1_0.eContents().get(0);
+		private final RuleCall cTypeJvmTypeFQNParserRuleCall_1_0_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_0_0.eContents().get(1);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final Keyword cCommercialAtKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Assignment cModuleAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
 		private final CrossReference cModuleModuleCrossReference_1_1_1_0 = (CrossReference)cModuleAssignment_1_1_1.eContents().get(0);
 		private final RuleCall cModuleModuleFQNParserRuleCall_1_1_1_0_1 = (RuleCall)cModuleModuleCrossReference_1_1_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cAsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
 		private final Assignment cAutoInjectAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -167,28 +147,28 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//RootComponent returns Component:
-		//  {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN]) ("as" name=FQN)?
+		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
 		//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Component} (type=[types::Type|FQN]|"@" module=[Module|FQN]) ("as" name=FQN)?
+		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
 		//autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
 		public Group getGroup() { return cGroup; }
 
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 
-		//type=[types::Type|FQN]|"@" module=[Module|FQN]
+		//type=[types::JvmType|FQN]|"@" module=[Module|FQN]
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//type=[types::Type|FQN]
+		//type=[types::JvmType|FQN]
 		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
 
-		//[types::Type|FQN]
-		public CrossReference getTypeTypeCrossReference_1_0_0() { return cTypeTypeCrossReference_1_0_0; }
+		//[types::JvmType|FQN]
+		public CrossReference getTypeJvmTypeCrossReference_1_0_0() { return cTypeJvmTypeCrossReference_1_0_0; }
 
 		//FQN
-		public RuleCall getTypeTypeFQNParserRuleCall_1_0_0_1() { return cTypeTypeFQNParserRuleCall_1_0_0_1; }
+		public RuleCall getTypeJvmTypeFQNParserRuleCall_1_0_0_1() { return cTypeJvmTypeFQNParserRuleCall_1_0_0_1; }
 
 		//"@" module=[Module|FQN]
 		public Group getGroup_1_1() { return cGroup_1_1; }
@@ -205,11 +185,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getModuleModuleFQNParserRuleCall_1_1_1_0_1() { return cModuleModuleFQNParserRuleCall_1_1_1_0_1; }
 
-		//("as" name=FQN)?
+		//(":" name=FQN)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"as"
-		public Keyword getAsKeyword_2_0() { return cAsKeyword_2_0; }
+		//":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
 
 		//name=FQN
 		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
@@ -242,15 +222,15 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Action cComponentAction_0 = (Action)cGroup.eContents().get(0);
 		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
 		private final Assignment cTypeAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
-		private final CrossReference cTypeTypeCrossReference_1_0_0 = (CrossReference)cTypeAssignment_1_0.eContents().get(0);
-		private final RuleCall cTypeTypeFQNParserRuleCall_1_0_0_1 = (RuleCall)cTypeTypeCrossReference_1_0_0.eContents().get(1);
+		private final CrossReference cTypeJvmTypeCrossReference_1_0_0 = (CrossReference)cTypeAssignment_1_0.eContents().get(0);
+		private final RuleCall cTypeJvmTypeFQNParserRuleCall_1_0_0_1 = (RuleCall)cTypeJvmTypeCrossReference_1_0_0.eContents().get(1);
 		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
 		private final Keyword cCommercialAtKeyword_1_1_0 = (Keyword)cGroup_1_1.eContents().get(0);
 		private final Assignment cModuleAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
 		private final CrossReference cModuleModuleCrossReference_1_1_1_0 = (CrossReference)cModuleAssignment_1_1_1.eContents().get(0);
 		private final RuleCall cModuleModuleFQNParserRuleCall_1_1_1_0_1 = (RuleCall)cModuleModuleCrossReference_1_1_1_0.eContents().get(1);
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final Keyword cAsKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
+		private final Keyword cColonKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Assignment cNameAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
 		private final RuleCall cNameFQNParserRuleCall_2_1_0 = (RuleCall)cNameAssignment_2_1.eContents().get(0);
 		private final Assignment cAutoInjectAssignment_3 = (Assignment)cGroup.eContents().get(3);
@@ -261,28 +241,28 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Component:
-		//  {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN])? ("as" name=FQN)?
+		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
 		//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Component} (type=[types::Type|FQN]|"@" module=[Module|FQN])? ("as" name=FQN)?
+		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
 		//autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
 		public Group getGroup() { return cGroup; }
 
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 
-		//(type=[types::Type|FQN]|"@" module=[Module|FQN])?
+		//(type=[types::JvmType|FQN]|"@" module=[Module|FQN])?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
-		//type=[types::Type|FQN]
+		//type=[types::JvmType|FQN]
 		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
 
-		//[types::Type|FQN]
-		public CrossReference getTypeTypeCrossReference_1_0_0() { return cTypeTypeCrossReference_1_0_0; }
+		//[types::JvmType|FQN]
+		public CrossReference getTypeJvmTypeCrossReference_1_0_0() { return cTypeJvmTypeCrossReference_1_0_0; }
 
 		//FQN
-		public RuleCall getTypeTypeFQNParserRuleCall_1_0_0_1() { return cTypeTypeFQNParserRuleCall_1_0_0_1; }
+		public RuleCall getTypeJvmTypeFQNParserRuleCall_1_0_0_1() { return cTypeJvmTypeFQNParserRuleCall_1_0_0_1; }
 
 		//"@" module=[Module|FQN]
 		public Group getGroup_1_1() { return cGroup_1_1; }
@@ -299,11 +279,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//FQN
 		public RuleCall getModuleModuleFQNParserRuleCall_1_1_1_0_1() { return cModuleModuleFQNParserRuleCall_1_1_1_0_1; }
 
-		//("as" name=FQN)?
+		//(":" name=FQN)?
 		public Group getGroup_2() { return cGroup_2; }
 
-		//"as"
-		public Keyword getAsKeyword_2_0() { return cAsKeyword_2_0; }
+		//":"
+		public Keyword getColonKeyword_2_0() { return cColonKeyword_2_0; }
 
 		//name=FQN
 		public Assignment getNameAssignment_2_1() { return cNameAssignment_2_1; }
@@ -378,27 +358,27 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Assignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFeatureAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cFeatureOperationCrossReference_0_0 = (CrossReference)cFeatureAssignment_0.eContents().get(0);
-		private final RuleCall cFeatureOperationIDTerminalRuleCall_0_0_1 = (RuleCall)cFeatureOperationCrossReference_0_0.eContents().get(1);
+		private final CrossReference cFeatureJvmFeatureCrossReference_0_0 = (CrossReference)cFeatureAssignment_0.eContents().get(0);
+		private final RuleCall cFeatureJvmFeatureIDTerminalRuleCall_0_0_1 = (RuleCall)cFeatureJvmFeatureCrossReference_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//  feature=[types::Operation] "=" value=Value;
+		//  feature=[types::JvmFeature] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
-		//feature=[types::Operation] "=" value=Value
+		//feature=[types::JvmFeature] "=" value=Value
 		public Group getGroup() { return cGroup; }
 
-		//feature=[types::Operation]
+		//feature=[types::JvmFeature]
 		public Assignment getFeatureAssignment_0() { return cFeatureAssignment_0; }
 
-		//[types::Operation]
-		public CrossReference getFeatureOperationCrossReference_0_0() { return cFeatureOperationCrossReference_0_0; }
+		//[types::JvmFeature]
+		public CrossReference getFeatureJvmFeatureCrossReference_0_0() { return cFeatureJvmFeatureCrossReference_0_0; }
 
 		//ID
-		public RuleCall getFeatureOperationIDTerminalRuleCall_0_0_1() { return cFeatureOperationIDTerminalRuleCall_0_0_1; }
+		public RuleCall getFeatureJvmFeatureIDTerminalRuleCall_0_0_1() { return cFeatureJvmFeatureIDTerminalRuleCall_0_0_1; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
@@ -629,24 +609,28 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cPropertyValueParserRuleCall_1_0 = (RuleCall)cPropertyAssignment_1.eContents().get(0);
+		private final CrossReference cPropertyDeclaredPropertyCrossReference_1_0 = (CrossReference)cPropertyAssignment_1.eContents().get(0);
+		private final RuleCall cPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//ReplaceableString:
-		//  "${" property=Value "}";
+		//  "${" property=[DeclaredProperty] "}";
 		public ParserRule getRule() { return rule; }
 
-		//"${" property=Value "}"
+		//"${" property=[DeclaredProperty] "}"
 		public Group getGroup() { return cGroup; }
 
 		//"${"
 		public Keyword getDollarSignLeftCurlyBracketKeyword_0() { return cDollarSignLeftCurlyBracketKeyword_0; }
 
-		//property=Value
+		//property=[DeclaredProperty]
 		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
 
-		//Value
-		public RuleCall getPropertyValueParserRuleCall_1_0() { return cPropertyValueParserRuleCall_1_0; }
+		//[DeclaredProperty]
+		public CrossReference getPropertyDeclaredPropertyCrossReference_1_0() { return cPropertyDeclaredPropertyCrossReference_1_0; }
+
+		//ID
+		public RuleCall getPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1() { return cPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
@@ -672,92 +656,96 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConstantValue");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final Keyword cColonKeyword_1 = (Keyword)cAlternatives.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cAlternatives.eContents().get(2);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
-		private final Keyword cCommercialAtKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
-		private final RuleCall cEscapedDoubleQuoteParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
-		private final RuleCall cEscapedSingleQuoteParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
-		private final RuleCall cANY_OTHERTerminalRuleCall_7 = (RuleCall)cAlternatives.eContents().get(7);
-		private final RuleCall cEscapedBackslashParserRuleCall_8 = (RuleCall)cAlternatives.eContents().get(8);
-		private final RuleCall cIDTerminalRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final Keyword cTrueKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cFalseKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		private final Keyword cEqualsSignKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cImportKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cModuleKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cAutoInjectKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
-		private final Keyword cVarKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
-		private final Keyword cAsKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cFullStopKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final RuleCall cANY_OTHERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
+		private final RuleCall cML_COMMENTTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final RuleCall cSL_COMMENTTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cIDTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final Keyword cColonKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
+		private final Keyword cCommercialAtKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
+		private final RuleCall cEscapedDoubleQuoteParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
+		private final RuleCall cEscapedSingleQuoteParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
+		private final RuleCall cEscapedBackslashParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
+		private final Keyword cTrueKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
+		private final Keyword cFalseKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
+		private final Keyword cEqualsSignKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cImportKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
+		private final Keyword cModuleKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
+		private final Keyword cAutoInjectKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
+		private final Keyword cVarKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cFullStopKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
 		
 		//ConstantValue returns ecore::EString:
-		//  WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
-		//  EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-		//  "as"|".";
+		//  WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+		//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
+		//  "auto-inject"|"var"|".";
 		public ParserRule getRule() { return rule; }
 
-		//WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
-		//EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-		//"as"|"."
+		//WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+		//EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
+		//"auto-inject"|"var"|"."
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
 		public RuleCall getWSTerminalRuleCall_0() { return cWSTerminalRuleCall_0; }
 
-		//":"
-		public Keyword getColonKeyword_1() { return cColonKeyword_1; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
-
-		//"@"
-		public Keyword getCommercialAtKeyword_4() { return cCommercialAtKeyword_4; }
-
-		//EscapedDoubleQuote
-		public RuleCall getEscapedDoubleQuoteParserRuleCall_5() { return cEscapedDoubleQuoteParserRuleCall_5; }
-
-		//EscapedSingleQuote
-		public RuleCall getEscapedSingleQuoteParserRuleCall_6() { return cEscapedSingleQuoteParserRuleCall_6; }
-
 		//ANY_OTHER
-		public RuleCall getANY_OTHERTerminalRuleCall_7() { return cANY_OTHERTerminalRuleCall_7; }
+		public RuleCall getANY_OTHERTerminalRuleCall_1() { return cANY_OTHERTerminalRuleCall_1; }
 
-		//EscapedBackslash
-		public RuleCall getEscapedBackslashParserRuleCall_8() { return cEscapedBackslashParserRuleCall_8; }
+		//ML_COMMENT
+		public RuleCall getML_COMMENTTerminalRuleCall_2() { return cML_COMMENTTerminalRuleCall_2; }
+
+		//SL_COMMENT
+		public RuleCall getSL_COMMENTTerminalRuleCall_3() { return cSL_COMMENTTerminalRuleCall_3; }
 
 		//ID
-		public RuleCall getIDTerminalRuleCall_9() { return cIDTerminalRuleCall_9; }
+		public RuleCall getIDTerminalRuleCall_4() { return cIDTerminalRuleCall_4; }
+
+		//":"
+		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
+
+		//"{"
+		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
+
+		//"}"
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
+
+		//"@"
+		public Keyword getCommercialAtKeyword_8() { return cCommercialAtKeyword_8; }
+
+		//EscapedDoubleQuote
+		public RuleCall getEscapedDoubleQuoteParserRuleCall_9() { return cEscapedDoubleQuoteParserRuleCall_9; }
+
+		//EscapedSingleQuote
+		public RuleCall getEscapedSingleQuoteParserRuleCall_10() { return cEscapedSingleQuoteParserRuleCall_10; }
+
+		//EscapedBackslash
+		public RuleCall getEscapedBackslashParserRuleCall_11() { return cEscapedBackslashParserRuleCall_11; }
 
 		//"true"
-		public Keyword getTrueKeyword_10() { return cTrueKeyword_10; }
+		public Keyword getTrueKeyword_12() { return cTrueKeyword_12; }
 
 		//"false"
-		public Keyword getFalseKeyword_11() { return cFalseKeyword_11; }
+		public Keyword getFalseKeyword_13() { return cFalseKeyword_13; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_12() { return cEqualsSignKeyword_12; }
+		public Keyword getEqualsSignKeyword_14() { return cEqualsSignKeyword_14; }
 
 		//"import"
-		public Keyword getImportKeyword_13() { return cImportKeyword_13; }
+		public Keyword getImportKeyword_15() { return cImportKeyword_15; }
 
 		//"module"
-		public Keyword getModuleKeyword_14() { return cModuleKeyword_14; }
+		public Keyword getModuleKeyword_16() { return cModuleKeyword_16; }
 
 		//"auto-inject"
-		public Keyword getAutoInjectKeyword_15() { return cAutoInjectKeyword_15; }
+		public Keyword getAutoInjectKeyword_17() { return cAutoInjectKeyword_17; }
 
 		//"var"
-		public Keyword getVarKeyword_16() { return cVarKeyword_16; }
-
-		//"as"
-		public Keyword getAsKeyword_17() { return cAsKeyword_17; }
+		public Keyword getVarKeyword_18() { return cVarKeyword_18; }
 
 		//"."
-		public Keyword getFullStopKeyword_18() { return cFullStopKeyword_18; }
+		public Keyword getFullStopKeyword_19() { return cFullStopKeyword_19; }
 	}
 
 	public class SingleQuoteElements extends AbstractParserRuleElementFinder {
@@ -858,7 +846,6 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	
 	
 	private ModuleElements pModule;
-	private ReferrableElements pReferrable;
 	private DeclaredPropertyElements pDeclaredProperty;
 	private RootComponentElements pRootComponent;
 	private ComponentElements pComponent;
@@ -911,18 +898,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getModuleAccess().getRule();
 	}
 
-	//Referrable:
-	//  DeclaredProperty|Component;
-	public ReferrableElements getReferrableAccess() {
-		return (pReferrable != null) ? pReferrable : (pReferrable = new ReferrableElements());
-	}
-	
-	public ParserRule getReferrableRule() {
-		return getReferrableAccess().getRule();
-	}
-
 	//DeclaredProperty:
-	//  "var" type=[types::Type|FQN]? name=FQN ("=" default=Value)?;
+	//  "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
 	public DeclaredPropertyElements getDeclaredPropertyAccess() {
 		return (pDeclaredProperty != null) ? pDeclaredProperty : (pDeclaredProperty = new DeclaredPropertyElements());
 	}
@@ -932,7 +909,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RootComponent returns Component:
-	//  {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN]) ("as" name=FQN)?
+	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
 	//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 	public RootComponentElements getRootComponentAccess() {
 		return (pRootComponent != null) ? pRootComponent : (pRootComponent = new RootComponentElements());
@@ -943,7 +920,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Component:
-	//  {Component} (type=[types::Type|FQN]|"@" module=[Module|FQN])? ("as" name=FQN)?
+	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
 	//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 	public ComponentElements getComponentAccess() {
 		return (pComponent != null) ? pComponent : (pComponent = new ComponentElements());
@@ -974,7 +951,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//  feature=[types::Operation] "=" value=Value;
+	//  feature=[types::JvmFeature] "=" value=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return (pAssignment != null) ? pAssignment : (pAssignment = new AssignmentElements());
 	}
@@ -1055,7 +1032,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ReplaceableString:
-	//  "${" property=Value "}";
+	//  "${" property=[DeclaredProperty] "}";
 	public ReplaceableStringElements getReplaceableStringAccess() {
 		return (pReplaceableString != null) ? pReplaceableString : (pReplaceableString = new ReplaceableStringElements());
 	}
@@ -1075,9 +1052,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantValue returns ecore::EString:
-	//  WS|":"|"{"|"}"|"@"|EscapedDoubleQuote|EscapedSingleQuote|ANY_OTHER|
-	//  EscapedBackslash|ID|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-	//  "as"|".";
+	//  WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+	//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
+	//  "auto-inject"|"var"|".";
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}

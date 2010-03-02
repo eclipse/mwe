@@ -1,8 +1,8 @@
 grammar org.eclipse.emf.mwe2.language.Mwe2 hidden (WS, ML_COMMENT, SL_COMMENT)
 
-generate mwe2 "http://www.eclipse.org/xtext/common/mwe2/Mwe2"
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
-import "http://www.eclipse.org/xtext/common/JavaVMTypes" as types
+import "platform:/resource/org.eclipse.emf.mwe2.language/model/Mwe2.ecore"
+import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
 
 Module:
   {Module} 
@@ -11,21 +11,17 @@ Module:
   (declaredProperties+=DeclaredProperty)* 
   root=RootComponent;
 
-Referrable:
-  DeclaredProperty |
-  Component;
-
 DeclaredProperty:
-  'var' (type=[types::Type|FQN])? name=FQN ('=' default=Value)?;
+  'var' (type=[types::JvmType|FQN])? name=FQN ('=' default=Value)?;
 
 RootComponent returns Component:
-  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')? 
+  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')? 
   '{'
     assignment+=Assignment* 
   '}';
   
 Component:
-  {Component} (type=[types::Type|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')? 
+  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')? 
   '{'
     assignment+=Assignment* 
   '}';
@@ -37,7 +33,7 @@ ImportedFQN:
   FQN ('.*')?;
 
 Assignment:
-  feature=[types::Operation|ID] '=' value=Value;
+  feature=[types::JvmFeature|ID] '=' value=Value;
 
 Value:
   Component|
@@ -46,7 +42,7 @@ Value:
   Reference;
 
 StringLiteral:
-  value=MWEString;
+  value=CompoundString;
 
 BooleanLiteral:
   {BooleanLiteral} (isTrue?='true'|'false');
@@ -57,30 +53,33 @@ Reference:
 FQN:
   ID ('.' ID)*;
 
-MWEString hidden ( ):
-  begin=SingleQuote parts+=MWEStringPart* end=SingleQuote|
-  begin=DoubleQuote parts+=MWEStringPart* end=DoubleQuote;
+CompoundString hidden ():
+  begin=SingleQuote parts+=StringPart* end=SingleQuote|
+  begin=DoubleQuote parts+=StringPart* end=DoubleQuote;
 
-MWEStringPart:
-  ReplaceableString|PlainString;
+StringPart:
+  PropertyReference|
+  PlainString;
 
-ReplaceableString:
-  '${' property=Value '}';
+PropertyReference:
+  '${' property=[DeclaredProperty] '}';
 
 PlainString:
   value=ConstantValue;
 
 ConstantValue:
   WS|
+  ANY_OTHER|
+  ML_COMMENT|
+  SL_COMMENT|
+  ID|
   ':'|
   "{"|
   "}"|
   "@"|
   EscapedDoubleQuote|
   EscapedSingleQuote|
-  ANY_OTHER|
   EscapedBackslash|
-  ID|
   'true'|
   'false'|
   '='|
@@ -93,19 +92,19 @@ ConstantValue:
 SingleQuote:
   "'";
 
-EscapedSingleQuote hidden ( ):
+EscapedSingleQuote hidden ():
   Backslash SingleQuote;
 
 DoubleQuote:
   '"';
 
-EscapedDoubleQuote hidden ( ):
+EscapedDoubleQuote hidden ():
   Backslash DoubleQuote;
 
 Backslash:
   "\\";
 
-EscapedBackslash hidden ( ):
+EscapedBackslash hidden ():
   Backslash Backslash;
 
 terminal ID:
