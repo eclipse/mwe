@@ -124,7 +124,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public Component createComponent()
   {
-    ComponentImpl component = new ComponentImpl();
+    ComponentImplCustom component = new ComponentImplCustom();
     return component;
   }
 
@@ -157,7 +157,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public BooleanLiteral createBooleanLiteral()
   {
-    BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
+    BooleanLiteralImplCustom booleanLiteral = new BooleanLiteralImplCustom();
     return booleanLiteral;
   }
 
@@ -168,7 +168,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public Reference createReference()
   {
-    ReferenceImpl reference = new ReferenceImpl();
+    ReferenceImplCustom reference = new ReferenceImplCustom();
     return reference;
   }
 
@@ -179,7 +179,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public StringLiteral createStringLiteral()
   {
-    StringLiteralImpl stringLiteral = new StringLiteralImpl();
+    StringLiteralImplCustom stringLiteral = new StringLiteralImplCustom();
     return stringLiteral;
   }
 

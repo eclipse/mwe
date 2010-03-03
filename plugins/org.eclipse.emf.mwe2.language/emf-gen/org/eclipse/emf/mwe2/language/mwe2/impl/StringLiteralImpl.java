@@ -39,7 +39,7 @@ import org.eclipse.emf.mwe2.language.mwe2.StringPart;
  *
  * @generated
  */
-public class StringLiteralImpl extends ValueImpl implements StringLiteral
+public class StringLiteralImpl extends ValueImplCustom implements StringLiteral
 {
   /**
    * The default value of the '{@link #getBegin() <em>Begin</em>}' attribute.

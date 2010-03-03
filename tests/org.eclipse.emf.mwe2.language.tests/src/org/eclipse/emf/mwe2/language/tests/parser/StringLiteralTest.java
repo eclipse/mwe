@@ -4,11 +4,19 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
+import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.StringPart;
+import org.eclipse.xtext.CrossReference;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.linking.impl.LinkingHelper;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.parsetree.CompositeNode;
+import org.eclipse.xtext.parsetree.NodeAdapter;
+import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.util.Strings;
 
 public class StringLiteralTest extends AbstractParserTest {
@@ -83,16 +91,37 @@ public class StringLiteralTest extends AbstractParserTest {
 		}
 	}
 	
+	protected void checkReference(String input, String... expectedReferences) {
+		IParseResult result = parseSuccessfully(input);
+		StringLiteral literal = (StringLiteral) result.getRootASTElement();
+		int i = 0;
+		LinkingHelper linkingHelper = get(LinkingHelper.class);
+		for(StringPart part: literal.getParts()) {
+			if (part instanceof PropertyReference) {
+				NodeAdapter adapter = NodeUtil.getNodeAdapter(part);
+				CompositeNode node = adapter.getParserNode();
+				for(AbstractNode child: node.getChildren()) {
+					if (child.getGrammarElement() instanceof CrossReference) {
+						String nodeAsString = linkingHelper.getCrossRefNodeAsString(child, true);
+						assertEquals(expectedReferences[i], nodeAsString);
+						i++;						
+					}
+				}
+			}
+		}
+		assertEquals(expectedReferences.length, i);
+	}
+	
 	public void testReference() {
-		parseSuccessfully("${something}");
-		parseSuccessfully("${ something }");
-		parseSuccessfully("${something. /* comment */ ^module}");
-		parseSuccessfully("${something.\nsomething // comment \n}");
+		checkReference("${something}", "something");
+		checkReference("${ something }", "something");
+		checkReference("${something. /* comment */ ^module}", "something.module");
+		checkReference("${something.\nsomething // comment \n}", "something.something");
 	}
 	
 	public void testReferences() {
-		parseSuccessfully("${something}");
-		parseSuccessfully("${something}${something}");
+		checkReference("${something } ${ something.else}", "something", "something.else");
+		checkReference("${something}${else}", "something", "else");
 	}
 	
 	public void testIncompleteReference() {
@@ -103,10 +132,10 @@ public class StringLiteralTest extends AbstractParserTest {
 	}
 	
 	public void testMixed() {
-		parseSuccessfully("import${something}");
-		parseSuccessfully("$${something}");
-		parseSuccessfully(" ${something}}");
-		parseSuccessfully("{${something}$");
+		checkReference("import${something}", "something");
+		checkReference("$${something}", "something");
+		checkReference(" ${something}}", "something");
+		checkReference("{${something}$", "something");
 	}
 	
 	@Override

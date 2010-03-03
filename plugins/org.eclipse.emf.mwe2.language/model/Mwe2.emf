@@ -38,6 +38,7 @@ class Assignment {
 }
 
 abstract class Value {
+  op types.JvmType getActualType();
 }
 
 class BooleanLiteral extends Value {

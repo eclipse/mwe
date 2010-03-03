@@ -29,7 +29,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Referrable;
  *
  * @generated
  */
-public class ReferenceImpl extends ValueImpl implements Reference
+public class ReferenceImpl extends ValueImplCustom implements Reference
 {
   /**
    * The cached value of the '{@link #getReferable() <em>Referable</em>}' reference.

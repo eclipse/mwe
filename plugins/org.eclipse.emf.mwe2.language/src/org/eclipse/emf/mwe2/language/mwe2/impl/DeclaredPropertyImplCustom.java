@@ -1,6 +1,8 @@
 package org.eclipse.emf.mwe2.language.mwe2.impl;
 
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Value;
+import org.eclipse.xtext.common.types.JvmType;
 
 public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 
@@ -14,5 +16,17 @@ public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 			return moduleName + ".UNNAMED";
 		}
 		return name;
+	}
+	
+	@Override
+	public JvmType getActualType() {
+		JvmType result = super.getActualType();
+		if (result != null)
+			return result;
+		Value value = getDefault();
+		if (value != null) {
+			return value.getActualType();
+		}
+		return null;
 	}
 }
