@@ -3,12 +3,16 @@
  */
 package org.eclipse.emf.mwe2.language;
 
+import org.eclipse.emf.mwe2.language.resource.Mwe2ResourceSetProvider;
 import org.eclipse.emf.mwe2.language.scoping.JvmTypesAwareGlobalScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
+
+import com.google.inject.Provider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -31,6 +35,10 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return Mwe2ValueConverters.class;
+	}
+	
+	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
+		return Mwe2ResourceSetProvider.class;
 	}
 	
 }
