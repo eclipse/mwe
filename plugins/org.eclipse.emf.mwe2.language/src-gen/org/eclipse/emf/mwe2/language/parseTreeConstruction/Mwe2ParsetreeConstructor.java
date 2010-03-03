@@ -2559,11 +2559,11 @@ protected class StringLiteral_EndAssignment_1_3 extends AssignmentToken  {
 /************ begin Rule PropertyReference ****************
  *
  * PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
- *   "${" property=[DeclaredProperty|FQN] "}";
+ *   "${" referable=[DeclaredProperty|FQN] "}";
  *
  **/
 
-// "${" property=[DeclaredProperty|FQN] "}"
+// "${" referable=[DeclaredProperty|FQN] "}"
 protected class PropertyReference_Group extends GroupToken {
 	
 	public PropertyReference_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2611,16 +2611,16 @@ protected class PropertyReference_DollarSignLeftCurlyBracketKeyword_0 extends Ke
 		
 }
 
-// property=[DeclaredProperty|FQN]
-protected class PropertyReference_PropertyAssignment_1 extends AssignmentToken  {
+// referable=[DeclaredProperty|FQN]
+protected class PropertyReference_ReferableAssignment_1 extends AssignmentToken  {
 	
-	public PropertyReference_PropertyAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public PropertyReference_ReferableAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getPropertyReferenceAccess().getPropertyAssignment_1();
+		return grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1();
 	}
 
     @Override
@@ -2633,13 +2633,13 @@ protected class PropertyReference_PropertyAssignment_1 extends AssignmentToken  
 		
     @Override	
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("property",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("property");
+		if((value = current.getConsumable("referable",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("referable");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0().getType().getClassifier())) {
 				type = AssignmentType.CR;
-				element = grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0(); 
+				element = grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0(); 
 				return obj;
 			}
 		}
@@ -2663,7 +2663,7 @@ protected class PropertyReference_RightCurlyBracketKeyword_2 extends KeywordToke
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new PropertyReference_PropertyAssignment_1(parent, this, 0, inst);
+			case 0: return new PropertyReference_ReferableAssignment_1(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	

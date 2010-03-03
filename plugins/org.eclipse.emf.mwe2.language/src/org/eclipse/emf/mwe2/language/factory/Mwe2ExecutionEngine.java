@@ -145,7 +145,7 @@ public class Mwe2ExecutionEngine {
 		StringBuilder builder = new StringBuilder();
 		for (StringPart part : comp.getParts()) {
 			if (part instanceof PropertyReference) {
-				builder.append(variables.get(((PropertyReference) part).getProperty().getName()));
+				builder.append(variables.get(((PropertyReference) part).getReferable().getName()));
 			} else {
 				builder.append(((PlainString)part).getValue());
 			}

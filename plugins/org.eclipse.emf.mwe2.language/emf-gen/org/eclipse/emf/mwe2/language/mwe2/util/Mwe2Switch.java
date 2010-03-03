@@ -165,6 +165,7 @@ public class Mwe2Switch<T>
         Reference reference = (Reference)theEObject;
         T result = caseReference(reference);
         if (result == null) result = caseValue(reference);
+        if (result == null) result = caseAbstractReference(reference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -188,6 +189,7 @@ public class Mwe2Switch<T>
         PropertyReference propertyReference = (PropertyReference)theEObject;
         T result = casePropertyReference(propertyReference);
         if (result == null) result = caseStringPart(propertyReference);
+        if (result == null) result = caseAbstractReference(propertyReference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -196,6 +198,13 @@ public class Mwe2Switch<T>
         PlainString plainString = (PlainString)theEObject;
         T result = casePlainString(plainString);
         if (result == null) result = caseStringPart(plainString);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case Mwe2Package.ABSTRACT_REFERENCE:
+      {
+        AbstractReference abstractReference = (AbstractReference)theEObject;
+        T result = caseAbstractReference(abstractReference);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -407,6 +416,22 @@ public class Mwe2Switch<T>
    * @generated
    */
   public T casePlainString(PlainString object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Reference</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Reference</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbstractReference(AbstractReference object)
   {
     return null;
   }

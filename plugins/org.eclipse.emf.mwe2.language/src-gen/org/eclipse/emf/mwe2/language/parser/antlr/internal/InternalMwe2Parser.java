@@ -2796,7 +2796,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	        }
                     
              
-            	        currentNode=createCompositeNode(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0(), currentNode); 
+            	        currentNode=createCompositeNode(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0(), currentNode); 
             	    
             pushFollow(FOLLOW_ruleFQN_in_rulePropertyReference2217);
             ruleFQN();

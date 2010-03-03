@@ -62,7 +62,7 @@ StringLiteral hidden ():
 ;
 
 PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-  '${' property=[DeclaredProperty|FQN] '}';
+  '${' referable=[DeclaredProperty|FQN] '}';
 
 PlainString:
   value=ConstantValue;

@@ -1257,7 +1257,7 @@ rulePropertyReference returns [EObject current=null]
 	        }
         }
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0(), currentNode); 
 	    }
 		ruleFQN		{ 
 	        currentNode = currentNode.getParent();

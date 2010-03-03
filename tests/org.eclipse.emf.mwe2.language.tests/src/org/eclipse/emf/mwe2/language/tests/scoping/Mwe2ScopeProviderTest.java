@@ -5,6 +5,7 @@ import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
+import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.scoping.IScope;
@@ -32,6 +33,15 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = (JvmExecutable) scope.getContentByName("x").getEObjectOrProxy();
 		assertEquals(ComponentAFactory.class.getName(),feature.getDeclaringType().getCanonicalName());
+		feature = (JvmExecutable) scope.getContentByName("y").getEObjectOrProxy();
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+	}
+
+	public void testCreateComponentFeatureScope_3() throws Exception {
+		Module model = (Module) getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
+		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
+		JvmExecutable feature = (JvmExecutable) scope.getContentByName("x").getEObjectOrProxy();
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 		feature = (JvmExecutable) scope.getContentByName("y").getEObjectOrProxy();
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 	}

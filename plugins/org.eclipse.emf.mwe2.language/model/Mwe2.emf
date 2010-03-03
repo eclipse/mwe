@@ -45,8 +45,7 @@ class BooleanLiteral extends Value {
   attr boolean isTrue;
 }
 
-class Reference extends Value {
-  ref Referrable referable;
+class Reference extends Value, AbstractReference {
 }
 
 class StringLiteral extends Value {
@@ -59,11 +58,14 @@ class StringLiteral extends Value {
 class StringPart {
 }
 
-class PropertyReference extends StringPart {
-  ref DeclaredProperty property;
+class PropertyReference extends StringPart, AbstractReference {
 }
 
 class PlainString extends StringPart {
   attr String value;
+}
+
+abstract class AbstractReference {
+  ref Referrable referable;
 }
 

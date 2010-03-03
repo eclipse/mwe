@@ -82,6 +82,22 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
 	}
 	
+	public void testUnusedLocalVariable_3() throws Exception {
+		String textModel = "module foo var foo = 'holla' var bar = '${foo}!' "+ComponentA.class.getName()+"{ y = bar}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),0,list.size());
+	}
+	
+	public void testDuplicateLocalVariable_1() throws Exception {
+		String textModel = "module foo var foo = 'holla' var foo = '${foo}!' "+ComponentA.class.getName()+"{ y = foo}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),3,list.size());
+		assertEquals(Mwe2JavaValidator.DUPLICATE_LOCAL, list.get(1).getCode());
+		assertEquals(Issue.Severity.ERROR, list.get(1).getSeverity());
+	}
+	
 	private List<Issue> validate(EObject model) {
 		XtextResource res = ((XtextResource)model.eResource());
 		List<Issue> list = res.getResourceServiceProvider().getResourceValidator().validate(res, CheckMode.ALL, new CancelIndicator.NullImpl());

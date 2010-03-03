@@ -146,6 +146,11 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
         return createPlainStringAdapter();
       }
       @Override
+      public Adapter caseAbstractReference(AbstractReference object)
+      {
+        return createAbstractReferenceAdapter();
+      }
+      @Override
       public Adapter caseJvmIdentifyableElement(JvmIdentifyableElement object)
       {
         return createJvmIdentifyableElementAdapter();
@@ -368,6 +373,21 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createPlainStringAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.AbstractReference <em>Abstract Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.emf.mwe2.language.mwe2.AbstractReference
+   * @generated
+   */
+  public Adapter createAbstractReferenceAdapter()
   {
     return null;
   }

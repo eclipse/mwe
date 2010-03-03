@@ -11,26 +11,26 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
-import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.Referrable;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Reference</b></em>'.
+ * An implementation of the model object '<em><b>Abstract Reference</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ReferenceImpl#getReferable <em>Referable</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AbstractReferenceImpl#getReferable <em>Referable</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ReferenceImpl extends ValueImplCustom implements Reference
+public abstract class AbstractReferenceImpl extends MinimalEObjectImpl.Container implements AbstractReference
 {
   /**
    * The cached value of the '{@link #getReferable() <em>Referable</em>}' reference.
@@ -47,7 +47,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ReferenceImpl()
+  protected AbstractReferenceImpl()
   {
     super();
   }
@@ -60,7 +60,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
   @Override
   protected EClass eStaticClass()
   {
-    return Mwe2Package.Literals.REFERENCE;
+    return Mwe2Package.Literals.ABSTRACT_REFERENCE;
   }
 
   /**
@@ -77,7 +77,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
       if (referable != oldReferable)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.REFERENCE__REFERABLE, oldReferable, referable));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
       }
     }
     return referable;
@@ -103,7 +103,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
     Referrable oldReferable = referable;
     referable = newReferable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.REFERENCE__REFERABLE, oldReferable, referable));
+      eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
   }
 
   /**
@@ -116,7 +116,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
   {
     switch (featureID)
     {
-      case Mwe2Package.REFERENCE__REFERABLE:
+      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
         if (resolve) return getReferable();
         return basicGetReferable();
     }
@@ -133,7 +133,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
   {
     switch (featureID)
     {
-      case Mwe2Package.REFERENCE__REFERABLE:
+      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
         setReferable((Referrable)newValue);
         return;
     }
@@ -150,7 +150,7 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
   {
     switch (featureID)
     {
-      case Mwe2Package.REFERENCE__REFERABLE:
+      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
         setReferable((Referrable)null);
         return;
     }
@@ -167,48 +167,10 @@ public class ReferenceImpl extends ValueImplCustom implements Reference
   {
     switch (featureID)
     {
-      case Mwe2Package.REFERENCE__REFERABLE:
+      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
         return referable != null;
     }
     return super.eIsSet(featureID);
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == AbstractReference.class)
-    {
-      switch (derivedFeatureID)
-      {
-        case Mwe2Package.REFERENCE__REFERABLE: return Mwe2Package.ABSTRACT_REFERENCE__REFERABLE;
-        default: return -1;
-      }
-    }
-    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
-  {
-    if (baseClass == AbstractReference.class)
-    {
-      switch (baseFeatureID)
-      {
-        case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE: return Mwe2Package.REFERENCE__REFERABLE;
-        default: return -1;
-      }
-    }
-    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
-  }
-
-} //ReferenceImpl
+} //AbstractReferenceImpl

@@ -5246,30 +5246,30 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__PropertyReference__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2040:1: rule__PropertyReference__Group__1 : ( ( rule__PropertyReference__PropertyAssignment_1 ) ) rule__PropertyReference__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2040:1: rule__PropertyReference__Group__1 : ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2 ;
     public final void rule__PropertyReference__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2044:1: ( ( ( rule__PropertyReference__PropertyAssignment_1 ) ) rule__PropertyReference__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2045:1: ( ( rule__PropertyReference__PropertyAssignment_1 ) ) rule__PropertyReference__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2044:1: ( ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2045:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2045:1: ( ( rule__PropertyReference__PropertyAssignment_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2046:1: ( rule__PropertyReference__PropertyAssignment_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2045:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2046:1: ( rule__PropertyReference__ReferableAssignment_1 )
             {
-             before(grammarAccess.getPropertyReferenceAccess().getPropertyAssignment_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2047:1: ( rule__PropertyReference__PropertyAssignment_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2047:2: rule__PropertyReference__PropertyAssignment_1
+             before(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2047:1: ( rule__PropertyReference__ReferableAssignment_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2047:2: rule__PropertyReference__ReferableAssignment_1
             {
-            pushFollow(FOLLOW_rule__PropertyReference__PropertyAssignment_1_in_rule__PropertyReference__Group__14111);
-            rule__PropertyReference__PropertyAssignment_1();
+            pushFollow(FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__14111);
+            rule__PropertyReference__ReferableAssignment_1();
             _fsp--;
 
 
             }
 
-             after(grammarAccess.getPropertyReferenceAccess().getPropertyAssignment_1()); 
+             after(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
 
             }
 
@@ -6697,9 +6697,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__EndAssignment_1_3
 
 
-    // $ANTLR start rule__PropertyReference__PropertyAssignment_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2648:1: rule__PropertyReference__PropertyAssignment_1 : ( ( ruleFQN ) ) ;
-    public final void rule__PropertyReference__PropertyAssignment_1() throws RecognitionException {
+    // $ANTLR start rule__PropertyReference__ReferableAssignment_1
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2648:1: rule__PropertyReference__ReferableAssignment_1 : ( ( ruleFQN ) ) ;
+    public final void rule__PropertyReference__ReferableAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
@@ -6710,20 +6710,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2653:1: ( ( ruleFQN ) )
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2654:1: ( ruleFQN )
             {
-             before(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0()); 
+             before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()); 
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2655:1: ( ruleFQN )
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2656:1: ruleFQN
             {
-             before(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyFQNParserRuleCall_1_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__PropertyReference__PropertyAssignment_15334);
+             before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyFQNParserRuleCall_1_0_1()); 
+            pushFollow(FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_15334);
             ruleFQN();
             _fsp--;
 
-             after(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyFQNParserRuleCall_1_0_1()); 
+             after(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyFQNParserRuleCall_1_0_1()); 
 
             }
 
-             after(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0()); 
+             after(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()); 
 
             }
 
@@ -6742,7 +6742,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__PropertyReference__PropertyAssignment_1
+    // $ANTLR end rule__PropertyReference__ReferableAssignment_1
 
 
     // $ANTLR start rule__PlainString__ValueAssignment
@@ -7024,7 +7024,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_2_1_in_rule__StringLiteral__Group_1_2__14033 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_28_in_rule__PropertyReference__Group__04073 = new BitSet(new long[]{0x0000000000000100L});
     public static final BitSet FOLLOW_rule__PropertyReference__Group__1_in_rule__PropertyReference__Group__04083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyReference__PropertyAssignment_1_in_rule__PropertyReference__Group__14111 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__14111 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_rule__PropertyReference__Group__2_in_rule__PropertyReference__Group__14120 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_12_in_rule__PropertyReference__Group__24149 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleFQN_in_rule__Module__CanonicalNameAssignment_24191 = new BitSet(new long[]{0x0000000000000002L});
@@ -7059,7 +7059,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_1_2_05224 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_2_15255 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_30_in_rule__StringLiteral__EndAssignment_1_35291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__PropertyReference__PropertyAssignment_15334 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_15334 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleConstantValue_in_rule__PlainString__ValueAssignment5369 = new BitSet(new long[]{0x0000000000000002L});
 
 }

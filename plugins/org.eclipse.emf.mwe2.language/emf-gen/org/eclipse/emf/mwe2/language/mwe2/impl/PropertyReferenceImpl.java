@@ -12,9 +12,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
+import org.eclipse.emf.mwe2.language.mwe2.Referrable;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,7 +24,7 @@ import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.PropertyReferenceImpl#getProperty <em>Property</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.PropertyReferenceImpl#getReferable <em>Referable</em>}</li>
  * </ul>
  * </p>
  *
@@ -32,14 +33,14 @@ import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 public class PropertyReferenceImpl extends StringPartImpl implements PropertyReference
 {
   /**
-   * The cached value of the '{@link #getProperty() <em>Property</em>}' reference.
+   * The cached value of the '{@link #getReferable() <em>Referable</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getProperty()
+   * @see #getReferable()
    * @generated
    * @ordered
    */
-  protected DeclaredProperty property;
+  protected Referrable referable;
 
   /**
    * <!-- begin-user-doc -->
@@ -67,19 +68,19 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public DeclaredProperty getProperty()
+  public Referrable getReferable()
   {
-    if (property != null && property.eIsProxy())
+    if (referable != null && referable.eIsProxy())
     {
-      InternalEObject oldProperty = (InternalEObject)property;
-      property = (DeclaredProperty)eResolveProxy(oldProperty);
-      if (property != oldProperty)
+      InternalEObject oldReferable = (InternalEObject)referable;
+      referable = (Referrable)eResolveProxy(oldReferable);
+      if (referable != oldReferable)
       {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.PROPERTY_REFERENCE__REFERABLE, oldReferable, referable));
       }
     }
-    return property;
+    return referable;
   }
 
   /**
@@ -87,9 +88,9 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public DeclaredProperty basicGetProperty()
+  public Referrable basicGetReferable()
   {
-    return property;
+    return referable;
   }
 
   /**
@@ -97,12 +98,12 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setProperty(DeclaredProperty newProperty)
+  public void setReferable(Referrable newReferable)
   {
-    DeclaredProperty oldProperty = property;
-    property = newProperty;
+    Referrable oldReferable = referable;
+    referable = newReferable;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.PROPERTY_REFERENCE__PROPERTY, oldProperty, property));
+      eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.PROPERTY_REFERENCE__REFERABLE, oldReferable, referable));
   }
 
   /**
@@ -115,9 +116,9 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
   {
     switch (featureID)
     {
-      case Mwe2Package.PROPERTY_REFERENCE__PROPERTY:
-        if (resolve) return getProperty();
-        return basicGetProperty();
+      case Mwe2Package.PROPERTY_REFERENCE__REFERABLE:
+        if (resolve) return getReferable();
+        return basicGetReferable();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -132,8 +133,8 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
   {
     switch (featureID)
     {
-      case Mwe2Package.PROPERTY_REFERENCE__PROPERTY:
-        setProperty((DeclaredProperty)newValue);
+      case Mwe2Package.PROPERTY_REFERENCE__REFERABLE:
+        setReferable((Referrable)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -149,8 +150,8 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
   {
     switch (featureID)
     {
-      case Mwe2Package.PROPERTY_REFERENCE__PROPERTY:
-        setProperty((DeclaredProperty)null);
+      case Mwe2Package.PROPERTY_REFERENCE__REFERABLE:
+        setReferable((Referrable)null);
         return;
     }
     super.eUnset(featureID);
@@ -166,10 +167,48 @@ public class PropertyReferenceImpl extends StringPartImpl implements PropertyRef
   {
     switch (featureID)
     {
-      case Mwe2Package.PROPERTY_REFERENCE__PROPERTY:
-        return property != null;
+      case Mwe2Package.PROPERTY_REFERENCE__REFERABLE:
+        return referable != null;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == AbstractReference.class)
+    {
+      switch (derivedFeatureID)
+      {
+        case Mwe2Package.PROPERTY_REFERENCE__REFERABLE: return Mwe2Package.ABSTRACT_REFERENCE__REFERABLE;
+        default: return -1;
+      }
+    }
+    return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass)
+  {
+    if (baseClass == AbstractReference.class)
+    {
+      switch (baseFeatureID)
+      {
+        case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE: return Mwe2Package.PROPERTY_REFERENCE__REFERABLE;
+        default: return -1;
+      }
+    }
+    return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
   }
 
 } //PropertyReferenceImpl

@@ -616,29 +616,29 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cPropertyDeclaredPropertyCrossReference_1_0 = (CrossReference)cPropertyAssignment_1.eContents().get(0);
-		private final RuleCall cPropertyDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
+		private final Assignment cReferableAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final CrossReference cReferableDeclaredPropertyCrossReference_1_0 = (CrossReference)cReferableAssignment_1.eContents().get(0);
+		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
-		//  "${" property=[DeclaredProperty|FQN] "}";
+		//  "${" referable=[DeclaredProperty|FQN] "}";
 		public ParserRule getRule() { return rule; }
 
-		//"${" property=[DeclaredProperty|FQN] "}"
+		//"${" referable=[DeclaredProperty|FQN] "}"
 		public Group getGroup() { return cGroup; }
 
 		//"${"
 		public Keyword getDollarSignLeftCurlyBracketKeyword_0() { return cDollarSignLeftCurlyBracketKeyword_0; }
 
-		//property=[DeclaredProperty|FQN]
-		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
+		//referable=[DeclaredProperty|FQN]
+		public Assignment getReferableAssignment_1() { return cReferableAssignment_1; }
 
 		//[DeclaredProperty|FQN]
-		public CrossReference getPropertyDeclaredPropertyCrossReference_1_0() { return cPropertyDeclaredPropertyCrossReference_1_0; }
+		public CrossReference getReferableDeclaredPropertyCrossReference_1_0() { return cReferableDeclaredPropertyCrossReference_1_0; }
 
 		//FQN
-		public RuleCall getPropertyDeclaredPropertyFQNParserRuleCall_1_0_1() { return cPropertyDeclaredPropertyFQNParserRuleCall_1_0_1; }
+		public RuleCall getReferableDeclaredPropertyFQNParserRuleCall_1_0_1() { return cReferableDeclaredPropertyFQNParserRuleCall_1_0_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
@@ -933,7 +933,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
-	//  "${" property=[DeclaredProperty|FQN] "}";
+	//  "${" referable=[DeclaredProperty|FQN] "}";
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
 	}

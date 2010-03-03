@@ -495,13 +495,13 @@ public interface Mwe2Package extends EPackage
   int PROPERTY_REFERENCE = 11;
 
   /**
-   * The feature id for the '<em><b>Property</b></em>' reference.
+   * The feature id for the '<em><b>Referable</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PROPERTY_REFERENCE__PROPERTY = STRING_PART_FEATURE_COUNT + 0;
+  int PROPERTY_REFERENCE__REFERABLE = STRING_PART_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Property Reference</em>' class.
@@ -539,6 +539,34 @@ public interface Mwe2Package extends EPackage
    * @ordered
    */
   int PLAIN_STRING_FEATURE_COUNT = STRING_PART_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.AbstractReferenceImpl <em>Abstract Reference</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.mwe2.language.mwe2.impl.AbstractReferenceImpl
+   * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getAbstractReference()
+   * @generated
+   */
+  int ABSTRACT_REFERENCE = 13;
+
+  /**
+   * The feature id for the '<em><b>Referable</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_REFERENCE__REFERABLE = 0;
+
+  /**
+   * The number of structural features of the '<em>Abstract Reference</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_REFERENCE_FEATURE_COUNT = 1;
 
 
   /**
@@ -808,17 +836,6 @@ public interface Mwe2Package extends EPackage
   EClass getReference();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.mwe2.language.mwe2.Reference#getReferable <em>Referable</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Referable</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.Reference#getReferable()
-   * @see #getReference()
-   * @generated
-   */
-  EReference getReference_Referable();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral <em>String Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -882,17 +899,6 @@ public interface Mwe2Package extends EPackage
   EClass getPropertyReference();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.emf.mwe2.language.mwe2.PropertyReference#getProperty <em>Property</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Property</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.PropertyReference#getProperty()
-   * @see #getPropertyReference()
-   * @generated
-   */
-  EReference getPropertyReference_Property();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.PlainString <em>Plain String</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -912,6 +918,27 @@ public interface Mwe2Package extends EPackage
    * @generated
    */
   EAttribute getPlainString_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.AbstractReference <em>Abstract Reference</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abstract Reference</em>'.
+   * @see org.eclipse.emf.mwe2.language.mwe2.AbstractReference
+   * @generated
+   */
+  EClass getAbstractReference();
+
+  /**
+   * Returns the meta object for the reference '{@link org.eclipse.emf.mwe2.language.mwe2.AbstractReference#getReferable <em>Referable</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Referable</em>'.
+   * @see org.eclipse.emf.mwe2.language.mwe2.AbstractReference#getReferable()
+   * @see #getAbstractReference()
+   * @generated
+   */
+  EReference getAbstractReference_Referable();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1155,14 +1182,6 @@ public interface Mwe2Package extends EPackage
     EClass REFERENCE = eINSTANCE.getReference();
 
     /**
-     * The meta object literal for the '<em><b>Referable</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REFERENCE__REFERABLE = eINSTANCE.getReference_Referable();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl <em>String Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1217,14 +1236,6 @@ public interface Mwe2Package extends EPackage
     EClass PROPERTY_REFERENCE = eINSTANCE.getPropertyReference();
 
     /**
-     * The meta object literal for the '<em><b>Property</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PROPERTY_REFERENCE__PROPERTY = eINSTANCE.getPropertyReference_Property();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.PlainStringImpl <em>Plain String</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1241,6 +1252,24 @@ public interface Mwe2Package extends EPackage
      * @generated
      */
     EAttribute PLAIN_STRING__VALUE = eINSTANCE.getPlainString_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.AbstractReferenceImpl <em>Abstract Reference</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.mwe2.language.mwe2.impl.AbstractReferenceImpl
+     * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getAbstractReference()
+     * @generated
+     */
+    EClass ABSTRACT_REFERENCE = eINSTANCE.getAbstractReference();
+
+    /**
+     * The meta object literal for the '<em><b>Referable</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_REFERENCE__REFERABLE = eINSTANCE.getAbstractReference_Referable();
 
   }
 
