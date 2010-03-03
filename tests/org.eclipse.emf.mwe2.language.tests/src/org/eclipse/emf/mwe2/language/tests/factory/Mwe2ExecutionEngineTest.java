@@ -31,25 +31,25 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertSame(result.getX(),result);
 		assertEquals("foo", result.getY().get(0));
 	}
-//FIXME : problem with StringLiteral	
-//	public void testComplex_2() throws Exception {
-//		String mweString = "module foo.Bar \n" +
-//		"import "+ComponentA.class.getName()+"\n" +
-//		"var baz = 'b'\n" +
-//		"ComponentA : a{\n" +
-//		"  x = ComponentA {\n" +
-//		"    x = a\n" +
-//		"    y = 'a ${baz}'\n" +
-//		"    y = baz\n" +
-//		"  }\n" +
-//		"  y = 'foo'\n" +
-//		"}";
-//		ComponentA result  = (ComponentA) getRoot(mweString);
-//		assertNotNull(result);
-//		assertSame(result.getX().getX(),result);
-//		assertEquals("a b", result.getX().getY().get(0));
-//		assertEquals("b", result.getX().getY().get(1));
-//	}
+
+	public void testComplex_2() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var baz = 'b'\n" +
+		"ComponentA : a{\n" +
+		"  x = ComponentA {\n" +
+		"    x = a\n" +
+		"    y = 'a ${baz}'\n" +
+		"    y = baz\n" +
+		"  }\n" +
+		"  y = 'foo'\n" +
+		"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertSame(result.getX().getX(),result);
+		assertEquals("a b", result.getX().getY().get(0));
+		assertEquals("b", result.getX().getY().get(1));
+	}
 	
 	public void testComplex_3() throws Exception {
 		String mweString = "module foo.Bar \n" +
