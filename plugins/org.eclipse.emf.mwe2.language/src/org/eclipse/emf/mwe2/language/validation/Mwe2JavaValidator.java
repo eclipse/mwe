@@ -42,7 +42,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				reference.setType(actualType);
 			}
 			if (!assignabilityComputer.isAssignableFrom(left, reference))
-				error("A value of type '"+actualType.getCanonicalName()+"' can not be assigned to the feature "+op.getFullyQualifiedName(), Mwe2Package.ASSIGNMENT__VALUE,INCOMPATIBLE_ASSIGNMENT);
+				error("A value of type '"+actualType+"' can not be assigned to the feature "+op.getFullyQualifiedName(), Mwe2Package.ASSIGNMENT__VALUE,INCOMPATIBLE_ASSIGNMENT);
 		} else {
 			throw new UnsupportedOperationException("Can not handle features of type "+feature.getClass().getName());
 		}
