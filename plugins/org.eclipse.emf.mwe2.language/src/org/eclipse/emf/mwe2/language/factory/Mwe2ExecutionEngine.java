@@ -15,6 +15,7 @@ import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.StringPart;
+import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
 import org.eclipse.emf.mwe2.runtime.IFactory;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
@@ -28,20 +29,14 @@ public class Mwe2ExecutionEngine {
 
 	private PolymorphicDispatcher<Object> dispatcher = PolymorphicDispatcher
 			.createForSingleTarget("inCase", 2,2,this);
+	@Inject
+	private FactorySupport factorySupport;
+	@Inject
 	private JavaReflectAccess reflectAccess;
+	@Inject
 	private ISettingProvider settingProvider;
 
-	@Inject
-	public void setReflectAccess(JavaReflectAccess reflectAccess) {
-		this.reflectAccess = reflectAccess;
-	}
-	
-	@Inject
-	public void setSettingProvider(ISettingProvider settingProvider) {
-		this.settingProvider = settingProvider;
-	}
-	
-	public Object create(Module m) {
+	public Object execute(Module m) {
 		return create(m, Maps.<String,Object>newHashMap());
 	}
 	
@@ -85,15 +80,18 @@ public class Mwe2ExecutionEngine {
 			}
 			return internalSwitch(comp.getModule(), params);
 		} else {
-			Object object = create(comp.getActualType());
-			if (object instanceof IFactory<?>) {
-				internalApplyAssignments(object, comp, assignments, variables);
+			JvmType actualType = comp.getActualType();
+			Object object = create(actualType);
+			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
+			if (factoryType!=null) {
+				internalApplyAssignments(object, actualType, comp.isAutoInject(), assignments, variables);
 				object = ((IFactory<?>)object).create();
+				actualType = factoryType;
 			}
 			if (comp.getName() != null) {
 				variables.put(comp.getName(), object);
 			}
-			internalApplyAssignments(object, comp, assignments, variables);
+			internalApplyAssignments(object, actualType, comp.isAutoInject(), assignments, variables);
 			return object;
 		}
 	}
@@ -102,10 +100,10 @@ public class Mwe2ExecutionEngine {
 	 * applies the passed assignments to the given object.
 	 * !!It removes any consumed assignments from the passed list!!
 	 */
-	protected void internalApplyAssignments(Object object, Component comp,
+	protected void internalApplyAssignments(Object object, JvmType type, boolean isAutoInject,
 			List<Assignment> assignments, Map<String, Object> variables) {
-		Map<String, ISetting> settings = settingProvider.getSettings(object, comp.getActualType());
-		if (comp.isAutoInject()) {
+		Map<String, ISetting> settings = settingProvider.getSettings(object, type);
+		if (isAutoInject) {
 			for (ISetting setting : settings.values()) {
 				String name = setting.getName();
 				if (variables.containsKey(name))
@@ -155,4 +153,16 @@ public class Mwe2ExecutionEngine {
 		return builder.toString();
 	}
 
+	
+	public void setFactorySupport(FactorySupport factorySupport) {
+		this.factorySupport = factorySupport;
+	}
+	
+	public void setReflectAccess(JavaReflectAccess reflectAccess) {
+		this.reflectAccess = reflectAccess;
+	}
+	
+	public void setSettingProvider(ISettingProvider settingProvider) {
+		this.settingProvider = settingProvider;
+	}
 }

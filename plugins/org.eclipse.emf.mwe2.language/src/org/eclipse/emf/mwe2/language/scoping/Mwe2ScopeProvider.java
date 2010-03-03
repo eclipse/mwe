@@ -21,45 +21,55 @@ import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
 /**
  * This class contains custom scoping description.
  * 
- * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping
- * on how and when to use it 
- *
+ * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping on
+ * how and when to use it
+ * 
  */
 public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
-	
+
 	@Inject
 	private IInjectableFeatureLookup featureLookup;
-	
-	public IScope scope_Assignment_feature(Assignment context, EReference reference) {
+
+	@Inject
+	private FactorySupport factorySupport;
+
+	public IScope scope_Assignment_feature(Assignment context,
+			EReference reference) {
 		if (context.eContainer() == null)
-			throw new IllegalStateException("context.eContainer may not be null");
+			throw new IllegalStateException(
+					"context.eContainer may not be null");
 		if (!(context.eContainer() instanceof Component))
-			throw new IllegalStateException("context.eContainer has to be instance of Component");
+			throw new IllegalStateException(
+					"context.eContainer has to be instance of Component");
 		Component container = (Component) context.eContainer();
 		return createComponentFeaturesScope(container);
 	}
-	
-	public IScope scope_PropertyReference_property(Value owner, EReference reference) {
+
+	public IScope scope_PropertyReference_property(Value owner,
+			EReference reference) {
 		return createReferenceScopeUpTo(owner, false);
 	}
 
-	public IScope scope_Reference_referable(DeclaredProperty owner, EReference reference) {
+	public IScope scope_Reference_referable(DeclaredProperty owner,
+			EReference reference) {
 		return createReferenceScopeUpTo(owner, true);
 	}
-	
-	public IScope scope_Reference_referable(Assignment owner, EReference reference) {
+
+	public IScope scope_Reference_referable(Assignment owner,
+			EReference reference) {
 		return createReferenceScopeUpTo(owner, true);
 	}
-	
+
 	public IScope createReferenceScopeUpTo(EObject object, boolean allowObjects) {
 		Module module = EcoreUtil2.getContainerOfType(object, Module.class);
 		List<EObject> result = Lists.newArrayList();
-		for(DeclaredProperty prop: module.getDeclaredProperties()) {
+		for (DeclaredProperty prop : module.getDeclaredProperties()) {
 			if (prop == object || prop.getDefault() == object)
 				return Scopes.scopeFor(result);
 			if (isAllowed(prop.getDefault(), allowObjects))
@@ -69,18 +79,24 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 			collectReferablesUpTo(module.getRoot(), object, result);
 		return Scopes.scopeFor(result);
 	}
-	
+
 	protected boolean isAllowed(Value value, boolean allowObjects) {
-		return allowObjects || !(value instanceof Component); // TODO: discuss how we handle component references in strings
+		return allowObjects || !(value instanceof Component); // TODO: discuss
+																// how we handle
+																// component
+																// references in
+																// strings
 	}
 
-	public boolean collectReferablesUpTo(Component component, EObject object, List<EObject> result) {
+	public boolean collectReferablesUpTo(Component component, EObject object,
+			List<EObject> result) {
 		result.add(component);
-		for(Assignment assignment: component.getAssignment()) {
+		for (Assignment assignment : component.getAssignment()) {
 			if (assignment == object)
 				return false;
 			if (assignment.getValue() instanceof Component) {
-				if (!collectReferablesUpTo((Component) assignment.getValue(), object, result))
+				if (!collectReferablesUpTo((Component) assignment.getValue(),
+						object, result))
 					return false;
 			}
 		}
@@ -89,12 +105,23 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	public IScope createComponentFeaturesScope(Component container) {
 		if (container.getModule() != null) {
-			return Scopes.scopeFor(container.getModule().getDeclaredProperties());
+			return Scopes.scopeFor(container.getModule()
+					.getDeclaredProperties());
 		} else {
 			JvmType containerType = container.getActualType();
-			Map<String, JvmFeature> features = featureLookup.getInjectableFeatures(containerType);
+			Map<String, JvmFeature> features = Maps.newHashMap();
+			JvmType createType = factorySupport
+					.findFactoriesCreationType(containerType);
+			if (createType != null) {
+				features.putAll(featureLookup.getInjectableFeatures(createType));
+			}
+			features.putAll(featureLookup.getInjectableFeatures(containerType));
 			return new MapBasedScope(features);
 		}
+	}
+
+	public void setFactorySupport(FactorySupport factorySupport) {
+		this.factorySupport = factorySupport;
 	}
 
 	public void setFeatureLookup(IInjectableFeatureLookup featureLookup) {
@@ -104,6 +131,5 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	public IInjectableFeatureLookup getFeatureLookup() {
 		return featureLookup;
 	}
-	
-	
+
 }

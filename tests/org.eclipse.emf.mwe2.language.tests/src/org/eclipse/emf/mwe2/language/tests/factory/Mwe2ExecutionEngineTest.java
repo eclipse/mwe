@@ -3,11 +3,8 @@ package org.eclipse.emf.mwe2.language.tests.factory;
 import java.util.ArrayList;
 
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
-import org.eclipse.emf.mwe2.language.factory.SettingProviderImpl;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
-import org.eclipse.emf.mwe2.language.scoping.InjectableFeatureLookup;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
-import org.eclipse.xtext.common.types.util.JavaReflectAccess;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 
 public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
@@ -34,11 +31,11 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertSame(result.getX(),result);
 		assertEquals("foo", result.getY().get(0));
 	}
-	
+//FIXME : problem with StringLiteral	
 //	public void testComplex_2() throws Exception {
 //		String mweString = "module foo.Bar \n" +
 //		"import "+ComponentA.class.getName()+"\n" +
-//		"property baz = 'b'\n" +
+//		"var baz = 'b'\n" +
 //		"ComponentA : a{\n" +
 //		"  x = ComponentA {\n" +
 //		"    x = a\n" +
@@ -54,6 +51,38 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 //		assertEquals("b", result.getX().getY().get(1));
 //	}
 	
+	public void testComplex_3() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var baz = 'b'\n" +
+		"ComponentA : a{\n" +
+		"  x = ComponentA {\n" +
+		"    x = a\n" +
+		"    y = baz\n" +
+		"  }\n" +
+		"  y = 'foo'\n" +
+		"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertSame(result.getX().getX(),result);
+		assertEquals("b", result.getX().getY().get(0));
+	}
+	
+	public void testFactory_3() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentAFactory.class.getName()+"\n" +
+		"var baz = 'b'\n" +
+		"ComponentAFactory : a{\n" +
+		"  x = 'foo'\n" +
+		"  y = 'bar'\n" +
+		"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertNull(result.getX());
+		assertEquals("foo", result.getY().get(0));
+		assertEquals("bar", result.getY().get(1));
+	}
+	
 	private Object getRoot(String mweString) throws Exception {
 		System.out.println(mweString);
 		return getRootInstance(getModule(mweString));
@@ -64,14 +93,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 	}
 	
 	private Object getRootInstance(Module m) {
-		Mwe2ExecutionEngine factory = new Mwe2ExecutionEngine();
-		JavaReflectAccess reflectAccess = new JavaReflectAccess();
-		reflectAccess.setClassLoader(getClass().getClassLoader());
-		factory.setReflectAccess(reflectAccess);
-		SettingProviderImpl settingProvider = new SettingProviderImpl();
-		settingProvider.setReflectAccess(reflectAccess);
-		settingProvider.setInjectableFeatureLookup(new InjectableFeatureLookup());
-		factory.setSettingProvider(settingProvider);
-		return factory.create(m);
+		Mwe2ExecutionEngine engine = get(Mwe2ExecutionEngine.class);
+		return engine.execute(m);
 	}
 }
