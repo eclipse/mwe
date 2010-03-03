@@ -25,7 +25,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		String textModel = "module foo "+ComponentA.class.getName()+" { y = true }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
-		assertEquals(1,list.size());
+		assertEquals(list.toString(),1,list.size());
 		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
@@ -57,6 +57,29 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(0,list.size());
+	}
+	
+	public void testUnusedLocalVariable() throws Exception {
+		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups{ x = ups y = foo }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(0,list.size());
+	}
+	public void testUnusedLocalVariable_1() throws Exception {
+		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups{ x = ups }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(1,list.size());
+		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
+	}
+	public void testUnusedLocalVariable_2() throws Exception {
+		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups { y = foo }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(1,list.size());
+		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
 	}
 	
 	private List<Issue> validate(EObject model) {
