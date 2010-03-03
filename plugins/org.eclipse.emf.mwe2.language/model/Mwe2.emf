@@ -11,9 +11,9 @@ class Module {
 }
 
 class Referrable {
+  op types.JvmType getActualType();
   ref types.JvmType type;
   attr String name;
-  op types.JvmType getActualType();
 }
 
 class DeclaredProperty extends Referrable, types.JvmFeature {
@@ -34,6 +34,7 @@ class Import {
 class Assignment {
   ref types.JvmFeature feature;
   val Value value;
+  readonly transient attr String featureName;
 }
 
 abstract class Value {
@@ -47,11 +48,11 @@ class Reference extends Value {
   ref Referrable referable;
 }
 
-class StringLiteral extends Value{
+class StringLiteral extends Value {
+  op String getResolvedString();
   attr String begin;
   val StringPart[*] parts;
   attr String end;
-  op String getResolvedString();
 }
 
 class StringPart {

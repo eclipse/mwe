@@ -400,6 +400,16 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getAssignment_FeatureName()
+  {
+    return (EAttribute)assignmentEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getValue()
   {
     return valueEClass;
@@ -590,6 +600,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
     assignmentEClass = createEClass(ASSIGNMENT);
     createEReference(assignmentEClass, ASSIGNMENT__FEATURE);
     createEReference(assignmentEClass, ASSIGNMENT__VALUE);
+    createEAttribute(assignmentEClass, ASSIGNMENT__FEATURE_NAME);
 
     valueEClass = createEClass(VALUE);
 
@@ -683,6 +694,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
     initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAssignment_Feature(), theTypesPackage.getJvmFeature(), null, "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAssignment_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, Assignment.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

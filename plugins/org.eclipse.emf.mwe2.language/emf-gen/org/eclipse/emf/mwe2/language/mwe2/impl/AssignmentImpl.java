@@ -29,6 +29,7 @@ import org.eclipse.xtext.common.types.JvmFeature;
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,6 +56,26 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * @ordered
    */
   protected Value value;
+
+  /**
+   * The default value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFeatureName()
+   * @generated
+   * @ordered
+   */
+  protected static final String FEATURE_NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getFeatureName() <em>Feature Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFeatureName()
+   * @generated
+   * @ordered
+   */
+  protected String featureName = FEATURE_NAME_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -173,6 +194,16 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getFeatureName()
+  {
+    return featureName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -199,6 +230,8 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
         return basicGetFeature();
       case Mwe2Package.ASSIGNMENT__VALUE:
         return getValue();
+      case Mwe2Package.ASSIGNMENT__FEATURE_NAME:
+        return getFeatureName();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -257,8 +290,27 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
         return feature != null;
       case Mwe2Package.ASSIGNMENT__VALUE:
         return value != null;
+      case Mwe2Package.ASSIGNMENT__FEATURE_NAME:
+        return FEATURE_NAME_EDEFAULT == null ? featureName != null : !FEATURE_NAME_EDEFAULT.equals(featureName);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (featureName: ");
+    result.append(featureName);
+    result.append(')');
+    return result.toString();
   }
 
 } //AssignmentImpl

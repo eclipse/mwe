@@ -19,6 +19,7 @@ import org.eclipse.xtext.common.types.JvmFeature;
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -79,5 +80,20 @@ public interface Assignment extends EObject
    * @generated
    */
   void setValue(Value value);
+
+  /**
+   * Returns the value of the '<em><b>Feature Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Feature Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Feature Name</em>' attribute.
+   * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getAssignment_FeatureName()
+   * @model transient="true" changeable="false"
+   * @generated
+   */
+  String getFeatureName();
 
 } // Assignment

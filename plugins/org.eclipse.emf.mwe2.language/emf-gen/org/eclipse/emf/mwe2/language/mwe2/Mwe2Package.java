@@ -327,13 +327,22 @@ public interface Mwe2Package extends EPackage
   int ASSIGNMENT__VALUE = 1;
 
   /**
+   * The feature id for the '<em><b>Feature Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASSIGNMENT__FEATURE_NAME = 2;
+
+  /**
    * The number of structural features of the '<em>Assignment</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSIGNMENT_FEATURE_COUNT = 2;
+  int ASSIGNMENT_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.ValueImpl <em>Value</em>}' class.
@@ -747,6 +756,17 @@ public interface Mwe2Package extends EPackage
   EReference getAssignment_Value();
 
   /**
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeatureName <em>Feature Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Feature Name</em>'.
+   * @see org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeatureName()
+   * @see #getAssignment()
+   * @generated
+   */
+  EAttribute getAssignment_FeatureName();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.Value <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1087,6 +1107,14 @@ public interface Mwe2Package extends EPackage
      * @generated
      */
     EReference ASSIGNMENT__VALUE = eINSTANCE.getAssignment_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Feature Name</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASSIGNMENT__FEATURE_NAME = eINSTANCE.getAssignment_FeatureName();
 
     /**
      * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.ValueImpl <em>Value</em>}' class.
