@@ -503,121 +503,113 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cBeginAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final RuleCall cBeginSingleQuoteParserRuleCall_0_0_0 = (RuleCall)cBeginAssignment_0_0.eContents().get(0);
-		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
-		private final Assignment cPartsAssignment_0_1_0 = (Assignment)cAlternatives_0_1.eContents().get(0);
-		private final RuleCall cPartsPlainStringParserRuleCall_0_1_0_0 = (RuleCall)cPartsAssignment_0_1_0.eContents().get(0);
-		private final Group cGroup_0_1_1 = (Group)cAlternatives_0_1.eContents().get(1);
-		private final Assignment cPartsAssignment_0_1_1_0 = (Assignment)cGroup_0_1_1.eContents().get(0);
-		private final RuleCall cPartsPropertyReferenceParserRuleCall_0_1_1_0_0 = (RuleCall)cPartsAssignment_0_1_1_0.eContents().get(0);
-		private final Assignment cPartsAssignment_0_1_1_1 = (Assignment)cGroup_0_1_1.eContents().get(1);
-		private final RuleCall cPartsPlainStringParserRuleCall_0_1_1_1_0 = (RuleCall)cPartsAssignment_0_1_1_1.eContents().get(0);
-		private final Assignment cEndAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
-		private final RuleCall cEndSingleQuoteParserRuleCall_0_2_0 = (RuleCall)cEndAssignment_0_2.eContents().get(0);
+		private final Keyword cBeginApostropheKeyword_0_0_0 = (Keyword)cBeginAssignment_0_0.eContents().get(0);
+		private final Assignment cPartsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_0_1_0 = (RuleCall)cPartsAssignment_0_1.eContents().get(0);
+		private final Group cGroup_0_2 = (Group)cGroup_0.eContents().get(2);
+		private final Assignment cPartsAssignment_0_2_0 = (Assignment)cGroup_0_2.eContents().get(0);
+		private final RuleCall cPartsPropertyReferenceParserRuleCall_0_2_0_0 = (RuleCall)cPartsAssignment_0_2_0.eContents().get(0);
+		private final Assignment cPartsAssignment_0_2_1 = (Assignment)cGroup_0_2.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_0_2_1_0 = (RuleCall)cPartsAssignment_0_2_1.eContents().get(0);
+		private final Assignment cEndAssignment_0_3 = (Assignment)cGroup_0.eContents().get(3);
+		private final Keyword cEndApostropheKeyword_0_3_0 = (Keyword)cEndAssignment_0_3.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Assignment cBeginAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cBeginDoubleQuoteParserRuleCall_1_0_0 = (RuleCall)cBeginAssignment_1_0.eContents().get(0);
-		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
-		private final Assignment cPartsAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
-		private final RuleCall cPartsPlainStringParserRuleCall_1_1_0_0 = (RuleCall)cPartsAssignment_1_1_0.eContents().get(0);
-		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
-		private final Assignment cPartsAssignment_1_1_1_0 = (Assignment)cGroup_1_1_1.eContents().get(0);
-		private final RuleCall cPartsPropertyReferenceParserRuleCall_1_1_1_0_0 = (RuleCall)cPartsAssignment_1_1_1_0.eContents().get(0);
-		private final Assignment cPartsAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
-		private final RuleCall cPartsPlainStringParserRuleCall_1_1_1_1_0 = (RuleCall)cPartsAssignment_1_1_1_1.eContents().get(0);
-		private final Assignment cEndAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cEndDoubleQuoteParserRuleCall_1_2_0 = (RuleCall)cEndAssignment_1_2.eContents().get(0);
+		private final Keyword cBeginQuotationMarkKeyword_1_0_0 = (Keyword)cBeginAssignment_1_0.eContents().get(0);
+		private final Assignment cPartsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_1_1_0 = (RuleCall)cPartsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Assignment cPartsAssignment_1_2_0 = (Assignment)cGroup_1_2.eContents().get(0);
+		private final RuleCall cPartsPropertyReferenceParserRuleCall_1_2_0_0 = (RuleCall)cPartsAssignment_1_2_0.eContents().get(0);
+		private final Assignment cPartsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_1_2_1_0 = (RuleCall)cPartsAssignment_1_2_1.eContents().get(0);
+		private final Assignment cEndAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final Keyword cEndQuotationMarkKeyword_1_3_0 = (Keyword)cEndAssignment_1_3.eContents().get(0);
 		
 		//StringLiteral hidden ( ):
-		//  begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
-		//  ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
-		//  PropertyReference parts+=PlainString?)+)? end=DoubleQuote;
+		//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
+		//  "\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//  end="\"";
 		public ParserRule getRule() { return rule; }
 
-		//begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
-		//?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
-		//PropertyReference parts+=PlainString?)+)? end=DoubleQuote
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
+		//"\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="\""
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
-		//?)+)? end=SingleQuote
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
+		//"\'"
 		public Group getGroup_0() { return cGroup_0; }
 
-		//begin=SingleQuote
+		//begin="\'"
 		public Assignment getBeginAssignment_0_0() { return cBeginAssignment_0_0; }
 
-		//SingleQuote
-		public RuleCall getBeginSingleQuoteParserRuleCall_0_0_0() { return cBeginSingleQuoteParserRuleCall_0_0_0; }
-
-		//(parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
-		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
-
-		//parts+=PlainString
-		public Assignment getPartsAssignment_0_1_0() { return cPartsAssignment_0_1_0; }
-
-		//PlainString
-		public RuleCall getPartsPlainStringParserRuleCall_0_1_0_0() { return cPartsPlainStringParserRuleCall_0_1_0_0; }
-
-		//(parts+=PropertyReference parts+=PlainString?)+
-		public Group getGroup_0_1_1() { return cGroup_0_1_1; }
-
-		//parts+=PropertyReference
-		public Assignment getPartsAssignment_0_1_1_0() { return cPartsAssignment_0_1_1_0; }
-
-		//PropertyReference
-		public RuleCall getPartsPropertyReferenceParserRuleCall_0_1_1_0_0() { return cPartsPropertyReferenceParserRuleCall_0_1_1_0_0; }
+		//"\'"
+		public Keyword getBeginApostropheKeyword_0_0_0() { return cBeginApostropheKeyword_0_0_0; }
 
 		//parts+=PlainString?
-		public Assignment getPartsAssignment_0_1_1_1() { return cPartsAssignment_0_1_1_1; }
+		public Assignment getPartsAssignment_0_1() { return cPartsAssignment_0_1; }
 
 		//PlainString
-		public RuleCall getPartsPlainStringParserRuleCall_0_1_1_1_0() { return cPartsPlainStringParserRuleCall_0_1_1_1_0; }
+		public RuleCall getPartsPlainStringParserRuleCall_0_1_0() { return cPartsPlainStringParserRuleCall_0_1_0; }
 
-		//end=SingleQuote
-		public Assignment getEndAssignment_0_2() { return cEndAssignment_0_2; }
+		//(parts+=PropertyReference parts+=PlainString?)*
+		public Group getGroup_0_2() { return cGroup_0_2; }
 
-		//SingleQuote
-		public RuleCall getEndSingleQuoteParserRuleCall_0_2_0() { return cEndSingleQuoteParserRuleCall_0_2_0; }
+		//parts+=PropertyReference
+		public Assignment getPartsAssignment_0_2_0() { return cPartsAssignment_0_2_0; }
 
-		//begin=DoubleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
-		//?)+)? end=DoubleQuote
+		//PropertyReference
+		public RuleCall getPartsPropertyReferenceParserRuleCall_0_2_0_0() { return cPartsPropertyReferenceParserRuleCall_0_2_0_0; }
+
+		//parts+=PlainString?
+		public Assignment getPartsAssignment_0_2_1() { return cPartsAssignment_0_2_1; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_0_2_1_0() { return cPartsPlainStringParserRuleCall_0_2_1_0; }
+
+		//end="\'"
+		public Assignment getEndAssignment_0_3() { return cEndAssignment_0_3; }
+
+		//"\'"
+		public Keyword getEndApostropheKeyword_0_3_0() { return cEndApostropheKeyword_0_3_0; }
+
+		//begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
+		//"\""
 		public Group getGroup_1() { return cGroup_1; }
 
-		//begin=DoubleQuote
+		//begin="\""
 		public Assignment getBeginAssignment_1_0() { return cBeginAssignment_1_0; }
 
-		//DoubleQuote
-		public RuleCall getBeginDoubleQuoteParserRuleCall_1_0_0() { return cBeginDoubleQuoteParserRuleCall_1_0_0; }
-
-		//(parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
-		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
-
-		//parts+=PlainString
-		public Assignment getPartsAssignment_1_1_0() { return cPartsAssignment_1_1_0; }
-
-		//PlainString
-		public RuleCall getPartsPlainStringParserRuleCall_1_1_0_0() { return cPartsPlainStringParserRuleCall_1_1_0_0; }
-
-		//(parts+=PropertyReference parts+=PlainString?)+
-		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
-
-		//parts+=PropertyReference
-		public Assignment getPartsAssignment_1_1_1_0() { return cPartsAssignment_1_1_1_0; }
-
-		//PropertyReference
-		public RuleCall getPartsPropertyReferenceParserRuleCall_1_1_1_0_0() { return cPartsPropertyReferenceParserRuleCall_1_1_1_0_0; }
+		//"\""
+		public Keyword getBeginQuotationMarkKeyword_1_0_0() { return cBeginQuotationMarkKeyword_1_0_0; }
 
 		//parts+=PlainString?
-		public Assignment getPartsAssignment_1_1_1_1() { return cPartsAssignment_1_1_1_1; }
+		public Assignment getPartsAssignment_1_1() { return cPartsAssignment_1_1; }
 
 		//PlainString
-		public RuleCall getPartsPlainStringParserRuleCall_1_1_1_1_0() { return cPartsPlainStringParserRuleCall_1_1_1_1_0; }
+		public RuleCall getPartsPlainStringParserRuleCall_1_1_0() { return cPartsPlainStringParserRuleCall_1_1_0; }
 
-		//end=DoubleQuote
-		public Assignment getEndAssignment_1_2() { return cEndAssignment_1_2; }
+		//(parts+=PropertyReference parts+=PlainString?)*
+		public Group getGroup_1_2() { return cGroup_1_2; }
 
-		//DoubleQuote
-		public RuleCall getEndDoubleQuoteParserRuleCall_1_2_0() { return cEndDoubleQuoteParserRuleCall_1_2_0; }
+		//parts+=PropertyReference
+		public Assignment getPartsAssignment_1_2_0() { return cPartsAssignment_1_2_0; }
+
+		//PropertyReference
+		public RuleCall getPartsPropertyReferenceParserRuleCall_1_2_0_0() { return cPartsPropertyReferenceParserRuleCall_1_2_0_0; }
+
+		//parts+=PlainString?
+		public Assignment getPartsAssignment_1_2_1() { return cPartsAssignment_1_2_1; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_1_2_1_0() { return cPartsPlainStringParserRuleCall_1_2_1_0; }
+
+		//end="\""
+		public Assignment getEndAssignment_1_3() { return cEndAssignment_1_3; }
+
+		//"\""
+		public Keyword getEndQuotationMarkKeyword_1_3_0() { return cEndQuotationMarkKeyword_1_3_0; }
 	}
 
 	public class PropertyReferenceElements extends AbstractParserRuleElementFinder {
@@ -629,7 +621,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cPropertyDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//PropertyReference:
+		//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
 		//  "${" property=[DeclaredProperty|FQN] "}";
 		public ParserRule getRule() { return rule; }
 
@@ -680,27 +672,31 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
 		private final Keyword cCommercialAtKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final RuleCall cEscapedDoubleQuoteParserRuleCall_9 = (RuleCall)cAlternatives.eContents().get(9);
-		private final RuleCall cEscapedSingleQuoteParserRuleCall_10 = (RuleCall)cAlternatives.eContents().get(10);
-		private final RuleCall cEscapedBackslashParserRuleCall_11 = (RuleCall)cAlternatives.eContents().get(11);
-		private final Keyword cTrueKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cFalseKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cEqualsSignKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cImportKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
-		private final Keyword cModuleKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
-		private final Keyword cAutoInjectKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cVarKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
-		private final Keyword cFullStopKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
+		private final Keyword cReverseSolidusApostropheKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
+		private final Keyword cReverseSolidusQuotationMarkKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
+		private final Keyword cReverseSolidusDollarSignLeftCurlyBracketKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
+		private final Keyword cReverseSolidusReverseSolidusKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
+		private final Keyword cReverseSolidusSolidusAsteriskKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
+		private final Keyword cReverseSolidusSolidusSolidusKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
+		private final Keyword cTrueKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
+		private final Keyword cFalseKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
+		private final Keyword cEqualsSignKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
+		private final Keyword cImportKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
+		private final Keyword cModuleKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
+		private final Keyword cAutoInjectKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
+		private final Keyword cVarKeyword_21 = (Keyword)cAlternatives.eContents().get(21);
+		private final Keyword cFullStopKeyword_22 = (Keyword)cAlternatives.eContents().get(22);
+		private final Keyword cFullStopAsteriskKeyword_23 = (Keyword)cAlternatives.eContents().get(23);
 		
 		//ConstantValue returns ecore::EString:
-		//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
-		//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-		//  "auto-inject"|"var"|".")+;
+		//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
+		//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+		//  "."|".*")+;
 		public ParserRule getRule() { return rule; }
 
-		//(WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
-		//EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-		//"auto-inject"|"var"|".")+
+		//(WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
+		//"\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+		//"."|".*")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
@@ -730,134 +726,50 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//"@"
 		public Keyword getCommercialAtKeyword_8() { return cCommercialAtKeyword_8; }
 
-		//EscapedDoubleQuote
-		public RuleCall getEscapedDoubleQuoteParserRuleCall_9() { return cEscapedDoubleQuoteParserRuleCall_9; }
+		//"\\\'"
+		public Keyword getReverseSolidusApostropheKeyword_9() { return cReverseSolidusApostropheKeyword_9; }
 
-		//EscapedSingleQuote
-		public RuleCall getEscapedSingleQuoteParserRuleCall_10() { return cEscapedSingleQuoteParserRuleCall_10; }
+		//"\\\""
+		public Keyword getReverseSolidusQuotationMarkKeyword_10() { return cReverseSolidusQuotationMarkKeyword_10; }
 
-		//EscapedBackslash
-		public RuleCall getEscapedBackslashParserRuleCall_11() { return cEscapedBackslashParserRuleCall_11; }
+		//"\\${"
+		public Keyword getReverseSolidusDollarSignLeftCurlyBracketKeyword_11() { return cReverseSolidusDollarSignLeftCurlyBracketKeyword_11; }
+
+		//"\\\\"
+		public Keyword getReverseSolidusReverseSolidusKeyword_12() { return cReverseSolidusReverseSolidusKeyword_12; }
+
+		//"\\/ *"
+		public Keyword getReverseSolidusSolidusAsteriskKeyword_13() { return cReverseSolidusSolidusAsteriskKeyword_13; }
+
+		//"\\//"
+		public Keyword getReverseSolidusSolidusSolidusKeyword_14() { return cReverseSolidusSolidusSolidusKeyword_14; }
 
 		//"true"
-		public Keyword getTrueKeyword_12() { return cTrueKeyword_12; }
+		public Keyword getTrueKeyword_15() { return cTrueKeyword_15; }
 
 		//"false"
-		public Keyword getFalseKeyword_13() { return cFalseKeyword_13; }
+		public Keyword getFalseKeyword_16() { return cFalseKeyword_16; }
 
 		//"="
-		public Keyword getEqualsSignKeyword_14() { return cEqualsSignKeyword_14; }
+		public Keyword getEqualsSignKeyword_17() { return cEqualsSignKeyword_17; }
 
 		//"import"
-		public Keyword getImportKeyword_15() { return cImportKeyword_15; }
+		public Keyword getImportKeyword_18() { return cImportKeyword_18; }
 
 		//"module"
-		public Keyword getModuleKeyword_16() { return cModuleKeyword_16; }
+		public Keyword getModuleKeyword_19() { return cModuleKeyword_19; }
 
 		//"auto-inject"
-		public Keyword getAutoInjectKeyword_17() { return cAutoInjectKeyword_17; }
+		public Keyword getAutoInjectKeyword_20() { return cAutoInjectKeyword_20; }
 
 		//"var"
-		public Keyword getVarKeyword_18() { return cVarKeyword_18; }
+		public Keyword getVarKeyword_21() { return cVarKeyword_21; }
 
 		//"."
-		public Keyword getFullStopKeyword_19() { return cFullStopKeyword_19; }
-	}
+		public Keyword getFullStopKeyword_22() { return cFullStopKeyword_22; }
 
-	public class SingleQuoteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "SingleQuote");
-		private final Keyword cApostropheKeyword = (Keyword)rule.eContents().get(1);
-		
-		//SingleQuote returns ecore::EString:
-		//  "\'";
-		public ParserRule getRule() { return rule; }
-
-		//"\'"
-		public Keyword getApostropheKeyword() { return cApostropheKeyword; }
-	}
-
-	public class EscapedSingleQuoteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EscapedSingleQuote");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBackslashParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cSingleQuoteParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		
-		//EscapedSingleQuote returns ecore::EString hidden ( ):
-		//  Backslash SingleQuote;
-		public ParserRule getRule() { return rule; }
-
-		//Backslash SingleQuote
-		public Group getGroup() { return cGroup; }
-
-		//Backslash
-		public RuleCall getBackslashParserRuleCall_0() { return cBackslashParserRuleCall_0; }
-
-		//SingleQuote
-		public RuleCall getSingleQuoteParserRuleCall_1() { return cSingleQuoteParserRuleCall_1; }
-	}
-
-	public class DoubleQuoteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "DoubleQuote");
-		private final Keyword cQuotationMarkKeyword = (Keyword)rule.eContents().get(1);
-		
-		//DoubleQuote returns ecore::EString:
-		//  "\"";
-		public ParserRule getRule() { return rule; }
-
-		//"\""
-		public Keyword getQuotationMarkKeyword() { return cQuotationMarkKeyword; }
-	}
-
-	public class EscapedDoubleQuoteElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EscapedDoubleQuote");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBackslashParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cDoubleQuoteParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		
-		//EscapedDoubleQuote returns ecore::EString hidden ( ):
-		//  Backslash DoubleQuote;
-		public ParserRule getRule() { return rule; }
-
-		//Backslash DoubleQuote
-		public Group getGroup() { return cGroup; }
-
-		//Backslash
-		public RuleCall getBackslashParserRuleCall_0() { return cBackslashParserRuleCall_0; }
-
-		//DoubleQuote
-		public RuleCall getDoubleQuoteParserRuleCall_1() { return cDoubleQuoteParserRuleCall_1; }
-	}
-
-	public class BackslashElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Backslash");
-		private final Keyword cReverseSolidusKeyword = (Keyword)rule.eContents().get(1);
-		
-		//Backslash returns ecore::EString:
-		//  "\\";
-		public ParserRule getRule() { return rule; }
-
-		//"\\"
-		public Keyword getReverseSolidusKeyword() { return cReverseSolidusKeyword; }
-	}
-
-	public class EscapedBackslashElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "EscapedBackslash");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cBackslashParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
-		private final RuleCall cBackslashParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		
-		//EscapedBackslash returns ecore::EString hidden ( ):
-		//  Backslash Backslash;
-		public ParserRule getRule() { return rule; }
-
-		//Backslash Backslash
-		public Group getGroup() { return cGroup; }
-
-		//Backslash
-		public RuleCall getBackslashParserRuleCall_0() { return cBackslashParserRuleCall_0; }
-
-		//Backslash
-		public RuleCall getBackslashParserRuleCall_1() { return cBackslashParserRuleCall_1; }
+		//".*"
+		public Keyword getFullStopAsteriskKeyword_23() { return cFullStopAsteriskKeyword_23; }
 	}
 	
 	
@@ -876,12 +788,6 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private PropertyReferenceElements pPropertyReference;
 	private PlainStringElements pPlainString;
 	private ConstantValueElements pConstantValue;
-	private SingleQuoteElements pSingleQuote;
-	private EscapedSingleQuoteElements pEscapedSingleQuote;
-	private DoubleQuoteElements pDoubleQuote;
-	private EscapedDoubleQuoteElements pEscapedDoubleQuote;
-	private BackslashElements pBackslash;
-	private EscapedBackslashElements pEscapedBackslash;
 	private TerminalRule tID;
 	private TerminalRule tML_COMMENT;
 	private TerminalRule tSL_COMMENT;
@@ -1015,9 +921,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral hidden ( ):
-	//  begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
-	//  ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
-	//  PropertyReference parts+=PlainString?)+)? end=DoubleQuote;
+	//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
+	//  "\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+	//  end="\"";
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -1026,7 +932,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getStringLiteralAccess().getRule();
 	}
 
-	//PropertyReference:
+	//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
 	//  "${" property=[DeclaredProperty|FQN] "}";
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
@@ -1047,75 +953,15 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantValue returns ecore::EString:
-	//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
-	//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-	//  "auto-inject"|"var"|".")+;
+	//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
+	//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
+	//  "."|".*")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}
 	
 	public ParserRule getConstantValueRule() {
 		return getConstantValueAccess().getRule();
-	}
-
-	//SingleQuote returns ecore::EString:
-	//  "\'";
-	public SingleQuoteElements getSingleQuoteAccess() {
-		return (pSingleQuote != null) ? pSingleQuote : (pSingleQuote = new SingleQuoteElements());
-	}
-	
-	public ParserRule getSingleQuoteRule() {
-		return getSingleQuoteAccess().getRule();
-	}
-
-	//EscapedSingleQuote returns ecore::EString hidden ( ):
-	//  Backslash SingleQuote;
-	public EscapedSingleQuoteElements getEscapedSingleQuoteAccess() {
-		return (pEscapedSingleQuote != null) ? pEscapedSingleQuote : (pEscapedSingleQuote = new EscapedSingleQuoteElements());
-	}
-	
-	public ParserRule getEscapedSingleQuoteRule() {
-		return getEscapedSingleQuoteAccess().getRule();
-	}
-
-	//DoubleQuote returns ecore::EString:
-	//  "\"";
-	public DoubleQuoteElements getDoubleQuoteAccess() {
-		return (pDoubleQuote != null) ? pDoubleQuote : (pDoubleQuote = new DoubleQuoteElements());
-	}
-	
-	public ParserRule getDoubleQuoteRule() {
-		return getDoubleQuoteAccess().getRule();
-	}
-
-	//EscapedDoubleQuote returns ecore::EString hidden ( ):
-	//  Backslash DoubleQuote;
-	public EscapedDoubleQuoteElements getEscapedDoubleQuoteAccess() {
-		return (pEscapedDoubleQuote != null) ? pEscapedDoubleQuote : (pEscapedDoubleQuote = new EscapedDoubleQuoteElements());
-	}
-	
-	public ParserRule getEscapedDoubleQuoteRule() {
-		return getEscapedDoubleQuoteAccess().getRule();
-	}
-
-	//Backslash returns ecore::EString:
-	//  "\\";
-	public BackslashElements getBackslashAccess() {
-		return (pBackslash != null) ? pBackslash : (pBackslash = new BackslashElements());
-	}
-	
-	public ParserRule getBackslashRule() {
-		return getBackslashAccess().getRule();
-	}
-
-	//EscapedBackslash returns ecore::EString hidden ( ):
-	//  Backslash Backslash;
-	public EscapedBackslashElements getEscapedBackslashAccess() {
-		return (pEscapedBackslash != null) ? pEscapedBackslash : (pEscapedBackslash = new EscapedBackslashElements());
-	}
-	
-	public ParserRule getEscapedBackslashRule() {
-		return getEscapedBackslashAccess().getRule();
 	}
 
 	//terminal ID:

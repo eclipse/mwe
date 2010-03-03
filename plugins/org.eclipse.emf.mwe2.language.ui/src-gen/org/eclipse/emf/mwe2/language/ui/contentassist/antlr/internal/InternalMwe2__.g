@@ -7,37 +7,42 @@ package org.eclipse.emf.mwe2.language.ui.contentassist.antlr.internal;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 }
 
-T9 : '\'' ;
-T10 : '"' ;
-T11 : '\\' ;
-T12 : 'false' ;
-T13 : ':' ;
-T14 : '{' ;
-T15 : '}' ;
-T16 : '@' ;
-T17 : 'true' ;
-T18 : '=' ;
-T19 : 'import' ;
-T20 : 'module' ;
-T21 : 'auto-inject' ;
-T22 : 'var' ;
-T23 : '.' ;
-T24 : '.*' ;
-T25 : '${' ;
+T9 : 'false' ;
+T10 : ':' ;
+T11 : '{' ;
+T12 : '}' ;
+T13 : '@' ;
+T14 : '\\\'' ;
+T15 : '\\"' ;
+T16 : '\\${' ;
+T17 : '\\\\' ;
+T18 : '\\/*' ;
+T19 : '\\//' ;
+T20 : 'true' ;
+T21 : '=' ;
+T22 : 'import' ;
+T23 : 'module' ;
+T24 : 'auto-inject' ;
+T25 : 'var' ;
+T26 : '.' ;
+T27 : '.*' ;
+T28 : '${' ;
+T29 : '\'' ;
+T30 : '"' ;
 
-// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2938
+// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2683
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
-// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2940
+// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2685
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 
-// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2942
+// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2687
 RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
 
-// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2944
+// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2689
 RULE_WS : (' '|'\t'|'\r'|'\n')+;
 
-// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2946
+// $ANTLR src "../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g" 2691
 RULE_ANY_OTHER : .;
 
 

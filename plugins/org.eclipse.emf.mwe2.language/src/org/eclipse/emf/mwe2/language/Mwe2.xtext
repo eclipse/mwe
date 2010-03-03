@@ -51,17 +51,17 @@ FQN:
   ID ('.' ID)*;
 
 StringLiteral hidden ():
-    begin=SingleQuote 
-      ( parts+=PlainString 
-      | (parts+=PropertyReference parts+=PlainString?)+ ) ? 
-    end=SingleQuote
-  | begin=DoubleQuote 
-      ( parts+=PlainString 
-      | (parts+=PropertyReference parts+=PlainString?)+ )? 
-    end=DoubleQuote
+    begin="'" 
+      parts+=PlainString?
+      (parts+=PropertyReference parts+=PlainString?)*
+    end="'"
+  | begin='"' 
+      parts+=PlainString?
+      (parts+=PropertyReference parts+=PlainString?)* 
+    end='"'
 ;
 
-PropertyReference:
+PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
   '${' property=[DeclaredProperty|FQN] '}';
 
 PlainString:
@@ -77,9 +77,12 @@ ConstantValue:
   "{"|
   "}"|
   "@"|
-  EscapedDoubleQuote|
-  EscapedSingleQuote|
-  EscapedBackslash|
+  "\\'" | 
+  '\\"' | 
+  "\\${" | 
+  "\\\\" | 
+  "\\/*" | 
+  "\\//"|
   'true'|
   'false'|
   '='|
@@ -87,25 +90,8 @@ ConstantValue:
   'module'|
   'auto-inject'|
   'var'|
-  '.')+;
-
-SingleQuote:
-  "'";
-
-EscapedSingleQuote hidden ():
-  Backslash SingleQuote;
-
-DoubleQuote:
-  '"';
-
-EscapedDoubleQuote hidden ():
-  Backslash DoubleQuote;
-
-Backslash:
-  "\\";
-
-EscapedBackslash hidden ():
-  Backslash Backslash;
+  '.'|
+  '.*')+;
 
 terminal ID:
   '^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;

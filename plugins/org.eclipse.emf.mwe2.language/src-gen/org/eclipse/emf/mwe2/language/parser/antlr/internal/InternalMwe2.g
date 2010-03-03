@@ -984,32 +984,29 @@ ruleStringLiteral returns [EObject current=null]
     }:
 (((
 (
-		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getBeginSingleQuoteParserRuleCall_0_0_0(), currentNode); 
-	    }
-		lv_begin_0_0=ruleSingleQuote		{
+		lv_begin_0_0=	'\'' 
+    {
+        createLeafNode(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0(), "begin"); 
+    }
+ 
+	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            associateNodeWithAstElement(currentNode, $current);
 	        }
+	        
 	        try {
-	       		set(
-	       			$current, 
-	       			"begin",
-	        		lv_begin_0_0, 
-	        		"SingleQuote", 
-	        		currentNode);
+	       		set($current, "begin", lv_begin_0_0, "\'", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
-	        currentNode = currentNode.getParent();
 	    }
 
 )
-)((
+)(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_0_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_0(), currentNode); 
 	    }
 		lv_parts_1_0=rulePlainString		{
 	        if ($current==null) {
@@ -1030,11 +1027,10 @@ ruleStringLiteral returns [EObject current=null]
 	    }
 
 )
-)
-    |((
+)?((
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_0_1_1_0_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_0_2_0_0(), currentNode); 
 	    }
 		lv_parts_2_0=rulePropertyReference		{
 	        if ($current==null) {
@@ -1058,7 +1054,7 @@ ruleStringLiteral returns [EObject current=null]
 )(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_1_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_2_1_0(), currentNode); 
 	    }
 		lv_parts_3_0=rulePlainString		{
 	        if ($current==null) {
@@ -1079,59 +1075,53 @@ ruleStringLiteral returns [EObject current=null]
 	    }
 
 )
-)?)+)?(
+)?)*(
 (
-		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getEndSingleQuoteParserRuleCall_0_2_0(), currentNode); 
-	    }
-		lv_end_4_0=ruleSingleQuote		{
+		lv_end_4_0=	'\'' 
+    {
+        createLeafNode(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0(), "end"); 
+    }
+ 
+	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            associateNodeWithAstElement(currentNode, $current);
 	        }
+	        
 	        try {
-	       		set(
-	       			$current, 
-	       			"end",
-	        		lv_end_4_0, 
-	        		"SingleQuote", 
-	        		currentNode);
+	       		set($current, "end", lv_end_4_0, "\'", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
-	        currentNode = currentNode.getParent();
 	    }
 
 )
 ))
     |((
 (
-		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getBeginDoubleQuoteParserRuleCall_1_0_0(), currentNode); 
-	    }
-		lv_begin_5_0=ruleDoubleQuote		{
+		lv_begin_5_0=	'"' 
+    {
+        createLeafNode(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0(), "begin"); 
+    }
+ 
+	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            associateNodeWithAstElement(currentNode, $current);
 	        }
+	        
 	        try {
-	       		set(
-	       			$current, 
-	       			"begin",
-	        		lv_begin_5_0, 
-	        		"DoubleQuote", 
-	        		currentNode);
+	       		set($current, "begin", lv_begin_5_0, "\"", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
-	        currentNode = currentNode.getParent();
 	    }
 
 )
-)((
+)(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_0_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_0(), currentNode); 
 	    }
 		lv_parts_6_0=rulePlainString		{
 	        if ($current==null) {
@@ -1152,11 +1142,10 @@ ruleStringLiteral returns [EObject current=null]
 	    }
 
 )
-)
-    |((
+)?((
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_1_1_1_0_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_1_2_0_0(), currentNode); 
 	    }
 		lv_parts_7_0=rulePropertyReference		{
 	        if ($current==null) {
@@ -1180,7 +1169,7 @@ ruleStringLiteral returns [EObject current=null]
 )(
 (
 		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_1_1_0(), currentNode); 
+	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_2_1_0(), currentNode); 
 	    }
 		lv_parts_8_0=rulePlainString		{
 	        if ($current==null) {
@@ -1201,27 +1190,24 @@ ruleStringLiteral returns [EObject current=null]
 	    }
 
 )
-)?)+)?(
+)?)*(
 (
-		{ 
-	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getEndDoubleQuoteParserRuleCall_1_2_0(), currentNode); 
-	    }
-		lv_end_9_0=ruleDoubleQuote		{
+		lv_end_9_0=	'"' 
+    {
+        createLeafNode(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0(), "end"); 
+    }
+ 
+	    {
 	        if ($current==null) {
 	            $current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
-	            associateNodeWithAstElement(currentNode.getParent(), $current);
+	            associateNodeWithAstElement(currentNode, $current);
 	        }
+	        
 	        try {
-	       		set(
-	       			$current, 
-	       			"end",
-	        		lv_end_9_0, 
-	        		"DoubleQuote", 
-	        		currentNode);
+	       		set($current, "end", lv_end_9_0, "\"", lastConsumedNode);
 	        } catch (ValueConverterException vce) {
 				handleValueConverterException(vce);
 	        }
-	        currentNode = currentNode.getParent();
 	    }
 
 )
@@ -1237,16 +1223,23 @@ finally {
 
 // Entry rule entryRulePropertyReference
 entryRulePropertyReference returns [EObject current=null] 
+	@init { 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+	}
 	:
 	{ currentNode = createCompositeNode(grammarAccess.getPropertyReferenceRule(), currentNode); }
 	 iv_rulePropertyReference=rulePropertyReference 
 	 { $current=$iv_rulePropertyReference.current; } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule PropertyReference
 rulePropertyReference returns [EObject current=null] 
     @init { @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
     }
     @after { resetLookahead(); 
     	lastConsumedNode = currentNode;
@@ -1277,6 +1270,9 @@ rulePropertyReference returns [EObject current=null]
     }
 )
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 
 
@@ -1414,350 +1410,111 @@ ruleConstantValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleT
     }
 
     |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedDoubleQuoteParserRuleCall_9(), currentNode); 
-    }
-    this_EscapedDoubleQuote_9=ruleEscapedDoubleQuote    {
-		$current.merge(this_EscapedDoubleQuote_9);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
+	kw='\\\'' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusApostropheKeyword_9(), null); 
     }
 
     |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedSingleQuoteParserRuleCall_10(), currentNode); 
-    }
-    this_EscapedSingleQuote_10=ruleEscapedSingleQuote    {
-		$current.merge(this_EscapedSingleQuote_10);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
+	kw='\\"' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusQuotationMarkKeyword_10(), null); 
     }
 
     |
-    { 
-        currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedBackslashParserRuleCall_11(), currentNode); 
-    }
-    this_EscapedBackslash_11=ruleEscapedBackslash    {
-		$current.merge(this_EscapedBackslash_11);
+	kw='\\${' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusDollarSignLeftCurlyBracketKeyword_11(), null); 
     }
 
-    { 
-        currentNode = currentNode.getParent();
+    |
+	kw='\\\\' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusReverseSolidusKeyword_12(), null); 
+    }
+
+    |
+	kw='\\/*' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusSolidusAsteriskKeyword_13(), null); 
+    }
+
+    |
+	kw='\\//' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getReverseSolidusSolidusSolidusKeyword_14(), null); 
     }
 
     |
 	kw='true' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getTrueKeyword_12(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getTrueKeyword_15(), null); 
     }
 
     |
 	kw='false' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getFalseKeyword_13(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getFalseKeyword_16(), null); 
     }
 
     |
 	kw='=' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getEqualsSignKeyword_14(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getEqualsSignKeyword_17(), null); 
     }
 
     |
 	kw='import' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getImportKeyword_15(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getImportKeyword_18(), null); 
     }
 
     |
 	kw='module' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getModuleKeyword_16(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getModuleKeyword_19(), null); 
     }
 
     |
 	kw='auto-inject' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getAutoInjectKeyword_17(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getAutoInjectKeyword_20(), null); 
     }
 
     |
 	kw='var' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getVarKeyword_18(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getVarKeyword_21(), null); 
     }
 
     |
 	kw='.' 
     {
         $current.merge(kw);
-        createLeafNode(grammarAccess.getConstantValueAccess().getFullStopKeyword_19(), null); 
+        createLeafNode(grammarAccess.getConstantValueAccess().getFullStopKeyword_22(), null); 
+    }
+
+    |
+	kw='.*' 
+    {
+        $current.merge(kw);
+        createLeafNode(grammarAccess.getConstantValueAccess().getFullStopAsteriskKeyword_23(), null); 
     }
 )+
     ;
-
-
-
-
-
-// Entry rule entryRuleSingleQuote
-entryRuleSingleQuote returns [String current=null] 
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getSingleQuoteRule(), currentNode); } 
-	 iv_ruleSingleQuote=ruleSingleQuote 
-	 { $current=$iv_ruleSingleQuote.current.getText(); }  
-	 EOF 
-;
-
-// Rule SingleQuote
-ruleSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-
-	kw='\'' 
-    {
-        $current.merge(kw);
-        createLeafNode(grammarAccess.getSingleQuoteAccess().getApostropheKeyword(), null); 
-    }
-
-    ;
-
-
-
-
-
-// Entry rule entryRuleEscapedSingleQuote
-entryRuleEscapedSingleQuote returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getEscapedSingleQuoteRule(), currentNode); } 
-	 iv_ruleEscapedSingleQuote=ruleEscapedSingleQuote 
-	 { $current=$iv_ruleEscapedSingleQuote.current.getText(); }  
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule EscapedSingleQuote
-ruleEscapedSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-(
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedSingleQuoteAccess().getBackslashParserRuleCall_0(), currentNode); 
-    }
-    this_Backslash_0=ruleBackslash    {
-		$current.merge(this_Backslash_0);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedSingleQuoteAccess().getSingleQuoteParserRuleCall_1(), currentNode); 
-    }
-    this_SingleQuote_1=ruleSingleQuote    {
-		$current.merge(this_SingleQuote_1);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-)
-    ;
-finally {
-	myHiddenTokenState.restore();
-}
-
-
-
-
-
-// Entry rule entryRuleDoubleQuote
-entryRuleDoubleQuote returns [String current=null] 
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getDoubleQuoteRule(), currentNode); } 
-	 iv_ruleDoubleQuote=ruleDoubleQuote 
-	 { $current=$iv_ruleDoubleQuote.current.getText(); }  
-	 EOF 
-;
-
-// Rule DoubleQuote
-ruleDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-
-	kw='"' 
-    {
-        $current.merge(kw);
-        createLeafNode(grammarAccess.getDoubleQuoteAccess().getQuotationMarkKeyword(), null); 
-    }
-
-    ;
-
-
-
-
-
-// Entry rule entryRuleEscapedDoubleQuote
-entryRuleEscapedDoubleQuote returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getEscapedDoubleQuoteRule(), currentNode); } 
-	 iv_ruleEscapedDoubleQuote=ruleEscapedDoubleQuote 
-	 { $current=$iv_ruleEscapedDoubleQuote.current.getText(); }  
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule EscapedDoubleQuote
-ruleEscapedDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-(
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedDoubleQuoteAccess().getBackslashParserRuleCall_0(), currentNode); 
-    }
-    this_Backslash_0=ruleBackslash    {
-		$current.merge(this_Backslash_0);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedDoubleQuoteAccess().getDoubleQuoteParserRuleCall_1(), currentNode); 
-    }
-    this_DoubleQuote_1=ruleDoubleQuote    {
-		$current.merge(this_DoubleQuote_1);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-)
-    ;
-finally {
-	myHiddenTokenState.restore();
-}
-
-
-
-
-
-// Entry rule entryRuleBackslash
-entryRuleBackslash returns [String current=null] 
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getBackslashRule(), currentNode); } 
-	 iv_ruleBackslash=ruleBackslash 
-	 { $current=$iv_ruleBackslash.current.getText(); }  
-	 EOF 
-;
-
-// Rule Backslash
-ruleBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-
-	kw='\\' 
-    {
-        $current.merge(kw);
-        createLeafNode(grammarAccess.getBackslashAccess().getReverseSolidusKeyword(), null); 
-    }
-
-    ;
-
-
-
-
-
-// Entry rule entryRuleEscapedBackslash
-entryRuleEscapedBackslash returns [String current=null] 
-	@init { 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-	}
-	:
-	{ currentNode = createCompositeNode(grammarAccess.getEscapedBackslashRule(), currentNode); } 
-	 iv_ruleEscapedBackslash=ruleEscapedBackslash 
-	 { $current=$iv_ruleEscapedBackslash.current.getText(); }  
-	 EOF 
-;
-finally {
-	myHiddenTokenState.restore();
-}
-
-// Rule EscapedBackslash
-ruleEscapedBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
-    @init { setCurrentLookahead(); resetLookahead(); 
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
-    }
-    @after { resetLookahead(); 
-	    lastConsumedNode = currentNode;
-    }:
-(
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedBackslashAccess().getBackslashParserRuleCall_0(), currentNode); 
-    }
-    this_Backslash_0=ruleBackslash    {
-		$current.merge(this_Backslash_0);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-
-    { 
-        currentNode=createCompositeNode(grammarAccess.getEscapedBackslashAccess().getBackslashParserRuleCall_1(), currentNode); 
-    }
-    this_Backslash_1=ruleBackslash    {
-		$current.merge(this_Backslash_1);
-    }
-
-    { 
-        currentNode = currentNode.getParent();
-    }
-)
-    ;
-finally {
-	myHiddenTokenState.restore();
-}
 
 
 

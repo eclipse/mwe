@@ -14,11 +14,13 @@ public class InternalMwe2Lexer extends Lexer {
     public static final int T21=21;
     public static final int RULE_ML_COMMENT=7;
     public static final int T14=14;
+    public static final int T29=29;
     public static final int RULE_ID=4;
     public static final int T22=22;
     public static final int T11=11;
     public static final int T9=9;
     public static final int T12=12;
+    public static final int T28=28;
     public static final int T23=23;
     public static final int T13=13;
     public static final int T20=20;
@@ -26,13 +28,16 @@ public class InternalMwe2Lexer extends Lexer {
     public static final int T25=25;
     public static final int T18=18;
     public static final int RULE_WS=5;
+    public static final int T26=26;
     public static final int T15=15;
     public static final int EOF=-1;
     public static final int T17=17;
-    public static final int Tokens=26;
+    public static final int Tokens=31;
     public static final int RULE_ANY_OTHER=6;
     public static final int T16=16;
+    public static final int T27=27;
     public static final int RULE_SL_COMMENT=8;
+    public static final int T30=30;
     public static final int T24=24;
     public static final int T19=19;
     public InternalMwe2Lexer() {;} 
@@ -286,11 +291,10 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mT22() throws RecognitionException {
         try {
             int _type = T22;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:23:5: ( '${' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:23:7: '${'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:23:5: ( '\\'' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:23:7: '\\''
             {
-            match("${"); 
-
+            match('\''); 
 
             }
 
@@ -305,10 +309,10 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mT23() throws RecognitionException {
         try {
             int _type = T23;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:24:5: ( '\\'' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:24:7: '\\''
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:24:5: ( '\"' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:24:7: '\"'
             {
-            match('\''); 
+            match('\"'); 
 
             }
 
@@ -323,10 +327,11 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mT24() throws RecognitionException {
         try {
             int _type = T24;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:25:5: ( '\"' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:25:7: '\"'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:25:5: ( '${' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:25:7: '${'
             {
-            match('\"'); 
+            match("${"); 
+
 
             }
 
@@ -341,10 +346,11 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mT25() throws RecognitionException {
         try {
             int _type = T25;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:26:5: ( '\\\\' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:26:7: '\\\\'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:26:5: ( '\\\\\\'' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:26:7: '\\\\\\''
             {
-            match('\\'); 
+            match("\\\'"); 
+
 
             }
 
@@ -355,14 +361,109 @@ public class InternalMwe2Lexer extends Lexer {
     }
     // $ANTLR end T25
 
+    // $ANTLR start T26
+    public final void mT26() throws RecognitionException {
+        try {
+            int _type = T26;
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:27:5: ( '\\\\\"' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:27:7: '\\\\\"'
+            {
+            match("\\\""); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T26
+
+    // $ANTLR start T27
+    public final void mT27() throws RecognitionException {
+        try {
+            int _type = T27;
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:28:5: ( '\\\\${' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:28:7: '\\\\${'
+            {
+            match("\\${"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T27
+
+    // $ANTLR start T28
+    public final void mT28() throws RecognitionException {
+        try {
+            int _type = T28;
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:29:5: ( '\\\\\\\\' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:29:7: '\\\\\\\\'
+            {
+            match("\\\\"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T28
+
+    // $ANTLR start T29
+    public final void mT29() throws RecognitionException {
+        try {
+            int _type = T29;
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:30:5: ( '\\\\/*' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:30:7: '\\\\/*'
+            {
+            match("\\/*"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T29
+
+    // $ANTLR start T30
+    public final void mT30() throws RecognitionException {
+        try {
+            int _type = T30;
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:31:5: ( '\\\\//' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:31:7: '\\\\//'
+            {
+            match("\\//"); 
+
+
+            }
+
+            this.type = _type;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end T30
+
     // $ANTLR start RULE_ID
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1766:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1766:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1523:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1523:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1766:11: ( '^' )?
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1523:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -371,7 +472,7 @@ public class InternalMwe2Lexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1766:11: '^'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1523:11: '^'
                     {
                     match('^'); 
 
@@ -390,7 +491,7 @@ public class InternalMwe2Lexer extends Lexer {
                 recover(mse);    throw mse;
             }
 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1766:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1523:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -438,12 +539,12 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mRULE_ML_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_ML_COMMENT;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1768:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1768:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1525:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1525:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1768:24: ( options {greedy=false; } : . )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1525:24: ( options {greedy=false; } : . )*
             loop3:
             do {
                 int alt3=2;
@@ -468,7 +569,7 @@ public class InternalMwe2Lexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1768:52: .
+            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1525:52: .
             	    {
             	    matchAny(); 
 
@@ -496,12 +597,12 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mRULE_SL_COMMENT() throws RecognitionException {
         try {
             int _type = RULE_SL_COMMENT;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop4:
             do {
                 int alt4=2;
@@ -514,7 +615,7 @@ public class InternalMwe2Lexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFE') ) {
             	        input.consume();
@@ -535,7 +636,7 @@ public class InternalMwe2Lexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:40: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:40: ( ( '\\r' )? '\\n' )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -544,9 +645,9 @@ public class InternalMwe2Lexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:41: ( '\\r' )?
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:41: ( '\\r' )?
                     int alt5=2;
                     int LA5_0 = input.LA(1);
 
@@ -555,7 +656,7 @@ public class InternalMwe2Lexer extends Lexer {
                     }
                     switch (alt5) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1770:41: '\\r'
+                            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1527:41: '\\r'
                             {
                             match('\r'); 
 
@@ -585,10 +686,10 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mRULE_WS() throws RecognitionException {
         try {
             int _type = RULE_WS;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1772:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1772:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1529:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1529:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1772:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1529:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt7=0;
             loop7:
             do {
@@ -641,8 +742,8 @@ public class InternalMwe2Lexer extends Lexer {
     public final void mRULE_ANY_OTHER() throws RecognitionException {
         try {
             int _type = RULE_ANY_OTHER;
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1774:16: ( . )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1774:18: .
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1531:16: ( . )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1531:18: .
             {
             matchAny(); 
 
@@ -656,8 +757,8 @@ public class InternalMwe2Lexer extends Lexer {
     // $ANTLR end RULE_ANY_OTHER
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt8=22;
+        // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:8: ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt8=27;
         int LA8_0 = input.LA(1);
 
         if ( (LA8_0=='m') ) {
@@ -667,37 +768,37 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_22 = input.LA(3);
 
                 if ( (LA8_22=='d') ) {
-                    int LA8_43 = input.LA(4);
+                    int LA8_47 = input.LA(4);
 
-                    if ( (LA8_43=='u') ) {
-                        int LA8_49 = input.LA(5);
+                    if ( (LA8_47=='u') ) {
+                        int LA8_55 = input.LA(5);
 
-                        if ( (LA8_49=='l') ) {
-                            int LA8_55 = input.LA(6);
+                        if ( (LA8_55=='l') ) {
+                            int LA8_61 = input.LA(6);
 
-                            if ( (LA8_55=='e') ) {
-                                int LA8_60 = input.LA(7);
+                            if ( (LA8_61=='e') ) {
+                                int LA8_66 = input.LA(7);
 
-                                if ( ((LA8_60>='0' && LA8_60<='9')||(LA8_60>='A' && LA8_60<='Z')||LA8_60=='_'||(LA8_60>='a' && LA8_60<='z')) ) {
-                                    alt8=18;
+                                if ( ((LA8_66>='0' && LA8_66<='9')||(LA8_66>='A' && LA8_66<='Z')||LA8_66=='_'||(LA8_66>='a' && LA8_66<='z')) ) {
+                                    alt8=23;
                                 }
                                 else {
                                     alt8=1;}
                             }
                             else {
-                                alt8=18;}
+                                alt8=23;}
                         }
                         else {
-                            alt8=18;}
+                            alt8=23;}
                     }
                     else {
-                        alt8=18;}
+                        alt8=23;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
+                alt8=23;}
         }
         else if ( (LA8_0=='v') ) {
             int LA8_2 = input.LA(2);
@@ -706,19 +807,19 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_24 = input.LA(3);
 
                 if ( (LA8_24=='r') ) {
-                    int LA8_44 = input.LA(4);
+                    int LA8_48 = input.LA(4);
 
-                    if ( ((LA8_44>='0' && LA8_44<='9')||(LA8_44>='A' && LA8_44<='Z')||LA8_44=='_'||(LA8_44>='a' && LA8_44<='z')) ) {
-                        alt8=18;
+                    if ( ((LA8_48>='0' && LA8_48<='9')||(LA8_48>='A' && LA8_48<='Z')||LA8_48=='_'||(LA8_48>='a' && LA8_48<='z')) ) {
+                        alt8=23;
                     }
                     else {
                         alt8=2;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
+                alt8=23;}
         }
         else if ( (LA8_0=='=') ) {
             alt8=3;
@@ -736,25 +837,25 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_28 = input.LA(3);
 
                 if ( (LA8_28=='t') ) {
-                    int LA8_45 = input.LA(4);
+                    int LA8_49 = input.LA(4);
 
-                    if ( (LA8_45=='o') ) {
-                        int LA8_51 = input.LA(5);
+                    if ( (LA8_49=='o') ) {
+                        int LA8_57 = input.LA(5);
 
-                        if ( (LA8_51=='-') ) {
+                        if ( (LA8_57=='-') ) {
                             alt8=6;
                         }
                         else {
-                            alt8=18;}
+                            alt8=23;}
                     }
                     else {
-                        alt8=18;}
+                        alt8=23;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
+                alt8=23;}
         }
         else if ( (LA8_0=='{') ) {
             alt8=7;
@@ -769,37 +870,37 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_31 = input.LA(3);
 
                 if ( (LA8_31=='p') ) {
-                    int LA8_46 = input.LA(4);
+                    int LA8_50 = input.LA(4);
 
-                    if ( (LA8_46=='o') ) {
-                        int LA8_52 = input.LA(5);
+                    if ( (LA8_50=='o') ) {
+                        int LA8_58 = input.LA(5);
 
-                        if ( (LA8_52=='r') ) {
-                            int LA8_57 = input.LA(6);
+                        if ( (LA8_58=='r') ) {
+                            int LA8_63 = input.LA(6);
 
-                            if ( (LA8_57=='t') ) {
-                                int LA8_61 = input.LA(7);
+                            if ( (LA8_63=='t') ) {
+                                int LA8_67 = input.LA(7);
 
-                                if ( ((LA8_61>='0' && LA8_61<='9')||(LA8_61>='A' && LA8_61<='Z')||LA8_61=='_'||(LA8_61>='a' && LA8_61<='z')) ) {
-                                    alt8=18;
+                                if ( ((LA8_67>='0' && LA8_67<='9')||(LA8_67>='A' && LA8_67<='Z')||LA8_67=='_'||(LA8_67>='a' && LA8_67<='z')) ) {
+                                    alt8=23;
                                 }
                                 else {
                                     alt8=9;}
                             }
                             else {
-                                alt8=18;}
+                                alt8=23;}
                         }
                         else {
-                            alt8=18;}
+                            alt8=23;}
                     }
                     else {
-                        alt8=18;}
+                        alt8=23;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
+                alt8=23;}
         }
         else if ( (LA8_0=='.') ) {
             int LA8_10 = input.LA(2);
@@ -817,25 +918,25 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_34 = input.LA(3);
 
                 if ( (LA8_34=='u') ) {
-                    int LA8_47 = input.LA(4);
+                    int LA8_51 = input.LA(4);
 
-                    if ( (LA8_47=='e') ) {
-                        int LA8_53 = input.LA(5);
+                    if ( (LA8_51=='e') ) {
+                        int LA8_59 = input.LA(5);
 
-                        if ( ((LA8_53>='0' && LA8_53<='9')||(LA8_53>='A' && LA8_53<='Z')||LA8_53=='_'||(LA8_53>='a' && LA8_53<='z')) ) {
-                            alt8=18;
+                        if ( ((LA8_59>='0' && LA8_59<='9')||(LA8_59>='A' && LA8_59<='Z')||LA8_59=='_'||(LA8_59>='a' && LA8_59<='z')) ) {
+                            alt8=23;
                         }
                         else {
                             alt8=11;}
                     }
                     else {
-                        alt8=18;}
+                        alt8=23;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
+                alt8=23;}
         }
         else if ( (LA8_0=='f') ) {
             int LA8_12 = input.LA(2);
@@ -844,87 +945,128 @@ public class InternalMwe2Lexer extends Lexer {
                 int LA8_35 = input.LA(3);
 
                 if ( (LA8_35=='l') ) {
-                    int LA8_48 = input.LA(4);
+                    int LA8_52 = input.LA(4);
 
-                    if ( (LA8_48=='s') ) {
-                        int LA8_54 = input.LA(5);
+                    if ( (LA8_52=='s') ) {
+                        int LA8_60 = input.LA(5);
 
-                        if ( (LA8_54=='e') ) {
-                            int LA8_59 = input.LA(6);
+                        if ( (LA8_60=='e') ) {
+                            int LA8_65 = input.LA(6);
 
-                            if ( ((LA8_59>='0' && LA8_59<='9')||(LA8_59>='A' && LA8_59<='Z')||LA8_59=='_'||(LA8_59>='a' && LA8_59<='z')) ) {
-                                alt8=18;
+                            if ( ((LA8_65>='0' && LA8_65<='9')||(LA8_65>='A' && LA8_65<='Z')||LA8_65=='_'||(LA8_65>='a' && LA8_65<='z')) ) {
+                                alt8=23;
                             }
                             else {
                                 alt8=12;}
                         }
                         else {
-                            alt8=18;}
+                            alt8=23;}
                     }
                     else {
-                        alt8=18;}
+                        alt8=23;}
                 }
                 else {
-                    alt8=18;}
+                    alt8=23;}
             }
             else {
-                alt8=18;}
-        }
-        else if ( (LA8_0=='$') ) {
-            int LA8_13 = input.LA(2);
-
-            if ( (LA8_13=='{') ) {
-                alt8=14;
-            }
-            else {
-                alt8=22;}
+                alt8=23;}
         }
         else if ( (LA8_0=='\'') ) {
-            alt8=15;
+            alt8=14;
         }
         else if ( (LA8_0=='\"') ) {
-            alt8=16;
+            alt8=15;
         }
-        else if ( (LA8_0=='\\') ) {
-            alt8=17;
-        }
-        else if ( (LA8_0=='^') ) {
-            int LA8_17 = input.LA(2);
+        else if ( (LA8_0=='$') ) {
+            int LA8_15 = input.LA(2);
 
-            if ( ((LA8_17>='A' && LA8_17<='Z')||LA8_17=='_'||(LA8_17>='a' && LA8_17<='z')) ) {
-                alt8=18;
+            if ( (LA8_15=='{') ) {
+                alt8=16;
             }
             else {
-                alt8=22;}
+                alt8=27;}
         }
-        else if ( ((LA8_0>='A' && LA8_0<='Z')||LA8_0=='_'||(LA8_0>='b' && LA8_0<='e')||(LA8_0>='g' && LA8_0<='h')||(LA8_0>='j' && LA8_0<='l')||(LA8_0>='n' && LA8_0<='s')||LA8_0=='u'||(LA8_0>='w' && LA8_0<='z')) ) {
-            alt8=18;
-        }
-        else if ( (LA8_0=='/') ) {
+        else if ( (LA8_0=='\\') ) {
             switch ( input.LA(2) ) {
-            case '*':
+            case '\"':
+                {
+                alt8=18;
+                }
+                break;
+            case '\\':
+                {
+                alt8=20;
+                }
+                break;
+            case '\'':
+                {
+                alt8=17;
+                }
+                break;
+            case '$':
                 {
                 alt8=19;
                 }
                 break;
             case '/':
                 {
-                alt8=20;
+                int LA8_43 = input.LA(3);
+
+                if ( (LA8_43=='/') ) {
+                    alt8=22;
+                }
+                else if ( (LA8_43=='*') ) {
+                    alt8=21;
+                }
+                else {
+                    NoViableAltException nvae =
+                        new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 8, 43, input);
+
+                    throw nvae;
+                }
                 }
                 break;
             default:
-                alt8=22;}
+                alt8=27;}
+
+        }
+        else if ( (LA8_0=='^') ) {
+            int LA8_17 = input.LA(2);
+
+            if ( ((LA8_17>='A' && LA8_17<='Z')||LA8_17=='_'||(LA8_17>='a' && LA8_17<='z')) ) {
+                alt8=23;
+            }
+            else {
+                alt8=27;}
+        }
+        else if ( ((LA8_0>='A' && LA8_0<='Z')||LA8_0=='_'||(LA8_0>='b' && LA8_0<='e')||(LA8_0>='g' && LA8_0<='h')||(LA8_0>='j' && LA8_0<='l')||(LA8_0>='n' && LA8_0<='s')||LA8_0=='u'||(LA8_0>='w' && LA8_0<='z')) ) {
+            alt8=23;
+        }
+        else if ( (LA8_0=='/') ) {
+            switch ( input.LA(2) ) {
+            case '*':
+                {
+                alt8=24;
+                }
+                break;
+            case '/':
+                {
+                alt8=25;
+                }
+                break;
+            default:
+                alt8=27;}
 
         }
         else if ( ((LA8_0>='\t' && LA8_0<='\n')||LA8_0=='\r'||LA8_0==' ') ) {
-            alt8=21;
+            alt8=26;
         }
         else if ( ((LA8_0>='\u0000' && LA8_0<='\b')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\u001F')||LA8_0=='!'||LA8_0=='#'||(LA8_0>='%' && LA8_0<='&')||(LA8_0>='(' && LA8_0<='-')||(LA8_0>='0' && LA8_0<='9')||(LA8_0>=';' && LA8_0<='<')||(LA8_0>='>' && LA8_0<='?')||LA8_0=='['||LA8_0==']'||LA8_0=='`'||LA8_0=='|'||(LA8_0>='~' && LA8_0<='\uFFFE')) ) {
-            alt8=22;
+            alt8=27;
         }
         else {
             NoViableAltException nvae =
-                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 8, 0, input);
+                new NoViableAltException("1:1: Tokens : ( T9 | T10 | T11 | T12 | T13 | T14 | T15 | T16 | T17 | T18 | T19 | T20 | T21 | T22 | T23 | T24 | T25 | T26 | T27 | T28 | T29 | T30 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );", 8, 0, input);
 
             throw nvae;
         }
@@ -1049,35 +1191,70 @@ public class InternalMwe2Lexer extends Lexer {
                 }
                 break;
             case 18 :
-                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:77: RULE_ID
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:77: T26
+                {
+                mT26(); 
+
+                }
+                break;
+            case 19 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:81: T27
+                {
+                mT27(); 
+
+                }
+                break;
+            case 20 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:85: T28
+                {
+                mT28(); 
+
+                }
+                break;
+            case 21 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:89: T29
+                {
+                mT29(); 
+
+                }
+                break;
+            case 22 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:93: T30
+                {
+                mT30(); 
+
+                }
+                break;
+            case 23 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:97: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:85: RULE_ML_COMMENT
+            case 24 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:105: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:101: RULE_SL_COMMENT
+            case 25 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:121: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:117: RULE_WS
+            case 26 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:137: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:125: RULE_ANY_OTHER
+            case 27 :
+                // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1:145: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

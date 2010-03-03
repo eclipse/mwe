@@ -26,7 +26,7 @@ public abstract class AbstractParserTest extends AbstractXtextTests {
 	
 	protected IParseResult parseSuccessfully(String input) {
 		IParseResult result = getParseResult(input);
-		assertTrue(result.getParseErrors().toString(), result.getParseErrors().isEmpty());
+		assertTrue("[" + input + "] - " + result.getParseErrors().toString(), result.getParseErrors().isEmpty());
 		return result;
 	}
 	
