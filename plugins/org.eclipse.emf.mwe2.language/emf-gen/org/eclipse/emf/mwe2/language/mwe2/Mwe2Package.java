@@ -355,34 +355,6 @@ public interface Mwe2Package extends EPackage
   int VALUE_FEATURE_COUNT = 0;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl <em>String Literal</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl
-   * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getStringLiteral()
-   * @generated
-   */
-  int STRING_LITERAL = 7;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>String Literal</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -390,7 +362,7 @@ public interface Mwe2Package extends EPackage
    * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getBooleanLiteral()
    * @generated
    */
-  int BOOLEAN_LITERAL = 8;
+  int BOOLEAN_LITERAL = 7;
 
   /**
    * The feature id for the '<em><b>Is True</b></em>' attribute.
@@ -418,7 +390,7 @@ public interface Mwe2Package extends EPackage
    * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getReference()
    * @generated
    */
-  int REFERENCE = 9;
+  int REFERENCE = 8;
 
   /**
    * The feature id for the '<em><b>Referable</b></em>' reference.
@@ -439,14 +411,14 @@ public interface Mwe2Package extends EPackage
   int REFERENCE_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.CompoundStringImpl <em>Compound String</em>}' class.
+   * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl <em>String Literal</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.emf.mwe2.language.mwe2.impl.CompoundStringImpl
-   * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getCompoundString()
+   * @see org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl
+   * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getStringLiteral()
    * @generated
    */
-  int COMPOUND_STRING = 10;
+  int STRING_LITERAL = 9;
 
   /**
    * The feature id for the '<em><b>Begin</b></em>' attribute.
@@ -455,7 +427,7 @@ public interface Mwe2Package extends EPackage
    * @generated
    * @ordered
    */
-  int COMPOUND_STRING__BEGIN = 0;
+  int STRING_LITERAL__BEGIN = VALUE_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -464,7 +436,7 @@ public interface Mwe2Package extends EPackage
    * @generated
    * @ordered
    */
-  int COMPOUND_STRING__PARTS = 1;
+  int STRING_LITERAL__PARTS = VALUE_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>End</b></em>' attribute.
@@ -473,16 +445,16 @@ public interface Mwe2Package extends EPackage
    * @generated
    * @ordered
    */
-  int COMPOUND_STRING__END = 2;
+  int STRING_LITERAL__END = VALUE_FEATURE_COUNT + 2;
 
   /**
-   * The number of structural features of the '<em>Compound String</em>' class.
+   * The number of structural features of the '<em>String Literal</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMPOUND_STRING_FEATURE_COUNT = 3;
+  int STRING_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringPartImpl <em>String Part</em>}' class.
@@ -492,7 +464,7 @@ public interface Mwe2Package extends EPackage
    * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getStringPart()
    * @generated
    */
-  int STRING_PART = 11;
+  int STRING_PART = 10;
 
   /**
    * The number of structural features of the '<em>String Part</em>' class.
@@ -511,7 +483,7 @@ public interface Mwe2Package extends EPackage
    * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getPropertyReference()
    * @generated
    */
-  int PROPERTY_REFERENCE = 12;
+  int PROPERTY_REFERENCE = 11;
 
   /**
    * The feature id for the '<em><b>Property</b></em>' reference.
@@ -539,7 +511,7 @@ public interface Mwe2Package extends EPackage
    * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getPlainString()
    * @generated
    */
-  int PLAIN_STRING = 13;
+  int PLAIN_STRING = 12;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -785,27 +757,6 @@ public interface Mwe2Package extends EPackage
   EClass getValue();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral <em>String Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>String Literal</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral
-   * @generated
-   */
-  EClass getStringLiteral();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getValue()
-   * @see #getStringLiteral()
-   * @generated
-   */
-  EReference getStringLiteral_Value();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral <em>Boolean Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -848,47 +799,47 @@ public interface Mwe2Package extends EPackage
   EReference getReference_Referable();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.CompoundString <em>Compound String</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral <em>String Literal</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Compound String</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.CompoundString
+   * @return the meta object for class '<em>String Literal</em>'.
+   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral
    * @generated
    */
-  EClass getCompoundString();
+  EClass getStringLiteral();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.CompoundString#getBegin <em>Begin</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getBegin <em>Begin</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Begin</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.CompoundString#getBegin()
-   * @see #getCompoundString()
+   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getBegin()
+   * @see #getStringLiteral()
    * @generated
    */
-  EAttribute getCompoundString_Begin();
+  EAttribute getStringLiteral_Begin();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe2.language.mwe2.CompoundString#getParts <em>Parts</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getParts <em>Parts</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference list '<em>Parts</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.CompoundString#getParts()
-   * @see #getCompoundString()
+   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getParts()
+   * @see #getStringLiteral()
    * @generated
    */
-  EReference getCompoundString_Parts();
+  EReference getStringLiteral_Parts();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.CompoundString#getEnd <em>End</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getEnd <em>End</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>End</em>'.
-   * @see org.eclipse.emf.mwe2.language.mwe2.CompoundString#getEnd()
-   * @see #getCompoundString()
+   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getEnd()
+   * @see #getStringLiteral()
    * @generated
    */
-  EAttribute getCompoundString_End();
+  EAttribute getStringLiteral_End();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.StringPart <em>String Part</em>}'.
@@ -1148,24 +1099,6 @@ public interface Mwe2Package extends EPackage
     EClass VALUE = eINSTANCE.getValue();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl <em>String Literal</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl
-     * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getStringLiteral()
-     * @generated
-     */
-    EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference STRING_LITERAL__VALUE = eINSTANCE.getStringLiteral_Value();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.BooleanLiteralImpl <em>Boolean Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1202,14 +1135,14 @@ public interface Mwe2Package extends EPackage
     EReference REFERENCE__REFERABLE = eINSTANCE.getReference_Referable();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.CompoundStringImpl <em>Compound String</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl <em>String Literal</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.emf.mwe2.language.mwe2.impl.CompoundStringImpl
-     * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getCompoundString()
+     * @see org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl
+     * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getStringLiteral()
      * @generated
      */
-    EClass COMPOUND_STRING = eINSTANCE.getCompoundString();
+    EClass STRING_LITERAL = eINSTANCE.getStringLiteral();
 
     /**
      * The meta object literal for the '<em><b>Begin</b></em>' attribute feature.
@@ -1217,7 +1150,7 @@ public interface Mwe2Package extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMPOUND_STRING__BEGIN = eINSTANCE.getCompoundString_Begin();
+    EAttribute STRING_LITERAL__BEGIN = eINSTANCE.getStringLiteral_Begin();
 
     /**
      * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
@@ -1225,7 +1158,7 @@ public interface Mwe2Package extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference COMPOUND_STRING__PARTS = eINSTANCE.getCompoundString_Parts();
+    EReference STRING_LITERAL__PARTS = eINSTANCE.getStringLiteral_Parts();
 
     /**
      * The meta object literal for the '<em><b>End</b></em>' attribute feature.
@@ -1233,7 +1166,7 @@ public interface Mwe2Package extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute COMPOUND_STRING__END = eINSTANCE.getCompoundString_End();
+    EAttribute STRING_LITERAL__END = eINSTANCE.getStringLiteral_End();
 
     /**
      * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringPartImpl <em>String Part</em>}' class.

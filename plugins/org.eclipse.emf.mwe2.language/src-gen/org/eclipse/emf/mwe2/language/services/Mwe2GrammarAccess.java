@@ -418,22 +418,6 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getReferenceParserRuleCall_3() { return cReferenceParserRuleCall_3; }
 	}
 
-	public class StringLiteralElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteral");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueCompoundStringParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
-		
-		//StringLiteral:
-		//  value=CompoundString;
-		public ParserRule getRule() { return rule; }
-
-		//value=CompoundString
-		public Assignment getValueAssignment() { return cValueAssignment; }
-
-		//CompoundString
-		public RuleCall getValueCompoundStringParserRuleCall_0() { return cValueCompoundStringParserRuleCall_0; }
-	}
-
 	public class BooleanLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "BooleanLiteral");
 		private final Group cGroup = (Group)rule.eContents().get(1);
@@ -514,8 +498,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getIDTerminalRuleCall_1_1() { return cIDTerminalRuleCall_1_1; }
 	}
 
-	public class CompoundStringElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "CompoundString");
+	public class StringLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringLiteral");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cBeginAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
@@ -532,7 +516,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cEndAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cEndDoubleQuoteParserRuleCall_1_2_0 = (RuleCall)cEndAssignment_1_2.eContents().get(0);
 		
-		//CompoundString hidden ( ):
+		//StringLiteral hidden ( ):
 		//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
 		//  StringPart* end=DoubleQuote;
 		public ParserRule getRule() { return rule; }
@@ -853,11 +837,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private ImportedFQNElements pImportedFQN;
 	private AssignmentElements pAssignment;
 	private ValueElements pValue;
-	private StringLiteralElements pStringLiteral;
 	private BooleanLiteralElements pBooleanLiteral;
 	private ReferenceElements pReference;
 	private FQNElements pFQN;
-	private CompoundStringElements pCompoundString;
+	private StringLiteralElements pStringLiteral;
 	private StringPartElements pStringPart;
 	private PropertyReferenceElements pPropertyReference;
 	private PlainStringElements pPlainString;
@@ -970,16 +953,6 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getValueAccess().getRule();
 	}
 
-	//StringLiteral:
-	//  value=CompoundString;
-	public StringLiteralElements getStringLiteralAccess() {
-		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
-	}
-	
-	public ParserRule getStringLiteralRule() {
-		return getStringLiteralAccess().getRule();
-	}
-
 	//BooleanLiteral:
 	//  {BooleanLiteral} (isTrue?="true"|"false");
 	public BooleanLiteralElements getBooleanLiteralAccess() {
@@ -1010,15 +983,15 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getFQNAccess().getRule();
 	}
 
-	//CompoundString hidden ( ):
+	//StringLiteral hidden ( ):
 	//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
 	//  StringPart* end=DoubleQuote;
-	public CompoundStringElements getCompoundStringAccess() {
-		return (pCompoundString != null) ? pCompoundString : (pCompoundString = new CompoundStringElements());
+	public StringLiteralElements getStringLiteralAccess() {
+		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
 	
-	public ParserRule getCompoundStringRule() {
-		return getCompoundStringAccess().getRule();
+	public ParserRule getStringLiteralRule() {
+		return getStringLiteralAccess().getRule();
 	}
 
 	//StringPart:

@@ -42,13 +42,12 @@ protected class ThisRootNode extends RootToken {
 			case 4: return new Import_Group(this, this, 4, inst);
 			case 5: return new Assignment_Group(this, this, 5, inst);
 			case 6: return new Value_Alternatives(this, this, 6, inst);
-			case 7: return new StringLiteral_ValueAssignment(this, this, 7, inst);
-			case 8: return new BooleanLiteral_Group(this, this, 8, inst);
-			case 9: return new Reference_ReferableAssignment(this, this, 9, inst);
-			case 10: return new CompoundString_Alternatives(this, this, 10, inst);
-			case 11: return new StringPart_Alternatives(this, this, 11, inst);
-			case 12: return new PropertyReference_Group(this, this, 12, inst);
-			case 13: return new PlainString_ValueAssignment(this, this, 13, inst);
+			case 7: return new BooleanLiteral_Group(this, this, 7, inst);
+			case 8: return new Reference_ReferableAssignment(this, this, 8, inst);
+			case 9: return new StringLiteral_Alternatives(this, this, 9, inst);
+			case 10: return new StringPart_Alternatives(this, this, 10, inst);
+			case 11: return new PropertyReference_Group(this, this, 11, inst);
+			case 12: return new PlainString_ValueAssignment(this, this, 12, inst);
 			default: return null;
 		}	
 	}	
@@ -1709,14 +1708,14 @@ protected class Value_StringLiteralParserRuleCall_1 extends RuleCallToken {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StringLiteral_ValueAssignment(this, this, 0, inst);
+			case 0: return new StringLiteral_Alternatives(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
     @Override
 	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(StringLiteral_ValueAssignment.class, current)) return null;
+		if(checkForRecursion(StringLiteral_Alternatives.class, current)) return null;
 		if(!current.isInstanceOf(grammarAccess.getStringLiteralRule().getType().getClassifier())) return null;
 		return current;
 	}
@@ -1801,66 +1800,6 @@ protected class Value_ReferenceParserRuleCall_3 extends RuleCallToken {
 
 
 /************ end Rule Value ****************/
-
-
-/************ begin Rule StringLiteral ****************
- *
- * StringLiteral:
- *   value=CompoundString;
- *
- **/
-
-// value=CompoundString
-protected class StringLiteral_ValueAssignment extends AssignmentToken  {
-	
-	public StringLiteral_ValueAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getStringLiteralAccess().getValueAssignment();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new CompoundString_Alternatives(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getStringLiteralRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
-    @Override	
-	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("value",true)) == null) return null;
-		IInstanceDescription obj = current.cloneAndConsume("value");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
-			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getCompoundStringRule().getType().getClassifier())) {
-				type = AssignmentType.PRC;
-				element = grammarAccess.getStringLiteralAccess().getValueCompoundStringParserRuleCall_0(); 
-				consumed = obj;
-				return param;
-			}
-		}
-		return null;
-	}
-
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, consumed);
-		}	
-	}	
-}
-
-/************ end Rule StringLiteral ****************/
 
 
 /************ begin Rule BooleanLiteral ****************
@@ -2061,9 +2000,9 @@ protected class Reference_ReferableAssignment extends AssignmentToken  {
 
 
 
-/************ begin Rule CompoundString ****************
+/************ begin Rule StringLiteral ****************
  *
- * CompoundString hidden ( ):
+ * StringLiteral hidden ( ):
  *   begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
  *   StringPart* end=DoubleQuote;
  *
@@ -2071,49 +2010,49 @@ protected class Reference_ReferableAssignment extends AssignmentToken  {
 
 // begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
 // StringPart* end=DoubleQuote
-protected class CompoundString_Alternatives extends AlternativesToken {
+protected class StringLiteral_Alternatives extends AlternativesToken {
 
-	public CompoundString_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Alternatives getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getAlternatives();
+		return grammarAccess.getStringLiteralAccess().getAlternatives();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new CompoundString_Group_0(parent, this, 0, inst);
-			case 1: return new CompoundString_Group_1(parent, this, 1, inst);
+			case 0: return new StringLiteral_Group_0(parent, this, 0, inst);
+			case 1: return new StringLiteral_Group_1(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
 		
     @Override
 	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getCompoundStringRule().getType().getClassifier())) return null;
+		if(!current.isInstanceOf(grammarAccess.getStringLiteralRule().getType().getClassifier())) return null;
 		return tryConsumeVal();
 	}
 }
 
 // begin=SingleQuote parts+=StringPart* end=SingleQuote
-protected class CompoundString_Group_0 extends GroupToken {
+protected class StringLiteral_Group_0 extends GroupToken {
 	
-	public CompoundString_Group_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_Group_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getGroup_0();
+		return grammarAccess.getStringLiteralAccess().getGroup_0();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new CompoundString_EndAssignment_0_2(parent, this, 0, inst);
+			case 0: return new StringLiteral_EndAssignment_0_2(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2121,15 +2060,15 @@ protected class CompoundString_Group_0 extends GroupToken {
 }
 
 // begin=SingleQuote
-protected class CompoundString_BeginAssignment_0_0 extends AssignmentToken  {
+protected class StringLiteral_BeginAssignment_0_0 extends AssignmentToken  {
 	
-	public CompoundString_BeginAssignment_0_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_BeginAssignment_0_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getBeginAssignment_0_0();
+		return grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0();
 	}
 
     @Override
@@ -2145,7 +2084,7 @@ protected class CompoundString_BeginAssignment_0_0 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("begin");
 		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
-			element = grammarAccess.getCompoundStringAccess().getBeginSingleQuoteParserRuleCall_0_0_0();
+			element = grammarAccess.getStringLiteralAccess().getBeginSingleQuoteParserRuleCall_0_0_0();
 			return obj;
 		}
 		return null;
@@ -2154,15 +2093,15 @@ protected class CompoundString_BeginAssignment_0_0 extends AssignmentToken  {
 }
 
 // parts+=StringPart*
-protected class CompoundString_PartsAssignment_0_1 extends AssignmentToken  {
+protected class StringLiteral_PartsAssignment_0_1 extends AssignmentToken  {
 	
-	public CompoundString_PartsAssignment_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_PartsAssignment_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getPartsAssignment_0_1();
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1();
 	}
 
     @Override
@@ -2181,7 +2120,7 @@ protected class CompoundString_PartsAssignment_0_1 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStringPartRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_0_1_0(); 
+				element = grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_0_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -2193,30 +2132,30 @@ protected class CompoundString_PartsAssignment_0_1 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new CompoundString_PartsAssignment_0_1(parent, next, actIndex, consumed);
-			case 1: return new CompoundString_BeginAssignment_0_0(parent, next, actIndex, consumed);
+			case 0: return new StringLiteral_PartsAssignment_0_1(parent, next, actIndex, consumed);
+			case 1: return new StringLiteral_BeginAssignment_0_0(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // end=SingleQuote
-protected class CompoundString_EndAssignment_0_2 extends AssignmentToken  {
+protected class StringLiteral_EndAssignment_0_2 extends AssignmentToken  {
 	
-	public CompoundString_EndAssignment_0_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_EndAssignment_0_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getEndAssignment_0_2();
+		return grammarAccess.getStringLiteralAccess().getEndAssignment_0_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new CompoundString_PartsAssignment_0_1(parent, this, 0, inst);
-			case 1: return new CompoundString_BeginAssignment_0_0(parent, this, 1, inst);
+			case 0: return new StringLiteral_PartsAssignment_0_1(parent, this, 0, inst);
+			case 1: return new StringLiteral_BeginAssignment_0_0(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
@@ -2227,7 +2166,7 @@ protected class CompoundString_EndAssignment_0_2 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("end");
 		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
-			element = grammarAccess.getCompoundStringAccess().getEndSingleQuoteParserRuleCall_0_2_0();
+			element = grammarAccess.getStringLiteralAccess().getEndSingleQuoteParserRuleCall_0_2_0();
 			return obj;
 		}
 		return null;
@@ -2237,21 +2176,21 @@ protected class CompoundString_EndAssignment_0_2 extends AssignmentToken  {
 
 
 // begin=DoubleQuote parts+=StringPart* end=DoubleQuote
-protected class CompoundString_Group_1 extends GroupToken {
+protected class StringLiteral_Group_1 extends GroupToken {
 	
-	public CompoundString_Group_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_Group_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Group getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getGroup_1();
+		return grammarAccess.getStringLiteralAccess().getGroup_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new CompoundString_EndAssignment_1_2(parent, this, 0, inst);
+			case 0: return new StringLiteral_EndAssignment_1_2(parent, this, 0, inst);
 			default: return null;
 		}	
 	}	
@@ -2259,15 +2198,15 @@ protected class CompoundString_Group_1 extends GroupToken {
 }
 
 // begin=DoubleQuote
-protected class CompoundString_BeginAssignment_1_0 extends AssignmentToken  {
+protected class StringLiteral_BeginAssignment_1_0 extends AssignmentToken  {
 	
-	public CompoundString_BeginAssignment_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_BeginAssignment_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getBeginAssignment_1_0();
+		return grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0();
 	}
 
     @Override
@@ -2283,7 +2222,7 @@ protected class CompoundString_BeginAssignment_1_0 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("begin");
 		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
-			element = grammarAccess.getCompoundStringAccess().getBeginDoubleQuoteParserRuleCall_1_0_0();
+			element = grammarAccess.getStringLiteralAccess().getBeginDoubleQuoteParserRuleCall_1_0_0();
 			return obj;
 		}
 		return null;
@@ -2292,15 +2231,15 @@ protected class CompoundString_BeginAssignment_1_0 extends AssignmentToken  {
 }
 
 // parts+=StringPart*
-protected class CompoundString_PartsAssignment_1_1 extends AssignmentToken  {
+protected class StringLiteral_PartsAssignment_1_1 extends AssignmentToken  {
 	
-	public CompoundString_PartsAssignment_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_PartsAssignment_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getPartsAssignment_1_1();
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1();
 	}
 
     @Override
@@ -2319,7 +2258,7 @@ protected class CompoundString_PartsAssignment_1_1 extends AssignmentToken  {
 			IInstanceDescription param = getDescr((EObject)value);
 			if(param.isInstanceOf(grammarAccess.getStringPartRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_1_1_0(); 
+				element = grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_1_1_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -2331,30 +2270,30 @@ protected class CompoundString_PartsAssignment_1_1 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new CompoundString_PartsAssignment_1_1(parent, next, actIndex, consumed);
-			case 1: return new CompoundString_BeginAssignment_1_0(parent, next, actIndex, consumed);
+			case 0: return new StringLiteral_PartsAssignment_1_1(parent, next, actIndex, consumed);
+			case 1: return new StringLiteral_BeginAssignment_1_0(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
 
 // end=DoubleQuote
-protected class CompoundString_EndAssignment_1_2 extends AssignmentToken  {
+protected class StringLiteral_EndAssignment_1_2 extends AssignmentToken  {
 	
-	public CompoundString_EndAssignment_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+	public StringLiteral_EndAssignment_1_2(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
 	public Assignment getGrammarElement() {
-		return grammarAccess.getCompoundStringAccess().getEndAssignment_1_2();
+		return grammarAccess.getStringLiteralAccess().getEndAssignment_1_2();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new CompoundString_PartsAssignment_1_1(parent, this, 0, inst);
-			case 1: return new CompoundString_BeginAssignment_1_0(parent, this, 1, inst);
+			case 0: return new StringLiteral_PartsAssignment_1_1(parent, this, 0, inst);
+			case 1: return new StringLiteral_BeginAssignment_1_0(parent, this, 1, inst);
 			default: return null;
 		}	
 	}	
@@ -2365,7 +2304,7 @@ protected class CompoundString_EndAssignment_1_2 extends AssignmentToken  {
 		IInstanceDescription obj = current.cloneAndConsume("end");
 		if(Boolean.TRUE.booleanValue()) { 
 			type = AssignmentType.DRC;
-			element = grammarAccess.getCompoundStringAccess().getEndDoubleQuoteParserRuleCall_1_2_0();
+			element = grammarAccess.getStringLiteralAccess().getEndDoubleQuoteParserRuleCall_1_2_0();
 			return obj;
 		}
 		return null;
@@ -2375,7 +2314,7 @@ protected class CompoundString_EndAssignment_1_2 extends AssignmentToken  {
 
 
 
-/************ end Rule CompoundString ****************/
+/************ end Rule StringLiteral ****************/
 
 
 /************ begin Rule StringPart ****************

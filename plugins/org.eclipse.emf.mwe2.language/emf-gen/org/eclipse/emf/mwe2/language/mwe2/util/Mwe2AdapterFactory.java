@@ -116,11 +116,6 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
         return createValueAdapter();
       }
       @Override
-      public Adapter caseStringLiteral(StringLiteral object)
-      {
-        return createStringLiteralAdapter();
-      }
-      @Override
       public Adapter caseBooleanLiteral(BooleanLiteral object)
       {
         return createBooleanLiteralAdapter();
@@ -131,9 +126,9 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
         return createReferenceAdapter();
       }
       @Override
-      public Adapter caseCompoundString(CompoundString object)
+      public Adapter caseStringLiteral(StringLiteral object)
       {
-        return createCompoundStringAdapter();
+        return createStringLiteralAdapter();
       }
       @Override
       public Adapter caseStringPart(StringPart object)
@@ -288,21 +283,6 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral <em>String Literal</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral
-   * @generated
-   */
-  public Adapter createStringLiteralAdapter()
-  {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral <em>Boolean Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -333,16 +313,16 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.CompoundString <em>Compound String</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral <em>String Literal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.mwe2.language.mwe2.CompoundString
+   * @see org.eclipse.emf.mwe2.language.mwe2.StringLiteral
    * @generated
    */
-  public Adapter createCompoundStringAdapter()
+  public Adapter createStringLiteralAdapter()
   {
     return null;
   }

@@ -38,17 +38,13 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Value" abstract="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Value">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//CompoundString"
-        containment="true"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanLiteral" eSuperTypes="#//Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTrue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Reference" eSuperTypes="#//Value">
     <eStructuralFeatures xsi:type="ecore:EReference" name="referable" eType="#//Referrable"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CompoundString">
+  <eClassifiers xsi:type="ecore:EClass" name="StringLiteral" eSuperTypes="#//Value">
     <eOperations name="getResolvedString" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="begin" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"

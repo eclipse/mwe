@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
-import org.eclipse.emf.mwe2.language.mwe2.CompoundString;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
@@ -93,13 +92,6 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass stringLiteralEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass booleanLiteralEClass = null;
 
   /**
@@ -114,7 +106,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass compoundStringEClass = null;
+  private EClass stringLiteralEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -418,26 +410,6 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getStringLiteral()
-  {
-    return stringLiteralEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getStringLiteral_Value()
-  {
-    return (EReference)stringLiteralEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getBooleanLiteral()
   {
     return booleanLiteralEClass;
@@ -478,9 +450,9 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getCompoundString()
+  public EClass getStringLiteral()
   {
-    return compoundStringEClass;
+    return stringLiteralEClass;
   }
 
   /**
@@ -488,9 +460,9 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCompoundString_Begin()
+  public EAttribute getStringLiteral_Begin()
   {
-    return (EAttribute)compoundStringEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -498,9 +470,9 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCompoundString_Parts()
+  public EReference getStringLiteral_Parts()
   {
-    return (EReference)compoundStringEClass.getEStructuralFeatures().get(1);
+    return (EReference)stringLiteralEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -508,9 +480,9 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getCompoundString_End()
+  public EAttribute getStringLiteral_End()
   {
-    return (EAttribute)compoundStringEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -621,19 +593,16 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
     valueEClass = createEClass(VALUE);
 
-    stringLiteralEClass = createEClass(STRING_LITERAL);
-    createEReference(stringLiteralEClass, STRING_LITERAL__VALUE);
-
     booleanLiteralEClass = createEClass(BOOLEAN_LITERAL);
     createEAttribute(booleanLiteralEClass, BOOLEAN_LITERAL__IS_TRUE);
 
     referenceEClass = createEClass(REFERENCE);
     createEReference(referenceEClass, REFERENCE__REFERABLE);
 
-    compoundStringEClass = createEClass(COMPOUND_STRING);
-    createEAttribute(compoundStringEClass, COMPOUND_STRING__BEGIN);
-    createEReference(compoundStringEClass, COMPOUND_STRING__PARTS);
-    createEAttribute(compoundStringEClass, COMPOUND_STRING__END);
+    stringLiteralEClass = createEClass(STRING_LITERAL);
+    createEAttribute(stringLiteralEClass, STRING_LITERAL__BEGIN);
+    createEReference(stringLiteralEClass, STRING_LITERAL__PARTS);
+    createEAttribute(stringLiteralEClass, STRING_LITERAL__END);
 
     stringPartEClass = createEClass(STRING_PART);
 
@@ -680,9 +649,9 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
     declaredPropertyEClass.getESuperTypes().add(theTypesPackage.getJvmFeature());
     componentEClass.getESuperTypes().add(this.getReferrable());
     componentEClass.getESuperTypes().add(this.getValue());
-    stringLiteralEClass.getESuperTypes().add(this.getValue());
     booleanLiteralEClass.getESuperTypes().add(this.getValue());
     referenceEClass.getESuperTypes().add(this.getValue());
+    stringLiteralEClass.getESuperTypes().add(this.getValue());
     propertyReferenceEClass.getESuperTypes().add(this.getStringPart());
     plainStringEClass.getESuperTypes().add(this.getStringPart());
 
@@ -717,21 +686,18 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
     initEClass(valueEClass, Value.class, "Value", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getStringLiteral_Value(), this.getCompoundString(), null, "value", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
     initEClass(booleanLiteralEClass, BooleanLiteral.class, "BooleanLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBooleanLiteral_IsTrue(), ecorePackage.getEBoolean(), "isTrue", null, 0, 1, BooleanLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(referenceEClass, Reference.class, "Reference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getReference_Referable(), this.getReferrable(), null, "referable", null, 0, 1, Reference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(compoundStringEClass, CompoundString.class, "CompoundString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getCompoundString_Begin(), ecorePackage.getEString(), "begin", null, 0, 1, CompoundString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCompoundString_Parts(), this.getStringPart(), null, "parts", null, 0, -1, CompoundString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getCompoundString_End(), ecorePackage.getEString(), "end", null, 0, 1, CompoundString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(stringLiteralEClass, StringLiteral.class, "StringLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStringLiteral_Begin(), ecorePackage.getEString(), "begin", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStringLiteral_Parts(), this.getStringPart(), null, "parts", null, 0, -1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getStringLiteral_End(), ecorePackage.getEString(), "end", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    addEOperation(compoundStringEClass, ecorePackage.getEString(), "getResolvedString", 0, 1, IS_UNIQUE, IS_ORDERED);
+    addEOperation(stringLiteralEClass, ecorePackage.getEString(), "getResolvedString", 0, 1, IS_UNIQUE, IS_ORDERED);
 
     initEClass(stringPartEClass, StringPart.class, "StringPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

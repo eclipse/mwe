@@ -280,34 +280,6 @@ finally {
 
 
 
-// Entry rule entryRuleStringLiteral
-entryRuleStringLiteral 
-:
-{ before(grammarAccess.getStringLiteralRule()); }
-	 ruleStringLiteral
-{ after(grammarAccess.getStringLiteralRule()); } 
-	 EOF 
-;
-
-// Rule StringLiteral
-ruleStringLiteral
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-{ before(grammarAccess.getStringLiteralAccess().getValueAssignment()); }
-(rule__StringLiteral__ValueAssignment)
-{ after(grammarAccess.getStringLiteralAccess().getValueAssignment()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 // Entry rule entryRuleBooleanLiteral
 entryRuleBooleanLiteral 
 :
@@ -392,32 +364,32 @@ finally {
 
 
 
-// Entry rule entryRuleCompoundString
-entryRuleCompoundString 
+// Entry rule entryRuleStringLiteral
+entryRuleStringLiteral 
 @init {
 	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 }
 :
-{ before(grammarAccess.getCompoundStringRule()); }
-	 ruleCompoundString
-{ after(grammarAccess.getCompoundStringRule()); } 
+{ before(grammarAccess.getStringLiteralRule()); }
+	 ruleStringLiteral
+{ after(grammarAccess.getStringLiteralRule()); } 
 	 EOF 
 ;
 finally {
 	myHiddenTokenState.restore();
 }
 
-// Rule CompoundString
-ruleCompoundString
+// Rule StringLiteral
+ruleStringLiteral
     @init {
 		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
 	:
 (
-{ before(grammarAccess.getCompoundStringAccess().getAlternatives()); }
-(rule__CompoundString__Alternatives)
-{ after(grammarAccess.getCompoundStringAccess().getAlternatives()); }
+{ before(grammarAccess.getStringLiteralAccess().getAlternatives()); }
+(rule__StringLiteral__Alternatives)
+{ after(grammarAccess.getStringLiteralAccess().getAlternatives()); }
 )
 
 ;
@@ -841,21 +813,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__Alternatives
+rule__StringLiteral__Alternatives
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getGroup_0()); }
-(rule__CompoundString__Group_0__0)
-{ after(grammarAccess.getCompoundStringAccess().getGroup_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getGroup_0()); }
+(rule__StringLiteral__Group_0__0)
+{ after(grammarAccess.getStringLiteralAccess().getGroup_0()); }
 )
 
     |(
-{ before(grammarAccess.getCompoundStringAccess().getGroup_1()); }
-(rule__CompoundString__Group_1__0)
-{ after(grammarAccess.getCompoundStringAccess().getGroup_1()); }
+{ before(grammarAccess.getStringLiteralAccess().getGroup_1()); }
+(rule__StringLiteral__Group_1__0)
+{ after(grammarAccess.getStringLiteralAccess().getGroup_1()); }
 )
 
 ;
@@ -2004,51 +1976,51 @@ finally {
 
 
 
-rule__CompoundString__Group_0__0
+rule__StringLiteral__Group_0__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getBeginAssignment_0_0()); }
-(rule__CompoundString__BeginAssignment_0_0)
-{ after(grammarAccess.getCompoundStringAccess().getBeginAssignment_0_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); }
+(rule__StringLiteral__BeginAssignment_0_0)
+{ after(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); }
 )
 
-	rule__CompoundString__Group_0__1
+	rule__StringLiteral__Group_0__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
 
-rule__CompoundString__Group_0__1
+rule__StringLiteral__Group_0__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getPartsAssignment_0_1()); }
-(rule__CompoundString__PartsAssignment_0_1)*
-{ after(grammarAccess.getCompoundStringAccess().getPartsAssignment_0_1()); }
+{ before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); }
+(rule__StringLiteral__PartsAssignment_0_1)*
+{ after(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); }
 )
 
-	rule__CompoundString__Group_0__2
+	rule__StringLiteral__Group_0__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
 
-rule__CompoundString__Group_0__2
+rule__StringLiteral__Group_0__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getEndAssignment_0_2()); }
-(rule__CompoundString__EndAssignment_0_2)
-{ after(grammarAccess.getCompoundStringAccess().getEndAssignment_0_2()); }
+{ before(grammarAccess.getStringLiteralAccess().getEndAssignment_0_2()); }
+(rule__StringLiteral__EndAssignment_0_2)
+{ after(grammarAccess.getStringLiteralAccess().getEndAssignment_0_2()); }
 )
 
 ;
@@ -2063,51 +2035,51 @@ finally {
 
 
 
-rule__CompoundString__Group_1__0
+rule__StringLiteral__Group_1__0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getBeginAssignment_1_0()); }
-(rule__CompoundString__BeginAssignment_1_0)
-{ after(grammarAccess.getCompoundStringAccess().getBeginAssignment_1_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); }
+(rule__StringLiteral__BeginAssignment_1_0)
+{ after(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); }
 )
 
-	rule__CompoundString__Group_1__1
+	rule__StringLiteral__Group_1__1
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
 
-rule__CompoundString__Group_1__1
+rule__StringLiteral__Group_1__1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getPartsAssignment_1_1()); }
-(rule__CompoundString__PartsAssignment_1_1)*
-{ after(grammarAccess.getCompoundStringAccess().getPartsAssignment_1_1()); }
+{ before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); }
+(rule__StringLiteral__PartsAssignment_1_1)*
+{ after(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); }
 )
 
-	rule__CompoundString__Group_1__2
+	rule__StringLiteral__Group_1__2
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
 
-rule__CompoundString__Group_1__2
+rule__StringLiteral__Group_1__2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getEndAssignment_1_2()); }
-(rule__CompoundString__EndAssignment_1_2)
-{ after(grammarAccess.getCompoundStringAccess().getEndAssignment_1_2()); }
+{ before(grammarAccess.getStringLiteralAccess().getEndAssignment_1_2()); }
+(rule__StringLiteral__EndAssignment_1_2)
+{ after(grammarAccess.getStringLiteralAccess().getEndAssignment_1_2()); }
 )
 
 ;
@@ -2643,21 +2615,6 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__StringLiteral__ValueAssignment
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getStringLiteralAccess().getValueCompoundStringParserRuleCall_0()); }
-	ruleCompoundString{ after(grammarAccess.getStringLiteralAccess().getValueCompoundStringParserRuleCall_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
 rule__BooleanLiteral__IsTrueAssignment_1_0
     @init {
 		int stackSize = keepStackSize();
@@ -2700,14 +2657,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__BeginAssignment_0_0
+rule__StringLiteral__BeginAssignment_0_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getBeginSingleQuoteParserRuleCall_0_0_0()); }
-	ruleSingleQuote{ after(grammarAccess.getCompoundStringAccess().getBeginSingleQuoteParserRuleCall_0_0_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getBeginSingleQuoteParserRuleCall_0_0_0()); }
+	ruleSingleQuote{ after(grammarAccess.getStringLiteralAccess().getBeginSingleQuoteParserRuleCall_0_0_0()); }
 )
 
 ;
@@ -2715,14 +2672,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__PartsAssignment_0_1
+rule__StringLiteral__PartsAssignment_0_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_0_1_0()); }
-	ruleStringPart{ after(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_0_1_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_0_1_0()); }
+	ruleStringPart{ after(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_0_1_0()); }
 )
 
 ;
@@ -2730,14 +2687,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__EndAssignment_0_2
+rule__StringLiteral__EndAssignment_0_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getEndSingleQuoteParserRuleCall_0_2_0()); }
-	ruleSingleQuote{ after(grammarAccess.getCompoundStringAccess().getEndSingleQuoteParserRuleCall_0_2_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getEndSingleQuoteParserRuleCall_0_2_0()); }
+	ruleSingleQuote{ after(grammarAccess.getStringLiteralAccess().getEndSingleQuoteParserRuleCall_0_2_0()); }
 )
 
 ;
@@ -2745,14 +2702,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__BeginAssignment_1_0
+rule__StringLiteral__BeginAssignment_1_0
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getBeginDoubleQuoteParserRuleCall_1_0_0()); }
-	ruleDoubleQuote{ after(grammarAccess.getCompoundStringAccess().getBeginDoubleQuoteParserRuleCall_1_0_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getBeginDoubleQuoteParserRuleCall_1_0_0()); }
+	ruleDoubleQuote{ after(grammarAccess.getStringLiteralAccess().getBeginDoubleQuoteParserRuleCall_1_0_0()); }
 )
 
 ;
@@ -2760,14 +2717,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__PartsAssignment_1_1
+rule__StringLiteral__PartsAssignment_1_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_1_1_0()); }
-	ruleStringPart{ after(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_1_1_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_1_1_0()); }
+	ruleStringPart{ after(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_1_1_0()); }
 )
 
 ;
@@ -2775,14 +2732,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__CompoundString__EndAssignment_1_2
+rule__StringLiteral__EndAssignment_1_2
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getCompoundStringAccess().getEndDoubleQuoteParserRuleCall_1_2_0()); }
-	ruleDoubleQuote{ after(grammarAccess.getCompoundStringAccess().getEndDoubleQuoteParserRuleCall_1_2_0()); }
+{ before(grammarAccess.getStringLiteralAccess().getEndDoubleQuoteParserRuleCall_1_2_0()); }
+	ruleDoubleQuote{ after(grammarAccess.getStringLiteralAccess().getEndDoubleQuoteParserRuleCall_1_2_0()); }
 )
 
 ;

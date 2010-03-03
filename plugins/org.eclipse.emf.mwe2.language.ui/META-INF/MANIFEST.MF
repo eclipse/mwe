@@ -18,4 +18,4 @@ Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator
-Export-Package: org.eclipse.emf.mwe2.language.ui.contentassist.antlr
+Export-Package: org.eclipse.emf.mwe2.language.ui

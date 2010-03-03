@@ -5,7 +5,7 @@ import "platform:/resource/org.eclipse.emf.mwe2.language/model/Mwe2.ecore"
 import "platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore" as types
 
 Module:
-  {Module}
+  {Module} 
   'module' canonicalName=FQN 
   imports+=Import* 
   (declaredProperties+=DeclaredProperty)* 
@@ -41,9 +41,6 @@ Value:
   BooleanLiteral|
   Reference;
 
-StringLiteral:
-  value=CompoundString;
-
 BooleanLiteral:
   {BooleanLiteral} (isTrue?='true'|'false');
 
@@ -53,7 +50,7 @@ Reference:
 FQN:
   ID ('.' ID)*;
 
-CompoundString hidden ():
+StringLiteral hidden ():
   begin=SingleQuote parts+=StringPart* end=SingleQuote|
   begin=DoubleQuote parts+=StringPart* end=DoubleQuote;
 

@@ -39,10 +39,6 @@ class Assignment {
 abstract class Value {
 }
 
-class StringLiteral extends Value {
-  val CompoundString value;
-}
-
 class BooleanLiteral extends Value {
   attr boolean isTrue;
 }
@@ -51,7 +47,7 @@ class Reference extends Value {
   ref Referrable referable;
 }
 
-class CompoundString {
+class StringLiteral extends Value{
   attr String begin;
   val StringPart[*] parts;
   attr String end;

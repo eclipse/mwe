@@ -1801,112 +1801,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleValue
 
 
-    // $ANTLR start entryRuleStringLiteral
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:823:1: entryRuleStringLiteral returns [EObject current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
-    public final EObject entryRuleStringLiteral() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleStringLiteral = null;
-
-
-        try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:824:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:825:2: iv_ruleStringLiteral= ruleStringLiteral EOF
-            {
-             currentNode = createCompositeNode(grammarAccess.getStringLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1435);
-            iv_ruleStringLiteral=ruleStringLiteral();
-            _fsp--;
-
-             current =iv_ruleStringLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteral1445); 
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end entryRuleStringLiteral
-
-
-    // $ANTLR start ruleStringLiteral
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:832:1: ruleStringLiteral returns [EObject current=null] : ( (lv_value_0_0= ruleCompoundString ) ) ;
-    public final EObject ruleStringLiteral() throws RecognitionException {
-        EObject current = null;
-
-        EObject lv_value_0_0 = null;
-
-
-         @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
-            
-        try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:837:6: ( ( (lv_value_0_0= ruleCompoundString ) ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:1: ( (lv_value_0_0= ruleCompoundString ) )
-            {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:1: ( (lv_value_0_0= ruleCompoundString ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:839:1: (lv_value_0_0= ruleCompoundString )
-            {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:839:1: (lv_value_0_0= ruleCompoundString )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:840:3: lv_value_0_0= ruleCompoundString
-            {
-             
-            	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getValueCompoundStringParserRuleCall_0(), currentNode); 
-            	    
-            pushFollow(FOLLOW_ruleCompoundString_in_ruleStringLiteral1490);
-            lv_value_0_0=ruleCompoundString();
-            _fsp--;
-
-
-            	        if (current==null) {
-            	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
-            	            associateNodeWithAstElement(currentNode.getParent(), current);
-            	        }
-            	        try {
-            	       		set(
-            	       			current, 
-            	       			"value",
-            	        		lv_value_0_0, 
-            	        		"CompoundString", 
-            	        		currentNode);
-            	        } catch (ValueConverterException vce) {
-            				handleValueConverterException(vce);
-            	        }
-            	        currentNode = currentNode.getParent();
-            	    
-
-            }
-
-
-            }
-
-
-            }
-
-             resetLookahead(); 
-                	lastConsumedNode = currentNode;
-                
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end ruleStringLiteral
-
-
     // $ANTLR start entryRuleBooleanLiteral
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:870:1: entryRuleBooleanLiteral returns [EObject current=null] : iv_ruleBooleanLiteral= ruleBooleanLiteral EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:823:1: entryRuleBooleanLiteral returns [EObject current=null] : iv_ruleBooleanLiteral= ruleBooleanLiteral EOF ;
     public final EObject entryRuleBooleanLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -1914,16 +1810,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:871:2: (iv_ruleBooleanLiteral= ruleBooleanLiteral EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:872:2: iv_ruleBooleanLiteral= ruleBooleanLiteral EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:824:2: (iv_ruleBooleanLiteral= ruleBooleanLiteral EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:825:2: iv_ruleBooleanLiteral= ruleBooleanLiteral EOF
             {
              currentNode = createCompositeNode(grammarAccess.getBooleanLiteralRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1525);
+            pushFollow(FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1435);
             iv_ruleBooleanLiteral=ruleBooleanLiteral();
             _fsp--;
 
              current =iv_ruleBooleanLiteral; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteral1535); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBooleanLiteral1445); 
 
             }
 
@@ -1941,7 +1837,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleBooleanLiteral
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:879:1: ruleBooleanLiteral returns [EObject current=null] : ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:832:1: ruleBooleanLiteral returns [EObject current=null] : ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) ) ;
     public final EObject ruleBooleanLiteral() throws RecognitionException {
         EObject current = null;
 
@@ -1950,14 +1846,14 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:884:6: ( ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:885:1: ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:837:6: ( ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:1: ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:885:1: ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:885:2: () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:1: ( () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:2: () ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:885:2: ()
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:886:5: 
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:838:2: ()
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:839:5: 
             {
              
                     temp=factory.create(grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0().getType().getClassifier());
@@ -1972,7 +1868,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:896:2: ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:849:2: ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )
             int alt15=2;
             int LA15_0 = input.LA(1);
 
@@ -1984,22 +1880,22 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("896:2: ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )", 15, 0, input);
+                    new NoViableAltException("849:2: ( ( (lv_isTrue_1_0= 'true' ) ) | 'false' )", 15, 0, input);
 
                 throw nvae;
             }
             switch (alt15) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:896:3: ( (lv_isTrue_1_0= 'true' ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:849:3: ( (lv_isTrue_1_0= 'true' ) )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:896:3: ( (lv_isTrue_1_0= 'true' ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:897:1: (lv_isTrue_1_0= 'true' )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:849:3: ( (lv_isTrue_1_0= 'true' ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:850:1: (lv_isTrue_1_0= 'true' )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:897:1: (lv_isTrue_1_0= 'true' )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:898:3: lv_isTrue_1_0= 'true'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:850:1: (lv_isTrue_1_0= 'true' )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:851:3: lv_isTrue_1_0= 'true'
                     {
                     lv_isTrue_1_0=(Token)input.LT(1);
-                    match(input,19,FOLLOW_19_in_ruleBooleanLiteral1588); 
+                    match(input,19,FOLLOW_19_in_ruleBooleanLiteral1498); 
 
                             createLeafNode(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0(), "isTrue"); 
                         
@@ -2025,9 +1921,9 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:918:7: 'false'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:871:7: 'false'
                     {
-                    match(input,20,FOLLOW_20_in_ruleBooleanLiteral1617); 
+                    match(input,20,FOLLOW_20_in_ruleBooleanLiteral1527); 
 
                             createLeafNode(grammarAccess.getBooleanLiteralAccess().getFalseKeyword_1_1(), null); 
                         
@@ -2060,7 +1956,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleReference
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:930:1: entryRuleReference returns [EObject current=null] : iv_ruleReference= ruleReference EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:883:1: entryRuleReference returns [EObject current=null] : iv_ruleReference= ruleReference EOF ;
     public final EObject entryRuleReference() throws RecognitionException {
         EObject current = null;
 
@@ -2068,16 +1964,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:931:2: (iv_ruleReference= ruleReference EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:932:2: iv_ruleReference= ruleReference EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:884:2: (iv_ruleReference= ruleReference EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:885:2: iv_ruleReference= ruleReference EOF
             {
              currentNode = createCompositeNode(grammarAccess.getReferenceRule(), currentNode); 
-            pushFollow(FOLLOW_ruleReference_in_entryRuleReference1654);
+            pushFollow(FOLLOW_ruleReference_in_entryRuleReference1564);
             iv_ruleReference=ruleReference();
             _fsp--;
 
              current =iv_ruleReference; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleReference1664); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleReference1574); 
 
             }
 
@@ -2095,21 +1991,21 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleReference
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:939:1: ruleReference returns [EObject current=null] : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:892:1: ruleReference returns [EObject current=null] : ( ( RULE_ID ) ) ;
     public final EObject ruleReference() throws RecognitionException {
         EObject current = null;
 
          @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:944:6: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:945:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:897:6: ( ( ( RULE_ID ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:898:1: ( ( RULE_ID ) )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:945:1: ( ( RULE_ID ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:946:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:898:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:899:1: ( RULE_ID )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:946:1: ( RULE_ID )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:947:3: RULE_ID
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:899:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:900:3: RULE_ID
             {
 
             			if (current==null) {
@@ -2117,7 +2013,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	            associateNodeWithAstElement(currentNode, current);
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleReference1706); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleReference1616); 
 
             		createLeafNode(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0(), "referable"); 
             	
@@ -2147,7 +2043,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleFQN
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:967:1: entryRuleFQN returns [String current=null] : iv_ruleFQN= ruleFQN EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:920:1: entryRuleFQN returns [String current=null] : iv_ruleFQN= ruleFQN EOF ;
     public final String entryRuleFQN() throws RecognitionException {
         String current = null;
 
@@ -2155,16 +2051,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:968:2: (iv_ruleFQN= ruleFQN EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:969:2: iv_ruleFQN= ruleFQN EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:921:2: (iv_ruleFQN= ruleFQN EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:922:2: iv_ruleFQN= ruleFQN EOF
             {
              currentNode = createCompositeNode(grammarAccess.getFQNRule(), currentNode); 
-            pushFollow(FOLLOW_ruleFQN_in_entryRuleFQN1742);
+            pushFollow(FOLLOW_ruleFQN_in_entryRuleFQN1652);
             iv_ruleFQN=ruleFQN();
             _fsp--;
 
              current =iv_ruleFQN.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleFQN1753); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleFQN1663); 
 
             }
 
@@ -2182,7 +2078,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleFQN
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:976:1: ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:929:1: ruleFQN returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) ;
     public final AntlrDatatypeRuleToken ruleFQN() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -2193,21 +2089,21 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:981:6: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:982:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:934:6: ( (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:935:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:982:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:982:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:935:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:935:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
             this_ID_0=(Token)input.LT(1);
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1793); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1703); 
 
             		current.merge(this_ID_0);
                 
              
                 createLeafNode(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0(), null); 
                 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:989:1: (kw= '.' this_ID_2= RULE_ID )*
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:942:1: (kw= '.' this_ID_2= RULE_ID )*
             loop16:
             do {
                 int alt16=2;
@@ -2220,16 +2116,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
                 switch (alt16) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:990:2: kw= '.' this_ID_2= RULE_ID
+            	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:943:2: kw= '.' this_ID_2= RULE_ID
             	    {
             	    kw=(Token)input.LT(1);
-            	    match(input,21,FOLLOW_21_in_ruleFQN1812); 
+            	    match(input,21,FOLLOW_21_in_ruleFQN1722); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getFQNAccess().getFullStopKeyword_1_0(), null); 
             	        
             	    this_ID_2=(Token)input.LT(1);
-            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1827); 
+            	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1737); 
 
             	    		current.merge(this_ID_2);
             	        
@@ -2267,28 +2163,28 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
     // $ANTLR end ruleFQN
 
 
-    // $ANTLR start entryRuleCompoundString
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1010:1: entryRuleCompoundString returns [EObject current=null] : iv_ruleCompoundString= ruleCompoundString EOF ;
-    public final EObject entryRuleCompoundString() throws RecognitionException {
+    // $ANTLR start entryRuleStringLiteral
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:963:1: entryRuleStringLiteral returns [EObject current=null] : iv_ruleStringLiteral= ruleStringLiteral EOF ;
+    public final EObject entryRuleStringLiteral() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleCompoundString = null;
+        EObject iv_ruleStringLiteral = null;
 
 
          
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
         	
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1014:2: (iv_ruleCompoundString= ruleCompoundString EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1015:2: iv_ruleCompoundString= ruleCompoundString EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:967:2: (iv_ruleStringLiteral= ruleStringLiteral EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:968:2: iv_ruleStringLiteral= ruleStringLiteral EOF
             {
-             currentNode = createCompositeNode(grammarAccess.getCompoundStringRule(), currentNode); 
-            pushFollow(FOLLOW_ruleCompoundString_in_entryRuleCompoundString1880);
-            iv_ruleCompoundString=ruleCompoundString();
+             currentNode = createCompositeNode(grammarAccess.getStringLiteralRule(), currentNode); 
+            pushFollow(FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1790);
+            iv_ruleStringLiteral=ruleStringLiteral();
             _fsp--;
 
-             current =iv_ruleCompoundString; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleCompoundString1890); 
+             current =iv_ruleStringLiteral; 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringLiteral1800); 
 
             }
 
@@ -2305,12 +2201,12 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end entryRuleCompoundString
+    // $ANTLR end entryRuleStringLiteral
 
 
-    // $ANTLR start ruleCompoundString
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1025:1: ruleCompoundString returns [EObject current=null] : ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) ) ;
-    public final EObject ruleCompoundString() throws RecognitionException {
+    // $ANTLR start ruleStringLiteral
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:978:1: ruleStringLiteral returns [EObject current=null] : ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) ) ;
+    public final EObject ruleStringLiteral() throws RecognitionException {
         EObject current = null;
 
         AntlrDatatypeRuleToken lv_begin_0_0 = null;
@@ -2330,10 +2226,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1031:6: ( ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:984:6: ( ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -2345,33 +2241,33 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1032:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )", 19, 0, input);
+                    new NoViableAltException("985:1: ( ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) ) | ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) ) )", 19, 0, input);
 
                 throw nvae;
             }
             switch (alt19) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:2: ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:2: ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:2: ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:3: ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:2: ( ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:3: ( (lv_begin_0_0= ruleSingleQuote ) ) ( (lv_parts_1_0= ruleStringPart ) )* ( (lv_end_2_0= ruleSingleQuote ) )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1032:3: ( (lv_begin_0_0= ruleSingleQuote ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1033:1: (lv_begin_0_0= ruleSingleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:985:3: ( (lv_begin_0_0= ruleSingleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:986:1: (lv_begin_0_0= ruleSingleQuote )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1033:1: (lv_begin_0_0= ruleSingleQuote )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1034:3: lv_begin_0_0= ruleSingleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:986:1: (lv_begin_0_0= ruleSingleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:987:3: lv_begin_0_0= ruleSingleQuote
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getBeginSingleQuoteParserRuleCall_0_0_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getBeginSingleQuoteParserRuleCall_0_0_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleSingleQuote_in_ruleCompoundString1941);
+                    pushFollow(FOLLOW_ruleSingleQuote_in_ruleStringLiteral1851);
                     lv_begin_0_0=ruleSingleQuote();
                     _fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
@@ -2392,7 +2288,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1056:2: ( (lv_parts_1_0= ruleStringPart ) )*
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1009:2: ( (lv_parts_1_0= ruleStringPart ) )*
                     loop17:
                     do {
                         int alt17=2;
@@ -2405,21 +2301,21 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
                         switch (alt17) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1057:1: (lv_parts_1_0= ruleStringPart )
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1010:1: (lv_parts_1_0= ruleStringPart )
                     	    {
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1057:1: (lv_parts_1_0= ruleStringPart )
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1058:3: lv_parts_1_0= ruleStringPart
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1010:1: (lv_parts_1_0= ruleStringPart )
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1011:3: lv_parts_1_0= ruleStringPart
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_0_1_0(), currentNode); 
+                    	    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_0_1_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleStringPart_in_ruleCompoundString1962);
+                    	    pushFollow(FOLLOW_ruleStringPart_in_ruleStringLiteral1872);
                     	    lv_parts_1_0=ruleStringPart();
                     	    _fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	    	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	    	        }
                     	    	        try {
@@ -2446,22 +2342,22 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1080:3: ( (lv_end_2_0= ruleSingleQuote ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1081:1: (lv_end_2_0= ruleSingleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1033:3: ( (lv_end_2_0= ruleSingleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1034:1: (lv_end_2_0= ruleSingleQuote )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1081:1: (lv_end_2_0= ruleSingleQuote )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1082:3: lv_end_2_0= ruleSingleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1034:1: (lv_end_2_0= ruleSingleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1035:3: lv_end_2_0= ruleSingleQuote
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getEndSingleQuoteParserRuleCall_0_2_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getEndSingleQuoteParserRuleCall_0_2_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleSingleQuote_in_ruleCompoundString1984);
+                    pushFollow(FOLLOW_ruleSingleQuote_in_ruleStringLiteral1894);
                     lv_end_2_0=ruleSingleQuote();
                     _fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
@@ -2489,27 +2385,27 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1105:6: ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1058:6: ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1105:6: ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1105:7: ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1058:6: ( ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1058:7: ( (lv_begin_3_0= ruleDoubleQuote ) ) ( (lv_parts_4_0= ruleStringPart ) )* ( (lv_end_5_0= ruleDoubleQuote ) )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1105:7: ( (lv_begin_3_0= ruleDoubleQuote ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1106:1: (lv_begin_3_0= ruleDoubleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1058:7: ( (lv_begin_3_0= ruleDoubleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1059:1: (lv_begin_3_0= ruleDoubleQuote )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1106:1: (lv_begin_3_0= ruleDoubleQuote )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1107:3: lv_begin_3_0= ruleDoubleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1059:1: (lv_begin_3_0= ruleDoubleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1060:3: lv_begin_3_0= ruleDoubleQuote
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getBeginDoubleQuoteParserRuleCall_1_0_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getBeginDoubleQuoteParserRuleCall_1_0_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleDoubleQuote_in_ruleCompoundString2013);
+                    pushFollow(FOLLOW_ruleDoubleQuote_in_ruleStringLiteral1923);
                     lv_begin_3_0=ruleDoubleQuote();
                     _fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
@@ -2530,7 +2426,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1129:2: ( (lv_parts_4_0= ruleStringPart ) )*
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1082:2: ( (lv_parts_4_0= ruleStringPart ) )*
                     loop18:
                     do {
                         int alt18=2;
@@ -2543,21 +2439,21 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
                         switch (alt18) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1130:1: (lv_parts_4_0= ruleStringPart )
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1083:1: (lv_parts_4_0= ruleStringPart )
                     	    {
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1130:1: (lv_parts_4_0= ruleStringPart )
-                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1131:3: lv_parts_4_0= ruleStringPart
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1083:1: (lv_parts_4_0= ruleStringPart )
+                    	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1084:3: lv_parts_4_0= ruleStringPart
                     	    {
                     	     
-                    	    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getPartsStringPartParserRuleCall_1_1_0(), currentNode); 
+                    	    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_1_1_0(), currentNode); 
                     	    	    
-                    	    pushFollow(FOLLOW_ruleStringPart_in_ruleCompoundString2034);
+                    	    pushFollow(FOLLOW_ruleStringPart_in_ruleStringLiteral1944);
                     	    lv_parts_4_0=ruleStringPart();
                     	    _fsp--;
 
 
                     	    	        if (current==null) {
-                    	    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	    	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	    	        }
                     	    	        try {
@@ -2584,22 +2480,22 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                         }
                     } while (true);
 
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1153:3: ( (lv_end_5_0= ruleDoubleQuote ) )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1154:1: (lv_end_5_0= ruleDoubleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1106:3: ( (lv_end_5_0= ruleDoubleQuote ) )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1107:1: (lv_end_5_0= ruleDoubleQuote )
                     {
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1154:1: (lv_end_5_0= ruleDoubleQuote )
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1155:3: lv_end_5_0= ruleDoubleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1107:1: (lv_end_5_0= ruleDoubleQuote )
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1108:3: lv_end_5_0= ruleDoubleQuote
                     {
                      
-                    	        currentNode=createCompositeNode(grammarAccess.getCompoundStringAccess().getEndDoubleQuoteParserRuleCall_1_2_0(), currentNode); 
+                    	        currentNode=createCompositeNode(grammarAccess.getStringLiteralAccess().getEndDoubleQuoteParserRuleCall_1_2_0(), currentNode); 
                     	    
-                    pushFollow(FOLLOW_ruleDoubleQuote_in_ruleCompoundString2056);
+                    pushFollow(FOLLOW_ruleDoubleQuote_in_ruleStringLiteral1966);
                     lv_end_5_0=ruleDoubleQuote();
                     _fsp--;
 
 
                     	        if (current==null) {
-                    	            current = factory.create(grammarAccess.getCompoundStringRule().getType().getClassifier());
+                    	            current = factory.create(grammarAccess.getStringLiteralRule().getType().getClassifier());
                     	            associateNodeWithAstElement(currentNode.getParent(), current);
                     	        }
                     	        try {
@@ -2648,11 +2544,11 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end ruleCompoundString
+    // $ANTLR end ruleStringLiteral
 
 
     // $ANTLR start entryRuleStringPart
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1188:1: entryRuleStringPart returns [EObject current=null] : iv_ruleStringPart= ruleStringPart EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1141:1: entryRuleStringPart returns [EObject current=null] : iv_ruleStringPart= ruleStringPart EOF ;
     public final EObject entryRuleStringPart() throws RecognitionException {
         EObject current = null;
 
@@ -2660,16 +2556,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1189:2: (iv_ruleStringPart= ruleStringPart EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1190:2: iv_ruleStringPart= ruleStringPart EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1142:2: (iv_ruleStringPart= ruleStringPart EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1143:2: iv_ruleStringPart= ruleStringPart EOF
             {
              currentNode = createCompositeNode(grammarAccess.getStringPartRule(), currentNode); 
-            pushFollow(FOLLOW_ruleStringPart_in_entryRuleStringPart2097);
+            pushFollow(FOLLOW_ruleStringPart_in_entryRuleStringPart2007);
             iv_ruleStringPart=ruleStringPart();
             _fsp--;
 
              current =iv_ruleStringPart; 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleStringPart2107); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleStringPart2017); 
 
             }
 
@@ -2687,7 +2583,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleStringPart
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1197:1: ruleStringPart returns [EObject current=null] : (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1150:1: ruleStringPart returns [EObject current=null] : (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString ) ;
     public final EObject ruleStringPart() throws RecognitionException {
         EObject current = null;
 
@@ -2699,10 +2595,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1202:6: ( (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1203:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1155:6: ( (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1156:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1203:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1156:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )
             int alt20=2;
             int LA20_0 = input.LA(1);
 
@@ -2714,18 +2610,18 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("1203:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )", 20, 0, input);
+                    new NoViableAltException("1156:1: (this_PropertyReference_0= rulePropertyReference | this_PlainString_1= rulePlainString )", 20, 0, input);
 
                 throw nvae;
             }
             switch (alt20) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1204:5: this_PropertyReference_0= rulePropertyReference
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1157:5: this_PropertyReference_0= rulePropertyReference
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getStringPartAccess().getPropertyReferenceParserRuleCall_0(), currentNode); 
                         
-                    pushFollow(FOLLOW_rulePropertyReference_in_ruleStringPart2154);
+                    pushFollow(FOLLOW_rulePropertyReference_in_ruleStringPart2064);
                     this_PropertyReference_0=rulePropertyReference();
                     _fsp--;
 
@@ -2737,12 +2633,12 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1214:5: this_PlainString_1= rulePlainString
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1167:5: this_PlainString_1= rulePlainString
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getStringPartAccess().getPlainStringParserRuleCall_1(), currentNode); 
                         
-                    pushFollow(FOLLOW_rulePlainString_in_ruleStringPart2181);
+                    pushFollow(FOLLOW_rulePlainString_in_ruleStringPart2091);
                     this_PlainString_1=rulePlainString();
                     _fsp--;
 
@@ -2776,7 +2672,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRulePropertyReference
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1230:1: entryRulePropertyReference returns [EObject current=null] : iv_rulePropertyReference= rulePropertyReference EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1183:1: entryRulePropertyReference returns [EObject current=null] : iv_rulePropertyReference= rulePropertyReference EOF ;
     public final EObject entryRulePropertyReference() throws RecognitionException {
         EObject current = null;
 
@@ -2784,16 +2680,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1231:2: (iv_rulePropertyReference= rulePropertyReference EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1232:2: iv_rulePropertyReference= rulePropertyReference EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1184:2: (iv_rulePropertyReference= rulePropertyReference EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1185:2: iv_rulePropertyReference= rulePropertyReference EOF
             {
              currentNode = createCompositeNode(grammarAccess.getPropertyReferenceRule(), currentNode); 
-            pushFollow(FOLLOW_rulePropertyReference_in_entryRulePropertyReference2216);
+            pushFollow(FOLLOW_rulePropertyReference_in_entryRulePropertyReference2126);
             iv_rulePropertyReference=rulePropertyReference();
             _fsp--;
 
              current =iv_rulePropertyReference; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyReference2226); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePropertyReference2136); 
 
             }
 
@@ -2811,28 +2707,28 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start rulePropertyReference
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1239:1: rulePropertyReference returns [EObject current=null] : ( '${' ( ( RULE_ID ) ) '}' ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1192:1: rulePropertyReference returns [EObject current=null] : ( '${' ( ( RULE_ID ) ) '}' ) ;
     public final EObject rulePropertyReference() throws RecognitionException {
         EObject current = null;
 
          @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1244:6: ( ( '${' ( ( RULE_ID ) ) '}' ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1245:1: ( '${' ( ( RULE_ID ) ) '}' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1197:6: ( ( '${' ( ( RULE_ID ) ) '}' ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1198:1: ( '${' ( ( RULE_ID ) ) '}' )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1245:1: ( '${' ( ( RULE_ID ) ) '}' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1245:3: '${' ( ( RULE_ID ) ) '}'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1198:1: ( '${' ( ( RULE_ID ) ) '}' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1198:3: '${' ( ( RULE_ID ) ) '}'
             {
-            match(input,22,FOLLOW_22_in_rulePropertyReference2261); 
+            match(input,22,FOLLOW_22_in_rulePropertyReference2171); 
 
                     createLeafNode(grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0(), null); 
                 
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1249:1: ( ( RULE_ID ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1250:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1202:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1203:1: ( RULE_ID )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1250:1: ( RULE_ID )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1251:3: RULE_ID
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1203:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1204:3: RULE_ID
             {
 
             			if (current==null) {
@@ -2840,7 +2736,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	            associateNodeWithAstElement(currentNode, current);
             	        }
                     
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReference2279); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rulePropertyReference2189); 
 
             		createLeafNode(grammarAccess.getPropertyReferenceAccess().getPropertyDeclaredPropertyCrossReference_1_0(), "property"); 
             	
@@ -2850,7 +2746,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
             }
 
-            match(input,16,FOLLOW_16_in_rulePropertyReference2289); 
+            match(input,16,FOLLOW_16_in_rulePropertyReference2199); 
 
                     createLeafNode(grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2(), null); 
                 
@@ -2877,7 +2773,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRulePlainString
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1275:1: entryRulePlainString returns [EObject current=null] : iv_rulePlainString= rulePlainString EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1228:1: entryRulePlainString returns [EObject current=null] : iv_rulePlainString= rulePlainString EOF ;
     public final EObject entryRulePlainString() throws RecognitionException {
         EObject current = null;
 
@@ -2885,16 +2781,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1276:2: (iv_rulePlainString= rulePlainString EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1277:2: iv_rulePlainString= rulePlainString EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1229:2: (iv_rulePlainString= rulePlainString EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1230:2: iv_rulePlainString= rulePlainString EOF
             {
              currentNode = createCompositeNode(grammarAccess.getPlainStringRule(), currentNode); 
-            pushFollow(FOLLOW_rulePlainString_in_entryRulePlainString2325);
+            pushFollow(FOLLOW_rulePlainString_in_entryRulePlainString2235);
             iv_rulePlainString=rulePlainString();
             _fsp--;
 
              current =iv_rulePlainString; 
-            match(input,EOF,FOLLOW_EOF_in_entryRulePlainString2335); 
+            match(input,EOF,FOLLOW_EOF_in_entryRulePlainString2245); 
 
             }
 
@@ -2912,7 +2808,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start rulePlainString
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1284:1: rulePlainString returns [EObject current=null] : ( (lv_value_0_0= ruleConstantValue ) ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1237:1: rulePlainString returns [EObject current=null] : ( (lv_value_0_0= ruleConstantValue ) ) ;
     public final EObject rulePlainString() throws RecognitionException {
         EObject current = null;
 
@@ -2922,19 +2818,19 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          @SuppressWarnings("unused") EObject temp=null; setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1289:6: ( ( (lv_value_0_0= ruleConstantValue ) ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1290:1: ( (lv_value_0_0= ruleConstantValue ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1242:6: ( ( (lv_value_0_0= ruleConstantValue ) ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1243:1: ( (lv_value_0_0= ruleConstantValue ) )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1290:1: ( (lv_value_0_0= ruleConstantValue ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1291:1: (lv_value_0_0= ruleConstantValue )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1243:1: ( (lv_value_0_0= ruleConstantValue ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1244:1: (lv_value_0_0= ruleConstantValue )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1291:1: (lv_value_0_0= ruleConstantValue )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1292:3: lv_value_0_0= ruleConstantValue
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1244:1: (lv_value_0_0= ruleConstantValue )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1245:3: lv_value_0_0= ruleConstantValue
             {
              
             	        currentNode=createCompositeNode(grammarAccess.getPlainStringAccess().getValueConstantValueParserRuleCall_0(), currentNode); 
             	    
-            pushFollow(FOLLOW_ruleConstantValue_in_rulePlainString2380);
+            pushFollow(FOLLOW_ruleConstantValue_in_rulePlainString2290);
             lv_value_0_0=ruleConstantValue();
             _fsp--;
 
@@ -2981,7 +2877,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleConstantValue
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1322:1: entryRuleConstantValue returns [String current=null] : iv_ruleConstantValue= ruleConstantValue EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1275:1: entryRuleConstantValue returns [String current=null] : iv_ruleConstantValue= ruleConstantValue EOF ;
     public final String entryRuleConstantValue() throws RecognitionException {
         String current = null;
 
@@ -2989,16 +2885,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1323:2: (iv_ruleConstantValue= ruleConstantValue EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1324:2: iv_ruleConstantValue= ruleConstantValue EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1276:2: (iv_ruleConstantValue= ruleConstantValue EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1277:2: iv_ruleConstantValue= ruleConstantValue EOF
             {
              currentNode = createCompositeNode(grammarAccess.getConstantValueRule(), currentNode); 
-            pushFollow(FOLLOW_ruleConstantValue_in_entryRuleConstantValue2416);
+            pushFollow(FOLLOW_ruleConstantValue_in_entryRuleConstantValue2326);
             iv_ruleConstantValue=ruleConstantValue();
             _fsp--;
 
              current =iv_ruleConstantValue.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConstantValue2427); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleConstantValue2337); 
 
             }
 
@@ -3016,7 +2912,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleConstantValue
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1331:1: ruleConstantValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1284:1: ruleConstantValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' ) ;
     public final AntlrDatatypeRuleToken ruleConstantValue() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3036,10 +2932,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1336:6: ( (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1337:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1289:6: ( (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1290:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1337:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1290:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )
             int alt21=20;
             switch ( input.LA(1) ) {
             case RULE_WS:
@@ -3107,7 +3003,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     break;
                 default:
                     NoViableAltException nvae =
-                        new NoViableAltException("1337:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )", 21, 10, input);
+                        new NoViableAltException("1290:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )", 21, 10, input);
 
                     throw nvae;
                 }
@@ -3156,17 +3052,17 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("1337:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )", 21, 0, input);
+                    new NoViableAltException("1290:1: (this_WS_0= RULE_WS | this_ANY_OTHER_1= RULE_ANY_OTHER | this_ML_COMMENT_2= RULE_ML_COMMENT | this_SL_COMMENT_3= RULE_SL_COMMENT | this_ID_4= RULE_ID | kw= ':' | kw= '{' | kw= '}' | kw= '@' | this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote | this_EscapedSingleQuote_10= ruleEscapedSingleQuote | this_EscapedBackslash_11= ruleEscapedBackslash | kw= 'true' | kw= 'false' | kw= '=' | kw= 'import' | kw= 'module' | kw= 'auto-inject' | kw= 'var' | kw= '.' )", 21, 0, input);
 
                 throw nvae;
             }
 
             switch (alt21) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1337:6: this_WS_0= RULE_WS
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1290:6: this_WS_0= RULE_WS
                     {
                     this_WS_0=(Token)input.LT(1);
-                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleConstantValue2467); 
+                    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleConstantValue2377); 
 
                     		current.merge(this_WS_0);
                         
@@ -3177,10 +3073,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1345:10: this_ANY_OTHER_1= RULE_ANY_OTHER
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1298:10: this_ANY_OTHER_1= RULE_ANY_OTHER
                     {
                     this_ANY_OTHER_1=(Token)input.LT(1);
-                    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleConstantValue2493); 
+                    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleConstantValue2403); 
 
                     		current.merge(this_ANY_OTHER_1);
                         
@@ -3191,10 +3087,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1353:10: this_ML_COMMENT_2= RULE_ML_COMMENT
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1306:10: this_ML_COMMENT_2= RULE_ML_COMMENT
                     {
                     this_ML_COMMENT_2=(Token)input.LT(1);
-                    match(input,RULE_ML_COMMENT,FOLLOW_RULE_ML_COMMENT_in_ruleConstantValue2519); 
+                    match(input,RULE_ML_COMMENT,FOLLOW_RULE_ML_COMMENT_in_ruleConstantValue2429); 
 
                     		current.merge(this_ML_COMMENT_2);
                         
@@ -3205,10 +3101,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1361:10: this_SL_COMMENT_3= RULE_SL_COMMENT
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1314:10: this_SL_COMMENT_3= RULE_SL_COMMENT
                     {
                     this_SL_COMMENT_3=(Token)input.LT(1);
-                    match(input,RULE_SL_COMMENT,FOLLOW_RULE_SL_COMMENT_in_ruleConstantValue2545); 
+                    match(input,RULE_SL_COMMENT,FOLLOW_RULE_SL_COMMENT_in_ruleConstantValue2455); 
 
                     		current.merge(this_SL_COMMENT_3);
                         
@@ -3219,10 +3115,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1369:10: this_ID_4= RULE_ID
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1322:10: this_ID_4= RULE_ID
                     {
                     this_ID_4=(Token)input.LT(1);
-                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstantValue2571); 
+                    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstantValue2481); 
 
                     		current.merge(this_ID_4);
                         
@@ -3233,10 +3129,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1378:2: kw= ':'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1331:2: kw= ':'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,13,FOLLOW_13_in_ruleConstantValue2595); 
+                    match(input,13,FOLLOW_13_in_ruleConstantValue2505); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getColonKeyword_5(), null); 
@@ -3245,10 +3141,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1385:2: kw= '{'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1338:2: kw= '{'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,15,FOLLOW_15_in_ruleConstantValue2614); 
+                    match(input,15,FOLLOW_15_in_ruleConstantValue2524); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getLeftCurlyBracketKeyword_6(), null); 
@@ -3257,10 +3153,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1392:2: kw= '}'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1345:2: kw= '}'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,16,FOLLOW_16_in_ruleConstantValue2633); 
+                    match(input,16,FOLLOW_16_in_ruleConstantValue2543); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getRightCurlyBracketKeyword_7(), null); 
@@ -3269,10 +3165,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1399:2: kw= '@'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1352:2: kw= '@'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,12,FOLLOW_12_in_ruleConstantValue2652); 
+                    match(input,12,FOLLOW_12_in_ruleConstantValue2562); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getCommercialAtKeyword_8(), null); 
@@ -3281,12 +3177,12 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1406:5: this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1359:5: this_EscapedDoubleQuote_9= ruleEscapedDoubleQuote
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedDoubleQuoteParserRuleCall_9(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleEscapedDoubleQuote_in_ruleConstantValue2680);
+                    pushFollow(FOLLOW_ruleEscapedDoubleQuote_in_ruleConstantValue2590);
                     this_EscapedDoubleQuote_9=ruleEscapedDoubleQuote();
                     _fsp--;
 
@@ -3300,12 +3196,12 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 11 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1418:5: this_EscapedSingleQuote_10= ruleEscapedSingleQuote
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1371:5: this_EscapedSingleQuote_10= ruleEscapedSingleQuote
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedSingleQuoteParserRuleCall_10(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleEscapedSingleQuote_in_ruleConstantValue2713);
+                    pushFollow(FOLLOW_ruleEscapedSingleQuote_in_ruleConstantValue2623);
                     this_EscapedSingleQuote_10=ruleEscapedSingleQuote();
                     _fsp--;
 
@@ -3319,12 +3215,12 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 12 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1430:5: this_EscapedBackslash_11= ruleEscapedBackslash
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1383:5: this_EscapedBackslash_11= ruleEscapedBackslash
                     {
                      
                             currentNode=createCompositeNode(grammarAccess.getConstantValueAccess().getEscapedBackslashParserRuleCall_11(), currentNode); 
                         
-                    pushFollow(FOLLOW_ruleEscapedBackslash_in_ruleConstantValue2746);
+                    pushFollow(FOLLOW_ruleEscapedBackslash_in_ruleConstantValue2656);
                     this_EscapedBackslash_11=ruleEscapedBackslash();
                     _fsp--;
 
@@ -3338,10 +3234,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 13 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1442:2: kw= 'true'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1395:2: kw= 'true'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,19,FOLLOW_19_in_ruleConstantValue2770); 
+                    match(input,19,FOLLOW_19_in_ruleConstantValue2680); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getTrueKeyword_12(), null); 
@@ -3350,10 +3246,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 14 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1449:2: kw= 'false'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1402:2: kw= 'false'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,20,FOLLOW_20_in_ruleConstantValue2789); 
+                    match(input,20,FOLLOW_20_in_ruleConstantValue2699); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getFalseKeyword_13(), null); 
@@ -3362,10 +3258,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 15 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1456:2: kw= '='
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1409:2: kw= '='
                     {
                     kw=(Token)input.LT(1);
-                    match(input,11,FOLLOW_11_in_ruleConstantValue2808); 
+                    match(input,11,FOLLOW_11_in_ruleConstantValue2718); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getEqualsSignKeyword_14(), null); 
@@ -3374,10 +3270,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 16 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1463:2: kw= 'import'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1416:2: kw= 'import'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,17,FOLLOW_17_in_ruleConstantValue2827); 
+                    match(input,17,FOLLOW_17_in_ruleConstantValue2737); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getImportKeyword_15(), null); 
@@ -3386,10 +3282,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 17 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1470:2: kw= 'module'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1423:2: kw= 'module'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,9,FOLLOW_9_in_ruleConstantValue2846); 
+                    match(input,9,FOLLOW_9_in_ruleConstantValue2756); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getModuleKeyword_16(), null); 
@@ -3398,10 +3294,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 18 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1477:2: kw= 'auto-inject'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1430:2: kw= 'auto-inject'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,14,FOLLOW_14_in_ruleConstantValue2865); 
+                    match(input,14,FOLLOW_14_in_ruleConstantValue2775); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getAutoInjectKeyword_17(), null); 
@@ -3410,10 +3306,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 19 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1484:2: kw= 'var'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1437:2: kw= 'var'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,10,FOLLOW_10_in_ruleConstantValue2884); 
+                    match(input,10,FOLLOW_10_in_ruleConstantValue2794); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getVarKeyword_18(), null); 
@@ -3422,10 +3318,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 20 :
-                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1491:2: kw= '.'
+                    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1444:2: kw= '.'
                     {
                     kw=(Token)input.LT(1);
-                    match(input,21,FOLLOW_21_in_ruleConstantValue2903); 
+                    match(input,21,FOLLOW_21_in_ruleConstantValue2813); 
 
                             current.merge(kw);
                             createLeafNode(grammarAccess.getConstantValueAccess().getFullStopKeyword_19(), null); 
@@ -3456,7 +3352,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleSingleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1504:1: entryRuleSingleQuote returns [String current=null] : iv_ruleSingleQuote= ruleSingleQuote EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1457:1: entryRuleSingleQuote returns [String current=null] : iv_ruleSingleQuote= ruleSingleQuote EOF ;
     public final String entryRuleSingleQuote() throws RecognitionException {
         String current = null;
 
@@ -3464,16 +3360,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1505:2: (iv_ruleSingleQuote= ruleSingleQuote EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1506:2: iv_ruleSingleQuote= ruleSingleQuote EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1458:2: (iv_ruleSingleQuote= ruleSingleQuote EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1459:2: iv_ruleSingleQuote= ruleSingleQuote EOF
             {
              currentNode = createCompositeNode(grammarAccess.getSingleQuoteRule(), currentNode); 
-            pushFollow(FOLLOW_ruleSingleQuote_in_entryRuleSingleQuote2944);
+            pushFollow(FOLLOW_ruleSingleQuote_in_entryRuleSingleQuote2854);
             iv_ruleSingleQuote=ruleSingleQuote();
             _fsp--;
 
              current =iv_ruleSingleQuote.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleSingleQuote2955); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleSingleQuote2865); 
 
             }
 
@@ -3491,7 +3387,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleSingleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1513:1: ruleSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\'' ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1466:1: ruleSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\'' ;
     public final AntlrDatatypeRuleToken ruleSingleQuote() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3500,11 +3396,11 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1518:6: (kw= '\\'' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1520:2: kw= '\\''
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1471:6: (kw= '\\'' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1473:2: kw= '\\''
             {
             kw=(Token)input.LT(1);
-            match(input,23,FOLLOW_23_in_ruleSingleQuote2992); 
+            match(input,23,FOLLOW_23_in_ruleSingleQuote2902); 
 
                     current.merge(kw);
                     createLeafNode(grammarAccess.getSingleQuoteAccess().getApostropheKeyword(), null); 
@@ -3529,7 +3425,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleEscapedSingleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1533:1: entryRuleEscapedSingleQuote returns [String current=null] : iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1486:1: entryRuleEscapedSingleQuote returns [String current=null] : iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF ;
     public final String entryRuleEscapedSingleQuote() throws RecognitionException {
         String current = null;
 
@@ -3540,16 +3436,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
         	
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1537:2: (iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1538:2: iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1490:2: (iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1491:2: iv_ruleEscapedSingleQuote= ruleEscapedSingleQuote EOF
             {
              currentNode = createCompositeNode(grammarAccess.getEscapedSingleQuoteRule(), currentNode); 
-            pushFollow(FOLLOW_ruleEscapedSingleQuote_in_entryRuleEscapedSingleQuote3038);
+            pushFollow(FOLLOW_ruleEscapedSingleQuote_in_entryRuleEscapedSingleQuote2948);
             iv_ruleEscapedSingleQuote=ruleEscapedSingleQuote();
             _fsp--;
 
              current =iv_ruleEscapedSingleQuote.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedSingleQuote3049); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedSingleQuote2959); 
 
             }
 
@@ -3570,7 +3466,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleEscapedSingleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1548:1: ruleEscapedSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1501:1: ruleEscapedSingleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote ) ;
     public final AntlrDatatypeRuleToken ruleEscapedSingleQuote() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3583,16 +3479,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1554:6: ( (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1555:1: (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1507:6: ( (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1508:1: (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1555:1: (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1556:5: this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1508:1: (this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1509:5: this_Backslash_0= ruleBackslash this_SingleQuote_1= ruleSingleQuote
             {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedSingleQuoteAccess().getBackslashParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedSingleQuote3100);
+            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedSingleQuote3010);
             this_Backslash_0=ruleBackslash();
             _fsp--;
 
@@ -3605,7 +3501,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedSingleQuoteAccess().getSingleQuoteParserRuleCall_1(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleSingleQuote_in_ruleEscapedSingleQuote3127);
+            pushFollow(FOLLOW_ruleSingleQuote_in_ruleEscapedSingleQuote3037);
             this_SingleQuote_1=ruleSingleQuote();
             _fsp--;
 
@@ -3641,7 +3537,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleDoubleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1588:1: entryRuleDoubleQuote returns [String current=null] : iv_ruleDoubleQuote= ruleDoubleQuote EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1541:1: entryRuleDoubleQuote returns [String current=null] : iv_ruleDoubleQuote= ruleDoubleQuote EOF ;
     public final String entryRuleDoubleQuote() throws RecognitionException {
         String current = null;
 
@@ -3649,16 +3545,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1589:2: (iv_ruleDoubleQuote= ruleDoubleQuote EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1590:2: iv_ruleDoubleQuote= ruleDoubleQuote EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1542:2: (iv_ruleDoubleQuote= ruleDoubleQuote EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1543:2: iv_ruleDoubleQuote= ruleDoubleQuote EOF
             {
              currentNode = createCompositeNode(grammarAccess.getDoubleQuoteRule(), currentNode); 
-            pushFollow(FOLLOW_ruleDoubleQuote_in_entryRuleDoubleQuote3177);
+            pushFollow(FOLLOW_ruleDoubleQuote_in_entryRuleDoubleQuote3087);
             iv_ruleDoubleQuote=ruleDoubleQuote();
             _fsp--;
 
              current =iv_ruleDoubleQuote.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleDoubleQuote3188); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleDoubleQuote3098); 
 
             }
 
@@ -3676,7 +3572,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleDoubleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1597:1: ruleDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\"' ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1550:1: ruleDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\"' ;
     public final AntlrDatatypeRuleToken ruleDoubleQuote() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3685,11 +3581,11 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1602:6: (kw= '\"' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1604:2: kw= '\"'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1555:6: (kw= '\"' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1557:2: kw= '\"'
             {
             kw=(Token)input.LT(1);
-            match(input,24,FOLLOW_24_in_ruleDoubleQuote3225); 
+            match(input,24,FOLLOW_24_in_ruleDoubleQuote3135); 
 
                     current.merge(kw);
                     createLeafNode(grammarAccess.getDoubleQuoteAccess().getQuotationMarkKeyword(), null); 
@@ -3714,7 +3610,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleEscapedDoubleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1617:1: entryRuleEscapedDoubleQuote returns [String current=null] : iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1570:1: entryRuleEscapedDoubleQuote returns [String current=null] : iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF ;
     public final String entryRuleEscapedDoubleQuote() throws RecognitionException {
         String current = null;
 
@@ -3725,16 +3621,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
         	
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1621:2: (iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1622:2: iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1574:2: (iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1575:2: iv_ruleEscapedDoubleQuote= ruleEscapedDoubleQuote EOF
             {
              currentNode = createCompositeNode(grammarAccess.getEscapedDoubleQuoteRule(), currentNode); 
-            pushFollow(FOLLOW_ruleEscapedDoubleQuote_in_entryRuleEscapedDoubleQuote3271);
+            pushFollow(FOLLOW_ruleEscapedDoubleQuote_in_entryRuleEscapedDoubleQuote3181);
             iv_ruleEscapedDoubleQuote=ruleEscapedDoubleQuote();
             _fsp--;
 
              current =iv_ruleEscapedDoubleQuote.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedDoubleQuote3282); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedDoubleQuote3192); 
 
             }
 
@@ -3755,7 +3651,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleEscapedDoubleQuote
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1632:1: ruleEscapedDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1585:1: ruleEscapedDoubleQuote returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote ) ;
     public final AntlrDatatypeRuleToken ruleEscapedDoubleQuote() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3768,16 +3664,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1638:6: ( (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1639:1: (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1591:6: ( (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1592:1: (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1639:1: (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1640:5: this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1592:1: (this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1593:5: this_Backslash_0= ruleBackslash this_DoubleQuote_1= ruleDoubleQuote
             {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedDoubleQuoteAccess().getBackslashParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedDoubleQuote3333);
+            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedDoubleQuote3243);
             this_Backslash_0=ruleBackslash();
             _fsp--;
 
@@ -3790,7 +3686,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedDoubleQuoteAccess().getDoubleQuoteParserRuleCall_1(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleDoubleQuote_in_ruleEscapedDoubleQuote3360);
+            pushFollow(FOLLOW_ruleDoubleQuote_in_ruleEscapedDoubleQuote3270);
             this_DoubleQuote_1=ruleDoubleQuote();
             _fsp--;
 
@@ -3826,7 +3722,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleBackslash
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1672:1: entryRuleBackslash returns [String current=null] : iv_ruleBackslash= ruleBackslash EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1625:1: entryRuleBackslash returns [String current=null] : iv_ruleBackslash= ruleBackslash EOF ;
     public final String entryRuleBackslash() throws RecognitionException {
         String current = null;
 
@@ -3834,16 +3730,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1673:2: (iv_ruleBackslash= ruleBackslash EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1674:2: iv_ruleBackslash= ruleBackslash EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1626:2: (iv_ruleBackslash= ruleBackslash EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1627:2: iv_ruleBackslash= ruleBackslash EOF
             {
              currentNode = createCompositeNode(grammarAccess.getBackslashRule(), currentNode); 
-            pushFollow(FOLLOW_ruleBackslash_in_entryRuleBackslash3410);
+            pushFollow(FOLLOW_ruleBackslash_in_entryRuleBackslash3320);
             iv_ruleBackslash=ruleBackslash();
             _fsp--;
 
              current =iv_ruleBackslash.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleBackslash3421); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleBackslash3331); 
 
             }
 
@@ -3861,7 +3757,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleBackslash
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1681:1: ruleBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\\\' ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1634:1: ruleBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : kw= '\\\\' ;
     public final AntlrDatatypeRuleToken ruleBackslash() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3870,11 +3766,11 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
          setCurrentLookahead(); resetLookahead(); 
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1686:6: (kw= '\\\\' )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1688:2: kw= '\\\\'
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1639:6: (kw= '\\\\' )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1641:2: kw= '\\\\'
             {
             kw=(Token)input.LT(1);
-            match(input,25,FOLLOW_25_in_ruleBackslash3458); 
+            match(input,25,FOLLOW_25_in_ruleBackslash3368); 
 
                     current.merge(kw);
                     createLeafNode(grammarAccess.getBackslashAccess().getReverseSolidusKeyword(), null); 
@@ -3899,7 +3795,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start entryRuleEscapedBackslash
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1701:1: entryRuleEscapedBackslash returns [String current=null] : iv_ruleEscapedBackslash= ruleEscapedBackslash EOF ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1654:1: entryRuleEscapedBackslash returns [String current=null] : iv_ruleEscapedBackslash= ruleEscapedBackslash EOF ;
     public final String entryRuleEscapedBackslash() throws RecognitionException {
         String current = null;
 
@@ -3910,16 +3806,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
         	
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1705:2: (iv_ruleEscapedBackslash= ruleEscapedBackslash EOF )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1706:2: iv_ruleEscapedBackslash= ruleEscapedBackslash EOF
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1658:2: (iv_ruleEscapedBackslash= ruleEscapedBackslash EOF )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1659:2: iv_ruleEscapedBackslash= ruleEscapedBackslash EOF
             {
              currentNode = createCompositeNode(grammarAccess.getEscapedBackslashRule(), currentNode); 
-            pushFollow(FOLLOW_ruleEscapedBackslash_in_entryRuleEscapedBackslash3504);
+            pushFollow(FOLLOW_ruleEscapedBackslash_in_entryRuleEscapedBackslash3414);
             iv_ruleEscapedBackslash=ruleEscapedBackslash();
             _fsp--;
 
              current =iv_ruleEscapedBackslash.getText(); 
-            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedBackslash3515); 
+            match(input,EOF,FOLLOW_EOF_in_entryRuleEscapedBackslash3425); 
 
             }
 
@@ -3940,7 +3836,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start ruleEscapedBackslash
-    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1716:1: ruleEscapedBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash ) ;
+    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1669:1: ruleEscapedBackslash returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash ) ;
     public final AntlrDatatypeRuleToken ruleEscapedBackslash() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -3953,16 +3849,16 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
             
         try {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1722:6: ( (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash ) )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1723:1: (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1675:6: ( (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash ) )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1676:1: (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash )
             {
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1723:1: (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash )
-            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1724:5: this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1676:1: (this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash )
+            // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1677:5: this_Backslash_0= ruleBackslash this_Backslash_1= ruleBackslash
             {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedBackslashAccess().getBackslashParserRuleCall_0(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedBackslash3566);
+            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedBackslash3476);
             this_Backslash_0=ruleBackslash();
             _fsp--;
 
@@ -3975,7 +3871,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
              
                     currentNode=createCompositeNode(grammarAccess.getEscapedBackslashAccess().getBackslashParserRuleCall_1(), currentNode); 
                 
-            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedBackslash3593);
+            pushFollow(FOLLOW_ruleBackslash_in_ruleEscapedBackslash3503);
             this_Backslash_1=ruleBackslash();
             _fsp--;
 
@@ -4125,83 +4021,80 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleStringLiteral_in_ruleValue1346 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleBooleanLiteral_in_ruleValue1373 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleReference_in_ruleValue1400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1435 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral1445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCompoundString_in_ruleStringLiteral1490 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1525 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteral1535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleBooleanLiteral1588 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleBooleanLiteral1617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleReference_in_entryRuleReference1654 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleReference1664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleReference1706 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_entryRuleFQN1742 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleFQN1753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFQN1793 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_ruleFQN1812 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleFQN1827 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_ruleCompoundString_in_entryRuleCompoundString1880 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleCompoundString1890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleCompoundString1941 = new BitSet(new long[]{0x0000000002FBFFF0L});
-    public static final BitSet FOLLOW_ruleStringPart_in_ruleCompoundString1962 = new BitSet(new long[]{0x0000000002FBFFF0L});
-    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleCompoundString1984 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleCompoundString2013 = new BitSet(new long[]{0x00000000037BFFF0L});
-    public static final BitSet FOLLOW_ruleStringPart_in_ruleCompoundString2034 = new BitSet(new long[]{0x00000000037BFFF0L});
-    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleCompoundString2056 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleStringPart_in_entryRuleStringPart2097 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleStringPart2107 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyReference_in_ruleStringPart2154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_ruleStringPart2181 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyReference_in_entryRulePropertyReference2216 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePropertyReference2226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rulePropertyReference2261 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReference2279 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_16_in_rulePropertyReference2289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_entryRulePlainString2325 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRulePlainString2335 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantValue_in_rulePlainString2380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantValue_in_entryRuleConstantValue2416 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConstantValue2427 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_WS_in_ruleConstantValue2467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleConstantValue2493 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ML_COMMENT_in_ruleConstantValue2519 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SL_COMMENT_in_ruleConstantValue2545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_ruleConstantValue2571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_ruleConstantValue2595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_ruleConstantValue2614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_ruleConstantValue2633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_ruleConstantValue2652 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedDoubleQuote_in_ruleConstantValue2680 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedSingleQuote_in_ruleConstantValue2713 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedBackslash_in_ruleConstantValue2746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_ruleConstantValue2770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_ruleConstantValue2789 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_ruleConstantValue2808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_ruleConstantValue2827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_9_in_ruleConstantValue2846 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_ruleConstantValue2865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_ruleConstantValue2884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_ruleConstantValue2903 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleSingleQuote_in_entryRuleSingleQuote2944 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleSingleQuote2955 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_ruleSingleQuote2992 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedSingleQuote_in_entryRuleEscapedSingleQuote3038 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedSingleQuote3049 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedSingleQuote3100 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleEscapedSingleQuote3127 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDoubleQuote_in_entryRuleDoubleQuote3177 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleDoubleQuote3188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_ruleDoubleQuote3225 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedDoubleQuote_in_entryRuleEscapedDoubleQuote3271 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedDoubleQuote3282 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedDoubleQuote3333 = new BitSet(new long[]{0x0000000001000000L});
-    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleEscapedDoubleQuote3360 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBackslash_in_entryRuleBackslash3410 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleBackslash3421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_ruleBackslash3458 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleEscapedBackslash_in_entryRuleEscapedBackslash3504 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedBackslash3515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedBackslash3566 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedBackslash3593 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBooleanLiteral_in_entryRuleBooleanLiteral1435 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBooleanLiteral1445 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleBooleanLiteral1498 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleBooleanLiteral1527 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleReference_in_entryRuleReference1564 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleReference1574 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleReference1616 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_entryRuleFQN1652 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleFQN1663 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFQN1703 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_ruleFQN1722 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleFQN1737 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_ruleStringLiteral_in_entryRuleStringLiteral1790 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringLiteral1800 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleStringLiteral1851 = new BitSet(new long[]{0x0000000002FBFFF0L});
+    public static final BitSet FOLLOW_ruleStringPart_in_ruleStringLiteral1872 = new BitSet(new long[]{0x0000000002FBFFF0L});
+    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleStringLiteral1894 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleStringLiteral1923 = new BitSet(new long[]{0x00000000037BFFF0L});
+    public static final BitSet FOLLOW_ruleStringPart_in_ruleStringLiteral1944 = new BitSet(new long[]{0x00000000037BFFF0L});
+    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleStringLiteral1966 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleStringPart_in_entryRuleStringPart2007 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleStringPart2017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyReference_in_ruleStringPart2064 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_ruleStringPart2091 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyReference_in_entryRulePropertyReference2126 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePropertyReference2136 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rulePropertyReference2171 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_RULE_ID_in_rulePropertyReference2189 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_16_in_rulePropertyReference2199 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_entryRulePlainString2235 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRulePlainString2245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantValue_in_rulePlainString2290 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantValue_in_entryRuleConstantValue2326 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleConstantValue2337 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_WS_in_ruleConstantValue2377 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ANY_OTHER_in_ruleConstantValue2403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ML_COMMENT_in_ruleConstantValue2429 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SL_COMMENT_in_ruleConstantValue2455 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_ruleConstantValue2481 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_ruleConstantValue2505 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_ruleConstantValue2524 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_ruleConstantValue2543 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_ruleConstantValue2562 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedDoubleQuote_in_ruleConstantValue2590 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedSingleQuote_in_ruleConstantValue2623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedBackslash_in_ruleConstantValue2656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_ruleConstantValue2680 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_ruleConstantValue2699 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_ruleConstantValue2718 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_ruleConstantValue2737 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_9_in_ruleConstantValue2756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_14_in_ruleConstantValue2775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_ruleConstantValue2794 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_ruleConstantValue2813 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleSingleQuote_in_entryRuleSingleQuote2854 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleSingleQuote2865 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_ruleSingleQuote2902 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedSingleQuote_in_entryRuleEscapedSingleQuote2948 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedSingleQuote2959 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedSingleQuote3010 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_ruleSingleQuote_in_ruleEscapedSingleQuote3037 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDoubleQuote_in_entryRuleDoubleQuote3087 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleDoubleQuote3098 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_ruleDoubleQuote3135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedDoubleQuote_in_entryRuleEscapedDoubleQuote3181 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedDoubleQuote3192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedDoubleQuote3243 = new BitSet(new long[]{0x0000000001000000L});
+    public static final BitSet FOLLOW_ruleDoubleQuote_in_ruleEscapedDoubleQuote3270 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBackslash_in_entryRuleBackslash3320 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleBackslash3331 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_ruleBackslash3368 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleEscapedBackslash_in_entryRuleEscapedBackslash3414 = new BitSet(new long[]{0x0000000000000000L});
+    public static final BitSet FOLLOW_EOF_in_entryRuleEscapedBackslash3425 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedBackslash3476 = new BitSet(new long[]{0x0000000002000000L});
+    public static final BitSet FOLLOW_ruleBackslash_in_ruleEscapedBackslash3503 = new BitSet(new long[]{0x0000000000000002L});
 
 }

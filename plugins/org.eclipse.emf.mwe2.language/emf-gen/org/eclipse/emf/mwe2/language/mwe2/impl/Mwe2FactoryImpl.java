@@ -73,10 +73,9 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
       case Mwe2Package.COMPONENT: return createComponent();
       case Mwe2Package.IMPORT: return createImport();
       case Mwe2Package.ASSIGNMENT: return createAssignment();
-      case Mwe2Package.STRING_LITERAL: return createStringLiteral();
       case Mwe2Package.BOOLEAN_LITERAL: return createBooleanLiteral();
       case Mwe2Package.REFERENCE: return createReference();
-      case Mwe2Package.COMPOUND_STRING: return createCompoundString();
+      case Mwe2Package.STRING_LITERAL: return createStringLiteral();
       case Mwe2Package.STRING_PART: return createStringPart();
       case Mwe2Package.PROPERTY_REFERENCE: return createPropertyReference();
       case Mwe2Package.PLAIN_STRING: return createPlainString();
@@ -103,7 +102,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    */
   public Referrable createReferrable()
   {
-    ReferrableImplCustom referrable = new ReferrableImplCustom();
+    ReferrableImpl referrable = new ReferrableImpl();
     return referrable;
   }
 
@@ -156,17 +155,6 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public StringLiteral createStringLiteral()
-  {
-    StringLiteralImpl stringLiteral = new StringLiteralImpl();
-    return stringLiteral;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public BooleanLiteral createBooleanLiteral()
   {
     BooleanLiteralImpl booleanLiteral = new BooleanLiteralImpl();
@@ -189,10 +177,10 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public CompoundString createCompoundString()
+  public StringLiteral createStringLiteral()
   {
-    CompoundStringImpl compoundString = new CompoundStringImpl();
-    return compoundString;
+    StringLiteralImpl stringLiteral = new StringLiteralImpl();
+    return stringLiteral;
   }
 
   /**

@@ -18,18 +18,20 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.xtext.util,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
- org.antlr.runtime
+ org.antlr.runtime,
+ org.eclipse.emf.mwe2.runtime;bundle-version="0.8.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.language,
+ org.eclipse.emf.mwe2.language.factory,
  org.eclipse.emf.mwe2.language.formatting,
- org.eclipse.emf.mwe2.language.parser.antlr,
- org.eclipse.emf.mwe2.language.parser.antlr.internal,
- org.eclipse.emf.mwe2.language.parseTreeConstruction,
- org.eclipse.emf.mwe2.language.scoping,
- org.eclipse.emf.mwe2.language.services,
- org.eclipse.emf.mwe2.language.validation,
  org.eclipse.emf.mwe2.language.mwe2,
  org.eclipse.emf.mwe2.language.mwe2.impl,
- org.eclipse.emf.mwe2.language.mwe2.util
+ org.eclipse.emf.mwe2.language.mwe2.util,
+ org.eclipse.emf.mwe2.language.parseTreeConstruction,
+ org.eclipse.emf.mwe2.language.parser.antlr,
+ org.eclipse.emf.mwe2.language.parser.antlr.internal,
+ org.eclipse.emf.mwe2.language.scoping,
+ org.eclipse.emf.mwe2.language.services,
+ org.eclipse.emf.mwe2.language.validation
 

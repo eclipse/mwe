@@ -152,14 +152,6 @@ public class Mwe2Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Mwe2Package.STRING_LITERAL:
-      {
-        StringLiteral stringLiteral = (StringLiteral)theEObject;
-        T result = caseStringLiteral(stringLiteral);
-        if (result == null) result = caseValue(stringLiteral);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case Mwe2Package.BOOLEAN_LITERAL:
       {
         BooleanLiteral booleanLiteral = (BooleanLiteral)theEObject;
@@ -176,10 +168,11 @@ public class Mwe2Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case Mwe2Package.COMPOUND_STRING:
+      case Mwe2Package.STRING_LITERAL:
       {
-        CompoundString compoundString = (CompoundString)theEObject;
-        T result = caseCompoundString(compoundString);
+        StringLiteral stringLiteral = (StringLiteral)theEObject;
+        T result = caseStringLiteral(stringLiteral);
+        if (result == null) result = caseValue(stringLiteral);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -323,22 +316,6 @@ public class Mwe2Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>String Literal</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Literal</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseStringLiteral(StringLiteral object)
-  {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Boolean Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -371,17 +348,17 @@ public class Mwe2Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Compound String</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String Literal</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Compound String</em>'.
+   * @return the result of interpreting the object as an instance of '<em>String Literal</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseCompoundString(CompoundString object)
+  public T caseStringLiteral(StringLiteral object)
   {
     return null;
   }
