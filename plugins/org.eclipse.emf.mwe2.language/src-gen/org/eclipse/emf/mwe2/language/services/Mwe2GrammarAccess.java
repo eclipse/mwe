@@ -504,28 +504,43 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
 		private final Assignment cBeginAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
 		private final RuleCall cBeginSingleQuoteParserRuleCall_0_0_0 = (RuleCall)cBeginAssignment_0_0.eContents().get(0);
-		private final Assignment cPartsAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cPartsStringPartParserRuleCall_0_1_0 = (RuleCall)cPartsAssignment_0_1.eContents().get(0);
+		private final Alternatives cAlternatives_0_1 = (Alternatives)cGroup_0.eContents().get(1);
+		private final Assignment cPartsAssignment_0_1_0 = (Assignment)cAlternatives_0_1.eContents().get(0);
+		private final RuleCall cPartsPlainStringParserRuleCall_0_1_0_0 = (RuleCall)cPartsAssignment_0_1_0.eContents().get(0);
+		private final Group cGroup_0_1_1 = (Group)cAlternatives_0_1.eContents().get(1);
+		private final Assignment cPartsAssignment_0_1_1_0 = (Assignment)cGroup_0_1_1.eContents().get(0);
+		private final RuleCall cPartsPropertyReferenceParserRuleCall_0_1_1_0_0 = (RuleCall)cPartsAssignment_0_1_1_0.eContents().get(0);
+		private final Assignment cPartsAssignment_0_1_1_1 = (Assignment)cGroup_0_1_1.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_0_1_1_1_0 = (RuleCall)cPartsAssignment_0_1_1_1.eContents().get(0);
 		private final Assignment cEndAssignment_0_2 = (Assignment)cGroup_0.eContents().get(2);
 		private final RuleCall cEndSingleQuoteParserRuleCall_0_2_0 = (RuleCall)cEndAssignment_0_2.eContents().get(0);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Assignment cBeginAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cBeginDoubleQuoteParserRuleCall_1_0_0 = (RuleCall)cBeginAssignment_1_0.eContents().get(0);
-		private final Assignment cPartsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cPartsStringPartParserRuleCall_1_1_0 = (RuleCall)cPartsAssignment_1_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Assignment cPartsAssignment_1_1_0 = (Assignment)cAlternatives_1_1.eContents().get(0);
+		private final RuleCall cPartsPlainStringParserRuleCall_1_1_0_0 = (RuleCall)cPartsAssignment_1_1_0.eContents().get(0);
+		private final Group cGroup_1_1_1 = (Group)cAlternatives_1_1.eContents().get(1);
+		private final Assignment cPartsAssignment_1_1_1_0 = (Assignment)cGroup_1_1_1.eContents().get(0);
+		private final RuleCall cPartsPropertyReferenceParserRuleCall_1_1_1_0_0 = (RuleCall)cPartsAssignment_1_1_1_0.eContents().get(0);
+		private final Assignment cPartsAssignment_1_1_1_1 = (Assignment)cGroup_1_1_1.eContents().get(1);
+		private final RuleCall cPartsPlainStringParserRuleCall_1_1_1_1_0 = (RuleCall)cPartsAssignment_1_1_1_1.eContents().get(0);
 		private final Assignment cEndAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cEndDoubleQuoteParserRuleCall_1_2_0 = (RuleCall)cEndAssignment_1_2.eContents().get(0);
 		
 		//StringLiteral hidden ( ):
-		//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
-		//  StringPart* end=DoubleQuote;
+		//  begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+		//  ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
+		//  PropertyReference parts+=PlainString?)+)? end=DoubleQuote;
 		public ParserRule getRule() { return rule; }
 
-		//begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
-		//StringPart* end=DoubleQuote
+		//begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+		//?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
+		//PropertyReference parts+=PlainString?)+)? end=DoubleQuote
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//begin=SingleQuote parts+=StringPart* end=SingleQuote
+		//begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+		//?)+)? end=SingleQuote
 		public Group getGroup_0() { return cGroup_0; }
 
 		//begin=SingleQuote
@@ -534,11 +549,29 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//SingleQuote
 		public RuleCall getBeginSingleQuoteParserRuleCall_0_0_0() { return cBeginSingleQuoteParserRuleCall_0_0_0; }
 
-		//parts+=StringPart*
-		public Assignment getPartsAssignment_0_1() { return cPartsAssignment_0_1; }
+		//(parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
+		public Alternatives getAlternatives_0_1() { return cAlternatives_0_1; }
 
-		//StringPart
-		public RuleCall getPartsStringPartParserRuleCall_0_1_0() { return cPartsStringPartParserRuleCall_0_1_0; }
+		//parts+=PlainString
+		public Assignment getPartsAssignment_0_1_0() { return cPartsAssignment_0_1_0; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_0_1_0_0() { return cPartsPlainStringParserRuleCall_0_1_0_0; }
+
+		//(parts+=PropertyReference parts+=PlainString?)+
+		public Group getGroup_0_1_1() { return cGroup_0_1_1; }
+
+		//parts+=PropertyReference
+		public Assignment getPartsAssignment_0_1_1_0() { return cPartsAssignment_0_1_1_0; }
+
+		//PropertyReference
+		public RuleCall getPartsPropertyReferenceParserRuleCall_0_1_1_0_0() { return cPartsPropertyReferenceParserRuleCall_0_1_1_0_0; }
+
+		//parts+=PlainString?
+		public Assignment getPartsAssignment_0_1_1_1() { return cPartsAssignment_0_1_1_1; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_0_1_1_1_0() { return cPartsPlainStringParserRuleCall_0_1_1_1_0; }
 
 		//end=SingleQuote
 		public Assignment getEndAssignment_0_2() { return cEndAssignment_0_2; }
@@ -546,7 +579,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//SingleQuote
 		public RuleCall getEndSingleQuoteParserRuleCall_0_2_0() { return cEndSingleQuoteParserRuleCall_0_2_0; }
 
-		//begin=DoubleQuote parts+=StringPart* end=DoubleQuote
+		//begin=DoubleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+		//?)+)? end=DoubleQuote
 		public Group getGroup_1() { return cGroup_1; }
 
 		//begin=DoubleQuote
@@ -555,11 +589,29 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//DoubleQuote
 		public RuleCall getBeginDoubleQuoteParserRuleCall_1_0_0() { return cBeginDoubleQuoteParserRuleCall_1_0_0; }
 
-		//parts+=StringPart*
-		public Assignment getPartsAssignment_1_1() { return cPartsAssignment_1_1; }
+		//(parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 
-		//StringPart
-		public RuleCall getPartsStringPartParserRuleCall_1_1_0() { return cPartsStringPartParserRuleCall_1_1_0; }
+		//parts+=PlainString
+		public Assignment getPartsAssignment_1_1_0() { return cPartsAssignment_1_1_0; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_1_1_0_0() { return cPartsPlainStringParserRuleCall_1_1_0_0; }
+
+		//(parts+=PropertyReference parts+=PlainString?)+
+		public Group getGroup_1_1_1() { return cGroup_1_1_1; }
+
+		//parts+=PropertyReference
+		public Assignment getPartsAssignment_1_1_1_0() { return cPartsAssignment_1_1_1_0; }
+
+		//PropertyReference
+		public RuleCall getPartsPropertyReferenceParserRuleCall_1_1_1_0_0() { return cPartsPropertyReferenceParserRuleCall_1_1_1_0_0; }
+
+		//parts+=PlainString?
+		public Assignment getPartsAssignment_1_1_1_1() { return cPartsAssignment_1_1_1_1; }
+
+		//PlainString
+		public RuleCall getPartsPlainStringParserRuleCall_1_1_1_1_0() { return cPartsPlainStringParserRuleCall_1_1_1_1_0; }
 
 		//end=DoubleQuote
 		public Assignment getEndAssignment_1_2() { return cEndAssignment_1_2; }
@@ -568,53 +620,33 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		public RuleCall getEndDoubleQuoteParserRuleCall_1_2_0() { return cEndDoubleQuoteParserRuleCall_1_2_0; }
 	}
 
-	public class StringPartElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "StringPart");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final RuleCall cPropertyReferenceParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
-		private final RuleCall cPlainStringParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		
-		//StringPart:
-		//  PropertyReference|PlainString;
-		public ParserRule getRule() { return rule; }
-
-		//PropertyReference|PlainString
-		public Alternatives getAlternatives() { return cAlternatives; }
-
-		//PropertyReference
-		public RuleCall getPropertyReferenceParserRuleCall_0() { return cPropertyReferenceParserRuleCall_0; }
-
-		//PlainString
-		public RuleCall getPlainStringParserRuleCall_1() { return cPlainStringParserRuleCall_1; }
-	}
-
 	public class PropertyReferenceElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cPropertyAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final CrossReference cPropertyDeclaredPropertyCrossReference_1_0 = (CrossReference)cPropertyAssignment_1.eContents().get(0);
-		private final RuleCall cPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
+		private final RuleCall cPropertyDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cPropertyDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//PropertyReference:
-		//  "${" property=[DeclaredProperty] "}";
+		//  "${" property=[DeclaredProperty|FQN] "}";
 		public ParserRule getRule() { return rule; }
 
-		//"${" property=[DeclaredProperty] "}"
+		//"${" property=[DeclaredProperty|FQN] "}"
 		public Group getGroup() { return cGroup; }
 
 		//"${"
 		public Keyword getDollarSignLeftCurlyBracketKeyword_0() { return cDollarSignLeftCurlyBracketKeyword_0; }
 
-		//property=[DeclaredProperty]
+		//property=[DeclaredProperty|FQN]
 		public Assignment getPropertyAssignment_1() { return cPropertyAssignment_1; }
 
-		//[DeclaredProperty]
+		//[DeclaredProperty|FQN]
 		public CrossReference getPropertyDeclaredPropertyCrossReference_1_0() { return cPropertyDeclaredPropertyCrossReference_1_0; }
 
-		//ID
-		public RuleCall getPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1() { return cPropertyDeclaredPropertyIDTerminalRuleCall_1_0_1; }
+		//FQN
+		public RuleCall getPropertyDeclaredPropertyFQNParserRuleCall_1_0_1() { return cPropertyDeclaredPropertyFQNParserRuleCall_1_0_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
@@ -661,14 +693,14 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
 		
 		//ConstantValue returns ecore::EString:
-		//  WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+		//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
 		//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-		//  "auto-inject"|"var"|".";
+		//  "auto-inject"|"var"|".")+;
 		public ParserRule getRule() { return rule; }
 
-		//WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+		//(WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
 		//EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-		//"auto-inject"|"var"|"."
+		//"auto-inject"|"var"|".")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
@@ -841,7 +873,6 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private ReferenceElements pReference;
 	private FQNElements pFQN;
 	private StringLiteralElements pStringLiteral;
-	private StringPartElements pStringPart;
 	private PropertyReferenceElements pPropertyReference;
 	private PlainStringElements pPlainString;
 	private ConstantValueElements pConstantValue;
@@ -984,8 +1015,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral hidden ( ):
-	//  begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
-	//  StringPart* end=DoubleQuote;
+	//  begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+	//  ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
+	//  PropertyReference parts+=PlainString?)+)? end=DoubleQuote;
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -994,18 +1026,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getStringLiteralAccess().getRule();
 	}
 
-	//StringPart:
-	//  PropertyReference|PlainString;
-	public StringPartElements getStringPartAccess() {
-		return (pStringPart != null) ? pStringPart : (pStringPart = new StringPartElements());
-	}
-	
-	public ParserRule getStringPartRule() {
-		return getStringPartAccess().getRule();
-	}
-
 	//PropertyReference:
-	//  "${" property=[DeclaredProperty] "}";
+	//  "${" property=[DeclaredProperty|FQN] "}";
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
 	}
@@ -1025,9 +1047,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ConstantValue returns ecore::EString:
-	//  WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
+	//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|EscapedDoubleQuote|
 	//  EscapedSingleQuote|EscapedBackslash|"true"|"false"|"="|"import"|"module"|
-	//  "auto-inject"|"var"|".";
+	//  "auto-inject"|"var"|".")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}

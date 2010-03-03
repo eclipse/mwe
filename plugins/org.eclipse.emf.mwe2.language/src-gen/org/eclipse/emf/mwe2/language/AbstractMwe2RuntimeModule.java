@@ -94,6 +94,11 @@ public abstract class AbstractMwe2RuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
+	public java.lang.ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
+	}
+
+	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
 	public Class<? extends org.eclipse.xtext.common.types.access.ITypeProvider.Factory> bindITypeProvider$Factory() {
 		return org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory.class;
 	}

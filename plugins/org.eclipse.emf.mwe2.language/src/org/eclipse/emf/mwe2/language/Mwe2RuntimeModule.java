@@ -6,6 +6,7 @@ package org.eclipse.emf.mwe2.language;
 import org.eclipse.emf.mwe2.language.scoping.JvmTypesAwareGlobalScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
+import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
@@ -25,6 +26,11 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(NamespaceAwareScopeProvider.class);
+	}
+	
+	@Override
+	public Class<? extends IValueConverterService> bindIValueConverterService() {
+		return Mwe2ValueConverters.class;
 	}
 	
 }

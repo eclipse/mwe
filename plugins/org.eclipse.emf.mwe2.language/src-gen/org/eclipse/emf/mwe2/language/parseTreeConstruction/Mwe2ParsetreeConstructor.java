@@ -45,9 +45,8 @@ protected class ThisRootNode extends RootToken {
 			case 7: return new BooleanLiteral_Group(this, this, 7, inst);
 			case 8: return new Reference_ReferableAssignment(this, this, 8, inst);
 			case 9: return new StringLiteral_Alternatives(this, this, 9, inst);
-			case 10: return new StringPart_Alternatives(this, this, 10, inst);
-			case 11: return new PropertyReference_Group(this, this, 11, inst);
-			case 12: return new PlainString_ValueAssignment(this, this, 12, inst);
+			case 10: return new PropertyReference_Group(this, this, 10, inst);
+			case 11: return new PlainString_ValueAssignment(this, this, 11, inst);
 			default: return null;
 		}	
 	}	
@@ -2003,13 +2002,15 @@ protected class Reference_ReferableAssignment extends AssignmentToken  {
 /************ begin Rule StringLiteral ****************
  *
  * StringLiteral hidden ( ):
- *   begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
- *   StringPart* end=DoubleQuote;
+ *   begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+ *   ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
+ *   PropertyReference parts+=PlainString?)+)? end=DoubleQuote;
  *
  **/
 
-// begin=SingleQuote parts+=StringPart* end=SingleQuote|begin=DoubleQuote parts+=
-// StringPart* end=DoubleQuote
+// begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+// ?)+)? end=SingleQuote|begin=DoubleQuote (parts+=PlainString|(parts+=
+// PropertyReference parts+=PlainString?)+)? end=DoubleQuote
 protected class StringLiteral_Alternatives extends AlternativesToken {
 
 	public StringLiteral_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2037,7 +2038,8 @@ protected class StringLiteral_Alternatives extends AlternativesToken {
 	}
 }
 
-// begin=SingleQuote parts+=StringPart* end=SingleQuote
+// begin=SingleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+// ?)+)? end=SingleQuote
 protected class StringLiteral_Group_0 extends GroupToken {
 	
 	public StringLiteral_Group_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2092,35 +2094,58 @@ protected class StringLiteral_BeginAssignment_0_0 extends AssignmentToken  {
 
 }
 
-// parts+=StringPart*
-protected class StringLiteral_PartsAssignment_0_1 extends AssignmentToken  {
-	
-	public StringLiteral_PartsAssignment_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+// (parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
+protected class StringLiteral_Alternatives_0_1 extends AlternativesToken {
+
+	public StringLiteral_Alternatives_0_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1();
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getAlternatives_0_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StringPart_Alternatives(this, this, 0, inst);
+			case 0: return new StringLiteral_PartsAssignment_0_1_0(parent, this, 0, inst);
+			case 1: return new StringLiteral_Group_0_1_1(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// parts+=PlainString
+protected class StringLiteral_PartsAssignment_0_1_0 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_0_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PlainString_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
     @Override	
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("parts",false)) == null) return null;
+		if((value = current.getConsumable("parts",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getStringPartRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getPlainStringRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_0_1_0(); 
+				element = grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -2132,12 +2157,129 @@ protected class StringLiteral_PartsAssignment_0_1 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new StringLiteral_PartsAssignment_0_1(parent, next, actIndex, consumed);
+			case 0: return new StringLiteral_BeginAssignment_0_0(parent, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// (parts+=PropertyReference parts+=PlainString?)+
+protected class StringLiteral_Group_0_1_1 extends GroupToken {
+	
+	public StringLiteral_Group_0_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getGroup_0_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StringLiteral_PartsAssignment_0_1_1_1(parent, this, 0, inst);
+			case 1: return new StringLiteral_PartsAssignment_0_1_1_0(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// parts+=PropertyReference
+protected class StringLiteral_PartsAssignment_0_1_1_0 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_0_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PropertyReference_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+    @Override	
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("parts",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("parts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getPropertyReferenceRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_0_1_1_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new StringLiteral_Group_0_1_1(parent, next, actIndex, consumed);
 			case 1: return new StringLiteral_BeginAssignment_0_0(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
+
+// parts+=PlainString?
+protected class StringLiteral_PartsAssignment_0_1_1_1 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_0_1_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PlainString_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+    @Override	
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("parts",false)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("parts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getPlainStringRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new StringLiteral_PartsAssignment_0_1_1_0(parent, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
 
 // end=SingleQuote
 protected class StringLiteral_EndAssignment_0_2 extends AssignmentToken  {
@@ -2154,7 +2296,7 @@ protected class StringLiteral_EndAssignment_0_2 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StringLiteral_PartsAssignment_0_1(parent, this, 0, inst);
+			case 0: return new StringLiteral_Alternatives_0_1(parent, this, 0, inst);
 			case 1: return new StringLiteral_BeginAssignment_0_0(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2175,7 +2317,8 @@ protected class StringLiteral_EndAssignment_0_2 extends AssignmentToken  {
 }
 
 
-// begin=DoubleQuote parts+=StringPart* end=DoubleQuote
+// begin=DoubleQuote (parts+=PlainString|(parts+=PropertyReference parts+=PlainString
+// ?)+)? end=DoubleQuote
 protected class StringLiteral_Group_1 extends GroupToken {
 	
 	public StringLiteral_Group_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2230,35 +2373,58 @@ protected class StringLiteral_BeginAssignment_1_0 extends AssignmentToken  {
 
 }
 
-// parts+=StringPart*
-protected class StringLiteral_PartsAssignment_1_1 extends AssignmentToken  {
-	
-	public StringLiteral_PartsAssignment_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+// (parts+=PlainString|(parts+=PropertyReference parts+=PlainString?)+)?
+protected class StringLiteral_Alternatives_1_1 extends AlternativesToken {
+
+	public StringLiteral_Alternatives_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
 		super(parent, next, no, current);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1();
+	public Alternatives getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getAlternatives_1_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StringPart_Alternatives(this, this, 0, inst);
+			case 0: return new StringLiteral_PartsAssignment_1_1_0(parent, this, 0, inst);
+			case 1: return new StringLiteral_Group_1_1_1(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// parts+=PlainString
+protected class StringLiteral_PartsAssignment_1_1_0 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PlainString_ValueAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}	
 		
     @Override	
 	protected IInstanceDescription tryConsumeVal() {
-		if((value = current.getConsumable("parts",false)) == null) return null;
+		if((value = current.getConsumable("parts",true)) == null) return null;
 		IInstanceDescription obj = current.cloneAndConsume("parts");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
 			IInstanceDescription param = getDescr((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getStringPartRule().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getPlainStringRule().getType().getClassifier())) {
 				type = AssignmentType.PRC;
-				element = grammarAccess.getStringLiteralAccess().getPartsStringPartParserRuleCall_1_1_0(); 
+				element = grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_0_0(); 
 				consumed = obj;
 				return param;
 			}
@@ -2270,12 +2436,129 @@ protected class StringLiteral_PartsAssignment_1_1 extends AssignmentToken  {
 	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
 		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
 		switch(index) {
-			case 0: return new StringLiteral_PartsAssignment_1_1(parent, next, actIndex, consumed);
+			case 0: return new StringLiteral_BeginAssignment_1_0(parent, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+// (parts+=PropertyReference parts+=PlainString?)+
+protected class StringLiteral_Group_1_1_1 extends GroupToken {
+	
+	public StringLiteral_Group_1_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Group getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getGroup_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new StringLiteral_PartsAssignment_1_1_1_1(parent, this, 0, inst);
+			case 1: return new StringLiteral_PartsAssignment_1_1_1_0(parent, this, 1, inst);
+			default: return null;
+		}	
+	}	
+		
+}
+
+// parts+=PropertyReference
+protected class StringLiteral_PartsAssignment_1_1_1_0 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_1_1_1_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1_1_0();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PropertyReference_Group(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+    @Override	
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("parts",true)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("parts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getPropertyReferenceRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_1_1_1_0_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new StringLiteral_Group_1_1_1(parent, next, actIndex, consumed);
 			case 1: return new StringLiteral_BeginAssignment_1_0(parent, next, actIndex, consumed);
 			default: return null;
 		}	
 	}	
 }
+
+// parts+=PlainString?
+protected class StringLiteral_PartsAssignment_1_1_1_1 extends AssignmentToken  {
+	
+	public StringLiteral_PartsAssignment_1_1_1_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
+		super(parent, next, no, current);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1_1_1();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IInstanceDescription inst) {
+		switch(index) {
+			case 0: return new PlainString_ValueAssignment(this, this, 0, inst);
+			default: return null;
+		}	
+	}	
+		
+    @Override	
+	protected IInstanceDescription tryConsumeVal() {
+		if((value = current.getConsumable("parts",false)) == null) return null;
+		IInstanceDescription obj = current.cloneAndConsume("parts");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::RuleCallImpl
+			IInstanceDescription param = getDescr((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getPlainStringRule().getType().getClassifier())) {
+				type = AssignmentType.PRC;
+				element = grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_1_1_0(); 
+				consumed = obj;
+				return param;
+			}
+		}
+		return null;
+	}
+
+    @Override
+	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
+		if(value == inst.getDelegate() && !inst.isConsumed()) return null;
+		switch(index) {
+			case 0: return new StringLiteral_PartsAssignment_1_1_1_0(parent, next, actIndex, consumed);
+			default: return null;
+		}	
+	}	
+}
+
+
 
 // end=DoubleQuote
 protected class StringLiteral_EndAssignment_1_2 extends AssignmentToken  {
@@ -2292,7 +2575,7 @@ protected class StringLiteral_EndAssignment_1_2 extends AssignmentToken  {
     @Override
 	public AbstractToken createFollower(int index, IInstanceDescription inst) {
 		switch(index) {
-			case 0: return new StringLiteral_PartsAssignment_1_1(parent, this, 0, inst);
+			case 0: return new StringLiteral_Alternatives_1_1(parent, this, 0, inst);
 			case 1: return new StringLiteral_BeginAssignment_1_0(parent, this, 1, inst);
 			default: return null;
 		}	
@@ -2317,123 +2600,14 @@ protected class StringLiteral_EndAssignment_1_2 extends AssignmentToken  {
 /************ end Rule StringLiteral ****************/
 
 
-/************ begin Rule StringPart ****************
- *
- * StringPart:
- *   PropertyReference|PlainString;
- *
- **/
-
-// PropertyReference|PlainString
-protected class StringPart_Alternatives extends AlternativesToken {
-
-	public StringPart_Alternatives(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public Alternatives getGrammarElement() {
-		return grammarAccess.getStringPartAccess().getAlternatives();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new StringPart_PropertyReferenceParserRuleCall_0(parent, this, 0, inst);
-			case 1: return new StringPart_PlainStringParserRuleCall_1(parent, this, 1, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	public IInstanceDescription tryConsume() {
-		if(!current.isInstanceOf(grammarAccess.getStringPartRule().getType().getClassifier())) return null;
-		return tryConsumeVal();
-	}
-}
-
-// PropertyReference
-protected class StringPart_PropertyReferenceParserRuleCall_0 extends RuleCallToken {
-	
-	public StringPart_PropertyReferenceParserRuleCall_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getStringPartAccess().getPropertyReferenceParserRuleCall_0();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new PropertyReference_Group(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(PropertyReference_Group.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getPropertyReferenceRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-// PlainString
-protected class StringPart_PlainStringParserRuleCall_1 extends RuleCallToken {
-	
-	public StringPart_PlainStringParserRuleCall_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
-		super(parent, next, no, current);
-	}
-	
-	@Override
-	public RuleCall getGrammarElement() {
-		return grammarAccess.getStringPartAccess().getPlainStringParserRuleCall_1();
-	}
-
-    @Override
-	public AbstractToken createFollower(int index, IInstanceDescription inst) {
-		switch(index) {
-			case 0: return new PlainString_ValueAssignment(this, this, 0, inst);
-			default: return null;
-		}	
-	}	
-		
-    @Override
-	protected IInstanceDescription tryConsumeVal() {
-		if(checkForRecursion(PlainString_ValueAssignment.class, current)) return null;
-		if(!current.isInstanceOf(grammarAccess.getPlainStringRule().getType().getClassifier())) return null;
-		return current;
-	}
-	
-    @Override
-	public AbstractToken createParentFollower(AbstractToken next,	int actIndex, int index, IInstanceDescription inst) {
-		switch(index) {
-			default: return parent.createParentFollower(next, actIndex , index, inst);
-		}	
-	}	
-}
-
-
-/************ end Rule StringPart ****************/
-
-
 /************ begin Rule PropertyReference ****************
  *
  * PropertyReference:
- *   "${" property=[DeclaredProperty] "}";
+ *   "${" property=[DeclaredProperty|FQN] "}";
  *
  **/
 
-// "${" property=[DeclaredProperty] "}"
+// "${" property=[DeclaredProperty|FQN] "}"
 protected class PropertyReference_Group extends GroupToken {
 	
 	public PropertyReference_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -2481,7 +2655,7 @@ protected class PropertyReference_DollarSignLeftCurlyBracketKeyword_0 extends Ke
 		
 }
 
-// property=[DeclaredProperty]
+// property=[DeclaredProperty|FQN]
 protected class PropertyReference_PropertyAssignment_1 extends AssignmentToken  {
 	
 	public PropertyReference_PropertyAssignment_1(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
