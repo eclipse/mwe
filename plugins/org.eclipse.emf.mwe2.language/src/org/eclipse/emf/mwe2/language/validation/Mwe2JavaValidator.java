@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Referrable;
@@ -41,29 +42,38 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	@Check
 	public void checkCompatibility(Assignment assignment) {
 		JvmFeature feature = assignment.getFeature();
+		if (feature.eIsProxy())
+			return;
+		JvmTypeReference left = null; 
 		if (feature instanceof JvmOperation) {
 			JvmOperation op = (JvmOperation) feature;
-			JvmTypeReference left = op.getParameters().get(0)
-					.getParameterType();
-			JvmParameterizedTypeReference reference = TypesFactory.eINSTANCE
-					.createJvmParameterizedTypeReference();
-			JvmType actualType = assignment.getValue().getActualType();
-			JvmType factoryType = factorySupport
-					.findFactoriesCreationType(actualType);
-			if (factoryType != null) {
-				reference.setType(factoryType);
-			} else {
-				reference.setType(actualType);
-			}
-			if (!assignabilityComputer.isAssignableFrom(left, reference))
-				error("A value of type '" + actualType.getCanonicalName()
-						+ "' can not be assigned to the feature "
-						+ op.getFullyQualifiedName(),
-						Mwe2Package.ASSIGNMENT__VALUE, INCOMPATIBLE_ASSIGNMENT);
+			left = op.getParameters().get(0).getParameterType();
+		} else if (feature instanceof DeclaredProperty) {
+			DeclaredProperty property = (DeclaredProperty) feature;
+			JvmType propertyType = property.getActualType();
+			JvmParameterizedTypeReference propertyTypeRef = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
+			propertyTypeRef.setType(propertyType);
+			left = propertyTypeRef;
 		} else {
 			throw new UnsupportedOperationException(
 					"Can not handle features of type "
-							+ feature.getClass().getName());
+							+ feature.getClass().getName() + " - " + feature);
+		}
+		if (left != null) {
+			JvmParameterizedTypeReference right = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
+			JvmType actualType = assignment.getValue().getActualType();
+			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
+			if (factoryType != null) {
+				right.setType(factoryType);
+			} else {
+				right.setType(actualType);
+			}
+			if (!assignabilityComputer.isAssignableFrom(left, right)) {
+				error("A value of type '" + actualType.getCanonicalName()
+						+ "' can not be assigned to the feature "
+						+ feature.getSimpleName(),
+						Mwe2Package.ASSIGNMENT__VALUE, INCOMPATIBLE_ASSIGNMENT);
+			}
 		}
 	}
 

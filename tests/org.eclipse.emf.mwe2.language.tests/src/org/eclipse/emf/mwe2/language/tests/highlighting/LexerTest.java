@@ -1,0 +1,139 @@
+package org.eclipse.emf.mwe2.language.tests.highlighting;
+
+import java.util.List;
+
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CharStream;
+import org.antlr.runtime.Token;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
+import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
+import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
+import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer;
+import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
+import org.eclipse.xtext.Keyword;
+import org.eclipse.xtext.TerminalRule;
+import org.eclipse.xtext.common.types.access.ITypeProvider.Factory;
+import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
+import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+
+public class LexerTest extends AbstractXtextTests {
+
+	private MweHighlightingLexer lexer;
+	private ITokenDefProvider tokenDefProvider;
+
+	@Override
+	protected Mwe2GrammarAccess getGrammarAccess() {
+		return (Mwe2GrammarAccess) super.getGrammarAccess();
+	}
+	
+	@Override
+	protected void setUp() throws Exception {
+		super.setUp();
+		with(new UiTestSetup() {
+			@Override
+			protected Mwe2UiModule createUiModule(Mwe2Activator activator) {
+				return new Mwe2UiModule(activator) {
+					@Override
+					public Class<? extends Factory> bindITypeProvider$Factory() {
+						return null;
+					}
+				};
+			}
+		});
+		lexer = get(MweHighlightingLexer.class);
+		tokenDefProvider = get(ITokenDefProvider.class);
+	}
+	
+	public void testEmptyLiteral() {
+		parseStringLiteral("");
+	}
+	
+	public void testKeywords() {
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(getGrammarAccess().getGrammar(), false);
+		while(iterator.hasNext()) {
+			EObject next = iterator.next();
+			if (next instanceof TerminalRule 
+					|| next == getGrammarAccess().getConstantValueRule()) {
+				iterator.prune();
+			} else if (next instanceof Keyword) {
+				String value = ((Keyword) next).getValue();
+				if ("'".equals(value) || "\"".equals(value) || "\\".equals(value) || "${".equals(value))
+					value = "\\" + value;
+				parseStringLiteral(value);
+			}
+		}
+	}
+	
+	public void testKeywordPrefixes() {
+		parseStringLiteral("$",	"impo",	"/");
+	}
+	
+	public void testComments() {
+		parseStringLiteral("// something\n", "/* something */");
+	}
+	
+	public void testEscapedComments() {
+		parseStringLiteral("\\// something", "\\/* something");
+	}
+	
+	public void testWS() {
+		parseStringLiteral(" \\n\\r\\t", " import ");
+	}
+	
+	public void testAnyChar() {
+		parseStringLiteral("*/", "#", "/");
+	}
+	
+	public void testComplex() {
+		parseStringLiteral(
+				" import var id.id.* ", 
+				" \\${ something . .* } ");
+	}
+	
+	public void testReference() {
+		parseStringLiteral(
+				"${something}", 
+				"${ something }", 
+				"${something. /* comment */ ^module}", 
+				"${something.\nsomething // comment \n}");
+	}
+	
+	public void testReferences() {
+		parseStringLiteral(
+				"${something } ${ something.else}", 
+				"${something}${else}");
+	}
+	
+	public void testIncompleteReference() {
+		parseStringLiteral("${}", "${", "${something", "${something.");
+	}
+	
+	public void testMixed() {
+		parseStringLiteral("import${something}", "$${something}", " ${something}}", "{${something}$");
+	}
+	
+	protected void parseStringLiteral(String... literals) {
+		for(String literal: literals) {
+			String quoted = "'" + literal + "'";
+			parseSuccessfully(quoted, quoted);
+			quoted = '"' + literal + '"';
+			parseSuccessfully(quoted, quoted);
+		}
+	}
+	
+	protected void parseSuccessfully(String input, String... expectedTokens) {
+		CharStream stream = new ANTLRStringStream(input);
+		lexer.setCharStream(stream);
+		XtextTokenStream tokenStream = new XtextTokenStream(lexer, tokenDefProvider);
+		List<?> tokens = tokenStream.getTokens();
+		assertEquals(input, expectedTokens.length, tokens.size());
+		for(int i = 0;i < tokens.size(); i++) {
+			Token token = (Token) tokens.get(i);
+			assertEquals(token.toString(), expectedTokens[i], token.getText());
+		}
+	}
+}

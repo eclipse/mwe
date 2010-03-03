@@ -19,6 +19,11 @@ public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 	}
 	
 	@Override
+	public String getSimpleName() {
+		return name;
+	}
+	
+	@Override
 	public JvmType getActualType() {
 		JvmType result = super.getActualType();
 		if (result != null)

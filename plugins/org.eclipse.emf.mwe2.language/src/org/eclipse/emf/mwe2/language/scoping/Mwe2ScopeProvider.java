@@ -9,9 +9,11 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmFeature;
@@ -51,17 +53,22 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 		return createComponentFeaturesScope(container);
 	}
 
-	public IScope scope_PropertyReference_property(Value owner,
+	public IScope scope_AbstractReference_referable(StringLiteral owner,
 			EReference reference) {
-		return createReferenceScopeUpTo(owner, false);
+		return createReferenceScopeUpTo(owner.eContainer(), false);
 	}
-
-	public IScope scope_Reference_referable(DeclaredProperty owner,
+	
+	public IScope scope_AbstractReference_referable(BooleanLiteral owner,
+			EReference reference) {
+		return createReferenceScopeUpTo(owner.eContainer(), false);
+	}
+	
+	public IScope scope_AbstractReference_referable(DeclaredProperty owner,
 			EReference reference) {
 		return createReferenceScopeUpTo(owner, true);
 	}
 
-	public IScope scope_Reference_referable(Assignment owner,
+	public IScope scope_AbstractReference_referable(Assignment owner,
 			EReference reference) {
 		return createReferenceScopeUpTo(owner, true);
 	}

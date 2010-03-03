@@ -19,4 +19,10 @@ Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Activator: org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator
 Export-Package: org.eclipse.emf.mwe2.language.ui,
- org.eclipse.emf.mwe2.language.ui.contentassist.antlr
+ org.eclipse.emf.mwe2.language.ui.contentassist,
+ org.eclipse.emf.mwe2.language.ui.contentassist.antlr,
+ org.eclipse.emf.mwe2.language.ui.contentassist.antlr.internal,
+ org.eclipse.emf.mwe2.language.ui.highlighting,
+ org.eclipse.emf.mwe2.language.ui.internal,
+ org.eclipse.emf.mwe2.language.ui.labeling,
+ org.eclipse.emf.mwe2.language.ui.outline

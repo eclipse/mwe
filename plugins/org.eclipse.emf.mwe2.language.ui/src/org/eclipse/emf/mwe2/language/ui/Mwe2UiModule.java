@@ -8,9 +8,11 @@ import org.eclipse.emf.mwe2.language.ui.highlighting.SemanticHighlightingCalcula
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenToAttributeMapper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
+import com.google.inject.Provider;
 
 /**
  * Use this class to register components to be used within the IDE.
@@ -35,6 +37,10 @@ public class Mwe2UiModule extends org.eclipse.emf.mwe2.language.ui.AbstractMwe2U
 	
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return MweHighlightingConfiguration.class;
+	}
+	
+	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
+		return MweUiResourceSetProvider.class;
 	}
 	
 }

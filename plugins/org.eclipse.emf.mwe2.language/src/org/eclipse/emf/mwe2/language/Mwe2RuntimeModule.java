@@ -3,7 +3,7 @@
  */
 package org.eclipse.emf.mwe2.language;
 
-import org.eclipse.emf.mwe2.language.resource.Mwe2ResourceSetProvider;
+import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
 import org.eclipse.emf.mwe2.language.scoping.JvmTypesAwareGlobalScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
@@ -38,7 +38,7 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	}
 	
 	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
-		return Mwe2ResourceSetProvider.class;
+		return MweResourceSetProvider.class;
 	}
 	
 }

@@ -10,6 +10,8 @@ import org.eclipse.xtext.common.types.JvmReferenceTypeArgument;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeArgument;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.access.ITypeProvider;
+import org.eclipse.xtext.common.types.access.TypeNotFoundException;
 import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
 
 import com.google.inject.Inject;
@@ -57,7 +59,11 @@ public class FactorySupport {
 	public JvmType getFactoryType(EObject ctx) {
 		ResourceSet resourceSet = ctx.eResource().getResourceSet();
 		String factoryName = IFactory.class.getName();
-		return typeScopeProvider.getTypeProviderFactory().createTypeProvider(
-				resourceSet).findTypeByName(factoryName);
+		ITypeProvider typeProvider = typeScopeProvider.getTypeProvider(resourceSet);
+		try {
+			return typeProvider.findTypeByName(factoryName);
+		} catch(TypeNotFoundException tnfe) {
+			return null;
+		}
 	}
 }
