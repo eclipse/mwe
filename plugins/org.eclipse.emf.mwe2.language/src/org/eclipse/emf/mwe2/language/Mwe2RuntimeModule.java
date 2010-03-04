@@ -28,6 +28,7 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 		return QualifiedNameProvider.class;
 	}
 	
+	@Override
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
 		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(NamespaceAwareScopeProvider.class);
 	}

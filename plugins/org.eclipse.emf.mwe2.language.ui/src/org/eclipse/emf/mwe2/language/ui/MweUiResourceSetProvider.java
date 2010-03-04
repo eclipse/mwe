@@ -5,6 +5,7 @@ import org.eclipse.jdt.core.IJavaProject;
 
 public class MweUiResourceSetProvider extends MweResourceSetProvider {
 
+	@Override
 	protected boolean isExpectedContext(Object classpathURIContext) {
 		return classpathURIContext instanceof IJavaProject;
 	}

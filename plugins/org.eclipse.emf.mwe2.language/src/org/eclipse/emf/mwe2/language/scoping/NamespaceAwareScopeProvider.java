@@ -17,8 +17,7 @@ import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 
 import com.google.inject.Inject;
 
-public class NamespaceAwareScopeProvider extends
-		ImportedNamespaceAwareLocalScopeProvider {
+public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
 
 	@Inject
 	private AbstractTypeScopeProvider typeScopeProvider;
@@ -26,14 +25,11 @@ public class NamespaceAwareScopeProvider extends
 	@Override
 	protected IScope getGlobalScope(EObject context, EReference reference) {
 		EClass referenceType = reference.getEReferenceType();
-		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE,
-				referenceType)) {
+		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
 			ResourceSet resourceSet = context.eResource().getResourceSet();
-			ITypeProvider typeProvider = typeScopeProvider
-					.getTypeProviderFactory().findTypeProvider(resourceSet);
+			ITypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
 			if (typeProvider == null)
-				typeProvider = typeScopeProvider.getTypeProviderFactory()
-						.createTypeProvider(resourceSet);
+				typeProvider = typeScopeProvider.getTypeProviderFactory().createTypeProvider(resourceSet);
 			return typeScopeProvider.createTypeScope(typeProvider);
 		} else {
 			return super.getGlobalScope(context, reference);
@@ -46,13 +42,11 @@ public class NamespaceAwareScopeProvider extends
 			Module module = (Module) context;
 			Set<ImportNormalizer> result = super.getImportNormalizer(context);
 			result.add(createImportNormalizer("java.lang.*"));
-			if (module != null) {
-				String name = module.getCanonicalName();
-				int dot = name.lastIndexOf('.');
-				if (dot >= 0) {
-					name = name.substring(0, dot) + ".*";
-					result.add(createImportNormalizer(name));
-				}
+			String name = module.getCanonicalName();
+			int dot = name.lastIndexOf('.');
+			if (dot >= 0) {
+				name = name.substring(0, dot) + ".*";
+				result.add(createImportNormalizer(name));
 			}
 			return result;
 		}

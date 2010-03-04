@@ -13,6 +13,7 @@ public class JvmTypesAwareGlobalScopeProvider extends DefaultGlobalScopeProvider
 	@Inject
 	private AbstractTypeScopeProvider typeScopeProvider;
 	
+	@Override
 	public IScope getScope(EObject context, EReference reference) {
 		if (reference.getEReferenceType().getEPackage() == TypesPackage.eINSTANCE) {
 			return typeScopeProvider.getScope(context, reference);

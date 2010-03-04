@@ -36,7 +36,7 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 			}
 			return builder.toString();
 		}
-	};
+	}
 	
 	@ValueConverter(rule = "ImportedFQN")
 	public IValueConverter<String> ImportedFQN() {

@@ -5,7 +5,7 @@ import java.util.Map;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -45,9 +45,9 @@ public class MapBasedScope implements IScope {
 	}
 	
 	public IEObjectDescription getContentByEObject(EObject object) {
-		URI uri = EcoreUtil2.getURI(object);
+		URI uri = EcoreUtil.getURI(object);
 		for(Map.Entry<String, ? extends EObject> entry: entries.entrySet()) {
-			if (uri.equals(EcoreUtil2.getURI(entry.getValue())))
+			if (uri.equals(EcoreUtil.getURI(entry.getValue())))
 				return new MapEntry(entry);
 		}
 		return null;
@@ -74,7 +74,7 @@ public class MapBasedScope implements IScope {
 		}
 
 		public URI getEObjectURI() {
-			return EcoreUtil2.getURI(entry.getValue());
+			return EcoreUtil.getURI(entry.getValue());
 		}
 
 		public EClass getEClass() {

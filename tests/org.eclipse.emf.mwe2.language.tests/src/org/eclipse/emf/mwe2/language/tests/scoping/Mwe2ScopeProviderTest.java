@@ -12,11 +12,13 @@ import org.eclipse.xtext.scoping.IScope;
 
 public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 
+	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 		with(new TestSetup());
 	}
 	
+	@Override
 	public Mwe2ScopeProvider getScopeProvider() {
 		return (Mwe2ScopeProvider) super.getScopeProvider();
 	}

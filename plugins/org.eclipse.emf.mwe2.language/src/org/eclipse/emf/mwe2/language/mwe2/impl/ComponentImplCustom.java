@@ -23,7 +23,7 @@ public class ComponentImplCustom extends ComponentImpl {
 				return parameter.getParameterType().getType();
 			}
 		}
-		if (result == null && module != null) {
+		if (module != null) {
 			Module module = getModule();
 			result = module.getRoot().getActualType();
 		}
