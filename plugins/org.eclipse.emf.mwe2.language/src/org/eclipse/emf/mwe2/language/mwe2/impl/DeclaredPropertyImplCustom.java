@@ -4,6 +4,8 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.common.types.JvmType;
 
+import static org.eclipse.emf.mwe2.language.mwe2.impl.JvmTypeUriFactory.*;
+
 public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 
 	@Override
@@ -32,6 +34,6 @@ public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 		if (value != null) {
 			return value.getActualType();
 		}
-		return null;
+		return findJvmType(JvmTypeUriFactory.getURIForFqn(String.class.getName()), this);
 	}
 }

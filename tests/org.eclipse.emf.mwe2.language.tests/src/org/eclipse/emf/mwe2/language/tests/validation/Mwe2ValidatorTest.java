@@ -59,6 +59,40 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(0,list.size());
 	}
 	
+	public void testVarAssignability_withFactory() throws Exception {
+		String textModel = "module foo var "+ComponentA.class.getName()+" x = "+ComponentAFactory.class.getName()+"{} String {}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),1,list.size()); // unused WARNING
+	}
+	public void testVarAssignability_1() throws Exception {
+		String textModel = "module foo var "+String.class.getName()+" x = 'x' String {}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),1,list.size()); // unused WARNING
+	}
+	
+	public void testVarAssignability_2() throws Exception {
+		String textModel = "module foo var "+String.class.getName()+" x = true String {}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),2,list.size()); // unused WARNING
+	}
+	
+	public void testVarAssignability_3() throws Exception {
+		String textModel = "module foo var "+Boolean.class.getName()+" x = true String {}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),1,list.size()); // unused WARNING
+	}
+	
+	public void testVarAssignability_4() throws Exception {
+		String textModel = "module foo var "+Boolean.class.getName()+" x = 'foo' String {}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),2,list.size()); // unused WARNING
+	}
+	
 	public void testUnusedLocalVariable() throws Exception {
 		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups{ x = ups y = foo }";
 		EObject model = getModel(textModel);

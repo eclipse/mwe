@@ -76,6 +76,28 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 		}
 	}
+	
+	@Check
+	public void checkCompatibility(DeclaredProperty property) {
+		if (property.getType()!=null && property.getDefault()!=null) {
+			JvmParameterizedTypeReference left = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
+			left.setType(property.getType());
+			JvmParameterizedTypeReference right = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
+			JvmType actualType = property.getDefault().getActualType();
+			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
+			if (factoryType != null) {
+				right.setType(factoryType);
+			} else {
+				right.setType(actualType);
+			}
+			if (!assignabilityComputer.isAssignableFrom(left, right)) {
+				error("A value of type '" + actualType.getCanonicalName()
+						+ "' can not be assigned to a reference of type "
+						+ property.getType().getCanonicalName(),
+						Mwe2Package.DECLARED_PROPERTY__DEFAULT, INCOMPATIBLE_ASSIGNMENT);
+			}
+		}
+	}
 
 	public final static String UNUSED_LOCAL = "unused_local_variable";
 	public final static String DUPLICATE_LOCAL = "duplicate_local_variable";

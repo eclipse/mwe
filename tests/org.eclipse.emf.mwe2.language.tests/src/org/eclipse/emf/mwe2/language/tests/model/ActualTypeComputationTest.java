@@ -37,14 +37,6 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		assertEquals(typeName, assignedType.getCanonicalName());
 	}
 	
-	public void testNullType() throws Exception {
-		Module module = (Module) getModel("module myModule var a String {}");
-		List<DeclaredProperty> properties = module.getDeclaredProperties();
-		assertEquals(1, properties.size());
-		DeclaredProperty property = properties.get(0);
-		assertNull(property.getActualType());
-	}
-	
 	public void testLiteralTypes() throws Exception {
 		checkPropertyType("java.lang.CharSequence a = 'myString'", CharSequence.class);
 		checkPropertyType("boolean a", boolean.class);
@@ -55,6 +47,10 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		checkPropertyType("CharSequence a = 'myString' var b = a", CharSequence.class);
 		checkPropertyType("boolean a var b = a", boolean.class);
 		checkPropertyType("java.util.List a = java.util.ArrayList {} var b = a", List.class);
+	}
+	
+	public void testDefaultType() throws Exception {
+		checkPropertyType("a", String.class);
 	}
 	
 	public void testModuleType() throws Exception {
