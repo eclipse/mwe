@@ -16,30 +16,37 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 
 	@Inject
 	private Mwe2GrammarAccess grammarAccess;
-	
+
 	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null)
 			return;
-		
+
 		Iterable<AbstractNode> allNodes = NodeUtil.getAllContents(resource.getParseResult().getRootNode());
 		for (AbstractNode abstractNode : allNodes) {
-			if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()) {
+			if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess()
+					.getReferableDeclaredPropertyCrossReference_1_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
 				EObject semanticObject = NodeUtil.getNearestSemanticObject(abstractNode);
 				if (semanticObject != null) {
 					highlightNode(abstractNode, DefaultHighlightingConfiguration.STRING_ID, acceptor);
 				}
+			} else if (abstractNode.getGrammarElement() == grammarAccess.getReferenceAccess()
+					.getReferableReferrableCrossReference_0()) {
+				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
+			} else if (abstractNode.getGrammarElement() == grammarAccess.getAssignmentAccess()
+					.getFeatureJvmFeatureCrossReference_0_0()) {
+				highlightNode(abstractNode, MweHighlightingConfiguration.FEATURE_REF, acceptor);
 			}
 		}
 	}
-	
+
 	private void highlightNode(AbstractNode node, String id, IHighlightedPositionAcceptor acceptor) {
 		if (node == null)
 			return;
 		if (node instanceof LeafNode) {
 			acceptor.addPosition(node.getOffset(), node.getLength(), id);
 		} else {
-			for (LeafNode leaf: node.getLeafNodes()) {
+			for (LeafNode leaf : node.getLeafNodes()) {
 				if (!leaf.isHidden()) {
 					acceptor.addPosition(leaf.getOffset(), leaf.getLength(), id);
 				}
