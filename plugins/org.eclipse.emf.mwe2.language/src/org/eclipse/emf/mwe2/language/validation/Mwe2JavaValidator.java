@@ -10,16 +10,21 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Referrable;
 import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
+import org.eclipse.xtext.common.types.JvmConstructor;
+import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.IAssignabilityComputer;
 import org.eclipse.xtext.validation.Check;
@@ -134,6 +139,24 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 		}
 	}
+	
+	public final static String MISSING_DEFAULT_CONSTRUCTOR = "missing_default_constructor";
+	
+	@Check
+	public void checkInstantiable(Component component) {
+		if (component.getModule() != null)
+			return;
+		JvmDeclaredType declaredType = (JvmDeclaredType) component.getActualType();
+		for(JvmMember member: declaredType.getMembers()) {
+			if (member instanceof JvmConstructor) {
+				if (((JvmConstructor) member).getParameters().isEmpty() && member.getVisibility().equals(JvmVisibility.PUBLIC))
+					return;
+			}
+		}
+		error("'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
+				component, Mwe2Package.REFERRABLE__TYPE, MISSING_DEFAULT_CONSTRUCTOR);
+	}
+	
 	
 	@Override
 	protected List<EPackage> getEPackages() {
