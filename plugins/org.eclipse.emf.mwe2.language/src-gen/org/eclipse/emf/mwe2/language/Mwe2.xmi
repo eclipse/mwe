@@ -230,7 +230,7 @@
         <type metamodel="//@metamodelDeclarations.1">
           <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/mwe2/Mwe2#//Referrable"/>
         </type>
-        <terminal xsi:type="xtext:RuleCall" rule="//@rules.15"/>
+        <terminal xsi:type="xtext:RuleCall" rule="//@rules.10"/>
       </terminal>
     </alternatives>
   </rules>

@@ -454,20 +454,20 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Reference");
 		private final Assignment cReferableAssignment = (Assignment)rule.eContents().get(1);
 		private final CrossReference cReferableReferrableCrossReference_0 = (CrossReference)cReferableAssignment.eContents().get(0);
-		private final RuleCall cReferableReferrableIDTerminalRuleCall_0_1 = (RuleCall)cReferableReferrableCrossReference_0.eContents().get(1);
+		private final RuleCall cReferableReferrableFQNParserRuleCall_0_1 = (RuleCall)cReferableReferrableCrossReference_0.eContents().get(1);
 		
 		//Reference:
-		//  referable=[Referrable];
+		//  referable=[Referrable|FQN];
 		public ParserRule getRule() { return rule; }
 
-		//referable=[Referrable]
+		//referable=[Referrable|FQN]
 		public Assignment getReferableAssignment() { return cReferableAssignment; }
 
-		//[Referrable]
+		//[Referrable|FQN]
 		public CrossReference getReferableReferrableCrossReference_0() { return cReferableReferrableCrossReference_0; }
 
-		//ID
-		public RuleCall getReferableReferrableIDTerminalRuleCall_0_1() { return cReferableReferrableIDTerminalRuleCall_0_1; }
+		//FQN
+		public RuleCall getReferableReferrableFQNParserRuleCall_0_1() { return cReferableReferrableFQNParserRuleCall_0_1; }
 	}
 
 	public class FQNElements extends AbstractParserRuleElementFinder {
@@ -901,7 +901,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Reference:
-	//  referable=[Referrable];
+	//  referable=[Referrable|FQN];
 	public ReferenceElements getReferenceAccess() {
 		return (pReference != null) ? pReference : (pReference = new ReferenceElements());
 	}

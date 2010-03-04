@@ -2452,8 +2452,8 @@ rule__Reference__ReferableAssignment
 (
 { before(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0()); }
 (
-{ before(grammarAccess.getReferenceAccess().getReferableReferrableIDTerminalRuleCall_0_1()); }
-	RULE_ID{ after(grammarAccess.getReferenceAccess().getReferableReferrableIDTerminalRuleCall_0_1()); }
+{ before(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1()); }
+	ruleFQN{ after(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1()); }
 )
 { after(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0()); }
 )

@@ -1950,11 +1950,11 @@ protected class BooleanLiteral_FalseKeyword_1_1 extends KeywordToken  {
 /************ begin Rule Reference ****************
  *
  * Reference:
- *   referable=[Referrable];
+ *   referable=[Referrable|FQN];
  *
  **/
 
-// referable=[Referrable]
+// referable=[Referrable|FQN]
 protected class Reference_ReferableAssignment extends AssignmentToken  {
 	
 	public Reference_ReferableAssignment(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {

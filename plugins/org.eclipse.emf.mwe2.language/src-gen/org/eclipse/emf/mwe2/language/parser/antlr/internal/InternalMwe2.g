@@ -903,10 +903,12 @@ ruleReference returns [EObject current=null]
 	            associateNodeWithAstElement(currentNode, $current);
 	        }
         }
-	RULE_ID
-	{
-		createLeafNode(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0(), "referable"); 
-	}
+		{ 
+	        currentNode=createCompositeNode(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0(), currentNode); 
+	    }
+		ruleFQN		{ 
+	        currentNode = currentNode.getParent();
+	    }
 
 )
 )

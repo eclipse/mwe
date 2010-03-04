@@ -1429,52 +1429,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         try {
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:551:1: ( ( ruleComponent ) | ( ruleStringLiteral ) | ( ruleBooleanLiteral ) | ( ruleReference ) )
             int alt4=4;
-            switch ( input.LA(1) ) {
-            case RULE_ID:
-                {
-                int LA4_1 = input.LA(2);
-
-                if ( (LA4_1==EOF||LA4_1==RULE_ID||(LA4_1>=12 && LA4_1<=13)||LA4_1==25) ) {
-                    alt4=4;
-                }
-                else if ( ((LA4_1>=10 && LA4_1<=11)||LA4_1==24||LA4_1==26) ) {
-                    alt4=1;
-                }
-                else {
-                    NoViableAltException nvae =
-                        new NoViableAltException("547:1: rule__Value__Alternatives : ( ( ruleComponent ) | ( ruleStringLiteral ) | ( ruleBooleanLiteral ) | ( ruleReference ) );", 4, 1, input);
-
-                    throw nvae;
-                }
-                }
-                break;
-            case 10:
-            case 11:
-            case 13:
-            case 24:
-                {
-                alt4=1;
-                }
-                break;
-            case 29:
-            case 30:
-                {
-                alt4=2;
-                }
-                break;
-            case 9:
-            case 20:
-                {
-                alt4=3;
-                }
-                break;
-            default:
-                NoViableAltException nvae =
-                    new NoViableAltException("547:1: rule__Value__Alternatives : ( ( ruleComponent ) | ( ruleStringLiteral ) | ( ruleBooleanLiteral ) | ( ruleReference ) );", 4, 0, input);
-
-                throw nvae;
-            }
-
+            alt4 = dfa4.predict(input);
             switch (alt4) {
                 case 1 :
                     // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:552:1: ( ruleComponent )
@@ -6233,25 +6188,28 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Reference__ReferableAssignment
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2447:1: rule__Reference__ReferableAssignment : ( ( RULE_ID ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2447:1: rule__Reference__ReferableAssignment : ( ( ruleFQN ) ) ;
     public final void rule__Reference__ReferableAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2451:1: ( ( ( RULE_ID ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2452:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2451:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2452:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2452:1: ( ( RULE_ID ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2453:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2452:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2453:1: ( ruleFQN )
             {
              before(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2454:1: ( RULE_ID )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2455:1: RULE_ID
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2454:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2455:1: ruleFQN
             {
-             before(grammarAccess.getReferenceAccess().getReferableReferrableIDTerminalRuleCall_0_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__Reference__ReferableAssignment4933); 
-             after(grammarAccess.getReferenceAccess().getReferableReferrableIDTerminalRuleCall_0_1()); 
+             before(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1()); 
+            pushFollow(FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment4933);
+            ruleFQN();
+            _fsp--;
+
+             after(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1()); 
 
             }
 
@@ -6785,7 +6743,64 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__PlainString__ValueAssignment
 
 
+    protected DFA4 dfa4 = new DFA4(this);
     protected DFA10 dfa10 = new DFA10(this);
+    static final String DFA4_eotS =
+        "\10\uffff";
+    static final String DFA4_eofS =
+        "\1\uffff\1\6\5\uffff\1\6";
+    static final String DFA4_minS =
+        "\2\10\3\uffff\1\10\1\uffff\1\10";
+    static final String DFA4_maxS =
+        "\1\36\1\32\3\uffff\1\10\1\uffff\1\32";
+    static final String DFA4_acceptS =
+        "\2\uffff\1\1\1\2\1\3\1\uffff\1\4\1\uffff";
+    static final String DFA4_specialS =
+        "\10\uffff}>";
+    static final String[] DFA4_transitionS = {
+            "\1\1\1\4\2\2\1\uffff\1\2\6\uffff\1\4\3\uffff\1\2\4\uffff\2\3",
+            "\1\6\1\uffff\2\2\2\6\12\uffff\1\2\1\6\1\5",
+            "",
+            "",
+            "",
+            "\1\7",
+            "",
+            "\1\6\1\uffff\2\2\2\6\12\uffff\1\2\1\6\1\5"
+    };
+
+    static final short[] DFA4_eot = DFA.unpackEncodedString(DFA4_eotS);
+    static final short[] DFA4_eof = DFA.unpackEncodedString(DFA4_eofS);
+    static final char[] DFA4_min = DFA.unpackEncodedStringToUnsignedChars(DFA4_minS);
+    static final char[] DFA4_max = DFA.unpackEncodedStringToUnsignedChars(DFA4_maxS);
+    static final short[] DFA4_accept = DFA.unpackEncodedString(DFA4_acceptS);
+    static final short[] DFA4_special = DFA.unpackEncodedString(DFA4_specialS);
+    static final short[][] DFA4_transition;
+
+    static {
+        int numStates = DFA4_transitionS.length;
+        DFA4_transition = new short[numStates][];
+        for (int i=0; i<numStates; i++) {
+            DFA4_transition[i] = DFA.unpackEncodedString(DFA4_transitionS[i]);
+        }
+    }
+
+    class DFA4 extends DFA {
+
+        public DFA4(BaseRecognizer recognizer) {
+            this.recognizer = recognizer;
+            this.decisionNumber = 4;
+            this.eot = DFA4_eot;
+            this.eof = DFA4_eof;
+            this.min = DFA4_min;
+            this.max = DFA4_max;
+            this.accept = DFA4_accept;
+            this.special = DFA4_special;
+            this.transition = DFA4_transition;
+        }
+        public String getDescription() {
+            return "547:1: rule__Value__Alternatives : ( ( ruleComponent ) | ( ruleStringLiteral ) | ( ruleBooleanLiteral ) | ( ruleReference ) );";
+        }
+    }
     static final String DFA10_eotS =
         "\11\uffff";
     static final String DFA10_eofS =
@@ -7048,7 +7063,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_RULE_ID_in_rule__Assignment__FeatureAssignment_04819 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleValue_in_rule__Assignment__ValueAssignment_24854 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_20_in_rule__BooleanLiteral__IsTrueAssignment_1_04890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__Reference__ReferableAssignment4933 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment4933 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_29_in_rule__StringLiteral__BeginAssignment_0_04973 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_15012 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_0_2_05043 = new BitSet(new long[]{0x0000000000000002L});

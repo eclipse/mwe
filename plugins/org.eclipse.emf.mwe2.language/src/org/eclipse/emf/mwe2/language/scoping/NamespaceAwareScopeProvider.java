@@ -1,5 +1,6 @@
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.Collections;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -16,39 +17,46 @@ import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 
 import com.google.inject.Inject;
 
-public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
-	
+public class NamespaceAwareScopeProvider extends
+		ImportedNamespaceAwareLocalScopeProvider {
+
 	@Inject
 	private AbstractTypeScopeProvider typeScopeProvider;
-	
+
 	@Override
 	protected IScope getGlobalScope(EObject context, EReference reference) {
 		EClass referenceType = reference.getEReferenceType();
-		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
+		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE,
+				referenceType)) {
 			ResourceSet resourceSet = context.eResource().getResourceSet();
-			ITypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
+			ITypeProvider typeProvider = typeScopeProvider
+					.getTypeProviderFactory().findTypeProvider(resourceSet);
 			if (typeProvider == null)
-				typeProvider = typeScopeProvider.getTypeProviderFactory().createTypeProvider(resourceSet);
+				typeProvider = typeScopeProvider.getTypeProviderFactory()
+						.createTypeProvider(resourceSet);
 			return typeScopeProvider.createTypeScope(typeProvider);
 		} else {
 			return super.getGlobalScope(context, reference);
 		}
 	}
-	
+
 	@Override
 	public Set<ImportNormalizer> getImportNormalizer(EObject context) {
-		Set<ImportNormalizer> result = super.getImportNormalizer(context);
-		result.add(createImportNormalizer("java.lang.*"));
-		Module module = EcoreUtil2.getContainerOfType(context, Module.class);
-		if (module != null) {
-			String name = module.getCanonicalName();
-			int dot = name.lastIndexOf('.');
-			if (dot >= 0) {
-				name = name.substring(0, dot) + ".*";
-				result.add(createImportNormalizer(name));
+		if (context instanceof Module) {
+			Module module = (Module) context;
+			Set<ImportNormalizer> result = super.getImportNormalizer(context);
+			result.add(createImportNormalizer("java.lang.*"));
+			if (module != null) {
+				String name = module.getCanonicalName();
+				int dot = name.lastIndexOf('.');
+				if (dot >= 0) {
+					name = name.substring(0, dot) + ".*";
+					result.add(createImportNormalizer(name));
+				}
 			}
+			return result;
 		}
-		return result;
+		return Collections.emptySet();
 	}
-	
+
 }

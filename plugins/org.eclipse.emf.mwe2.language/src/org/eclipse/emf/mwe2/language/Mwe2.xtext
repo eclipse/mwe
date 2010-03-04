@@ -45,7 +45,7 @@ BooleanLiteral:
   {BooleanLiteral} (isTrue?='true'|'false');
 
 Reference:
-  referable=[Referrable];
+  referable=[Referrable|FQN];
 
 FQN:
   ID ('.' ID)*;

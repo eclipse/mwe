@@ -84,7 +84,6 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 	}
 	
 	private Object getRoot(String mweString) throws Exception {
-		System.out.println(mweString);
 		return getRootInstance(getModule(mweString));
 	}
 
