@@ -28,11 +28,15 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 		protected String internalToString(String value) {
 			String[] segments = value.split("\\.");
 			StringBuilder builder = new StringBuilder(value.length());
+			boolean first = true;
 			for(String segment: segments) {
+				if (!first)
+					builder.append('.');
 				if (allKeywords.contains(segment)) {
 					builder.append("^");
 				}
 				builder.append(segment);
+				first = false;
 			}
 			return builder.toString();
 		}

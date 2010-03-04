@@ -1,8 +1,8 @@
 package org.eclipse.emf.mwe2.language.ui.highlighting;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.resource.XtextResource;
@@ -26,10 +26,24 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 			if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess()
 					.getReferableDeclaredPropertyCrossReference_1_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
-				EObject semanticObject = NodeUtil.getNearestSemanticObject(abstractNode);
-				if (semanticObject != null) {
-					highlightNode(abstractNode, DefaultHighlightingConfiguration.STRING_ID, acceptor);
+				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
+				for(AbstractNode sibling: abstractNode.getParent().getChildren()) {
+					if (sibling != abstractNode) {
+						if (sibling.getGrammarElement() == grammarAccess.getML_COMMENTRule() || sibling.getGrammarElement() == grammarAccess.getSL_COMMENTRule()) {
+							highlightNode(sibling, DefaultHighlightingConfiguration.COMMENT_ID, acceptor);
+						}
+					}
 				}
+				if (abstractNode instanceof CompositeNode) {
+					for(AbstractNode child: ((CompositeNode) abstractNode).getChildren()) {
+						if (child.getGrammarElement() == grammarAccess.getML_COMMENTRule() || child.getGrammarElement() == grammarAccess.getSL_COMMENTRule()) {
+							highlightNode(child, DefaultHighlightingConfiguration.COMMENT_ID, acceptor);
+						}
+					}
+				}
+			} else if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()
+					|| abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()) {
+				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
 			} else if (abstractNode.getGrammarElement() == grammarAccess.getReferenceAccess()
 					.getReferableReferrableCrossReference_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
