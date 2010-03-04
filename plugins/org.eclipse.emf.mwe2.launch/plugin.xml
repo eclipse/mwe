@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            class="org.eclipse.emf.mwe2.launch.shortcut.Mwe2LaunchShortcut"
+            description="Launches an *.mwe2 file "
+            icon="icons/workflowfile.gif"
+            id="org.eclipse.emf.mwe2.launch.shortcut1"
+            label="Mwe2 Launch"
+            modes="run, debug">
+          <contextualLaunch>
+           <enablement>
+             <with variable="selection">
+               <count value="1"/>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <adapt type="org.eclipse.core.resources.IFile"/>
+                    <test property="org.eclipse.debug.ui.matchesPattern"
+                          value="*.mwe2"/>
+               </iterate>
+             </with>
+           </enablement>
+           <contextLabel
+              mode="run"
+              label="Run mwe2 file"/>
+          <contextLabel
+              mode="debug"
+              label="Debug mwe2 file"/>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+
+</plugin>

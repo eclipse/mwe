@@ -1,9 +1,12 @@
-package org.eclipse.emf.mwe2.launch;
+package org.eclipse.emf.mwe2.launch.runtime;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
@@ -17,25 +20,44 @@ import org.eclipse.xtext.resource.IResourceDescriptions;
 
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
+import com.google.inject.Provider;
 
-public class MweRunner {
-	
+public class Mwe2Runner {
+
 	@Inject
 	private RuntimeResourceSetInitializer initializer;
-	
+
 	@Inject
 	private Mwe2ExecutionEngine engine;
-	
+
+	@Inject
+	private Provider<ResourceSet> resourceSetProvider;
+
+	public void run(URI createURI, Map<String, String> params) {
+		Resource resource = resourceSetProvider.get().getResource(createURI, true);
+		if (resource != null) {
+			if (!resource.getContents().isEmpty()) {
+				EObject eObject = resource.getContents().get(0);
+				if (eObject instanceof Module) {
+					run(((Module) eObject).getCanonicalName(), params);
+					return;
+				}
+			}
+		}
+		throw new IllegalArgumentException("Couldn't load module from URI " + createURI);
+	}
+
 	public void run(String moduleName, Map<String, String> params) {
 		Module module = findModule(moduleName);
-		if (module==null)
-			throw new IllegalArgumentException("Couldn't find module with name '"+moduleName+"'.");
-		Map<String,Object> actualParams = getRealParams(params);
+		if (module == null)
+			throw new IllegalArgumentException("Couldn't find module with name '" + moduleName + "'.");
+		Map<String, Object> actualParams = getRealParams(params);
 		Object object = engine.create(module, actualParams);
 		if (!(object instanceof IWorkflow)) {
-			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"+object.getClass()+"'.");
+			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"
+					+ object.getClass() + "'.");
 		}
-		((IWorkflow)object).run(new WorkflowContextImpl());
+		((IWorkflow) object).run(new WorkflowContextImpl());
 	}
 
 	protected Map<String, Object> getRealParams(Map<String, String> params) {
@@ -59,11 +81,11 @@ public class MweRunner {
 	protected List<String> getPathes() {
 		return initializer.getClassPathEntries();
 	}
-	
+
 	public void setEngine(Mwe2ExecutionEngine engine) {
 		this.engine = engine;
 	}
-	
+
 	public void setInitializer(RuntimeResourceSetInitializer initializer) {
 		this.initializer = initializer;
 	}

@@ -1,4 +1,4 @@
-package org.eclipse.emf.mwe2.launch;
+package org.eclipse.emf.mwe2.launch.runtime;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,15 +11,16 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe2.language.ExtendedMwe2StandaloneSetup;
 
 import com.google.inject.Injector;
 
-public class MweLauncher {
+public class Mwe2Launcher {
 	private static final String PARAM = "p";
 
 	public static void main(String[] args) {
-		new MweLauncher().run(args);
+		new Mwe2Launcher().run(args);
 	}
 
 	public void run(String[] args) {
@@ -52,12 +53,16 @@ public class MweLauncher {
 				}
 			}
 			Injector injector = new ExtendedMwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
-			MweRunner mweRunner = injector.getInstance(MweRunner.class);
-			mweRunner.run(moduleName, params);
+			Mwe2Runner mweRunner = injector.getInstance(Mwe2Runner.class);
+			if (moduleName.contains("/")) {
+				mweRunner.run(URI.createURI(moduleName), params);
+			} else {
+				mweRunner.run(moduleName, params);
+			}
 		} catch (final ParseException exp) {
 			final HelpFormatter formatter = new HelpFormatter();
 			System.err.println("Parsing arguments failed.  Reason: " + exp.getMessage());
-			formatter.printHelp("java " + MweLauncher.class.getName() + " some.mwe2.Module [options]\n", options);
+			formatter.printHelp("java " + Mwe2Launcher.class.getName() + " some.mwe2.Module [options]\n", options);
 			return;
 		}
 	}
