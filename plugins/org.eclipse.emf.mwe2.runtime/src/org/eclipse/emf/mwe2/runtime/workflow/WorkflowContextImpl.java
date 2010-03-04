@@ -1,6 +1,7 @@
 package org.eclipse.emf.mwe2.runtime.workflow;
 
 import java.util.Map;
+import java.util.Set;
 
 import com.google.common.collect.Maps;
 
@@ -13,5 +14,9 @@ public class WorkflowContextImpl implements IWorkflowContext {
 
 	public void put(String s, Object o) {
 		internalState.put(s, o);
+	}
+
+	public Set<String> getSlotNames() {
+		return internalState.keySet();
 	}
 }

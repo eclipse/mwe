@@ -1,21 +1,15 @@
 package org.eclipse.emf.mwe2.runtime.workflow;
 
-import com.google.inject.Inject;
-import com.google.inject.Provider;
-
 public class Workflow extends AbstractCompositeWorkflowComponent implements IWorkflow {
 
-	private Provider<IWorkflowContext> contextProvider;
-	
-	@Inject
-	public void setContextProvider(Provider<IWorkflowContext> contextProvider) {
-		this.contextProvider = contextProvider;
+	public void run(IWorkflowContext context) {
+		this.preInvoke();
+		this.invoke(context);
+		this.postInvoke();
 	}
 	
-	public void run() {
-		this.preInvoke();
-		this.invoke(contextProvider.get());
-		this.postInvoke();
+	public void addUnused(Object x) {
+		
 	}
 
 }
