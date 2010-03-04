@@ -13,6 +13,7 @@ import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Referrable;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.EcoreUtil2;
@@ -40,7 +41,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	@Inject
 	private FactorySupport factorySupport;
-
+	
 	public IScope scope_Assignment_feature(Assignment context,
 			EReference reference) {
 		if (context.eContainer() == null)
@@ -74,17 +75,21 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	public IScope createReferenceScopeUpTo(EObject object, boolean allowObjects) {
+		List<Referrable> result = Lists.newArrayList();
+		collectReferablesUpTo(object, allowObjects, result);
+		return Scopes.scopeFor(result);
+	}
+	
+	public void collectReferablesUpTo(EObject object, boolean allowObjects, List<Referrable> result) {
 		Module module = EcoreUtil2.getContainerOfType(object, Module.class);
-		List<EObject> result = Lists.newArrayList();
 		for (DeclaredProperty prop : module.getDeclaredProperties()) {
 			if (prop == object || prop.getDefault() == object)
-				return Scopes.scopeFor(result);
+				return;
 			if (isAllowed(prop.getDefault(), allowObjects))
 				result.add(prop);
 		}
 		if (allowObjects)
 			collectReferablesUpTo(module.getRoot(), object, result);
-		return Scopes.scopeFor(result);
 	}
 
 	protected boolean isAllowed(Value value, boolean allowObjects) {
@@ -96,7 +101,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	public boolean collectReferablesUpTo(Component component, EObject object,
-			List<EObject> result) {
+			List<Referrable> result) {
 		result.add(component);
 		for (Assignment assignment : component.getAssignment()) {
 			if (assignment == object)

@@ -1,8 +1,10 @@
 package org.eclipse.emf.mwe2.language.validation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.TreeIterator;
@@ -16,6 +18,9 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Referrable;
 import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
+import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
+import org.eclipse.emf.mwe2.runtime.Mandatory;
+import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
@@ -27,8 +32,13 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.IAssignabilityComputer;
+import org.eclipse.xtext.resource.IEObjectDescription;
+import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 import com.google.common.collect.Sets;
@@ -41,7 +51,10 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
 	private FactorySupport factorySupport;
-
+	
+	@Inject
+	private Mwe2ScopeProvider scopeProvider;
+	
 	public final static String INCOMPATIBLE_ASSIGNMENT = "incompatible_assignment";
 
 	@Check
@@ -157,6 +170,84 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				component, Mwe2Package.REFERRABLE__TYPE, MISSING_DEFAULT_CONSTRUCTOR);
 	}
 	
+	public final static String MISSING_MANDATORY_FEATURE = "missing_mandatory_feature";
+	
+	@Check
+	public void checkManadatoryFeaturesAssigned(Component component) {
+		Map<String, JvmFeature> mandatoryFeatures = collectMandatoryFeatures(component);
+		if (!mandatoryFeatures.isEmpty()) {
+			Map<String, Referrable> availableProperties = collectReferablesUpTo(component);
+			Set<String> assignedFeatures = getAssignedFeatures(availableProperties, component);
+			mandatoryFeatures.keySet().removeAll(assignedFeatures);
+			if (!mandatoryFeatures.isEmpty()) {
+				List<String> missingAssignments = Lists.newArrayList(mandatoryFeatures.keySet());
+				Collections.sort(missingAssignments);
+				String concatenated = Strings.concat(", ", missingAssignments);
+				if (missingAssignments.size() == 1)
+					error("Mandatory feature was not assigned: '" + concatenated + "'.", component, null, MISSING_MANDATORY_FEATURE);
+				else
+					error("Mandatory features were not assigned: '" + concatenated + "'.", component, null, MISSING_MANDATORY_FEATURE);
+			}
+		}
+	}
+	
+	private Set<String> getAssignedFeatures(
+			Map<String, Referrable> availableProperties, Component component) {
+		Set<String> result = Sets.newHashSet();
+		if (component.isAutoInject()) {
+			result.addAll(availableProperties.keySet());
+		}
+		for(Assignment assignment: component.getAssignment()) {
+			if (assignment.getFeature() != null && !assignment.getFeature().eIsProxy()) {
+				JvmFeature feature = assignment.getFeature();
+				if (feature instanceof JvmOperation) {
+					result.add(Strings.toFirstLower(feature.getSimpleName().substring(3)));	
+				} else {
+					result.add(feature.getSimpleName());
+				}
+			}
+				
+		}
+		return result;
+	}
+
+	public Map<String, Referrable> collectReferablesUpTo(Component component) {
+		List<Referrable> result = Lists.newArrayList();
+		scopeProvider.collectReferablesUpTo(component, true, result);
+		Map<String, Referrable> indexed = Maps.newHashMap();
+		for(Referrable referrable: result) {
+			if (referrable.getName() != null) {
+				indexed.put(referrable.getName(), referrable);
+			}
+		}
+		return indexed;
+	}
+	
+	public Map<String, JvmFeature> collectMandatoryFeatures(Component component) {
+		Map<String, JvmFeature> result = Maps.newHashMap();
+		IScope scope = scopeProvider.createComponentFeaturesScope(component);
+		for(IEObjectDescription description: scope.getAllContents()) {
+			JvmFeature jvmFeature = (JvmFeature) description.getEObjectOrProxy();
+			if (isMandatory(jvmFeature)) {
+				result.put(description.getName(), jvmFeature);
+			}
+		}
+		return result;
+	}
+	
+	public boolean isMandatory(JvmFeature feature) {
+		if (feature.eIsProxy())
+			return false;
+		if (feature instanceof DeclaredProperty) {
+			return ((DeclaredProperty) feature).getDefault() == null;
+		}
+		JvmOperation operation = (JvmOperation) feature;
+		for(JvmAnnotationReference annotation: operation.getAnnotations()) {
+			if (Mandatory.class.getName().equals(annotation.getAnnotation().getFullyQualifiedName()))
+				return true;
+		}
+		return false;
+	}
 	
 	@Override
 	protected List<EPackage> getEPackages() {
