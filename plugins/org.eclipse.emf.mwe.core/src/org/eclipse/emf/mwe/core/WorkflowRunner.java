@@ -366,7 +366,7 @@ public class WorkflowRunner {
 	 * 
 	 * @return A map between injection types and converter implementations. Not <code>null</code>.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private Map<Class<?>, Converter> getConverters() {
 		Map<Class<?>, Converter> result = getCustomConverters();
 		final Map<Class<?>, Converter> defaults = WorkflowFactory.getDefaultConverter();
@@ -394,7 +394,7 @@ public class WorkflowRunner {
 	 * 
 	 * @return A map of custom Converter implementations. Maybe <code>null</code>.
 	 */
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	protected Map<Class<?>, Converter> getCustomConverters() {
 		return null;
 	}

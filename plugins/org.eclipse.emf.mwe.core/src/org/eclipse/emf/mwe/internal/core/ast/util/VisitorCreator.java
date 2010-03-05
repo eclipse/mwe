@@ -34,7 +34,7 @@ public class VisitorCreator extends VisitorBase {
 
 	private Map<String, Object> beans = new HashMap<String, Object>();
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class,
 	// Converter>
 
@@ -42,7 +42,7 @@ public class VisitorCreator extends VisitorBase {
 
 	private Issues issues = new IssuesImpl();
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public VisitorCreator(final Issues issues, final Map<Class<?>, Converter> converter, final Object rootBean) {
 		this.issues = issues;
 		this.converter = converter;
@@ -185,7 +185,7 @@ public class VisitorCreator extends VisitorBase {
 		return null;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Object visitSimpleParamAST(final SimpleParamAST param) {
 		final Injector inj = InjectorFactory.getInjector(currentBean.getClass(), param.getName());

@@ -43,7 +43,7 @@ public class WorkflowFactory {
 	private final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter> converter, final Issues issues) {
 		final InputStream in = loader.getResourceAsStream(fileName);
 		if (in == null) {
@@ -53,7 +53,7 @@ public class WorkflowFactory {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Workflow parseInitAndCreate(final InputStream in, final String resourceName, final Map<String, String> params,
 			final Map<Class<?>, Converter> converters, final Issues issues) {
 		final AbstractASTBase wfast = parseAndInitialize(in, resourceName, issues, params);
@@ -113,7 +113,7 @@ public class WorkflowFactory {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Set<?> parseInitAndAnalyze(final InputStream in, final String resourceName, final Issues issues, final Map<String, String> properties,
 			final Map<Class<?>, Converter> converter) {
 		final AbstractASTBase wf = parseAndInitialize(in, resourceName, issues, properties);
@@ -124,7 +124,7 @@ public class WorkflowFactory {
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public static Map<Class<?>, Converter> getDefaultConverter() {
 		final Map<Class<?>, Converter> m = new HashMap<Class<?>, Converter>();
 		m.put(Object.class, new StringConverter());

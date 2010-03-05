@@ -16,14 +16,19 @@ import org.eclipse.emf.mwe.core.WorkflowComponentWithID;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
 import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.issues.IssuesImpl;
+import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
+import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
 /**
  * Base class useful for implementing custom WorkflowComponents.
  * 
  */
-public abstract class AbstractWorkflowComponent implements WorkflowComponentWithID {
+public abstract class AbstractWorkflowComponent implements WorkflowComponentWithID, IWorkflowComponent {
 
 	private static final Log log = LogFactory.getLog(AbstractWorkflowComponent.class);
 
@@ -181,5 +186,43 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 			return true;
 
 		return false;
+	}
+	
+	public void preInvoke() {
+		IssuesImpl issuesImpl = new IssuesImpl();
+		checkConfiguration(issuesImpl);
+		handleIssues(issuesImpl);
+	}
+	
+	public void invoke(final IWorkflowContext ctx) {
+		IssuesImpl issuesImpl = new IssuesImpl();
+		invoke(new WorkflowContext() {
+			
+			public void set(String slotName, Object value) {
+				ctx.put(slotName, value);
+			}
+			
+			public String[] getSlotNames() {
+				return ctx.getSlotNames().toArray(new String[ctx.getSlotNames().size()]);
+			}
+			
+			public Object get(String slotName) {
+				return ctx.get(slotName);
+			}
+		}, new NullProgressMonitor(), issuesImpl);
+		handleIssues(issuesImpl);
+	}
+
+	protected void handleIssues(IssuesImpl issuesImpl) {
+		for (MWEDiagnostic diag: issuesImpl.getWarnings()) {
+			log.warn(diag.toString());
+		}
+		if (issuesImpl.hasErrors()) {
+			throw new RuntimeException(issuesImpl.toString());
+		}
+	}
+	
+	public void postInvoke() {
+		
 	}
 }
