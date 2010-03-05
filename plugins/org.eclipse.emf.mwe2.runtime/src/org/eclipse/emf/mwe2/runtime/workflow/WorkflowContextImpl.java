@@ -8,13 +8,13 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.runtime.workflow;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import com.google.common.collect.Maps;
-
 public class WorkflowContextImpl implements IWorkflowContext {
-	private Map<String, Object> internalState = Maps.newHashMap();
+	private Map<String, Object> internalState = new HashMap<String, Object>();
 
 	public Object get(String s) {
 		return internalState.get(s);
@@ -25,6 +25,6 @@ public class WorkflowContextImpl implements IWorkflowContext {
 	}
 
 	public Set<String> getSlotNames() {
-		return internalState.keySet();
+		return Collections.unmodifiableSet(internalState.keySet());
 	}
 }

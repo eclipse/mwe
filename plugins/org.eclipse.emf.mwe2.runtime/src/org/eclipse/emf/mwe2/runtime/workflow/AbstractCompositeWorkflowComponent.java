@@ -8,13 +8,13 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.runtime.workflow;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.collect.Lists;
 
 public abstract class AbstractCompositeWorkflowComponent implements
 		IWorkflowComponent {
-	private List<IWorkflowComponent> children = Lists.newArrayList();
+	private List<IWorkflowComponent> children = new ArrayList<IWorkflowComponent>();
 	
 	public void addComponent(IWorkflowComponent component) {
 		this.children.add(component);
