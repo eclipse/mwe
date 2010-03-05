@@ -49,7 +49,6 @@ class Reference extends Value, AbstractReference {
 }
 
 class StringLiteral extends Value {
-  op String getResolvedString();
   attr String begin;
   val StringPart[*] parts;
   attr String end;

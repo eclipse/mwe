@@ -177,18 +177,6 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getResolvedString()
-  {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {

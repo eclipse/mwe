@@ -95,12 +95,4 @@ public interface StringLiteral extends Value
    */
   void setEnd(String value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  String getResolvedString();
-
 } // StringLiteral

@@ -721,8 +721,6 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
     initEReference(getStringLiteral_Parts(), this.getStringPart(), null, "parts", null, 0, -1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getStringLiteral_End(), ecorePackage.getEString(), "end", null, 0, 1, StringLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    addEOperation(stringLiteralEClass, ecorePackage.getEString(), "getResolvedString", 0, 1, IS_UNIQUE, IS_ORDERED);
-
     initEClass(stringPartEClass, StringPart.class, "StringPart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
     initEClass(propertyReferenceEClass, PropertyReference.class, "PropertyReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
