@@ -64,6 +64,9 @@
 				lexerGrammar="org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlighting"
 				highlighting="true"
 			/>
+
+			<!-- quickfix API -->
+			<fragment class="org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment"/>			
 		</language>
 	</component>
 </workflow>

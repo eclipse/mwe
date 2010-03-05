@@ -132,5 +132,10 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.HIGHLIGHTING)).to(org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer.class);
 	}
 
+	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
+		return org.eclipse.emf.mwe2.language.ui.quickfix.Mwe2QuickfixProvider.class;
+	}
+
 
 }

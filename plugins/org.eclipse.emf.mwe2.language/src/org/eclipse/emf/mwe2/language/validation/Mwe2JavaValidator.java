@@ -32,6 +32,7 @@ import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmGenericType;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -168,14 +169,31 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		if (component.getModule() != null)
 			return;
 		JvmDeclaredType declaredType = (JvmDeclaredType) component.getActualType();
-		for(JvmMember member: declaredType.getMembers()) {
-			if (member instanceof JvmConstructor) {
-				if (((JvmConstructor) member).getParameters().isEmpty() && member.getVisibility().equals(JvmVisibility.PUBLIC))
-					return;
+		if (!declaredType.isAbstract() && 
+				!(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
+			for(JvmMember member: declaredType.getMembers()) {
+				if (member instanceof JvmConstructor) {
+					if (((JvmConstructor) member).getParameters().isEmpty() && member.getVisibility().equals(JvmVisibility.PUBLIC))
+						return;
+				}
 			}
+			error("'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
+					component, Mwe2Package.REFERRABLE__TYPE, MISSING_DEFAULT_CONSTRUCTOR);
 		}
-		error("'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
-				component, Mwe2Package.REFERRABLE__TYPE, MISSING_DEFAULT_CONSTRUCTOR);
+	}
+	
+	public final static String ABSTRACT_OR_INTERFACE = "abstract_or_interface";
+	
+	@Check
+	public void checkComponentTypeIsInterfaceOrAbstract(Component component) {
+		if (component.getModule() != null)
+			return;
+		JvmDeclaredType declaredType = (JvmDeclaredType) component.getActualType();
+		if (declaredType.isAbstract() || 
+				(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
+			error("'" + declaredType.getCanonicalName() + "' is not instantiable.",
+					component, Mwe2Package.REFERRABLE__TYPE, ABSTRACT_OR_INTERFACE);
+		}
 	}
 	
 	public final static String MISSING_MANDATORY_FEATURE = "missing_mandatory_feature";

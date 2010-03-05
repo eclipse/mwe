@@ -3,7 +3,6 @@
 */
 package org.eclipse.emf.mwe2.language.ui.contentassist;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.*;
 import org.eclipse.xtext.ui.editor.contentassist.AbstractJavaBasedContentProposalProvider;
