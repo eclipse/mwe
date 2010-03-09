@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.emf.mwe2.language
 Bundle-Vendor: Eclipse Modeling
-Bundle-Version: 0.8.0
+Bundle-Version: 1.0.0
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime,
- org.eclipse.emf.mwe2.runtime;bundle-version="0.8.0"
+ org.eclipse.emf.mwe2.runtime;bundle-version="1.0.0"
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.language,
