@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.ui.highlighting;
 
+import org.eclipse.jface.text.TextAttribute;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
@@ -19,6 +20,7 @@ public class MweHighlightingConfiguration extends DefaultHighlightingConfigurati
 	public static final String PROPERTY_REF = "property_ref";
 	public static final String FEATURE_REF = "feature_ref";
 	public static final String STRING_PROP_REF = "string_prop_ref";
+	public static final String DEPRECATED_ELEMENT = "deprecated_element";
 
 	@Override
 	public void configure(IHighlightingConfigurationAcceptor acceptor) {
@@ -26,6 +28,7 @@ public class MweHighlightingConfiguration extends DefaultHighlightingConfigurati
 		acceptor.acceptDefaultHighlighting(PROPERTY_REF, "Variable reference", propertyReferenceTextStyle());
 		acceptor.acceptDefaultHighlighting(FEATURE_REF, "Feature reference", featureReferenceTextStyle());
 		acceptor.acceptDefaultHighlighting(STRING_PROP_REF, "String property reference", textPropertyRefStyle());
+		acceptor.acceptDefaultHighlighting(DEPRECATED_ELEMENT, "Deprecated element", textDeprecatedStyle());
 	}
 
 	public TextStyle propertyReferenceTextStyle() {
@@ -43,6 +46,12 @@ public class MweHighlightingConfiguration extends DefaultHighlightingConfigurati
 	public TextStyle featureReferenceTextStyle() {
 		TextStyle textStyle = new TextStyle();
 		textStyle.setColor(new RGB(0,0,192));
+		return textStyle;
+	}
+	
+	public TextStyle textDeprecatedStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setStyle(TextAttribute.STRIKETHROUGH);
 		return textStyle;
 	}
 }

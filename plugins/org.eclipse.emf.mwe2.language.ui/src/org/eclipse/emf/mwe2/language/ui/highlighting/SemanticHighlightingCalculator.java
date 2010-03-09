@@ -8,7 +8,16 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.ui.highlighting;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
+import org.eclipse.xtext.common.types.JvmAnnotationReference;
+import org.eclipse.xtext.common.types.JvmAnnotationTarget;
+import org.eclipse.xtext.common.types.JvmMember;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.CompositeNode;
 import org.eclipse.xtext.parsetree.LeafNode;
@@ -31,7 +40,8 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 
 		Iterable<AbstractNode> allNodes = NodeUtil.getAllContents(resource.getParseResult().getRootNode());
 		for (AbstractNode abstractNode : allNodes) {
-			if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess()
+			EObject grammarElement = abstractNode.getGrammarElement();
+			if (grammarElement == grammarAccess.getPropertyReferenceAccess()
 					.getReferableDeclaredPropertyCrossReference_1_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
 				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
@@ -49,17 +59,45 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 						}
 					}
 				}
-			} else if (abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()
-					|| abstractNode.getGrammarElement() == grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()) {
+			} else if (grammarElement == grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()
+					|| grammarElement == grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
-			} else if (abstractNode.getGrammarElement() == grammarAccess.getReferenceAccess()
+			} else if (grammarElement == grammarAccess.getReferenceAccess()
 					.getReferableReferrableCrossReference_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
-			} else if (abstractNode.getGrammarElement() == grammarAccess.getAssignmentAccess()
+			} else if (grammarElement == grammarAccess.getAssignmentAccess()
 					.getFeatureJvmFeatureCrossReference_0_0()) {
 				highlightNode(abstractNode, MweHighlightingConfiguration.FEATURE_REF, acceptor);
+				Assignment semanticObject = (Assignment) NodeUtil.getNearestSemanticObject(abstractNode);
+				if (semanticObject.getFeature() instanceof JvmOperation) {
+					JvmOperation operation = (JvmOperation) semanticObject.getFeature();
+					if (isDeprecated(operation)) {
+						highlightNode(abstractNode, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
+					}
+				}
+			} else if (grammarElement == grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0()
+					|| grammarElement == grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0()) {
+				Component component = (Component) NodeUtil.getNearestSemanticObject(abstractNode);
+				if (component.getType() instanceof JvmAnnotationTarget && isDeprecated((JvmAnnotationTarget) component.getType())) {
+					highlightNode(abstractNode, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
+				}
 			}
 		}
+	}
+
+	public boolean isDeprecated(JvmAnnotationTarget annotatable) {
+		if (annotatable == null)
+			return false;
+		List<JvmAnnotationReference> annotations = annotatable.getAnnotations();
+		for(JvmAnnotationReference annotation: annotations) {
+			if (Deprecated.class.getName().equals(annotation.getAnnotation().getCanonicalName())) {
+				return true;
+			}
+		}
+		if (annotatable instanceof JvmMember) {
+			return isDeprecated(((JvmMember) annotatable).getDeclaringType());
+		}
+		return false;
 	}
 
 	private void highlightNode(AbstractNode node, String id, IHighlightedPositionAcceptor acceptor) {
