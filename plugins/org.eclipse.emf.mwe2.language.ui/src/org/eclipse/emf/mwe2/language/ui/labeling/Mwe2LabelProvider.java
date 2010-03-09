@@ -9,6 +9,16 @@
 package org.eclipse.emf.mwe2.language.ui.labeling;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.Import;
+import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Reference;
+import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.xtext.common.types.JvmOperation;
+import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
 
 import com.google.inject.Inject;
@@ -23,6 +33,46 @@ public class Mwe2LabelProvider extends DefaultEObjectLabelProvider {
 	@Inject
 	public Mwe2LabelProvider(AdapterFactoryLabelProvider delegate) {
 		super(delegate);
+	}
+	
+	public String image(Component component) {
+		return "class_obj.gif";
+	}
+	
+	public String image(Module module) {
+		return "package_obj.gif";
+	}
+	
+	public String image(Import imp) {
+		return "imp_obj.gif";
+	}
+	
+	public String image(StringLiteral literal) {
+		return "methpro_obj.gif";
+	}
+	
+	public String image(BooleanLiteral literal) {
+		return "methdef_obj.gif";
+	}
+	
+	public String image(Reference reference) {
+		return "occ_match.gif"; 
+	}
+	
+	public String image(Assignment ass) {
+		return "methpub_obj.gif";
+	}
+	
+	public String image(JvmOperation feature) {
+		return "methpub_obj.gif";
+	}
+	
+	public String image(JvmType feature) {
+		return "class_obj.gif";
+	}
+	
+	public String image(DeclaredProperty property) {
+		return "field_protected_obj.gif";
 	}
 
 /*
