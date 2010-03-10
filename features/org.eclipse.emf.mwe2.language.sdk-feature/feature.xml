@@ -28,7 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
    
    <requires>
-      <import feature="org.eclipse.xtext.ui" version="0.8.0"/>
+      <import feature="org.eclipse.xtext.ui" version="1.0.0"/>
    </requires>
    
    <includes
