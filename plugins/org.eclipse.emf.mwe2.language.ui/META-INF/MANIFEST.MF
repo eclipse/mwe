@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: org.eclipse.emf.mwe2.language.ui
-Bundle-Vendor: eclipse.org
-Bundle-Version: 1.0.0
+Bundle-Vendor: Eclipse Modeling
+Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ui;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
