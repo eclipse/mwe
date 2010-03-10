@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: MWE2 Tests
+Bundle-Name: Modeling Workflow Engine 2 Language Tests
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.tests
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: Eclipse Modeling

@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.emf.mwe2.language.ui
+Bundle-Name: Modeling Workflow Engine 2 Language UI
 Bundle-Vendor: Eclipse Modeling
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ui;singleton:=true
