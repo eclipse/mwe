@@ -21,7 +21,7 @@
 
 	<property name="eclipse.plugin.id" value="org.eclipse.emf.mwe.doc" />
 	<property name="eclipse.plugin.name"
-	          value="MWE core documentation (Incubation)" />
+	          value="MWE core documentation " />
 	<property name="eclipse.plugin.provider" value="Eclipse.org" />
 
 	<property name="src.dir" value="src/5.0/content" />
