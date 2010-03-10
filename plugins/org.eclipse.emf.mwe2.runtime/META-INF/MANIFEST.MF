@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Workflow Engine 2 Runtime
 Bundle-SymbolicName: org.eclipse.emf.mwe2.runtime
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Eclipse Modeling
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.runtime,
  org.eclipse.emf.mwe2.runtime.workflow
