@@ -19,6 +19,7 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
+import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe2.language.ExtendedMwe2StandaloneSetup;
 
@@ -26,9 +27,16 @@ import com.google.inject.Injector;
 
 public class Mwe2Launcher {
 	private static final String PARAM = "p";
+	
+	private static final Logger logger = Logger.getLogger(Mwe2Launcher.class);
 
 	public static void main(String[] args) {
-		new Mwe2Launcher().run(args);
+		try {
+			new Mwe2Launcher().run(args);
+		} catch(Throwable throwable) {
+			logger.error(throwable.getMessage(), throwable);
+			System.exit(1);
+		}
 	}
 
 	public void run(String[] args) {

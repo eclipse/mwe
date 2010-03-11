@@ -19,3 +19,4 @@ Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="1.0.0",
  org.eclipse.jface;bundle-version="3.5.1";resolution:=optional,
  org.eclipse.ui;bundle-version="3.5.1";resolution:=optional
 Export-Package: org.eclipse.emf.mwe2.launch.runtime
+Import-Package: org.apache.log4j;version="1.2.15"
