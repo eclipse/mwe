@@ -188,7 +188,10 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	public void checkComponentTypeIsInterfaceOrAbstract(Component component) {
 		if (component.getModule() != null)
 			return;
-		JvmDeclaredType declaredType = (JvmDeclaredType) component.getActualType();
+		JvmType actualType = component.getActualType();
+		if (actualType == null || actualType.eIsProxy())
+			return;
+		JvmDeclaredType declaredType = (JvmDeclaredType) actualType;
 		if (declaredType.isAbstract() || 
 				(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
 			error("'" + declaredType.getCanonicalName() + "' is not instantiable.",
