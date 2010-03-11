@@ -168,7 +168,10 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	public void checkInstantiable(Component component) {
 		if (component.getModule() != null)
 			return;
-		JvmDeclaredType declaredType = (JvmDeclaredType) component.getActualType();
+		JvmType actualType = component.getActualType();
+		if (actualType == null || actualType.eIsProxy())
+			return;
+		JvmDeclaredType declaredType = (JvmDeclaredType) actualType;
 		if (!declaredType.isAbstract() && 
 				!(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
 			for(JvmMember member: declaredType.getMembers()) {

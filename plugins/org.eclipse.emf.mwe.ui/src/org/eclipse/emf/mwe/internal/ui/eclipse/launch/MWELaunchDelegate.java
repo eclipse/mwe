@@ -208,6 +208,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
                 if (refreshJob.getState() != Job.WAITING) {
                     refreshJob.schedule();
                 }
+                DebugPlugin.getDefault().removeDebugEventListener(this);
             }
 		}
 		super.handleDebugEvents(events);

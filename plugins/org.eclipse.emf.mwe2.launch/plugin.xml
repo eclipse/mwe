@@ -1,6 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+<!-- launchConfiguration -->
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType"
+            modes="run, debug"
+            name="%mwe2launch.configType.name"
+            delegate="org.eclipse.emf.mwe2.launch.shortcut.Mwe2LaunchDelegate"
+            sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+            sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"/>
+   </extension>
+   
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="org.eclipse.emf.mwe2.launch.ui.Mwe2LaunchTabGroup"
+            id="org.eclipse.emf.mwe2.launch.ui.Mwe2LaunchConfigurationTabGroup"
+            type="org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType">
+            <launchMode 
+                  mode="debug"
+                  perspective="org.eclipse.debug.ui.DebugPerspective"
+                  description="%mwe2launch.debug">
+            </launchMode>
+            <launchMode
+                  mode="run"
+                  description="%mwe2launch.run">
+            </launchMode>
+      </launchConfigurationTabGroup>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType"
+            icon="icons/workflowfile.gif"
+            id="org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationTypeImage"/>
+   </extension>
+
+
    <extension
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
