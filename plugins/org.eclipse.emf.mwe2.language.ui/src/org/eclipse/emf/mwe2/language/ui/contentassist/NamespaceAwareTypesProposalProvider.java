@@ -13,6 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.common.types.xtext.ui.JdtTypesProposalProvider;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider.ImportNormalizer;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
@@ -27,15 +28,15 @@ public class NamespaceAwareTypesProposalProvider extends JdtTypesProposalProvide
 	private NamespaceAwareScopeProvider nameSpaceAwareScopeProvider;
 	
 	@Override
-	protected void createTypeProposal(String typeName, ICompletionProposalFactory proposalFactory, 
+	protected void createTypeProposal(String typeName,int flags, boolean isInnerType, ICompletionProposalFactory proposalFactory, 
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		if (acceptor.canAcceptMoreProposals() && !"java.lang.Object".equals(typeName)) {
 			int lastDot = typeName.lastIndexOf('.');
 			String displayString = typeName;
 			if (lastDot != -1)
 				displayString = typeName.substring(lastDot + 1) + " - " + typeName.substring(0, lastDot);
-			ICompletionProposal proposal = proposalFactory.createCompletionProposal(
-					toShortName(context.getRootModel(), typeName), displayString, null, context);
+			Image img = computeImage(typeName,isInnerType, flags);
+			ICompletionProposal proposal = proposalFactory.createCompletionProposal(typeName, displayString, img, context);
 			acceptor.accept(proposal);
 		}
 	}
