@@ -114,9 +114,9 @@ class="org.eclipse.emf.mwe.internal.ui.eclipse.launch.MWELaunchShortcut"
                   <adapt type="org.eclipse.core.resources.IFile"/>
                   <or>
                     <test property="org.eclipse.debug.ui.matchesPattern"
-                          value="*.oaw"/>
+                          value="*.oaw$"/>
                     <test property="org.eclipse.debug.ui.matchesPattern"
-                          value="*.mwe"/>
+                          value="*.mwe$"/>
                  </or>
                   <test forcePluginActivation="false"
                         property="org.eclipse.emf.mwe.ui.launchable"/>
