@@ -8,16 +8,20 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.runtime.workflow;
 
+import org.apache.log4j.Logger;
+
 public class Workflow extends AbstractCompositeWorkflowComponent implements IWorkflow {
 
+	private static final Logger logger = Logger.getLogger(Workflow.class); 
+	
 	public void run(IWorkflowContext context) {
 		this.preInvoke();
 		this.invoke(context);
 		this.postInvoke();
+		logger.info("Done.");
 	}
 	
-	public void addUnused(Object x) {
-		
+	public void addBean(Object x) {
 	}
 
 }
