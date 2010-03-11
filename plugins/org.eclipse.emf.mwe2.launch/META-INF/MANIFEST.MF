@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Workflow Engine 2 Launch
 Bundle-SymbolicName: org.eclipse.emf.mwe2.launch;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Vendor: Eclipse Modeling
+Bundle-Vendor: Eclipse Modeling Project
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="1.0.0";visibility:=reexport,
