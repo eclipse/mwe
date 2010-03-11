@@ -1,5 +1,6 @@
 package org.eclipse.emf.mwe2.launch.shortcut;
 
+import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -16,6 +17,8 @@ import org.eclipse.jdt.launching.JavaLaunchDelegate;
 
 public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 
+	private static final Logger logger = Logger.getLogger(Mwe2LaunchDelegate.class);
+	
 	@Override
 	public void launch(final ILaunchConfiguration configuration, String mode,
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
@@ -33,7 +36,7 @@ public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 										try {
 											RefreshTab.refreshResources(configuration, monitor);
 										} catch (CoreException e) {
-											// ExternalToolsPlugin.getDefault().log(e);
+											logger.error(e.getMessage(), e);
 											return e.getStatus();
 										}
 										return Status.OK_STATUS;
