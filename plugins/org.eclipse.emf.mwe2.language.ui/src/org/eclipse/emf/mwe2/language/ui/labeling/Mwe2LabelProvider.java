@@ -75,15 +75,4 @@ public class Mwe2LabelProvider extends DefaultEObjectLabelProvider {
 		return "field_protected_obj.gif";
 	}
 
-/*
-	//Labels and icons can be computed like this:
-	
-	String text(MyModel ele) {
-	  return "my "+ele.getName();
-	}
-	 
-    String image(MyModel ele) {
-      return "MyModel.gif";
-    }
-*/
 }
