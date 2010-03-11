@@ -16,6 +16,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
@@ -59,6 +60,10 @@ public class Mwe2Runner {
 		Module module = findModule(moduleName);
 		if (module == null)
 			throw new IllegalArgumentException("Couldn't find module with name '" + moduleName + "'.");
+		EcoreUtil.resolveAll(module);
+		if (!module.eResource().getErrors().isEmpty()) {
+			throw new IllegalStateException(module.eResource().getErrors().toString());
+		}
 		Map<String, Object> actualParams = getRealParams(params);
 		Object object = engine.create(module, actualParams);
 		if (!(object instanceof IWorkflow)) {
