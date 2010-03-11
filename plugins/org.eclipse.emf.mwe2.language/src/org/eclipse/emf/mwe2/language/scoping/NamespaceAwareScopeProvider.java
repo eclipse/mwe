@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.TypesPackage;
 import org.eclipse.xtext.common.types.access.ITypeProvider;
@@ -50,6 +51,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 			Module module = (Module) context;
 			Set<ImportNormalizer> result = super.getImportNormalizer(context);
 			result.add(createImportNormalizer("java.lang.*"));
+			result.add(createImportNormalizer(IWorkflow.class.getPackage().getName() + ".*"));
 			String name = module.getCanonicalName();
 			int dot = name.lastIndexOf('.');
 			if (dot >= 0) {
