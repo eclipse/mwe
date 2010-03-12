@@ -44,10 +44,10 @@
          point="org.eclipse.debug.ui.launchShortcuts">
       <shortcut
             class="org.eclipse.emf.mwe2.launch.shortcut.Mwe2LaunchShortcut"
-            description="Launches an *.mwe2 file "
+            description="%shortcut.description"
             icon="icons/workflowfile.gif"
             id="org.eclipse.emf.mwe2.launch.shortcut1"
-            label="Mwe2 Launch"
+            label="%shortcut.label"
             modes="run, debug">
           <contextualLaunch>
            <enablement>
@@ -64,10 +64,10 @@
            </enablement>
            <contextLabel
               mode="run"
-              label="Run mwe2 file"/>
+              label="%contextLabel.run.label"/>
           <contextLabel
               mode="debug"
-              label="Debug mwe2 file"/>
+              label="%contextLabel.debug.label"/>
          </contextualLaunch>
       </shortcut>
    </extension>
