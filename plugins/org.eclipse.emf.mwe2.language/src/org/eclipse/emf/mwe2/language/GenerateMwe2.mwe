@@ -48,6 +48,7 @@
 			<!-- outline API -->
 			<fragment class="org.eclipse.xtext.ui.generator.outline.TransformerFragment"/>
 			<fragment class="org.eclipse.xtext.ui.generator.outline.OutlineNodeAdapterFactoryFragment"/>
+			<fragment class="org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment"/>
 
 			<!-- java-based API for content assistance -->
 			<fragment class="org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment"/>

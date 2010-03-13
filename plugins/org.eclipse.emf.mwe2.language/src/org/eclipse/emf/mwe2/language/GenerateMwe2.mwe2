@@ -68,6 +68,7 @@ Workflow {
 			// outline API 
 			fragment = outline.TransformerFragment {}
 			fragment = outline.OutlineNodeAdapterFactoryFragment {}
+			fragment = outline.QuickOutlineFragment {}
 
 			// java-based API for content assistance 
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
