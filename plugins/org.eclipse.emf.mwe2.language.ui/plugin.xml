@@ -2,7 +2,27 @@
 <?eclipse version="3.0"?>
 
 <plugin>
-
+	<extension
+         point="org.eclipse.team.core.fileTypes">
+      <fileTypes
+            type="text"
+            extension="mwe2">
+      </fileTypes>
+   	</extension>
+   	<extension
+	      point = "org.eclipse.ui.newWizards">
+		 <wizard
+         category="org.eclipse.emf.mwe.ui.newWizards"
+         class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
+         hasPages="true"
+         icon="icons/workflowfile.gif"
+         id="org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
+         name="%mwe2.fileWizard.name">
+	       <description>%mwe2.fileWizard.description</description>
+		   <selection class="org.eclipse.core.resources.IResource"/>
+		</wizard>
+	</extension>
+	
     <extension
             point="org.eclipse.ui.editors">
         <editor
@@ -11,6 +31,7 @@
             default="true"
             extensions="mwe2"
             id="org.eclipse.emf.mwe2.language.Mwe2"
+            icon="icons/workflowfile.gif"
             name="Mwe2 Editor">
         </editor>
     </extension>

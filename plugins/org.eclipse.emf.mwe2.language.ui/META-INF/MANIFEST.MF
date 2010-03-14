@@ -1,9 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Modeling Workflow Engine 2 Language UI
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ui;singleton:=true
+Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
  org.eclipse.xtext.ui,
