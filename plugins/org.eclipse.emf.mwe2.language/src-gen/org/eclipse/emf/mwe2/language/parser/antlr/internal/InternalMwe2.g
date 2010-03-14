@@ -55,7 +55,12 @@ import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
     @Override
     protected String getFirstRuleName() {
     	return "Module";	
-   	} 
+   	}
+   	
+   	@Override
+   	protected Mwe2GrammarAccess getGrammarAccess() {
+   		return grammarAccess;
+   	}
 }
 
 @rulecatch { 
