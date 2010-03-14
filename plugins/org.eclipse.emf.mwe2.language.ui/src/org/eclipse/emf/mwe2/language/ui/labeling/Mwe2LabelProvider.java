@@ -17,6 +17,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.ui.label.DefaultEObjectLabelProvider;
@@ -73,6 +74,20 @@ public class Mwe2LabelProvider extends DefaultEObjectLabelProvider {
 	
 	public String image(DeclaredProperty property) {
 		return "field_protected_obj.gif";
+	}
+	
+	public String text(Component component) {
+		if (component.getName() != null)
+			return component.getName();
+		if (component.getModule() != null)
+			return component.getModule().getCanonicalName();
+		JvmType type = component.getActualType();
+		if (type != null) {
+			if (type instanceof JvmMember)
+				return ((JvmMember) type).getSimpleName();
+			return type.getCanonicalName();
+		}
+		return "Component";
 	}
 
 }
