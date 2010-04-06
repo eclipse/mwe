@@ -10,14 +10,12 @@ package org.eclipse.emf.mwe2.language;
 
 import org.eclipse.emf.mwe2.language.resource.MweLocationInFileProvider;
 import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
-import org.eclipse.emf.mwe2.language.scoping.JvmTypesAwareGlobalScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.eclipse.xtext.scoping.IGlobalScopeProvider;
 
 import com.google.inject.Provider;
 
@@ -25,10 +23,6 @@ import com.google.inject.Provider;
  * Use this class to register components to be used within the IDE.
  */
 public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe2RuntimeModule {
-	@Override
-	public Class<? extends IGlobalScopeProvider> bindIGlobalScopeProvider() {
-		return JvmTypesAwareGlobalScopeProvider.class;
-	}
 	
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {

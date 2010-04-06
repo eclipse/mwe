@@ -37,8 +37,10 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
         }
         
 
-    public String[] getTokenNames() { return tokenNames; }
-    public String getGrammarFileName() { return "../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g"; }
+    @Override
+	public String[] getTokenNames() { return tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g"; }
 
 
 
@@ -797,7 +799,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:398:1: (lv_autoInject_6_0= 'auto-inject' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:399:3: lv_autoInject_6_0= 'auto-inject'
                     {
-                    lv_autoInject_6_0=(Token)input.LT(1);
+                    lv_autoInject_6_0=input.LT(1);
                     match(input,14,FOLLOW_14_in_ruleRootComponent573); 
 
                             createLeafNode(grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0(), "autoInject"); 
@@ -1141,7 +1143,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:550:1: (lv_autoInject_6_0= 'auto-inject' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:551:3: lv_autoInject_6_0= 'auto-inject'
                     {
-                    lv_autoInject_6_0=(Token)input.LT(1);
+                    lv_autoInject_6_0=input.LT(1);
                     match(input,14,FOLLOW_14_in_ruleComponent828); 
 
                             createLeafNode(grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0(), "autoInject"); 
@@ -1442,7 +1444,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                 case 1 :
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:688:2: kw= '.*'
                     {
-                    kw=(Token)input.LT(1);
+                    kw=input.LT(1);
                     match(input,18,FOLLOW_18_in_ruleImportedFQN1100); 
 
                             current.merge(kw);
@@ -1854,7 +1856,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:855:1: (lv_isTrue_1_0= 'true' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:856:3: lv_isTrue_1_0= 'true'
                     {
-                    lv_isTrue_1_0=(Token)input.LT(1);
+                    lv_isTrue_1_0=input.LT(1);
                     match(input,19,FOLLOW_19_in_ruleBooleanLiteral1498); 
 
                             createLeafNode(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0(), "isTrue"); 
@@ -2061,7 +2063,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:942:1: (this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )* )
             // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:942:6: this_ID_0= RULE_ID (kw= '.' this_ID_2= RULE_ID )*
             {
-            this_ID_0=(Token)input.LT(1);
+            this_ID_0=input.LT(1);
             match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1708); 
 
             		current.merge(this_ID_0);
@@ -2084,13 +2086,13 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:950:2: kw= '.' this_ID_2= RULE_ID
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,21,FOLLOW_21_in_ruleFQN1727); 
 
             	            current.merge(kw);
             	            createLeafNode(grammarAccess.getFQNAccess().getFullStopKeyword_1_0(), null); 
             	        
-            	    this_ID_2=(Token)input.LT(1);
+            	    this_ID_2=input.LT(1);
             	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleFQN1742); 
 
             	    		current.merge(this_ID_2);
@@ -2228,7 +2230,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:993:1: (lv_begin_0_0= '\\'' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:994:3: lv_begin_0_0= '\\''
                     {
-                    lv_begin_0_0=(Token)input.LT(1);
+                    lv_begin_0_0=input.LT(1);
                     match(input,22,FOLLOW_22_in_ruleStringLiteral1853); 
 
                             createLeafNode(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0(), "begin"); 
@@ -2411,7 +2413,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1086:1: (lv_end_4_0= '\\'' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1087:3: lv_end_4_0= '\\''
                     {
-                    lv_end_4_0=(Token)input.LT(1);
+                    lv_end_4_0=input.LT(1);
                     match(input,22,FOLLOW_22_in_ruleStringLiteral1952); 
 
                             createLeafNode(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0(), "end"); 
@@ -2452,7 +2454,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1108:1: (lv_begin_5_0= '\"' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1109:3: lv_begin_5_0= '\"'
                     {
-                    lv_begin_5_0=(Token)input.LT(1);
+                    lv_begin_5_0=input.LT(1);
                     match(input,23,FOLLOW_23_in_ruleStringLiteral1991); 
 
                             createLeafNode(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0(), "begin"); 
@@ -2635,7 +2637,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1201:1: (lv_end_9_0= '\"' )
                     // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1202:3: lv_end_9_0= '\"'
                     {
-                    lv_end_9_0=(Token)input.LT(1);
+                    lv_end_9_0=input.LT(1);
                     match(input,23,FOLLOW_23_in_ruleStringLiteral2090); 
 
                             createLeafNode(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0(), "end"); 
@@ -3096,7 +3098,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 1 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1351:6: this_WS_0= RULE_WS
             	    {
-            	    this_WS_0=(Token)input.LT(1);
+            	    this_WS_0=input.LT(1);
             	    match(input,RULE_WS,FOLLOW_RULE_WS_in_ruleConstantValue2414); 
 
             	    		current.merge(this_WS_0);
@@ -3110,7 +3112,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 2 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1359:10: this_ANY_OTHER_1= RULE_ANY_OTHER
             	    {
-            	    this_ANY_OTHER_1=(Token)input.LT(1);
+            	    this_ANY_OTHER_1=input.LT(1);
             	    match(input,RULE_ANY_OTHER,FOLLOW_RULE_ANY_OTHER_in_ruleConstantValue2440); 
 
             	    		current.merge(this_ANY_OTHER_1);
@@ -3124,7 +3126,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 3 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1367:10: this_ML_COMMENT_2= RULE_ML_COMMENT
             	    {
-            	    this_ML_COMMENT_2=(Token)input.LT(1);
+            	    this_ML_COMMENT_2=input.LT(1);
             	    match(input,RULE_ML_COMMENT,FOLLOW_RULE_ML_COMMENT_in_ruleConstantValue2466); 
 
             	    		current.merge(this_ML_COMMENT_2);
@@ -3138,7 +3140,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 4 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1375:10: this_SL_COMMENT_3= RULE_SL_COMMENT
             	    {
-            	    this_SL_COMMENT_3=(Token)input.LT(1);
+            	    this_SL_COMMENT_3=input.LT(1);
             	    match(input,RULE_SL_COMMENT,FOLLOW_RULE_SL_COMMENT_in_ruleConstantValue2492); 
 
             	    		current.merge(this_SL_COMMENT_3);
@@ -3152,7 +3154,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 5 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1383:10: this_ID_4= RULE_ID
             	    {
-            	    this_ID_4=(Token)input.LT(1);
+            	    this_ID_4=input.LT(1);
             	    match(input,RULE_ID,FOLLOW_RULE_ID_in_ruleConstantValue2518); 
 
             	    		current.merge(this_ID_4);
@@ -3166,7 +3168,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 6 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1392:2: kw= ':'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,13,FOLLOW_13_in_ruleConstantValue2542); 
 
             	            current.merge(kw);
@@ -3178,7 +3180,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 7 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1399:2: kw= '{'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,15,FOLLOW_15_in_ruleConstantValue2561); 
 
             	            current.merge(kw);
@@ -3190,7 +3192,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 8 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1406:2: kw= '}'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,16,FOLLOW_16_in_ruleConstantValue2580); 
 
             	            current.merge(kw);
@@ -3202,7 +3204,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 9 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1413:2: kw= '@'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,12,FOLLOW_12_in_ruleConstantValue2599); 
 
             	            current.merge(kw);
@@ -3214,7 +3216,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 10 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1420:2: kw= '\\\\\\''
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,25,FOLLOW_25_in_ruleConstantValue2618); 
 
             	            current.merge(kw);
@@ -3226,7 +3228,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 11 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1427:2: kw= '\\\\\"'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,26,FOLLOW_26_in_ruleConstantValue2637); 
 
             	            current.merge(kw);
@@ -3238,7 +3240,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 12 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1434:2: kw= '\\\\${'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,27,FOLLOW_27_in_ruleConstantValue2656); 
 
             	            current.merge(kw);
@@ -3250,7 +3252,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 13 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1441:2: kw= '\\\\\\\\'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,28,FOLLOW_28_in_ruleConstantValue2675); 
 
             	            current.merge(kw);
@@ -3262,7 +3264,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 14 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1448:2: kw= '\\\\/*'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,29,FOLLOW_29_in_ruleConstantValue2694); 
 
             	            current.merge(kw);
@@ -3274,7 +3276,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 15 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1455:2: kw= '\\\\//'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,30,FOLLOW_30_in_ruleConstantValue2713); 
 
             	            current.merge(kw);
@@ -3286,7 +3288,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 16 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1462:2: kw= 'true'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,19,FOLLOW_19_in_ruleConstantValue2732); 
 
             	            current.merge(kw);
@@ -3298,7 +3300,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 17 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1469:2: kw= 'false'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,20,FOLLOW_20_in_ruleConstantValue2751); 
 
             	            current.merge(kw);
@@ -3310,7 +3312,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 18 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1476:2: kw= '='
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,11,FOLLOW_11_in_ruleConstantValue2770); 
 
             	            current.merge(kw);
@@ -3322,7 +3324,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 19 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1483:2: kw= 'import'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,17,FOLLOW_17_in_ruleConstantValue2789); 
 
             	            current.merge(kw);
@@ -3334,7 +3336,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 20 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1490:2: kw= 'module'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,9,FOLLOW_9_in_ruleConstantValue2808); 
 
             	            current.merge(kw);
@@ -3346,7 +3348,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 21 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1497:2: kw= 'auto-inject'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,14,FOLLOW_14_in_ruleConstantValue2827); 
 
             	            current.merge(kw);
@@ -3358,7 +3360,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 22 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1504:2: kw= 'var'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,10,FOLLOW_10_in_ruleConstantValue2846); 
 
             	            current.merge(kw);
@@ -3370,7 +3372,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 23 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1511:2: kw= '.'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,21,FOLLOW_21_in_ruleConstantValue2865); 
 
             	            current.merge(kw);
@@ -3382,7 +3384,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	case 24 :
             	    // ../org.eclipse.emf.mwe2.language/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/internal/InternalMwe2.g:1518:2: kw= '.*'
             	    {
-            	    kw=(Token)input.LT(1);
+            	    kw=input.LT(1);
             	    match(input,18,FOLLOW_18_in_ruleConstantValue2884); 
 
             	            current.merge(kw);
@@ -3475,7 +3477,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             this.special = DFA3_special;
             this.transition = DFA3_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "230:1: ( ( ruleFQN ) )?";
         }
     }
@@ -3531,7 +3534,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             this.special = DFA14_special;
             this.transition = DFA14_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "781:1: (this_Component_0= ruleComponent | this_StringLiteral_1= ruleStringLiteral | this_BooleanLiteral_2= ruleBooleanLiteral | this_Reference_3= ruleReference )";
         }
     }
