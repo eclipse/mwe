@@ -10,7 +10,6 @@ package org.eclipse.emf.mwe2.language.validation;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -132,22 +131,30 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	@Check
 	public void checkReferables(Module referable) {
 		TreeIterator<EObject> iterator = referable.eResource().getAllContents();
-		Set<Referrable> referenced = Sets.newHashSet();
-		Multimap<String,Referrable> declared = Multimaps.newHashMultimap();
+		Set<String> referenced = Sets.newHashSet();
+		Multimap<String, Referrable> declared = Multimaps.newHashMultimap();
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof Referrable) {
 				String name = ((Referrable) next).getName();
 				if (name != null) {
-					declared.put(name,(Referrable) next);
+					declared.put(name, (Referrable) next);
 				}
 			} else if (next instanceof AbstractReference) {
-				referenced.add(((AbstractReference) next).getReferable());
+				referenced.add(((AbstractReference) next).getReferable().getName());
+			}
+			if (next instanceof Component) {
+				Component component = (Component) next;
+				if (component.isAutoInject()) {
+					Set<String> featureNames = collectFeatureNames(component);
+					featureNames.retainAll(declared.keySet());
+					referenced.addAll(featureNames);
+				}
 			}
 		}
-		HashSet<Referrable> set = Sets.newHashSet(declared.values());
-		set.removeAll(referenced);
-		for (Referrable referrable : set) {
+		Multimap<String, Referrable> copy = Multimaps.newHashMultimap(declared);
+		copy.keySet().removeAll(referenced);
+		for (Referrable referrable : copy.values()) {
 			warning("The var '" + referrable.getName() + "' is never read locally.",
 					referrable, Mwe2Package.REFERRABLE__NAME, UNUSED_LOCAL);
 		}
@@ -160,6 +167,15 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				}
 			}
 		}
+	}
+	
+	public Set<String> collectFeatureNames(Component component) {
+		Set<String> result = Sets.newHashSet();
+		IScope scope = scopeProvider.createComponentFeaturesScope(component);
+		for(IEObjectDescription description: scope.getAllContents()) {
+			result.add(description.getName());
+		}
+		return result;
 	}
 	
 	public final static String MISSING_DEFAULT_CONSTRUCTOR = "missing_default_constructor";

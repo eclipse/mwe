@@ -108,6 +108,8 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	public boolean collectReferablesUpTo(Component component, EObject object,
 			List<Referrable> result) {
 		result.add(component);
+		if (component == object)
+			return false;
 		for (Assignment assignment : component.getAssignment()) {
 			if (assignment == object)
 				return false;

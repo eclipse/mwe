@@ -135,7 +135,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		String textModel = "module foo var foo = 'holla' var foo = '${foo}!' "+ComponentA.class.getName()+"{ y = foo}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
-		assertEquals(list.toString(),3,list.size());
+		assertEquals(list.toString(),2,list.size());
 		assertEquals(Mwe2JavaValidator.DUPLICATE_LOCAL, list.get(1).getCode());
 		assertEquals(Issue.Severity.ERROR, list.get(1).getSeverity());
 	}
