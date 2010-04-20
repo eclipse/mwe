@@ -1,3 +1,4 @@
+
 package org.eclipse.emf.mwe2.language;
 
 import org.eclipse.emf.ecore.EPackage;
@@ -10,11 +11,7 @@ import com.google.inject.Injector;
 /**
  * Generated from StandaloneSetup.xpt!
  */
-public class Mwe2StandaloneSetup implements ISetup {
-
-	public static void doSetup() {
-		new Mwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
-	}
+public class Mwe2StandaloneSetupGenerated implements ISetup {
 
 	public Injector createInjectorAndDoEMFRegistration() {
 		// register default ePackages

@@ -1481,11 +1481,11 @@ protected class Import_ImportedNamespaceAssignment_1 extends AssignmentToken  {
 /************ begin Rule Assignment ****************
  *
  * Assignment:
- *   feature=[types::JvmFeature] "=" value=Value;
+ *   feature=[types::JvmFeature|FQN] "=" value=Value;
  *
  **/
 
-// feature=[types::JvmFeature] "=" value=Value
+// feature=[types::JvmFeature|FQN] "=" value=Value
 protected class Assignment_Group extends GroupToken {
 	
 	public Assignment_Group(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {
@@ -1512,7 +1512,7 @@ protected class Assignment_Group extends GroupToken {
 	}
 }
 
-// feature=[types::JvmFeature]
+// feature=[types::JvmFeature|FQN]
 protected class Assignment_FeatureAssignment_0 extends AssignmentToken  {
 	
 	public Assignment_FeatureAssignment_0(AbstractToken parent, AbstractToken next, int no, IInstanceDescription current) {

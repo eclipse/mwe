@@ -33,7 +33,7 @@ ImportedFQN:
   FQN ('.*')?;
 
 Assignment:
-  feature=[types::JvmFeature|ID] '=' value=Value;
+  feature=[types::JvmFeature|FQN] '=' value=Value;
 
 Value:
   Component|

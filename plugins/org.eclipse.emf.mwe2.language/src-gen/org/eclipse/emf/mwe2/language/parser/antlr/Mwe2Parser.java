@@ -5,12 +5,13 @@ package org.eclipse.emf.mwe2.language.parser.antlr;
 
 import org.antlr.runtime.CharStream;
 import org.antlr.runtime.TokenSource;
-import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.parser.ParseException;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
 import com.google.inject.Inject;
+
+import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 
 public class Mwe2Parser extends org.eclipse.xtext.parser.antlr.AbstractAntlrParser {
 	

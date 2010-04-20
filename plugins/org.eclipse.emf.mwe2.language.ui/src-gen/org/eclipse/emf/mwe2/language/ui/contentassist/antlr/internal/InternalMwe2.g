@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream.HiddenTokens;
 import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.DFA;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 
 }
@@ -2395,8 +2396,8 @@ rule__Assignment__FeatureAssignment_0
 (
 { before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); }
 (
-{ before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureIDTerminalRuleCall_0_0_1()); }
-	RULE_ID{ after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureIDTerminalRuleCall_0_0_1()); }
+{ before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); }
+	ruleFQN{ after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); }
 )
 { after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); }
 )

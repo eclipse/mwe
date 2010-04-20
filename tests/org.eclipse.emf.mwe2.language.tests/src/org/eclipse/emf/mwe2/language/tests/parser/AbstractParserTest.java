@@ -8,13 +8,14 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.parser;
 
+import java.io.StringReader;
+
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.util.StringInputStream;
 
 public abstract class AbstractParserTest extends AbstractXtextTests {
 	
@@ -45,7 +46,7 @@ public abstract class AbstractParserTest extends AbstractXtextTests {
 	}
 
 	protected IParseResult getParseResult(String input) {
-		return parser.parse(getRule().getName(), new StringInputStream(input));
+		return parser.parse(getRule().getName(), new StringReader(input));
 	}
 	
 	protected abstract ParserRule getRule();

@@ -359,26 +359,26 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFeatureAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final CrossReference cFeatureJvmFeatureCrossReference_0_0 = (CrossReference)cFeatureAssignment_0.eContents().get(0);
-		private final RuleCall cFeatureJvmFeatureIDTerminalRuleCall_0_0_1 = (RuleCall)cFeatureJvmFeatureCrossReference_0_0.eContents().get(1);
+		private final RuleCall cFeatureJvmFeatureFQNParserRuleCall_0_0_1 = (RuleCall)cFeatureJvmFeatureCrossReference_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//  feature=[types::JvmFeature] "=" value=Value;
+		//  feature=[types::JvmFeature|FQN] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
-		//feature=[types::JvmFeature] "=" value=Value
+		//feature=[types::JvmFeature|FQN] "=" value=Value
 		public Group getGroup() { return cGroup; }
 
-		//feature=[types::JvmFeature]
+		//feature=[types::JvmFeature|FQN]
 		public Assignment getFeatureAssignment_0() { return cFeatureAssignment_0; }
 
-		//[types::JvmFeature]
+		//[types::JvmFeature|FQN]
 		public CrossReference getFeatureJvmFeatureCrossReference_0_0() { return cFeatureJvmFeatureCrossReference_0_0; }
 
-		//ID
-		public RuleCall getFeatureJvmFeatureIDTerminalRuleCall_0_0_1() { return cFeatureJvmFeatureIDTerminalRuleCall_0_0_1; }
+		//FQN
+		public RuleCall getFeatureJvmFeatureFQNParserRuleCall_0_0_1() { return cFeatureJvmFeatureFQNParserRuleCall_0_0_1; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
@@ -871,7 +871,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//  feature=[types::JvmFeature] "=" value=Value;
+	//  feature=[types::JvmFeature|FQN] "=" value=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return (pAssignment != null) ? pAssignment : (pAssignment = new AssignmentElements());
 	}
