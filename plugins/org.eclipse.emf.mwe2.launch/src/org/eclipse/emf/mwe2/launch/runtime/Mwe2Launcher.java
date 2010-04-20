@@ -21,7 +21,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.mwe2.language.ExtendedMwe2StandaloneSetup;
+import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 
 import com.google.inject.Injector;
 
@@ -68,7 +68,7 @@ public class Mwe2Launcher {
 					}
 				}
 			}
-			Injector injector = new ExtendedMwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
+			Injector injector = new Mwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
 			Mwe2Runner mweRunner = injector.getInstance(Mwe2Runner.class);
 			if (moduleName.contains("/")) {
 				mweRunner.run(URI.createURI(moduleName), params);
