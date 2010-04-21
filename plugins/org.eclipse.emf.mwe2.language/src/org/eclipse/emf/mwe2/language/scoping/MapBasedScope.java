@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
@@ -20,6 +21,7 @@ import org.eclipse.xtext.scoping.IScope;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 public class MapBasedScope implements IScope {
 	
@@ -59,6 +61,16 @@ public class MapBasedScope implements IScope {
 				return new MapEntry(entry);
 		}
 		return null;
+	}
+	
+	public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
+		List<IEObjectDescription> result = Lists.newArrayList();
+		URI uri = EcoreUtil.getURI(object);
+		for(Map.Entry<String, ? extends EObject> entry: entries.entrySet()) {
+			if (uri.equals(EcoreUtil.getURI(entry.getValue())))
+				result.add(new MapEntry(entry));
+		}
+		return result;
 	}
 	
 	public static class MapEntry implements IEObjectDescription {
