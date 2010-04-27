@@ -86,8 +86,12 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 							+ feature.getClass().getName() + " - " + feature);
 		}
 		if (left != null) {
+			if (assignment.getValue() == null || assignment.getValue().eIsProxy())
+				return;
 			JvmParameterizedTypeReference right = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
 			JvmType actualType = assignment.getValue().getActualType();
+			if (actualType == null || actualType.eIsProxy())
+				return;
 			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
 			if (factoryType != null) {
 				right.setType(factoryType);
