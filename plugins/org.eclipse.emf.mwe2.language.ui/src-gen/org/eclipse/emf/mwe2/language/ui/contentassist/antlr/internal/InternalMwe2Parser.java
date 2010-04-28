@@ -2206,29 +2206,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Module__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:822:1: rule__Module__Group__0 : ( () ) rule__Module__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:822:1: rule__Module__Group__0 : rule__Module__Group__0__Impl rule__Module__Group__1 ;
     public final void rule__Module__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:826:1: ( ( () ) rule__Module__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:827:1: ( () ) rule__Module__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:826:1: ( rule__Module__Group__0__Impl rule__Module__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:827:2: rule__Module__Group__0__Impl rule__Module__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:827:1: ( () )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:828:1: ()
-            {
-             before(grammarAccess.getModuleAccess().getModuleAction_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:829:1: ()
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:831:1: 
-            {
-            }
+            pushFollow(FOLLOW_rule__Module__Group__0__Impl_in_rule__Module__Group__01772);
+            rule__Module__Group__0__Impl();
+            _fsp--;
 
-             after(grammarAccess.getModuleAccess().getModuleAction_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Module__Group__1_in_rule__Module__Group__01786);
+            pushFollow(FOLLOW_rule__Module__Group__1_in_rule__Module__Group__01775);
             rule__Module__Group__1();
             _fsp--;
 
@@ -2250,26 +2241,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Module__Group__0
 
 
+    // $ANTLR start rule__Module__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:834:1: rule__Module__Group__0__Impl : ( () ) ;
+    public final void rule__Module__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:838:1: ( ( () ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:839:1: ( () )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:839:1: ( () )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:840:1: ()
+            {
+             before(grammarAccess.getModuleAccess().getModuleAction_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:841:1: ()
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:843:1: 
+            {
+            }
+
+             after(grammarAccess.getModuleAccess().getModuleAction_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__0__Impl
+
+
     // $ANTLR start rule__Module__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:842:1: rule__Module__Group__1 : ( 'module' ) rule__Module__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:853:1: rule__Module__Group__1 : rule__Module__Group__1__Impl rule__Module__Group__2 ;
     public final void rule__Module__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:846:1: ( ( 'module' ) rule__Module__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:847:1: ( 'module' ) rule__Module__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:857:1: ( rule__Module__Group__1__Impl rule__Module__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:858:2: rule__Module__Group__1__Impl rule__Module__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:847:1: ( 'module' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:848:1: 'module'
-            {
-             before(grammarAccess.getModuleAccess().getModuleKeyword_1()); 
-            match(input,23,FOLLOW_23_in_rule__Module__Group__11815); 
-             after(grammarAccess.getModuleAccess().getModuleKeyword_1()); 
+            pushFollow(FOLLOW_rule__Module__Group__1__Impl_in_rule__Module__Group__11833);
+            rule__Module__Group__1__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Module__Group__2_in_rule__Module__Group__11825);
+            pushFollow(FOLLOW_rule__Module__Group__2_in_rule__Module__Group__11836);
             rule__Module__Group__2();
             _fsp--;
 
@@ -2291,35 +2314,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Module__Group__1
 
 
+    // $ANTLR start rule__Module__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:865:1: rule__Module__Group__1__Impl : ( 'module' ) ;
+    public final void rule__Module__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:869:1: ( ( 'module' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:870:1: ( 'module' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:870:1: ( 'module' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:871:1: 'module'
+            {
+             before(grammarAccess.getModuleAccess().getModuleKeyword_1()); 
+            match(input,23,FOLLOW_23_in_rule__Module__Group__1__Impl1864); 
+             after(grammarAccess.getModuleAccess().getModuleKeyword_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__1__Impl
+
+
     // $ANTLR start rule__Module__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:862:1: rule__Module__Group__2 : ( ( rule__Module__CanonicalNameAssignment_2 ) ) rule__Module__Group__3 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:884:1: rule__Module__Group__2 : rule__Module__Group__2__Impl rule__Module__Group__3 ;
     public final void rule__Module__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:866:1: ( ( ( rule__Module__CanonicalNameAssignment_2 ) ) rule__Module__Group__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:867:1: ( ( rule__Module__CanonicalNameAssignment_2 ) ) rule__Module__Group__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:888:1: ( rule__Module__Group__2__Impl rule__Module__Group__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:889:2: rule__Module__Group__2__Impl rule__Module__Group__3
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:867:1: ( ( rule__Module__CanonicalNameAssignment_2 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:868:1: ( rule__Module__CanonicalNameAssignment_2 )
-            {
-             before(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:869:1: ( rule__Module__CanonicalNameAssignment_2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:869:2: rule__Module__CanonicalNameAssignment_2
-            {
-            pushFollow(FOLLOW_rule__Module__CanonicalNameAssignment_2_in_rule__Module__Group__21853);
-            rule__Module__CanonicalNameAssignment_2();
+            pushFollow(FOLLOW_rule__Module__Group__2__Impl_in_rule__Module__Group__21895);
+            rule__Module__Group__2__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Module__Group__3_in_rule__Module__Group__21862);
+            pushFollow(FOLLOW_rule__Module__Group__3_in_rule__Module__Group__21898);
             rule__Module__Group__3();
             _fsp--;
 
@@ -2341,53 +2387,67 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Module__Group__2
 
 
+    // $ANTLR start rule__Module__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:896:1: rule__Module__Group__2__Impl : ( ( rule__Module__CanonicalNameAssignment_2 ) ) ;
+    public final void rule__Module__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:900:1: ( ( ( rule__Module__CanonicalNameAssignment_2 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:901:1: ( ( rule__Module__CanonicalNameAssignment_2 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:901:1: ( ( rule__Module__CanonicalNameAssignment_2 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:902:1: ( rule__Module__CanonicalNameAssignment_2 )
+            {
+             before(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:903:1: ( rule__Module__CanonicalNameAssignment_2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:903:2: rule__Module__CanonicalNameAssignment_2
+            {
+            pushFollow(FOLLOW_rule__Module__CanonicalNameAssignment_2_in_rule__Module__Group__2__Impl1925);
+            rule__Module__CanonicalNameAssignment_2();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getModuleAccess().getCanonicalNameAssignment_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__2__Impl
+
+
     // $ANTLR start rule__Module__Group__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:880:1: rule__Module__Group__3 : ( ( rule__Module__ImportsAssignment_3 )* ) rule__Module__Group__4 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:913:1: rule__Module__Group__3 : rule__Module__Group__3__Impl rule__Module__Group__4 ;
     public final void rule__Module__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:884:1: ( ( ( rule__Module__ImportsAssignment_3 )* ) rule__Module__Group__4 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:885:1: ( ( rule__Module__ImportsAssignment_3 )* ) rule__Module__Group__4
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:917:1: ( rule__Module__Group__3__Impl rule__Module__Group__4 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:918:2: rule__Module__Group__3__Impl rule__Module__Group__4
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:885:1: ( ( rule__Module__ImportsAssignment_3 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:886:1: ( rule__Module__ImportsAssignment_3 )*
-            {
-             before(grammarAccess.getModuleAccess().getImportsAssignment_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:887:1: ( rule__Module__ImportsAssignment_3 )*
-            loop8:
-            do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__Module__Group__3__Impl_in_rule__Module__Group__31955);
+            rule__Module__Group__3__Impl();
+            _fsp--;
 
-                if ( (LA8_0==22) ) {
-                    alt8=1;
-                }
-
-
-                switch (alt8) {
-            	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:887:2: rule__Module__ImportsAssignment_3
-            	    {
-            	    pushFollow(FOLLOW_rule__Module__ImportsAssignment_3_in_rule__Module__Group__31890);
-            	    rule__Module__ImportsAssignment_3();
-            	    _fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop8;
-                }
-            } while (true);
-
-             after(grammarAccess.getModuleAccess().getImportsAssignment_3()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Module__Group__4_in_rule__Module__Group__31900);
+            pushFollow(FOLLOW_rule__Module__Group__4_in_rule__Module__Group__31958);
             rule__Module__Group__4();
             _fsp--;
 
@@ -2409,37 +2469,37 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Module__Group__3
 
 
-    // $ANTLR start rule__Module__Group__4
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:898:1: rule__Module__Group__4 : ( ( rule__Module__DeclaredPropertiesAssignment_4 )* ) rule__Module__Group__5 ;
-    public final void rule__Module__Group__4() throws RecognitionException {
+    // $ANTLR start rule__Module__Group__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:925:1: rule__Module__Group__3__Impl : ( ( rule__Module__ImportsAssignment_3 )* ) ;
+    public final void rule__Module__Group__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:902:1: ( ( ( rule__Module__DeclaredPropertiesAssignment_4 )* ) rule__Module__Group__5 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:903:1: ( ( rule__Module__DeclaredPropertiesAssignment_4 )* ) rule__Module__Group__5
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:929:1: ( ( ( rule__Module__ImportsAssignment_3 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:930:1: ( ( rule__Module__ImportsAssignment_3 )* )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:903:1: ( ( rule__Module__DeclaredPropertiesAssignment_4 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:904:1: ( rule__Module__DeclaredPropertiesAssignment_4 )*
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:930:1: ( ( rule__Module__ImportsAssignment_3 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:931:1: ( rule__Module__ImportsAssignment_3 )*
             {
-             before(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_4()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:905:1: ( rule__Module__DeclaredPropertiesAssignment_4 )*
-            loop9:
+             before(grammarAccess.getModuleAccess().getImportsAssignment_3()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:932:1: ( rule__Module__ImportsAssignment_3 )*
+            loop8:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt8=2;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA9_0==25) ) {
-                    alt9=1;
+                if ( (LA8_0==22) ) {
+                    alt8=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:905:2: rule__Module__DeclaredPropertiesAssignment_4
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:932:2: rule__Module__ImportsAssignment_3
             	    {
-            	    pushFollow(FOLLOW_rule__Module__DeclaredPropertiesAssignment_4_in_rule__Module__Group__41928);
-            	    rule__Module__DeclaredPropertiesAssignment_4();
+            	    pushFollow(FOLLOW_rule__Module__ImportsAssignment_3_in_rule__Module__Group__3__Impl1985);
+            	    rule__Module__ImportsAssignment_3();
             	    _fsp--;
 
 
@@ -2447,15 +2507,47 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop8;
                 }
             } while (true);
 
-             after(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_4()); 
+             after(grammarAccess.getModuleAccess().getImportsAssignment_3()); 
 
             }
 
-            pushFollow(FOLLOW_rule__Module__Group__5_in_rule__Module__Group__41938);
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__3__Impl
+
+
+    // $ANTLR start rule__Module__Group__4
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:942:1: rule__Module__Group__4 : rule__Module__Group__4__Impl rule__Module__Group__5 ;
+    public final void rule__Module__Group__4() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:946:1: ( rule__Module__Group__4__Impl rule__Module__Group__5 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:947:2: rule__Module__Group__4__Impl rule__Module__Group__5
+            {
+            pushFollow(FOLLOW_rule__Module__Group__4__Impl_in_rule__Module__Group__42016);
+            rule__Module__Group__4__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Module__Group__5_in_rule__Module__Group__42019);
             rule__Module__Group__5();
             _fsp--;
 
@@ -2477,24 +2569,120 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Module__Group__4
 
 
+    // $ANTLR start rule__Module__Group__4__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:954:1: rule__Module__Group__4__Impl : ( ( rule__Module__DeclaredPropertiesAssignment_4 )* ) ;
+    public final void rule__Module__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:958:1: ( ( ( rule__Module__DeclaredPropertiesAssignment_4 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:959:1: ( ( rule__Module__DeclaredPropertiesAssignment_4 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:959:1: ( ( rule__Module__DeclaredPropertiesAssignment_4 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:960:1: ( rule__Module__DeclaredPropertiesAssignment_4 )*
+            {
+             before(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_4()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:961:1: ( rule__Module__DeclaredPropertiesAssignment_4 )*
+            loop9:
+            do {
+                int alt9=2;
+                int LA9_0 = input.LA(1);
+
+                if ( (LA9_0==25) ) {
+                    alt9=1;
+                }
+
+
+                switch (alt9) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:961:2: rule__Module__DeclaredPropertiesAssignment_4
+            	    {
+            	    pushFollow(FOLLOW_rule__Module__DeclaredPropertiesAssignment_4_in_rule__Module__Group__4__Impl2046);
+            	    rule__Module__DeclaredPropertiesAssignment_4();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop9;
+                }
+            } while (true);
+
+             after(grammarAccess.getModuleAccess().getDeclaredPropertiesAssignment_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__4__Impl
+
+
     // $ANTLR start rule__Module__Group__5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:916:1: rule__Module__Group__5 : ( ( rule__Module__RootAssignment_5 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:971:1: rule__Module__Group__5 : rule__Module__Group__5__Impl ;
     public final void rule__Module__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:920:1: ( ( ( rule__Module__RootAssignment_5 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:921:1: ( ( rule__Module__RootAssignment_5 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:975:1: ( rule__Module__Group__5__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:976:2: rule__Module__Group__5__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:921:1: ( ( rule__Module__RootAssignment_5 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:922:1: ( rule__Module__RootAssignment_5 )
+            pushFollow(FOLLOW_rule__Module__Group__5__Impl_in_rule__Module__Group__52077);
+            rule__Module__Group__5__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Module__Group__5
+
+
+    // $ANTLR start rule__Module__Group__5__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:982:1: rule__Module__Group__5__Impl : ( ( rule__Module__RootAssignment_5 ) ) ;
+    public final void rule__Module__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:986:1: ( ( ( rule__Module__RootAssignment_5 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:987:1: ( ( rule__Module__RootAssignment_5 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:987:1: ( ( rule__Module__RootAssignment_5 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:988:1: ( rule__Module__RootAssignment_5 )
             {
              before(grammarAccess.getModuleAccess().getRootAssignment_5()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:923:1: ( rule__Module__RootAssignment_5 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:923:2: rule__Module__RootAssignment_5
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:989:1: ( rule__Module__RootAssignment_5 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:989:2: rule__Module__RootAssignment_5
             {
-            pushFollow(FOLLOW_rule__Module__RootAssignment_5_in_rule__Module__Group__51966);
+            pushFollow(FOLLOW_rule__Module__RootAssignment_5_in_rule__Module__Group__5__Impl2104);
             rule__Module__RootAssignment_5();
             _fsp--;
 
@@ -2520,29 +2708,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Module__Group__5
+    // $ANTLR end rule__Module__Group__5__Impl
 
 
     // $ANTLR start rule__DeclaredProperty__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:945:1: rule__DeclaredProperty__Group__0 : ( 'var' ) rule__DeclaredProperty__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1011:1: rule__DeclaredProperty__Group__0 : rule__DeclaredProperty__Group__0__Impl rule__DeclaredProperty__Group__1 ;
     public final void rule__DeclaredProperty__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:949:1: ( ( 'var' ) rule__DeclaredProperty__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:950:1: ( 'var' ) rule__DeclaredProperty__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1015:1: ( rule__DeclaredProperty__Group__0__Impl rule__DeclaredProperty__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1016:2: rule__DeclaredProperty__Group__0__Impl rule__DeclaredProperty__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:950:1: ( 'var' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:951:1: 'var'
-            {
-             before(grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0()); 
-            match(input,25,FOLLOW_25_in_rule__DeclaredProperty__Group__02013); 
-             after(grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0()); 
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__0__Impl_in_rule__DeclaredProperty__Group__02146);
+            rule__DeclaredProperty__Group__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__DeclaredProperty__Group__1_in_rule__DeclaredProperty__Group__02023);
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__1_in_rule__DeclaredProperty__Group__02149);
             rule__DeclaredProperty__Group__1();
             _fsp--;
 
@@ -2564,42 +2747,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__DeclaredProperty__Group__0
 
 
+    // $ANTLR start rule__DeclaredProperty__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1023:1: rule__DeclaredProperty__Group__0__Impl : ( 'var' ) ;
+    public final void rule__DeclaredProperty__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1027:1: ( ( 'var' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1028:1: ( 'var' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1028:1: ( 'var' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1029:1: 'var'
+            {
+             before(grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0()); 
+            match(input,25,FOLLOW_25_in_rule__DeclaredProperty__Group__0__Impl2177); 
+             after(grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group__0__Impl
+
+
     // $ANTLR start rule__DeclaredProperty__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:965:1: rule__DeclaredProperty__Group__1 : ( ( rule__DeclaredProperty__TypeAssignment_1 )? ) rule__DeclaredProperty__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1042:1: rule__DeclaredProperty__Group__1 : rule__DeclaredProperty__Group__1__Impl rule__DeclaredProperty__Group__2 ;
     public final void rule__DeclaredProperty__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:969:1: ( ( ( rule__DeclaredProperty__TypeAssignment_1 )? ) rule__DeclaredProperty__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:970:1: ( ( rule__DeclaredProperty__TypeAssignment_1 )? ) rule__DeclaredProperty__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1046:1: ( rule__DeclaredProperty__Group__1__Impl rule__DeclaredProperty__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1047:2: rule__DeclaredProperty__Group__1__Impl rule__DeclaredProperty__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:970:1: ( ( rule__DeclaredProperty__TypeAssignment_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:971:1: ( rule__DeclaredProperty__TypeAssignment_1 )?
-            {
-             before(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:972:1: ( rule__DeclaredProperty__TypeAssignment_1 )?
-            int alt10=2;
-            alt10 = dfa10.predict(input);
-            switch (alt10) {
-                case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:972:2: rule__DeclaredProperty__TypeAssignment_1
-                    {
-                    pushFollow(FOLLOW_rule__DeclaredProperty__TypeAssignment_1_in_rule__DeclaredProperty__Group__12051);
-                    rule__DeclaredProperty__TypeAssignment_1();
-                    _fsp--;
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__1__Impl_in_rule__DeclaredProperty__Group__12208);
+            rule__DeclaredProperty__Group__1__Impl();
+            _fsp--;
 
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__DeclaredProperty__Group__2_in_rule__DeclaredProperty__Group__12061);
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__2_in_rule__DeclaredProperty__Group__12211);
             rule__DeclaredProperty__Group__2();
             _fsp--;
 
@@ -2621,35 +2820,74 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__DeclaredProperty__Group__1
 
 
+    // $ANTLR start rule__DeclaredProperty__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1054:1: rule__DeclaredProperty__Group__1__Impl : ( ( rule__DeclaredProperty__TypeAssignment_1 )? ) ;
+    public final void rule__DeclaredProperty__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1058:1: ( ( ( rule__DeclaredProperty__TypeAssignment_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1059:1: ( ( rule__DeclaredProperty__TypeAssignment_1 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1059:1: ( ( rule__DeclaredProperty__TypeAssignment_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1060:1: ( rule__DeclaredProperty__TypeAssignment_1 )?
+            {
+             before(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1061:1: ( rule__DeclaredProperty__TypeAssignment_1 )?
+            int alt10=2;
+            alt10 = dfa10.predict(input);
+            switch (alt10) {
+                case 1 :
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1061:2: rule__DeclaredProperty__TypeAssignment_1
+                    {
+                    pushFollow(FOLLOW_rule__DeclaredProperty__TypeAssignment_1_in_rule__DeclaredProperty__Group__1__Impl2238);
+                    rule__DeclaredProperty__TypeAssignment_1();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getDeclaredPropertyAccess().getTypeAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group__1__Impl
+
+
     // $ANTLR start rule__DeclaredProperty__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:983:1: rule__DeclaredProperty__Group__2 : ( ( rule__DeclaredProperty__NameAssignment_2 ) ) rule__DeclaredProperty__Group__3 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1071:1: rule__DeclaredProperty__Group__2 : rule__DeclaredProperty__Group__2__Impl rule__DeclaredProperty__Group__3 ;
     public final void rule__DeclaredProperty__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:987:1: ( ( ( rule__DeclaredProperty__NameAssignment_2 ) ) rule__DeclaredProperty__Group__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:988:1: ( ( rule__DeclaredProperty__NameAssignment_2 ) ) rule__DeclaredProperty__Group__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1075:1: ( rule__DeclaredProperty__Group__2__Impl rule__DeclaredProperty__Group__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1076:2: rule__DeclaredProperty__Group__2__Impl rule__DeclaredProperty__Group__3
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:988:1: ( ( rule__DeclaredProperty__NameAssignment_2 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:989:1: ( rule__DeclaredProperty__NameAssignment_2 )
-            {
-             before(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:990:1: ( rule__DeclaredProperty__NameAssignment_2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:990:2: rule__DeclaredProperty__NameAssignment_2
-            {
-            pushFollow(FOLLOW_rule__DeclaredProperty__NameAssignment_2_in_rule__DeclaredProperty__Group__22089);
-            rule__DeclaredProperty__NameAssignment_2();
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__2__Impl_in_rule__DeclaredProperty__Group__22269);
+            rule__DeclaredProperty__Group__2__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__DeclaredProperty__Group__3_in_rule__DeclaredProperty__Group__22098);
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__3_in_rule__DeclaredProperty__Group__22272);
             rule__DeclaredProperty__Group__3();
             _fsp--;
 
@@ -2671,21 +2909,99 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__DeclaredProperty__Group__2
 
 
+    // $ANTLR start rule__DeclaredProperty__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1083:1: rule__DeclaredProperty__Group__2__Impl : ( ( rule__DeclaredProperty__NameAssignment_2 ) ) ;
+    public final void rule__DeclaredProperty__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1087:1: ( ( ( rule__DeclaredProperty__NameAssignment_2 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1088:1: ( ( rule__DeclaredProperty__NameAssignment_2 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1088:1: ( ( rule__DeclaredProperty__NameAssignment_2 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1089:1: ( rule__DeclaredProperty__NameAssignment_2 )
+            {
+             before(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1090:1: ( rule__DeclaredProperty__NameAssignment_2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1090:2: rule__DeclaredProperty__NameAssignment_2
+            {
+            pushFollow(FOLLOW_rule__DeclaredProperty__NameAssignment_2_in_rule__DeclaredProperty__Group__2__Impl2299);
+            rule__DeclaredProperty__NameAssignment_2();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getDeclaredPropertyAccess().getNameAssignment_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group__2__Impl
+
+
     // $ANTLR start rule__DeclaredProperty__Group__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1001:1: rule__DeclaredProperty__Group__3 : ( ( rule__DeclaredProperty__Group_3__0 )? ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1100:1: rule__DeclaredProperty__Group__3 : rule__DeclaredProperty__Group__3__Impl ;
     public final void rule__DeclaredProperty__Group__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1005:1: ( ( ( rule__DeclaredProperty__Group_3__0 )? ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1006:1: ( ( rule__DeclaredProperty__Group_3__0 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1104:1: ( rule__DeclaredProperty__Group__3__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1105:2: rule__DeclaredProperty__Group__3__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1006:1: ( ( rule__DeclaredProperty__Group_3__0 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1007:1: ( rule__DeclaredProperty__Group_3__0 )?
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group__3__Impl_in_rule__DeclaredProperty__Group__32329);
+            rule__DeclaredProperty__Group__3__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group__3
+
+
+    // $ANTLR start rule__DeclaredProperty__Group__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1111:1: rule__DeclaredProperty__Group__3__Impl : ( ( rule__DeclaredProperty__Group_3__0 )? ) ;
+    public final void rule__DeclaredProperty__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1115:1: ( ( ( rule__DeclaredProperty__Group_3__0 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1116:1: ( ( rule__DeclaredProperty__Group_3__0 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1116:1: ( ( rule__DeclaredProperty__Group_3__0 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1117:1: ( rule__DeclaredProperty__Group_3__0 )?
             {
              before(grammarAccess.getDeclaredPropertyAccess().getGroup_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1008:1: ( rule__DeclaredProperty__Group_3__0 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1118:1: ( rule__DeclaredProperty__Group_3__0 )?
             int alt11=2;
             int LA11_0 = input.LA(1);
 
@@ -2694,9 +3010,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt11) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1008:2: rule__DeclaredProperty__Group_3__0
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1118:2: rule__DeclaredProperty__Group_3__0
                     {
-                    pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__0_in_rule__DeclaredProperty__Group__32126);
+                    pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__0_in_rule__DeclaredProperty__Group__3__Impl2356);
                     rule__DeclaredProperty__Group_3__0();
                     _fsp--;
 
@@ -2725,29 +3041,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DeclaredProperty__Group__3
+    // $ANTLR end rule__DeclaredProperty__Group__3__Impl
 
 
     // $ANTLR start rule__DeclaredProperty__Group_3__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1026:1: rule__DeclaredProperty__Group_3__0 : ( '=' ) rule__DeclaredProperty__Group_3__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1136:1: rule__DeclaredProperty__Group_3__0 : rule__DeclaredProperty__Group_3__0__Impl rule__DeclaredProperty__Group_3__1 ;
     public final void rule__DeclaredProperty__Group_3__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1030:1: ( ( '=' ) rule__DeclaredProperty__Group_3__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1031:1: ( '=' ) rule__DeclaredProperty__Group_3__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1140:1: ( rule__DeclaredProperty__Group_3__0__Impl rule__DeclaredProperty__Group_3__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1141:2: rule__DeclaredProperty__Group_3__0__Impl rule__DeclaredProperty__Group_3__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1031:1: ( '=' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1032:1: '='
-            {
-             before(grammarAccess.getDeclaredPropertyAccess().getEqualsSignKeyword_3_0()); 
-            match(input,21,FOLLOW_21_in_rule__DeclaredProperty__Group_3__02170); 
-             after(grammarAccess.getDeclaredPropertyAccess().getEqualsSignKeyword_3_0()); 
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__0__Impl_in_rule__DeclaredProperty__Group_3__02395);
+            rule__DeclaredProperty__Group_3__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__1_in_rule__DeclaredProperty__Group_3__02180);
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__1_in_rule__DeclaredProperty__Group_3__02398);
             rule__DeclaredProperty__Group_3__1();
             _fsp--;
 
@@ -2769,24 +3080,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__DeclaredProperty__Group_3__0
 
 
+    // $ANTLR start rule__DeclaredProperty__Group_3__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1148:1: rule__DeclaredProperty__Group_3__0__Impl : ( '=' ) ;
+    public final void rule__DeclaredProperty__Group_3__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1152:1: ( ( '=' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1153:1: ( '=' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1153:1: ( '=' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1154:1: '='
+            {
+             before(grammarAccess.getDeclaredPropertyAccess().getEqualsSignKeyword_3_0()); 
+            match(input,21,FOLLOW_21_in_rule__DeclaredProperty__Group_3__0__Impl2426); 
+             after(grammarAccess.getDeclaredPropertyAccess().getEqualsSignKeyword_3_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group_3__0__Impl
+
+
     // $ANTLR start rule__DeclaredProperty__Group_3__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1046:1: rule__DeclaredProperty__Group_3__1 : ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1167:1: rule__DeclaredProperty__Group_3__1 : rule__DeclaredProperty__Group_3__1__Impl ;
     public final void rule__DeclaredProperty__Group_3__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1050:1: ( ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1051:1: ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1171:1: ( rule__DeclaredProperty__Group_3__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1172:2: rule__DeclaredProperty__Group_3__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1051:1: ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1052:1: ( rule__DeclaredProperty__DefaultAssignment_3_1 )
+            pushFollow(FOLLOW_rule__DeclaredProperty__Group_3__1__Impl_in_rule__DeclaredProperty__Group_3__12457);
+            rule__DeclaredProperty__Group_3__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__DeclaredProperty__Group_3__1
+
+
+    // $ANTLR start rule__DeclaredProperty__Group_3__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1178:1: rule__DeclaredProperty__Group_3__1__Impl : ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) ) ;
+    public final void rule__DeclaredProperty__Group_3__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1182:1: ( ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1183:1: ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1183:1: ( ( rule__DeclaredProperty__DefaultAssignment_3_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1184:1: ( rule__DeclaredProperty__DefaultAssignment_3_1 )
             {
              before(grammarAccess.getDeclaredPropertyAccess().getDefaultAssignment_3_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1053:1: ( rule__DeclaredProperty__DefaultAssignment_3_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1053:2: rule__DeclaredProperty__DefaultAssignment_3_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1185:1: ( rule__DeclaredProperty__DefaultAssignment_3_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1185:2: rule__DeclaredProperty__DefaultAssignment_3_1
             {
-            pushFollow(FOLLOW_rule__DeclaredProperty__DefaultAssignment_3_1_in_rule__DeclaredProperty__Group_3__12208);
+            pushFollow(FOLLOW_rule__DeclaredProperty__DefaultAssignment_3_1_in_rule__DeclaredProperty__Group_3__1__Impl2484);
             rule__DeclaredProperty__DefaultAssignment_3_1();
             _fsp--;
 
@@ -2812,33 +3192,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__DeclaredProperty__Group_3__1
+    // $ANTLR end rule__DeclaredProperty__Group_3__1__Impl
 
 
     // $ANTLR start rule__RootComponent__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1067:1: rule__RootComponent__Group__0 : ( () ) rule__RootComponent__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1199:1: rule__RootComponent__Group__0 : rule__RootComponent__Group__0__Impl rule__RootComponent__Group__1 ;
     public final void rule__RootComponent__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1071:1: ( ( () ) rule__RootComponent__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1072:1: ( () ) rule__RootComponent__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1203:1: ( rule__RootComponent__Group__0__Impl rule__RootComponent__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1204:2: rule__RootComponent__Group__0__Impl rule__RootComponent__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1072:1: ( () )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1073:1: ()
-            {
-             before(grammarAccess.getRootComponentAccess().getComponentAction_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1074:1: ()
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1076:1: 
-            {
-            }
+            pushFollow(FOLLOW_rule__RootComponent__Group__0__Impl_in_rule__RootComponent__Group__02518);
+            rule__RootComponent__Group__0__Impl();
+            _fsp--;
 
-             after(grammarAccess.getRootComponentAccess().getComponentAction_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group__1_in_rule__RootComponent__Group__02256);
+            pushFollow(FOLLOW_rule__RootComponent__Group__1_in_rule__RootComponent__Group__02521);
             rule__RootComponent__Group__1();
             _fsp--;
 
@@ -2860,35 +3231,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__0
 
 
+    // $ANTLR start rule__RootComponent__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1211:1: rule__RootComponent__Group__0__Impl : ( () ) ;
+    public final void rule__RootComponent__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1215:1: ( ( () ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1216:1: ( () )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1216:1: ( () )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1217:1: ()
+            {
+             before(grammarAccess.getRootComponentAccess().getComponentAction_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1218:1: ()
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1220:1: 
+            {
+            }
+
+             after(grammarAccess.getRootComponentAccess().getComponentAction_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__0__Impl
+
+
     // $ANTLR start rule__RootComponent__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1087:1: rule__RootComponent__Group__1 : ( ( rule__RootComponent__Alternatives_1 ) ) rule__RootComponent__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1230:1: rule__RootComponent__Group__1 : rule__RootComponent__Group__1__Impl rule__RootComponent__Group__2 ;
     public final void rule__RootComponent__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1091:1: ( ( ( rule__RootComponent__Alternatives_1 ) ) rule__RootComponent__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1092:1: ( ( rule__RootComponent__Alternatives_1 ) ) rule__RootComponent__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1234:1: ( rule__RootComponent__Group__1__Impl rule__RootComponent__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1235:2: rule__RootComponent__Group__1__Impl rule__RootComponent__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1092:1: ( ( rule__RootComponent__Alternatives_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1093:1: ( rule__RootComponent__Alternatives_1 )
-            {
-             before(grammarAccess.getRootComponentAccess().getAlternatives_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1094:1: ( rule__RootComponent__Alternatives_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1094:2: rule__RootComponent__Alternatives_1
-            {
-            pushFollow(FOLLOW_rule__RootComponent__Alternatives_1_in_rule__RootComponent__Group__12284);
-            rule__RootComponent__Alternatives_1();
+            pushFollow(FOLLOW_rule__RootComponent__Group__1__Impl_in_rule__RootComponent__Group__12579);
+            rule__RootComponent__Group__1__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getRootComponentAccess().getAlternatives_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group__2_in_rule__RootComponent__Group__12293);
+            pushFollow(FOLLOW_rule__RootComponent__Group__2_in_rule__RootComponent__Group__12582);
             rule__RootComponent__Group__2();
             _fsp--;
 
@@ -2910,46 +3304,67 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__1
 
 
+    // $ANTLR start rule__RootComponent__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1242:1: rule__RootComponent__Group__1__Impl : ( ( rule__RootComponent__Alternatives_1 ) ) ;
+    public final void rule__RootComponent__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1246:1: ( ( ( rule__RootComponent__Alternatives_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1247:1: ( ( rule__RootComponent__Alternatives_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1247:1: ( ( rule__RootComponent__Alternatives_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1248:1: ( rule__RootComponent__Alternatives_1 )
+            {
+             before(grammarAccess.getRootComponentAccess().getAlternatives_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1249:1: ( rule__RootComponent__Alternatives_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1249:2: rule__RootComponent__Alternatives_1
+            {
+            pushFollow(FOLLOW_rule__RootComponent__Alternatives_1_in_rule__RootComponent__Group__1__Impl2609);
+            rule__RootComponent__Alternatives_1();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getRootComponentAccess().getAlternatives_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__1__Impl
+
+
     // $ANTLR start rule__RootComponent__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1105:1: rule__RootComponent__Group__2 : ( ( rule__RootComponent__Group_2__0 )? ) rule__RootComponent__Group__3 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1259:1: rule__RootComponent__Group__2 : rule__RootComponent__Group__2__Impl rule__RootComponent__Group__3 ;
     public final void rule__RootComponent__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1109:1: ( ( ( rule__RootComponent__Group_2__0 )? ) rule__RootComponent__Group__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1110:1: ( ( rule__RootComponent__Group_2__0 )? ) rule__RootComponent__Group__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1263:1: ( rule__RootComponent__Group__2__Impl rule__RootComponent__Group__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1264:2: rule__RootComponent__Group__2__Impl rule__RootComponent__Group__3
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1110:1: ( ( rule__RootComponent__Group_2__0 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1111:1: ( rule__RootComponent__Group_2__0 )?
-            {
-             before(grammarAccess.getRootComponentAccess().getGroup_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1112:1: ( rule__RootComponent__Group_2__0 )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__RootComponent__Group__2__Impl_in_rule__RootComponent__Group__22639);
+            rule__RootComponent__Group__2__Impl();
+            _fsp--;
 
-            if ( (LA12_0==10) ) {
-                alt12=1;
-            }
-            switch (alt12) {
-                case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1112:2: rule__RootComponent__Group_2__0
-                    {
-                    pushFollow(FOLLOW_rule__RootComponent__Group_2__0_in_rule__RootComponent__Group__22321);
-                    rule__RootComponent__Group_2__0();
-                    _fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getRootComponentAccess().getGroup_2()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group__3_in_rule__RootComponent__Group__22331);
+            pushFollow(FOLLOW_rule__RootComponent__Group__3_in_rule__RootComponent__Group__22642);
             rule__RootComponent__Group__3();
             _fsp--;
 
@@ -2971,33 +3386,33 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__2
 
 
-    // $ANTLR start rule__RootComponent__Group__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1123:1: rule__RootComponent__Group__3 : ( ( rule__RootComponent__AutoInjectAssignment_3 )? ) rule__RootComponent__Group__4 ;
-    public final void rule__RootComponent__Group__3() throws RecognitionException {
+    // $ANTLR start rule__RootComponent__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1271:1: rule__RootComponent__Group__2__Impl : ( ( rule__RootComponent__Group_2__0 )? ) ;
+    public final void rule__RootComponent__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1127:1: ( ( ( rule__RootComponent__AutoInjectAssignment_3 )? ) rule__RootComponent__Group__4 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1128:1: ( ( rule__RootComponent__AutoInjectAssignment_3 )? ) rule__RootComponent__Group__4
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1275:1: ( ( ( rule__RootComponent__Group_2__0 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1276:1: ( ( rule__RootComponent__Group_2__0 )? )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1128:1: ( ( rule__RootComponent__AutoInjectAssignment_3 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1129:1: ( rule__RootComponent__AutoInjectAssignment_3 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1276:1: ( ( rule__RootComponent__Group_2__0 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1277:1: ( rule__RootComponent__Group_2__0 )?
             {
-             before(grammarAccess.getRootComponentAccess().getAutoInjectAssignment_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1130:1: ( rule__RootComponent__AutoInjectAssignment_3 )?
-            int alt13=2;
-            int LA13_0 = input.LA(1);
+             before(grammarAccess.getRootComponentAccess().getGroup_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1278:1: ( rule__RootComponent__Group_2__0 )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA13_0==24) ) {
-                alt13=1;
+            if ( (LA12_0==10) ) {
+                alt12=1;
             }
-            switch (alt13) {
+            switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1130:2: rule__RootComponent__AutoInjectAssignment_3
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1278:2: rule__RootComponent__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__RootComponent__AutoInjectAssignment_3_in_rule__RootComponent__Group__32359);
-                    rule__RootComponent__AutoInjectAssignment_3();
+                    pushFollow(FOLLOW_rule__RootComponent__Group_2__0_in_rule__RootComponent__Group__2__Impl2669);
+                    rule__RootComponent__Group_2__0();
                     _fsp--;
 
 
@@ -3006,11 +3421,43 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getRootComponentAccess().getAutoInjectAssignment_3()); 
+             after(grammarAccess.getRootComponentAccess().getGroup_2()); 
 
             }
 
-            pushFollow(FOLLOW_rule__RootComponent__Group__4_in_rule__RootComponent__Group__32369);
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__2__Impl
+
+
+    // $ANTLR start rule__RootComponent__Group__3
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1288:1: rule__RootComponent__Group__3 : rule__RootComponent__Group__3__Impl rule__RootComponent__Group__4 ;
+    public final void rule__RootComponent__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1292:1: ( rule__RootComponent__Group__3__Impl rule__RootComponent__Group__4 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1293:2: rule__RootComponent__Group__3__Impl rule__RootComponent__Group__4
+            {
+            pushFollow(FOLLOW_rule__RootComponent__Group__3__Impl_in_rule__RootComponent__Group__32700);
+            rule__RootComponent__Group__3__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__RootComponent__Group__4_in_rule__RootComponent__Group__32703);
             rule__RootComponent__Group__4();
             _fsp--;
 
@@ -3032,26 +3479,78 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__3
 
 
+    // $ANTLR start rule__RootComponent__Group__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1300:1: rule__RootComponent__Group__3__Impl : ( ( rule__RootComponent__AutoInjectAssignment_3 )? ) ;
+    public final void rule__RootComponent__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1304:1: ( ( ( rule__RootComponent__AutoInjectAssignment_3 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1305:1: ( ( rule__RootComponent__AutoInjectAssignment_3 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1305:1: ( ( rule__RootComponent__AutoInjectAssignment_3 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1306:1: ( rule__RootComponent__AutoInjectAssignment_3 )?
+            {
+             before(grammarAccess.getRootComponentAccess().getAutoInjectAssignment_3()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1307:1: ( rule__RootComponent__AutoInjectAssignment_3 )?
+            int alt13=2;
+            int LA13_0 = input.LA(1);
+
+            if ( (LA13_0==24) ) {
+                alt13=1;
+            }
+            switch (alt13) {
+                case 1 :
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1307:2: rule__RootComponent__AutoInjectAssignment_3
+                    {
+                    pushFollow(FOLLOW_rule__RootComponent__AutoInjectAssignment_3_in_rule__RootComponent__Group__3__Impl2730);
+                    rule__RootComponent__AutoInjectAssignment_3();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getRootComponentAccess().getAutoInjectAssignment_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__3__Impl
+
+
     // $ANTLR start rule__RootComponent__Group__4
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1141:1: rule__RootComponent__Group__4 : ( '{' ) rule__RootComponent__Group__5 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1317:1: rule__RootComponent__Group__4 : rule__RootComponent__Group__4__Impl rule__RootComponent__Group__5 ;
     public final void rule__RootComponent__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1145:1: ( ( '{' ) rule__RootComponent__Group__5 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1146:1: ( '{' ) rule__RootComponent__Group__5
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1321:1: ( rule__RootComponent__Group__4__Impl rule__RootComponent__Group__5 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1322:2: rule__RootComponent__Group__4__Impl rule__RootComponent__Group__5
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1146:1: ( '{' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1147:1: '{'
-            {
-             before(grammarAccess.getRootComponentAccess().getLeftCurlyBracketKeyword_4()); 
-            match(input,11,FOLLOW_11_in_rule__RootComponent__Group__42398); 
-             after(grammarAccess.getRootComponentAccess().getLeftCurlyBracketKeyword_4()); 
+            pushFollow(FOLLOW_rule__RootComponent__Group__4__Impl_in_rule__RootComponent__Group__42761);
+            rule__RootComponent__Group__4__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group__5_in_rule__RootComponent__Group__42408);
+            pushFollow(FOLLOW_rule__RootComponent__Group__5_in_rule__RootComponent__Group__42764);
             rule__RootComponent__Group__5();
             _fsp--;
 
@@ -3073,53 +3572,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__4
 
 
+    // $ANTLR start rule__RootComponent__Group__4__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1329:1: rule__RootComponent__Group__4__Impl : ( '{' ) ;
+    public final void rule__RootComponent__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1333:1: ( ( '{' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1334:1: ( '{' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1334:1: ( '{' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1335:1: '{'
+            {
+             before(grammarAccess.getRootComponentAccess().getLeftCurlyBracketKeyword_4()); 
+            match(input,11,FOLLOW_11_in_rule__RootComponent__Group__4__Impl2792); 
+             after(grammarAccess.getRootComponentAccess().getLeftCurlyBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__4__Impl
+
+
     // $ANTLR start rule__RootComponent__Group__5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1161:1: rule__RootComponent__Group__5 : ( ( rule__RootComponent__AssignmentAssignment_5 )* ) rule__RootComponent__Group__6 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1348:1: rule__RootComponent__Group__5 : rule__RootComponent__Group__5__Impl rule__RootComponent__Group__6 ;
     public final void rule__RootComponent__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1165:1: ( ( ( rule__RootComponent__AssignmentAssignment_5 )* ) rule__RootComponent__Group__6 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1166:1: ( ( rule__RootComponent__AssignmentAssignment_5 )* ) rule__RootComponent__Group__6
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1352:1: ( rule__RootComponent__Group__5__Impl rule__RootComponent__Group__6 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1353:2: rule__RootComponent__Group__5__Impl rule__RootComponent__Group__6
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1166:1: ( ( rule__RootComponent__AssignmentAssignment_5 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1167:1: ( rule__RootComponent__AssignmentAssignment_5 )*
-            {
-             before(grammarAccess.getRootComponentAccess().getAssignmentAssignment_5()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1168:1: ( rule__RootComponent__AssignmentAssignment_5 )*
-            loop14:
-            do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__RootComponent__Group__5__Impl_in_rule__RootComponent__Group__52823);
+            rule__RootComponent__Group__5__Impl();
+            _fsp--;
 
-                if ( (LA14_0==RULE_ID) ) {
-                    alt14=1;
-                }
-
-
-                switch (alt14) {
-            	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1168:2: rule__RootComponent__AssignmentAssignment_5
-            	    {
-            	    pushFollow(FOLLOW_rule__RootComponent__AssignmentAssignment_5_in_rule__RootComponent__Group__52436);
-            	    rule__RootComponent__AssignmentAssignment_5();
-            	    _fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop14;
-                }
-            } while (true);
-
-             after(grammarAccess.getRootComponentAccess().getAssignmentAssignment_5()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group__6_in_rule__RootComponent__Group__52446);
+            pushFollow(FOLLOW_rule__RootComponent__Group__6_in_rule__RootComponent__Group__52826);
             rule__RootComponent__Group__6();
             _fsp--;
 
@@ -3141,24 +3645,83 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__5
 
 
+    // $ANTLR start rule__RootComponent__Group__5__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1360:1: rule__RootComponent__Group__5__Impl : ( ( rule__RootComponent__AssignmentAssignment_5 )* ) ;
+    public final void rule__RootComponent__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1364:1: ( ( ( rule__RootComponent__AssignmentAssignment_5 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1365:1: ( ( rule__RootComponent__AssignmentAssignment_5 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1365:1: ( ( rule__RootComponent__AssignmentAssignment_5 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1366:1: ( rule__RootComponent__AssignmentAssignment_5 )*
+            {
+             before(grammarAccess.getRootComponentAccess().getAssignmentAssignment_5()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1367:1: ( rule__RootComponent__AssignmentAssignment_5 )*
+            loop14:
+            do {
+                int alt14=2;
+                int LA14_0 = input.LA(1);
+
+                if ( (LA14_0==RULE_ID) ) {
+                    alt14=1;
+                }
+
+
+                switch (alt14) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1367:2: rule__RootComponent__AssignmentAssignment_5
+            	    {
+            	    pushFollow(FOLLOW_rule__RootComponent__AssignmentAssignment_5_in_rule__RootComponent__Group__5__Impl2853);
+            	    rule__RootComponent__AssignmentAssignment_5();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop14;
+                }
+            } while (true);
+
+             after(grammarAccess.getRootComponentAccess().getAssignmentAssignment_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__5__Impl
+
+
     // $ANTLR start rule__RootComponent__Group__6
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1179:1: rule__RootComponent__Group__6 : ( '}' ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1377:1: rule__RootComponent__Group__6 : rule__RootComponent__Group__6__Impl ;
     public final void rule__RootComponent__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1183:1: ( ( '}' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1184:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1381:1: ( rule__RootComponent__Group__6__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1382:2: rule__RootComponent__Group__6__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1184:1: ( '}' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1185:1: '}'
-            {
-             before(grammarAccess.getRootComponentAccess().getRightCurlyBracketKeyword_6()); 
-            match(input,12,FOLLOW_12_in_rule__RootComponent__Group__62475); 
-             after(grammarAccess.getRootComponentAccess().getRightCurlyBracketKeyword_6()); 
-
-            }
+            pushFollow(FOLLOW_rule__RootComponent__Group__6__Impl_in_rule__RootComponent__Group__62884);
+            rule__RootComponent__Group__6__Impl();
+            _fsp--;
 
 
             }
@@ -3178,26 +3741,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group__6
 
 
+    // $ANTLR start rule__RootComponent__Group__6__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1388:1: rule__RootComponent__Group__6__Impl : ( '}' ) ;
+    public final void rule__RootComponent__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1392:1: ( ( '}' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1393:1: ( '}' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1393:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1394:1: '}'
+            {
+             before(grammarAccess.getRootComponentAccess().getRightCurlyBracketKeyword_6()); 
+            match(input,12,FOLLOW_12_in_rule__RootComponent__Group__6__Impl2912); 
+             after(grammarAccess.getRootComponentAccess().getRightCurlyBracketKeyword_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group__6__Impl
+
+
     // $ANTLR start rule__RootComponent__Group_1_1__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1212:1: rule__RootComponent__Group_1_1__0 : ( '@' ) rule__RootComponent__Group_1_1__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1421:1: rule__RootComponent__Group_1_1__0 : rule__RootComponent__Group_1_1__0__Impl rule__RootComponent__Group_1_1__1 ;
     public final void rule__RootComponent__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1216:1: ( ( '@' ) rule__RootComponent__Group_1_1__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1217:1: ( '@' ) rule__RootComponent__Group_1_1__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1425:1: ( rule__RootComponent__Group_1_1__0__Impl rule__RootComponent__Group_1_1__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1426:2: rule__RootComponent__Group_1_1__0__Impl rule__RootComponent__Group_1_1__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1217:1: ( '@' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1218:1: '@'
-            {
-             before(grammarAccess.getRootComponentAccess().getCommercialAtKeyword_1_1_0()); 
-            match(input,13,FOLLOW_13_in_rule__RootComponent__Group_1_1__02525); 
-             after(grammarAccess.getRootComponentAccess().getCommercialAtKeyword_1_1_0()); 
+            pushFollow(FOLLOW_rule__RootComponent__Group_1_1__0__Impl_in_rule__RootComponent__Group_1_1__02957);
+            rule__RootComponent__Group_1_1__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group_1_1__1_in_rule__RootComponent__Group_1_1__02535);
+            pushFollow(FOLLOW_rule__RootComponent__Group_1_1__1_in_rule__RootComponent__Group_1_1__02960);
             rule__RootComponent__Group_1_1__1();
             _fsp--;
 
@@ -3219,24 +3814,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group_1_1__0
 
 
+    // $ANTLR start rule__RootComponent__Group_1_1__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1433:1: rule__RootComponent__Group_1_1__0__Impl : ( '@' ) ;
+    public final void rule__RootComponent__Group_1_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1437:1: ( ( '@' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1438:1: ( '@' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1438:1: ( '@' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1439:1: '@'
+            {
+             before(grammarAccess.getRootComponentAccess().getCommercialAtKeyword_1_1_0()); 
+            match(input,13,FOLLOW_13_in_rule__RootComponent__Group_1_1__0__Impl2988); 
+             after(grammarAccess.getRootComponentAccess().getCommercialAtKeyword_1_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group_1_1__0__Impl
+
+
     // $ANTLR start rule__RootComponent__Group_1_1__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1232:1: rule__RootComponent__Group_1_1__1 : ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1452:1: rule__RootComponent__Group_1_1__1 : rule__RootComponent__Group_1_1__1__Impl ;
     public final void rule__RootComponent__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1236:1: ( ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1237:1: ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1456:1: ( rule__RootComponent__Group_1_1__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1457:2: rule__RootComponent__Group_1_1__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1237:1: ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1238:1: ( rule__RootComponent__ModuleAssignment_1_1_1 )
+            pushFollow(FOLLOW_rule__RootComponent__Group_1_1__1__Impl_in_rule__RootComponent__Group_1_1__13019);
+            rule__RootComponent__Group_1_1__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group_1_1__1
+
+
+    // $ANTLR start rule__RootComponent__Group_1_1__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1463:1: rule__RootComponent__Group_1_1__1__Impl : ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) ) ;
+    public final void rule__RootComponent__Group_1_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1467:1: ( ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1468:1: ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1468:1: ( ( rule__RootComponent__ModuleAssignment_1_1_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1469:1: ( rule__RootComponent__ModuleAssignment_1_1_1 )
             {
              before(grammarAccess.getRootComponentAccess().getModuleAssignment_1_1_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1239:1: ( rule__RootComponent__ModuleAssignment_1_1_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1239:2: rule__RootComponent__ModuleAssignment_1_1_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1470:1: ( rule__RootComponent__ModuleAssignment_1_1_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1470:2: rule__RootComponent__ModuleAssignment_1_1_1
             {
-            pushFollow(FOLLOW_rule__RootComponent__ModuleAssignment_1_1_1_in_rule__RootComponent__Group_1_1__12563);
+            pushFollow(FOLLOW_rule__RootComponent__ModuleAssignment_1_1_1_in_rule__RootComponent__Group_1_1__1__Impl3046);
             rule__RootComponent__ModuleAssignment_1_1_1();
             _fsp--;
 
@@ -3262,29 +3926,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RootComponent__Group_1_1__1
+    // $ANTLR end rule__RootComponent__Group_1_1__1__Impl
 
 
     // $ANTLR start rule__RootComponent__Group_2__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1253:1: rule__RootComponent__Group_2__0 : ( ':' ) rule__RootComponent__Group_2__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1484:1: rule__RootComponent__Group_2__0 : rule__RootComponent__Group_2__0__Impl rule__RootComponent__Group_2__1 ;
     public final void rule__RootComponent__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1257:1: ( ( ':' ) rule__RootComponent__Group_2__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1258:1: ( ':' ) rule__RootComponent__Group_2__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1488:1: ( rule__RootComponent__Group_2__0__Impl rule__RootComponent__Group_2__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1489:2: rule__RootComponent__Group_2__0__Impl rule__RootComponent__Group_2__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1258:1: ( ':' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1259:1: ':'
-            {
-             before(grammarAccess.getRootComponentAccess().getColonKeyword_2_0()); 
-            match(input,10,FOLLOW_10_in_rule__RootComponent__Group_2__02602); 
-             after(grammarAccess.getRootComponentAccess().getColonKeyword_2_0()); 
+            pushFollow(FOLLOW_rule__RootComponent__Group_2__0__Impl_in_rule__RootComponent__Group_2__03080);
+            rule__RootComponent__Group_2__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__RootComponent__Group_2__1_in_rule__RootComponent__Group_2__02612);
+            pushFollow(FOLLOW_rule__RootComponent__Group_2__1_in_rule__RootComponent__Group_2__03083);
             rule__RootComponent__Group_2__1();
             _fsp--;
 
@@ -3306,24 +3965,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__RootComponent__Group_2__0
 
 
+    // $ANTLR start rule__RootComponent__Group_2__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1496:1: rule__RootComponent__Group_2__0__Impl : ( ':' ) ;
+    public final void rule__RootComponent__Group_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1500:1: ( ( ':' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1501:1: ( ':' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1501:1: ( ':' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1502:1: ':'
+            {
+             before(grammarAccess.getRootComponentAccess().getColonKeyword_2_0()); 
+            match(input,10,FOLLOW_10_in_rule__RootComponent__Group_2__0__Impl3111); 
+             after(grammarAccess.getRootComponentAccess().getColonKeyword_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group_2__0__Impl
+
+
     // $ANTLR start rule__RootComponent__Group_2__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1273:1: rule__RootComponent__Group_2__1 : ( ( rule__RootComponent__NameAssignment_2_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1515:1: rule__RootComponent__Group_2__1 : rule__RootComponent__Group_2__1__Impl ;
     public final void rule__RootComponent__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1277:1: ( ( ( rule__RootComponent__NameAssignment_2_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1278:1: ( ( rule__RootComponent__NameAssignment_2_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1519:1: ( rule__RootComponent__Group_2__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1520:2: rule__RootComponent__Group_2__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1278:1: ( ( rule__RootComponent__NameAssignment_2_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1279:1: ( rule__RootComponent__NameAssignment_2_1 )
+            pushFollow(FOLLOW_rule__RootComponent__Group_2__1__Impl_in_rule__RootComponent__Group_2__13142);
+            rule__RootComponent__Group_2__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__RootComponent__Group_2__1
+
+
+    // $ANTLR start rule__RootComponent__Group_2__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1526:1: rule__RootComponent__Group_2__1__Impl : ( ( rule__RootComponent__NameAssignment_2_1 ) ) ;
+    public final void rule__RootComponent__Group_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1530:1: ( ( ( rule__RootComponent__NameAssignment_2_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1531:1: ( ( rule__RootComponent__NameAssignment_2_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1531:1: ( ( rule__RootComponent__NameAssignment_2_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1532:1: ( rule__RootComponent__NameAssignment_2_1 )
             {
              before(grammarAccess.getRootComponentAccess().getNameAssignment_2_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1280:1: ( rule__RootComponent__NameAssignment_2_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1280:2: rule__RootComponent__NameAssignment_2_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1533:1: ( rule__RootComponent__NameAssignment_2_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1533:2: rule__RootComponent__NameAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__RootComponent__NameAssignment_2_1_in_rule__RootComponent__Group_2__12640);
+            pushFollow(FOLLOW_rule__RootComponent__NameAssignment_2_1_in_rule__RootComponent__Group_2__1__Impl3169);
             rule__RootComponent__NameAssignment_2_1();
             _fsp--;
 
@@ -3349,33 +4077,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__RootComponent__Group_2__1
+    // $ANTLR end rule__RootComponent__Group_2__1__Impl
 
 
     // $ANTLR start rule__Component__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1294:1: rule__Component__Group__0 : ( () ) rule__Component__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1547:1: rule__Component__Group__0 : rule__Component__Group__0__Impl rule__Component__Group__1 ;
     public final void rule__Component__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1298:1: ( ( () ) rule__Component__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1299:1: ( () ) rule__Component__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1551:1: ( rule__Component__Group__0__Impl rule__Component__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1552:2: rule__Component__Group__0__Impl rule__Component__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1299:1: ( () )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1300:1: ()
-            {
-             before(grammarAccess.getComponentAccess().getComponentAction_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1301:1: ()
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1303:1: 
-            {
-            }
+            pushFollow(FOLLOW_rule__Component__Group__0__Impl_in_rule__Component__Group__03203);
+            rule__Component__Group__0__Impl();
+            _fsp--;
 
-             after(grammarAccess.getComponentAccess().getComponentAction_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group__1_in_rule__Component__Group__02688);
+            pushFollow(FOLLOW_rule__Component__Group__1_in_rule__Component__Group__03206);
             rule__Component__Group__1();
             _fsp--;
 
@@ -3397,46 +4116,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__0
 
 
+    // $ANTLR start rule__Component__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1559:1: rule__Component__Group__0__Impl : ( () ) ;
+    public final void rule__Component__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1563:1: ( ( () ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1564:1: ( () )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1564:1: ( () )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1565:1: ()
+            {
+             before(grammarAccess.getComponentAccess().getComponentAction_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1566:1: ()
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1568:1: 
+            {
+            }
+
+             after(grammarAccess.getComponentAccess().getComponentAction_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__0__Impl
+
+
     // $ANTLR start rule__Component__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1314:1: rule__Component__Group__1 : ( ( rule__Component__Alternatives_1 )? ) rule__Component__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1578:1: rule__Component__Group__1 : rule__Component__Group__1__Impl rule__Component__Group__2 ;
     public final void rule__Component__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1318:1: ( ( ( rule__Component__Alternatives_1 )? ) rule__Component__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1319:1: ( ( rule__Component__Alternatives_1 )? ) rule__Component__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1582:1: ( rule__Component__Group__1__Impl rule__Component__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1583:2: rule__Component__Group__1__Impl rule__Component__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1319:1: ( ( rule__Component__Alternatives_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1320:1: ( rule__Component__Alternatives_1 )?
-            {
-             before(grammarAccess.getComponentAccess().getAlternatives_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1321:1: ( rule__Component__Alternatives_1 )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__Component__Group__1__Impl_in_rule__Component__Group__13264);
+            rule__Component__Group__1__Impl();
+            _fsp--;
 
-            if ( (LA15_0==RULE_ID||LA15_0==13) ) {
-                alt15=1;
-            }
-            switch (alt15) {
-                case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1321:2: rule__Component__Alternatives_1
-                    {
-                    pushFollow(FOLLOW_rule__Component__Alternatives_1_in_rule__Component__Group__12716);
-                    rule__Component__Alternatives_1();
-                    _fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getComponentAccess().getAlternatives_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group__2_in_rule__Component__Group__12726);
+            pushFollow(FOLLOW_rule__Component__Group__2_in_rule__Component__Group__13267);
             rule__Component__Group__2();
             _fsp--;
 
@@ -3458,33 +4189,33 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__1
 
 
-    // $ANTLR start rule__Component__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1332:1: rule__Component__Group__2 : ( ( rule__Component__Group_2__0 )? ) rule__Component__Group__3 ;
-    public final void rule__Component__Group__2() throws RecognitionException {
+    // $ANTLR start rule__Component__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1590:1: rule__Component__Group__1__Impl : ( ( rule__Component__Alternatives_1 )? ) ;
+    public final void rule__Component__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1336:1: ( ( ( rule__Component__Group_2__0 )? ) rule__Component__Group__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1337:1: ( ( rule__Component__Group_2__0 )? ) rule__Component__Group__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1594:1: ( ( ( rule__Component__Alternatives_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1595:1: ( ( rule__Component__Alternatives_1 )? )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1337:1: ( ( rule__Component__Group_2__0 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1338:1: ( rule__Component__Group_2__0 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1595:1: ( ( rule__Component__Alternatives_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1596:1: ( rule__Component__Alternatives_1 )?
             {
-             before(grammarAccess.getComponentAccess().getGroup_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1339:1: ( rule__Component__Group_2__0 )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+             before(grammarAccess.getComponentAccess().getAlternatives_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1597:1: ( rule__Component__Alternatives_1 )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA16_0==10) ) {
-                alt16=1;
+            if ( (LA15_0==RULE_ID||LA15_0==13) ) {
+                alt15=1;
             }
-            switch (alt16) {
+            switch (alt15) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1339:2: rule__Component__Group_2__0
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1597:2: rule__Component__Alternatives_1
                     {
-                    pushFollow(FOLLOW_rule__Component__Group_2__0_in_rule__Component__Group__22754);
-                    rule__Component__Group_2__0();
+                    pushFollow(FOLLOW_rule__Component__Alternatives_1_in_rule__Component__Group__1__Impl3294);
+                    rule__Component__Alternatives_1();
                     _fsp--;
 
 
@@ -3493,11 +4224,43 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getComponentAccess().getGroup_2()); 
+             after(grammarAccess.getComponentAccess().getAlternatives_1()); 
 
             }
 
-            pushFollow(FOLLOW_rule__Component__Group__3_in_rule__Component__Group__22764);
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__1__Impl
+
+
+    // $ANTLR start rule__Component__Group__2
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1607:1: rule__Component__Group__2 : rule__Component__Group__2__Impl rule__Component__Group__3 ;
+    public final void rule__Component__Group__2() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1611:1: ( rule__Component__Group__2__Impl rule__Component__Group__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1612:2: rule__Component__Group__2__Impl rule__Component__Group__3
+            {
+            pushFollow(FOLLOW_rule__Component__Group__2__Impl_in_rule__Component__Group__23325);
+            rule__Component__Group__2__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Component__Group__3_in_rule__Component__Group__23328);
             rule__Component__Group__3();
             _fsp--;
 
@@ -3519,33 +4282,33 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__2
 
 
-    // $ANTLR start rule__Component__Group__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1350:1: rule__Component__Group__3 : ( ( rule__Component__AutoInjectAssignment_3 )? ) rule__Component__Group__4 ;
-    public final void rule__Component__Group__3() throws RecognitionException {
+    // $ANTLR start rule__Component__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1619:1: rule__Component__Group__2__Impl : ( ( rule__Component__Group_2__0 )? ) ;
+    public final void rule__Component__Group__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1354:1: ( ( ( rule__Component__AutoInjectAssignment_3 )? ) rule__Component__Group__4 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1355:1: ( ( rule__Component__AutoInjectAssignment_3 )? ) rule__Component__Group__4
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1623:1: ( ( ( rule__Component__Group_2__0 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1624:1: ( ( rule__Component__Group_2__0 )? )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1355:1: ( ( rule__Component__AutoInjectAssignment_3 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1356:1: ( rule__Component__AutoInjectAssignment_3 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1624:1: ( ( rule__Component__Group_2__0 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1625:1: ( rule__Component__Group_2__0 )?
             {
-             before(grammarAccess.getComponentAccess().getAutoInjectAssignment_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1357:1: ( rule__Component__AutoInjectAssignment_3 )?
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+             before(grammarAccess.getComponentAccess().getGroup_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1626:1: ( rule__Component__Group_2__0 )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA17_0==24) ) {
-                alt17=1;
+            if ( (LA16_0==10) ) {
+                alt16=1;
             }
-            switch (alt17) {
+            switch (alt16) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1357:2: rule__Component__AutoInjectAssignment_3
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1626:2: rule__Component__Group_2__0
                     {
-                    pushFollow(FOLLOW_rule__Component__AutoInjectAssignment_3_in_rule__Component__Group__32792);
-                    rule__Component__AutoInjectAssignment_3();
+                    pushFollow(FOLLOW_rule__Component__Group_2__0_in_rule__Component__Group__2__Impl3355);
+                    rule__Component__Group_2__0();
                     _fsp--;
 
 
@@ -3554,11 +4317,43 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
             }
 
-             after(grammarAccess.getComponentAccess().getAutoInjectAssignment_3()); 
+             after(grammarAccess.getComponentAccess().getGroup_2()); 
 
             }
 
-            pushFollow(FOLLOW_rule__Component__Group__4_in_rule__Component__Group__32802);
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__2__Impl
+
+
+    // $ANTLR start rule__Component__Group__3
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1636:1: rule__Component__Group__3 : rule__Component__Group__3__Impl rule__Component__Group__4 ;
+    public final void rule__Component__Group__3() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1640:1: ( rule__Component__Group__3__Impl rule__Component__Group__4 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1641:2: rule__Component__Group__3__Impl rule__Component__Group__4
+            {
+            pushFollow(FOLLOW_rule__Component__Group__3__Impl_in_rule__Component__Group__33386);
+            rule__Component__Group__3__Impl();
+            _fsp--;
+
+            pushFollow(FOLLOW_rule__Component__Group__4_in_rule__Component__Group__33389);
             rule__Component__Group__4();
             _fsp--;
 
@@ -3580,26 +4375,78 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__3
 
 
+    // $ANTLR start rule__Component__Group__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1648:1: rule__Component__Group__3__Impl : ( ( rule__Component__AutoInjectAssignment_3 )? ) ;
+    public final void rule__Component__Group__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1652:1: ( ( ( rule__Component__AutoInjectAssignment_3 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1653:1: ( ( rule__Component__AutoInjectAssignment_3 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1653:1: ( ( rule__Component__AutoInjectAssignment_3 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1654:1: ( rule__Component__AutoInjectAssignment_3 )?
+            {
+             before(grammarAccess.getComponentAccess().getAutoInjectAssignment_3()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1655:1: ( rule__Component__AutoInjectAssignment_3 )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
+
+            if ( (LA17_0==24) ) {
+                alt17=1;
+            }
+            switch (alt17) {
+                case 1 :
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1655:2: rule__Component__AutoInjectAssignment_3
+                    {
+                    pushFollow(FOLLOW_rule__Component__AutoInjectAssignment_3_in_rule__Component__Group__3__Impl3416);
+                    rule__Component__AutoInjectAssignment_3();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getComponentAccess().getAutoInjectAssignment_3()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__3__Impl
+
+
     // $ANTLR start rule__Component__Group__4
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1368:1: rule__Component__Group__4 : ( '{' ) rule__Component__Group__5 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1665:1: rule__Component__Group__4 : rule__Component__Group__4__Impl rule__Component__Group__5 ;
     public final void rule__Component__Group__4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1372:1: ( ( '{' ) rule__Component__Group__5 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1373:1: ( '{' ) rule__Component__Group__5
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1669:1: ( rule__Component__Group__4__Impl rule__Component__Group__5 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1670:2: rule__Component__Group__4__Impl rule__Component__Group__5
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1373:1: ( '{' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1374:1: '{'
-            {
-             before(grammarAccess.getComponentAccess().getLeftCurlyBracketKeyword_4()); 
-            match(input,11,FOLLOW_11_in_rule__Component__Group__42831); 
-             after(grammarAccess.getComponentAccess().getLeftCurlyBracketKeyword_4()); 
+            pushFollow(FOLLOW_rule__Component__Group__4__Impl_in_rule__Component__Group__43447);
+            rule__Component__Group__4__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group__5_in_rule__Component__Group__42841);
+            pushFollow(FOLLOW_rule__Component__Group__5_in_rule__Component__Group__43450);
             rule__Component__Group__5();
             _fsp--;
 
@@ -3621,53 +4468,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__4
 
 
+    // $ANTLR start rule__Component__Group__4__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1677:1: rule__Component__Group__4__Impl : ( '{' ) ;
+    public final void rule__Component__Group__4__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1681:1: ( ( '{' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1682:1: ( '{' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1682:1: ( '{' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1683:1: '{'
+            {
+             before(grammarAccess.getComponentAccess().getLeftCurlyBracketKeyword_4()); 
+            match(input,11,FOLLOW_11_in_rule__Component__Group__4__Impl3478); 
+             after(grammarAccess.getComponentAccess().getLeftCurlyBracketKeyword_4()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__4__Impl
+
+
     // $ANTLR start rule__Component__Group__5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1388:1: rule__Component__Group__5 : ( ( rule__Component__AssignmentAssignment_5 )* ) rule__Component__Group__6 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1696:1: rule__Component__Group__5 : rule__Component__Group__5__Impl rule__Component__Group__6 ;
     public final void rule__Component__Group__5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1392:1: ( ( ( rule__Component__AssignmentAssignment_5 )* ) rule__Component__Group__6 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1393:1: ( ( rule__Component__AssignmentAssignment_5 )* ) rule__Component__Group__6
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1700:1: ( rule__Component__Group__5__Impl rule__Component__Group__6 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1701:2: rule__Component__Group__5__Impl rule__Component__Group__6
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1393:1: ( ( rule__Component__AssignmentAssignment_5 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1394:1: ( rule__Component__AssignmentAssignment_5 )*
-            {
-             before(grammarAccess.getComponentAccess().getAssignmentAssignment_5()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1395:1: ( rule__Component__AssignmentAssignment_5 )*
-            loop18:
-            do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__Component__Group__5__Impl_in_rule__Component__Group__53509);
+            rule__Component__Group__5__Impl();
+            _fsp--;
 
-                if ( (LA18_0==RULE_ID) ) {
-                    alt18=1;
-                }
-
-
-                switch (alt18) {
-            	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1395:2: rule__Component__AssignmentAssignment_5
-            	    {
-            	    pushFollow(FOLLOW_rule__Component__AssignmentAssignment_5_in_rule__Component__Group__52869);
-            	    rule__Component__AssignmentAssignment_5();
-            	    _fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop18;
-                }
-            } while (true);
-
-             after(grammarAccess.getComponentAccess().getAssignmentAssignment_5()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group__6_in_rule__Component__Group__52879);
+            pushFollow(FOLLOW_rule__Component__Group__6_in_rule__Component__Group__53512);
             rule__Component__Group__6();
             _fsp--;
 
@@ -3689,24 +4541,83 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__5
 
 
+    // $ANTLR start rule__Component__Group__5__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1708:1: rule__Component__Group__5__Impl : ( ( rule__Component__AssignmentAssignment_5 )* ) ;
+    public final void rule__Component__Group__5__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1712:1: ( ( ( rule__Component__AssignmentAssignment_5 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1713:1: ( ( rule__Component__AssignmentAssignment_5 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1713:1: ( ( rule__Component__AssignmentAssignment_5 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1714:1: ( rule__Component__AssignmentAssignment_5 )*
+            {
+             before(grammarAccess.getComponentAccess().getAssignmentAssignment_5()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1715:1: ( rule__Component__AssignmentAssignment_5 )*
+            loop18:
+            do {
+                int alt18=2;
+                int LA18_0 = input.LA(1);
+
+                if ( (LA18_0==RULE_ID) ) {
+                    alt18=1;
+                }
+
+
+                switch (alt18) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1715:2: rule__Component__AssignmentAssignment_5
+            	    {
+            	    pushFollow(FOLLOW_rule__Component__AssignmentAssignment_5_in_rule__Component__Group__5__Impl3539);
+            	    rule__Component__AssignmentAssignment_5();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop18;
+                }
+            } while (true);
+
+             after(grammarAccess.getComponentAccess().getAssignmentAssignment_5()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__5__Impl
+
+
     // $ANTLR start rule__Component__Group__6
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1406:1: rule__Component__Group__6 : ( '}' ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1725:1: rule__Component__Group__6 : rule__Component__Group__6__Impl ;
     public final void rule__Component__Group__6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1410:1: ( ( '}' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1411:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1729:1: ( rule__Component__Group__6__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1730:2: rule__Component__Group__6__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1411:1: ( '}' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1412:1: '}'
-            {
-             before(grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_6()); 
-            match(input,12,FOLLOW_12_in_rule__Component__Group__62908); 
-             after(grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_6()); 
-
-            }
+            pushFollow(FOLLOW_rule__Component__Group__6__Impl_in_rule__Component__Group__63570);
+            rule__Component__Group__6__Impl();
+            _fsp--;
 
 
             }
@@ -3726,26 +4637,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group__6
 
 
+    // $ANTLR start rule__Component__Group__6__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1736:1: rule__Component__Group__6__Impl : ( '}' ) ;
+    public final void rule__Component__Group__6__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1740:1: ( ( '}' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1741:1: ( '}' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1741:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1742:1: '}'
+            {
+             before(grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_6()); 
+            match(input,12,FOLLOW_12_in_rule__Component__Group__6__Impl3598); 
+             after(grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_6()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group__6__Impl
+
+
     // $ANTLR start rule__Component__Group_1_1__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1439:1: rule__Component__Group_1_1__0 : ( '@' ) rule__Component__Group_1_1__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1769:1: rule__Component__Group_1_1__0 : rule__Component__Group_1_1__0__Impl rule__Component__Group_1_1__1 ;
     public final void rule__Component__Group_1_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1443:1: ( ( '@' ) rule__Component__Group_1_1__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1444:1: ( '@' ) rule__Component__Group_1_1__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1773:1: ( rule__Component__Group_1_1__0__Impl rule__Component__Group_1_1__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1774:2: rule__Component__Group_1_1__0__Impl rule__Component__Group_1_1__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1444:1: ( '@' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1445:1: '@'
-            {
-             before(grammarAccess.getComponentAccess().getCommercialAtKeyword_1_1_0()); 
-            match(input,13,FOLLOW_13_in_rule__Component__Group_1_1__02958); 
-             after(grammarAccess.getComponentAccess().getCommercialAtKeyword_1_1_0()); 
+            pushFollow(FOLLOW_rule__Component__Group_1_1__0__Impl_in_rule__Component__Group_1_1__03643);
+            rule__Component__Group_1_1__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group_1_1__1_in_rule__Component__Group_1_1__02968);
+            pushFollow(FOLLOW_rule__Component__Group_1_1__1_in_rule__Component__Group_1_1__03646);
             rule__Component__Group_1_1__1();
             _fsp--;
 
@@ -3767,24 +4710,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group_1_1__0
 
 
+    // $ANTLR start rule__Component__Group_1_1__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1781:1: rule__Component__Group_1_1__0__Impl : ( '@' ) ;
+    public final void rule__Component__Group_1_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1785:1: ( ( '@' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1786:1: ( '@' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1786:1: ( '@' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1787:1: '@'
+            {
+             before(grammarAccess.getComponentAccess().getCommercialAtKeyword_1_1_0()); 
+            match(input,13,FOLLOW_13_in_rule__Component__Group_1_1__0__Impl3674); 
+             after(grammarAccess.getComponentAccess().getCommercialAtKeyword_1_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group_1_1__0__Impl
+
+
     // $ANTLR start rule__Component__Group_1_1__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1459:1: rule__Component__Group_1_1__1 : ( ( rule__Component__ModuleAssignment_1_1_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1800:1: rule__Component__Group_1_1__1 : rule__Component__Group_1_1__1__Impl ;
     public final void rule__Component__Group_1_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1463:1: ( ( ( rule__Component__ModuleAssignment_1_1_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1464:1: ( ( rule__Component__ModuleAssignment_1_1_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1804:1: ( rule__Component__Group_1_1__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1805:2: rule__Component__Group_1_1__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1464:1: ( ( rule__Component__ModuleAssignment_1_1_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1465:1: ( rule__Component__ModuleAssignment_1_1_1 )
+            pushFollow(FOLLOW_rule__Component__Group_1_1__1__Impl_in_rule__Component__Group_1_1__13705);
+            rule__Component__Group_1_1__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group_1_1__1
+
+
+    // $ANTLR start rule__Component__Group_1_1__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1811:1: rule__Component__Group_1_1__1__Impl : ( ( rule__Component__ModuleAssignment_1_1_1 ) ) ;
+    public final void rule__Component__Group_1_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1815:1: ( ( ( rule__Component__ModuleAssignment_1_1_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1816:1: ( ( rule__Component__ModuleAssignment_1_1_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1816:1: ( ( rule__Component__ModuleAssignment_1_1_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1817:1: ( rule__Component__ModuleAssignment_1_1_1 )
             {
              before(grammarAccess.getComponentAccess().getModuleAssignment_1_1_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1466:1: ( rule__Component__ModuleAssignment_1_1_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1466:2: rule__Component__ModuleAssignment_1_1_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1818:1: ( rule__Component__ModuleAssignment_1_1_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1818:2: rule__Component__ModuleAssignment_1_1_1
             {
-            pushFollow(FOLLOW_rule__Component__ModuleAssignment_1_1_1_in_rule__Component__Group_1_1__12996);
+            pushFollow(FOLLOW_rule__Component__ModuleAssignment_1_1_1_in_rule__Component__Group_1_1__1__Impl3732);
             rule__Component__ModuleAssignment_1_1_1();
             _fsp--;
 
@@ -3810,29 +4822,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Component__Group_1_1__1
+    // $ANTLR end rule__Component__Group_1_1__1__Impl
 
 
     // $ANTLR start rule__Component__Group_2__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1480:1: rule__Component__Group_2__0 : ( ':' ) rule__Component__Group_2__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1832:1: rule__Component__Group_2__0 : rule__Component__Group_2__0__Impl rule__Component__Group_2__1 ;
     public final void rule__Component__Group_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1484:1: ( ( ':' ) rule__Component__Group_2__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1485:1: ( ':' ) rule__Component__Group_2__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1836:1: ( rule__Component__Group_2__0__Impl rule__Component__Group_2__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1837:2: rule__Component__Group_2__0__Impl rule__Component__Group_2__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1485:1: ( ':' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1486:1: ':'
-            {
-             before(grammarAccess.getComponentAccess().getColonKeyword_2_0()); 
-            match(input,10,FOLLOW_10_in_rule__Component__Group_2__03035); 
-             after(grammarAccess.getComponentAccess().getColonKeyword_2_0()); 
+            pushFollow(FOLLOW_rule__Component__Group_2__0__Impl_in_rule__Component__Group_2__03766);
+            rule__Component__Group_2__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Component__Group_2__1_in_rule__Component__Group_2__03045);
+            pushFollow(FOLLOW_rule__Component__Group_2__1_in_rule__Component__Group_2__03769);
             rule__Component__Group_2__1();
             _fsp--;
 
@@ -3854,24 +4861,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Component__Group_2__0
 
 
+    // $ANTLR start rule__Component__Group_2__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1844:1: rule__Component__Group_2__0__Impl : ( ':' ) ;
+    public final void rule__Component__Group_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1848:1: ( ( ':' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1849:1: ( ':' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1849:1: ( ':' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1850:1: ':'
+            {
+             before(grammarAccess.getComponentAccess().getColonKeyword_2_0()); 
+            match(input,10,FOLLOW_10_in_rule__Component__Group_2__0__Impl3797); 
+             after(grammarAccess.getComponentAccess().getColonKeyword_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group_2__0__Impl
+
+
     // $ANTLR start rule__Component__Group_2__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1500:1: rule__Component__Group_2__1 : ( ( rule__Component__NameAssignment_2_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1863:1: rule__Component__Group_2__1 : rule__Component__Group_2__1__Impl ;
     public final void rule__Component__Group_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1504:1: ( ( ( rule__Component__NameAssignment_2_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1505:1: ( ( rule__Component__NameAssignment_2_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1867:1: ( rule__Component__Group_2__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1868:2: rule__Component__Group_2__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1505:1: ( ( rule__Component__NameAssignment_2_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1506:1: ( rule__Component__NameAssignment_2_1 )
+            pushFollow(FOLLOW_rule__Component__Group_2__1__Impl_in_rule__Component__Group_2__13828);
+            rule__Component__Group_2__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Component__Group_2__1
+
+
+    // $ANTLR start rule__Component__Group_2__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1874:1: rule__Component__Group_2__1__Impl : ( ( rule__Component__NameAssignment_2_1 ) ) ;
+    public final void rule__Component__Group_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1878:1: ( ( ( rule__Component__NameAssignment_2_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1879:1: ( ( rule__Component__NameAssignment_2_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1879:1: ( ( rule__Component__NameAssignment_2_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1880:1: ( rule__Component__NameAssignment_2_1 )
             {
              before(grammarAccess.getComponentAccess().getNameAssignment_2_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1507:1: ( rule__Component__NameAssignment_2_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1507:2: rule__Component__NameAssignment_2_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1881:1: ( rule__Component__NameAssignment_2_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1881:2: rule__Component__NameAssignment_2_1
             {
-            pushFollow(FOLLOW_rule__Component__NameAssignment_2_1_in_rule__Component__Group_2__13073);
+            pushFollow(FOLLOW_rule__Component__NameAssignment_2_1_in_rule__Component__Group_2__1__Impl3855);
             rule__Component__NameAssignment_2_1();
             _fsp--;
 
@@ -3897,29 +4973,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Component__Group_2__1
+    // $ANTLR end rule__Component__Group_2__1__Impl
 
 
     // $ANTLR start rule__Import__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1521:1: rule__Import__Group__0 : ( 'import' ) rule__Import__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1895:1: rule__Import__Group__0 : rule__Import__Group__0__Impl rule__Import__Group__1 ;
     public final void rule__Import__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1525:1: ( ( 'import' ) rule__Import__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1526:1: ( 'import' ) rule__Import__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1899:1: ( rule__Import__Group__0__Impl rule__Import__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1900:2: rule__Import__Group__0__Impl rule__Import__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1526:1: ( 'import' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1527:1: 'import'
-            {
-             before(grammarAccess.getImportAccess().getImportKeyword_0()); 
-            match(input,22,FOLLOW_22_in_rule__Import__Group__03112); 
-             after(grammarAccess.getImportAccess().getImportKeyword_0()); 
+            pushFollow(FOLLOW_rule__Import__Group__0__Impl_in_rule__Import__Group__03889);
+            rule__Import__Group__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Import__Group__1_in_rule__Import__Group__03122);
+            pushFollow(FOLLOW_rule__Import__Group__1_in_rule__Import__Group__03892);
             rule__Import__Group__1();
             _fsp--;
 
@@ -3941,24 +5012,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Import__Group__0
 
 
+    // $ANTLR start rule__Import__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1907:1: rule__Import__Group__0__Impl : ( 'import' ) ;
+    public final void rule__Import__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1911:1: ( ( 'import' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1912:1: ( 'import' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1912:1: ( 'import' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1913:1: 'import'
+            {
+             before(grammarAccess.getImportAccess().getImportKeyword_0()); 
+            match(input,22,FOLLOW_22_in_rule__Import__Group__0__Impl3920); 
+             after(grammarAccess.getImportAccess().getImportKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Import__Group__0__Impl
+
+
     // $ANTLR start rule__Import__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1541:1: rule__Import__Group__1 : ( ( rule__Import__ImportedNamespaceAssignment_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1926:1: rule__Import__Group__1 : rule__Import__Group__1__Impl ;
     public final void rule__Import__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1545:1: ( ( ( rule__Import__ImportedNamespaceAssignment_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1546:1: ( ( rule__Import__ImportedNamespaceAssignment_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1930:1: ( rule__Import__Group__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1931:2: rule__Import__Group__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1546:1: ( ( rule__Import__ImportedNamespaceAssignment_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1547:1: ( rule__Import__ImportedNamespaceAssignment_1 )
+            pushFollow(FOLLOW_rule__Import__Group__1__Impl_in_rule__Import__Group__13951);
+            rule__Import__Group__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Import__Group__1
+
+
+    // $ANTLR start rule__Import__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1937:1: rule__Import__Group__1__Impl : ( ( rule__Import__ImportedNamespaceAssignment_1 ) ) ;
+    public final void rule__Import__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1941:1: ( ( ( rule__Import__ImportedNamespaceAssignment_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1942:1: ( ( rule__Import__ImportedNamespaceAssignment_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1942:1: ( ( rule__Import__ImportedNamespaceAssignment_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1943:1: ( rule__Import__ImportedNamespaceAssignment_1 )
             {
              before(grammarAccess.getImportAccess().getImportedNamespaceAssignment_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1548:1: ( rule__Import__ImportedNamespaceAssignment_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1548:2: rule__Import__ImportedNamespaceAssignment_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1944:1: ( rule__Import__ImportedNamespaceAssignment_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1944:2: rule__Import__ImportedNamespaceAssignment_1
             {
-            pushFollow(FOLLOW_rule__Import__ImportedNamespaceAssignment_1_in_rule__Import__Group__13150);
+            pushFollow(FOLLOW_rule__Import__ImportedNamespaceAssignment_1_in_rule__Import__Group__1__Impl3978);
             rule__Import__ImportedNamespaceAssignment_1();
             _fsp--;
 
@@ -3984,32 +5124,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Import__Group__1
+    // $ANTLR end rule__Import__Group__1__Impl
 
 
     // $ANTLR start rule__ImportedFQN__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1562:1: rule__ImportedFQN__Group__0 : ( ruleFQN ) rule__ImportedFQN__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1958:1: rule__ImportedFQN__Group__0 : rule__ImportedFQN__Group__0__Impl rule__ImportedFQN__Group__1 ;
     public final void rule__ImportedFQN__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1566:1: ( ( ruleFQN ) rule__ImportedFQN__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1567:1: ( ruleFQN ) rule__ImportedFQN__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1962:1: ( rule__ImportedFQN__Group__0__Impl rule__ImportedFQN__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1963:2: rule__ImportedFQN__Group__0__Impl rule__ImportedFQN__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1567:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1568:1: ruleFQN
-            {
-             before(grammarAccess.getImportedFQNAccess().getFQNParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__ImportedFQN__Group__03188);
-            ruleFQN();
+            pushFollow(FOLLOW_rule__ImportedFQN__Group__0__Impl_in_rule__ImportedFQN__Group__04012);
+            rule__ImportedFQN__Group__0__Impl();
             _fsp--;
 
-             after(grammarAccess.getImportedFQNAccess().getFQNParserRuleCall_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__ImportedFQN__Group__1_in_rule__ImportedFQN__Group__03196);
+            pushFollow(FOLLOW_rule__ImportedFQN__Group__1_in_rule__ImportedFQN__Group__04015);
             rule__ImportedFQN__Group__1();
             _fsp--;
 
@@ -4031,21 +5163,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__ImportedFQN__Group__0
 
 
+    // $ANTLR start rule__ImportedFQN__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1970:1: rule__ImportedFQN__Group__0__Impl : ( ruleFQN ) ;
+    public final void rule__ImportedFQN__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1974:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1975:1: ( ruleFQN )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1975:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1976:1: ruleFQN
+            {
+             before(grammarAccess.getImportedFQNAccess().getFQNParserRuleCall_0()); 
+            pushFollow(FOLLOW_ruleFQN_in_rule__ImportedFQN__Group__0__Impl4042);
+            ruleFQN();
+            _fsp--;
+
+             after(grammarAccess.getImportedFQNAccess().getFQNParserRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImportedFQN__Group__0__Impl
+
+
     // $ANTLR start rule__ImportedFQN__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1580:1: rule__ImportedFQN__Group__1 : ( ( '.*' )? ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1987:1: rule__ImportedFQN__Group__1 : rule__ImportedFQN__Group__1__Impl ;
     public final void rule__ImportedFQN__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1584:1: ( ( ( '.*' )? ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1585:1: ( ( '.*' )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1991:1: ( rule__ImportedFQN__Group__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1992:2: rule__ImportedFQN__Group__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1585:1: ( ( '.*' )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1586:1: ( '.*' )?
+            pushFollow(FOLLOW_rule__ImportedFQN__Group__1__Impl_in_rule__ImportedFQN__Group__14071);
+            rule__ImportedFQN__Group__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__ImportedFQN__Group__1
+
+
+    // $ANTLR start rule__ImportedFQN__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1998:1: rule__ImportedFQN__Group__1__Impl : ( ( '.*' )? ) ;
+    public final void rule__ImportedFQN__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2002:1: ( ( ( '.*' )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2003:1: ( ( '.*' )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2003:1: ( ( '.*' )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2004:1: ( '.*' )?
             {
              before(grammarAccess.getImportedFQNAccess().getFullStopAsteriskKeyword_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1587:1: ( '.*' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2005:1: ( '.*' )?
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -4054,9 +5258,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt19) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1588:2: '.*'
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2006:2: '.*'
                     {
-                    match(input,27,FOLLOW_27_in_rule__ImportedFQN__Group__13226); 
+                    match(input,27,FOLLOW_27_in_rule__ImportedFQN__Group__1__Impl4100); 
 
                     }
                     break;
@@ -4082,38 +5286,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__ImportedFQN__Group__1
+    // $ANTLR end rule__ImportedFQN__Group__1__Impl
 
 
     // $ANTLR start rule__Assignment__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1603:1: rule__Assignment__Group__0 : ( ( rule__Assignment__FeatureAssignment_0 ) ) rule__Assignment__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2021:1: rule__Assignment__Group__0 : rule__Assignment__Group__0__Impl rule__Assignment__Group__1 ;
     public final void rule__Assignment__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1607:1: ( ( ( rule__Assignment__FeatureAssignment_0 ) ) rule__Assignment__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1608:1: ( ( rule__Assignment__FeatureAssignment_0 ) ) rule__Assignment__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2025:1: ( rule__Assignment__Group__0__Impl rule__Assignment__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2026:2: rule__Assignment__Group__0__Impl rule__Assignment__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1608:1: ( ( rule__Assignment__FeatureAssignment_0 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1609:1: ( rule__Assignment__FeatureAssignment_0 )
-            {
-             before(grammarAccess.getAssignmentAccess().getFeatureAssignment_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1610:1: ( rule__Assignment__FeatureAssignment_0 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1610:2: rule__Assignment__FeatureAssignment_0
-            {
-            pushFollow(FOLLOW_rule__Assignment__FeatureAssignment_0_in_rule__Assignment__Group__03267);
-            rule__Assignment__FeatureAssignment_0();
+            pushFollow(FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__04137);
+            rule__Assignment__Group__0__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getAssignmentAccess().getFeatureAssignment_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__03276);
+            pushFollow(FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__04140);
             rule__Assignment__Group__1();
             _fsp--;
 
@@ -4135,26 +5325,67 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Assignment__Group__0
 
 
+    // $ANTLR start rule__Assignment__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2033:1: rule__Assignment__Group__0__Impl : ( ( rule__Assignment__FeatureAssignment_0 ) ) ;
+    public final void rule__Assignment__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2037:1: ( ( ( rule__Assignment__FeatureAssignment_0 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2038:1: ( ( rule__Assignment__FeatureAssignment_0 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2038:1: ( ( rule__Assignment__FeatureAssignment_0 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2039:1: ( rule__Assignment__FeatureAssignment_0 )
+            {
+             before(grammarAccess.getAssignmentAccess().getFeatureAssignment_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2040:1: ( rule__Assignment__FeatureAssignment_0 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2040:2: rule__Assignment__FeatureAssignment_0
+            {
+            pushFollow(FOLLOW_rule__Assignment__FeatureAssignment_0_in_rule__Assignment__Group__0__Impl4167);
+            rule__Assignment__FeatureAssignment_0();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getAssignmentAccess().getFeatureAssignment_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Assignment__Group__0__Impl
+
+
     // $ANTLR start rule__Assignment__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1621:1: rule__Assignment__Group__1 : ( '=' ) rule__Assignment__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2050:1: rule__Assignment__Group__1 : rule__Assignment__Group__1__Impl rule__Assignment__Group__2 ;
     public final void rule__Assignment__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1625:1: ( ( '=' ) rule__Assignment__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1626:1: ( '=' ) rule__Assignment__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2054:1: ( rule__Assignment__Group__1__Impl rule__Assignment__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2055:2: rule__Assignment__Group__1__Impl rule__Assignment__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1626:1: ( '=' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1627:1: '='
-            {
-             before(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
-            match(input,21,FOLLOW_21_in_rule__Assignment__Group__13305); 
-             after(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
+            pushFollow(FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__14197);
+            rule__Assignment__Group__1__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__13315);
+            pushFollow(FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__14200);
             rule__Assignment__Group__2();
             _fsp--;
 
@@ -4176,24 +5407,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__Assignment__Group__1
 
 
+    // $ANTLR start rule__Assignment__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2062:1: rule__Assignment__Group__1__Impl : ( '=' ) ;
+    public final void rule__Assignment__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2066:1: ( ( '=' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2067:1: ( '=' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2067:1: ( '=' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2068:1: '='
+            {
+             before(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
+            match(input,21,FOLLOW_21_in_rule__Assignment__Group__1__Impl4228); 
+             after(grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Assignment__Group__1__Impl
+
+
     // $ANTLR start rule__Assignment__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1641:1: rule__Assignment__Group__2 : ( ( rule__Assignment__ValueAssignment_2 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2081:1: rule__Assignment__Group__2 : rule__Assignment__Group__2__Impl ;
     public final void rule__Assignment__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1645:1: ( ( ( rule__Assignment__ValueAssignment_2 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1646:1: ( ( rule__Assignment__ValueAssignment_2 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2085:1: ( rule__Assignment__Group__2__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2086:2: rule__Assignment__Group__2__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1646:1: ( ( rule__Assignment__ValueAssignment_2 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1647:1: ( rule__Assignment__ValueAssignment_2 )
+            pushFollow(FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__24259);
+            rule__Assignment__Group__2__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__Assignment__Group__2
+
+
+    // $ANTLR start rule__Assignment__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2092:1: rule__Assignment__Group__2__Impl : ( ( rule__Assignment__ValueAssignment_2 ) ) ;
+    public final void rule__Assignment__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2096:1: ( ( ( rule__Assignment__ValueAssignment_2 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2097:1: ( ( rule__Assignment__ValueAssignment_2 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2097:1: ( ( rule__Assignment__ValueAssignment_2 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2098:1: ( rule__Assignment__ValueAssignment_2 )
             {
              before(grammarAccess.getAssignmentAccess().getValueAssignment_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1648:1: ( rule__Assignment__ValueAssignment_2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1648:2: rule__Assignment__ValueAssignment_2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2099:1: ( rule__Assignment__ValueAssignment_2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2099:2: rule__Assignment__ValueAssignment_2
             {
-            pushFollow(FOLLOW_rule__Assignment__ValueAssignment_2_in_rule__Assignment__Group__23343);
+            pushFollow(FOLLOW_rule__Assignment__ValueAssignment_2_in_rule__Assignment__Group__2__Impl4286);
             rule__Assignment__ValueAssignment_2();
             _fsp--;
 
@@ -4219,33 +5519,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__Assignment__Group__2
+    // $ANTLR end rule__Assignment__Group__2__Impl
 
 
     // $ANTLR start rule__BooleanLiteral__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1664:1: rule__BooleanLiteral__Group__0 : ( () ) rule__BooleanLiteral__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2115:1: rule__BooleanLiteral__Group__0 : rule__BooleanLiteral__Group__0__Impl rule__BooleanLiteral__Group__1 ;
     public final void rule__BooleanLiteral__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1668:1: ( ( () ) rule__BooleanLiteral__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1669:1: ( () ) rule__BooleanLiteral__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2119:1: ( rule__BooleanLiteral__Group__0__Impl rule__BooleanLiteral__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2120:2: rule__BooleanLiteral__Group__0__Impl rule__BooleanLiteral__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1669:1: ( () )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1670:1: ()
-            {
-             before(grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1671:1: ()
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1673:1: 
-            {
-            }
+            pushFollow(FOLLOW_rule__BooleanLiteral__Group__0__Impl_in_rule__BooleanLiteral__Group__04322);
+            rule__BooleanLiteral__Group__0__Impl();
+            _fsp--;
 
-             after(grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__BooleanLiteral__Group__1_in_rule__BooleanLiteral__Group__03393);
+            pushFollow(FOLLOW_rule__BooleanLiteral__Group__1_in_rule__BooleanLiteral__Group__04325);
             rule__BooleanLiteral__Group__1();
             _fsp--;
 
@@ -4267,24 +5558,93 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__BooleanLiteral__Group__0
 
 
+    // $ANTLR start rule__BooleanLiteral__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2127:1: rule__BooleanLiteral__Group__0__Impl : ( () ) ;
+    public final void rule__BooleanLiteral__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2131:1: ( ( () ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2132:1: ( () )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2132:1: ( () )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2133:1: ()
+            {
+             before(grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2134:1: ()
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2136:1: 
+            {
+            }
+
+             after(grammarAccess.getBooleanLiteralAccess().getBooleanLiteralAction_0()); 
+
+            }
+
+
+            }
+
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__BooleanLiteral__Group__0__Impl
+
+
     // $ANTLR start rule__BooleanLiteral__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1684:1: rule__BooleanLiteral__Group__1 : ( ( rule__BooleanLiteral__Alternatives_1 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2146:1: rule__BooleanLiteral__Group__1 : rule__BooleanLiteral__Group__1__Impl ;
     public final void rule__BooleanLiteral__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1688:1: ( ( ( rule__BooleanLiteral__Alternatives_1 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1689:1: ( ( rule__BooleanLiteral__Alternatives_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2150:1: ( rule__BooleanLiteral__Group__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2151:2: rule__BooleanLiteral__Group__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1689:1: ( ( rule__BooleanLiteral__Alternatives_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1690:1: ( rule__BooleanLiteral__Alternatives_1 )
+            pushFollow(FOLLOW_rule__BooleanLiteral__Group__1__Impl_in_rule__BooleanLiteral__Group__14383);
+            rule__BooleanLiteral__Group__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__BooleanLiteral__Group__1
+
+
+    // $ANTLR start rule__BooleanLiteral__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2157:1: rule__BooleanLiteral__Group__1__Impl : ( ( rule__BooleanLiteral__Alternatives_1 ) ) ;
+    public final void rule__BooleanLiteral__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2161:1: ( ( ( rule__BooleanLiteral__Alternatives_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2162:1: ( ( rule__BooleanLiteral__Alternatives_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2162:1: ( ( rule__BooleanLiteral__Alternatives_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2163:1: ( rule__BooleanLiteral__Alternatives_1 )
             {
              before(grammarAccess.getBooleanLiteralAccess().getAlternatives_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1691:1: ( rule__BooleanLiteral__Alternatives_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1691:2: rule__BooleanLiteral__Alternatives_1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2164:1: ( rule__BooleanLiteral__Alternatives_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2164:2: rule__BooleanLiteral__Alternatives_1
             {
-            pushFollow(FOLLOW_rule__BooleanLiteral__Alternatives_1_in_rule__BooleanLiteral__Group__13421);
+            pushFollow(FOLLOW_rule__BooleanLiteral__Alternatives_1_in_rule__BooleanLiteral__Group__1__Impl4410);
             rule__BooleanLiteral__Alternatives_1();
             _fsp--;
 
@@ -4310,29 +5670,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__BooleanLiteral__Group__1
+    // $ANTLR end rule__BooleanLiteral__Group__1__Impl
 
 
     // $ANTLR start rule__FQN__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1705:1: rule__FQN__Group__0 : ( RULE_ID ) rule__FQN__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2178:1: rule__FQN__Group__0 : rule__FQN__Group__0__Impl rule__FQN__Group__1 ;
     public final void rule__FQN__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1709:1: ( ( RULE_ID ) rule__FQN__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1710:1: ( RULE_ID ) rule__FQN__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2182:1: ( rule__FQN__Group__0__Impl rule__FQN__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2183:2: rule__FQN__Group__0__Impl rule__FQN__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1710:1: ( RULE_ID )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1711:1: RULE_ID
-            {
-             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FQN__Group__03459); 
-             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
+            pushFollow(FOLLOW_rule__FQN__Group__0__Impl_in_rule__FQN__Group__04444);
+            rule__FQN__Group__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__FQN__Group__1_in_rule__FQN__Group__03467);
+            pushFollow(FOLLOW_rule__FQN__Group__1_in_rule__FQN__Group__04447);
             rule__FQN__Group__1();
             _fsp--;
 
@@ -4354,21 +5709,90 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__FQN__Group__0
 
 
+    // $ANTLR start rule__FQN__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2190:1: rule__FQN__Group__0__Impl : ( RULE_ID ) ;
+    public final void rule__FQN__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2194:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2195:1: ( RULE_ID )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2195:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2196:1: RULE_ID
+            {
+             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FQN__Group__0__Impl4474); 
+             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__FQN__Group__0__Impl
+
+
     // $ANTLR start rule__FQN__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1723:1: rule__FQN__Group__1 : ( ( rule__FQN__Group_1__0 )* ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2207:1: rule__FQN__Group__1 : rule__FQN__Group__1__Impl ;
     public final void rule__FQN__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1727:1: ( ( ( rule__FQN__Group_1__0 )* ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1728:1: ( ( rule__FQN__Group_1__0 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2211:1: ( rule__FQN__Group__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2212:2: rule__FQN__Group__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1728:1: ( ( rule__FQN__Group_1__0 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1729:1: ( rule__FQN__Group_1__0 )*
+            pushFollow(FOLLOW_rule__FQN__Group__1__Impl_in_rule__FQN__Group__14503);
+            rule__FQN__Group__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__FQN__Group__1
+
+
+    // $ANTLR start rule__FQN__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2218:1: rule__FQN__Group__1__Impl : ( ( rule__FQN__Group_1__0 )* ) ;
+    public final void rule__FQN__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2222:1: ( ( ( rule__FQN__Group_1__0 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2223:1: ( ( rule__FQN__Group_1__0 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2223:1: ( ( rule__FQN__Group_1__0 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2224:1: ( rule__FQN__Group_1__0 )*
             {
              before(grammarAccess.getFQNAccess().getGroup_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1730:1: ( rule__FQN__Group_1__0 )*
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2225:1: ( rule__FQN__Group_1__0 )*
             loop20:
             do {
                 int alt20=2;
@@ -4381,9 +5805,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
                 switch (alt20) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1730:2: rule__FQN__Group_1__0
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2225:2: rule__FQN__Group_1__0
             	    {
-            	    pushFollow(FOLLOW_rule__FQN__Group_1__0_in_rule__FQN__Group__13495);
+            	    pushFollow(FOLLOW_rule__FQN__Group_1__0_in_rule__FQN__Group__1__Impl4530);
             	    rule__FQN__Group_1__0();
             	    _fsp--;
 
@@ -4415,29 +5839,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__FQN__Group__1
+    // $ANTLR end rule__FQN__Group__1__Impl
 
 
     // $ANTLR start rule__FQN__Group_1__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1744:1: rule__FQN__Group_1__0 : ( '.' ) rule__FQN__Group_1__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2239:1: rule__FQN__Group_1__0 : rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1 ;
     public final void rule__FQN__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1748:1: ( ( '.' ) rule__FQN__Group_1__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1749:1: ( '.' ) rule__FQN__Group_1__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2243:1: ( rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2244:2: rule__FQN__Group_1__0__Impl rule__FQN__Group_1__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1749:1: ( '.' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1750:1: '.'
-            {
-             before(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
-            match(input,26,FOLLOW_26_in_rule__FQN__Group_1__03535); 
-             after(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
+            pushFollow(FOLLOW_rule__FQN__Group_1__0__Impl_in_rule__FQN__Group_1__04565);
+            rule__FQN__Group_1__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__FQN__Group_1__1_in_rule__FQN__Group_1__03545);
+            pushFollow(FOLLOW_rule__FQN__Group_1__1_in_rule__FQN__Group_1__04568);
             rule__FQN__Group_1__1();
             _fsp--;
 
@@ -4459,24 +5878,56 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__FQN__Group_1__0
 
 
+    // $ANTLR start rule__FQN__Group_1__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2251:1: rule__FQN__Group_1__0__Impl : ( '.' ) ;
+    public final void rule__FQN__Group_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2255:1: ( ( '.' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2256:1: ( '.' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2256:1: ( '.' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2257:1: '.'
+            {
+             before(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
+            match(input,26,FOLLOW_26_in_rule__FQN__Group_1__0__Impl4596); 
+             after(grammarAccess.getFQNAccess().getFullStopKeyword_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__FQN__Group_1__0__Impl
+
+
     // $ANTLR start rule__FQN__Group_1__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1764:1: rule__FQN__Group_1__1 : ( RULE_ID ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2270:1: rule__FQN__Group_1__1 : rule__FQN__Group_1__1__Impl ;
     public final void rule__FQN__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1768:1: ( ( RULE_ID ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1769:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2274:1: ( rule__FQN__Group_1__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2275:2: rule__FQN__Group_1__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1769:1: ( RULE_ID )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1770:1: RULE_ID
-            {
-             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FQN__Group_1__13573); 
-             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
-
-            }
+            pushFollow(FOLLOW_rule__FQN__Group_1__1__Impl_in_rule__FQN__Group_1__14627);
+            rule__FQN__Group_1__1__Impl();
+            _fsp--;
 
 
             }
@@ -4496,35 +5947,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__FQN__Group_1__1
 
 
+    // $ANTLR start rule__FQN__Group_1__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2281:1: rule__FQN__Group_1__1__Impl : ( RULE_ID ) ;
+    public final void rule__FQN__Group_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2285:1: ( ( RULE_ID ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2286:1: ( RULE_ID )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2286:1: ( RULE_ID )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2287:1: RULE_ID
+            {
+             before(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
+            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__FQN__Group_1__1__Impl4654); 
+             after(grammarAccess.getFQNAccess().getIDTerminalRuleCall_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__FQN__Group_1__1__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_0__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1785:1: rule__StringLiteral__Group_0__0 : ( ( rule__StringLiteral__BeginAssignment_0_0 ) ) rule__StringLiteral__Group_0__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2302:1: rule__StringLiteral__Group_0__0 : rule__StringLiteral__Group_0__0__Impl rule__StringLiteral__Group_0__1 ;
     public final void rule__StringLiteral__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1789:1: ( ( ( rule__StringLiteral__BeginAssignment_0_0 ) ) rule__StringLiteral__Group_0__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1790:1: ( ( rule__StringLiteral__BeginAssignment_0_0 ) ) rule__StringLiteral__Group_0__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2306:1: ( rule__StringLiteral__Group_0__0__Impl rule__StringLiteral__Group_0__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2307:2: rule__StringLiteral__Group_0__0__Impl rule__StringLiteral__Group_0__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1790:1: ( ( rule__StringLiteral__BeginAssignment_0_0 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1791:1: ( rule__StringLiteral__BeginAssignment_0_0 )
-            {
-             before(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1792:1: ( rule__StringLiteral__BeginAssignment_0_0 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1792:2: rule__StringLiteral__BeginAssignment_0_0
-            {
-            pushFollow(FOLLOW_rule__StringLiteral__BeginAssignment_0_0_in_rule__StringLiteral__Group_0__03610);
-            rule__StringLiteral__BeginAssignment_0_0();
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__0__Impl_in_rule__StringLiteral__Group_0__04687);
+            rule__StringLiteral__Group_0__0__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_0__1_in_rule__StringLiteral__Group_0__03619);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__1_in_rule__StringLiteral__Group_0__04690);
             rule__StringLiteral__Group_0__1();
             _fsp--;
 
@@ -4546,46 +6020,67 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_0__0
 
 
+    // $ANTLR start rule__StringLiteral__Group_0__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2314:1: rule__StringLiteral__Group_0__0__Impl : ( ( rule__StringLiteral__BeginAssignment_0_0 ) ) ;
+    public final void rule__StringLiteral__Group_0__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2318:1: ( ( ( rule__StringLiteral__BeginAssignment_0_0 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2319:1: ( ( rule__StringLiteral__BeginAssignment_0_0 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2319:1: ( ( rule__StringLiteral__BeginAssignment_0_0 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2320:1: ( rule__StringLiteral__BeginAssignment_0_0 )
+            {
+             before(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2321:1: ( rule__StringLiteral__BeginAssignment_0_0 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2321:2: rule__StringLiteral__BeginAssignment_0_0
+            {
+            pushFollow(FOLLOW_rule__StringLiteral__BeginAssignment_0_0_in_rule__StringLiteral__Group_0__0__Impl4717);
+            rule__StringLiteral__BeginAssignment_0_0();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getBeginAssignment_0_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0__0__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_0__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1803:1: rule__StringLiteral__Group_0__1 : ( ( rule__StringLiteral__PartsAssignment_0_1 )? ) rule__StringLiteral__Group_0__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2331:1: rule__StringLiteral__Group_0__1 : rule__StringLiteral__Group_0__1__Impl rule__StringLiteral__Group_0__2 ;
     public final void rule__StringLiteral__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1807:1: ( ( ( rule__StringLiteral__PartsAssignment_0_1 )? ) rule__StringLiteral__Group_0__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1808:1: ( ( rule__StringLiteral__PartsAssignment_0_1 )? ) rule__StringLiteral__Group_0__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2335:1: ( rule__StringLiteral__Group_0__1__Impl rule__StringLiteral__Group_0__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2336:2: rule__StringLiteral__Group_0__1__Impl rule__StringLiteral__Group_0__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1808:1: ( ( rule__StringLiteral__PartsAssignment_0_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1809:1: ( rule__StringLiteral__PartsAssignment_0_1 )?
-            {
-             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1810:1: ( rule__StringLiteral__PartsAssignment_0_1 )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__1__Impl_in_rule__StringLiteral__Group_0__14747);
+            rule__StringLiteral__Group_0__1__Impl();
+            _fsp--;
 
-            if ( ((LA21_0>=RULE_WS && LA21_0<=27)) ) {
-                alt21=1;
-            }
-            switch (alt21) {
-                case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1810:2: rule__StringLiteral__PartsAssignment_0_1
-                    {
-                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_1_in_rule__StringLiteral__Group_0__13647);
-                    rule__StringLiteral__PartsAssignment_0_1();
-                    _fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_0__2_in_rule__StringLiteral__Group_0__13657);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__2_in_rule__StringLiteral__Group_0__14750);
             rule__StringLiteral__Group_0__2();
             _fsp--;
 
@@ -4607,53 +6102,78 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_0__1
 
 
+    // $ANTLR start rule__StringLiteral__Group_0__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2343:1: rule__StringLiteral__Group_0__1__Impl : ( ( rule__StringLiteral__PartsAssignment_0_1 )? ) ;
+    public final void rule__StringLiteral__Group_0__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2347:1: ( ( ( rule__StringLiteral__PartsAssignment_0_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2348:1: ( ( rule__StringLiteral__PartsAssignment_0_1 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2348:1: ( ( rule__StringLiteral__PartsAssignment_0_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2349:1: ( rule__StringLiteral__PartsAssignment_0_1 )?
+            {
+             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2350:1: ( rule__StringLiteral__PartsAssignment_0_1 )?
+            int alt21=2;
+            int LA21_0 = input.LA(1);
+
+            if ( ((LA21_0>=RULE_WS && LA21_0<=27)) ) {
+                alt21=1;
+            }
+            switch (alt21) {
+                case 1 :
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2350:2: rule__StringLiteral__PartsAssignment_0_1
+                    {
+                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_1_in_rule__StringLiteral__Group_0__1__Impl4777);
+                    rule__StringLiteral__PartsAssignment_0_1();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0__1__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_0__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1821:1: rule__StringLiteral__Group_0__2 : ( ( rule__StringLiteral__Group_0_2__0 )* ) rule__StringLiteral__Group_0__3 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2360:1: rule__StringLiteral__Group_0__2 : rule__StringLiteral__Group_0__2__Impl rule__StringLiteral__Group_0__3 ;
     public final void rule__StringLiteral__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1825:1: ( ( ( rule__StringLiteral__Group_0_2__0 )* ) rule__StringLiteral__Group_0__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1826:1: ( ( rule__StringLiteral__Group_0_2__0 )* ) rule__StringLiteral__Group_0__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2364:1: ( rule__StringLiteral__Group_0__2__Impl rule__StringLiteral__Group_0__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2365:2: rule__StringLiteral__Group_0__2__Impl rule__StringLiteral__Group_0__3
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1826:1: ( ( rule__StringLiteral__Group_0_2__0 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1827:1: ( rule__StringLiteral__Group_0_2__0 )*
-            {
-             before(grammarAccess.getStringLiteralAccess().getGroup_0_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1828:1: ( rule__StringLiteral__Group_0_2__0 )*
-            loop22:
-            do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__2__Impl_in_rule__StringLiteral__Group_0__24808);
+            rule__StringLiteral__Group_0__2__Impl();
+            _fsp--;
 
-                if ( (LA22_0==28) ) {
-                    alt22=1;
-                }
-
-
-                switch (alt22) {
-            	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1828:2: rule__StringLiteral__Group_0_2__0
-            	    {
-            	    pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__0_in_rule__StringLiteral__Group_0__23685);
-            	    rule__StringLiteral__Group_0_2__0();
-            	    _fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop22;
-                }
-            } while (true);
-
-             after(grammarAccess.getStringLiteralAccess().getGroup_0_2()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_0__3_in_rule__StringLiteral__Group_0__23695);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__3_in_rule__StringLiteral__Group_0__24811);
             rule__StringLiteral__Group_0__3();
             _fsp--;
 
@@ -4675,24 +6195,120 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_0__2
 
 
+    // $ANTLR start rule__StringLiteral__Group_0__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2372:1: rule__StringLiteral__Group_0__2__Impl : ( ( rule__StringLiteral__Group_0_2__0 )* ) ;
+    public final void rule__StringLiteral__Group_0__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2376:1: ( ( ( rule__StringLiteral__Group_0_2__0 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2377:1: ( ( rule__StringLiteral__Group_0_2__0 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2377:1: ( ( rule__StringLiteral__Group_0_2__0 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2378:1: ( rule__StringLiteral__Group_0_2__0 )*
+            {
+             before(grammarAccess.getStringLiteralAccess().getGroup_0_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2379:1: ( rule__StringLiteral__Group_0_2__0 )*
+            loop22:
+            do {
+                int alt22=2;
+                int LA22_0 = input.LA(1);
+
+                if ( (LA22_0==28) ) {
+                    alt22=1;
+                }
+
+
+                switch (alt22) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2379:2: rule__StringLiteral__Group_0_2__0
+            	    {
+            	    pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__0_in_rule__StringLiteral__Group_0__2__Impl4838);
+            	    rule__StringLiteral__Group_0_2__0();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop22;
+                }
+            } while (true);
+
+             after(grammarAccess.getStringLiteralAccess().getGroup_0_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0__2__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_0__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1839:1: rule__StringLiteral__Group_0__3 : ( ( rule__StringLiteral__EndAssignment_0_3 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2389:1: rule__StringLiteral__Group_0__3 : rule__StringLiteral__Group_0__3__Impl ;
     public final void rule__StringLiteral__Group_0__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1843:1: ( ( ( rule__StringLiteral__EndAssignment_0_3 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1844:1: ( ( rule__StringLiteral__EndAssignment_0_3 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2393:1: ( rule__StringLiteral__Group_0__3__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2394:2: rule__StringLiteral__Group_0__3__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1844:1: ( ( rule__StringLiteral__EndAssignment_0_3 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1845:1: ( rule__StringLiteral__EndAssignment_0_3 )
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0__3__Impl_in_rule__StringLiteral__Group_0__34869);
+            rule__StringLiteral__Group_0__3__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0__3
+
+
+    // $ANTLR start rule__StringLiteral__Group_0__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2400:1: rule__StringLiteral__Group_0__3__Impl : ( ( rule__StringLiteral__EndAssignment_0_3 ) ) ;
+    public final void rule__StringLiteral__Group_0__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2404:1: ( ( ( rule__StringLiteral__EndAssignment_0_3 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2405:1: ( ( rule__StringLiteral__EndAssignment_0_3 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2405:1: ( ( rule__StringLiteral__EndAssignment_0_3 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2406:1: ( rule__StringLiteral__EndAssignment_0_3 )
             {
              before(grammarAccess.getStringLiteralAccess().getEndAssignment_0_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1846:1: ( rule__StringLiteral__EndAssignment_0_3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1846:2: rule__StringLiteral__EndAssignment_0_3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2407:1: ( rule__StringLiteral__EndAssignment_0_3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2407:2: rule__StringLiteral__EndAssignment_0_3
             {
-            pushFollow(FOLLOW_rule__StringLiteral__EndAssignment_0_3_in_rule__StringLiteral__Group_0__33723);
+            pushFollow(FOLLOW_rule__StringLiteral__EndAssignment_0_3_in_rule__StringLiteral__Group_0__3__Impl4896);
             rule__StringLiteral__EndAssignment_0_3();
             _fsp--;
 
@@ -4718,38 +6334,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteral__Group_0__3
+    // $ANTLR end rule__StringLiteral__Group_0__3__Impl
 
 
     // $ANTLR start rule__StringLiteral__Group_0_2__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1864:1: rule__StringLiteral__Group_0_2__0 : ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) ) rule__StringLiteral__Group_0_2__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2425:1: rule__StringLiteral__Group_0_2__0 : rule__StringLiteral__Group_0_2__0__Impl rule__StringLiteral__Group_0_2__1 ;
     public final void rule__StringLiteral__Group_0_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1868:1: ( ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) ) rule__StringLiteral__Group_0_2__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1869:1: ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) ) rule__StringLiteral__Group_0_2__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2429:1: ( rule__StringLiteral__Group_0_2__0__Impl rule__StringLiteral__Group_0_2__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2430:2: rule__StringLiteral__Group_0_2__0__Impl rule__StringLiteral__Group_0_2__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1869:1: ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1870:1: ( rule__StringLiteral__PartsAssignment_0_2_0 )
-            {
-             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_2_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1871:1: ( rule__StringLiteral__PartsAssignment_0_2_0 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1871:2: rule__StringLiteral__PartsAssignment_0_2_0
-            {
-            pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_2_0_in_rule__StringLiteral__Group_0_2__03765);
-            rule__StringLiteral__PartsAssignment_0_2_0();
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__0__Impl_in_rule__StringLiteral__Group_0_2__04934);
+            rule__StringLiteral__Group_0_2__0__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_2_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__1_in_rule__StringLiteral__Group_0_2__03774);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__1_in_rule__StringLiteral__Group_0_2__04937);
             rule__StringLiteral__Group_0_2__1();
             _fsp--;
 
@@ -4771,21 +6373,99 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_0_2__0
 
 
+    // $ANTLR start rule__StringLiteral__Group_0_2__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2437:1: rule__StringLiteral__Group_0_2__0__Impl : ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) ) ;
+    public final void rule__StringLiteral__Group_0_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2441:1: ( ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2442:1: ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2442:1: ( ( rule__StringLiteral__PartsAssignment_0_2_0 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2443:1: ( rule__StringLiteral__PartsAssignment_0_2_0 )
+            {
+             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_2_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2444:1: ( rule__StringLiteral__PartsAssignment_0_2_0 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2444:2: rule__StringLiteral__PartsAssignment_0_2_0
+            {
+            pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_2_0_in_rule__StringLiteral__Group_0_2__0__Impl4964);
+            rule__StringLiteral__PartsAssignment_0_2_0();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0_2__0__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_0_2__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1882:1: rule__StringLiteral__Group_0_2__1 : ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2454:1: rule__StringLiteral__Group_0_2__1 : rule__StringLiteral__Group_0_2__1__Impl ;
     public final void rule__StringLiteral__Group_0_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1886:1: ( ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1887:1: ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2458:1: ( rule__StringLiteral__Group_0_2__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2459:2: rule__StringLiteral__Group_0_2__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1887:1: ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1888:1: ( rule__StringLiteral__PartsAssignment_0_2_1 )?
+            pushFollow(FOLLOW_rule__StringLiteral__Group_0_2__1__Impl_in_rule__StringLiteral__Group_0_2__14994);
+            rule__StringLiteral__Group_0_2__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_0_2__1
+
+
+    // $ANTLR start rule__StringLiteral__Group_0_2__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2465:1: rule__StringLiteral__Group_0_2__1__Impl : ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? ) ;
+    public final void rule__StringLiteral__Group_0_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2469:1: ( ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2470:1: ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2470:1: ( ( rule__StringLiteral__PartsAssignment_0_2_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2471:1: ( rule__StringLiteral__PartsAssignment_0_2_1 )?
             {
              before(grammarAccess.getStringLiteralAccess().getPartsAssignment_0_2_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1889:1: ( rule__StringLiteral__PartsAssignment_0_2_1 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2472:1: ( rule__StringLiteral__PartsAssignment_0_2_1 )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -4794,9 +6474,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt23) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1889:2: rule__StringLiteral__PartsAssignment_0_2_1
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2472:2: rule__StringLiteral__PartsAssignment_0_2_1
                     {
-                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_2_1_in_rule__StringLiteral__Group_0_2__13802);
+                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_0_2_1_in_rule__StringLiteral__Group_0_2__1__Impl5021);
                     rule__StringLiteral__PartsAssignment_0_2_1();
                     _fsp--;
 
@@ -4825,38 +6505,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteral__Group_0_2__1
+    // $ANTLR end rule__StringLiteral__Group_0_2__1__Impl
 
 
     // $ANTLR start rule__StringLiteral__Group_1__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1903:1: rule__StringLiteral__Group_1__0 : ( ( rule__StringLiteral__BeginAssignment_1_0 ) ) rule__StringLiteral__Group_1__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2486:1: rule__StringLiteral__Group_1__0 : rule__StringLiteral__Group_1__0__Impl rule__StringLiteral__Group_1__1 ;
     public final void rule__StringLiteral__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1907:1: ( ( ( rule__StringLiteral__BeginAssignment_1_0 ) ) rule__StringLiteral__Group_1__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1908:1: ( ( rule__StringLiteral__BeginAssignment_1_0 ) ) rule__StringLiteral__Group_1__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2490:1: ( rule__StringLiteral__Group_1__0__Impl rule__StringLiteral__Group_1__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2491:2: rule__StringLiteral__Group_1__0__Impl rule__StringLiteral__Group_1__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1908:1: ( ( rule__StringLiteral__BeginAssignment_1_0 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1909:1: ( rule__StringLiteral__BeginAssignment_1_0 )
-            {
-             before(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1910:1: ( rule__StringLiteral__BeginAssignment_1_0 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1910:2: rule__StringLiteral__BeginAssignment_1_0
-            {
-            pushFollow(FOLLOW_rule__StringLiteral__BeginAssignment_1_0_in_rule__StringLiteral__Group_1__03841);
-            rule__StringLiteral__BeginAssignment_1_0();
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__0__Impl_in_rule__StringLiteral__Group_1__05056);
+            rule__StringLiteral__Group_1__0__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_1__1_in_rule__StringLiteral__Group_1__03850);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__1_in_rule__StringLiteral__Group_1__05059);
             rule__StringLiteral__Group_1__1();
             _fsp--;
 
@@ -4878,46 +6544,67 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_1__0
 
 
+    // $ANTLR start rule__StringLiteral__Group_1__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2498:1: rule__StringLiteral__Group_1__0__Impl : ( ( rule__StringLiteral__BeginAssignment_1_0 ) ) ;
+    public final void rule__StringLiteral__Group_1__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2502:1: ( ( ( rule__StringLiteral__BeginAssignment_1_0 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2503:1: ( ( rule__StringLiteral__BeginAssignment_1_0 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2503:1: ( ( rule__StringLiteral__BeginAssignment_1_0 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2504:1: ( rule__StringLiteral__BeginAssignment_1_0 )
+            {
+             before(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2505:1: ( rule__StringLiteral__BeginAssignment_1_0 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2505:2: rule__StringLiteral__BeginAssignment_1_0
+            {
+            pushFollow(FOLLOW_rule__StringLiteral__BeginAssignment_1_0_in_rule__StringLiteral__Group_1__0__Impl5086);
+            rule__StringLiteral__BeginAssignment_1_0();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getBeginAssignment_1_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1__0__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_1__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1921:1: rule__StringLiteral__Group_1__1 : ( ( rule__StringLiteral__PartsAssignment_1_1 )? ) rule__StringLiteral__Group_1__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2515:1: rule__StringLiteral__Group_1__1 : rule__StringLiteral__Group_1__1__Impl rule__StringLiteral__Group_1__2 ;
     public final void rule__StringLiteral__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1925:1: ( ( ( rule__StringLiteral__PartsAssignment_1_1 )? ) rule__StringLiteral__Group_1__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1926:1: ( ( rule__StringLiteral__PartsAssignment_1_1 )? ) rule__StringLiteral__Group_1__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2519:1: ( rule__StringLiteral__Group_1__1__Impl rule__StringLiteral__Group_1__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2520:2: rule__StringLiteral__Group_1__1__Impl rule__StringLiteral__Group_1__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1926:1: ( ( rule__StringLiteral__PartsAssignment_1_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1927:1: ( rule__StringLiteral__PartsAssignment_1_1 )?
-            {
-             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1928:1: ( rule__StringLiteral__PartsAssignment_1_1 )?
-            int alt24=2;
-            int LA24_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__1__Impl_in_rule__StringLiteral__Group_1__15116);
+            rule__StringLiteral__Group_1__1__Impl();
+            _fsp--;
 
-            if ( ((LA24_0>=RULE_WS && LA24_0<=27)) ) {
-                alt24=1;
-            }
-            switch (alt24) {
-                case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1928:2: rule__StringLiteral__PartsAssignment_1_1
-                    {
-                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_1_in_rule__StringLiteral__Group_1__13878);
-                    rule__StringLiteral__PartsAssignment_1_1();
-                    _fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_1__2_in_rule__StringLiteral__Group_1__13888);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__2_in_rule__StringLiteral__Group_1__15119);
             rule__StringLiteral__Group_1__2();
             _fsp--;
 
@@ -4939,53 +6626,78 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_1__1
 
 
+    // $ANTLR start rule__StringLiteral__Group_1__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2527:1: rule__StringLiteral__Group_1__1__Impl : ( ( rule__StringLiteral__PartsAssignment_1_1 )? ) ;
+    public final void rule__StringLiteral__Group_1__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2531:1: ( ( ( rule__StringLiteral__PartsAssignment_1_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2532:1: ( ( rule__StringLiteral__PartsAssignment_1_1 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2532:1: ( ( rule__StringLiteral__PartsAssignment_1_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2533:1: ( rule__StringLiteral__PartsAssignment_1_1 )?
+            {
+             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2534:1: ( rule__StringLiteral__PartsAssignment_1_1 )?
+            int alt24=2;
+            int LA24_0 = input.LA(1);
+
+            if ( ((LA24_0>=RULE_WS && LA24_0<=27)) ) {
+                alt24=1;
+            }
+            switch (alt24) {
+                case 1 :
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2534:2: rule__StringLiteral__PartsAssignment_1_1
+                    {
+                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_1_in_rule__StringLiteral__Group_1__1__Impl5146);
+                    rule__StringLiteral__PartsAssignment_1_1();
+                    _fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1__1__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_1__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1939:1: rule__StringLiteral__Group_1__2 : ( ( rule__StringLiteral__Group_1_2__0 )* ) rule__StringLiteral__Group_1__3 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2544:1: rule__StringLiteral__Group_1__2 : rule__StringLiteral__Group_1__2__Impl rule__StringLiteral__Group_1__3 ;
     public final void rule__StringLiteral__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1943:1: ( ( ( rule__StringLiteral__Group_1_2__0 )* ) rule__StringLiteral__Group_1__3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1944:1: ( ( rule__StringLiteral__Group_1_2__0 )* ) rule__StringLiteral__Group_1__3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2548:1: ( rule__StringLiteral__Group_1__2__Impl rule__StringLiteral__Group_1__3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2549:2: rule__StringLiteral__Group_1__2__Impl rule__StringLiteral__Group_1__3
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1944:1: ( ( rule__StringLiteral__Group_1_2__0 )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1945:1: ( rule__StringLiteral__Group_1_2__0 )*
-            {
-             before(grammarAccess.getStringLiteralAccess().getGroup_1_2()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1946:1: ( rule__StringLiteral__Group_1_2__0 )*
-            loop25:
-            do {
-                int alt25=2;
-                int LA25_0 = input.LA(1);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__2__Impl_in_rule__StringLiteral__Group_1__25177);
+            rule__StringLiteral__Group_1__2__Impl();
+            _fsp--;
 
-                if ( (LA25_0==28) ) {
-                    alt25=1;
-                }
-
-
-                switch (alt25) {
-            	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1946:2: rule__StringLiteral__Group_1_2__0
-            	    {
-            	    pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__0_in_rule__StringLiteral__Group_1__23916);
-            	    rule__StringLiteral__Group_1_2__0();
-            	    _fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop25;
-                }
-            } while (true);
-
-             after(grammarAccess.getStringLiteralAccess().getGroup_1_2()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_1__3_in_rule__StringLiteral__Group_1__23926);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__3_in_rule__StringLiteral__Group_1__25180);
             rule__StringLiteral__Group_1__3();
             _fsp--;
 
@@ -5007,24 +6719,120 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_1__2
 
 
+    // $ANTLR start rule__StringLiteral__Group_1__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2556:1: rule__StringLiteral__Group_1__2__Impl : ( ( rule__StringLiteral__Group_1_2__0 )* ) ;
+    public final void rule__StringLiteral__Group_1__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2560:1: ( ( ( rule__StringLiteral__Group_1_2__0 )* ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2561:1: ( ( rule__StringLiteral__Group_1_2__0 )* )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2561:1: ( ( rule__StringLiteral__Group_1_2__0 )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2562:1: ( rule__StringLiteral__Group_1_2__0 )*
+            {
+             before(grammarAccess.getStringLiteralAccess().getGroup_1_2()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2563:1: ( rule__StringLiteral__Group_1_2__0 )*
+            loop25:
+            do {
+                int alt25=2;
+                int LA25_0 = input.LA(1);
+
+                if ( (LA25_0==28) ) {
+                    alt25=1;
+                }
+
+
+                switch (alt25) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2563:2: rule__StringLiteral__Group_1_2__0
+            	    {
+            	    pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__0_in_rule__StringLiteral__Group_1__2__Impl5207);
+            	    rule__StringLiteral__Group_1_2__0();
+            	    _fsp--;
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop25;
+                }
+            } while (true);
+
+             after(grammarAccess.getStringLiteralAccess().getGroup_1_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1__2__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_1__3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1957:1: rule__StringLiteral__Group_1__3 : ( ( rule__StringLiteral__EndAssignment_1_3 ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2573:1: rule__StringLiteral__Group_1__3 : rule__StringLiteral__Group_1__3__Impl ;
     public final void rule__StringLiteral__Group_1__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1961:1: ( ( ( rule__StringLiteral__EndAssignment_1_3 ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1962:1: ( ( rule__StringLiteral__EndAssignment_1_3 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2577:1: ( rule__StringLiteral__Group_1__3__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2578:2: rule__StringLiteral__Group_1__3__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1962:1: ( ( rule__StringLiteral__EndAssignment_1_3 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1963:1: ( rule__StringLiteral__EndAssignment_1_3 )
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1__3__Impl_in_rule__StringLiteral__Group_1__35238);
+            rule__StringLiteral__Group_1__3__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1__3
+
+
+    // $ANTLR start rule__StringLiteral__Group_1__3__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2584:1: rule__StringLiteral__Group_1__3__Impl : ( ( rule__StringLiteral__EndAssignment_1_3 ) ) ;
+    public final void rule__StringLiteral__Group_1__3__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2588:1: ( ( ( rule__StringLiteral__EndAssignment_1_3 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2589:1: ( ( rule__StringLiteral__EndAssignment_1_3 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2589:1: ( ( rule__StringLiteral__EndAssignment_1_3 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2590:1: ( rule__StringLiteral__EndAssignment_1_3 )
             {
              before(grammarAccess.getStringLiteralAccess().getEndAssignment_1_3()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1964:1: ( rule__StringLiteral__EndAssignment_1_3 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1964:2: rule__StringLiteral__EndAssignment_1_3
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2591:1: ( rule__StringLiteral__EndAssignment_1_3 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2591:2: rule__StringLiteral__EndAssignment_1_3
             {
-            pushFollow(FOLLOW_rule__StringLiteral__EndAssignment_1_3_in_rule__StringLiteral__Group_1__33954);
+            pushFollow(FOLLOW_rule__StringLiteral__EndAssignment_1_3_in_rule__StringLiteral__Group_1__3__Impl5265);
             rule__StringLiteral__EndAssignment_1_3();
             _fsp--;
 
@@ -5050,38 +6858,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteral__Group_1__3
+    // $ANTLR end rule__StringLiteral__Group_1__3__Impl
 
 
     // $ANTLR start rule__StringLiteral__Group_1_2__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1982:1: rule__StringLiteral__Group_1_2__0 : ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) ) rule__StringLiteral__Group_1_2__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2609:1: rule__StringLiteral__Group_1_2__0 : rule__StringLiteral__Group_1_2__0__Impl rule__StringLiteral__Group_1_2__1 ;
     public final void rule__StringLiteral__Group_1_2__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1986:1: ( ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) ) rule__StringLiteral__Group_1_2__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1987:1: ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) ) rule__StringLiteral__Group_1_2__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2613:1: ( rule__StringLiteral__Group_1_2__0__Impl rule__StringLiteral__Group_1_2__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2614:2: rule__StringLiteral__Group_1_2__0__Impl rule__StringLiteral__Group_1_2__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1987:1: ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1988:1: ( rule__StringLiteral__PartsAssignment_1_2_0 )
-            {
-             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1989:1: ( rule__StringLiteral__PartsAssignment_1_2_0 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:1989:2: rule__StringLiteral__PartsAssignment_1_2_0
-            {
-            pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_2_0_in_rule__StringLiteral__Group_1_2__03996);
-            rule__StringLiteral__PartsAssignment_1_2_0();
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__0__Impl_in_rule__StringLiteral__Group_1_2__05303);
+            rule__StringLiteral__Group_1_2__0__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_0()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__1_in_rule__StringLiteral__Group_1_2__04005);
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__1_in_rule__StringLiteral__Group_1_2__05306);
             rule__StringLiteral__Group_1_2__1();
             _fsp--;
 
@@ -5103,21 +6897,99 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__StringLiteral__Group_1_2__0
 
 
+    // $ANTLR start rule__StringLiteral__Group_1_2__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2621:1: rule__StringLiteral__Group_1_2__0__Impl : ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) ) ;
+    public final void rule__StringLiteral__Group_1_2__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2625:1: ( ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2626:1: ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2626:1: ( ( rule__StringLiteral__PartsAssignment_1_2_0 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2627:1: ( rule__StringLiteral__PartsAssignment_1_2_0 )
+            {
+             before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_0()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2628:1: ( rule__StringLiteral__PartsAssignment_1_2_0 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2628:2: rule__StringLiteral__PartsAssignment_1_2_0
+            {
+            pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_2_0_in_rule__StringLiteral__Group_1_2__0__Impl5333);
+            rule__StringLiteral__PartsAssignment_1_2_0();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1_2__0__Impl
+
+
     // $ANTLR start rule__StringLiteral__Group_1_2__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2000:1: rule__StringLiteral__Group_1_2__1 : ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2638:1: rule__StringLiteral__Group_1_2__1 : rule__StringLiteral__Group_1_2__1__Impl ;
     public final void rule__StringLiteral__Group_1_2__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2004:1: ( ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2005:1: ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2642:1: ( rule__StringLiteral__Group_1_2__1__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2643:2: rule__StringLiteral__Group_1_2__1__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2005:1: ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2006:1: ( rule__StringLiteral__PartsAssignment_1_2_1 )?
+            pushFollow(FOLLOW_rule__StringLiteral__Group_1_2__1__Impl_in_rule__StringLiteral__Group_1_2__15363);
+            rule__StringLiteral__Group_1_2__1__Impl();
+            _fsp--;
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__StringLiteral__Group_1_2__1
+
+
+    // $ANTLR start rule__StringLiteral__Group_1_2__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2649:1: rule__StringLiteral__Group_1_2__1__Impl : ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? ) ;
+    public final void rule__StringLiteral__Group_1_2__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2653:1: ( ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2654:1: ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2654:1: ( ( rule__StringLiteral__PartsAssignment_1_2_1 )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2655:1: ( rule__StringLiteral__PartsAssignment_1_2_1 )?
             {
              before(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2007:1: ( rule__StringLiteral__PartsAssignment_1_2_1 )?
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2656:1: ( rule__StringLiteral__PartsAssignment_1_2_1 )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -5126,9 +6998,9 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             }
             switch (alt26) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2007:2: rule__StringLiteral__PartsAssignment_1_2_1
+                    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2656:2: rule__StringLiteral__PartsAssignment_1_2_1
                     {
-                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_2_1_in_rule__StringLiteral__Group_1_2__14033);
+                    pushFollow(FOLLOW_rule__StringLiteral__PartsAssignment_1_2_1_in_rule__StringLiteral__Group_1_2__1__Impl5390);
                     rule__StringLiteral__PartsAssignment_1_2_1();
                     _fsp--;
 
@@ -5157,29 +7029,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
         }
         return ;
     }
-    // $ANTLR end rule__StringLiteral__Group_1_2__1
+    // $ANTLR end rule__StringLiteral__Group_1_2__1__Impl
 
 
     // $ANTLR start rule__PropertyReference__Group__0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2021:1: rule__PropertyReference__Group__0 : ( '${' ) rule__PropertyReference__Group__1 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2670:1: rule__PropertyReference__Group__0 : rule__PropertyReference__Group__0__Impl rule__PropertyReference__Group__1 ;
     public final void rule__PropertyReference__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2025:1: ( ( '${' ) rule__PropertyReference__Group__1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2026:1: ( '${' ) rule__PropertyReference__Group__1
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2674:1: ( rule__PropertyReference__Group__0__Impl rule__PropertyReference__Group__1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2675:2: rule__PropertyReference__Group__0__Impl rule__PropertyReference__Group__1
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2026:1: ( '${' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2027:1: '${'
-            {
-             before(grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
-            match(input,28,FOLLOW_28_in_rule__PropertyReference__Group__04073); 
-             after(grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
+            pushFollow(FOLLOW_rule__PropertyReference__Group__0__Impl_in_rule__PropertyReference__Group__05425);
+            rule__PropertyReference__Group__0__Impl();
+            _fsp--;
 
-            }
-
-            pushFollow(FOLLOW_rule__PropertyReference__Group__1_in_rule__PropertyReference__Group__04083);
+            pushFollow(FOLLOW_rule__PropertyReference__Group__1_in_rule__PropertyReference__Group__05428);
             rule__PropertyReference__Group__1();
             _fsp--;
 
@@ -5201,35 +7068,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__PropertyReference__Group__0
 
 
+    // $ANTLR start rule__PropertyReference__Group__0__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2682:1: rule__PropertyReference__Group__0__Impl : ( '${' ) ;
+    public final void rule__PropertyReference__Group__0__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2686:1: ( ( '${' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2687:1: ( '${' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2687:1: ( '${' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2688:1: '${'
+            {
+             before(grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
+            match(input,28,FOLLOW_28_in_rule__PropertyReference__Group__0__Impl5456); 
+             after(grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__PropertyReference__Group__0__Impl
+
+
     // $ANTLR start rule__PropertyReference__Group__1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2041:1: rule__PropertyReference__Group__1 : ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2 ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2701:1: rule__PropertyReference__Group__1 : rule__PropertyReference__Group__1__Impl rule__PropertyReference__Group__2 ;
     public final void rule__PropertyReference__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2045:1: ( ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2046:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) ) rule__PropertyReference__Group__2
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2705:1: ( rule__PropertyReference__Group__1__Impl rule__PropertyReference__Group__2 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2706:2: rule__PropertyReference__Group__1__Impl rule__PropertyReference__Group__2
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2046:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2047:1: ( rule__PropertyReference__ReferableAssignment_1 )
-            {
-             before(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2048:1: ( rule__PropertyReference__ReferableAssignment_1 )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2048:2: rule__PropertyReference__ReferableAssignment_1
-            {
-            pushFollow(FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__14111);
-            rule__PropertyReference__ReferableAssignment_1();
+            pushFollow(FOLLOW_rule__PropertyReference__Group__1__Impl_in_rule__PropertyReference__Group__15487);
+            rule__PropertyReference__Group__1__Impl();
             _fsp--;
 
-
-            }
-
-             after(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
-
-            }
-
-            pushFollow(FOLLOW_rule__PropertyReference__Group__2_in_rule__PropertyReference__Group__14120);
+            pushFollow(FOLLOW_rule__PropertyReference__Group__2_in_rule__PropertyReference__Group__15490);
             rule__PropertyReference__Group__2();
             _fsp--;
 
@@ -5251,24 +7141,65 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__PropertyReference__Group__1
 
 
+    // $ANTLR start rule__PropertyReference__Group__1__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2713:1: rule__PropertyReference__Group__1__Impl : ( ( rule__PropertyReference__ReferableAssignment_1 ) ) ;
+    public final void rule__PropertyReference__Group__1__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2717:1: ( ( ( rule__PropertyReference__ReferableAssignment_1 ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2718:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2718:1: ( ( rule__PropertyReference__ReferableAssignment_1 ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2719:1: ( rule__PropertyReference__ReferableAssignment_1 )
+            {
+             before(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2720:1: ( rule__PropertyReference__ReferableAssignment_1 )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2720:2: rule__PropertyReference__ReferableAssignment_1
+            {
+            pushFollow(FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__1__Impl5517);
+            rule__PropertyReference__ReferableAssignment_1();
+            _fsp--;
+
+
+            }
+
+             after(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__PropertyReference__Group__1__Impl
+
+
     // $ANTLR start rule__PropertyReference__Group__2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2059:1: rule__PropertyReference__Group__2 : ( '}' ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2730:1: rule__PropertyReference__Group__2 : rule__PropertyReference__Group__2__Impl ;
     public final void rule__PropertyReference__Group__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2063:1: ( ( '}' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2064:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2734:1: ( rule__PropertyReference__Group__2__Impl )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2735:2: rule__PropertyReference__Group__2__Impl
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2064:1: ( '}' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2065:1: '}'
-            {
-             before(grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()); 
-            match(input,12,FOLLOW_12_in_rule__PropertyReference__Group__24149); 
-             after(grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()); 
-
-            }
+            pushFollow(FOLLOW_rule__PropertyReference__Group__2__Impl_in_rule__PropertyReference__Group__25547);
+            rule__PropertyReference__Group__2__Impl();
+            _fsp--;
 
 
             }
@@ -5288,21 +7219,58 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     // $ANTLR end rule__PropertyReference__Group__2
 
 
+    // $ANTLR start rule__PropertyReference__Group__2__Impl
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2741:1: rule__PropertyReference__Group__2__Impl : ( '}' ) ;
+    public final void rule__PropertyReference__Group__2__Impl() throws RecognitionException {
+
+        		int stackSize = keepStackSize();
+            
+        try {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2745:1: ( ( '}' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2746:1: ( '}' )
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2746:1: ( '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2747:1: '}'
+            {
+             before(grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()); 
+            match(input,12,FOLLOW_12_in_rule__PropertyReference__Group__2__Impl5575); 
+             after(grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()); 
+
+            }
+
+
+            }
+
+        }
+        catch (RecognitionException re) {
+            reportError(re);
+            recover(input,re);
+        }
+        finally {
+
+            	restoreStackSize(stackSize);
+
+        }
+        return ;
+    }
+    // $ANTLR end rule__PropertyReference__Group__2__Impl
+
+
     // $ANTLR start rule__Module__CanonicalNameAssignment_2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2085:1: rule__Module__CanonicalNameAssignment_2 : ( ruleFQN ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2767:1: rule__Module__CanonicalNameAssignment_2 : ( ruleFQN ) ;
     public final void rule__Module__CanonicalNameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2089:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2090:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2771:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2772:1: ( ruleFQN )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2090:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2091:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2772:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2773:1: ruleFQN
             {
              before(grammarAccess.getModuleAccess().getCanonicalNameFQNParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Module__CanonicalNameAssignment_24191);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Module__CanonicalNameAssignment_25617);
             ruleFQN();
             _fsp--;
 
@@ -5329,20 +7297,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Module__ImportsAssignment_3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2100:1: rule__Module__ImportsAssignment_3 : ( ruleImport ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2782:1: rule__Module__ImportsAssignment_3 : ( ruleImport ) ;
     public final void rule__Module__ImportsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2104:1: ( ( ruleImport ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2105:1: ( ruleImport )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2786:1: ( ( ruleImport ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2787:1: ( ruleImport )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2105:1: ( ruleImport )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2106:1: ruleImport
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2787:1: ( ruleImport )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2788:1: ruleImport
             {
              before(grammarAccess.getModuleAccess().getImportsImportParserRuleCall_3_0()); 
-            pushFollow(FOLLOW_ruleImport_in_rule__Module__ImportsAssignment_34222);
+            pushFollow(FOLLOW_ruleImport_in_rule__Module__ImportsAssignment_35648);
             ruleImport();
             _fsp--;
 
@@ -5369,20 +7337,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Module__DeclaredPropertiesAssignment_4
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2115:1: rule__Module__DeclaredPropertiesAssignment_4 : ( ruleDeclaredProperty ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2797:1: rule__Module__DeclaredPropertiesAssignment_4 : ( ruleDeclaredProperty ) ;
     public final void rule__Module__DeclaredPropertiesAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2119:1: ( ( ruleDeclaredProperty ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2120:1: ( ruleDeclaredProperty )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2801:1: ( ( ruleDeclaredProperty ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2802:1: ( ruleDeclaredProperty )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2120:1: ( ruleDeclaredProperty )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2121:1: ruleDeclaredProperty
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2802:1: ( ruleDeclaredProperty )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2803:1: ruleDeclaredProperty
             {
              before(grammarAccess.getModuleAccess().getDeclaredPropertiesDeclaredPropertyParserRuleCall_4_0()); 
-            pushFollow(FOLLOW_ruleDeclaredProperty_in_rule__Module__DeclaredPropertiesAssignment_44253);
+            pushFollow(FOLLOW_ruleDeclaredProperty_in_rule__Module__DeclaredPropertiesAssignment_45679);
             ruleDeclaredProperty();
             _fsp--;
 
@@ -5409,20 +7377,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Module__RootAssignment_5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2130:1: rule__Module__RootAssignment_5 : ( ruleRootComponent ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2812:1: rule__Module__RootAssignment_5 : ( ruleRootComponent ) ;
     public final void rule__Module__RootAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2134:1: ( ( ruleRootComponent ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2135:1: ( ruleRootComponent )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2816:1: ( ( ruleRootComponent ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2817:1: ( ruleRootComponent )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2135:1: ( ruleRootComponent )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2136:1: ruleRootComponent
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2817:1: ( ruleRootComponent )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2818:1: ruleRootComponent
             {
              before(grammarAccess.getModuleAccess().getRootRootComponentParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleRootComponent_in_rule__Module__RootAssignment_54284);
+            pushFollow(FOLLOW_ruleRootComponent_in_rule__Module__RootAssignment_55710);
             ruleRootComponent();
             _fsp--;
 
@@ -5449,24 +7417,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__DeclaredProperty__TypeAssignment_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2145:1: rule__DeclaredProperty__TypeAssignment_1 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2827:1: rule__DeclaredProperty__TypeAssignment_1 : ( ( ruleFQN ) ) ;
     public final void rule__DeclaredProperty__TypeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2149:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2150:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2831:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2832:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2150:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2151:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2832:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2833:1: ( ruleFQN )
             {
              before(grammarAccess.getDeclaredPropertyAccess().getTypeJvmTypeCrossReference_1_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2152:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2153:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2834:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2835:1: ruleFQN
             {
              before(grammarAccess.getDeclaredPropertyAccess().getTypeJvmTypeFQNParserRuleCall_1_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__DeclaredProperty__TypeAssignment_14319);
+            pushFollow(FOLLOW_ruleFQN_in_rule__DeclaredProperty__TypeAssignment_15745);
             ruleFQN();
             _fsp--;
 
@@ -5497,20 +7465,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__DeclaredProperty__NameAssignment_2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2164:1: rule__DeclaredProperty__NameAssignment_2 : ( ruleFQN ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2846:1: rule__DeclaredProperty__NameAssignment_2 : ( ruleFQN ) ;
     public final void rule__DeclaredProperty__NameAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2168:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2169:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2850:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2851:1: ( ruleFQN )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2169:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2170:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2851:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2852:1: ruleFQN
             {
              before(grammarAccess.getDeclaredPropertyAccess().getNameFQNParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__DeclaredProperty__NameAssignment_24354);
+            pushFollow(FOLLOW_ruleFQN_in_rule__DeclaredProperty__NameAssignment_25780);
             ruleFQN();
             _fsp--;
 
@@ -5537,20 +7505,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__DeclaredProperty__DefaultAssignment_3_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2179:1: rule__DeclaredProperty__DefaultAssignment_3_1 : ( ruleValue ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2861:1: rule__DeclaredProperty__DefaultAssignment_3_1 : ( ruleValue ) ;
     public final void rule__DeclaredProperty__DefaultAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2183:1: ( ( ruleValue ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2184:1: ( ruleValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2865:1: ( ( ruleValue ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2866:1: ( ruleValue )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2184:1: ( ruleValue )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2185:1: ruleValue
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2866:1: ( ruleValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2867:1: ruleValue
             {
              before(grammarAccess.getDeclaredPropertyAccess().getDefaultValueParserRuleCall_3_1_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__DeclaredProperty__DefaultAssignment_3_14385);
+            pushFollow(FOLLOW_ruleValue_in_rule__DeclaredProperty__DefaultAssignment_3_15811);
             ruleValue();
             _fsp--;
 
@@ -5577,24 +7545,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RootComponent__TypeAssignment_1_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2194:1: rule__RootComponent__TypeAssignment_1_0 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2876:1: rule__RootComponent__TypeAssignment_1_0 : ( ( ruleFQN ) ) ;
     public final void rule__RootComponent__TypeAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2198:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2199:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2880:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2881:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2199:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2200:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2881:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2882:1: ( ruleFQN )
             {
              before(grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2201:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2202:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2883:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2884:1: ruleFQN
             {
              before(grammarAccess.getRootComponentAccess().getTypeJvmTypeFQNParserRuleCall_1_0_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__TypeAssignment_1_04420);
+            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__TypeAssignment_1_05846);
             ruleFQN();
             _fsp--;
 
@@ -5625,24 +7593,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RootComponent__ModuleAssignment_1_1_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2213:1: rule__RootComponent__ModuleAssignment_1_1_1 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2895:1: rule__RootComponent__ModuleAssignment_1_1_1 : ( ( ruleFQN ) ) ;
     public final void rule__RootComponent__ModuleAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2217:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2218:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2899:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2900:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2218:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2219:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2900:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2901:1: ( ruleFQN )
             {
              before(grammarAccess.getRootComponentAccess().getModuleModuleCrossReference_1_1_1_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2220:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2221:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2902:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2903:1: ruleFQN
             {
              before(grammarAccess.getRootComponentAccess().getModuleModuleFQNParserRuleCall_1_1_1_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__ModuleAssignment_1_1_14459);
+            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__ModuleAssignment_1_1_15885);
             ruleFQN();
             _fsp--;
 
@@ -5673,20 +7641,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RootComponent__NameAssignment_2_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2232:1: rule__RootComponent__NameAssignment_2_1 : ( ruleFQN ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2914:1: rule__RootComponent__NameAssignment_2_1 : ( ruleFQN ) ;
     public final void rule__RootComponent__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2236:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2237:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2918:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2919:1: ( ruleFQN )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2237:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2238:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2919:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2920:1: ruleFQN
             {
              before(grammarAccess.getRootComponentAccess().getNameFQNParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__NameAssignment_2_14494);
+            pushFollow(FOLLOW_ruleFQN_in_rule__RootComponent__NameAssignment_2_15920);
             ruleFQN();
             _fsp--;
 
@@ -5713,24 +7681,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RootComponent__AutoInjectAssignment_3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2247:1: rule__RootComponent__AutoInjectAssignment_3 : ( ( 'auto-inject' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2929:1: rule__RootComponent__AutoInjectAssignment_3 : ( ( 'auto-inject' ) ) ;
     public final void rule__RootComponent__AutoInjectAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2251:1: ( ( ( 'auto-inject' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2252:1: ( ( 'auto-inject' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2933:1: ( ( ( 'auto-inject' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2934:1: ( ( 'auto-inject' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2252:1: ( ( 'auto-inject' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2253:1: ( 'auto-inject' )
-            {
-             before(grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2254:1: ( 'auto-inject' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2255:1: 'auto-inject'
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2934:1: ( ( 'auto-inject' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2935:1: ( 'auto-inject' )
             {
              before(grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
-            match(input,24,FOLLOW_24_in_rule__RootComponent__AutoInjectAssignment_34530); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2936:1: ( 'auto-inject' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2937:1: 'auto-inject'
+            {
+             before(grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
+            match(input,24,FOLLOW_24_in_rule__RootComponent__AutoInjectAssignment_35956); 
              after(grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
 
             }
@@ -5758,20 +7726,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__RootComponent__AssignmentAssignment_5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2270:1: rule__RootComponent__AssignmentAssignment_5 : ( ruleAssignment ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2952:1: rule__RootComponent__AssignmentAssignment_5 : ( ruleAssignment ) ;
     public final void rule__RootComponent__AssignmentAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2274:1: ( ( ruleAssignment ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2275:1: ( ruleAssignment )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2956:1: ( ( ruleAssignment ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2957:1: ( ruleAssignment )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2275:1: ( ruleAssignment )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2276:1: ruleAssignment
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2957:1: ( ruleAssignment )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2958:1: ruleAssignment
             {
              before(grammarAccess.getRootComponentAccess().getAssignmentAssignmentParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleAssignment_in_rule__RootComponent__AssignmentAssignment_54569);
+            pushFollow(FOLLOW_ruleAssignment_in_rule__RootComponent__AssignmentAssignment_55995);
             ruleAssignment();
             _fsp--;
 
@@ -5798,24 +7766,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Component__TypeAssignment_1_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2285:1: rule__Component__TypeAssignment_1_0 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2967:1: rule__Component__TypeAssignment_1_0 : ( ( ruleFQN ) ) ;
     public final void rule__Component__TypeAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2289:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2290:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2971:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2972:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2290:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2291:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2972:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2973:1: ( ruleFQN )
             {
              before(grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2292:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2293:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2974:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2975:1: ruleFQN
             {
              before(grammarAccess.getComponentAccess().getTypeJvmTypeFQNParserRuleCall_1_0_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Component__TypeAssignment_1_04604);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Component__TypeAssignment_1_06030);
             ruleFQN();
             _fsp--;
 
@@ -5846,24 +7814,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Component__ModuleAssignment_1_1_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2304:1: rule__Component__ModuleAssignment_1_1_1 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2986:1: rule__Component__ModuleAssignment_1_1_1 : ( ( ruleFQN ) ) ;
     public final void rule__Component__ModuleAssignment_1_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2308:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2309:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2990:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2991:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2309:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2310:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2991:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2992:1: ( ruleFQN )
             {
              before(grammarAccess.getComponentAccess().getModuleModuleCrossReference_1_1_1_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2311:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2312:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2993:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2994:1: ruleFQN
             {
              before(grammarAccess.getComponentAccess().getModuleModuleFQNParserRuleCall_1_1_1_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Component__ModuleAssignment_1_1_14643);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Component__ModuleAssignment_1_1_16069);
             ruleFQN();
             _fsp--;
 
@@ -5894,20 +7862,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Component__NameAssignment_2_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2323:1: rule__Component__NameAssignment_2_1 : ( ruleFQN ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3005:1: rule__Component__NameAssignment_2_1 : ( ruleFQN ) ;
     public final void rule__Component__NameAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2327:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2328:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3009:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3010:1: ( ruleFQN )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2328:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2329:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3010:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3011:1: ruleFQN
             {
              before(grammarAccess.getComponentAccess().getNameFQNParserRuleCall_2_1_0()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Component__NameAssignment_2_14678);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Component__NameAssignment_2_16104);
             ruleFQN();
             _fsp--;
 
@@ -5934,24 +7902,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Component__AutoInjectAssignment_3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2338:1: rule__Component__AutoInjectAssignment_3 : ( ( 'auto-inject' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3020:1: rule__Component__AutoInjectAssignment_3 : ( ( 'auto-inject' ) ) ;
     public final void rule__Component__AutoInjectAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2342:1: ( ( ( 'auto-inject' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2343:1: ( ( 'auto-inject' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3024:1: ( ( ( 'auto-inject' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3025:1: ( ( 'auto-inject' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2343:1: ( ( 'auto-inject' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2344:1: ( 'auto-inject' )
-            {
-             before(grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2345:1: ( 'auto-inject' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2346:1: 'auto-inject'
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3025:1: ( ( 'auto-inject' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3026:1: ( 'auto-inject' )
             {
              before(grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
-            match(input,24,FOLLOW_24_in_rule__Component__AutoInjectAssignment_34714); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3027:1: ( 'auto-inject' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3028:1: 'auto-inject'
+            {
+             before(grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
+            match(input,24,FOLLOW_24_in_rule__Component__AutoInjectAssignment_36140); 
              after(grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0()); 
 
             }
@@ -5979,20 +7947,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Component__AssignmentAssignment_5
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2361:1: rule__Component__AssignmentAssignment_5 : ( ruleAssignment ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3043:1: rule__Component__AssignmentAssignment_5 : ( ruleAssignment ) ;
     public final void rule__Component__AssignmentAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2365:1: ( ( ruleAssignment ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2366:1: ( ruleAssignment )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3047:1: ( ( ruleAssignment ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3048:1: ( ruleAssignment )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2366:1: ( ruleAssignment )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2367:1: ruleAssignment
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3048:1: ( ruleAssignment )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3049:1: ruleAssignment
             {
              before(grammarAccess.getComponentAccess().getAssignmentAssignmentParserRuleCall_5_0()); 
-            pushFollow(FOLLOW_ruleAssignment_in_rule__Component__AssignmentAssignment_54753);
+            pushFollow(FOLLOW_ruleAssignment_in_rule__Component__AssignmentAssignment_56179);
             ruleAssignment();
             _fsp--;
 
@@ -6019,20 +7987,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Import__ImportedNamespaceAssignment_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2376:1: rule__Import__ImportedNamespaceAssignment_1 : ( ruleImportedFQN ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3058:1: rule__Import__ImportedNamespaceAssignment_1 : ( ruleImportedFQN ) ;
     public final void rule__Import__ImportedNamespaceAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2380:1: ( ( ruleImportedFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2381:1: ( ruleImportedFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3062:1: ( ( ruleImportedFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3063:1: ( ruleImportedFQN )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2381:1: ( ruleImportedFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2382:1: ruleImportedFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3063:1: ( ruleImportedFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3064:1: ruleImportedFQN
             {
              before(grammarAccess.getImportAccess().getImportedNamespaceImportedFQNParserRuleCall_1_0()); 
-            pushFollow(FOLLOW_ruleImportedFQN_in_rule__Import__ImportedNamespaceAssignment_14784);
+            pushFollow(FOLLOW_ruleImportedFQN_in_rule__Import__ImportedNamespaceAssignment_16210);
             ruleImportedFQN();
             _fsp--;
 
@@ -6059,24 +8027,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Assignment__FeatureAssignment_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2391:1: rule__Assignment__FeatureAssignment_0 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3073:1: rule__Assignment__FeatureAssignment_0 : ( ( ruleFQN ) ) ;
     public final void rule__Assignment__FeatureAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2395:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2396:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3077:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3078:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2396:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2397:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3078:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3079:1: ( ruleFQN )
             {
              before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2398:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2399:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3080:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3081:1: ruleFQN
             {
              before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Assignment__FeatureAssignment_04819);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Assignment__FeatureAssignment_06245);
             ruleFQN();
             _fsp--;
 
@@ -6107,20 +8075,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Assignment__ValueAssignment_2
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2410:1: rule__Assignment__ValueAssignment_2 : ( ruleValue ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3092:1: rule__Assignment__ValueAssignment_2 : ( ruleValue ) ;
     public final void rule__Assignment__ValueAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2414:1: ( ( ruleValue ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2415:1: ( ruleValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3096:1: ( ( ruleValue ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3097:1: ( ruleValue )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2415:1: ( ruleValue )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2416:1: ruleValue
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3097:1: ( ruleValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3098:1: ruleValue
             {
              before(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0()); 
-            pushFollow(FOLLOW_ruleValue_in_rule__Assignment__ValueAssignment_24854);
+            pushFollow(FOLLOW_ruleValue_in_rule__Assignment__ValueAssignment_26280);
             ruleValue();
             _fsp--;
 
@@ -6147,24 +8115,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__BooleanLiteral__IsTrueAssignment_1_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2425:1: rule__BooleanLiteral__IsTrueAssignment_1_0 : ( ( 'true' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3107:1: rule__BooleanLiteral__IsTrueAssignment_1_0 : ( ( 'true' ) ) ;
     public final void rule__BooleanLiteral__IsTrueAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2429:1: ( ( ( 'true' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2430:1: ( ( 'true' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3111:1: ( ( ( 'true' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3112:1: ( ( 'true' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2430:1: ( ( 'true' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2431:1: ( 'true' )
-            {
-             before(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2432:1: ( 'true' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2433:1: 'true'
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3112:1: ( ( 'true' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3113:1: ( 'true' )
             {
              before(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0()); 
-            match(input,20,FOLLOW_20_in_rule__BooleanLiteral__IsTrueAssignment_1_04890); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3114:1: ( 'true' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3115:1: 'true'
+            {
+             before(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0()); 
+            match(input,20,FOLLOW_20_in_rule__BooleanLiteral__IsTrueAssignment_1_06316); 
              after(grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0()); 
 
             }
@@ -6192,24 +8160,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__Reference__ReferableAssignment
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2448:1: rule__Reference__ReferableAssignment : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3130:1: rule__Reference__ReferableAssignment : ( ( ruleFQN ) ) ;
     public final void rule__Reference__ReferableAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2452:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2453:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3134:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3135:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2453:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2454:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3135:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3136:1: ( ruleFQN )
             {
              before(grammarAccess.getReferenceAccess().getReferableReferrableCrossReference_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2455:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2456:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3137:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3138:1: ruleFQN
             {
              before(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment4933);
+            pushFollow(FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment6359);
             ruleFQN();
             _fsp--;
 
@@ -6240,24 +8208,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__BeginAssignment_0_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2467:1: rule__StringLiteral__BeginAssignment_0_0 : ( ( '\\'' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3149:1: rule__StringLiteral__BeginAssignment_0_0 : ( ( '\\'' ) ) ;
     public final void rule__StringLiteral__BeginAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2471:1: ( ( ( '\\'' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2472:1: ( ( '\\'' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3153:1: ( ( ( '\\'' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3154:1: ( ( '\\'' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2472:1: ( ( '\\'' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2473:1: ( '\\'' )
-            {
-             before(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2474:1: ( '\\'' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2475:1: '\\''
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3154:1: ( ( '\\'' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3155:1: ( '\\'' )
             {
              before(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0()); 
-            match(input,29,FOLLOW_29_in_rule__StringLiteral__BeginAssignment_0_04973); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3156:1: ( '\\'' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3157:1: '\\''
+            {
+             before(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0()); 
+            match(input,29,FOLLOW_29_in_rule__StringLiteral__BeginAssignment_0_06399); 
              after(grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0()); 
 
             }
@@ -6285,20 +8253,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_0_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2490:1: rule__StringLiteral__PartsAssignment_0_1 : ( rulePlainString ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3172:1: rule__StringLiteral__PartsAssignment_0_1 : ( rulePlainString ) ;
     public final void rule__StringLiteral__PartsAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2494:1: ( ( rulePlainString ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2495:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3176:1: ( ( rulePlainString ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3177:1: ( rulePlainString )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2495:1: ( rulePlainString )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2496:1: rulePlainString
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3177:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3178:1: rulePlainString
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_1_0()); 
-            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_15012);
+            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_16438);
             rulePlainString();
             _fsp--;
 
@@ -6325,20 +8293,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_0_2_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2505:1: rule__StringLiteral__PartsAssignment_0_2_0 : ( rulePropertyReference ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3187:1: rule__StringLiteral__PartsAssignment_0_2_0 : ( rulePropertyReference ) ;
     public final void rule__StringLiteral__PartsAssignment_0_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2509:1: ( ( rulePropertyReference ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2510:1: ( rulePropertyReference )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3191:1: ( ( rulePropertyReference ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3192:1: ( rulePropertyReference )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2510:1: ( rulePropertyReference )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2511:1: rulePropertyReference
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3192:1: ( rulePropertyReference )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3193:1: rulePropertyReference
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_0_2_0_0()); 
-            pushFollow(FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_0_2_05043);
+            pushFollow(FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_0_2_06469);
             rulePropertyReference();
             _fsp--;
 
@@ -6365,20 +8333,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_0_2_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2520:1: rule__StringLiteral__PartsAssignment_0_2_1 : ( rulePlainString ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3202:1: rule__StringLiteral__PartsAssignment_0_2_1 : ( rulePlainString ) ;
     public final void rule__StringLiteral__PartsAssignment_0_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2524:1: ( ( rulePlainString ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2525:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3206:1: ( ( rulePlainString ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3207:1: ( rulePlainString )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2525:1: ( rulePlainString )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2526:1: rulePlainString
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3207:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3208:1: rulePlainString
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_0_2_1_0()); 
-            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_2_15074);
+            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_2_16500);
             rulePlainString();
             _fsp--;
 
@@ -6405,24 +8373,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__EndAssignment_0_3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2535:1: rule__StringLiteral__EndAssignment_0_3 : ( ( '\\'' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3217:1: rule__StringLiteral__EndAssignment_0_3 : ( ( '\\'' ) ) ;
     public final void rule__StringLiteral__EndAssignment_0_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2539:1: ( ( ( '\\'' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2540:1: ( ( '\\'' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3221:1: ( ( ( '\\'' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3222:1: ( ( '\\'' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2540:1: ( ( '\\'' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2541:1: ( '\\'' )
-            {
-             before(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2542:1: ( '\\'' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2543:1: '\\''
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3222:1: ( ( '\\'' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3223:1: ( '\\'' )
             {
              before(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0()); 
-            match(input,29,FOLLOW_29_in_rule__StringLiteral__EndAssignment_0_35110); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3224:1: ( '\\'' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3225:1: '\\''
+            {
+             before(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0()); 
+            match(input,29,FOLLOW_29_in_rule__StringLiteral__EndAssignment_0_36536); 
              after(grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0()); 
 
             }
@@ -6450,24 +8418,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__BeginAssignment_1_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2558:1: rule__StringLiteral__BeginAssignment_1_0 : ( ( '\"' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3240:1: rule__StringLiteral__BeginAssignment_1_0 : ( ( '\"' ) ) ;
     public final void rule__StringLiteral__BeginAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2562:1: ( ( ( '\"' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2563:1: ( ( '\"' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3244:1: ( ( ( '\"' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3245:1: ( ( '\"' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2563:1: ( ( '\"' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2564:1: ( '\"' )
-            {
-             before(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2565:1: ( '\"' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2566:1: '\"'
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3245:1: ( ( '\"' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3246:1: ( '\"' )
             {
              before(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0()); 
-            match(input,30,FOLLOW_30_in_rule__StringLiteral__BeginAssignment_1_05154); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3247:1: ( '\"' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3248:1: '\"'
+            {
+             before(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0()); 
+            match(input,30,FOLLOW_30_in_rule__StringLiteral__BeginAssignment_1_06580); 
              after(grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0()); 
 
             }
@@ -6495,20 +8463,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_1_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2581:1: rule__StringLiteral__PartsAssignment_1_1 : ( rulePlainString ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3263:1: rule__StringLiteral__PartsAssignment_1_1 : ( rulePlainString ) ;
     public final void rule__StringLiteral__PartsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2585:1: ( ( rulePlainString ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2586:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3267:1: ( ( rulePlainString ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3268:1: ( rulePlainString )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2586:1: ( rulePlainString )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2587:1: rulePlainString
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3268:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3269:1: rulePlainString
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_1_0()); 
-            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_15193);
+            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_16619);
             rulePlainString();
             _fsp--;
 
@@ -6535,20 +8503,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_1_2_0
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2596:1: rule__StringLiteral__PartsAssignment_1_2_0 : ( rulePropertyReference ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3278:1: rule__StringLiteral__PartsAssignment_1_2_0 : ( rulePropertyReference ) ;
     public final void rule__StringLiteral__PartsAssignment_1_2_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2600:1: ( ( rulePropertyReference ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2601:1: ( rulePropertyReference )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3282:1: ( ( rulePropertyReference ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3283:1: ( rulePropertyReference )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2601:1: ( rulePropertyReference )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2602:1: rulePropertyReference
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3283:1: ( rulePropertyReference )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3284:1: rulePropertyReference
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPropertyReferenceParserRuleCall_1_2_0_0()); 
-            pushFollow(FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_1_2_05224);
+            pushFollow(FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_1_2_06650);
             rulePropertyReference();
             _fsp--;
 
@@ -6575,20 +8543,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__PartsAssignment_1_2_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2611:1: rule__StringLiteral__PartsAssignment_1_2_1 : ( rulePlainString ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3293:1: rule__StringLiteral__PartsAssignment_1_2_1 : ( rulePlainString ) ;
     public final void rule__StringLiteral__PartsAssignment_1_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2615:1: ( ( rulePlainString ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2616:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3297:1: ( ( rulePlainString ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3298:1: ( rulePlainString )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2616:1: ( rulePlainString )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2617:1: rulePlainString
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3298:1: ( rulePlainString )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3299:1: rulePlainString
             {
              before(grammarAccess.getStringLiteralAccess().getPartsPlainStringParserRuleCall_1_2_1_0()); 
-            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_2_15255);
+            pushFollow(FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_2_16681);
             rulePlainString();
             _fsp--;
 
@@ -6615,24 +8583,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__StringLiteral__EndAssignment_1_3
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2626:1: rule__StringLiteral__EndAssignment_1_3 : ( ( '\"' ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3308:1: rule__StringLiteral__EndAssignment_1_3 : ( ( '\"' ) ) ;
     public final void rule__StringLiteral__EndAssignment_1_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2630:1: ( ( ( '\"' ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2631:1: ( ( '\"' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3312:1: ( ( ( '\"' ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3313:1: ( ( '\"' ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2631:1: ( ( '\"' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2632:1: ( '\"' )
-            {
-             before(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2633:1: ( '\"' )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2634:1: '\"'
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3313:1: ( ( '\"' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3314:1: ( '\"' )
             {
              before(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0()); 
-            match(input,30,FOLLOW_30_in_rule__StringLiteral__EndAssignment_1_35291); 
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3315:1: ( '\"' )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3316:1: '\"'
+            {
+             before(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0()); 
+            match(input,30,FOLLOW_30_in_rule__StringLiteral__EndAssignment_1_36717); 
              after(grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0()); 
 
             }
@@ -6660,24 +8628,24 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__PropertyReference__ReferableAssignment_1
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2649:1: rule__PropertyReference__ReferableAssignment_1 : ( ( ruleFQN ) ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3331:1: rule__PropertyReference__ReferableAssignment_1 : ( ( ruleFQN ) ) ;
     public final void rule__PropertyReference__ReferableAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2653:1: ( ( ( ruleFQN ) ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2654:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3335:1: ( ( ( ruleFQN ) ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3336:1: ( ( ruleFQN ) )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2654:1: ( ( ruleFQN ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2655:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3336:1: ( ( ruleFQN ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3337:1: ( ruleFQN )
             {
              before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()); 
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2656:1: ( ruleFQN )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2657:1: ruleFQN
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3338:1: ( ruleFQN )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3339:1: ruleFQN
             {
              before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyFQNParserRuleCall_1_0_1()); 
-            pushFollow(FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_15334);
+            pushFollow(FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_16760);
             ruleFQN();
             _fsp--;
 
@@ -6708,20 +8676,20 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
 
 
     // $ANTLR start rule__PlainString__ValueAssignment
-    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2668:1: rule__PlainString__ValueAssignment : ( ruleConstantValue ) ;
+    // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3350:1: rule__PlainString__ValueAssignment : ( ruleConstantValue ) ;
     public final void rule__PlainString__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2672:1: ( ( ruleConstantValue ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2673:1: ( ruleConstantValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3354:1: ( ( ruleConstantValue ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3355:1: ( ruleConstantValue )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2673:1: ( ruleConstantValue )
-            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:2674:1: ruleConstantValue
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3355:1: ( ruleConstantValue )
+            // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2.g:3356:1: ruleConstantValue
             {
              before(grammarAccess.getPlainStringAccess().getValueConstantValueParserRuleCall_0()); 
-            pushFollow(FOLLOW_ruleConstantValue_in_rule__PlainString__ValueAssignment5369);
+            pushFollow(FOLLOW_ruleConstantValue_in_rule__PlainString__ValueAssignment6795);
             ruleConstantValue();
             _fsp--;
 
@@ -6808,25 +8776,25 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     static final String DFA10_eotS =
         "\11\uffff";
     static final String DFA10_eofS =
-        "\1\uffff\1\4\1\uffff\1\7\1\uffff\1\4\2\uffff\1\7";
+        "\1\uffff\1\3\2\uffff\1\7\1\3\2\uffff\1\7";
     static final String DFA10_minS =
-        "\4\10\1\uffff\2\10\1\uffff\1\10";
+        "\3\10\1\uffff\3\10\1\uffff\1\10";
     static final String DFA10_maxS =
-        "\1\10\1\32\1\10\1\32\1\uffff\1\32\1\10\1\uffff\1\32";
+        "\1\10\1\32\1\10\1\uffff\2\32\1\10\1\uffff\1\32";
     static final String DFA10_acceptS =
-        "\4\uffff\1\2\2\uffff\1\1\1\uffff";
+        "\3\uffff\1\2\3\uffff\1\1\1\uffff";
     static final String DFA10_specialS =
         "\11\uffff}>";
     static final String[] DFA10_transitionS = {
             "\1\1",
-            "\1\3\4\uffff\1\4\7\uffff\1\4\3\uffff\1\4\1\2",
+            "\1\4\4\uffff\1\3\7\uffff\1\3\3\uffff\1\3\1\2",
             "\1\5",
-            "\1\7\1\uffff\2\4\1\uffff\1\7\7\uffff\1\7\2\uffff\1\4\1\7\1\6",
             "",
-            "\1\3\4\uffff\1\4\7\uffff\1\4\3\uffff\1\4\1\2",
+            "\1\7\1\uffff\2\3\1\uffff\1\7\7\uffff\1\7\2\uffff\1\3\1\7\1\6",
+            "\1\4\4\uffff\1\3\7\uffff\1\3\3\uffff\1\3\1\2",
             "\1\10",
             "",
-            "\1\7\1\uffff\2\4\1\uffff\1\7\7\uffff\1\7\2\uffff\1\4\1\7\1\6"
+            "\1\7\1\uffff\2\3\1\uffff\1\7\7\uffff\1\7\2\uffff\1\3\1\7\1\6"
     };
 
     static final short[] DFA10_eot = DFA.unpackEncodedString(DFA10_eotS);
@@ -6859,7 +8827,7 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             this.transition = DFA10_transition;
         }
         public String getDescription() {
-            return "972:1: ( rule__DeclaredProperty__TypeAssignment_1 )?";
+            return "1061:1: ( rule__DeclaredProperty__TypeAssignment_1 )?";
         }
     }
  
@@ -6946,139 +8914,201 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     public static final BitSet FOLLOW_25_in_rule__ConstantValue__Alternatives1700 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_26_in_rule__ConstantValue__Alternatives1720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_27_in_rule__ConstantValue__Alternatives1740 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Module__Group__1_in_rule__Module__Group__01786 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_23_in_rule__Module__Group__11815 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__Module__Group__2_in_rule__Module__Group__11825 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Module__CanonicalNameAssignment_2_in_rule__Module__Group__21853 = new BitSet(new long[]{0x0000000002402100L});
-    public static final BitSet FOLLOW_rule__Module__Group__3_in_rule__Module__Group__21862 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Module__ImportsAssignment_3_in_rule__Module__Group__31890 = new BitSet(new long[]{0x0000000002402100L});
-    public static final BitSet FOLLOW_rule__Module__Group__4_in_rule__Module__Group__31900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Module__DeclaredPropertiesAssignment_4_in_rule__Module__Group__41928 = new BitSet(new long[]{0x0000000002002100L});
-    public static final BitSet FOLLOW_rule__Module__Group__5_in_rule__Module__Group__41938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Module__RootAssignment_5_in_rule__Module__Group__51966 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_rule__DeclaredProperty__Group__02013 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__1_in_rule__DeclaredProperty__Group__02023 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__TypeAssignment_1_in_rule__DeclaredProperty__Group__12051 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__2_in_rule__DeclaredProperty__Group__12061 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__NameAssignment_2_in_rule__DeclaredProperty__Group__22089 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__3_in_rule__DeclaredProperty__Group__22098 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__0_in_rule__DeclaredProperty__Group__32126 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__DeclaredProperty__Group_3__02170 = new BitSet(new long[]{0x0000000061102F00L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__1_in_rule__DeclaredProperty__Group_3__02180 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__DeclaredProperty__DefaultAssignment_3_1_in_rule__DeclaredProperty__Group_3__12208 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__1_in_rule__RootComponent__Group__02256 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__Alternatives_1_in_rule__RootComponent__Group__12284 = new BitSet(new long[]{0x0000000001000C00L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__2_in_rule__RootComponent__Group__12293 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group_2__0_in_rule__RootComponent__Group__22321 = new BitSet(new long[]{0x0000000001000800L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__3_in_rule__RootComponent__Group__22331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__AutoInjectAssignment_3_in_rule__RootComponent__Group__32359 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__4_in_rule__RootComponent__Group__32369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__RootComponent__Group__42398 = new BitSet(new long[]{0x0000000000001100L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__5_in_rule__RootComponent__Group__42408 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__AssignmentAssignment_5_in_rule__RootComponent__Group__52436 = new BitSet(new long[]{0x0000000000001100L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group__6_in_rule__RootComponent__Group__52446 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__RootComponent__Group__62475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__RootComponent__Group_1_1__02525 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group_1_1__1_in_rule__RootComponent__Group_1_1__02535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__ModuleAssignment_1_1_1_in_rule__RootComponent__Group_1_1__12563 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_rule__RootComponent__Group_2__02602 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__RootComponent__Group_2__1_in_rule__RootComponent__Group_2__02612 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__RootComponent__NameAssignment_2_1_in_rule__RootComponent__Group_2__12640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__Group__1_in_rule__Component__Group__02688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__Alternatives_1_in_rule__Component__Group__12716 = new BitSet(new long[]{0x0000000001000C00L});
-    public static final BitSet FOLLOW_rule__Component__Group__2_in_rule__Component__Group__12726 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__Group_2__0_in_rule__Component__Group__22754 = new BitSet(new long[]{0x0000000001000800L});
-    public static final BitSet FOLLOW_rule__Component__Group__3_in_rule__Component__Group__22764 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__AutoInjectAssignment_3_in_rule__Component__Group__32792 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_rule__Component__Group__4_in_rule__Component__Group__32802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_11_in_rule__Component__Group__42831 = new BitSet(new long[]{0x0000000000001100L});
-    public static final BitSet FOLLOW_rule__Component__Group__5_in_rule__Component__Group__42841 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__AssignmentAssignment_5_in_rule__Component__Group__52869 = new BitSet(new long[]{0x0000000000001100L});
-    public static final BitSet FOLLOW_rule__Component__Group__6_in_rule__Component__Group__52879 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__Component__Group__62908 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__Component__Group_1_1__02958 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__Component__Group_1_1__1_in_rule__Component__Group_1_1__02968 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__ModuleAssignment_1_1_1_in_rule__Component__Group_1_1__12996 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_10_in_rule__Component__Group_2__03035 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__Component__Group_2__1_in_rule__Component__Group_2__03045 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Component__NameAssignment_2_1_in_rule__Component__Group_2__13073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_rule__Import__Group__03112 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__Import__Group__1_in_rule__Import__Group__03122 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Import__ImportedNamespaceAssignment_1_in_rule__Import__Group__13150 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__ImportedFQN__Group__03188 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_rule__ImportedFQN__Group__1_in_rule__ImportedFQN__Group__03196 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_rule__ImportedFQN__Group__13226 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__FeatureAssignment_0_in_rule__Assignment__Group__03267 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__03276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_21_in_rule__Assignment__Group__13305 = new BitSet(new long[]{0x0000000061102F00L});
-    public static final BitSet FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__13315 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Assignment__ValueAssignment_2_in_rule__Assignment__Group__23343 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BooleanLiteral__Group__1_in_rule__BooleanLiteral__Group__03393 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__BooleanLiteral__Alternatives_1_in_rule__BooleanLiteral__Group__13421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FQN__Group__03459 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_rule__FQN__Group__1_in_rule__FQN__Group__03467 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__FQN__Group_1__0_in_rule__FQN__Group__13495 = new BitSet(new long[]{0x0000000004000002L});
-    public static final BitSet FOLLOW_26_in_rule__FQN__Group_1__03535 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__FQN__Group_1__1_in_rule__FQN__Group_1__03545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__FQN__Group_1__13573 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__BeginAssignment_0_0_in_rule__StringLiteral__Group_0__03610 = new BitSet(new long[]{0x000000003FFFFFF0L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__1_in_rule__StringLiteral__Group_0__03619 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_1_in_rule__StringLiteral__Group_0__13647 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__2_in_rule__StringLiteral__Group_0__13657 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__0_in_rule__StringLiteral__Group_0__23685 = new BitSet(new long[]{0x0000000030000000L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__3_in_rule__StringLiteral__Group_0__23695 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__EndAssignment_0_3_in_rule__StringLiteral__Group_0__33723 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_2_0_in_rule__StringLiteral__Group_0_2__03765 = new BitSet(new long[]{0x000000000FFFFFF2L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__1_in_rule__StringLiteral__Group_0_2__03774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_2_1_in_rule__StringLiteral__Group_0_2__13802 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__BeginAssignment_1_0_in_rule__StringLiteral__Group_1__03841 = new BitSet(new long[]{0x000000005FFFFFF0L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__1_in_rule__StringLiteral__Group_1__03850 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_1_in_rule__StringLiteral__Group_1__13878 = new BitSet(new long[]{0x0000000050000000L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__2_in_rule__StringLiteral__Group_1__13888 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__0_in_rule__StringLiteral__Group_1__23916 = new BitSet(new long[]{0x0000000050000000L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__3_in_rule__StringLiteral__Group_1__23926 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__EndAssignment_1_3_in_rule__StringLiteral__Group_1__33954 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_2_0_in_rule__StringLiteral__Group_1_2__03996 = new BitSet(new long[]{0x000000000FFFFFF2L});
-    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__1_in_rule__StringLiteral__Group_1_2__04005 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_2_1_in_rule__StringLiteral__Group_1_2__14033 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_rule__PropertyReference__Group__04073 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_rule__PropertyReference__Group__1_in_rule__PropertyReference__Group__04083 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__14111 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_rule__PropertyReference__Group__2_in_rule__PropertyReference__Group__14120 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__PropertyReference__Group__24149 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Module__CanonicalNameAssignment_24191 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImport_in_rule__Module__ImportsAssignment_34222 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDeclaredProperty_in_rule__Module__DeclaredPropertiesAssignment_44253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleRootComponent_in_rule__Module__RootAssignment_54284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__DeclaredProperty__TypeAssignment_14319 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__DeclaredProperty__NameAssignment_24354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__DeclaredProperty__DefaultAssignment_3_14385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__TypeAssignment_1_04420 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__ModuleAssignment_1_1_14459 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__NameAssignment_2_14494 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__RootComponent__AutoInjectAssignment_34530 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignment_in_rule__RootComponent__AssignmentAssignment_54569 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__TypeAssignment_1_04604 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__ModuleAssignment_1_1_14643 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__NameAssignment_2_14678 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_24_in_rule__Component__AutoInjectAssignment_34714 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleAssignment_in_rule__Component__AssignmentAssignment_54753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleImportedFQN_in_rule__Import__ImportedNamespaceAssignment_14784 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Assignment__FeatureAssignment_04819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleValue_in_rule__Assignment__ValueAssignment_24854 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__BooleanLiteral__IsTrueAssignment_1_04890 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment4933 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__StringLiteral__BeginAssignment_0_04973 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_15012 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_0_2_05043 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_2_15074 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_29_in_rule__StringLiteral__EndAssignment_0_35110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__StringLiteral__BeginAssignment_1_05154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_15193 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_1_2_05224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_2_15255 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_rule__StringLiteral__EndAssignment_1_35291 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_15334 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConstantValue_in_rule__PlainString__ValueAssignment5369 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__Group__0__Impl_in_rule__Module__Group__01772 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_rule__Module__Group__1_in_rule__Module__Group__01775 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__Group__1__Impl_in_rule__Module__Group__11833 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__Module__Group__2_in_rule__Module__Group__11836 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__Module__Group__1__Impl1864 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__Group__2__Impl_in_rule__Module__Group__21895 = new BitSet(new long[]{0x0000000002402100L});
+    public static final BitSet FOLLOW_rule__Module__Group__3_in_rule__Module__Group__21898 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__CanonicalNameAssignment_2_in_rule__Module__Group__2__Impl1925 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__Group__3__Impl_in_rule__Module__Group__31955 = new BitSet(new long[]{0x0000000002002100L});
+    public static final BitSet FOLLOW_rule__Module__Group__4_in_rule__Module__Group__31958 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__ImportsAssignment_3_in_rule__Module__Group__3__Impl1985 = new BitSet(new long[]{0x0000000000400002L});
+    public static final BitSet FOLLOW_rule__Module__Group__4__Impl_in_rule__Module__Group__42016 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_rule__Module__Group__5_in_rule__Module__Group__42019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__DeclaredPropertiesAssignment_4_in_rule__Module__Group__4__Impl2046 = new BitSet(new long[]{0x0000000002000002L});
+    public static final BitSet FOLLOW_rule__Module__Group__5__Impl_in_rule__Module__Group__52077 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Module__RootAssignment_5_in_rule__Module__Group__5__Impl2104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__0__Impl_in_rule__DeclaredProperty__Group__02146 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__1_in_rule__DeclaredProperty__Group__02149 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_rule__DeclaredProperty__Group__0__Impl2177 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__1__Impl_in_rule__DeclaredProperty__Group__12208 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__2_in_rule__DeclaredProperty__Group__12211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__TypeAssignment_1_in_rule__DeclaredProperty__Group__1__Impl2238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__2__Impl_in_rule__DeclaredProperty__Group__22269 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__3_in_rule__DeclaredProperty__Group__22272 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__NameAssignment_2_in_rule__DeclaredProperty__Group__2__Impl2299 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group__3__Impl_in_rule__DeclaredProperty__Group__32329 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__0_in_rule__DeclaredProperty__Group__3__Impl2356 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__0__Impl_in_rule__DeclaredProperty__Group_3__02395 = new BitSet(new long[]{0x0000000061102F00L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__1_in_rule__DeclaredProperty__Group_3__02398 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__DeclaredProperty__Group_3__0__Impl2426 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__Group_3__1__Impl_in_rule__DeclaredProperty__Group_3__12457 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__DeclaredProperty__DefaultAssignment_3_1_in_rule__DeclaredProperty__Group_3__1__Impl2484 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__0__Impl_in_rule__RootComponent__Group__02518 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__1_in_rule__RootComponent__Group__02521 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__1__Impl_in_rule__RootComponent__Group__12579 = new BitSet(new long[]{0x0000000001000C00L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__2_in_rule__RootComponent__Group__12582 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Alternatives_1_in_rule__RootComponent__Group__1__Impl2609 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__2__Impl_in_rule__RootComponent__Group__22639 = new BitSet(new long[]{0x0000000001000800L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__3_in_rule__RootComponent__Group__22642 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_2__0_in_rule__RootComponent__Group__2__Impl2669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__3__Impl_in_rule__RootComponent__Group__32700 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__4_in_rule__RootComponent__Group__32703 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__AutoInjectAssignment_3_in_rule__RootComponent__Group__3__Impl2730 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__4__Impl_in_rule__RootComponent__Group__42761 = new BitSet(new long[]{0x0000000000001100L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__5_in_rule__RootComponent__Group__42764 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_rule__RootComponent__Group__4__Impl2792 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__5__Impl_in_rule__RootComponent__Group__52823 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__6_in_rule__RootComponent__Group__52826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__AssignmentAssignment_5_in_rule__RootComponent__Group__5__Impl2853 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group__6__Impl_in_rule__RootComponent__Group__62884 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__RootComponent__Group__6__Impl2912 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_1_1__0__Impl_in_rule__RootComponent__Group_1_1__02957 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_1_1__1_in_rule__RootComponent__Group_1_1__02960 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__RootComponent__Group_1_1__0__Impl2988 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_1_1__1__Impl_in_rule__RootComponent__Group_1_1__13019 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__ModuleAssignment_1_1_1_in_rule__RootComponent__Group_1_1__1__Impl3046 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_2__0__Impl_in_rule__RootComponent__Group_2__03080 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_2__1_in_rule__RootComponent__Group_2__03083 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_rule__RootComponent__Group_2__0__Impl3111 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__Group_2__1__Impl_in_rule__RootComponent__Group_2__13142 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__RootComponent__NameAssignment_2_1_in_rule__RootComponent__Group_2__1__Impl3169 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__0__Impl_in_rule__Component__Group__03203 = new BitSet(new long[]{0x0000000001002D00L});
+    public static final BitSet FOLLOW_rule__Component__Group__1_in_rule__Component__Group__03206 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__1__Impl_in_rule__Component__Group__13264 = new BitSet(new long[]{0x0000000001000C00L});
+    public static final BitSet FOLLOW_rule__Component__Group__2_in_rule__Component__Group__13267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Alternatives_1_in_rule__Component__Group__1__Impl3294 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__2__Impl_in_rule__Component__Group__23325 = new BitSet(new long[]{0x0000000001000800L});
+    public static final BitSet FOLLOW_rule__Component__Group__3_in_rule__Component__Group__23328 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group_2__0_in_rule__Component__Group__2__Impl3355 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__3__Impl_in_rule__Component__Group__33386 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_rule__Component__Group__4_in_rule__Component__Group__33389 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__AutoInjectAssignment_3_in_rule__Component__Group__3__Impl3416 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__4__Impl_in_rule__Component__Group__43447 = new BitSet(new long[]{0x0000000000001100L});
+    public static final BitSet FOLLOW_rule__Component__Group__5_in_rule__Component__Group__43450 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_11_in_rule__Component__Group__4__Impl3478 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group__5__Impl_in_rule__Component__Group__53509 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_rule__Component__Group__6_in_rule__Component__Group__53512 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__AssignmentAssignment_5_in_rule__Component__Group__5__Impl3539 = new BitSet(new long[]{0x0000000000000102L});
+    public static final BitSet FOLLOW_rule__Component__Group__6__Impl_in_rule__Component__Group__63570 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__Component__Group__6__Impl3598 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group_1_1__0__Impl_in_rule__Component__Group_1_1__03643 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__Component__Group_1_1__1_in_rule__Component__Group_1_1__03646 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_13_in_rule__Component__Group_1_1__0__Impl3674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group_1_1__1__Impl_in_rule__Component__Group_1_1__13705 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__ModuleAssignment_1_1_1_in_rule__Component__Group_1_1__1__Impl3732 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group_2__0__Impl_in_rule__Component__Group_2__03766 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__Component__Group_2__1_in_rule__Component__Group_2__03769 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_10_in_rule__Component__Group_2__0__Impl3797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__Group_2__1__Impl_in_rule__Component__Group_2__13828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Component__NameAssignment_2_1_in_rule__Component__Group_2__1__Impl3855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Import__Group__0__Impl_in_rule__Import__Group__03889 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__Import__Group__1_in_rule__Import__Group__03892 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__Import__Group__0__Impl3920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Import__Group__1__Impl_in_rule__Import__Group__13951 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Import__ImportedNamespaceAssignment_1_in_rule__Import__Group__1__Impl3978 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImportedFQN__Group__0__Impl_in_rule__ImportedFQN__Group__04012 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_rule__ImportedFQN__Group__1_in_rule__ImportedFQN__Group__04015 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__ImportedFQN__Group__0__Impl4042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ImportedFQN__Group__1__Impl_in_rule__ImportedFQN__Group__14071 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_rule__ImportedFQN__Group__1__Impl4100 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__0__Impl_in_rule__Assignment__Group__04137 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__1_in_rule__Assignment__Group__04140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__FeatureAssignment_0_in_rule__Assignment__Group__0__Impl4167 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__1__Impl_in_rule__Assignment__Group__14197 = new BitSet(new long[]{0x0000000061102F00L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__2_in_rule__Assignment__Group__14200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__Assignment__Group__1__Impl4228 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__Group__2__Impl_in_rule__Assignment__Group__24259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Assignment__ValueAssignment_2_in_rule__Assignment__Group__2__Impl4286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BooleanLiteral__Group__0__Impl_in_rule__BooleanLiteral__Group__04322 = new BitSet(new long[]{0x0000000000100200L});
+    public static final BitSet FOLLOW_rule__BooleanLiteral__Group__1_in_rule__BooleanLiteral__Group__04325 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BooleanLiteral__Group__1__Impl_in_rule__BooleanLiteral__Group__14383 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__BooleanLiteral__Alternatives_1_in_rule__BooleanLiteral__Group__1__Impl4410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group__0__Impl_in_rule__FQN__Group__04444 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group__1_in_rule__FQN__Group__04447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FQN__Group__0__Impl4474 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group__1__Impl_in_rule__FQN__Group__14503 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group_1__0_in_rule__FQN__Group__1__Impl4530 = new BitSet(new long[]{0x0000000004000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group_1__0__Impl_in_rule__FQN__Group_1__04565 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__FQN__Group_1__1_in_rule__FQN__Group_1__04568 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_26_in_rule__FQN__Group_1__0__Impl4596 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__FQN__Group_1__1__Impl_in_rule__FQN__Group_1__14627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_ID_in_rule__FQN__Group_1__1__Impl4654 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__0__Impl_in_rule__StringLiteral__Group_0__04687 = new BitSet(new long[]{0x000000003FFFFFF0L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__1_in_rule__StringLiteral__Group_0__04690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__BeginAssignment_0_0_in_rule__StringLiteral__Group_0__0__Impl4717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__1__Impl_in_rule__StringLiteral__Group_0__14747 = new BitSet(new long[]{0x0000000030000000L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__2_in_rule__StringLiteral__Group_0__14750 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_1_in_rule__StringLiteral__Group_0__1__Impl4777 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__2__Impl_in_rule__StringLiteral__Group_0__24808 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__3_in_rule__StringLiteral__Group_0__24811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__0_in_rule__StringLiteral__Group_0__2__Impl4838 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0__3__Impl_in_rule__StringLiteral__Group_0__34869 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__EndAssignment_0_3_in_rule__StringLiteral__Group_0__3__Impl4896 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__0__Impl_in_rule__StringLiteral__Group_0_2__04934 = new BitSet(new long[]{0x000000000FFFFFF2L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__1_in_rule__StringLiteral__Group_0_2__04937 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_2_0_in_rule__StringLiteral__Group_0_2__0__Impl4964 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_0_2__1__Impl_in_rule__StringLiteral__Group_0_2__14994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_0_2_1_in_rule__StringLiteral__Group_0_2__1__Impl5021 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__0__Impl_in_rule__StringLiteral__Group_1__05056 = new BitSet(new long[]{0x000000005FFFFFF0L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__1_in_rule__StringLiteral__Group_1__05059 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__BeginAssignment_1_0_in_rule__StringLiteral__Group_1__0__Impl5086 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__1__Impl_in_rule__StringLiteral__Group_1__15116 = new BitSet(new long[]{0x0000000050000000L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__2_in_rule__StringLiteral__Group_1__15119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_1_in_rule__StringLiteral__Group_1__1__Impl5146 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__2__Impl_in_rule__StringLiteral__Group_1__25177 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__3_in_rule__StringLiteral__Group_1__25180 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__0_in_rule__StringLiteral__Group_1__2__Impl5207 = new BitSet(new long[]{0x0000000010000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1__3__Impl_in_rule__StringLiteral__Group_1__35238 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__EndAssignment_1_3_in_rule__StringLiteral__Group_1__3__Impl5265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__0__Impl_in_rule__StringLiteral__Group_1_2__05303 = new BitSet(new long[]{0x000000000FFFFFF2L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__1_in_rule__StringLiteral__Group_1_2__05306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_2_0_in_rule__StringLiteral__Group_1_2__0__Impl5333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__Group_1_2__1__Impl_in_rule__StringLiteral__Group_1_2__15363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__StringLiteral__PartsAssignment_1_2_1_in_rule__StringLiteral__Group_1_2__1__Impl5390 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyReference__Group__0__Impl_in_rule__PropertyReference__Group__05425 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_rule__PropertyReference__Group__1_in_rule__PropertyReference__Group__05428 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_rule__PropertyReference__Group__0__Impl5456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyReference__Group__1__Impl_in_rule__PropertyReference__Group__15487 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_rule__PropertyReference__Group__2_in_rule__PropertyReference__Group__15490 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyReference__ReferableAssignment_1_in_rule__PropertyReference__Group__1__Impl5517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__PropertyReference__Group__2__Impl_in_rule__PropertyReference__Group__25547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_12_in_rule__PropertyReference__Group__2__Impl5575 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Module__CanonicalNameAssignment_25617 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImport_in_rule__Module__ImportsAssignment_35648 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDeclaredProperty_in_rule__Module__DeclaredPropertiesAssignment_45679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleRootComponent_in_rule__Module__RootAssignment_55710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__DeclaredProperty__TypeAssignment_15745 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__DeclaredProperty__NameAssignment_25780 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__DeclaredProperty__DefaultAssignment_3_15811 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__TypeAssignment_1_05846 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__ModuleAssignment_1_1_15885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__RootComponent__NameAssignment_2_15920 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__RootComponent__AutoInjectAssignment_35956 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssignment_in_rule__RootComponent__AssignmentAssignment_55995 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__TypeAssignment_1_06030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__ModuleAssignment_1_1_16069 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Component__NameAssignment_2_16104 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_24_in_rule__Component__AutoInjectAssignment_36140 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleAssignment_in_rule__Component__AssignmentAssignment_56179 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleImportedFQN_in_rule__Import__ImportedNamespaceAssignment_16210 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Assignment__FeatureAssignment_06245 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleValue_in_rule__Assignment__ValueAssignment_26280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__BooleanLiteral__IsTrueAssignment_1_06316 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__Reference__ReferableAssignment6359 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__StringLiteral__BeginAssignment_0_06399 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_16438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_0_2_06469 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_0_2_16500 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_29_in_rule__StringLiteral__EndAssignment_0_36536 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__StringLiteral__BeginAssignment_1_06580 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_16619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePropertyReference_in_rule__StringLiteral__PartsAssignment_1_2_06650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rulePlainString_in_rule__StringLiteral__PartsAssignment_1_2_16681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_rule__StringLiteral__EndAssignment_1_36717 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleFQN_in_rule__PropertyReference__ReferableAssignment_16760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleConstantValue_in_rule__PlainString__ValueAssignment6795 = new BitSet(new long[]{0x0000000000000002L});
 
 }
