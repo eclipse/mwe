@@ -40,6 +40,7 @@ public class MweHighlightingConfiguration extends DefaultHighlightingConfigurati
 	public TextStyle textPropertyRefStyle() {
 		TextStyle textStyle = stringTextStyle().copy();
 		textStyle.setStyle(SWT.BOLD);
+		textStyle.setColor(new RGB(227,55,34));
 		return textStyle;
 	}
 	
