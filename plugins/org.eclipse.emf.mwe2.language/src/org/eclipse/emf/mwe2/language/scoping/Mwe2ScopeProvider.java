@@ -128,6 +128,8 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 					.getDeclaredProperties());
 		} else {
 			JvmType containerType = container.getActualType();
+			if (containerType == null || containerType.eIsProxy())
+				return IScope.NULLSCOPE;
 			Map<String, JvmFeature> features = Maps.newHashMap();
 			JvmType createType = factorySupport
 					.findFactoriesCreationType(containerType);
