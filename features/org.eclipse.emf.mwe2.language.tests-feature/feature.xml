@@ -31,7 +31,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.emf.mwe2.language"/>
       <import plugin="org.eclipse.emf.mwe2.language.ui"/>
       <import plugin="org.eclipse.xtext.junit"/>
-      <import plugin="com.google.guice"/>
+      <import plugin="com.google.inject"/>
       <import plugin="org.eclipse.xtext"/>
       <import plugin="org.eclipse.xtext.common.types"/>
       <import plugin="org.eclipse.emf.mwe2.runtime"/>
