@@ -31,12 +31,12 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRootRootComponentParserRuleCall_5_0 = (RuleCall)cRootAssignment_5.eContents().get(0);
 		
 		//Module:
-		//  {Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=
-		//  DeclaredProperty* root=RootComponent;
+		//  {Module} "module" canonicalName=FQN imports+=Import*
+		//  declaredProperties+=DeclaredProperty* root=RootComponent;
 		public ParserRule getRule() { return rule; }
 
-		//{Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=
-		//DeclaredProperty* root=RootComponent
+		//{Module} "module" canonicalName=FQN imports+=Import*
+		//declaredProperties+=DeclaredProperty* root=RootComponent
 		public Group getGroup() { return cGroup; }
 
 		//{Module}
@@ -147,8 +147,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//RootComponent returns Component:
-		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
-		//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN
+		//  )? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
 		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
@@ -241,8 +241,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Component:
-		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
-		//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":"
+		//  name=FQN)? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
 		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
@@ -527,18 +527,18 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cEndQuotationMarkKeyword_1_3_0 = (Keyword)cEndAssignment_1_3.eContents().get(0);
 		
 		//StringLiteral hidden ( ):
-		//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
-		//  "\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//  end="\"";
+		//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)
+		//  * end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
+		//  parts+=PlainString?)* end="\"";
 		public ParserRule getRule() { return rule; }
 
-		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
-		//"\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end="\""
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
+		//parts+=PlainString?)* end="\""
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
-		//"\'"
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="\'"
 		public Group getGroup_0() { return cGroup_0; }
 
 		//begin="\'"
@@ -574,8 +574,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//"\'"
 		public Keyword getEndApostropheKeyword_0_3_0() { return cEndApostropheKeyword_0_3_0; }
 
-		//begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
-		//"\""
+		//begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="\""
 		public Group getGroup_1() { return cGroup_1; }
 
 		//begin="\""
@@ -690,8 +690,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ConstantValue returns ecore::EString:
 		//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
-		//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-		//  "."|".*")+;
+		//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"
+		//  |"."|".*")+;
 		public ParserRule getRule() { return rule; }
 
 		//(WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
@@ -808,8 +808,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//  {Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=
-	//  DeclaredProperty* root=RootComponent;
+	//  {Module} "module" canonicalName=FQN imports+=Import*
+	//  declaredProperties+=DeclaredProperty* root=RootComponent;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
@@ -829,8 +829,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RootComponent returns Component:
-	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
-	//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN
+	//  )? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 	public RootComponentElements getRootComponentAccess() {
 		return (pRootComponent != null) ? pRootComponent : (pRootComponent = new RootComponentElements());
 	}
@@ -840,8 +840,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Component:
-	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
-	//  autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":"
+	//  name=FQN)? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
 	public ComponentElements getComponentAccess() {
 		return (pComponent != null) ? pComponent : (pComponent = new ComponentElements());
 	}
@@ -921,9 +921,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//StringLiteral hidden ( ):
-	//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=
-	//  "\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-	//  end="\"";
+	//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)
+	//  * end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
+	//  parts+=PlainString?)* end="\"";
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -954,8 +954,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 
 	//ConstantValue returns ecore::EString:
 	//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
-	//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-	//  "."|".*")+;
+	//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"
+	//  |"."|".*")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}
