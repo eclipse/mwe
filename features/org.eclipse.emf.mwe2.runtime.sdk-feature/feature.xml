@@ -41,21 +41,21 @@ http://www.eclipse.org/legal/epl-v10.html
          id="com.google.collect"
          download-size="0"
          install-size="0"
-         version="0.8.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.runtime"
          download-size="0"
          install-size="0"
-         version="1.0.0.qualifier"
+         version="0.0.0"
          unpack="false"/>
 
    <plugin
          id="org.apache.log4j"
          download-size="0"
          install-size="0"
-         version="1.2.15"
+         version="0.0.0"
          unpack="false"/>
 
 </feature>
