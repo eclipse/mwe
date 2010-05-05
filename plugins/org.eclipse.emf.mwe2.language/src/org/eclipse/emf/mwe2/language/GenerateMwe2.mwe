@@ -25,8 +25,13 @@
 			<fragment class="org.eclipse.xtext.generator.resourceFactory.ResourceFactoryFragment" 
 				fileExtensions="${file.extensions}"/>
 				
-			<!-- the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/ -->
-			<fragment class="org.eclipse.xtext.generator.AntlrDelegatingFragment" />
+			<fragment class="de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment" />
+			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment">
+				<lexerGrammar value="org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer"/>
+				<runtime value="true"/>
+				<antlrParam value="-lib"/>
+				<antlrParam value="${runtimeProject}/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/lexer"/>
+			</fragment>
 			
 			<!-- java-based API for validation -->
 			<fragment class="org.eclipse.xtext.generator.validation.JavaValidatorFragment">
@@ -54,10 +59,7 @@
 			<fragment class="org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment"/>
 			<!-- the following fragment tries to use the Antlr based content assist fragment which can be downloaded from http://www.itemis.com 
 			     and will be ignored if it's not available. -->
-			<fragment class="org.eclipse.xtext.generator.DelegatingGeneratorFragment" 
-				delegate="de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-				message="You are generating without ANTLR. It is highly recommended to download and use the plugin 'de.itemis.xtext.antlr' \n\t using the update site http://download.itemis.com/updates/.">
-			</fragment>
+			<fragment class="de.itemis.xtext.antlr.ex.ca.ContentAssistParserGeneratorFragment"/>
 
 				<fragment class="org.eclipse.xtext.generator.builder.BuilderIntegrationFragment"/>
 			<fragment class="org.eclipse.xtext.generator.exporting.QualifiedNamesFragment"/>
@@ -65,6 +67,12 @@
 				lexerGrammar="org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlighting"
 				highlighting="true"
 			/>
+			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment">
+				<lexerGrammar value="org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexer"/>
+				<contentAssist value="true"/>
+				<antlrParam value="-lib"/>
+				<antlrParam value="${runtimeProject}.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/lexer"/>
+			</fragment>
 
 			<!-- quickfix API -->
 			<fragment class="org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment"/>			

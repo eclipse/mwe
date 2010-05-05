@@ -38,39 +38,39 @@ public abstract class AbstractMwe2RuntimeModule extends DefaultRuntimeModule {
 		return org.eclipse.emf.mwe2.language.parseTreeConstruction.Mwe2ParsetreeConstructor.class;
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrParser> bindIAntlrParser() {
 		return org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser.class;
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.ITokenToStringConverter> bindITokenToStringConverter() {
 		return org.eclipse.xtext.parser.antlr.AntlrTokenToStringConverter.class;
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider> bindIAntlrTokenFileProvider() {
 		return org.eclipse.emf.mwe2.language.parser.antlr.Mwe2AntlrTokenFileProvider.class;
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.Lexer> bindLexer() {
-		return org.eclipse.emf.mwe2.language.parser.antlr.internal.InternalMwe2Lexer.class;
+		return org.eclipse.emf.mwe2.language.parser.antlr.lexer.InternalMwe2Lexer.class;
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public com.google.inject.Provider<org.eclipse.emf.mwe2.language.parser.antlr.internal.InternalMwe2Lexer> provideInternalMwe2Lexer() {
-		return org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.emf.mwe2.language.parser.antlr.internal.InternalMwe2Lexer.class);
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
+	public com.google.inject.Provider<org.eclipse.emf.mwe2.language.parser.antlr.lexer.InternalMwe2Lexer> provideInternalMwe2Lexer() {
+		return org.eclipse.xtext.parser.antlr.LexerProvider.create(org.eclipse.emf.mwe2.language.parser.antlr.lexer.InternalMwe2Lexer.class);
 	}
 
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
-	public void configureRuntimeLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(org.eclipse.emf.mwe2.language.parser.antlr.internal.InternalMwe2Lexer.class);
-	}
-
-	// contributed by de.itemis.xtext.antlr.XtextAntlrGeneratorFragment
+	// contributed by de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment
 	public Class<? extends org.eclipse.xtext.parser.antlr.ITokenDefProvider> bindITokenDefProvider() {
 		return org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider.class;
+	}
+
+	// contributed by de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment
+	public void configureRuntimeLexer(com.google.inject.Binder binder) {
+		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(org.eclipse.emf.mwe2.language.lexer.Mwe2LexerLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.JavaValidatorFragment

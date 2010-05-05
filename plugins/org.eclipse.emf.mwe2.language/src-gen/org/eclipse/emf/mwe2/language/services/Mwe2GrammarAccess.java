@@ -665,38 +665,23 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cANY_OTHERTerminalRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
-		private final RuleCall cML_COMMENTTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cSL_COMMENTTerminalRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
-		private final RuleCall cIDTerminalRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
-		private final Keyword cColonKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
-		private final Keyword cLeftCurlyBracketKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
-		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cAlternatives.eContents().get(7);
-		private final Keyword cCommercialAtKeyword_8 = (Keyword)cAlternatives.eContents().get(8);
-		private final Keyword cReverseSolidusApostropheKeyword_9 = (Keyword)cAlternatives.eContents().get(9);
-		private final Keyword cReverseSolidusQuotationMarkKeyword_10 = (Keyword)cAlternatives.eContents().get(10);
-		private final Keyword cReverseSolidusDollarSignLeftCurlyBracketKeyword_11 = (Keyword)cAlternatives.eContents().get(11);
-		private final Keyword cReverseSolidusReverseSolidusKeyword_12 = (Keyword)cAlternatives.eContents().get(12);
-		private final Keyword cReverseSolidusSolidusAsteriskKeyword_13 = (Keyword)cAlternatives.eContents().get(13);
-		private final Keyword cReverseSolidusSolidusSolidusKeyword_14 = (Keyword)cAlternatives.eContents().get(14);
-		private final Keyword cTrueKeyword_15 = (Keyword)cAlternatives.eContents().get(15);
-		private final Keyword cFalseKeyword_16 = (Keyword)cAlternatives.eContents().get(16);
-		private final Keyword cEqualsSignKeyword_17 = (Keyword)cAlternatives.eContents().get(17);
-		private final Keyword cImportKeyword_18 = (Keyword)cAlternatives.eContents().get(18);
-		private final Keyword cModuleKeyword_19 = (Keyword)cAlternatives.eContents().get(19);
-		private final Keyword cAutoInjectKeyword_20 = (Keyword)cAlternatives.eContents().get(20);
-		private final Keyword cVarKeyword_21 = (Keyword)cAlternatives.eContents().get(21);
-		private final Keyword cFullStopKeyword_22 = (Keyword)cAlternatives.eContents().get(22);
-		private final Keyword cFullStopAsteriskKeyword_23 = (Keyword)cAlternatives.eContents().get(23);
+		private final RuleCall cIDTerminalRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
+		private final Keyword cReverseSolidusApostropheKeyword_3 = (Keyword)cAlternatives.eContents().get(3);
+		private final Keyword cReverseSolidusQuotationMarkKeyword_4 = (Keyword)cAlternatives.eContents().get(4);
+		private final Keyword cReverseSolidusDollarSignLeftCurlyBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
+		private final Keyword cReverseSolidusReverseSolidusKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
+		//// To identify other keywords as allowed parts in a string,
+		//// we use a customized lexer with predicates. 
+		//// This allows us to use e.g. single quotes without escape sequences
+		//// in double quoted strings and vice versa.
+		//
+		//
 		//ConstantValue returns ecore::EString:
-		//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
-		//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"
-		//  |"."|".*")+;
+		//  (WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+;
 		public ParserRule getRule() { return rule; }
 
-		//(WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
-		//"\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"|
-		//"."|".*")+
+		//(WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
@@ -705,71 +690,20 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//ANY_OTHER
 		public RuleCall getANY_OTHERTerminalRuleCall_1() { return cANY_OTHERTerminalRuleCall_1; }
 
-		//ML_COMMENT
-		public RuleCall getML_COMMENTTerminalRuleCall_2() { return cML_COMMENTTerminalRuleCall_2; }
-
-		//SL_COMMENT
-		public RuleCall getSL_COMMENTTerminalRuleCall_3() { return cSL_COMMENTTerminalRuleCall_3; }
-
 		//ID
-		public RuleCall getIDTerminalRuleCall_4() { return cIDTerminalRuleCall_4; }
-
-		//":"
-		public Keyword getColonKeyword_5() { return cColonKeyword_5; }
-
-		//"{"
-		public Keyword getLeftCurlyBracketKeyword_6() { return cLeftCurlyBracketKeyword_6; }
-
-		//"}"
-		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
-
-		//"@"
-		public Keyword getCommercialAtKeyword_8() { return cCommercialAtKeyword_8; }
+		public RuleCall getIDTerminalRuleCall_2() { return cIDTerminalRuleCall_2; }
 
 		//"\\\'"
-		public Keyword getReverseSolidusApostropheKeyword_9() { return cReverseSolidusApostropheKeyword_9; }
+		public Keyword getReverseSolidusApostropheKeyword_3() { return cReverseSolidusApostropheKeyword_3; }
 
 		//"\\\""
-		public Keyword getReverseSolidusQuotationMarkKeyword_10() { return cReverseSolidusQuotationMarkKeyword_10; }
+		public Keyword getReverseSolidusQuotationMarkKeyword_4() { return cReverseSolidusQuotationMarkKeyword_4; }
 
 		//"\\${"
-		public Keyword getReverseSolidusDollarSignLeftCurlyBracketKeyword_11() { return cReverseSolidusDollarSignLeftCurlyBracketKeyword_11; }
+		public Keyword getReverseSolidusDollarSignLeftCurlyBracketKeyword_5() { return cReverseSolidusDollarSignLeftCurlyBracketKeyword_5; }
 
 		//"\\\\"
-		public Keyword getReverseSolidusReverseSolidusKeyword_12() { return cReverseSolidusReverseSolidusKeyword_12; }
-
-		//"\\/ *"
-		public Keyword getReverseSolidusSolidusAsteriskKeyword_13() { return cReverseSolidusSolidusAsteriskKeyword_13; }
-
-		//"\\//"
-		public Keyword getReverseSolidusSolidusSolidusKeyword_14() { return cReverseSolidusSolidusSolidusKeyword_14; }
-
-		//"true"
-		public Keyword getTrueKeyword_15() { return cTrueKeyword_15; }
-
-		//"false"
-		public Keyword getFalseKeyword_16() { return cFalseKeyword_16; }
-
-		//"="
-		public Keyword getEqualsSignKeyword_17() { return cEqualsSignKeyword_17; }
-
-		//"import"
-		public Keyword getImportKeyword_18() { return cImportKeyword_18; }
-
-		//"module"
-		public Keyword getModuleKeyword_19() { return cModuleKeyword_19; }
-
-		//"auto-inject"
-		public Keyword getAutoInjectKeyword_20() { return cAutoInjectKeyword_20; }
-
-		//"var"
-		public Keyword getVarKeyword_21() { return cVarKeyword_21; }
-
-		//"."
-		public Keyword getFullStopKeyword_22() { return cFullStopKeyword_22; }
-
-		//".*"
-		public Keyword getFullStopAsteriskKeyword_23() { return cFullStopAsteriskKeyword_23; }
+		public Keyword getReverseSolidusReverseSolidusKeyword_6() { return cReverseSolidusReverseSolidusKeyword_6; }
 	}
 	
 	
@@ -952,10 +886,14 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getPlainStringAccess().getRule();
 	}
 
+	//// To identify other keywords as allowed parts in a string,
+	//// we use a customized lexer with predicates. 
+	//// This allows us to use e.g. single quotes without escape sequences
+	//// in double quoted strings and vice versa.
+	//
+	//
 	//ConstantValue returns ecore::EString:
-	//  (WS|ANY_OTHER|ML_COMMENT|SL_COMMENT|ID|":"|"{"|"}"|"@"|"\\\'"|"\\\""|"\\${"|
-	//  "\\\\"|"\\/ *"|"\\//"|"true"|"false"|"="|"import"|"module"|"auto-inject"|"var"
-	//  |"."|".*")+;
+	//  (WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}

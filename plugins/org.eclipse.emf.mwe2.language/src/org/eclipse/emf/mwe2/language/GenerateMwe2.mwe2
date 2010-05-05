@@ -16,6 +16,7 @@ var grammarURI = "classpath:/org/eclipse/emf/mwe2/language/Mwe2.xtext"
 var file.extensions = "mwe2"
 var projectName = "org.eclipse.emf.mwe2.language"
 var runtimeProject = "../${projectName}"
+var uiProject = "${runtimeProject}.ui"
 
 Workflow {
 	
@@ -33,7 +34,7 @@ Workflow {
 	
 	component = Generator {
 		pathRtProject = runtimeProject
-		pathUiProject = "${runtimeProject}.ui"
+		pathUiProject = uiProject
 		projectNameRt = projectName
 		projectNameUi = "${projectName}.ui"
 		
@@ -52,8 +53,14 @@ Workflow {
 				fileExtensions = file.extensions
 			}
 				
-			// the following fragment tries to use the Antlr Generator fragment which can be installed via update manager from http://download.itemis.com/updates/ -->
-			fragment = AntlrDelegatingFragment {}
+			fragment = de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment {}
+			
+			fragment = de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment {
+				lexerGrammar = "org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer"
+				runtime = true
+				antlrParam = "-lib"
+				antlrParam = "${runtimeProject}/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/lexer"
+			}
 			
 			// java-based API for validation 
 			fragment = validation.JavaValidatorFragment {
@@ -80,13 +87,7 @@ Workflow {
 			// java-based API for content assistance 
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 			
-			// the following fragment tries to use the Antlr based content assist 
-			//     fragment which can be downloaded from http://www.itemis.com 
-			//     and will be ignored if it's not available. 
-			fragment = DelegatingGeneratorFragment { 
-				delegate = "de.itemis.xtext.antlr.XtextAntlrUiGeneratorFragment"
-				message="You are generating without ANTLR. It is highly recommended to download and use the plugin \'de.itemis.xtext.antlr\' \n\t using the update site http:\//download.itemis.com/updates/."
-			}
+			fragment = de.itemis.xtext.antlr.ex.ca.ContentAssistParserGeneratorFragment {}
 
 			fragment = builder.BuilderIntegrationFragment {}
 			fragment = exporting.QualifiedNamesFragment {}
@@ -95,6 +96,12 @@ Workflow {
 				highlighting = true
 			}
 
+			fragment = de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment {
+				lexerGrammar = "org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexer"
+				contentAssist = true
+				antlrParam = "-lib"
+				antlrParam = "${uiProject}/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/lexer"
+			}
 			// quickfix API 
 			fragment = quickfix.QuickfixProviderFragment {}			
 		}

@@ -68,8 +68,6 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 			protected String internalToValue(String string, AbstractNode node) {
 				try {
 					string = string.replace("\\${", "${");
-					string = string.replace("\\//", "//");
-					string = string.replace("\\/*", "/*");
 					return Strings.convertFromJavaString(string, false);
 				} catch(IllegalArgumentException e) {
 					throw new ValueConverterException(e.getMessage(), node, e);
@@ -80,8 +78,6 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 			protected String internalToString(String value) {
 				String result = Strings.convertToJavaString(value, false);
 				result = result.replace("${", "\\${");
-				result = result.replace("//", "\\//");
-				result = result.replace("/*", "\\/*");
 				return result;
 			}
 		};

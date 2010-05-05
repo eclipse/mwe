@@ -103,6 +103,54 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					":", "{", "}");
 	}
 	
+	public void testCompleteStringLiteral_01() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = ' ")
+			.assertText(
+					"${", "'");
+	}
+	
+	public void testCompleteStringLiteral_02() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = ' ${ ")
+			.assertText(
+					"message");
+	}
+	
+	public void testCompleteStringLiteral_03() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = ' $")
+			.assertText(
+					"${", "'");
+	}
+	
+	public void testCompleteStringLiteral_04() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = \" ")
+			.assertText(
+					"${", "\"");
+	}
+	
+	public void testCompleteStringLiteral_05() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = \" ${ ")
+			.assertText(
+					"message");
+	}
+	
+	public void testCompleteStringLiteral_06() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = \" $")
+			.assertText(
+					"${", "\"");
+	}
+	
 	protected ContentAssistProcessorTestBuilder newBuilder() throws Exception {
 		return newBuilder(getSetup()).appendNl("module org.my.testmodel");
 	}

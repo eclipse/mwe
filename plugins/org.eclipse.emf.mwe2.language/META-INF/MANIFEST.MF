@@ -34,5 +34,6 @@ Export-Package: org.eclipse.emf.mwe2.language,
  org.eclipse.emf.mwe2.language.resource,
  org.eclipse.emf.mwe2.language.scoping,
  org.eclipse.emf.mwe2.language.services,
- org.eclipse.emf.mwe2.language.validation
+ org.eclipse.emf.mwe2.language.validation,
+ org.eclipse.emf.mwe2.language.parser.antlr.lexer
 

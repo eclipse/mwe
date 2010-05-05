@@ -63,12 +63,14 @@ public class StringLiteralTest extends AbstractParserTest {
 	
 	public void testComments() {
 		checkPlainString("// something\n", "// something\n");
+		checkPlainString("// something", "// something");
 		checkPlainString("/* something */", "/* something */");
+		checkPlainString("/* something", "/* something");
 	}
 	
 	public void testEscapedComments() {
-		checkPlainString("\\// something", "// something");
-		checkPlainString("\\/* something", "/* something");
+		parseWithErrors("\\// something", 1);
+		parseWithErrors("\\/* something", 1);
 	}
 	
 	public void testWS() {
@@ -144,6 +146,26 @@ public class StringLiteralTest extends AbstractParserTest {
 		checkReference("$${something}", "something");
 		checkReference(" ${something}}", "something");
 		checkReference("{${something}$", "something");
+	}
+	
+	public void testHttpInString() {
+		checkPlainString("http://www.xtext.org", "http://www.xtext.org");
+	}
+	
+	public void testDoubleQuoteInSingleQuotedString() {
+		IParseResult result = super.parseSuccessfully("'\"'");
+		StringLiteral literal = (StringLiteral) result.getRootASTElement();
+		assertEquals("'\"'", 1, literal.getParts().size());
+		PlainString plain = (PlainString) literal.getParts().get(0);
+		assertEquals("'\"'", "\"", plain.getValue());
+	}
+	
+	public void testSingleQuoteInDoubleQuotedString() {
+		IParseResult result = super.parseSuccessfully("\"'\"");
+		StringLiteral literal = (StringLiteral) result.getRootASTElement();
+		assertEquals("\"'\"", 1, literal.getParts().size());
+		PlainString plain = (PlainString) literal.getParts().get(0);
+		assertEquals("\"'\"", "'", plain.getValue());
 	}
 	
 	@Override
