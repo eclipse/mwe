@@ -65,12 +65,21 @@ public class Mwe2Runner {
 			throw new IllegalStateException(module.eResource().getErrors().toString());
 		}
 		Map<String, Object> actualParams = getRealParams(params);
-		Object object = engine.create(module, actualParams);
+		Object object = null;
+		try {
+			object = engine.create(module, actualParams);
+		} catch (RuntimeException e) {
+			throw new RuntimeException("Problems instantiating module " + moduleName, e);
+		}
 		if (!(object instanceof IWorkflow)) {
 			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"
 					+ object.getClass() + "'.");
 		}
-		((IWorkflow) object).run(new WorkflowContextImpl());
+		try {
+			((IWorkflow) object).run(new WorkflowContextImpl());
+		} catch (RuntimeException e) {
+			throw new RuntimeException("Problems running workflow " + moduleName, e);
+		}
 	}
 
 	protected Map<String, Object> getRealParams(Map<String, String> params) {
