@@ -9,12 +9,14 @@
 package org.eclipse.emf.mwe2.language;
 
 import org.eclipse.emf.mwe2.language.resource.MweLocationInFileProvider;
+import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionManager;
 import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
+import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
 import com.google.inject.Provider;
@@ -46,6 +48,10 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	@Override
 	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return MweLocationInFileProvider.class;
+	}
+	
+	public Class<? extends IResourceDescription.Manager> bindIResourceDescription$Manager() {
+		return MweResourceDescriptionManager.class;
 	}
 	
 }

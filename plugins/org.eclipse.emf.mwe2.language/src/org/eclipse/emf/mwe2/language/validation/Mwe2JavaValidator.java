@@ -17,6 +17,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
@@ -151,6 +152,11 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				Component component = (Component) next;
 				if (component.isAutoInject()) {
 					Set<String> featureNames = collectFeatureNames(component);
+					Set<String> explicitlyAssignedFeature = Sets.newHashSet();
+					for(Assignment assignment: component.getAssignment()) {
+						explicitlyAssignedFeature.add(assignment.getFeatureName());
+					}
+					featureNames.removeAll(explicitlyAssignedFeature);
 					featureNames.retainAll(declared.keySet());
 					referenced.addAll(featureNames);
 				}
@@ -235,10 +241,18 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				List<String> missingAssignments = Lists.newArrayList(mandatoryFeatures.keySet());
 				Collections.sort(missingAssignments);
 				String concatenated = Strings.concat(", ", missingAssignments);
+				EStructuralFeature feature = null;
+				if (component.getType() != null)
+					feature = Mwe2Package.Literals.REFERRABLE__TYPE;
+				else if (component.getModule() != null)
+					feature = Mwe2Package.Literals.COMPONENT__MODULE;
+				else if (component.getName() != null)
+					feature = Mwe2Package.Literals.REFERRABLE__NAME;
+				Integer featureId = feature == null? null : component.eClass().getFeatureID(feature);
 				if (missingAssignments.size() == 1)
-					error("Mandatory feature was not assigned: '" + concatenated + "'.", component, null, MISSING_MANDATORY_FEATURE);
+					error("Mandatory feature was not assigned: '" + concatenated + "'.", component, featureId, MISSING_MANDATORY_FEATURE);
 				else
-					error("Mandatory features were not assigned: '" + concatenated + "'.", component, null, MISSING_MANDATORY_FEATURE);
+					error("Mandatory features were not assigned: '" + concatenated + "'.", component, featureId, MISSING_MANDATORY_FEATURE);
 			}
 		}
 	}

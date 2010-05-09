@@ -115,6 +115,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
 		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
 	}
+	
 	public void testUnusedLocalVariable_2() throws Exception {
 		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups { y = foo }";
 		EObject model = getModel(textModel);
@@ -126,6 +127,36 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 	
 	public void testUnusedLocalVariable_3() throws Exception {
 		String textModel = "module foo var foo = 'holla' var bar = '${foo}!' "+ComponentA.class.getName()+"{ y = bar}";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),0,list.size());
+	}
+	
+	public void testUnusedLocalVariable_4() throws Exception {
+		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),0,list.size());
+	}
+	
+	public void testUnusedLocalVariable_5() throws Exception {
+		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = 'zonk' }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(1,list.size());
+		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
+	}
+	
+	public void testUnusedLocalVariable_6() throws Exception {
+		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = y }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(),0,list.size());
+	}
+	
+	public void testUnusedLocalVariable_7() throws Exception {
+		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = '${y}' }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),0,list.size());

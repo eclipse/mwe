@@ -40,6 +40,8 @@ public class MweLocationInFileProvider extends DefaultLocationInFileProvider {
 				return Mwe2Package.Literals.REFERRABLE__NAME;
 			if (((Component) obj).getType() != null)
 				return Mwe2Package.Literals.REFERRABLE__TYPE;
+			if (((Component) obj).getModule() != null)
+				return Mwe2Package.Literals.COMPONENT__MODULE;
 		}
 		if (obj instanceof Assignment) {
 			return Mwe2Package.Literals.ASSIGNMENT__FEATURE;
