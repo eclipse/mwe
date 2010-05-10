@@ -151,6 +151,40 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "\"");
 	}
 	
+	public void testCompleteProperty_01() throws Exception {
+		newBuilder()
+		.appendNl("StringBuilder {")
+		.assertText(
+				"length", "}" );
+	}
+	
+	public void testCompleteProperty_02() throws Exception {
+		newBuilder()
+		.appendNl("StringBuilder {")
+		.append("len")
+		.assertText(
+				"length", "=" );
+	}
+	
+	public void testCompletePropertyValue_01() throws Exception {
+		newBuilder()
+		.appendNl("var zonk = '1'")
+		.appendNl("StringBuilder {")
+		.append("length = ")
+		.assertText(
+				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
+	}
+	
+	public void testCompletePropertyValue_02() throws Exception {
+		newBuilder()
+		.appendNl("var zonk = '1'")
+		.appendNl("StringBuilder {")
+		.appendNl("length = '1'")
+		.append("length = ")
+		.assertText(
+				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
+	}
+	
 	protected ContentAssistProcessorTestBuilder newBuilder() throws Exception {
 		return newBuilder(getSetup()).appendNl("module org.my.testmodel");
 	}
