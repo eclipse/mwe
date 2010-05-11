@@ -24,16 +24,19 @@ import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.ao.AbstractWorkflowAdvice;
 import org.eclipse.emf.mwe.core.config.FeatureComponent;
 import org.eclipse.emf.mwe.core.issues.Issues;
+import org.eclipse.emf.mwe.core.lib.Mwe2Bridge;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
+import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
 /**
  * A composite <tt>WorkflowComponent</tt>.
  * 
  */
-public class CompositeComponent implements WorkflowComponentWithID {
+public class CompositeComponent implements WorkflowComponentWithID, IWorkflowComponent {
 
 	private static final String COMPONENT_NAME = "Composite component";
 
@@ -332,4 +335,23 @@ public class CompositeComponent implements WorkflowComponentWithID {
 		return COMPONENT_NAME;
 	}
 
+	private Mwe2Bridge bridge;
+	
+	protected Mwe2Bridge getBridge() {
+		if (bridge == null)
+			bridge = new Mwe2Bridge(this);
+		return bridge;
+	}
+	
+	public void preInvoke() {
+		getBridge().preInvoke();
+	}
+	
+	public void invoke(final IWorkflowContext ctx) {
+		getBridge().invoke(ctx);
+	}
+
+	public void postInvoke() {
+		getBridge().postInvoke();
+	}
 }
