@@ -26,15 +26,15 @@ http://www.eclipse.org/legal/epl-v10.html
       <update label="%UpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
       <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
-   
-   <requires>
-      <import feature="org.eclipse.xtext.ui" version="1.0.0"/>
-   </requires>
-   
+
    <includes
          id="org.eclipse.emf.mwe2.language.source"
          version="0.0.0"/>
-         
+
+   <requires>
+      <import feature="org.eclipse.xtext.ui" version="1.0.0"/>
+   </requires>
+
    <plugin
          id="org.eclipse.emf.mwe2.language"
          download-size="0"
@@ -55,6 +55,5 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
 
 </feature>
