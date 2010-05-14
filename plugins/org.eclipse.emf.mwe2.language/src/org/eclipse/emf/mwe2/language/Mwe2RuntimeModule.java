@@ -41,6 +41,11 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 		return Mwe2ValueConverters.class;
 	}
 	
+	@Override
+	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
+		return null;
+	}
+	
 	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
 		return MweResourceSetProvider.class;
 	}
