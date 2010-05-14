@@ -1,6 +1,8 @@
 
 package org.eclipse.emf.mwe2.language.ui.quickfix;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -12,7 +14,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.impl.JvmTypeUriFactory;
 import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
 import org.eclipse.emf.mwe2.runtime.IFactory;
@@ -35,6 +39,10 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.dialogs.SelectionDialog;
+import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmFormalParameter;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext;
 import org.eclipse.xtext.ui.editor.model.edit.ISemanticModification;
@@ -63,7 +71,17 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 						Component component = (Component) element;
 						if (component != null) {
 							IJavaProject project = findEnclosingProject(element.eResource());
-							String type = chooseType(project, component.getActualType());
+							Assignment assignment = EcoreUtil2.getContainerOfType(component, Assignment.class);
+							JvmFeature feature = assignment.getFeature();
+							JvmType actualType = component.getActualType();
+							if (feature instanceof JvmOperation) {
+								List<JvmFormalParameter> parameters = ((JvmOperation) feature).getParameters();
+								JvmFormalParameter parameter = parameters.get(0);
+								actualType = parameter.getParameterType().getType();
+							} else if (feature instanceof DeclaredProperty) {
+								actualType = ((DeclaredProperty) feature).getType();
+							}
+							String type = chooseType(project, actualType);
 							if (type != null) {
 								JvmType jvmType = findJvmType(component, type);
 								component.setType(jvmType);
@@ -117,6 +135,9 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 				                	// TODO check right factory type
 				                	return Status.OK_STATUS;
 				                }
+				            	if (superType.equals(intf.getFullyQualifiedName())) {
+				            		return Status.OK_STATUS;
+				            	}
 				            }
 				        } 
 				        catch (JavaModelException e) {
