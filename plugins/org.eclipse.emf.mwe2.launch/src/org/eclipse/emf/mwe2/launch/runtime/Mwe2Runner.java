@@ -23,6 +23,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.emf.mwe2.runtime.workflow.WorkflowContextImpl;
 import org.eclipse.xtext.mwe.RuntimeResourceSetInitializer;
+import org.eclipse.xtext.mwe.UriFilter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
@@ -89,7 +90,11 @@ public class Mwe2Runner {
 	}
 
 	protected Module findModule(String moduleName) {
-		ResourceSet resourceSet = initializer.getInitializedResourceSet(getPathes());
+		ResourceSet resourceSet = initializer.getInitializedResourceSet(getPathes(), new UriFilter() {
+			public boolean matches(URI uri) {
+				return "mwe2".equalsIgnoreCase(uri.fileExtension());
+			}
+		});
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {
 			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE, moduleName);
