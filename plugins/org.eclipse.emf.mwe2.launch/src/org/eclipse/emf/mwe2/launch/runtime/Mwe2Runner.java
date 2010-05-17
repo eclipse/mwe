@@ -69,7 +69,7 @@ public class Mwe2Runner {
 		try {
 			object = engine.create(module, actualParams);
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems instantiating module " + moduleName, e);
+			throw new RuntimeException("Problems instantiating module " + moduleName + ": " + e.getMessage(), e);
 		}
 		if (!(object instanceof IWorkflow)) {
 			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"
@@ -78,7 +78,7 @@ public class Mwe2Runner {
 		try {
 			((IWorkflow) object).run(new WorkflowContextImpl());
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems running workflow " + moduleName, e);
+			throw new RuntimeException("Problems running workflow " + moduleName + ": " + e.getMessage(), e);
 		}
 	}
 
