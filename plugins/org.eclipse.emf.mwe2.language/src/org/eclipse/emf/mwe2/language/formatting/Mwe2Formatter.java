@@ -53,7 +53,7 @@ public class Mwe2Formatter extends AbstractDeclarativeFormatter {
 		}
 
 		// No space in property refs.
-		c.setNoSpace().around(f.getPropertyReferenceRule());
+		c.setNoSpace().around(f.getPropertyReferenceAccess().getReferableAssignment_1());
 
 		// Keep some linewraps before/after comments.
 		c.setLinewrap(0, 1, 2).before(f.getSL_COMMENTRule());
