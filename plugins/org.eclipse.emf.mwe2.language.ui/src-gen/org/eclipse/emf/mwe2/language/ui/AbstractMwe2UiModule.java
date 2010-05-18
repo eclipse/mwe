@@ -10,6 +10,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Manual modifications go to {org.eclipse.emf.mwe2.language.ui.Mwe2UiModule}
  */
+@SuppressWarnings("all")
 public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 	
 	public AbstractMwe2UiModule(AbstractUIPlugin plugin) {

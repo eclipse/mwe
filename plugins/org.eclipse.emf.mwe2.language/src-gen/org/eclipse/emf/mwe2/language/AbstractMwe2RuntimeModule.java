@@ -13,6 +13,7 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.emf.mwe2.language.Mwe2RuntimeModule}
  */
+ @SuppressWarnings("all")
 public abstract class AbstractMwe2RuntimeModule extends DefaultRuntimeModule {
 	
 	@Override

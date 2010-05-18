@@ -12,6 +12,7 @@ import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("all")
 public class Mwe2ParsetreeConstructor extends AbstractParseTreeConstructor {
 		
 	@Inject
@@ -51,13 +52,11 @@ protected class ThisRootNode extends RootToken {
 /************ begin Rule Module ****************
  *
  * Module:
- *   {Module} "module" canonicalName=FQN imports+=Import*
- *   declaredProperties+=DeclaredProperty* root=RootComponent;
+ * 	{Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent;
  *
  **/
 
-// {Module} "module" canonicalName=FQN imports+=Import*
-// declaredProperties+=DeclaredProperty* root=RootComponent
+// {Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent
 protected class Module_Group extends GroupToken {
 	
 	public Module_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -318,7 +317,7 @@ protected class Module_RootAssignment_5 extends AssignmentToken  {
 /************ begin Rule DeclaredProperty ****************
  *
  * DeclaredProperty:
- *   "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
+ * 	"var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
  *
  **/
 
@@ -543,13 +542,13 @@ protected class DeclaredProperty_DefaultAssignment_3_1 extends AssignmentToken  
 /************ begin Rule RootComponent ****************
  *
  * RootComponent returns Component:
- *   {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN
- *   )? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+ * 	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN]) (":" name=FQN)? autoInject?="auto-inject"? "{"
+ * 	assignment+=Assignment* "}";
  *
  **/
 
-// {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
-// autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
+// {Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN]) (":" name=FQN)? autoInject?="auto-inject"? "{"
+// assignment+=Assignment* "}"
 protected class RootComponent_Group extends GroupToken {
 	
 	public RootComponent_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -604,7 +603,7 @@ protected class RootComponent_ComponentAction_0 extends ActionToken  {
 	}
 }
 
-// type=[types::JvmType|FQN]|"@" module=[Module|FQN]
+// type=[types::JvmType|FQN] | "@" module=[Module|FQN]
 protected class RootComponent_Alternatives_1 extends AlternativesToken {
 
 	public RootComponent_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -962,13 +961,13 @@ protected class RootComponent_RightCurlyBracketKeyword_6 extends KeywordToken  {
 /************ begin Rule Component ****************
  *
  * Component:
- *   {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":"
- *   name=FQN)? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+ * 	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN])? (":" name=FQN)? autoInject?="auto-inject"? "{"
+ * 	assignment+=Assignment* "}";
  *
  **/
 
-// {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
-// autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
+// {Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN])? (":" name=FQN)? autoInject?="auto-inject"? "{"
+// assignment+=Assignment* "}"
 protected class Component_Group extends GroupToken {
 	
 	public Component_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1023,7 +1022,7 @@ protected class Component_ComponentAction_0 extends ActionToken  {
 	}
 }
 
-// (type=[types::JvmType|FQN]|"@" module=[Module|FQN])?
+// (type=[types::JvmType|FQN] | "@" module=[Module|FQN])?
 protected class Component_Alternatives_1 extends AlternativesToken {
 
 	public Component_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1384,7 +1383,7 @@ protected class Component_RightCurlyBracketKeyword_6 extends KeywordToken  {
 /************ begin Rule Import ****************
  *
  * Import:
- *   "import" importedNamespace=ImportedFQN;
+ * 	"import" importedNamespace=ImportedFQN;
  *
  **/
 
@@ -1480,7 +1479,7 @@ protected class Import_ImportedNamespaceAssignment_1 extends AssignmentToken  {
 /************ begin Rule Assignment ****************
  *
  * Assignment:
- *   feature=[types::JvmFeature|FQN] "=" value=Value;
+ * 	feature=[types::JvmFeature|FQN] "=" value=Value;
  *
  **/
 
@@ -1624,11 +1623,11 @@ protected class Assignment_ValueAssignment_2 extends AssignmentToken  {
 /************ begin Rule Value ****************
  *
  * Value:
- *   Component|StringLiteral|BooleanLiteral|Reference;
+ * 	Component | StringLiteral | BooleanLiteral | Reference;
  *
  **/
 
-// Component|StringLiteral|BooleanLiteral|Reference
+// Component | StringLiteral | BooleanLiteral | Reference
 protected class Value_Alternatives extends AlternativesToken {
 
 	public Value_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1814,11 +1813,11 @@ protected class Value_ReferenceParserRuleCall_3 extends RuleCallToken {
 /************ begin Rule BooleanLiteral ****************
  *
  * BooleanLiteral:
- *   {BooleanLiteral} (isTrue?="true"|"false");
+ * 	{BooleanLiteral} (isTrue?="true" | "false");
  *
  **/
 
-// {BooleanLiteral} (isTrue?="true"|"false")
+// {BooleanLiteral} (isTrue?="true" | "false")
 protected class BooleanLiteral_Group extends GroupToken {
 	
 	public BooleanLiteral_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1873,7 +1872,7 @@ protected class BooleanLiteral_BooleanLiteralAction_0 extends ActionToken  {
 	}
 }
 
-// isTrue?="true"|"false"
+// isTrue?="true" | "false"
 protected class BooleanLiteral_Alternatives_1 extends AlternativesToken {
 
 	public BooleanLiteral_Alternatives_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1960,7 +1959,7 @@ protected class BooleanLiteral_FalseKeyword_1_1 extends KeywordToken  {
 /************ begin Rule Reference ****************
  *
  * Reference:
- *   referable=[Referrable|FQN];
+ * 	referable=[Referrable|FQN];
  *
  **/
 
@@ -2008,16 +2007,14 @@ protected class Reference_ReferableAssignment extends AssignmentToken  {
 
 /************ begin Rule StringLiteral ****************
  *
- * StringLiteral hidden ( ):
- *   begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)
- *   * end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
- *   parts+=PlainString?)* end="\"";
+ * StringLiteral hidden():
+ * 	begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'" | begin="\""
+ * 	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\"";
  *
  **/
 
-// begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-// end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
-// parts+=PlainString?)* end="\""
+// begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'" | begin="\"" parts+=PlainString?
+// (parts+=PropertyReference parts+=PlainString?)* end="\""
 protected class StringLiteral_Alternatives extends AlternativesToken {
 
 	public StringLiteral_Alternatives(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2047,8 +2044,7 @@ protected class StringLiteral_Alternatives extends AlternativesToken {
 
 }
 
-// begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-// end="\'"
+// begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'"
 protected class StringLiteral_Group_0 extends GroupToken {
 	
 	public StringLiteral_Group_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2093,7 +2089,7 @@ protected class StringLiteral_BeginAssignment_0_0 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("begin",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("begin");
-		if("'".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0();
 			return obj;
@@ -2293,7 +2289,7 @@ protected class StringLiteral_EndAssignment_0_3 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("end",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("end");
-		if("'".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0();
 			return obj;
@@ -2304,8 +2300,7 @@ protected class StringLiteral_EndAssignment_0_3 extends AssignmentToken  {
 }
 
 
-// begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-// end="\""
+// begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\""
 protected class StringLiteral_Group_1 extends GroupToken {
 	
 	public StringLiteral_Group_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2350,7 +2345,7 @@ protected class StringLiteral_BeginAssignment_1_0 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("begin",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("begin");
-		if("\"".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0();
 			return obj;
@@ -2550,7 +2545,7 @@ protected class StringLiteral_EndAssignment_1_3 extends AssignmentToken  {
 	public IEObjectConsumer tryConsume() {
 		if((value = eObjectConsumer.getConsumable("end",true)) == null) return null;
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("end");
-		if("\"".equals(value)) { // org::eclipse::xtext::impl::KeywordImpl
+		if(keywordSerializer.isValid(obj.getEObject(), grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0(), value, null)) {
 			type = AssignmentType.KEYWORD;
 			element = grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0();
 			return obj;
@@ -2567,8 +2562,8 @@ protected class StringLiteral_EndAssignment_1_3 extends AssignmentToken  {
 
 /************ begin Rule PropertyReference ****************
  *
- * PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
- *   "${" referable=[DeclaredProperty|FQN] "}";
+ * PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+ * 	"${" referable=[DeclaredProperty|FQN] "}";
  *
  **/
 
@@ -2688,7 +2683,7 @@ protected class PropertyReference_RightCurlyBracketKeyword_2 extends KeywordToke
 /************ begin Rule PlainString ****************
  *
  * PlainString:
- *   value=ConstantValue;
+ * 	value=ConstantValue;
  *
  **/
 

@@ -31,12 +31,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cRootRootComponentParserRuleCall_5_0 = (RuleCall)cRootAssignment_5.eContents().get(0);
 		
 		//Module:
-		//  {Module} "module" canonicalName=FQN imports+=Import*
-		//  declaredProperties+=DeclaredProperty* root=RootComponent;
+		//	{Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent;
 		public ParserRule getRule() { return rule; }
 
-		//{Module} "module" canonicalName=FQN imports+=Import*
-		//declaredProperties+=DeclaredProperty* root=RootComponent
+		//{Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent
 		public Group getGroup() { return cGroup; }
 
 		//{Module}
@@ -85,7 +83,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cDefaultValueParserRuleCall_3_1_0 = (RuleCall)cDefaultAssignment_3_1.eContents().get(0);
 		
 		//DeclaredProperty:
-		//  "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
+		//	"var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
 		public ParserRule getRule() { return rule; }
 
 		//"var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?
@@ -147,18 +145,18 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//RootComponent returns Component:
-		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN
-		//  )? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+		//	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN]) (":" name=FQN)? autoInject?="auto-inject"? "{"
+		//	assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN)?
-		//autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
+		//{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN]) (":" name=FQN)? autoInject?="auto-inject"? "{"
+		//assignment+=Assignment* "}"
 		public Group getGroup() { return cGroup; }
 
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 
-		//type=[types::JvmType|FQN]|"@" module=[Module|FQN]
+		//type=[types::JvmType|FQN] | "@" module=[Module|FQN]
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//type=[types::JvmType|FQN]
@@ -241,18 +239,18 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Component:
-		//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":"
-		//  name=FQN)? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+		//	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN])? (":" name=FQN)? autoInject?="auto-inject"? "{"
+		//	assignment+=Assignment* "}";
 		public ParserRule getRule() { return rule; }
 
-		//{Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":" name=FQN)?
-		//autoInject?="auto-inject"? "{" assignment+=Assignment* "}"
+		//{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN])? (":" name=FQN)? autoInject?="auto-inject"? "{"
+		//assignment+=Assignment* "}"
 		public Group getGroup() { return cGroup; }
 
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 
-		//(type=[types::JvmType|FQN]|"@" module=[Module|FQN])?
+		//(type=[types::JvmType|FQN] | "@" module=[Module|FQN])?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//type=[types::JvmType|FQN]
@@ -318,7 +316,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cImportedNamespaceImportedFQNParserRuleCall_1_0 = (RuleCall)cImportedNamespaceAssignment_1.eContents().get(0);
 		
 		//Import:
-		//  "import" importedNamespace=ImportedFQN;
+		//	"import" importedNamespace=ImportedFQN;
 		public ParserRule getRule() { return rule; }
 
 		//"import" importedNamespace=ImportedFQN
@@ -341,7 +339,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ImportedFQN returns ecore::EString:
-		//  FQN ".*"?;
+		//	FQN ".*"?;
 		public ParserRule getRule() { return rule; }
 
 		//FQN ".*"?
@@ -365,7 +363,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//  feature=[types::JvmFeature|FQN] "=" value=Value;
+		//	feature=[types::JvmFeature|FQN] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
 		//feature=[types::JvmFeature|FQN] "=" value=Value
@@ -399,10 +397,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferenceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
 		
 		//Value:
-		//  Component|StringLiteral|BooleanLiteral|Reference;
+		//	Component | StringLiteral | BooleanLiteral | Reference;
 		public ParserRule getRule() { return rule; }
 
-		//Component|StringLiteral|BooleanLiteral|Reference
+		//Component | StringLiteral | BooleanLiteral | Reference
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Component
@@ -428,16 +426,16 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFalseKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		
 		//BooleanLiteral:
-		//  {BooleanLiteral} (isTrue?="true"|"false");
+		//	{BooleanLiteral} (isTrue?="true" | "false");
 		public ParserRule getRule() { return rule; }
 
-		//{BooleanLiteral} (isTrue?="true"|"false")
+		//{BooleanLiteral} (isTrue?="true" | "false")
 		public Group getGroup() { return cGroup; }
 
 		//{BooleanLiteral}
 		public Action getBooleanLiteralAction_0() { return cBooleanLiteralAction_0; }
 
-		//isTrue?="true"|"false"
+		//isTrue?="true" | "false"
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//isTrue?="true"
@@ -457,7 +455,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferableReferrableFQNParserRuleCall_0_1 = (RuleCall)cReferableReferrableCrossReference_0.eContents().get(1);
 		
 		//Reference:
-		//  referable=[Referrable|FQN];
+		//	referable=[Referrable|FQN];
 		public ParserRule getRule() { return rule; }
 
 		//referable=[Referrable|FQN]
@@ -479,7 +477,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//FQN returns ecore::EString:
-		//  ID ("." ID)*;
+		//	ID ("." ID)*;
 		public ParserRule getRule() { return rule; }
 
 		//ID ("." ID)*
@@ -526,19 +524,16 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cEndAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final Keyword cEndQuotationMarkKeyword_1_3_0 = (Keyword)cEndAssignment_1_3.eContents().get(0);
 		
-		//StringLiteral hidden ( ):
-		//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)
-		//  * end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
-		//  parts+=PlainString?)* end="\"";
+		//StringLiteral hidden():
+		//	begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'" | begin="\""
+		//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\"";
 		public ParserRule getRule() { return rule; }
 
-		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
-		//parts+=PlainString?)* end="\""
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'" | begin="\"" parts+=PlainString?
+		//(parts+=PropertyReference parts+=PlainString?)* end="\""
 		public Alternatives getAlternatives() { return cAlternatives; }
 
-		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end="\'"
+		//begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'"
 		public Group getGroup_0() { return cGroup_0; }
 
 		//begin="\'"
@@ -574,8 +569,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//"\'"
 		public Keyword getEndApostropheKeyword_0_3_0() { return cEndApostropheKeyword_0_3_0; }
 
-		//begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end="\""
+		//begin="\"" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\""
 		public Group getGroup_1() { return cGroup_1; }
 
 		//begin="\""
@@ -621,8 +615,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_1_0.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
-		//  "${" referable=[DeclaredProperty|FQN] "}";
+		//PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+		//	"${" referable=[DeclaredProperty|FQN] "}";
 		public ParserRule getRule() { return rule; }
 
 		//"${" referable=[DeclaredProperty|FQN] "}"
@@ -650,7 +644,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cValueConstantValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//PlainString:
-		//  value=ConstantValue;
+		//	value=ConstantValue;
 		public ParserRule getRule() { return rule; }
 
 		//value=ConstantValue
@@ -675,13 +669,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//// we use a customized lexer with predicates. 
 		//// This allows us to use e.g. single quotes without escape sequences
 		//// in double quoted strings and vice versa.
-		//
-		//
 		//ConstantValue returns ecore::EString:
-		//  (WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+;
+		//	(WS | ANY_OTHER | ID | "\\\'" | "\\\"" | "\\${" | "\\\\")+;
 		public ParserRule getRule() { return rule; }
 
-		//(WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+
+		//(WS | ANY_OTHER | ID | "\\\'" | "\\\"" | "\\${" | "\\\\")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//WS
@@ -742,8 +734,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Module:
-	//  {Module} "module" canonicalName=FQN imports+=Import*
-	//  declaredProperties+=DeclaredProperty* root=RootComponent;
+	//	{Module} "module" canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent;
 	public ModuleElements getModuleAccess() {
 		return (pModule != null) ? pModule : (pModule = new ModuleElements());
 	}
@@ -753,7 +744,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DeclaredProperty:
-	//  "var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
+	//	"var" type=[types::JvmType|FQN]? name=FQN ("=" default=Value)?;
 	public DeclaredPropertyElements getDeclaredPropertyAccess() {
 		return (pDeclaredProperty != null) ? pDeclaredProperty : (pDeclaredProperty = new DeclaredPropertyElements());
 	}
@@ -763,8 +754,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//RootComponent returns Component:
-	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN]) (":" name=FQN
-	//  )? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+	//	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN]) (":" name=FQN)? autoInject?="auto-inject"? "{"
+	//	assignment+=Assignment* "}";
 	public RootComponentElements getRootComponentAccess() {
 		return (pRootComponent != null) ? pRootComponent : (pRootComponent = new RootComponentElements());
 	}
@@ -774,8 +765,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Component:
-	//  {Component} (type=[types::JvmType|FQN]|"@" module=[Module|FQN])? (":"
-	//  name=FQN)? autoInject?="auto-inject"? "{" assignment+=Assignment* "}";
+	//	{Component} (type=[types::JvmType|FQN] | "@" module=[Module|FQN])? (":" name=FQN)? autoInject?="auto-inject"? "{"
+	//	assignment+=Assignment* "}";
 	public ComponentElements getComponentAccess() {
 		return (pComponent != null) ? pComponent : (pComponent = new ComponentElements());
 	}
@@ -785,7 +776,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Import:
-	//  "import" importedNamespace=ImportedFQN;
+	//	"import" importedNamespace=ImportedFQN;
 	public ImportElements getImportAccess() {
 		return (pImport != null) ? pImport : (pImport = new ImportElements());
 	}
@@ -795,7 +786,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ImportedFQN returns ecore::EString:
-	//  FQN ".*"?;
+	//	FQN ".*"?;
 	public ImportedFQNElements getImportedFQNAccess() {
 		return (pImportedFQN != null) ? pImportedFQN : (pImportedFQN = new ImportedFQNElements());
 	}
@@ -805,7 +796,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//  feature=[types::JvmFeature|FQN] "=" value=Value;
+	//	feature=[types::JvmFeature|FQN] "=" value=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return (pAssignment != null) ? pAssignment : (pAssignment = new AssignmentElements());
 	}
@@ -815,7 +806,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Value:
-	//  Component|StringLiteral|BooleanLiteral|Reference;
+	//	Component | StringLiteral | BooleanLiteral | Reference;
 	public ValueElements getValueAccess() {
 		return (pValue != null) ? pValue : (pValue = new ValueElements());
 	}
@@ -825,7 +816,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//BooleanLiteral:
-	//  {BooleanLiteral} (isTrue?="true"|"false");
+	//	{BooleanLiteral} (isTrue?="true" | "false");
 	public BooleanLiteralElements getBooleanLiteralAccess() {
 		return (pBooleanLiteral != null) ? pBooleanLiteral : (pBooleanLiteral = new BooleanLiteralElements());
 	}
@@ -835,7 +826,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Reference:
-	//  referable=[Referrable|FQN];
+	//	referable=[Referrable|FQN];
 	public ReferenceElements getReferenceAccess() {
 		return (pReference != null) ? pReference : (pReference = new ReferenceElements());
 	}
@@ -845,7 +836,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//FQN returns ecore::EString:
-	//  ID ("." ID)*;
+	//	ID ("." ID)*;
 	public FQNElements getFQNAccess() {
 		return (pFQN != null) ? pFQN : (pFQN = new FQNElements());
 	}
@@ -854,10 +845,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getFQNAccess().getRule();
 	}
 
-	//StringLiteral hidden ( ):
-	//  begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)
-	//  * end="\'"|begin="\"" parts+=PlainString? (parts+=PropertyReference
-	//  parts+=PlainString?)* end="\"";
+	//StringLiteral hidden():
+	//	begin="\'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\'" | begin="\""
+	//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="\"";
 	public StringLiteralElements getStringLiteralAccess() {
 		return (pStringLiteral != null) ? pStringLiteral : (pStringLiteral = new StringLiteralElements());
 	}
@@ -866,8 +856,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getStringLiteralAccess().getRule();
 	}
 
-	//PropertyReference hidden ( WS , ML_COMMENT , SL_COMMENT ):
-	//  "${" referable=[DeclaredProperty|FQN] "}";
+	//PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+	//	"${" referable=[DeclaredProperty|FQN] "}";
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
 	}
@@ -877,7 +867,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PlainString:
-	//  value=ConstantValue;
+	//	value=ConstantValue;
 	public PlainStringElements getPlainStringAccess() {
 		return (pPlainString != null) ? pPlainString : (pPlainString = new PlainStringElements());
 	}
@@ -890,10 +880,8 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	//// we use a customized lexer with predicates. 
 	//// This allows us to use e.g. single quotes without escape sequences
 	//// in double quoted strings and vice versa.
-	//
-	//
 	//ConstantValue returns ecore::EString:
-	//  (WS|ANY_OTHER|ID|"\\\'"|"\\\""|"\\${"|"\\\\")+;
+	//	(WS | ANY_OTHER | ID | "\\\'" | "\\\"" | "\\${" | "\\\\")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
 	}
@@ -903,31 +891,31 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal ID:
-	//  "^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
+	//	"^"? ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return (tID != null) ? tID : (tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ID"));
 	} 
 
 	//terminal ML_COMMENT:
-	//  "/ *"->"* /";
+	//	"/ *"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return (tML_COMMENT != null) ? tML_COMMENT : (tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ML_COMMENT"));
 	} 
 
 	//terminal SL_COMMENT:
-	//  "//" !("\n" | "\r")* ("\r"? "\n")?;
+	//	"//" !("\n" | "\r")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return (tSL_COMMENT != null) ? tSL_COMMENT : (tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SL_COMMENT"));
 	} 
 
 	//terminal WS:
-	//  (" " | "\t" | "\r" | "\n")+;
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return (tWS != null) ? tWS : (tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "WS"));
 	} 
 
 	//terminal ANY_OTHER:
-	//  .;
+	//	.;
 	public TerminalRule getANY_OTHERRule() {
 		return (tANY_OTHER != null) ? tANY_OTHER : (tANY_OTHER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "ANY_OTHER"));
 	} 
