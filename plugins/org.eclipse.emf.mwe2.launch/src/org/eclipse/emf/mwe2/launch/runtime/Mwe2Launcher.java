@@ -34,11 +34,7 @@ public class Mwe2Launcher {
 		try {
 			new Mwe2Launcher().run(args);
 		} catch(Throwable throwable) {
-			if (logger.isDebugEnabled()) {
-				logger.error(throwable.getMessage(), throwable);
-			} else {
-				logger.error(throwable.getMessage());
-			}
+			logger.error(throwable.getMessage(), throwable);
 			System.exit(1);
 		}
 	}
