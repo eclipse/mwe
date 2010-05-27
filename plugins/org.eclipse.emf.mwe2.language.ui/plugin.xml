@@ -32,7 +32,7 @@
             extensions="mwe2"
             id="org.eclipse.emf.mwe2.language.Mwe2"
             icon="icons/workflowfile.gif"
-            name="Mwe2 Editor">
+            name="%mwe2.editor.name">
         </editor>
     </extension>
     <extension
@@ -73,21 +73,21 @@
         <page
             class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
             id="org.eclipse.emf.mwe2.language.Mwe2"
-            name="Mwe2">
+            name="%mwe2.preference.root">
             <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
         </page>
         <page
             category="org.eclipse.emf.mwe2.language.Mwe2"
             class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
             id="org.eclipse.emf.mwe2.language.Mwe2.coloring"
-            name="Syntax Coloring">
+            name="%mwe2.preference.syntaxColoring">
             <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
         </page>
         <page
             category="org.eclipse.emf.mwe2.language.Mwe2"
             class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
             id="org.eclipse.emf.mwe2.language.Mwe2.templates"
-            name="Templates">
+            name="%mwe2.preference.templates">
             <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
         </page>
     </extension>
@@ -95,14 +95,14 @@
         point="org.eclipse.ui.keywords">
         <keyword
             id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"
-            label="Mwe2"/>
+            label="%mwe2.keyword"/>
     </extension>
     <extension
          point="org.eclipse.ui.commands">
       <command
-            description="Trigger expensive validation"
+            description="%mwe2.expensiveValidation.description"
             id="org.eclipse.emf.mwe2.language.Mwe2.validate"
-            name="Validate">
+            name="%mwe2.expensiveValidation">
       </command>
     </extension>
     <extension point="org.eclipse.ui.menus">
@@ -111,7 +111,7 @@
              <command
                  commandId="org.eclipse.emf.mwe2.language.Mwe2.validate"
                  style="push"
-                 tooltip="Trigger expensive validation">
+                 tooltip="%mwe2.expensiveValidation.tooltip">
             <visibleWhen checkEnabled="false">
                 <reference
                     definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
@@ -177,9 +177,9 @@
 	<extension
 		point="org.eclipse.ui.commands">
 		<command
-			description="Open the quick outline."
+			description="%mwe2.quickOutline.description"
 			id="org.eclipse.xtext.ui.editor.outline.QuickOutline"
-			name="Quick Outline">
+			name="%mwe2.quickOutline.name">
 		</command>
 	</extension>
 	<extension point="org.eclipse.ui.menus">
@@ -187,7 +187,7 @@
 			locationURI="popup:#TextEditorContext?after=group.open">
 			<command commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline"
 				style="push"
-				tooltip="Open Quick Outline">
+				tooltip="%mwe2.quickOutline.tooltip">
 				<visibleWhen checkEnabled="false">
 					<reference definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened"/>
 				</visibleWhen>

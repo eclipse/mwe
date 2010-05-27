@@ -31,7 +31,7 @@ public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 							IProcess process = (IProcess) event.getSource();
 							if (configuration == process.getLaunch().getLaunchConfiguration()) {
 								DebugPlugin.getDefault().removeDebugEventListener(this);
-								Job job = new Job("Refreshing after mwe2 launch") {
+								Job job = new Job(Messages.Mwe2LaunchDelegate_0) {
 									public IStatus run(IProgressMonitor monitor) {
 										try {
 											RefreshTab.refreshResources(configuration, monitor);
