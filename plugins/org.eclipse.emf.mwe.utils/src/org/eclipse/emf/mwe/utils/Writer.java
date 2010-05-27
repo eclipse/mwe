@@ -109,7 +109,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 		if (!multipleResourcesInCaseOfList) {
 			final Resource r = getResourceSet().createResource(URI.createURI(getUri()));
 			if (slotContent instanceof Collection<?>) {
-				r.getContents().addAll((Collection) slotContent);
+				r.getContents().addAll((Collection<EObject>) slotContent);
 			}
 			else {
 				r.getContents().add((EObject) slotContent);
