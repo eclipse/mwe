@@ -9,6 +9,7 @@ import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
 
+@SuppressWarnings("all")
 public class Mwe2ContentAssistLexerLexer extends Lexer {
     public static final int KEYWORD_7=22;
     public static final int RULE_ML_COMMENT=25;

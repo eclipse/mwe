@@ -53,9 +53,9 @@ Workflow {
 				fileExtensions = file.extensions
 			}
 				
-			fragment = de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment {}
+			fragment = parser.antlr.ex.rt.AntlrGeneratorFragment {}
 			
-			fragment = de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment {
+			fragment = parser.antlr.ex.ExternalAntlrLexerFragment {
 				lexerGrammar = "org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer"
 				runtime = true
 				antlrParam = "-lib"

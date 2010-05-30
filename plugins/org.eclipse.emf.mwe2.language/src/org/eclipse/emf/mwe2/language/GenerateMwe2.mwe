@@ -1,6 +1,7 @@
 <workflow>
-    <property file="org/eclipse/emf/mwe2/language/Mwe2.properties"/>
-
+    <property name="grammarURI" value="classpath:/org/eclipse/emf/mwe2/language/Mwe2.xtext"/>
+    <property name="file.extensions" value="mwe2"/>
+    <property name="projectName" value="org.eclipse.emf.mwe2.language"/>
     <property name="runtimeProject" value="../${projectName}"/>
 	
 	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri="${runtimeProject}/.."/>
