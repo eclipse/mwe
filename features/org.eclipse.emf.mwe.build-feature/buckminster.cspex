@@ -81,61 +81,6 @@
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
-
-		<!--
-			<cs:public name="site.p2.mwe2.language" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="mirror.site" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="repository.name" value="emf.mwe Update Site" />
-				<cs:property key="mirror.ius" value="org.eclipse.emf.mwe2.language.sdk.feature.group" />
-				<cs:property key="remove.ius"
-					value="org.apache.commons.cli,org.apache.commons.lang,org.apache.log4j,org.eclipse.emf.mwe.core,org.eclipse.emf.mwe.utils,org.eclipse.emf.mwe2.runtime" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2" alias="repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/site.p2.mwe2.language/" />
-		</cs:public>
-		 <cs:public name="package.emft-mwe-2-lang-SDK" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.ius" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.language.sdk.feature.group" />
-				<cs:property key="prerequisite.ius" value="org.eclipse.emf.mwe.ui.feature.group,org.eclipse.emf.mwe.utils" />
-				<cs:property key="package.name" value="emft-mwe-2-lang-SDK" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2" alias="repository" />
-				<cs:attribute name="site.tp" alias="target.platform.repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
-		<cs:public name="package.emft-mwe-2-lang-Update" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.site" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="package.name" value="emft-mwe-2-lang-Update" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2.mwe2.language" alias="repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>-->
-
-		<!-- <cs:public name="tag" actor="buckminster.tag">
-			<cs:actorProperties>
-				<cs:property key="tag" value="build_${build.id}" />
-				<cs:property key="exclude.0" value="^org\.eclipse\.test$" />
-				<cs:property key="exclude.1" value="^org\.eclipse\.ant\.optional\.junit$" />
-			</cs:actorProperties>
-		</cs:public> -->
 	</cs:actions>
 
 	<cs:groups>
