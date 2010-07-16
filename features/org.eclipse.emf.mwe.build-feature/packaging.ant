@@ -26,64 +26,6 @@
 		</condition>
 	</target>
 
-	<target name="-check.tasks.up.to.date">
-		<dirname property="project.dir" file="${ant.file}" />
-
-		<condition property="tasks.up.to.date">
-			<uptodate>
-				<srcfiles dir="${project.dir}/src" />
-				<chainedmapper>
-					<globmapper from="*" to="${project.dir}/bin/*" />
-					<filtermapper>
-						<replaceregex pattern="\.java$" replace=".class" />
-					</filtermapper>
-				</chainedmapper>
-			</uptodate>
-		</condition>
-	</target>
-
-	<target name="-compile.tasks" depends="-check.tasks.up.to.date" unless="tasks.up.to.date">
-		<delete dir="${project.dir}/bin" includeemptydirs="true">
-			<filename name="**/*" />
-		</delete>
-
-		<javac srcdir="${project.dir}/src" destdir="${project.dir}/bin" />
-		<copy todir="${project.dir}/bin">
-			<fileset dir="${project.dir}/src">
-				<filename name="**/*.java" negate="true" />
-			</fileset>
-		</copy>
-
-		<eclipse.convertPath fileSystemPath="${project.dir}/bin" property="project.bin.path" />
-		<eclipse.refreshLocal resource="${project.bin.path}" depth="infinite" />
-	</target>
-
-	<target name="-define.tasks" depends="-compile.tasks">
-		<taskdef name="p2.mirror.listed.iu" classname="org.eclipse.emf.mwe.build.ant.tasks.MirrorListedIUTask" onerror="fail">
-			<classpath location="${project.dir}/bin" />
-		</taskdef>
-		<taskdef name="p2.remove.listed.iu" classname="org.eclipse.emf.mwe.build.ant.tasks.RemoveListedIUTask" onerror="fail">
-			<classpath location="${project.dir}/bin" />
-		</taskdef>
-	</target>
-
-	<target name="-mirror.site" depends="-define.tasks">
-		<delete dir="${sp:output}" />
-		<p2.mirror.listed.iu mirrorIU="${mirror.ius}">
-			<repository location="file:/${sp:output}" name="${repository.name}" format="file:/${sp:repository}" kind="M" />
-			<repository location="file:/${sp:output}" name="${repository.name} - Artifact Repository" format="file:/${sp:repository}" kind="A" />
-			<source>
-				<repository location="file:/${sp:repository}" />
-			</source>
-		</p2.mirror.listed.iu>
-	</target>
-
-	<target name="mirror.site" depends="-mirror.site" if="remove.ius">
-		<p2.remove.listed.iu removeIU="${remove.ius}">
-			<repository location="file:/${sp:output}" />
-		</p2.remove.listed.iu>
-	</target>
-
 	<target name="package.site" depends="-define.package.qualifier">
 		<mkdir dir="${sp:output}" />
 
@@ -106,98 +48,39 @@
 
 	<target name="-define.common.properties" depends="-locate.launcher.jar">
 		<buckminster.targetPlatformLocation property="target.platform.location" />
-
-		<!--
-			Set the target platform bundle pool path to an empty value in case installation
-			of the target platform components is desired, otherwise set it to the target
-			platform location.
-			The target platform bundle pool path is used as a secondary bundle pool during
-			the installations. So if set to the location of the target platform, then all
-			components in the target platform appear to be already installed to the installation
-			process, and thus are not installed again. On the other hand if set to an empty
-			value then the components from the target platform don't appear to be installed,
-			and thus are installed along with the components produced by the build. 
-		-->
-		<condition property="target.platform.bundle.pool.path" value="">
-			<istrue value="${install.target.platform.dependencies}" />
-		</condition>
-		<property name="target.platform.bundle.pool.path" location="${target.platform.location}" />
-
-		<property name="bundle.pools.property.name" value="org.eclipse.equinox.p2.cache.extensions" />
-		<property name="install.features.property.name" value="org.eclipse.update.install.features" />
-
-		<property name="install.features" value="true" />
-
-		<!-- default to empty values -->
-		<property name="fs:repository" value="" />
-		<property name="fs:target.platform.repository" value="" />
-		<property name="fs:prerequisite.repositories" value="" />
-		<property name="fs:prerequisite.metadata.repositories" value="" />
-		<property name="fs:prerequisite.artifact.repositories" value="" />
-
-		<!-- create a list of all possible metadata repositories -->
-		<pathconvert property="metadata.repositories" dirsep="/" pathsep=",">
-			<buckminster.valuepath value="${fs:repository}" />
-			<buckminster.valuepath value="${fs:target.platform.repository}" />
-			<buckminster.valuepath value="${fs:prerequisite.repositories}" />
-			<buckminster.valuepath value="${fs:prerequisite.metadata.repositories}" />
-			<map from="" to="file:/" />
-		</pathconvert>
-
-		<!-- create a list of all possible artifact repositories -->
-		<pathconvert property="artifact.repositories" dirsep="/" pathsep=",">
-			<buckminster.valuepath value="${fs:repository}" />
-			<path location="${target.platform.location}" />
-			<buckminster.valuepath value="${fs:prerequisite.repositories}" />
-			<buckminster.valuepath value="${fs:prerequisite.artifact.repositories}" />
-			<map from="" to="file:/" />
-		</pathconvert>
+		<property name="target.platform.bundle.pool" value="file:/${target.platform.location}" />
 
 		<condition property="wildcard" value="&quot;*&quot;" else="*">
 			<os family="windows" />
 		</condition>
 	</target>
 
-	<!--
-		install the specified prerequisite IUs (which are not meant to be included
-		in the final install) in a separate directory
-	-->
 	<target name="-install.prerequisite.ius" depends="-define.common.properties" if="prerequisite.ius">
-		<!-- default to an empty value if not set -->
-		<property name="sp:prerequisites.base" value="" />
-
-		<pathconvert property="bundle.pools.for.prerequisites" dirsep="/" pathsep="|" setonempty="false">
-			<path path="${target.platform.bundle.pool.path}" />
-			<path path="${sp:prerequisites.base}" />
-			<map from="" to="file:/" />
-		</pathconvert>
-
-		<pathconvert property="bundle.pools.for.install" dirsep="/" pathsep="|" setonempty="false">
-			<path path="${target.platform.bundle.pool.path}" />
-			<path path="${prerequisites.destination}" />
-			<map from="" to="file:/" />
-		</pathconvert>
-
-		<condition property="prerequisites.profile.properties" value="${bundle.pools.property.name}=${bundle.pools.for.prerequisites},${install.features.property.name}=${install.features}" else="${install.features.property.name}=${install.features}">
-			<isset property="bundle.pools.for.prerequisites" />
+		<condition property="bundle.pools.for.prerequisites" value="${target.platform.bundle.pool}|file:/${sp:prerequisites.base}" else="${target.platform.bundle.pool}">
+			<isset property="sp:prerequisites.base" />
 		</condition>
+		<property name="bundle.pools.for.install" value="${target.platform.bundle.pool}|file:/${prerequisites.destination}" />
 
 		<delete dir="${prerequisites.destination}" />
 
+		<!--
+		  install the specified prerequisite IUs (which are not to be included
+		  in the final install) in a separate directory
+		-->
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
 			<arg value="org.eclipse.equinox.p2.director" />
+			<arg value="-repository" />
+			<arg value="file:/${sp:repository}" />
 			<arg value="-metadataRepository" />
-			<arg value="${metadata.repositories}" />
-			<arg value="-artifactRepository" />
-			<arg value="${artifact.repositories}" />
+			<arg value="file:/${sp:target.platform.repository}" />
 			<arg value="-destination" />
 			<arg value="${prerequisites.destination}" />
 			<arg value="-profile" />
 			<arg value="Prerequisites" />
 			<arg value="-profileproperties" />
-			<arg value="${prerequisites.profile.properties}" />
+			<arg value="org.eclipse.equinox.p2.cache.extensions=${bundle.pools.for.prerequisites},org.eclipse.update.install.features=true" />
 			<arg value="-installIU" />
 			<arg value="${prerequisite.ius}" />
 			<arg value="-p2.os" />
@@ -209,46 +92,39 @@
 		</java>
 
 		<!--
-			remove the p2 metadata, as the prerequisites install location is only meant
-			to be used as a secondary bundle pool during the install of the required IUs
+		  remove the p2 metadata, as the prerequisites install location is only meant
+		  to be used as a secondary bundle pool during the install of the required IUs
 		-->
 		<delete dir="${prerequisites.destination}" includeEmptyDirs="true">
 			<include name="p2/**" />
 		</delete>
 	</target>
 
-	<!--
-		install the required IUs, potentially referencing the target platform and/or the prerequisite
-		install location as secondary bundle pools so that only the desired components are installed
-		in the install destination directory
-	-->
 	<target name="-install.content.ius" depends="-install.prerequisite.ius">
 		<!-- this may have already been defined in the -install.prerequisite.ius target (if it ran) -->
-		<pathconvert property="bundle.pools.for.install" dirsep="/" pathsep="|" setonempty="false">
-			<path path="${target.platform.bundle.pool.path}" />
-			<map from="" to="file:/" />
-		</pathconvert>
-
-		<condition property="install.profile.properties" value="${bundle.pools.property.name}=${bundle.pools.for.install},${install.features.property.name}=${install.features}" else="${install.features.property.name}=${install.features}">
-			<isset property="bundle.pools.for.install" />
-		</condition>
+		<property name="bundle.pools.for.install" value="${target.platform.bundle.pool}" />
 
 		<delete dir="${install.destination}" />
 
+		<!--
+		  install the required IUs, referencing the target plaform and potetially also the prerequisite
+		  install location as secondary bundle pools so that only the desired components are installed
+		  in the install destination directory
+		-->
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
 			<arg value="org.eclipse.equinox.p2.director" />
+			<arg value="-repository" />
+			<arg value="file:/${sp:repository}" />
 			<arg value="-metadataRepository" />
-			<arg value="${metadata.repositories}" />
-			<arg value="-artifactRepository" />
-			<arg value="${artifact.repositories}" />
+			<arg value="file:/${sp:target.platform.repository}" />
 			<arg value="-destination" />
 			<arg value="${install.destination}" />
 			<arg value="-profile" />
 			<arg value="Install" />
 			<arg value="-profileproperties" />
-			<arg value="${install.profile.properties}" />
+			<arg value="org.eclipse.equinox.p2.cache.extensions=${bundle.pools.for.install},org.eclipse.update.install.features=true" />
 			<arg value="-installIU" />
 			<arg value="${content.ius}" />
 			<arg value="-p2.os" />
@@ -265,24 +141,24 @@
 		</delete>
 	</target>
 
-	<!--
-		install the specified TP IUs
-	-->
 	<target name="-install.ius" depends="-install.content.ius" if="target.platform.ius">
+		<!--
+		  install the specified TP IUs
+		-->
 		<java jar="${launcher.jar}" fork="true" failonerror="true">
 			<arg value="-consolelog" />
 			<arg value="-application" />
 			<arg value="org.eclipse.equinox.p2.director" />
 			<arg value="-metadataRepository" />
-			<arg value="${metadata.repositories}" />
+			<arg value="file:/${sp:target.platform.repository}" />
 			<arg value="-artifactRepository" />
-			<arg value="${artifact.repositories}" />
+			<arg value="${target.platform.bundle.pool}" />
 			<arg value="-destination" />
 			<arg value="${install.destination}" />
 			<arg value="-profile" />
 			<arg value="Install" />
 			<arg value="-profileproperties" />
-			<arg value="${install.features.property.name}=${install.features}" />
+			<arg value="org.eclipse.update.install.features=true" />
 			<arg value="-installIU" />
 			<arg value="${target.platform.ius}" />
 			<arg value="-p2.os" />
@@ -334,19 +210,52 @@
 		<delete dir="${temp.directory}" />
 	</target>
 
-	<target name="-define.properties.for.models.packaging" depends="-define.properties.for.packaging">
-		<!-- there are no model files in features so we don't need to install them to extract the model files -->
-		<property name="install.features" value="false" />
-	</target>
+	<target name="package.models" depends="-define.common.properties,-define.package.qualifier">
+		<property name="temp.directory" location="${sp:output}/${package.name}-temp/" />
 
-	<target name="package.models" depends="-define.properties.for.models.packaging,-install.ius,-define.package.qualifier">
+		<property name="install.destination" location="${temp.directory}/${top.directory}" />
+		<property name="bundle.pools.for.install" value="${target.platform.bundle.pool}" />
+
+		<delete dir="${install.destination}" />
+
+		<!--
+		  install required IUs, referencing the target plaform as a secondary bundle pool
+		  so that only the desired components are installed in the install destination
+		  directory
+		-->
+		<java jar="${launcher.jar}" fork="true" failonerror="true">
+			<arg value="-consolelog" />
+			<arg value="-application" />
+			<arg value="org.eclipse.equinox.p2.director" />
+			<arg value="-repository" />
+			<arg value="file:/${sp:repository}" />
+			<arg value="-metadataRepository" />
+			<arg value="file:/${sp:target.platform.repository}" />
+			<arg value="-destination" />
+			<arg value="${install.destination}" />
+			<arg value="-profile" />
+			<arg value="Install" />
+			<arg value="-profileproperties" />
+			<arg value="org.eclipse.equinox.p2.cache.extensions=${bundle.pools.for.install}" />
+			<arg value="-installIU" />
+			<arg value="${content.ius}" />
+			<arg value="-p2.os" />
+			<arg value="${wildcard}" />
+			<arg value="-p2.ws" />
+			<arg value="${wildcard}" />
+			<arg value="-p2.arch" />
+			<arg value="${wildcard}" />
+		</java>
+
 		<!-- remove the p2 metadata, as they will never be used -->
 		<delete dir="${install.destination}" includeEmptyDirs="true">
 			<include name="artifacts.xml" />
+			<include name="p2/**" />
 		</delete>
 
 		<property name="plugin.directory" location="${install.destination}/plugins" />
-		<property name="target.directory" location="${temp.directory}/${top.directory}" />
+		<property name="target.directory.name" value="${top.directory}/models" />
+		<property name="target.directory" location="${temp.directory}/${target.directory.name}" />
 
 		<property name="model.directory.name" value="model" />
 		<property name="cache.directory.name" value="cache" />
@@ -355,9 +264,9 @@
 		<delete dir="${target.directory}" />
 
 		<!--
-			create a single directory corresponding to every bundle found in the plugins
-			subdirectory of the previous install operation destination
-			(handle both - the directory based and the jar based plugins)
+		  create a single directory corresponding to every bundle found in the plugins
+		  subdirectory of the previous install operation destination
+		  (handle both - the directory based and the jar based plugins)
 		-->
 		<touch mkdirs="true" verbose="false">
 			<fileset dir="${plugin.directory}">
@@ -376,8 +285,8 @@
 		</touch>
 
 		<!--
-			now call the "-extract.model.files" target for every directory created
-			in the previous step
+		  now call the "-extract.model.files" target for every directory created
+		  in the previous step
 		-->
 		<subant genericantfile="${ant.file}" target="-extract.model.files" inheritall="true">
 			<dirset dir="${target.directory}">
@@ -386,16 +295,16 @@
 		</subant>
 
 		<!--
-			delete any files other than those we want to keep, and delete also
-			directories which become empty as a result of that action
+		  delete any files other than those we want to keep, and delete also
+		  directories which become empty as a result of that action
 		-->
 		<delete dir="${target.directory}" includeemptydirs="true">
 			<filename name="**/*" />
 			<none>
 				<and>
 					<!--
-						delete also the about files if not accompanied
-						by either model or cache directories
+					  delete also the about files if not accompanied
+					  by either model or cache directories
 					-->
 					<filename name="*/${about.file.name}" />
 					<or>
@@ -418,7 +327,7 @@
 
 		<!-- create the desired ZIP file -->
 		<zip basedir="${temp.directory}" destfile="${sp:output}/${package.name}${package.qualifier}.zip">
-			<include name="${top.directory}/**" />
+			<include name="${target.directory.name}/**" />
 		</zip>
 
 		<!-- cleanup -->
