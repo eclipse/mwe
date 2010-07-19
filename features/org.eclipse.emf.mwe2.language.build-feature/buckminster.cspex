@@ -35,7 +35,7 @@
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.sdk.feature.group" />
+				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.language.sdk.feature.group" />
 				<cs:property key="package.name" value="emft-mwe2-language-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
