@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 	<cs:dependencies>
+		<!-- <cs:dependency name="org.eclipse.emf.mwe.releng" componentType="buckminster" /> -->
+		<cs:dependency name="org.eclipse.emf.mwe.tests" componentType="eclipse.feature" />
 	</cs:dependencies>
 
 	<cs:actions>
@@ -14,13 +16,13 @@
 
 
 
-		<cs:public name="package.emft-mwe2-language-Update" actor="ant">
+		<cs:public name="package.emft-mwe-Update" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.site" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="package.name" value="emft-mwe2-language-Update" />
+				<cs:property key="package.name" value="emft-mwe-Update" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -28,15 +30,50 @@
 			</cs:prerequisites>
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
+
+		<cs:public name="package.emft-mwe-2-Update" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.site" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="package.name" value="emft-mwe-2-Update" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
 		
-		<cs:public name="package.emft-mwe2-language-SDK" actor="ant">
+		<cs:public name="package.emft-mwe-SDK" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.ius" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.sdk.feature.group" />
-				<cs:property key="package.name" value="emft-mwe2-language-SDK" />
+				<cs:property key="content.ius" value="org.eclipse.emf.mwe.sdk.feature.group" />
+				<cs:property key="prerequisite.ius" value="org.eclipse.emf.mwe2.runtime.sdk.feature.group" />
+				<cs:property key="target.platform.ius" value="org.apache.commons.cli" />
+				<cs:property key="package.name" value="emft-mwe-SDK" />
+			</cs:properties>
+			<cs:prerequisites>
+				<cs:attribute name="site.p2" alias="repository" />
+				<cs:attribute name="site.tp" alias="target.platform.repository" />
+			</cs:prerequisites>
+			<cs:products alias="output" base="${buckminster.output}/zips/" />
+		</cs:public>
+
+		<cs:public name="package.emft-mwe-2-SDK" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="package.ius" />
+			</cs:actorProperties>
+			<cs:properties>
+				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.runtime.sdk.feature.group" />
+				<cs:property key="target.platform.ius" value="org.apache.log4j" />
+				<cs:property key="package.name" value="emft-mwe-2-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -45,11 +82,13 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 	</cs:actions>
-	
+
 	<cs:groups>
 		<cs:public name="build">
-			<cs:attribute name="package.emft-mwe2-language-Update" />
-			<cs:attribute name="package.emft-mwe2-language-SDK" />
+			<cs:attribute name="package.emft-mwe-Update" />
+			<cs:attribute name="package.emft-mwe-2-Update" />
+			<cs:attribute name="package.emft-mwe-SDK" />
+			<cs:attribute name="package.emft-mwe-2-SDK" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>
