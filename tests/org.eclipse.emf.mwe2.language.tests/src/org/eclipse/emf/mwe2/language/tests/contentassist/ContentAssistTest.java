@@ -13,8 +13,10 @@ import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
 import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
 import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
+import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.eclipse.xtext.ui.junit.editor.contentassist.AbstractContentAssistProcessorTest;
 import org.eclipse.xtext.ui.junit.editor.contentassist.ContentAssistProcessorTestBuilder;
 
@@ -101,6 +103,92 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"util.ArrayLis", "util.ArrayLis".length(), 
 					// "util.ArrayList", // disabled because JdtTypeProposalProvider does not know anything about imports
 					":", "{", "}");
+	}
+	
+	public void testReplaceRegion_01() throws Exception {
+		String javaUtilArrayList = "java.util.ArrayList";
+		ICompletionProposal[] proposals = newBuilder().append(javaUtilArrayList).computeCompletionProposals(javaUtilArrayList);
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			assertEquals(javaUtilArrayList.length(), replaceContextLength);
+		}
+	}
+	
+	public void testReplaceRegion_02() throws Exception {
+		ICompletionProposal[] proposals = newBuilder().append("java.util.ArrayList").computeCompletionProposals("ava.util.ArrayList");
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			if (casted.getDisplayString().equals(":") || casted.getDisplayString().equals("{")) {
+				assertEquals(casted.getDisplayString(), "ava.util.ArrayList".length(), replaceContextLength);
+			} else {
+				assertEquals(casted.getDisplayString(), "java.util.ArrayList".length(), replaceContextLength);
+			}
+		}
+	}
+	
+	public void testReplaceRegion_03() throws Exception {
+		ICompletionProposal[] proposals = newBuilder()
+			.appendNl("java.util.HashSet {")
+			.appendNl("all = java.util.ArrayList {}")
+			.append("}").computeCompletionProposals("java.util.ArrayList");
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			assertEquals("java.util.ArrayList".length(), replaceContextLength);
+		}
+	}
+	
+	public void testReplaceRegion_04() throws Exception {
+		ICompletionProposal[] proposals = newBuilder()
+			.appendNl("java.util.HashSet {")
+			.appendNl("all =java.util.ArrayList {}")
+			.append("}").computeCompletionProposals("java.util.ArrayList");
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			if ("=".equals(casted.getDisplayString()))
+				assertEquals(casted.getDisplayString(), "=java.util.ArrayList".length(), replaceContextLength);
+			else
+				assertEquals(casted.getDisplayString(), "java.util.ArrayList".length(), replaceContextLength);
+		}
+	}
+	
+	public void testReplaceRegion_05() throws Exception {
+		ICompletionProposal[] proposals = newBuilder()
+			.appendNl("java.util.HashSet {")
+			.appendNl("all = java.util.ArrayList {}")
+			.append("}").computeCompletionProposals("ava.util.ArrayList");
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			if (casted.getDisplayString().equals(":") || 
+					casted.getDisplayString().equals("{") ||
+					casted.getDisplayString().equals("}")) {
+				assertEquals(casted.getDisplayString(), "ava.util.ArrayList".length(), replaceContextLength);
+			} else {
+				assertEquals(casted.getDisplayString(), "java.util.ArrayList".length(), replaceContextLength);
+			}
+		}
+	}
+	
+	public void testReplaceRegion_06() throws Exception {
+		ICompletionProposal[] proposals = newBuilder()
+			.appendNl("java.util.HashSet {")
+			.appendNl("all =java.util.ArrayList {}")
+			.append("}").computeCompletionProposals("ava.util.ArrayList");
+		for(ICompletionProposal proposal: proposals) {
+			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
+			int replaceContextLength = casted.getReplaceContextLength();
+			if (casted.getDisplayString().equals(":") || 
+					casted.getDisplayString().equals("{") ||
+					casted.getDisplayString().equals("}")) {
+				assertEquals(casted.getDisplayString(), "ava.util.ArrayList".length(), replaceContextLength);
+			} else {
+				assertEquals(casted.getDisplayString(), "java.util.ArrayList".length(), replaceContextLength);
+			}
+		}
 	}
 	
 	public void testCompleteStringLiteral_01() throws Exception {
