@@ -55,7 +55,7 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		IScope scope = getScopeProvider().createComponentFeaturesScope(component);
 		Iterable<IEObjectDescription> candidates = scope.getAllContents();
-		Function<IEObjectDescription, ICompletionProposal> factory = getProposalFactory("ID", context);
+		Function<IEObjectDescription, ICompletionProposal> factory = getProposalFactory("FQN", context);
 		for (IEObjectDescription candidate: candidates) {
 			if (!acceptor.canAcceptMoreProposals())
 				return;
