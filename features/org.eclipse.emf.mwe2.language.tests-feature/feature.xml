@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.mwe.tests"
       label="%featureName"
-      version="1.0.0.qualifier"
+      version="1.0.1.qualifier"
       provider-name="%providerName"
       image="eclipse_update_120.jpg">
 
@@ -28,15 +28,15 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-      <import plugin="org.eclipse.emf.mwe2.language"/>
-      <import plugin="org.eclipse.emf.mwe2.language.ui"/>
-      <import plugin="org.eclipse.xtext.junit"/>
-      <import plugin="com.google.inject"/>
-      <import plugin="org.eclipse.xtext"/>
-      <import plugin="org.eclipse.xtext.common.types"/>
-      <import plugin="org.eclipse.emf.mwe2.runtime"/>
-      <import plugin="org.eclipse.xtext.ui.shared"/>
-      <import plugin="org.eclipse.xtext.ui"/>
+      <import plugin="org.eclipse.emf.mwe2.language" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.emf.mwe2.language.ui" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.xtext.junit" version="1.0.1" match="equivalent"/>
+      <import plugin="com.google.inject" version="2.0.0" match="equivalent"/>
+      <import plugin="org.eclipse.xtext" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.xtext.common.types" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.emf.mwe2.runtime" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.xtext.ui.shared" version="1.0.1" match="equivalent"/>
+      <import plugin="org.eclipse.xtext.ui" version="1.0.1" match="equivalent"/>
    </requires>
 
    <plugin
