@@ -113,7 +113,7 @@ public class BreakpointActionGroup extends ActionGroup {
 		try {
 			lastSelectedLine = verticalRuler.toDocumentLineNumber(y);
 			lastSelectedOffset = textWidget
-					.getOffsetAtLocation(new Point(0, y));
+					.getOffsetAtLocation(new Point(textWidget.getLeftMargin(), y));
 		} catch (IllegalArgumentException e) {
 			// Restore original values
 			lastSelectedLine = oldLine;
@@ -132,7 +132,7 @@ public class BreakpointActionGroup extends ActionGroup {
 			catch (Exception e) {
 				try {
 					// If we got the offset, move to the end of the line.
-					lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(0, y));
+					lastSelectedOffset = textWidget.getOffsetAtLocation(new Point(textWidget.getLeftMargin(), y));
 					int lineIndex = textWidget.getLineAtOffset(lastSelectedOffset);
 					lastSelectedOffset += textWidget.getLine(lineIndex).length();
 				}
