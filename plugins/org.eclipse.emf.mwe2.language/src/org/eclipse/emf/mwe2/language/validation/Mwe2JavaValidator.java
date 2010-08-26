@@ -46,10 +46,10 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 
+import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.Multimaps;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
@@ -137,7 +137,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	public void checkReferables(Module referable) {
 		TreeIterator<EObject> iterator = referable.eResource().getAllContents();
 		Set<String> referenced = Sets.newHashSet();
-		Multimap<String, Referrable> declared = Multimaps.newHashMultimap();
+		Multimap<String, Referrable> declared = HashMultimap.create();
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof Referrable) {
@@ -162,7 +162,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				}
 			}
 		}
-		Multimap<String, Referrable> copy = Multimaps.newHashMultimap(declared);
+		Multimap<String, Referrable> copy = HashMultimap.create(declared);
 		copy.keySet().removeAll(referenced);
 		for (Referrable referrable : copy.values()) {
 			warning("The var '" + referrable.getName() + "' is never read locally.",
