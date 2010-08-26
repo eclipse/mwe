@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0"
+	xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
+	<rm:property key="source.repository.location"
+		value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
+
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.releng(?:\..+)?$"
+		searchPathRef="relengGit" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?\.doc(?:\..+)?$"
+		searchPathRef="mwe.doc" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\.ewm)\.examples(?:\..+)?$"
+		searchPathRef="mwe.examples" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\..+)?\.tests$"
+		searchPathRef="mwe.tests" />
+
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\..+)?$"
+		searchPathRef="mwe" />
+
+	<rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse.test" />
+	<rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$"
+		searchPathRef="eclipse.test" />
+
+	<rm:searchPath name="mwe">
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,plugins/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+
+		<rm:provider componentTypes="eclipse.feature" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,features/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mwe.doc">
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,doc/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+
+		<rm:provider componentTypes="eclipse.feature" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,doc/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mwe.examples">
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,examples/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+
+		<rm:provider componentTypes="eclipse.feature" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,examples/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="mwe.tests">
+		<rm:provider componentTypes="osgi.bundle" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,tests/{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+
+		<rm:provider componentTypes="eclipse.feature" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.git,tests/{1}-feature">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.git" />
+		</rm:provider>
+	</rm:searchPath>
+
+	<rm:searchPath name="eclipse.test">
+		<rm:provider componentTypes="osgi.bundle" readerType="cvs"
+			mutable="false">
+			<rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}">
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+		<rm:provider componentTypes="eclipse.feature" readerType="cvs"
+			mutable="false">
+			<rm:uri
+				format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}-feature">
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
+	
+	<rm:searchPath name="releng">
+		<rm:provider componentTypes="buckminster" readerType="git"
+			mutable="false">
+			<rm:uri format="{0}/org.eclipse.emf.mwe.releng.git,{1}">
+				<bc:propertyRef key="workspace.root" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+			<rm:property key="git.remote.uri"
+				value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.releng.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+		</rm:provider>
+	</rm:searchPath>
+</rm:rmap>

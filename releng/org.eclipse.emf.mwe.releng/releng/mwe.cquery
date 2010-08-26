@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cq:componentQuery xmlns:cq="http://www.eclipse.org/buckminster/CQuery-1.0" resourceMap="mwe.rmap">
+    <cq:rootRequest name="org.eclipse.emf.mwe.build" componentType="eclipse.feature"/>
+    <cq:advisorNode namePattern="^org\.eclipse\.emf\.mwe2?(?:\..*)?\.source$" skipComponent="true"/>
+    <cq:advisorNode namePattern="^org\.eclipse\.emf\.mwe\.releng$" useMaterialization="false" useWorkspace="false"/>
+</cq:componentQuery>

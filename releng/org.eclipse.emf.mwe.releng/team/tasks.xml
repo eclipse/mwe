@@ -1,0 +1,40 @@
+<project default="all" name="org.eclipse.emf.mwe.releng/setup-tasks" >
+	
+	<property name="releng.dir" value="${basedir}/../org.eclipse.emf.mwe.releng"/>
+	<property name="copysettings.excludes" value=".*.releng$,.*-feature"/>
+	
+	<path id="project.class.path">
+	    <pathelement location="${releng.dir}/bin/"/>
+	    <pathelement path="${releng.dir}/libs/tar.jar"/>
+	    <pathelement path="${releng.dir}/libs/activation.jar"/>
+	</path>
+
+	<target name="all" depends="generateTargetPlatform, generateProxyAndPserverPSF, generateTestSuites, copyProjectSettings"/>
+	
+    <target name="generateTestSuites" >
+		<java classname="org.eclipse.emf.mwe.releng.GenerateTestSuite" dir="${basedir}" fork="true">
+			<classpath refid="project.class.path"/>
+		</java>
+    </target>
+	
+    <target name="generateTargetPlatform" >
+		<java classname="org.eclipse.emf.mwe.releng.MaterializeTargetPlatform" dir="${basedir}" fork="true">
+			<classpath refid="project.class.path"/>
+		</java>
+    </target>
+	
+    <target name="generateProxyAndPserverPSF" >
+		<java classname="org.eclipse.emf.mwe.releng.GenerateProxyAndPserverPsf" dir="${basedir}" fork="true">
+			<classpath refid="project.class.path"/>
+		</java>
+    </target>
+	
+    <target name="copyProjectSettings" >
+		<java classname="org.eclipse.emf.mwe.releng.CopyProjectSettings" dir="${basedir}" fork="true">
+			<arg value="${copysettings.includes}"/>
+			<arg value="${copysettings.excludes}"/>
+			<classpath refid="project.class.path"/>
+		</java>
+    </target>
+
+</project>

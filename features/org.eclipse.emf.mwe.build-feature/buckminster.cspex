@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
+<cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0"
+	xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 	<cs:dependencies>
-		<cs:dependency name="org.eclipse.emf.mwe.releng" componentType="buckminster" />
+		<!-- <cs:dependency name="org.eclipse.emf.mwe.releng" componentType="buckminster" /> -->
 		<cs:dependency name="org.eclipse.emf.mwe.tests" componentType="eclipse.feature" />
 	</cs:dependencies>
 
@@ -46,7 +47,7 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
-		
+
 		<cs:public name="package.emft-mwe-SDK" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
