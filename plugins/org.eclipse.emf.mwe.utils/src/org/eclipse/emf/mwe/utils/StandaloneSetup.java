@@ -11,19 +11,22 @@
 package org.eclipse.emf.mwe.utils;
 
 import java.io.File;
-import java.io.FileFilter;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
+
+import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -32,6 +35,7 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.w3c.dom.Document;
 
 /**
  * Initializes EMF support. Allows to register additional Packages.
@@ -74,24 +78,37 @@ public class StandaloneSetup {
 			platformRootPath = path;
 			log.info("Registering platform uri '" + path + "'");
 			if (f.exists()) {
-				for (File subdir : f.listFiles(new FileFilter() {
-					public boolean accept(File arg0) {
-						return arg0.exists() && arg0.isDirectory() && !arg0.getName().startsWith(".");
-					}
-				})) {
-					String s = subdir.getName();
-					try {
-						URI uri = URI.createFileURI(subdir.getCanonicalPath() + "/");
-						EcorePlugin.getPlatformResourceMap().put(s, uri);
-						if (log.isDebugEnabled()) {
-							log.debug("Registering project " + s + " at '" + subdir.getCanonicalPath() + "'");
-						}
-					}
-					catch (IOException e) {
-						throw new ConfigurationException("Error when registering platform location", e);
-					}
-				}
+				scanFolder(f);
 			}
+		}
+	}
+
+	protected void scanFolder(File f) {
+		File[] files = f.listFiles();
+		for (File file : files) {
+			if (".project".equals(file.getName())) {
+				registerProject(file);
+			}
+			else if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
+				scanFolder(file);
+			}
+		}
+	}
+
+	protected void registerProject(File file) {
+		try {
+			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+					.parse(new FileInputStream(file));
+			String name = document.getDocumentElement().getElementsByTagName("name").item(0).getTextContent();
+
+			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + "/");
+			EcorePlugin.getPlatformResourceMap().put(name, uri);
+			if (log.isDebugEnabled()) {
+				log.debug("Registering project " + name + " at '" + uri + "'");
+			}
+		}
+		catch (Exception e) {
+			throw new WrappedException("Couldn't read " + file, e);
 		}
 	}
 
@@ -106,8 +123,8 @@ public class StandaloneSetup {
 		if (mappedUri == null)
 			throw new ConfigurationException("cannot make URI out of " + uriMap.getTo());
 		else {
-		URIConverter.URI_MAP.put(baseUri, mappedUri);
-	}
+			URIConverter.URI_MAP.put(baseUri, mappedUri);
+		}
 	}
 
 	/**
@@ -173,8 +190,7 @@ public class StandaloneSetup {
 	protected Registry registry = EPackage.Registry.INSTANCE;
 
 	public void setResourceSet(ResourceSet resourceSet) {
-		log
-				.info("Using resourceSet registry. The registered Packages will not be registered in the global EPackage.Registry.INSTANCE!");
+		log.info("Using resourceSet registry. The registered Packages will not be registered in the global EPackage.Registry.INSTANCE!");
 		this.resourceSet = resourceSet;
 		this.registry = resourceSet.getPackageRegistry();
 	}
@@ -200,7 +216,7 @@ public class StandaloneSetup {
 			if (object instanceof EPackage) {
 				registerPackage(fileName, object);
 			}
-			for (final TreeIterator<EObject> it = object.eAllContents(); it.hasNext(); ) {
+			for (final TreeIterator<EObject> it = object.eAllContents(); it.hasNext();) {
 				EObject child = it.next();
 				if (child instanceof EPackage) {
 					registerPackage(fileName, child);
@@ -224,7 +240,7 @@ public class StandaloneSetup {
 		}
 		return uri;
 	}
-	
+
 	private void registerPackage(String fileName, EObject object) {
 		String nsUri = ((EPackage) object).getNsURI();
 		if (registry.get(nsUri) == null) {
