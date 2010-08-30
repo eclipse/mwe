@@ -44,6 +44,5 @@ public class Mwe2StandaloneSetupGenerated implements ISetup {
 
 
 
-
 	}
 }

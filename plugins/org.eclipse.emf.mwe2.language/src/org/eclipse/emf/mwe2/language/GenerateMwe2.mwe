@@ -4,7 +4,7 @@
     <property name="projectName" value="org.eclipse.emf.mwe2.language"/>
     <property name="runtimeProject" value="../${projectName}"/>
 	
-	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri="${runtimeProject}/.."/>
+	<bean class="org.eclipse.emf.mwe.utils.StandaloneSetup" platformUri="${runtimeProject}/../../.."/>
 	
 	<component class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="${runtimeProject}/src-gen"/>
 	<component class="org.eclipse.emf.mwe.utils.DirectoryCleaner" directory="${runtimeProject}.ui/src-gen"/>
@@ -53,7 +53,6 @@
 
 			<!-- outline API -->
 			<fragment class="org.eclipse.xtext.ui.generator.outline.TransformerFragment"/>
-			<fragment class="org.eclipse.xtext.ui.generator.outline.OutlineNodeAdapterFactoryFragment"/>
 			<fragment class="org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment"/>
 
 			<!-- java-based API for content assistance -->

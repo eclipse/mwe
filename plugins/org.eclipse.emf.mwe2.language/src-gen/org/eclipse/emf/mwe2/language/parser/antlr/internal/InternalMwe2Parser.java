@@ -1710,8 +1710,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     this_Component_0=ruleComponent();
                     _fsp--;
 
-                     
-                            current = this_Component_0; 
+
+                            current = this_Component_0;
                             currentNode = currentNode.getParent();
                         
 
@@ -1727,8 +1727,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     this_StringLiteral_1=ruleStringLiteral();
                     _fsp--;
 
-                     
-                            current = this_StringLiteral_1; 
+
+                            current = this_StringLiteral_1;
                             currentNode = currentNode.getParent();
                         
 
@@ -1744,8 +1744,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     this_BooleanLiteral_2=ruleBooleanLiteral();
                     _fsp--;
 
-                     
-                            current = this_BooleanLiteral_2; 
+
+                            current = this_BooleanLiteral_2;
                             currentNode = currentNode.getParent();
                         
 
@@ -1761,8 +1761,8 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
                     this_Reference_3=ruleReference();
                     _fsp--;
 
-                     
-                            current = this_Reference_3; 
+
+                            current = this_Reference_3;
                             currentNode = currentNode.getParent();
                         
 

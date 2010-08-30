@@ -22,7 +22,6 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
-import org.eclipse.emf.mwe2.runtime.workflow.WorkflowContextImpl;
 import org.eclipse.xtext.mwe.RuntimeResourceSetInitializer;
 import org.eclipse.xtext.mwe.UriFilter;
 import org.eclipse.xtext.resource.IEObjectDescription;
@@ -44,10 +43,14 @@ public class Mwe2Runner {
 	@Inject
 	private Provider<ResourceSet> resourceSetProvider;
 
-	@Inject(optional=true)
-	private IWorkflowContext context = new WorkflowContextImpl();
+	@Inject
+	private Provider<IWorkflowContext> ctxProvider;
 	
 	public void run(URI createURI, Map<String, String> params) {
+		run(createURI,params,ctxProvider.get());
+	}
+	
+	public void run(URI createURI, Map<String, String> params, IWorkflowContext ctx) {
 		Resource resource = resourceSetProvider.get().getResource(createURI, true);
 		if (resource != null) {
 			if (!resource.getContents().isEmpty()) {
@@ -62,6 +65,10 @@ public class Mwe2Runner {
 	}
 
 	public void run(String moduleName, Map<String, String> params) {
+		run (moduleName,params,ctxProvider.get());
+	}
+	
+	public void run(String moduleName, Map<String, String> params, IWorkflowContext ctx) {
 		Module module = findModule(moduleName);
 		if (module == null)
 			throw new IllegalArgumentException("Couldn't find module with name '" + moduleName + "'.");
@@ -81,7 +88,7 @@ public class Mwe2Runner {
 					+ object.getClass() + "'.");
 		}
 		try {
-			((IWorkflow) object).run(context);
+			((IWorkflow) object).run(ctx);
 		} catch (RuntimeException e) {
 			throw new RuntimeException("Problems running workflow " + moduleName + ": " + e.getMessage(), e);
 		}
@@ -121,12 +128,4 @@ public class Mwe2Runner {
 		this.initializer = initializer;
 	}
 	
-	public void setWorkflowContext (IWorkflowContext context) {
-		this.context = context;
-	}
-	
-	public IWorkflowContext getWorkflowContext () {
-		return context;
-	}
-
 }

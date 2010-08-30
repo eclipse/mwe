@@ -794,8 +794,8 @@ ruleValue returns [EObject current=null]
         currentNode=createCompositeNode(grammarAccess.getValueAccess().getComponentParserRuleCall_0(), currentNode); 
     }
     this_Component_0=ruleComponent
-    { 
-        $current = $this_Component_0.current; 
+    {
+        $current = $this_Component_0.current;
         currentNode = currentNode.getParent();
     }
 
@@ -804,8 +804,8 @@ ruleValue returns [EObject current=null]
         currentNode=createCompositeNode(grammarAccess.getValueAccess().getStringLiteralParserRuleCall_1(), currentNode); 
     }
     this_StringLiteral_1=ruleStringLiteral
-    { 
-        $current = $this_StringLiteral_1.current; 
+    {
+        $current = $this_StringLiteral_1.current;
         currentNode = currentNode.getParent();
     }
 
@@ -814,8 +814,8 @@ ruleValue returns [EObject current=null]
         currentNode=createCompositeNode(grammarAccess.getValueAccess().getBooleanLiteralParserRuleCall_2(), currentNode); 
     }
     this_BooleanLiteral_2=ruleBooleanLiteral
-    { 
-        $current = $this_BooleanLiteral_2.current; 
+    {
+        $current = $this_BooleanLiteral_2.current;
         currentNode = currentNode.getParent();
     }
 
@@ -824,8 +824,8 @@ ruleValue returns [EObject current=null]
         currentNode=createCompositeNode(grammarAccess.getValueAccess().getReferenceParserRuleCall_3(), currentNode); 
     }
     this_Reference_3=ruleReference
-    { 
-        $current = $this_Reference_3.current; 
+    {
+        $current = $this_Reference_3.current;
         currentNode = currentNode.getParent();
     }
 )

@@ -10,6 +10,9 @@ package org.eclipse.emf.mwe2.runtime.workflow;
 
 import java.util.Set;
 
+import com.google.inject.ImplementedBy;
+
+@ImplementedBy(WorkflowContextImpl.class)
 public interface IWorkflowContext {
 	public Object get(String s);
 	public void put(String s, Object o);
