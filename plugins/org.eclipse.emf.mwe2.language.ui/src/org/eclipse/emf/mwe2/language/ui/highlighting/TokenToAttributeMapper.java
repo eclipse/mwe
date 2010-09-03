@@ -10,8 +10,8 @@ package org.eclipse.emf.mwe2.language.ui.highlighting;
 
 import java.util.Set;
 
+import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.DefaultAntlrTokenToAttributeIdMapper;
 
 import com.google.common.collect.ImmutableSet;
 

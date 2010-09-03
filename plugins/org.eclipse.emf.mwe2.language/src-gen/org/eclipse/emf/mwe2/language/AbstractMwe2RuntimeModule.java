@@ -45,7 +45,7 @@ public abstract class AbstractMwe2RuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment
-	public Class<? extends org.eclipse.xtext.parser.antlr.IAntlrParser> bindIAntlrParser() {
+	public Class<? extends org.eclipse.xtext.parser.IParser> bindIParser() {
 		return org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser.class;
 	}
 

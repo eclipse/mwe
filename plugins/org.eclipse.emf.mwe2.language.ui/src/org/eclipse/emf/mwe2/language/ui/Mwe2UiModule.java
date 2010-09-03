@@ -14,7 +14,7 @@ import org.eclipse.emf.mwe2.language.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenToAttributeMapper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.antlr.AbstractAntlrTokenToAttributeIdMapper;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
 import com.google.inject.Provider;
