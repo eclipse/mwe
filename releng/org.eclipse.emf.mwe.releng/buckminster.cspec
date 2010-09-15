@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.emf.mwe.releng" componentType="buckminster" version="1.0.0.qualifier">
     <cs:dependencies>
+        <cs:dependency name="com.google.inject" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.commons.cli" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.log4j" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.core.runtime" componentType="osgi.bundle" versionDesignator="[3.5.0,3.6.0)"/>
