@@ -24,13 +24,11 @@
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="releng">
-		<rm:provider componentTypes="buckminster" readerType="git" mutable="false">
-			<rm:uri format="{0}/org.eclipse.emf.mwe.releng.git,{1}">
-				<bc:propertyRef key="workspace.root" />
+		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
+			<rm:uri format="{0}/releng/{1}">
+				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
-			<rm:property key="git.remote.uri" value="git://git.eclipse.org/gitroot/emf/org.eclipse.emf.mwe.releng.git" />
-			<rm:property key="git.auto.fetch" value="true" />
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="eclipse.test">
