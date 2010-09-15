@@ -6,7 +6,8 @@
 	<locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf"/>
     <locator pattern="^org\.apache(?:\..+)?$" searchPathRef="orbit" failOnError="false" />
 	<locator pattern="^com\.google\.inject?$" searchPathRef="orbit"/>
-     <locator searchPathRef="platform" />
+    <locator pattern="^org\.aopalliance?$" searchPathRef="orbit"/>
+    <locator searchPathRef="platform" />
 
 	<searchPath name="local.releng">
 		<provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
