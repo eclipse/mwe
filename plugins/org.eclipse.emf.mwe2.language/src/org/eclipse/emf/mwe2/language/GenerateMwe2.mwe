@@ -26,8 +26,8 @@
 			<fragment class="org.eclipse.xtext.generator.resourceFactory.ResourceFactoryFragment" 
 				fileExtensions="${file.extensions}"/>
 				
-			<fragment class="de.itemis.xtext.antlr.ex.rt.AntlrGeneratorFragment" />
-			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment">
+			<fragment class="org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment" />
+			<fragment class="org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment">
 				<lexerGrammar value="org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer"/>
 				<runtime value="true"/>
 				<antlrParam value="-lib"/>
@@ -52,22 +52,22 @@
 			<fragment class="org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment"/>
 
 			<!-- outline API -->
-			<fragment class="org.eclipse.xtext.ui.generator.outline.TransformerFragment"/>
+			<fragment class="org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment"/>
 			<fragment class="org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment"/>
 
 			<!-- java-based API for content assistance -->
 			<fragment class="org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment"/>
 			<!-- the following fragment tries to use the Antlr based content assist fragment which can be downloaded from http://www.itemis.com 
 			     and will be ignored if it's not available. -->
-			<fragment class="de.itemis.xtext.antlr.ex.ca.ContentAssistParserGeneratorFragment"/>
+			<fragment class="org.eclipse.xtext.generator.parser.antlr.ex.ca.ContentAssistParserGeneratorFragment"/>
 
 				<fragment class="org.eclipse.xtext.generator.builder.BuilderIntegrationFragment"/>
 			<fragment class="org.eclipse.xtext.generator.exporting.QualifiedNamesFragment"/>
-			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment"
+			<fragment class="org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment"
 				lexerGrammar="org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlighting"
 				highlighting="true"
 			/>
-			<fragment class="de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment">
+			<fragment class="org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment">
 				<lexerGrammar value="org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexer"/>
 				<contentAssist value="true"/>
 				<antlrParam value="-lib"/>

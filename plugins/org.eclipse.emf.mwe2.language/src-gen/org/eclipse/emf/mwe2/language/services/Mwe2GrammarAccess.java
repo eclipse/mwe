@@ -338,7 +338,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cFQNParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cFullStopAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
-		//ImportedFQN returns ecore::EString:
+		//ImportedFQN:
 		//	FQN ".*"?;
 		public ParserRule getRule() { return rule; }
 
@@ -476,7 +476,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cFullStopKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
-		//FQN returns ecore::EString:
+		//FQN:
 		//	ID ("." ID)*;
 		public ParserRule getRule() { return rule; }
 
@@ -669,7 +669,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//// we use a customized lexer with predicates. 
 		//// This allows us to use e.g. single quotes without escape sequences
 		//// in double quoted strings and vice versa.
-		//ConstantValue returns ecore::EString:
+		//ConstantValue:
 		//	(WS | ANY_OTHER | ID | "\\\'" | "\\\"" | "\\${" | "\\\\")+;
 		public ParserRule getRule() { return rule; }
 
@@ -785,7 +785,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getImportAccess().getRule();
 	}
 
-	//ImportedFQN returns ecore::EString:
+	//ImportedFQN:
 	//	FQN ".*"?;
 	public ImportedFQNElements getImportedFQNAccess() {
 		return (pImportedFQN != null) ? pImportedFQN : (pImportedFQN = new ImportedFQNElements());
@@ -835,7 +835,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getReferenceAccess().getRule();
 	}
 
-	//FQN returns ecore::EString:
+	//FQN:
 	//	ID ("." ID)*;
 	public FQNElements getFQNAccess() {
 		return (pFQN != null) ? pFQN : (pFQN = new FQNElements());
@@ -880,7 +880,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	//// we use a customized lexer with predicates. 
 	//// This allows us to use e.g. single quotes without escape sequences
 	//// in double quoted strings and vice versa.
-	//ConstantValue returns ecore::EString:
+	//ConstantValue:
 	//	(WS | ANY_OTHER | ID | "\\\'" | "\\\"" | "\\${" | "\\\\")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return (pConstantValue != null) ? pConstantValue : (pConstantValue = new ConstantValueElements());
