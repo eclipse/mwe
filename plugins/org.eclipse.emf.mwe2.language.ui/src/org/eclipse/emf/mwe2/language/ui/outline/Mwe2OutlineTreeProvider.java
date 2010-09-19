@@ -15,13 +15,12 @@ import org.eclipse.xtext.ui.IImageHelper;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
-import org.eclipse.xtext.ui.editor.outline.impl.EReferenceNode;
 
 import com.google.inject.Inject;
 
 /**
  * customization of the default outline structure
- * 
+ * @author koehnlein
  */
 public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 
@@ -29,11 +28,10 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 	private IImageHelper imageHelper;
 
 	protected void doCreateChildren(DocumentRootNode parentNode, Module module) {
-		new EReferenceNode(module, Mwe2Package.Literals.MODULE__IMPORTS, parentNode,
-				imageHelper.getImage("impc_obj.gif"), "import declarations", module.getImports().isEmpty());
-		new EReferenceNode(module, Mwe2Package.Literals.MODULE__DECLARED_PROPERTIES, parentNode,
-				imageHelper.getImage("settings_obj.gif"), "property declarations", module.getDeclaredProperties()
-						.isEmpty());
+		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__IMPORTS,
+				imageHelper.getImage("impc_obj.gif"), "import declarations");
+		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__DECLARED_PROPERTIES,
+				imageHelper.getImage("settings_obj.gif"), "declared properties");
 		if (module.getRoot() != null)
 			createNode(parentNode, module.getRoot());
 	}
