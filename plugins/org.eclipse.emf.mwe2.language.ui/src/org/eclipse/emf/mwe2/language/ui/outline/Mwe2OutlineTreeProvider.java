@@ -12,7 +12,6 @@ import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.xtext.ui.IImageHelper;
-import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 
@@ -36,13 +35,16 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createNode(parentNode, module.getRoot());
 	}
 
-	protected void doCreateChildren(IOutlineNode parentNode, Reference reference) {
+	protected boolean isLeaf(Reference reference) {
+		return true;
 	}
 
-	protected void doCreateChildren(IOutlineNode parentNode, BooleanLiteral booleanLiteral) {
+	protected boolean isLeaf(BooleanLiteral literal) {
+		return true;
 	}
 
-	protected void doCreateChildren(IOutlineNode parentNode, StringLiteral stringLiteral) {
+	protected boolean isLeaf(StringLiteral literal) {
+		return true;
 	}
 
 	protected Image image(Assignment ass) {
