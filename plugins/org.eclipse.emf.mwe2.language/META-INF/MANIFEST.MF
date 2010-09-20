@@ -19,7 +19,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime,
  org.eclipse.emf.mwe2.runtime;bundle-version="1.0.1",
- de.itemis.xtext.antlr;bundle-version="1.0.1";resolution:=optional
+ de.itemis.xtext.antlr;bundle-version="1.0.1";resolution:=optional,
+ org.eclipse.emf.mwe2.lib;bundle-version="1.0.1";resolution:=optional
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.language,
