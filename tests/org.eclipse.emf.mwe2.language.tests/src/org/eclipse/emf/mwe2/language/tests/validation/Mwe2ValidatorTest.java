@@ -16,6 +16,7 @@ import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
@@ -113,7 +114,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
 		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
-		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
+		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
 	public void testUnusedLocalVariable_2() throws Exception {
@@ -122,7 +123,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
 		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
-		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
+		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
 	public void testUnusedLocalVariable_3() throws Exception {
@@ -145,7 +146,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
 		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
-		assertEquals(Issue.Severity.WARNING, list.get(0).getSeverity());
+		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
 	public void testUnusedLocalVariable_6() throws Exception {
@@ -168,7 +169,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),2,list.size());
 		assertEquals(Mwe2JavaValidator.DUPLICATE_LOCAL, list.get(1).getCode());
-		assertEquals(Issue.Severity.ERROR, list.get(1).getSeverity());
+		assertEquals(Severity.ERROR, list.get(1).getSeverity());
 	}
 	
 	private List<Issue> validate(EObject model) {
