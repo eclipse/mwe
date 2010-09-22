@@ -3,6 +3,7 @@
     <cs:dependencies>
         <cs:dependency name="org.aopalliance" componentType="osgi.bundle"/>
         <cs:dependency name="com.google.inject" componentType="osgi.bundle"/>
+        <cs:dependency name="com.google.collect" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.commons.cli" componentType="osgi.bundle"/>
         <cs:dependency name="org.apache.log4j" componentType="osgi.bundle"/>
         <cs:dependency name="org.eclipse.core.runtime" componentType="osgi.bundle" versionDesignator="[3.5.0,3.6.0)"/>
