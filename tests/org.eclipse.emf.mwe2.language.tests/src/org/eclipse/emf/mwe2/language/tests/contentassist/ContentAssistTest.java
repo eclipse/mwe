@@ -191,6 +191,36 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
+	public void testCompleteVarKeyword_01() throws Exception {
+		ContentAssistProcessorTestBuilder builder = newBuilder();
+		ICompletionProposal[] proposals = builder.computeCompletionProposals();
+		for(ICompletionProposal proposal: proposals) {
+			if ("var".equals(proposal.getDisplayString()))
+				return;
+		}
+		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
+	}
+	
+	public void testCompleteVarKeyword_02() throws Exception {
+		ContentAssistProcessorTestBuilder builder = newBuilder().append("var");
+		ICompletionProposal[] proposals = builder.computeCompletionProposals();
+		for(ICompletionProposal proposal: proposals) {
+			if ("var".equals(proposal.getDisplayString()))
+				return;
+		}
+		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
+	}
+	
+	public void testCompleteVarKeyword_03() throws Exception {
+		ContentAssistProcessorTestBuilder builder = newBuilder().append("var foo = ''");
+		ICompletionProposal[] proposals = builder.computeCompletionProposals();
+		for(ICompletionProposal proposal: proposals) {
+			if ("var".equals(proposal.getDisplayString()))
+				return;
+		}
+		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
+	}
+	
 	public void testCompleteStringLiteral_01() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
@@ -236,6 +266,14 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" $")
 			.assertText(
+					"${", "\"");
+	}
+	
+	public void testCompleteStringLiteral_07() throws Exception {
+		newBuilder()
+			.appendNl("var message = 'zonk'")
+			.append("var other = \" $\"")
+			.assertTextAtCursorPosition("$", 1,
 					"${", "\"");
 	}
 	
