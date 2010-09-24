@@ -31,16 +31,14 @@ public class VisitorAnalyzer extends VisitorBase {
 		return ana;
 	}
 
-	@SuppressWarnings("rawtypes")
-	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class,
+	private Map<Class<?>, Converter<?>> converter = new HashMap<Class<?>, Converter<?>>(); // <Class,
 																						// Converter>
 
 	private Class<?> currentComponentClass = null;
 
 	private Issues issues = new IssuesImpl();
 
-	@SuppressWarnings("rawtypes")
-	public VisitorAnalyzer(final Issues issues, final Map<Class<?>, Converter> converter,
+	public VisitorAnalyzer(final Issues issues, final Map<Class<?>, Converter<?>> converter,
 			final Class<?> currentComponentClass) {
 		if (currentComponentClass == null)
 			throw new NullPointerException("currentComponentClass");

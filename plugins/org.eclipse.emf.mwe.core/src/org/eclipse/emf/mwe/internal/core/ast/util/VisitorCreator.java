@@ -34,16 +34,14 @@ public class VisitorCreator extends VisitorBase {
 
 	private Map<String, Object> beans = new HashMap<String, Object>();
 
-	@SuppressWarnings("rawtypes")
-	private Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>(); // <Class,
+	private Map<Class<?>, Converter<?>> converter = new HashMap<Class<?>, Converter<?>>(); // <Class,
 	// Converter>
 
 	private Object currentBean = null;
 
 	private Issues issues = new IssuesImpl();
 
-	@SuppressWarnings("rawtypes")
-	public VisitorCreator(final Issues issues, final Map<Class<?>, Converter> converter, final Object rootBean) {
+	public VisitorCreator(final Issues issues, final Map<Class<?>, Converter<?>> converter, final Object rootBean) {
 		this.issues = issues;
 		this.converter = converter;
 		currentBean = rootBean;

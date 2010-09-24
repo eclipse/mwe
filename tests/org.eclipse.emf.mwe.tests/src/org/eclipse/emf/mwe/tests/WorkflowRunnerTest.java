@@ -4,12 +4,13 @@ import java.util.Collections;
 
 import junit.framework.TestCase;
 
+import org.eclipse.emf.mwe.core.WorkflowEngine;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 
 public class WorkflowRunnerTest extends TestCase {
 	public void testBug155854 () throws Exception {
-		WorkflowRunner runner = new WorkflowRunner();
+		WorkflowEngine runner = new WorkflowEngine();
 		try {
 			boolean result = runner.prepare("invalidfile.mwe", new NullProgressMonitor(), Collections.<String,String>emptyMap());
 			assertFalse ("prepare() should indicate an error", result);

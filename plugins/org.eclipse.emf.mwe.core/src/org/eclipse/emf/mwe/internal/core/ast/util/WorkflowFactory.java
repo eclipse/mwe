@@ -42,9 +42,7 @@ public class WorkflowFactory {
 
 	private final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
-	
-	@SuppressWarnings("rawtypes")
-	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter> converter, final Issues issues) {
+	public Workflow parseInitAndCreate(final String fileName, final Map<String, String> params, final Map<Class<?>, Converter<?>> converter, final Issues issues) {
 		final InputStream in = loader.getResourceAsStream(fileName);
 		if (in == null) {
 			throw new IllegalArgumentException("Couldn't load file " + fileName);
@@ -53,9 +51,8 @@ public class WorkflowFactory {
 	}
 
 	
-	@SuppressWarnings("rawtypes")
 	public Workflow parseInitAndCreate(final InputStream in, final String resourceName, final Map<String, String> params,
-			final Map<Class<?>, Converter> converters, final Issues issues) {
+			final Map<Class<?>, Converter<?>> converters, final Issues issues) {
 		final AbstractASTBase wfast = parseAndInitialize(in, resourceName, issues, params);
 		if (isAbstract(wfast)) {
 			issues.clear();
@@ -113,20 +110,18 @@ public class WorkflowFactory {
 	}
 
 	
-	@SuppressWarnings("rawtypes")
 	public Set<?> parseInitAndAnalyze(final InputStream in, final String resourceName, final Issues issues, final Map<String, String> properties,
-			final Map<Class<?>, Converter> converter) {
+			final Map<Class<?>, Converter<?>> converter) {
 		final AbstractASTBase wf = parseAndInitialize(in, resourceName, issues, properties);
-		final Map<Class<?>, Converter> conv = WorkflowFactory.getDefaultConverter();
+		final Map<Class<?>, Converter<?>> conv = WorkflowFactory.getDefaultConverter();
 		conv.putAll(converter);
 		final VisitorAnalyzer visitor = new VisitorAnalyzer(issues, conv, WorkflowContainer.class);
 		return (Set<?>) wf.accept(visitor);
 	}
 
 	
-	@SuppressWarnings("rawtypes")
-	public static Map<Class<?>, Converter> getDefaultConverter() {
-		final Map<Class<?>, Converter> m = new HashMap<Class<?>, Converter>();
+	public static Map<Class<?>, Converter<?>> getDefaultConverter() {
+		final Map<Class<?>, Converter<?>> m = new HashMap<Class<?>, Converter<?>>();
 		m.put(Object.class, new StringConverter());
 		m.put(String.class, new StringConverter());
 		m.put(Boolean.class, new BooleanConverter());

@@ -25,6 +25,15 @@ Workflow {
 	}
 	
 	component = DirectoryCleaner {
+		directory = "${runtimeProject}/emf-gen"
+	}
+	
+	component = org.eclipse.emf.mwe2.ecore.EcoreGenerator {
+		genModel = "platform:/resource/${projectName}/model/Mwe2.genmodel"
+		srcPath ="platform:/resource/${projectName}/src"
+	}
+	
+	component = DirectoryCleaner {
 		directory = "${runtimeProject}/src-gen"
 	}
 	
@@ -86,16 +95,16 @@ Workflow {
 			// java-based API for content assistance 
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 			
-			fragment = de.itemis.xtext.antlr.ex.ca.ContentAssistParserGeneratorFragment {}
+			fragment = parser.antlr.ex.ca.ContentAssistParserGeneratorFragment {}
 
 			fragment = builder.BuilderIntegrationFragment {}
 			fragment = exporting.QualifiedNamesFragment {}
-			fragment = de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment {
+			fragment = parser.antlr.ex.ExternalAntlrLexerFragment {
 				lexerGrammar = "org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlighting"
 				highlighting = true
 			}
 
-			fragment = de.itemis.xtext.antlr.ex.ExternalAntlrLexerFragment {
+			fragment = parser.antlr.ex.ExternalAntlrLexerFragment {
 				lexerGrammar = "org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexer"
 				contentAssist = true
 				antlrParam = "-lib"

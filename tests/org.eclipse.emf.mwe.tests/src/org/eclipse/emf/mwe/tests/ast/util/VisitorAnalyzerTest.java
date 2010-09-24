@@ -14,10 +14,9 @@ public class VisitorAnalyzerTest extends AbstractWorkflowParsingTestBase {
 	VisitorAnalyzer analyzer;
 
 	@Override
-	@SuppressWarnings("unchecked")
 	public void setUp() throws Exception {
 		super.setUp();
-		final Map<Class<?>, Converter> converter = new HashMap<Class<?>, Converter>();
+		final Map<Class<?>, Converter<?>> converter = new HashMap<Class<?>, Converter<?>>();
 		final Class<Component> currentComponentClass = test.res.Component.class;
 		analyzer = new VisitorAnalyzer(issues, converter, currentComponentClass);
 	}
