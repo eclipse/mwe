@@ -12,8 +12,10 @@ import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingConfiguratio
 import org.eclipse.emf.mwe2.language.ui.highlighting.SemanticHighlightingCalculator;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenDefProvider;
 import org.eclipse.emf.mwe2.language.ui.highlighting.TokenToAttributeMapper;
+import org.eclipse.emf.mwe2.language.ui.outline.Mwe2OutlineComparator;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.ui.editor.outline.impl.OutlineFilterAndSorter;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.AbstractAntlrTokenToAttributeIdMapper;
 
 import com.google.inject.Binder;
@@ -48,4 +50,8 @@ public class Mwe2UiModule extends org.eclipse.emf.mwe2.language.ui.AbstractMwe2U
 		return MweUiResourceSetProvider.class;
 	}
 	
+	@Override
+	public Class<? extends OutlineFilterAndSorter.IComparator> bindOutlineFilterAndSorter$IComparator() {
+		return Mwe2OutlineComparator.class;
+	}
 }

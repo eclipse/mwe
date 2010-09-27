@@ -4,24 +4,34 @@
 package org.eclipse.emf.mwe2.language.ui.outline;
 
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
-import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
-import org.eclipse.emf.mwe2.language.mwe2.Reference;
-import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.ui.IImageHelper;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
+import org.eclipse.xtext.ui.editor.utils.TextStyle;
+import org.eclipse.xtext.ui.label.StylerFactory;
 
 import com.google.inject.Inject;
 
 /**
  * customization of the default outline structure
+ * 
  * @author koehnlein
  */
 public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
+
+	private static final String COMPONENT_TYPE_SEPARATOR = " : ";
+
+	@Inject
+	private StylerFactory stylerFactory;
 
 	@Inject
 	private IImageHelper imageHelper;
@@ -35,23 +45,45 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createNode(parentNode, module.getRoot());
 	}
 
-	protected boolean isLeaf(Reference reference) {
-		return true;
+	protected boolean isLeaf(Assignment assignment) {
+		return !(assignment.getValue() instanceof Component);
 	}
 
-	protected boolean isLeaf(BooleanLiteral literal) {
-		return true;
+	protected boolean isLeaf(DeclaredProperty property) {
+		return !(property.getDefault() instanceof Component);
 	}
 
-	protected boolean isLeaf(StringLiteral literal) {
-		return true;
-	}
-
-	protected Image image(Assignment ass) {
-		return labelProvider.getImage(ass.getValue());
-	}
-
-	public Image image(DeclaredProperty prop) {
+	protected Image image(DeclaredProperty prop) {
 		return labelProvider.getImage(prop.getDefault());
 	}
+
+	protected Object text(Assignment assignment) {
+		StyledString styledText = (StyledString) super.text(assignment);
+		if (assignment.getFeature() instanceof JvmOperation) {
+			return appendSimpleName(styledText, ((JvmOperation)assignment.getFeature()).getParameters().get(0));
+		}
+		return styledText;
+	}
+
+	protected Object text(Component component) {
+		StyledString styledText = (StyledString) super.text(component);
+		if (component.getType() != null) {
+			return appendSimpleName(styledText, component.getType());
+		}
+		return styledText;
+	}
+
+	protected StyledString appendSimpleName(StyledString styledText, JvmIdentifyableElement element) {
+		String canonicalName = element.getCanonicalName();
+		String typeName = canonicalName.substring(canonicalName.lastIndexOf('.')+1);
+		return styledText.append(new StyledString(COMPONENT_TYPE_SEPARATOR + typeName, stylerFactory
+				.createXtextStyleAdapterStyler(getTypeTextStyle())));
+	}
+	
+	protected TextStyle getTypeTextStyle() {
+		TextStyle textStyle = new TextStyle();
+		textStyle.setColor(new RGB(149, 125, 71));
+		return textStyle;
+	}
+
 }
