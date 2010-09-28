@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <category-def name="mwe" label="Modeling Workflow Engine (MWE)">
+	<feature id="org.eclipse.emf.mwe.core.source" version="0.0.0">
+		<category name="mwe"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe.core" version="0.0.0" >
+		<category name="mwe"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe.doc" version="0.0.0">
+		<category name="mwe"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe.sdk" version="0.0.0">
+		<category name="mwe"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe.ui.source" version="0.0.0">
+		<category name="mwe"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe.ui" version="0.0.0">
+		<category name="mwe"/>
+	</feature>
+	<category-def name="mwe" label="EMFT MWE (Modeling Workflow Engine)">
       <description>
-         MWE features.
+       EMFT Modeling Workflow Engine (MWE)
+      </description>
+   </category-def>
+   
+   
+   <feature id="org.eclipse.emf.mwe2.runtime.sdk.source" version="0.0.0" >
+		<category name="mwe2rt"/>
+	</feature>
+	<feature id="org.eclipse.emf.mwe2.runtime.sdk" version="0.0.0">
+		<category name="mwe2rt"/>
+	</feature>
+   <category-def name="mwe2rt" label="EMFT MWE2 Runtime (Modeling Workflow Engine 2)">
+      <description>
+       EMFT MWE2 Runtime (Modeling Workflow Engine 2)
       </description>
    </category-def>
 </site>
