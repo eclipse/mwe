@@ -158,7 +158,7 @@
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
 
 		<!-- defaults -->
-		<property name="version" value="1.0.1" />
+		<property name="version" value="0.7.0" />
 
 		<property name="packages.directory" location="${build.root}/archive/${packages.base}" />
 		<property name="testresults.directory" location="${build.root}/archive/mwe.test.results" />
