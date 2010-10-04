@@ -154,17 +154,18 @@
 		</fail>
 		<property file="${publisher.properties.file.name}" />
 		<fail message="build.root property must be defined" unless="build.root" />
-		<fail message="packages.base property must be defined" unless="packages.base" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
 
 		<!-- defaults -->
 		<property name="version" value="0.7.0" />
+		<property name="packages.base" value="downloads" />
+		<property name="tests.base" value="test.results" />
 
 		<property name="packages.directory" location="${build.root}/archive/${packages.base}" />
-		<property name="testresults.directory" location="${build.root}/archive/mwe.test.results" />
+		<property name="testresults.directory" location="${build.root}/archive/${tests.base}" />
 
 		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
-
+<echo>${testresults.directory}   ${build.root}/archive/${tests.base}</echo>
 		<delete dir="${build.drop.directory}" />
 		<mkdir dir="${build.drop.directory}" />
 
