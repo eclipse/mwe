@@ -123,7 +123,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 			.appendNl("all = util.ArrayList {}")
 			.append("}").assertTextAtCursorPosition(
 					"util.ArrayLis", "util.ArrayLis".length(), 
-					"util.ArrayList", // disabled because JdtTypeProposalProvider does not know anything about imports
+					"util.ArrayList",
 					":", "{", "}");
 	}
 	
