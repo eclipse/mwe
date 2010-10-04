@@ -9,7 +9,7 @@ package org.eclipse.emf.mwe2.language.tests;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.xtext.junit.util.JavaProjectSetupUtil;
+import org.eclipse.xtext.ui.junit.util.JavaProjectSetupUtil;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
