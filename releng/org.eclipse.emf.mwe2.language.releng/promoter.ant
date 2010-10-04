@@ -228,14 +228,14 @@
 		<delete dir="${build.repository.directory}" />
 		<mkdir dir="${build.repository.directory}" />
 
-		<unzip  dest="${build.repository.directory}">
+		<unzip  dest="${build.repository.directory}/mwe2lang">
 			<fileset dir="${packages.directory}">
 				<filename name="*-Update*.zip" />
 			</fileset>
 		</unzip>
 		<p2.composite.repository destination="${composite.repository.url}">
 			<add>
- 				<repository location="${saved.build.id}" />
+ 				<repository location="${saved.build.id}/mwe2lang" />
 			</add>
 		</p2.composite.repository>
 
