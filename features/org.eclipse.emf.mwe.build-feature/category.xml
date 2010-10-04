@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
 	<feature id="org.eclipse.emf.mwe.core.source" version="0.0.0">
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe.core" version="0.0.0" >
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe.doc" version="0.0.0">
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe.sdk" version="0.0.0">
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe.ui.source" version="0.0.0">
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe.ui" version="0.0.0">
-		<category name="mwe"/>
+		<category name="mwe${package.qualifier}"/>
 	</feature>
-	<category-def name="mwe" label="EMFT MWE (Modeling Workflow Engine)">
+	<category-def name="mwe${package.qualifier}" label="EMFT MWE ${package.qualifier}">
       <description>
        EMFT Modeling Workflow Engine (MWE)
       </description>
@@ -26,12 +26,12 @@
    
    
    <feature id="org.eclipse.emf.mwe2.runtime.sdk.source" version="0.0.0" >
-		<category name="mwe2rt"/>
+		<category name="mwe2rt${package.qualifier}"/>
 	</feature>
 	<feature id="org.eclipse.emf.mwe2.runtime.sdk" version="0.0.0">
-		<category name="mwe2rt"/>
+		<category name="mwe2rt${package.qualifier}"/>
 	</feature>
-   <category-def name="mwe2rt" label="EMFT MWE2 Runtime (Modeling Workflow Engine 2)">
+   <category-def name="mwe2rt${package.qualifier}" label="EMFT MWE2 Runtime ${package.qualifier}">
       <description>
        EMFT MWE2 Runtime (Modeling Workflow Engine 2)
       </description>
