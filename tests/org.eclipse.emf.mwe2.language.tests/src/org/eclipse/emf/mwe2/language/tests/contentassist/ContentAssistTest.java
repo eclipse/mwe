@@ -62,8 +62,16 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		newBuilder(getSetup()).assertText("module");
 	}
 	
-	public void testClassDecl() throws Exception {
+	public void testClassDecl_01() throws Exception {
 		newBuilder().append("java.util.ArrayList").assertText("java.util.ArrayList", ":", "{");
+	}
+	
+	public void testClassDecl_02() throws Exception {
+		newBuilder().append("j.u.ArrayL").assertText("java.util.ArrayList", ":", "{");
+	}
+	
+	public void testClassDecl_03() throws Exception {
+		newBuilder().append("uti.Arrayl").assertText("java.util.ArrayList", ":", "{");
 	}
 	
 	public void testInsideClassDecl() throws Exception {
@@ -78,11 +86,25 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 				"util.ArrayLis", "util.ArrayLis".length(), "util.ArrayList", ":", "{");
 	}
 	
-	public void testNestedClassDecl() throws Exception {
+	public void testNestedClassDecl_01() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
 			.append("all = java.util.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
+	}
+	
+	public void testNestedClassDecl_02() throws Exception {
+		newBuilder()
+			.appendNl("import java.*")
+			.appendNl("util.HashSet {")
+			.append("all = j.u.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
+	}
+	
+	public void testNestedClassDecl_03() throws Exception {
+		newBuilder()
+			.appendNl("import java.*")
+			.appendNl("util.HashSet {")
+			.append("all = uti.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
 	}
 	
 	public void testNestedInsideClassDecl() throws Exception {
@@ -101,7 +123,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 			.appendNl("all = util.ArrayList {}")
 			.append("}").assertTextAtCursorPosition(
 					"util.ArrayLis", "util.ArrayLis".length(), 
-					// "util.ArrayList", // disabled because JdtTypeProposalProvider does not know anything about imports
+					"util.ArrayList", // disabled because JdtTypeProposalProvider does not know anything about imports
 					":", "{", "}");
 	}
 	

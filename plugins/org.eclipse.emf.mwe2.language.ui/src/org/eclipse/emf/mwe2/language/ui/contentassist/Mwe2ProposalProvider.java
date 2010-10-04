@@ -66,6 +66,12 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 	}
 	
 	@Override
+	public void completeRootComponent_Type(EObject model, org.eclipse.xtext.Assignment assignment,
+			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+		completeComponent_Type(model, assignment, context, acceptor);
+	}
+	
+	@Override
 	public void completeComponent_Type(EObject model,
 			org.eclipse.xtext.Assignment assignment,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
