@@ -46,7 +46,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 	}
 
 	@Override
-	public Set<ImportNormalizer> getImportNormalizer(EObject context) {
+	protected Set<ImportNormalizer> getImportNormalizer(EObject context) {
 		if (context instanceof Module) {
 			Module module = (Module) context;
 			Set<ImportNormalizer> result = super.getImportNormalizer(context);

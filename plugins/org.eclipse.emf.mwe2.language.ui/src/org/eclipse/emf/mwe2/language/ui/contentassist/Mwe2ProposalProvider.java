@@ -13,11 +13,13 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
 import org.eclipse.xtext.common.types.xtext.ui.TypeMatchFilters;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -33,7 +35,7 @@ import com.google.inject.Inject;
 public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 	
 	@Inject
-	private NamespaceAwareTypesProposalProvider typeProposalProvider;
+	private ITypesProposalProvider typeProposalProvider;
 	
 	@Override
 	public Mwe2ScopeProvider getScopeProvider() {
@@ -70,7 +72,7 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 		if (model instanceof Component)
 			model = model.eContainer();
 		if (model instanceof Module) {
-			typeProposalProvider.createTypeProposals(this, context, TypeMatchFilters.canInstantiate(), acceptor);	
+			typeProposalProvider.createTypeProposals(this, context, Mwe2Package.Literals.REFERRABLE__TYPE, TypeMatchFilters.canInstantiate(), acceptor);	
 		} else if (model instanceof Assignment) {
 			Assignment attribute = (Assignment) model;
 			if (attribute.getFeature() == null || attribute.getFeature().eIsProxy())
@@ -78,7 +80,7 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 			JvmFeature feature = attribute.getFeature();
 			if (feature instanceof JvmOperation) {
 				JvmType parameterType = ((JvmOperation) feature).getParameters().get(0).getParameterType().getType();
-				typeProposalProvider.createSubTypeProposals(parameterType, this, context, TypeMatchFilters.canInstantiate(), acceptor);
+				typeProposalProvider.createSubTypeProposals(parameterType, this, context, Mwe2Package.Literals.REFERRABLE__TYPE, TypeMatchFilters.canInstantiate(), acceptor);
 			}
 		}
 	}
