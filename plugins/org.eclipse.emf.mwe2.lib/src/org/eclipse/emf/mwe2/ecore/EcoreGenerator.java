@@ -121,6 +121,8 @@ public class EcoreGenerator implements IWorkflowComponent {
 	
 	protected final class mapper implements Function<String, String> {
 		public String apply(String from) {
+			if (from.startsWith("org.eclipse.emf.ecore"))
+				return null;
 			URI createURI = URI.createURI(srcPath+"/"+from.replace('.', '/')+"Custom.java");
 			String customClassName = from+"Custom";
 			if (URIConverter.INSTANCE.exists(createURI, null)) {
