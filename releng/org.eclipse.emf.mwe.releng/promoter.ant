@@ -238,11 +238,11 @@
 				<filename name="*mwe-2-Update*.zip" />
 			</fileset>
 		</unzip>
-		<p2.composite.repository name="EMFT MWE Update Site (${composite.repository.base})" destination="${composite.repository.url}" >
+		<p2.composite.repository.create  name="EMFT MWE Update Site (${composite.repository.base})" destination="${composite.repository.url}" >
 			<add>
  				<repository location="${saved.build.id}/mwe2" />
 			</add>
-		</p2.composite.repository>
+		</p2.composite.repository.create>
 
 		<fileset id="repository.resources" dir="${composite.repository.directory}">
 			<or>
