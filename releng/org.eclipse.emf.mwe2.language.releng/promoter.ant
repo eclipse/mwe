@@ -239,7 +239,7 @@
 			</add>
 		</p2.composite.repository>
 
-		<fileset id="repository.resources" dir="${composite.repository.directory}">
+		<fileset id="repository.resources" name="EMFT MWE Update Site (${composite.repository.base})" dir="${composite.repository.directory}">
 			<or>
 				<filename name="compositeContent.*" />
 				<filename name="compositeArtifacts.*" />

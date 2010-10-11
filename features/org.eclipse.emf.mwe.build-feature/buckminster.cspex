@@ -29,6 +29,7 @@
 				<cs:property key="targets" value="package.site" />
 			</cs:actorProperties>
 			<cs:properties>
+				<cs:property key="package.qualifier" value="${build.id}" />
 				<cs:property key="package.name" value="emft-mwe-Update" />
 			</cs:properties>
 			<cs:prerequisites>

@@ -24,6 +24,7 @@
 				<length string="${build.id}" when="greater" length="0" />
 			</and>
 		</condition>
+		<echo>${package.qualifier}</echo>
 	</target>
 
 	<target name="package.site" depends="-define.package.qualifier">
