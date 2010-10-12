@@ -46,7 +46,7 @@ public class Mwe2UiModule extends org.eclipse.emf.mwe2.language.ui.AbstractMwe2U
 		return MweHighlightingConfiguration.class;
 	}
 	
-	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
+	public Class<? extends Provider<XtextResourceSet>> provideXtextResourceSet() {
 		return MweUiResourceSetProvider.class;
 	}
 	

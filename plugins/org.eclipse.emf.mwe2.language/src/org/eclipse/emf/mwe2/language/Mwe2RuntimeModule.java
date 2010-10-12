@@ -46,7 +46,7 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 		return null;
 	}
 	
-	public Class<? extends Provider<? extends XtextResourceSet>> provideXtextResourceSet() {
+	public Class<? extends Provider<XtextResourceSet>> provideXtextResourceSet() {
 		return MweResourceSetProvider.class;
 	}
 	
