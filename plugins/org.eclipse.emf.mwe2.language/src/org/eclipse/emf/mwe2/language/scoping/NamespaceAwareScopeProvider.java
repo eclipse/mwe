@@ -19,7 +19,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.TypesPackage;
-import org.eclipse.xtext.common.types.access.ITypeProvider;
+import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
 import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
@@ -36,7 +36,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 		EClass referenceType = reference.getEReferenceType();
 		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
 			ResourceSet resourceSet = context.eResource().getResourceSet();
-			ITypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
+			IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
 			if (typeProvider == null)
 				typeProvider = typeScopeProvider.getTypeProviderFactory().createTypeProvider(resourceSet);
 			return typeScopeProvider.createTypeScope(typeProvider);

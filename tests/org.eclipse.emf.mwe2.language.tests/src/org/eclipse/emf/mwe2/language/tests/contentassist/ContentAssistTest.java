@@ -53,6 +53,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					public IJavaProjectProvider bindIJavaProjectProviderInstance() {
 						return ContentAssistTest.this;
 					}
+					
 				};
 			}
 		};

@@ -9,7 +9,7 @@
 package org.eclipse.emf.mwe2.language.resource;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.xtext.common.types.access.ITypeProvider;
+import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
 import org.eclipse.xtext.resource.SynchronizedXtextResourceSet;
 import org.eclipse.xtext.resource.XtextResourceSet;
 
@@ -19,7 +19,7 @@ import com.google.inject.Provider;
 public class MweResourceSetProvider implements Provider<XtextResourceSet>{
 
 	@Inject
-	private Provider<ITypeProvider.Factory> typeProviderFactory;
+	private Provider<IJvmTypeProvider.Factory> typeProviderFactory;
 	
 	public XtextResourceSet get() {
 		XtextResourceSet result = new SynchronizedXtextResourceSet() {
@@ -38,8 +38,8 @@ public class MweResourceSetProvider implements Provider<XtextResourceSet>{
 	}
 
 	protected void ensureTypeFactoryExists(ResourceSet resourceSet) {
-		ITypeProvider.Factory factory = typeProviderFactory.get();
-		ITypeProvider typeProvider = factory.findTypeProvider(resourceSet);
+		IJvmTypeProvider.Factory factory = typeProviderFactory.get();
+		IJvmTypeProvider typeProvider = factory.findTypeProvider(resourceSet);
 		if (typeProvider == null)
 			factory.createTypeProvider(resourceSet);
 	}

@@ -23,7 +23,7 @@ import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer;
 import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.common.types.access.ITypeProvider.Factory;
+import org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;

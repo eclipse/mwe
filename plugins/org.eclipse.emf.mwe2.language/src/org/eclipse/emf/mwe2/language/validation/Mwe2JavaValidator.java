@@ -40,7 +40,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
-import org.eclipse.xtext.common.types.util.IAssignabilityComputer;
+import org.eclipse.xtext.common.types.util.IJvmTypeConformanceComputer;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
@@ -56,7 +56,7 @@ import com.google.inject.Inject;
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
-	private IAssignabilityComputer assignabilityComputer;
+	private IJvmTypeConformanceComputer assignabilityComputer;
 
 	@Inject
 	private FactorySupport factorySupport;
@@ -99,7 +99,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			} else {
 				right.setType(actualType);
 			}
-			if (!assignabilityComputer.isAssignableFrom(left, right)) {
+			if (!assignabilityComputer.isConformant(left, right)) {
 				error("A value of type '" + actualType.getCanonicalName()
 						+ "' can not be assigned to the feature "
 						+ feature.getSimpleName(),
@@ -121,7 +121,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			} else {
 				right.setType(actualType);
 			}
-			if (!assignabilityComputer.isAssignableFrom(left, right)) {
+			if (!assignabilityComputer.isConformant(left, right)) {
 				error("A value of type '" + actualType.getCanonicalName()
 						+ "' can not be assigned to a reference of type "
 						+ property.getType().getCanonicalName(),
