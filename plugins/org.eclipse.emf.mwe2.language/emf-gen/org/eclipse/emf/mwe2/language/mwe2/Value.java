@@ -21,12 +21,12 @@ import org.eclipse.xtext.common.types.JvmType;
  */
 public interface Value extends EObject
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  JvmType getActualType();
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	JvmType getActualType();
 
 } // Value

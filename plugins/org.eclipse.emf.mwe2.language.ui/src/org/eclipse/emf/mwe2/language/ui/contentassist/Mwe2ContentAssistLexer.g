@@ -1,7 +1,7 @@
 lexer grammar Mwe2ContentAssistLexer;
 
 options {
-	tokenVocab=InternalMwe2;
+	tokenVocab=InternalMwe2Lexer;
 }
 
 @header {

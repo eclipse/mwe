@@ -32,7 +32,7 @@ public class TokenDefProvider implements ITokenDefProvider, IAntlrTokenFileProvi
 
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		String resourcePath = getClass().getPackage().getName().replace('.', '/') + "/MweHighlighting.tokens";
+		String resourcePath = getClass().getPackage().getName().replace('.', '/') + "/MweHighlightingLexer.tokens";
 		InputStream result = classLoader.getResourceAsStream(resourcePath);
 		return result;
 	}

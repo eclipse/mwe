@@ -100,7 +100,7 @@ Workflow {
 			fragment = builder.BuilderIntegrationFragment {}
 			fragment = exporting.QualifiedNamesFragment {}
 			fragment = parser.antlr.ex.ExternalAntlrLexerFragment {
-				lexerGrammar = "org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlighting"
+				lexerGrammar = "org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer"
 				highlighting = true
 			}
 

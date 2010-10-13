@@ -23,25 +23,25 @@ import org.eclipse.emf.mwe2.language.mwe2.StringPart;
  */
 public class StringPartImpl extends MinimalEObjectImpl.Container implements StringPart
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected StringPartImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StringPartImpl()
+	{
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return Mwe2Package.Literals.STRING_PART;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return Mwe2Package.Literals.STRING_PART;
+	}
 
 } //StringPartImpl
