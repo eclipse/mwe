@@ -174,7 +174,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 	
 	private List<Issue> validate(EObject model) {
 		XtextResource res = ((XtextResource)model.eResource());
-		List<Issue> list = res.getResourceServiceProvider().getResourceValidator().validate(res, CheckMode.ALL, new CancelIndicator.NullImpl());
+		List<Issue> list = res.getResourceServiceProvider().getResourceValidator().validate(res, CheckMode.ALL, CancelIndicator.NullImpl);
 		return list;
 	}
 
