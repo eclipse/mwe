@@ -2,8 +2,8 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.releng(?:\..+)?$" searchPathRef="releng" />
-	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.(?:language|launch)?(?:\..+)?$" searchPathRef="mwe2lang" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.tests(?:\..+)?$" searchPathRef="mwe2lang.test" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.(?:language|launch)?(?:\..+)?$" searchPathRef="mwe2lang" />
 	<rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse.test" />
 	<rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipse.test" />
 	<rm:searchPath name="mwe2lang">
