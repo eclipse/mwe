@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.emf.mwe.tests"
+      id="org.eclipse.emf.mwe2.language.tests"
       label="%featureName"
       version="2.0.0.qualifier"
       provider-name="%providerName"
