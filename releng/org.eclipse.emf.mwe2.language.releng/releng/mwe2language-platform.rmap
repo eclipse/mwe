@@ -12,7 +12,7 @@
 	<rm:locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf" />
 	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit"
 		failOnError="false" />
-	<rm:locator pattern="^org\.(?:antlr\.runtime)(?:\..+)?$" searchPathRef="tmf"/>
+	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="xpand"/>
 	<rm:locator searchPathRef="platform" />
 	<rm:searchPath name="local.releng">
 		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
