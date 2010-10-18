@@ -39,7 +39,7 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
-	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindITypeProvider$Factory() {
+	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindIJvmTypeProvider$Factory() {
 		return org.eclipse.xtext.common.types.access.jdt.JdtTypeProviderFactory.class;
 	}
 
@@ -140,7 +140,7 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 
 	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
 	public void configureContentAssistLexer(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexerLexer.class);
+		binder.bind(org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ui.LexerUIBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe2.language.ui.contentassist.Mwe2ContentAssistLexer.class);
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment

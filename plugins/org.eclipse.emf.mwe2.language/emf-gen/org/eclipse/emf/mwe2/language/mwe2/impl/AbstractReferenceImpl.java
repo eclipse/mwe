@@ -32,145 +32,145 @@ import org.eclipse.emf.mwe2.language.mwe2.Referrable;
  */
 public abstract class AbstractReferenceImpl extends MinimalEObjectImpl.Container implements AbstractReference
 {
-  /**
-   * The cached value of the '{@link #getReferable() <em>Referable</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getReferable()
-   * @generated
-   * @ordered
-   */
-  protected Referrable referable;
+	/**
+	 * The cached value of the '{@link #getReferable() <em>Referable</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getReferable()
+	 * @generated
+	 * @ordered
+	 */
+	protected Referrable referable;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected AbstractReferenceImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AbstractReferenceImpl()
+	{
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return Mwe2Package.Literals.ABSTRACT_REFERENCE;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return Mwe2Package.Literals.ABSTRACT_REFERENCE;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Referrable getReferable()
-  {
-    if (referable != null && referable.eIsProxy())
-    {
-      InternalEObject oldReferable = (InternalEObject)referable;
-      referable = (Referrable)eResolveProxy(oldReferable);
-      if (referable != oldReferable)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
-      }
-    }
-    return referable;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Referrable getReferable()
+	{
+		if (referable != null && referable.eIsProxy())
+		{
+			InternalEObject oldReferable = (InternalEObject)referable;
+			referable = (Referrable)eResolveProxy(oldReferable);
+			if (referable != oldReferable)
+			{
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
+			}
+		}
+		return referable;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Referrable basicGetReferable()
-  {
-    return referable;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Referrable basicGetReferable()
+	{
+		return referable;
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setReferable(Referrable newReferable)
-  {
-    Referrable oldReferable = referable;
-    referable = newReferable;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setReferable(Referrable newReferable)
+	{
+		Referrable oldReferable = referable;
+		referable = newReferable;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.ABSTRACT_REFERENCE__REFERABLE, oldReferable, referable));
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType)
-  {
-    switch (featureID)
-    {
-      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
-        if (resolve) return getReferable();
-        return basicGetReferable();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eGet(int featureID, boolean resolve, boolean coreType)
+	{
+		switch (featureID)
+		{
+			case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
+				if (resolve) return getReferable();
+				return basicGetReferable();
+		}
+		return super.eGet(featureID, resolve, coreType);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue)
-  {
-    switch (featureID)
-    {
-      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
-        setReferable((Referrable)newValue);
-        return;
-    }
-    super.eSet(featureID, newValue);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eSet(int featureID, Object newValue)
+	{
+		switch (featureID)
+		{
+			case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
+				setReferable((Referrable)newValue);
+				return;
+		}
+		super.eSet(featureID, newValue);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID)
-  {
-    switch (featureID)
-    {
-      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
-        setReferable((Referrable)null);
-        return;
-    }
-    super.eUnset(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void eUnset(int featureID)
+	{
+		switch (featureID)
+		{
+			case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
+				setReferable((Referrable)null);
+				return;
+		}
+		super.eUnset(featureID);
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID)
-  {
-    switch (featureID)
-    {
-      case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
-        return referable != null;
-    }
-    return super.eIsSet(featureID);
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public boolean eIsSet(int featureID)
+	{
+		switch (featureID)
+		{
+			case Mwe2Package.ABSTRACT_REFERENCE__REFERABLE:
+				return referable != null;
+		}
+		return super.eIsSet(featureID);
+	}
 
 } //AbstractReferenceImpl

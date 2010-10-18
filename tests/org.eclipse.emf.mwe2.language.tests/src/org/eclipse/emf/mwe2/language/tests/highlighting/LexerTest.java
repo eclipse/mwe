@@ -46,7 +46,7 @@ public class LexerTest extends AbstractXtextTests {
 			protected Mwe2UiModule createUiModule(Mwe2Activator activator) {
 				return new Mwe2UiModule(activator) {
 					@Override
-					public Class<? extends Factory> bindITypeProvider$Factory() {
+					public Class<? extends Factory> bindIJvmTypeProvider$Factory() {
 						return null;
 					}
 				};
