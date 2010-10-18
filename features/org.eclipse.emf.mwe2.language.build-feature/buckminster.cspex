@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cs:cspecExtension xmlns:com="http://www.eclipse.org/buckminster/Common-1.0" xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0">
 	<cs:dependencies>
-		<!-- <cs:dependency name="org.eclipse.emf.mwe2.runtime.sdk" componentType="eclipse.feature" />
-	--></cs:dependencies>
+		<cs:dependency name="org.eclipse.emf.mwe2.language.tests" componentType="eclipse.feature" />
+	</cs:dependencies>
 
 	<cs:actions>
 		<cs:private name="site.tp" actor="ant">
