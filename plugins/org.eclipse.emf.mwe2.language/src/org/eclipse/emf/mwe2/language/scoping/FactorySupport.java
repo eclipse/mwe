@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.runtime.IFactory;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
-import org.eclipse.xtext.common.types.JvmReferenceTypeArgument;
 import org.eclipse.xtext.common.types.JvmType;
-import org.eclipse.xtext.common.types.JvmTypeArgument;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
 import org.eclipse.xtext.common.types.access.TypeNotFoundException;
@@ -47,10 +45,8 @@ public class FactorySupport {
 			for (JvmTypeReference ref : superTypes) {
 				if (ref.getType().equals(factoryType)) {
 					JvmParameterizedTypeReference r = (JvmParameterizedTypeReference) ref;
-					JvmTypeArgument argument = r.getArguments().get(0);
-					if (argument instanceof JvmReferenceTypeArgument) {
-						return ((JvmReferenceTypeArgument) argument)
-								.getTypeReference().getType();
+					if (r.getArguments().get(0) instanceof JvmParameterizedTypeReference) {
+						return r.getArguments().get(0).getType();
 					}
 					return null;
 				} else {
