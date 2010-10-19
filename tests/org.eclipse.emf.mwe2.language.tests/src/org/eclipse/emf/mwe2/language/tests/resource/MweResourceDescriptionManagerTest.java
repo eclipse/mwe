@@ -13,6 +13,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescription;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 
@@ -22,6 +23,9 @@ import com.google.common.collect.Lists;
  * @author Sebastian Zarnekow - Initial contribution and API
  */
 public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
+
+	private static final QualifiedName ORG_FOO_BAR = QualifiedName.create("org","foo","Bar");
+	private static final QualifiedName ORG_FOO_BAR_ZONK = QualifiedName.create("org","foo","Bar","zonk");
 
 	private IResourceDescription.Manager manager;
 
@@ -37,7 +41,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(1, exported.size());
 		IEObjectDescription module = exported.get(0);
-		assertEquals("org.foo.Bar", module.getName());
+		assertEquals(ORG_FOO_BAR, module.getName());
 		assertEquals(0, module.getUserDataKeys().length);
 	}
 	
@@ -46,7 +50,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__STRING, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertEquals(MweResourceDescription.MANDATORY_TRUE, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -56,7 +60,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__STRING, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertEquals(MweResourceDescription.MANDATORY_TRUE, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -66,7 +70,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__STRING, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -76,7 +80,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__STRING, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	} 
@@ -86,7 +90,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__BOOLEAN, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertEquals(MweResourceDescription.MANDATORY_TRUE, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -96,7 +100,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__BOOLEAN, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -106,7 +110,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals(MweResourceDescription.TYPE__BOOLEAN, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -116,7 +120,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals("org.foo.Bar", zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -126,7 +130,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals("java.util.ArrayList", zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -136,7 +140,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals("java.util.List", zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -146,7 +150,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals("java.util.List", zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertEquals(MweResourceDescription.MANDATORY_TRUE, zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}
@@ -156,7 +160,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(3, exported.size());
 		IEObjectDescription zonk = exported.get(2);
-		assertEquals("org.foo.Bar.zonk", zonk.getName());
+		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
 		assertEquals("mandatory", zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__TYPE));
 		assertNull(zonk.getUserData(MweResourceDescription.DECLARED_PROPERTY__MANDATORY));
 	}

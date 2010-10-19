@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.parsetree.AbstractNode;
 import org.eclipse.xtext.parsetree.LeafNode;
 import org.eclipse.xtext.parsetree.NodeUtil;
@@ -84,7 +85,7 @@ public class MweResourceDescription extends DefaultResourceDescription {
 	}
 
 	protected IEObjectDescription createIEObjectDescription(DeclaredProperty property) {
-		String qualifiedName = getNameProvider().getQualifiedName(property);
+		QualifiedName qualifiedName = getNameProvider().getQualifiedName(property);
 		Builder<String, String> builder = ImmutableMap.builder();
 		String nodeModelValue = getValueFromNodeModel(property, Mwe2Package.Literals.REFERRABLE__TYPE);
 		if (nodeModelValue != null) {

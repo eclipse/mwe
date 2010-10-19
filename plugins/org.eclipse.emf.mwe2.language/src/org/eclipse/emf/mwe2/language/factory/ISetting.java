@@ -8,7 +8,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.factory;
 
+import org.eclipse.xtext.naming.QualifiedName;
+
 public interface ISetting {
-	public String getName();
+	public QualifiedName getName();
 	public void setValue(Object value);
 }

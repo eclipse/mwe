@@ -183,7 +183,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		Set<String> result = Sets.newHashSet();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllContents()) {
-			result.add(description.getName());
+			result.add(description.getName().getFirstSegment());
 		}
 		return result;
 	}
@@ -295,7 +295,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		for(IEObjectDescription description: scope.getAllContents()) {
 			JvmFeature jvmFeature = (JvmFeature) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
-				result.put(description.getName(), jvmFeature);
+				result.put(description.getName().getFirstSegment(), jvmFeature);
 			}
 		}
 		return result;

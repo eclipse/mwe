@@ -15,6 +15,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -25,9 +26,9 @@ import com.google.common.collect.Lists;
 
 public class MapBasedScope implements IScope {
 	
-	private Map<String, ? extends EObject> entries;
+	private Map<QualifiedName, ? extends EObject> entries;
 	
-	public MapBasedScope(Map<String, ? extends EObject> entries) {
+	public MapBasedScope(Map<QualifiedName, ? extends EObject> entries) {
 		this.entries = entries;
 	}
 
@@ -36,8 +37,8 @@ public class MapBasedScope implements IScope {
 	}
 	
 	public Iterable<IEObjectDescription> getAllContents() {
-		return Iterables.transform(entries.entrySet(), new Function<Map.Entry<String, ? extends EObject>, IEObjectDescription>() {
-			public IEObjectDescription apply(Map.Entry<String, ? extends EObject> from) {
+		return Iterables.transform(entries.entrySet(), new Function<Map.Entry<QualifiedName, ? extends EObject>, IEObjectDescription>() {
+			public IEObjectDescription apply(Map.Entry<QualifiedName, ? extends EObject> from) {
 				return new MapEntry(from);
 			}
 		});
@@ -47,16 +48,16 @@ public class MapBasedScope implements IScope {
 		return getAllContents();
 	}
 	
-	public IEObjectDescription getContentByName(String name) {
-		EObject element = entries.get(name);
+	public IEObjectDescription getContentByName(QualifiedName qualifiedName) {
+		EObject element = entries.get(qualifiedName);
 		if (element != null)
-			return EObjectDescription.create(name, element);
+			return EObjectDescription.create(qualifiedName, element);
 		return null;
 	}
 	
 	public IEObjectDescription getContentByEObject(EObject object) {
 		URI uri = EcoreUtil.getURI(object);
-		for(Map.Entry<String, ? extends EObject> entry: entries.entrySet()) {
+		for(Map.Entry<QualifiedName, ? extends EObject> entry: entries.entrySet()) {
 			if (uri.equals(EcoreUtil.getURI(entry.getValue())))
 				return new MapEntry(entry);
 		}
@@ -66,7 +67,7 @@ public class MapBasedScope implements IScope {
 	public Iterable<IEObjectDescription> getAllContentsByEObject(EObject object) {
 		List<IEObjectDescription> result = Lists.newArrayList();
 		URI uri = EcoreUtil.getURI(object);
-		for(Map.Entry<String, ? extends EObject> entry: entries.entrySet()) {
+		for(Map.Entry<QualifiedName, ? extends EObject> entry: entries.entrySet()) {
 			if (uri.equals(EcoreUtil.getURI(entry.getValue())))
 				result.add(new MapEntry(entry));
 		}
@@ -75,17 +76,17 @@ public class MapBasedScope implements IScope {
 	
 	public static class MapEntry implements IEObjectDescription {
 
-		private final Map.Entry<String, ? extends EObject> entry;
+		private final Map.Entry<QualifiedName, ? extends EObject> entry;
 
-		public MapEntry(Map.Entry<String, ? extends EObject> entry) {
+		public MapEntry(Map.Entry<QualifiedName, ? extends EObject> entry) {
 			this.entry = entry;
 		}
 		
-		public String getName() {
+		public QualifiedName getName() {
 			return entry.getKey();
 		}
 
-		public String getQualifiedName() {
+		public QualifiedName getQualifiedName() {
 			return entry.getKey();
 		}
 

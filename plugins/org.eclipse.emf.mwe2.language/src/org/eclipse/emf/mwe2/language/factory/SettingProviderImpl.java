@@ -19,6 +19,7 @@ import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmField;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
+import org.eclipse.xtext.naming.QualifiedName;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
@@ -40,12 +41,12 @@ public class SettingProviderImpl implements ISettingProvider {
 		this.injectableFeatureLookup = injectableFeatureLookup;
 	}
 
-	public Map<String,ISetting> getSettings(final Object obj, JvmType type) {
-		Map<String, JvmFeature> features = injectableFeatureLookup.getInjectableFeatures(type);
+	public Map<QualifiedName,ISetting> getSettings(final Object obj, JvmType type) {
+		Map<QualifiedName, JvmFeature> features = injectableFeatureLookup.getInjectableFeatures(type);
 		
-		Iterable<ISetting> settings = Iterables.transform(features.entrySet(), new Function<Map.Entry<String, JvmFeature>,ISetting>(){
+		Iterable<ISetting> settings = Iterables.transform(features.entrySet(), new Function<Map.Entry<QualifiedName, JvmFeature>,ISetting>(){
 
-			public ISetting apply(final Map.Entry<String, JvmFeature> from) {
+			public ISetting apply(final Map.Entry<QualifiedName, JvmFeature> from) {
 				if (from.getValue() instanceof JvmExecutable) {
 					return new ISetting() {
 						public void setValue(Object value) {
@@ -56,7 +57,7 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
-						public String getName() {
+						public QualifiedName getName() {
 							return from.getKey();
 						}
 					};
@@ -70,15 +71,15 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
-						public String getName() {
+						public QualifiedName getName() {
 							return from.getKey();
 						}
 					};
 				}
 				throw new IllegalArgumentException(from.getValue().getCanonicalName() + " can not be handled.");
 			}});
-		return Maps.uniqueIndex(settings, new Function<ISetting, String>() {
-			public String apply(ISetting from) {
+		return Maps.uniqueIndex(settings, new Function<ISetting, QualifiedName>() {
+			public QualifiedName apply(ISetting from) {
 				return from.getName();
 			}
 		});

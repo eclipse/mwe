@@ -24,6 +24,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
@@ -130,7 +131,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 			JvmType containerType = container.getActualType();
 			if (containerType == null || containerType.eIsProxy())
 				return IScope.NULLSCOPE;
-			Map<String, JvmFeature> features = Maps.newHashMap();
+			Map<QualifiedName, JvmFeature> features = Maps.newHashMap();
 			JvmType createType = factorySupport
 					.findFactoriesCreationType(containerType);
 			if (createType != null) {

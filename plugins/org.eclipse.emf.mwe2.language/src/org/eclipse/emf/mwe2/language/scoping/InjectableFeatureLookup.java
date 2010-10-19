@@ -17,6 +17,7 @@ import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.Strings;
 
 import com.google.common.collect.ImmutableMap;
@@ -24,13 +25,13 @@ import com.google.inject.internal.Maps;
 
 public class InjectableFeatureLookup implements IInjectableFeatureLookup {
 	
-	public Map<String, JvmFeature> getInjectableFeatures(JvmType type) {
-		Map<String, JvmFeature> result = Maps.newHashMap();
+	public Map<QualifiedName, JvmFeature> getInjectableFeatures(JvmType type) {
+		Map<QualifiedName, JvmFeature> result = Maps.newHashMap();
 		collectFeatures(type, result);
 		return ImmutableMap.copyOf(result);
 	}
 	
-	public void collectFeatures(JvmType containerType, Map<String, JvmFeature> result) {
+	public void collectFeatures(JvmType containerType, Map<QualifiedName, JvmFeature> result) {
 		if (containerType == null || containerType.eIsProxy())
 			return;		
 		if (containerType instanceof JvmDeclaredType) {
@@ -48,7 +49,7 @@ public class InjectableFeatureLookup implements IInjectableFeatureLookup {
 						(simpleName.startsWith("add") || simpleName.startsWith("set"))) {
 						if (op.getParameters().size() == 1) {
 							String name = Strings.toFirstLower(op.getSimpleName().substring(3));
-							result.put(name, op);
+							result.put(QualifiedName.create(name), op);
 						}
 					}
 				}

@@ -23,6 +23,7 @@ import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
 import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
+import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 
 import com.google.inject.Inject;
 
@@ -44,19 +45,19 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 			return super.getGlobalScope(context, reference);
 		}
 	}
-
+	
 	@Override
-	protected Set<ImportNormalizer> getImportNormalizer(EObject context) {
+	protected Set<ImportNormalizer> getImportedNamespaceResolvers(EObject context) {
 		if (context instanceof Module) {
 			Module module = (Module) context;
-			Set<ImportNormalizer> result = super.getImportNormalizer(context);
-			result.add(createImportNormalizer("java.lang.*"));
-			result.add(createImportNormalizer(IWorkflow.class.getPackage().getName() + ".*"));
+			Set<ImportNormalizer> result = super.getImportedNamespaceResolvers(context);
+			result.add(createImportedNamespaceResolver("java.lang.*"));
+			result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*"));
 			String name = module.getCanonicalName();
 			int dot = name.lastIndexOf('.');
 			if (dot >= 0) {
 				name = name.substring(0, dot) + ".*";
-				result.add(createImportNormalizer(name));
+				result.add(createImportedNamespaceResolver(name));
 			}
 			return result;
 		}

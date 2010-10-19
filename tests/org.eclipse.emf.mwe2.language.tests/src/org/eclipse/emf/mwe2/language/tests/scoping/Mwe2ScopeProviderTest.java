@@ -16,6 +16,7 @@ import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 
 public class Mwe2ScopeProviderTest extends AbstractXtextTests {
@@ -34,26 +35,30 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 	public void testCreateComponentFeatureScope_1() throws Exception {
 		Module model = (Module) getModel("module foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
-		JvmExecutable feature = (JvmExecutable) scope.getContentByName("x").getEObjectOrProxy();
+		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 	}
+
 	
 	public void testCreateComponentFeatureScope_2() throws Exception {
 		Module model = (Module) getModel("module foo "+ComponentAFactory.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
-		JvmExecutable feature = (JvmExecutable) scope.getContentByName("x").getEObjectOrProxy();
+		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentAFactory.class.getName(),feature.getDeclaringType().getCanonicalName());
-		feature = (JvmExecutable) scope.getContentByName("y").getEObjectOrProxy();
+		feature = getScopedElementByName(scope, "y");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 	}
 
 	public void testCreateComponentFeatureScope_3() throws Exception {
 		Module model = (Module) getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
-		JvmExecutable feature = (JvmExecutable) scope.getContentByName("x").getEObjectOrProxy();
+		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
-		feature = (JvmExecutable) scope.getContentByName("y").getEObjectOrProxy();
+		feature = getScopedElementByName(scope, "y");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 	}
 	
+	private JvmExecutable getScopedElementByName(IScope scope, String name) {
+		return (JvmExecutable) scope.getContentByName(QualifiedName.create(name)).getEObjectOrProxy();
+	}
 }

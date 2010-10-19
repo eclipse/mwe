@@ -24,6 +24,8 @@ import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 import org.eclipse.xtext.mwe.RuntimeResourceSetInitializer;
 import org.eclipse.xtext.mwe.UriFilter;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
@@ -45,6 +47,9 @@ public class Mwe2Runner {
 
 	@Inject
 	private Provider<IWorkflowContext> ctxProvider;
+	
+	@Inject 
+	private IQualifiedNameProvider qualifiedNameProvider;
 	
 	public void run(URI createURI, Map<String, String> params) {
 		run(createURI,params,ctxProvider.get());
@@ -76,7 +81,7 @@ public class Mwe2Runner {
 		if (!module.eResource().getErrors().isEmpty()) {
 			throw new IllegalStateException(module.eResource().getErrors().toString());
 		}
-		Map<String, Object> actualParams = getRealParams(params);
+		Map<QualifiedName, Object> actualParams = getRealParams(params);
 		Object object = null;
 		try {
 			object = engine.create(module, actualParams);
@@ -94,9 +99,11 @@ public class Mwe2Runner {
 		}
 	}
 
-	protected Map<String, Object> getRealParams(Map<String, String> params) {
-		HashMap<String, Object> map = Maps.newHashMap();
-		map.putAll(params);
+	protected Map<QualifiedName, Object> getRealParams(Map<String, String> params) {
+		HashMap<QualifiedName, Object> map = Maps.newHashMap();
+		for(Map.Entry<String,String> param : params.entrySet()) {
+			map.put(qualifiedNameProvider.toValue(param.getKey()), param.getValue());
+		}
 		return map;
 	}
 
@@ -108,7 +115,7 @@ public class Mwe2Runner {
 		});
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {
-			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE, moduleName);
+			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE, qualifiedNameProvider.toValue(moduleName));
 			for (IEObjectDescription objDesc : iterable) {
 				return (Module) resourceSet.getEObject(objDesc.getEObjectURI(), true);
 			}

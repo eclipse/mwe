@@ -27,6 +27,8 @@ import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
 import org.eclipse.emf.mwe2.runtime.IFactory;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
+import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
 
 import com.google.common.collect.Lists;
@@ -39,27 +41,33 @@ public class Mwe2ExecutionEngine {
 			.createForSingleTarget("inCase", 2,2,this);
 	@Inject
 	private FactorySupport factorySupport;
+	
 	@Inject
 	private JavaReflectAccess reflectAccess;
+	
 	@Inject
 	private ISettingProvider settingProvider;
+	
+	@Inject
+	private IQualifiedNameProvider qualifiedNameProvider;
 
 	public Object execute(Module m) {
-		return create(m, Maps.<String,Object>newHashMap());
+		return create(m, Maps.<QualifiedName,Object>newHashMap());
 	}
 	
-	public Object create(Module m, Map<String, Object> params) {
+	public Object create(Module m, Map<QualifiedName, Object> params) {
 		return internalSwitch(m, Maps.newHashMap(params));
 	}
 
-	protected Object internalSwitch(Object o, Map<String, Object> variables) {
+	protected Object internalSwitch(Object o, Map<QualifiedName, Object> variables) {
 		return dispatcher.invoke(o, variables);
 	}
 
-	protected Object inCase(Module m, Map<String, Object> variables) {
+	protected Object inCase(Module m, Map<QualifiedName, Object> variables) {
 		for (DeclaredProperty prop : m.getDeclaredProperties()) {
+			QualifiedName propertyQualifiedName = qualifiedNameProvider.getQualifiedName(prop);
 			if (prop.getDefault() == null
-					&& !variables.containsKey(prop.getName())) {
+					&& !variables.containsKey(propertyQualifiedName)) {
 				throw new IllegalArgumentException("Cannot execute module '"
 						+ m.getCanonicalName() + "'.The mandatory parameter '"
 						+ prop.getName() + "' has not been passed.");
@@ -69,21 +77,22 @@ public class Mwe2ExecutionEngine {
 		return internalSwitch(m.getRoot(), variables);
 	}
 
-	protected Object inCase(DeclaredProperty prop, Map<String, Object> variables) {
-		if (prop.getDefault() != null && !variables.containsKey(prop.getName())) {
-			variables.put(prop.getName(), internalSwitch(prop.getDefault(),
+	protected Object inCase(DeclaredProperty prop, Map<QualifiedName, Object> variables) {
+		QualifiedName propertyQualifiedName = qualifiedNameProvider.getQualifiedName(prop);
+		if (prop.getDefault() != null && !variables.containsKey(propertyQualifiedName)) {
+			variables.put(propertyQualifiedName, internalSwitch(prop.getDefault(),
 					variables));
 		}
 		return null;
 	}
 
-	protected Object inCase(Component comp, Map<String, Object> variables) {
+	protected Object inCase(Component comp, Map<QualifiedName, Object> variables) {
 		List<Assignment> assignments = Lists.newArrayList(comp.getAssignment());
 		if (comp.getModule() != null) {
-			Map<String, Object> params = comp.isAutoInject() ? Maps
-					.newHashMap(variables) : Maps.<String, Object> newHashMap();
+			Map<QualifiedName, Object> params = comp.isAutoInject() ? Maps
+					.newHashMap(variables) : Maps.<QualifiedName, Object> newHashMap();
 			for (Assignment ass : assignments) {
-				params.put(((DeclaredProperty)ass.getFeature()).getName(), internalSwitch(ass
+				params.put(QualifiedName.create(((DeclaredProperty)ass.getFeature()).getName()), internalSwitch(ass
 						.getValue(), variables));
 			}
 			return internalSwitch(comp.getModule(), params);
@@ -97,7 +106,7 @@ public class Mwe2ExecutionEngine {
 				actualType = factoryType;
 			}
 			if (comp.getName() != null) {
-				variables.put(comp.getName(), object);
+				variables.put(qualifiedNameProvider.getQualifiedName(comp), object);
 			}
 			internalApplyAssignments(object, actualType, comp.isAutoInject(), assignments, variables);
 			return object;
@@ -109,11 +118,11 @@ public class Mwe2ExecutionEngine {
 	 * !!It removes any consumed assignments from the passed list!!
 	 */
 	protected void internalApplyAssignments(Object object, JvmType type, boolean isAutoInject,
-			List<Assignment> assignments, Map<String, Object> variables) {
-		Map<String, ISetting> settings = settingProvider.getSettings(object, type);
+			List<Assignment> assignments, Map<QualifiedName, Object> variables) {
+		Map<QualifiedName, ISetting> settings = settingProvider.getSettings(object, type);
 		if (isAutoInject) {
 			for (ISetting setting : settings.values()) {
-				String name = setting.getName();
+				QualifiedName name = setting.getName();
 				if (variables.containsKey(name))
 					setting.setValue(variables.get(name));
 			}
@@ -121,7 +130,7 @@ public class Mwe2ExecutionEngine {
 		Iterator<Assignment> iterator = assignments.iterator();
 		while (iterator.hasNext()) {
 			Assignment assignment = iterator.next();
-			String featureName = assignment.getFeatureName();
+			QualifiedName featureName = qualifiedNameProvider.toValue(assignment.getFeatureName());
 			if (settings.containsKey(featureName)) {
 				Object actualValueToSet = internalSwitch(assignment.getValue(), variables);
 				settings.get(featureName).setValue(actualValueToSet);
@@ -142,18 +151,18 @@ public class Mwe2ExecutionEngine {
 		}
 	}
 
-	protected Object inCase(Reference ref, Map<String, Object> variables) {
-		return variables.get(ref.getReferable().getName());
+	protected Object inCase(Reference ref, Map<QualifiedName, Object> variables) {
+		return variables.get(qualifiedNameProvider.getQualifiedName(ref.getReferable()));
 	}
-	protected Object inCase(BooleanLiteral comp, Map<String, Object> variables) {
+	protected Object inCase(BooleanLiteral comp, Map<QualifiedName, Object> variables) {
 		return comp.isIsTrue();
 	}
 	
-	protected Object inCase(StringLiteral comp, Map<String, Object> variables) {
+	protected Object inCase(StringLiteral comp, Map<QualifiedName, Object> variables) {
 		StringBuilder builder = new StringBuilder();
 		for (StringPart part : comp.getParts()) {
 			if (part instanceof PropertyReference) {
-				builder.append(variables.get(((PropertyReference) part).getReferable().getName()));
+				builder.append(variables.get(qualifiedNameProvider.getQualifiedName(((PropertyReference) part).getReferable())));
 			} else {
 				builder.append(((PlainString)part).getValue());
 			}
