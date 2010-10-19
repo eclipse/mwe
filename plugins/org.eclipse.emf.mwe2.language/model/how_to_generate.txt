@@ -1,1 +1,0 @@
-see org.eclipse.xtext.releng/src/org.eclipse.emf/GenerateMwe2EPackage.mwe
