@@ -4,7 +4,6 @@
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.factory;
 
@@ -14,9 +13,9 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.mwe2.language.scoping.IInjectableFeatureLookup;
-import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmField;
+import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
 import org.eclipse.xtext.naming.QualifiedName;
@@ -45,12 +44,11 @@ public class SettingProviderImpl implements ISettingProvider {
 		Map<QualifiedName, JvmFeature> features = injectableFeatureLookup.getInjectableFeatures(type);
 		
 		Iterable<ISetting> settings = Iterables.transform(features.entrySet(), new Function<Map.Entry<QualifiedName, JvmFeature>,ISetting>(){
-
 			public ISetting apply(final Map.Entry<QualifiedName, JvmFeature> from) {
-				if (from.getValue() instanceof JvmExecutable) {
+				if (from.getValue() instanceof JvmOperation) {
 					return new ISetting() {
 						public void setValue(Object value) {
-							Method method = reflectAccess.getMethod((JvmExecutable) from.getValue());
+							Method method = reflectAccess.getMethod((JvmOperation) from.getValue());
 							try {
 								method.invoke(obj, value);
 							} catch (Exception e) {
