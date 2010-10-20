@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 import org.eclipse.xtext.mwe.RuntimeResourceSetInitializer;
 import org.eclipse.xtext.mwe.UriFilter;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
@@ -47,14 +47,14 @@ public class Mwe2Runner {
 
 	@Inject
 	private Provider<IWorkflowContext> ctxProvider;
-	
-	@Inject 
-	private IQualifiedNameProvider qualifiedNameProvider;
-	
+
+	@Inject
+	private IQualifiedNameConverter qualifiedNameConverter;
+
 	public void run(URI createURI, Map<String, String> params) {
-		run(createURI,params,ctxProvider.get());
+		run(createURI, params, ctxProvider.get());
 	}
-	
+
 	public void run(URI createURI, Map<String, String> params, IWorkflowContext ctx) {
 		Resource resource = resourceSetProvider.get().getResource(createURI, true);
 		if (resource != null) {
@@ -70,9 +70,9 @@ public class Mwe2Runner {
 	}
 
 	public void run(String moduleName, Map<String, String> params) {
-		run (moduleName,params,ctxProvider.get());
+		run(moduleName, params, ctxProvider.get());
 	}
-	
+
 	public void run(String moduleName, Map<String, String> params, IWorkflowContext ctx) {
 		Module module = findModule(moduleName);
 		if (module == null)
@@ -101,8 +101,8 @@ public class Mwe2Runner {
 
 	protected Map<QualifiedName, Object> getRealParams(Map<String, String> params) {
 		HashMap<QualifiedName, Object> map = Maps.newHashMap();
-		for(Map.Entry<String,String> param : params.entrySet()) {
-			map.put(qualifiedNameProvider.toValue(param.getKey()), param.getValue());
+		for (Map.Entry<String, String> param : params.entrySet()) {
+			map.put(qualifiedNameConverter.toQualifiedName(param.getKey()), param.getValue());
 		}
 		return map;
 	}
@@ -115,7 +115,8 @@ public class Mwe2Runner {
 		});
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {
-			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE, qualifiedNameProvider.toValue(moduleName));
+			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE,
+					qualifiedNameConverter.toQualifiedName(moduleName));
 			for (IEObjectDescription objDesc : iterable) {
 				return (Module) resourceSet.getEObject(objDesc.getEObjectURI(), true);
 			}
@@ -134,5 +135,5 @@ public class Mwe2Runner {
 	public void setInitializer(RuntimeResourceSetInitializer initializer) {
 		this.initializer = initializer;
 	}
-	
+
 }

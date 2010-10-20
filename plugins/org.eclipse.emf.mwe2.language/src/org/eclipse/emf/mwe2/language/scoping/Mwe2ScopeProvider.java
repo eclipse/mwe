@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmType;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.Scopes;
@@ -155,12 +155,12 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	
 	protected static class NameComputation implements Function<EObject, QualifiedName> {
 		@Inject
-		private IQualifiedNameProvider qualifiedNameProvider;
+		private IQualifiedNameConverter qualifiedNameConverter;
 
 		private SimpleAttributeResolver<EObject, String> nameResolver = SimpleAttributeResolver.newResolver(String.class, "name");
 		
 		public QualifiedName apply(EObject from) {
-			return qualifiedNameProvider.toValue(nameResolver.apply(from));
+			return qualifiedNameConverter.toQualifiedName(nameResolver.apply(from));
 		}
 	}
 }

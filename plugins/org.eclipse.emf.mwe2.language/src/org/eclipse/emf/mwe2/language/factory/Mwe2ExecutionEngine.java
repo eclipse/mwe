@@ -27,6 +27,7 @@ import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
 import org.eclipse.emf.mwe2.runtime.IFactory;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
@@ -51,6 +52,9 @@ public class Mwe2ExecutionEngine {
 	@Inject
 	private IQualifiedNameProvider qualifiedNameProvider;
 
+	@Inject
+	private IQualifiedNameConverter qualifiedNameConverter;
+
 	public Object execute(Module m) {
 		return create(m, Maps.<QualifiedName,Object>newHashMap());
 	}
@@ -65,7 +69,7 @@ public class Mwe2ExecutionEngine {
 
 	protected Object inCase(Module m, Map<QualifiedName, Object> variables) {
 		for (DeclaredProperty prop : m.getDeclaredProperties()) {
-			QualifiedName propertyQualifiedName = qualifiedNameProvider.getQualifiedName(prop);
+			QualifiedName propertyQualifiedName = qualifiedNameProvider.getFullyQualifiedName(prop);
 			if (prop.getDefault() == null
 					&& !variables.containsKey(propertyQualifiedName)) {
 				throw new IllegalArgumentException("Cannot execute module '"
@@ -78,7 +82,7 @@ public class Mwe2ExecutionEngine {
 	}
 
 	protected Object inCase(DeclaredProperty prop, Map<QualifiedName, Object> variables) {
-		QualifiedName propertyQualifiedName = qualifiedNameProvider.getQualifiedName(prop);
+		QualifiedName propertyQualifiedName = qualifiedNameProvider.getFullyQualifiedName(prop);
 		if (prop.getDefault() != null && !variables.containsKey(propertyQualifiedName)) {
 			variables.put(propertyQualifiedName, internalSwitch(prop.getDefault(),
 					variables));
@@ -106,7 +110,7 @@ public class Mwe2ExecutionEngine {
 				actualType = factoryType;
 			}
 			if (comp.getName() != null) {
-				variables.put(qualifiedNameProvider.getQualifiedName(comp), object);
+				variables.put(qualifiedNameProvider.getFullyQualifiedName(comp), object);
 			}
 			internalApplyAssignments(object, actualType, comp.isAutoInject(), assignments, variables);
 			return object;
@@ -130,7 +134,7 @@ public class Mwe2ExecutionEngine {
 		Iterator<Assignment> iterator = assignments.iterator();
 		while (iterator.hasNext()) {
 			Assignment assignment = iterator.next();
-			QualifiedName featureName = qualifiedNameProvider.toValue(assignment.getFeatureName());
+			QualifiedName featureName = qualifiedNameConverter.toQualifiedName(assignment.getFeatureName());
 			if (settings.containsKey(featureName)) {
 				Object actualValueToSet = internalSwitch(assignment.getValue(), variables);
 				settings.get(featureName).setValue(actualValueToSet);
@@ -152,7 +156,7 @@ public class Mwe2ExecutionEngine {
 	}
 
 	protected Object inCase(Reference ref, Map<QualifiedName, Object> variables) {
-		return variables.get(qualifiedNameProvider.getQualifiedName(ref.getReferable()));
+		return variables.get(qualifiedNameProvider.getFullyQualifiedName(ref.getReferable()));
 	}
 	protected Object inCase(BooleanLiteral comp, Map<QualifiedName, Object> variables) {
 		return comp.isIsTrue();
@@ -162,7 +166,7 @@ public class Mwe2ExecutionEngine {
 		StringBuilder builder = new StringBuilder();
 		for (StringPart part : comp.getParts()) {
 			if (part instanceof PropertyReference) {
-				builder.append(variables.get(qualifiedNameProvider.getQualifiedName(((PropertyReference) part).getReferable())));
+				builder.append(variables.get(qualifiedNameProvider.getFullyQualifiedName(((PropertyReference) part).getReferable())));
 			} else {
 				builder.append(((PlainString)part).getValue());
 			}

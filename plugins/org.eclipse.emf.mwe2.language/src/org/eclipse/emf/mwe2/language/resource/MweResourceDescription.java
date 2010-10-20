@@ -85,7 +85,7 @@ public class MweResourceDescription extends DefaultResourceDescription {
 	}
 
 	protected IEObjectDescription createIEObjectDescription(DeclaredProperty property) {
-		QualifiedName qualifiedName = getNameProvider().getQualifiedName(property);
+		QualifiedName qualifiedName = getNameProvider().getFullyQualifiedName(property);
 		Builder<String, String> builder = ImmutableMap.builder();
 		String nodeModelValue = getValueFromNodeModel(property, Mwe2Package.Literals.REFERRABLE__TYPE);
 		if (nodeModelValue != null) {

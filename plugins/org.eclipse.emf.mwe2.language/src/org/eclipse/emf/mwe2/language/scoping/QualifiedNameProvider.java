@@ -15,7 +15,7 @@ import org.eclipse.xtext.naming.QualifiedName;
 public class QualifiedNameProvider extends DefaultDeclarativeQualifiedNameProvider {
 
 	public QualifiedName qualifiedName(Module module) {
-		return toValue(module.getCanonicalName());
+		return getConverter().toQualifiedName(module.getCanonicalName());
 	}
 	
 }
