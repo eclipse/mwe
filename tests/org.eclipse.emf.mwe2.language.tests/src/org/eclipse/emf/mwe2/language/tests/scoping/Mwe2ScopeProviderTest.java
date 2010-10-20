@@ -8,7 +8,11 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.scoping;
 
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
+import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
@@ -56,6 +60,23 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
 		feature = getScopedElementByName(scope, "y");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+	}
+	
+	public void testCreateReferableScope() throws Exception {
+		Module model = (Module) getModel("module foo \n"
+				+ "var a = 'foo'\n" 
+				+ "var a.b = 'foo'\n" 
+				+ ComponentA.class.getName() +"{\n"
+				+ "  y = a"
+				+ "  y = a.b"
+				+ "}");
+		Component componentA = model.getRoot();
+		Assignment yAssignment = componentA.getAssignment().get(0);
+		Reference reference = (Reference) yAssignment.getValue();
+		IScope scope = getScopeProvider().getScope(reference, Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE);
+		assertNotNull(scope.getContentByName(QualifiedName.create("a")));
+		assertNotNull(scope.getContentByName(QualifiedName.create("a", "b")));
+		assertNull(scope.getContentByName(QualifiedName.create("a.b")));
 	}
 	
 	private JvmExecutable getScopedElementByName(IScope scope, String name) {

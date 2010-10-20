@@ -91,6 +91,18 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("bar", result.getY().get(1));
 	}
 	
+	public void testQualifiedName() throws Exception {
+		String mweString = "module foo.Bar \n" +
+			"import "+ComponentA.class.getName()+"\n" +
+			"var a.b = 'foo'" +
+			"ComponentA {\n" +
+			"  y = a.b\n" +
+			"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertEquals("foo", result.getY().get(0));
+	}
+	
 	private Object getRoot(String mweString) throws Exception {
 		return getRootInstance(getModule(mweString));
 	}
