@@ -38,9 +38,6 @@ import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
- * This class contains custom scoping description.
- * 
- * see : http://www.eclipse.org/Xtext/documentation/latest/xtext.html#scoping on how and when to use it
  * 
  */
 public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {

@@ -103,6 +103,17 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("foo", result.getY().get(0));
 	}
 	
+	public void testAutoInject() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var y = 'foo'" +
+		"ComponentA auto-inject {\n" +
+		"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertEquals("foo", result.getY().get(0));
+	}
+	
 	private Object getRoot(String mweString) throws Exception {
 		return getRootInstance(getModule(mweString));
 	}
