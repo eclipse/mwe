@@ -23,17 +23,24 @@
 		</cs:public>
 
 
+		<cs:public name="create.category.xml" actor="ant">
+			<cs:actorProperties>
+				<cs:property key="buildFile" value="packaging.ant" />
+				<cs:property key="targets" value="-create.category.xml" />
+			</cs:actorProperties>
+		</cs:public>
+
 		<cs:public name="package.emft-mwe-Update" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
 				<cs:property key="targets" value="package.site" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="package.qualifier" value="${build.id}" />
 				<cs:property key="package.name" value="emft-mwe-Update" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="setup" alias="setup.enviroment" />
+				<cs:attribute name="create.category.xml" alias="create.category" />
 				<cs:attribute name="site.p2" alias="repository" />
 				<cs:attribute name="site.tp" alias="target.platform.repository" />
 			</cs:prerequisites>
