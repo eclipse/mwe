@@ -109,7 +109,7 @@
 			<isset property="saved.java.home" />
 		</condition>
 		<tempfile property="publisher.workspace" prefix="workspace." destdir="${java.io.tmpdir}" />
-
+		<echo>Used launcher: ${launcher.jar}</echo>
 		<java jvm="${java.executable}" jar="${launcher.jar}" fork="true" failonerror="true">
 			<syspropertyset>
 				<propertyref builtin="commandline" />
@@ -165,8 +165,13 @@
 		<property name="testresults.directory" location="${build.root}/archive/${tests.base}" />
 
 		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
-<echo>${testresults.directory}   ${build.root}/archive/${tests.base}</echo>
-		<delete dir="${build.drop.directory}" />
+		<available file="${build.drop.directory}" type="dir" property="alreadyPromoted" />
+		<antcall target="publish" inheritall="true" />
+		<antcall target="echo-status" inheritall="true" />
+	</target>
+
+	<target name="publish" unless="alreadyPromoted">
+		<!-- will fail if already exists -->
 		<mkdir dir="${build.drop.directory}" />
 
 		<!-- copy zip packages -->
@@ -179,12 +184,12 @@
 		<checksum algorithm="MD5" fileext=".md5" format="MD5SUM">
 			<fileset dir="${build.drop.directory}" />
 		</checksum>
-		
+
 		<!-- copy testresults -->
 		<mkdir dir="${build.drop.directory}/testresults" />
 		<copy todir="${build.drop.directory}/testresults">
 			<fileset dir="${testresults.directory}">
-				<filename name="*.xml" />
+				<filename name="**/*.xml" />
 			</fileset>
 		</copy>
 
@@ -225,25 +230,25 @@
 		<property name="composite.repository.url" value="file:/${composite.repository.directory}" />
 		<property name="build.repository.directory" location="${composite.repository.directory}/${saved.build.id}" />
 
-		<delete dir="${build.repository.directory}" />
 		<mkdir dir="${build.repository.directory}" />
 
-		<unzip  dest="${build.repository.directory}/mwe">
+		<unzip dest="${build.repository.directory}/mwe">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-Update*.zip" />
 			</fileset>
 		</unzip>
-		<unzip  dest="${build.repository.directory}/mwe2">
+		<unzip dest="${build.repository.directory}/mwe2">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-2-Update*.zip" />
 			</fileset>
 		</unzip>
-		<p2.composite.repository.create  name="EMFT MWE Update Site (${composite.repository.base})" destination="${composite.repository.url}" >
+		<p2.composite.repository destination="${composite.repository.url}">
 			<add>
- 				<repository location="${saved.build.id}/mwe2" />
+				<repository location="${saved.build.id}/mwe2" />
 			</add>
-		</p2.composite.repository.create>
+		</p2.composite.repository>
 
+		<!-- change Group owner  -->
 		<fileset id="repository.resources" dir="${composite.repository.directory}">
 			<or>
 				<filename name="compositeContent.*" />
@@ -261,5 +266,9 @@
 		<chgrp group="${group.owner}" type="both" verbose="true">
 			<fileset refid="change.group.owner.resources" />
 		</chgrp>
+	</target>
+	
+	<target name="echo-status" if="alreadyPromoted">
+		<echo>Build ${saved.build.id} already promoted, nothing to do...</echo>
 	</target>
 </project>
