@@ -36,7 +36,7 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 	@Inject
 	private IImageHelper imageHelper;
 
-	protected void doCreateChildren(DocumentRootNode parentNode, Module module) {
+	protected void _createChildren(DocumentRootNode parentNode, Module module) {
 		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__IMPORTS,
 				imageHelper.getImage("impc_obj.gif"), "import declarations");
 		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__DECLARED_PROPERTIES,
@@ -45,28 +45,28 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 			createNode(parentNode, module.getRoot());
 	}
 
-	protected boolean isLeaf(Assignment assignment) {
+	protected boolean _isLeaf(Assignment assignment) {
 		return !(assignment.getValue() instanceof Component);
 	}
 
-	protected boolean isLeaf(DeclaredProperty property) {
+	protected boolean _isLeaf(DeclaredProperty property) {
 		return !(property.getDefault() instanceof Component);
 	}
 
-	protected Image image(DeclaredProperty prop) {
+	protected Image _image(DeclaredProperty prop) {
 		return labelProvider.getImage(prop.getDefault());
 	}
 
-	protected Object text(Assignment assignment) {
-		StyledString styledText = (StyledString) super.text(assignment);
+	protected Object _text(Assignment assignment) {
+		StyledString styledText = (StyledString) super._text(assignment);
 		if (assignment.getFeature() instanceof JvmOperation) {
 			return appendSimpleName(styledText, ((JvmOperation)assignment.getFeature()).getParameters().get(0));
 		}
 		return styledText;
 	}
 
-	protected Object text(Component component) {
-		StyledString styledText = (StyledString) super.text(component);
+	protected Object _text(Component component) {
+		StyledString styledText = (StyledString) super._text(component);
 		if (component.getType() != null) {
 			return appendSimpleName(styledText, component.getType());
 		}
