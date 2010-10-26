@@ -24,7 +24,6 @@
 				<length string="${build.id}" when="greater" length="0" />
 			</and>
 		</condition>
-		<echo>${package.qualifier}</echo>
 	</target>
 	
 	<target name="-create.category.xml" depends="-define.package.qualifier">
