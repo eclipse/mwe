@@ -37,9 +37,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 		EClass referenceType = reference.getEReferenceType();
 		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
 			ResourceSet resourceSet = context.eResource().getResourceSet();
-			IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findTypeProvider(resourceSet);
-			if (typeProvider == null)
-				typeProvider = typeScopeProvider.getTypeProviderFactory().createTypeProvider(resourceSet);
+			IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findOrCreateTypeProvider(resourceSet);
 			return typeScopeProvider.createTypeScope(typeProvider);
 		} else {
 			return super.getGlobalScope(context, reference);

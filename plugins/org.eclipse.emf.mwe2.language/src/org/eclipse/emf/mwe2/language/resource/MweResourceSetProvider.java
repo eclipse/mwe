@@ -39,9 +39,7 @@ public class MweResourceSetProvider implements Provider<XtextResourceSet>{
 
 	protected void ensureTypeFactoryExists(ResourceSet resourceSet) {
 		IJvmTypeProvider.Factory factory = typeProviderFactory.get();
-		IJvmTypeProvider typeProvider = factory.findTypeProvider(resourceSet);
-		if (typeProvider == null)
-			factory.createTypeProvider(resourceSet);
+		factory.findOrCreateTypeProvider(resourceSet);
 	}
 
 }
