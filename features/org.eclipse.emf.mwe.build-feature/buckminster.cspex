@@ -6,6 +6,7 @@
 		<cs:dependency name="org.eclipse.emf.mwe.tests" componentType="eclipse.feature" />
 	</cs:dependencies>
 
+
 	<cs:actions>
 		<cs:private name="site.tp" actor="ant">
 			<cs:actorProperties>
