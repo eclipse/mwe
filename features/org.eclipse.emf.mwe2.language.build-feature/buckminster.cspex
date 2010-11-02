@@ -18,7 +18,7 @@
 				<cs:property key="targets" value="package.site" />
 			</cs:actorProperties>
 			<cs:properties>
-				<cs:property key="package.name" value="emft-mwe2-lang-Update" />
+				<cs:property key="package.name" value="emft-mwe-2-lang-Update" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
@@ -34,7 +34,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.language.sdk.feature.group" />
-				<cs:property key="package.name" value="emft-mwe2-lang-SDK" />
+				<cs:property key="package.name" value="emft-mwe-2-lang-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
 				<cs:attribute name="site.p2" alias="repository" />
