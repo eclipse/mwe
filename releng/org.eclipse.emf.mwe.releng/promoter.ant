@@ -175,7 +175,7 @@
 		<mkdir dir="${build.drop.directory}" />
 
 		<echo>Remove existing nightly builds</echo>
-		<delete verbose="true" includeemptydirs="true">
+		<delete verbose="true" >
 			<fileset dir="${downloads.area}/downloads/drops/${version}/">
 				<type type="dir" />
 				<filename name="N*" />
@@ -223,7 +223,7 @@
 		<condition property="composite.repository.base" value="interim">
 			<matches pattern="^I" string="${saved.build.id}" />
 		</condition>
-		<condition property="composite.repository.base" value="milestones">
+		<condition property="composite.repository.base" value="milestones/${saved.build.id}">
 			<matches pattern="^[MS]" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="releases/${base.version}">
@@ -238,24 +238,26 @@
 		<property name="composite.repository.directory" location="${downloads.area}/updates/${composite.repository.base}" />
 		<property name="composite.repository.url" value="file:/${composite.repository.directory}" />
 		<property name="build.repository.directory" location="${composite.repository.directory}/${saved.build.id}" />
-
-		<mkdir dir="${build.repository.directory}" />
-
+		<!-- without p2.composite.repository -->
+		<property name="build.repository.directory" location="${composite.repository.directory}" />
+		
+		<deltree dir="${build.repository.directory}/mwe"/>
 		<unzip dest="${build.repository.directory}/mwe">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-Update*.zip" />
 			</fileset>
 		</unzip>
+		<deltree dir="${build.repository.directory}/mwe2"/>
 		<unzip dest="${build.repository.directory}/mwe2">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-2-Update*.zip" />
 			</fileset>
 		</unzip>
-		<p2.composite.repository destination="${composite.repository.url}">
+		<!--<p2.composite.repository destination="${composite.repository.url}">
 			<add>
 				<repository location="${saved.build.id}/mwe2" />
 			</add>
-		</p2.composite.repository>
+		</p2.composite.repository>-->
 
 		<!-- change Group owner  -->
 		<fileset id="repository.resources" dir="${composite.repository.directory}">
