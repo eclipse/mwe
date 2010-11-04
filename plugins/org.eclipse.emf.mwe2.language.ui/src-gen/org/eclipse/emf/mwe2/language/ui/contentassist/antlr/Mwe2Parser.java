@@ -95,7 +95,7 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_0(), "rule__StringLiteral__PartsAssignment_1_2_0");
 					put(grammarAccess.getStringLiteralAccess().getPartsAssignment_1_2_1(), "rule__StringLiteral__PartsAssignment_1_2_1");
 					put(grammarAccess.getStringLiteralAccess().getEndAssignment_1_3(), "rule__StringLiteral__EndAssignment_1_3");
-					put(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1(), "rule__PropertyReference__ReferableAssignment_1");
+					put(grammarAccess.getPropertyReferenceImplAccess().getReferableAssignment(), "rule__PropertyReferenceImpl__ReferableAssignment");
 					put(grammarAccess.getPlainStringAccess().getValueAssignment(), "rule__PlainString__ValueAssignment");
 				}
 			};

@@ -610,32 +610,44 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReference");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cDollarSignLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cReferableAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cReferableDeclaredPropertyCrossReference_1_0 = (CrossReference)cReferableAssignment_1.eContents().get(0);
-		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_1_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_1_0.eContents().get(1);
+		private final RuleCall cPropertyReferenceImplParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
-		//PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-		//	"${" referable=[DeclaredProperty|FQN] "}";
+		//PropertyReference hidden():
+		//	"${" PropertyReferenceImpl "}";
 		public ParserRule getRule() { return rule; }
 
-		//"${" referable=[DeclaredProperty|FQN] "}"
+		//"${" PropertyReferenceImpl "}"
 		public Group getGroup() { return cGroup; }
 
 		//"${"
 		public Keyword getDollarSignLeftCurlyBracketKeyword_0() { return cDollarSignLeftCurlyBracketKeyword_0; }
 
-		//referable=[DeclaredProperty|FQN]
-		public Assignment getReferableAssignment_1() { return cReferableAssignment_1; }
-
-		//[DeclaredProperty|FQN]
-		public CrossReference getReferableDeclaredPropertyCrossReference_1_0() { return cReferableDeclaredPropertyCrossReference_1_0; }
-
-		//FQN
-		public RuleCall getReferableDeclaredPropertyFQNParserRuleCall_1_0_1() { return cReferableDeclaredPropertyFQNParserRuleCall_1_0_1; }
+		//PropertyReferenceImpl
+		public RuleCall getPropertyReferenceImplParserRuleCall_1() { return cPropertyReferenceImplParserRuleCall_1; }
 
 		//"}"
 		public Keyword getRightCurlyBracketKeyword_2() { return cRightCurlyBracketKeyword_2; }
+	}
+
+	public class PropertyReferenceImplElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "PropertyReferenceImpl");
+		private final Assignment cReferableAssignment = (Assignment)rule.eContents().get(1);
+		private final CrossReference cReferableDeclaredPropertyCrossReference_0 = (CrossReference)cReferableAssignment.eContents().get(0);
+		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_0.eContents().get(1);
+		
+		//PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+		//	referable=[DeclaredProperty|FQN];
+		public ParserRule getRule() { return rule; }
+
+		//referable=[DeclaredProperty|FQN]
+		public Assignment getReferableAssignment() { return cReferableAssignment; }
+
+		//[DeclaredProperty|FQN]
+		public CrossReference getReferableDeclaredPropertyCrossReference_0() { return cReferableDeclaredPropertyCrossReference_0; }
+
+		//FQN
+		public RuleCall getReferableDeclaredPropertyFQNParserRuleCall_0_1() { return cReferableDeclaredPropertyFQNParserRuleCall_0_1; }
 	}
 
 	public class PlainStringElements extends AbstractParserRuleElementFinder {
@@ -712,6 +724,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private FQNElements pFQN;
 	private StringLiteralElements pStringLiteral;
 	private PropertyReferenceElements pPropertyReference;
+	private PropertyReferenceImplElements pPropertyReferenceImpl;
 	private PlainStringElements pPlainString;
 	private ConstantValueElements pConstantValue;
 	private TerminalRule tID;
@@ -856,14 +869,24 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getStringLiteralAccess().getRule();
 	}
 
-	//PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-	//	"${" referable=[DeclaredProperty|FQN] "}";
+	//PropertyReference hidden():
+	//	"${" PropertyReferenceImpl "}";
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return (pPropertyReference != null) ? pPropertyReference : (pPropertyReference = new PropertyReferenceElements());
 	}
 	
 	public ParserRule getPropertyReferenceRule() {
 		return getPropertyReferenceAccess().getRule();
+	}
+
+	//PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+	//	referable=[DeclaredProperty|FQN];
+	public PropertyReferenceImplElements getPropertyReferenceImplAccess() {
+		return (pPropertyReferenceImpl != null) ? pPropertyReferenceImpl : (pPropertyReferenceImpl = new PropertyReferenceImplElements());
+	}
+	
+	public ParserRule getPropertyReferenceImplRule() {
+		return getPropertyReferenceImplAccess().getRule();
 	}
 
 	//PlainString:

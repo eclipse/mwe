@@ -427,7 +427,7 @@ finally {
 // Entry rule entryRulePropertyReference
 entryRulePropertyReference 
 @init {
-	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 }
 :
 { before(grammarAccess.getPropertyReferenceRule()); }
@@ -442,7 +442,7 @@ finally {
 // Rule PropertyReference
 rulePropertyReference 
     @init {
-		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
     }
     :
@@ -450,6 +450,42 @@ rulePropertyReference
 { before(grammarAccess.getPropertyReferenceAccess().getGroup()); }
 (rule__PropertyReference__Group__0)
 { after(grammarAccess.getPropertyReferenceAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
+}
+
+
+
+// Entry rule entryRulePropertyReferenceImpl
+entryRulePropertyReferenceImpl 
+@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+}
+:
+{ before(grammarAccess.getPropertyReferenceImplRule()); }
+	 rulePropertyReferenceImpl
+{ after(grammarAccess.getPropertyReferenceImplRule()); } 
+	 EOF 
+;
+finally {
+	myHiddenTokenState.restore();
+}
+
+// Rule PropertyReferenceImpl
+rulePropertyReferenceImpl 
+    @init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens("RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT");
+		int stackSize = keepStackSize();
+    }
+    :
+(
+{ before(grammarAccess.getPropertyReferenceImplAccess().getReferableAssignment()); }
+(rule__PropertyReferenceImpl__ReferableAssignment)
+{ after(grammarAccess.getPropertyReferenceImplAccess().getReferableAssignment()); }
 )
 
 ;
@@ -2607,9 +2643,9 @@ rule__PropertyReference__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); }
-(rule__PropertyReference__ReferableAssignment_1)
-{ after(grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1()); }
+{ before(grammarAccess.getPropertyReferenceAccess().getPropertyReferenceImplParserRuleCall_1()); }
+	rulePropertyReferenceImpl
+{ after(grammarAccess.getPropertyReferenceAccess().getPropertyReferenceImplParserRuleCall_1()); }
 )
 
 ;
@@ -3219,18 +3255,18 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__PropertyReference__ReferableAssignment_1
+rule__PropertyReferenceImpl__ReferableAssignment
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()); }
+{ before(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyCrossReference_0()); }
 (
-{ before(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyFQNParserRuleCall_1_0_1()); }
-	ruleFQN{ after(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyFQNParserRuleCall_1_0_1()); }
+{ before(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyFQNParserRuleCall_0_1()); }
+	ruleFQN{ after(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyFQNParserRuleCall_0_1()); }
 )
-{ after(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0()); }
+{ after(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyCrossReference_0()); }
 )
 
 ;

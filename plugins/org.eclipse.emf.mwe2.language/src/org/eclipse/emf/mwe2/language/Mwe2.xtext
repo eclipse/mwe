@@ -61,8 +61,11 @@ StringLiteral hidden ():
     end='"'
 ;
 
-PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-  '${' referable=[DeclaredProperty|FQN] '}';
+PropertyReference hidden():
+  '${' PropertyReferenceImpl '}';
+  
+PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+  referable=[DeclaredProperty|FQN];
 
 PlainString:
   value=ConstantValue;

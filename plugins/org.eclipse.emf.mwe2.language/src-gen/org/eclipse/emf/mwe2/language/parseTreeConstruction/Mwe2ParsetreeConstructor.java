@@ -42,7 +42,8 @@ protected class ThisRootNode extends RootToken {
 			case 8: return new Reference_ReferableAssignment(this, this, 8, inst);
 			case 9: return new StringLiteral_Alternatives(this, this, 9, inst);
 			case 10: return new PropertyReference_Group(this, this, 10, inst);
-			case 11: return new PlainString_ValueAssignment(this, this, 11, inst);
+			case 11: return new PropertyReferenceImpl_ReferableAssignment(this, this, 11, inst);
+			case 12: return new PlainString_ValueAssignment(this, this, 12, inst);
 			default: return null;
 		}	
 	}	
@@ -2562,12 +2563,12 @@ protected class StringLiteral_EndAssignment_1_3 extends AssignmentToken  {
 
 /************ begin Rule PropertyReference ****************
  *
- * PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
- * 	"${" referable=[DeclaredProperty|FQN] "}";
+ * PropertyReference hidden():
+ * 	"${" PropertyReferenceImpl "}";
  *
  **/
 
-// "${" referable=[DeclaredProperty|FQN] "}"
+// "${" PropertyReferenceImpl "}"
 protected class PropertyReference_Group extends GroupToken {
 	
 	public PropertyReference_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -2589,7 +2590,7 @@ protected class PropertyReference_Group extends GroupToken {
 
     @Override
 	public IEObjectConsumer tryConsume() {
-		if(getEObject().eClass() != grammarAccess.getPropertyReferenceRule().getType().getClassifier())
+		if(getEObject().eClass() != grammarAccess.getPropertyReferenceImplRule().getType().getClassifier())
 			return null;
 		return eObjectConsumer;
 	}
@@ -2617,41 +2618,39 @@ protected class PropertyReference_DollarSignLeftCurlyBracketKeyword_0 extends Ke
 
 }
 
-// referable=[DeclaredProperty|FQN]
-protected class PropertyReference_ReferableAssignment_1 extends AssignmentToken  {
+// PropertyReferenceImpl
+protected class PropertyReference_PropertyReferenceImplParserRuleCall_1 extends RuleCallToken {
 	
-	public PropertyReference_ReferableAssignment_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+	public PropertyReference_PropertyReferenceImplParserRuleCall_1(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
 		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
 	}
 	
 	@Override
-	public Assignment getGrammarElement() {
-		return grammarAccess.getPropertyReferenceAccess().getReferableAssignment_1();
+	public RuleCall getGrammarElement() {
+		return grammarAccess.getPropertyReferenceAccess().getPropertyReferenceImplParserRuleCall_1();
 	}
 
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new PropertyReference_DollarSignLeftCurlyBracketKeyword_0(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new PropertyReferenceImpl_ReferableAssignment(this, this, 0, inst);
 			default: return null;
 		}	
 	}
 
-    @Override	
+    @Override
 	public IEObjectConsumer tryConsume() {
-		if((value = eObjectConsumer.getConsumable("referable",true)) == null) return null;
-		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("referable");
-		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
-			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0().getType().getClassifier())) {
-				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getPropertyReferenceAccess().getReferableDeclaredPropertyCrossReference_1_0(); 
-				return obj;
-			}
-		}
-		return null;
+		if(checkForRecursion(PropertyReferenceImpl_ReferableAssignment.class, eObjectConsumer)) return null;
+		return eObjectConsumer;
 	}
-
+	
+    @Override
+	public AbstractToken createFollowerAfterReturn(AbstractToken next,	int actIndex, int index, IEObjectConsumer inst) {
+		switch(index) {
+			case 0: return new PropertyReference_DollarSignLeftCurlyBracketKeyword_0(lastRuleCallOrigin, next, actIndex, inst);
+			default: return null;
+		}	
+	}	
 }
 
 // "}"
@@ -2669,7 +2668,7 @@ protected class PropertyReference_RightCurlyBracketKeyword_2 extends KeywordToke
     @Override
 	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
 		switch(index) {
-			case 0: return new PropertyReference_ReferableAssignment_1(lastRuleCallOrigin, this, 0, inst);
+			case 0: return new PropertyReference_PropertyReferenceImplParserRuleCall_1(lastRuleCallOrigin, this, 0, inst);
 			default: return null;
 		}	
 	}
@@ -2678,6 +2677,54 @@ protected class PropertyReference_RightCurlyBracketKeyword_2 extends KeywordToke
 
 
 /************ end Rule PropertyReference ****************/
+
+
+/************ begin Rule PropertyReferenceImpl ****************
+ *
+ * PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+ * 	referable=[DeclaredProperty|FQN];
+ *
+ **/
+
+// referable=[DeclaredProperty|FQN]
+protected class PropertyReferenceImpl_ReferableAssignment extends AssignmentToken  {
+	
+	public PropertyReferenceImpl_ReferableAssignment(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
+		super(lastRuleCallOrigin, next, transitionIndex, eObjectConsumer);
+	}
+	
+	@Override
+	public Assignment getGrammarElement() {
+		return grammarAccess.getPropertyReferenceImplAccess().getReferableAssignment();
+	}
+
+    @Override
+	public AbstractToken createFollower(int index, IEObjectConsumer inst) {
+		switch(index) {
+			default: return lastRuleCallOrigin.createFollowerAfterReturn(this, index, index, inst);
+		}	
+	}
+
+    @Override	
+	public IEObjectConsumer tryConsume() {
+		if(getEObject().eClass() != grammarAccess.getPropertyReferenceImplRule().getType().getClassifier())
+			return null;
+		if((value = eObjectConsumer.getConsumable("referable",true)) == null) return null;
+		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("referable");
+		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
+			IEObjectConsumer param = createEObjectConsumer((EObject)value);
+			if(param.isInstanceOf(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyCrossReference_0().getType().getClassifier())) {
+				type = AssignmentType.CROSS_REFERENCE;
+				element = grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyCrossReference_0(); 
+				return obj;
+			}
+		}
+		return null;
+	}
+
+}
+
+/************ end Rule PropertyReferenceImpl ****************/
 
 
 /************ begin Rule PlainString ****************
