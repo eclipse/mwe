@@ -22,6 +22,7 @@ import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.ISelector;
 
 public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 
@@ -74,12 +75,12 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		Assignment yAssignment = componentA.getAssignment().get(0);
 		Reference reference = (Reference) yAssignment.getValue();
 		IScope scope = getScopeProvider().getScope(reference, Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE);
-		assertNotNull(scope.getContentByName(QualifiedName.create("a")));
-		assertNotNull(scope.getContentByName(QualifiedName.create("a", "b")));
-		assertNull(scope.getContentByName(QualifiedName.create("a.b")));
+		assertNotNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a"))));
+		assertNotNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a", "b"))));
+		assertNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a.b"))));
 	}
 	
 	private JvmExecutable getScopedElementByName(IScope scope, String name) {
-		return (JvmExecutable) scope.getContentByName(QualifiedName.create(name)).getEObjectOrProxy();
+		return (JvmExecutable) scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create(name))).getEObjectOrProxy();
 	}
 }

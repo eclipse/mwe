@@ -9,46 +9,36 @@
 package org.eclipse.emf.mwe2.language.scoping;
 
 import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
-import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.common.types.TypesPackage;
-import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
-import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
-import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
-
-import com.google.inject.Inject;
+import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 
 public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
 
-	@Inject
-	private AbstractTypeScopeProvider typeScopeProvider;
-
-	@Override
-	protected IScope getGlobalScope(EObject context, EReference reference) {
-		EClass referenceType = reference.getEReferenceType();
-		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
-			ResourceSet resourceSet = context.eResource().getResourceSet();
-			IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findOrCreateTypeProvider(resourceSet);
-			return typeScopeProvider.createTypeScope(typeProvider);
-		} else {
-			return super.getGlobalScope(context, reference);
-		}
-	}
+//	@Inject
+//	private AbstractTypeScopeProvider typeScopeProvider;
+//
+//	@Override
+//	protected IScope getGlobalScope(EObject context, EReference reference) {
+//		EClass referenceType = reference.getEReferenceType();
+//		if (EcoreUtil2.isAssignableFrom(TypesPackage.Literals.JVM_TYPE, referenceType)) {
+//			ResourceSet resourceSet = context.eResource().getResourceSet();
+//			IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProviderFactory().findOrCreateTypeProvider(resourceSet);
+//			return typeScopeProvider.createTypeScope(typeProvider);
+//		} else {
+//			return super.getGlobalScope(context, reference);
+//		}
+//	}
 	
 	@Override
-	protected Set<ImportNormalizer> getImportedNamespaceResolvers(EObject context) {
+	protected List<ImportNormalizer> getImportedNamespaceResolvers(EObject context) {
 		if (context instanceof Module) {
 			Module module = (Module) context;
-			Set<ImportNormalizer> result = super.getImportedNamespaceResolvers(context);
+			List<ImportNormalizer> result = super.getImportedNamespaceResolvers(context);
 			result.add(createImportedNamespaceResolver("java.lang.*"));
 			result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*"));
 			String name = module.getCanonicalName();
@@ -59,7 +49,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 			}
 			return result;
 		}
-		return Collections.emptySet();
+		return Collections.emptyList();
 	}
 
 }

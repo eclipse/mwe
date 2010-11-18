@@ -23,6 +23,7 @@ import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
 import org.eclipse.xtext.common.types.xtext.ui.TypeMatchFilters;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.ISelector;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
@@ -56,7 +57,7 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 	protected void createFeatureProposals(Component component,
 			ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		IScope scope = getScopeProvider().createComponentFeaturesScope(component);
-		Iterable<IEObjectDescription> candidates = scope.getAllContents();
+		Iterable<IEObjectDescription> candidates = scope.getElements(ISelector.SELECT_ALL);
 		Function<IEObjectDescription, ICompletionProposal> factory = getProposalFactory("FQN", context);
 		for (IEObjectDescription candidate: candidates) {
 			if (!acceptor.canAcceptMoreProposals())
