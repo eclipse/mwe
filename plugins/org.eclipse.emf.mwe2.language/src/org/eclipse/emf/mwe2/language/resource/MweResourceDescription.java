@@ -25,14 +25,15 @@ import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.impl.DefaultResourceDescription;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.ImmutableMap.Builder;
 
@@ -123,15 +124,15 @@ public class MweResourceDescription extends DefaultResourceDescription {
 	}
 
 	protected String getValueFromNodeModel(EObject object, EReference feature) {
-		List<AbstractNode> typeNodes = NodeUtil.findNodesForFeature(object, feature);
+		List<INode> typeNodes = NodeModelUtils.findNodesForFeature(object, feature);
 		if (typeNodes.isEmpty()) {
 			return null;
 		}
 		if (typeNodes.size() != 1)
 			throw new IllegalStateException("Unexpected multiple values for feature '" + feature + "' in object '" + object + "'.");
-		List<LeafNode> leafNodes = typeNodes.get(0).getLeafNodes();
+		List<ILeafNode> leafNodes = Lists.newArrayList(Iterators.filter(typeNodes.get(0).treeIterator(), ILeafNode.class));
 		StringBuilder result = new StringBuilder();
-		for(LeafNode leafNode: leafNodes) {
+		for(ILeafNode leafNode: leafNodes) {
 			if(!leafNode.isHidden()) {
 				result.append(leafNode.getText());
 			}

@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.ui.highlighting;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -18,15 +19,15 @@ import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationTarget;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.LeafNode;
-import org.eclipse.xtext.parsetree.NodeUtil;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.ILeafNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
+import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 
 public class SemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
@@ -38,22 +39,23 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		if (resource == null)
 			return;
 
-		Iterable<AbstractNode> allNodes = NodeUtil.getAllContents(resource.getParseResult().getRootNode());
-		for (AbstractNode abstractNode : allNodes) {
-			EObject grammarElement = abstractNode.getGrammarElement();
+		Iterator<INode> iter = resource.getParseResult().getRootNode().treeIterator();
+		while(iter.hasNext()) {
+			INode node = iter.next();
+			EObject grammarElement = node.getGrammarElement();
 			if (grammarElement == grammarAccess.getPropertyReferenceImplAccess()
 					.getReferableDeclaredPropertyCrossReference_0()) {
-				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
-				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
-				for(AbstractNode sibling: abstractNode.getParent().getChildren()) {
-					if (sibling != abstractNode) {
+				highlightNode(node, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
+				highlightNode(node, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
+				for(INode sibling: node.getParent().getChildren()) {
+					if (sibling != node) {
 						if (sibling.getGrammarElement() == grammarAccess.getML_COMMENTRule() || sibling.getGrammarElement() == grammarAccess.getSL_COMMENTRule()) {
 							highlightNode(sibling, DefaultHighlightingConfiguration.COMMENT_ID, acceptor);
 						}
 					}
 				}
-				if (abstractNode instanceof CompositeNode) {
-					for(AbstractNode child: ((CompositeNode) abstractNode).getChildren()) {
+				if (node instanceof ICompositeNode) {
+					for(INode child: ((ICompositeNode) node).getChildren()) {
 						if (child.getGrammarElement() == grammarAccess.getML_COMMENTRule() || child.getGrammarElement() == grammarAccess.getSL_COMMENTRule()) {
 							highlightNode(child, DefaultHighlightingConfiguration.COMMENT_ID, acceptor);
 						}
@@ -61,25 +63,25 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 				}
 			} else if (grammarElement == grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0()
 					|| grammarElement == grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2()) {
-				highlightNode(abstractNode, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
+				highlightNode(node, MweHighlightingConfiguration.STRING_PROP_REF, acceptor);
 			} else if (grammarElement == grammarAccess.getReferenceAccess()
 					.getReferableReferrableCrossReference_0()) {
-				highlightNode(abstractNode, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
+				highlightNode(node, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
 			} else if (grammarElement == grammarAccess.getAssignmentAccess()
 					.getFeatureJvmFeatureCrossReference_0_0()) {
-				highlightNode(abstractNode, MweHighlightingConfiguration.FEATURE_REF, acceptor);
-				Assignment semanticObject = (Assignment) NodeUtil.getNearestSemanticObject(abstractNode);
+				highlightNode(node, MweHighlightingConfiguration.FEATURE_REF, acceptor);
+				Assignment semanticObject = (Assignment) node.getSemanticElement();
 				if (semanticObject.getFeature() instanceof JvmOperation) {
 					JvmOperation operation = (JvmOperation) semanticObject.getFeature();
 					if (isDeprecated(operation)) {
-						highlightNode(abstractNode, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
+						highlightNode(node, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
 					}
 				}
 			} else if (grammarElement == grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0()
 					|| grammarElement == grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0()) {
-				Component component = (Component) NodeUtil.getNearestSemanticObject(abstractNode);
+				Component component = (Component) node.getSemanticElement();
 				if (component.getType() instanceof JvmAnnotationTarget && isDeprecated((JvmAnnotationTarget) component.getType())) {
-					highlightNode(abstractNode, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
+					highlightNode(node, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
 				}
 			}
 		}
@@ -100,13 +102,15 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		return false;
 	}
 
-	private void highlightNode(AbstractNode node, String id, IHighlightedPositionAcceptor acceptor) {
+	private void highlightNode(INode node, String id, IHighlightedPositionAcceptor acceptor) {
 		if (node == null)
 			return;
-		if (node instanceof LeafNode) {
+		if (node instanceof ILeafNode) {
 			acceptor.addPosition(node.getOffset(), node.getLength(), id);
 		} else {
-			for (LeafNode leaf : node.getLeafNodes()) {
+			Iterator<ILeafNode> leafIter = Iterators.filter(node.treeIterator(), ILeafNode.class);
+			while(leafIter.hasNext()) {
+				ILeafNode leaf = leafIter.next();
 				if (!leaf.isHidden()) {
 					acceptor.addPosition(leaf.getOffset(), leaf.getLength(), id);
 				}

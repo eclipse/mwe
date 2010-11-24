@@ -17,6 +17,8 @@ import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.parser.IParseResult;
 
+import com.google.common.collect.Iterables;
+
 public abstract class AbstractParserTest extends AbstractXtextTests {
 	
 	private Mwe2Parser parser;
@@ -34,19 +36,19 @@ public abstract class AbstractParserTest extends AbstractXtextTests {
 	}
 	
 	protected IParseResult parseSuccessfully(String input) {
-		IParseResult result = getParseResult(input);
-		assertTrue("[" + input + "] - " + result.getParseErrors().toString(), result.getParseErrors().isEmpty());
+		IParseResult result = getParseResultFromParser(input);
+		assertFalse("[" + input + "] - " + Iterables.toString(result.getSyntaxErrors()), result.hasSyntaxErrors());
 		return result;
 	}
 	
 	protected IParseResult parseWithErrors(String input, int errorCount) {
-		IParseResult result = getParseResult(input);
-		assertEquals(result.getParseErrors().toString(), errorCount, result.getParseErrors().size());
+		IParseResult result = getParseResultFromParser(input);
+		assertEquals("[" + input + "] - " + Iterables.toString(result.getSyntaxErrors()), errorCount, Iterables.size(result.getSyntaxErrors()));
 		return result;
 	}
 
-	protected IParseResult getParseResult(String input) {
-		return parser.parse(getRule().getName(), new StringReader(input));
+	protected IParseResult getParseResultFromParser(String input) {
+		return parser.parse(getRule(), new StringReader(input));
 	}
 	
 	protected abstract ParserRule getRule();

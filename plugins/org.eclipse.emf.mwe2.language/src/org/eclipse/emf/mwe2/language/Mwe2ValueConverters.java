@@ -16,7 +16,7 @@ import org.eclipse.xtext.conversion.IValueConverter;
 import org.eclipse.xtext.conversion.ValueConverter;
 import org.eclipse.xtext.conversion.ValueConverterException;
 import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
-import org.eclipse.xtext.parsetree.AbstractNode;
+import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
 import com.google.common.collect.ImmutableSet;
@@ -28,7 +28,7 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 		private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
 		
 		@Override
-		protected String internalToValue(String string, AbstractNode node) {
+		protected String internalToValue(String string, INode node) {
 			return string.replaceAll("[\\^\\s]", "");
 		}
 
@@ -65,7 +65,7 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 		return new AbstractNullSafeConverter<String>() {
 
 			@Override
-			protected String internalToValue(String string, AbstractNode node) {
+			protected String internalToValue(String string, INode node) {
 				try {
 					string = string.replace("\\${", "${");
 					return Strings.convertFromJavaString(string, false);

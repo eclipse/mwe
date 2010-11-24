@@ -20,11 +20,10 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.linking.impl.LinkingHelper;
+import org.eclipse.xtext.nodemodel.ICompositeNode;
+import org.eclipse.xtext.nodemodel.INode;
+import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
-import org.eclipse.xtext.parsetree.AbstractNode;
-import org.eclipse.xtext.parsetree.CompositeNode;
-import org.eclipse.xtext.parsetree.NodeAdapter;
-import org.eclipse.xtext.parsetree.NodeUtil;
 import org.eclipse.xtext.util.Strings;
 
 public class StringLiteralTest extends AbstractParserTest {
@@ -114,9 +113,8 @@ public class StringLiteralTest extends AbstractParserTest {
 			if (part instanceof PropertyReference) {
 				assertTrue(expectation[i].startsWith("ref:"));
 				String expected = expectation[i].substring(4);
-				NodeAdapter adapter = NodeUtil.getNodeAdapter(part);
-				CompositeNode node = adapter.getParserNode();
-				for(AbstractNode child: node.getChildren()) {
+				ICompositeNode node = NodeModelUtils.getNode(part);
+				for(INode child: node.getChildren()) {
 					if (child.getGrammarElement() instanceof CrossReference) {
 						String nodeAsString = linkingHelper.getCrossRefNodeAsString(child, true);
 						assertEquals(expected, nodeAsString);
@@ -140,9 +138,8 @@ public class StringLiteralTest extends AbstractParserTest {
 		LinkingHelper linkingHelper = get(LinkingHelper.class);
 		for(StringPart part: literal.getParts()) {
 			if (part instanceof PropertyReference) {
-				NodeAdapter adapter = NodeUtil.getNodeAdapter(part);
-				CompositeNode node = adapter.getParserNode();
-				for(AbstractNode child: node.getChildren()) {
+				ICompositeNode node = NodeModelUtils.getNode(part);
+				for(INode child: node.getChildren()) {
 					if (child.getGrammarElement() instanceof CrossReference) {
 						String nodeAsString = linkingHelper.getCrossRefNodeAsString(child, true);
 						assertEquals(expectedReferences[i], nodeAsString);
