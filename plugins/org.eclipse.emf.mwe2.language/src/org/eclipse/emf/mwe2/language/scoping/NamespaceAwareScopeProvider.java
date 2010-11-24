@@ -12,6 +12,8 @@ import static com.google.common.collect.Lists.*;
 
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflow;
 import org.eclipse.xtext.scoping.impl.ImportNormalizer;
 import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
@@ -24,6 +26,21 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 		result.add(createImportedNamespaceResolver("java.lang.*"));
 		result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*"));
 		return result;
+	}
+	
+	@Override
+	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context) {
+		List<ImportNormalizer> list = super.internalGetImportedNamespaceResolvers(context);
+		if (context instanceof Module) {
+			list = newArrayList(list);
+			String name = ((Module)context).getCanonicalName();
+			int dot = name.lastIndexOf('.');
+			if (dot >= 0) {
+				name = name.substring(0, dot) + ".*";
+				list.add(createImportedNamespaceResolver(name));
+			}
+		}
+		return list;
 	}
 	
 }
