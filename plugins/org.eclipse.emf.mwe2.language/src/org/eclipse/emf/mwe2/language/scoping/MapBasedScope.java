@@ -90,10 +90,6 @@ public class MapBasedScope extends AbstractScope {
 			return new String[0];
 		}
 
-		public Object getKey() {
-			return getName();
-		}
-		
 	}
 
 }
