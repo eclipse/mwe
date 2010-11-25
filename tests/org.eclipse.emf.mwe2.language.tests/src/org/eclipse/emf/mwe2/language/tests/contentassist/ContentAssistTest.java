@@ -30,6 +30,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
+		String.class.getClass();
 		javaProjectForTestProvider = new JavaProjectForTestProvider();
 	}
 	
