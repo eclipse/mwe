@@ -39,7 +39,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		if (resource == null)
 			return;
 
-		Iterator<INode> iter = resource.getParseResult().getRootNode().treeIterator();
+		Iterator<INode> iter = resource.getParseResult().getRootNode().iterator();
 		while(iter.hasNext()) {
 			INode node = iter.next();
 			EObject grammarElement = node.getGrammarElement();
@@ -108,9 +108,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		if (node instanceof ILeafNode) {
 			acceptor.addPosition(node.getOffset(), node.getLength(), id);
 		} else {
-			Iterator<ILeafNode> leafIter = Iterators.filter(node.treeIterator(), ILeafNode.class);
-			while(leafIter.hasNext()) {
-				ILeafNode leaf = leafIter.next();
+			for (ILeafNode leaf: node.getLeafNodes()) {
 				if (!leaf.isHidden()) {
 					acceptor.addPosition(leaf.getOffset(), leaf.getLength(), id);
 				}

@@ -33,7 +33,6 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.impl.DefaultResourceDescription;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.ImmutableMap.Builder;
 
@@ -130,7 +129,7 @@ public class MweResourceDescription extends DefaultResourceDescription {
 		}
 		if (typeNodes.size() != 1)
 			throw new IllegalStateException("Unexpected multiple values for feature '" + feature + "' in object '" + object + "'.");
-		List<ILeafNode> leafNodes = Lists.newArrayList(Iterators.filter(typeNodes.get(0).treeIterator(), ILeafNode.class));
+		List<ILeafNode> leafNodes = Lists.newArrayList(typeNodes.get(0).getLeafNodes());
 		StringBuilder result = new StringBuilder();
 		for(ILeafNode leafNode: leafNodes) {
 			if(!leafNode.isHidden()) {
