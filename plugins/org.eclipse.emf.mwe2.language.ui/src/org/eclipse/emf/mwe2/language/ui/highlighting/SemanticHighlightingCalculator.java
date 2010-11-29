@@ -27,7 +27,6 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfigurati
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 
-import com.google.common.collect.Iterators;
 import com.google.inject.Inject;
 
 public class SemanticHighlightingCalculator implements ISemanticHighlightingCalculator {
@@ -39,7 +38,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 		if (resource == null)
 			return;
 
-		Iterator<INode> iter = resource.getParseResult().getRootNode().iterator();
+		Iterator<INode> iter = resource.getParseResult().getRootNode().getAsTreeIterable().iterator();
 		while(iter.hasNext()) {
 			INode node = iter.next();
 			EObject grammarElement = node.getGrammarElement();
