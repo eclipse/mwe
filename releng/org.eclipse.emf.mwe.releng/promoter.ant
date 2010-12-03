@@ -201,6 +201,7 @@
 			</fileset>
 		</copy>
 
+
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
 				<type type="dir" />
