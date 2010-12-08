@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<feature id="org.eclipse.emf.mwe2.language.sdk" version="0.0.0">
+      <category name="mwe2lang${package.qualifier}"/>
+   </feature>
+   <category-def name="mwe2lang${package.qualifier}" label="Modeling Workflow Engine 2 Language${package.qualifier}">
+      <description>
+         The Modeling Workflow Engine 2 (MWE2) allows to compose arbitrary Java objects
+         using a convenient and readable syntax. It is mostly used to configure complex
+         compiler chains, but can be used to wire up any Java object model. The language
+         is built with Xtext.
+      </description>
+   </category-def>
+</site>
