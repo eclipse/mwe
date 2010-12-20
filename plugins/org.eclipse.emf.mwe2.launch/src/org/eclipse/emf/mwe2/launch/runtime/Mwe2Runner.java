@@ -34,8 +34,6 @@ import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
-import static org.eclipse.xtext.scoping.Selectors.*;
-
 public class Mwe2Runner {
 
 	@Inject
@@ -117,8 +115,8 @@ public class Mwe2Runner {
 		});
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {
-			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(selectByTypeAndName(Mwe2Package.Literals.MODULE,
-					qualifiedNameConverter.toQualifiedName(moduleName)));
+			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE,
+					qualifiedNameConverter.toQualifiedName(moduleName), false);
 			for (IEObjectDescription objDesc : iterable) {
 				return (Module) resourceSet.getEObject(objDesc.getEObjectURI(), true);
 			}

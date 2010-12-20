@@ -29,6 +29,11 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 	}
 	
 	@Override
+	protected boolean isRelativeImport() {
+		return false;
+	}
+	
+	@Override
 	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context) {
 		List<ImportNormalizer> list = super.internalGetImportedNamespaceResolvers(context);
 		if (context instanceof Module) {

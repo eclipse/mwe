@@ -20,40 +20,41 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.ISelector;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
+import org.eclipse.xtext.util.Strings;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 
+/**
+ * @author Sebastian Zarnekow - Initial contribution and API
+ */
 public class MapBasedScope extends AbstractScope {
 	
 	private Map<QualifiedName, ? extends EObject> entries;
 	
 	public MapBasedScope(Map<QualifiedName, ? extends EObject> entries) {
+		super(IScope.NULLSCOPE, false);
 		this.entries = entries;
-	}
-
-	public IScope getOuterScope() {
-		return IScope.NULLSCOPE;
 	}
 	
 	@Override
-	public Iterable<IEObjectDescription> getLocalElements(ISelector selector) {
-		if (selector instanceof ISelector.SelectByName) {
-			QualifiedName qualifiedName = ((ISelector.SelectByName) selector).getName();
-			EObject element = entries.get(qualifiedName);
-			if (element != null)
-				return selector.applySelector(singleton(EObjectDescription.create(qualifiedName, element)));
-			return emptySet();
-		}
-		return selector.applySelector(Iterables.transform(entries.entrySet(), new Function<Map.Entry<QualifiedName, ? extends EObject>, IEObjectDescription>() {
+	protected Iterable<IEObjectDescription> getAllLocalElements() {
+		return Iterables.transform(entries.entrySet(), new Function<Map.Entry<QualifiedName, ? extends EObject>, IEObjectDescription>() {
 			public IEObjectDescription apply(Map.Entry<QualifiedName, ? extends EObject> from) {
 				return new MapEntry(from);
 			}
-		}));
+		});
 	}
 	
+	@Override
+	protected Iterable<IEObjectDescription> getLocalElementsByName(QualifiedName name) {
+		EObject element = entries.get(name);
+		if (element != null)
+			return singleton(EObjectDescription.create(name, element));
+		return emptySet();
+	}
+
 	public static class MapEntry implements IEObjectDescription {
 
 		private final Map.Entry<QualifiedName, ? extends EObject> entry;
@@ -87,7 +88,7 @@ public class MapBasedScope extends AbstractScope {
 		}
 
 		public String[] getUserDataKeys() {
-			return new String[0];
+			return Strings.EMPTY_ARRAY;
 		}
 
 	}
