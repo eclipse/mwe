@@ -12,8 +12,10 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.mwe2.language.mwe2.*;
 
+import org.eclipse.xtext.common.types.JvmAnnotationTarget;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmMember;
 
 /**
  * <!-- begin-user-doc -->
@@ -118,6 +120,8 @@ public class Mwe2Switch<T>
 				T result = caseDeclaredProperty(declaredProperty);
 				if (result == null) result = caseReferrable(declaredProperty);
 				if (result == null) result = caseJvmFeature(declaredProperty);
+				if (result == null) result = caseJvmMember(declaredProperty);
+				if (result == null) result = caseJvmAnnotationTarget(declaredProperty);
 				if (result == null) result = caseJvmIdentifyableElement(declaredProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -437,6 +441,22 @@ public class Mwe2Switch<T>
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Jvm Annotation Target</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Jvm Annotation Target</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJvmAnnotationTarget(JvmAnnotationTarget object)
+	{
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Jvm Identifyable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -448,6 +468,22 @@ public class Mwe2Switch<T>
 	 * @generated
 	 */
 	public T caseJvmIdentifyableElement(JvmIdentifyableElement object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Jvm Member</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Jvm Member</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJvmMember(JvmMember object)
 	{
 		return null;
 	}

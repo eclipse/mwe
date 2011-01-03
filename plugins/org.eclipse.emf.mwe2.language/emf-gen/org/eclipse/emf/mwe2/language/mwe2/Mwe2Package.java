@@ -180,13 +180,49 @@ public interface Mwe2Package extends EPackage
 	int DECLARED_PROPERTY__NAME = REFERRABLE__NAME;
 
 	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__ANNOTATIONS = REFERRABLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Declaring Type</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__DECLARING_TYPE = REFERRABLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__VISIBILITY = REFERRABLE_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Fully Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DECLARED_PROPERTY__FULLY_QUALIFIED_NAME = REFERRABLE_FEATURE_COUNT + 3;
+
+	/**
 	 * The feature id for the '<em><b>Default</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PROPERTY__DEFAULT = REFERRABLE_FEATURE_COUNT + 0;
+	int DECLARED_PROPERTY__DEFAULT = REFERRABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Module</b></em>' container reference.
@@ -195,7 +231,7 @@ public interface Mwe2Package extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PROPERTY__MODULE = REFERRABLE_FEATURE_COUNT + 1;
+	int DECLARED_PROPERTY__MODULE = REFERRABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Declared Property</em>' class.
@@ -204,7 +240,7 @@ public interface Mwe2Package extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int DECLARED_PROPERTY_FEATURE_COUNT = REFERRABLE_FEATURE_COUNT + 2;
+	int DECLARED_PROPERTY_FEATURE_COUNT = REFERRABLE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.ComponentImpl <em>Component</em>}' class.
