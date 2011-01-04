@@ -666,7 +666,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
 		// Add supertypes to classes
 		declaredPropertyEClass.getESuperTypes().add(this.getReferrable());
-		declaredPropertyEClass.getESuperTypes().add(theTypesPackage.getJvmFeature());
+		declaredPropertyEClass.getESuperTypes().add(theTypesPackage.getJvmIdentifyableElement());
 		componentEClass.getESuperTypes().add(this.getReferrable());
 		componentEClass.getESuperTypes().add(this.getValue());
 		booleanLiteralEClass.getESuperTypes().add(this.getValue());

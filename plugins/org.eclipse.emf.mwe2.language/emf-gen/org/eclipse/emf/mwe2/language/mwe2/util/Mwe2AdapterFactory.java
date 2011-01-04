@@ -14,10 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.mwe2.language.mwe2.*;
 
-import org.eclipse.xtext.common.types.JvmAnnotationTarget;
-import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmIdentifyableElement;
-import org.eclipse.xtext.common.types.JvmMember;
 
 /**
  * <!-- begin-user-doc -->
@@ -153,24 +150,9 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 				return createAbstractReferenceAdapter();
 			}
 			@Override
-			public Adapter caseJvmAnnotationTarget(JvmAnnotationTarget object)
-			{
-				return createJvmAnnotationTargetAdapter();
-			}
-			@Override
 			public Adapter caseJvmIdentifyableElement(JvmIdentifyableElement object)
 			{
 				return createJvmIdentifyableElementAdapter();
-			}
-			@Override
-			public Adapter caseJvmMember(JvmMember object)
-			{
-				return createJvmMemberAdapter();
-			}
-			@Override
-			public Adapter caseJvmFeature(JvmFeature object)
-			{
-				return createJvmFeatureAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object)
@@ -405,21 +387,6 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmAnnotationTarget <em>Jvm Annotation Target</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xtext.common.types.JvmAnnotationTarget
-	 * @generated
-	 */
-	public Adapter createJvmAnnotationTargetAdapter()
-	{
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmIdentifyableElement <em>Jvm Identifyable Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -430,36 +397,6 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createJvmIdentifyableElementAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmMember <em>Jvm Member</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xtext.common.types.JvmMember
-	 * @generated
-	 */
-	public Adapter createJvmMemberAdapter()
-	{
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.xtext.common.types.JvmFeature <em>Jvm Feature</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.eclipse.xtext.common.types.JvmFeature
-	 * @generated
-	 */
-	public Adapter createJvmFeatureAdapter()
 	{
 		return null;
 	}
