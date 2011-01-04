@@ -43,7 +43,6 @@ import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.IJvmTypeConformanceComputer;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.ISelector;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 
@@ -183,7 +182,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	public Set<String> collectFeatureNames(Component component) {
 		Set<String> result = Sets.newHashSet();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
-		for(IEObjectDescription description: scope.getElements(ISelector.SELECT_ALL)) {
+		for(IEObjectDescription description: scope.getAllElements()) {
 			result.add(description.getName().getFirstSegment());
 		}
 		return result;
@@ -293,7 +292,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	public Map<String, JvmFeature> collectMandatoryFeatures(Component component) {
 		Map<String, JvmFeature> result = Maps.newHashMap();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
-		for(IEObjectDescription description: scope.getElements(ISelector.SELECT_ALL)) {
+		for(IEObjectDescription description: scope.getAllElements()) {
 			JvmFeature jvmFeature = (JvmFeature) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
 				result.put(description.getName().getFirstSegment(), jvmFeature);

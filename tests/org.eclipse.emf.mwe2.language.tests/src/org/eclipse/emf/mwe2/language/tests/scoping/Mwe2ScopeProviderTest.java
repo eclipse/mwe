@@ -8,8 +8,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.scoping;
 
-import static org.eclipse.xtext.scoping.Selectors.*;
-
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
@@ -24,7 +22,6 @@ import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.ISelector;
 
 public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 
@@ -42,23 +39,23 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 	public void testImplicitImportOfModulePackage_01() throws Exception {
 		Module model = (Module) getModel("module java.util.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
-		assertNotNull(scope.getSingleElement(selectByName(QualifiedName.create("java","util","List"))));
-		assertNotNull(scope.getSingleElement(selectByName(QualifiedName.create("List"))));
-		assertNull(scope.getSingleElement(selectByName(QualifiedName.create("BigDecimal"))));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("java","util","List")));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("List")));
+		assertNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
 	public void testImplicitImportOfModulePackage_02() throws Exception {
 		Module model = (Module) getModel("module java.math.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
-		assertNull(scope.getSingleElement(selectByName(QualifiedName.create("List"))));
-		assertNotNull(scope.getSingleElement(selectByName(QualifiedName.create("BigDecimal"))));
+		assertNull(scope.getSingleElement(QualifiedName.create("List")));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
 	public void testImplicitImportOfModulePackage_03() throws Exception {
 		Module model = (Module) getModel("module java.math.foo import java.math.* "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
-		assertNull(scope.getSingleElement(selectByName(QualifiedName.create("List"))));
-		assertNotNull(scope.getSingleElement(selectByName(QualifiedName.create("BigDecimal"))));
+		assertNull(scope.getSingleElement(QualifiedName.create("List")));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
 	public void testCreateComponentFeatureScope_1() throws Exception {
@@ -99,12 +96,12 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		Assignment yAssignment = componentA.getAssignment().get(0);
 		Reference reference = (Reference) yAssignment.getValue();
 		IScope scope = getScopeProvider().getScope(reference, Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE);
-		assertNotNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a"))));
-		assertNotNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a", "b"))));
-		assertNull(scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create("a.b"))));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("a")));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("a", "b")));
+		assertNull(scope.getSingleElement(QualifiedName.create("a.b")));
 	}
 	
 	private JvmExecutable getScopedElementByName(IScope scope, String name) {
-		return (JvmExecutable) scope.getSingleElement(new ISelector.SelectByName(QualifiedName.create(name))).getEObjectOrProxy();
+		return (JvmExecutable) scope.getSingleElement(QualifiedName.create(name)).getEObjectOrProxy();
 	}
 }
