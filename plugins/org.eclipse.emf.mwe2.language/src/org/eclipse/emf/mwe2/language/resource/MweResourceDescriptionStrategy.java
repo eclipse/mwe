@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2011 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,14 +7,10 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.resource;
 
-import java.io.IOException;
-import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
@@ -23,25 +19,23 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
-import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.resource.EObjectDescription;
 import org.eclipse.xtext.resource.IEObjectDescription;
-import org.eclipse.xtext.resource.impl.DefaultResourceDescription;
+import org.eclipse.xtext.resource.impl.DefaultResourceDescriptionStrategy;
+import org.eclipse.xtext.util.IAcceptor;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.ImmutableMap.Builder;
 
 /**
- * @author Sebastian Zarnekow - Initial contribution and API
+ * @author koehnlein - Initial contribution and API
  */
-public class MweResourceDescription extends DefaultResourceDescription {
-
-	private final static Logger log = Logger.getLogger(MweResourceDescription.class);
+public class MweResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
 
 	public static final String DECLARED_PROPERTY__MANDATORY = "mandatory";
 	public static final String MANDATORY_TRUE = "true";
@@ -50,42 +44,20 @@ public class MweResourceDescription extends DefaultResourceDescription {
 	public static final String TYPE__BOOLEAN = "boolean";
 	public static final String TYPE__STRING = "String";
 	
-	public MweResourceDescription(Resource resource, IQualifiedNameProvider nameProvider) {
-		super(resource, nameProvider);
+	@Override
+	public boolean createEObjectDescriptions(EObject eObject, IAcceptor<IEObjectDescription> acceptor) {
+		if(eObject instanceof Module) {
+			super.createEObjectDescriptions(eObject, acceptor);
+			return true;
+		}
+		if(eObject instanceof DeclaredProperty) {
+			acceptor.accept(createIEObjectDescription((DeclaredProperty)eObject));
+		}
+		return false;
 	}
 	
-	@Override
-	protected List<IEObjectDescription> computeExportedObjects() {
-		loadResourceIfNecessary();
-		if (getResource().getContents().isEmpty()) {
-			return Collections.emptyList();
-		}
-		List<IEObjectDescription> result = Lists.newArrayList();
-		Module module = (Module) getResource().getContents().get(0);
-		IEObjectDescription moduleDescription = createIEObjectDescription(module); 
-		if (moduleDescription != null)
-			result.add(moduleDescription);
-		for(DeclaredProperty property: module.getDeclaredProperties()) {
-			IEObjectDescription description = createIEObjectDescription(property);
-			if (description != null) {
-				result.add(description);
-			}
-		}
-		return result;
-	}
-
-	protected void loadResourceIfNecessary() {
-		if (!getResource().isLoaded()) {
-			try {
-				getResource().load(null);
-			} catch (IOException e) {
-				log.error(e.getMessage(), e);
-			}
-		}
-	}
-
 	protected IEObjectDescription createIEObjectDescription(DeclaredProperty property) {
-		QualifiedName qualifiedName = getNameProvider().getFullyQualifiedName(property);
+		QualifiedName qualifiedName = getQualifiedNameProvider().getFullyQualifiedName(property);
 		Builder<String, String> builder = ImmutableMap.builder();
 		String nodeModelValue = getValueFromNodeModel(property, Mwe2Package.Literals.REFERRABLE__TYPE);
 		if (nodeModelValue != null) {
@@ -138,4 +110,5 @@ public class MweResourceDescription extends DefaultResourceDescription {
 		}
 		return result.toString();
 	}
+
 }
