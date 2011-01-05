@@ -67,7 +67,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 					.getReferableReferrableCrossReference_0()) {
 				highlightNode(node, MweHighlightingConfiguration.PROPERTY_REF, acceptor);
 			} else if (grammarElement == grammarAccess.getAssignmentAccess()
-					.getFeatureJvmFeatureCrossReference_0_0()) {
+					.getFeatureJvmIdentifyableElementCrossReference_0_0()) {
 				highlightNode(node, MweHighlightingConfiguration.FEATURE_REF, acceptor);
 				Assignment semanticObject = (Assignment) node.getSemanticElement();
 				if (semanticObject.getFeature() instanceof JvmOperation) {
