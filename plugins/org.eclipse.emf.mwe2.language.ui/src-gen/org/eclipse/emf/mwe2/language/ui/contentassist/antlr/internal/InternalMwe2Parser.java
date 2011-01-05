@@ -8038,21 +8038,21 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2Parser.g:3005:1: ( ( ruleFQN ) )
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2Parser.g:3006:1: ( ruleFQN )
             {
-             before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); 
+             before(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); 
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2Parser.g:3007:1: ( ruleFQN )
             // ../org.eclipse.emf.mwe2.language.ui/src-gen/org/eclipse/emf/mwe2/language/ui/contentassist/antlr/internal/InternalMwe2Parser.g:3008:1: ruleFQN
             {
-             before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); 
+             before(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1()); 
             pushFollow(FOLLOW_ruleFQN_in_rule__Assignment__FeatureAssignment_06036);
             ruleFQN();
 
             state._fsp--;
 
-             after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); 
+             after(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1()); 
 
             }
 
-             after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); 
+             after(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); 
 
             }
 

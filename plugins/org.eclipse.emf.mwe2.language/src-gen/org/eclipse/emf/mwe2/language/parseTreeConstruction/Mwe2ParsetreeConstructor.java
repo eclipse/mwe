@@ -1480,11 +1480,11 @@ protected class Import_ImportedNamespaceAssignment_1 extends AssignmentToken  {
 /************ begin Rule Assignment ****************
  *
  * Assignment:
- * 	feature=[types::JvmFeature|FQN] "=" value=Value;
+ * 	feature=[types::JvmIdentifyableElement|FQN] "=" value=Value;
  *
  **/
 
-// feature=[types::JvmFeature|FQN] "=" value=Value
+// feature=[types::JvmIdentifyableElement|FQN] "=" value=Value
 protected class Assignment_Group extends GroupToken {
 	
 	public Assignment_Group(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1513,7 +1513,7 @@ protected class Assignment_Group extends GroupToken {
 
 }
 
-// feature=[types::JvmFeature|FQN]
+// feature=[types::JvmIdentifyableElement|FQN]
 protected class Assignment_FeatureAssignment_0 extends AssignmentToken  {
 	
 	public Assignment_FeatureAssignment_0(AbstractToken lastRuleCallOrigin, AbstractToken next, int transitionIndex, IEObjectConsumer eObjectConsumer) {
@@ -1538,9 +1538,9 @@ protected class Assignment_FeatureAssignment_0 extends AssignmentToken  {
 		IEObjectConsumer obj = eObjectConsumer.cloneAndConsume("feature");
 		if(value instanceof EObject) { // org::eclipse::xtext::impl::CrossReferenceImpl
 			IEObjectConsumer param = createEObjectConsumer((EObject)value);
-			if(param.isInstanceOf(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0().getType().getClassifier())) {
+			if(param.isInstanceOf(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0().getType().getClassifier())) {
 				type = AssignmentType.CROSS_REFERENCE;
-				element = grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0(); 
+				element = grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0(); 
 				return obj;
 			}
 		}

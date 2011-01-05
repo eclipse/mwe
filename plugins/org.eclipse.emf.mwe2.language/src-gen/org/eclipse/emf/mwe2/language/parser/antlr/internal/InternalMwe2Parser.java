@@ -1485,7 +1485,7 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
             	        }
                     
              
-            	        newCompositeNode(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); 
+            	        newCompositeNode(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); 
             	    
             pushFollow(FOLLOW_ruleFQN_in_ruleAssignment1224);
             ruleFQN();

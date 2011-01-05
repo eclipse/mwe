@@ -8,21 +8,27 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.mwe2.impl;
 
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmIdentifyableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.util.Strings;
 
 public class AssignmentImplCustom extends AssignmentImpl {
-	
+
 	@Override
 	public String getFeatureName() {
-		JvmFeature jvmFeature = getFeature();
-		String name = jvmFeature.getSimpleName();
-		if (jvmFeature instanceof JvmOperation) {
-			if (name.startsWith("add") || name.startsWith("set")) {
-				return Strings.toFirstLower(name.substring(3));
+		JvmIdentifyableElement feature = getFeature();
+		if (feature instanceof JvmFeature) {
+			String name = ((JvmFeature)feature).getSimpleName();
+			if (feature instanceof JvmOperation) {
+				if (name.startsWith("add") || name.startsWith("set")) {
+					return Strings.toFirstLower(name.substring(3));
+				}
 			}
+			return name;
+		} else {
+			return ((DeclaredProperty)feature).getName();
 		}
-		return name;
 	}
 }

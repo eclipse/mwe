@@ -7,7 +7,7 @@ package org.eclipse.emf.mwe2.language.mwe2;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.xtext.common.types.JvmFeature;
+import org.eclipse.xtext.common.types.JvmIdentifyableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,12 +38,12 @@ public interface Assignment extends EObject
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(JvmFeature)
+	 * @see #setFeature(JvmIdentifyableElement)
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getAssignment_Feature()
 	 * @model
 	 * @generated
 	 */
-	JvmFeature getFeature();
+	JvmIdentifyableElement getFeature();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeature <em>Feature</em>}' reference.
@@ -53,7 +53,7 @@ public interface Assignment extends EObject
 	 * @see #getFeature()
 	 * @generated
 	 */
-	void setFeature(JvmFeature value);
+	void setFeature(JvmIdentifyableElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' containment reference.

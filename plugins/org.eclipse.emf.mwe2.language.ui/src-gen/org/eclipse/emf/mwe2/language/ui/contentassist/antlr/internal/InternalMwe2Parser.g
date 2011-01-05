@@ -3003,12 +3003,12 @@ rule__Assignment__FeatureAssignment_0
     }
 :
 (
-{ before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); }
+{ before(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); }
 (
-{ before(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); }
-	ruleFQN{ after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureFQNParserRuleCall_0_0_1()); }
+{ before(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1()); }
+	ruleFQN{ after(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1()); }
 )
-{ after(grammarAccess.getAssignmentAccess().getFeatureJvmFeatureCrossReference_0_0()); }
+{ after(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); }
 )
 
 ;

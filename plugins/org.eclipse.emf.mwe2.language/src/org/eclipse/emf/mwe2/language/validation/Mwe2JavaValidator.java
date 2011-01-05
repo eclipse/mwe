@@ -33,6 +33,7 @@ import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmGenericType;
+import org.eclipse.xtext.common.types.JvmIdentifyableElement;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -68,7 +69,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Check
 	public void checkCompatibility(Assignment assignment) {
-		JvmFeature feature = assignment.getFeature();
+		JvmIdentifyableElement feature = assignment.getFeature();
 		if (feature.eIsProxy())
 			return;
 		JvmTypeReference left = null; 
@@ -102,7 +103,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			if (!assignabilityComputer.isConformant(left, right)) {
 				error("A value of type '" + actualType.getCanonicalName()
 						+ "' can not be assigned to the feature "
-						+ feature.getSimpleName(),
+						+ feature.getCanonicalName(),
 						Mwe2Package.ASSIGNMENT__VALUE, INCOMPATIBLE_ASSIGNMENT);
 			}
 		}
@@ -265,11 +266,13 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		}
 		for(Assignment assignment: component.getAssignment()) {
 			if (assignment.getFeature() != null && !assignment.getFeature().eIsProxy()) {
-				JvmFeature feature = assignment.getFeature();
+				JvmIdentifyableElement feature = assignment.getFeature();
 				if (feature instanceof JvmOperation) {
-					result.add(Strings.toFirstLower(feature.getSimpleName().substring(3)));	
+					result.add(Strings.toFirstLower((((JvmOperation)feature).getSimpleName().substring(3))));
+				} else if (feature instanceof JvmFeature) {
+					result.add(((JvmFeature) feature).getSimpleName());
 				} else {
-					result.add(feature.getSimpleName());
+					result.add(((DeclaredProperty)feature).getName());
 				}
 			}
 				
