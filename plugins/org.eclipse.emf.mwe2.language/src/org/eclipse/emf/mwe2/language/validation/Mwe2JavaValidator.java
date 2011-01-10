@@ -233,7 +233,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	
 	@Check
 	public void checkManadatoryFeaturesAssigned(Component component) {
-		Map<String, JvmFeature> mandatoryFeatures = collectMandatoryFeatures(component);
+		Map<String, JvmIdentifyableElement> mandatoryFeatures = collectMandatoryFeatures(component);
 		if (!mandatoryFeatures.isEmpty()) {
 			Map<String, Referrable> availableProperties = collectReferablesUpTo(component);
 			Set<String> assignedFeatures = getAssignedFeatures(availableProperties, component);
@@ -292,11 +292,11 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return indexed;
 	}
 	
-	public Map<String, JvmFeature> collectMandatoryFeatures(Component component) {
-		Map<String, JvmFeature> result = Maps.newHashMap();
+	public Map<String, JvmIdentifyableElement> collectMandatoryFeatures(Component component) {
+		Map<String, JvmIdentifyableElement> result = Maps.newHashMap();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
-			JvmFeature jvmFeature = (JvmFeature) description.getEObjectOrProxy();
+			JvmIdentifyableElement jvmFeature = (JvmIdentifyableElement) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
 				result.put(description.getName().getFirstSegment(), jvmFeature);
 			}
@@ -304,7 +304,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return result;
 	}
 	
-	public boolean isMandatory(JvmFeature feature) {
+	public boolean isMandatory(JvmIdentifyableElement feature) {
 		if (feature.eIsProxy())
 			return false;
 		if (feature instanceof DeclaredProperty) {
