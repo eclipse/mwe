@@ -61,7 +61,7 @@ public class Mwe2Runner {
 			if (!resource.getContents().isEmpty()) {
 				EObject eObject = resource.getContents().get(0);
 				if (eObject instanceof Module) {
-					run(((Module) eObject).getCanonicalName(), params);
+					run((Module) eObject, params,ctxProvider.get());
 					return;
 				}
 			}
@@ -72,11 +72,17 @@ public class Mwe2Runner {
 	public void run(String moduleName, Map<String, String> params) {
 		run(moduleName, params, ctxProvider.get());
 	}
-
+	
 	public void run(String moduleName, Map<String, String> params, IWorkflowContext ctx) {
 		Module module = findModule(moduleName);
 		if (module == null)
 			throw new IllegalArgumentException("Couldn't find module with name '" + moduleName + "'.");
+		run(module, params, ctxProvider.get());
+	}
+
+	public void run(Module module, Map<String, String> params, IWorkflowContext ctx) {
+		if (module == null)
+			throw new NullPointerException("module");
 		EcoreUtil.resolveAll(module);
 		if (!module.eResource().getErrors().isEmpty()) {
 			throw new IllegalStateException(module.eResource().getErrors().toString());
@@ -86,7 +92,7 @@ public class Mwe2Runner {
 		try {
 			object = engine.create(module, actualParams);
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems instantiating module " + moduleName + ": " + e.getMessage(), e);
+			throw new RuntimeException("Problems instantiating module " + module.getCanonicalName() + ": " + e.getMessage(), e);
 		}
 		if (!(object instanceof IWorkflow)) {
 			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"
@@ -95,7 +101,7 @@ public class Mwe2Runner {
 		try {
 			((IWorkflow) object).run(ctx);
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems running workflow " + moduleName + ": " + e.getMessage(), e);
+			throw new RuntimeException("Problems running workflow " + module.getCanonicalName() + ": " + e.getMessage(), e);
 		}
 	}
 
