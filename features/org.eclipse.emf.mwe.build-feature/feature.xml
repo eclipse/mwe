@@ -21,12 +21,7 @@ http://www.eclipse.org/legal/epl-v10.html
    <license url="%licenseURL">
       %license
    </license>
-
-   <url>
-      <update label="%UpdateSiteName" url="http://download.eclipse.org/modeling/emft/mwe/updates/"/>
-      <discovery label="%UpdateSiteName" url="http://download.eclipse.org/modeling/emft/mwe/updates/"/>
-   </url>
-
+  
    <includes
          id="org.eclipse.emf.mwe.sdk"
          version="0.0.0"/>
