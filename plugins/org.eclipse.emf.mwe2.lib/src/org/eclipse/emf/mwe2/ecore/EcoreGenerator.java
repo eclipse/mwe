@@ -2,6 +2,7 @@ package org.eclipse.emf.mwe2.ecore;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
@@ -28,6 +29,8 @@ import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
 import com.google.common.base.Function;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 public class EcoreGenerator implements IWorkflowComponent {
 
 	private static Logger log = Logger.getLogger(EcoreGenerator.class);
@@ -40,7 +43,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 	private boolean generateEditor = false;
 	private boolean generateCustomClasses = false;
 
-	protected String srcPath;
+	protected List<String> srcPaths = newArrayList();
 	private String genModel;
 	
 	public void setGenerateEdit(boolean generateEdit) {
@@ -55,8 +58,8 @@ public class EcoreGenerator implements IWorkflowComponent {
 		this.generateCustomClasses = generateCustomClasses;
 	}
 	
-	public void setSrcPath(String srcPath) {
-		this.srcPath = srcPath;
+	public void addSrcPath(String srcPath) {
+		this.srcPaths.add(srcPath);
 	}
 	
 	public void setGenModel(String genModel) {
@@ -123,14 +126,16 @@ public class EcoreGenerator implements IWorkflowComponent {
 		public String apply(String from) {
 			if (from.startsWith("org.eclipse.emf.ecore"))
 				return null;
-			URI createURI = URI.createURI(srcPath+"/"+from.replace('.', '/')+"Custom.java");
-			String customClassName = from+"Custom";
-			if (URIConverter.INSTANCE.exists(createURI, null)) {
-				return customClassName;
-			}
-			if (from.endsWith("Impl") && generateCustomClasses) {
-				generate(from,customClassName,createURI);
-				return customClassName;
+			for(String srcPath: srcPaths) {
+				URI createURI = URI.createURI(srcPath+"/"+from.replace('.', '/')+"Custom.java");
+				String customClassName = from+"Custom";
+				if (URIConverter.INSTANCE.exists(createURI, null)) {
+					return customClassName;
+				}
+				if (from.endsWith("Impl") && generateCustomClasses) {
+					generate(from,customClassName,createURI);
+					return customClassName;
+				}
 			}
 			return null;
 		}
