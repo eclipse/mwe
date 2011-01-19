@@ -14,7 +14,7 @@ import org.eclipse.xtext.ui.editor.outline.actions.SortOutlineContribution;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
 
 /**
- * @author koehnlein - Initial contribution and API
+ * @author Jan Koehnlein - Initial contribution and API
  */
 public class Mwe2OutlineComparator extends SortOutlineContribution.DefaultComparator {
 

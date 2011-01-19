@@ -24,7 +24,7 @@ import com.google.inject.Inject;
 /**
  * customization of the default outline structure
  * 
- * @author koehnlein
+ * @author Jan Koehnlein
  */
 public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 
