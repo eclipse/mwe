@@ -78,7 +78,7 @@ ruleModule returns [EObject current=null]
             $current);
     }
 )
-	otherlv_1=KEYWORD_19 
+	otherlv_1=KEYWORD_19
     {
     	newLeafNode(otherlv_1, grammarAccess.getModuleAccess().getModuleKeyword_1());
     }
@@ -176,7 +176,7 @@ ruleDeclaredProperty returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
-	otherlv_0=KEYWORD_15 
+	otherlv_0=KEYWORD_15
     {
     	newLeafNode(otherlv_0, grammarAccess.getDeclaredPropertyAccess().getVarKeyword_0());
     }
@@ -214,7 +214,7 @@ ruleDeclaredProperty returns [EObject current=null]
 
 )
 )(
-	otherlv_3=KEYWORD_5 
+	otherlv_3=KEYWORD_5
     {
     	newLeafNode(otherlv_3, grammarAccess.getDeclaredPropertyAccess().getEqualsSignKeyword_3_0());
     }
@@ -280,7 +280,7 @@ ruleRootComponent returns [EObject current=null]
 )
 )
     |(
-	otherlv_2=KEYWORD_6 
+	otherlv_2=KEYWORD_6
     {
     	newLeafNode(otherlv_2, grammarAccess.getRootComponentAccess().getCommercialAtKeyword_1_1_0());
     }
@@ -300,7 +300,7 @@ ruleRootComponent returns [EObject current=null]
 
 )
 )))(
-	otherlv_4=KEYWORD_4 
+	otherlv_4=KEYWORD_4
     {
     	newLeafNode(otherlv_4, grammarAccess.getRootComponentAccess().getColonKeyword_2_0());
     }
@@ -325,11 +325,11 @@ ruleRootComponent returns [EObject current=null]
 ))?(
 (
 		lv_autoInject_6_0=
-	KEYWORD_20 
+	KEYWORD_20
     {
         newLeafNode(lv_autoInject_6_0, grammarAccess.getRootComponentAccess().getAutoInjectAutoInjectKeyword_3_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getRootComponentRule());
@@ -339,7 +339,7 @@ ruleRootComponent returns [EObject current=null]
 
 )
 )?
-	otherlv_7=KEYWORD_7 
+	otherlv_7=KEYWORD_7
     {
     	newLeafNode(otherlv_7, grammarAccess.getRootComponentAccess().getLeftCurlyBracketKeyword_4());
     }
@@ -362,7 +362,7 @@ ruleRootComponent returns [EObject current=null]
 
 )
 )*
-	otherlv_9=KEYWORD_8 
+	otherlv_9=KEYWORD_8
     {
     	newLeafNode(otherlv_9, grammarAccess.getRootComponentAccess().getRightCurlyBracketKeyword_6());
     }
@@ -410,7 +410,7 @@ ruleComponent returns [EObject current=null]
 )
 )
     |(
-	otherlv_2=KEYWORD_6 
+	otherlv_2=KEYWORD_6
     {
     	newLeafNode(otherlv_2, grammarAccess.getComponentAccess().getCommercialAtKeyword_1_1_0());
     }
@@ -430,7 +430,7 @@ ruleComponent returns [EObject current=null]
 
 )
 )))?(
-	otherlv_4=KEYWORD_4 
+	otherlv_4=KEYWORD_4
     {
     	newLeafNode(otherlv_4, grammarAccess.getComponentAccess().getColonKeyword_2_0());
     }
@@ -455,11 +455,11 @@ ruleComponent returns [EObject current=null]
 ))?(
 (
 		lv_autoInject_6_0=
-	KEYWORD_20 
+	KEYWORD_20
     {
         newLeafNode(lv_autoInject_6_0, grammarAccess.getComponentAccess().getAutoInjectAutoInjectKeyword_3_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getComponentRule());
@@ -469,7 +469,7 @@ ruleComponent returns [EObject current=null]
 
 )
 )?
-	otherlv_7=KEYWORD_7 
+	otherlv_7=KEYWORD_7
     {
     	newLeafNode(otherlv_7, grammarAccess.getComponentAccess().getLeftCurlyBracketKeyword_4());
     }
@@ -492,7 +492,7 @@ ruleComponent returns [EObject current=null]
 
 )
 )*
-	otherlv_9=KEYWORD_8 
+	otherlv_9=KEYWORD_8
     {
     	newLeafNode(otherlv_9, grammarAccess.getComponentAccess().getRightCurlyBracketKeyword_6());
     }
@@ -518,7 +518,7 @@ ruleImport returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
-	otherlv_0=KEYWORD_18 
+	otherlv_0=KEYWORD_18
     {
     	newLeafNode(otherlv_0, grammarAccess.getImportAccess().getImportKeyword_0());
     }
@@ -608,7 +608,7 @@ ruleAssignment returns [EObject current=null]
 	        }
         }
 		{ 
-	        newCompositeNode(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifyableElementCrossReference_0_0()); 
+	        newCompositeNode(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifiableElementCrossReference_0_0()); 
 	    }
 		ruleFQN		{ 
 	        afterParserOrEnumRuleCall();
@@ -616,7 +616,7 @@ ruleAssignment returns [EObject current=null]
 
 )
 )
-	otherlv_1=KEYWORD_5 
+	otherlv_1=KEYWORD_5
     {
     	newLeafNode(otherlv_1, grammarAccess.getAssignmentAccess().getEqualsSignKeyword_1());
     }
@@ -728,11 +728,11 @@ ruleBooleanLiteral returns [EObject current=null]
 )((
 (
 		lv_isTrue_1_0=
-	KEYWORD_16 
+	KEYWORD_16
     {
         newLeafNode(lv_isTrue_1_0, grammarAccess.getBooleanLiteralAccess().getIsTrueTrueKeyword_1_0_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getBooleanLiteralRule());
@@ -743,7 +743,7 @@ ruleBooleanLiteral returns [EObject current=null]
 )
 )
     |
-	otherlv_2=KEYWORD_17 
+	otherlv_2=KEYWORD_17
     {
     	newLeafNode(otherlv_2, grammarAccess.getBooleanLiteralAccess().getFalseKeyword_1_1());
     }
@@ -856,11 +856,11 @@ ruleStringLiteral returns [EObject current=null]
 (((
 (
 		lv_begin_0_0=
-	KEYWORD_2 
+	KEYWORD_2
     {
         newLeafNode(lv_begin_0_0, grammarAccess.getStringLiteralAccess().getBeginApostropheKeyword_0_0_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStringLiteralRule());
@@ -926,11 +926,11 @@ ruleStringLiteral returns [EObject current=null]
 )?)*(
 (
 		lv_end_4_0=
-	KEYWORD_2 
+	KEYWORD_2
     {
         newLeafNode(lv_end_4_0, grammarAccess.getStringLiteralAccess().getEndApostropheKeyword_0_3_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStringLiteralRule());
@@ -943,11 +943,11 @@ ruleStringLiteral returns [EObject current=null]
     |((
 (
 		lv_begin_5_0=
-	KEYWORD_1 
+	KEYWORD_1
     {
         newLeafNode(lv_begin_5_0, grammarAccess.getStringLiteralAccess().getBeginQuotationMarkKeyword_1_0_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStringLiteralRule());
@@ -1013,11 +1013,11 @@ ruleStringLiteral returns [EObject current=null]
 )?)*(
 (
 		lv_end_9_0=
-	KEYWORD_1 
+	KEYWORD_1
     {
         newLeafNode(lv_end_9_0, grammarAccess.getStringLiteralAccess().getEndQuotationMarkKeyword_1_3_0());
     }
- 
+
 	    {
 	        if ($current==null) {
 	            $current = createModelElement(grammarAccess.getStringLiteralRule());
@@ -1058,7 +1058,7 @@ rulePropertyReference returns [EObject current=null]
     }
     @after { leaveRule(); }:
 (
-	otherlv_0=KEYWORD_9 
+	otherlv_0=KEYWORD_9
     {
     	newLeafNode(otherlv_0, grammarAccess.getPropertyReferenceAccess().getDollarSignLeftCurlyBracketKeyword_0());
     }
@@ -1072,7 +1072,7 @@ rulePropertyReference returns [EObject current=null]
         afterParserOrEnumRuleCall();
     }
 
-	otherlv_2=KEYWORD_8 
+	otherlv_2=KEYWORD_8
     {
     	newLeafNode(otherlv_2, grammarAccess.getPropertyReferenceAccess().getRightCurlyBracketKeyword_2());
     }

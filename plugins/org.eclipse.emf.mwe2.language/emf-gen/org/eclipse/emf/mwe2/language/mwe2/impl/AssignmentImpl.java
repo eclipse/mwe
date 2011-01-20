@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,7 +45,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * @generated
 	 * @ordered
 	 */
-	protected JvmIdentifyableElement feature;
+	protected JvmIdentifiableElement feature;
 
 	/**
 	 * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -103,12 +103,12 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmIdentifyableElement getFeature()
+	public JvmIdentifiableElement getFeature()
 	{
 		if (feature != null && feature.eIsProxy())
 		{
 			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (JvmIdentifyableElement)eResolveProxy(oldFeature);
+			feature = (JvmIdentifiableElement)eResolveProxy(oldFeature);
 			if (feature != oldFeature)
 			{
 				if (eNotificationRequired())
@@ -123,7 +123,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public JvmIdentifyableElement basicGetFeature()
+	public JvmIdentifiableElement basicGetFeature()
 	{
 		return feature;
 	}
@@ -133,9 +133,9 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFeature(JvmIdentifyableElement newFeature)
+	public void setFeature(JvmIdentifiableElement newFeature)
 	{
-		JvmIdentifyableElement oldFeature = feature;
+		JvmIdentifiableElement oldFeature = feature;
 		feature = newFeature;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.ASSIGNMENT__FEATURE, oldFeature, feature));
@@ -247,7 +247,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 		switch (featureID)
 		{
 			case Mwe2Package.ASSIGNMENT__FEATURE:
-				setFeature((JvmIdentifyableElement)newValue);
+				setFeature((JvmIdentifiableElement)newValue);
 				return;
 			case Mwe2Package.ASSIGNMENT__VALUE:
 				setValue((Value)newValue);
@@ -267,7 +267,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 		switch (featureID)
 		{
 			case Mwe2Package.ASSIGNMENT__FEATURE:
-				setFeature((JvmIdentifyableElement)null);
+				setFeature((JvmIdentifiableElement)null);
 				return;
 			case Mwe2Package.ASSIGNMENT__VALUE:
 				setValue((Value)null);

@@ -666,7 +666,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
 		// Add supertypes to classes
 		declaredPropertyEClass.getESuperTypes().add(this.getReferrable());
-		declaredPropertyEClass.getESuperTypes().add(theTypesPackage.getJvmIdentifyableElement());
+		declaredPropertyEClass.getESuperTypes().add(theTypesPackage.getJvmIdentifiableElement());
 		componentEClass.getESuperTypes().add(this.getReferrable());
 		componentEClass.getESuperTypes().add(this.getValue());
 		booleanLiteralEClass.getESuperTypes().add(this.getValue());
@@ -703,7 +703,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 		initEAttribute(getImport_ImportedNamespace(), ecorePackage.getEString(), "importedNamespace", null, 0, 1, Import.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(assignmentEClass, Assignment.class, "Assignment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssignment_Feature(), theTypesPackage.getJvmIdentifyableElement(), null, "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssignment_Feature(), theTypesPackage.getJvmIdentifiableElement(), null, "feature", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAssignment_Value(), this.getValue(), null, "value", null, 0, 1, Assignment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssignment_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1, Assignment.class, IS_TRANSIENT, !IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

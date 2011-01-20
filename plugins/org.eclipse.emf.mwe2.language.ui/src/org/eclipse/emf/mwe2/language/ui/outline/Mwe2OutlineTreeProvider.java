@@ -11,7 +11,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.RGB;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.ui.IImageHelper;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
@@ -73,7 +73,7 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 		return styledText;
 	}
 
-	protected StyledString appendSimpleName(StyledString styledText, JvmIdentifyableElement element) {
+	protected StyledString appendSimpleName(StyledString styledText, JvmIdentifiableElement element) {
 		String canonicalName = element.getCanonicalName();
 		String typeName = canonicalName.substring(canonicalName.lastIndexOf('.')+1);
 		return styledText.append(new StyledString(COMPONENT_TYPE_SEPARATOR + typeName, stylerFactory

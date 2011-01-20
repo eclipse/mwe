@@ -10,7 +10,7 @@ package org.eclipse.emf.mwe2.language.mwe2.impl;
 
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.xtext.common.types.JvmFeature;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.util.Strings;
 
@@ -18,7 +18,7 @@ public class AssignmentImplCustom extends AssignmentImpl {
 
 	@Override
 	public String getFeatureName() {
-		JvmIdentifyableElement feature = getFeature();
+		JvmIdentifiableElement feature = getFeature();
 		if (feature instanceof JvmFeature) {
 			String name = ((JvmFeature)feature).getSimpleName();
 			if (feature instanceof JvmOperation) {

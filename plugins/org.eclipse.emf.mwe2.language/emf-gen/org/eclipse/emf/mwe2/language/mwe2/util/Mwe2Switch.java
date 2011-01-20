@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.mwe2.language.mwe2.*;
 
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -116,7 +116,7 @@ public class Mwe2Switch<T>
 				DeclaredProperty declaredProperty = (DeclaredProperty)theEObject;
 				T result = caseDeclaredProperty(declaredProperty);
 				if (result == null) result = caseReferrable(declaredProperty);
-				if (result == null) result = caseJvmIdentifyableElement(declaredProperty);
+				if (result == null) result = caseJvmIdentifiableElement(declaredProperty);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -435,17 +435,17 @@ public class Mwe2Switch<T>
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Jvm Identifyable Element</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Jvm Identifiable Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Jvm Identifyable Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Jvm Identifiable Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseJvmIdentifyableElement(JvmIdentifyableElement object)
+	public T caseJvmIdentifiableElement(JvmIdentifiableElement object)
 	{
 		return null;
 	}

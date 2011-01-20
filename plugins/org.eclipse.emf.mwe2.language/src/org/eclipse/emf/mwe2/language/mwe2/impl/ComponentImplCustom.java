@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 
@@ -25,7 +25,7 @@ public class ComponentImplCustom extends ComponentImpl {
 			return result;
 		EObject container = eContainer();
 		if (container instanceof Assignment) {
-			JvmIdentifyableElement containerFeature = ((Assignment) container).getFeature();
+			JvmIdentifiableElement containerFeature = ((Assignment) container).getFeature();
 			if (containerFeature != null && containerFeature instanceof JvmOperation) {
 				JvmFormalParameter parameter = ((JvmOperation) containerFeature).getParameters().get(0);
 				return parameter.getParameterType().getType();

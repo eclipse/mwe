@@ -181,7 +181,7 @@
       <elements xsi:type="xtext:Assignment" feature="feature" operator="=">
         <terminal xsi:type="xtext:CrossReference">
           <type metamodel="//@metamodelDeclarations.2">
-            <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmIdentifyableElement"/>
+            <classifier xsi:type="ecore:EClass" href="http://www.eclipse.org/xtext/common/JavaVMTypes#//JvmIdentifiableElement"/>
           </type>
           <terminal xsi:type="xtext:RuleCall" rule="//@rules.10"/>
         </terminal>

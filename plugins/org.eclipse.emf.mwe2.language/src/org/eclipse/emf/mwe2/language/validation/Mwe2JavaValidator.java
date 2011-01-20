@@ -33,7 +33,7 @@ import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmGenericType;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -69,7 +69,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Check
 	public void checkCompatibility(Assignment assignment) {
-		JvmIdentifyableElement feature = assignment.getFeature();
+		JvmIdentifiableElement feature = assignment.getFeature();
 		if (feature.eIsProxy())
 			return;
 		JvmTypeReference left = null; 
@@ -233,7 +233,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	
 	@Check
 	public void checkManadatoryFeaturesAssigned(Component component) {
-		Map<String, JvmIdentifyableElement> mandatoryFeatures = collectMandatoryFeatures(component);
+		Map<String, JvmIdentifiableElement> mandatoryFeatures = collectMandatoryFeatures(component);
 		if (!mandatoryFeatures.isEmpty()) {
 			Map<String, Referrable> availableProperties = collectReferablesUpTo(component);
 			Set<String> assignedFeatures = getAssignedFeatures(availableProperties, component);
@@ -266,7 +266,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		}
 		for(Assignment assignment: component.getAssignment()) {
 			if (assignment.getFeature() != null && !assignment.getFeature().eIsProxy()) {
-				JvmIdentifyableElement feature = assignment.getFeature();
+				JvmIdentifiableElement feature = assignment.getFeature();
 				if (feature instanceof JvmOperation) {
 					result.add(Strings.toFirstLower((((JvmOperation)feature).getSimpleName().substring(3))));
 				} else if (feature instanceof JvmFeature) {
@@ -292,11 +292,11 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return indexed;
 	}
 	
-	public Map<String, JvmIdentifyableElement> collectMandatoryFeatures(Component component) {
-		Map<String, JvmIdentifyableElement> result = Maps.newHashMap();
+	public Map<String, JvmIdentifiableElement> collectMandatoryFeatures(Component component) {
+		Map<String, JvmIdentifiableElement> result = Maps.newHashMap();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
-			JvmIdentifyableElement jvmFeature = (JvmIdentifyableElement) description.getEObjectOrProxy();
+			JvmIdentifiableElement jvmFeature = (JvmIdentifiableElement) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
 				result.put(description.getName().getFirstSegment(), jvmFeature);
 			}
@@ -304,7 +304,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return result;
 	}
 	
-	public boolean isMandatory(JvmIdentifyableElement feature) {
+	public boolean isMandatory(JvmIdentifiableElement feature) {
 		if (feature.eIsProxy())
 			return false;
 		if (feature instanceof DeclaredProperty) {
