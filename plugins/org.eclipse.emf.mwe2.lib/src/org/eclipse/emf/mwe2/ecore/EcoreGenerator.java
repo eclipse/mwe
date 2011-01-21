@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
@@ -58,10 +59,12 @@ public class EcoreGenerator implements IWorkflowComponent {
 		this.generateCustomClasses = generateCustomClasses;
 	}
 	
+	@Mandatory
 	public void addSrcPath(String srcPath) {
 		this.srcPaths.add(srcPath);
 	}
 	
+	@Mandatory
 	public void setGenModel(String genModel) {
 		this.genModel = genModel;
 	}
