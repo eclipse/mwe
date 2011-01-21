@@ -38,9 +38,9 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 	protected void _createChildren(DocumentRootNode parentNode, Module module) {
 		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__IMPORTS,
-				imageHelper.getImage("impc_obj.gif"), "import declarations");
+				imageHelper.getImage("impc_obj.gif"), "import declarations", false);
 		createEStructuralFeatureNode(parentNode, module, Mwe2Package.Literals.MODULE__DECLARED_PROPERTIES,
-				imageHelper.getImage("settings_obj.gif"), "declared properties");
+				imageHelper.getImage("settings_obj.gif"), "declared properties", false);
 		if (module.getRoot() != null)
 			createNode(parentNode, module.getRoot());
 	}
