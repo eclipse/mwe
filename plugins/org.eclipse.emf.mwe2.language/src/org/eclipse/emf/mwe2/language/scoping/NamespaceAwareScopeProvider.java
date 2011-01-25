@@ -21,31 +21,31 @@ import org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider;
 public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScopeProvider {
 
 	@Override
-	protected List<ImportNormalizer> getImplicitImports() {
+	protected List<ImportNormalizer> getImplicitImports(boolean ignoreCase) {
 		List<ImportNormalizer> result = newArrayList();
-		result.add(createImportedNamespaceResolver("java.lang.*"));
-		result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*"));
+		result.add(createImportedNamespaceResolver("java.lang.*", ignoreCase));
+		result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*", ignoreCase));
 		return result;
 	}
-	
+
 	@Override
 	protected boolean isRelativeImport() {
 		return false;
 	}
-	
+
 	@Override
-	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context) {
-		List<ImportNormalizer> list = super.internalGetImportedNamespaceResolvers(context);
+	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, boolean ignoreCase) {
+		List<ImportNormalizer> list = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
 		if (context instanceof Module) {
 			list = newArrayList(list);
-			String name = ((Module)context).getCanonicalName();
+			String name = ((Module) context).getCanonicalName();
 			int dot = name.lastIndexOf('.');
 			if (dot >= 0) {
 				name = name.substring(0, dot) + ".*";
-				list.add(createImportedNamespaceResolver(name));
+				list.add(createImportedNamespaceResolver(name, ignoreCase));
 			}
 		}
 		return list;
 	}
-	
+
 }
