@@ -41,7 +41,7 @@ import org.eclipse.ui.dialogs.ISelectionStatusValidator;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.xtext.EcoreUtil2;
 import org.eclipse.xtext.common.types.JvmFormalParameter;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.ui.editor.model.edit.IModificationContext;
@@ -72,7 +72,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 						if (component != null) {
 							IJavaProject project = findEnclosingProject(element.eResource());
 							Assignment assignment = EcoreUtil2.getContainerOfType(component, Assignment.class);
-							JvmIdentifyableElement feature = assignment.getFeature();
+							JvmIdentifiableElement feature = assignment.getFeature();
 							JvmType actualType = component.getActualType();
 							if (feature instanceof JvmOperation) {
 								List<JvmFormalParameter> parameters = ((JvmOperation) feature).getParameters();

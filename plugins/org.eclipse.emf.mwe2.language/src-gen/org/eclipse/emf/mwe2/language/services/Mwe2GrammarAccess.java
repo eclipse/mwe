@@ -356,27 +356,27 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Assignment");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cFeatureAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final CrossReference cFeatureJvmIdentifyableElementCrossReference_0_0 = (CrossReference)cFeatureAssignment_0.eContents().get(0);
-		private final RuleCall cFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1 = (RuleCall)cFeatureJvmIdentifyableElementCrossReference_0_0.eContents().get(1);
+		private final CrossReference cFeatureJvmIdentifiableElementCrossReference_0_0 = (CrossReference)cFeatureAssignment_0.eContents().get(0);
+		private final RuleCall cFeatureJvmIdentifiableElementFQNParserRuleCall_0_0_1 = (RuleCall)cFeatureJvmIdentifiableElementCrossReference_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cValueAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//	feature=[types::JvmIdentifyableElement|FQN] "=" value=Value;
+		//	feature=[types::JvmIdentifiableElement|FQN] "=" value=Value;
 		public ParserRule getRule() { return rule; }
 
-		//feature=[types::JvmIdentifyableElement|FQN] "=" value=Value
+		//feature=[types::JvmIdentifiableElement|FQN] "=" value=Value
 		public Group getGroup() { return cGroup; }
 
-		//feature=[types::JvmIdentifyableElement|FQN]
+		//feature=[types::JvmIdentifiableElement|FQN]
 		public Assignment getFeatureAssignment_0() { return cFeatureAssignment_0; }
 
-		//[types::JvmIdentifyableElement|FQN]
-		public CrossReference getFeatureJvmIdentifyableElementCrossReference_0_0() { return cFeatureJvmIdentifyableElementCrossReference_0_0; }
+		//[types::JvmIdentifiableElement|FQN]
+		public CrossReference getFeatureJvmIdentifiableElementCrossReference_0_0() { return cFeatureJvmIdentifiableElementCrossReference_0_0; }
 
 		//FQN
-		public RuleCall getFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1() { return cFeatureJvmIdentifyableElementFQNParserRuleCall_0_0_1; }
+		public RuleCall getFeatureJvmIdentifiableElementFQNParserRuleCall_0_0_1() { return cFeatureJvmIdentifiableElementFQNParserRuleCall_0_0_1; }
 
 		//"="
 		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
@@ -809,7 +809,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Assignment:
-	//	feature=[types::JvmIdentifyableElement|FQN] "=" value=Value;
+	//	feature=[types::JvmIdentifiableElement|FQN] "=" value=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return (pAssignment != null) ? pAssignment : (pAssignment = new AssignmentElements());
 	}

@@ -33,7 +33,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.ImmutableMap.Builder;
 
 /**
- * @author koehnlein - Initial contribution and API
+ * @author Jan Koehnlein - Initial contribution and API
  */
 public class MweResourceDescriptionStrategy extends DefaultResourceDescriptionStrategy {
 

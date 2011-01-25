@@ -11,32 +11,32 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class Mwe2ContentAssistLexer extends Lexer {
-    public static final int KEYWORD_7=22;
-    public static final int RULE_ML_COMMENT=25;
     public static final int RULE_ID=24;
-    public static final int KEYWORD_17=7;
-    public static final int KEYWORD_10=12;
-    public static final int KEYWORD_1=16;
-    public static final int KEYWORD_18=5;
-    public static final int KEYWORD_19=6;
-    public static final int KEYWORD_9=11;
-    public static final int KEYWORD_2=17;
-    public static final int KEYWORD_16=8;
-    public static final int KEYWORD_11=13;
-    public static final int KEYWORD_4=19;
-    public static final int RULE_WS=27;
-    public static final int KEYWORD_20=4;
-    public static final int KEYWORD_13=15;
-    public static final int EOF=-1;
-    public static final int KEYWORD_14=9;
-    public static final int KEYWORD_5=20;
-    public static final int KEYWORD_6=21;
     public static final int RULE_ANY_OTHER=28;
-    public static final int KEYWORD_12=14;
+    public static final int KEYWORD_1=16;
+    public static final int KEYWORD_19=6;
+    public static final int KEYWORD_17=7;
+    public static final int KEYWORD_18=5;
+    public static final int KEYWORD_5=20;
     public static final int KEYWORD_15=10;
-    public static final int RULE_SL_COMMENT=26;
-    public static final int KEYWORD_8=23;
+    public static final int KEYWORD_16=8;
+    public static final int KEYWORD_4=19;
+    public static final int KEYWORD_13=15;
     public static final int KEYWORD_3=18;
+    public static final int KEYWORD_14=9;
+    public static final int KEYWORD_2=17;
+    public static final int KEYWORD_11=13;
+    public static final int KEYWORD_12=14;
+    public static final int EOF=-1;
+    public static final int RULE_SL_COMMENT=26;
+    public static final int KEYWORD_10=12;
+    public static final int RULE_ML_COMMENT=25;
+    public static final int KEYWORD_6=21;
+    public static final int KEYWORD_7=22;
+    public static final int KEYWORD_8=23;
+    public static final int KEYWORD_9=11;
+    public static final int KEYWORD_20=4;
+    public static final int RULE_WS=27;
 
       private boolean singleQuotedString = false;
       private boolean doubleQuotedString = false;
@@ -1053,9 +1053,9 @@ public class Mwe2ContentAssistLexer extends Lexer {
         "\1\15\1\16\1\20\1\21\1\22\1\23\1\24\6\uffff\1\1\4\uffff\1\7\3\uffff"+
         "\1\5\2\uffff\1\4\1\2\1\3";
     static final String DFA8_specialS =
-        "\1\10\10\uffff\1\11\11\uffff\1\16\17\uffff\1\6\1\4\1\5\1\2\1\0\1"+
-        "\12\1\15\1\17\21\uffff\1\13\4\uffff\1\7\4\uffff\1\14\3\uffff\1\3"+
-        "\1\uffff\1\1\1\20\3\uffff}>";
+        "\1\12\10\uffff\1\0\11\uffff\1\11\17\uffff\1\2\1\4\1\3\1\1\1\10\1"+
+        "\7\1\6\1\5\21\uffff\1\20\4\uffff\1\17\4\uffff\1\16\3\uffff\1\15"+
+        "\1\uffff\1\13\1\14\3\uffff}>";
     static final String[] DFA8_transitionS = {
             "\11\25\2\24\2\25\1\24\22\25\1\24\1\25\1\12\1\25\1\10\2\25\1"+
             "\13\6\25\1\11\1\23\12\25\1\14\2\25\1\15\2\25\1\16\32\22\1\25"+
@@ -1180,36 +1180,21 @@ public class Mwe2ContentAssistLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA8_39 = input.LA(1);
+                        int LA8_9 = input.LA(1);
 
                          
-                        int index8_39 = input.index();
+                        int index8_9 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 56;}
+                        if ( (LA8_9=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 34;}
 
-                        else if ( (true) ) {s = 21;}
+                        else s = 35;
 
                          
-                        input.seek(index8_39);
+                        input.seek(index8_9);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA8_76 = input.LA(1);
-
-                         
-                        int index8_76 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 79;}
-
-                        else if ( (true) ) {s = 23;}
-
-                         
-                        input.seek(index8_76);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA8_38 = input.LA(1);
 
                          
@@ -1224,19 +1209,34 @@ public class Mwe2ContentAssistLexer extends Lexer {
                         input.seek(index8_38);
                         if ( s>=0 ) return s;
                         break;
-                    case 3 : 
-                        int LA8_74 = input.LA(1);
+                    case 2 : 
+                        int LA8_35 = input.LA(1);
 
                          
-                        int index8_74 = input.index();
+                        int index8_35 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 78;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 52;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 21;}
 
                          
-                        input.seek(index8_74);
+                        input.seek(index8_35);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA8_37 = input.LA(1);
+
+                         
+                        int index8_37 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!doubleQuotedString || stringVariable)) ) {s = 54;}
+
+                        else if ( (true) ) {s = 21;}
+
+                         
+                        input.seek(index8_37);
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
@@ -1255,51 +1255,83 @@ public class Mwe2ContentAssistLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA8_37 = input.LA(1);
+                        int LA8_42 = input.LA(1);
 
                          
-                        int index8_37 = input.index();
+                        int index8_42 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!doubleQuotedString || stringVariable)) ) {s = 54;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 59;}
 
                         else if ( (true) ) {s = 21;}
 
                          
-                        input.seek(index8_37);
+                        input.seek(index8_42);
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA8_35 = input.LA(1);
+                        int LA8_41 = input.LA(1);
 
                          
-                        int index8_35 = input.index();
+                        int index8_41 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 52;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 58;}
 
                         else if ( (true) ) {s = 21;}
 
                          
-                        input.seek(index8_35);
+                        input.seek(index8_41);
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA8_65 = input.LA(1);
+                        int LA8_40 = input.LA(1);
 
                          
-                        int index8_65 = input.index();
+                        int index8_40 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 71;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 57;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 21;}
 
                          
-                        input.seek(index8_65);
+                        input.seek(index8_40);
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
+                        int LA8_39 = input.LA(1);
+
+                         
+                        int index8_39 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 56;}
+
+                        else if ( (true) ) {s = 21;}
+
+                         
+                        input.seek(index8_39);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
+                        int LA8_19 = input.LA(1);
+
+                         
+                        int index8_19 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA8_19=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 43;}
+
+                        else if ( (LA8_19=='/') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 44;}
+
+                        else s = 21;
+
+                         
+                        input.seek(index8_19);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 10 : 
                         int LA8_0 = input.LA(1);
 
                         s = -1;
@@ -1347,52 +1379,52 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
                         if ( s>=0 ) return s;
                         break;
-                    case 9 : 
-                        int LA8_9 = input.LA(1);
-
-                         
-                        int index8_9 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA8_9=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 34;}
-
-                        else s = 35;
-
-                         
-                        input.seek(index8_9);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA8_40 = input.LA(1);
-
-                         
-                        int index8_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 57;}
-
-                        else if ( (true) ) {s = 21;}
-
-                         
-                        input.seek(index8_40);
-                        if ( s>=0 ) return s;
-                        break;
                     case 11 : 
-                        int LA8_60 = input.LA(1);
+                        int LA8_76 = input.LA(1);
 
                          
-                        int index8_60 = input.index();
+                        int index8_76 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA8_60=='-') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 66;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 79;}
 
-                        else s = 23;
+                        else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index8_60);
+                        input.seek(index8_76);
                         if ( s>=0 ) return s;
                         break;
                     case 12 : 
+                        int LA8_77 = input.LA(1);
+
+                         
+                        int index8_77 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 80;}
+
+                        else if ( (true) ) {s = 23;}
+
+                         
+                        input.seek(index8_77);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 13 : 
+                        int LA8_74 = input.LA(1);
+
+                         
+                        int index8_74 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 78;}
+
+                        else if ( (true) ) {s = 23;}
+
+                         
+                        input.seek(index8_74);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
                         int LA8_70 = input.LA(1);
 
                          
@@ -1407,66 +1439,34 @@ public class Mwe2ContentAssistLexer extends Lexer {
                         input.seek(index8_70);
                         if ( s>=0 ) return s;
                         break;
-                    case 13 : 
-                        int LA8_41 = input.LA(1);
-
-                         
-                        int index8_41 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 58;}
-
-                        else if ( (true) ) {s = 21;}
-
-                         
-                        input.seek(index8_41);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 14 : 
-                        int LA8_19 = input.LA(1);
-
-                         
-                        int index8_19 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA8_19=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 43;}
-
-                        else if ( (LA8_19=='/') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 44;}
-
-                        else s = 21;
-
-                         
-                        input.seek(index8_19);
-                        if ( s>=0 ) return s;
-                        break;
                     case 15 : 
-                        int LA8_42 = input.LA(1);
+                        int LA8_65 = input.LA(1);
 
                          
-                        int index8_42 = input.index();
+                        int index8_65 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 59;}
-
-                        else if ( (true) ) {s = 21;}
-
-                         
-                        input.seek(index8_42);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 16 : 
-                        int LA8_77 = input.LA(1);
-
-                         
-                        int index8_77 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 80;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 71;}
 
                         else if ( (true) ) {s = 23;}
 
                          
-                        input.seek(index8_77);
+                        input.seek(index8_65);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 16 : 
+                        int LA8_60 = input.LA(1);
+
+                         
+                        int index8_60 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA8_60=='-') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 66;}
+
+                        else s = 23;
+
+                         
+                        input.seek(index8_60);
                         if ( s>=0 ) return s;
                         break;
             }

@@ -33,7 +33,7 @@ import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
 import org.eclipse.xtext.common.types.JvmGenericType;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
@@ -46,6 +46,7 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -69,7 +70,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Check
 	public void checkCompatibility(Assignment assignment) {
-		JvmIdentifyableElement feature = assignment.getFeature();
+		JvmIdentifiableElement feature = assignment.getFeature();
 		if (feature.eIsProxy())
 			return;
 		JvmTypeReference left = null; 
@@ -101,10 +102,13 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				right.setType(actualType);
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
-				error("A value of type '" + actualType.getCanonicalName()
+				error(
+						"A value of type '" + actualType.getCanonicalName()
 						+ "' can not be assigned to the feature "
 						+ feature.getCanonicalName(),
-						Mwe2Package.ASSIGNMENT__VALUE, INCOMPATIBLE_ASSIGNMENT);
+						Mwe2Package.Literals.ASSIGNMENT__VALUE,
+						ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+						INCOMPATIBLE_ASSIGNMENT);
 			}
 		}
 	}
@@ -123,10 +127,13 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				right.setType(actualType);
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
-				error("A value of type '" + actualType.getCanonicalName()
+				error(
+						"A value of type '" + actualType.getCanonicalName()
 						+ "' can not be assigned to a reference of type "
 						+ property.getType().getCanonicalName(),
-						Mwe2Package.DECLARED_PROPERTY__DEFAULT, INCOMPATIBLE_ASSIGNMENT);
+						Mwe2Package.Literals.DECLARED_PROPERTY__DEFAULT,
+						ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+						INCOMPATIBLE_ASSIGNMENT);
 			}
 		}
 	}
@@ -166,15 +173,23 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		Multimap<String, Referrable> copy = HashMultimap.create(declared);
 		copy.keySet().removeAll(referenced);
 		for (Referrable referrable : copy.values()) {
-			warning("The var '" + referrable.getName() + "' is never read locally.",
-					referrable, Mwe2Package.REFERRABLE__NAME, UNUSED_LOCAL);
+			warning(
+					"The var '" + referrable.getName() + "' is never read locally.",
+					referrable,
+					Mwe2Package.Literals.REFERRABLE__NAME,
+					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+					UNUSED_LOCAL);
 		}
 		for (String name : declared.keySet()) {
 			Collection<Referrable> collection = declared.get(name);
 			if (collection.size()>1) {
 				for (Referrable referrable : collection) {
-					error("Duplicate var '" + referrable.getName() + "'.",
-							referrable, Mwe2Package.REFERRABLE__NAME, DUPLICATE_LOCAL);
+					error(
+							"Duplicate var '" + referrable.getName() + "'.",
+							referrable, 
+							Mwe2Package.Literals.REFERRABLE__NAME,
+							ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+							DUPLICATE_LOCAL);
 				}
 			}
 		}
@@ -207,8 +222,12 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 						return;
 				}
 			}
-			error("'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
-					component, Mwe2Package.REFERRABLE__TYPE, MISSING_DEFAULT_CONSTRUCTOR);
+			error(
+					"'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
+					component, 
+					Mwe2Package.Literals.REFERRABLE__TYPE,
+					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+					MISSING_DEFAULT_CONSTRUCTOR);
 		}
 	}
 	
@@ -224,8 +243,12 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		JvmDeclaredType declaredType = (JvmDeclaredType) actualType;
 		if (declaredType.isAbstract() || 
 				(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
-			error("'" + declaredType.getCanonicalName() + "' is not instantiable.",
-					component, Mwe2Package.REFERRABLE__TYPE, ABSTRACT_OR_INTERFACE);
+			error(
+					"'" + declaredType.getCanonicalName() + "' is not instantiable.",
+					component, 
+					Mwe2Package.Literals.REFERRABLE__TYPE,
+					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+					ABSTRACT_OR_INTERFACE);
 		}
 	}
 	
@@ -233,7 +256,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	
 	@Check
 	public void checkManadatoryFeaturesAssigned(Component component) {
-		Map<String, JvmIdentifyableElement> mandatoryFeatures = collectMandatoryFeatures(component);
+		Map<String, JvmIdentifiableElement> mandatoryFeatures = collectMandatoryFeatures(component);
 		if (!mandatoryFeatures.isEmpty()) {
 			Map<String, Referrable> availableProperties = collectReferablesUpTo(component);
 			Set<String> assignedFeatures = getAssignedFeatures(availableProperties, component);
@@ -249,11 +272,20 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 					feature = Mwe2Package.Literals.COMPONENT__MODULE;
 				else if (component.getName() != null)
 					feature = Mwe2Package.Literals.REFERRABLE__NAME;
-				Integer featureId = feature == null? null : component.eClass().getFeatureID(feature);
 				if (missingAssignments.size() == 1)
-					error("Mandatory feature was not assigned: '" + concatenated + "'.", component, featureId, MISSING_MANDATORY_FEATURE);
+					error(
+							"Mandatory feature was not assigned: '" + concatenated + "'.", 
+							component, 
+							feature,
+							ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+							MISSING_MANDATORY_FEATURE);
 				else
-					error("Mandatory features were not assigned: '" + concatenated + "'.", component, featureId, MISSING_MANDATORY_FEATURE);
+					error(
+							"Mandatory features were not assigned: '" + concatenated + "'.", 
+							component, 
+							feature,
+							ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
+							MISSING_MANDATORY_FEATURE);
 			}
 		}
 	}
@@ -266,7 +298,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		}
 		for(Assignment assignment: component.getAssignment()) {
 			if (assignment.getFeature() != null && !assignment.getFeature().eIsProxy()) {
-				JvmIdentifyableElement feature = assignment.getFeature();
+				JvmIdentifiableElement feature = assignment.getFeature();
 				if (feature instanceof JvmOperation) {
 					result.add(Strings.toFirstLower((((JvmOperation)feature).getSimpleName().substring(3))));
 				} else if (feature instanceof JvmFeature) {
@@ -292,11 +324,11 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return indexed;
 	}
 	
-	public Map<String, JvmIdentifyableElement> collectMandatoryFeatures(Component component) {
-		Map<String, JvmIdentifyableElement> result = Maps.newHashMap();
+	public Map<String, JvmIdentifiableElement> collectMandatoryFeatures(Component component) {
+		Map<String, JvmIdentifiableElement> result = Maps.newHashMap();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
-			JvmIdentifyableElement jvmFeature = (JvmIdentifyableElement) description.getEObjectOrProxy();
+			JvmIdentifiableElement jvmFeature = (JvmIdentifiableElement) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
 				result.put(description.getName().getFirstSegment(), jvmFeature);
 			}
@@ -304,7 +336,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		return result;
 	}
 	
-	public boolean isMandatory(JvmIdentifyableElement feature) {
+	public boolean isMandatory(JvmIdentifiableElement feature) {
 		if (feature.eIsProxy())
 			return false;
 		if (feature instanceof DeclaredProperty) {

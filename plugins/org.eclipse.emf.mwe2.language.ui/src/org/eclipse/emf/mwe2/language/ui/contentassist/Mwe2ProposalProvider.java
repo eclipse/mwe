@@ -16,7 +16,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.xtext.ui.ITypesProposalProvider;
@@ -83,7 +83,7 @@ public class Mwe2ProposalProvider extends AbstractMwe2ProposalProvider {
 			Assignment attribute = (Assignment) model;
 			if (attribute.getFeature() == null || attribute.getFeature().eIsProxy())
 				return;
-			JvmIdentifyableElement feature = attribute.getFeature();
+			JvmIdentifiableElement feature = attribute.getFeature();
 			if (feature instanceof JvmOperation) {
 				JvmType parameterType = ((JvmOperation) feature).getParameters().get(0).getParameterType().getType();
 				typeProposalProvider.createSubTypeProposals(parameterType, this, context, Mwe2Package.Literals.REFERRABLE__TYPE, TypeMatchFilters.canInstantiate(), acceptor);

@@ -5,7 +5,7 @@
  */
 package org.eclipse.emf.mwe2.language.mwe2;
 
-import org.eclipse.xtext.common.types.JvmIdentifyableElement;
+import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,7 +24,7 @@ import org.eclipse.xtext.common.types.JvmIdentifyableElement;
  * @model
  * @generated
  */
-public interface DeclaredProperty extends Referrable, JvmIdentifyableElement
+public interface DeclaredProperty extends Referrable, JvmIdentifiableElement
 {
 	/**
 	 * Returns the value of the '<em><b>Default</b></em>' containment reference.

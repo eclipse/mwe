@@ -64,7 +64,7 @@ public class GenerateMwe2 {
 				addComponent(new org.eclipse.emf.mwe2.ecore.EcoreGenerator() {
 					{
 						setGenModel("platform:/resource/"+projectName+"/model/Mwe2.genmodel");
-						setSrcPath("platform:/resource/"+projectName+"/src");
+						addSrcPath("platform:/resource/"+projectName+"/src");
 					}
 				});
 
