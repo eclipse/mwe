@@ -10,7 +10,9 @@ package org.eclipse.emf.mwe2.language.tests.validation;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
@@ -20,6 +22,7 @@ import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
+import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.Issue;
 
@@ -163,6 +166,16 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(list.toString(),0,list.size());
 	}
 	
+	public void testUnusedLocalVariable_8() throws Exception {
+		String textModel_1 = "module foo var foo.bar = 'holla' @bar auto-inject {}";
+		String textModel_2 = "module bar var foo.bar = '' "+ComponentA.class.getName()+" { y = foo.bar }";
+		EObject model_2 = getModel(textModel_2);
+		Resource resource_1 = model_2.eResource().getResourceSet().createResource(URI.createURI("does_not_matter.mwe2"));
+		resource_1.load(new StringInputStream(textModel_1), null);
+		List<Issue> list = validate(resource_1.getContents().get(0));
+		assertEquals(list.toString(),0,list.size());
+	}
+	
 	public void testDuplicateLocalVariable_1() throws Exception {
 		String textModel = "module foo var foo = 'holla' var foo = '${foo}!' "+ComponentA.class.getName()+"{ y = foo}";
 		EObject model = getModel(textModel);
@@ -170,6 +183,19 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(list.toString(),2,list.size());
 		assertEquals(Mwe2JavaValidator.DUPLICATE_LOCAL, list.get(1).getCode());
 		assertEquals(Severity.ERROR, list.get(1).getSeverity());
+	}
+	
+	public void testMandatoryProperty_1() throws Exception {
+		String textModel_1 = "module foo @bar { foo = 'zonk' }";
+		String textModel_2 = "module bar var foo.bar var foo "+ComponentA.class.getName()+" { y = foo.bar }";
+		EObject model_2 = getModel(textModel_2);
+		Resource resource_1 = model_2.eResource().getResourceSet().createResource(URI.createURI("does_not_matter.mwe2"));
+		resource_1.load(new StringInputStream(textModel_1), null);
+		List<Issue> list = validate(resource_1.getContents().get(0));
+		assertEquals(list.toString(), 1, list.size());
+		assertEquals(Mwe2JavaValidator.MISSING_MANDATORY_FEATURE, list.get(0).getCode());
+		assertEquals(Severity.ERROR, list.get(0).getSeverity());
+		assertTrue(list.get(0).getMessage(), list.get(0).getMessage().contains("foo.bar"));
 	}
 	
 	private List<Issue> validate(EObject model) {

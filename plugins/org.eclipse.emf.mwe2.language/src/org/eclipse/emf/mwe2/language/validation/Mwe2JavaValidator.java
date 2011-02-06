@@ -1,10 +1,9 @@
 /*******************************************************************************
- * Copyright (c) 2008,2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008-2011 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.validation;
 
@@ -42,6 +41,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.util.IJvmTypeConformanceComputer;
+import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
@@ -55,6 +55,9 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
+/**
+ * @author Sebastian Zarnekow - Initial contribution and API
+ */
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
@@ -65,6 +68,9 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	
 	@Inject
 	private Mwe2ScopeProvider scopeProvider;
+	
+	@Inject
+	private IQualifiedNameConverter qualifiedNameConverter;
 	
 	public final static String INCOMPATIBLE_ASSIGNMENT = "incompatible_assignment";
 
@@ -199,7 +205,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		Set<String> result = Sets.newHashSet();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
-			result.add(description.getName().getFirstSegment());
+			result.add(qualifiedNameConverter.toString(description.getName()));
 		}
 		return result;
 	}
@@ -330,7 +336,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		for(IEObjectDescription description: scope.getAllElements()) {
 			JvmIdentifiableElement jvmFeature = (JvmIdentifiableElement) description.getEObjectOrProxy();
 			if (isMandatory(jvmFeature)) {
-				result.put(description.getName().getFirstSegment(), jvmFeature);
+				result.put(qualifiedNameConverter.toString(description.getName()), jvmFeature);
 			}
 		}
 		return result;
