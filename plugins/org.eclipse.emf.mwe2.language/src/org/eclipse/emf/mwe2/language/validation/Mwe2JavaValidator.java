@@ -40,7 +40,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
-import org.eclipse.xtext.common.types.util.IJvmTypeConformanceComputer;
+import org.eclipse.xtext.common.types.util.TypeConformanceComputer;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
@@ -61,7 +61,7 @@ import com.google.inject.Inject;
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
-	private IJvmTypeConformanceComputer assignabilityComputer;
+	private TypeConformanceComputer assignabilityComputer;
 
 	@Inject
 	private FactorySupport factorySupport;

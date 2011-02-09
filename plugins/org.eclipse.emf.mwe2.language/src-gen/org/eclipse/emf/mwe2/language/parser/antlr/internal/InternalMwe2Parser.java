@@ -23,32 +23,32 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "KEYWORD_20", "KEYWORD_18", "KEYWORD_19", "KEYWORD_17", "KEYWORD_16", "KEYWORD_14", "KEYWORD_15", "KEYWORD_9", "KEYWORD_10", "KEYWORD_11", "KEYWORD_12", "KEYWORD_13", "KEYWORD_1", "KEYWORD_2", "KEYWORD_3", "KEYWORD_4", "KEYWORD_5", "KEYWORD_6", "KEYWORD_7", "KEYWORD_8", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
-    public static final int RULE_ID=24;
-    public static final int RULE_ANY_OTHER=28;
-    public static final int KEYWORD_1=16;
-    public static final int KEYWORD_19=6;
-    public static final int KEYWORD_17=7;
-    public static final int KEYWORD_18=5;
-    public static final int KEYWORD_5=20;
-    public static final int KEYWORD_15=10;
-    public static final int KEYWORD_16=8;
-    public static final int KEYWORD_4=19;
-    public static final int KEYWORD_13=15;
-    public static final int KEYWORD_3=18;
-    public static final int KEYWORD_14=9;
-    public static final int KEYWORD_2=17;
-    public static final int KEYWORD_11=13;
-    public static final int KEYWORD_12=14;
-    public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=26;
-    public static final int KEYWORD_10=12;
-    public static final int RULE_ML_COMMENT=25;
-    public static final int KEYWORD_6=21;
     public static final int KEYWORD_7=22;
-    public static final int KEYWORD_8=23;
+    public static final int RULE_ML_COMMENT=25;
+    public static final int RULE_ID=24;
+    public static final int KEYWORD_17=7;
+    public static final int KEYWORD_10=12;
+    public static final int KEYWORD_1=16;
+    public static final int KEYWORD_18=5;
+    public static final int KEYWORD_19=6;
     public static final int KEYWORD_9=11;
-    public static final int KEYWORD_20=4;
+    public static final int KEYWORD_2=17;
+    public static final int KEYWORD_16=8;
+    public static final int KEYWORD_11=13;
+    public static final int KEYWORD_4=19;
     public static final int RULE_WS=27;
+    public static final int KEYWORD_20=4;
+    public static final int KEYWORD_13=15;
+    public static final int EOF=-1;
+    public static final int KEYWORD_14=9;
+    public static final int KEYWORD_5=20;
+    public static final int KEYWORD_6=21;
+    public static final int RULE_ANY_OTHER=28;
+    public static final int KEYWORD_12=14;
+    public static final int KEYWORD_15=10;
+    public static final int RULE_SL_COMMENT=26;
+    public static final int KEYWORD_8=23;
+    public static final int KEYWORD_3=18;
 
     // delegates
     // delegators
@@ -3081,25 +3081,25 @@ public class InternalMwe2Parser extends AbstractInternalAntlrParser {
     static final String DFA3_eotS =
         "\11\uffff";
     static final String DFA3_eofS =
-        "\1\uffff\1\4\1\uffff\1\7\1\uffff\1\4\2\uffff\1\7";
+        "\1\uffff\1\3\2\uffff\1\7\1\3\2\uffff\1\7";
     static final String DFA3_minS =
-        "\1\30\1\12\1\30\1\4\1\uffff\1\12\1\30\1\uffff\1\4";
+        "\1\30\1\12\1\30\1\uffff\1\4\1\12\1\30\1\uffff\1\4";
     static final String DFA3_maxS =
-        "\4\30\1\uffff\2\30\1\uffff\1\30";
+        "\3\30\1\uffff\3\30\1\uffff\1\30";
     static final String DFA3_acceptS =
-        "\4\uffff\1\2\2\uffff\1\1\1\uffff";
+        "\3\uffff\1\2\3\uffff\1\1\1\uffff";
     static final String DFA3_specialS =
         "\11\uffff}>";
     static final String[] DFA3_transitionS = {
             "\1\1",
-            "\1\4\7\uffff\1\2\1\uffff\2\4\2\uffff\1\3",
+            "\1\3\7\uffff\1\2\1\uffff\2\3\2\uffff\1\4",
             "\1\5",
-            "\1\4\5\uffff\1\7\7\uffff\1\6\1\4\2\7\1\4\1\uffff\1\7",
             "",
-            "\1\4\7\uffff\1\2\1\uffff\2\4\2\uffff\1\3",
+            "\1\3\5\uffff\1\7\7\uffff\1\6\1\3\2\7\1\3\1\uffff\1\7",
+            "\1\3\7\uffff\1\2\1\uffff\2\3\2\uffff\1\4",
             "\1\10",
             "",
-            "\1\4\5\uffff\1\7\7\uffff\1\6\1\4\2\7\1\4\1\uffff\1\7"
+            "\1\3\5\uffff\1\7\7\uffff\1\6\1\3\2\7\1\3\1\uffff\1\7"
     };
 
     static final short[] DFA3_eot = DFA.unpackEncodedString(DFA3_eotS);

@@ -28,32 +28,32 @@ public class InternalMwe2Parser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "KEYWORD_20", "KEYWORD_18", "KEYWORD_19", "KEYWORD_17", "KEYWORD_16", "KEYWORD_14", "KEYWORD_15", "KEYWORD_9", "KEYWORD_10", "KEYWORD_11", "KEYWORD_12", "KEYWORD_13", "KEYWORD_1", "KEYWORD_2", "KEYWORD_3", "KEYWORD_4", "KEYWORD_5", "KEYWORD_6", "KEYWORD_7", "KEYWORD_8", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER"
     };
-    public static final int RULE_ID=24;
-    public static final int RULE_ANY_OTHER=28;
-    public static final int KEYWORD_1=16;
-    public static final int KEYWORD_19=6;
-    public static final int KEYWORD_17=7;
-    public static final int KEYWORD_18=5;
-    public static final int KEYWORD_5=20;
-    public static final int KEYWORD_15=10;
-    public static final int KEYWORD_16=8;
-    public static final int KEYWORD_4=19;
-    public static final int KEYWORD_13=15;
-    public static final int KEYWORD_3=18;
-    public static final int KEYWORD_14=9;
-    public static final int KEYWORD_2=17;
-    public static final int KEYWORD_11=13;
-    public static final int KEYWORD_12=14;
-    public static final int EOF=-1;
-    public static final int RULE_SL_COMMENT=26;
-    public static final int KEYWORD_10=12;
-    public static final int RULE_ML_COMMENT=25;
-    public static final int KEYWORD_6=21;
     public static final int KEYWORD_7=22;
-    public static final int KEYWORD_8=23;
+    public static final int RULE_ML_COMMENT=25;
+    public static final int RULE_ID=24;
+    public static final int KEYWORD_17=7;
+    public static final int KEYWORD_10=12;
+    public static final int KEYWORD_1=16;
+    public static final int KEYWORD_18=5;
+    public static final int KEYWORD_19=6;
     public static final int KEYWORD_9=11;
-    public static final int KEYWORD_20=4;
+    public static final int KEYWORD_2=17;
+    public static final int KEYWORD_16=8;
+    public static final int KEYWORD_11=13;
+    public static final int KEYWORD_4=19;
     public static final int RULE_WS=27;
+    public static final int KEYWORD_20=4;
+    public static final int KEYWORD_13=15;
+    public static final int EOF=-1;
+    public static final int KEYWORD_14=9;
+    public static final int KEYWORD_5=20;
+    public static final int KEYWORD_6=21;
+    public static final int RULE_ANY_OTHER=28;
+    public static final int KEYWORD_12=14;
+    public static final int KEYWORD_15=10;
+    public static final int RULE_SL_COMMENT=26;
+    public static final int KEYWORD_8=23;
+    public static final int KEYWORD_3=18;
 
     // delegates
     // delegators

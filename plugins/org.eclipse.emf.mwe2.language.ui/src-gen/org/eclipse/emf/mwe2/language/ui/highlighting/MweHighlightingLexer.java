@@ -12,26 +12,26 @@ import java.util.ArrayList;
 
 @SuppressWarnings("all")
 public class MweHighlightingLexer extends Lexer {
-    public static final int KEYWORD_AT=7;
-    public static final int KEYWORD_COLON=8;
-    public static final int RULE_ID=17;
-    public static final int KEYWORD_ASSIGN=6;
-    public static final int RULE_ANY_OTHER=22;
-    public static final int KEYWORD_IMPORT=12;
-    public static final int KEYWORD_STAR=14;
-    public static final int KEYWORD_FALSE=15;
-    public static final int KEYWORD_AUTO_INJECT=9;
-    public static final int RULE_SL_COMMENT=20;
-    public static final int EOF=-1;
-    public static final int KEYWORD_CLOSINGBRACE=11;
     public static final int RULE_ML_COMMENT=19;
-    public static final int KEYWORD_MODULE=4;
+    public static final int RULE_ID=17;
     public static final int RULE_STRING=18;
-    public static final int KEYWORD_TRUE=16;
-    public static final int KEYWORD_DOT=13;
     public static final int KEYWORD_OPENBRACE=10;
     public static final int KEYWORD_VAR=5;
+    public static final int KEYWORD_IMPORT=12;
     public static final int RULE_WS=21;
+    public static final int KEYWORD_CLOSINGBRACE=11;
+    public static final int KEYWORD_ASSIGN=6;
+    public static final int EOF=-1;
+    public static final int RULE_ANY_OTHER=22;
+    public static final int KEYWORD_COLON=8;
+    public static final int KEYWORD_FALSE=15;
+    public static final int RULE_SL_COMMENT=20;
+    public static final int KEYWORD_AT=7;
+    public static final int KEYWORD_TRUE=16;
+    public static final int KEYWORD_MODULE=4;
+    public static final int KEYWORD_AUTO_INJECT=9;
+    public static final int KEYWORD_DOT=13;
+    public static final int KEYWORD_STAR=14;
 
     // delegates
     // delegators
@@ -1230,7 +1230,7 @@ public class MweHighlightingLexer extends Lexer {
         "\1\13\1\12\2\uffff\1\17\1\20\1\21\1\22\7\uffff\1\2\5\uffff\1\6\2"+
         "\uffff\1\15\2\uffff\1\14\1\1\1\11";
     static final String DFA13_specialS =
-        "\1\2\16\uffff\1\0\1\1\53\uffff}>";
+        "\1\1\16\uffff\1\0\1\2\53\uffff}>";
     static final String[] DFA13_transitionS = {
             "\11\23\2\22\2\23\1\22\22\23\1\22\1\23\1\17\4\23\1\20\6\23\1"+
             "\12\1\21\12\23\1\5\2\23\1\3\2\23\1\4\32\16\3\23\1\15\1\16\1"+
@@ -1344,16 +1344,6 @@ public class MweHighlightingLexer extends Lexer {
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA13_16 = input.LA(1);
-
-                        s = -1;
-                        if ( ((LA13_16>='\u0000' && LA13_16<='\uFFFF')) ) {s = 34;}
-
-                        else s = 19;
-
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
                         int LA13_0 = input.LA(1);
 
                         s = -1;
@@ -1394,6 +1384,16 @@ public class MweHighlightingLexer extends Lexer {
                         else if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {s = 18;}
 
                         else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='!'||(LA13_0>='#' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='-')||(LA13_0>='0' && LA13_0<='9')||(LA13_0>=';' && LA13_0<='<')||(LA13_0>='>' && LA13_0<='?')||(LA13_0>='[' && LA13_0<=']')||LA13_0=='`'||LA13_0=='|'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 19;}
+
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA13_16 = input.LA(1);
+
+                        s = -1;
+                        if ( ((LA13_16>='\u0000' && LA13_16<='\uFFFF')) ) {s = 34;}
+
+                        else s = 19;
 
                         if ( s>=0 ) return s;
                         break;
