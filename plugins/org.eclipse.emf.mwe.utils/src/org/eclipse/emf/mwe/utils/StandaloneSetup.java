@@ -14,7 +14,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -84,6 +86,17 @@ public class StandaloneSetup {
 	}
 
 	protected void scanFolder(File f) {
+		scanFolder(f,new HashSet<String>());
+	}
+	
+	protected void scanFolder(File f, Set<String> visitedPathes) {
+		try {
+			if (!visitedPathes.add(f.getCanonicalPath()))
+				return;
+		} catch (IOException e) {
+			log.error(e.getMessage(), e);
+			return;
+		}
 		File[] files = f.listFiles();
 		for (File file : files) {
 			if (".project".equals(file.getName())) {
