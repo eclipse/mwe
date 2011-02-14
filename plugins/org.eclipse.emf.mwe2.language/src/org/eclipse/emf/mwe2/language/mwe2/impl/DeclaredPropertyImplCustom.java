@@ -17,7 +17,7 @@ import static org.eclipse.emf.mwe2.language.mwe2.impl.JvmTypeUriFactory.*;
 public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 
 	@Override
-	public String getCanonicalName() {
+	public String getIdentifier() {
 		Module module = getModule();
 		if (module != null) {
 			String moduleName = module.getCanonicalName();
@@ -26,6 +26,16 @@ public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 			return moduleName + ".UNNAMED";
 		}
 		return name;
+	}
+	
+	@Override
+	public String getSimpleName() {
+		return name;
+	}
+	
+	@Override
+	public String getQualifiedName() {
+		return getIdentifier();
 	}
 	
 	@Override

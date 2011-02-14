@@ -165,7 +165,31 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCanonicalName()
+	public String getIdentifier()
+	{
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getSimpleName()
+	{
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getQualifiedName()
 	{
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT

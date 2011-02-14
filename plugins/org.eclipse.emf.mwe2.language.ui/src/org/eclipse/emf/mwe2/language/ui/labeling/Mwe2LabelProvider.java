@@ -85,7 +85,7 @@ public class Mwe2LabelProvider extends DefaultEObjectLabelProvider {
 		if (type != null) {
 			if (type instanceof JvmMember)
 				return ((JvmMember) type).getSimpleName();
-			return type.getCanonicalName();
+			return type.getIdentifier();
 		}
 		return "Component";
 	}

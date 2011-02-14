@@ -42,7 +42,7 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		JvmType assignedType = assignment.getValue().getActualType();
 		assertNotNull(assignedType);
 		assertFalse("eIsProxy", assignedType.eIsProxy());
-		assertEquals(typeName, assignedType.getCanonicalName());
+		assertEquals(typeName, assignedType.getIdentifier());
 	}
 	
 	public void testLiteralTypes() throws Exception {
@@ -66,7 +66,7 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		JvmType stringType = stringModule.getRoot().getActualType();
 		assertNotNull(stringType);
 		assertFalse("eIsProxy", stringType.eIsProxy());
-		assertEquals(String.class.getName(), stringType.getCanonicalName());
+		assertEquals(String.class.getName(), stringType.getIdentifier());
 		Module referingModule = (Module) getModel("module referingModule java.util.ArrayList {}");
 		referingModule.getRoot().setModule(stringModule);
 		referingModule.getRoot().setType(null);
@@ -81,7 +81,7 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		JvmType type = property.getActualType();
 		assertNotNull(type);
 		assertFalse("eIsProxy", type.eIsProxy());
-		assertEquals(expected.getName(), type.getCanonicalName());
+		assertEquals(expected.getName(), type.getIdentifier());
 	}
 	
 }

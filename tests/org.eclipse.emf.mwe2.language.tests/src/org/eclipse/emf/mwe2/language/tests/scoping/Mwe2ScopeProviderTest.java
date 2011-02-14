@@ -66,7 +66,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		Module model = (Module) getModel("module foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
-		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 	}
 
 	
@@ -74,18 +74,18 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		Module model = (Module) getModel("module foo "+ComponentAFactory.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
-		assertEquals(ComponentAFactory.class.getName(),feature.getDeclaringType().getCanonicalName());
+		assertEquals(ComponentAFactory.class.getName(),feature.getDeclaringType().getIdentifier());
 		feature = getScopedElementByName(scope, "y");
-		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 	}
 
 	public void testCreateComponentFeatureScope_3() throws Exception {
 		Module model = (Module) getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
-		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 		feature = getScopedElementByName(scope, "y");
-		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getCanonicalName());
+		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 	}
 	
 	public void testCreateReferableScope() throws Exception {

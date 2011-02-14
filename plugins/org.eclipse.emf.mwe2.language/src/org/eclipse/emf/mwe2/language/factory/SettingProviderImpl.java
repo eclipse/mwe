@@ -74,7 +74,7 @@ public class SettingProviderImpl implements ISettingProvider {
 						}
 					};
 				}
-				throw new IllegalArgumentException(from.getValue().getCanonicalName() + " can not be handled.");
+				throw new IllegalArgumentException(from.getValue().getIdentifier() + " can not be handled.");
 			}});
 		return Maps.uniqueIndex(settings, new Function<ISetting, QualifiedName>() {
 			public QualifiedName apply(ISetting from) {

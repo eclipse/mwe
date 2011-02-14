@@ -109,9 +109,9 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
 				error(
-						"A value of type '" + actualType.getCanonicalName()
+						"A value of type '" + actualType.getIdentifier()
 						+ "' can not be assigned to the feature "
-						+ feature.getCanonicalName(),
+						+ feature.getIdentifier(),
 						Mwe2Package.Literals.ASSIGNMENT__VALUE,
 						ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
 						INCOMPATIBLE_ASSIGNMENT);
@@ -134,9 +134,9 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
 				error(
-						"A value of type '" + actualType.getCanonicalName()
+						"A value of type '" + actualType.getIdentifier()
 						+ "' can not be assigned to a reference of type "
-						+ property.getType().getCanonicalName(),
+						+ property.getType().getIdentifier(),
 						Mwe2Package.Literals.DECLARED_PROPERTY__DEFAULT,
 						ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
 						INCOMPATIBLE_ASSIGNMENT);
@@ -229,7 +229,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				}
 			}
 			error(
-					"'" + declaredType.getCanonicalName() + "' does not have a public default constructor.",
+					"'" + declaredType.getIdentifier() + "' does not have a public default constructor.",
 					component, 
 					Mwe2Package.Literals.REFERRABLE__TYPE,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
@@ -250,7 +250,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		if (declaredType.isAbstract() || 
 				(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
 			error(
-					"'" + declaredType.getCanonicalName() + "' is not instantiable.",
+					"'" + declaredType.getIdentifier() + "' is not instantiable.",
 					component, 
 					Mwe2Package.Literals.REFERRABLE__TYPE,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
@@ -350,7 +350,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		}
 		JvmOperation operation = (JvmOperation) feature;
 		for(JvmAnnotationReference annotation: operation.getAnnotations()) {
-			if (Mandatory.class.getName().equals(annotation.getAnnotation().getFullyQualifiedName()))
+			if (Mandatory.class.getName().equals(annotation.getAnnotation().getIdentifier()))
 				return true;
 		}
 		return false;

@@ -143,7 +143,7 @@ public class Mwe2ExecutionEngine {
 	protected Object create(JvmType jvmType) {
 		Class<?> class1 = reflectAccess.getRawType(jvmType);
 		if (class1==null)
-			throw new IllegalStateException("Couldn't find java.lang.Class for name '"+jvmType.getCanonicalName()+"'");
+			throw new IllegalStateException("Couldn't find java.lang.Class for name '"+jvmType.getIdentifier()+"'");
 		try {
 			return class1.newInstance();
 		} catch (Exception e) {

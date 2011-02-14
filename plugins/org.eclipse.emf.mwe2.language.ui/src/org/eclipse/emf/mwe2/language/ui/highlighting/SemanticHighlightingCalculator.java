@@ -91,7 +91,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 			return false;
 		List<JvmAnnotationReference> annotations = annotatable.getAnnotations();
 		for(JvmAnnotationReference annotation: annotations) {
-			if (Deprecated.class.getName().equals(annotation.getAnnotation().getCanonicalName())) {
+			if (Deprecated.class.getName().equals(annotation.getAnnotation().getIdentifier())) {
 				return true;
 			}
 		}

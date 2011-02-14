@@ -174,7 +174,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 					activeWindow, 
 					SearchEngine.createJavaSearchScope(new IJavaElement[]{ project }),
 					IJavaElementSearchConstants.CONSIDER_CLASSES, false, "", 
-					new ComponentTypeSelectionExtension(actualType.getCanonicalName()));
+					new ComponentTypeSelectionExtension(actualType.getIdentifier()));
 			dialog.setTitle("Select component type");
 			dialog.setMessage("Select component type");
 			dialog.create();
