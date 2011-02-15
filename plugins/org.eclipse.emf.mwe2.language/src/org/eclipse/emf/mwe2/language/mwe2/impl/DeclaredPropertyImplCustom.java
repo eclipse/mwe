@@ -34,6 +34,11 @@ public class DeclaredPropertyImplCustom extends DeclaredPropertyImpl {
 	}
 	
 	@Override
+	public String getQualifiedName(char innerClassDelimiter) {
+		return getIdentifier();
+	}
+	
+	@Override
 	public String getQualifiedName() {
 		return getIdentifier();
 	}

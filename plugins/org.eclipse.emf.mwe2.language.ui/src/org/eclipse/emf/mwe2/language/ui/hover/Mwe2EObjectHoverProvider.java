@@ -58,7 +58,7 @@ public class Mwe2EObjectHoverProvider extends DefaultEObjectHoverProvider {
 			@Override
 			public String caseComponent(Component object) {
 				if (object.getType()!=null)
-					return object.getType().getIdentifier();
+					return object.getType().getQualifiedName('.');
 				else
 					return "";
 			}

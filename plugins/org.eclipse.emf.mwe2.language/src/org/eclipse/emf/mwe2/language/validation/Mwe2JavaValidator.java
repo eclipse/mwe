@@ -109,7 +109,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
 				error(
-						"A value of type '" + actualType.getIdentifier()
+						"A value of type '" + actualType.getQualifiedName('.')
 						+ "' can not be assigned to the feature "
 						+ feature.getIdentifier(),
 						Mwe2Package.Literals.ASSIGNMENT__VALUE,
@@ -134,9 +134,9 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			}
 			if (!assignabilityComputer.isConformant(left, right)) {
 				error(
-						"A value of type '" + actualType.getIdentifier()
+						"A value of type '" + actualType.getQualifiedName('.')
 						+ "' can not be assigned to a reference of type "
-						+ property.getType().getIdentifier(),
+						+ property.getType().getQualifiedName('.'),
 						Mwe2Package.Literals.DECLARED_PROPERTY__DEFAULT,
 						ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
 						INCOMPATIBLE_ASSIGNMENT);
@@ -229,7 +229,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 				}
 			}
 			error(
-					"'" + declaredType.getIdentifier() + "' does not have a public default constructor.",
+					"'" + declaredType.getQualifiedName('.') + "' does not have a public default constructor.",
 					component, 
 					Mwe2Package.Literals.REFERRABLE__TYPE,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
@@ -250,7 +250,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		if (declaredType.isAbstract() || 
 				(declaredType instanceof JvmGenericType && ((JvmGenericType) declaredType).isInterface())) {
 			error(
-					"'" + declaredType.getIdentifier() + "' is not instantiable.",
+					"'" + declaredType.getQualifiedName('.') + "' is not instantiable.",
 					component, 
 					Mwe2Package.Literals.REFERRABLE__TYPE,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,

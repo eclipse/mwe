@@ -74,8 +74,7 @@ public class Mwe2OutlineTreeProvider extends DefaultOutlineTreeProvider {
 	}
 
 	protected StyledString appendSimpleName(StyledString styledText, JvmIdentifiableElement element) {
-		String canonicalName = element.getIdentifier();
-		String typeName = canonicalName.substring(canonicalName.lastIndexOf('.')+1);
+		String typeName = element.getSimpleName();
 		return styledText.append(new StyledString(COMPONENT_TYPE_SEPARATOR + typeName, stylerFactory
 				.createXtextStyleAdapterStyler(getTypeTextStyle())));
 	}
