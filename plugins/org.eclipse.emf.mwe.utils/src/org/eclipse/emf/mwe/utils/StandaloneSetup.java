@@ -85,27 +85,32 @@ public class StandaloneSetup {
 		}
 	}
 
-	protected void scanFolder(File f) {
-		scanFolder(f,new HashSet<String>());
+	protected boolean scanFolder(File f) {
+		return scanFolder(f,new HashSet<String>());
 	}
 	
-	protected void scanFolder(File f, Set<String> visitedPathes) {
+	protected boolean scanFolder(File f, Set<String> visitedPathes) {
 		try {
 			if (!visitedPathes.add(f.getCanonicalPath()))
-				return;
+				return true;
 		} catch (IOException e) {
 			log.error(e.getMessage(), e);
-			return;
+			return true;
 		}
 		File[] files = f.listFiles();
+		boolean containsProject = false;
+		File dotProject = null;
 		for (File file : files) {
-			if (".project".equals(file.getName())) {
-				registerProject(file);
+			if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
+				containsProject |= scanFolder(file, visitedPathes);
 			}
-			else if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
-				scanFolder(file);
+			if (".project".equals(file.getName())) {
+				dotProject = file;
 			}
 		}
+		if(!containsProject && dotProject != null)
+			registerProject(dotProject);
+		return containsProject || dotProject != null;
 	}
 
 	protected void registerProject(File file) {
@@ -116,9 +121,9 @@ public class StandaloneSetup {
 
 			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + "/");
 			EcorePlugin.getPlatformResourceMap().put(name, uri);
-			if (log.isDebugEnabled()) {
+//			if (log.isDebugEnabled()) {
 				log.debug("Registering project " + name + " at '" + uri + "'");
-			}
+//			}
 		}
 		catch (Exception e) {
 			throw new WrappedException("Couldn't read " + file, e);
