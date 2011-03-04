@@ -14,9 +14,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.jar.JarFile;
+import java.util.jar.Manifest;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -56,6 +62,43 @@ public class StandaloneSetup {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION,
 				new XMIResourceFactoryImpl());
 		EPackage.Registry.INSTANCE.put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
+	}
+	
+	public void setLogResourceUriMap(boolean doLog) {
+		if (!doLog)
+			return;
+		List<Entry<String,URI>> entrySet = new ArrayList<Entry<String,URI>>(EcorePlugin.getPlatformResourceMap().entrySet());
+		Collections.sort(entrySet, new Comparator<Entry<String,URI>>() {
+			public int compare(Entry<String, URI> o1, Entry<String, URI> o2) {
+				return o1.getKey().compareTo(o2.getKey());
+			}
+		});
+		for (Entry<String, URI> entry : entrySet) {
+			log.info(entry.getKey()+" - "+entry.getValue());
+		}
+	}
+	
+	public void setScanClassPath(boolean doScan) {
+		if (!doScan)
+			return;
+		String property = System.getProperty("java.class.path");
+		String separator = System.getProperty("path.separator");
+		if (property!=null) {
+			String[] entries = property.split(separator);
+			for (String entry : entries) {
+				try {
+					File f = new File(entry).getCanonicalFile();
+					if (f.getPath().endsWith(".jar")) {
+						registerBundle(f);
+					} else {
+						scanFolder(f);
+					}
+				}
+				catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}
 	}
 
 	/**
@@ -103,14 +146,39 @@ public class StandaloneSetup {
 		for (File file : files) {
 			if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
 				containsProject |= scanFolder(file, visitedPathes);
-			}
-			if (".project".equals(file.getName())) {
+			} else if (".project".equals(file.getName())) {
 				dotProject = file;
+			} else if (file.getName().endsWith(".jar")) {
+				registerBundle(file);
 			}
 		}
 		if(!containsProject && dotProject != null)
 			registerProject(dotProject);
 		return containsProject || dotProject != null;
+	}
+
+	protected void registerBundle(File file) {
+		try {
+			JarFile jarFile = new JarFile(file);
+			Manifest manifest = jarFile.getManifest();
+			if (manifest==null)
+				return;
+			String name = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
+			if (name != null) {
+				final int indexOf = name.indexOf(';');
+				if (indexOf>0) 
+					name = name.substring(0, indexOf);
+				if (EcorePlugin.getPlatformResourceMap().containsKey(name))
+					return;
+				String path = "archive:file:"+file.getCanonicalPath() + "!/";
+				URI uri = URI.createURI(path);
+				EcorePlugin.getPlatformResourceMap().put(name, uri);
+			}
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+
 	}
 
 	protected void registerProject(File file) {

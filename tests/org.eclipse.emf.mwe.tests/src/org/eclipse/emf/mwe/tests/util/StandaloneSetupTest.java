@@ -14,8 +14,11 @@
  */
 package org.eclipse.emf.mwe.tests.util;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
 import junit.framework.TestCase;
@@ -29,5 +32,14 @@ public class StandaloneSetupTest extends TestCase {
 		setup.addRegisterEcoreFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.ecore");
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test"));
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test/nested"));
+	}
+	
+	public void testSearchJars() throws Exception {
+		StandaloneSetup setup = new StandaloneSetup();
+		setup.setScanClassPath(true);
+		final ResourceSetImpl resSet = new ResourceSetImpl();
+		final URI uri = URI.createURI("platform:/resource/org.eclipse.emf.ecore/model/Ecore.ecore");
+		Resource resource = resSet.getResource(uri, true);
+		assertNotNull(resource.getContents().get(0));
 	}
 }
