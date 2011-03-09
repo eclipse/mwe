@@ -90,8 +90,11 @@ public class StandaloneSetup {
 					File f = new File(entry).getCanonicalFile();
 					if (f.getPath().endsWith(".jar")) {
 						registerBundle(f);
-					} else {
-						scanFolder(f);
+					} else if(!scanFolder(f)) {
+						// eclipse bin folder?
+						File dotProject = new File(f.getParentFile(), ".project");
+						if(dotProject.exists())
+							registerProject(dotProject);
 					}
 				}
 				catch (IOException e) {
