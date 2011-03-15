@@ -173,7 +173,7 @@ public class StandaloneSetup {
 					name = name.substring(0, indexOf);
 				if (EcorePlugin.getPlatformResourceMap().containsKey(name))
 					return;
-				String path = "archive:file:"+file.getCanonicalPath() + "!/";
+				String path = "archive:"+file.toURI() + "!/";
 				URI uri = URI.createURI(path);
 				EcorePlugin.getPlatformResourceMap().put(name, uri);
 			}
@@ -190,7 +190,7 @@ public class StandaloneSetup {
 					.parse(new FileInputStream(file));
 			String name = document.getDocumentElement().getElementsByTagName("name").item(0).getTextContent();
 
-			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + "/");
+			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + File.separator);
 			EcorePlugin.getPlatformResourceMap().put(name, uri);
 //			if (log.isDebugEnabled()) {
 				log.debug("Registering project " + name + " at '" + uri + "'");
