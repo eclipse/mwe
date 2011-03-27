@@ -75,6 +75,9 @@ public class Mwe2Runner {
 	
 	public void run(String moduleName, Map<String, String> params, IWorkflowContext ctx) {
 		Module module = findModule(moduleName);
+		if (module == null) {
+			throw new IllegalStateException("Couldn't find module "+moduleName);
+		}
 		EcoreUtil.resolveAll(module);
 		if (!module.eResource().getErrors().isEmpty()) {
 			throw new IllegalStateException(module.eResource().getErrors().toString());
