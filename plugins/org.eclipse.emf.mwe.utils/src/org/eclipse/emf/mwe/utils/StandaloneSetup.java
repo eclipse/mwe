@@ -146,13 +146,15 @@ public class StandaloneSetup {
 		File[] files = f.listFiles();
 		boolean containsProject = false;
 		File dotProject = null;
-		for (File file : files) {
-			if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
-				containsProject |= scanFolder(file, visitedPathes);
-			} else if (".project".equals(file.getName())) {
-				dotProject = file;
-			} else if (file.getName().endsWith(".jar")) {
-				registerBundle(file);
+		if (files != null) {
+			for (File file : files) {
+				if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
+					containsProject |= scanFolder(file, visitedPathes);
+				} else if (".project".equals(file.getName())) {
+					dotProject = file;
+				} else if (file.getName().endsWith(".jar")) {
+					registerBundle(file);
+				}
 			}
 		}
 		if(!containsProject && dotProject != null)

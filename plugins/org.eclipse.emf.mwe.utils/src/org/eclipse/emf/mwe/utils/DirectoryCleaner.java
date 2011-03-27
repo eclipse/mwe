@@ -125,7 +125,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 		}
 		LOG.debug("Cleaning folder " + parentFolder.toString());
 		final File[] contents = parentFolder.listFiles(myFilter);
-		for (int j = 0; j < contents.length; j++) {
+		for (int j = 0; contents!=null && j < contents.length; j++) {
 			final File file = contents[j];
 			if (file.isDirectory()) {
 				if (!cleanFolder(file, myFilter, continueOnError, false) && !continueOnError)
