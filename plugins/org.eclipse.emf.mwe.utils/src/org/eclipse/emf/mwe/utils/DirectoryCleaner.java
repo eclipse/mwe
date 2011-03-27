@@ -39,7 +39,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 	private final Collection<String> excludes = new HashSet<String>();
 
-	private final Collection<String> defaultExcludes = Arrays.asList(new String[] { "CVS", ".cvsignore", ".svn" });
+	private final Collection<String> defaultExcludes = Arrays.asList(new String[] { "CVS", ".cvsignore", ".svn", ".gitignore" });
 
 	private boolean useDefaultExcludes = true;
 
