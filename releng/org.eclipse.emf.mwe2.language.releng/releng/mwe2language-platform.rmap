@@ -13,7 +13,7 @@
 	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="mwe"/>
     <rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit"
 		failOnError="false" />
-	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="xpand"/>
+	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit"/>
 	<rm:locator searchPathRef="platform" />
 	<rm:searchPath name="local.releng">
 		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
@@ -58,7 +58,7 @@
 	<rm:searchPath name="orbit">
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
 			mutable="false">
-			<rm:uri format="{0}/tools/orbit/downloads/drops/S20110124210048/repository">
+			<rm:uri format="{0}/tools/orbit/downloads/drops/S20110304120314/repository">
 				<bc:propertyRef key="eclipse.download" />
 			</rm:uri>
 		</rm:provider>
