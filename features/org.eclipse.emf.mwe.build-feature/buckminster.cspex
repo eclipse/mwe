@@ -89,7 +89,7 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.runtime.sdk.feature.group" />
-				<cs:property key="target.platform.ius" value="org.apache.log4j" />
+				<cs:property key="target.platform.ius" value="org.apache.log4j,org.apache.log4j.source" />
 				<cs:property key="package.name" value="emft-mwe-2-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
