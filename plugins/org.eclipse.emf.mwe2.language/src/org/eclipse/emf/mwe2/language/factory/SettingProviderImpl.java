@@ -25,6 +25,7 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
+@SuppressWarnings("restriction") 
 public class SettingProviderImpl implements ISettingProvider {
 	
 	private IInjectableFeatureLookup injectableFeatureLookup;

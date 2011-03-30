@@ -58,6 +58,7 @@ import com.google.inject.Inject;
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
+@SuppressWarnings("restriction") 
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject

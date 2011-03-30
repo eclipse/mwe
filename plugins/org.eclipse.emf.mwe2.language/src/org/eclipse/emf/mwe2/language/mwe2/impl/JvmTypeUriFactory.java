@@ -16,6 +16,7 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.access.impl.URIHelperConstants;
 
+@SuppressWarnings("restriction") 
 public class JvmTypeUriFactory {
 	public static URI getURIForFqn(String fqn) {
 		StringBuilder uriBuilder = new StringBuilder(URIHelperConstants.PROTOCOL.length() + 1 + fqn.length() * 2 + 1);

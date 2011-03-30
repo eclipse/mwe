@@ -16,6 +16,7 @@ import org.eclipse.xtext.resource.XtextResourceSet;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
+@SuppressWarnings("restriction") 
 public class MweResourceSetProvider implements Provider<XtextResourceSet>{
 
 	@Inject

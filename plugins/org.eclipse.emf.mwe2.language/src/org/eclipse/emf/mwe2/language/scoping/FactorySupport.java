@@ -22,6 +22,7 @@ import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
 
 import com.google.inject.Inject;
 
+@SuppressWarnings("restriction") 
 public class FactorySupport {
 	@Inject
 	private AbstractTypeScopeProvider typeScopeProvider;

@@ -28,6 +28,7 @@ import org.eclipse.xtext.junit.AbstractXtextTests;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 
+@SuppressWarnings("restriction") 
 public class LexerTest extends AbstractXtextTests {
 
 	private MweHighlightingLexer lexer;

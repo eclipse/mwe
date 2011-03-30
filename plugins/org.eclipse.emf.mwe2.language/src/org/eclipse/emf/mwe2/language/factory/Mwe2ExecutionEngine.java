@@ -35,6 +35,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
+@SuppressWarnings("restriction") 
 public class Mwe2ExecutionEngine {
 
 	private PolymorphicDispatcher<Object> dispatcher = PolymorphicDispatcher
