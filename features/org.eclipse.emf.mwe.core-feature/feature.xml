@@ -28,7 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <requires>
-      <import plugin="org.eclipse.emf.mwe2.runtime"/>
+      <import plugin="org.eclipse.emf.mwe2.runtime" version="2.0.0" match="equivalent"/>
    </requires>
 
    <plugin
@@ -51,25 +51,12 @@ http://www.eclipse.org/legal/epl-v10.html
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+
    <plugin
          id="org.apache.commons.lang"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-<!--
-
-   - commons.lang is not used
-   - commons.logging 1.0.4 is sufficient and shipped with the platform
-   
-
-   <plugin
-         id="org.apache.commons.logging"
-         download-size="0"
-         install-size="0"
-         version="1.1.1.v201005080502"
-         unpack="false"/>
-         
--->
 
 </feature>
