@@ -1,5 +1,7 @@
 package org.eclipse.emf.mwe2.ecore;
 
+import static com.google.common.collect.Lists.newArrayList;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
@@ -24,13 +26,12 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.mwe.utils.GenModelHelper;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
 
 import com.google.common.base.Function;
-
-import static com.google.common.collect.Lists.newArrayList;
 
 public class EcoreGenerator implements IWorkflowComponent {
 
@@ -75,6 +76,10 @@ public class EcoreGenerator implements IWorkflowComponent {
 	
 	public void postInvoke() {
 	}
+	
+	protected GenModelHelper createGenModelSetup() {
+		return new GenModelHelper();
+	}
 
 	public void invoke(IWorkflowContext ctx) {
 		ResourceSet resSet = new ResourceSetImpl();
@@ -82,6 +87,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 		final GenModel genModel = (GenModel) resource.getContents().get(0);
 		genModel.setCanGenerate(true);
 		genModel.reconcile();
+		createGenModelSetup().registerGenModel(genModel);
 
 		Generator generator = new Generator() {
 			@Override

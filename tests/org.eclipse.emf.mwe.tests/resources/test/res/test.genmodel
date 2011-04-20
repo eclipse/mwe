@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.emf.mwe.tests/src"
+    modelPluginID="org.eclipse.emf.mwe.tests" modelName="Test" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" usedGenPackages="referee.genmodel#//referee">
+  <foreignModel>test.ecore</foreignModel>
+  <genPackages prefix="Test" disposableProviderFactory="true" ecorePackage="test.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="test.ecore#//MyEnum">
+      <genEnumLiterals ecoreEnumLiteral="test.ecore#//MyEnum/ONE"/>
+      <genEnumLiterals ecoreEnumLiteral="test.ecore#//MyEnum/TWO"/>
+    </genEnums>
+    <genClasses ecoreClass="test.ecore#//AClass">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute test.ecore#//AClass/enum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute test.ecore#//AClass/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference test.ecore#//AClass/refToGenModel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute test.ecore#//AClass/Action"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute test.ecore#//AClass/anOtherAction"/>
+    </genClasses>
+    <nestedGenPackages prefix="Nested" basePackage="test" disposableProviderFactory="true"
+        ecorePackage="test.ecore#//nested">
+      <genClasses ecoreClass="test.ecore#//nested/BaseType">
+        <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference test.ecore#//nested/BaseType/container"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference test.ecore#//nested/BaseType/children"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference test.ecore#//nested/BaseType/stuff"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

@@ -14,10 +14,14 @@
  */
 package org.eclipse.emf.mwe.tests.util;
 
+import java.util.Map;
+
 import junit.framework.TestCase;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 
 
@@ -29,6 +33,15 @@ public class StandaloneSetupTest extends TestCase {
 		setup.addRegisterEcoreFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.ecore");
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test"));
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test/nested"));
+	}
+	
+	public void testRegisterGenModels() {
+		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+		StandaloneSetup setup = new StandaloneSetup();
+		setup.addRegisterGenModelFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.genmodel");
+		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test"));
+		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test/nested"));
+		assertTrue(registry.containsKey("http://www.eclipse.org/oaw/test"));
 	}
 	
 // does not run in OSGi context.

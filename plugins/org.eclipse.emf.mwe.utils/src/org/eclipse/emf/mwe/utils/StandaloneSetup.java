@@ -289,6 +289,14 @@ public class StandaloneSetup {
 	public void setResourceSetImpl(ResourceSetImpl resourceSet) {
 		setResourceSet(resourceSet);
 	}
+	
+	protected GenModelHelper createGenModelHelper() {
+		return new GenModelHelper();
+	}
+
+	public void addRegisterGenModelFile(String fileName) {
+		createGenModelHelper().registerGenModel(resourceSet, createURI(fileName));
+	}
 
 	public void addRegisterEcoreFile(String fileName) throws IllegalArgumentException, SecurityException {
 		Resource res = resourceSet.getResource(createURI(fileName), true);
