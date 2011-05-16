@@ -18,6 +18,11 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
 
+	<url>
+      <update label="%UpdateSiteName" url="%p2mirrorsURL"/>
+      <discovery label="%UpdateSiteName" url="%p2mirrorsURL"/>
+   </url>
+   
    <license url="%licenseURL">
       %license
    </license>
