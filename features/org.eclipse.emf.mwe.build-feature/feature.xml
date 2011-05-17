@@ -18,11 +18,6 @@ which accompanies this distribution, and is available at
 http://www.eclipse.org/legal/epl-v10.html
    </copyright>
    
-	<url>
-	  <!-- used by buckminster to append p2.mirrorsURL information to the artifacts xml -->
-      <update label="%UpdateSiteName" url="http://www.eclipse.org/downloads/download.php?file=/modeling/emft/mwe/updates/releases/head/mwe&amp;format=xml"/>
-   </url>
-   
    <license url="%licenseURL">
       %license
    </license>
