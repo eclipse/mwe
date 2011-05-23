@@ -4,7 +4,7 @@
 >
 	<locator pattern="^org\.eclipse\.emf\.mwe\.releng$" searchPathRef="local.releng" />
 	<locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf"/>
-    <locator pattern="^org\.apache(?:\..+)?$" searchPathRef="orbit" />
+    <locator pattern="^org\.apache(?:\..+)?$" searchPathRef="orbit" failOnError="false"/>
 	<locator pattern="^com\.google(?:\..+)?$" searchPathRef="orbit"/>
     <locator pattern="^org\.aopalliance?$" searchPathRef="orbit"/>
     <locator searchPathRef="platform" />
