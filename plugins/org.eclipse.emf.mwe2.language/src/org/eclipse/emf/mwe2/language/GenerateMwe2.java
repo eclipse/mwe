@@ -32,12 +32,11 @@ import org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment;
 import org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment;
 
 /**
- * 
- * Java version of a workflow used in order to avoid unneccessary bootstrapping and circular dependency problems.
- * 
+ * Java version of a workflow used in order to avoid unnecessary bootstrapping and circular dependency problems.
  * 
  * @author Sven Efftinge - Initial contribution and API
  */
+@SuppressWarnings("restriction")
 public class GenerateMwe2 {
 	public static void main(String[] args) {
 
