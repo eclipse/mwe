@@ -1,0 +1,53 @@
+package org.eclipse.emf.mwe2.language.serializer;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.mwe2.language.mwe2.PlainString;
+import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess.StringLiteralElements;
+import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
+import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
+
+@SuppressWarnings("restriction")
+public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
+
+	@Override
+	protected void sequence_StringLiteral_StringLiteral(EObject context, StringLiteral lit) {
+		INodesForEObjectProvider nodes = createNodeProvider(lit);
+		SequenceFeeder feeder = createSequencerFeeder(lit, nodes);
+		StringLiteralElements g = grammarAccess.getStringLiteralAccess();
+		if ("'".equals(lit.getBegin())) {
+			feeder.accept(g.getBeginApostropheKeyword_0_0_0());
+			if (!lit.getParts().isEmpty()) {
+				if (lit.getParts().get(0) instanceof PlainString)
+					feeder.accept(g.getPartsPlainStringParserRuleCall_0_1_0(), lit.getParts().get(0), 0);
+				int i = 1;
+				while (i < lit.getParts().size()) {
+					feeder.accept(g.getPartsPropertyReferenceParserRuleCall_0_2_0_0(), lit.getParts().get(i), i);
+					i++;
+					if (lit.getParts().get(i) instanceof PlainString) {
+						feeder.accept(g.getPartsPlainStringParserRuleCall_0_2_1_0(), lit.getParts().get(i), i);
+						i++;
+					}
+				}
+			}
+			feeder.accept(g.getEndApostropheKeyword_0_3_0());
+		} else {
+			feeder.accept(g.getBeginQuotationMarkKeyword_1_0_0());
+			if (!lit.getParts().isEmpty()) {
+				if (lit.getParts().get(0) instanceof PlainString)
+					feeder.accept(g.getPartsPlainStringParserRuleCall_1_1_0(), lit.getParts().get(0), 0);
+				int i = 1;
+				while (i < lit.getParts().size()) {
+					feeder.accept(g.getPartsPropertyReferenceParserRuleCall_1_2_0_0(), lit.getParts().get(i), i);
+					i++;
+					if (lit.getParts().get(i) instanceof PlainString) {
+						feeder.accept(g.getPartsPlainStringParserRuleCall_1_2_1_0(), lit.getParts().get(i), i);
+						i++;
+					}
+				}
+			}
+			feeder.accept(g.getEndQuotationMarkKeyword_1_3_0());
+		}
+		feeder.finish();
+	}
+}

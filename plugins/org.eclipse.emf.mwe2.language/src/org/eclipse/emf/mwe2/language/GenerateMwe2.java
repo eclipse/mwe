@@ -17,12 +17,12 @@ import org.eclipse.xtext.generator.builder.BuilderIntegrationFragment;
 import org.eclipse.xtext.generator.exporting.QualifiedNamesFragment;
 import org.eclipse.xtext.generator.formatting.FormatterFragment;
 import org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment;
-import org.eclipse.xtext.generator.parseTreeConstructor.ParseTreeConstructorFragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.ca.ContentAssistParserGeneratorFragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment;
 import org.eclipse.xtext.generator.resourceFactory.ResourceFactoryFragment;
 import org.eclipse.xtext.generator.scoping.ImportNamespacesScopingFragment;
+import org.eclipse.xtext.generator.serializer.SerializerFragment;
 import org.eclipse.xtext.generator.types.TypesGeneratorFragment;
 import org.eclipse.xtext.generator.validation.JavaValidatorFragment;
 import org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment;
@@ -96,7 +96,7 @@ public class GenerateMwe2 {
 								addFragment(new GrammarAccessFragment());
 
 								// the serialization component
-								addFragment(new ParseTreeConstructorFragment());
+								addFragment(new SerializerFragment());
 
 								// a custom ResourceFactory for use with EMF
 								ResourceFactoryFragment resourceFragment = new ResourceFactoryFragment();

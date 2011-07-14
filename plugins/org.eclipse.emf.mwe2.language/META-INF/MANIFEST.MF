@@ -27,12 +27,12 @@ Export-Package: org.eclipse.emf.mwe2.language,
  org.eclipse.emf.mwe2.language.mwe2,
  org.eclipse.emf.mwe2.language.mwe2.impl,
  org.eclipse.emf.mwe2.language.mwe2.util,
- org.eclipse.emf.mwe2.language.parseTreeConstruction,
  org.eclipse.emf.mwe2.language.parser.antlr,
  org.eclipse.emf.mwe2.language.parser.antlr.internal,
+ org.eclipse.emf.mwe2.language.parser.antlr.lexer,
  org.eclipse.emf.mwe2.language.resource,
  org.eclipse.emf.mwe2.language.scoping,
+ org.eclipse.emf.mwe2.language.serializer,
  org.eclipse.emf.mwe2.language.services,
- org.eclipse.emf.mwe2.language.validation,
- org.eclipse.emf.mwe2.language.parser.antlr.lexer
+ org.eclipse.emf.mwe2.language.validation
 
