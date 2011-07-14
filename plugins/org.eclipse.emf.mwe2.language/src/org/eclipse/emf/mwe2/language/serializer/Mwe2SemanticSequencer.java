@@ -7,6 +7,9 @@ import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess.StringLiteralEle
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
 
+/**
+ * @author Moritz Eysholdt - Initial contribution and API
+ */
 @SuppressWarnings("restriction")
 public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
 
@@ -18,13 +21,15 @@ public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
 		if ("'".equals(lit.getBegin())) {
 			feeder.accept(g.getBeginApostropheKeyword_0_0_0());
 			if (!lit.getParts().isEmpty()) {
-				if (lit.getParts().get(0) instanceof PlainString)
-					feeder.accept(g.getPartsPlainStringParserRuleCall_0_1_0(), lit.getParts().get(0), 0);
-				int i = 1;
+				int i = 0;
+				if (lit.getParts().get(i) instanceof PlainString) {
+					feeder.accept(g.getPartsPlainStringParserRuleCall_0_1_0(), lit.getParts().get(i), i);
+					i++;
+				}
 				while (i < lit.getParts().size()) {
 					feeder.accept(g.getPartsPropertyReferenceParserRuleCall_0_2_0_0(), lit.getParts().get(i), i);
 					i++;
-					if (lit.getParts().get(i) instanceof PlainString) {
+					if (i < lit.getParts().size() && lit.getParts().get(i) instanceof PlainString) {
 						feeder.accept(g.getPartsPlainStringParserRuleCall_0_2_1_0(), lit.getParts().get(i), i);
 						i++;
 					}
@@ -34,13 +39,15 @@ public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
 		} else {
 			feeder.accept(g.getBeginQuotationMarkKeyword_1_0_0());
 			if (!lit.getParts().isEmpty()) {
-				if (lit.getParts().get(0) instanceof PlainString)
-					feeder.accept(g.getPartsPlainStringParserRuleCall_1_1_0(), lit.getParts().get(0), 0);
-				int i = 1;
+				int i = 0;
+				if (lit.getParts().get(i) instanceof PlainString) {
+					feeder.accept(g.getPartsPlainStringParserRuleCall_1_1_0(), lit.getParts().get(i), i);
+					i++;
+				}
 				while (i < lit.getParts().size()) {
 					feeder.accept(g.getPartsPropertyReferenceParserRuleCall_1_2_0_0(), lit.getParts().get(i), i);
 					i++;
-					if (lit.getParts().get(i) instanceof PlainString) {
+					if (i < lit.getParts().size() && lit.getParts().get(i) instanceof PlainString) {
 						feeder.accept(g.getPartsPlainStringParserRuleCall_1_2_1_0(), lit.getParts().get(i), i);
 						i++;
 					}

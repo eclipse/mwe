@@ -61,6 +61,8 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 		module.append("var str2 = \"xxx${bool2}xx\"\n");
 		module.append("var str3 = \" xxx ${ bool2 } xx \"\n");
 		module.append("var str4 = \"xxx${bool1}${bool2}xx\"\n");
+		module.append("var str5 = \"${bool1}\"\n");
+		module.append("var str6 = '${bool1}'\n");
 		module.append("org.eclipse.emf.mwe2.runtime.workflow.Workflow {}");
 		tester.assertSerializeWithNodeModel(module.toString());
 		tester.assertSerializeWithoutNodeModel(module.toString());
@@ -74,6 +76,7 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 		module.append("    component = @foo {}");
 		module.append("    component = @foo : bar.baz auto-inject {}");
 		module.append("    component = :other {}");
+		module.append("    bean = {}");
 		module.append("}");
 		for (Component comp : EcoreUtil2.getAllContentsOfType(getModel(module.toString()), Component.class)) {
 			tester.assertSerializeWithNodeModel(comp);
