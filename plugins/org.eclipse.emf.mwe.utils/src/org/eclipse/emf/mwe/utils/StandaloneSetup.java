@@ -23,6 +23,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.util.zip.ZipException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -179,6 +180,9 @@ public class StandaloneSetup {
 				URI uri = URI.createURI(path);
 				EcorePlugin.getPlatformResourceMap().put(name, uri);
 			}
+		}
+		catch (ZipException e) {
+			log.warn("Could not open Jar file "+file.getAbsolutePath()+".");
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
