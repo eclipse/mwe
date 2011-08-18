@@ -17,8 +17,10 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.jar.JarFile;
@@ -48,11 +50,39 @@ import org.w3c.dom.Document;
 
 /**
  * Initializes EMF support. Allows to register additional Packages.
+ * 
+ * <h1>Configuration</h1>
+ * 
+ * <h2>platformUri</h2> 
+ * Set the path to the root of the platform, usually ".." 
+ * 
+ * <h2>URI Mapping</h2> 
+ * Map one URI to another. This is for example required when some resource refers to another with
+ * <tt>platform:/plugin</tt> URIs. Platform plugin URIs cannot be resolved in standalone mode, thus these
+ * URIs must be mapped to file or platform resource URIs.
+ * 
+ * <pre>
+ * uriMap = {
+ *   from = "platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore"
+ *   to = "platform:/resource/myproject/model/Ecore.ecore"
+ * }
+ * </pre>
+ * 
+ * <h2>Bundle name mapping</h2>
+ * In the case that the folder name of a project does not match the bundle name, maps the bundle name to the real
+ * directory name on the platform.
+ * 
+ * <pre>
+ * bundleNameMap = {
+ *   from = "my.bundle.name"
+ *   to = "bundledirectoryname"
+ * }
+ * </pre>
  */
-
 public class StandaloneSetup {
 
 	private static String platformRootPath = null;
+	private Map<String, String> bundleNameMapping = new HashMap<String, String>();
 
 	public static String getPlatformRootPath() {
 		return platformRootPath;
@@ -64,37 +94,39 @@ public class StandaloneSetup {
 				new XMIResourceFactoryImpl());
 		EPackage.Registry.INSTANCE.put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
 	}
-	
+
 	public void setLogResourceUriMap(boolean doLog) {
 		if (!doLog)
 			return;
-		List<Entry<String,URI>> entrySet = new ArrayList<Entry<String,URI>>(EcorePlugin.getPlatformResourceMap().entrySet());
-		Collections.sort(entrySet, new Comparator<Entry<String,URI>>() {
+		List<Entry<String, URI>> entrySet = new ArrayList<Entry<String, URI>>(EcorePlugin.getPlatformResourceMap()
+				.entrySet());
+		Collections.sort(entrySet, new Comparator<Entry<String, URI>>() {
 			public int compare(Entry<String, URI> o1, Entry<String, URI> o2) {
 				return o1.getKey().compareTo(o2.getKey());
 			}
 		});
 		for (Entry<String, URI> entry : entrySet) {
-			log.info(entry.getKey()+" - "+entry.getValue());
+			log.info(entry.getKey() + " - " + entry.getValue());
 		}
 	}
-	
+
 	public void setScanClassPath(boolean doScan) {
 		if (!doScan)
 			return;
 		String property = System.getProperty("java.class.path");
 		String separator = System.getProperty("path.separator");
-		if (property!=null) {
+		if (property != null) {
 			String[] entries = property.split(separator);
 			for (String entry : entries) {
 				try {
 					File f = new File(entry).getCanonicalFile();
 					if (f.getPath().endsWith(".jar")) {
 						registerBundle(f);
-					} else if(!scanFolder(f)) {
+					}
+					else if (!scanFolder(f)) {
 						// eclipse bin folder?
 						File dotProject = new File(f.getParentFile(), ".project");
-						if(dotProject.exists())
+						if (dotProject.exists())
 							registerProject(dotProject);
 					}
 				}
@@ -133,14 +165,15 @@ public class StandaloneSetup {
 	}
 
 	protected boolean scanFolder(File f) {
-		return scanFolder(f,new HashSet<String>());
+		return scanFolder(f, new HashSet<String>());
 	}
-	
+
 	protected boolean scanFolder(File f, Set<String> visitedPathes) {
 		try {
 			if (!visitedPathes.add(f.getCanonicalPath()))
 				return true;
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			log.error(e.getMessage(), e);
 			return true;
 		}
@@ -151,14 +184,16 @@ public class StandaloneSetup {
 			for (File file : files) {
 				if (file.exists() && file.isDirectory() && !file.getName().startsWith(".")) {
 					containsProject |= scanFolder(file, visitedPathes);
-				} else if (".project".equals(file.getName())) {
+				}
+				else if (".project".equals(file.getName())) {
 					dotProject = file;
-				} else if (file.getName().endsWith(".jar")) {
+				}
+				else if (file.getName().endsWith(".jar")) {
 					registerBundle(file);
 				}
 			}
 		}
-		if(!containsProject && dotProject != null)
+		if (!containsProject && dotProject != null)
 			registerProject(dotProject);
 		return containsProject || dotProject != null;
 	}
@@ -167,22 +202,22 @@ public class StandaloneSetup {
 		try {
 			JarFile jarFile = new JarFile(file);
 			Manifest manifest = jarFile.getManifest();
-			if (manifest==null)
+			if (manifest == null)
 				return;
 			String name = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
 			if (name != null) {
 				final int indexOf = name.indexOf(';');
-				if (indexOf>0) 
+				if (indexOf > 0)
 					name = name.substring(0, indexOf);
 				if (EcorePlugin.getPlatformResourceMap().containsKey(name))
 					return;
-				String path = "archive:"+file.toURI() + "!/";
+				String path = "archive:" + file.toURI() + "!/";
 				URI uri = URI.createURI(path);
 				EcorePlugin.getPlatformResourceMap().put(name, uri);
 			}
 		}
 		catch (ZipException e) {
-			log.warn("Could not open Jar file "+file.getAbsolutePath()+".");
+			log.warn("Could not open Jar file " + file.getAbsolutePath() + ".");
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
@@ -198,9 +233,12 @@ public class StandaloneSetup {
 
 			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + File.separator);
 			EcorePlugin.getPlatformResourceMap().put(name, uri);
-//			if (log.isDebugEnabled()) {
-				log.debug("Registering project " + name + " at '" + uri + "'");
-//			}
+			if (bundleNameMapping.get(name) != null) {
+				EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(name), uri);
+			}
+			//			if (log.isDebugEnabled()) {
+			log.debug("Registering project " + name + " at '" + uri + "'");
+			//			}
 		}
 		catch (Exception e) {
 			throw new WrappedException("Couldn't read " + file, e);
@@ -293,7 +331,7 @@ public class StandaloneSetup {
 	public void setResourceSetImpl(ResourceSetImpl resourceSet) {
 		setResourceSet(resourceSet);
 	}
-	
+
 	protected GenModelHelper createGenModelHelper() {
 		return new GenModelHelper();
 	}
@@ -330,6 +368,10 @@ public class StandaloneSetup {
 
 	public EPackage getPackage(String nsUri) {
 		return (EPackage) registry.get(nsUri);
+	}
+
+	public void addBundleNameMap(Mapping mapping) {
+		bundleNameMapping.put(mapping.getFrom(), mapping.getTo());
 	}
 
 	private URI createURI(String path) {
