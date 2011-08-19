@@ -17,7 +17,6 @@ import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider;
-import org.eclipse.xtext.common.types.access.TypeNotFoundException;
 import org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider;
 
 import com.google.inject.Inject;
@@ -65,10 +64,6 @@ public class FactorySupport {
 		ResourceSet resourceSet = ctx.eResource().getResourceSet();
 		String factoryName = IFactory.class.getName();
 		IJvmTypeProvider typeProvider = typeScopeProvider.getTypeProvider(resourceSet);
-		try {
-			return typeProvider.findTypeByName(factoryName);
-		} catch(TypeNotFoundException tnfe) {
-			return null;
-		}
+		return typeProvider.findTypeByName(factoryName);
 	}
 }
