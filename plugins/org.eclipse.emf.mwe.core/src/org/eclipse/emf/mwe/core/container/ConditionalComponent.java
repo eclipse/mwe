@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.core.container;
 
 import java.util.Iterator;
 
+import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowInterruptedException;
@@ -66,4 +67,13 @@ public abstract class ConditionalComponent extends CompositeComponent implements
 		}
 	}
 
+	@Override
+	public void checkConfiguration(Issues issues) throws ConfigurationException {
+		super.checkConfiguration(issues);
+
+		// Do not forget to check the config on the elseComp
+		if (elseComp != null) {
+			elseComp.checkConfiguration(issues);
+		}
+	}
 }
