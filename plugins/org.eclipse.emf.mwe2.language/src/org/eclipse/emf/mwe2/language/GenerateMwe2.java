@@ -25,6 +25,7 @@ import org.eclipse.xtext.generator.scoping.ImportNamespacesScopingFragment;
 import org.eclipse.xtext.generator.serializer.SerializerFragment;
 import org.eclipse.xtext.generator.types.TypesGeneratorFragment;
 import org.eclipse.xtext.generator.validation.JavaValidatorFragment;
+import org.eclipse.xtext.ui.generator.compare.CompareFragment;
 import org.eclipse.xtext.ui.generator.contentAssist.JavaBasedContentAssistFragment;
 import org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment;
 import org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment;
@@ -50,7 +51,7 @@ public class GenerateMwe2 {
 			{
 				addBean(new StandaloneSetup() {
 					{
-						setPlatformUri(""+runtimeProject+"/../../..");
+						setPlatformUri(runtimeProject+"/../../..");
 					}
 				});
 
@@ -153,6 +154,10 @@ public class GenerateMwe2 {
 								addFragment(antlrFragment3);
 								// quickfix API 
 								addFragment(new QuickfixProviderFragment());
+								
+								CompareFragment compareFragment = new CompareFragment();
+								compareFragment.setFileExtensions(file_extensions);
+								addFragment(compareFragment);
 							}
 						});
 					}

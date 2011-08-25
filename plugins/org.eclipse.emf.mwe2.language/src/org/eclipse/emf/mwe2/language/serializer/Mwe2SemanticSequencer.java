@@ -14,7 +14,7 @@ import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEOb
 public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
 
 	@Override
-	protected void sequence_StringLiteral_StringLiteral(EObject context, StringLiteral lit) {
+	protected void sequence_StringLiteral(EObject context, StringLiteral lit) {
 		INodesForEObjectProvider nodes = createNodeProvider(lit);
 		SequenceFeeder feeder = createSequencerFeeder(lit, nodes);
 		StringLiteralElements g = grammarAccess.getStringLiteralAccess();

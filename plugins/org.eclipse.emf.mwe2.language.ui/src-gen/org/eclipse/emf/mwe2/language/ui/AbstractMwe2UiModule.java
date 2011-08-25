@@ -68,6 +68,11 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 		return org.eclipse.xtext.common.types.xtext.ui.TypeAwareReferenceProposalCreator.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
+	public Class<? extends org.eclipse.xtext.ui.editor.IValidationJobScheduler> bindIValidationJobScheduler() {
+		return org.eclipse.xtext.common.types.xtext.ui.JdtValidationJobScheduler.class;
+	}
+
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.emf.mwe2.language.ui.labeling.Mwe2LabelProvider.class;
@@ -151,6 +156,11 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment
 	public Class<? extends org.eclipse.xtext.ui.editor.quickfix.IssueResolutionProvider> bindIssueResolutionProvider() {
 		return org.eclipse.emf.mwe2.language.ui.quickfix.Mwe2QuickfixProvider.class;
+	}
+
+	// contributed by org.eclipse.xtext.ui.generator.compare.CompareFragment
+	public Class<? extends org.eclipse.compare.IViewerCreator> bindIViewerCreator() {
+		return org.eclipse.xtext.ui.compare.DefaultViewerCreator.class;
 	}
 
 

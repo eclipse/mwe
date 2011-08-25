@@ -202,4 +202,22 @@
       </markerResolutionGenerator>
    </extension>
 
+  <extension point="org.eclipse.compare.contentViewers">
+    <viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentViewers"
+            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="mwe2">
+    </viewer>
+  </extension>
+  <extension point="org.eclipse.compare.contentMergeViewers">
+    <viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers"
+            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="mwe2" label="Mwe2 Compare">
+     </viewer>
+  </extension>
+  <extension point="org.eclipse.ui.editors.documentProviders">
+    <provider id="org.eclipse.emf.mwe2.language.Mwe2.editors.documentProviders"
+            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+            extensions="mwe2">
+    </provider>
+  </extension>
 </plugin>
