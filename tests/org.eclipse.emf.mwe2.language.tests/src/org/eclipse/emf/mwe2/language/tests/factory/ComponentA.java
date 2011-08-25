@@ -15,6 +15,7 @@ import com.google.common.collect.Lists;
 public class ComponentA {
 	private ComponentA x;
 	private List<String> y = Lists.newArrayList();
+	private String z;
 	
 	public ComponentA getX() {
 		return x;
@@ -30,4 +31,13 @@ public class ComponentA {
 	public void addY(String s) {
 		this.y.add(s);
 	}
+	
+	public void setZ(String z) {
+		this.z = z;
+	}
+	
+	public String getZ() {
+		return z;
+	}
+	
 }

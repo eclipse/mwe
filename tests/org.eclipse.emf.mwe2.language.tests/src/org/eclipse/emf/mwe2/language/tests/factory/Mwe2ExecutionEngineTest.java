@@ -103,15 +103,68 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("foo", result.getY().get(0));
 	}
 	
-	public void testAutoInject() throws Exception {
+	public void testAutoInject_01() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
-		"var y = 'foo'" +
+		"var y = 'y'" +
+		"var z = 'z'" +
 		"ComponentA auto-inject {\n" +
 		"}";
 		ComponentA result  = (ComponentA) getRoot(mweString);
 		assertNotNull(result);
-		assertEquals("foo", result.getY().get(0));
+		assertEquals("y", result.getY().get(0));
+		assertEquals("z", result.getZ());
+	}
+	
+	public void testAutoInject_02() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var y = 'y'" +
+		"var z = 'z'" +
+		"ComponentA {\n" +
+		"  x = ComponentA auto-inject {\n" +
+		"  }\n" +
+		"}";
+		ComponentA root  = (ComponentA) getRoot(mweString);
+		ComponentA result = root.getX();
+		assertNotNull(result);
+		assertEquals("y", result.getY().get(0));
+		assertEquals("z", result.getZ());
+	}
+	
+	public void testAutoInject_Bug347132_01() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var y = 'variableY'" +
+		"var z = 'variableZ'" +
+		"ComponentA auto-inject {\n" +
+		"    y = 'y'\n" +
+		"    z = 'z'\n" +
+		"}";
+		ComponentA result  = (ComponentA) getRoot(mweString);
+		assertNotNull(result);
+		assertEquals("y", result.getY().get(0));
+		assertEquals(1, result.getY().size());
+		assertEquals("z", result.getZ());
+	}
+	
+	public void testAutoInject_Bug347132_02() throws Exception {
+		String mweString = "module foo.Bar \n" +
+		"import "+ComponentA.class.getName()+"\n" +
+		"var y = 'variableY'" +
+		"var z = 'variableZ'" +
+		"ComponentA {\n" +
+		"  x = ComponentA auto-inject {" +
+		"    y = 'y'\n" +
+		"    z = 'z'\n" +
+		"  }\n" +
+		"}";
+		ComponentA root  = (ComponentA) getRoot(mweString);
+		ComponentA result = root.getX();
+		assertNotNull(result);
+		assertEquals("y", result.getY().get(0));
+		assertEquals(1, result.getY().size());
+		assertEquals("z", result.getZ());
 	}
 	
 	private Object getRoot(String mweString) throws Exception {

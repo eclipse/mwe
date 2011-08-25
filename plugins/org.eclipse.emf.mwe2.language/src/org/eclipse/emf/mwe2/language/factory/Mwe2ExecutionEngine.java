@@ -11,6 +11,7 @@ package org.eclipse.emf.mwe2.language.factory;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
@@ -33,6 +34,7 @@ import org.eclipse.xtext.util.PolymorphicDispatcher;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 @SuppressWarnings("restriction") 
@@ -122,9 +124,13 @@ public class Mwe2ExecutionEngine {
 			List<Assignment> assignments, Map<QualifiedName, Object> variables) {
 		Map<QualifiedName, ISetting> settings = settingProvider.getSettings(object, type);
 		if (isAutoInject) {
+			Set<QualifiedName> explicitAssigned = Sets.newHashSet();
+			for(Assignment assignment: assignments) {
+				explicitAssigned.add(QualifiedName.create(assignment.getFeatureName()));
+			}
 			for (ISetting setting : settings.values()) {
 				QualifiedName name = setting.getName();
-				if (variables.containsKey(name))
+				if (variables.containsKey(name) && !explicitAssigned.contains(name))
 					setting.setValue(variables.get(name));
 			}
 		}
