@@ -95,8 +95,8 @@ public class Mwe2ExecutionEngine {
 			Map<QualifiedName, Object> params = comp.isAutoInject() ? Maps
 					.newHashMap(variables) : Maps.<QualifiedName, Object> newHashMap();
 			for (Assignment ass : assignments) {
-				params.put(QualifiedName.create(((DeclaredProperty)ass.getFeature()).getName()), internalSwitch(ass
-						.getValue(), variables));
+				params.put(qualifiedNameConverter.toQualifiedName(((DeclaredProperty)ass.getFeature()).getName()), 
+						internalSwitch(ass.getValue(), variables));
 			}
 			return internalSwitch(comp.getModule(), params);
 		} else {
@@ -126,7 +126,7 @@ public class Mwe2ExecutionEngine {
 		if (isAutoInject) {
 			Set<QualifiedName> explicitAssigned = Sets.newHashSet();
 			for(Assignment assignment: assignments) {
-				explicitAssigned.add(QualifiedName.create(assignment.getFeatureName()));
+				explicitAssigned.add(qualifiedNameConverter.toQualifiedName(assignment.getFeatureName()));
 			}
 			for (ISetting setting : settings.values()) {
 				QualifiedName name = setting.getName();
