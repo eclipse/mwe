@@ -31,6 +31,7 @@ import org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment;
 import org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment;
 import org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment;
 import org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment;
+import org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment;
 
 /**
  * Java version of a workflow used in order to avoid unnecessary bootstrapping and circular dependency problems.
@@ -154,6 +155,11 @@ public class GenerateMwe2 {
 								addFragment(antlrFragment3);
 								// quickfix API 
 								addFragment(new QuickfixProviderFragment());
+								
+								// refactoring
+								RefactorElementNameFragment refactoringFragment = new RefactorElementNameFragment();
+								refactoringFragment.setUseJdtRefactoring(true);
+								addFragment(refactoringFragment);
 								
 								CompareFragment compareFragment = new CompareFragment();
 								compareFragment.setFileExtensions(file_extensions);
