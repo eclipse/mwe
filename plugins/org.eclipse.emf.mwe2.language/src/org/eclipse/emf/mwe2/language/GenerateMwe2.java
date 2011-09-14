@@ -32,6 +32,7 @@ import org.eclipse.xtext.ui.generator.outline.OutlineTreeProviderFragment;
 import org.eclipse.xtext.ui.generator.outline.QuickOutlineFragment;
 import org.eclipse.xtext.ui.generator.quickfix.QuickfixProviderFragment;
 import org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment;
+import org.eclipse.xtext.ui.generator.templates.CodetemplatesGeneratorFragment;
 
 /**
  * Java version of a workflow used in order to avoid unnecessary bootstrapping and circular dependency problems.
@@ -164,6 +165,8 @@ public class GenerateMwe2 {
 								CompareFragment compareFragment = new CompareFragment();
 								compareFragment.setFileExtensions(file_extensions);
 								addFragment(compareFragment);
+								
+								addFragment(new CodetemplatesGeneratorFragment());
 							}
 						});
 					}
