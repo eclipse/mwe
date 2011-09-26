@@ -1,7 +1,7 @@
 <project name="javadoc-project">
 	<target name="create.javadoc">
 
-		<property name="projectName" value="MWE" />
+		<property name="projectName" value="MWE2 Language" />
 
 		<!-- workspace defaults -->
 		<property name="output" value="./javadoc" />
@@ -26,11 +26,24 @@
 		<delete dir="${output}" />
 		<mkdir dir="${output}" />
 
-		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" windowtitle="${projectName} Documentation">
+		<javadoc destdir="${output}" Encoding="ISO-8859-1" classpathref="javadoc-classpath" maxmemory="1024m" source="1.5" useexternalfile="true" author="true" version="true" use="true" Verbose="no" windowtitle="${projectName} Documentation">
 			<fileset dir="${sourcesLocation}" defaultexcludes="true">
 				<include name="**/*.java" />
 				<exclude name="**/test/**" />
 			</fileset>
+
+			<tag name="generated" description="EMF generated code" />
+			<tag name="model" description="EMF model element" />
+			<tag name="ordered" description="EMF ordered" />
+			<tag name="noimplement" description="This interface is not intended to be implemented by clients." />
+			<tag name="noextend" description="This class is not intended to be subclassed by clients." />
+			<tag name="noinstantiate" description="This class is not intended to be instantiated by clients." />
+			<tag name="noreference" description="This method is not intended to be referenced by clients." />
+			<tag name="nooverride" description="This method is not intended to be extended (re-implement with a call to the overridden parent) or re-implemented (with no call to the overridden parent) by clients." />
 		</javadoc>
+		<!-- Compress the output javadoc in a zip file -->
+		<zip destfile="${output}/javadoc.zip" basedir="${output}">
+			<exclude name="*.zip" />
+		</zip>
 	</target>
 </project>
