@@ -20,12 +20,10 @@ import org.eclipse.emf.mwe.internal.ui.debug.processing.DebugModelManager;
 import org.eclipse.emf.mwe.ui.debug.model.MWEBreakpoint;
 
 /**
- * Common functions for all classes inheriting from this class, that represent
- * the debug model.
+ * Common functions for all classes inheriting from this class, that represent the debug model.
  * 
  */
-public abstract class DebugElement extends PlatformObject implements
-		IDebugElement {
+public abstract class DebugElement extends PlatformObject implements IDebugElement {
 	protected DebugTarget target;
 
 	public DebugElement(final DebugTarget target) {
@@ -49,7 +47,7 @@ public abstract class DebugElement extends PlatformObject implements
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Object getAdapter(final Class adapter) {
 		if (adapter == IDebugElement.class) {
 			return this;

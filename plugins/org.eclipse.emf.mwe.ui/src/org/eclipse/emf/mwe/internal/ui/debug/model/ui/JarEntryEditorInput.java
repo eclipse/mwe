@@ -53,7 +53,7 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings("rawtypes")
 	public Object getAdapter(Class adapter) {
 		if (adapter == IStorage.class)
 			return fJarEntryFile;
