@@ -7,6 +7,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.contentassist;
 
+import junit.framework.Test;
+
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.tests.JavaProjectForTestProvider;
 import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
@@ -40,7 +42,8 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		super.tearDown();
 	}
 	
-	public ISetup getSetup() {
+	@Override
+	public ISetup doGetSetup() {
 		return new UiTestSetup() {
 			
 			@Override
@@ -61,7 +64,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 	}
 	
 	public void testEmptyModel() throws Exception {
-		newBuilder(getSetup()).assertText("module");
+		super.newBuilder().assertText("module");
 	}
 	
 	public void testClassDecl_01() throws Exception {
@@ -359,12 +362,17 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
 	}
 	
+	@Override
 	protected ContentAssistProcessorTestBuilder newBuilder() throws Exception {
-		return newBuilder(getSetup()).appendNl("module org.my.testmodel");
+		return super.newBuilder().appendNl("module org.my.testmodel");
 	}
 
 	public IJavaProject getJavaProject(ResourceSet resourceSet) {
 		return javaProjectForTestProvider.getJavaProject(resourceSet);
+	}
+
+	public static Test suite() {
+		return AbstractContentAssistProcessorTest.suite(ContentAssistTest.class);
 	}
 	
 }
