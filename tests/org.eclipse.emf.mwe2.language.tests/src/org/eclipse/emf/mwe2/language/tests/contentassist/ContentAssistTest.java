@@ -371,8 +371,4 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		return javaProjectForTestProvider.getJavaProject(resourceSet);
 	}
 
-	public static Test suite() {
-		return AbstractContentAssistProcessorTest.suite(ContentAssistTest.class);
-	}
-	
 }
