@@ -2,10 +2,14 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.emf.mwe2.language.releng"
 	componentType="buckminster" version="1.0.0.qualifier">
 	<cs:dependencies>
+		<!-- orbit -->
+		<cs:dependency name="javax.inject" componentType="osgi.bundle" />
+		<!-- eclipse runtime -->
 		<cs:dependency name="org.eclipse.jdt.debug.ui" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.core.runtime" componentType="osgi.bundle" versionDesignator="[3.5.0,3.6.0)" />
+		<!-- xtext -->
 		<cs:dependency name="org.eclipse.platform" componentType="eclipse.feature" versionDesignator="[3.5.0,3.6.0)" />
 		<cs:dependency name="org.eclipse.xtext.ui" componentType="eclipse.feature" />
 		<cs:dependency name="org.eclipse.xtext.ui.junit" componentType="osgi.bundle" />
