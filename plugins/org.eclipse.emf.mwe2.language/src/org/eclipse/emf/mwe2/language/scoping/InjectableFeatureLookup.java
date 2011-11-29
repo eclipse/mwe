@@ -21,7 +21,7 @@ import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.Strings;
 
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.internal.Maps;
+import com.google.common.collect.Maps;
 
 public class InjectableFeatureLookup implements IInjectableFeatureLookup {
 	
