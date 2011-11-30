@@ -103,7 +103,6 @@
 		<cs:public name="build">
 			<cs:attribute name="setup" />
 			<cs:attribute name="package.emft-mwe-Update" />
-			<cs:attribute name="package.emft-mwe-2-Update" />
 			<cs:attribute name="package.emft-mwe-SDK" />
 			<cs:attribute name="package.emft-mwe-2-SDK" />
 		</cs:public>

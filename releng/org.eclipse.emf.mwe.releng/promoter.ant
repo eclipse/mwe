@@ -248,12 +248,12 @@
 			</fileset>
 		</unzip>
 		<deltree dir="${build.repository.directory}/mwe2" />
-		<unzip dest="${build.repository.directory}/mwe2">
+		<!--<unzip dest="${build.repository.directory}/mwe2">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-2-Update*.zip" />
 			</fileset>
 		</unzip>
-		<!--<p2.composite.repository destination="${composite.repository.url}">
+		<p2.composite.repository destination="${composite.repository.url}">
 			<add>
 				<repository location="${saved.build.id}/mwe2" />
 			</add>
