@@ -27,8 +27,10 @@ public class AssignmentImplCustom extends AssignmentImpl {
 				}
 			}
 			return name;
-		} else {
+		} else if (feature instanceof DeclaredProperty) {
 			return ((DeclaredProperty)feature).getName();
+		} else {
+			return null;
 		}
 	}
 }
