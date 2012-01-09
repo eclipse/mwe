@@ -8,6 +8,7 @@
 		<cs:dependency name="org.eclipse.jdt.debug.ui" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle" />
+		<cs:dependency name="org.eclipse.jdt.junit4.runtime" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.core.runtime" componentType="osgi.bundle" versionDesignator="[3.5.0,3.6.0)" />
 		<cs:dependency name="org.junit4" componentType="osgi.bundle" versionDesignator="4.5.0" />
 		
