@@ -7,17 +7,14 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.contentassist;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
 import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
 import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
-import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.junit4.ui.AbstractContentAssistProcessorTest;
 import org.eclipse.xtext.junit4.ui.ContentAssistProcessorTestBuilder;
-import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil;
 import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
