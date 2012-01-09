@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Workflow Engine 2 Language
 Bundle-Vendor: Eclipse Modeling Project
-Bundle-Version: 2.2.0.qualifier
+Bundle-Version: 2.3.0.qualifier
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language;singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.xtext,
@@ -11,14 +11,14 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.mwe.utils;resolution:=optional,
  org.eclipse.emf.mwe.core;resolution:=optional,
  com.ibm.icu;resolution:=optional,
- org.eclipse.xtext.common.types;bundle-version="2.2.0";visibility:=reexport,
- org.eclipse.xtext.util;bundle-version="2.2.0",
+ org.eclipse.xtext.common.types;bundle-version="2.3.0";visibility:=reexport,
+ org.eclipse.xtext.util;bundle-version="2.3.0",
  org.eclipse.emf.ecore,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="3.2.0",
- org.eclipse.emf.mwe2.runtime;bundle-version="2.2.0",
+ org.eclipse.emf.mwe2.runtime;bundle-version="2.3.0",
  de.itemis.xtext.antlr;bundle-version="2.0.0";resolution:=optional,
- org.eclipse.emf.mwe2.lib;bundle-version="2.2.0";resolution:=optional
+ org.eclipse.emf.mwe2.lib;bundle-version="2.3.0";resolution:=optional
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.language,

@@ -2,20 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Workflow Engine 2 Language Tests
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.tests
-Bundle-Version: 2.2.0.qualifier
+Bundle-Version: 2.3.0.qualifier
 Bundle-Vendor: Eclipse Modeling
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="2.0.0",
  org.eclipse.emf.mwe2.language.ui;bundle-version="2.0.0",
- org.eclipse.xtext.junit;bundle-version="2.2.0",
+ org.eclipse.xtext.junit;bundle-version="2.3.0",
  com.google.inject;bundle-version="2.0.0",
- org.eclipse.xtext;bundle-version="2.2.0",
- org.eclipse.xtext.common.types;bundle-version="2.2.0",
- org.eclipse.emf.mwe2.runtime;bundle-version="2.2.0",
- org.eclipse.xtext.ui.shared;bundle-version="2.2.0",
- org.eclipse.xtext.ui;bundle-version="2.2.0",
- org.eclipse.xtext.ui.junit;bundle-version="2.2.0",
+ org.eclipse.xtext;bundle-version="2.3.0",
+ org.eclipse.xtext.common.types;bundle-version="2.3.0",
+ org.eclipse.emf.mwe2.runtime;bundle-version="2.3.0",
+ org.eclipse.xtext.ui.shared;bundle-version="2.3.0",
+ org.eclipse.xtext.ui;bundle-version="2.3.0",
+ org.eclipse.xtext.ui.junit;bundle-version="2.3.0",
  org.eclipse.jdt.core,
- org.eclipse.xtext.common.types.ui;bundle-version="2.2.0"
+ org.eclipse.xtext.common.types.ui;bundle-version="2.3.0"
 Bundle-Activator: org.eclipse.emf.mwe2.language.tests.Activator
 Bundle-ActivationPolicy: lazy
