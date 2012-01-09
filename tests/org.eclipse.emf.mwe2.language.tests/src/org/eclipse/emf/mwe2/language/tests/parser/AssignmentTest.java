@@ -8,6 +8,7 @@
 package org.eclipse.emf.mwe2.language.tests.parser;
 
 import org.eclipse.xtext.ParserRule;
+import org.junit.Test;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
@@ -19,11 +20,11 @@ public class AssignmentTest extends AbstractParserTest {
 		return getGrammarAccess().getAssignmentRule();
 	}
 	
-	public void testSimpleJvmFeatureReference() {
+	@Test public void testSimpleJvmFeatureReference() {
 		parseSuccessfully("Id = ''");
 	}
 	
-	public void testFQNJvmFeatureReference() {
+	@Test public void testFQNJvmFeatureReference() {
 		parseSuccessfully("Id.Id = ''");
 	}
 }

@@ -22,10 +22,11 @@ import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.xtext.common.types.JvmExecutable;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.StringInputStream;
+import org.junit.Test;
 
 public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 
@@ -40,7 +41,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		return (Mwe2ScopeProvider) super.getScopeProvider();
 	}
 	
-	public void testImplicitImportOfModulePackage_01() throws Exception {
+	@Test public void testImplicitImportOfModulePackage_01() throws Exception {
 		Module model = (Module) getModel("module java.util.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNotNull(scope.getSingleElement(QualifiedName.create("java","util","List")));
@@ -48,21 +49,21 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
-	public void testImplicitImportOfModulePackage_02() throws Exception {
+	@Test public void testImplicitImportOfModulePackage_02() throws Exception {
 		Module model = (Module) getModel("module java.math.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNull(scope.getSingleElement(QualifiedName.create("List")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
-	public void testImplicitImportOfModulePackage_03() throws Exception {
+	@Test public void testImplicitImportOfModulePackage_03() throws Exception {
 		Module model = (Module) getModel("module java.math.foo import java.math.* "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNull(scope.getSingleElement(QualifiedName.create("List")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
-	public void testCreateComponentFeatureScope_1() throws Exception {
+	@Test public void testCreateComponentFeatureScope_1() throws Exception {
 		Module model = (Module) getModel("module foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
@@ -70,7 +71,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 	}
 
 	
-	public void testCreateComponentFeatureScope_2() throws Exception {
+	@Test public void testCreateComponentFeatureScope_2() throws Exception {
 		Module model = (Module) getModel("module foo "+ComponentAFactory.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
@@ -79,7 +80,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 	}
 
-	public void testCreateComponentFeatureScope_3() throws Exception {
+	@Test public void testCreateComponentFeatureScope_3() throws Exception {
 		Module model = (Module) getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
@@ -88,7 +89,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
 	}
 	
-	public void testCreateReferableScope() throws Exception {
+	@Test public void testCreateReferableScope() throws Exception {
 		Module model = (Module) getModel("module foo \n"
 				+ "var a = 'foo'\n" 
 				+ "var a.b = 'foo'\n" 
@@ -105,7 +106,7 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertNull(scope.getSingleElement(QualifiedName.create("a.b")));
 	}
 	
-	public void testModuleInvocation() throws Exception {
+	@Test public void testModuleInvocation() throws Exception {
 		Resource res = getResourceFromString("module foo \n" +
 				"var bar " +
 				"String{}");

@@ -25,6 +25,7 @@ import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.nodemodel.util.NodeModelUtils;
 import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.util.Strings;
+import org.junit.Test;
 
 public class StringLiteralTest extends AbstractParserTest {
 
@@ -33,11 +34,11 @@ public class StringLiteralTest extends AbstractParserTest {
 		return getGrammarAccess().getStringLiteralRule();
 	}
 	
-	public void testEmptyLiteral() {
+	@Test public void testEmptyLiteral() {
 		checkPlainString("", "");
 	}
 	
-	public void testKeywords() {
+	@Test public void testKeywords() {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(getGrammarAccess().getGrammar(), false);
 		while(iterator.hasNext()) {
 			EObject next = iterator.next();
@@ -54,41 +55,41 @@ public class StringLiteralTest extends AbstractParserTest {
 		}
 	}
 	
-	public void testKeywordPrefixes() {
+	@Test public void testKeywordPrefixes() {
 		checkPlainString("$", "$");
 		checkPlainString("impo", "impo");
 		checkPlainString("/", "/");
 	}
 	
-	public void testComments() {
+	@Test public void testComments() {
 		checkPlainString("// something\n", "// something\n");
 		checkPlainString("// something", "// something");
 		checkPlainString("/* something */", "/* something */");
 		checkPlainString("/* something", "/* something");
 	}
 	
-	public void testEscapedComments() {
+	@Test public void testEscapedComments() {
 		parseWithErrors("\\// something", 1);
 		parseWithErrors("\\/* something", 1);
 	}
 	
-	public void testWS() {
+	@Test public void testWS() {
 		checkPlainString(" \\n\\r\\t", " \n\r\t");
 		checkPlainString(" import ", " import ");
 	}
 	
-	public void testAnyChar() {
+	@Test public void testAnyChar() {
 		checkPlainString("*/", "*/");
 		checkPlainString("#", "#");
 		checkPlainString("/", "/");
 	}
 	
-	public void testComplex() {
+	@Test public void testComplex() {
 		checkPlainString(" import var id.id.* ", " import var id.id.* ");
 		checkPlainString(" \\${ something . .* } ", " ${ something . .* } ");
 	}
 	
-	public void testWsAfterRef() {
+	@Test public void testWsAfterRef() {
 		checkPlainOrRefString("${something} ", "ref:something", " ");
 	}
 	
@@ -151,37 +152,37 @@ public class StringLiteralTest extends AbstractParserTest {
 		assertEquals(expectedReferences.length, i);
 	}
 	
-	public void testReference() {
+	@Test public void testReference() {
 		checkReference("${something}", "something");
 		checkReference("${ something }", "something");
 		checkReference("${something. /* comment */ ^module}", "something.module");
 		checkReference("${something.\nsomething // comment \n}", "something.something");
 	}
 	
-	public void testReferences() {
+	@Test public void testReferences() {
 		checkReference("${something } ${ something.else}", "something", "something.else");
 		checkReference("${something}${else}", "something", "else");
 	}
 	
-	public void testIncompleteReference() {
+	@Test public void testIncompleteReference() {
 		parseWithErrors("${}", 1);
 		parseWithErrors("${", 1);
 		parseWithErrors("${something", 1);
 		parseWithErrors("${something.", 1);
 	}
 	
-	public void testMixed() {
+	@Test public void testMixed() {
 		checkReference("import${something}", "something");
 		checkReference("$${something}", "something");
 		checkReference(" ${something}}", "something");
 		checkReference("{${something}$", "something");
 	}
 	
-	public void testHttpInString() {
+	@Test public void testHttpInString() {
 		checkPlainString("http://www.xtext.org", "http://www.xtext.org");
 	}
 	
-	public void testDoubleQuoteInSingleQuotedString() {
+	@Test public void testDoubleQuoteInSingleQuotedString() {
 		IParseResult result = super.parseSuccessfully("'\"'");
 		StringLiteral literal = (StringLiteral) result.getRootASTElement();
 		assertEquals("'\"'", 1, literal.getParts().size());
@@ -189,7 +190,7 @@ public class StringLiteralTest extends AbstractParserTest {
 		assertEquals("'\"'", "\"", plain.getValue());
 	}
 	
-	public void testSingleQuoteInDoubleQuotedString() {
+	@Test public void testSingleQuoteInDoubleQuotedString() {
 		IParseResult result = super.parseSuccessfully("\"'\"");
 		StringLiteral literal = (StringLiteral) result.getRootASTElement();
 		assertEquals("\"'\"", 1, literal.getParts().size());

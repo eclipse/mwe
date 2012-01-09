@@ -19,21 +19,22 @@ import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
 import org.eclipse.xtext.diagnostics.Severity;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.StringInputStream;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.Issue;
+import org.junit.Test;
 
 public class Mwe2ValidatorTest extends AbstractXtextTests {
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new TestSetup());
 	}
 	
-	public void testAssignability() throws Exception {
+	@Test public void testAssignability() throws Exception {
 		String textModel = "module foo "+ComponentA.class.getName()+" { y = true }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -41,7 +42,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
-	public void testAssignability_2() throws Exception {
+	@Test public void testAssignability_2() throws Exception {
 		String textModel = "module foo "+ComponentA.class.getName()+" { y = 'foo' x = 'bar' }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -49,14 +50,14 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
-	public void testAssignability_3() throws Exception {
+	@Test public void testAssignability_3() throws Exception {
 		String textModel = "module foo "+ComponentA.class.getName()+" { x = "+SubTypeOfComponentA.class.getName()+"{} }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(0,list.size());
 	}
 	
-	public void testAssignability_4() throws Exception {
+	@Test public void testAssignability_4() throws Exception {
 		String textModel = "module foo "+SubTypeOfComponentA.class.getName()+" { sub = "+ComponentA.class.getName()+"{} }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -64,54 +65,54 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
-	public void testAssignability_withFactory() throws Exception {
+	@Test public void testAssignability_withFactory() throws Exception {
 		String textModel = "module foo "+ComponentA.class.getName()+" { x = "+ComponentAFactory.class.getName()+"{} }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(0,list.size());
 	}
 	
-	public void testVarAssignability_withFactory() throws Exception {
+	@Test public void testVarAssignability_withFactory() throws Exception {
 		String textModel = "module foo var "+ComponentA.class.getName()+" x = "+ComponentAFactory.class.getName()+"{} String {}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),1,list.size()); // unused WARNING
 	}
-	public void testVarAssignability_1() throws Exception {
+	@Test public void testVarAssignability_1() throws Exception {
 		String textModel = "module foo var "+String.class.getName()+" x = 'x' String {}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),1,list.size()); // unused WARNING
 	}
 	
-	public void testVarAssignability_2() throws Exception {
+	@Test public void testVarAssignability_2() throws Exception {
 		String textModel = "module foo var "+String.class.getName()+" x = true String {}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),2,list.size()); // unused WARNING
 	}
 	
-	public void testVarAssignability_3() throws Exception {
+	@Test public void testVarAssignability_3() throws Exception {
 		String textModel = "module foo var "+Boolean.class.getName()+" x = true String {}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),1,list.size()); // unused WARNING
 	}
 	
-	public void testVarAssignability_4() throws Exception {
+	@Test public void testVarAssignability_4() throws Exception {
 		String textModel = "module foo var "+Boolean.class.getName()+" x = 'foo' String {}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),2,list.size()); // unused WARNING
 	}
 	
-	public void testUnusedLocalVariable() throws Exception {
+	@Test public void testUnusedLocalVariable() throws Exception {
 		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups{ x = ups y = foo }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(0,list.size());
 	}
-	public void testUnusedLocalVariable_1() throws Exception {
+	@Test public void testUnusedLocalVariable_1() throws Exception {
 		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups{ x = ups }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -120,7 +121,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
-	public void testUnusedLocalVariable_2() throws Exception {
+	@Test public void testUnusedLocalVariable_2() throws Exception {
 		String textModel = "module foo var foo = 'holla' "+ComponentA.class.getName()+" : ups { y = foo }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -129,21 +130,21 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
-	public void testUnusedLocalVariable_3() throws Exception {
+	@Test public void testUnusedLocalVariable_3() throws Exception {
 		String textModel = "module foo var foo = 'holla' var bar = '${foo}!' "+ComponentA.class.getName()+"{ y = bar}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),0,list.size());
 	}
 	
-	public void testUnusedLocalVariable_4() throws Exception {
+	@Test public void testUnusedLocalVariable_4() throws Exception {
 		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),0,list.size());
 	}
 	
-	public void testUnusedLocalVariable_5() throws Exception {
+	@Test public void testUnusedLocalVariable_5() throws Exception {
 		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = 'zonk' }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -152,21 +153,21 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
-	public void testUnusedLocalVariable_6() throws Exception {
+	@Test public void testUnusedLocalVariable_6() throws Exception {
 		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = y }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),0,list.size());
 	}
 	
-	public void testUnusedLocalVariable_7() throws Exception {
+	@Test public void testUnusedLocalVariable_7() throws Exception {
 		String textModel = "module foo var y = 'holla' "+ComponentA.class.getName()+" auto-inject { y = '${y}' }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),0,list.size());
 	}
 	
-	public void testUnusedLocalVariable_8() throws Exception {
+	@Test public void testUnusedLocalVariable_8() throws Exception {
 		String textModel_1 = "module foo var foo.bar = 'holla' @bar auto-inject {}";
 		String textModel_2 = "module bar var foo.bar = '' "+ComponentA.class.getName()+" { y = foo.bar }";
 		EObject model_2 = getModel(textModel_2);
@@ -176,7 +177,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(list.toString(),0,list.size());
 	}
 	
-	public void testDuplicateLocalVariable_1() throws Exception {
+	@Test public void testDuplicateLocalVariable_1() throws Exception {
 		String textModel = "module foo var foo = 'holla' var foo = '${foo}!' "+ComponentA.class.getName()+"{ y = foo}";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
@@ -185,7 +186,7 @@ public class Mwe2ValidatorTest extends AbstractXtextTests {
 		assertEquals(Severity.ERROR, list.get(1).getSeverity());
 	}
 	
-	public void testMandatoryProperty_1() throws Exception {
+	@Test public void testMandatoryProperty_1() throws Exception {
 		String textModel_1 = "module foo @bar { foo = 'zonk' }";
 		String textModel_2 = "module bar var foo.bar var foo "+ComponentA.class.getName()+" { y = foo.bar }";
 		EObject model_2 = getModel(textModel_2);

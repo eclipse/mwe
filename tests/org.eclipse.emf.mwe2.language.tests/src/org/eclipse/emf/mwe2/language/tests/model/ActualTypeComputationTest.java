@@ -17,23 +17,24 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.xtext.common.types.JvmType;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
+import org.junit.Test;
 
 public class ActualTypeComputationTest extends AbstractXtextTests {
 
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new TestSetup());
 	}
 	
-	public void testInferredLiteralTypes() throws Exception {
+	@Test public void testInferredLiteralTypes() throws Exception {
 		checkPropertyType("a = 'myString'", String.class);
 		checkPropertyType("a = true", boolean.class);
 		checkPropertyType("a = java.util.ArrayList {}", ArrayList.class);
 	}
 	
-	public void testInferredComponentType() throws Exception {
+	@Test public void testInferredComponentType() throws Exception {
 		String typeName = ComponentA.class.getName();
 		Module module = (Module) getModel("module myModule " + typeName + " {"
 				+ "  x = {}"
@@ -45,23 +46,23 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		assertEquals(typeName, assignedType.getIdentifier());
 	}
 	
-	public void testLiteralTypes() throws Exception {
+	@Test public void testLiteralTypes() throws Exception {
 		checkPropertyType("java.lang.CharSequence a = 'myString'", CharSequence.class);
 		checkPropertyType("boolean a", boolean.class);
 		checkPropertyType("java.util.List a = java.util.ArrayList {}", List.class);
 	}
 	
-	public void testReferenceTypes() throws Exception {
+	@Test public void testReferenceTypes() throws Exception {
 		checkPropertyType("CharSequence a = 'myString' var b = a", CharSequence.class);
 		checkPropertyType("boolean a var b = a", boolean.class);
 		checkPropertyType("java.util.List a = java.util.ArrayList {} var b = a", List.class);
 	}
 	
-	public void testDefaultType() throws Exception {
+	@Test public void testDefaultType() throws Exception {
 		checkPropertyType("a", String.class);
 	}
 	
-	public void testModuleType() throws Exception {
+	@Test public void testModuleType() throws Exception {
 		Module stringModule = (Module) getModel("module stringModule String {}");
 		JvmType stringType = stringModule.getRoot().getActualType();
 		assertNotNull(stringType);

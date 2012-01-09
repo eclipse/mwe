@@ -11,6 +11,7 @@ package org.eclipse.emf.mwe2.language.tests.parser;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.parser.IParseResult;
+import org.junit.Test;
 
 public class ImportTest extends AbstractParserTest {
 
@@ -19,24 +20,24 @@ public class ImportTest extends AbstractParserTest {
 		return getGrammarAccess().getImportRule();
 	}
 	
-	public void testSuccessful() {
+	@Test public void testSuccessful() {
 		parseSuccessfully("import id.id");
 		parseSuccessfully("import id");
 		parseSuccessfully("import id.id.*");
 	}
 	
-	public void testConversion() {
+	@Test public void testConversion() {
 		checkImportedNamespace("import ^id.^id", "id.id");
 		checkImportedNamespace("import ^id.^id.*", "id.id.*");
 	}
 
-	public void testWithWS() {
+	@Test public void testWithWS() {
 		checkImportedNamespace("import id ", "id");
 		checkImportedNamespace("import  id . id ", "id.id");
 		checkImportedNamespace("import  id .\n\t id ", "id.id");
 	}
 	
-	public void testWithComments() {
+	@Test public void testWithComments() {
 		checkImportedNamespace("import//comment \n id   .* ", "id.*");
 		checkImportedNamespace("import/* comment */ id . // comment \n id ", "id.id");
 	}

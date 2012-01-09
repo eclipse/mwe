@@ -7,10 +7,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.contentassist;
 
-import junit.framework.Test;
-
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.mwe2.language.tests.JavaProjectForTestProvider;
 import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
 import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
 import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
@@ -18,28 +15,28 @@ import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
+import org.eclipse.xtext.junit4.ui.AbstractContentAssistProcessorTest;
+import org.eclipse.xtext.junit4.ui.ContentAssistProcessorTestBuilder;
+import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil;
 import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
-import org.eclipse.xtext.ui.junit.editor.contentassist.AbstractContentAssistProcessorTest;
-import org.eclipse.xtext.ui.junit.editor.contentassist.ContentAssistProcessorTestBuilder;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-public class ContentAssistTest extends AbstractContentAssistProcessorTest implements IJavaProjectProvider {
+@SuppressWarnings("restriction")
+public class ContentAssistTest extends AbstractContentAssistProcessorTest {
 	
-	private JavaProjectForTestProvider javaProjectForTestProvider;
-
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
-		String.class.getClass();
-		javaProjectForTestProvider = new JavaProjectForTestProvider();
+	@BeforeClass
+	public static void setUpProject() throws Exception {
+		JavaProjectForTestProvider.setUp();
 	}
-	
-	@Override
-	protected void tearDown() throws Exception {
-		javaProjectForTestProvider = null;
-		super.tearDown();
+
+	@AfterClass
+	public static void tearDownProject() throws Exception {
+		JavaProjectForTestProvider.tearDown();
 	}
 	
 	@Override
@@ -55,7 +52,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					}
 					@SuppressWarnings("unused")
 					public IJavaProjectProvider bindIJavaProjectProviderInstance() {
-						return ContentAssistTest.this;
+						return new JavaProjectForTestProvider();
 					}
 					
 				};
@@ -63,56 +60,68 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		};
 	}
 	
-	public void testEmptyModel() throws Exception {
+	@Test public void testEmptyModel() throws Exception {
 		super.newBuilder().assertText("module");
 	}
 	
-	public void testClassDecl_01() throws Exception {
+	@Test public void testClassDecl_01() throws Exception {
 		newBuilder().append("java.util.ArrayList").assertText("java.util.ArrayList", ":", "{");
 	}
 	
-	public void testClassDecl_02() throws Exception {
+	@Test public void testClassDecl_02() throws Exception {
 		newBuilder().append("j.u.ArrayL").assertText("java.util.ArrayList", ":", "{");
 	}
 	
-	public void testClassDecl_03() throws Exception {
+	@Test public void testClassDecl_03() throws Exception {
 		newBuilder().append("uti.Arrayl").assertText("java.util.ArrayList", ":", "{");
 	}
 	
-	public void testInsideClassDecl() throws Exception {
+	@Test public void testClassDecl_04() throws Exception {
+		newBuilder().append("j.u.ArrL").assertText("java.util.ArrayList", ":", "{");
+	}
+	
+	@Test public void testClassDecl_05() throws Exception {
+		newBuilder().append("uti.ArraL").assertText("java.util.ArrayList", ":", "{");
+	}
+	
+	@Test public void testClassDecl_06() throws Exception {
+		newBuilder().append("ArraList").assertText("java.util.ArrayList", ":", "{");
+	}
+	
+	@Test public void testInsideClassDecl() throws Exception {
 		newBuilder().append("java.util.ArrayList").assertTextAtCursorPosition(
 				"java.util.ArrayLis", "java.util.ArrayLis".length(), "java.util.ArrayList", ":", "{");
 	}
 	
-	public void testInsideClassDeclWithImport() throws Exception {
+	@Test public void testInsideClassDeclWithImport() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.append("util.ArrayList").assertTextAtCursorPosition(
 				"util.ArrayLis", "util.ArrayLis".length(), "util.ArrayList", ":", "{");
 	}
 	
-	public void testNestedClassDecl_01() throws Exception {
+	@Test public void testNestedClassDecl_01() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
 			.append("all = java.util.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
 	}
 	
-	public void testNestedClassDecl_02() throws Exception {
+	@Test public void testNestedClassDecl_02() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
 			.append("all = j.u.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
 	}
 	
-	public void testNestedClassDecl_03() throws Exception {
+	@Test public void testNestedClassDecl_03() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
 			.append("all = uti.ArrayLis").assertText("util.ArrayList", ":", "{", "}");
 	}
 	
-	public void testNestedInsideClassDecl() throws Exception {
+	@Test public void testNestedInsideClassDecl() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
@@ -121,7 +130,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"util.ArrayLis", "util.ArrayLis".length(), "util.ArrayList", ":", "{", "}");
 	}
 	
-	public void testNestedInsideClassDeclWithImport() throws Exception {
+	@Test public void testNestedInsideClassDeclWithImport() throws Exception {
 		newBuilder()
 			.appendNl("import java.*")
 			.appendNl("util.HashSet {")
@@ -132,7 +141,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					":", "{", "}");
 	}
 	
-	public void testReplaceRegion_01() throws Exception {
+	@Test public void testReplaceRegion_01() throws Exception {
 		String javaUtilArrayList = "java.util.ArrayList";
 		ICompletionProposal[] proposals = newBuilder().append(javaUtilArrayList).computeCompletionProposals(javaUtilArrayList);
 		for(ICompletionProposal proposal: proposals) {
@@ -142,7 +151,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testReplaceRegion_02() throws Exception {
+	@Test public void testReplaceRegion_02() throws Exception {
 		ICompletionProposal[] proposals = newBuilder().append("java.util.ArrayList").computeCompletionProposals("ava.util.ArrayList");
 		for(ICompletionProposal proposal: proposals) {
 			ConfigurableCompletionProposal casted = (ConfigurableCompletionProposal) proposal;
@@ -155,7 +164,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testReplaceRegion_03() throws Exception {
+	@Test public void testReplaceRegion_03() throws Exception {
 		ICompletionProposal[] proposals = newBuilder()
 			.appendNl("java.util.HashSet {")
 			.appendNl("all = java.util.ArrayList {}")
@@ -167,7 +176,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testReplaceRegion_04() throws Exception {
+	@Test public void testReplaceRegion_04() throws Exception {
 		ICompletionProposal[] proposals = newBuilder()
 			.appendNl("java.util.HashSet {")
 			.appendNl("all =java.util.ArrayList {}")
@@ -182,7 +191,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testReplaceRegion_05() throws Exception {
+	@Test public void testReplaceRegion_05() throws Exception {
 		ICompletionProposal[] proposals = newBuilder()
 			.appendNl("java.util.HashSet {")
 			.appendNl("all = java.util.ArrayList {}")
@@ -200,7 +209,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testReplaceRegion_06() throws Exception {
+	@Test public void testReplaceRegion_06() throws Exception {
 		ICompletionProposal[] proposals = newBuilder()
 			.appendNl("java.util.HashSet {")
 			.appendNl("all =java.util.ArrayList {}")
@@ -218,7 +227,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		}
 	}
 	
-	public void testCompleteVarKeyword_01() throws Exception {
+	@Test public void testCompleteVarKeyword_01() throws Exception {
 		ContentAssistProcessorTestBuilder builder = newBuilder();
 		ICompletionProposal[] proposals = builder.computeCompletionProposals();
 		for(ICompletionProposal proposal: proposals) {
@@ -228,7 +237,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
 	}
 	
-	public void testCompleteVarKeyword_02() throws Exception {
+	@Test public void testCompleteVarKeyword_02() throws Exception {
 		ContentAssistProcessorTestBuilder builder = newBuilder().append("var");
 		ICompletionProposal[] proposals = builder.computeCompletionProposals();
 		for(ICompletionProposal proposal: proposals) {
@@ -238,7 +247,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
 	}
 	
-	public void testCompleteVarKeyword_03() throws Exception {
+	@Test public void testCompleteVarKeyword_03() throws Exception {
 		ContentAssistProcessorTestBuilder builder = newBuilder().append("var foo = ''");
 		ICompletionProposal[] proposals = builder.computeCompletionProposals();
 		for(ICompletionProposal proposal: proposals) {
@@ -248,7 +257,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 		fail("Missing proposal: 'var'; got: " + builder.toString(proposals));
 	}
 	
-	public void testCompleteStringLiteral_01() throws Exception {
+	@Test public void testCompleteStringLiteral_01() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = ' ")
@@ -256,7 +265,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "'");
 	}
 	
-	public void testCompleteStringLiteral_02() throws Exception {
+	@Test public void testCompleteStringLiteral_02() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = ' ${ ")
@@ -264,7 +273,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"message");
 	}
 	
-	public void testCompleteStringLiteral_03() throws Exception {
+	@Test public void testCompleteStringLiteral_03() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = ' $")
@@ -272,7 +281,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "'");
 	}
 	
-	public void testCompleteStringLiteral_04() throws Exception {
+	@Test public void testCompleteStringLiteral_04() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" ")
@@ -280,7 +289,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "\"");
 	}
 	
-	public void testCompleteStringLiteral_05() throws Exception {
+	@Test public void testCompleteStringLiteral_05() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" ${ ")
@@ -288,7 +297,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"message");
 	}
 	
-	public void testCompleteStringLiteral_06() throws Exception {
+	@Test public void testCompleteStringLiteral_06() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" $")
@@ -296,7 +305,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "\"");
 	}
 	
-	public void testCompleteStringLiteral_07() throws Exception {
+	@Test public void testCompleteStringLiteral_07() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" $\"")
@@ -304,7 +313,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "\"");
 	}
 	
-	public void testCompleteStringPropertyReference_01() throws Exception {
+	@Test public void testCompleteStringPropertyReference_01() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" ${ message ")
@@ -312,7 +321,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"}");
 	}
 	
-	public void testCompleteStringPropertyReference_02() throws Exception {
+	@Test public void testCompleteStringPropertyReference_02() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" ${ message")
@@ -320,7 +329,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"message", "}");
 	}
 	
-	public void testCompleteStringPropertyReference_03() throws Exception {
+	@Test public void testCompleteStringPropertyReference_03() throws Exception {
 		newBuilder()
 			.appendNl("var message = 'zonk'")
 			.append("var other = \" ${ message}")
@@ -328,14 +337,14 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 					"${", "}", "\"");
 	}
 	
-	public void testCompleteProperty_01() throws Exception {
+	@Test public void testCompleteProperty_01() throws Exception {
 		newBuilder()
 		.appendNl("StringBuilder {")
 		.assertText(
 				"length", "}" );
 	}
 	
-	public void testCompleteProperty_02() throws Exception {
+	@Test public void testCompleteProperty_02() throws Exception {
 		newBuilder()
 		.appendNl("StringBuilder {")
 		.append("len")
@@ -343,7 +352,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 				"length", "=" );
 	}
 	
-	public void testCompletePropertyValue_01() throws Exception {
+	@Test public void testCompletePropertyValue_01() throws Exception {
 		newBuilder()
 		.appendNl("var zonk = '1'")
 		.appendNl("StringBuilder {")
@@ -352,7 +361,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
 	}
 	
-	public void testCompletePropertyValue_02() throws Exception {
+	@Test public void testCompletePropertyValue_02() throws Exception {
 		newBuilder()
 		.appendNl("var zonk = '1'")
 		.appendNl("StringBuilder {")
@@ -365,10 +374,6 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest implem
 	@Override
 	protected ContentAssistProcessorTestBuilder newBuilder() throws Exception {
 		return super.newBuilder().appendNl("module org.my.testmodel");
-	}
-
-	public IJavaProject getJavaProject(ResourceSet resourceSet) {
-		return javaProjectForTestProvider.getJavaProject(resourceSet);
 	}
 
 }

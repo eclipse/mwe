@@ -9,6 +9,7 @@
 package org.eclipse.emf.mwe2.language.tests.parser;
 
 import org.eclipse.xtext.ParserRule;
+import org.junit.Test;
 
 public class FQNTest extends AbstractParserTest {
 
@@ -17,35 +18,35 @@ public class FQNTest extends AbstractParserTest {
 		return getGrammarAccess().getFQNRule();
 	}
 	
-	public void testID() {
+	@Test public void testID() {
 		parseSuccessfully("Id");
 		parseSuccessfully("^Id");
 	}
 	
-	public void testFQN() {
+	@Test public void testFQN() {
 		parseSuccessfully("Id.Id");
 		parseSuccessfully("^Id.^Id");
 	}
 	
-	public void testMissingLastSegment() {
+	@Test public void testMissingLastSegment() {
 		parseWithErrors("Id.", 1);
 	}
 	
-	public void testDoubleDotWildcard() {
+	@Test public void testDoubleDotWildcard() {
 		parseWithErrors("Id..*", 1);
 	}
 	
-	public void testDoubleDot() {
+	@Test public void testDoubleDot() {
 		parseWithErrors("Id..",1);
 	}
 	
-	public void testWithWS() {
+	@Test public void testWithWS() {
 		parseSuccessfully(" Id ");
 		parseSuccessfully(" Id . Id ");
 		parseSuccessfully(" Id .\nId ");
 	}
 	
-	public void testWithComments() {
+	@Test public void testWithComments() {
 		parseSuccessfully("//comment \n Id ");
 		parseSuccessfully("/* comment */ Id . // comment \n Id ");
 	}

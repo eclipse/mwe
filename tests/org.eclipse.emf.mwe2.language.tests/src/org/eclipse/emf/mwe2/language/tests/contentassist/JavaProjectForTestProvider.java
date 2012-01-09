@@ -5,16 +5,18 @@
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *******************************************************************************/
-package org.eclipse.emf.mwe2.language.tests;
+package org.eclipse.emf.mwe2.language.tests.contentassist;
 
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.xtext.ui.junit.util.JavaProjectSetupUtil;
+import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
+import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-public class JavaProjectForTestProvider {
+@SuppressWarnings("restriction")
+public class JavaProjectForTestProvider implements IJavaProjectProvider {
 
 	private static IJavaProject javaProject;
 	

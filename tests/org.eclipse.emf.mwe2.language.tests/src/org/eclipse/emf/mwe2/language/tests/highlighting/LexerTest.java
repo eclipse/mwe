@@ -24,9 +24,10 @@ import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.junit.Test;
 
 @SuppressWarnings("restriction") 
 public class LexerTest extends AbstractXtextTests {
@@ -40,7 +41,7 @@ public class LexerTest extends AbstractXtextTests {
 	}
 	
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new UiTestSetup() {
 			@Override
@@ -57,11 +58,11 @@ public class LexerTest extends AbstractXtextTests {
 		tokenDefProvider = get(ITokenDefProvider.class);
 	}
 	
-	public void testEmptyLiteral() {
+	@Test public void testEmptyLiteral() {
 		parseStringLiteral("");
 	}
 	
-	public void testKeywords() {
+	@Test public void testKeywords() {
 		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(getGrammarAccess().getGrammar(), false);
 		while(iterator.hasNext()) {
 			EObject next = iterator.next();
@@ -77,33 +78,33 @@ public class LexerTest extends AbstractXtextTests {
 		}
 	}
 	
-	public void testKeywordPrefixes() {
+	@Test public void testKeywordPrefixes() {
 		parseStringLiteral("$",	"impo",	"/");
 	}
 	
-	public void testComments() {
+	@Test public void testComments() {
 		parseStringLiteral("// something\n", "/* something */");
 	}
 	
-	public void testEscapedComments() {
+	@Test public void testEscapedComments() {
 		parseStringLiteral("\\// something", "\\/* something");
 	}
 	
-	public void testWS() {
+	@Test public void testWS() {
 		parseStringLiteral(" \\n\\r\\t", " import ");
 	}
 	
-	public void testAnyChar() {
+	@Test public void testAnyChar() {
 		parseStringLiteral("*/", "#", "/");
 	}
 	
-	public void testComplex() {
+	@Test public void testComplex() {
 		parseStringLiteral(
 				" import var id.id.* ", 
 				" \\${ something . .* } ");
 	}
 	
-	public void testReference() {
+	@Test public void testReference() {
 		parseStringLiteral(
 				"${something}", 
 				"${ something }", 
@@ -111,17 +112,17 @@ public class LexerTest extends AbstractXtextTests {
 				"${something.\nsomething // comment \n}");
 	}
 	
-	public void testReferences() {
+	@Test public void testReferences() {
 		parseStringLiteral(
 				"${something } ${ something.else}", 
 				"${something}${else}");
 	}
 	
-	public void testIncompleteReference() {
+	@Test public void testIncompleteReference() {
 		parseStringLiteral("${}", "${", "${something", "${something.");
 	}
 	
-	public void testMixed() {
+	@Test public void testMixed() {
 		parseStringLiteral("import${something}", "$${something}", " ${something}}", "{${something}$");
 	}
 	

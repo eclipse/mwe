@@ -13,21 +13,22 @@ import java.util.ArrayList;
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
+import org.junit.Test;
 
 public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new TestSetup());
 	}
 		
-	public void testSimple() throws Exception {
+	@Test public void testSimple() throws Exception {
 		ArrayList<?> m  = (ArrayList<?>) getRoot("module foo.Bar java.util.ArrayList{}");
 		assertNotNull(m);
 	}
 	
-	public void testComplex_1() throws Exception {
+	@Test public void testComplex_1() throws Exception {
 		String mweString = "module foo.Bar \n" +
 				"import "+ComponentA.class.getName()+"\n" +
 			     "ComponentA : a{\n" +
@@ -40,7 +41,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("foo", result.getY().get(0));
 	}
 
-	public void testComplex_2() throws Exception {
+	@Test public void testComplex_2() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var baz = 'b'\n" +
@@ -59,7 +60,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("b", result.getX().getY().get(1));
 	}
 	
-	public void testComplex_3() throws Exception {
+	@Test public void testComplex_3() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var baz = 'b'\n" +
@@ -76,7 +77,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("b", result.getX().getY().get(0));
 	}
 	
-	public void testFactory_3() throws Exception {
+	@Test public void testFactory_3() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentAFactory.class.getName()+"\n" +
 		"var baz = 'b'\n" +
@@ -91,7 +92,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("bar", result.getY().get(1));
 	}
 	
-	public void testQualifiedName() throws Exception {
+	@Test public void testQualifiedName() throws Exception {
 		String mweString = "module foo.Bar \n" +
 			"import "+ComponentA.class.getName()+"\n" +
 			"var a.b = 'foo'" +
@@ -103,7 +104,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("foo", result.getY().get(0));
 	}
 	
-	public void testAutoInject_01() throws Exception {
+	@Test public void testAutoInject_01() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var y = 'y'" +
@@ -116,7 +117,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("z", result.getZ());
 	}
 	
-	public void testAutoInject_02() throws Exception {
+	@Test public void testAutoInject_02() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var y = 'y'" +
@@ -132,7 +133,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("z", result.getZ());
 	}
 	
-	public void testAutoInject_Bug347132_01() throws Exception {
+	@Test public void testAutoInject_Bug347132_01() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var y = 'variableY'" +
@@ -148,7 +149,7 @@ public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
 		assertEquals("z", result.getZ());
 	}
 	
-	public void testAutoInject_Bug347132_02() throws Exception {
+	@Test public void testAutoInject_Bug347132_02() throws Exception {
 		String mweString = "module foo.Bar \n" +
 		"import "+ComponentA.class.getName()+"\n" +
 		"var y = 'variableY'" +

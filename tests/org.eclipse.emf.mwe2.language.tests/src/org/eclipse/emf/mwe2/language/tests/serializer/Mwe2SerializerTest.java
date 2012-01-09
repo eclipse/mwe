@@ -10,8 +10,9 @@ package org.eclipse.emf.mwe2.language.tests.serializer;
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.junit.AbstractXtextTests;
-import org.eclipse.xtext.junit.serializer.SerializerTester;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
+import org.eclipse.xtext.junit4.serializer.SerializerTester;
+import org.junit.Test;
 
 /**
  * @author Moritz Eysholdt - Initial contribution and API
@@ -20,13 +21,13 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 	private SerializerTester tester;
 
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new Mwe2StandaloneSetup());
 		tester = get(SerializerTester.class);
 	}
 
-	public void testSimple() throws Exception {
+	@Test public void testSimple() throws Exception {
 		StringBuilder module = new StringBuilder();
 		module.append("module foo\n");
 		module.append("org.eclipse.emf.mwe2.runtime.workflow.Workflow {}");
@@ -34,7 +35,7 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 		tester.assertSerializeWithoutNodeModel(module.toString());
 	}
 
-	public void testIntegration() throws Exception {
+	@Test public void testIntegration() throws Exception {
 		StringBuilder module = new StringBuilder();
 		module.append("module foo\n");
 		module.append("var bool1 = true\n");
@@ -52,7 +53,7 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 		tester.assertSerializeWithoutNodeModel(module.toString());
 	}
 
-	public void testStrings() throws Exception {
+	@Test public void testStrings() throws Exception {
 		StringBuilder module = new StringBuilder();
 		module.append("module foo\n");
 		module.append("var bool1 = true\n");
@@ -68,7 +69,7 @@ public class Mwe2SerializerTest extends AbstractXtextTests {
 		tester.assertSerializeWithoutNodeModel(module.toString());
 	}
 
-	public void testComponents() throws Exception {
+	@Test public void testComponents() throws Exception {
 		StringBuilder module = new StringBuilder();
 		module.append("module foo\n");
 		module.append("org.eclipse.emf.mwe2.runtime.workflow.Workflow {\n");

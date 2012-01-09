@@ -12,10 +12,11 @@ import java.util.List;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.junit.Test;
 
 import com.google.common.collect.Lists;
 
@@ -30,13 +31,13 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 	private IResourceDescription.Manager manager;
 
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(TestSetup.class);
 		manager = get(IResourceDescription.Manager.class);
 	}
 	
-	public void testNoProperties() throws Exception {
+	@Test public void testNoProperties() throws Exception {
 		IResourceDescription description = getDescription("");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(1, exported.size());
@@ -45,7 +46,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertEquals(0, module.getUserDataKeys().length);
 	}
 	
-	public void testMandatoryExplicitString() throws Exception {
+	@Test public void testMandatoryExplicitString() throws Exception {
 		IResourceDescription description = getDescription("var String zonk");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -55,7 +56,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertEquals(MweResourceDescriptionStrategy.MANDATORY_TRUE, zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testMandatoryImplicitString() throws Exception {
+	@Test public void testMandatoryImplicitString() throws Exception {
 		IResourceDescription description = getDescription("var zonk");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -65,7 +66,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertEquals(MweResourceDescriptionStrategy.MANDATORY_TRUE, zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testExplicitString() throws Exception {
+	@Test public void testExplicitString() throws Exception {
 		IResourceDescription description = getDescription("var String zonk = ''");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -75,7 +76,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testImplicitString() throws Exception {
+	@Test public void testImplicitString() throws Exception {
 		IResourceDescription description = getDescription("var zonk = ''");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -85,7 +86,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	} 
 	
-	public void testMandatoryExplicitBoolean() throws Exception {
+	@Test public void testMandatoryExplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var boolean zonk");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -95,7 +96,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertEquals(MweResourceDescriptionStrategy.MANDATORY_TRUE, zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testImplicitBoolean() throws Exception {
+	@Test public void testImplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var zonk = true");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -105,7 +106,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testExplicitBoolean() throws Exception {
+	@Test public void testExplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var boolean zonk = true");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -115,7 +116,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testImplicitComponent() throws Exception {
+	@Test public void testImplicitComponent() throws Exception {
 		IResourceDescription description = getDescription("var zonk = @ /* comment */ org . foo . Bar {}");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -125,7 +126,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testImplicitClass() throws Exception {
+	@Test public void testImplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var zonk = java.util.ArrayList {}");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -135,7 +136,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testExplicitClass() throws Exception {
+	@Test public void testExplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var java.util.List zonk = java.util. /* comment */ ArrayList {}");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -145,7 +146,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertNull(zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testMandatoryExplicitClass() throws Exception {
+	@Test public void testMandatoryExplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var java.util.List zonk");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(2, exported.size());
@@ -155,7 +156,7 @@ public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
 		assertEquals(MweResourceDescriptionStrategy.MANDATORY_TRUE, zonk.getUserData(MweResourceDescriptionStrategy.DECLARED_PROPERTY__MANDATORY));
 	}
 	
-	public void testPropertyReference() throws Exception {
+	@Test public void testPropertyReference() throws Exception {
 		IResourceDescription description = getDescription("var mandatory var zonk = mandatory");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
 		assertEquals(3, exported.size());

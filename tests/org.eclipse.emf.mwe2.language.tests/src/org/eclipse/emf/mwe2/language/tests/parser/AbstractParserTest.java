@@ -14,7 +14,7 @@ import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.junit.AbstractXtextTests;
+import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.parser.IParseResult;
 
 import com.google.common.collect.Iterables;
@@ -24,7 +24,7 @@ public abstract class AbstractParserTest extends AbstractXtextTests {
 	private Mwe2Parser parser;
 
 	@Override
-	protected void setUp() throws Exception {
+	public void setUp() throws Exception {
 		super.setUp();
 		with(new Mwe2StandaloneSetup());
 		parser = get(Mwe2Parser.class);
