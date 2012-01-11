@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Promoter / Publisher" default="publish.build">
-	<property name="saved." value="promote.properties" />
+	<property name="promoter.properties.file.name" value="promote.properties" />
 	<property name="publisher.properties.file.name" value="publisher.properties" />
 
 	<target name="-setup.promoter">
