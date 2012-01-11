@@ -19,7 +19,7 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
-			<entry key="mwe.build.path" value="${publisher.version}/${hudson.build.id}" />
+			<entry key="mwe.build.path" value="${publisher.version}/${build.id}" />
 		</propertyfile>
 
 		<!-- diagnostics
