@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Promoter / Publisher" default="publish.build">
-	<property name="promoter.properties.file.name" value="promote.properties" />
+	<property name="saved." value="promote.properties" />
 	<property name="publisher.properties.file.name" value="publisher.properties" />
 
 	<target name="-setup.promoter">
@@ -225,7 +225,7 @@
 
 		<!-- copy mwe artifacts-->
 		<copy todir="${build.drop.directory}">
-			<fileset dir="${downloads.area}/downloads/drops/${mwe.build.path}">
+			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}">
 				<type type="file" />
 			</fileset>
 		</copy>
