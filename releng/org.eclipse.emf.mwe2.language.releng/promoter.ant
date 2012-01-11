@@ -13,11 +13,19 @@
 		<property name="build.id" value="" />
 		<property name="hudson.build.id" value="" />
 
+		<!-- take care about trailing slash in ${mwe.p2.repository} -->
+		<condition property="mwe.properties.url.suffix" value="../promote.properties" else="/../promote.properties">
+			<matches string="${mwe.p2.repository}" pattern="^.*/$" />
+		</condition>
+		<!-- Load  mwe properties -->
+		<property prefix="mwe.saved." url="${mwe.p2.repository}${mwe.properties.url.suffix}" />
+
 		<propertyfile file="${promoter.properties.file}" comment="Promoter script properties">
 			<entry key="java.home" value="${java.home}" />
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
+			<entry key="mwe.build.path" value="${mwe.saved.mwe.build.path}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -118,6 +126,8 @@
 			</syspropertyset>
 			<arg value="-data" />
 			<arg value="${publisher.workspace}" />
+			<arg value="-configuration" />
+			<arg value="${publisher.workspace}/configuration" />
 			<arg value="-application" />
 			<arg value="org.eclipse.ant.core.antRunner" />
 			<arg value="-buildfile" />
@@ -202,15 +212,20 @@
 				<filename name="**/*.xml" />
 			</fileset>
 		</copy>
-		
-		<!-- copy javadoc -->
-		<mkdir dir="${build.drop.directory}/javadoc" />
-		<copy todir="${build.drop.directory}/javadoc">
-			<fileset dir="${testresults.directory}">
-				<filename name="**/*" />
+
+		<!-- if the build id starts with S or R build.stable property will be set -->
+		<condition property="build.stable" value="true">
+			<matches string="${saved.build.id}" pattern="[S|R](d)*" />
+		</condition>
+
+		<antcall target="-publish.javadoc" inheritall="true" />
+
+		<!-- copy mwe artifacts-->
+		<copy todir="${build.drop.directory}">
+			<fileset dir="${downloads.area}/downloads/drops/${mwe.build.path}">
+				<type type="file" />
 			</fileset>
 		</copy>
-
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
@@ -282,6 +297,16 @@
 		<chgrp group="${group.owner}" type="both" verbose="true">
 			<fileset refid="change.group.owner.resources" />
 		</chgrp>
+	</target>
+
+	<target name="-publish.javadoc" if="build.stable">
+		<!-- copy javadoc -->
+		<echo>Unzipping javadoc</echo>
+		<unzip dest="${downloads.area}/javadoc/${version}" overwrite="true">
+			<fileset dir="${javadoc.directory}">
+				<filename name="javadoc.zip" />
+			</fileset>
+		</unzip>
 	</target>
 
 	<target name="echo-status" if="alreadyPromoted">

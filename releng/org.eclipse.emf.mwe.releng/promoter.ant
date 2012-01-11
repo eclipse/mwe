@@ -6,6 +6,7 @@
 	<target name="-setup.promoter">
 		<property name="promoter.setup.directory" location="${sp:output}" />
 		<property name="promoter.properties.file" location="${promoter.setup.directory}/${promoter.properties.file.name}" />
+		<property prefix="publisher." file="${publisher.properties.file.name}" />
 
 		<mkdir dir="${promoter.setup.directory}" />
 
@@ -18,6 +19,7 @@
 			<entry key="eclipse.home" value="${eclipse.home}" />
 			<entry key="build.id" value="${build.id}" />
 			<entry key="hudson.build.id" value="${hudson.build.id}" />
+			<entry key="mwe.build.path" value="${publisher.version}/${hudson.build.id}" />
 		</propertyfile>
 
 		<!-- diagnostics
@@ -118,6 +120,8 @@
 			</syspropertyset>
 			<arg value="-data" />
 			<arg value="${publisher.workspace}" />
+			<arg value="-configuration" />
+			<arg value="${publisher.workspace}/configuration" />
 			<arg value="-application" />
 			<arg value="org.eclipse.ant.core.antRunner" />
 			<arg value="-buildfile" />
@@ -164,24 +168,21 @@
 		<property name="packages.directory" location="${build.root}/${packages.base}" />
 		<property name="testresults.directory" location="${build.root}/${tests.base}" />
 
-		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/${saved.build.id}" />
+		<property name="build.drop.directory" location="${downloads.area}/downloads/drops/${version}/_${saved.build.id}" />
+
 		<available file="${build.drop.directory}" type="dir" property="alreadyPromoted" />
 		<antcall target="publish" inheritall="true" />
 		<antcall target="echo-status" inheritall="true" />
 	</target>
 
 	<target name="publish" unless="alreadyPromoted">
+		<echo>Remove old  nightly builds</echo>
+		<antcall target="-cleanup.nightly">
+			<param name="working_dir" value="${downloads.area}/downloads/drops/${version}/" />
+		</antcall>
+
 		<!-- will fail if already exists -->
 		<mkdir dir="${build.drop.directory}" />
-
-		<echo>Remove existing nightly builds</echo>
-		<delete verbose="true">
-			<fileset dir="${downloads.area}/downloads/drops/${version}/">
-				<type type="dir" />
-				<filename name="N*" />
-			</fileset>
-		</delete>
-
 		<!-- copy zip packages -->
 		<copy todir="${build.drop.directory}">
 			<fileset dir="${packages.directory}">
@@ -230,6 +231,49 @@
 
 		<antcall target="-publish.build.repository" inheritall="true" />
 	</target>
+
+	<target name="-cleanup.nightly" if="working_dir">
+		<property name="delete_pattern" value="_N*" />
+		<property name="keep_count" value="4" />
+		<echo>Keep ${keep_count} most recent builds</echo>
+
+		<!-- add newest (sorted by name) folderst to keep.dirs.res_id resources collection -->
+		<resources id="keep.dirs.res_id">
+			<last count="${keep_count}">
+				<sort>
+					<dirset dir="${working_dir}" includes="${delete_pattern}" />
+					<name />
+				</sort>
+			</last>
+		</resources>
+
+		<!-- keep only last segment (flatten),
+						convert to comma separated string with trailing slash (regexpmapper)
+						 N201101012335/,N201101012336/-->
+		<pathconvert property="keep.dirs.paths" pathsep="," refid="keep.dirs.res_id">
+			<chainedmapper>
+				<flattenmapper />
+				<regexpmapper from="^(.*)$$" to="\1/" />
+			</chainedmapper>
+		</pathconvert>
+		<echo>Excluded from cleanup: ${keep.dirs.paths}</echo>
+
+		<condition property="hasFoldersToKeep" value="true">
+			<not>
+				<equals arg1="${keep.dirs.paths}" arg2="" />
+			</not>
+		</condition>
+		<antcall target="-doDelete" inheritall="true" inheritrefs="true" />
+	</target>
+
+	<!-- recursive delete folders -->
+	<target name="-doDelete" if="hasFoldersToKeep">
+		<echo>Deleting all ${delete_pattern} but: ${keep.dirs.paths}</echo>
+		<delete includeemptydirs="true">
+			<fileset dir="${working_dir}" includes="${delete_pattern}/" excludes="${keep.dirs.paths}" />
+		</delete>
+	</target>
+
 
 	<target name="-publish.build.repository" if="composite.repository.base">
 
