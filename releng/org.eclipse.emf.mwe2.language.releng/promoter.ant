@@ -90,7 +90,7 @@
 
 	<target name="publish.build">
 		<fail message="build.root property must be defined" unless="build.root" />
-		<property file="${publisher.properties.file.name}" />
+		<property file="${build.root}/${publisher.properties.file.name}" />
 		<property name="property.file.location" location="${build.root}/${promoter.properties.file.name}" />
 		<property name="property.load.prefix" value="saved." />
 
@@ -162,8 +162,8 @@
 				</not>
 			</condition>
 		</fail>
-		<property file="${publisher.properties.file.name}" />
 		<fail message="build.root property must be defined" unless="build.root" />
+		<property file="${build.root}/${publisher.properties.file.name}" />
 		<fail message="downloads.area property must be defined" unless="downloads.area" />
 
 		<!-- defaults -->
@@ -225,8 +225,8 @@
 
 		<!-- copy mwe artifacts-->
 		<copy todir="${build.drop.directory}">
-			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}">
-				<type type="file" />
+			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}/">
+				<include name="**/*" />
 			</fileset>
 		</copy>
 
