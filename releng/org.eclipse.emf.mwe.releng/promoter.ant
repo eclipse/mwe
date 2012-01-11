@@ -285,13 +285,13 @@
 		 -->
 		<property name="build.repository.directory" location="${composite.repository.directory}" />
 
-		<deltree dir="${build.repository.directory}/mwe" />
+		<delete dir="${build.repository.directory}/mwe" />
 		<unzip dest="${build.repository.directory}/mwe">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-Update*.zip" />
 			</fileset>
 		</unzip>
-		<deltree dir="${build.repository.directory}/mwe2" />
+		<delete dir="${build.repository.directory}/mwe2" />
 		<!--<unzip dest="${build.repository.directory}/mwe2">
 			<fileset dir="${packages.directory}">
 				<filename name="*mwe-2-Update*.zip" />

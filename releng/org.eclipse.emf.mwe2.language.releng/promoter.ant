@@ -267,7 +267,7 @@
 				 -->
 		<property name="build.repository.directory" location="${composite.repository.directory}" />
 
-		<deltree dir="${build.repository.directory}/mwe2lang" />
+		<delete dir="${build.repository.directory}/mwe2lang" />
 		<unzip dest="${build.repository.directory}/mwe2lang">
 			<fileset dir="${packages.directory}">
 				<filename name="*-Update*.zip" />
