@@ -200,6 +200,17 @@
 				<filename name="*.zip" />
 			</fileset>
 		</copy>
+
+		<!-- copy and rename mwe artifacts-->
+		<copy todir="${build.drop.directory}">
+			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}/">
+				<include name="**/*" />
+			</fileset>
+			<filtermapper>
+				<replaceregex pattern="(emft-mwe-.*)-[NMSR]\d{12}.zip" replace="\1-${saved.build.id}.zip" flags="gi" />
+			</filtermapper>
+		</copy>
+		<echo file="${build.drop.directory}/mwe.version">used.mwe.version=${saved.mwe.build.path}</echo>
 		<!-- genereate md5 checksums -->
 		<checksum algorithm="MD5" fileext=".md5" format="MD5SUM">
 			<fileset dir="${build.drop.directory}" />
@@ -222,13 +233,6 @@
 		<buckminster.substitute value="${version}" pattern="^(\d+\.\d+)\.\d+.*$" replacement="$$1" property="base.version" />
 
 		<antcall target="-publish.javadoc" inheritall="true" />
-
-		<!-- copy mwe artifacts-->
-		<copy todir="${build.drop.directory}">
-			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}/">
-				<include name="**/*" />
-			</fileset>
-		</copy>
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
 			<or>
