@@ -26,6 +26,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.eclipse.emf.mwe.core.monitor.ProgressMonitor2;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 
 /**
@@ -146,9 +147,8 @@ public class WorkflowRunner {
 					throw new ClassNotFoundException("Didn't find class " + monitorOptValues[0]);
 				}
 				monitor = (ProgressMonitor) clazz.newInstance();
-				final Method method = monitor.getClass().getMethod("init", new Class[] { String[].class });
-				if (method != null) {
-					method.invoke(monitor, new Object[] { monitorOptValues });
+				if (monitor instanceof ProgressMonitor2) {
+					((ProgressMonitor2)monitor).init(monitorOptValues);
 				}
 		}
 
