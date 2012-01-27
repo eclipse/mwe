@@ -205,7 +205,7 @@
 				<exclude name="**/*.md5" />
 			</fileset>
 			<filtermapper>
-				<replaceregex pattern="(emft-mwe-.*)-[NMSR]\d{12}.zip" replace="\1-${saved.build.id}.zip" flags="gi" />
+				<replaceregex pattern="(emft-mwe-.*)-[NIMSR]\d{12}.zip" replace="\1-${saved.build.id}.zip" flags="gi" />
 			</filtermapper>
 		</copy>
 
@@ -252,7 +252,7 @@
 			<matches pattern="^N" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="milestones/${saved.build.id}">
-			<matches pattern="^[MS]" string="${saved.build.id}" />
+			<matches pattern="^[IMS]" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="releases/${saved.build.id}">
 			<matches pattern="^R" string="${saved.build.id}" />
