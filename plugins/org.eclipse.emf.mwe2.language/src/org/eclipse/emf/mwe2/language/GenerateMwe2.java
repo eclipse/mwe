@@ -53,7 +53,8 @@ public class GenerateMwe2 {
 			{
 				addBean(new StandaloneSetup() {
 					{
-						setPlatformUri(runtimeProject+"/../../..");
+						setPlatformUri(runtimeProject+"/../..");
+						setPlatformUri(runtimeProject+"/../../../org.eclipse.xtext");
 					}
 				});
 

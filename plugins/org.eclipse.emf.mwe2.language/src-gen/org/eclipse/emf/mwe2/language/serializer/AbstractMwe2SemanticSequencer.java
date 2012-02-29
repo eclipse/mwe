@@ -130,10 +130,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (feature=[JvmIdentifiableElement|FQN] value=Value)
-	 *
-	 * Features:
-	 *    feature[1, 1]
-	 *    value[1, 1]
 	 */
 	protected void sequence_Assignment(EObject context, Assignment semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -143,9 +139,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (isTrue?='true'?)
-	 *
-	 * Features:
-	 *    isTrue[0, 1]
 	 */
 	protected void sequence_BooleanLiteral(EObject context, BooleanLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -155,15 +148,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     ((type=[JvmType|FQN] | module=[Module|FQN])? name=FQN? autoInject?='auto-inject'? assignment+=Assignment*)
-	 *
-	 * Features:
-	 *    type[0, 1]
-	 *         EXCLUDE_IF_SET module
-	 *    name[0, 1]
-	 *    module[0, 1]
-	 *         EXCLUDE_IF_SET type
-	 *    autoInject[0, 1]
-	 *    assignment[0, *]
 	 */
 	protected void sequence_Component(EObject context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -173,11 +157,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (type=[JvmType|FQN]? name=FQN default=Value?)
-	 *
-	 * Features:
-	 *    type[0, 1]
-	 *    name[1, 1]
-	 *    default[0, 1]
 	 */
 	protected void sequence_DeclaredProperty(EObject context, DeclaredProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -187,9 +166,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     importedNamespace=ImportedFQN
-	 *
-	 * Features:
-	 *    importedNamespace[1, 1]
 	 */
 	protected void sequence_Import(EObject context, Import semanticObject) {
 		if(errorAcceptor != null) {
@@ -206,12 +182,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     (canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent)
-	 *
-	 * Features:
-	 *    canonicalName[1, 1]
-	 *    imports[0, *]
-	 *    declaredProperties[0, *]
-	 *    root[1, 1]
 	 */
 	protected void sequence_Module(EObject context, Module semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -221,9 +191,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     value=ConstantValue
-	 *
-	 * Features:
-	 *    value[1, 1]
 	 */
 	protected void sequence_PlainString(EObject context, PlainString semanticObject) {
 		if(errorAcceptor != null) {
@@ -240,9 +207,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     referable=[DeclaredProperty|FQN]
-	 *
-	 * Features:
-	 *    referable[1, 1]
 	 */
 	protected void sequence_PropertyReferenceImpl(EObject context, PropertyReference semanticObject) {
 		if(errorAcceptor != null) {
@@ -259,9 +223,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     referable=[Referrable|FQN]
-	 *
-	 * Features:
-	 *    referable[1, 1]
 	 */
 	protected void sequence_Reference(EObject context, Reference semanticObject) {
 		if(errorAcceptor != null) {
@@ -278,15 +239,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	/**
 	 * Constraint:
 	 *     ((type=[JvmType|FQN] | module=[Module|FQN]) name=FQN? autoInject?='auto-inject'? assignment+=Assignment*)
-	 *
-	 * Features:
-	 *    type[0, 1]
-	 *         EXCLUDE_IF_SET module
-	 *    name[0, 1]
-	 *    module[0, 1]
-	 *         EXCLUDE_IF_SET type
-	 *    autoInject[0, 1]
-	 *    assignment[0, *]
 	 */
 	protected void sequence_RootComponent(EObject context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -299,11 +251,6 @@ public class AbstractMwe2SemanticSequencer extends AbstractSemanticSequencer {
 	 *         (begin=''' parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=''') | 
 	 *         (begin='"' parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end='"')
 	 *     )
-	 *
-	 * Features:
-	 *    begin[0, 2]
-	 *    parts[0, *]
-	 *    end[0, 2]
 	 */
 	protected void sequence_StringLiteral(EObject context, StringLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
