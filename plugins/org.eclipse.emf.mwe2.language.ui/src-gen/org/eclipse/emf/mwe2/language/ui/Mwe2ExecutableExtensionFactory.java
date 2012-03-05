@@ -8,6 +8,8 @@ import org.osgi.framework.Bundle;
 
 import com.google.inject.Injector;
 
+import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
+
 /**
  * This class was generated. Customizations should only happen in a newly
  * introduced subclass. 
@@ -16,12 +18,12 @@ public class Mwe2ExecutableExtensionFactory extends AbstractGuiceAwareExecutable
 
 	@Override
 	protected Bundle getBundle() {
-		return org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator.getInstance().getBundle();
+		return Mwe2Activator.getInstance().getBundle();
 	}
 	
 	@Override
 	protected Injector getInjector() {
-		return org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator.getInstance().getInjector("org.eclipse.emf.mwe2.language.Mwe2");
+		return Mwe2Activator.getInstance().getInjector(Mwe2Activator.ORG_ECLIPSE_EMF_MWE2_LANGUAGE_MWE2);
 	}
 	
 }
