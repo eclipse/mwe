@@ -43,9 +43,6 @@ public class Mwe2Runner {
 	private Mwe2ExecutionEngine engine;
 
 	@Inject
-	private Provider<ResourceSet> resourceSetProvider;
-
-	@Inject
 	private Provider<IWorkflowContext> ctxProvider;
 
 	@Inject
@@ -56,7 +53,8 @@ public class Mwe2Runner {
 	}
 
 	public void run(URI createURI, Map<String, String> params, IWorkflowContext ctx) {
-		Resource resource = resourceSetProvider.get().getResource(createURI, true);
+		ResourceSet resourceSet = getConfiguredResourceSet();
+		Resource resource = resourceSet.getResource(createURI, true);
 		if (resource != null) {
 			if (!resource.getContents().isEmpty()) {
 				EObject eObject = resource.getContents().get(0);
@@ -78,6 +76,13 @@ public class Mwe2Runner {
 		if (module == null) {
 			throw new IllegalStateException("Couldn't find module "+moduleName);
 		}
+		run(module, params, ctx);
+	}
+	
+	public void run(Module module, Map<String, String> params, IWorkflowContext ctx) {
+		if (module == null) {
+			throw new IllegalArgumentException("No module provided ");
+		}
 		EcoreUtil.resolveAll(module);
 		if (!module.eResource().getErrors().isEmpty()) {
 			throw new IllegalStateException(module.eResource().getErrors().toString());
@@ -87,7 +92,7 @@ public class Mwe2Runner {
 		try {
 			object = engine.create(module, actualParams);
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems instantiating module " + moduleName + ": " + e.getMessage(), e);
+			throw new RuntimeException("Problems instantiating module " + module.getCanonicalName() + ": " + e.getMessage(), e);
 		}
 		if (!(object instanceof IWorkflow)) {
 			throw new IllegalArgumentException("The root element must be of type IWorkflow but was '"
@@ -96,7 +101,7 @@ public class Mwe2Runner {
 		try {
 			((IWorkflow) object).run(ctx);
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Problems running workflow " + moduleName + ": " + e.getMessage(), e);
+			throw new RuntimeException("Problems running workflow " + module.getCanonicalName() + ": " + e.getMessage(), e);
 		}
 	}
 
@@ -109,11 +114,7 @@ public class Mwe2Runner {
 	}
 
 	protected Module findModule(String moduleName) {
-		ResourceSet resourceSet = initializer.getInitializedResourceSet(getPathes(), new UriFilter() {
-			public boolean matches(URI uri) {
-				return "mwe2".equalsIgnoreCase(uri.fileExtension());
-			}
-		});
+		ResourceSet resourceSet = getConfiguredResourceSet();
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {
 			Iterable<IEObjectDescription> iterable = desc.getExportedObjects(Mwe2Package.Literals.MODULE,
@@ -123,6 +124,15 @@ public class Mwe2Runner {
 			}
 		}
 		return null;
+	}
+
+	protected ResourceSet getConfiguredResourceSet() {
+		ResourceSet resourceSet = initializer.getInitializedResourceSet(getPathes(), new UriFilter() {
+			public boolean matches(URI uri) {
+				return "mwe2".equalsIgnoreCase(uri.fileExtension());
+			}
+		});
+		return resourceSet;
 	}
 
 	protected List<String> getPathes() {
