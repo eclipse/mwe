@@ -6,12 +6,12 @@ Bundle-Version: 2.3.0.qualifier
 Bundle-Vendor: %Bundle-Vendor
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="2.3.0";visibility:=reexport,
- org.eclipse.emf.mwe2.runtime;bundle-version="2.3.0";visibility:=reexport,
- org.apache.commons.cli;bundle-version="1.0.0",
- com.google.inject;bundle-version="2.0.0",
- org.eclipse.xtext;bundle-version="2.3.0";visibility:=reexport,
- org.eclipse.xtext.common.types;bundle-version="2.3.0",
+Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
+ org.eclipse.emf.mwe2.runtime;visibility:=reexport,
+ org.eclipse.xtext;visibility:=reexport,
+ org.eclipse.xtext.common.types,
+ org.apache.commons.cli,
+ com.google.inject,
  org.eclipse.jdt.launching;bundle-version="3.5.0";resolution:=optional,
  org.eclipse.debug.core;bundle-version="3.5.0";resolution:=optional,
  org.eclipse.debug.ui;bundle-version="3.5.0";resolution:=optional,
@@ -19,6 +19,6 @@ Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="2.3.0";visibility:
  org.eclipse.jdt.core;bundle-version="3.5.0";resolution:=optional,
  org.eclipse.jface;bundle-version="3.5.0";resolution:=optional,
  org.eclipse.ui;bundle-version="3.5.0";resolution:=optional,
- org.eclipse.jdt.debug.ui;resolution:=optional
+ org.eclipse.jdt.debug.ui;bundle-version="3.4.1";resolution:=optional
 Export-Package: org.eclipse.emf.mwe2.launch.runtime
 Import-Package: org.apache.log4j;version="1.2.15"
