@@ -198,7 +198,8 @@
 			</fileset>
 		</copy>
 
-		<!-- copy and rename mwe artifacts-->
+		<!-- copy and rename MWE artifacts-->
+		<echo>Copy MWE artifacts from ${saved.mwe.build.path} to ${build.drop.directory}</echo> 
 		<copy todir="${build.drop.directory}">
 			<fileset dir="${downloads.area}/downloads/drops/${saved.mwe.build.path}/">
 				<include name="**/*" />
