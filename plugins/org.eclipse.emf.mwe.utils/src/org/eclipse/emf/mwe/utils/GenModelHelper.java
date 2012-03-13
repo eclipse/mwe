@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 
 /**
@@ -61,6 +62,10 @@ public class GenModelHelper {
 	public void registerGenModel(GenModel genModel) {
 		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
 		for (GenPackage pkg : collectGenPackages(genModel)) {
+			if (pkg.eIsProxy()) {
+				log.debug("Unresolved proxy for GenPackage "+EcoreUtil.getURI(pkg));
+				continue;
+			}
 			String nsURI = pkg.getEcorePackage().getNsURI();
 			if (nsURI != null) {
 				URI newUri = pkg.eResource().getURI();
