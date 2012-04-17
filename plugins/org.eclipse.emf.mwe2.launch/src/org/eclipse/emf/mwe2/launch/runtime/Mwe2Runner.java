@@ -59,7 +59,7 @@ public class Mwe2Runner {
 			if (!resource.getContents().isEmpty()) {
 				EObject eObject = resource.getContents().get(0);
 				if (eObject instanceof Module) {
-					run(((Module) eObject).getCanonicalName(), params);
+					run(((Module) eObject), params, ctx);
 					return;
 				}
 			}
