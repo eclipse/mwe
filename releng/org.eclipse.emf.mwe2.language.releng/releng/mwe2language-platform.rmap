@@ -6,6 +6,7 @@
 	<rm:property key="xtext.p2.repository" value="${eclipse.download}/modeling/tmf/updates/nightly" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.releng$" searchPathRef="local.releng" />
 	<rm:locator pattern="^org\.eclipse\.xtext(?:\..+)?$" searchPathRef="tmf" />
+	<rm:locator pattern="^org\.eclipse\.xtend\.lib(?:\..+)?$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.eclipse\.(?:xpand|xtend)(?:\..+)?$" searchPathRef="xpand" />
 	<rm:locator pattern="^org\.eclipse\.emf\.(?:mwe|mwe2\.lib|mwe2\.runtime)(?:\..+)?$" searchPathRef="mwe" />
 	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="mwe"/>
