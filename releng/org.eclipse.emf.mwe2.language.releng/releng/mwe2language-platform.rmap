@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="checkout.location" value="${workspace.root}/org.eclipse.emf.mwe.releng/" />
-	<rm:property key="emf.p2.repository" value="{eclipse.download}/modeling/emf/emf/updates/nightly" />
+	<rm:property key="emf.p2.repository" value="${eclipse.download}/modeling/emf/emf/updates/nightly" />
 	<rm:property key="mwe.p2.repository" value="${eclipse.download}/modeling/emft/mwe/updates/nightly" />
 	<rm:property key="xpand.p2.repository" value="${eclipse.download}/modeling/m2t/xpand/updates/nightly" />
 	<rm:property key="xtext.p2.repository" value="${eclipse.download}/modeling/tmf/updates/nightly" />
