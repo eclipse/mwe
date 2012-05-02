@@ -6,7 +6,7 @@ Bundle-SymbolicName: org.eclipse.emf.mwe.utils
 Bundle-Version: 1.2.1.qualifier
 Require-Bundle: org.eclipse.emf.mwe.core,
  org.eclipse.emf.ecore.xmi,
- org.eclipse.emf.codegen.ecore;resolution:=optional
+ org.eclipse.emf.codegen.ecore;resolution:=optional;x-installation:=greedy
 Export-Package: org.eclipse.emf.mwe.utils
 Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
