@@ -17,6 +17,7 @@ import org.eclipse.xtext.generator.builder.BuilderIntegrationFragment;
 import org.eclipse.xtext.generator.exporting.QualifiedNamesFragment;
 import org.eclipse.xtext.generator.formatting.FormatterFragment;
 import org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment;
+import org.eclipse.xtext.generator.junit.Junit4Fragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.ca.ContentAssistParserGeneratorFragment;
 import org.eclipse.xtext.generator.parser.antlr.ex.rt.AntlrGeneratorFragment;
@@ -47,6 +48,7 @@ public class GenerateMwe2 {
 		final String file_extensions = "mwe2";
 		final String projectName = "org.eclipse.emf.mwe2.language";
 		final String runtimeProject = "../"+projectName+"";
+		final String testProject = "../../tests/"+projectName+".tests";
 		final String uiProject = ""+runtimeProject+".ui";
 
 		Workflow workflow = new Workflow() {
@@ -82,11 +84,18 @@ public class GenerateMwe2 {
 						setDirectory(""+runtimeProject+".ui/src-gen");
 					}
 				});
+				
+				addComponent(new DirectoryCleaner() {
+					{
+						setDirectory(""+testProject+".ui/src-gen");
+					}
+				});
 
 				addComponent(new Generator() {
 					{
 						setPathRtProject(runtimeProject);
 						setPathUiProject(uiProject);
+						setPathTestProject(testProject);
 						setProjectNameRt(projectName);
 						setProjectNameUi(""+projectName+".ui");
 
@@ -168,6 +177,8 @@ public class GenerateMwe2 {
 								addFragment(compareFragment);
 								
 								addFragment(new CodetemplatesGeneratorFragment());
+								
+								addFragment(new Junit4Fragment());
 							}
 						});
 					}

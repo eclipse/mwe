@@ -3,15 +3,21 @@ package org.eclipse.emf.mwe2.language.serializer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess.StringLiteralElements;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
+
+import com.google.inject.Inject;
 
 /**
  * @author Moritz Eysholdt - Initial contribution and API
  */
 @SuppressWarnings("restriction")
 public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
+	
+	@Inject
+	private Mwe2GrammarAccess grammarAccess;
 
 	@Override
 	protected void sequence_StringLiteral(EObject context, StringLiteral lit) {
