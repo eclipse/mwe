@@ -11,6 +11,7 @@ package org.eclipse.emf.mwe2.language;
 import org.eclipse.emf.mwe2.language.resource.MweLocationInFileProvider;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
 import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
+import org.eclipse.emf.mwe2.language.scoping.Mwe2StateBasedContainerManager;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
@@ -18,6 +19,7 @@ import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.resource.IContainer.Manager;
 
 import com.google.inject.Provider;
 
@@ -57,6 +59,11 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	
 	public Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
 		return MweResourceDescriptionStrategy.class;
+	}
+	
+	@Override
+	public Class<? extends Manager> bindIContainer$Manager() {
+		return Mwe2StateBasedContainerManager.class;
 	}
 	
 }
