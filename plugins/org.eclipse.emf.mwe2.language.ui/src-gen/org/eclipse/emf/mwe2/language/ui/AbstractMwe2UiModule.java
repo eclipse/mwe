@@ -78,6 +78,11 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 		return org.eclipse.xtext.common.types.ui.refactoring.JvmRefactoringResourceSetProvider.class;
 	}
 
+	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
+	public Class<? extends org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation> bindIJavaSearchParticipation() {
+		return org.eclipse.xtext.common.types.ui.query.IJavaSearchParticipation.Yes.class;
+	}
+
 	// contributed by org.eclipse.xtext.ui.generator.labeling.LabelProviderFragment
 	public Class<? extends org.eclipse.jface.viewers.ILabelProvider> bindILabelProvider() {
 		return org.eclipse.emf.mwe2.language.ui.labeling.Mwe2LabelProvider.class;
@@ -171,11 +176,6 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
 	public Class<? extends org.eclipse.xtext.ui.refactoring.IReferenceUpdater> bindIReferenceUpdater() {
 		return org.eclipse.xtext.ui.refactoring.impl.DefaultReferenceUpdater.class;
-	}
-
-	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
-	public Class<? extends org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage> bindLanguageRootPreferencePage() {
-		return org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
