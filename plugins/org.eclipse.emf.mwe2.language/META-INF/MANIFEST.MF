@@ -19,7 +19,7 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.mwe2.runtime;bundle-version="2.3.0",
  de.itemis.xtext.antlr;bundle-version="2.0.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.emf.mwe2.lib;bundle-version="2.3.0";resolution:=optional;x-installation:=greedy
-Import-Package: org.apache.log4j
+Import-Package: org.apache.log4j;version="1.2.15"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.emf.mwe2.language,
  org.eclipse.emf.mwe2.language.factory,
