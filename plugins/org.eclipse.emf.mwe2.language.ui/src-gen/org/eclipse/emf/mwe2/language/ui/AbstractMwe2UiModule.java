@@ -184,8 +184,8 @@ public abstract class AbstractMwe2UiModule extends DefaultUiModule {
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
-	public Class<? extends org.eclipse.xtext.ui.refactoring.ui.IRenameElementHandler> bindIRenameElementHandler() {
-		return org.eclipse.xtext.common.types.ui.refactoring.JvmRenameElementHandler.class;
+	public Class<? extends org.eclipse.xtext.ui.refactoring.ui.IRenameContextFactory> bindIRenameContextFactory() {
+		return org.eclipse.xtext.common.types.ui.refactoring.JdtRefactoringContextFactory.class;
 	}
 
 	// contributed by org.eclipse.xtext.ui.generator.refactoring.RefactorElementNameFragment
