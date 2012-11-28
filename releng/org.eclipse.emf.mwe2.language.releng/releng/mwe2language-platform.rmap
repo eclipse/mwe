@@ -10,13 +10,13 @@
 	<rm:locator pattern="^org\.eclipse\.xtend\.lib(?:\..+)?$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.eclipse\.(?:xpand|xtend)(?:\..+)?$" searchPathRef="xpand" />
 	<rm:locator pattern="^org\.eclipse\.emf\.(?:mwe|mwe2\.lib|mwe2\.runtime)(?:\..+)?$" searchPathRef="mwe" />
-	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="mwe"/>
+	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="mwe" />
 	<rm:locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf" />
 	<rm:locator pattern="^com\.google(?:\..+)?$" searchPathRef="orbit" />
-	<rm:locator pattern="^javax\.inject(?:\..+)?$" searchPathRef="orbit"/>
-	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit"
-		failOnError="false" />
-	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit"/>
+	<rm:locator pattern="^javax\.inject(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit" failOnError="false" />
+	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit" />
 	<rm:locator searchPathRef="platform" />
 	<rm:searchPath name="local.releng">
 		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
@@ -27,48 +27,42 @@
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="tmf">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}">
 				<bc:propertyRef key="xtext.p2.repository" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="xpand">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}">
 				<bc:propertyRef key="xpand.p2.repository" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="mwe">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}">
 				<bc:propertyRef key="mwe.p2.repository" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="emf">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}/modeling/emf/updates">
 				<bc:propertyRef key="eclipse.download" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="orbit">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}/modeling/tmf/xtext/updates/orbit">
 				<bc:propertyRef key="eclipse.download" />
 			</rm:uri>
 		</rm:provider>
 	</rm:searchPath>
 	<rm:searchPath name="platform">
-		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
 			<rm:uri format="{0}/eclipse/updates/3.5">
 				<bc:propertyRef key="eclipse.download" />
 			</rm:uri>
