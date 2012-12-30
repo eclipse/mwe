@@ -9,10 +9,6 @@
 
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\..+)?$" searchPathRef="mwe" />
 
-	<rm:locator pattern="^org\.eclipse\.test$" searchPathRef="eclipse.test" />
-	<rm:locator pattern="^org\.eclipse\.ant\.optional\.junit$" searchPathRef="eclipse.test" />
-
-	
 	<rm:searchPath name="mwe">
 		<rm:provider componentTypes="osgi.bundle" readerType="local"
 			mutable="false">
@@ -80,22 +76,6 @@
 			mutable="false">
 			<rm:uri format="{0}/tests/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
-				<bc:propertyRef key="buckminster.component" />
-			</rm:uri>
-		</rm:provider>
-	</rm:searchPath>
-
-	<rm:searchPath name="eclipse.test">
-		<rm:provider componentTypes="osgi.bundle" readerType="cvs"
-			mutable="false">
-			<rm:uri format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}">
-				<bc:propertyRef key="buckminster.component" />
-			</rm:uri>
-		</rm:provider>
-		<rm:provider componentTypes="eclipse.feature" readerType="cvs"
-			mutable="false">
-			<rm:uri
-				format=":pserver:anonymous@dev.eclipse.org:/cvsroot/eclipse,{0}-feature">
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
