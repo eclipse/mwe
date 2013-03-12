@@ -33,7 +33,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
@@ -93,6 +92,22 @@ public class StandaloneSetup {
 		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(Resource.Factory.Registry.DEFAULT_EXTENSION,
 				new XMIResourceFactoryImpl());
 		EPackage.Registry.INSTANCE.put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
+	}
+	
+	private boolean ignoreBrokenProjectFiles = false;
+	
+	/**
+	 * Allows to ignore exception that occur while reading {@code .project} or {@code Manifest.MF}
+	 * files.
+	 * 
+	 * Default is {@code false}.
+	 */
+	public void setIgnoreBrokenProjectFiles(boolean ignoreBrokenProjectFiles) {
+		this.ignoreBrokenProjectFiles = ignoreBrokenProjectFiles;
+	}
+	
+	public boolean isIgnoreBrokenProjectFiles() {
+		return ignoreBrokenProjectFiles;
 	}
 
 	public void setLogResourceUriMap(boolean doLog) {
@@ -219,10 +234,21 @@ public class StandaloneSetup {
 		catch (ZipException e) {
 			log.warn("Could not open Jar file " + file.getAbsolutePath() + ".");
 		}
-		catch (IOException e) {
-			throw new RuntimeException(e);
+		catch (Exception e) {
+			handleException(file, e);
 		}
+	}
 
+	private void handleException(File file, Exception exception) {
+		if (isIgnoreBrokenProjectFiles()) {
+			try {
+				log.warn("Couldn't read " + file.getCanonicalPath());
+			} catch (IOException e) {
+				log.warn("Couldn't read " + file.getAbsolutePath());
+			}
+		} else {
+			throw new RuntimeException(exception);
+		}
 	}
 
 	protected void registerProject(File file) {
@@ -236,12 +262,12 @@ public class StandaloneSetup {
 			if (bundleNameMapping.get(name) != null) {
 				EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(name), uri);
 			}
-			//			if (log.isDebugEnabled()) {
-			log.debug("Registering project " + name + " at '" + uri + "'");
-			//			}
+			if (log.isDebugEnabled()) {
+				log.debug("Registering project " + name + " at '" + uri + "'");
+			}
 		}
 		catch (Exception e) {
-			throw new WrappedException("Couldn't read " + file, e);
+			handleException(file, e);
 		}
 	}
 
