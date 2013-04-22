@@ -49,7 +49,7 @@
 	</rm:searchPath>
 	<rm:searchPath name="emf">
 		<rm:provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
-			<rm:uri format="{0}/modeling/emf/updates">
+			<rm:uri format="{0}/modeling/emf/emf/updates/nightly">
 				<bc:propertyRef key="eclipse.download" />
 			</rm:uri>
 		</rm:provider>
