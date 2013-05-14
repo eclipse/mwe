@@ -82,7 +82,7 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest {
 	}
 	
 	@Test public void testClassDecl_06() throws Exception {
-		newBuilder().append("ArraList").assertText("java.util.ArrayList", ":", "{");
+		newBuilder().append("ArraList").assertText("java.util.ArrayList", "java.util.Arrays.ArrayList", ":", "{");
 	}
 	
 	@Test public void testInsideClassDecl() throws Exception {

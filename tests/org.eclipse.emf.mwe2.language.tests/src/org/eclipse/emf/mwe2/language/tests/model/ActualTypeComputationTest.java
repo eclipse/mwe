@@ -32,6 +32,7 @@ public class ActualTypeComputationTest extends AbstractXtextTests {
 		checkPropertyType("a = 'myString'", String.class);
 		checkPropertyType("a = true", boolean.class);
 		checkPropertyType("a = java.util.ArrayList {}", ArrayList.class);
+		checkPropertyType("a = java.util.Arrays.ArrayList {}", Class.forName("java.util.Arrays$ArrayList"));
 	}
 	
 	@Test public void testInferredComponentType() throws Exception {
