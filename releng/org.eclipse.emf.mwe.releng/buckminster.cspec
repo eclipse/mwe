@@ -7,8 +7,8 @@
 		<cs:dependency name="javax.inject.source" componentType="osgi.bundle" />
 		<cs:dependency name="com.google.inject" componentType="osgi.bundle" versionDesignator="3.0.0"/>
 		<cs:dependency name="com.google.inject.source" componentType="osgi.bundle" versionDesignator="3.0.0"/>
-		<cs:dependency name="com.google.guava" componentType="osgi.bundle" versionDesignator="10.0.0"/>
-		<cs:dependency name="com.google.guava.source" componentType="osgi.bundle" versionDesignator="10.0.0"/>
+		<cs:dependency name="com.google.guava" componentType="osgi.bundle" versionDesignator="[10.0.0,11.0.0)"/>
+		<cs:dependency name="com.google.guava.source" componentType="osgi.bundle" versionDesignator="[10.0.0,11.0.0)"/>
 		<cs:dependency name="org.apache.commons.cli" componentType="osgi.bundle" />
 		<cs:dependency name="org.apache.log4j" componentType="osgi.bundle" />
 		<cs:dependency name="org.apache.log4j.source" componentType="osgi.bundle" />
