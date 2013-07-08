@@ -11,18 +11,18 @@ import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.IDebugEventSetListener;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.RefreshUtil;
 import org.eclipse.debug.core.model.IProcess;
-import org.eclipse.debug.ui.RefreshTab;
 import org.eclipse.jdt.launching.JavaLaunchDelegate;
 
 public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 
 	private static final Logger logger = Logger.getLogger(Mwe2LaunchDelegate.class);
-	
+
 	@Override
 	public void launch(final ILaunchConfiguration configuration, String mode,
 			ILaunch launch, IProgressMonitor monitor) throws CoreException {
-		if (RefreshTab.getRefreshScope(configuration) != null) {
+		if (configuration.getAttribute(RefreshUtil.ATTR_REFRESH_SCOPE, (String) null) != null) {
 			DebugPlugin.getDefault().addDebugEventListener(new IDebugEventSetListener() {
 				public void handleDebugEvents(DebugEvent[] events) {
 					for (int i = 0; i < events.length; i++) {
@@ -34,7 +34,7 @@ public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 								Job job = new Job(Messages.Mwe2LaunchDelegate_0) {
 									public IStatus run(IProgressMonitor monitor) {
 										try {
-											RefreshTab.refreshResources(configuration, monitor);
+											RefreshUtil.refreshResources(configuration, monitor);
 										} catch (CoreException e) {
 											logger.error(e.getMessage(), e);
 											return e.getStatus();

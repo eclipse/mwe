@@ -22,9 +22,9 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationType;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.ILaunchManager;
+import org.eclipse.debug.core.RefreshUtil;
 import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.ILaunchShortcut;
-import org.eclipse.debug.ui.RefreshTab;
 import org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
@@ -140,8 +140,8 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, Mwe2Launcher.class.getName());
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_STOP_IN_MAIN, false);
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, info.wfFile);
-		wc.setAttribute(RefreshTab.ATTR_REFRESH_SCOPE, "${workspace}");
-		wc.setAttribute(RefreshTab.ATTR_REFRESH_RECURSIVE, true);
+		wc.setAttribute(RefreshUtil.ATTR_REFRESH_SCOPE, "${workspace}");
+		wc.setAttribute(RefreshUtil.ATTR_REFRESH_RECURSIVE, true);
 
 		config = wc.doSave();
 
