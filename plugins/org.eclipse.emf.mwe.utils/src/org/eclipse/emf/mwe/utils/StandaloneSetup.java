@@ -174,8 +174,35 @@ public class StandaloneSetup {
 			platformRootPath = path;
 			log.info("Registering platform uri '" + path + "'");
 			if (f.exists()) {
-				scanFolder(f);
+				if(!scanFolder(f))
+					log.warn("No projects found in platform location. This is cause by a lack of .project files. Concider to populating the map explicitly via StandaloneSetup.addProjectMapping(ProjectMapping)");
 			}
+		}
+	}
+	
+	public void addProjectMapping(ProjectMapping projectMaping){
+		String projectName = projectMaping.getProjectName();
+		if(projectName == null || projectName.isEmpty()){
+			throw new ConfigurationException("ProjectName must not be empty");
+		}
+		String path = projectMaping.getPath();
+		if(path == null || path.isEmpty()){
+			throw new ConfigurationException("ProjectName must not be empty");
+		}
+		
+		File f = new File(path);
+		if(!f.exists()){
+			throw new ConfigurationException("The project's path '" + path + "' does not exist");
+		}
+		try {
+			URI uri = URI.createFileURI(f.getCanonicalPath() + File.separator);
+			EcorePlugin.getPlatformResourceMap().put(projectName, uri);
+			if (bundleNameMapping.get(projectName) != null) {
+				EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(projectName), uri);
+			}
+			log.info("Registering project " + projectName + " at '" + uri + "'");
+		}catch (IOException e) {
+			handleException(f,e);
 		}
 	}
 
