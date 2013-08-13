@@ -182,11 +182,11 @@ public class StandaloneSetup {
 	
 	public void addProjectMapping(ProjectMapping projectMaping){
 		String projectName = projectMaping.getProjectName();
-		if(projectName == null || projectName.isEmpty()){
+		if(isEmptyOrNullString(projectName)){
 			throw new ConfigurationException("ProjectName must not be empty");
 		}
 		String path = projectMaping.getPath();
-		if(path == null || path.isEmpty()){
+		if(isEmptyOrNullString(path)){
 			throw new ConfigurationException("ProjectName must not be empty");
 		}
 		
@@ -205,7 +205,11 @@ public class StandaloneSetup {
 			handleException(f,e);
 		}
 	}
-
+	
+	private boolean isEmptyOrNullString(String string) {
+		return string == null || string.length() == 0;
+	}
+	
 	protected boolean scanFolder(File f) {
 		return scanFolder(f, new HashSet<String>());
 	}
