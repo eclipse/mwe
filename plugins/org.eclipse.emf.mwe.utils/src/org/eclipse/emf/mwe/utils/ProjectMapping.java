@@ -7,6 +7,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.utils;
 
+import org.eclipse.emf.mwe2.runtime.Mandatory;
+
 /**
  * @author Holger Schill - Initial contribution and API
  */
@@ -15,18 +17,11 @@ public class ProjectMapping {
 
     private String path;
 
-    public ProjectMapping() {
-    }
-
-    public ProjectMapping(final String projectName, final String path) {
-        this.projectName = projectName;
-        this.path = path;
-    }
-
     public String getProjectName() {
         return projectName;
     }
 
+    @Mandatory
     public void setProjectName(final String projectName) {
         this.projectName = projectName;
     }
@@ -35,6 +30,7 @@ public class ProjectMapping {
         return path;
     }
 
+    @Mandatory
     public void setPath(final String path) {
         this.path = path;
     }

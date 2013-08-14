@@ -48,9 +48,16 @@ public class Bug414169Test extends TestCase {
 		File file = new File("./testfiles/bug414169");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
 		String rootOfProject = file.getCanonicalPath() + "/" + TESTPROJECT + "/";
-		standaloneSetup.addProjectMapping(new ProjectMapping(TESTPROJECT, rootOfProject));
+		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject));
 		URI resolvedPath = EcorePlugin.resolvePlatformResourcePath("/" + TESTPROJECT + "/");
 		assertEquals("file:" + rootOfProject, resolvedPath.toString());
+	}
+	
+	protected ProjectMapping newProjectMapping(String projectName, String path) {
+		ProjectMapping result = new ProjectMapping();
+		result.setProjectName(projectName);
+		result.setPath(path);
+		return result;
 	}
 
 	public void testManualMapping_mixed() throws Exception {
@@ -58,7 +65,7 @@ public class Bug414169Test extends TestCase {
 		File file = new File("./testfiles/bug414169_2");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
 		String rootOfProject = file.getCanonicalPath() + "/" + TESTPROJECT + "/";
-		standaloneSetup.addProjectMapping(new ProjectMapping(TESTPROJECT, rootOfProject));
+		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject));
 		URI resolvedPath = EcorePlugin.resolvePlatformResourcePath("/" + TESTPROJECT + "/");
 		assertEquals("file:" + rootOfProject, resolvedPath.toString());
 	}

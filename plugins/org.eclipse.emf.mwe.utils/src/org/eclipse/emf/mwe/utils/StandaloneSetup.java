@@ -55,6 +55,17 @@ import org.w3c.dom.Document;
  * <h2>platformUri</h2> 
  * Set the path to the root of the platform, usually ".." 
  * 
+ * <h3>Explicit platform mapping</h3>
+ * If no .project files are available, an explicit mapping of projectName to
+ * path may be established.
+ * 
+ * <pre>
+ * projectMapping = { 
+ *   projectName = 'org.acme.myproject' 
+ *   path = '../org.acme.myproject'
+ * }
+ * </pre>
+ * 
  * <h2>URI Mapping</h2> 
  * Map one URI to another. This is for example required when some resource refers to another with
  * <tt>platform:/plugin</tt> URIs. Platform plugin URIs cannot be resolved in standalone mode, thus these
@@ -175,19 +186,22 @@ public class StandaloneSetup {
 			log.info("Registering platform uri '" + path + "'");
 			if (f.exists()) {
 				if(!scanFolder(f))
-					log.warn("No projects found in platform location. This is cause by a lack of .project files. Concider to populating the map explicitly via StandaloneSetup.addProjectMapping(ProjectMapping)");
+					log.warn("No projects found in platform location '" + pathToPlatform + "'\n" +
+							"because there are no '.project' files.\n"+
+							"Please use explicit project mappings:\n" +
+							"    projectMapping = { projectName = 'com.acme' path = '../path/com.acme' }.");
 			}
 		}
 	}
 	
-	public void addProjectMapping(ProjectMapping projectMaping){
-		String projectName = projectMaping.getProjectName();
+	public void addProjectMapping(ProjectMapping projectMapping){
+		String projectName = projectMapping.getProjectName();
 		if(isEmptyOrNullString(projectName)){
 			throw new ConfigurationException("ProjectName must not be empty");
 		}
-		String path = projectMaping.getPath();
+		String path = projectMapping.getPath();
 		if(isEmptyOrNullString(path)){
-			throw new ConfigurationException("ProjectName must not be empty");
+			throw new ConfigurationException("Path must not be empty");
 		}
 		
 		File f = new File(path);
