@@ -38,7 +38,12 @@ public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 											org.eclipse.debug.ui.RefreshTab.refreshResources(configuration, monitor);
 										} catch (CoreException e) {
 											logger.error(e.getMessage(), e);
-											return e.getStatus();
+											return Status.OK_STATUS;
+										} catch (Throwable t){
+											// In eclipse headless mode there are normally any ui bundles,
+											// just ignore auto refresh
+											logger.error(t.getMessage(), t);
+											return Status.OK_STATUS;
 										}
 										return Status.OK_STATUS;
 									}
