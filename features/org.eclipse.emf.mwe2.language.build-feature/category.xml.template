@@ -3,6 +3,9 @@
 	<feature id="org.eclipse.emf.mwe2.language.sdk" version="0.0.0">
       <category name="mwe2lang${package.qualifier}"/>
    </feature>
+	<feature id="org.eclipse.emf.mwe2.launcher" version="0.0.0">
+      <category name="mwe2lang${package.qualifier}"/>
+   </feature>
    <category-def name="mwe2lang${package.qualifier}" label="EMFT MWE2 Language${package.qualifier}">
       <description>
          The Modeling Workflow Engine 2 (MWE2) allows to compose arbitrary Java objects
