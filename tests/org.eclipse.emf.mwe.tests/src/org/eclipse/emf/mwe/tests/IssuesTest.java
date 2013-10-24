@@ -73,6 +73,7 @@ public class IssuesTest extends TestCase {
 	public void testAddInfoString() {
 		issues.addInfo("Test");
 		assertEquals(1, issues.getInfos().length);
+		assertEquals("Test", issues.getInfos()[0].getMessage());
 	}
 
 }
