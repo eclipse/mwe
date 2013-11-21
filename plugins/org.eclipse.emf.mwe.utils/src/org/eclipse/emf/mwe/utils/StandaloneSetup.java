@@ -14,6 +14,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -144,22 +146,35 @@ public class StandaloneSetup {
 		if (property != null) {
 			String[] entries = property.split(separator);
 			for (String entry : entries) {
-				try {
-					File f = new File(entry).getCanonicalFile();
-					if (f.getPath().endsWith(".jar")) {
-						registerBundle(f);
-					}
-					else if (!scanFolder(f)) {
-						// eclipse bin folder?
-						File dotProject = new File(f.getParentFile(), ".project");
-						if (dotProject.exists())
-							registerProject(dotProject);
-					}
-				}
-				catch (IOException e) {
-					throw new RuntimeException(e);
-				}
+				doRegisterResourceMapping(new File(entry));
 			}
+		}
+		ClassLoader classLoader = getClass().getClassLoader();
+		if (classLoader instanceof URLClassLoader) {
+			@SuppressWarnings("resource")
+			URLClassLoader urlClassLoader = (URLClassLoader) classLoader;
+			URL[] urLs = urlClassLoader.getURLs();
+			for (URL url : urLs) {
+				doRegisterResourceMapping(new File(url.getFile()));
+			}
+		}
+	}
+
+	protected void doRegisterResourceMapping(File file) {
+		try {
+			File f = file.getCanonicalFile();
+			if (f.getPath().endsWith(".jar")) {
+				registerBundle(f);
+			}
+			else if (!scanFolder(f)) {
+				// eclipse bin folder?
+				File dotProject = new File(f.getParentFile(), ".project");
+				if (dotProject.exists())
+					registerProject(dotProject);
+			}
+		}
+		catch (IOException e) {
+			throw new RuntimeException(e);
 		}
 	}
 
