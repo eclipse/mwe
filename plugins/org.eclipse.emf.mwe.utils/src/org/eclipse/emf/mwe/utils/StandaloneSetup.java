@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -143,10 +144,13 @@ public class StandaloneSetup {
 			return;
 		String property = System.getProperty("java.class.path");
 		String separator = System.getProperty("path.separator");
+		Set<File> scanned = new HashSet<File>();
 		if (property != null) {
 			String[] entries = property.split(separator);
 			for (String entry : entries) {
-				doRegisterResourceMapping(new File(entry));
+				File file = new File(entry);
+				scanned.add(file);
+				doRegisterResourceMapping(file);
 			}
 		}
 		ClassLoader classLoader = getClass().getClassLoader();
@@ -155,7 +159,14 @@ public class StandaloneSetup {
 			URLClassLoader urlClassLoader = (URLClassLoader) classLoader;
 			URL[] urLs = urlClassLoader.getURLs();
 			for (URL url : urLs) {
-				doRegisterResourceMapping(new File(url.getFile()));
+				File file;
+				try {
+					file = new File(url.toURI());
+					if (scanned.add(file))
+						doRegisterResourceMapping(file);
+				} catch (URISyntaxException e) {
+					log.debug("Couldn't convert url '"+url+"' to a file : "+e.getMessage());
+				}
 			}
 		}
 	}
@@ -274,8 +285,9 @@ public class StandaloneSetup {
 	}
 
 	protected void registerBundle(File file) {
+		JarFile jarFile = null;
 		try {
-			JarFile jarFile = new JarFile(file);
+			jarFile = new JarFile(file);
 			Manifest manifest = jarFile.getManifest();
 			if (manifest == null)
 				return;
@@ -296,6 +308,13 @@ public class StandaloneSetup {
 		}
 		catch (Exception e) {
 			handleException(file, e);
+		} finally {
+			try {
+				if (jarFile != null)
+					jarFile.close();
+			} catch (IOException e) {
+				log.error(e.getMessage(), e);
+			}
 		}
 	}
 
