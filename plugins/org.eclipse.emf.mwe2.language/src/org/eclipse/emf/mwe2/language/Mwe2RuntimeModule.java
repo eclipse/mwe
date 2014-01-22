@@ -27,43 +27,56 @@ import com.google.inject.Provider;
  * Use this class to register components to be used within the IDE.
  */
 public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe2RuntimeModule {
-	
+
 	@Override
 	public Class<? extends IQualifiedNameProvider> bindIQualifiedNameProvider() {
 		return QualifiedNameProvider.class;
 	}
-	
+
 	@Override
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate")).to(NamespaceAwareScopeProvider.class);
+		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class)
+				.annotatedWith(
+						com.google.inject.name.Names
+								.named("org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.delegate"))
+				.to(NamespaceAwareScopeProvider.class);
 	}
-	
+
 	@Override
 	public Class<? extends IValueConverterService> bindIValueConverterService() {
 		return Mwe2ValueConverters.class;
 	}
-	
+
 	@Override
 	public Class<? extends XtextResourceSet> bindXtextResourceSet() {
 		return null;
 	}
-	
+
 	public Class<? extends Provider<XtextResourceSet>> provideXtextResourceSet() {
 		return MweResourceSetProvider.class;
 	}
-	
+
 	@Override
 	public Class<? extends ILocationInFileProvider> bindILocationInFileProvider() {
 		return MweLocationInFileProvider.class;
 	}
-	
+
 	public Class<? extends IDefaultResourceDescriptionStrategy> bindIDefaultResourceDescriptionStrategy() {
 		return MweResourceDescriptionStrategy.class;
 	}
-	
+
 	@Override
 	public Class<? extends Manager> bindIContainer$Manager() {
 		return Mwe2StateBasedContainerManager.class;
 	}
-	
+
+	@Override
+	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindIJvmTypeProvider$Factory() {
+		return org.eclipse.xtext.common.types.access.reflect.ReflectionTypeProviderFactory.class;
+	}
+
+	@Override
+	public Class<? extends org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
+		return org.eclipse.xtext.common.types.access.reflect.ReflectionTypeScopeProvider.class;
+	}
 }
