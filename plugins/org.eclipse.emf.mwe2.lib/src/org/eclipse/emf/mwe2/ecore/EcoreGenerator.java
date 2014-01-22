@@ -48,6 +48,8 @@ public class EcoreGenerator implements IWorkflowComponent {
 	protected List<String> srcPaths = newArrayList();
 	private String genModel;
 	
+	private ResourceSet resourceSet;
+	
 	public void setGenerateEdit(boolean generateEdit) {
 		this.generateEdit = generateEdit;
 	}
@@ -70,8 +72,12 @@ public class EcoreGenerator implements IWorkflowComponent {
 		this.genModel = genModel;
 	}
 	
+	public void setResourceSet(ResourceSet resourceSet) {
+		this.resourceSet = resourceSet;
+	}
+	
 	public void preInvoke() {
-		new ResourceSetImpl().getResource(URI.createURI(genModel), true);
+		getResourceSet().getResource(URI.createURI(genModel), true);
 	}
 	
 	public void postInvoke() {
@@ -82,7 +88,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 	}
 
 	public void invoke(IWorkflowContext ctx) {
-		ResourceSet resSet = new ResourceSetImpl();
+		ResourceSet resSet = getResourceSet();
 		Resource resource = resSet.getResource(URI.createURI(genModel), true);
 		final GenModel genModel = (GenModel) resource.getContents().get(0);
 		genModel.setCanGenerate(true);
@@ -124,6 +130,10 @@ public class EcoreGenerator implements IWorkflowComponent {
 			if (editorDiag.getSeverity() != Diagnostic.OK)
 				log.info(editorDiag);
 		}
+	}
+
+	private ResourceSet getResourceSet() {
+		return resourceSet == null ? new ResourceSetImpl() : resourceSet;
 	}
 
 	protected Function<String, String> getTypeMapper() {
