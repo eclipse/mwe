@@ -2,7 +2,6 @@
 <cs:cspec xmlns:cs="http://www.eclipse.org/buckminster/CSpec-1.0" name="org.eclipse.emf.mwe.releng"
 	componentType="buckminster" version="1.0.0.qualifier">
 	<cs:dependencies>
-		<cs:dependency name="org.aopalliance" componentType="osgi.bundle" />
 		<cs:dependency name="javax.inject" componentType="osgi.bundle" />
 		<cs:dependency name="javax.inject.source" componentType="osgi.bundle" />
 		<cs:dependency name="com.google.inject" componentType="osgi.bundle" versionDesignator="3.0.0"/>
@@ -18,8 +17,7 @@
 		<cs:dependency name="org.eclipse.pde.core" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.pde.junit.runtime" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.emf.ecore" componentType="eclipse.feature" versionDesignator="[2.5.0,2.6.0)" />
-		<cs:dependency name="org.eclipse.emf.codegen.ecore" componentType="eclipse.feature"
-			versionDesignator="[2.5.0,2.6.0)" />
+		<cs:dependency name="org.eclipse.emf.codegen.ecore" componentType="eclipse.feature" versionDesignator="[2.5.0,2.6.0)" />
 	</cs:dependencies>
 	<cs:actions>
 		<cs:public name="setup.promoter" actor="ant">

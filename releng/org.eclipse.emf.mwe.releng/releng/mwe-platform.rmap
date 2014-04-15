@@ -9,6 +9,7 @@
 	<locator pattern="^javax\.inject(?:\..+)?$" searchPathRef="orbit"/>
 	<locator pattern="^com\.google(?:\..+)?$" searchPathRef="orbit"/>
     <locator pattern="^org\.aopalliance?$" searchPathRef="orbit"/>
+    <locator pattern="^org\.eclipse\.license$" searchPathRef="license" />
     <locator searchPathRef="platform" />
 
 	<searchPath name="local.releng">
@@ -43,7 +44,14 @@
 			</uri>
 		</provider>
 	</searchPath>
-
+	
+	<searchPath name="license">
+		<provider componentTypes="eclipse.feature,osgi.bundle" readerType="p2" source="false" mutable="false">
+			<uri format="{0}/cbi/updates/license/">
+				<bc:propertyRef key="eclipse.download" />
+			</uri>
+		</provider>
+	</searchPath>
 	<property key="checkout.location" value="${workspace.root}/" />
 	<property key="eclipse.download" value="http://download.eclipse.org" />
 </rmap>

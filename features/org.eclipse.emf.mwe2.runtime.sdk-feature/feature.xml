@@ -4,7 +4,7 @@
       label="%featureName"
       version="2.6.0.qualifier"
       provider-name="%providerName"
-license-feature="org.eclipse.emf.mwe.license"
+	  license-feature="org.eclipse.emf.mwe.license"
       license-feature-version="2.6.0.qualifier">
 
    <description>

@@ -2,7 +2,7 @@
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
 	<rm:property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
 
-	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.releng(?:\..+)?$" searchPathRef="relengGit" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.releng(?:\..+)?$" searchPathRef="releng" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?\.doc(?:\..+)?$" searchPathRef="mwe.doc" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\.ewm)\.examples(?:\..+)?$" searchPathRef="mwe.examples" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\..+)?\.tests$" searchPathRef="mwe.tests" />
@@ -82,8 +82,7 @@
 	</rm:searchPath>
 
 	<rm:searchPath name="releng">
-		<rm:provider componentTypes="buckminster" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
 			<rm:uri format="{0}/releng/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />

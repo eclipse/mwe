@@ -4,6 +4,8 @@
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.releng(?:\..+)?$" searchPathRef="releng" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.tests(?:\..+)?$" searchPathRef="mwe2lang.test" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.(?:language|launch|launcher)?(?:\..+)?$" searchPathRef="mwe2lang" />
+	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.license$" searchPathRef="mwe2lang" />
+	
 	<rm:searchPath name="mwe2lang">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/plugins/{1}">
@@ -13,7 +15,7 @@
 		</rm:provider>
 
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<rm:uri format="{0}features/{1}-feature">
+			<rm:uri format="{0}/features/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
@@ -28,7 +30,7 @@
 		</rm:provider>
 
 		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
-			<rm:uri format="{0}features/{1}-feature">
+			<rm:uri format="{0}/features/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>

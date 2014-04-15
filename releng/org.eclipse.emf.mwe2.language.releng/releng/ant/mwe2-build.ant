@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     20.01.2012 09:55:02                                                        
+
+     Local build    
+     description
+                   
+     dhuebner                                                                
+     ====================================================================== -->
+
+<project name="mwe2-build" default="run-buckminster-build">
+	<description>
+            Executes buckminster build on local machine
+    </description>
+
+	<property name="WORKSPACE" location="${user.home}/hudsonbuild/mwe2-head/" />
+	<property name="build.root" location="${WORKSPACE}/buildroot" />
+	<property name="checkout.location" location="/Users/dhuebner/git/org.eclipse.mwe" />
+	<property name="releng.project" value="${checkout.location}/releng/org.eclipse.emf.mwe2.language.releng" />
+
+	<!-- Debug session suspend on start? -->
+	<property name="suspend.debug" value="n" />
+
+	<import file="../../../org.eclipse.emf.mwe.releng/releng/ant/common.ant" as="common" />
+
+	<!-- Buckminster headless to use. See http://www.eclipse.org/buckminster/downloads.html -->
+	<property name="buckminster.home" location="${user.home}/buckminster" />
+	<!-- Locations -->
+	<property name="build.properties" location="${releng.project}/releng/mwe2language-build.properties" />
+	<property name="temp.commands.location" location="${ant.file}/.." />
+
+	<!-- Against which platform to build (Galileo,Stable,Latest)-->
+	<property name="ECLIPSE.TARGET.ALIAS" value="Galileo" />
+
+	<target name="run-buckminster-build" depends="common.cleanup">
+		<fail unless="buckminster.home" message="buckminster.home must be specified." />
+		<antcall target="buckminster-build-mwe2" />
+	</target>
+	
+	<target name="buckminster-build-mwe2" depends="common.cleanup">
+		<echo message="IMPORTANT: Populating an empty target platform may took over 10 minutes." />
+		<echo message="eclipse.download: ${eclipse.download}" />
+		<property name="commands.file" location="${temp.commands.location}/mwe2-cmd.txt" />
+		<echo file="${commands.file}" append="false">
+			setpref targetPlatformPath="${WORKSPACE}/buildroot/target.platform"
+			importprefs -F ${releng.project}/releng/buckminster.workspace.epf
+
+			import  "${releng.project}/releng/mwe2language-platform.mspec"
+
+			resolve "${releng.project}/releng/mwe2language.cquery"
+
+			build
+
+			junit --launch "org.eclipse.emf.mwe2.language.tests/org.eclipse.emf.mwe2.language.tests.launch" --flatXML --output ${WORKSPACE}/build-result/test-results/org.eclipse.emf.mwe2.language.tests.xml"
+
+			perform -DtargetPlatformPath="${WORKSPACE}/buildroot/target.platform" "org.eclipse.emf.mwe2.language.releng#create.javadoc"
+			perform "org.eclipse.emf.mwe2.language.build#build"
+		</echo>
+		<echo message="build.properties: ${build.properties}" />
+		<run_buckminster commandsfile="${commands.file}" propertiesfile="${build.properties}" />
+	</target>
+
+
+</project>
