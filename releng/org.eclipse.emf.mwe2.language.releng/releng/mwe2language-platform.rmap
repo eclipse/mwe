@@ -16,7 +16,7 @@
 	<rm:locator pattern="^com\.google(?:\..+)?$" searchPathRef="orbit" />
 	<rm:locator pattern="^javax\.inject(?:\..+)?$" searchPathRef="orbit" />
 	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit" failOnError="false" />
-	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit" />
 	<rm:locator searchPathRef="platform" />
 	
