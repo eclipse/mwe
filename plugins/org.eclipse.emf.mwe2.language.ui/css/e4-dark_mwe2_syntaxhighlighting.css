@@ -1,0 +1,10 @@
+IEclipsePreferences#org-eclipse-emf-mwe2-language-ui {
+	preferences:
+		'syntaxColorer.property_ref.color=102,225,248'
+		'syntaxColorer.property_ref.style=2' /* SWT.ITALIC */
+		'syntaxColorer.feature_ref.color=18,144,195'
+		'syntaxColorer.string_prop_ref.color=167,236,33'
+		'syntaxColorer.string_prop_ref.style=1' /* SWT.BOLD */
+		'syntaxColorer.deprecated_element.color=171,31,54'
+		'syntaxColorer.deprecated_element.style=536870912' /* TextAttribute.STRIKETHROUGH */
+}
