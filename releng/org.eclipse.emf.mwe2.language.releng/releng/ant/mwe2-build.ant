@@ -30,7 +30,7 @@
 	<property name="temp.commands.location" location="${ant.file}/.." />
 
 	<!-- Against which platform to build (Galileo,Stable,Latest)-->
-	<property name="ECLIPSE.TARGET.ALIAS" value="Galileo" />
+	<property name="ECLIPSE.TARGET.ALIAS" value="Stable" />
 
 	<target name="run-buckminster-build" depends="common.cleanup">
 		<fail unless="buckminster.home" message="buckminster.home must be specified." />
