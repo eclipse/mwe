@@ -27,7 +27,7 @@
 	</target>
 
 
-	<!-- Modify category xml (replace package qualifier) -->
+	<!-- Modify category xml (replace package qualifier)
 	<target name="-create.category.xml" depends="-define.package.qualifier">
 		<loadfile property="modifiedCategoryXml" srcFile="category.xml.template">
 			<filterchain>
@@ -35,7 +35,7 @@
 			</filterchain>
 		</loadfile>
 		<echo file="category.xml">${modifiedCategoryXml}</echo>
-	</target>
+	</target> -->
 
 	<target name="package.site" depends="-define.package.qualifier">
 		<mkdir dir="${sp:output}" />

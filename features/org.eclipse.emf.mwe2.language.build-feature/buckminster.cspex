@@ -27,7 +27,7 @@
 				<cs:property key="package.name" value="emft-mwe-2-lang-Update" />
 			</cs:properties>
 			<cs:prerequisites>
-				<cs:attribute name="create.category.xml" alias="create.category" />
+				<!-- <cs:attribute name="create.category.xml" alias="create.category" />-->
 				<cs:attribute name="site.p2" alias="repository" />
 				<cs:attribute name="site.tp" alias="target.platform.repository" />
 			</cs:prerequisites>
