@@ -17,45 +17,45 @@ import org.eclipse.xtext.parser.antlr.Lexer;
   private boolean stringVariable = false;
 }
 
-KEYWORD_20 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'auto-inject';
+AutoInject : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'auto-inject';
 
-KEYWORD_18 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'import';
+Import : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'import';
 
-KEYWORD_19 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'module';
+Module : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'module';
 
-KEYWORD_17 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'false';
+False : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'false';
 
-KEYWORD_16 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'true';
+True : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'true';
 
-KEYWORD_14 : '\\${';
+ReverseSolidusDollarSignLeftCurlyBracket : '\\${';
 
-KEYWORD_15 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'var';
+Var : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'var';
 
-KEYWORD_9 : '${' {stringVariable = true;};
+DollarSignLeftCurlyBracket : '${' {stringVariable = true;};
 
-KEYWORD_10 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'.*';
+FullStopAsterisk : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'.*';
 
-KEYWORD_11 : '\\"';
+ReverseSolidusQuotationMark : '\\"';
 
-KEYWORD_12 : '\\\'';
+ReverseSolidusApostrophe : '\\\'';
 
-KEYWORD_13 : '\\\\';
+ReverseSolidusReverseSolidus : '\\\\';
 
-KEYWORD_1 : {!singleQuotedString || stringVariable}?=>'"' { if (!singleQuotedString) { doubleQuotedString = !doubleQuotedString; } } ;
+QuotationMark : {!singleQuotedString || stringVariable}?=>'"' { if (!singleQuotedString) { doubleQuotedString = !doubleQuotedString; } } ;
 
-KEYWORD_2 :{!doubleQuotedString || stringVariable}?=> '\'' { if (!doubleQuotedString) { singleQuotedString = !singleQuotedString; } };
+Apostrophe :{!doubleQuotedString || stringVariable}?=> '\'' { if (!doubleQuotedString) { singleQuotedString = !singleQuotedString; } };
 
-KEYWORD_3 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'.';
+FullStop : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'.';
 
-KEYWORD_4 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>':';
+Colon : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>':';
 
-KEYWORD_5 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'=';
+EqualsSign : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'=';
 
-KEYWORD_6 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'@';
+CommercialAt : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'@';
 
-KEYWORD_7 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'{';
+LeftCurlyBracket : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'{';
 
-KEYWORD_8 : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'}' { stringVariable = false; };
+RightCurlyBracket : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'}' { stringVariable = false; };
 
 
 

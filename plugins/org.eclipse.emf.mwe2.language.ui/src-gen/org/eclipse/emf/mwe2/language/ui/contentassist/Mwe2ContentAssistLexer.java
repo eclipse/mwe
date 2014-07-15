@@ -12,31 +12,31 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class Mwe2ContentAssistLexer extends Lexer {
     public static final int RULE_ID=24;
+    public static final int ReverseSolidusQuotationMark=13;
+    public static final int Import=5;
     public static final int RULE_ANY_OTHER=28;
-    public static final int KEYWORD_1=16;
-    public static final int KEYWORD_19=6;
-    public static final int KEYWORD_17=7;
-    public static final int KEYWORD_18=5;
-    public static final int KEYWORD_5=20;
-    public static final int KEYWORD_15=10;
-    public static final int KEYWORD_16=8;
-    public static final int KEYWORD_4=19;
-    public static final int KEYWORD_13=15;
-    public static final int KEYWORD_3=18;
-    public static final int KEYWORD_14=9;
-    public static final int KEYWORD_2=17;
-    public static final int KEYWORD_11=13;
-    public static final int KEYWORD_12=14;
+    public static final int Module=6;
+    public static final int False=7;
+    public static final int FullStopAsterisk=12;
+    public static final int LeftCurlyBracket=22;
+    public static final int Colon=19;
     public static final int EOF=-1;
     public static final int RULE_SL_COMMENT=26;
-    public static final int KEYWORD_10=12;
+    public static final int ReverseSolidusDollarSignLeftCurlyBracket=9;
+    public static final int FullStop=18;
     public static final int RULE_ML_COMMENT=25;
-    public static final int KEYWORD_6=21;
-    public static final int KEYWORD_7=22;
-    public static final int KEYWORD_8=23;
-    public static final int KEYWORD_9=11;
-    public static final int KEYWORD_20=4;
+    public static final int ReverseSolidusReverseSolidus=15;
+    public static final int CommercialAt=21;
+    public static final int DollarSignLeftCurlyBracket=11;
+    public static final int AutoInject=4;
+    public static final int QuotationMark=16;
+    public static final int ReverseSolidusApostrophe=14;
+    public static final int True=8;
     public static final int RULE_WS=27;
+    public static final int EqualsSign=20;
+    public static final int Apostrophe=17;
+    public static final int Var=10;
+    public static final int RightCurlyBracket=23;
 
       private boolean singleQuotedString = false;
       private boolean doubleQuotedString = false;
@@ -56,16 +56,16 @@ public class Mwe2ContentAssistLexer extends Lexer {
     }
     public String getGrammarFileName() { return "../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g"; }
 
-    // $ANTLR start "KEYWORD_20"
-    public final void mKEYWORD_20() throws RecognitionException {
+    // $ANTLR start "AutoInject"
+    public final void mAutoInject() throws RecognitionException {
         try {
-            int _type = KEYWORD_20;
+            int _type = AutoInject;
             int _channel = DEFAULT_TOKEN_CHANNEL;
             // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:20:12: ({...}? => 'auto-inject' )
             // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:20:14: {...}? => 'auto-inject'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_20", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "AutoInject", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("auto-inject"); 
 
@@ -78,18 +78,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_20"
+    // $ANTLR end "AutoInject"
 
-    // $ANTLR start "KEYWORD_18"
-    public final void mKEYWORD_18() throws RecognitionException {
+    // $ANTLR start "Import"
+    public final void mImport() throws RecognitionException {
         try {
-            int _type = KEYWORD_18;
+            int _type = Import;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:22:12: ({...}? => 'import' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:22:14: {...}? => 'import'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:22:8: ({...}? => 'import' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:22:10: {...}? => 'import'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_18", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "Import", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("import"); 
 
@@ -102,18 +102,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_18"
+    // $ANTLR end "Import"
 
-    // $ANTLR start "KEYWORD_19"
-    public final void mKEYWORD_19() throws RecognitionException {
+    // $ANTLR start "Module"
+    public final void mModule() throws RecognitionException {
         try {
-            int _type = KEYWORD_19;
+            int _type = Module;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:24:12: ({...}? => 'module' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:24:14: {...}? => 'module'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:24:8: ({...}? => 'module' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:24:10: {...}? => 'module'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_19", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "Module", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("module"); 
 
@@ -126,18 +126,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_19"
+    // $ANTLR end "Module"
 
-    // $ANTLR start "KEYWORD_17"
-    public final void mKEYWORD_17() throws RecognitionException {
+    // $ANTLR start "False"
+    public final void mFalse() throws RecognitionException {
         try {
-            int _type = KEYWORD_17;
+            int _type = False;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:26:12: ({...}? => 'false' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:26:14: {...}? => 'false'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:26:7: ({...}? => 'false' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:26:9: {...}? => 'false'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_17", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "False", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("false"); 
 
@@ -150,18 +150,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_17"
+    // $ANTLR end "False"
 
-    // $ANTLR start "KEYWORD_16"
-    public final void mKEYWORD_16() throws RecognitionException {
+    // $ANTLR start "True"
+    public final void mTrue() throws RecognitionException {
         try {
-            int _type = KEYWORD_16;
+            int _type = True;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:28:12: ({...}? => 'true' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:28:14: {...}? => 'true'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:28:6: ({...}? => 'true' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:28:8: {...}? => 'true'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_16", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "True", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("true"); 
 
@@ -174,15 +174,15 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_16"
+    // $ANTLR end "True"
 
-    // $ANTLR start "KEYWORD_14"
-    public final void mKEYWORD_14() throws RecognitionException {
+    // $ANTLR start "ReverseSolidusDollarSignLeftCurlyBracket"
+    public final void mReverseSolidusDollarSignLeftCurlyBracket() throws RecognitionException {
         try {
-            int _type = KEYWORD_14;
+            int _type = ReverseSolidusDollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:30:12: ( '\\\\${' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:30:14: '\\\\${'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:30:42: ( '\\\\${' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:30:44: '\\\\${'
             {
             match("\\${"); 
 
@@ -195,18 +195,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_14"
+    // $ANTLR end "ReverseSolidusDollarSignLeftCurlyBracket"
 
-    // $ANTLR start "KEYWORD_15"
-    public final void mKEYWORD_15() throws RecognitionException {
+    // $ANTLR start "Var"
+    public final void mVar() throws RecognitionException {
         try {
-            int _type = KEYWORD_15;
+            int _type = Var;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:32:12: ({...}? => 'var' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:32:14: {...}? => 'var'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:32:5: ({...}? => 'var' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:32:7: {...}? => 'var'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_15", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "Var", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match("var"); 
 
@@ -219,15 +219,15 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_15"
+    // $ANTLR end "Var"
 
-    // $ANTLR start "KEYWORD_9"
-    public final void mKEYWORD_9() throws RecognitionException {
+    // $ANTLR start "DollarSignLeftCurlyBracket"
+    public final void mDollarSignLeftCurlyBracket() throws RecognitionException {
         try {
-            int _type = KEYWORD_9;
+            int _type = DollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:34:11: ( '${' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:34:13: '${'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:34:28: ( '${' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:34:30: '${'
             {
             match("${"); 
 
@@ -241,18 +241,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_9"
+    // $ANTLR end "DollarSignLeftCurlyBracket"
 
-    // $ANTLR start "KEYWORD_10"
-    public final void mKEYWORD_10() throws RecognitionException {
+    // $ANTLR start "FullStopAsterisk"
+    public final void mFullStopAsterisk() throws RecognitionException {
         try {
-            int _type = KEYWORD_10;
+            int _type = FullStopAsterisk;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:36:12: ({...}? => '.*' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:36:14: {...}? => '.*'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:36:18: ({...}? => '.*' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:36:20: {...}? => '.*'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_10", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "FullStopAsterisk", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match(".*"); 
 
@@ -265,15 +265,15 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_10"
+    // $ANTLR end "FullStopAsterisk"
 
-    // $ANTLR start "KEYWORD_11"
-    public final void mKEYWORD_11() throws RecognitionException {
+    // $ANTLR start "ReverseSolidusQuotationMark"
+    public final void mReverseSolidusQuotationMark() throws RecognitionException {
         try {
-            int _type = KEYWORD_11;
+            int _type = ReverseSolidusQuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:38:12: ( '\\\\\"' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:38:14: '\\\\\"'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:38:29: ( '\\\\\"' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:38:31: '\\\\\"'
             {
             match("\\\""); 
 
@@ -286,15 +286,15 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_11"
+    // $ANTLR end "ReverseSolidusQuotationMark"
 
-    // $ANTLR start "KEYWORD_12"
-    public final void mKEYWORD_12() throws RecognitionException {
+    // $ANTLR start "ReverseSolidusApostrophe"
+    public final void mReverseSolidusApostrophe() throws RecognitionException {
         try {
-            int _type = KEYWORD_12;
+            int _type = ReverseSolidusApostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:40:12: ( '\\\\\\'' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:40:14: '\\\\\\''
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:40:26: ( '\\\\\\'' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:40:28: '\\\\\\''
             {
             match("\\'"); 
 
@@ -307,15 +307,15 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_12"
+    // $ANTLR end "ReverseSolidusApostrophe"
 
-    // $ANTLR start "KEYWORD_13"
-    public final void mKEYWORD_13() throws RecognitionException {
+    // $ANTLR start "ReverseSolidusReverseSolidus"
+    public final void mReverseSolidusReverseSolidus() throws RecognitionException {
         try {
-            int _type = KEYWORD_13;
+            int _type = ReverseSolidusReverseSolidus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:42:12: ( '\\\\\\\\' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:42:14: '\\\\\\\\'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:42:30: ( '\\\\\\\\' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:42:32: '\\\\\\\\'
             {
             match("\\\\"); 
 
@@ -328,18 +328,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_13"
+    // $ANTLR end "ReverseSolidusReverseSolidus"
 
-    // $ANTLR start "KEYWORD_1"
-    public final void mKEYWORD_1() throws RecognitionException {
+    // $ANTLR start "QuotationMark"
+    public final void mQuotationMark() throws RecognitionException {
         try {
-            int _type = KEYWORD_1;
+            int _type = QuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:44:11: ({...}? => '\"' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:44:13: {...}? => '\"'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:44:15: ({...}? => '\"' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:44:17: {...}? => '\"'
             {
             if ( !((!singleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_1", "!singleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "QuotationMark", "!singleQuotedString || stringVariable");
             }
             match('\"'); 
              if (!singleQuotedString) { doubleQuotedString = !doubleQuotedString; } 
@@ -352,18 +352,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_1"
+    // $ANTLR end "QuotationMark"
 
-    // $ANTLR start "KEYWORD_2"
-    public final void mKEYWORD_2() throws RecognitionException {
+    // $ANTLR start "Apostrophe"
+    public final void mApostrophe() throws RecognitionException {
         try {
-            int _type = KEYWORD_2;
+            int _type = Apostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:46:11: ({...}? => '\\'' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:46:12: {...}? => '\\''
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:46:12: ({...}? => '\\'' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:46:13: {...}? => '\\''
             {
             if ( !((!doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_2", "!doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "Apostrophe", "!doubleQuotedString || stringVariable");
             }
             match('\''); 
              if (!doubleQuotedString) { singleQuotedString = !singleQuotedString; } 
@@ -376,18 +376,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_2"
+    // $ANTLR end "Apostrophe"
 
-    // $ANTLR start "KEYWORD_3"
-    public final void mKEYWORD_3() throws RecognitionException {
+    // $ANTLR start "FullStop"
+    public final void mFullStop() throws RecognitionException {
         try {
-            int _type = KEYWORD_3;
+            int _type = FullStop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:48:11: ({...}? => '.' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:48:13: {...}? => '.'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:48:10: ({...}? => '.' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:48:12: {...}? => '.'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_3", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "FullStop", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match('.'); 
 
@@ -399,18 +399,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_3"
+    // $ANTLR end "FullStop"
 
-    // $ANTLR start "KEYWORD_4"
-    public final void mKEYWORD_4() throws RecognitionException {
+    // $ANTLR start "Colon"
+    public final void mColon() throws RecognitionException {
         try {
-            int _type = KEYWORD_4;
+            int _type = Colon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:11: ({...}? => ':' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:13: {...}? => ':'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:7: ({...}? => ':' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:9: {...}? => ':'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_4", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "Colon", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match(':'); 
 
@@ -422,18 +422,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_4"
+    // $ANTLR end "Colon"
 
-    // $ANTLR start "KEYWORD_5"
-    public final void mKEYWORD_5() throws RecognitionException {
+    // $ANTLR start "EqualsSign"
+    public final void mEqualsSign() throws RecognitionException {
         try {
-            int _type = KEYWORD_5;
+            int _type = EqualsSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:11: ({...}? => '=' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:13: {...}? => '='
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:12: ({...}? => '=' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:14: {...}? => '='
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_5", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "EqualsSign", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match('='); 
 
@@ -445,18 +445,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_5"
+    // $ANTLR end "EqualsSign"
 
-    // $ANTLR start "KEYWORD_6"
-    public final void mKEYWORD_6() throws RecognitionException {
+    // $ANTLR start "CommercialAt"
+    public final void mCommercialAt() throws RecognitionException {
         try {
-            int _type = KEYWORD_6;
+            int _type = CommercialAt;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:11: ({...}? => '@' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:13: {...}? => '@'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:14: ({...}? => '@' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:16: {...}? => '@'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_6", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "CommercialAt", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match('@'); 
 
@@ -468,18 +468,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_6"
+    // $ANTLR end "CommercialAt"
 
-    // $ANTLR start "KEYWORD_7"
-    public final void mKEYWORD_7() throws RecognitionException {
+    // $ANTLR start "LeftCurlyBracket"
+    public final void mLeftCurlyBracket() throws RecognitionException {
         try {
-            int _type = KEYWORD_7;
+            int _type = LeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:11: ({...}? => '{' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:13: {...}? => '{'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:18: ({...}? => '{' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:20: {...}? => '{'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_7", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "LeftCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match('{'); 
 
@@ -491,18 +491,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_7"
+    // $ANTLR end "LeftCurlyBracket"
 
-    // $ANTLR start "KEYWORD_8"
-    public final void mKEYWORD_8() throws RecognitionException {
+    // $ANTLR start "RightCurlyBracket"
+    public final void mRightCurlyBracket() throws RecognitionException {
         try {
-            int _type = KEYWORD_8;
+            int _type = RightCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:11: ({...}? => '}' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:13: {...}? => '}'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:19: ({...}? => '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:21: {...}? => '}'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
-                throw new FailedPredicateException(input, "KEYWORD_8", "!singleQuotedString && !doubleQuotedString || stringVariable");
+                throw new FailedPredicateException(input, "RightCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
             match('}'); 
              stringVariable = false; 
@@ -515,7 +515,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
         finally {
         }
     }
-    // $ANTLR end "KEYWORD_8"
+    // $ANTLR end "RightCurlyBracket"
 
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
@@ -842,180 +842,180 @@ public class Mwe2ContentAssistLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:8: ( KEYWORD_20 | KEYWORD_18 | KEYWORD_19 | KEYWORD_17 | KEYWORD_16 | KEYWORD_14 | KEYWORD_15 | KEYWORD_9 | KEYWORD_10 | KEYWORD_11 | KEYWORD_12 | KEYWORD_13 | KEYWORD_1 | KEYWORD_2 | KEYWORD_3 | KEYWORD_4 | KEYWORD_5 | KEYWORD_6 | KEYWORD_7 | KEYWORD_8 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:8: ( AutoInject | Import | Module | False | True | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt8=25;
         alt8 = dfa8.predict(input);
         switch (alt8) {
             case 1 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:10: KEYWORD_20
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:10: AutoInject
                 {
-                mKEYWORD_20(); 
+                mAutoInject(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:21: KEYWORD_18
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:21: Import
                 {
-                mKEYWORD_18(); 
+                mImport(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:32: KEYWORD_19
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:28: Module
                 {
-                mKEYWORD_19(); 
+                mModule(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:43: KEYWORD_17
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:35: False
                 {
-                mKEYWORD_17(); 
+                mFalse(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:54: KEYWORD_16
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:41: True
                 {
-                mKEYWORD_16(); 
+                mTrue(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:65: KEYWORD_14
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:46: ReverseSolidusDollarSignLeftCurlyBracket
                 {
-                mKEYWORD_14(); 
+                mReverseSolidusDollarSignLeftCurlyBracket(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:76: KEYWORD_15
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:87: Var
                 {
-                mKEYWORD_15(); 
+                mVar(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:87: KEYWORD_9
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:91: DollarSignLeftCurlyBracket
                 {
-                mKEYWORD_9(); 
+                mDollarSignLeftCurlyBracket(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:97: KEYWORD_10
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:118: FullStopAsterisk
                 {
-                mKEYWORD_10(); 
+                mFullStopAsterisk(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:108: KEYWORD_11
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:135: ReverseSolidusQuotationMark
                 {
-                mKEYWORD_11(); 
+                mReverseSolidusQuotationMark(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:119: KEYWORD_12
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:163: ReverseSolidusApostrophe
                 {
-                mKEYWORD_12(); 
+                mReverseSolidusApostrophe(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:130: KEYWORD_13
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:188: ReverseSolidusReverseSolidus
                 {
-                mKEYWORD_13(); 
+                mReverseSolidusReverseSolidus(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:141: KEYWORD_1
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:217: QuotationMark
                 {
-                mKEYWORD_1(); 
+                mQuotationMark(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:151: KEYWORD_2
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:231: Apostrophe
                 {
-                mKEYWORD_2(); 
+                mApostrophe(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:161: KEYWORD_3
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:242: FullStop
                 {
-                mKEYWORD_3(); 
+                mFullStop(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:171: KEYWORD_4
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:251: Colon
                 {
-                mKEYWORD_4(); 
+                mColon(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:181: KEYWORD_5
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:257: EqualsSign
                 {
-                mKEYWORD_5(); 
+                mEqualsSign(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:191: KEYWORD_6
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:268: CommercialAt
                 {
-                mKEYWORD_6(); 
+                mCommercialAt(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:201: KEYWORD_7
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:281: LeftCurlyBracket
                 {
-                mKEYWORD_7(); 
+                mLeftCurlyBracket(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:211: KEYWORD_8
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:298: RightCurlyBracket
                 {
-                mKEYWORD_8(); 
+                mRightCurlyBracket(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:221: RULE_ID
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:316: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:229: RULE_ML_COMMENT
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:324: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 23 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:245: RULE_SL_COMMENT
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:340: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 24 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:261: RULE_WS
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:356: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 25 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:269: RULE_ANY_OTHER
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:364: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1173,7 +1173,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
             this.transition = DFA8_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( KEYWORD_20 | KEYWORD_18 | KEYWORD_19 | KEYWORD_17 | KEYWORD_16 | KEYWORD_14 | KEYWORD_15 | KEYWORD_9 | KEYWORD_10 | KEYWORD_11 | KEYWORD_12 | KEYWORD_13 | KEYWORD_1 | KEYWORD_2 | KEYWORD_3 | KEYWORD_4 | KEYWORD_5 | KEYWORD_6 | KEYWORD_7 | KEYWORD_8 | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( AutoInject | Import | Module | False | True | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;

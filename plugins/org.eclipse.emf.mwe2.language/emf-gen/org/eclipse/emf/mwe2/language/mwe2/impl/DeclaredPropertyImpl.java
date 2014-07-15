@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.emf.mwe2.language.mwe2.impl;
 
@@ -123,7 +120,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	public Module getModule()
 	{
 		if (eContainerFeatureID() != Mwe2Package.DECLARED_PROPERTY__MODULE) return null;
-		return (Module)eContainer();
+		return (Module)eInternalContainer();
 	}
 
 	/**

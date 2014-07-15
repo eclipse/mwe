@@ -55,6 +55,7 @@ public class GenerateMwe2 {
 			{
 				addBean(new StandaloneSetup() {
 					{
+						setIgnoreBrokenProjectFiles(true);
 						setPlatformUri(runtimeProject+"/../..");
 						setPlatformUri(runtimeProject+"/../../../org.eclipse.xtext");
 					}

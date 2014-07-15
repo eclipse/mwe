@@ -1,7 +1,4 @@
 /**
- * <copyright>
- * </copyright>
- *
  */
 package org.eclipse.emf.mwe2.language.mwe2.impl;
 
@@ -33,7 +30,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	{
 		try
 		{
-			Mwe2Factory theMwe2Factory = (Mwe2Factory)EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/xtext/common/mwe2/Mwe2"); 
+			Mwe2Factory theMwe2Factory = (Mwe2Factory)EPackage.Registry.INSTANCE.getEFactory(Mwe2Package.eNS_URI);
 			if (theMwe2Factory != null)
 			{
 				return theMwe2Factory;

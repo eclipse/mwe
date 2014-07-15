@@ -16,45 +16,45 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.Lexer;
 
 
 
-KEYWORD_20 : 'auto-inject';
+AutoInject : 'auto-inject';
 
-KEYWORD_18 : 'import';
+Import : 'import';
 
-KEYWORD_19 : 'module';
+Module : 'module';
 
-KEYWORD_17 : 'false';
+False : 'false';
 
-KEYWORD_16 : 'true';
+True : 'true';
 
-KEYWORD_14 : '\\${';
+ReverseSolidusDollarSignLeftCurlyBracket : '\\${';
 
-KEYWORD_15 : 'var';
+Var : 'var';
 
-KEYWORD_9 : '${';
+DollarSignLeftCurlyBracket : '${';
 
-KEYWORD_10 : '.*';
+FullStopAsterisk : '.*';
 
-KEYWORD_11 : '\\"';
+ReverseSolidusQuotationMark : '\\"';
 
-KEYWORD_12 : '\\\'';
+ReverseSolidusApostrophe : '\\\'';
 
-KEYWORD_13 : '\\\\';
+ReverseSolidusReverseSolidus : '\\\\';
 
-KEYWORD_1 : '"';
+QuotationMark : '"';
 
-KEYWORD_2 : '\'';
+Apostrophe : '\'';
 
-KEYWORD_3 : '.';
+FullStop : '.';
 
-KEYWORD_4 : ':';
+Colon : ':';
 
-KEYWORD_5 : '=';
+EqualsSign : '=';
 
-KEYWORD_6 : '@';
+CommercialAt : '@';
 
-KEYWORD_7 : '{';
+LeftCurlyBracket : '{';
 
-KEYWORD_8 : '}';
+RightCurlyBracket : '}';
 
 
 
