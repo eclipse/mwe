@@ -44,6 +44,22 @@ public class EcoreGenerator implements IWorkflowComponent {
 	private boolean generateEdit = false;
 	private boolean generateEditor = false;
 	private boolean generateCustomClasses = false;
+	
+	private String lineDelimiter = System.getProperty("line.separator");
+	
+	/**
+	 * @since 2.6
+	 */
+	public String getLineDelimiter() {
+		return lineDelimiter;
+	}
+	
+	/**
+	 * @since 2.6
+	 */
+	public void setLineDelimiter(String lineDelimiter) {
+		this.lineDelimiter = lineDelimiter;
+	}
 
 	protected List<String> srcPaths = newArrayList();
 	private String genModel;
@@ -108,7 +124,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 		};
 		log.info("generating EMF code for "+this.genModel);
 		generator.getAdapterFactoryDescriptorRegistry().addDescriptor(GenModelPackage.eNS_URI,
-				new GeneratorAdapterDescriptor(getTypeMapper()));
+				new GeneratorAdapterDescriptor(getTypeMapper(), getLineDelimiter()));
 		generator.setInput(genModel);
 
 		Diagnostic diagnostic = generator.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
@@ -258,6 +274,11 @@ public class EcoreGenerator implements IWorkflowComponent {
 		private Function<String, String> typeMapper;
 
 		protected GeneratorAdapterDescriptor(Function<String,String> typeMapper) {
+			this.typeMapper = typeMapper;
+		}
+		
+		public GeneratorAdapterDescriptor(Function<String,String> typeMapper, String lineDelimiter) {
+			super(lineDelimiter);
 			this.typeMapper = typeMapper;
 		}
 

@@ -18,6 +18,7 @@ import org.eclipse.emf.mwe2.util.LineFilterOutputStream;
  */
 public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 		GeneratorAdapterFactory.Descriptor {
+
 	/**
 	 * @author Sebastian Zarnekow - Initial contribution and API
 	 */
@@ -29,6 +30,9 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 			protected IdFilteringGenPackageAdapter(
 					GeneratorAdapterFactory generatorAdapterFactory) {
 				super(generatorAdapterFactory);
+				if (explicitLineDelimiter != null) {
+					setLineDelimiter(explicitLineDelimiter);
+				}
 			}
 
 			@Override
@@ -38,6 +42,20 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 						.createOutputStream(
 								super.createOutputStream(workspacePath),
 								getLineDelimiter());
+			}
+			
+			@Override
+			protected void createImportManager(String packageName, String className) {
+				super.createImportManager(packageName, className);
+				if (explicitLineDelimiter != null)
+					importManager.setLineDelimiter(explicitLineDelimiter);
+			}
+
+			@Override
+			public String getLineDelimiter(URI workspacePath, String encoding) {
+				if (explicitLineDelimiter != null)
+					return explicitLineDelimiter;
+				return super.getLineDelimiter(workspacePath, encoding);
 			}
 		}
 
@@ -46,6 +64,9 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 			protected IdFilteringGenEnumAdapter(
 					GeneratorAdapterFactory generatorAdapterFactory) {
 				super(generatorAdapterFactory);
+				if (explicitLineDelimiter != null) {
+					setLineDelimiter(explicitLineDelimiter);
+				}
 			}
 
 			@Override
@@ -55,6 +76,20 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 						.createOutputStream(
 								super.createOutputStream(workspacePath),
 								getLineDelimiter());
+			}
+			
+			@Override
+			protected void createImportManager(String packageName, String className) {
+				super.createImportManager(packageName, className);
+				if (explicitLineDelimiter != null)
+					importManager.setLineDelimiter(explicitLineDelimiter);
+			}
+
+			@Override
+			public String getLineDelimiter(URI workspacePath, String encoding) {
+				if (explicitLineDelimiter != null)
+					return explicitLineDelimiter;
+				return super.getLineDelimiter(workspacePath, encoding);
 			}
 		}
 
@@ -63,6 +98,9 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 			protected IdFilteringGenClassAdapter(
 					GeneratorAdapterFactory generatorAdapterFactory) {
 				super(generatorAdapterFactory);
+				if (explicitLineDelimiter != null) {
+					setLineDelimiter(explicitLineDelimiter);
+				}
 			}
 
 			@Override
@@ -72,6 +110,20 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 						.createOutputStream(
 								super.createOutputStream(workspacePath),
 								getLineDelimiter());
+			}
+			
+			@Override
+			protected void createImportManager(String packageName, String className) {
+				super.createImportManager(packageName, className);
+				if (explicitLineDelimiter != null)
+					importManager.setLineDelimiter(explicitLineDelimiter);
+			}
+
+			@Override
+			public String getLineDelimiter(URI workspacePath, String encoding) {
+				if (explicitLineDelimiter != null)
+					return explicitLineDelimiter;
+				return super.getLineDelimiter(workspacePath, encoding);
 			}
 		}
 
@@ -120,6 +172,21 @@ public class CvsIdFilteringGeneratorAdapterFactoryDescriptor implements
 		public Adapter createGenPackageAdapter() {
 			return new IdFilteringGenPackageAdapter(this);
 		}
+	}
+	
+	/* @Nullable */
+	private final String explicitLineDelimiter;
+	
+	public CvsIdFilteringGeneratorAdapterFactoryDescriptor() {
+		this(null);
+	}
+	
+	/**
+	 * @since 2.7
+	 */
+	public CvsIdFilteringGeneratorAdapterFactoryDescriptor(String lineDelimiter) {
+		super();
+		this.explicitLineDelimiter = lineDelimiter;
 	}
 
 	protected OutputStream createOutputStream(OutputStream stream,
