@@ -63,6 +63,14 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
+	@Test public void testImplicitImportOfModulePackage_04() throws Exception {
+		Module model = (Module) getModel("module java.MyModule "+ComponentA.class.getName()+"{}");
+		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
+		assertNotNull(scope.getSingleElement(QualifiedName.create("math", "BigDecimal")));
+		assertNotNull(scope.getSingleElement(QualifiedName.create("math.BigDecimal")));
+		assertNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
+	}
+	
 	@Test public void testCreateComponentFeatureScope_1() throws Exception {
 		Module model = (Module) getModel("module foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
