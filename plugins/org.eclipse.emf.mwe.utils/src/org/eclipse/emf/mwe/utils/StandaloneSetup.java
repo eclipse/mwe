@@ -337,9 +337,15 @@ public class StandaloneSetup {
 			String name = document.getDocumentElement().getElementsByTagName("name").item(0).getTextContent();
 
 			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + File.separator);
-			EcorePlugin.getPlatformResourceMap().put(name, uri);
-			if (bundleNameMapping.get(name) != null) {
-				EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(name), uri);
+			URI existing = EcorePlugin.getPlatformResourceMap().put(name, uri);
+			if (existing != null) {
+				log.info("Skipping duplicate project " + name + " at '" + uri + "'. Prev was: '" + existing + "'.");
+				EcorePlugin.getPlatformResourceMap().put(name, existing);
+				return;
+			} else {
+				if (bundleNameMapping.get(name) != null) {
+					EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(name), uri);
+				}
 			}
 			if (log.isDebugEnabled()) {
 				log.debug("Registering project " + name + " at '" + uri + "'");
