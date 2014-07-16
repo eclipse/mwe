@@ -48,14 +48,14 @@ public class EcoreGenerator implements IWorkflowComponent {
 	private String lineDelimiter = System.getProperty("line.separator");
 	
 	/**
-	 * @since 2.6
+	 * @since 2.7
 	 */
 	public String getLineDelimiter() {
 		return lineDelimiter;
 	}
 	
 	/**
-	 * @since 2.6
+	 * @since 2.7
 	 */
 	public void setLineDelimiter(String lineDelimiter) {
 		this.lineDelimiter = lineDelimiter;
