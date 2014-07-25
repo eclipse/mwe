@@ -4,7 +4,7 @@
       label="%featureName"
       version="1.3.4.qualifier"
       provider-name="%providerName"
-	  license-feature="org.eclipse.emf.mwe.license"
+      license-feature="org.eclipse.emf.mwe.license"
       license-feature-version="2.6.0.qualifier">
 
    <description>
@@ -38,10 +38,10 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.jdt.ui"/>
       <import plugin="org.eclipse.jface.text"/>
       <import plugin="org.eclipse.ui.editors"/>
-      <import plugin="org.eclipse.emf.mwe.core" version="1.3.0" match="equivalent"/>
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.core.expressions"/>
+      <import feature="org.eclipse.emf.mwe.core" version="1.3.4" match="greaterOrEqual"/>
    </requires>
 
    <plugin
