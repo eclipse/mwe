@@ -40,13 +40,18 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
-import org.eclipse.xtext.common.types.util.TypeConformanceComputer;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
+import org.eclipse.xtext.xbase.typesystem.legacy.StandardTypeReferenceOwner;
+import org.eclipse.xtext.xbase.typesystem.references.ITypeReferenceOwner;
+import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
+import org.eclipse.xtext.xbase.typesystem.references.OwnedConverter;
+import org.eclipse.xtext.xbase.typesystem.references.ParameterizedTypeReference;
+import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -62,7 +67,7 @@ import com.google.inject.Inject;
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
-	private TypeConformanceComputer assignabilityComputer;
+	private CommonTypeComputationServices commonTypeComputationServices;
 
 	@Inject
 	private FactorySupport factorySupport;
@@ -98,19 +103,19 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		if (left != null) {
 			if (assignment.getValue() == null || assignment.getValue().eIsProxy())
 				return;
-			JvmParameterizedTypeReference right = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
-			JvmType actualType = assignment.getValue().getActualType();
-			if (actualType == null || actualType.eIsProxy())
+			JvmType rightType = assignment.getValue().getActualType();
+			if (rightType == null || rightType.eIsProxy())
 				return;
-			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
+			JvmType factoryType = factorySupport.findFactoriesCreationType(rightType);
 			if (factoryType != null) {
-				right.setType(factoryType);
-			} else {
-				right.setType(actualType);
+				rightType = factoryType;
 			}
-			if (!assignabilityComputer.isConformant(left, right)) {
+			ITypeReferenceOwner owner = new StandardTypeReferenceOwner(commonTypeComputationServices, assignment);
+			OwnedConverter converter = new OwnedConverter(owner);
+			LightweightTypeReference leftReference = converter.toLightweightReference(left);
+			if (!leftReference.isAssignableFrom(rightType)) {
 				error(
-						"A value of type '" + actualType.getQualifiedName('.')
+						"A value of type '" + rightType.getQualifiedName('.')
 						+ "' can not be assigned to the feature "
 						+ feature.getIdentifier(),
 						Mwe2Package.Literals.ASSIGNMENT__VALUE,
@@ -123,17 +128,14 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	@Check
 	public void checkCompatibility(DeclaredProperty property) {
 		if (property.getType()!=null && property.getDefault()!=null) {
-			JvmParameterizedTypeReference left = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
-			left.setType(property.getType());
-			JvmParameterizedTypeReference right = TypesFactory.eINSTANCE.createJvmParameterizedTypeReference();
+			ITypeReferenceOwner owner = new StandardTypeReferenceOwner(commonTypeComputationServices, property);
+			LightweightTypeReference left = new ParameterizedTypeReference(owner, property.getType());
 			JvmType actualType = property.getDefault().getActualType();
 			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
 			if (factoryType != null) {
-				right.setType(factoryType);
-			} else {
-				right.setType(actualType);
+				actualType = factoryType;
 			}
-			if (!assignabilityComputer.isConformant(left, right)) {
+			if (!left.isAssignableFrom(actualType)) {
 				error(
 						"A value of type '" + actualType.getQualifiedName('.')
 						+ "' can not be assigned to a reference of type "

@@ -14,14 +14,12 @@ import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2StateBasedContainerManager;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
-import org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory;
-import org.eclipse.xtext.common.types.xtext.ClasspathBasedTypeScopeProvider;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
+import org.eclipse.xtext.resource.IContainer.Manager;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
 import org.eclipse.xtext.resource.XtextResourceSet;
-import org.eclipse.xtext.resource.IContainer.Manager;
 
 import com.google.inject.Provider;
 
@@ -71,29 +69,5 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	public Class<? extends Manager> bindIContainer$Manager() {
 		return Mwe2StateBasedContainerManager.class;
 	}
-
-	@Override
-	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindIJvmTypeProvider$Factory() {
-		if (isJdtCoreAvailable()) {
-			return ClasspathTypeProviderFactory.class;
-		}
-		return org.eclipse.xtext.common.types.access.reflect.ReflectionTypeProviderFactory.class;
-	}
-
-	private boolean isJdtCoreAvailable() {
-		try {
-			Class.forName("org.eclipse.jdt.internal.compiler.classfmt.ClassFormatException");
-			return true;
-		} catch (ClassNotFoundException e) {
-			return false;
-		}
-	}
-
-	@Override
-	public Class<? extends org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
-		if (isJdtCoreAvailable()) {
-			return ClasspathBasedTypeScopeProvider.class;
-		}
-		return org.eclipse.xtext.common.types.access.reflect.ReflectionTypeScopeProvider.class;
-	}
+	
 }
