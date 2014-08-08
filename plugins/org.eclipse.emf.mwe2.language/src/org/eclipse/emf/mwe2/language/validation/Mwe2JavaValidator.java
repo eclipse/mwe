@@ -36,22 +36,20 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
 import org.eclipse.xtext.common.types.JvmParameterizedTypeReference;
+import org.eclipse.xtext.common.types.JvmPrimitiveType;
 import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
+import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.common.types.util.Primitives;
+import org.eclipse.xtext.common.types.util.RawSuperTypes;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
-import org.eclipse.xtext.xbase.typesystem.legacy.StandardTypeReferenceOwner;
-import org.eclipse.xtext.xbase.typesystem.references.ITypeReferenceOwner;
-import org.eclipse.xtext.xbase.typesystem.references.LightweightTypeReference;
-import org.eclipse.xtext.xbase.typesystem.references.OwnedConverter;
-import org.eclipse.xtext.xbase.typesystem.references.ParameterizedTypeReference;
-import org.eclipse.xtext.xbase.typesystem.util.CommonTypeComputationServices;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Lists;
@@ -67,9 +65,6 @@ import com.google.inject.Inject;
 public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 
 	@Inject
-	private CommonTypeComputationServices commonTypeComputationServices;
-
-	@Inject
 	private FactorySupport factorySupport;
 	
 	@Inject
@@ -77,6 +72,12 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 	
 	@Inject
 	private IQualifiedNameConverter qualifiedNameConverter;
+	
+	@Inject
+	private RawSuperTypes rawSuperTypes;
+	
+	@Inject
+	private Primitives primitives;
 	
 	public final static String INCOMPATIBLE_ASSIGNMENT = "incompatible_assignment";
 
@@ -110,10 +111,7 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 			if (factoryType != null) {
 				rightType = factoryType;
 			}
-			ITypeReferenceOwner owner = new StandardTypeReferenceOwner(commonTypeComputationServices, assignment);
-			OwnedConverter converter = new OwnedConverter(owner);
-			LightweightTypeReference leftReference = converter.toLightweightReference(left);
-			if (!leftReference.isAssignableFrom(rightType)) {
+			if (!isAssignableFrom(left, rightType)) {
 				error(
 						"A value of type '" + rightType.getQualifiedName('.')
 						+ "' can not be assigned to the feature "
@@ -125,17 +123,52 @@ public class Mwe2JavaValidator extends AbstractMwe2JavaValidator {
 		}
 	}
 	
+	protected boolean isAssignableFrom(JvmTypeReference left, JvmType right) {
+		JvmType leftRaw = left.getType();
+		// simplified conformance check
+		return isAssignableFrom(leftRaw, right);
+	}
+	
+	protected boolean isAssignableFrom(JvmType left, JvmType right) {
+		if (left == right) {
+			return true;
+		}
+		if (left == null || left.eIsProxy()) {
+			return true;
+		}
+		if (right == null || right.eIsProxy()) {
+			return true;
+		}
+		if (rawSuperTypes.collect(right).contains(left)) {
+			return true;
+		}
+		// simplified conformance check
+		if (right.eClass() == TypesPackage.Literals.JVM_PRIMITIVE_TYPE && left.eClass() != TypesPackage.Literals.JVM_PRIMITIVE_TYPE) {
+			JvmType wrapper = primitives.getWrapperType((JvmPrimitiveType) right);
+			boolean result = isAssignableFrom(left, wrapper);
+			return result;
+		}
+		if (left.eClass() == TypesPackage.Literals.JVM_PRIMITIVE_TYPE && right.eClass() != TypesPackage.Literals.JVM_PRIMITIVE_TYPE) {
+			if (right instanceof JvmDeclaredType) {
+				JvmType primitive = primitives.getPrimitiveTypeIfWrapper((JvmDeclaredType) right);
+				if (primitive != null) {
+					boolean result = isAssignableFrom(left, primitive);
+					return result;		
+				}
+			}
+		}
+		return false;
+	}
+	
 	@Check
 	public void checkCompatibility(DeclaredProperty property) {
 		if (property.getType()!=null && property.getDefault()!=null) {
-			ITypeReferenceOwner owner = new StandardTypeReferenceOwner(commonTypeComputationServices, property);
-			LightweightTypeReference left = new ParameterizedTypeReference(owner, property.getType());
 			JvmType actualType = property.getDefault().getActualType();
 			JvmType factoryType = factorySupport.findFactoriesCreationType(actualType);
 			if (factoryType != null) {
 				actualType = factoryType;
 			}
-			if (!left.isAssignableFrom(actualType)) {
+			if (!isAssignableFrom(property.getType(), actualType)) {
 				error(
 						"A value of type '" + actualType.getQualifiedName('.')
 						+ "' can not be assigned to a reference of type "
