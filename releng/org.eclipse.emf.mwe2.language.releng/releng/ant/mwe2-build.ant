@@ -51,7 +51,7 @@
 
 			build
 
-			junit --launch "org.eclipse.emf.mwe2.language.tests/org.eclipse.emf.mwe2.language.tests.launch" --flatXML --output ${WORKSPACE}/build-result/test-results/org.eclipse.emf.mwe2.language.tests.xml"
+			junit --stdout --stderr --launch "org.eclipse.emf.mwe2.language.tests/org.eclipse.emf.mwe2.language.tests.launch" --flatXML --output ${WORKSPACE}/build-result/test-results/org.eclipse.emf.mwe2.language.tests.xml"
 
 			perform -DtargetPlatformPath="${WORKSPACE}/buildroot/target.platform" "org.eclipse.emf.mwe2.language.releng#create.javadoc"
 			perform "org.eclipse.emf.mwe2.language.build#build"

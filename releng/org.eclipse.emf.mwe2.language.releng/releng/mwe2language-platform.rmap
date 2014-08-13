@@ -19,6 +19,8 @@
 	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit" failOnError="false" />
+	<rm:locator pattern="^org\.junit(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.hamcrest\.core(?:\..+)?$" searchPathRef="orbit" />
 	<rm:locator searchPathRef="platform" />
 	
 	<rm:searchPath name="local.releng">
