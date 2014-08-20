@@ -18,7 +18,7 @@ import org.eclipse.jdt.launching.JavaLaunchDelegate;
 public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 
 	private static final Logger logger = Logger.getLogger(Mwe2LaunchDelegate.class);
-	private static final String ATTR_REFRESH_SCOPE =  DebugPlugin.getUniqueIdentifier() + ".ATTR_REFRESH_SCOPE";
+	private static final String ATTR_REFRESH_SCOPE =  DebugPlugin.getUniqueIdentifier() + ".ATTR_REFRESH_SCOPE"; //$NON-NLS-1$
 
 	@Override
 	public void launch(final ILaunchConfiguration configuration, String mode,

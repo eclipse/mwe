@@ -7,7 +7,7 @@
  *
  *******************************************************************************/
 
-package org.eclipse.emf.mwe2.launch.shortcut;
+package org.eclipse.emf.mwe2.launch.ui.shortcut;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -134,7 +134,7 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 		final ILaunchConfigurationType configType = launchManager
 				.getLaunchConfigurationType("org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType");
 
-		wc = configType.newInstance(null, launchManager.generateUniqueLaunchConfigurationNameFrom(info.name));
+		wc = configType.newInstance(null, launchManager.generateLaunchConfigurationName(info.name));
 
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME, info.project);
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, Mwe2Launcher.class.getName());
