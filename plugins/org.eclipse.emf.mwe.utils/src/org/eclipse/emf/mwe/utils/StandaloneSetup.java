@@ -296,11 +296,9 @@ public class StandaloneSetup {
 				final int indexOf = name.indexOf(';');
 				if (indexOf > 0)
 					name = name.substring(0, indexOf);
-				if (EcorePlugin.getPlatformResourceMap().containsKey(name))
-					return;
-				String path = "archive:" + file.toURI() + "!/";
+				String path = "archive:" + file.getCanonicalFile().toURI() + "!/";
 				URI uri = URI.createURI(path);
-				EcorePlugin.getPlatformResourceMap().put(name, uri);
+				registerMapping(name, uri);
 			}
 		}
 		catch (ZipException e) {
@@ -329,6 +327,31 @@ public class StandaloneSetup {
 			throw new RuntimeException(exception);
 		}
 	}
+	
+	protected void registerMapping(String name, URI uri) {
+		Map<String, URI> map = EcorePlugin.getPlatformResourceMap();
+		if (log.isDebugEnabled())
+			log.debug("Registering project " + name + " at '" + uri + "'");
+		URI existing = map.put(name, uri);
+		if (existing != null) {
+			if (!existing.equals(uri)) {
+				if (existing.isArchive() == uri.isArchive())
+					log.warn("Skipping conflicting project " + name + " at '" + existing + "' and using '" + uri + "' instead.");
+				else if (!existing.isArchive() && uri.isArchive()) {
+					if(log.isDebugEnabled())
+						log.debug("Skipping duplicate project " + name + " at '" + uri + "' and using '" + existing + "' instead (folders win over JARs).");
+					map.put(name, existing);
+				} else {
+					if(log.isDebugEnabled())
+						log.debug("Skipping duplicate project " + name + " at '" + existing + "' and using '" + uri + "' instead (folders win over JARs).");
+				}
+			}
+		} else {
+			String mappedName = bundleNameMapping.get(name);
+			if (mappedName != null)
+				registerMapping(mappedName, uri);
+		}
+	}
 
 	protected void registerProject(File file) {
 		try {
@@ -336,19 +359,7 @@ public class StandaloneSetup {
 			String name = document.getDocumentElement().getElementsByTagName("name").item(0).getTextContent();
 
 			URI uri = URI.createFileURI(file.getParentFile().getCanonicalPath() + File.separator);
-			URI existing = EcorePlugin.getPlatformResourceMap().put(name, uri);
-			if (existing != null) {
-				log.info("Skipping duplicate project " + name + " at '" + uri + "'. Prev was: '" + existing + "'.");
-				EcorePlugin.getPlatformResourceMap().put(name, existing);
-				return;
-			} else {
-				if (bundleNameMapping.get(name) != null) {
-					EcorePlugin.getPlatformResourceMap().put(bundleNameMapping.get(name), uri);
-				}
-			}
-			if (log.isDebugEnabled()) {
-				log.debug("Registering project " + name + " at '" + uri + "'");
-			}
+			registerMapping(name, uri);
 		}
 		catch (Exception e) {
 			handleException(file, e);
