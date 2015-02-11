@@ -20,6 +20,7 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.apache.commons.cli.PosixParser;
 import org.apache.log4j.Logger;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 
@@ -68,12 +69,22 @@ public class Mwe2Launcher {
 					}
 				}
 			}
+			// check  OperationCanceledException is accessible
+			OperationCanceledException.class.getName();
+			
 			Injector injector = new Mwe2StandaloneSetup().createInjectorAndDoEMFRegistration();
 			Mwe2Runner mweRunner = injector.getInstance(Mwe2Runner.class);
 			if (moduleName.contains("/")) {
 				mweRunner.run(URI.createURI(moduleName), params);
 			} else {
 				mweRunner.run(moduleName, params);
+			}
+		} catch(NoClassDefFoundError e) {
+			if ("org/eclipse/core/runtime/OperationCanceledException".equals(e.getMessage())){
+				System.err.println("Could not load class: org.eclipse.core.runtime.OperationCanceledException");
+				System.err.println("Add org.eclipse.equinox.common to the class path.");
+			} else {
+				throw e;
 			}
 		} catch (final ParseException exp) {
 			final HelpFormatter formatter = new HelpFormatter();
