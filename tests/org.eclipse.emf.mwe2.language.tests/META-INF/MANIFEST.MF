@@ -2,20 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Modeling Workflow Engine 2 Language Tests
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.tests
-Bundle-Version: 2.7.0.qualifier
+Bundle-Version: 2.7.1.qualifier
 Bundle-Vendor: Eclipse Modeling
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.emf.mwe2.language;bundle-version="2.0.0",
  org.eclipse.emf.mwe2.language.ui;bundle-version="2.0.0",
- org.eclipse.xtext.junit4;bundle-version="2.3.0",
+ org.eclipse.xtext.junit4,
  com.google.inject;bundle-version="3.0.0",
- org.eclipse.xtext;bundle-version="2.3.0",
- org.eclipse.xtext.common.types;bundle-version="2.3.0",
- org.eclipse.emf.mwe2.runtime;bundle-version="2.3.0",
- org.eclipse.xtext.ui.shared;bundle-version="2.3.0",
- org.eclipse.xtext.ui;bundle-version="2.3.0",
+ org.eclipse.xtext,
+ org.eclipse.xtext.common.types,
+ org.eclipse.emf.mwe2.runtime,
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.xtext.ui,
  org.eclipse.jdt.core,
- org.eclipse.xtext.common.types.ui;bundle-version="2.3.0",
+ org.eclipse.xtext.common.types.ui,
  org.objectweb.asm;bundle-version="[5.0.1,6.0.0)";resolution:=optional,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional
