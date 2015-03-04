@@ -14,8 +14,7 @@
 		<cs:dependency name="org.eclipse.core.runtime" componentType="osgi.bundle" versionDesignator="[3.6.0,3.7.0)" />
 		<cs:dependency name="org.junit" componentType="osgi.bundle" versionDesignator="4.11.0" />
         <cs:dependency name="org.eclipse.emf.ecore" componentType="eclipse.feature" versionDesignator="2.9.0" />
-		<cs:dependency name="org.eclipse.emf.codegen.ecore" componentType="eclipse.feature"
-        versionDesignator="[2.9.0,2.10.0)" />
+		<cs:dependency name="org.eclipse.emf.codegen.ecore" componentType="eclipse.feature" versionDesignator="[2.9.0,2.11.0)" />
 		
 		<!-- xtext -->
 		<cs:dependency name="org.eclipse.platform" componentType="eclipse.feature" versionDesignator="[3.6.0,3.7.0)" />
