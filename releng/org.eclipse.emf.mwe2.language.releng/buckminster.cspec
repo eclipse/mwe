@@ -16,7 +16,7 @@
         <cs:dependency name="org.eclipse.emf.ecore" componentType="eclipse.feature" versionDesignator="[2.9.0,2.11.0)" />
 		<cs:dependency name="org.eclipse.emf.codegen.ecore" componentType="eclipse.feature" versionDesignator="[2.9.0,2.11.0)" />
 		
-		<cs:dependency name="org.eclipse.emf.mwe2.runtime.sdk" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.emf.mwe2.lib" componentType="osgi.bundle" />
 
 		<!-- xtext -->
 		<cs:dependency name="org.eclipse.platform" componentType="eclipse.feature" versionDesignator="[3.6.0,3.7.0)" />
