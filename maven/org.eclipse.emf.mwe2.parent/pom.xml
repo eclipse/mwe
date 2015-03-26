@@ -17,8 +17,10 @@
 
 		<module>../../plugins/org.eclipse.emf.mwe2.runtime</module>
 		<module>../../plugins/org.eclipse.emf.mwe.core</module>
-		<module>../../plugins/org.eclipse.emf.mwe.utils</module> 
-		<module>../../plugins/org.eclipse.emf.mwe2.lib</module> 
+		<module>../../plugins/org.eclipse.emf.mwe.utils</module>
+		<module>../../plugins/org.eclipse.emf.mwe2.lib</module>
+		<module>../../plugins/org.eclipse.emf.mwe2.language</module>
+		<module>../../plugins/org.eclipse.emf.mwe2.launch</module>
 	</modules>
 
 	<licenses>
@@ -138,26 +140,6 @@
 						<goals>
 							<goal>jar</goal>
 						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.8</version>
-				<executions>
-					<execution>
-						<id>add-source</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src-gen</source>
-								<source>xtend-gen</source>
-							</sources>
-						</configuration>
 					</execution>
 				</executions>
 			</plugin>

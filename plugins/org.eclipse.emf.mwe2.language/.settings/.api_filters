@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <component id="org.eclipse.emf.mwe2.language" version="2">
-    <resource path="src/org/eclipse/emf/mwe2/language/GenerateMwe2.java" type="org.eclipse.emf.mwe2.language.GenerateMwe2">
-        <filter comment="Avoids circular dependency" id="571519004">
-            <message_arguments>
-                <message_argument value="org.eclipse.emf.mwe2.language.GenerateMwe2.1"/>
-                <message_argument value="LanguageConfig"/>
-            </message_arguments>
-        </filter>
-    </resource>
     <resource path="src/org/eclipse/emf/mwe2/language/scoping/FactorySupport.java" type="org.eclipse.emf.mwe2.language.scoping.FactorySupport">
         <filter comment="Non-API type on signature" id="643846161">
             <message_arguments>
