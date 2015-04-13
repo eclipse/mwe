@@ -19,8 +19,6 @@
 		<!-- xtext -->
 		<cs:dependency name="org.eclipse.platform" componentType="eclipse.feature" versionDesignator="[3.6.0,3.7.0)" />
 		<cs:dependency name="org.eclipse.xtext.ui" componentType="eclipse.feature" />
-		<cs:dependency name="org.eclipse.xtext.ui.junit" componentType="osgi.bundle" />
-		<cs:dependency name="org.eclipse.xtext.junit" componentType="osgi.bundle" />
 		<cs:dependency name="org.eclipse.xtext.junit4" componentType="osgi.bundle" />
 	</cs:dependencies>
 	<cs:actions>
