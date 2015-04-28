@@ -122,8 +122,8 @@
 		  install location as secondary bundle pools so that only the desired components are installed
 		  in the install destination directory
 		-->
-		<java jar="${launcher.jar}" fork="true" failonerror="true">
-			<arg value="-consolelog" />
+		<java jar="${launcher.jar}" fork="true" failonerror="true" logerror="true">
+			<arg value="-consoleLog" />
 			<arg value="-application" />
 			<arg value="org.eclipse.equinox.p2.director" />
 			<arg value="-repository" />

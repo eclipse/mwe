@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+	<tstamp>
+		<format property="build.timestamp" pattern="yyyyMMddHHmmss" timezone="UTC" />
+	</tstamp>
+
+	<property name="build.timestamp" value="" />
+	<property name="verbose" value="true" />
+	<property name="output.folder" location="${sp:action.output}" />
+	<tempfile property="input.file" prefix="site_" suffix=".zip" destdir="${buckminster.temp}" />
+	<dirname file="${input.file}" property="input.folder" />
+	<basename file="${input.file}" property="subject.file" />
+
+	<target name="sign.jars" depends="check.sign.type,check.eclipse.signing.properties,eclipse.sign.jars.keyfile,eclipse.sign.jars.password,eclipse.sign.jars.local,default.sign.jars" />
+
+	<target name="check.sign.type">
+		<buckminster.contextProperty name="signing.type" />
+
+		<condition property="sign.type.eclipse.remote">
+			<equals arg1="eclipse.remote" arg2="${signing.type}" />
+		</condition>
+
+		<condition property="sign.type.eclipse.local">
+			<equals arg1="eclipse.local" arg2="${signing.type}" />
+		</condition>
+
+		<condition property="sign.type.eclipse">
+			<or>
+				<isset property="sign.type.eclipse.remote" />
+				<isset property="sign.type.eclipse.local" />
+			</or>
+		</condition>
+
+		<condition property="sign.type.default">
+			<not>
+				<isset property="sign.type.eclipse" />
+			</not>
+		</condition>
+	</target>
+
+	<target name="default.sign.jars" if="sign.type.default">
+		<property name="local.keystore.path" value="" />
+		<property name="local.keystore.alias" value="" />
+		<property name="local.keystore.password" value="" />
+		<buckminster.contextProperty name="local.keystore.path" />
+		<buckminster.contextProperty name="local.keystore.alias" />
+		<buckminster.contextProperty name="local.keystore.password" />
+		<fail message="The properties 'local.keystore.path', 'local.keystore.alias', and 'local.keystore.password' must be set in order to do local jar signing">
+			<condition>
+				<not>
+					<and>
+						<length string="${local.keystore.path}" when="greater" length="0" />
+						<length string="${local.keystore.alias}" when="greater" length="0" />
+						<length string="${local.keystore.password}" when="greater" length="0" />
+					</and>
+				</not>
+			</condition>
+		</fail>
+		<delete dir="${output.folder}" />
+		<mkdir dir="${output.folder}" />
+		<copy todir="${output.folder}">
+			<buckminster.valuefileset value="${fs:action.requirements}" />
+		</copy>
+		<signjar keystore="${local.keystore.path}" alias="${local.keystore.alias}" storepass="${local.keystore.password}">
+			<fileset dir="${output.folder}" includes="**/*.jar" />
+		</signjar>
+	</target>
+
+	<target name="check.eclipse.signing.properties" depends="check.eclipse.signing.properties.remote" if="sign.type.eclipse">
+		<property name="eclipse.staging.area" value="" />
+		<buckminster.contextProperty name="staging.area" receivingproperty="eclipse.staging.area" />
+		<buckminster.contextProperty name="eclipse.staging.area" />
+		<fail message="The property 'eclipse.staging.area' must be set in order to do eclipse.local or eclipse.remote jar signing">
+			<condition>
+				<length string="${eclipse.staging.area}" when="equal" length="0" />
+			</condition>
+		</fail>
+		<property name="staging.output.folder" value="${eclipse.staging.area}/out${build.timestamp}" />
+	</target>
+
+	<target name="check.eclipse.signing.properties.remote" if="sign.type.eclipse.remote">
+		<property name="eclipse.committer.name" value="" />
+		<property name="eclipse.committer.password" value="" />
+		<property name="eclipse.committer.keyfile" value="" />
+		<property name="eclipse.committer.keyfile.passphrase" value="" />
+		<property name="signing.host" value="build.eclipse.org" />
+		<buckminster.contextProperty name="eclipse.committer.name" />
+		<buckminster.contextProperty name="eclipse.committer.password" />
+		<buckminster.contextProperty name="eclipse.committer.keyfile" />
+		<buckminster.contextProperty name="eclipse.committer.keyfile.passphrase" />
+		<fail message="The property 'eclipse.committer.name', and one of 'eclipse.committer.password' or 'eclipse.committer.keyfile' must be set in order to do eclipse.remote jar signing">
+			<condition>
+				<not>
+					<and>
+						<length string="${eclipse.committer.name}" when="greater" length="0" />
+						<or>
+							<length string="${eclipse.committer.password}" when="greater" length="0" />
+							<length string="${eclipse.committer.keyfile}" when="greater" length="0" />
+						</or>
+					</and>
+				</not>
+			</condition>
+		</fail>
+		<condition property="sign.type.eclipse.remote.keyfile">
+			<length string="${eclipse.committer.keyfile}" when="greater" length="0" />
+		</condition>
+
+		<condition property="sign.type.eclipse.remote.password">
+			<and>
+				<length string="${eclipse.committer.password}" when="greater" length="0" />
+				<not>
+					<isset property="sign.type.eclipse.remote.keyfile" />
+				</not>
+			</and>
+		</condition>
+	</target>
+
+	<target name="eclipse.sign.jars.password" depends="wait.for.output.password" if="sign.type.eclipse.remote.password">
+		<echo message="Obtaining signed file from server" />
+		<scp file="${eclipse.committer.name}:${eclipse.committer.password}@${signing.host}:${staging.output.folder}/${subject.file}" todir="${buckminster.temp}" trust="true" />
+		<sshexec host="${signing.host}" username="${eclipse.committer.name}" password="${eclipse.committer.password}" command="rm -rf ${eclipse.staging.area}/${subject.file} ${staging.output.folder}" timeout="10000" trust="true" />
+		<delete dir="${output.folder}" />
+		<mkdir dir="${output.folder}" />
+		<unzip src="${input.file}" dest="${output.folder}" />
+	</target>
+
+	<target name="wait.for.output.password" depends="queue.for.signing.password" if="sign.type.eclipse.remote.password">
+		<echo message="Waiting for signing to complete. This may take more then 20 minutes. (Expect to see several 'Remote command failed' messages)" />
+		<sleep seconds="30" />
+		<waitfor checkevery="1" checkeveryunit="minute" maxwait="40" maxwaitunit="minute">
+			<buckminster.antcallsuccess target="assert.output.present.password" trapPattern="(Remote command failed)|(Auth cancel)" />
+		</waitfor>
+	</target>
+
+	<target name="queue.for.signing.password" if="sign.type.eclipse.remote.password">
+		<mkdir dir="${input.folder}" />
+		<zip destfile="${input.file}">
+			<buckminster.valuefileset value="${fs:action.requirements}" />
+		</zip>
+		<echo message="Queueing ${subject.file} for signing" />
+		<scp file="${input.file}" todir="${eclipse.committer.name}:${eclipse.committer.password}@${signing.host}:${eclipse.staging.area}" trust="true" />
+		<sshexec host="${signing.host}" username="${eclipse.committer.name}" password="${eclipse.committer.password}" command="/usr/bin/sign ${eclipse.staging.area}/${subject.file} nomail ${staging.output.folder}" timeout="10000" trust="true" />
+		<delete file="${input.file}" />
+	</target>
+
+	<target name="assert.output.present.password" if="sign.type.eclipse.remote.password">
+		<sshexec host="${signing.host}" username="${eclipse.committer.name}" password="${eclipse.committer.password}" command="ls ${staging.output.folder}/${subject.file}" outputproperty="ls.result" timeout="10000" trust="true" />
+		<echo message="Signing host = ${signing.host}, ls.result = ${ls.result}" />
+	</target>
+
+	<target name="eclipse.sign.jars.keyfile" depends="wait.for.output.keyfile" if="sign.type.eclipse.remote.keyfile">
+		<echo message="Obtaining signed file from server" />
+		<scp file="${eclipse.committer.name}@${signing.host}:${staging.output.folder}/${subject.file}" todir="${buckminster.temp}" trust="true" keyfile="${eclipse.committer.keyfile}" passphrase="${eclipse.committer.keyfile.passphrase}" />
+		<sshexec host="${signing.host}" command="rm -rf ${eclipse.staging.area}/${subject.file} ${staging.output.folder}" timeout="10000" trust="true" username="${eclipse.committer.name}" keyfile="${eclipse.committer.keyfile}" passphrase="${eclipse.committer.keyfile.passphrase}" />
+		<delete dir="${output.folder}" />
+		<mkdir dir="${output.folder}" />
+		<unzip src="${input.file}" dest="${output.folder}" />
+	</target>
+
+	<target name="wait.for.output.keyfile" depends="queue.for.signing.keyfile" if="sign.type.eclipse.remote.keyfile">
+		<echo message="Waiting for signing to complete. This may take more then 20 minutes. (Expect to see several 'Remote command failed' messages)" />
+		<sleep seconds="30" />
+		<waitfor checkevery="1" checkeveryunit="minute" maxwait="40" maxwaitunit="minute">
+			<buckminster.antcallsuccess target="assert.output.present.keyfile" trapPattern="(Remote command failed)|(Auth cancel)" />
+		</waitfor>
+	</target>
+
+	<target name="queue.for.signing.keyfile" if="sign.type.eclipse.remote.keyfile">
+		<mkdir dir="${input.folder}" />
+		<zip destfile="${input.file}">
+			<buckminster.valuefileset value="${fs:action.requirements}" />
+		</zip>
+		<echo message="Queueing ${subject.file} for signing" />
+		<scp file="${input.file}" todir="${eclipse.committer.name}@${signing.host}:${eclipse.staging.area}" trust="true" keyfile="${eclipse.committer.keyfile}" passphrase="${eclipse.committer.keyfile.passphrase}" />
+		<sshexec host="${signing.host}" command="/usr/bin/sign ${eclipse.staging.area}/${subject.file} nomail ${staging.output.folder}" timeout="10000" trust="true" username="${eclipse.committer.name}" keyfile="${eclipse.committer.keyfile}" passphrase="${eclipse.committer.keyfile.passphrase}" />
+		<delete file="${input.file}" />
+	</target>
+
+	<target name="assert.output.present.keyfile" if="sign.type.eclipse.remote.keyfile">
+		<sshexec host="${signing.host}" command="ls ${staging.output.folder}/${subject.file}" outputproperty="ls.result" timeout="10000" trust="true" username="${eclipse.committer.name}" keyfile="${eclipse.committer.keyfile}" passphrase="${eclipse.committer.keyfile.passphrase}" />
+		<echo message="Signing host = ${signing.host}, ls.result = ${ls.result}" />
+	</target>
+
+	<target name="eclipse.sign.jars.local" depends="wait.for.output.local" if="sign.type.eclipse.local">
+		<echo message="Obtaining signed file from staging area" />
+		<copy file="${staging.output.folder}/${subject.file}" todir="${buckminster.temp}" />
+		<delete file="${eclipse.staging.area}/${subject.file}" />
+		<delete dir="${staging.output.folder}" />
+		<delete dir="${output.folder}" />
+		<mkdir dir="${output.folder}" />
+		<copy todir="${output.folder}">
+			<buckminster.valuefileset value="${fs:action.requirements}">
+				<exclude name="**/org.eclipse*.jar" />
+			</buckminster.valuefileset>
+		</copy>
+		<unzip src="${input.file}" dest="${output.folder}" />
+	</target>
+
+	<target name="wait.for.output.local" depends="queue.for.signing.local" if="sign.type.eclipse.local">
+		<echo message="Waiting for signing to complete. This may take more then 60 minutes" />
+		<sleep seconds="30" />
+		<waitfor checkevery="1" checkeveryunit="minute" maxwait="120" maxwaitunit="minute">
+			<available file="${staging.output.folder}/${subject.file}" />
+		</waitfor>
+	</target>
+
+	<target name="queue.for.signing.local" if="sign.type.eclipse.local">
+		<mkdir dir="${input.folder}" />
+		<zip destfile="${input.file}">
+			<buckminster.valuefileset value="${fs:action.requirements}">
+				<include name="**/org.eclipse*.jar" />
+			</buckminster.valuefileset>
+		</zip>
+		<echo message="Custom Queueing ${subject.file} for signing" />
+		<mkdir dir="${eclipse.staging.area}" />
+		<copy file="${input.file}" todir="${eclipse.staging.area}" />
+		<exec executable="/usr/bin/sign" outputproperty="sign.output">
+			<arg value="${eclipse.staging.area}/${subject.file}" />
+			<arg value="nomail" />
+			<arg value="${staging.output.folder}" />
+		</exec>
+		<!-- For local testing
+				<copyfile src="${eclipse.staging.area}/${subject.file}" dest="${staging.output.folder}/${subject.file}" />
+		-->
+		<fail message="${sign.output}">
+			<condition>
+				<or>
+					<contains string="${sign.output}" substring="ERROR" />
+					<contains string="${sign.output}" substring="Usage:" />
+				</or>
+			</condition>
+		</fail>
+		<echo message="${sign.output}" />
+		<delete file="${input.file}" />
+	</target>
+</project>
