@@ -158,11 +158,11 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 	// ************************ ISuspendResume implementation and other commands
 
 	public boolean canResume() {
-		return suspended;
+		return suspended && !isTerminated();
 	}
 
 	public boolean canSuspend() {
-		return !getProcess().isTerminated() && !suspended;
+		return  !suspended && !isTerminated();
 	}
 
 	public boolean isSuspended() {
