@@ -29,7 +29,10 @@ public class Mwe2EObjectHoverProvider extends DefaultEObjectHoverProvider {
 	protected String getFirstLine(EObject o) {
 		String result = super.getFirstLine(o);
 		if (o instanceof DeclaredProperty) {
-			return result + " = " + getPropertyValue(((DeclaredProperty) o).getDefault());
+			Value defaultValue = ((DeclaredProperty) o).getDefault();
+			if (defaultValue != null) {
+				return result + " = " + getPropertyValue(defaultValue);
+			}
 		}
 		return result;
 	}
