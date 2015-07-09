@@ -14,20 +14,21 @@
  */
 package org.eclipse.emf.mwe.tests.util;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderDefaultImpl;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Unittest for class {@link org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory}.
  * 
  */
-public class ResourceLoaderFactoryTest extends TestCase {
+public class ResourceLoaderFactoryTest extends Assert {
 
-	@Override
-	protected void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		System.setProperty(ResourceLoaderFactory.PARAM_RESOURCELOADER_CLASS, ResourceLoaderDefaultImpl.class.getName());
 	}
 
@@ -36,7 +37,7 @@ public class ResourceLoaderFactoryTest extends TestCase {
 	 * <p>
 	 * Tests the default behaviour of the factory method.
 	 */
-	public void test_createResourceLoader_default() throws Exception {
+	@Test public void test_createResourceLoader_default() throws Exception {
 		final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 		assertNotNull("createResourceLoader must not return null", loader);
 		assertTrue("Expected implementation: ResourceLoaderDefaultImpl", loader instanceof ResourceLoaderDefaultImpl);
@@ -48,7 +49,7 @@ public class ResourceLoaderFactoryTest extends TestCase {
 	 * Tests that the factory evaluates the system property to create alternative <tt>ResourceLoader</tt>
 	 * implementations.
 	 */
-	public void test_createResourceLoader_alternative() throws Exception {
+	@Test public void test_createResourceLoader_alternative() throws Exception {
 		System.setProperty(ResourceLoaderFactory.PARAM_RESOURCELOADER_CLASS, DummyResourceLoader.class.getName());
 		final ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 		ResourceLoaderFactory.class.getClassLoader().loadClass(ResourceLoaderFactory.class.getName());
@@ -61,7 +62,7 @@ public class ResourceLoaderFactoryTest extends TestCase {
 	 * <p>
 	 * Tests that the factory fails when an invalid classname was configured.
 	 */
-	public void test_createResourceLoader_negative() throws Exception {
+	@Test public void test_createResourceLoader_negative() throws Exception {
 		System.setProperty(ResourceLoaderFactory.PARAM_RESOURCELOADER_CLASS, "***INVALID***");
 		try {
 			ResourceLoaderFactory.createResourceLoader();

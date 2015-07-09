@@ -11,22 +11,22 @@ import java.io.File;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-import junit.framework.TestCase;
-
 import org.apache.commons.logging.Log;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.utils.ProjectMapping;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author Holger Schill - Initial contribution and API
  */
-public class Bug414169Test extends TestCase {
+public class Bug414169Test extends Assert {
 
 	public static final String TESTPROJECT = "TestProject";
 
-	public void testWarningMessage() throws Exception {
+	@Test public void testWarningMessage() throws Exception {
 
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		LogTester logTester = new LogTester(StandaloneSetup.class,standaloneSetup);
@@ -35,7 +35,7 @@ public class Bug414169Test extends TestCase {
 		assertEquals(1, logTester.getWarnings().size());
 	}
 
-	public void testNoWarningMessage() throws Exception {
+	@Test public void testNoWarningMessage() throws Exception {
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		LogTester logTester = new LogTester(StandaloneSetup.class,standaloneSetup);
 		File file = new File("./testfiles/bug414169_2");
@@ -43,7 +43,7 @@ public class Bug414169Test extends TestCase {
 		assertEquals(0, logTester.getWarnings().size());
 	}
 
-	public void testManualMapping() throws Exception {
+	@Test public void testManualMapping() throws Exception {
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		File file = new File("./testfiles/bug414169");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
@@ -60,7 +60,7 @@ public class Bug414169Test extends TestCase {
 		return result;
 	}
 
-	public void testManualMapping_mixed() throws Exception {
+	@Test public void testManualMapping_mixed() throws Exception {
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		File file = new File("./testfiles/bug414169_2");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
@@ -93,10 +93,6 @@ public class Bug414169Test extends TestCase {
 		
 		public ArrayList<String> getWarnings() {
 			return warnings;
-		}
-
-		public ArrayList<String> getInfos() {
-			return infos;
 		}
 
 		ArrayList<String> warnings = new ArrayList<String>();

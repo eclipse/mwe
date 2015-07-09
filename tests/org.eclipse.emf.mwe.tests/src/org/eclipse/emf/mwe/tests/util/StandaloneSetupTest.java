@@ -16,18 +16,18 @@ package org.eclipse.emf.mwe.tests.util;
 
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
+import org.junit.Assert;
+import org.junit.Test;
 
 
-public class StandaloneSetupTest extends TestCase {
+public class StandaloneSetupTest extends Assert {
 
-	public void testRegisterNestedPackage() {
+	@Test public void testRegisterNestedPackage() {
 		Registry registry = EPackage.Registry.INSTANCE;
 		StandaloneSetup setup = new StandaloneSetup();
 		setup.addRegisterEcoreFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.ecore");
@@ -35,7 +35,7 @@ public class StandaloneSetupTest extends TestCase {
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test/nested"));
 	}
 	
-	public void testRegisterGenModels() {
+	@Test public void testRegisterGenModels() {
 		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
 		StandaloneSetup setup = new StandaloneSetup();
 		setup.addRegisterGenModelFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.genmodel");
@@ -45,7 +45,7 @@ public class StandaloneSetupTest extends TestCase {
 	}
 	
 // does not run in OSGi context.
-//	public void testSearchJars() throws Exception {
+//	@Test public void testSearchJars() throws Exception {
 //		StandaloneSetup setup = new StandaloneSetup();
 //		setup.setScanClassPath(true);
 //		final ResourceSetImpl resSet = new ResourceSetImpl();

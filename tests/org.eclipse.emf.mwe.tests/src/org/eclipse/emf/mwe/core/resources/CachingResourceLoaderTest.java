@@ -13,15 +13,15 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-import junit.framework.TestCase;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * @author Sven Efftinge - Initial contribution and API
  * 
  */
-public class CachingResourceLoaderTest extends TestCase {
-
-	public void testLoadResource() throws Exception {
+public class CachingResourceLoaderTest extends Assert {
+	@Test public void testLoadResource() throws Exception {
 		DelegatingResourceLoader delegatingResourceLoader = new DelegatingResourceLoader(
 				new ResourceLoaderImpl(getClass().getClassLoader()));
 		CachingResourceLoaderImpl loader = new CachingResourceLoaderImpl(delegatingResourceLoader);
@@ -70,15 +70,14 @@ public class CachingResourceLoaderTest extends TestCase {
 		}
 
 	}
-
-	public void testLoadClass() throws Exception {
+	@Test public void testLoadClass() throws Exception {
 		DelegatingResourceLoader delegatingResourceLoader = new DelegatingResourceLoader(
 				new ResourceLoaderImpl(getClass().getClassLoader()));
 		CachingResourceLoaderImpl loader = new CachingResourceLoaderImpl(delegatingResourceLoader);
 		for (int i = 0; i < 10; i++) {
 			Class<?> class1 = loader.loadClass(getClass().getCanonicalName());
 			assertEquals(getClass(), class1);
-			assertEquals(1,delegatingResourceLoader.loadClass);
+			assertEquals(1, delegatingResourceLoader.loadClass);
 		}
 	}
 }

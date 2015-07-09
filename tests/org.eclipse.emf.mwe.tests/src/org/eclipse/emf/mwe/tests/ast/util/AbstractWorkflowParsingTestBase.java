@@ -12,20 +12,19 @@ package org.eclipse.emf.mwe.tests.ast.util;
 
 import java.util.Map;
 
-import junit.framework.TestCase;
-
 import org.apache.tools.ant.filters.StringInputStream;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
+import org.junit.Assert;
+import org.junit.Before;
 
-public abstract class AbstractWorkflowParsingTestBase extends TestCase {
+public abstract class AbstractWorkflowParsingTestBase extends Assert {
 	protected Issues issues;
 
-	@Override
-	protected void setUp() throws Exception {
-		super.setUp();
+	@Before
+	public void setUp() throws Exception {
 		issues = new IssuesImpl();
 	}
 

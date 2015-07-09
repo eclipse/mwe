@@ -5,9 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 
-import junit.framework.TestCase;
-
 import org.eclipse.ant.core.AntRunner;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Test for {@link WorkflowAntTask}.
@@ -17,12 +17,12 @@ import org.eclipse.ant.core.AntRunner;
  *      ://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/
  *      package -summary.html
  */
-public class NotReallyAbstractWorkflowAntTaskTest extends TestCase {
+public class NotReallyAbstractWorkflowAntTaskTest extends Assert{
 	/**
 	 * When adding more then one <tt>param</tt> tag the WorkflowAntTasks will fail with a Usage description. See
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=212994
 	 */
-	public void testBug212994() throws Exception {
+	@Test public void testBug212994() throws Exception {
 		AntRunner runner = new AntRunner();
 		String resourceClassPath = "test/res/build.xml";
 		File f = createTempFileFromClasspathResource(resourceClassPath);

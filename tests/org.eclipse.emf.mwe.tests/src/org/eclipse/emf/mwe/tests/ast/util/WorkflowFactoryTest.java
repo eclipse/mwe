@@ -22,6 +22,7 @@ import org.eclipse.emf.mwe.core.container.CompositeComponent;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.Workflow;
+import org.junit.Test;
 
 import test.res.Component;
 import test.res.SubComponent;
@@ -44,7 +45,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
             + "	  <component idRef='x'/>                                                              "
             + "</workflow>                                                                            ";
 
-	public void testSimpleWorkflow() {
+	@Test public void testSimpleWorkflow() {
 		Component.INVOCATIONS = 0;
 		Component.CHECKS = 0;
         final Workflow cont = parseWorkflow(new StringInputStream(simpleWorkflow1), Collections.EMPTY_MAP);
@@ -79,7 +80,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
             + "	  <component class='test.res.Component'/>                                             "
             + "</workflow>                                                                            ";
 
-    public void testConditionalWorkflow1() {
+    @Test public void testConditionalWorkflow1() {
         final Workflow cont = parseWorkflow(new StringInputStream(conditional), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
@@ -91,7 +92,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         assertEquals(1, comp.checks);
     }
 
-    public void testConditionalWorkflow2() {
+    @Test public void testConditionalWorkflow2() {
         final Workflow cont = parseWorkflow(new StringInputStream(conditional), Collections.singletonMap("prop", "false"));
         assertNoIssues();
         assertNotNull(cont);
@@ -103,7 +104,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         assertEquals(1, comp.checks);
     }
 
-    public void testComplex() {
+    @Test public void testComplex() {
         final Workflow cont = parseWorkflow("test/res/complex/importingWorkflow.mwe", Collections.singletonMap("prop", "false"));
         assertNoIssues();
         assertNotNull(cont);
@@ -147,14 +148,14 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
 
     String recProp = "<workflow><property name='prop' value='${prop}'/></workflow>";
 
-    public void testRecProps() {
+    @Test public void testRecProps() {
         parseWorkflow(new StringInputStream(recProp), Collections.EMPTY_MAP);
         assertEquals(1, issues.getErrors().length);
     }
 
     String recProp2 = "<workflow><property name='prop' value='${test}${prop}'/></workflow>";
 
-    public void testRecProps2() {
+    @Test public void testRecProps2() {
         parseWorkflow(new StringInputStream(recProp2), Collections.singletonMap("test", "test"));
         assertEquals(1, issues.getErrors().length);
     }

@@ -18,13 +18,13 @@ import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.List;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.ast.parser.XmlLocationAnalyser;
 import org.eclipse.emf.mwe.internal.core.ast.parser.XmlLocationAnalyser.XmlFileEvaluator;
+import org.junit.Assert;
+import org.junit.Before;
 
-public class XmlLocationAnalyserTest extends TestCase {
+public class XmlLocationAnalyserTest extends Assert {
 
 	private XmlFileEvaluator e;
 
@@ -33,9 +33,8 @@ public class XmlLocationAnalyserTest extends TestCase {
 
 	private int checkPtr = 0;
 
-	@Override
+	@Before
 	public void setUp() throws Exception{
-		super.setUp();
 		e = new XmlLocationAnalyser().newEvaluator__TEST();
 	}
 	

@@ -2,8 +2,6 @@ package org.eclipse.emf.mwe.tests.util;
 
 import java.io.File;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -18,12 +16,14 @@ import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.utils.Reader;
 import org.eclipse.emf.mwe.utils.StandaloneSetup;
 import org.eclipse.emf.mwe.utils.Writer;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class WriterTest extends TestCase {
+public class WriterTest extends Assert {
 	private String relative = "testmodel.ecore";
 	private String tempfile = "file:/"+System.getProperty("java.io.tmpdir") +"/"+relative;
 
-	public void testWriteSimpleModel() throws Exception {
+	@Test public void testWriteSimpleModel() throws Exception {
 		ResourceSet rs = new ResourceSetImpl();
 		Writer writer = new Writer();
 		writer.setModelSlot("x");
@@ -58,7 +58,7 @@ public class WriterTest extends TestCase {
 		
 	}
 	
-	public void testIgnoreEmptySlot() {
+	@Test public void testIgnoreEmptySlot() {
 		ResourceSet rs = new ResourceSetImpl();
 		Writer writer = new Writer();
 		writer.setModelSlot("x");

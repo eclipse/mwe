@@ -2,14 +2,14 @@ package org.eclipse.emf.mwe.tests;
 
 import java.util.Collections;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.core.WorkflowEngine;
 import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
+import org.junit.Assert;
+import org.junit.Test;
 
-public class WorkflowRunnerTest extends TestCase {
-	public void testBug155854 () throws Exception {
+public class WorkflowRunnerTest extends Assert {
+	@Test public void testBug155854 () throws Exception {
 		WorkflowEngine runner = new WorkflowEngine();
 		try {
 			boolean result = runner.prepare("invalidfile.mwe", new NullProgressMonitor(), Collections.<String,String>emptyMap());
@@ -20,7 +20,7 @@ public class WorkflowRunnerTest extends TestCase {
 		
 	}
 	
-	public void testSeveralParams() throws Exception {
+	@Test public void testSeveralParams() throws Exception {
 		try {
 			WorkflowRunner.main(new String[]{"test/res/complex/aCompWithSeveralParams.mwe", "-p", "s=hallo", "-p", "i=123"});
 		} catch (Exception e) {

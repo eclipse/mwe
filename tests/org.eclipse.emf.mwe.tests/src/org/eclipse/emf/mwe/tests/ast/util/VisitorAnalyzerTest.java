@@ -7,6 +7,7 @@ import org.eclipse.emf.mwe.internal.core.ast.ComponentAST;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.ast.util.VisitorAnalyzer;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
+import org.junit.Test;
 
 import test.res.Component;
 
@@ -21,7 +22,7 @@ public class VisitorAnalyzerTest extends AbstractWorkflowParsingTestBase {
 		analyzer = new VisitorAnalyzer(issues, converter, currentComponentClass);
 	}
 
-	public void testVisitComponentAST() {
+	@Test public void testVisitComponentAST() {
 
 		final Location loc = new Location(0, 0, "nothing");
 		final ComponentAST componentAST = new ComponentAST(loc, "types", "test.res.SubComponent", "test");

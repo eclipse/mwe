@@ -4,20 +4,22 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe.utils.FileCopy;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-public class FileCopyTest extends TestCase {
+public class FileCopyTest extends Assert {
 	private File sourceFile;
 	private File targetFile;
 
-	@Override
+	@Before
 	public void setUp() throws Exception {
 		sourceFile = File.createTempFile("copier", "test");
 		targetFile = File.createTempFile("copier", "test");
@@ -26,7 +28,7 @@ public class FileCopyTest extends TestCase {
 		output.close();
 	}
 
-	public void testCopy() throws Exception {
+	@Test public void testCopy() throws Exception {
 		FileCopy copy = new FileCopy();
 		copy.setSourceFile(sourceFile.getAbsolutePath());
 		copy.setTargetFile(targetFile.getAbsolutePath());
@@ -42,7 +44,7 @@ public class FileCopyTest extends TestCase {
 		input.close();
 	}
 
-	public void testMissingSource() {
+	@Test public void testMissingSource() {
 		FileCopy copy = new FileCopy();
 		copy.setTargetFile(targetFile.getAbsolutePath());
 		Issues issues = new IssuesImpl();
@@ -51,7 +53,7 @@ public class FileCopyTest extends TestCase {
 		assertFalse(issues.hasWarnings());
 	}
 
-	public void testMissingTarget() {
+	@Test public void testMissingTarget() {
 		FileCopy copy = new FileCopy();
 		copy.setSourceFile(sourceFile.getAbsolutePath());
 		Issues issues = new IssuesImpl();
@@ -60,7 +62,7 @@ public class FileCopyTest extends TestCase {
 		assertFalse(issues.hasWarnings());
 	}
 
-	public void testNonExistingSource() {
+	@Test public void testNonExistingSource() {
 		FileCopy copy = new FileCopy();
 		copy.setSourceFile("/path/does/not/exist");
 		copy.setTargetFile(targetFile.getAbsolutePath());
@@ -75,7 +77,7 @@ public class FileCopyTest extends TestCase {
 		assertTrue(issues.hasWarnings());
 	}
 
-	@Override
+	@After
 	public void tearDown() {
 		sourceFile.delete();
 		targetFile.delete();

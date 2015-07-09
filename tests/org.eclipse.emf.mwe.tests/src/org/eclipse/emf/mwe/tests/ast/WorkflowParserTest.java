@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.tests.ast;
 
-import junit.framework.TestCase;
-
 import org.apache.tools.ant.filters.StringInputStream;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
@@ -22,8 +20,9 @@ import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
 import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
+import org.junit.Assert;
 
-public class WorkflowParserTest extends TestCase {
+public class WorkflowParserTest extends Assert {
     public final void testSimple() throws Exception {
         final String wf = "<workflow>" + "<property name='test' value='foo'/>" + "<property file='path/to/file.txt'/>"
                 + "<component class='test.Comp' id='x' aParam='foo'>" + "  <aParam value='bar'/>"

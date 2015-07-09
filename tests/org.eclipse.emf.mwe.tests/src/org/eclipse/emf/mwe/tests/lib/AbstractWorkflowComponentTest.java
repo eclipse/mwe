@@ -1,7 +1,5 @@
 package org.eclipse.emf.mwe.tests.lib;
 
-import junit.framework.TestCase;
-
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
@@ -10,11 +8,13 @@ import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Test for {@link AbstractWorkflowComponent}.
  */
-public class AbstractWorkflowComponentTest extends TestCase {
+public class AbstractWorkflowComponentTest extends Assert {
 	/**
 	 * @author Sven Efftinge - Initial contribution and API
 	 *
@@ -30,7 +30,7 @@ public class AbstractWorkflowComponentTest extends TestCase {
 
 
 
-	public void testCheckRequiredConfigProperty() {
+	@Test public void testCheckRequiredConfigProperty() {
 		IssuesImpl issues = new IssuesImpl();
 		AbstractWorkflowComponent comp = new TestComponent();
 		comp.checkRequiredConfigProperty("test", null, issues);
@@ -57,7 +57,7 @@ public class AbstractWorkflowComponentTest extends TestCase {
 		return false;
 	}
 	
-	public void testSkipOnErrors() throws Exception {
+	@Test public void testSkipOnErrors() throws Exception {
 		Issues issues = new IssuesImpl();
 		issues.addError("Foo!");
 		

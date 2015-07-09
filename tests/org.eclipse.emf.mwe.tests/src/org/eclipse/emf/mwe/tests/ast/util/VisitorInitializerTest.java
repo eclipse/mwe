@@ -13,18 +13,18 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-import junit.framework.AssertionFailedError;
-import junit.framework.TestCase;
-
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.internal.core.ast.ComponentAST;
 import org.eclipse.emf.mwe.internal.core.ast.util.VisitorInitializer;
+import org.junit.Assert;
+import org.junit.Test;
+
 
 /**
  * @author Peter Friese - Initial contribution and API
  */
-public class VisitorInitializerTest extends TestCase {
+public class VisitorInitializerTest extends Assert {
 
 	private static String invokePrivateMethod(Class<?> targetClass, Object targetInstance, String methodName, Class<?>[] argClasses, Object[] argObjects)
 			throws InvocationTargetException {
@@ -38,21 +38,22 @@ public class VisitorInitializerTest extends TestCase {
 				return string;
 			}
 			else {
-				throw new AssertionFailedError();
+				fail();
 			}
 		}
 		catch (SecurityException e) {
-			throw new AssertionFailedError();
+			fail();
 		}
 		catch (IllegalArgumentException e) {
-			throw new AssertionFailedError();
+			fail();
 		}
 		catch (NoSuchMethodException e) {
-			throw new AssertionFailedError();
+			fail();
 		}
 		catch (IllegalAccessException e) {
-			throw new AssertionFailedError();
+			fail();
 		}
+		return null;
 	}
 	
 	protected String invokeTranslateFileName(VisitorInitializer mi, String filename) throws InvocationTargetException {
@@ -61,7 +62,7 @@ public class VisitorInitializerTest extends TestCase {
 		return invokePrivateMethod(VisitorInitializer.class, mi, "translateFileURI", argClasses, argObjects);
 	}
 
-	public void testTranslateFileName() throws InvocationTargetException {
+	@Test public void testTranslateFileName() throws InvocationTargetException {
 		Issues issues = new IssuesImpl();
 		Map<String, String> properties = new HashMap<String, String>();
 		Map<String, ComponentAST> beans = new HashMap<String, ComponentAST>();
