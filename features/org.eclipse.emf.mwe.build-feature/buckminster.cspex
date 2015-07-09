@@ -4,6 +4,7 @@
 		<cs:dependency name="org.eclipse.emf.mwe.releng" componentType="buckminster" />
 		<cs:dependency name="org.eclipse.emf.mwe.tests" componentType="eclipse.feature" />
 		<cs:dependency name="org.eclipse.emf.mwe.license" componentType="eclipse.feature" />
+		<cs:dependency name="org.eclipse.license" componentType="eclipse.feature" />
 	</cs:dependencies>
 
 
