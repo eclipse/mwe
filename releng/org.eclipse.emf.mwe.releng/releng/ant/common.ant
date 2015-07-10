@@ -77,7 +77,7 @@
 				<sysproperty key="findbugs.home" value="${findbugs.home}" />
 				<sysproperty key="eclipse.p2.mirrors" value="${eclipse.p2.mirrors}" />
 				<sysproperty key="java.net.preferIPv4Stack" value="${java.net.preferIPv4Stack}" />
-				<jvmarg line=" -XX:MaxPermSize=300m -Xmx1500m -Xdebug -Xrunjdwp:transport=dt_socket,address=8000,server=y,suspend=${suspend.debug}" />
+				<jvmarg line=" -XX:MaxPermSize=300m -Xmx1500m -Xdebug -Xrunjdwp:transport=dt_socket,address=8001,server=y,suspend=${suspend.debug}" />
 			</java>
 		</sequential>
 	</macrodef>

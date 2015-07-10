@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rm:rmap xmlns:bc="http://www.eclipse.org/buckminster/Common-1.0" xmlns:rm="http://www.eclipse.org/buckminster/RMap-1.0">
-	<rm:property key="source.repository.location" value=":pserver:anonymous@dev.eclipse.org:/cvsroot/modeling" />
 
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.releng(?:\..+)?$" searchPathRef="releng" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?\.doc(?:\..+)?$" searchPathRef="mwe.doc" />
@@ -9,17 +8,18 @@
 
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2?(?:\..+)?$" searchPathRef="mwe" />
 
+	<rm:property key="git.license.local.repository.location" value="${workspace.root}/eclipse-license-git/" />
+	<rm:locator pattern="^org\.eclipse\.license$" searchPathRef="license-source-code" />
+
 	<rm:searchPath name="mwe">
-		<rm:provider componentTypes="osgi.bundle" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/plugins/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 
-		<rm:provider componentTypes="eclipse.feature" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
 			<rm:uri format="{0}/features/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
@@ -28,16 +28,14 @@
 	</rm:searchPath>
 
 	<rm:searchPath name="mwe.doc">
-		<rm:provider componentTypes="osgi.bundle" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/doc/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 
-		<rm:provider componentTypes="eclipse.feature" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
 			<rm:uri format="{0}/doc/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
@@ -46,16 +44,14 @@
 	</rm:searchPath>
 
 	<rm:searchPath name="mwe.examples">
-		<rm:provider componentTypes="osgi.bundle" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/examples/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 
-		<rm:provider componentTypes="eclipse.feature" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
 			<rm:uri format="{0}/examples/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
@@ -64,16 +60,14 @@
 	</rm:searchPath>
 
 	<rm:searchPath name="mwe.tests">
-		<rm:provider componentTypes="osgi.bundle" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/tests/{1}">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
 
-		<rm:provider componentTypes="eclipse.feature" readerType="local"
-			mutable="false">
+		<rm:provider componentTypes="eclipse.feature" readerType="local" mutable="false">
 			<rm:uri format="{0}/tests/{1}-feature">
 				<bc:propertyRef key="checkout.location" />
 				<bc:propertyRef key="buckminster.component" />
@@ -85,6 +79,17 @@
 		<rm:provider componentTypes="buckminster" readerType="local" source="true" mutable="false">
 			<rm:uri format="{0}/releng/{1}">
 				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
+	
+	<rm:searchPath name="license-source-code">
+		<rm:provider componentTypes="eclipse.feature" readerType="git" source="true">
+			<rm:property key="git.remote.uri" value="http://git.eclipse.org/gitroot/cbi/org.eclipse.license.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+			<rm:uri format="{0},{1}">
+				<bc:propertyRef key="git.license.local.repository.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>

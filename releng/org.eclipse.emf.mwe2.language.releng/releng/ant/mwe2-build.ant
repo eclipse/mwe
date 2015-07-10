@@ -13,9 +13,9 @@
             Executes buckminster build on local machine
     </description>
 
-	<property name="WORKSPACE" location="${user.home}/hudsonbuild/mwe2-head/" />
+	<property name="WORKSPACE" location="${user.home}/buckminster-build/mwe2-head/" />
 	<property name="build.root" location="${WORKSPACE}/buildroot" />
-	<property name="checkout.location" location="/Users/dhuebner/git/org.eclipse.mwe" />
+	<property name="checkout.location" location="/Users/dhuebner/git/mwe-master" />
 	<property name="releng.project" value="${checkout.location}/releng/org.eclipse.emf.mwe2.language.releng" />
 
 	<!-- Debug session suspend on start? -->
@@ -32,12 +32,13 @@
 	<!-- Against which platform to build (Galileo,Stable,Latest)-->
 	<property name="ECLIPSE.TARGET.ALIAS" value="Stable" />
 
-	<target name="run-buckminster-build" depends="common.cleanup">
+	<target name="run-buckminster-build" depends="cleanup-full">
 		<fail unless="buckminster.home" message="buckminster.home must be specified." />
 		<antcall target="buckminster-build-mwe2" />
+		<antcall target="buckminster-pack-mwe2" />
 	</target>
-	
-	<target name="buckminster-build-mwe2" depends="common.cleanup">
+
+	<target name="buckminster-build-mwe2">
 		<echo message="IMPORTANT: Populating an empty target platform may took over 10 minutes." />
 		<echo message="eclipse.download: ${eclipse.download}" />
 		<property name="commands.file" location="${temp.commands.location}/mwe2-cmd.txt" />
@@ -46,13 +47,18 @@
 			importprefs -F ${releng.project}/releng/buckminster.workspace.epf
 
 			import  "${releng.project}/releng/mwe2language-platform.mspec"
-
 			resolve "${releng.project}/releng/mwe2language.cquery"
 
 			build
-
 			#junit --stdout --stderr --launch "org.eclipse.emf.mwe2.language.tests/org.eclipse.emf.mwe2.language.tests.launch" --flatXML --output ${WORKSPACE}/build-result/test-results/org.eclipse.emf.mwe2.language.tests.xml"
 
+		</echo>
+		<echo message="build.properties: ${build.properties}" />
+		<run_buckminster commandsfile="${commands.file}" propertiesfile="${build.properties}" />
+	</target>
+	<target name="buckminster-pack-mwe2">
+		<property name="commands.file" location="${temp.commands.location}/mwe2-pack-cmd.txt" />
+		<echo file="${commands.file}" append="false">
 			#perform -DtargetPlatformPath="${WORKSPACE}/buildroot/target.platform" "org.eclipse.emf.mwe2.language.releng#create.javadoc"
 			perform "org.eclipse.emf.mwe2.language.build#build"
 		</echo>

@@ -54,7 +54,6 @@
 	<cs:groups>
 		<cs:public name="build">
 			<cs:attribute name="package.emft-mwe2-language-Update" />
-			<cs:attribute name="package.emft-mwe2-language-SDK" />
 		</cs:public>
 	</cs:groups>
 </cs:cspecExtension>

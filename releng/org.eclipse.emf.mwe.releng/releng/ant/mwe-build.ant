@@ -13,9 +13,9 @@
             Executes buckminster build on local machine
     </description>
 
-	<property name="WORKSPACE" location="${user.home}/hudsonbuild/mwe-head/" />
+	<property name="WORKSPACE" location="${user.home}/buckminster-build/mwe-head/" />
 	<property name="build.root" location="${WORKSPACE}/buildroot" />
-	<property name="checkout.location" location="/Users/dhuebner/git/org.eclipse.mwe" />
+	<property name="checkout.location" location="/Users/dhuebner/git/mwe-master" />
 	<property name="releng.project" value="${checkout.location}/releng/org.eclipse.emf.mwe.releng" />
 
 	<!-- Debug session suspend on start? -->
@@ -37,6 +37,7 @@
 		<fail unless="buckminster.home" message="buckminster.home must be specified." />
 
 		<antcall target="buckminster-build-mwe"/>
+		<antcall target="buckminster-package-mwe"/>
 	</target>
 
 
@@ -55,6 +56,14 @@
 
 			junit -l "org.eclipse.emf.mwe.tests/org.eclipse.emf.mwe.tests.launch" --flatXML --output "${WORKSPACE}/build-result/test-results/Test MWE Core.xml"
 
+		</echo>
+		<echo message="build.properties: ${build.properties}" />
+		<run_buckminster commandsfile="${commands.file}" propertiesfile="${build.properties}" />
+	</target>
+	
+	<target name="buckminster-package-mwe">
+		<property name="commands.file" location="${temp.commands.location}/mwe-pack-cmd.txt" />
+		<echo file="${commands.file}" append="false">
 			perform "org.eclipse.emf.mwe.build#build"
 			perform "org.eclipse.emf.mwe.releng#setup.promoter"
 		</echo>

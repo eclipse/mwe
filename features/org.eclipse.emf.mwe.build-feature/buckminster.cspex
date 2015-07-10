@@ -3,8 +3,6 @@
 	<cs:dependencies>
 		<cs:dependency name="org.eclipse.emf.mwe.releng" componentType="buckminster" />
 		<cs:dependency name="org.eclipse.emf.mwe.tests" componentType="eclipse.feature" />
-		<cs:dependency name="org.eclipse.emf.mwe.license" componentType="eclipse.feature" />
-		<cs:dependency name="org.eclipse.license" componentType="eclipse.feature" />
 	</cs:dependencies>
 
 
@@ -41,22 +39,6 @@
 			<cs:products alias="output" base="${buckminster.output}/zips/" />
 		</cs:public>
 
-		<cs:public name="package.emft-mwe-2-Update" actor="ant">
-			<cs:actorProperties>
-				<cs:property key="buildFile" value="packaging.ant" />
-				<cs:property key="targets" value="package.site" />
-			</cs:actorProperties>
-			<cs:properties>
-				<cs:property key="package.name" value="emft-mwe-2-Update" />
-			</cs:properties>
-			<cs:prerequisites>
-				<cs:attribute name="site.p2" alias="repository" />
-				<cs:attribute name="site.tp" alias="target.platform.repository" />
-			</cs:prerequisites>
-			<cs:products alias="output" base="${buckminster.output}/zips/" />
-		</cs:public>
-
-
 		<cs:public name="package.emft-mwe-SDK" actor="ant">
 			<cs:actorProperties>
 				<cs:property key="buildFile" value="packaging.ant" />
@@ -64,7 +46,6 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.emf.mwe.sdk.feature.group,org.eclipse.emf.mwe2.runtime" />
-				<cs:property key="target.platform.ius" value="org.apache.commons.cli" />
 				<cs:property key="package.name" value="emft-mwe-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -81,7 +62,6 @@
 			</cs:actorProperties>
 			<cs:properties>
 				<cs:property key="content.ius" value="org.eclipse.emf.mwe2.runtime.sdk.feature.group" />
-				<cs:property key="target.platform.ius" value="org.apache.log4j,org.apache.log4j.source" />
 				<cs:property key="package.name" value="emft-mwe-2-SDK" />
 			</cs:properties>
 			<cs:prerequisites>
@@ -108,8 +88,6 @@
 		<cs:public name="build">
 			<cs:attribute name="setup" />
 			<cs:attribute name="package.emft-mwe-Update" />
-			<cs:attribute name="package.emft-mwe-SDK" />
-			<cs:attribute name="package.emft-mwe-2-SDK" />
 		</cs:public>
 	</cs:groups>
 	<cs:alterActions>

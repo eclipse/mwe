@@ -3,8 +3,11 @@
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.releng(?:\..+)?$" searchPathRef="releng" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.language\.tests(?:\..+)?$" searchPathRef="mwe2lang.test" />
 	<rm:locator pattern="^org\.eclipse\.emf\.mwe2\.(?:language|launch|launcher)?(?:\..+)?$" searchPathRef="mwe2lang" />
-	<rm:locator pattern="^org\.eclipse\.emf\.mwe\.license$" searchPathRef="mwe2lang" />
-	
+
+	<rm:property key="git.license.local.repository.location" value="${workspace.root}/eclipse-license-git/" />
+	<rm:locator pattern="^org\.eclipse\.license$" searchPathRef="license-source-code" />
+
+
 	<rm:searchPath name="mwe2lang">
 		<rm:provider componentTypes="osgi.bundle" readerType="local" mutable="false">
 			<rm:uri format="{0}/plugins/{1}">
@@ -39,6 +42,17 @@
 		<rm:provider componentTypes="buckminster" readerType="local" mutable="false">
 			<rm:uri format="{0}/releng/{1}">
 				<bc:propertyRef key="checkout.location" />
+				<bc:propertyRef key="buckminster.component" />
+			</rm:uri>
+		</rm:provider>
+	</rm:searchPath>
+	
+	<rm:searchPath name="license-source-code">
+		<rm:provider componentTypes="eclipse.feature" readerType="git" source="true">
+			<rm:property key="git.remote.uri" value="http://git.eclipse.org/gitroot/cbi/org.eclipse.license.git" />
+			<rm:property key="git.auto.fetch" value="true" />
+			<rm:uri format="{0},{1}">
+				<bc:propertyRef key="git.license.local.repository.location" />
 				<bc:propertyRef key="buckminster.component" />
 			</rm:uri>
 		</rm:provider>
