@@ -129,7 +129,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
 
     }
 
-    public final void testPropertyResolution() throws Exception {
+    @Test public void testPropertyResolution() throws Exception {
         final Workflow cont = parseWorkflow("test/res/testPropertyResolution.mwe", Collections.singletonMap("path", "test/res/"));
         assertNoIssues();
         assertNotNull(cont);
@@ -160,7 +160,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         assertEquals(1, issues.getErrors().length);
     }
 
-    public final void testInheritAll() {
+    public @Test void testInheritAll() {
         final Workflow cont = parseWorkflow("test/res/complex/inheritAll1.mwe", Collections.singletonMap("param", "Hallo Test"));
         assertNoIssues();
         assertNotNull(cont);
@@ -188,7 +188,7 @@ public class WorkflowFactoryTest extends AbstractWorkflowParsingTestBase {
         + "	  </component>"
         + "</workflow>";
 
-    public final void testPropertyOverwriting() {
+    public @Test void testPropertyOverwriting() {
         final Workflow cont = parseWorkflow(new StringInputStream(propertyOverwriting), Collections.EMPTY_MAP);
         assertNoIssues();
         assertNotNull(cont);
