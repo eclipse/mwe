@@ -21,9 +21,12 @@ import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
 import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
 import org.junit.Assert;
+import org.junit.Test;
 
 public class WorkflowParserTest extends Assert {
-    public final void testSimple() throws Exception {
+    
+	@Test
+	public void testSimple() throws Exception {
         final String wf = "<workflow>" + "<property name='test' value='foo'/>" + "<property file='path/to/file.txt'/>"
                 + "<component class='test.Comp' id='x' aParam='foo'>" + "  <aParam value='bar'/>"
                 + "  <ref idRef='x'/>" + "</component>" + "<component file='test.file'/>" + "</workflow>";

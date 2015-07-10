@@ -23,6 +23,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.XmlLocationAnalyser;
 import org.eclipse.emf.mwe.internal.core.ast.parser.XmlLocationAnalyser.XmlFileEvaluator;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 public class XmlLocationAnalyserTest extends Assert {
 
@@ -38,7 +39,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		e = new XmlLocationAnalyser().newEvaluator__TEST();
 	}
 	
-	public final void testNameAndText() {
+	@Test public final void testNameAndText() {
 		evaluate("<xxx>", new String[] { "xxx", "" });
 		evaluate("<xx?x>", new String[] { "xx?x", "" });
 		evaluate("<xxx?>", new String[] { "xxx?", "" });
@@ -53,12 +54,12 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("<xxx> xx", new String[] { "xxx", "" });
 	}
 
-	public final void testExtraGtLt() {
+	@Test public final void testExtraGtLt() {
 		evaluate("<xx <x>", new String[] { "xx", " <x" });
 		evaluate("<xx x> >", new String[] { "xx", " x" });
 	}
 	
-	public final void testSlashEnd() {
+	@Test public final void testSlashEnd() {
 		evaluate("<xxx/>", new String[] { "xxx", "" });
 		evaluate("< x/>", new String[] { "x", "" });
 		evaluate("<x x/>", new String[] { "x", " x" });
@@ -66,7 +67,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("<x/ /x/>", new String[] { "x", "/ /x" });
 	}
 
-	public final void testSlashBegin() {
+	@Test public final void testSlashBegin() {
 		evaluate("</x x>", new String[] { "x", " x" });
 		evaluate("</x x/>", new String[] { "x", " x" });
 		evaluate("</x /x/>", new String[] { "x", " /x" });
@@ -74,7 +75,7 @@ public class XmlLocationAnalyserTest extends Assert {
 				new String[] { "x", " /x x x=\"aaa\"" });
 	}
 
-	public final void testMultiTags() {
+	@Test public final void testMultiTags() {
 		evaluate("<xxx><xx>", new String[] { "xxx", "", "xx", "" });
 		evaluate("<xxx xx><xx>", new String[] { "xxx", " xx", "xx", "" });
 		evaluate("<xxx xx/><xx>", new String[] { "xxx", " xx", "xx", "" });
@@ -92,7 +93,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("</111 22/></33 444/>", new String[] { "111", " 22", "33", " 444" });
 }
 
-	public final void testInstruction() {
+	@Test public final void testInstruction() {
 		evaluate("<?xxx?>", new String[] { });
 		evaluate("<?111?><222>", new String[] { "222", "" });
 		evaluate("<?11>1?></x x/>", new String[] { "x", " x" });
@@ -100,7 +101,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("<?11?1?></x x/>", new String[] { "x", " x" });
 	}
 
-	public final void testComment() {
+	@Test public final void testComment() {
 		evaluate("<!--xxx-->", new String[] { });
 		evaluate("<!---->", new String[] { });
 		evaluate("<!--xx  x-->", new String[] { });
@@ -115,7 +116,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("<!--xx><22>", new String[] { });
 	}
 
-	public final void testNL() {
+	@Test public final void testNL() {
 		evaluate("<111 22>\n<33 444>", new String[] { "111", " 22", "33", " 444" });
 		evaluate("<111 22>\r\n<33 444>", new String[] { "111", " 22", "33", " 444" });
 		evaluate("<111 \n22>", new String[] { "111", " \n22" });
@@ -123,7 +124,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		evaluate("<aaa\r\nbb>\n<!-- -->\n<ccc>", new String[] { "aaa", "\r\nbb", "ccc", "" });
 	}
 	
-	public final void testFindLineTag() {
+	@Test public final void testFindLineTag() {
 		String txt = "<111 22=\"aaa\">\n<33/>\n</444>";
 
 		InputStream is = new ByteArrayInputStream(txt.getBytes());
@@ -141,7 +142,7 @@ public class XmlLocationAnalyserTest extends Assert {
 		assertEquals("wrong tag name", "444", txt.substring(loc.getNameStart(), loc.getNameEnd()));
 	}
 	
-	public final void testFindColumnTag() {
+	@Test public final void testFindColumnTag() {
 		String txt = "<111 22=\"aaa\">\n<33/><44/></555>";
 
 		InputStream is = new ByteArrayInputStream(txt.getBytes());
