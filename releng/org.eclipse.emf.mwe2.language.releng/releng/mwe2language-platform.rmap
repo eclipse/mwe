@@ -11,13 +11,13 @@
 	<rm:locator pattern="^org\.eclipse\.xtend\.lib(?:\..+)?$" searchPathRef="tmf" />
 	<rm:locator pattern="^org\.eclipse\.(?:xpand|xtend)(?:\..+)?$" searchPathRef="xpand" />
 	<rm:locator pattern="^org\.eclipse\.emf\.(?:mwe|mwe2\.lib|mwe2\.runtime)(?:\..+)?$" searchPathRef="mwe" />
-	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="mwe" />
+	<rm:locator pattern="^org\.apache\.log4j$" searchPathRef="orbit" />
 	<rm:locator pattern="^org\.eclipse\.(?:emf|xsd)(?:\..+)?$" searchPathRef="emf" />
 	<rm:locator pattern="^com\.google(?:\..+)?$" searchPathRef="orbit" />
 	<rm:locator pattern="^javax\.inject(?:\..+)?$" searchPathRef="orbit" />
-	<rm:locator pattern="^org\.apache\.commons\.lang(?:\..+)?$" searchPathRef="tmf" />
-	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="tmf" />
-	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="tmf" />
+	<rm:locator pattern="^org\.apache\.commons\.lang(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.objectweb\.asm(?:\..+)?$" searchPathRef="orbit" />
+	<rm:locator pattern="^org\.antlr\.runtime$" searchPathRef="orbit" />
 	<rm:locator pattern="^org\.(?:apache|aopalliance)(?:\..+)?$" searchPathRef="orbit" failOnError="false" />
 	<rm:locator pattern="^org\.junit(?:\..+)?$" searchPathRef="orbit" />
 	<rm:locator pattern="^org\.hamcrest\.core(?:\..+)?$" searchPathRef="orbit" />
