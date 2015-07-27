@@ -15,5 +15,8 @@
    <feature id="org.eclipse.license" version="0.0.0">
       <category name="hidden_category"/>
    </feature>
+   <feature id="org.eclipse.emf.mwe2.runtime.sdk" version="0.0.0">
+		<category name="hidden_category"/>
+	</feature>
    <category-def name="hidden_category"/>
 </site>
