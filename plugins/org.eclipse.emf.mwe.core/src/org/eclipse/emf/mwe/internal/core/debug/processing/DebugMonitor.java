@@ -75,6 +75,10 @@ public class DebugMonitor implements ProgressMonitor {
 	public void init(final String[] args) throws IOException {
 		// args[0] is the class name
 		final int port = findPort(args);
+		init(port);
+	}
+	
+	public void init(int port) throws IOException {
 		try {
 			connection.connect(port);
 		}

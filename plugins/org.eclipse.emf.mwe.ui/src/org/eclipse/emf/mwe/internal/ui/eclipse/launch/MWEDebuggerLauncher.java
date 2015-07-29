@@ -28,7 +28,6 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.DebugTarget;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.launching.AbstractVMRunner;
 import org.eclipse.jdt.launching.IVMInstall;
-import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.jdt.launching.SocketUtil;
 import org.eclipse.jdt.launching.VMRunnerConfiguration;
 
@@ -77,7 +76,7 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 						"Unable to start debugger listening socket on port " + commPort + " --> aborting", e));
 			}
 
-			ConnectRunnable runnable = startListeningThread(connection);
+			ConnectRunnable runnable = ConnectRunnable.startListeningThread(connection);
 
 			// start runtime VM
 			p = DebugPlugin.exec(cmdLine, workingDir, envp);
@@ -191,53 +190,4 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 				new Date(System.currentTimeMillis()));
 		return command + " (" + timestamp + ")";
 	}
-
-	/** ************************************************************************* */
-
-	private ConnectRunnable startListeningThread(final Connection connector) {
-		ConnectRunnable runnable = new ConnectRunnable(connector);
-		Thread connectThread = new Thread(runnable, "Listening Connector");
-		runnable.setThread(connectThread);
-		connectThread.setDaemon(true);
-		connectThread.start();
-		return runnable;
-	}
-
-	class ConnectRunnable implements Runnable {
-		private Connection fConnector = null;
-
-		private Exception fException = null;
-
-		private Thread thread = null;
-
-		public ConnectRunnable(final Connection connector) {
-			fConnector = connector;
-		}
-
-		public void run() {
-			try {
-				int timeout = JavaRuntime.getPreferences().getInt(JavaRuntime.PREF_CONNECT_TIMEOUT);
-				fConnector.accept(timeout);
-			} catch (Exception e) {
-				fException = e;
-			}
-		}
-
-		public void cancel() {
-			fConnector.close();
-		}
-
-		public Exception getException() {
-			return fException;
-		}
-
-		public void setThread(final Thread thread) {
-			this.thread = thread;
-		}
-
-		public boolean isRunning() {
-			return thread.isAlive();
-		}
-	}
-
 }
