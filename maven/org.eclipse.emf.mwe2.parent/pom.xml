@@ -11,6 +11,7 @@
 	</parent>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
+		<pgp.sign.skip>true</pgp.sign.skip>
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>
@@ -78,10 +79,10 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.6</version>
+				<version>1.4</version>
 				<configuration>
 					<executable>/usr/local/bin/gpg</executable>
-					<skip>true</skip>
+					<skip>${pgp.sign.skip}</skip>
 				</configuration>
 				<executions>
 					<execution>
