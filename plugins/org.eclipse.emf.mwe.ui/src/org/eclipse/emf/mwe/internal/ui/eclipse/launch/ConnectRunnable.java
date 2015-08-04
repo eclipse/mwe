@@ -13,7 +13,7 @@ import org.eclipse.jdt.launching.JavaRuntime;
 /**
  * @author kia7si - moved class out of MWEDebuggerLauncher.
  */
-class ConnectRunnable implements Runnable {
+public class ConnectRunnable implements Runnable {
 	private Connection fConnector = null;
 
 	private Exception fException = null;
