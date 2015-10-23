@@ -1,9 +1,8 @@
 package org.eclipse.emf.mwe2.ecore;
 
-import static com.google.common.collect.Lists.newArrayList;
-
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -61,7 +60,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 		this.lineDelimiter = lineDelimiter;
 	}
 
-	protected List<String> srcPaths = newArrayList();
+	protected List<String> srcPaths = new ArrayList<String>();
 	private String genModel;
 	
 	private ResourceSet resourceSet;

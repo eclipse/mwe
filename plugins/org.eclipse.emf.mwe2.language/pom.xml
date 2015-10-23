@@ -8,4 +8,11 @@
 		<version>2.9.0-SNAPSHOT</version>
 		<relativePath>../../maven/org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
 	</parent>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>org.eclipse.emf.mwe2.runtime</artifactId>
+			<version>[${project.version}]</version>
+		</dependency>
+	</dependencies>
 </project>
