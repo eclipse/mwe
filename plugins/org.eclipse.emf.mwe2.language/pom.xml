@@ -10,7 +10,7 @@
 	</parent>
 	<dependencies>
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.mwe2.runtime</artifactId>
 			<version>[${project.version}]</version>
 		</dependency>
