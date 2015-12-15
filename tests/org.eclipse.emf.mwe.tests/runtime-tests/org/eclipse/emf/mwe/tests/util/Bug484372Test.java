@@ -109,6 +109,8 @@ public class Bug484372Test extends Assert {
 
 		//TODO fix this?
 		assertEquals("ant", standaloneSetup.getBundleNameFromJarName("ant-antlr.jar"));
+		assertEquals("apache", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3.jar"));
+		assertEquals("apache", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3-3.2.1.jar"));
 
 	}
 
