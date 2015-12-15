@@ -358,7 +358,8 @@ public class StandaloneSetup {
 		return null;
 	}
 	
-	protected static final Pattern JAR_NAME_PATTERN = Pattern.compile("(.*)(-([^-]*))?\\.jar") ;
+	protected static final Pattern JAR_NAME_PATTERN = Pattern.compile("(.*)(-.*)?\\.jar");
+	
 	protected String getBundleNameFromJarName(JarFile jarFile) {
 		File file = new File(jarFile.getName());
 		Matcher matcher = JAR_NAME_PATTERN.matcher(file.getName());
