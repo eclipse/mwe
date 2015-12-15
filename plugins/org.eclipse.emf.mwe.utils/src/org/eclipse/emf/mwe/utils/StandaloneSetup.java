@@ -322,7 +322,7 @@ public class StandaloneSetup {
 			String name = getBundleNameFromManifest(jarFile);
 			if (name == null) {
 				log.debug("Trying to determine project name from file name for " + jarFile.getName());
-				name = getBundleNameFromJarName(jarFile);
+				name = getBundleNameFromJarName(jarFile.getName());
 			}
 			if (name != null) {
 				final int indexOf = name.indexOf(';');
@@ -358,10 +358,10 @@ public class StandaloneSetup {
 		return null;
 	}
 	
-	protected static final Pattern JAR_NAME_PATTERN = Pattern.compile("(.*)(-.*)?\\.jar");
+	protected static final Pattern JAR_NAME_PATTERN = Pattern.compile("(.*?)(-.*)?\\.jar");
 	
-	protected String getBundleNameFromJarName(JarFile jarFile) {
-		File file = new File(jarFile.getName());
+	protected String getBundleNameFromJarName(String jarFileName) {
+		File file = new File(jarFileName);
 		Matcher matcher = JAR_NAME_PATTERN.matcher(file.getName());
 		if (matcher.matches()) {
 			return matcher.group(1);

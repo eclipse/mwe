@@ -31,6 +31,11 @@ public class Bug484372Test extends Assert {
 		public void doRegisterResourceMapping(File file) {
 			super.doRegisterResourceMapping(file);
 		}
+
+		@Override
+		public String getBundleNameFromJarName(String jarFileName) {
+			return super.getBundleNameFromJarName(jarFileName);
+		}
 	}
 
 	private String TESTPROJECT_A = "project.a";
@@ -62,7 +67,7 @@ public class Bug484372Test extends Assert {
 		File file = new File("./testfiles/bug484372");
 		standaloneSetup.setPlatformUri(file.getPath());
 		standaloneSetup.doRegisterResourceMapping(new File(file, TESTPROJECT_A + "/bin/"));
-		
+
 		assertEquals(0, logTester.getWarnings().size());
 		assertEquals(URI.createFileURI(new File(file, TESTPROJECT_A).getCanonicalPath() + "/"),
 				EcorePlugin.getPlatformResourceMap().get(TESTPROJECT_A));
@@ -74,12 +79,12 @@ public class Bug484372Test extends Assert {
 		File file = new File("./testfiles/bug484372");
 		standaloneSetup.setPlatformUri(file.getPath());
 		standaloneSetup.doRegisterResourceMapping(new File(file, TESTPROJECT_B + "/target/classes/"));
-		
+
 		assertEquals(0, logTester.getWarnings().size());
 		assertEquals(URI.createFileURI(new File(file, TESTPROJECT_B).getCanonicalPath() + "/"),
 				EcorePlugin.getPlatformResourceMap().get(TESTPROJECT_B));
 	}
-	
+
 	@Test
 	public void testRegisterFile() throws Exception {
 		Registry registry = EPackage.Registry.INSTANCE;
@@ -91,6 +96,20 @@ public class Bug484372Test extends Assert {
 		standaloneSetup.addRegisterEcoreFile("platform:/resource/project.b/model/test.ecore");
 
 		assertTrue(registry.containsKey("http://test.example.org"));
+	}
+
+	@Test
+	public void testIntroducedJarNameRegex() throws Exception {
+		assertEquals("org.eclipse.xtext", standaloneSetup.getBundleNameFromJarName("org.eclipse.xtext.jar"));
+		assertEquals("org.eclipse.xtext",
+				standaloneSetup.getBundleNameFromJarName("org.eclipse.xtext-1.12.23-SNAPSHOT.jar"));
+		assertEquals("org.eclipse.xtext",
+				standaloneSetup.getBundleNameFromJarName("org.eclipse.xtext-v2015252525.jar"));
+		assertEquals("junit", standaloneSetup.getBundleNameFromJarName("junit.jar"));
+
+		//TODO fix this?
+		assertEquals("ant", standaloneSetup.getBundleNameFromJarName("ant-antlr.jar"));
+
 	}
 
 	private void clearPlatformResourceMap() {
