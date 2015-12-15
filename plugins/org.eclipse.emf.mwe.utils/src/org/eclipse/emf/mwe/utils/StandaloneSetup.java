@@ -28,6 +28,8 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.zip.ZipException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -178,15 +180,43 @@ public class StandaloneSetup {
 				registerBundle(f);
 			}
 			else if (!scanFolder(f)) {
-				// eclipse bin folder?
-				File dotProject = new File(f.getParentFile(), ".project");
-				if (dotProject.exists())
+				File dotProject = findProjectFileForPossibleClassesFolder(f);
+				if (dotProject != null)
 					registerProject(dotProject);
 			}
 		}
 		catch (IOException e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	protected File findProjectFileForPossibleClassesFolder(File f) {
+		File parentFile = f.getParentFile();
+		if (parentFile != null) {
+			if (f.getName().equals("bin")) {
+				File projectFile = new File(parentFile, ".project");
+				if (projectFile.exists()) {
+					return projectFile;
+				}
+			}
+			if (f.getName().equals("classes")) {
+				File grandParentFile = parentFile.getParentFile();
+				if (grandParentFile != null) {
+					if (parentFile.getName().equals("target")) {
+						File projectFile = new File(grandParentFile, ".project");
+						if (projectFile.exists()) {
+							return projectFile;
+						}
+					}
+				}
+			}
+		}
+		log.warn(
+			"No project file found for "
+			+ f.getPath()
+			+ ". The folder was neither an Eclipse 'bin' folder, nor a Maven 'target/classes' folder."
+		);
+		return null;
 	}
 
 	/**
@@ -288,10 +318,12 @@ public class StandaloneSetup {
 		JarFile jarFile = null;
 		try {
 			jarFile = new JarFile(file);
-			Manifest manifest = jarFile.getManifest();
-			if (manifest == null)
-				return;
-			String name = manifest.getMainAttributes().getValue("Bundle-SymbolicName");
+			log.debug("Trying to determine project name from Manifest for " + jarFile.getName());
+			String name = getBundleNameFromManifest(jarFile);
+			if (name == null) {
+				log.debug("Trying to determine project name from file name for " + jarFile.getName());
+				name = getBundleNameFromJarName(jarFile);
+			}
 			if (name != null) {
 				final int indexOf = name.indexOf(';');
 				if (indexOf > 0)
@@ -299,6 +331,8 @@ public class StandaloneSetup {
 				String path = "archive:" + file.getCanonicalFile().toURI() + "!/";
 				URI uri = URI.createURI(path);
 				registerMapping(name, uri);
+			} else {
+				log.debug("Could not determine project name for " + jarFile.getName() + ". No project mapping will be added.");
 			}
 		}
 		catch (ZipException e) {
@@ -314,6 +348,24 @@ public class StandaloneSetup {
 				log.error(e.getMessage(), e);
 			}
 		}
+	}
+	
+	protected String getBundleNameFromManifest(JarFile jarFile) throws IOException {
+		Manifest manifest = jarFile.getManifest();
+		if (manifest != null) {
+			return manifest.getMainAttributes().getValue("Bundle-SymbolicName");
+		}
+		return null;
+	}
+	
+	protected static final Pattern JAR_NAME_PATTERN = Pattern.compile("(.*)(-([^-]*))?\\.jar") ;
+	protected String getBundleNameFromJarName(JarFile jarFile) {
+		File file = new File(jarFile.getName());
+		Matcher matcher = JAR_NAME_PATTERN.matcher(file.getName());
+		if (matcher.matches()) {
+			return matcher.group(1);
+		}
+		return null;
 	}
 
 	private void handleException(File file, Exception exception) {
