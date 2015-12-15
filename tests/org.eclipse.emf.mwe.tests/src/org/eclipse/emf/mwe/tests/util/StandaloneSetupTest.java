@@ -39,7 +39,7 @@ public class StandaloneSetupTest extends Assert {
 
 	@Test
 	public void testRegisterGenModels() {
-		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
+		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
 		StandaloneSetup setup = new StandaloneSetup();
 		setup.addRegisterGenModelFile("platform:/plugin/org.eclipse.emf.mwe.tests/resources/test/res/test.genmodel");
 		assertTrue(registry.containsKey("http://www.openarchitectureware.org/mm/test"));
