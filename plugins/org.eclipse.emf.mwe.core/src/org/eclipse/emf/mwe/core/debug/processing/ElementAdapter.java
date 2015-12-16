@@ -70,6 +70,13 @@ public interface ElementAdapter {
 	public SyntaxElement createElement(Object element);
 
 	/**
+	 * Returns true if the syntax element should be appended to callstack.
+	 * @param element element to be checked.
+	 * @return true if the element will be added to callstack.
+	 */
+	public boolean shallAddToCallStack(Object element);
+	
+	/**
 	 * returns whether the element has a body and debugger shall stop again at the end of the execution of that
 	 * element
 	 * 

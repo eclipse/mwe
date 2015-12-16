@@ -82,6 +82,10 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return true;
 	}
 
+	public boolean shallAddToCallStack(Object element) {
+	  return true;
+	}
+	
 	public boolean isSurroundingElement(Object element) {
 		return CompositeComponent.class.isAssignableFrom(element.getClass());
 	}

@@ -42,6 +42,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	private DebugMonitor monitor;
 
 	private final Stack<Frame> stackFrames = new Stack<Frame>();
+	private final Stack<Frame> filteredStackFrames = new Stack<Frame>();
 
 	private int cleanStackLevel = 0;
 
@@ -83,7 +84,13 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 *      int)
 	 */
 	public void preTask(final Object element, final Object context, final int state) {
-		stackFrames.push(new Frame(element, context, state));
+	    Frame frame = new Frame(element, context, state);
+	    ElementAdapter adapter = monitor.getAdapter(element);
+        if(adapter != null)
+          if( adapter.shallAddToCallStack(element) )
+            filteredStackFrames.push(frame);
+        
+		stackFrames.push(frame);
 	}
 
 	/**
@@ -93,10 +100,19 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
 	public void postTask(final Object context) {
-		if (cleanStackLevel >= stackFrames.size()) {
-			cleanStackLevel--;
-		}
-		stackFrames.pop();
+    	Frame frame = stackFrames.peek();
+        stackFrames.pop();
+        
+        ElementAdapter adapter = monitor.getAdapter(frame.element);
+        if(adapter != null) {
+          if( adapter.shallAddToCallStack(frame.element) ) {
+            if (cleanStackLevel >= filteredStackFrames.size()) {
+                cleanStackLevel--;
+            }
+            
+            filteredStackFrames.pop();
+          }
+        }
 	}
 
 	/**
@@ -110,15 +126,23 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 */
 	public void suspended() throws IOException {
 		EventPackageWithFrames event = new EventPackageWithFrames(SUSPENDED);
+
+		// always update the top element.
+		if(cleanStackLevel>0) cleanStackLevel--;
+		
 		event.cleanStackLevel = cleanStackLevel;
 
-		for (int i = cleanStackLevel; i < stackFrames.size(); i++) {
-			Frame frame = stackFrames.get(i);
+		for (int i = cleanStackLevel; i < filteredStackFrames.size(); i++) {
+			Frame frame = filteredStackFrames.get(i);
 			SyntaxElement to;
 			ElementAdapter adapter = monitor.getAdapter(frame.element);
 			adapter.setContext(frame.context);
+			
 			if (frame.state == NORMAL_FRAME) {
-				to = adapter.createElement(frame.element);
+			    if( i == filteredStackFrames.size()-1 ) {
+			      to = adapter.createElement(stackFrames.peek().element);
+	            } else
+	              to = adapter.createElement(frame.element);
 			}
 			else {
 				to = adapter.createEndElementTO(frame.element);
@@ -126,11 +150,11 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 			to.type = adapter.getAdapterType();
 			to.frameId = i;
 			event.frames.add(to);
-
 		}
 
 		sendAndConfirm(event);
-		cleanStackLevel = stackFrames.size();
+
+		cleanStackLevel = filteredStackFrames.size();
 	}
 
 	/**
