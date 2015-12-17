@@ -106,6 +106,7 @@ public class PackageSender implements Runnable {
 				try {
 					outgoingPackages.wait();
 				} catch (InterruptedException e) {
+				  interrupt = true;
 				}
 			}
 			packagesToSend.addAll(outgoingPackages);

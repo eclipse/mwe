@@ -112,22 +112,32 @@ public class Connection {
 	/**
 	 * close and dispose the socket and the (possibly waiting) sender thread
 	 */
-	public void close() {
+	public synchronized void close() {
 		try {
 			if (sender != null) {
 				sender.close();
+				sender = null;
 			}
+
 			if (socket != null) {
-				out.close();
-				in.close();
 				socket.close();
+				socket = null;
+			}
+			
+			if(out!=null) { 
+				out.close();
 				out = null;
+			}
+			
+			if(in!=null) {
+				in.close();
 				in = null;
 			}
-			sender = null;
-			socket = null;
-			ssocket.close();
-			ssocket = null;
+			
+			if(ssocket != null) {
+				ssocket.close();
+				ssocket = null;
+			}
 		} catch (Exception e) {
 			// IOExceptions and NullPointerExceptions may occur
 		}

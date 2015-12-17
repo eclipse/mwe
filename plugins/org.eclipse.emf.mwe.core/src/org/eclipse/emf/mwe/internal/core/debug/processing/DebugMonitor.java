@@ -98,6 +98,13 @@ public class DebugMonitor implements ProgressMonitor {
 			throw (IOException) e;
 		}
 	}
+	
+	/**
+	 * Closes the connection. This releases the threads used for debugging and execution and releases memory.
+	 */
+	public void uninit() {
+	  connection.close();
+	}
 
 	private int findPort(final String[] args) {
 		for (final String string : args) {
