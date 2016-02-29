@@ -249,7 +249,7 @@
 
 
 		<!-- setup composite.repository.base appropriate to the build type -->
-		<condition property="composite.repository.base" value="nightly">
+		<condition property="composite.repository.base" value="nightly/${scm.stream}">
 			<matches pattern="^N" string="${saved.build.id}" />
 		</condition>
 		<condition property="composite.repository.base" value="milestones/${saved.build.id}">
