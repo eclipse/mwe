@@ -29,11 +29,11 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes
-         id="org.eclipse.emf.mwe.core"
+         id="org.eclipse.emf.mwe.core-feature"
          version="0.0.0"/>
 
    <includes
-         id="org.eclipse.emf.mwe.ui"
+         id="org.eclipse.emf.mwe.ui-feature"
          version="0.0.0"/>
 
  <!--  FIXME <includes
@@ -45,7 +45,7 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>-->
 
    <includes
-         id="org.eclipse.emf.mwe.doc"
+         id="org.eclipse.emf.mwe.doc-feature"
          version="0.0.0"/>
 
 </feature>

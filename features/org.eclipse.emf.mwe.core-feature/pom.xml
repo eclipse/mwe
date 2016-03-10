@@ -3,12 +3,13 @@
 	<parent>
 		<groupId>org.eclipse.emf</groupId>
 		<artifactId>features-parent</artifactId>
-		<version>1.3.2-SNAPSHOT</version>
+		<version>1.3.20-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+	<version>1.3.20-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 	<artifactId>org.eclipse.emf.mwe.core-feature</artifactId>
-	<build>
+	<!-- FIXME <build>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho.extras</groupId>
@@ -25,5 +26,5 @@
 				</executions>
 			</plugin>
 		</plugins>
-	</build>
+	</build> -->
 </project>

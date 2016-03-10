@@ -13,5 +13,4 @@
 		<module>org.eclipse.emf.mwe.doc-feature</module>
 		<module>org.eclipse.emf.mwe.doc</module>
 	</modules>
-
 </project>
