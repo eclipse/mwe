@@ -36,13 +36,13 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.emf.mwe.ui"
          version="0.0.0"/>
 
-   <includes
+ <!--  FIXME <includes
          id="org.eclipse.emf.mwe.core.source"
          version="0.0.0"/>
 
    <includes
          id="org.eclipse.emf.mwe.ui.source"
-         version="0.0.0"/>
+         version="0.0.0"/>-->
 
    <includes
          id="org.eclipse.emf.mwe.doc"

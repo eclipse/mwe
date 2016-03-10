@@ -10,7 +10,7 @@
 		<version>7</version>
 	</parent>
 	<properties>
-		<tycho-version>0.23.1</tycho-version>
+		<tycho-version>0.24.0</tycho-version>
 		<commons-cli.version>1.2</commons-cli.version>
 		<guava.version>[10.0.1,14.0.1]</guava.version>
 		<google-inject.version>3.0</google-inject.version>
@@ -21,13 +21,10 @@
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>
-
-		<module>../../plugins/org.eclipse.emf.mwe2.runtime</module>
-		<module>../../plugins/org.eclipse.emf.mwe.core</module>
-		<module>../../plugins/org.eclipse.emf.mwe.utils</module>
-		<module>../../plugins/org.eclipse.emf.mwe2.lib</module>
-		<module>../../plugins/org.eclipse.emf.mwe2.language</module>
-		<module>../../plugins/org.eclipse.emf.mwe2.launch</module>
+		<module>../../doc/</module>
+		<module>../../features/</module>
+		<module>../../plugins/</module>
+		<module>../../tests/</module>
 	</modules>
 
 	<licenses>

@@ -2,13 +2,16 @@
 <projectDescription>
 	<name>org.eclipse.emf.mwe.tests-feature</name>
 	<comment></comment>
+	<projects>
+	</projects>
 	<buildSpec>
-	  <buildCommand>
-	    <name>org.eclipse.pde.FeatureBuilder</name>
-	    <arguments/>
-	  </buildCommand>
+		<buildCommand>
+			<name>org.eclipse.pde.FeatureBuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
 	</buildSpec>
 	<natures>
-	  <nature>org.eclipse.pde.FeatureNature</nature>
+		<nature>org.eclipse.pde.FeatureNature</nature>
 	</natures>
 </projectDescription>
