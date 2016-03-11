@@ -7,5 +7,5 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>eclipse-feature</packaging>
-	<artifactId>org.eclipse.emf.mwe.doc-feature</artifactId>
+	<artifactId>org.eclipse.emf.mwe.doc.feature</artifactId>
 </project>

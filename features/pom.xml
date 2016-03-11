@@ -15,7 +15,6 @@
 		<module>org.eclipse.emf.mwe2.language.sdk-feature</module>
 		<module>org.eclipse.emf.mwe2.launcher-feature</module>
 		<module>org.eclipse.emf.mwe2.runtime.sdk-feature</module>
-		<module>org.eclipse.emf.mwe.build-feature</module>
 	</modules>
 
 </project>
