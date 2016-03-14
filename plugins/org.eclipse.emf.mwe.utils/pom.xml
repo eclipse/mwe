@@ -5,9 +5,9 @@
 	<packaging>eclipse-plugin</packaging>
 	<parent>
 		<groupId>org.eclipse.emf</groupId>
-		<artifactId>org.eclipse.emf.mwe2.parent</artifactId>
+		<artifactId>plugins-parent</artifactId>
 		<version>2.9.0-SNAPSHOT</version>
-		<relativePath>../../maven/org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<dependencies>
 		<dependency>
@@ -16,4 +16,13 @@
 			<version>[${project.version}]</version>
 		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>

@@ -8,19 +8,25 @@
 	</parent>
 	<version>1.3.20-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
-	<artifactId>org.eclipse.emf.mwe.core.feature</artifactId>
+	<artifactId>org.eclipse.emf.mwe.sdk</artifactId>
 	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho.extras</groupId>
 				<artifactId>tycho-source-feature-plugin</artifactId>
 				<version>${tycho-version}</version>
-				<configuration>
-					<excludes>
-						<plugin id="org.apache.commons.cli" />
-						<plugin id="org.apache.commons.lang" />
-					</excludes>
-				</configuration>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

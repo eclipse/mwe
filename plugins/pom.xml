@@ -22,20 +22,25 @@
 		<module>org.eclipse.emf.mwe2.runtime</module>
 	</modules>
 	<build>
-    <plugins>   
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-        <version>${tycho-version}</version>
-        <executions>
-          <execution>
-            <id>plugin-source</id>
-            <goals>
-              <goal>plugin-source</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho-version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<archive>
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

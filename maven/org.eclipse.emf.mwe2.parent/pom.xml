@@ -11,6 +11,8 @@
 	</parent>
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
+		<maven-install-version>2.5.2</maven-install-version>
+		<maven-javadoc-version>2.10.3</maven-javadoc-version>
 		<commons-cli.version>1.2</commons-cli.version>
 		<guava.version>[10.0.1,14.0.1]</guava.version>
 		<google-inject.version>3.0</google-inject.version>
@@ -127,39 +129,28 @@
 			</plugin>
 			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-source-plugin</artifactId> <version>2.4</version> <executions> <execution> <id>attach-sources</id> 
 				<goals> <goal>jar</goal> </goals> </execution> </executions> </plugin> -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>org.eclipse.tycho</groupId>
-					<artifactId>tycho-source-plugin</artifactId>
-					<version>${tycho-version}</version>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>${maven-install-version}</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
 					<executions>
 						<execution>
-							<id>plugin-source</id>
+							<id>attach-javadocs</id>
 							<goals>
-								<goal>plugin-source</goal>
+								<goal>jar</goal>
 							</goals>
 						</execution>
 					</executions>
-					<configuration>
-						<archive>
-							<addMavenDescriptor>false</addMavenDescriptor>
-						</archive>
-					</configuration>
 				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
