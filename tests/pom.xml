@@ -12,21 +12,37 @@
 		<module>org.eclipse.emf.mwe.tests</module>
 		<module>org.eclipse.emf.mwe2.language.tests</module>
 	</modules>
+	<properties>
+		<osx-jvm-flags /> <!-- for the default case -->
+		<jvm-flags>-ea</jvm-flags>
+		<memory-settings>-Xmx700m</memory-settings>
+	</properties>
 	<build>
-    <plugins>   
-      <plugin>
-        <groupId>org.eclipse.tycho</groupId>
-        <artifactId>tycho-source-plugin</artifactId>
-        <version>${tycho-version}</version>
-        <executions>
-          <execution>
-            <id>plugin-source</id>
-            <goals>
-              <goal>plugin-source</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-surefire-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<forkedProcessTimeoutInSeconds>120</forkedProcessTimeoutInSeconds>
+						<argLine>${memory-settings} ${osx-jvm-flags} ${jvm-flags}</argLine>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+	<profiles>
+		<profile>
+			<id>macosx</id>
+			<activation>
+				<os>
+					<family>mac</family>
+				</os>
+			</activation>
+			<properties>
+				<osx-jvm-flags>-XstartOnFirstThread</osx-jvm-flags>
+			</properties>
+		</profile>
+	</profiles>
 </project>

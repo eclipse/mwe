@@ -6,6 +6,9 @@
    <feature id="org.eclipse.emf.mwe2.launcher" version="0.0.0">
       <category name="mwe2lang"/>
    </feature>
+   <feature id="org.eclipse.emf.mwe.sdk" version="0.0.0">
+      <category name="mwe2lang"/>
+   </feature>
    <category-def name="mwe2lang" label="MWE">
       <description>
          The configuration language used to configure Xtext&apos;s code generator.
