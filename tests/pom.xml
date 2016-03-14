@@ -25,8 +25,25 @@
 					<artifactId>tycho-surefire-plugin</artifactId>
 					<version>${tycho-version}</version>
 					<configuration>
+						<useUIHarness>true</useUIHarness>
 						<forkedProcessTimeoutInSeconds>120</forkedProcessTimeoutInSeconds>
 						<argLine>${memory-settings} ${osx-jvm-flags} ${jvm-flags}</argLine>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+					<configuration>
+						<skip>true</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-install-plugin</artifactId>
+					<version>2.5.2</version>
+					<configuration>
+						<skip>true</skip>
 					</configuration>
 				</plugin>
 			</plugins>

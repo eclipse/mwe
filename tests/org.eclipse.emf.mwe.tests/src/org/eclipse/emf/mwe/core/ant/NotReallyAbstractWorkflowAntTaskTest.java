@@ -14,9 +14,7 @@ import org.junit.Test;
  * Test for {@link WorkflowAntTask}.
  * 
  * @author kthoms
- * @see http
- *      ://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/
- *      package -summary.html
+ * http://help.eclipse.org/stable/index.jsp?topic=/org.eclipse.platform.doc.isv/reference/api/org/eclipse/ant/core/package-summary.html
  */
 public class NotReallyAbstractWorkflowAntTaskTest extends Assert{
 	/**
