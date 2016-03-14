@@ -7,7 +7,7 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>eclipse-feature</packaging>
-	<artifactId>org.eclipse.emf.mwe2.language.sdk</artifactId>
+	<artifactId>org.eclipse.emf.mwe2.runtime.sdk</artifactId>
 	<build>
 		<plugins>
 			<plugin>
@@ -23,9 +23,8 @@
 						</goals>
 						<configuration>
 							<excludes>
-								<feature id="org.eclipse.emf.mwe2.runtime.sdk" />
-								<feature id="org.eclipse.emf.mwe2.launcher" />
-								<feature id="org.eclipse.emf.mwe2.launcher.source" />
+								<plugin id="org.eclipse.emf.mwe2.runtime.source" />
+								<plugin id="org.eclipse.emf.mwe2.lib.source" />
 							</excludes>
 						</configuration>
 					</execution>

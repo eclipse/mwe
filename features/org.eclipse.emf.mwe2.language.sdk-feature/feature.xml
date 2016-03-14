@@ -31,8 +31,12 @@ http://www.eclipse.org/legal/epl-v10.html
    <includes
          id="org.eclipse.emf.mwe2.runtime.sdk"
          version="0.0.0"/>
+ 
    <includes
          id="org.eclipse.emf.mwe2.launcher"
+         version="0.0.0"/>
+   <includes
+         id="org.eclipse.emf.mwe2.launcher.source"
          version="0.0.0"/>
 
    <requires>
