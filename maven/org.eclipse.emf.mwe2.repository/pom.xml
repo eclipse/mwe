@@ -8,8 +8,17 @@
 	</parent>
 	<artifactId>org.eclipse.emf.mwe2.repository</artifactId>
 	<packaging>eclipse-repository</packaging>
-
+	<properties>
+		<build.id>${maven.build.timestamp}</build.id>
+		<maven.build.timestamp.format>'${build.type}'yyyyMMddHHmm</maven.build.timestamp.format>
+	</properties>
 	<build>
+		<resources>
+			<resource>
+				<directory>properties</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
@@ -17,6 +26,7 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<repositoryName>MWE Repository</repositoryName>
+					<finalName>emft-mwe-2-lang-Update-${build.id}</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
