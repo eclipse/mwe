@@ -14,22 +14,9 @@
 				<groupId>org.eclipse.tycho.extras</groupId>
 				<artifactId>tycho-source-feature-plugin</artifactId>
 				<version>${tycho-version}</version>
-				<executions>
-					<execution>
-						<id>source-feature</id>
-						<phase>package</phase>
-						<goals>
-							<goal>source-feature</goal>
-						</goals>
-						<configuration>
-							<excludes>
-								<feature id="org.eclipse.emf.mwe2.runtime.sdk" />
-								<feature id="org.eclipse.emf.mwe2.launcher" />
-								<feature id="org.eclipse.emf.mwe2.launcher.source" />
-							</excludes>
-						</configuration>
-					</execution>
-				</executions>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

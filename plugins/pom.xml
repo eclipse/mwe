@@ -20,6 +20,7 @@
 		<module>org.eclipse.emf.mwe2.launch.ui</module>
 		<module>org.eclipse.emf.mwe2.lib</module>
 		<module>org.eclipse.emf.mwe2.runtime</module>
+		<module>org.eclipse.emf.mwe.doc</module>
 	</modules>
 	<build>
 		<plugins>

@@ -29,7 +29,6 @@
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>
-		<module>../../doc/</module>
 		<module>../../features/</module>
 		<module>../../plugins/</module>
 		<module>../../tests/</module>
