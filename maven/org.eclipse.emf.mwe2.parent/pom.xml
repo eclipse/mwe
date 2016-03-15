@@ -25,7 +25,7 @@
 
 		<sign.skip>true</sign.skip>
 		<tycho.localArtifacts>ignore</tycho.localArtifacts>
-		<build.type>N</build.type>
+		<BUILD_TYPE>N</BUILD_TYPE>
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>

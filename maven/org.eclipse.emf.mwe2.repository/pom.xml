@@ -10,7 +10,7 @@
 	<packaging>eclipse-repository</packaging>
 	<properties>
 		<build.id>${maven.build.timestamp}</build.id>
-		<maven.build.timestamp.format>'${build.type}'yyyyMMddHHmm</maven.build.timestamp.format>
+		<maven.build.timestamp.format>'${BUILD_TYPE}'yyyyMMddHHmm</maven.build.timestamp.format>
 	</properties>
 	<build>
 		<resources>
