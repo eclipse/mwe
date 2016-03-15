@@ -25,7 +25,6 @@
 				<executions>
 					<execution>
 						<id>source-feature</id>
-						<phase>package</phase>
 						<goals>
 							<goal>source-feature</goal>
 						</goals>
@@ -38,7 +37,13 @@
 				<version>${tycho-version}</version>
 				<executions>
 					<execution>
-						<id>attached-p2-metadata</id>
+						<id>default-p2-metadata-default</id>
+						<configuration>
+							<attachP2Metadata>false</attachP2Metadata>
+						</configuration>
+					</execution>
+					<execution>
+						<id>attach-p2-metadata</id>
 						<phase>package</phase>
 						<goals>
 							<goal>p2-metadata</goal>
