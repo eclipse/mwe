@@ -29,6 +29,14 @@
 					<finalName>emft-mwe-2-lang-Update-${build.id}</finalName>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho-version}</version>
+				<configuration>
+					<includePackedArtifacts>true</includePackedArtifacts>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>
