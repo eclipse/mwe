@@ -197,7 +197,7 @@
 			</fileset>
 		</copy>
 
-		
+
 		<!-- genereate md5 checksums -->
 		<checksum algorithm="MD5" fileext=".md5" format="MD5SUM" forceoverwrite="true">
 			<fileset dir="${build.drop.directory}" />
@@ -220,6 +220,15 @@
 		<!-- strip the micro version and anything following it -->
 		<buckminster.substitute value="${version}" pattern="^(\d+\.\d+)\.\d+.*$" replacement="$$1" property="base.version" />
 
+		<available property="javadoc.exists" type="dir" file="${javadoc.directory}" />
+		<condition property="publish.javadoc" value="true">
+			<and>
+				<isset property="build.stable" />
+				<isset property="javadoc.exists" />
+			</and>
+		</condition>
+
+		<echo>Javadoc exists: ${javadoc.exists}, build is stable: ${build.stable}, publish: ${publish.javadoc} </echo>
 		<antcall target="-publish.javadoc" inheritall="true" />
 
 		<fileset id="drop.resources" dir="${build.drop.directory}">
@@ -242,7 +251,7 @@
 		<condition property="composite.repository.base" value="milestones/${saved.build.id}">
 			<matches pattern="^[IMS]" string="${saved.build.id}" />
 		</condition>
-		<condition property="composite.repository.base" value="releases/${saved.build.id}">
+		<condition property="composite.repository.base" value="releases/${version}">
 			<matches pattern="^R" string="${saved.build.id}" />
 		</condition>
 
@@ -298,7 +307,7 @@
 				without p2.composite.repository
 				<property name="build.repository.directory" location="${composite.repository.directory}/${saved.build.id}" />
 				 -->
-		<property name="build.repository.directory" location="${composite.repository.directory}/mwe2lang" />
+		<property name="build.repository.directory" location="${composite.repository.directory}" />
 
 		<delete dir="${build.repository.directory}" />
 		<unzip dest="${build.repository.directory}">
@@ -314,7 +323,7 @@
 		</p2.composite.repository>-->
 
 		<!-- change Group owner  -->
-		<fileset id="repository.resources" dir="${composite.repository.directory}"/>
+		<fileset id="repository.resources" dir="${composite.repository.directory}" />
 
 		<antcall target="-change.group.owner" inheritall="true">
 			<reference refid="repository.resources" torefid="change.group.owner.resources" />
@@ -327,7 +336,7 @@
 		</chgrp>
 	</target>
 
-	<target name="-publish.javadoc" if="build.stable">
+	<target name="-publish.javadoc" if="publish.javadoc">
 		<!-- copy javadoc -->
 		<echo>Unzipping javadoc</echo>
 		<unzip dest="${downloads.area}/javadoc/${base.version}" overwrite="true">
