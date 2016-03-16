@@ -11,6 +11,7 @@
 	<properties>
 		<build.id>${maven.build.timestamp}</build.id>
 		<maven.build.timestamp.format>'${BUILD_TYPE}'yyyyMMddHHmm</maven.build.timestamp.format>
+		<final.repo.name>emft-mwe-2-lang-Update-${build.id}</final.repo.name>
 	</properties>
 	<build>
 		<resources>
@@ -26,7 +27,7 @@
 				<version>${tycho-version}</version>
 				<configuration>
 					<repositoryName>MWE Repository</repositoryName>
-					<finalName>emft-mwe-2-lang-Update-${build.id}</finalName>
+					<finalName>${final.repo.name}</finalName>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -39,4 +40,17 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>stable-build</id>
+			<activation>
+				<property>
+					<name>BUILD_ALIAS</name>
+				</property>
+			</activation>
+			<properties>
+				<final.repo.name>emft-mwe-2-lang-Update-${BUILD_ALIAS}</final.repo.name>
+			</properties>
+		</profile>
+	</profiles>
 </project>
