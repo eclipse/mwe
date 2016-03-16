@@ -7,19 +7,30 @@
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
-<unit id="org.eclipse.xpand" version="0.0.0"/>
-<unit id="org.eclipse.xtend" version="0.0.0"/>
-<unit id="org.eclipse.xtend.typesystem.emf" version="0.0.0"/>
-<repository location="http://download.eclipse.org/releases/mars/201506241002/"/>
+<repository location="http://download.eclipse.org/releases/helios/201102250900/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
-<unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.9.2/"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/emf/emf/updates/2.10.x/core/S201501230452/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<unit id="org.eclipse.xtext.ui.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.xtext.junit4" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/nightly/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 <repository location="http://download.eclipse.org/cbi/updates/license/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.xpand" version="0.0.0"/>
+<unit id="org.eclipse.xtend" version="0.0.0"/>
+<unit id="org.eclipse.xtend.typesystem.emf" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201406030414/"/>
+</location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.junit" version="0.0.0"/>
+<repository location="http://download.eclipse.org/modeling/tmf/xtext/updates/orbit"/>
 </location>
 </locations>
 </target>
