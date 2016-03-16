@@ -139,6 +139,17 @@
 						</execution>
 					</executions>
 				</plugin>
+				<plugin>
+					<groupId>org.eclipse.cbi.maven.plugins</groupId>
+					<artifactId>eclipse-jarsigner-plugin</artifactId>
+					<version>${cbi-plugins.version}</version>
+					<configuration>
+						<resigningStrategy>DO_NOT_RESIGN</resigningStrategy>
+						<digestAlgorithm>SHA1</digestAlgorithm>
+						<signatureAlgorithm>SHA1withRSA</signatureAlgorithm>
+						<excludeInnerJars>true</excludeInnerJars>
+					</configuration>
+				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -176,11 +187,7 @@
 			<id>cbi-sign</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-				<!-- TODO move cbi signing plugin to this profile 
-				<property>
-					<name>sign.skip</name>
-					<value>false</value>
-				</property>  -->
+				<!-- TODO move cbi signing plugin to this profile <property> <name>sign.skip</name> <value>false</value> </property> -->
 			</activation>
 			<pluginRepositories>
 				<pluginRepository>

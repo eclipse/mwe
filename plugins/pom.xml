@@ -69,10 +69,6 @@
 				</executions>
 				<configuration>
 					<skip>${sign.skip}</skip>
-					<resigningStrategy>DO_NOT_RESIGN</resigningStrategy>
-					<digestAlgorithm>SHA1</digestAlgorithm>
-					<signatureAlgorithm>SHA1withRSA</signatureAlgorithm>
-					<excludeInnerJars>true</excludeInnerJars>
 				</configuration>
 			</plugin>
 			<plugin>
