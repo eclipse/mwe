@@ -13,6 +13,7 @@
 		<module>org.eclipse.emf.mwe2.language.tests</module>
 	</modules>
 	<properties>
+		<p2-deploy-only>true</p2-deploy-only>
 		<osx-jvm-flags /> <!-- for the default case -->
 		<jvm-flags>-ea</jvm-flags>
 		<memory-settings>-Xmx700m</memory-settings>

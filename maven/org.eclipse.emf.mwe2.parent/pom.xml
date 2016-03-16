@@ -12,6 +12,7 @@
 	<properties>
 		<tycho-version>0.24.0</tycho-version>
 		<maven-install-version>2.5.2</maven-install-version>
+		<maven-deploy-version>2.8.2</maven-deploy-version>
 		<maven-javadoc-version>2.10.3</maven-javadoc-version>
 		<commons-cli.version>1.2</commons-cli.version>
 		<guava.version>[10.0.1,14.0.1]</guava.version>
@@ -23,12 +24,13 @@
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>ISO-8859-1</project.reporting.outputEncoding>
 
+		<!-- sign.skip = true skips gpg and eclipse signing -->
 		<sign.skip>true</sign.skip>
 		<tycho.localArtifacts>ignore</tycho.localArtifacts>
-
+		<!-- p2-deploy-only = true skips the deploy step -->
+		<p2-deploy-only>false</p2-deploy-only>
 		<BUILD_TYPE>N</BUILD_TYPE>
 		<BUILD_ALIAS />
-
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>
@@ -124,7 +126,15 @@
 					<artifactId>maven-install-plugin</artifactId>
 					<version>${maven-install-version}</version>
 					<configuration>
-						<skip>true</skip>
+						<skip>${p2-deploy-only}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-deploy-plugin</artifactId>
+					<version>${maven-deploy-version}</version>
+					<configuration>
+						<skip>${p2-deploy-only}</skip>
 					</configuration>
 				</plugin>
 				<plugin>

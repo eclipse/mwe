@@ -12,6 +12,7 @@
 		<build.id>${maven.build.timestamp}</build.id>
 		<maven.build.timestamp.format>'${BUILD_TYPE}'yyyyMMddHHmm</maven.build.timestamp.format>
 		<final.repo.name>emft-mwe-2-lang-Update-${build.id}</final.repo.name>
+		<p2-deploy-only>true</p2-deploy-only>
 	</properties>
 	<build>
 		<resources>
