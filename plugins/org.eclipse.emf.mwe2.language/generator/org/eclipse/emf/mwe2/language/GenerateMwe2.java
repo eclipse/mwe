@@ -57,7 +57,8 @@ public class GenerateMwe2 {
 					{
 						setIgnoreBrokenProjectFiles(true);
 						setPlatformUri(runtimeProject+"/../..");
-						setPlatformUri(runtimeProject+"/../../../org.eclipse.xtext");
+						// xtext plugins git repo location
+						setPlatformUri(runtimeProject+"/../../../xtext-master/plugins");
 					}
 				});
 
