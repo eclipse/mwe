@@ -27,12 +27,12 @@ import org.eclipse.emf.mwe2.language.mwe2.StringPart;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl#getBegin <em>Begin</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.StringLiteralImpl#getEnd <em>End</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -28,12 +28,12 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ComponentImpl#getModule <em>Module</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ComponentImpl#isAutoInject <em>Auto Inject</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ComponentImpl#getAssignment <em>Assignment</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

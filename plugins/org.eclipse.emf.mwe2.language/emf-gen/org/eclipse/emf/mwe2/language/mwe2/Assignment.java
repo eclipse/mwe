@@ -13,12 +13,12 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Assignment#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getAssignment()
  * @model

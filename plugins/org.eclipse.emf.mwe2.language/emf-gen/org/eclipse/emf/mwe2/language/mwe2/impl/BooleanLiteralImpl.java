@@ -17,10 +17,10 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.BooleanLiteralImpl#isIsTrue <em>Is True</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -23,12 +23,12 @@ import org.eclipse.xtext.common.types.JvmIdentifiableElement;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getFeature <em>Feature</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.AssignmentImpl#getFeatureName <em>Feature Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

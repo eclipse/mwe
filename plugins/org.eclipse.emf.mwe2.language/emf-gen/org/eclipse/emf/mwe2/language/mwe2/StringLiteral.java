@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getBegin <em>Begin</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getParts <em>Parts</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.StringLiteral#getEnd <em>End</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getStringLiteral()
  * @model

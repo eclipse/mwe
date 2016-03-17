@@ -11,12 +11,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Component#getModule <em>Module</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Component#isAutoInject <em>Auto Inject</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Component#getAssignment <em>Assignment</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getComponent()
  * @model

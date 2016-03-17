@@ -21,11 +21,11 @@ import org.eclipse.xtext.common.types.JvmType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ReferrableImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ReferrableImpl#getName <em>Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

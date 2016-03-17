@@ -23,11 +23,11 @@ import org.eclipse.emf.mwe2.language.mwe2.Value;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.DeclaredPropertyImpl#getDefault <em>Default</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.DeclaredPropertyImpl#getModule <em>Module</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

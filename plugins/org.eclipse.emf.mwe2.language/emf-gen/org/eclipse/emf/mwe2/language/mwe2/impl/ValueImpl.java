@@ -15,8 +15,6 @@ import org.eclipse.xtext.common.types.JvmType;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Value</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

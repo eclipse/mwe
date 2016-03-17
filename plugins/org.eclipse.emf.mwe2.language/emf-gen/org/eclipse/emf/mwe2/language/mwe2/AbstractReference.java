@@ -11,10 +11,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.AbstractReference#getReferable <em>Referable</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getAbstractReference()
  * @model abstract="true"

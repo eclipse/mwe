@@ -20,10 +20,10 @@ import org.eclipse.emf.mwe2.language.mwe2.Referrable;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ReferenceImpl#getReferable <em>Referable</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

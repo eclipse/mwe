@@ -13,13 +13,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Module#getCanonicalName <em>Canonical Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Module#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Module#getDeclaredProperties <em>Declared Properties</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.Module#getRoot <em>Root</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getModule()
  * @model

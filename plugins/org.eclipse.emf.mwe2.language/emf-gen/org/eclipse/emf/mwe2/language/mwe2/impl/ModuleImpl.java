@@ -31,13 +31,13 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ModuleImpl#getCanonicalName <em>Canonical Name</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ModuleImpl#getImports <em>Imports</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ModuleImpl#getDeclaredProperties <em>Declared Properties</em>}</li>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ModuleImpl#getRoot <em>Root</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

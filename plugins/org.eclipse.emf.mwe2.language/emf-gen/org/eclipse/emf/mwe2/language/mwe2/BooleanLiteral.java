@@ -10,10 +10,10 @@ package org.eclipse.emf.mwe2.language.mwe2;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral#isIsTrue <em>Is True</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getBooleanLiteral()
  * @model

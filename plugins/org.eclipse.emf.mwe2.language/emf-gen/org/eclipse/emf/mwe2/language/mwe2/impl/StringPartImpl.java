@@ -13,8 +13,6 @@ import org.eclipse.emf.mwe2.language.mwe2.StringPart;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>String Part</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */
