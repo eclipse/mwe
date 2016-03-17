@@ -7,7 +7,7 @@
 		<relativePath>../maven/org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>plugins-parent</artifactId>
+	<artifactId>org.eclipse.emf.mwe2.plugins-parent</artifactId>
 	<packaging>pom</packaging>
 	<properties>
 		<p2-deploy-only>true</p2-deploy-only>

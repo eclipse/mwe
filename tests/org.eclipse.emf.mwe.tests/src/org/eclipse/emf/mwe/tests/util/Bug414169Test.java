@@ -8,6 +8,7 @@
 package org.eclipse.emf.mwe.tests.util;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -29,7 +30,19 @@ public class Bug414169Test extends Assert {
 		LogTester logTester = new LogTester(StandaloneSetup.class,standaloneSetup);
 		File file = new File("./testfiles/bug414169");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
+		System.out.println("Infos:");
+		System.out.println(dump(logTester.infos));
+		System.out.println("Warnings:");
+		System.out.println(dump(logTester.warnings));
 		assertEquals(1, logTester.getWarnings().size());
+	}
+
+	private String dump(ArrayList<String> strings) {
+		StringBuilder sb = new StringBuilder();
+		for (String string : strings) {
+			sb.append(string);
+		}
+		return sb.toString();
 	}
 
 	@Test public void testNoWarningMessage() throws Exception {

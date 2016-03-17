@@ -7,7 +7,7 @@
 		<relativePath>../maven/org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
 	</parent>
 
-	<artifactId>features-parent</artifactId>
+	<artifactId>org.eclipse.emf.mwe2.features-parent</artifactId>
 	<packaging>pom</packaging>
 
 	<properties>
