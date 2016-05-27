@@ -10,6 +10,8 @@
 		<version>7</version>
 	</parent>
 	<properties>
+		<tycho-qualifier>yyyyMMddHHmm</tycho-qualifier>
+		
 		<tycho-version>0.24.0</tycho-version>
 		<maven-install-version>2.5.2</maven-install-version>
 		<maven-deploy-version>2.8.2</maven-deploy-version>
@@ -26,6 +28,7 @@
 
 		<!-- sign.skip = true skips gpg and eclipse signing -->
 		<sign.skip>true</sign.skip>
+		<gpg-skip>${sign.skip}</gpg-skip>
 		<tycho.localArtifacts>ignore</tycho.localArtifacts>
 		<!-- p2-deploy-only = true skips the deploy step -->
 		<p2-deploy-only>false</p2-deploy-only>
@@ -65,7 +68,7 @@
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<format>'v'yyyyMMddHHmm</format>
+					<format>${tycho-qualifier}</format>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -117,6 +120,23 @@
 				<configuration>
 					<useProjectSettings>true</useProjectSettings>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<version>1.6</version>
+				<configuration>
+					<skip>${gpg-skip}</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 		<pluginManagement>
