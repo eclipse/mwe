@@ -107,10 +107,9 @@ public class Bug484372Test extends Assert {
 				standaloneSetup.getBundleNameFromJarName("org.eclipse.xtext-v2015252525.jar"));
 		assertEquals("junit", standaloneSetup.getBundleNameFromJarName("junit.jar"));
 
-		//TODO fix this?
-		assertEquals("ant", standaloneSetup.getBundleNameFromJarName("ant-antlr.jar"));
-		assertEquals("apache", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3.jar"));
-		assertEquals("apache", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3-3.2.1.jar"));
+		assertEquals("ant-antlr", standaloneSetup.getBundleNameFromJarName("ant-antlr.jar"));
+		assertEquals("apache-commons-lang3", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3.jar"));
+		assertEquals("apache-commons-lang3", standaloneSetup.getBundleNameFromJarName("apache-commons-lang3-3.2.1.jar"));
 
 	}
 

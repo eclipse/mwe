@@ -1,0 +1,7 @@
+image: maven:3-jdk-7
+before_script:
+  - apt-get update -qq && apt-get install -y -qq xvfb
+  - Xvfb :1 -screen 0 1024x768x24 -noreset +extension RANDR &
+  - export DISPLAY=:1
+build:
+  script: "mvn -version; cd maven; mvn clean install -U -fae -Dtycho.localArtifacts=ignore -f org.eclipse.emf.mwe2.parent/pom.xml"
