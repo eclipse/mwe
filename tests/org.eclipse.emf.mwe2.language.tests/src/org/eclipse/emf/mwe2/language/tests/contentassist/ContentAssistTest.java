@@ -7,15 +7,22 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.contentassist;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
 import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
 import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
+import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.xtext.ISetup;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
 import org.eclipse.xtext.junit4.ui.AbstractContentAssistProcessorTest;
 import org.eclipse.xtext.junit4.ui.ContentAssistProcessorTestBuilder;
+import org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration;
 import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
+import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -370,7 +377,21 @@ public class ContentAssistTest extends AbstractContentAssistProcessorTest {
 	
 	@Override
 	protected ContentAssistProcessorTestBuilder newBuilder() throws Exception {
-		return super.newBuilder().appendNl("module org.my.testmodel");
+		return new ContentAssistProcessorTestBuilder(getSetup(), this) {
+			@Override
+			protected ICompletionProposal[] computeCompletionProposals(final IXtextDocument xtextDocument, int cursorPosition,
+					XtextSourceViewerConfiguration configuration, ISourceViewer sourceViewer) throws BadLocationException {
+				// we filter "Spliterator" proposals to make this running on java 7 and java 8
+				ICompletionProposal[] originalResult = super.computeCompletionProposals(xtextDocument, cursorPosition, configuration, sourceViewer);
+				List<ICompletionProposal> result = new ArrayList<ICompletionProposal>();
+				for (ICompletionProposal proposal : originalResult) {
+					if (!proposal.getDisplayString().contains("Spliterator")) {
+						result.add(proposal);
+					}
+				}
+				return result.toArray(new ICompletionProposal[result.size()]);
+			}
+		}.appendNl("module org.my.testmodel");
 	}
 
 }
