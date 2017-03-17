@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.mwe.ui.feature"
       label="%featureName"
-      version="1.3.20.qualifier"
+      version="1.3.21.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -41,7 +41,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.core.expressions"/>
-      <import feature="org.eclipse.emf.mwe.core.feature" version="1.3.20" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.mwe.core.feature" version="1.3.21" match="greaterOrEqual"/>
    </requires>
 
    <plugin
