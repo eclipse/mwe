@@ -242,6 +242,12 @@
 	<description>Modeling Workflow Engine</description>
 	<developers>
 		<developer>
+			<id>christian.dietrich</id>
+			<name>Christian</name>
+			<email>christian.dietrich@itemis.de</email>
+			<organization>itemis AG</organization>
+		</developer>
+		<developer>
 			<id>dennis.huebner</id>
 			<name>Dennis</name>
 			<email>dennis.huebner@typefox.io</email>
