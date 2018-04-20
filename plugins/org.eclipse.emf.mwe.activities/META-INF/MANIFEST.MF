@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.emf.mwe.activities;singleton:=true
 Bundle-Version: 1.3.22.qualifier
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin

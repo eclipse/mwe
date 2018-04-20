@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
  org.apache.ant;bundle-version="1.7.0";resolution:=optional;x-installation:=greedy,
  org.apache.commons.cli;visibility:=reexport,
  org.eclipse.emf.mwe2.runtime;bundle-version="2.9.2";visibility:=reexport
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Eclipse-BuddyPolicy: dependent
 Export-Package: org.eclipse.emf.mwe.core,
  org.eclipse.emf.mwe.core.ant,
