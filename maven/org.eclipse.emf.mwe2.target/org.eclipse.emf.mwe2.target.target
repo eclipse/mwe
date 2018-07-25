@@ -7,7 +7,7 @@
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
-<repository location="http://download.eclipse.org/releases/juno/201303010900/"/>
+<repository location="http://download.eclipse.org/releases/luna/201502271000/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
 <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>

@@ -4,7 +4,7 @@ Bundle-Name: Modeling Workflow Engine 2 Language Tests
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.tests
 Bundle-Version: 2.9.2.qualifier
 Bundle-Vendor: Eclipse Modeling
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.emf.mwe2.language,
  org.eclipse.emf.mwe2.language.ui,
  org.eclipse.xtext.junit4,
