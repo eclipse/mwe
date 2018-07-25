@@ -12,7 +12,7 @@
 	<properties>
 		<tycho-qualifier>yyyyMMddHHmm</tycho-qualifier>
 		
-		<tycho-version>1.1.0</tycho-version>
+		<tycho-version>1.2.0</tycho-version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven-install-version>2.5.2</maven-install-version>
