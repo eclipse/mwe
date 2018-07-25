@@ -1,10 +1,10 @@
 package org.eclipse.emf.mwe2.language.serializer;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess.StringLiteralElements;
+import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.ISemanticNodeProvider.INodesForEObjectProvider;
 
@@ -20,7 +20,7 @@ public class Mwe2SemanticSequencer extends AbstractMwe2SemanticSequencer {
 	private Mwe2GrammarAccess grammarAccess;
 
 	@Override
-	protected void sequence_StringLiteral(EObject context, StringLiteral lit) {
+	protected void sequence_StringLiteral(ISerializationContext context, StringLiteral lit) {
 		INodesForEObjectProvider nodes = createNodeProvider(lit);
 		SequenceFeeder feeder = createSequencerFeeder(lit, nodes);
 		StringLiteralElements g = grammarAccess.getStringLiteralAccess();
