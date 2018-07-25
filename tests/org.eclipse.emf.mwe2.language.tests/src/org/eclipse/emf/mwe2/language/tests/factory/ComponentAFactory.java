@@ -16,6 +16,7 @@ public class ComponentAFactory implements IFactory<ComponentA>{
 		this.x = x;
 	}
 
+	@Override
 	public ComponentA create() {
 		ComponentA a = new ComponentA();
 		if (x!=null) {
