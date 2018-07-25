@@ -10,3 +10,4 @@ Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.emf.mwe.activities.Activator
 Export-Package: org.eclipse.emf.mwe.activities;x-internal:=true
+Automatic-Module-Name: org.eclipse.emf.mwe.activities

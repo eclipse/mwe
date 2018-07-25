@@ -29,4 +29,5 @@ Export-Package: org.eclipse.emf.mwe2.language,
  org.eclipse.emf.mwe2.language.serializer,
  org.eclipse.emf.mwe2.language.services,
  org.eclipse.emf.mwe2.language.validation
+Automatic-Module-Name: org.eclipse.emf.mwe2.language
 
