@@ -13,3 +13,4 @@ Bundle-Vendor: %providerName
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.mwe.ui.internal.simpleEditor;x-internal:=true
+Automatic-Module-Name: org.eclipse.emf.mwe.ui.simpleEditor

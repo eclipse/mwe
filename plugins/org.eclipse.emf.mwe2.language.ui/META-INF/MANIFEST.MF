@@ -32,3 +32,4 @@ Export-Package: org.eclipse.emf.mwe2.language.ui,
  org.eclipse.emf.mwe2.language.ui.labeling,
  org.eclipse.emf.mwe2.language.ui.outline,
  org.eclipse.emf.mwe2.language.ui.quickfix
+Automatic-Module-Name: org.eclipse.emf.mwe2.language.ui
