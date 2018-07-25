@@ -24,11 +24,13 @@ public class InjectorSimple implements Injector {
         this.name = name;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return name;
     }
 
-    public void setValue(final Object target, final Object val) {
+    @Override
+	public void setValue(final Object target, final Object val) {
         try {
             m.invoke(target, new Object[] { val });
         } catch (final InvocationTargetException e) {
@@ -38,7 +40,8 @@ public class InjectorSimple implements Injector {
         }
     }
 
-    public Class<?> getRequiredType() {
+    @Override
+	public Class<?> getRequiredType() {
         return m.getParameterTypes()[0];
     }
 

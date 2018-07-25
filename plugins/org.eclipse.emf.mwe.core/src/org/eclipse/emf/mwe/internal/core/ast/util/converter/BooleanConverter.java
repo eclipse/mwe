@@ -12,7 +12,8 @@ package org.eclipse.emf.mwe.internal.core.ast.util.converter;
 
 public class BooleanConverter implements Converter<Boolean> {
 
-    public Boolean convert(final String s) {
+    @Override
+	public Boolean convert(final String s) {
         return Boolean.valueOf(s);
     }
 

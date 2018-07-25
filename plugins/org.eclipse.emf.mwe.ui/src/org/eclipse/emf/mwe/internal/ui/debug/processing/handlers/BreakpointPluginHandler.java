@@ -30,10 +30,12 @@ public class BreakpointPluginHandler implements PluginHandler {
 
 	// -------------------------------------------------------------------------
 
+	@Override
 	public void setConnection(final Connection connection) {
 		this.connection = connection;
 	}
 
+	@Override
 	public void setDebugModelManager(final DebugModelManager dmm) {
 		// don't need it
 	}

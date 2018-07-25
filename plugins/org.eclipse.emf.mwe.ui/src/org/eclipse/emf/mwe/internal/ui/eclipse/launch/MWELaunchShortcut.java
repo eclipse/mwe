@@ -57,6 +57,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 
 	private final ILaunchManager launchManager = DebugPlugin.getDefault().getLaunchManager();
 
+	@Override
 	public void launch(final ISelection selection, final String mode) {
 		if (selection instanceof IStructuredSelection) {
 			final IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -68,6 +69,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 		}
 	}
 
+	@Override
 	public void launch(final IEditorPart editor, final String mode) {
 		final IEditorInput input = editor.getEditorInput();
 		currFile = (IFile) input.getAdapter(IFile.class);

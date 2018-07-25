@@ -33,14 +33,17 @@ public class Mwe2Bridge {
 		IssuesImpl issuesImpl = new IssuesImpl();
 		delegate.invoke(new WorkflowContext() {
 			
+			@Override
 			public void set(String slotName, Object value) {
 				ctx.put(slotName, value);
 			}
 			
+			@Override
 			public String[] getSlotNames() {
 				return ctx.getSlotNames().toArray(new String[ctx.getSlotNames().size()]);
 			}
 			
+			@Override
 			public Object get(String slotName) {
 				return ctx.get(slotName);
 			}

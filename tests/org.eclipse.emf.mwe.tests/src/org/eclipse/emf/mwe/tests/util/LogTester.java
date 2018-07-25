@@ -40,74 +40,92 @@ class LogTester implements Log {
 	ArrayList<String> warnings = new ArrayList<String>();
 	ArrayList<String> infos = new ArrayList<String>();
 
+	@Override
 	public boolean isDebugEnabled() {
 		return true;
 	}
 
+	@Override
 	public boolean isErrorEnabled() {
 		return true;
 	}
 
+	@Override
 	public boolean isFatalEnabled() {
 		return true;
 	}
 
+	@Override
 	public boolean isInfoEnabled() {
 		return false;
 	}
 
+	@Override
 	public boolean isTraceEnabled() {
 		return true;
 	}
 
+	@Override
 	public boolean isWarnEnabled() {
 		return true;
 	}
 
+	@Override
 	public void trace(Object message) {
 
 	}
 
+	@Override
 	public void trace(Object message, Throwable t) {
 
 	}
 
+	@Override
 	public void debug(Object message) {
 
 	}
 
+	@Override
 	public void debug(Object message, Throwable t) {
 
 	}
 
+	@Override
 	public void info(Object message) {
 		infos.add((String) message);
 	}
 
+	@Override
 	public void info(Object message, Throwable t) {
 
 	}
 
+	@Override
 	public void warn(Object message) {
 		warnings.add((String) message);
 	}
 
+	@Override
 	public void warn(Object message, Throwable t) {
 
 	}
 
+	@Override
 	public void error(Object message) {
 
 	}
 
+	@Override
 	public void error(Object message, Throwable t) {
 
 	}
 
+	@Override
 	public void fatal(Object message) {
 
 	}
 
+	@Override
 	public void fatal(Object message, Throwable t) {
 
 	}

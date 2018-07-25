@@ -43,6 +43,7 @@ public class Mwe2StateBasedContainerManager extends StateBasedContainerManager {
 		List<IContainer> result = getVisibleContainers(handles, resourceDescriptions);
 		if (result.isEmpty())
 			result.add(new AbstractContainer() {
+				@Override
 				public Iterable<IResourceDescription> getResourceDescriptions() {
 					return Collections.singletonList(desc);
 				}

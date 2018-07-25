@@ -52,10 +52,12 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 
 	// ********************************************** IStackFrame implementation
 
+	@Override
 	public IThread getThread() {
 		return thread;
 	}
 
+	@Override
 	public synchronized IVariable[] getVariables() throws DebugException {
 		if (!variablesChecked) {
 			// Hint: we assume that when clicking a frame or opening the
@@ -75,6 +77,7 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 		return variables.toArray(new IVariable[0]);
 	}
 
+	@Override
 	public boolean hasVariables() throws DebugException {
 		return getVariables().length > 0;
 	}
@@ -83,18 +86,22 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 		variablesChecked = false;
 	}
 
+	@Override
 	public String getName() {
 		return frameValues.containerName + " :: " + frameValues.elementName + " (line: " + frameValues.line + ")";
 	}
 
+	@Override
 	public int getLineNumber() {
 		return frameValues.line;
 	}
 
+	@Override
 	public int getCharStart() {
 		return frameValues.start;
 	}
 
+	@Override
 	public int getCharEnd() {
 		return frameValues.end;
 	}
@@ -118,72 +125,89 @@ public class DebugStackFrame extends DebugElement implements IStackFrame {
 
 	}
 
+	@Override
 	public IRegisterGroup[] getRegisterGroups() {
 		return null;
 	}
 
+	@Override
 	public boolean hasRegisterGroups() {
 		return false;
 	}
 
 	// ******************************************************** process handling
 
+	@Override
 	public boolean isStepping() {
 		return getThread().isStepping();
 	}
 
+	@Override
 	public boolean canStepInto() {
 		return getThread().canStepInto();
 	}
 
+	@Override
 	public void stepInto() throws DebugException {
 		getThread().stepInto();
 	}
 
+	@Override
 	public boolean canStepOver() {
 		return getThread().canStepOver();
 	}
 
+	@Override
 	public void stepOver() throws DebugException {
 		getThread().stepOver();
 	}
 
+	@Override
 	public boolean canStepReturn() {
 		return getThread().canStepReturn();
 	}
 
+	@Override
 	public void stepReturn() throws DebugException {
 		getThread().stepReturn();
 	}
 
+	@Override
 	public boolean canSuspend() {
 		return getThread().canSuspend();
 	}
 
+	@Override
 	public boolean isSuspended() {
 		return getThread().isSuspended();
 	}
 
+	@Override
 	public void suspend() throws DebugException {
 		getThread().suspend();
 	}
 
+	@Override
 	public boolean canResume() {
 		return getThread().canResume();
 	}
 
+	@Override
 	public void resume() throws DebugException {
 		getThread().resume();
 	}
 
+	@Override
 	public boolean canTerminate() {
 		return getThread().canTerminate();
 	}
 
+	@Override
 	public boolean isTerminated() {
 		return getThread().isTerminated();
 	}
 
+	@Override
 	public void terminate() throws DebugException {
 		getThread().terminate();
 	}

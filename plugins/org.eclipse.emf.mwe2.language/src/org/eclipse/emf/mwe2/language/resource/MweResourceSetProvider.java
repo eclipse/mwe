@@ -22,6 +22,7 @@ public class MweResourceSetProvider implements Provider<XtextResourceSet>{
 	@Inject
 	private Provider<IJvmTypeProvider.Factory> typeProviderFactory;
 	
+	@Override
 	public XtextResourceSet get() {
 		XtextResourceSet result = new SynchronizedXtextResourceSet() {
 			@Override

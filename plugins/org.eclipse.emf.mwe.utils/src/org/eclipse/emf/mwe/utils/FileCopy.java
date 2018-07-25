@@ -28,6 +28,7 @@ public class FileCopy extends AbstractWorkflowComponent {
 		this.targetFile = targetFile;
 	}
 
+	@Override
 	public void checkConfiguration(Issues issues) {
 		if (sourceFile == null) {
 			issues.addError("No sourceFile set.");

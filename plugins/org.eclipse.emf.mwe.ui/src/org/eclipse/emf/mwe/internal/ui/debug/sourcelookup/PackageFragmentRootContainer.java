@@ -34,6 +34,7 @@ public class PackageFragmentRootContainer extends AbstractSourceContainer {
 		fRoot = root;
 	}
 
+	@Override
 	public Object[] findSourceElements(String name) throws CoreException {
 		int index = name.lastIndexOf('.');
 		String typeName = name;
@@ -66,10 +67,12 @@ public class PackageFragmentRootContainer extends AbstractSourceContainer {
 		return EMPTY;
 	}
 
+	@Override
 	public String getName() {
 		return fRoot.getElementName();
 	}
 
+	@Override
 	public ISourceContainerType getType() {
 		return getSourceContainerType(TYPE_ID);
 	}

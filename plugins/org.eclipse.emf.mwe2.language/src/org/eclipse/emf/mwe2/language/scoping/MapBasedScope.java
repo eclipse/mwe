@@ -41,6 +41,7 @@ public class MapBasedScope extends AbstractScope {
 	@Override
 	protected Iterable<IEObjectDescription> getAllLocalElements() {
 		return Iterables.transform(entries.entrySet(), new Function<Map.Entry<QualifiedName, ? extends EObject>, IEObjectDescription>() {
+			@Override
 			public IEObjectDescription apply(Map.Entry<QualifiedName, ? extends EObject> from) {
 				return new MapEntry(from);
 			}
@@ -63,30 +64,37 @@ public class MapBasedScope extends AbstractScope {
 			this.entry = entry;
 		}
 		
+		@Override
 		public QualifiedName getName() {
 			return entry.getKey();
 		}
 
+		@Override
 		public QualifiedName getQualifiedName() {
 			return entry.getKey();
 		}
 
+		@Override
 		public EObject getEObjectOrProxy() {
 			return entry.getValue();
 		}
 
+		@Override
 		public URI getEObjectURI() {
 			return EcoreUtil.getURI(entry.getValue());
 		}
 
+		@Override
 		public EClass getEClass() {
 			return entry.getValue().eClass();
 		}
 
+		@Override
 		public String getUserData(String name) {
 			return null;
 		}
 
+		@Override
 		public String[] getUserDataKeys() {
 			return Strings.EMPTY_ARRAY;
 		}

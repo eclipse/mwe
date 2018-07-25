@@ -24,6 +24,7 @@ public class ConnectRunnable implements Runnable {
 		fConnector = connector;
 	}
 
+	@Override
 	public void run() {
 		try {
 			int timeout = JavaRuntime.getPreferences().getInt(JavaRuntime.PREF_CONNECT_TIMEOUT);

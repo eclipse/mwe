@@ -28,14 +28,16 @@ public class WorkflowContextDefaultImpl implements WorkflowContext {
     /**
      * @see WorkflowContext#get(String)
      */
-    public Object get(final String modelName) {
+    @Override
+	public Object get(final String modelName) {
         return models.get(modelName);
     }
 
     /**
      * @see WorkflowContext#set(String, Object)
      */
-    public void set(final String slotName, final Object model) {
+    @Override
+	public void set(final String slotName, final Object model) {
         if (slotName == null)
 			throw new IllegalArgumentException("slotName must not be null!");
         if (!slotName.matches("[\\w_]+"))
@@ -46,7 +48,8 @@ public class WorkflowContextDefaultImpl implements WorkflowContext {
         models.put(slotName, model);
     }
 
-    public String[] getSlotNames() {
+    @Override
+	public String[] getSlotNames() {
         return models.keySet().toArray(new String[models.keySet().size()]);
     }
 }

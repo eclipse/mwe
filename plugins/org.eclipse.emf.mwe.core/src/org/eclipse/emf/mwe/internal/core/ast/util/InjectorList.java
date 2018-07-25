@@ -24,11 +24,13 @@ public class InjectorList implements Injector {
         name = n;
     }
 
-    public String getName() {
+    @Override
+	public String getName() {
         return name;
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
+	@SuppressWarnings("unchecked")
 	public void setValue(final Object target, final Object val) {
         try {
             ((List<Object>) getter.invoke(target, new Object[0])).add(val);
@@ -39,7 +41,8 @@ public class InjectorList implements Injector {
         }
     }
 
-    public Class<?> getRequiredType() {
+    @Override
+	public Class<?> getRequiredType() {
         return Object.class;
     }
 }
