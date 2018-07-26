@@ -53,12 +53,17 @@ public class GenerateMwe2 {
 
 		Workflow workflow = new Workflow() {
 			{
+				
 				addBean(new StandaloneSetup() {
 					{
+						setScanClassPath(true);
 						setIgnoreBrokenProjectFiles(true);
-						setPlatformUri(runtimeProject+"/../..");
+						setPlatformUri("..");
+						addRegisterGenModelFile("platform:/resource/"+projectName+"/model/Mwe2.genmodel");
+//						addRegisterGeneratedEPackage("org.eclipse.xtext.common.types.TypesPackage");
+						//setPlatformUri(runtimeProject+"/../..");
 						// xtext plugins git repo location
-						setPlatformUri(runtimeProject+"/../../../xtext-master/plugins");
+						//setPlatformUri(runtimeProject+"/../../../xtext-master/plugins");
 					}
 				});
 
@@ -95,12 +100,13 @@ public class GenerateMwe2 {
 
 				addComponent(new Generator() {
 					{
+						
 						setPathRtProject(runtimeProject);
 						setPathUiProject(uiProject);
 						setPathTestProject(testProject);
 						setProjectNameRt(projectName);
 						setProjectNameUi(""+projectName+".ui");
-
+						
 						addLanguage(new LanguageConfig() {
 							{
 								setUri(grammarURI);
