@@ -52,20 +52,14 @@ public class FileCopy extends AbstractWorkflowComponent {
 				target.createNewFile();
 			}
 
-			FileChannel sourceChannel = null;
-			FileChannel destinationChannel = null;
-			try {
-				sourceChannel = new FileInputStream(source).getChannel();
-				destinationChannel = new FileOutputStream(target).getChannel();
+			
+			try (
+				FileInputStream fileInputStream = new FileInputStream(source);
+				FileOutputStream fileOutputStream = new FileOutputStream(target);
+				FileChannel sourceChannel = fileInputStream.getChannel();
+				FileChannel destinationChannel = fileOutputStream.getChannel();
+			) {
 				destinationChannel.transferFrom(sourceChannel, 0, sourceChannel.size());
-			}
-			finally {
-				if (sourceChannel != null) {
-					sourceChannel.close();
-				}
-				if (destinationChannel != null) {
-					destinationChannel.close();
-				}
 			}
 		}
 		catch (IOException x) {
