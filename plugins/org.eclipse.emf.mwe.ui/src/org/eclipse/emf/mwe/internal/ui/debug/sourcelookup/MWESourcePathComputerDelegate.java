@@ -23,6 +23,7 @@ public class MWESourcePathComputerDelegate implements ISourcePathComputerDelegat
 	 * returns all SourceContainer corresponding to the entries as defined in the base project of the launch
 	 * configuration. The classpath resolving process is used from JavaRuntime, but we use our own container creator
 	 */
+	@Override
 	public ISourceContainer[] computeSourceContainers(final ILaunchConfiguration configuration, final IProgressMonitor monitor)
 			throws CoreException {
 		IRuntimeClasspathEntry[] entries = JavaRuntime.computeUnresolvedSourceLookupPath(configuration);

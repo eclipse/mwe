@@ -50,6 +50,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
 	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
 	 */
+	@Override
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -61,6 +62,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	/**
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#startListener()
 	 */
+	@Override
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
@@ -70,6 +72,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	/**
 	 * @see java.lang.Runnable#run()
 	 */
+	@Override
 	public void run() {
 		try {
 			while (true) {
@@ -144,6 +147,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	// -------------------------------------------------------------------------
 	// process listener implementation
 
+	@Override
 	public boolean isLastCall() {
 		return false;
 	}
@@ -154,6 +158,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean,
 	 *      java.lang.Object, int)
 	 */
+	@Override
 	public boolean shallSuspend(final boolean lastState, final Object element, final int flag) {
 		if (!toBeRemovedTOs.isEmpty()) {
 			List<SyntaxElement> temp = new ArrayList<SyntaxElement>();
@@ -180,6 +185,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean,
 	 *      java.lang.Object, int)
 	 */
+	@Override
 	public boolean shallHandle(final boolean lastState, final Object element, final int flag) {
 		return lastState;
 	}
@@ -189,6 +195,7 @@ public class BreakpointRuntimeHandler implements RuntimeHandler, ProcessHandler,
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallInterrupt(boolean)
 	 */
+	@Override
 	public boolean shallInterrupt(final boolean lastState) {
 		return lastState;
 	}

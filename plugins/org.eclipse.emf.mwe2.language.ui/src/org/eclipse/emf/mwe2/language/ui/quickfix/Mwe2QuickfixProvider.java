@@ -67,6 +67,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 	public void assignValidType(final Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Define type explicitly", "Choose a compatible type for the component.", null, 
 				new ISemanticModification() {
+					@Override
 					public void apply(EObject element, IModificationContext context) {
 						Component component = (Component) element;
 						if (component != null) {
@@ -108,6 +109,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 		@Override
 		public ITypeInfoFilterExtension getFilterExtension() {
 			return new ITypeInfoFilterExtension() {
+				@Override
 				public boolean select(ITypeInfoRequestor typeInfoRequestor) {
 					return !Flags.isAbstract(typeInfoRequestor.getModifiers());
 				}
@@ -117,6 +119,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 		@Override
 		public ISelectionStatusValidator getSelectionValidator() {
 			return new ISelectionStatusValidator() {
+				@Override
 				public IStatus validate(Object[] selection) {
 					if(selection.length == 1) {
 						try {

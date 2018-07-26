@@ -22,6 +22,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#beginTask(String, int)}
 	 */
+	@Override
 	public void beginTask(String name, int totalWork) {
 		monitor.beginTask(name, totalWork);
 	}
@@ -29,6 +30,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#done(ProgressMonitor)}
 	 */
+	@Override
 	public void done() {
 		monitor.done();
 	}
@@ -36,6 +38,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#internalWorked(double)}
 	 */
+	@Override
 	public void internalWorked(double work) {
 		monitor.internalWorked(work);
 	}
@@ -43,13 +46,16 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#isCanceled()}
 	 */
+	@Override
 	public boolean isCanceled() {
 		return monitor.isCanceled();
 	}
 
+	@Override
 	public void started(Object element, Object context){
 	}
 
+	@Override
 	public void finished(Object element, Object context){
 		
 	}
@@ -57,18 +63,21 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#postTask(Object, Object)}
 	 */
+	@Override
 	public void postTask(Object element, Object context) {
 	}
 
 	/**
 	 * @see {@link ProgressMonitor#preTask(Object, Object)}
 	 */
+	@Override
 	public void preTask(Object element, Object context) {
 	}
 
 	/**
 	 * @see {@link ProgressMonitor#setCanceled(boolean)}
 	 */
+	@Override
 	public void setCanceled(boolean value) {
 		monitor.setCanceled(value);
 	}
@@ -76,6 +85,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#beginTask(String)}
 	 */
+	@Override
 	public void setTaskName(String name) {
 		monitor.setTaskName(name);
 	}
@@ -83,6 +93,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#subTask(String)}
 	 */
+	@Override
 	public void subTask(String name) {
 		monitor.subTask(name);
 	}
@@ -90,6 +101,7 @@ public class ProgressMonitorAdapter implements ProgressMonitor {
 	/**
 	 * @see {@link ProgressMonitor#worked(int)}
 	 */
+	@Override
 	public void worked(int work) {
 		monitor.worked(work);
 	}

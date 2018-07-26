@@ -52,6 +52,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
 	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
 	 */
+	@Override
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -63,6 +64,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#startListener()
 	 */
+	@Override
 	public void startListener() {
 	}
 
@@ -73,6 +75,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
 	 */
+	@Override
 	public void started() throws IOException {
 		sendEvent(STARTED);
 	}
@@ -83,6 +86,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
 	 *      int)
 	 */
+	@Override
 	public void preTask(final Object element, final Object context, final int state) {
 	    Frame frame = new Frame(element, context, state);
 	    ElementAdapter adapter = monitor.getAdapter(element);
@@ -99,6 +103,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
+	@Override
 	public void postTask(final Object context) {
     	Frame frame = stackFrames.peek();
         stackFrames.pop();
@@ -124,6 +129,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
 	 */
+	@Override
 	public void suspended() throws IOException {
 		EventPackageWithFrames event = new EventPackageWithFrames(SUSPENDED);
 
@@ -162,6 +168,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
 	 */
+	@Override
 	public void resumed() throws IOException {
 		sendEvent(RESUMED);
 	}
@@ -171,6 +178,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#terminated()
 	 */
+	@Override
 	public void terminated() throws IOException {
 		sendEvent(TERMINATED);
 	}

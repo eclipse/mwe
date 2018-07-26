@@ -88,6 +88,7 @@ public class Activator extends AbstractUIPlugin {
 	public static void showError(final IStatus status) {
 			try {
 				Display.getDefault().asyncExec(new Runnable() {
+					@Override
 					public void run() {
 						ErrorDialog.openError(null, null, null, status);
 					}

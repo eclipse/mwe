@@ -156,6 +156,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
 		private SimpleAttributeResolver<EObject, String> nameResolver = SimpleAttributeResolver.newResolver(String.class, "name");
 		
+		@Override
 		public QualifiedName apply(EObject from) {
 			String name = nameResolver.apply(from);
 			if (name != null && name.length() > 0)

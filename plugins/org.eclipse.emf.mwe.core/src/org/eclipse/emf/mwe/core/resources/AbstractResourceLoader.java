@@ -21,6 +21,7 @@ public abstract class AbstractResourceLoader implements ResourceLoader {
 
 	protected abstract Class<?> tryLoadClass(final String clazzName) throws ClassNotFoundException;
 
+	@Override
 	public InputStream getResourceAsStream(String path) {
 		URL resource = getResource(path);
 		if (resource != null) {
@@ -32,6 +33,7 @@ public abstract class AbstractResourceLoader implements ResourceLoader {
 		return null;
 	}
 
+	@Override
 	public Class<?> loadClass(final String clazzName) {
 		try {
 			return tryLoadClass(clazzName);
@@ -53,6 +55,7 @@ public abstract class AbstractResourceLoader implements ResourceLoader {
 				.getContextClassLoader());
 	}
 
+	@Override
 	public URL getResource(String path) {
 		URL url = loadDirectly(path);
 		if (url == null) {

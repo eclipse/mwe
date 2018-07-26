@@ -17,6 +17,7 @@ public abstract class AbstractWorkflowComponent2 extends AbstractWorkflowCompone
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
+	@Override
 	public final void checkConfiguration(final Issues issues) {
 		checkConfigurationInternal(issues);
 	}

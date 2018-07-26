@@ -99,6 +99,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 			throw new FileNotFoundException(srcGenPath + " " + f.getAbsolutePath());
 		LOG.debug("Cleaning folder " + f.getPath());
 		cleanFolder(f, new FileFilter() {
+			@Override
 			public boolean accept(File path) {
 				return !isExcluded(path);
 			}
@@ -118,6 +119,7 @@ public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 		FileFilter myFilter = filter;
 		if (myFilter == null) {
 			myFilter = new FileFilter() {
+				@Override
 				public boolean accept(File pathname) {
 					return true;
 				}

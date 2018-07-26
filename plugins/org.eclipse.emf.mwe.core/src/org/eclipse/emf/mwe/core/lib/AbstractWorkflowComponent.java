@@ -75,6 +75,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 * @return simple class name by default
 	 * @since 4.3.1
 	 */
+	@Override
 	public String getComponentName() {
 		return getClass().getSimpleName();
 	}
@@ -82,6 +83,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @return The containing component if any
 	 */
+	@Override
 	public CompositeComponent getContainer() {
 		return container;
 	}
@@ -89,6 +91,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#getId()
 	 */
+	@Override
 	public String getId() {
 		return componentID;
 	}
@@ -96,6 +99,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getLocation()
 	 */
+	@Override
 	public Location getLocation() {
 		return location;
 	}
@@ -103,6 +107,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#getLogMessage()
 	 */
+	@Override
 	public String getLogMessage() {
 		return null;
 	}
@@ -112,6 +117,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	 *      org.eclipse.emf.mwe.core.monitor.ProgressMonitor,
 	 *      org.eclipse.emf.mwe.core.issues.Issues)
 	 */
+	@Override
 	public final void invoke(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		if (monitor != null) {
 			if (monitor.isCanceled())
@@ -135,6 +141,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setContainer(org.eclipse.emf.mwe.core.container.CompositeComponent)
 	 */
+	@Override
 	public void setContainer(final CompositeComponent container) {
 		this.container = container;
 	}
@@ -142,6 +149,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponentWithID#setId(java.lang.String)
 	 */
+	@Override
 	public void setId(final String id) {
 		componentID = id;
 	}
@@ -149,6 +157,7 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setLocation(org.eclipse.emf.mwe.internal.core.ast.parser.Location)
 	 */
+	@Override
 	public void setLocation(final Location location) {
 		this.location = location;
 	}
@@ -193,14 +202,17 @@ public abstract class AbstractWorkflowComponent implements WorkflowComponentWith
 		return bridge;
 	}
 	
+	@Override
 	public void preInvoke() {
 		getBridge().preInvoke();
 	}
 	
+	@Override
 	public void invoke(final IWorkflowContext ctx) {
 		getBridge().invoke(ctx);
 	}
 
+	@Override
 	public void postInvoke() {
 		getBridge().postInvoke();
 	}

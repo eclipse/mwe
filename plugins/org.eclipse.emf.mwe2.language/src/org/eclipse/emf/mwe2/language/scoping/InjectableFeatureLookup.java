@@ -25,6 +25,7 @@ import com.google.common.collect.Maps;
 
 public class InjectableFeatureLookup implements IInjectableFeatureLookup {
 	
+	@Override
 	public Map<QualifiedName, JvmFeature> getInjectableFeatures(JvmType type) {
 		Map<QualifiedName, JvmFeature> result = Maps.newHashMap();
 		collectFeatures(type, result);

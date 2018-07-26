@@ -148,6 +148,7 @@ public class DebugModelManager implements IDebugEventSetListener {
 	 * 
 	 * @see org.eclipse.debug.core.IDebugEventSetListener#handleDebugEvents(org.eclipse.debug.core.DebugEvent[])
 	 */
+	@Override
 	public void handleDebugEvents(final DebugEvent[] events) {
 		for (final DebugEvent event : events) {
 			if (event.getKind() == DebugEvent.TERMINATE) {

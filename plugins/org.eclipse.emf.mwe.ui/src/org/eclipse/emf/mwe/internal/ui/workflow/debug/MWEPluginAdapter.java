@@ -65,10 +65,12 @@ public class MWEPluginAdapter implements PluginAdapter {
 		this.locationAnalyser = new XmlLocationAnalyser();
 	}
 
+	@Override
 	public boolean canHandleResourceExtension(final String ext) {
 		return getRequiredExtension().contains(ext);
 	}
 
+	@Override
 	public boolean canHandleType(final String type) {
 		return TYPE.equals(type);
 	}
@@ -77,6 +79,7 @@ public class MWEPluginAdapter implements PluginAdapter {
 		return extensions;
 	}
 
+	@Override
 	public String getEditorId() {
 		IConfigurationElement[] configElements = PluginConfigurationElementUtil.getConfigElements("org.eclipse.ui.editors/" + "editor[extensions=mwe, oaw]/id");
 		for (IConfigurationElement element : configElements) {
@@ -87,10 +90,12 @@ public class MWEPluginAdapter implements PluginAdapter {
 		return configElements.length != 0?configElements[0].getAttribute("id"):null;
 	}
 
+	@Override
 	public boolean isToggleBpEnabled(final IResource resource, final int start, final int end, final int line) {
 		return getComponentAstAtLine(resource, line) != null;
 	}
 
+	@Override
 	public MWEBreakpoint createBreakpoint(final IResource resource, final int start, final int end, final int line) throws CoreException {
 		// TODO: ER: allow BP on file's end tag (e.g. </workflow> )
 		ComponentAST comp = getComponentAstAtLine(resource, line);
@@ -101,6 +106,7 @@ public class MWEPluginAdapter implements PluginAdapter {
 		return new MWEBreakpoint(resource, getElementName(comp), comp.getLineNumber(), comp.getOffset(), comp.getLength());
 	}
 
+	@Override
 	public IBreakpoint checkBreakpoints(final IBreakpoint[] bps, final IResource resource, final int start, final int end, final int line) throws CoreException {
 		ComponentAST comp = getComponentAstAtLine(resource, line);
 		if (comp == null) {
@@ -167,6 +173,7 @@ public class MWEPluginAdapter implements PluginAdapter {
 
 	private Image icon = null;
 
+	@Override
 	public Image getIcon() {
 		if (icon != null) {
 			return icon;

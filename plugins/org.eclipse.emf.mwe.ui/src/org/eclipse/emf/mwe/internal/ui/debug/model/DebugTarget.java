@@ -60,6 +60,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 			throws CoreException {
 		final DebugTarget[] target = new DebugTarget[1];
 		IWorkspaceRunnable r = new IWorkspaceRunnable() {
+			@Override
 			public void run(IProgressMonitor m) throws DebugException {
 				target[0] = new DebugTarget(launch, process, conn);
 			}
@@ -93,10 +94,12 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		return fLaunch;
 	}
 
+	@Override
 	public IProcess getProcess() {
 		return fProcess;
 	}
 
+	@Override
 	public IThread[] getThreads() {
 		return new IThread[] { fThread };
 	}
@@ -109,10 +112,12 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		fThread = null;
 	}
 
+	@Override
 	public boolean hasThreads() {
 		return fThread != null;
 	}
 
+	@Override
 	public String getName() {
 		try {
 			return "Workflow: "
@@ -157,22 +162,27 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 
 	// ************************ ISuspendResume implementation and other commands
 
+	@Override
 	public boolean canResume() {
 		return suspended && !isTerminated();
 	}
 
+	@Override
 	public boolean canSuspend() {
 		return  !suspended && !isTerminated();
 	}
 
+	@Override
 	public boolean isSuspended() {
 		return suspended;
 	}
 
+	@Override
 	public void resume() throws DebugException {
 		dmm.requireResume();
 	}
 
+	@Override
 	public void suspend() throws DebugException {
 		dmm.requireSuspend();
 	}
@@ -197,10 +207,12 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		}
 	}
 
+	@Override
 	public boolean supportsBreakpoint(final IBreakpoint breakpoint) {
 		return breakpoint.getModelIdentifier().equals(MWEBreakpoint.DEBUG_MODEL_ID);
 	}
 
+	@Override
 	public void breakpointAdded(final IBreakpoint breakpoint) {
 		if (supportsBreakpoint(breakpoint)) {
 			try {
@@ -213,6 +225,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		}
 	}
 
+	@Override
 	public void breakpointRemoved(final IBreakpoint breakpoint, final IMarkerDelta delta) {
 		if (supportsBreakpoint(breakpoint)) {
 			try {
@@ -223,6 +236,7 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 		}
 	}
 
+	@Override
 	public void breakpointChanged(final IBreakpoint breakpoint, final IMarkerDelta delta) {
 		if (supportsBreakpoint(breakpoint)) {
 			try {
@@ -239,38 +253,46 @@ public class DebugTarget extends DebugElement implements IDebugTarget {
 
 	// *********************************************** ITerminate implementation
 
+	@Override
 	public boolean canTerminate() {
 		return getProcess().canTerminate();
 	}
 
+	@Override
 	public boolean isTerminated() {
 		return getProcess().isTerminated();
 	}
 
+	@Override
 	public void terminate() throws DebugException {
 		dmm.requireTerminate();
 	}
 
 	// ********************************************** IDisconnect implementation
 
+	@Override
 	public boolean canDisconnect() {
 		return false;
 	}
 
+	@Override
 	public void disconnect() {
 		// not supported
 	}
 
+	@Override
 	public boolean isDisconnected() {
 		return false;
 	}
 
 	// ************************************ IMemoryBlockRetrieval implementation
 
+	@Override
 	public boolean supportsStorageRetrieval() {
 		return false;
 	}
 
+	@Override
 	public IMemoryBlock getMemoryBlock(final long startAddress, final long length) {
 		return null;
 	}

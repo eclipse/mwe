@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.internal.core.ast.util.converter;
 
 public class StringArrayConverter implements Converter<String[]> {
 
+    @Override
     public String[] convert(final String s) {
         return s.split(",");
     }

@@ -34,6 +34,7 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 	@Inject
 	private Mwe2GrammarAccess grammarAccess;
 
+	@Override
 	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor) {
 		if (resource == null)
 			return;

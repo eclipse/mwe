@@ -31,10 +31,12 @@ public class DebugVariable extends DebugElement implements IVariable {
 		setValue(varTO);
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public IValue getValue() {
 		return value;
 	}
@@ -47,34 +49,41 @@ public class DebugVariable extends DebugElement implements IVariable {
 		value = target.getDebugValue(varTO);
 	}
 
+	@Override
 	public void setValue(String expression) {
 		// not used (yet?)
 		// to be implemented if variable modification shall be established
 	}
 
+	@Override
 	public void setValue(IValue value) {
 		if (value instanceof DebugValue)
 			this.value = (DebugValue) value;
 		}
 
+	@Override
 	public String getReferenceTypeName() {
 		return value.getReferenceTypeName();
 	}
 
 	// ********************************** we don't support value modification yet
 
+	@Override
 	public boolean supportsValueModification() {
 		return false;
 	}
 
+	@Override
 	public boolean hasValueChanged() {
 		return false;
 	}
 
+	@Override
 	public boolean verifyValue(String expression) {
 		return true;
 	}
 
+	@Override
 	public boolean verifyValue(IValue test) {
 		return true;
 	}

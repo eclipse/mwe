@@ -34,6 +34,7 @@ import org.eclipse.ui.part.FileEditorInput;
  */
 public class DebugModelPresentation extends LabelProvider implements IDebugModelPresentation {
 
+	@Override
 	public void setAttribute(final String attribute, final Object value) {
 		// we don't set attributes in our debug model
 	}
@@ -66,12 +67,14 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 		return null;
 	}
 
+	@Override
 	public void computeDetail(final IValue value, final IValueDetailListener listener) {
 		final String detail = ((DebugValue) value).getDetailRep();
 		listener.detailComputed(value, detail);
 	}
 
 	// called to get the right source editor input for a resource
+	@Override
 	public IEditorInput getEditorInput(final Object element) {
 		if (element instanceof IFile)
 			return new FileEditorInput((IFile) element);
@@ -85,6 +88,7 @@ public class DebugModelPresentation extends LabelProvider implements IDebugModel
 
 	// called at source editor display to show the source in the right editor
 	// type
+	@Override
 	@SuppressWarnings("restriction")
 	public String getEditorId(final IEditorInput input, final Object element) {
 		String ext = "";
