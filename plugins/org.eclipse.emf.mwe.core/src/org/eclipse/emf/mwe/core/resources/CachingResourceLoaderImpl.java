@@ -25,6 +25,7 @@ public class CachingResourceLoaderImpl implements ResourceLoader {
 		this.delegate = delegate;
 	}
 	
+	@Override
 	public URL getResource(String uri) {
 		return getResource.get(uri);
 	}
@@ -36,6 +37,7 @@ public class CachingResourceLoaderImpl implements ResourceLoader {
 		}
 	};
 
+	@Override
 	public final InputStream getResourceAsStream(String uri) {
 		URL resource = getResource(uri);
 		if (resource != null) {
@@ -47,6 +49,7 @@ public class CachingResourceLoaderImpl implements ResourceLoader {
 		return null;
 	}
 
+	@Override
 	public Class<?> loadClass(String clazzName) {
 		return loadClass.get(clazzName);
 	}

@@ -44,20 +44,24 @@ public class WorkflowElementAdapter implements ElementAdapter {
 
 	// -------------------------------------------------------------------------
 
+	@Override
 	public Object getContext() {
 		return context;
 	}
 
+	@Override
 	public void setContext(Object context) {
 		this.context = context;
 	}
 
+	@Override
 	public String getAdapterType() {
 		return TYPE;
 	}
 
 	// -------------------------------------------------------------------------
 
+	@Override
 	public boolean canHandle(Object element) {
 		if (element instanceof WorkflowComponent) {
 			if (root == null) {
@@ -72,24 +76,29 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return false;
 	}
 
+	@Override
 	public boolean shallHandle(Object element) {
 		// no special treatment for workflow components
 		return true;
 	}
 
+	@Override
 	public boolean shallSuspend(Object element, int flag) {
 		// no special treatment for workflow components
 		return true;
 	}
 
+	@Override
 	public boolean shallAddToCallStack(Object element) {
 	  return true;
 	}
 	
+	@Override
 	public boolean isSurroundingElement(Object element) {
 		return CompositeComponent.class.isAssignableFrom(element.getClass());
 	}
 
+	@Override
 	public SyntaxElement createElement(Object element) {
 		WorkflowComponent comp = (WorkflowComponent) element;
 		SyntaxElement se = new SyntaxElement();
@@ -105,6 +114,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
+	@Override
 	public SyntaxElement createEndElementTO(Object element) {
 		CompositeComponent comp = (CompositeComponent) element;
 		SyntaxElement se = new SyntaxElement();
@@ -125,6 +135,7 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return se;
 	}
 
+	@Override
 	public List<NameValuePair> getVariables(Object element) {
 		List<NameValuePair> list = new ArrayList<NameValuePair>();
 
@@ -157,18 +168,22 @@ public class WorkflowElementAdapter implements ElementAdapter {
 		return list;
 	}
 
+	@Override
 	public String getVariableDetailRep(Object element) {
 		return ReflectionUtil.getNameToString(element);
 	}
 
+	@Override
 	public String getVariableSimpleRep(Object element) {
 		return ReflectionUtil.getSimpleName(element);
 	}
 
+	@Override
 	public boolean checkVariableHasMembers(Object element) {
 		return ReflectionUtil.checkFields(element);
 	}
 
+	@Override
 	public Object findElement(SyntaxElement se, Object actual, int flag) {
 		if (root == null)
 			return null;

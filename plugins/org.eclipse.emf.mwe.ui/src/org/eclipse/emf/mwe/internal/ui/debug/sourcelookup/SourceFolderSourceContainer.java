@@ -49,10 +49,12 @@ public class SourceFolderSourceContainer extends CompositeSourceContainer {
 		fProject = project;
 	}
 
+	@Override
 	public String getName() {
 		return fProject.getElementName();
 	}
 
+	@Override
 	public ISourceContainerType getType() {
 		return getSourceContainerType(TYPE_ID);
 	}

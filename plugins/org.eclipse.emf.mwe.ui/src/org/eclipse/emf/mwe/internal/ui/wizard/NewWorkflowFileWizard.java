@@ -82,6 +82,7 @@ public class NewWorkflowFileWizard extends BasicNewResourceWizard {
 
 		selectAndReveal(file);
 		getShell().getDisplay().asyncExec(new Runnable() {
+			@Override
 			public void run() {
 				final IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				try {

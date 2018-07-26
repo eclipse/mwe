@@ -21,108 +21,133 @@ import org.eclipse.emf.mwe.core.WorkflowComponent;
 public class IssuesImpl implements Issues {
 	private final List<MWEDiagnostic> issues = new ArrayList<MWEDiagnostic>();
 
+	@Override
 	public void add(final MWEDiagnostic issue) {
 		issues.add(issue);
 	}
 
+	@Override
 	public void addError(WorkflowComponent ctx, String msg, Object obj, String feature, Throwable t,
 			List<Object> additionalData) {
 		add(createError(ctx, msg, obj, feature, t, additionalData));
 	}
 
+	@Override
 	public void addError(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
 			final List<Object> additionalData) {
 		addError(ctx, msg, element, null, t, additionalData);
 	}
 
+	@Override
 	public void addError(final WorkflowComponent ctx, final String msg) {
 		addError(ctx, msg, null, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addError(final String msg, final Object element) {
 		addError(null, msg, element, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addError(final String msg) {
 		addError(msg, (Object) null);
 	}
 
+	@Override
 	public void addError(WorkflowComponent compnent, String msg, Object obj) {
 		addError(compnent, msg, obj, null, Collections.emptyList());
 	}
 
+	@Override
 	public boolean hasErrors() {
 		return getErrors().length != 0;
 	}
 
+	@Override
 	public MWEDiagnostic[] getErrors() {
 		return filterIssues(Diagnostic.ERROR);
 	}
 
+	@Override
 	public void addWarning(final WorkflowComponent ctx, final String msg) {
 		addWarning(ctx, msg, null, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addWarning(final String msg, final Object element) {
 		addWarning(null, msg, element, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addWarning(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
 			final List<Object> additionalData) {
 		addWarning(ctx, msg, element, null, t, additionalData);
 	}
 
+	@Override
 	public void addWarning(final WorkflowComponent ctx, final String msg, final Object element, final String feature,
 			final Throwable t, final List<Object> additionalData) {
 		add(createWarning(ctx, msg, element, feature, t, additionalData));
 	}
 
+	@Override
 	public void addWarning(final String msg) {
 		addWarning(msg, null);
 	}
 
+	@Override
 	public void addWarning(WorkflowComponent compnent, String msg, Object obj) {
 		addWarning(compnent, msg, obj, null, Collections.emptyList());
 	}
 
+	@Override
 	public MWEDiagnostic[] getWarnings() {
 		return filterIssues(Diagnostic.WARNING);
 	}
 
+	@Override
 	public boolean hasWarnings() {
 		return getWarnings().length != 0;
 	}
 
+	@Override
 	public void addInfo(final WorkflowComponent ctx, final String msg) {
 		addInfo(ctx, msg, null, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addInfo(final String msg, final Object element) {
 		addInfo(null, msg, element, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addInfo(final WorkflowComponent ctx, final String msg, final Object element, final Throwable t,
 			final List<Object> additionalData) {
 		addInfo(ctx, msg, element, null, t, additionalData);
 	}
 
+	@Override
 	public void addInfo(final WorkflowComponent ctx, final String msg, final Object element, final String featureName,
 			final Throwable t, final List<Object> additionalData) {
 		add(createInfo(ctx, msg, element, featureName, t, additionalData));
 	}
 
+	@Override
 	public void addInfo(WorkflowComponent compnent, String msg, Object obj) {
 		addInfo(compnent, msg, obj, null, Collections.emptyList());
 	}
 
+	@Override
 	public void addInfo(final String msg) {
 		addInfo(msg, null);
 	}
 
+	@Override
 	public MWEDiagnostic[] getInfos() {
 		return filterIssues(Diagnostic.INFO);
 	}
 
+	@Override
 	public boolean hasInfos() {
 		return getInfos().length != 0;
 	}
@@ -145,6 +170,7 @@ public class IssuesImpl implements Issues {
 		return buff.toString();
 	}
 
+	@Override
 	public void clear() {
 		issues.clear();
 	}
@@ -185,6 +211,7 @@ public class IssuesImpl implements Issues {
 		return result.toArray(new MWEDiagnostic[result.size()]);
 	}
 
+	@Override
 	public MWEDiagnostic[] getIssues() {
 		return issues.toArray(new MWEDiagnostic[issues.size()]);
 	}

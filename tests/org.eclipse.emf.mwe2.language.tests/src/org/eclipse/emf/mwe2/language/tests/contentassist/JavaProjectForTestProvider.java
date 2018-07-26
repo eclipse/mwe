@@ -20,6 +20,7 @@ public class JavaProjectForTestProvider implements IJavaProjectProvider {
 
 	private static IJavaProject javaProject;
 	
+	@Override
 	public IJavaProject getJavaProject(ResourceSet resourceSet) {
 		if (javaProject == null)
 			throw new IllegalStateException("javaProject is null");

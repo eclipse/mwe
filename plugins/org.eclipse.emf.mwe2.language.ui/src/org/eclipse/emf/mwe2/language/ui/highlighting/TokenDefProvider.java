@@ -21,6 +21,7 @@ public class TokenDefProvider implements ITokenDefProvider, IAntlrTokenFileProvi
 
 	private ImmutableMap<Integer, String> map;
 
+	@Override
 	public Map<Integer, String> getTokenDefMap() {
 		if (map == null) {
 			AntlrTokenDefProvider provider = new AntlrTokenDefProvider();
@@ -30,6 +31,7 @@ public class TokenDefProvider implements ITokenDefProvider, IAntlrTokenFileProvi
 		return map;
 	}
 
+	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
 		String resourcePath = getClass().getPackage().getName().replace('.', '/') + "/MweHighlightingLexer.tokens";

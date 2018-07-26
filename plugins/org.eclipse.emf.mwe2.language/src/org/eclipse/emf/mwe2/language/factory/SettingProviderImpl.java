@@ -41,13 +41,16 @@ public class SettingProviderImpl implements ISettingProvider {
 		this.injectableFeatureLookup = injectableFeatureLookup;
 	}
 
+	@Override
 	public Map<QualifiedName,ISetting> getSettings(final Object obj, JvmType type) {
 		Map<QualifiedName, JvmFeature> features = injectableFeatureLookup.getInjectableFeatures(type);
 		
 		Iterable<ISetting> settings = Iterables.transform(features.entrySet(), new Function<Map.Entry<QualifiedName, JvmFeature>,ISetting>(){
+			@Override
 			public ISetting apply(final Map.Entry<QualifiedName, JvmFeature> from) {
 				if (from.getValue() instanceof JvmOperation) {
 					return new ISetting() {
+						@Override
 						public void setValue(Object value) {
 							Method method = reflectAccess.getMethod((JvmOperation) from.getValue());
 							try {
@@ -56,12 +59,14 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
+						@Override
 						public QualifiedName getName() {
 							return from.getKey();
 						}
 					};
 				} else if (from.getValue() instanceof JvmField) {
 					return new ISetting() {
+						@Override
 						public void setValue(Object value) {
 							Field field = reflectAccess.getField((JvmField) from.getValue());
 							try {
@@ -70,6 +75,7 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
+						@Override
 						public QualifiedName getName() {
 							return from.getKey();
 						}
@@ -78,6 +84,7 @@ public class SettingProviderImpl implements ISettingProvider {
 				throw new IllegalArgumentException(from.getValue().getIdentifier() + " can not be handled.");
 			}});
 		return Maps.uniqueIndex(settings, new Function<ISetting, QualifiedName>() {
+			@Override
 			public QualifiedName apply(ISetting from) {
 				return from.getName();
 			}

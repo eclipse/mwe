@@ -12,7 +12,8 @@ package org.eclipse.emf.mwe.internal.core.ast.util.converter;
 
 public class StringConverter implements Converter<String> {
 
-    public String convert(final String s) {
+    @Override
+	public String convert(final String s) {
         return s;
     }
 

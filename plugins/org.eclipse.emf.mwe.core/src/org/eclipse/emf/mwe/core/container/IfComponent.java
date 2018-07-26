@@ -31,6 +31,7 @@ public class IfComponent extends ConditionalComponent {
 	/**
 	 * @see org.eclipse.emf.mwe.core.container.WorkflowConditional#evaluate()
 	 */
+	@Override
 	public boolean evaluate() {
 		return Boolean.valueOf(condition).booleanValue();
 	}

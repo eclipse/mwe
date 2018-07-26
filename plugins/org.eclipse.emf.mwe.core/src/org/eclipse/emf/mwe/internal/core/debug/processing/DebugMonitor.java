@@ -156,6 +156,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#started(java.lang.Object, java.lang.Object)
 	 */
+	@Override
 	public void started(final Object element, final Object context) {
 		fireEvent(STARTED);
 	}
@@ -166,6 +167,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#preTask(java.lang.Object, java.lang.Object)
 	 */
+	@Override
 	public void preTask(final Object element, final Object context) {
 		this.context = context;
 		final ElementAdapter adapter = getAdapter(element);
@@ -200,6 +202,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#postTask(java.lang.Object, java.lang.Object)
 	 */
+	@Override
 	public void postTask(final Object element, final Object context) {
 		this.context = context;
 		final ElementAdapter adapter = getAdapter(element);
@@ -238,6 +241,7 @@ public class DebugMonitor implements ProgressMonitor {
 	 * 
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#finished(java.lang.Object, java.lang.Object)
 	 */
+	@Override
 	public void finished(final Object element, final Object context) {
 		getAdapter(element).setContext(context);
 		fireEvent(PRE_TASK, element, END_FRAME);
@@ -325,34 +329,42 @@ public class DebugMonitor implements ProgressMonitor {
 
 	// ************************** unused Progress Monitor implementation methods
 
+	@Override
 	public void beginTask(final String name, final int totalWork) {
 		//
 	}
 
+	@Override
 	public void done() {
 		//
 	}
 
+	@Override
 	public void internalWorked(final double work) {
 		//
 	}
 
+	@Override
 	public boolean isCanceled() {
 		return false;
 	}
 
+	@Override
 	public void setCanceled(final boolean value) {
 		//
 	}
 
+	@Override
 	public void setTaskName(final String name) {
 		//
 	}
 
+	@Override
 	public void subTask(final String name) {
 		//
 	}
 
+	@Override
 	public void worked(final int work) {
 		//
 	}

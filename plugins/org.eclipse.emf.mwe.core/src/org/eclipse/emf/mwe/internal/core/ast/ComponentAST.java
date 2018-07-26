@@ -29,7 +29,8 @@ public class ComponentAST extends AbstractASTBase implements NamedAST {
 
     private String name = null;
 
-    public String getName() {
+    @Override
+	public String getName() {
         return name;
     }
 

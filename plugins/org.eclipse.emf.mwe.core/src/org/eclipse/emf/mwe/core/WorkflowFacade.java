@@ -65,14 +65,17 @@ public class WorkflowFacade {
 	public Issues run(final Map<String, Object> slotContents, ProgressMonitor monitor) {
 		WorkflowContext ctx = new WorkflowContext() {
 			
+			@Override
 			public Object get(String slotName) {
 				return slotContents.get(slotName);
 			}
 			
+			@Override
 			public String[] getSlotNames() {
 				return slotContents.keySet().toArray(new String[0]);
 			}
 			
+			@Override
 			public void set(String slotName, Object value) {
 				slotContents.put(slotName, value);
 			}

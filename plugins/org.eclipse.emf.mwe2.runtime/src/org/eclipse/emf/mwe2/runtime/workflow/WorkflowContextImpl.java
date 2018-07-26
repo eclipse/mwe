@@ -16,14 +16,17 @@ import java.util.Set;
 public class WorkflowContextImpl implements IWorkflowContext {
 	private Map<String, Object> internalState = new HashMap<String, Object>();
 
+	@Override
 	public Object get(String s) {
 		return internalState.get(s);
 	}
 
+	@Override
 	public void put(String s, Object o) {
 		internalState.put(s, o);
 	}
 
+	@Override
 	public Set<String> getSlotNames() {
 		return Collections.unmodifiableSet(internalState.keySet());
 	}
