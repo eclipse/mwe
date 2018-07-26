@@ -25,10 +25,12 @@ public class InjectorPut implements Injector {
 		name = n;
 	}
 
+	@Override
 	public String getName() {
 		return name;
 	}
 
+	@Override
 	public void setValue(final Object target, final Object val) {
 		try {
 			putMethod.invoke(target, new Object[] { name, val });
@@ -39,6 +41,7 @@ public class InjectorPut implements Injector {
 		}
 	}
 
+	@Override
 	public Class<?> getRequiredType() {
 		Class<?> defaultClass = putMethod.getParameterTypes()[1];
         Class<?> overriddenClass = WorkflowCustomization.getKeywordMapping(getName());

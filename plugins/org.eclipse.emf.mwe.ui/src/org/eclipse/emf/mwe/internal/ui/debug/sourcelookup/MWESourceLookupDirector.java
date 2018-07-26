@@ -15,6 +15,7 @@ import org.eclipse.debug.core.sourcelookup.ISourceLookupParticipant;
 
 public class MWESourceLookupDirector extends AbstractSourceLookupDirector {
 
+	@Override
 	public void initializeParticipants() {
 		addParticipants(new ISourceLookupParticipant[]{new MWESourceLookupParticipant()});
 	}

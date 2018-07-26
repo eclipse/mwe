@@ -73,6 +73,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#init(org.eclipse.emf.mwe.internal.core.debug.processing.DebugMonitor,
 	 *      org.eclipse.emf.mwe.internal.core.debug.communication.Connection)
 	 */
+	@Override
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -86,6 +87,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.RuntimeHandler#startListener()
 	 */
+	@Override
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
@@ -95,6 +97,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * @see java.lang.Runnable#run()
 	 */
+	@Override
 	public void run() {
 		try {
 			while (true) {
@@ -171,6 +174,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#isLastCall()
 	 */
+	@Override
 	public boolean isLastCall() {
 		return true;
 	}
@@ -182,6 +186,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallHandle(boolean,
 	 *      java.lang.Object, int)
 	 */
+	@Override
 	public boolean shallHandle(final boolean lastState, final Object element, final int flag) {
 		boolean result;
 		if (flag == PUSH) {
@@ -202,6 +207,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallSuspend(boolean,
 	 *      java.lang.Object, int)
 	 */
+	@Override
 	public boolean shallSuspend(final boolean lastState, final Object element, final int flag) {
 		boolean shallSuspend = lastState || forceSuspend
 				|| (stepping && (suspendBaseLevel - (flag == NORMAL_FRAME ? 0 : 1) >= iterationLevel));
@@ -218,6 +224,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.ProcessHandler#shallInterrupt(boolean)
 	 */
+	@Override
 	public boolean shallInterrupt(final boolean lastState) {
 		return lastState || interrupt || !connection.isConnected();
 	}
@@ -230,6 +237,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
 	 */
+	@Override
 	public void started() {
 	}
 
@@ -239,6 +247,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
 	 *      int)
 	 */
+	@Override
 	public void preTask(final Object element, final Object context, final int state) {
 		iterationLevel++;
 	}
@@ -249,6 +258,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
 	 *      int)
 	 */
+	@Override
 	public void postTask(final Object context) {
 		iterationLevel--;
 	}
@@ -258,6 +268,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
 	 */
+	@Override
 	public void suspended() {
 		forceSuspend = false;
 	}
@@ -267,6 +278,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
 	 */
+	@Override
 	public void resumed() {
 	}
 
@@ -275,12 +287,14 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
 	 */
+	@Override
 	public void terminated() {
 	}
 
 	// -------------------------------------------------------------------------
 	// ICommandListener implementation
 
+	@Override
 	public void listenCommand() {
 		if (!continueOperation) {
 			synchronized (syncObject) {

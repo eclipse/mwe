@@ -24,18 +24,21 @@ public abstract class AbstractCompositeWorkflowComponent implements
 		this.children.add(component);
 	}
 
+	@Override
 	public void preInvoke() {
 		for (IWorkflowComponent component : getChildren()) {
 			component.preInvoke();
 		}
 	}
 
+	@Override
 	public void invoke(IWorkflowContext ctx) {
 		for (IWorkflowComponent component : getChildren()) {
 			component.invoke(ctx);
 		}
 	}
 
+	@Override
 	public void postInvoke() {
 		for (IWorkflowComponent component : getChildren()) {
 			component.postInvoke();

@@ -49,6 +49,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 
 	// -------------------------------------------------------------------------
 
+	@Override
 	public void init(final DebugMonitor monitor, final Connection connection) {
 		this.monitor = monitor;
 		this.connection = connection;
@@ -59,12 +60,14 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 
 	// -------------------------------------------------------------------------
 
+	@Override
 	public void startListener() {
 		Thread thread = new Thread(this, getClass().getSimpleName());
 		thread.setDaemon(true);
 		thread.start();
 	}
 
+	@Override
 	public void run() {
 		try {
 			while (true) {
@@ -231,6 +234,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
 	 */
+	@Override
 	public void preTask(final Object element, final Object context, final int state) {
 	    Frame frame = new Frame(element, context);
 	    ElementAdapter adapter = monitor.getAdapter(element);
@@ -246,6 +250,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
 	 */
+	@Override
 	public void postTask(final Object context) {
 	    if(stackFrames.isEmpty()) return;
 	    
@@ -264,6 +269,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
 	 */
+	@Override
 	public void resumed() {
 	}
 
@@ -272,6 +278,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
 	 */
+	@Override
 	public void suspended() {
 	}
 
@@ -280,6 +287,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
 	 */
+	@Override
 	public void started() {
 	}
 
@@ -288,6 +296,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	 * 
 	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
 	 */
+	@Override
 	public void terminated() {
 	}
 

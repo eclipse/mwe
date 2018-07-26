@@ -54,16 +54,19 @@ public class CachingResourceLoaderTest extends Assert {
 			this.delegate = delegate;
 		}
 
+		@Override
 		public URL getResource(String uri) {
 			getResource++;
 			return delegate.getResource(uri);
 		}
 
+		@Override
 		public InputStream getResourceAsStream(String uri) {
 			getResourceAsStream++;
 			return delegate.getResourceAsStream(uri);
 		}
 
+		@Override
 		public Class<?> loadClass(String clazzName) {
 			loadClass++;
 			return delegate.loadClass(clazzName);

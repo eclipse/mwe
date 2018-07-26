@@ -70,14 +70,17 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 		return components;
 	}
 
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public void setId(final String id) {
 		this.id = id;
 	}
 
+	@Override
 	public String getLogMessage() {
 		return "CompositeComponent " + (id != null ? id : "");
 	}
@@ -85,6 +88,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * Dispatches the invocation to all aggregated components.
 	 */
+	@Override
 	public void invoke(final WorkflowContext ctx, final ProgressMonitor monitor, final Issues issues) {
 		internalInvoke(ctx, monitor, issues);
 	}
@@ -109,6 +113,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 		}
 	}
 
+	@Override
 	public void checkConfiguration(final Issues issues) throws ConfigurationException {
 		for (final WorkflowComponent comp : components) {
 			if (comp instanceof AbstractWorkflowAdvice) {
@@ -222,10 +227,12 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	 * 
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getLocation()
 	 */
+	@Override
 	public Location getLocation() {
 		return location;
 	}
 
+	@Override
 	public void setLocation(final Location location) {
 		this.location = location;
 	}
@@ -307,6 +314,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getContainer()
 	 */
+	@Override
 	public CompositeComponent getContainer() {
 		return container;
 	}
@@ -314,6 +322,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#setContainer(org.eclipse.emf.mwe.core.container.CompositeComponent)
 	 */
+	@Override
 	public void setContainer(final CompositeComponent container) {
 		this.container = container;
 	}
@@ -331,6 +340,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#getComponentName()
 	 */
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}
@@ -343,14 +353,17 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 		return bridge;
 	}
 	
+	@Override
 	public void preInvoke() {
 		getBridge().preInvoke();
 	}
 	
+	@Override
 	public void invoke(final IWorkflowContext ctx) {
 		getBridge().invoke(ctx);
 	}
 
+	@Override
 	public void postInvoke() {
 		getBridge().postInvoke();
 	}

@@ -40,6 +40,7 @@ public class FeatureComponent extends ConditionalComponent {
 		}
 	}
 
+	@Override
 	public boolean evaluate() {
 		ConfigurationModel configuration = GlobalConfigurationHolder.getConfiguration();
 		if (configuration == null)

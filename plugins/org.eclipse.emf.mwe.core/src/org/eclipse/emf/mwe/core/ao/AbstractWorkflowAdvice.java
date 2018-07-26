@@ -29,6 +29,7 @@ public abstract class AbstractWorkflowAdvice extends AbstractWorkflowComponent {
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
+	@Override
 	public void checkConfiguration(Issues issues) {
 	}
 

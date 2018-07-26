@@ -23,24 +23,28 @@ public class NullProgressMonitor implements ProgressMonitor {
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#beginTask(java.lang.String,
 	 *      int)
 	 */
+	@Override
 	public void beginTask(final String name, final int totalWork) {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#done()
 	 */
+	@Override
 	public void done() {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#internalWorked(double)
 	 */
+	@Override
 	public void internalWorked(final double work) {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#isCanceled()
 	 */
+	@Override
 	public boolean isCanceled() {
 		return false;
 	}
@@ -48,24 +52,28 @@ public class NullProgressMonitor implements ProgressMonitor {
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setCanceled(boolean)
 	 */
+	@Override
 	public void setCanceled(final boolean value) {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#setTaskName(java.lang.String)
 	 */
+	@Override
 	public void setTaskName(final String name) {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#subTask(java.lang.String)
 	 */
+	@Override
 	public void subTask(final String name) {
 	}
 
 	/**
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#worked(int)
 	 */
+	@Override
 	public void worked(final int work) {
 	}
 
@@ -73,6 +81,7 @@ public class NullProgressMonitor implements ProgressMonitor {
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#started(java.lang.Object,
 	 *      java.lang.Object)
 	 */
+	@Override
 	public void started(final Object element, final Object context) {
 	}
 
@@ -80,6 +89,7 @@ public class NullProgressMonitor implements ProgressMonitor {
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#finished(java.lang.Object,
 	 *      java.lang.Object)
 	 */
+	@Override
 	public void finished(final Object element, final Object context) {
 
 	}
@@ -88,9 +98,11 @@ public class NullProgressMonitor implements ProgressMonitor {
 	 * @see org.eclipse.emf.mwe.core.monitor.ProgressMonitor#postTask(java.lang.Object,
 	 *      java.lang.Object)
 	 */
+	@Override
 	public void postTask(final Object element, final Object context) {
 	}
 
+	@Override
 	public void preTask(final Object element, final Object context) {
 	}
 

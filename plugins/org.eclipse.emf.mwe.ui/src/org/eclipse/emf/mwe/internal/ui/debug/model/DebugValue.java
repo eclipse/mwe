@@ -57,11 +57,13 @@ public class DebugValue extends DebugElement implements IValue {
 		this.dirty = dirty;
 	}
 
+	@Override
 	public String getReferenceTypeName() {
 		// not used in our debug model
 		return "";
 	}
 
+	@Override
 	public String getValueString() {
 		return varTO.simpleRep + (varTO.valueId > 0 ? " (id=" + varTO.valueId + ")" : "");
 	}
@@ -70,14 +72,17 @@ public class DebugValue extends DebugElement implements IValue {
 		return varTO.stringRep;
 	}
 
+	@Override
 	public boolean isAllocated() {
 		return true;
 	}
 
+	@Override
 	public boolean hasVariables() {
 		return varTO.hasMembers;
 	}
 
+	@Override
 	public synchronized IVariable[] getVariables() throws DebugException {
 		if (varTO.hasMembers && variables.isEmpty() || dirty) {
 			// require variable value information from runtime process for the first time and after one step

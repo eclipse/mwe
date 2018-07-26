@@ -47,6 +47,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager, IPrese
 	/**
 	 * @see IPresentationRepairer#setDocument(IDocument)
 	 */
+	@Override
 	public void setDocument(final IDocument document) {
 		fDocument = document;
 	}
@@ -82,6 +83,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager, IPrese
 	 * @see IPresentationDamager#getDamageRegion(ITypedRegion, DocumentEvent,
 	 *      boolean)
 	 */
+	@Override
 	public IRegion getDamageRegion(final ITypedRegion partition, final DocumentEvent event, final boolean documentPartitioningChanged) {
 		if (!documentPartitioningChanged) {
 			try {
@@ -112,6 +114,7 @@ public class NonRuleBasedDamagerRepairer implements IPresentationDamager, IPrese
 	 * @see IPresentationRepairer#createPresentation(TextPresentation,
 	 *      ITypedRegion)
 	 */
+	@Override
 	public void createPresentation(final TextPresentation presentation, final ITypedRegion region) {
 		addRange(presentation, region.getOffset(), region.getLength(), fDefaultTextAttribute);
 	}

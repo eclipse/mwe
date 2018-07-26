@@ -14,6 +14,7 @@ public class Workflow extends AbstractCompositeWorkflowComponent implements IWor
 
 	private static final Logger logger = Logger.getLogger(Workflow.class); 
 	
+	@Override
 	public void run(IWorkflowContext context) {
 		this.preInvoke();
 		this.invoke(context);

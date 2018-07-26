@@ -68,6 +68,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 		}
 	};
 
+	@Override
 	public void launch(final ILaunchConfiguration configuration, final String mode, final ILaunch launch, final IProgressMonitor monitor)
 			throws CoreException {
 

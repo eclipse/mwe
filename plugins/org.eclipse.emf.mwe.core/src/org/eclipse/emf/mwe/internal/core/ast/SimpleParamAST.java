@@ -29,6 +29,7 @@ public class SimpleParamAST extends AbstractASTBase implements NamedAST {
         return name + "='" + value + "' " + getLocation().toString();
     }
 
+    @Override
     public String getName() {
         return name;
     }

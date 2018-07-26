@@ -23,12 +23,14 @@ import org.eclipse.equinox.app.IApplicationContext;
 public class WorkflowRunnerApplication implements IApplication {
 	public static final String KEY_APPL_ARGS = "application.args";
 
+	@Override
 	public Object start(IApplicationContext context) throws Exception {
 		String[] args = (String[]) context.getArguments().get(KEY_APPL_ARGS);
 		org.eclipse.emf.mwe.core.WorkflowRunner.main(args);
 		return null;
 	}
 
+	@Override
 	public void stop() {
 	}
 

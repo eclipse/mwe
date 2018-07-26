@@ -42,6 +42,7 @@ public class MWEBreakpoint extends LineBreakpoint {
 			final int start, final int end) throws CoreException {
 
 		IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+			@Override
 			public void run(IProgressMonitor monitor) throws CoreException {
 				IMarker marker = resource.createMarker(getMarkerId());
 				setMarker(marker);
@@ -61,6 +62,7 @@ public class MWEBreakpoint extends LineBreakpoint {
 		run(getMarkerRule(resource), runnable);
 	}
 
+	@Override
 	public String getModelIdentifier() {
 		return DEBUG_MODEL_ID;
 	}

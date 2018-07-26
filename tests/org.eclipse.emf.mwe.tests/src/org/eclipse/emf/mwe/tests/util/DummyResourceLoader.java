@@ -25,15 +25,18 @@ import org.eclipse.emf.mwe.core.resources.ResourceLoader;
  */
 public class DummyResourceLoader implements ResourceLoader {
     /** Empty */
+    @Override
     public InputStream getResourceAsStream(final String uri) {
         return null;
     }
 
     /** Empty */
+    @Override
     public Class<?> loadClass(final String clazzName) {
         return null;
     }
 
+    @Override
     public URL getResource(final String uri) {
         return null;
     }

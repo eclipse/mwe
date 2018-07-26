@@ -33,6 +33,7 @@ public abstract class WorkflowComponentWithModelSlot extends AbstractWorkflowCom
 	/**
 	 * @see org.eclipse.emf.mwe.core.WorkflowComponent#checkConfiguration(org.eclipse.emf.mwe.core.issues.Issues)
 	 */
+	@Override
 	public void checkConfiguration(final Issues issues) {
 		if (modelSlot == null) {
 			issues.addError(this, "modelSlot not specified.");

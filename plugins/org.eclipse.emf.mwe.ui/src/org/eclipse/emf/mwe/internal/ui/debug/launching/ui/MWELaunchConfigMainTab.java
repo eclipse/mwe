@@ -72,10 +72,12 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
 	// ********************************************************** create Control
 
+	@Override
 	public String getName() {
 		return Messages.MWELaunchConfigMainTab_Main;
 	}
 
+	@Override
 	public void createControl(final Composite parent) {
 		Font font = parent.getFont();
 
@@ -129,6 +131,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
 	// *********************************************************** data handling
 
+	@Override
 	public void setDefaults(final ILaunchConfigurationWorkingCopy config) {
 		// is called when a new LauchConfig is created
 		// nothing to do
@@ -161,6 +164,7 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 		}
 	}
 
+	@Override
 	public void performApply(final ILaunchConfigurationWorkingCopy config) {
 		config.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME, projText.getText().trim());
 		config.setAttribute(MWELaunchConfigurationConstants.ATTR_MWE_WORKFLOW_FILE, wfPath.toString());
@@ -188,14 +192,17 @@ public class MWELaunchConfigMainTab extends JavaLaunchTab {
 
 	private class WidgetListener implements ModifyListener, SelectionListener {
 
+		@Override
 		public void modifyText(final ModifyEvent e) {
 			updateLaunchConfigurationDialog();
 		}
 
+		@Override
 		public void widgetDefaultSelected(final SelectionEvent e) {
 			// do nothing
 		}
 
+		@Override
 		public void widgetSelected(final SelectionEvent e) {
 			Object source = e.getSource();
 			if (source == projButton) {

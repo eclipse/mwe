@@ -42,10 +42,12 @@ public class DebugThread extends DebugElement implements IThread {
 
 	// ***************************************************** StackFrame handling
 
+	@Override
 	public boolean hasStackFrames() {
 		return isSuspended();
 	}
 
+	@Override
 	public IStackFrame[] getStackFrames() {
 		if (isSuspended()) {
 			Stack<DebugStackFrame> result = new Stack<DebugStackFrame>();
@@ -61,6 +63,7 @@ public class DebugThread extends DebugElement implements IThread {
 		return new IStackFrame[0];
 	}
 
+	@Override
 	public IStackFrame getTopStackFrame() {
 		if (isSuspended() && !frames.isEmpty()) {
 			return frames.peek();
@@ -102,6 +105,7 @@ public class DebugThread extends DebugElement implements IThread {
 	// ***************************************************** Breakpoint handling
 
 	// used in Breakpoint view to select the current BP
+	@Override
 	public IBreakpoint[] getBreakpoints() {
 		if (bp == null) {
 			return new IBreakpoint[0];
@@ -116,10 +120,12 @@ public class DebugThread extends DebugElement implements IThread {
 
 	// *************************************************** other IThread methods
 
+	@Override
 	public int getPriority() {
 		return 0;
 	}
 
+	@Override
 	public String getName() {
 		StringBuilder sb = new StringBuilder("State: " + getState());
 		if (bp != null) {
@@ -134,6 +140,7 @@ public class DebugThread extends DebugElement implements IThread {
 
 	// ******************************************************** process handling
 
+	@Override
 	public boolean isStepping() {
 		return fStepping;
 	}
@@ -142,58 +149,72 @@ public class DebugThread extends DebugElement implements IThread {
 		fStepping = stepping;
 	}
 
+	@Override
 	public boolean canStepInto() {
 		return isSuspended();
 	}
 
+	@Override
 	public void stepInto() throws DebugException {
 		getDebugModelManager().requireStepInto();
 	}
 
+	@Override
 	public boolean canStepOver() {
 		return isSuspended();
 	}
 
+	@Override
 	public void stepOver() throws DebugException {
 		getDebugModelManager().requireStepOver();
 	}
 
+	@Override
 	public boolean canStepReturn() {
 		return isSuspended();
 	}
 
+	@Override
 	public void stepReturn() throws DebugException {
 		getDebugModelManager().requireStepReturn();
 	}
 
+	@Override
 	public boolean canSuspend() {
 		return getDebugTarget().canSuspend();
 	}
 
+	@Override
 	public boolean isSuspended() {
 		return getDebugTarget().isSuspended();
 	}
 
+	@Override
 	public void suspend() throws DebugException {
 		getDebugTarget().suspend();
 	}
 
+	@Override
 	public boolean canResume() {
 		return getDebugTarget().canResume();
 	}
 
+	@Override
 	public void resume() throws DebugException {
 		getDebugTarget().resume();
 	}
 
+	@Override
 	public boolean canTerminate() {
 		return getDebugTarget().canTerminate();
 	}
 
+	@Override
 	public boolean isTerminated() {
 		return getDebugTarget().isTerminated();
 	}
 
+	@Override
 	public void terminate() throws DebugException {
 		getDebugTarget().terminate();
 	}

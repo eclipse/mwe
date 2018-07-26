@@ -12,6 +12,7 @@ package org.eclipse.emf.mwe.internal.core.ast.util.converter;
 
 public class IntegerConverter implements Converter<Integer> {
 
+    @Override
     public Integer convert(final String s) {
         return Integer.valueOf(s);
     }

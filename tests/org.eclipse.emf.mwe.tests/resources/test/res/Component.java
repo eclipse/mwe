@@ -94,6 +94,7 @@ public class Component implements WorkflowComponent {
 
 	public int invocations = 0;
 
+	@Override
 	public void invoke(final WorkflowContext model, final ProgressMonitor monitor, final Issues issues) {
 		invocations++;
 		INVOCATIONS++;
@@ -107,28 +108,34 @@ public class Component implements WorkflowComponent {
 
 	private Location location;
 
+	@Override
 	public void checkConfiguration(final Issues issues) {
 		checks++;
 		CHECKS++;
 	}
 
+	@Override
 	public CompositeComponent getContainer() {
 		return container;
 	}
 
+	@Override
 	public void setContainer(CompositeComponent container) {
 		this.container = container;
 	}
 
+	@Override
 	public Location getLocation() {
 		return location;
 	}
 
+	@Override
 	public void setLocation(Location location) {
 		this.location = location;
 		//
 	}
 
+	@Override
 	public String getComponentName() {
 		return COMPONENT_NAME;
 	}

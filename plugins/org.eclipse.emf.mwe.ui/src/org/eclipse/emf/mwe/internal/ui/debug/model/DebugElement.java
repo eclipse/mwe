@@ -30,10 +30,12 @@ public abstract class DebugElement extends PlatformObject implements IDebugEleme
 		this.target = target;
 	}
 
+	@Override
 	public String getModelIdentifier() {
 		return MWEBreakpoint.DEBUG_MODEL_ID;
 	}
 
+	@Override
 	public IDebugTarget getDebugTarget() {
 		return target;
 	}
@@ -42,6 +44,7 @@ public abstract class DebugElement extends PlatformObject implements IDebugEleme
 		return target;
 	}
 
+	@Override
 	public ILaunch getLaunch() {
 		return getDebugTarget().getLaunch();
 	}

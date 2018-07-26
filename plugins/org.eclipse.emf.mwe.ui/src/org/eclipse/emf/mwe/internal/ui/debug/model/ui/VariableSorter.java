@@ -32,6 +32,7 @@ public class VariableSorter {
 	class VarComparator implements java.util.Comparator<DebugVariable> {
 
 		// we assume names exist and are not empty, -> is not checked here (Problem?)
+		@Override
 		public int compare(DebugVariable o1, DebugVariable o2) {
 			return o1.getName().compareTo(o2.getName());
 		}
