@@ -167,7 +167,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 				.getLaunchConfigurationType(MWELaunchConfigurationConstants.WORKFLOW_LAUNCH_CONFIGURATION_TYPE_ID);
 
 		// 2nd param is Name of the LaunchConfig in the Config Window
-		wc = configType.newInstance(null, launchManager.generateUniqueLaunchConfigurationNameFrom(info.name));
+		wc = configType.newInstance(null, launchManager.generateLaunchConfigurationName(info.name));
 
 		// the 4 values displayed in the Config main window
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROJECT_NAME, info.project);

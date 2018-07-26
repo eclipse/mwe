@@ -74,7 +74,7 @@ public abstract class AbstractResourceLoader implements ResourceLoader {
 		try {
 			File f = new File(path);
 			if (f.exists())
-				return f.toURL();
+				return f.toURI().toURL();
 		} catch (final Exception e) {
 		}
 		return null;

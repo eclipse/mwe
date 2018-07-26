@@ -132,6 +132,7 @@ public class StandaloneSetup {
 		List<Entry<String, URI>> entrySet = new ArrayList<Entry<String, URI>>(EcorePlugin.getPlatformResourceMap()
 				.entrySet());
 		Collections.sort(entrySet, new Comparator<Entry<String, URI>>() {
+			@Override
 			public int compare(Entry<String, URI> o1, Entry<String, URI> o2) {
 				return o1.getKey().compareTo(o2.getKey());
 			}

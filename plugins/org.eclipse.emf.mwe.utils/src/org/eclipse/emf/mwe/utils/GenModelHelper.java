@@ -60,7 +60,7 @@ public class GenModelHelper {
 	}
 
 	public void registerGenModel(GenModel genModel) {
-		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+		Map<String, URI> registry = EcorePlugin.getEPackageNsURIToGenModelLocationMap(false);
 		for (GenPackage pkg : collectGenPackages(genModel)) {
 			if (pkg.eIsProxy()) {
 				log.debug("Unresolved proxy for GenPackage "+EcoreUtil.getURI(pkg));

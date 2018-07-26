@@ -42,9 +42,10 @@ public class Mwe2UiModule extends org.eclipse.emf.mwe2.language.ui.AbstractMwe2U
 		return TokenToAttributeMapper.class;
 	}
 	
-	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
+	public Class<? extends org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator() {
 		return SemanticHighlightingCalculator.class;
 	}
+	
 	
 	public Class<? extends org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration> bindIHighlightingConfiguration() {
 		return MweHighlightingConfiguration.class;

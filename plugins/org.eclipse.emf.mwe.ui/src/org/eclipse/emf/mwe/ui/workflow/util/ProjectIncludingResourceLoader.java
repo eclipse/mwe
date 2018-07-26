@@ -61,7 +61,7 @@ public class ProjectIncludingResourceLoader extends ResourceLoaderDefaultImpl {
 					path = wsLocation.append(path);
 					file = path.toFile();
 				}
-				URL url = file.toURL();
+				URL url = file.toURI().toURL();
 				urls[i] = url;
 			} catch (MalformedURLException e) {
 				Activator.logError(e);

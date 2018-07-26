@@ -19,13 +19,15 @@ import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationTarget;
 import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
 import org.eclipse.xtext.nodemodel.ILeafNode;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.resource.XtextResource;
+import org.eclipse.xtext.service.OperationCanceledManager;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightedPositionAcceptor;
-import org.eclipse.xtext.ui.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.util.CancelIndicator;
 
 import com.google.inject.Inject;
 
@@ -34,13 +36,17 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 	@Inject
 	private Mwe2GrammarAccess grammarAccess;
 
+	@Inject
+	protected OperationCanceledManager operationCanceledManager;
+
 	@Override
-	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor) {
+	public void provideHighlightingFor(final XtextResource resource, IHighlightedPositionAcceptor acceptor, CancelIndicator cancelIndicator) {
 		if (resource == null)
 			return;
 
 		Iterator<INode> iter = resource.getParseResult().getRootNode().getAsTreeIterable().iterator();
 		while(iter.hasNext()) {
+			operationCanceledManager.checkCanceled(cancelIndicator);
 			INode node = iter.next();
 			EObject grammarElement = node.getGrammarElement();
 			if (grammarElement == grammarAccess.getPropertyReferenceImplAccess()
