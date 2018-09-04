@@ -186,7 +186,9 @@ public class GenerateMwe2 {
 								
 								addFragment(new CodetemplatesGeneratorFragment());
 								
-								addFragment(new Junit4Fragment());
+								Junit4Fragment junit4Fragment = new Junit4Fragment();
+								junit4Fragment.setUseDeprecatedClasses(false);
+								addFragment(junit4Fragment);
 							}
 						});
 					}

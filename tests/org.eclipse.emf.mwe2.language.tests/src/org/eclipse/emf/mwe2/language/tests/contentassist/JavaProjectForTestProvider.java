@@ -10,18 +10,16 @@ package org.eclipse.emf.mwe2.language.tests.contentassist;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.xtext.common.types.access.jdt.IJavaProjectProvider;
-import org.eclipse.xtext.junit4.ui.util.JavaProjectSetupUtil;
+import org.eclipse.xtext.ui.testing.util.JavaProjectSetupUtil;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-@SuppressWarnings("restriction")
-public class JavaProjectForTestProvider implements IJavaProjectProvider {
+public class JavaProjectForTestProvider {
 
 	private static IJavaProject javaProject;
 	
-	@Override
-	public IJavaProject getJavaProject(ResourceSet resourceSet) {
+	public static IJavaProject getJavaProject() {
 		if (javaProject == null)
 			throw new IllegalStateException("javaProject is null");
 		return javaProject;

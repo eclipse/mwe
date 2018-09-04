@@ -12,7 +12,6 @@ import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
-import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
@@ -65,7 +64,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 				sequence_Import(context, (Import) semanticObject); 
 				return; 
 			case Mwe2Package.MODULE:
-				sequence_Module(context, (Module) semanticObject); 
+				sequence_Module(context, (org.eclipse.emf.mwe2.language.mwe2.Module) semanticObject); 
 				return; 
 			case Mwe2Package.PLAIN_STRING:
 				sequence_PlainString(context, (PlainString) semanticObject); 
@@ -99,7 +98,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.ASSIGNMENT__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifiableElementFQNParserRuleCall_0_0_1(), semanticObject.getFeature());
+		feeder.accept(grammarAccess.getAssignmentAccess().getFeatureJvmIdentifiableElementFQNParserRuleCall_0_0_1(), semanticObject.eGet(Mwe2Package.Literals.ASSIGNMENT__FEATURE, false));
 		feeder.accept(grammarAccess.getAssignmentAccess().getValueValueParserRuleCall_2_0(), semanticObject.getValue());
 		feeder.finish();
 	}
@@ -168,7 +167,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	 * Constraint:
 	 *     (canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent)
 	 */
-	protected void sequence_Module(ISerializationContext context, Module semanticObject) {
+	protected void sequence_Module(ISerializationContext context, org.eclipse.emf.mwe2.language.mwe2.Module semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -205,7 +204,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyFQNParserRuleCall_0_1(), semanticObject.getReferable());
+		feeder.accept(grammarAccess.getPropertyReferenceImplAccess().getReferableDeclaredPropertyFQNParserRuleCall_0_1(), semanticObject.eGet(Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE, false));
 		feeder.finish();
 	}
 	
@@ -224,7 +223,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1(), semanticObject.getReferable());
+		feeder.accept(grammarAccess.getReferenceAccess().getReferableReferrableFQNParserRuleCall_0_1(), semanticObject.eGet(Mwe2Package.Literals.ABSTRACT_REFERENCE__REFERABLE, false));
 		feeder.finish();
 	}
 	

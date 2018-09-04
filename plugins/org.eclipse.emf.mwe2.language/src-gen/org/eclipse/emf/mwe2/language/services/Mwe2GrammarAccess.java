@@ -153,7 +153,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
 		//	'{'
 		//	assignment+=Assignment*
-		//	'}'
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 
 		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'? '{'
@@ -163,7 +163,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 
-		//(type=[types::JvmType|FQN] | '@' module=[Module|FQN])
+		//type=[types::JvmType|FQN] | '@' module=[Module|FQN]
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//type=[types::JvmType|FQN]
@@ -444,7 +444,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//{BooleanLiteral}
 		public Action getBooleanLiteralAction_0() { return cBooleanLiteralAction_0; }
 
-		//(isTrue?='true' | 'false')
+		//isTrue?='true' | 'false'
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 
 		//isTrue?='true'
@@ -650,7 +650,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_0.eContents().get(1);
 		
 		//PropertyReferenceImpl PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-		//	referable=[DeclaredProperty|FQN]
+		//	referable=[DeclaredProperty|FQN];
 		@Override public ParserRule getRule() { return rule; }
 
 		//referable=[DeclaredProperty|FQN]
@@ -829,7 +829,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
 	//	'{'
 	//	assignment+=Assignment*
-	//	'}'
+	//	'}';
 	public RootComponentElements getRootComponentAccess() {
 		return pRootComponent;
 	}
@@ -947,7 +947,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//PropertyReferenceImpl PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-	//	referable=[DeclaredProperty|FQN]
+	//	referable=[DeclaredProperty|FQN];
 	public PropertyReferenceImplElements getPropertyReferenceImplAccess() {
 		return pPropertyReferenceImpl;
 	}
@@ -991,7 +991,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	} 
 
 	//terminal ML_COMMENT:
-	//	'/ *'->'* /';
+	//	'/*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	} 

@@ -8,18 +8,20 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.validation;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
 import org.eclipse.xtext.diagnostics.Severity;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.util.CancelIndicator;
 import org.eclipse.xtext.util.StringInputStream;
@@ -27,7 +29,7 @@ import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.Issue;
 import org.junit.Test;
 
-public class Mwe2ValidatorTest extends AbstractXtextTests {
+public class Mwe2ValidatorTest extends AbstractMwe2Tests {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

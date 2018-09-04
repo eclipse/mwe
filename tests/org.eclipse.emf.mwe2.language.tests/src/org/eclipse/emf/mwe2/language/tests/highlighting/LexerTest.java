@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.highlighting;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.antlr.runtime.ANTLRStringStream;
@@ -16,7 +18,7 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
 import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
 import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer;
@@ -24,21 +26,15 @@ import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.TerminalRule;
 import org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
 import org.junit.Test;
 
 @SuppressWarnings("restriction") 
-public class LexerTest extends AbstractXtextTests {
+public class LexerTest extends AbstractMwe2Tests {
 
 	private MweHighlightingLexer lexer;
 	private ITokenDefProvider tokenDefProvider;
-
-	@Override
-	protected Mwe2GrammarAccess getGrammarAccess() {
-		return (Mwe2GrammarAccess) super.getGrammarAccess();
-	}
 	
 	@Override
 	public void setUp() throws Exception {
