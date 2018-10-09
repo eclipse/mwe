@@ -194,12 +194,14 @@ public class StandaloneSetup {
 	protected File findProjectFileForPossibleClassesFolder(File f) {
 		File parentFile = f.getParentFile();
 		if (parentFile != null) {
+			// eclipse plugin
 			if (f.getName().equals("bin")) {
 				File projectFile = new File(parentFile, ".project");
 				if (projectFile.exists()) {
 					return projectFile;
 				}
 			}
+			// maven
 			if (f.getName().equals("classes")) {
 				File grandParentFile = parentFile.getParentFile();
 				if (grandParentFile != null) {
@@ -211,11 +213,21 @@ public class StandaloneSetup {
 					}
 				}
 			}
+			// gradle(buildship)
+			File grandParentFile = parentFile.getParentFile();
+			if (grandParentFile != null) {
+				if (parentFile.getName().equals("bin")) {
+					File projectFile = new File(grandParentFile, ".project");
+					if (projectFile.exists()) {
+						return projectFile;
+					}
+				}
+			}
 		}
 		log.warn(
 			"No project file found for "
 			+ f.getPath()
-			+ ". The folder was neither an Eclipse 'bin' folder, nor a Maven 'target/classes' folder."
+			+ ". The folder was neither an Eclipse 'bin' folder, nor a Maven 'target/classes' folder, nor a Gradle bin/main folder"
 		);
 		return null;
 	}
