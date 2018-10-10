@@ -8,15 +8,17 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.factory;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.junit.Test;
 
-public class Mwe2ExecutionEngineTest extends AbstractXtextTests {
+public class Mwe2ExecutionEngineTest extends AbstractMwe2Tests {
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();

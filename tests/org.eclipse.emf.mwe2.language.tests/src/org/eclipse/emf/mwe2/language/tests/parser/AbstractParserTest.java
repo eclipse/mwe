@@ -8,18 +8,20 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.parser;
 
+import static org.junit.Assert.*;
+
 import java.io.StringReader;
 
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.parser.IParseResult;
 
 import com.google.common.collect.Iterables;
 
-public abstract class AbstractParserTest extends AbstractXtextTests {
+public abstract class AbstractParserTest extends AbstractMwe2Tests {
 	
 	private Mwe2Parser parser;
 
@@ -32,7 +34,7 @@ public abstract class AbstractParserTest extends AbstractXtextTests {
 	
 	@Override
 	protected Mwe2GrammarAccess getGrammarAccess() {
-		return (Mwe2GrammarAccess) super.getGrammarAccess();
+		return super.getGrammarAccess();
 	}
 	
 	protected IParseResult parseSuccessfully(String input) {

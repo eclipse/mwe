@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.parser;
 
+import static org.junit.Assert.*;
+
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;

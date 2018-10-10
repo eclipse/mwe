@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.parser;
 
+import static org.junit.Assert.*;
+
 import org.eclipse.emf.mwe2.language.mwe2.Import;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.parser.IParseResult;

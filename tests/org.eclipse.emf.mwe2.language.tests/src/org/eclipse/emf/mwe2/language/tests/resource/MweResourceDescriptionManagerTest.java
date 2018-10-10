@@ -7,12 +7,14 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.resource;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
@@ -23,7 +25,7 @@ import com.google.common.collect.Lists;
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-public class MweResourceDescriptionManagerTest extends AbstractXtextTests {
+public class MweResourceDescriptionManagerTest extends AbstractMwe2Tests {
 
 	private static final QualifiedName ORG_FOO_BAR = QualifiedName.create("org","foo","Bar");
 	private static final QualifiedName ORG_FOO_BAR_ZONK = QualifiedName.create("org","foo","Bar","zonk");

@@ -8,19 +8,21 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.model;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.xtext.common.types.JvmType;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.junit.Test;
 
-public class ActualTypeComputationTest extends AbstractXtextTests {
+public class ActualTypeComputationTest extends AbstractMwe2Tests {
 
 	@Override
 	public void setUp() throws Exception {

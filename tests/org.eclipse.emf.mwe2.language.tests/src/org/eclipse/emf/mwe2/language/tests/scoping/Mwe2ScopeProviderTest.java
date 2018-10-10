@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.scoping;
 
+import static org.junit.Assert.*;
+
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
@@ -17,18 +19,19 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.xtext.common.types.JvmExecutable;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.scoping.IScope;
+import org.eclipse.xtext.scoping.IScopeProvider;
 import org.eclipse.xtext.util.StringInputStream;
 import org.junit.Test;
 
-public class Mwe2ScopeProviderTest extends AbstractXtextTests {
+public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 
 	@Override
 	public void setUp() throws Exception {
@@ -36,9 +39,8 @@ public class Mwe2ScopeProviderTest extends AbstractXtextTests {
 		with(new TestSetup());
 	}
 	
-	@Override
 	public Mwe2ScopeProvider getScopeProvider() {
-		return (Mwe2ScopeProvider) super.getScopeProvider();
+		return (Mwe2ScopeProvider) get(IScopeProvider.class);
 	}
 	
 	@Test public void testImplicitImportOfModulePackage_01() throws Exception {

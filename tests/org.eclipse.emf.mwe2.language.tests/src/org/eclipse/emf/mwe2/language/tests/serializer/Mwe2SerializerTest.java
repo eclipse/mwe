@@ -9,22 +9,23 @@ package org.eclipse.emf.mwe2.language.tests.serializer;
 
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.xtext.EcoreUtil2;
-import org.eclipse.xtext.junit4.AbstractXtextTests;
-import org.eclipse.xtext.junit4.serializer.SerializerTester;
+import org.eclipse.xtext.testing.serializer.SerializerTestHelper;
 import org.junit.Test;
 
 /**
  * @author Moritz Eysholdt - Initial contribution and API
  */
-public class Mwe2SerializerTest extends AbstractXtextTests {
-	private SerializerTester tester;
-
+public class Mwe2SerializerTest extends AbstractMwe2Tests {
+	
+	private SerializerTestHelper tester;
+	
 	@Override
 	public void setUp() throws Exception {
 		super.setUp();
-		with(new Mwe2StandaloneSetup());
-		tester = get(SerializerTester.class);
+		with(Mwe2StandaloneSetup.class);
+		tester = get(SerializerTestHelper.class);
 	}
 
 	@Test public void testSimple() throws Exception {
