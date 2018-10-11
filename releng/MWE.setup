@@ -27,7 +27,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.orbit"
-      value="http://download.eclipse.org/tools/orbit/downloads/drops/R20170919201930/repository"/>
+      value="http://download.eclipse.org/tools/orbit/downloads/drops/R20180330011457/repository/"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="xtext.version"
@@ -102,33 +102,6 @@
           name="Oxygen">
         <repository
             url="http://download.eclipse.org/eclipse/updates/4.7"/>
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="Neon">
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.6"/>
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="Mars">
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.5"/>
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="Luna">
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.4"/>
         <repository
             url="${p2.orbit}"/>
         <repository
