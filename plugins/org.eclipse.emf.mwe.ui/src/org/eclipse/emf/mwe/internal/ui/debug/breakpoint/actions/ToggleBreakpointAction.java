@@ -40,7 +40,7 @@ public class ToggleBreakpointAction extends Action {
 	}
 
 	public void updateText() {
-		IResource resource = (IResource) editor.getEditorInput().getAdapter(IResource.class);
+		IResource resource = editor.getEditorInput().getAdapter(IResource.class);
 
 		PluginAdapter adapter = PluginExtensionManager.getDefault().getAdapterByResourceExtension(resource.getFileExtension());
 		if (adapter == null) {
@@ -67,7 +67,7 @@ public class ToggleBreakpointAction extends Action {
 	}
 
 	protected void toggleBreakpoint() throws CoreException {
-		IResource resource = (IResource) editor.getEditorInput().getAdapter(IResource.class);
+		IResource resource = editor.getEditorInput().getAdapter(IResource.class);
 
 		// Hint: doc line numbers start at 0, but markers at 1, therefore + 1
 		int line = group.getLastSelectedLine() + 1;
