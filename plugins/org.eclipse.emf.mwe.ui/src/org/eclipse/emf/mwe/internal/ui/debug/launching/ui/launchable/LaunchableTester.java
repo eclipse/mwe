@@ -44,7 +44,7 @@ public class LaunchableTester extends PropertyTester {
 			return false;
 
 		final IAdaptable adaptable = (IAdaptable) receiver;
-		final IFile file = (IFile) adaptable.getAdapter(IFile.class);
+		final IFile file = adaptable.getAdapter(IFile.class);
 		if (file != null)
 			return checkFileCriteria(file);
 

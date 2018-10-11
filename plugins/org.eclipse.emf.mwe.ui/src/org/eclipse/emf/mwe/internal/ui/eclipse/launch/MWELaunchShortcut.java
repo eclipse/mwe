@@ -72,7 +72,7 @@ public class MWELaunchShortcut implements ILaunchShortcut {
 	@Override
 	public void launch(final IEditorPart editor, final String mode) {
 		final IEditorInput input = editor.getEditorInput();
-		currFile = (IFile) input.getAdapter(IFile.class);
+		currFile = input.getAdapter(IFile.class);
 		launch(mode);
 	}
 
