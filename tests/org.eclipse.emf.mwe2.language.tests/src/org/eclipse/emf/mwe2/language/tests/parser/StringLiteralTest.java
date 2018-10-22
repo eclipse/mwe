@@ -85,6 +85,16 @@ public class StringLiteralTest extends AbstractParserTest {
 		checkPlainString(" import ", " import ");
 	}
 	
+	@Test public void testInt() {
+		checkPlainString("0123", "0123");
+		checkPlainString("1", "1");
+	}
+	
+	@Test public void testDouble() {
+		checkPlainString("0.123", "0.123");
+		checkPlainString("1.456", "1.456");
+	}
+	
 	@Test public void testAnyChar() {
 		checkPlainString("*/", "*/");
 		checkPlainString("#", "#");

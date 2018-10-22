@@ -57,5 +57,12 @@
     <genClasses image="false" ecoreClass="Mwe2.ecore#//AbstractReference">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Mwe2.ecore#//AbstractReference/referable"/>
     </genClasses>
+    <genClasses ecoreClass="Mwe2.ecore#//NullLiteral"/>
+    <genClasses ecoreClass="Mwe2.ecore#//DoubleLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mwe2.ecore#//DoubleLiteral/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Mwe2.ecore#//IntegerLiteral">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Mwe2.ecore#//IntegerLiteral/value"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

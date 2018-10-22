@@ -403,13 +403,16 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cComponentParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cStringLiteralParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		private final RuleCall cBooleanLiteralParserRuleCall_2 = (RuleCall)cAlternatives.eContents().get(2);
-		private final RuleCall cReferenceParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cIntegerLiteralParserRuleCall_3 = (RuleCall)cAlternatives.eContents().get(3);
+		private final RuleCall cDoubleLiteralParserRuleCall_4 = (RuleCall)cAlternatives.eContents().get(4);
+		private final RuleCall cNullLiteralParserRuleCall_5 = (RuleCall)cAlternatives.eContents().get(5);
+		private final RuleCall cReferenceParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Value:
-		//	Component | StringLiteral | BooleanLiteral | Reference;
+		//	Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference;
 		@Override public ParserRule getRule() { return rule; }
 
-		//Component | StringLiteral | BooleanLiteral | Reference
+		//Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//Component
@@ -421,8 +424,93 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//BooleanLiteral
 		public RuleCall getBooleanLiteralParserRuleCall_2() { return cBooleanLiteralParserRuleCall_2; }
 
+		//IntegerLiteral
+		public RuleCall getIntegerLiteralParserRuleCall_3() { return cIntegerLiteralParserRuleCall_3; }
+
+		//DoubleLiteral
+		public RuleCall getDoubleLiteralParserRuleCall_4() { return cDoubleLiteralParserRuleCall_4; }
+
+		//NullLiteral
+		public RuleCall getNullLiteralParserRuleCall_5() { return cNullLiteralParserRuleCall_5; }
+
 		//Reference
-		public RuleCall getReferenceParserRuleCall_3() { return cReferenceParserRuleCall_3; }
+		public RuleCall getReferenceParserRuleCall_6() { return cReferenceParserRuleCall_6; }
+	}
+
+	public class NullLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.NullLiteral");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cNullLiteralAction_0 = (Action)cGroup.eContents().get(0);
+		private final Keyword cNullKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		
+		//NullLiteral:
+		//	{NullLiteral} 'null';
+		@Override public ParserRule getRule() { return rule; }
+
+		//{NullLiteral} 'null'
+		public Group getGroup() { return cGroup; }
+
+		//{NullLiteral}
+		public Action getNullLiteralAction_0() { return cNullLiteralAction_0; }
+
+		//'null'
+		public Keyword getNullKeyword_1() { return cNullKeyword_1; }
+	}
+
+	public class DoubleLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.DoubleLiteral");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueDoubleValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//DoubleLiteral:
+		//	value=DoubleValue;
+		@Override public ParserRule getRule() { return rule; }
+
+		//value=DoubleValue
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//DoubleValue
+		public RuleCall getValueDoubleValueParserRuleCall_0() { return cValueDoubleValueParserRuleCall_0; }
+	}
+
+	public class DoubleValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.DoubleValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//DoubleValue ecore::EDouble:
+		//	INT '.' INT;
+		@Override public ParserRule getRule() { return rule; }
+
+		//INT '.' INT
+		public Group getGroup() { return cGroup; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+
+		//'.'
+		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
+
+		//INT
+		public RuleCall getINTTerminalRuleCall_2() { return cINTTerminalRuleCall_2; }
+	}
+
+	public class IntegerLiteralElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.IntegerLiteral");
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//IntegerLiteral:
+		//	value=INT;
+		@Override public ParserRule getRule() { return rule; }
+
+		//value=INT
+		public Assignment getValueAssignment() { return cValueAssignment; }
+
+		//INT
+		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
 	}
 
 	public class BooleanLiteralElements extends AbstractParserRuleElementFinder {
@@ -690,7 +778,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cReverseSolidusDollarSignLeftCurlyBracketKeyword_5 = (Keyword)cAlternatives.eContents().get(5);
 		private final Keyword cReverseSolidusReverseSolidusKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
-		//// To identify other keywords as allowed parts in a string,
+		//// To identify other keywords or INT as allowed parts in a string,
 		//// we use a customized lexer with predicates. 
 		//// This allows us to use e.g. single quotes without escape sequences
 		//// in double quoted strings and vice versa.
@@ -736,6 +824,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private final ImportedFQNElements pImportedFQN;
 	private final AssignmentElements pAssignment;
 	private final ValueElements pValue;
+	private final NullLiteralElements pNullLiteral;
+	private final DoubleLiteralElements pDoubleLiteral;
+	private final DoubleValueElements pDoubleValue;
+	private final IntegerLiteralElements pIntegerLiteral;
 	private final BooleanLiteralElements pBooleanLiteral;
 	private final ReferenceElements pReference;
 	private final FQNElements pFQN;
@@ -745,6 +837,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private final PlainStringElements pPlainString;
 	private final ConstantValueElements pConstantValue;
 	private final TerminalRule tID;
+	private final TerminalRule tINT;
 	private final TerminalRule tML_COMMENT;
 	private final TerminalRule tSL_COMMENT;
 	private final TerminalRule tWS;
@@ -763,6 +856,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		this.pImportedFQN = new ImportedFQNElements();
 		this.pAssignment = new AssignmentElements();
 		this.pValue = new ValueElements();
+		this.pNullLiteral = new NullLiteralElements();
+		this.pDoubleLiteral = new DoubleLiteralElements();
+		this.pDoubleValue = new DoubleValueElements();
+		this.pIntegerLiteral = new IntegerLiteralElements();
 		this.pBooleanLiteral = new BooleanLiteralElements();
 		this.pReference = new ReferenceElements();
 		this.pFQN = new FQNElements();
@@ -772,6 +869,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		this.pPlainString = new PlainStringElements();
 		this.pConstantValue = new ConstantValueElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.ID");
+		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.INT");
 		this.tML_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.ML_COMMENT");
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.SL_COMMENT");
 		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.WS");
@@ -882,13 +980,53 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Value:
-	//	Component | StringLiteral | BooleanLiteral | Reference;
+	//	Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference;
 	public ValueElements getValueAccess() {
 		return pValue;
 	}
 	
 	public ParserRule getValueRule() {
 		return getValueAccess().getRule();
+	}
+
+	//NullLiteral:
+	//	{NullLiteral} 'null';
+	public NullLiteralElements getNullLiteralAccess() {
+		return pNullLiteral;
+	}
+	
+	public ParserRule getNullLiteralRule() {
+		return getNullLiteralAccess().getRule();
+	}
+
+	//DoubleLiteral:
+	//	value=DoubleValue;
+	public DoubleLiteralElements getDoubleLiteralAccess() {
+		return pDoubleLiteral;
+	}
+	
+	public ParserRule getDoubleLiteralRule() {
+		return getDoubleLiteralAccess().getRule();
+	}
+
+	//DoubleValue ecore::EDouble:
+	//	INT '.' INT;
+	public DoubleValueElements getDoubleValueAccess() {
+		return pDoubleValue;
+	}
+	
+	public ParserRule getDoubleValueRule() {
+		return getDoubleValueAccess().getRule();
+	}
+
+	//IntegerLiteral:
+	//	value=INT;
+	public IntegerLiteralElements getIntegerLiteralAccess() {
+		return pIntegerLiteral;
+	}
+	
+	public ParserRule getIntegerLiteralRule() {
+		return getIntegerLiteralAccess().getRule();
 	}
 
 	//BooleanLiteral:
@@ -966,7 +1104,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		return getPlainStringAccess().getRule();
 	}
 
-	//// To identify other keywords as allowed parts in a string,
+	//// To identify other keywords or INT as allowed parts in a string,
 	//// we use a customized lexer with predicates. 
 	//// This allows us to use e.g. single quotes without escape sequences
 	//// in double quoted strings and vice versa.
@@ -988,6 +1126,12 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return tID;
+	} 
+
+	//terminal INT returns ecore::EInt:
+	//	'0'..'9'+;
+	public TerminalRule getINTRule() {
+		return tINT;
 	} 
 
 	//terminal ML_COMMENT:

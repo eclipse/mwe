@@ -7,7 +7,23 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import org.eclipse.emf.mwe2.language.mwe2.*;
+import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Import;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
+import org.eclipse.emf.mwe2.language.mwe2.NullLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.PlainString;
+import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
+import org.eclipse.emf.mwe2.language.mwe2.Reference;
+import org.eclipse.emf.mwe2.language.mwe2.Referrable;
+import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.StringPart;
+import org.eclipse.emf.mwe2.language.mwe2.Value;
 
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
@@ -76,7 +92,7 @@ public class Mwe2Switch<T> extends Switch<T>
 		{
 			case Mwe2Package.MODULE:
 			{
-				Module module = (Module)theEObject;
+				org.eclipse.emf.mwe2.language.mwe2.Module module = (org.eclipse.emf.mwe2.language.mwe2.Module)theEObject;
 				T result = caseModule(module);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -183,6 +199,30 @@ public class Mwe2Switch<T> extends Switch<T>
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case Mwe2Package.NULL_LITERAL:
+			{
+				NullLiteral nullLiteral = (NullLiteral)theEObject;
+				T result = caseNullLiteral(nullLiteral);
+				if (result == null) result = caseValue(nullLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Mwe2Package.DOUBLE_LITERAL:
+			{
+				DoubleLiteral doubleLiteral = (DoubleLiteral)theEObject;
+				T result = caseDoubleLiteral(doubleLiteral);
+				if (result == null) result = caseValue(doubleLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case Mwe2Package.INTEGER_LITERAL:
+			{
+				IntegerLiteral integerLiteral = (IntegerLiteral)theEObject;
+				T result = caseIntegerLiteral(integerLiteral);
+				if (result == null) result = caseValue(integerLiteral);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -198,7 +238,7 @@ public class Mwe2Switch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModule(Module object)
+	public T caseModule(org.eclipse.emf.mwe2.language.mwe2.Module object)
 	{
 		return null;
 	}
@@ -407,6 +447,54 @@ public class Mwe2Switch<T> extends Switch<T>
 	 * @generated
 	 */
 	public T caseAbstractReference(AbstractReference object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Null Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Null Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNullLiteral(NullLiteral object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Double Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Double Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDoubleLiteral(DoubleLiteral object)
+	{
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Integer Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Integer Literal</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIntegerLiteral(IntegerLiteral object)
 	{
 		return null;
 	}

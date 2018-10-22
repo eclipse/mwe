@@ -40,7 +40,7 @@ import org.eclipse.xtext.ui.generator.templates.CodetemplatesGeneratorFragment;
  * 
  * @author Sven Efftinge - Initial contribution and API
  */
-@SuppressWarnings("restriction")
+@SuppressWarnings({ "restriction", "deprecation" })
 public class GenerateMwe2 {
 	public static void main(String[] args) {
 

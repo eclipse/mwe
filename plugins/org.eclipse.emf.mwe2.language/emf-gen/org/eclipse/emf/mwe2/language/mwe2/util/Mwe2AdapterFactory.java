@@ -9,7 +9,23 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.mwe2.language.mwe2.*;
+import org.eclipse.emf.mwe2.language.mwe2.AbstractReference;
+import org.eclipse.emf.mwe2.language.mwe2.Assignment;
+import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Component;
+import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Import;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
+import org.eclipse.emf.mwe2.language.mwe2.NullLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.PlainString;
+import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
+import org.eclipse.emf.mwe2.language.mwe2.Reference;
+import org.eclipse.emf.mwe2.language.mwe2.Referrable;
+import org.eclipse.emf.mwe2.language.mwe2.StringLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.StringPart;
+import org.eclipse.emf.mwe2.language.mwe2.Value;
 
 import org.eclipse.xtext.common.types.JvmIdentifiableElement;
 
@@ -77,7 +93,7 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 		new Mwe2Switch<Adapter>()
 		{
 			@Override
-			public Adapter caseModule(Module object)
+			public Adapter caseModule(org.eclipse.emf.mwe2.language.mwe2.Module object)
 			{
 				return createModuleAdapter();
 			}
@@ -145,6 +161,21 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 			public Adapter caseAbstractReference(AbstractReference object)
 			{
 				return createAbstractReferenceAdapter();
+			}
+			@Override
+			public Adapter caseNullLiteral(NullLiteral object)
+			{
+				return createNullLiteralAdapter();
+			}
+			@Override
+			public Adapter caseDoubleLiteral(DoubleLiteral object)
+			{
+				return createDoubleLiteralAdapter();
+			}
+			@Override
+			public Adapter caseIntegerLiteral(IntegerLiteral object)
+			{
+				return createIntegerLiteralAdapter();
 			}
 			@Override
 			public Adapter caseJvmIdentifiableElement(JvmIdentifiableElement object)
@@ -379,6 +410,51 @@ public class Mwe2AdapterFactory extends AdapterFactoryImpl
 	 * @generated
 	 */
 	public Adapter createAbstractReferenceAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.NullLiteral <em>Null Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.NullLiteral
+	 * @generated
+	 */
+	public Adapter createNullLiteralAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral <em>Double Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral
+	 * @generated
+	 */
+	public Adapter createDoubleLiteralAdapter()
+	{
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral <em>Integer Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral
+	 * @generated
+	 */
+	public Adapter createIntegerLiteralAdapter()
 	{
 		return null;
 	}

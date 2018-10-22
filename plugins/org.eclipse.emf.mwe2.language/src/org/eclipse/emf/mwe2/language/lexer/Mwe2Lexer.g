@@ -27,6 +27,8 @@ False : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'false'
 
 True : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'true';
 
+Null : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'null';
+
 ReverseSolidusDollarSignLeftCurlyBracket : '\\${';
 
 Var : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'var';
@@ -60,6 +62,8 @@ RightCurlyBracket : {!singleQuotedString && !doubleQuotedString || stringVariabl
 
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_INT : {!singleQuotedString && !doubleQuotedString || stringVariable}?=> ('0'..'9')+;
 
 RULE_ML_COMMENT : {!singleQuotedString && !doubleQuotedString || stringVariable}?=> ('/*' ( options {greedy=false;} : . )*'*/');
 

@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
-import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Value;
 
@@ -117,10 +116,10 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module getModule()
+	public org.eclipse.emf.mwe2.language.mwe2.Module getModule()
 	{
 		if (eContainerFeatureID() != Mwe2Package.DECLARED_PROPERTY__MODULE) return null;
-		return (Module)eInternalContainer();
+		return (org.eclipse.emf.mwe2.language.mwe2.Module)eInternalContainer();
 	}
 
 	/**
@@ -128,7 +127,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetModule(Module newModule, NotificationChain msgs)
+	public NotificationChain basicSetModule(org.eclipse.emf.mwe2.language.mwe2.Module newModule, NotificationChain msgs)
 	{
 		msgs = eBasicSetContainer((InternalEObject)newModule, Mwe2Package.DECLARED_PROPERTY__MODULE, msgs);
 		return msgs;
@@ -139,7 +138,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModule(Module newModule)
+	public void setModule(org.eclipse.emf.mwe2.language.mwe2.Module newModule)
 	{
 		if (newModule != eInternalContainer() || (eContainerFeatureID() != Mwe2Package.DECLARED_PROPERTY__MODULE && newModule != null))
 		{
@@ -149,7 +148,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModule != null)
-				msgs = ((InternalEObject)newModule).eInverseAdd(this, Mwe2Package.MODULE__DECLARED_PROPERTIES, Module.class, msgs);
+				msgs = ((InternalEObject)newModule).eInverseAdd(this, Mwe2Package.MODULE__DECLARED_PROPERTIES, org.eclipse.emf.mwe2.language.mwe2.Module.class, msgs);
 			msgs = basicSetModule(newModule, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
@@ -218,7 +217,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 			case Mwe2Package.DECLARED_PROPERTY__MODULE:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetModule((Module)otherEnd, msgs);
+				return basicSetModule((org.eclipse.emf.mwe2.language.mwe2.Module)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -252,7 +251,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 		switch (eContainerFeatureID())
 		{
 			case Mwe2Package.DECLARED_PROPERTY__MODULE:
-				return eInternalContainer().eInverseRemove(this, Mwe2Package.MODULE__DECLARED_PROPERTIES, Module.class, msgs);
+				return eInternalContainer().eInverseRemove(this, Mwe2Package.MODULE__DECLARED_PROPERTIES, org.eclipse.emf.mwe2.language.mwe2.Module.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -289,7 +288,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 				setDefault((Value)newValue);
 				return;
 			case Mwe2Package.DECLARED_PROPERTY__MODULE:
-				setModule((Module)newValue);
+				setModule((org.eclipse.emf.mwe2.language.mwe2.Module)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -309,7 +308,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 				setDefault((Value)null);
 				return;
 			case Mwe2Package.DECLARED_PROPERTY__MODULE:
-				setModule((Module)null);
+				setModule((org.eclipse.emf.mwe2.language.mwe2.Module)null);
 				return;
 		}
 		super.eUnset(featureID);

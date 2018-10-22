@@ -33,12 +33,12 @@ public interface Component extends Referrable, Value
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' reference.
-	 * @see #setModule(Module)
+	 * @see #setModule(org.eclipse.emf.mwe2.language.mwe2.Module)
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getComponent_Module()
 	 * @model
 	 * @generated
 	 */
-	Module getModule();
+	org.eclipse.emf.mwe2.language.mwe2.Module getModule();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.mwe2.language.mwe2.Component#getModule <em>Module</em>}' reference.
@@ -48,7 +48,7 @@ public interface Component extends Referrable, Value
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(Module value);
+	void setModule(org.eclipse.emf.mwe2.language.mwe2.Module value);
 
 	/**
 	 * Returns the value of the '<em><b>Auto Inject</b></em>' attribute.

@@ -697,13 +697,195 @@ ruleValue returns [EObject current=null]
 
     |
     { 
-        newCompositeNode(grammarAccess.getValueAccess().getReferenceParserRuleCall_3()); 
+        newCompositeNode(grammarAccess.getValueAccess().getIntegerLiteralParserRuleCall_3()); 
     }
-    this_Reference_3=ruleReference
+    this_IntegerLiteral_3=ruleIntegerLiteral
     {
-        $current = $this_Reference_3.current;
+        $current = $this_IntegerLiteral_3.current;
         afterParserOrEnumRuleCall();
     }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValueAccess().getDoubleLiteralParserRuleCall_4()); 
+    }
+    this_DoubleLiteral_4=ruleDoubleLiteral
+    {
+        $current = $this_DoubleLiteral_4.current;
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValueAccess().getNullLiteralParserRuleCall_5()); 
+    }
+    this_NullLiteral_5=ruleNullLiteral
+    {
+        $current = $this_NullLiteral_5.current;
+        afterParserOrEnumRuleCall();
+    }
+
+    |
+    { 
+        newCompositeNode(grammarAccess.getValueAccess().getReferenceParserRuleCall_6()); 
+    }
+    this_Reference_6=ruleReference
+    {
+        $current = $this_Reference_6.current;
+        afterParserOrEnumRuleCall();
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleNullLiteral
+entryRuleNullLiteral returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getNullLiteralRule()); }
+	 iv_ruleNullLiteral=ruleNullLiteral 
+	 { $current=$iv_ruleNullLiteral.current; } 
+	 EOF 
+;
+
+// Rule NullLiteral
+ruleNullLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+((
+    {
+        $current = forceCreateModelElement(
+            grammarAccess.getNullLiteralAccess().getNullLiteralAction_0(),
+            $current);
+    }
+)
+	otherlv_1=Null
+    {
+    	newLeafNode(otherlv_1, grammarAccess.getNullLiteralAccess().getNullKeyword_1());
+    }
+)
+;
+
+
+
+
+
+// Entry rule entryRuleDoubleLiteral
+entryRuleDoubleLiteral returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getDoubleLiteralRule()); }
+	 iv_ruleDoubleLiteral=ruleDoubleLiteral 
+	 { $current=$iv_ruleDoubleLiteral.current; } 
+	 EOF 
+;
+
+// Rule DoubleLiteral
+ruleDoubleLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		{ 
+	        newCompositeNode(grammarAccess.getDoubleLiteralAccess().getValueDoubleValueParserRuleCall_0()); 
+	    }
+		lv_value_0_0=ruleDoubleValue		{
+	        if ($current==null) {
+	            $current = createModelElementForParent(grammarAccess.getDoubleLiteralRule());
+	        }
+       		set(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"org.eclipse.emf.mwe2.language.Mwe2.DoubleValue");
+	        afterParserOrEnumRuleCall();
+	    }
+
+)
+)
+;
+
+
+
+
+
+// Entry rule entryRuleDoubleValue
+entryRuleDoubleValue returns [String current=null] 
+:
+	{ newCompositeNode(grammarAccess.getDoubleValueRule()); } 
+	 iv_ruleDoubleValue=ruleDoubleValue 
+	 { $current=$iv_ruleDoubleValue.current.getText(); }  
+	 EOF 
+;
+
+// Rule DoubleValue
+ruleDoubleValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule();
+    }:
+(    this_INT_0=RULE_INT    {
+		$current.merge(this_INT_0);
+    }
+
+    { 
+    newLeafNode(this_INT_0, grammarAccess.getDoubleValueAccess().getINTTerminalRuleCall_0()); 
+    }
+
+	kw=FullStop 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getDoubleValueAccess().getFullStopKeyword_1()); 
+    }
+    this_INT_2=RULE_INT    {
+		$current.merge(this_INT_2);
+    }
+
+    { 
+    newLeafNode(this_INT_2, grammarAccess.getDoubleValueAccess().getINTTerminalRuleCall_2()); 
+    }
+)
+    ;
+
+
+
+
+
+// Entry rule entryRuleIntegerLiteral
+entryRuleIntegerLiteral returns [EObject current=null]
+	:
+	{ newCompositeNode(grammarAccess.getIntegerLiteralRule()); }
+	 iv_ruleIntegerLiteral=ruleIntegerLiteral 
+	 { $current=$iv_ruleIntegerLiteral.current; } 
+	 EOF 
+;
+
+// Rule IntegerLiteral
+ruleIntegerLiteral returns [EObject current=null] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule(); }:
+(
+(
+		lv_value_0_0=RULE_INT
+		{
+			newLeafNode(lv_value_0_0, grammarAccess.getIntegerLiteralAccess().getValueINTTerminalRuleCall_0()); 
+		}
+		{
+	        if ($current==null) {
+	            $current = createModelElement(grammarAccess.getIntegerLiteralRule());
+	        }
+       		setWithLastConsumed(
+       			$current, 
+       			"value",
+        		lv_value_0_0, 
+        		"org.eclipse.emf.mwe2.language.Mwe2.INT");
+	    }
+
+)
 )
 ;
 

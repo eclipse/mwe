@@ -59,13 +59,13 @@ public interface DeclaredProperty extends Referrable, JvmIdentifiableElement
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
-	 * @see #setModule(Module)
+	 * @see #setModule(org.eclipse.emf.mwe2.language.mwe2.Module)
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getDeclaredProperty_Module()
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Module#getDeclaredProperties
 	 * @model opposite="declaredProperties" transient="false"
 	 * @generated
 	 */
-	Module getModule();
+	org.eclipse.emf.mwe2.language.mwe2.Module getModule();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty#getModule <em>Module</em>}' container reference.
@@ -75,6 +75,6 @@ public interface DeclaredProperty extends Referrable, JvmIdentifiableElement
 	 * @see #getModule()
 	 * @generated
 	 */
-	void setModule(Module value);
+	void setModule(org.eclipse.emf.mwe2.language.mwe2.Module value);
 
 } // DeclaredProperty
