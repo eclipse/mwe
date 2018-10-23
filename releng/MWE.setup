@@ -30,6 +30,28 @@
       value="http://download.eclipse.org/tools/orbit/downloads/drops/R20180330011457/repository/"/>
   <setupTask
       xsi:type="setup:VariableTask"
+      name="eclipse.target.platform"
+      defaultValue="Oxygen"
+      storageURI="scope://Workspace"
+      label="Target Platform">
+    <annotation
+        source="http://www.eclipse.org/oomph/setup/GlobalVariable"/>
+    <choice
+        value="2018-12"
+        label="Eclipse 2018-12 - 4.10"/>
+    <choice
+        value="2018-09"
+        label="Eclipse 2018-09 - 4.9"/>
+    <choice
+        value="Photon"
+        label="Eclipse Photon- 4.8"/>
+    <choice
+        value="Oxygen"
+        label="Eclipse Oxygen - 4.7"/>
+    <description>Choose the compatibility level of the target platform</description>
+  </setupTask>
+  <setupTask
+      xsi:type="setup:VariableTask"
       name="xtext.version"
       defaultValue="releases"
       label="Xtext Version">
@@ -49,6 +71,10 @@
       value="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/${xtext.version}"
       defaultValue=""
       label="Xtext p2 Respository URL"/>
+  <setupTask
+      xsi:type="setup:VariableTask"
+      name="p2.emf"
+      value="http://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Workspace Preferences">
@@ -252,28 +278,49 @@
           name="*"/>
       <requirement
           name="org.eclipse.platform.feature.group"/>
+      <requirement
+          name="org.eclipse.emf.sdk.feature.group"/>
       <sourceLocator
           rootFolder="${git.clone.emf.mwe.location}"
           locateNestedProjects="true"/>
       <repositoryList
-          name="Photon">
-        <repository
-            url="http://download.eclipse.org/eclipse/updates/4.8"/>
+          name="2018-12">
         <repository
             url="${p2.orbit}"/>
+        <repository
+            url="${p2.emf}"/>
+        <repository
+            url="${p2.xtext}"/>
+      </repositoryList>
+      <repositoryList
+          name="2018-09">
+        <repository
+            url="${p2.orbit}"/>
+        <repository
+            url="${p2.emf}"/>
+        <repository
+            url="${p2.xtext}"/>
+      </repositoryList>
+      <repositoryList
+          name="Photon">
+        <repository
+            url="${p2.orbit}"/>
+        <repository
+            url="${p2.emf}"/>
         <repository
             url="${p2.xtext}"/>
       </repositoryList>
       <repositoryList
           name="Oxygen">
         <repository
-            url="http://download.eclipse.org/eclipse/updates/4.7"/>
-        <repository
             url="${p2.orbit}"/>
+        <repository
+            url="${p2.emf}"/>
         <repository
             url="${p2.xtext}"/>
       </repositoryList>
     </targlet>
+    <description>MWE Target Platform</description>
   </setupTask>
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
@@ -286,7 +333,7 @@
             project="org.eclipse.emf.mwe.core"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.7/@workingSets.1"/>
+            excludedWorkingSet="//@setupTasks.10/@workingSets.1"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -344,14 +391,7 @@
     </setupTask>
   </setupTask>
   <stream name="master"
-      label="Master">
-    <setupTask
-        xsi:type="setup:VariableTask"
-        name="eclipse.target.platform"
-        value=""
-        defaultValue="Oxygen"
-        storageURI="scope://Workspace"/>
-  </stream>
+      label="Master"/>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
       href="index:/org.eclipse.setup#//@projectCatalogs[name='org.eclipse']"/>
