@@ -56,6 +56,8 @@ public class Mwe2SerializerTest {
 		module.append("var bool2 = false\n");
 		module.append("var str1 = 'xxx${bool1}xx'\n");
 		module.append("var str2 = \"xxx${bool2}xx\"\n");
+		module.append("var str3 = ''\n");
+		module.append("var str4 = \"\"\n");
 		module.append("var comp1 = org.eclipse.emf.mwe2.runtime.workflow.Workflow {} \n");
 		module.append("var ref1 = bool1 \n");
 		module.append("org.eclipse.emf.mwe2.runtime.workflow.Workflow {\n");
