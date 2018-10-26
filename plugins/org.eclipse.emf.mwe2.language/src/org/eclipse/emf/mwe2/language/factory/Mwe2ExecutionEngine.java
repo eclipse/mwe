@@ -18,7 +18,10 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.NullLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
@@ -163,6 +166,15 @@ public class Mwe2ExecutionEngine {
 	}
 	protected Object inCase(BooleanLiteral comp, Map<QualifiedName, Object> variables) {
 		return comp.isIsTrue();
+	}
+	protected Object inCase(IntegerLiteral comp, Map<QualifiedName, Object> variables) {
+		return comp.getValue();
+	}
+	protected Object inCase(DoubleLiteral comp, Map<QualifiedName, Object> variables) {
+		return comp.getValue();
+	}
+	protected Object inCase(NullLiteral comp, Map<QualifiedName, Object> variables) {
+		return null;
 	}
 	
 	protected Object inCase(StringLiteral comp, Map<QualifiedName, Object> variables) {

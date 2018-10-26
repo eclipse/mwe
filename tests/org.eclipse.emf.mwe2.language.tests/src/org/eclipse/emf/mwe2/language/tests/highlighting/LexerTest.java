@@ -83,6 +83,10 @@ public class LexerTest {
 		parseStringLiteral("*/", "#", "/");
 	}
 	
+	@Test public void testInt() {
+		parseStringLiteral("123", "INT");
+	}
+	
 	@Test public void testComplex() {
 		parseStringLiteral(
 				" import var id.id.* ", 
