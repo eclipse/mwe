@@ -12,33 +12,33 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
-import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.common.collect.Lists;
+import com.google.inject.Inject;
 
-/**
- * @author Sebastian Zarnekow - Initial contribution and API
- */
-public class MweResourceDescriptionManagerTest extends AbstractMwe2Tests {
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public class MweResourceDescriptionManagerTest {
 
 	private static final QualifiedName ORG_FOO_BAR = QualifiedName.create("org","foo","Bar");
 	private static final QualifiedName ORG_FOO_BAR_ZONK = QualifiedName.create("org","foo","Bar","zonk");
 
+	@Inject
 	private IResourceDescription.Manager manager;
+	@Inject
+	private ParseHelper<Module> parser;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(TestSetup.class);
-		manager = get(IResourceDescription.Manager.class);
-	}
-	
 	@Test public void testNoProperties() throws Exception {
 		IResourceDescription description = getDescription("");
 		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
@@ -173,6 +173,10 @@ public class MweResourceDescriptionManagerTest extends AbstractMwe2Tests {
 		Resource resource = getResourceFromString(model);
 		IResourceDescription description = manager.getResourceDescription(resource);
 		return description;
+	}
+
+	private Resource getResourceFromString(String model) throws Exception {
+		return parser.parse(model).eResource();
 	}
 	
 }

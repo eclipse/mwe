@@ -29,8 +29,13 @@ import org.eclipse.xtext.parser.IParseResult;
 import org.eclipse.xtext.util.Strings;
 import org.junit.Test;
 
+import com.google.inject.Inject;
+
 public class StringLiteralTest extends AbstractParserTest {
 
+	@Inject
+	private LinkingHelper linkingHelper;
+	
 	@Override
 	protected ParserRule getRule() {
 		return getGrammarAccess().getStringLiteralRule();
@@ -111,7 +116,6 @@ public class StringLiteralTest extends AbstractParserTest {
 		IParseResult result = parseSuccessfully(input);
 		StringLiteral literal = (StringLiteral) result.getRootASTElement();
 		int i = 0;
-		LinkingHelper linkingHelper = get(LinkingHelper.class);
 		for(StringPart part: literal.getParts()) {
 			if (part instanceof PropertyReference) {
 				assertTrue(expectation[i].startsWith("ref:"));
@@ -138,7 +142,6 @@ public class StringLiteralTest extends AbstractParserTest {
 		IParseResult result = parseSuccessfully(input);
 		StringLiteral literal = (StringLiteral) result.getRootASTElement();
 		int i = 0;
-		LinkingHelper linkingHelper = get(LinkingHelper.class);
 		for(StringPart part: literal.getParts()) {
 			if (part instanceof PropertyReference) {
 				ICompositeNode node = NodeModelUtils.getNode(part);
