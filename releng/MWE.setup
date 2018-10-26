@@ -280,6 +280,8 @@
           name="org.eclipse.platform.feature.group"/>
       <requirement
           name="org.eclipse.emf.sdk.feature.group"/>
+      <requirement
+           name="org.eclipse.jdt.feature.group"/>
       <sourceLocator
           rootFolder="${git.clone.emf.mwe.location}"
           locateNestedProjects="true"/>
