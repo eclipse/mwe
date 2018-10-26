@@ -16,7 +16,7 @@
   <setupTask
       xsi:type="setup:EclipseIniTask"
       option="-Doomph.redirection.emf.mwe"
-      value="=https://git.eclipse.org/c/emf/org.eclipse.mwe.git/plain/releng/MWE.setup->${git.clone.emf.mwe.location|uri}/releng/MWE.setup"
+      value="=https://raw.githubusercontent.com/eclipse/mwe/master/releng/MWE.setup->${git.clone.emf.mwe.location|uri}/releng/MWE.setup"
       vm="true"/>
   <setupTask
       xsi:type="setup:ResourceCreationTask"
