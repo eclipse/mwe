@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Modeling Workflow Engine 2 Language Eclipse Independent IDE
+Bundle-Vendor: Eclipse Xtext
+Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ide;singleton:=true
+Bundle-Version: 2.10.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.eclipse.emf.mwe2.language.ide
+Require-Bundle: org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
+ org.eclipse.xtext.ide,
+ org.eclipse.emf.mwe2.language
+Export-Package: org.eclipse.emf.mwe2.language.ide,
+ org.eclipse.emf.mwe2.language.ide.contentassist.antlr,
+ org.eclipse.emf.mwe2.language.ide.contentassist.antlr.internal,
+ org.eclipse.emf.mwe2.language.ide.contentassist,
+ org.eclipse.emf.mwe2.language.ide.contentassist.antlr.lexer,
+ org.eclipse.emf.mwe2.language.ui.highlighting
+
