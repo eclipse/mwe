@@ -150,12 +150,20 @@ public class Mwe2ExecutionEngineTest {
 		"ComponentA auto-inject {\n" +
 		"    y = 'y'\n" +
 		"    z = 'z'\n" +
+		"    i = 5\n" +
+		"    d = 1.1\n" +
+		"    b = true\n" +
+		"    x = null\n" +
 		"}";
 		ComponentA result  = (ComponentA) getRoot(mweString);
 		assertNotNull(result);
 		assertEquals("y", result.getY().get(0));
 		assertEquals(1, result.getY().size());
 		assertEquals("z", result.getZ());
+		assertEquals(5, result.getI());
+		assertEquals(1.1, result.getD(), 0.000001);
+		assertEquals(true, result.isB());
+		assertEquals(null, result.getX());
 	}
 	
 	@Test public void testAutoInject_Bug347132_02() throws Exception {

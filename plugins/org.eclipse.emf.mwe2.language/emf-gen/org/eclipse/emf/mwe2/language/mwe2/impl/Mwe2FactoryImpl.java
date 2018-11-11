@@ -238,7 +238,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 */
 	public NullLiteral createNullLiteral()
 	{
-		NullLiteralImpl nullLiteral = new NullLiteralImpl();
+		NullLiteralImplCustom nullLiteral = new NullLiteralImplCustom();
 		return nullLiteral;
 	}
 
@@ -249,7 +249,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 */
 	public DoubleLiteral createDoubleLiteral()
 	{
-		DoubleLiteralImpl doubleLiteral = new DoubleLiteralImpl();
+		DoubleLiteralImplCustom doubleLiteral = new DoubleLiteralImplCustom();
 		return doubleLiteral;
 	}
 
@@ -260,7 +260,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 */
 	public IntegerLiteral createIntegerLiteral()
 	{
-		IntegerLiteralImpl integerLiteral = new IntegerLiteralImpl();
+		IntegerLiteralImplCustom integerLiteral = new IntegerLiteralImplCustom();
 		return integerLiteral;
 	}
 
