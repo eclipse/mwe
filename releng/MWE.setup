@@ -76,6 +76,10 @@
       name="p2.emf"
       value="http://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
   <setupTask
+      xsi:type="setup:VariableTask"
+      name="p2.cbi.license"
+      value="http://download.eclipse.org/cbi/updates/license"/>
+  <setupTask
       xsi:type="setup:CompoundTask"
       name="Workspace Preferences">
     <setupTask
@@ -294,6 +298,8 @@
         <repository
             url="${p2.emf}"/>
         <repository
+            url="${p2.cbi.license}"/>
+        <repository
             url="${p2.xtext}"/>
       </repositoryList>
       <repositoryList
@@ -303,12 +309,16 @@
         <repository
             url="${p2.emf}"/>
         <repository
+            url="${p2.cbi.license}"/>
+        <repository
             url="${p2.xtext}"/>
       </repositoryList>
       <repositoryList
           name="Photon">
         <repository
             url="${p2.orbit}"/>
+        <repository
+            url="${p2.cbi.license}"/>
         <repository
             url="${p2.emf}"/>
         <repository
@@ -320,6 +330,8 @@
             url="${p2.orbit}"/>
         <repository
             url="${p2.emf}"/>
+        <repository
+            url="${p2.cbi.license}"/>
         <repository
             url="${p2.xtext}"/>
       </repositoryList>
