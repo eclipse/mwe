@@ -13,21 +13,36 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource.Diagnostic;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
-import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.xtext.common.types.JvmType;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class ActualTypeComputationTest extends AbstractMwe2Tests {
+import com.google.inject.Inject;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(new TestSetup());
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public class ActualTypeComputationTest {
+
+	@Inject
+	private ParseHelper<Module> parser;
+	
+	private Module getModel(String s) throws Exception {
+		Module result = parser.parse(s);
+		XtextResourceSet resourceSet = (XtextResourceSet) result.eResource().getResourceSet();
+		resourceSet.setClasspathURIContext(getClass());
+		return result;
 	}
 	
 	@Test public void testInferredLiteralTypes() throws Exception {
@@ -39,7 +54,7 @@ public class ActualTypeComputationTest extends AbstractMwe2Tests {
 	
 	@Test public void testInferredComponentType() throws Exception {
 		String typeName = ComponentA.class.getName();
-		Module module = (Module) getModel("module myModule " + typeName + " {"
+		Module module = getModel("module myModule " + typeName + " {"
 				+ "  x = {}"
 				+ "}");
 		Assignment assignment = module.getRoot().getAssignment().get(0);
@@ -66,12 +81,12 @@ public class ActualTypeComputationTest extends AbstractMwe2Tests {
 	}
 	
 	@Test public void testModuleType() throws Exception {
-		Module stringModule = (Module) getModel("module stringModule String {}");
+		Module stringModule = getModel("module stringModule String {}");
 		JvmType stringType = stringModule.getRoot().getActualType();
 		assertNotNull(stringType);
 		assertFalse("eIsProxy", stringType.eIsProxy());
 		assertEquals(String.class.getName(), stringType.getIdentifier());
-		Module referingModule = (Module) getModel("module referingModule java.util.ArrayList {}");
+		Module referingModule = getModel("module referingModule java.util.ArrayList {}");
 		referingModule.getRoot().setModule(stringModule);
 		referingModule.getRoot().setType(null);
 		JvmType referingRootType = referingModule.getRoot().getActualType();
@@ -79,13 +94,21 @@ public class ActualTypeComputationTest extends AbstractMwe2Tests {
 	}
 	
 	protected void checkPropertyType(String input, Class<?> expected) throws Exception {
-		Module module = (Module) getModelAndExpect("module myModule var " + input, 1);
+		Module module = getModelAndExpect("module myModule var " + input, 1);
 		List<DeclaredProperty> properties = module.getDeclaredProperties();
 		DeclaredProperty property = properties.get(properties.size() - 1);
 		JvmType type = property.getActualType();
 		assertNotNull(type);
 		assertFalse("eIsProxy", type.eIsProxy());
 		assertEquals(expected.getName(), type.getIdentifier());
+	}
+
+	private Module getModelAndExpect(String string, int errors) throws Exception {
+		Module result = getModel(string);
+		EcoreUtil.resolveAll(result);
+		EList<Diagnostic> errorList = result.eResource().getErrors();
+		assertEquals(errorList.toString(), errors, errorList.size());
+		return result;
 	}
 	
 }

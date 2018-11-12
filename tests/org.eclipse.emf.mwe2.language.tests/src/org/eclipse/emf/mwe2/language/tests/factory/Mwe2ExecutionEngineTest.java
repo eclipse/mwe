@@ -12,19 +12,26 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
-import org.eclipse.emf.mwe2.language.tests.TestSetup;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class Mwe2ExecutionEngineTest extends AbstractMwe2Tests {
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(new TestSetup());
-	}
+import com.google.inject.Inject;
+
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public class Mwe2ExecutionEngineTest {
 		
+	@Inject
+	private Mwe2ExecutionEngine engine;
+	@Inject
+	private ParseHelper<Module> parser;
+	
 	@Test public void testSimple() throws Exception {
 		ArrayList<?> m  = (ArrayList<?>) getRoot("module foo.Bar java.util.ArrayList{}");
 		assertNotNull(m);
@@ -175,11 +182,10 @@ public class Mwe2ExecutionEngineTest extends AbstractMwe2Tests {
 	}
 
 	private Module getModule(String string) throws Exception {
-		return (Module) getModel(string);
+		return parser.parse(string);
 	}
 	
 	private Object getRootInstance(Module m) {
-		Mwe2ExecutionEngine engine = get(Mwe2ExecutionEngine.class);
 		return engine.execute(m);
 	}
 }

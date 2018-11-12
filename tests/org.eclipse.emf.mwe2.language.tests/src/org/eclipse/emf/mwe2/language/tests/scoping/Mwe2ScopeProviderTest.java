@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
@@ -19,32 +20,45 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
-import org.eclipse.emf.mwe2.language.tests.TestSetup;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
 import org.eclipse.xtext.common.types.JvmExecutable;
 import org.eclipse.xtext.naming.QualifiedName;
+import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.scoping.IScope;
-import org.eclipse.xtext.scoping.IScopeProvider;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.util.StringInputStream;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
+import com.google.inject.Inject;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(new TestSetup());
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public class Mwe2ScopeProviderTest {
+
+	@Inject
+	private Mwe2ScopeProvider scopeProvider;
+	
+	@Inject
+	private ParseHelper<Module> parser;
+	
+	private Module getModel(String s) throws Exception {
+		Module result = parser.parse(s);
+		XtextResourceSet resourceSet = (XtextResourceSet) result.eResource().getResourceSet();
+		resourceSet.setClasspathURIContext(getClass());
+		return result;
 	}
 	
-	public Mwe2ScopeProvider getScopeProvider() {
-		return (Mwe2ScopeProvider) get(IScopeProvider.class);
+	private Mwe2ScopeProvider getScopeProvider() {
+		return scopeProvider;
 	}
 	
 	@Test public void testImplicitImportOfModulePackage_01() throws Exception {
-		Module model = (Module) getModel("module java.util.foo "+ComponentA.class.getName()+"{}");
+		Module model = getModel("module java.util.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNotNull(scope.getSingleElement(QualifiedName.create("java","util","List")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("List")));
@@ -52,21 +66,21 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 	}
 	
 	@Test public void testImplicitImportOfModulePackage_02() throws Exception {
-		Module model = (Module) getModel("module java.math.foo "+ComponentA.class.getName()+"{}");
+		Module model = getModel("module java.math.foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNull(scope.getSingleElement(QualifiedName.create("List")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
 	@Test public void testImplicitImportOfModulePackage_03() throws Exception {
-		Module model = (Module) getModel("module java.math.foo import java.math.* "+ComponentA.class.getName()+"{}");
+		Module model = getModel("module java.math.foo import java.math.* "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNull(scope.getSingleElement(QualifiedName.create("List")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("BigDecimal")));
 	}
 	
 	@Test public void testImplicitImportOfModulePackage_04() throws Exception {
-		Module model = (Module) getModel("module java.MyModule "+ComponentA.class.getName()+"{}");
+		Module model = getModel("module java.MyModule "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().getScope(model, Mwe2Package.Literals.REFERRABLE__TYPE);
 		assertNotNull(scope.getSingleElement(QualifiedName.create("math", "BigDecimal")));
 		assertNotNull(scope.getSingleElement(QualifiedName.create("math.BigDecimal")));
@@ -74,7 +88,7 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 	}
 	
 	@Test public void testCreateComponentFeatureScope_1() throws Exception {
-		Module model = (Module) getModel("module foo "+ComponentA.class.getName()+"{}");
+		Module model = getModel("module foo "+ComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
@@ -82,7 +96,7 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 
 	
 	@Test public void testCreateComponentFeatureScope_2() throws Exception {
-		Module model = (Module) getModel("module foo "+ComponentAFactory.class.getName()+"{}");
+		Module model = getModel("module foo "+ComponentAFactory.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentAFactory.class.getName(),feature.getDeclaringType().getIdentifier());
@@ -91,7 +105,7 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 	}
 
 	@Test public void testCreateComponentFeatureScope_3() throws Exception {
-		Module model = (Module) getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
+		Module model = getModel("module foo "+SubTypeOfComponentA.class.getName()+"{}");
 		IScope scope = getScopeProvider().createComponentFeaturesScope(model.getRoot());
 		JvmExecutable feature = getScopedElementByName(scope, "x");
 		assertEquals(ComponentA.class.getName(),feature.getDeclaringType().getIdentifier());
@@ -100,7 +114,7 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 	}
 	
 	@Test public void testCreateReferableScope() throws Exception {
-		Module model = (Module) getModel("module foo \n"
+		Module model = getModel("module foo \n"
 				+ "var a = 'foo'\n" 
 				+ "var a.b = 'foo'\n" 
 				+ ComponentA.class.getName() +"{\n"
@@ -126,6 +140,10 @@ public class Mwe2ScopeProviderTest extends AbstractMwe2Tests {
 		assertTrue(""+m.getRoot().getAssignment().get(0).getFeature(),m.getRoot().getAssignment().get(0).getFeature() instanceof DeclaredProperty);
 	}
 	
+	private Resource getResourceFromString(String string) throws Exception {
+		return getModel(string).eResource();
+	}
+
 	private JvmExecutable getScopedElementByName(IScope scope, String name) {
 		return (JvmExecutable) scope.getSingleElement(QualifiedName.create(name)).getEObjectOrProxy();
 	}

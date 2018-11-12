@@ -18,52 +18,41 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
-import org.eclipse.emf.mwe2.language.tests.UiTestSetup;
-import org.eclipse.emf.mwe2.language.ui.Mwe2UiModule;
+import org.eclipse.emf.mwe2.language.Mwe2UiInjectorProvider;
+import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer;
-import org.eclipse.emf.mwe2.language.ui.internal.Mwe2Activator;
 import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 import org.eclipse.xtext.parser.antlr.XtextTokenStream;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
-@SuppressWarnings("restriction") 
-public class LexerTest extends AbstractMwe2Tests {
+import com.google.inject.Inject;
 
+@InjectWith(Mwe2UiInjectorProvider.class)
+@RunWith(XtextRunner.class)
+public class LexerTest {
+
+	@Inject
 	private MweHighlightingLexer lexer;
+	@Inject
 	private ITokenDefProvider tokenDefProvider;
-	
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(new UiTestSetup() {
-			@Override
-			protected Mwe2UiModule createUiModule(Mwe2Activator activator) {
-				return new Mwe2UiModule(activator) {
-					@Override
-					public Class<? extends Factory> bindIJvmTypeProvider$Factory() {
-						return null;
-					}
-				};
-			}
-		});
-		lexer = get(MweHighlightingLexer.class);
-		tokenDefProvider = get(ITokenDefProvider.class);
-	}
+	@Inject
+	private Mwe2GrammarAccess grammarAccess;
 	
 	@Test public void testEmptyLiteral() {
 		parseStringLiteral("");
 	}
 	
 	@Test public void testKeywords() {
-		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(getGrammarAccess().getGrammar(), false);
+		TreeIterator<EObject> iterator = EcoreUtil.getAllContents(grammarAccess.getGrammar(), false);
 		while(iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof TerminalRule 
-					|| next == getGrammarAccess().getConstantValueRule()) {
+					|| next == grammarAccess.getConstantValueRule()) {
 				iterator.prune();
 			} else if (next instanceof Keyword) {
 				String value = ((Keyword) next).getValue();

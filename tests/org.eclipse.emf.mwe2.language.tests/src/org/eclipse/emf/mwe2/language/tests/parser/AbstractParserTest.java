@@ -12,29 +12,29 @@ import static org.junit.Assert.*;
 
 import java.io.StringReader;
 
-import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.junit.runner.RunWith;
 
 import com.google.common.collect.Iterables;
+import com.google.inject.Inject;
 
-public abstract class AbstractParserTest extends AbstractMwe2Tests {
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public abstract class AbstractParserTest {
 	
+	@Inject
 	private Mwe2Parser parser;
+	@Inject
+	private Mwe2GrammarAccess grammarAccess;
 
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(new Mwe2StandaloneSetup());
-		parser = get(Mwe2Parser.class);
-	}
-	
-	@Override
 	protected Mwe2GrammarAccess getGrammarAccess() {
-		return super.getGrammarAccess();
+		return grammarAccess;
 	}
 	
 	protected IParseResult parseSuccessfully(String input) {

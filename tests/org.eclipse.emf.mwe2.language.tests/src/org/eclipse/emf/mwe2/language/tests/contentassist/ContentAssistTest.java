@@ -9,32 +9,20 @@ package org.eclipse.emf.mwe2.language.tests.contentassist;
 
 import static org.junit.Assert.*;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.mwe2.language.Mwe2UiInjectorProvider;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.xtext.resource.FileExtensionProvider;
-import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.ui.editor.XtextSourceViewerConfiguration;
 import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
-import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.testing.AbstractContentAssistTest;
 import org.eclipse.xtext.ui.testing.ContentAssistProcessorTestBuilder;
-import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -47,22 +35,6 @@ import com.google.inject.Injector;
 @RunWith(XtextRunner.class)
 @InjectWith(Mwe2UiInjectorProvider.class)
 public class ContentAssistTest extends AbstractContentAssistTest {
-	
-	@Inject
-	private IResourceSetProvider resourceSetProvider;
-	
-	@Inject 
-	private FileExtensionProvider fileExtensionProvider;
-	
-	@BeforeClass
-	public static void setUpProject() throws Exception {
-		JavaProjectForTestProvider.setUp();
-	}
-
-	@AfterClass
-	public static void tearDownProject() throws Exception {
-		JavaProjectForTestProvider.tearDown();
-	}
 	
 	@Inject
 	private Injector injector;
@@ -399,22 +371,6 @@ public class ContentAssistTest extends AbstractContentAssistTest {
 				return result.toArray(new ICompletionProposal[result.size()]);
 			}
 		}.appendNl("module org.my.testmodel");
-	}
-	
-	@Override
-	public XtextResource getResourceFor(InputStream stream) {
-		try {
-
-			IProject project = JavaProjectForTestProvider.getJavaProject().getProject();
-			ResourceSet set = resourceSetProvider.get(project);
-			initializeTypeProvider((XtextResourceSet) set);
-			Resource result = set.createResource(URI.createURI("platform:/resource/" + project.getName() + "/src/Test."
-					+ fileExtensionProvider.getPrimaryFileExtension()));
-			result.load(stream, null);
-			return (XtextResource) result;
-		} catch (Throwable _e) {
-			throw Exceptions.sneakyThrow(_e);
-		}
 	}
 
 }

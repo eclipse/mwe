@@ -7,27 +7,40 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.serializer;
 
-import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
+import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
-import org.eclipse.emf.mwe2.language.tests.AbstractMwe2Tests;
+import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.xtext.EcoreUtil2;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.serializer.SerializerTestHelper;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.google.inject.Inject;
 
 /**
  * @author Moritz Eysholdt - Initial contribution and API
  */
-public class Mwe2SerializerTest extends AbstractMwe2Tests {
+@RunWith(XtextRunner.class)
+@InjectWith(Mwe2InjectorProvider.class)
+public class Mwe2SerializerTest {
 	
+	@Inject
 	private SerializerTestHelper tester;
 	
-	@Override
-	public void setUp() throws Exception {
-		super.setUp();
-		with(Mwe2StandaloneSetup.class);
-		tester = get(SerializerTestHelper.class);
+	@Inject
+	private ParseHelper<Module> parser;
+	
+	private Module getModel(String s) throws Exception {
+		Module result = parser.parse(s);
+		XtextResourceSet resourceSet = (XtextResourceSet) result.eResource().getResourceSet();
+		resourceSet.setClasspathURIContext(getClass());
+		return result;
 	}
-
+	
 	@Test public void testSimple() throws Exception {
 		StringBuilder module = new StringBuilder();
 		module.append("module foo\n");
@@ -43,6 +56,8 @@ public class Mwe2SerializerTest extends AbstractMwe2Tests {
 		module.append("var bool2 = false\n");
 		module.append("var str1 = 'xxx${bool1}xx'\n");
 		module.append("var str2 = \"xxx${bool2}xx\"\n");
+		module.append("var str3 = ''\n");
+		module.append("var str4 = \"\"\n");
 		module.append("var comp1 = org.eclipse.emf.mwe2.runtime.workflow.Workflow {} \n");
 		module.append("var ref1 = bool1 \n");
 		module.append("org.eclipse.emf.mwe2.runtime.workflow.Workflow {\n");
