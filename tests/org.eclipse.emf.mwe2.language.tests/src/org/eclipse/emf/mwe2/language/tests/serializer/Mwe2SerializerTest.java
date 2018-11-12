@@ -54,6 +54,7 @@ public class Mwe2SerializerTest {
 		module.append("module foo\n");
 		module.append("var bool1 = true\n");
 		module.append("var bool2 = false\n");
+		module.append("var dbl = 0.00000056\n");
 		module.append("var str1 = 'xxx${bool1}xx'\n");
 		module.append("var str2 = \"xxx${bool2}xx\"\n");
 		module.append("var str3 = ''\n");

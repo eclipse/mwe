@@ -91,7 +91,7 @@ public class Mwe2ValidatorTest {
 		String textModel = "module foo "+ComponentA.class.getName()+" { d = 1 }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
-		assertEquals(0,list.size());
+		assertEquals(list.toString(), 0, list.size());
 	}
 	
 	@Test public void testAssignability_withFactory() throws Exception {
