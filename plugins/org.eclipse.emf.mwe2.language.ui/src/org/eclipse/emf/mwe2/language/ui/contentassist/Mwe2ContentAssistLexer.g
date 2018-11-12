@@ -47,6 +47,10 @@ QuotationMark : {!singleQuotedString || stringVariable}?=>'"' { if (!singleQuote
 
 Apostrophe :{!doubleQuotedString || stringVariable}?=> '\'' { if (!doubleQuotedString) { singleQuotedString = !singleQuotedString; } };
 
+PlusSign : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'+';
+
+HyphenMinus : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'-';
+
 FullStop : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>'.';
 
 Colon : {!singleQuotedString && !doubleQuotedString || stringVariable}?=>':';

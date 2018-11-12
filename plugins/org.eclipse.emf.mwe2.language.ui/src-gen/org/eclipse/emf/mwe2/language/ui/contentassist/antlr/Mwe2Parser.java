@@ -40,6 +40,7 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getRootComponentAccess().getAlternatives_1(), "rule__RootComponent__Alternatives_1");
 					put(grammarAccess.getComponentAccess().getAlternatives_1(), "rule__Component__Alternatives_1");
 					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
+					put(grammarAccess.getIntValueAccess().getAlternatives_0(), "rule__IntValue__Alternatives_0");
 					put(grammarAccess.getBooleanLiteralAccess().getAlternatives_1(), "rule__BooleanLiteral__Alternatives_1");
 					put(grammarAccess.getStringLiteralAccess().getAlternatives(), "rule__StringLiteral__Alternatives");
 					put(grammarAccess.getConstantValueAccess().getAlternatives(), "rule__ConstantValue__Alternatives");
@@ -57,6 +58,7 @@ public class Mwe2Parser extends AbstractContentAssistParser {
 					put(grammarAccess.getAssignmentAccess().getGroup(), "rule__Assignment__Group__0");
 					put(grammarAccess.getNullLiteralAccess().getGroup(), "rule__NullLiteral__Group__0");
 					put(grammarAccess.getDoubleValueAccess().getGroup(), "rule__DoubleValue__Group__0");
+					put(grammarAccess.getIntValueAccess().getGroup(), "rule__IntValue__Group__0");
 					put(grammarAccess.getBooleanLiteralAccess().getGroup(), "rule__BooleanLiteral__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup(), "rule__FQN__Group__0");
 					put(grammarAccess.getFQNAccess().getGroup_1(), "rule__FQN__Group_1__0");

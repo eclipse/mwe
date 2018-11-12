@@ -81,10 +81,10 @@ public class Mwe2ValidatorTest {
 	}
 	
 	@Test public void testAssignability_5() throws Exception {
-		String textModel = "module foo "+ComponentA.class.getName()+" { b = true i = 1 d = 1.1 }";
+		String textModel = "module foo "+ComponentA.class.getName()+" { b = true i = -1 d = -1.1 }";
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
-		assertEquals(0,list.size());
+		assertEquals(list.toString(), 0,list.size());
 	}
 	
 	@Test public void testAssignability_6() throws Exception {

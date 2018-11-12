@@ -46,6 +46,10 @@ QuotationMark : '"';
 
 Apostrophe : '\'';
 
+PlusSign : '+';
+
+HyphenMinus : '-';
+
 FullStop : '.';
 
 Colon : ':';

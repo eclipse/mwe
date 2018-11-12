@@ -197,7 +197,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	 *     IntegerLiteral returns IntegerLiteral
 	 *
 	 * Constraint:
-	 *     value=INT
+	 *     value=IntValue
 	 */
 	protected void sequence_IntegerLiteral(ISerializationContext context, IntegerLiteral semanticObject) {
 		if (errorAcceptor != null) {
@@ -205,7 +205,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.INTEGER_LITERAL__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIntegerLiteralAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getIntegerLiteralAccess().getValueIntValueParserRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

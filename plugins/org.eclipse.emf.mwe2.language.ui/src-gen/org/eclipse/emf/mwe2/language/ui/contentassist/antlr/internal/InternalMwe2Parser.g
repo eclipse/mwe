@@ -38,6 +38,8 @@ import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
  	{
 		tokenNameToValue.put("QuotationMark", "'\"'");
 		tokenNameToValue.put("Apostrophe", "'\''");
+		tokenNameToValue.put("PlusSign", "'+'");
+		tokenNameToValue.put("HyphenMinus", "'-'");
 		tokenNameToValue.put("FullStop", "'.'");
 		tokenNameToValue.put("Colon", "':'");
 		tokenNameToValue.put("EqualsSign", "'='");
@@ -416,6 +418,34 @@ finally {
 
 
 
+// Entry rule entryRuleIntValue
+entryRuleIntValue 
+:
+{ before(grammarAccess.getIntValueRule()); }
+	 ruleIntValue
+{ after(grammarAccess.getIntValueRule()); } 
+	 EOF 
+;
+
+// Rule IntValue
+ruleIntValue 
+    @init {
+		int stackSize = keepStackSize();
+    }
+    :
+(
+{ before(grammarAccess.getIntValueAccess().getGroup()); }
+(rule__IntValue__Group__0)
+{ after(grammarAccess.getIntValueAccess().getGroup()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+
 // Entry rule entryRuleBooleanLiteral
 entryRuleBooleanLiteral 
 :
@@ -761,6 +791,32 @@ rule__Value__Alternatives
 { before(grammarAccess.getValueAccess().getReferenceParserRuleCall_6()); }
 	ruleReference
 { after(grammarAccess.getValueAccess().getReferenceParserRuleCall_6()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__IntValue__Alternatives_0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIntValueAccess().getHyphenMinusKeyword_0_0()); }
+
+	HyphenMinus 
+
+{ after(grammarAccess.getIntValueAccess().getHyphenMinusKeyword_0_0()); }
+)
+
+    |(
+{ before(grammarAccess.getIntValueAccess().getPlusSignKeyword_0_1()); }
+
+	PlusSign 
+
+{ after(grammarAccess.getIntValueAccess().getPlusSignKeyword_0_1()); }
 )
 
 ;
@@ -2252,9 +2308,9 @@ rule__DoubleValue__Group__0__Impl
     }
 :
 (
-{ before(grammarAccess.getDoubleValueAccess().getINTTerminalRuleCall_0()); }
-	RULE_INT
-{ after(grammarAccess.getDoubleValueAccess().getINTTerminalRuleCall_0()); }
+{ before(grammarAccess.getDoubleValueAccess().getIntValueParserRuleCall_0()); }
+	ruleIntValue
+{ after(grammarAccess.getDoubleValueAccess().getIntValueParserRuleCall_0()); }
 )
 
 ;
@@ -2322,6 +2378,67 @@ finally {
 }
 
 
+
+
+
+
+
+
+rule__IntValue__Group__0
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__IntValue__Group__0__Impl
+	rule__IntValue__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__IntValue__Group__0__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIntValueAccess().getAlternatives_0()); }
+(rule__IntValue__Alternatives_0)?
+{ after(grammarAccess.getIntValueAccess().getAlternatives_0()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
+rule__IntValue__Group__1
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+	rule__IntValue__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__IntValue__Group__1__Impl
+    @init {
+		int stackSize = keepStackSize();
+    }
+:
+(
+{ before(grammarAccess.getIntValueAccess().getINTTerminalRuleCall_1()); }
+	RULE_INT
+{ after(grammarAccess.getIntValueAccess().getINTTerminalRuleCall_1()); }
+)
+
+;
+finally {
+	restoreStackSize(stackSize);
+}
 
 
 
@@ -3341,8 +3458,8 @@ rule__IntegerLiteral__ValueAssignment
     }
 :
 (
-{ before(grammarAccess.getIntegerLiteralAccess().getValueINTTerminalRuleCall_0()); }
-	RULE_INT{ after(grammarAccess.getIntegerLiteralAccess().getValueINTTerminalRuleCall_0()); }
+{ before(grammarAccess.getIntegerLiteralAccess().getValueIntValueParserRuleCall_0()); }
+	ruleIntValue{ after(grammarAccess.getIntegerLiteralAccess().getValueIntValueParserRuleCall_0()); }
 )
 
 ;

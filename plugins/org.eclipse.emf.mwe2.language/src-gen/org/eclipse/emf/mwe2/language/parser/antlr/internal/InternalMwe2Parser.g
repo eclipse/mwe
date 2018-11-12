@@ -827,12 +827,16 @@ ruleDoubleValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleTok
     }
     @after { leaveRule();
     }:
-(    this_INT_0=RULE_INT    {
-		$current.merge(this_INT_0);
+(
+    { 
+        newCompositeNode(grammarAccess.getDoubleValueAccess().getIntValueParserRuleCall_0()); 
+    }
+    this_IntValue_0=ruleIntValue    {
+		$current.merge(this_IntValue_0);
     }
 
     { 
-    newLeafNode(this_INT_0, grammarAccess.getDoubleValueAccess().getINTTerminalRuleCall_0()); 
+        afterParserOrEnumRuleCall();
     }
 
 	kw=FullStop 
@@ -870,24 +874,66 @@ ruleIntegerLiteral returns [EObject current=null]
     @after { leaveRule(); }:
 (
 (
-		lv_value_0_0=RULE_INT
-		{
-			newLeafNode(lv_value_0_0, grammarAccess.getIntegerLiteralAccess().getValueINTTerminalRuleCall_0()); 
-		}
-		{
+		{ 
+	        newCompositeNode(grammarAccess.getIntegerLiteralAccess().getValueIntValueParserRuleCall_0()); 
+	    }
+		lv_value_0_0=ruleIntValue		{
 	        if ($current==null) {
-	            $current = createModelElement(grammarAccess.getIntegerLiteralRule());
+	            $current = createModelElementForParent(grammarAccess.getIntegerLiteralRule());
 	        }
-       		setWithLastConsumed(
+       		set(
        			$current, 
        			"value",
         		lv_value_0_0, 
-        		"org.eclipse.emf.mwe2.language.Mwe2.INT");
+        		"org.eclipse.emf.mwe2.language.Mwe2.IntValue");
+	        afterParserOrEnumRuleCall();
 	    }
 
 )
 )
 ;
+
+
+
+
+
+// Entry rule entryRuleIntValue
+entryRuleIntValue returns [String current=null] 
+:
+	{ newCompositeNode(grammarAccess.getIntValueRule()); } 
+	 iv_ruleIntValue=ruleIntValue 
+	 { $current=$iv_ruleIntValue.current.getText(); }  
+	 EOF 
+;
+
+// Rule IntValue
+ruleIntValue returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] 
+    @init { enterRule(); 
+    }
+    @after { leaveRule();
+    }:
+((
+	kw=HyphenMinus 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getIntValueAccess().getHyphenMinusKeyword_0_0()); 
+    }
+
+    |
+	kw=PlusSign 
+    {
+        $current.merge(kw);
+        newLeafNode(kw, grammarAccess.getIntValueAccess().getPlusSignKeyword_0_1()); 
+    }
+)?    this_INT_2=RULE_INT    {
+		$current.merge(this_INT_2);
+    }
+
+    { 
+    newLeafNode(this_INT_2, grammarAccess.getIntValueAccess().getINTTerminalRuleCall_1()); 
+    }
+)
+    ;
 
 
 

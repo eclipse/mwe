@@ -20,23 +20,25 @@ public class Mwe2ContentAssistLexer extends Lexer {
     public static final int True=9;
     public static final int False=7;
     public static final int QuotationMark=17;
-    public static final int RULE_SL_COMMENT=28;
-    public static final int EqualsSign=21;
+    public static final int RULE_SL_COMMENT=30;
+    public static final int EqualsSign=23;
+    public static final int HyphenMinus=20;
     public static final int AutoInject=4;
-    public static final int Colon=20;
-    public static final int RightCurlyBracket=24;
+    public static final int Colon=22;
+    public static final int RightCurlyBracket=26;
     public static final int EOF=-1;
     public static final int Apostrophe=18;
-    public static final int FullStop=19;
-    public static final int RULE_ID=25;
-    public static final int RULE_WS=29;
-    public static final int LeftCurlyBracket=23;
-    public static final int RULE_ANY_OTHER=30;
-    public static final int CommercialAt=22;
+    public static final int FullStop=21;
+    public static final int RULE_ID=27;
+    public static final int RULE_WS=31;
+    public static final int LeftCurlyBracket=25;
+    public static final int RULE_ANY_OTHER=32;
+    public static final int CommercialAt=24;
     public static final int ReverseSolidusQuotationMark=14;
-    public static final int RULE_INT=26;
+    public static final int PlusSign=19;
+    public static final int RULE_INT=28;
     public static final int FullStopAsterisk=13;
-    public static final int RULE_ML_COMMENT=27;
+    public static final int RULE_ML_COMMENT=29;
     public static final int ReverseSolidusDollarSignLeftCurlyBracket=10;
     public static final int Module=6;
 
@@ -404,13 +406,59 @@ public class Mwe2ContentAssistLexer extends Lexer {
     }
     // $ANTLR end "Apostrophe"
 
+    // $ANTLR start "PlusSign"
+    public final void mPlusSign() throws RecognitionException {
+        try {
+            int _type = PlusSign;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:10: ({...}? => '+' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:12: {...}? => '+'
+            {
+            if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
+                throw new FailedPredicateException(input, "PlusSign", "!singleQuotedString && !doubleQuotedString || stringVariable");
+            }
+            match('+'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "PlusSign"
+
+    // $ANTLR start "HyphenMinus"
+    public final void mHyphenMinus() throws RecognitionException {
+        try {
+            int _type = HyphenMinus;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:13: ({...}? => '-' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:15: {...}? => '-'
+            {
+            if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
+                throw new FailedPredicateException(input, "HyphenMinus", "!singleQuotedString && !doubleQuotedString || stringVariable");
+            }
+            match('-'); 
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "HyphenMinus"
+
     // $ANTLR start "FullStop"
     public final void mFullStop() throws RecognitionException {
         try {
             int _type = FullStop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:10: ({...}? => '.' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:50:12: {...}? => '.'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:10: ({...}? => '.' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:12: {...}? => '.'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "FullStop", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -432,8 +480,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = Colon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:7: ({...}? => ':' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:52:9: {...}? => ':'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:7: ({...}? => ':' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:9: {...}? => ':'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Colon", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -455,8 +503,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = EqualsSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:12: ({...}? => '=' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:54:14: {...}? => '='
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:12: ({...}? => '=' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:14: {...}? => '='
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "EqualsSign", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -478,8 +526,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = CommercialAt;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:14: ({...}? => '@' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:56:16: {...}? => '@'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:60:14: ({...}? => '@' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:60:16: {...}? => '@'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "CommercialAt", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -501,8 +549,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = LeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:18: ({...}? => '{' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:58:20: {...}? => '{'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:62:18: ({...}? => '{' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:62:20: {...}? => '{'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "LeftCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -524,8 +572,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RightCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:60:19: ({...}? => '}' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:60:21: {...}? => '}'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:19: ({...}? => '}' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:21: {...}? => '}'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RightCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -548,10 +596,10 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:11: ( '^' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -560,7 +608,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:11: '^'
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:11: '^'
                     {
                     match('^'); 
 
@@ -578,7 +626,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:64:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -627,13 +675,13 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:66:10: ({...}? => ( '0' .. '9' )+ )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:66:12: {...}? => ( '0' .. '9' )+
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:10: ({...}? => ( '0' .. '9' )+ )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:12: {...}? => ( '0' .. '9' )+
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_INT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:66:78: ( '0' .. '9' )+
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:78: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -647,7 +695,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:66:79: '0' .. '9'
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:79: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -679,18 +727,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:17: ({...}? => ( '/*' ( options {greedy=false; } : . )* '*/' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:19: {...}? => ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:17: ({...}? => ( '/*' ( options {greedy=false; } : . )* '*/' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:19: {...}? => ( '/*' ( options {greedy=false; } : . )* '*/' )
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_ML_COMMENT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:85: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:86: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:85: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:86: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:91: ( options {greedy=false; } : . )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:91: ( options {greedy=false; } : . )*
             loop4:
             do {
                 int alt4=2;
@@ -715,7 +763,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:68:119: .
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:119: .
             	    {
             	    matchAny(); 
 
@@ -748,18 +796,18 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:17: ({...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:19: {...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:17: ({...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:19: {...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_SL_COMMENT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:85: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:86: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:85: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:86: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:91: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:91: (~ ( ( '\\n' | '\\r' ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -772,7 +820,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:91: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:91: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -792,7 +840,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:107: ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:107: ( ( '\\r' )? '\\n' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -801,9 +849,9 @@ public class Mwe2ContentAssistLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:108: ( '\\r' )? '\\n'
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:108: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:108: ( '\\r' )?
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:108: ( '\\r' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -812,7 +860,7 @@ public class Mwe2ContentAssistLexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:70:108: '\\r'
+                            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:108: '\\r'
                             {
                             match('\r'); 
 
@@ -847,10 +895,10 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:76:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:72:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -904,8 +952,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:16: ( . )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:74:18: .
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:78:16: ( . )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:78:18: .
             {
             matchAny(); 
 
@@ -920,8 +968,8 @@ public class Mwe2ContentAssistLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:8: ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt9=27;
+        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:8: ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | PlusSign | HyphenMinus | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt9=29;
         alt9 = dfa9.predict(input);
         switch (alt9) {
             case 1 :
@@ -1030,84 +1078,98 @@ public class Mwe2ContentAssistLexer extends Lexer {
                 }
                 break;
             case 16 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:247: FullStop
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:247: PlusSign
+                {
+                mPlusSign(); 
+
+                }
+                break;
+            case 17 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:256: HyphenMinus
+                {
+                mHyphenMinus(); 
+
+                }
+                break;
+            case 18 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:268: FullStop
                 {
                 mFullStop(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:256: Colon
+            case 19 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:277: Colon
                 {
                 mColon(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:262: EqualsSign
+            case 20 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:283: EqualsSign
                 {
                 mEqualsSign(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:273: CommercialAt
+            case 21 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:294: CommercialAt
                 {
                 mCommercialAt(); 
 
                 }
                 break;
-            case 20 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:286: LeftCurlyBracket
+            case 22 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:307: LeftCurlyBracket
                 {
                 mLeftCurlyBracket(); 
 
                 }
                 break;
-            case 21 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:303: RightCurlyBracket
+            case 23 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:324: RightCurlyBracket
                 {
                 mRightCurlyBracket(); 
 
                 }
                 break;
-            case 22 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:321: RULE_ID
+            case 24 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:342: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 23 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:329: RULE_INT
+            case 25 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:350: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 24 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:338: RULE_ML_COMMENT
+            case 26 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:359: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 25 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:354: RULE_SL_COMMENT
+            case 27 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:375: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 26 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:370: RULE_WS
+            case 28 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:391: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 27 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:378: RULE_ANY_OTHER
+            case 29 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/contentassist/Mwe2ContentAssistLexer.g:1:399: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1121,49 +1183,50 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
     protected DFA9 dfa9 = new DFA9(this);
     static final String DFA9_eotS =
-        "\1\uffff\6\31\1\27\1\31\1\27\1\46\1\47\1\50\1\51\1\52\1\53\1\54"+
-        "\1\55\1\27\1\uffff\1\56\1\27\2\uffff\1\31\1\uffff\5\31\4\uffff\1"+
-        "\31\17\uffff\6\31\1\110\10\uffff\4\31\1\115\1\116\2\uffff\2\31\1"+
-        "\122\3\uffff\1\125\1\126\10\uffff";
+        "\1\uffff\6\33\1\31\1\33\1\31\1\50\1\51\1\52\1\53\1\54\1\55\1\56"+
+        "\1\57\1\60\1\61\1\31\1\uffff\1\62\1\31\2\uffff\1\33\1\uffff\5\33"+
+        "\4\uffff\1\33\21\uffff\6\33\1\116\12\uffff\4\33\1\123\1\124\2\uffff"+
+        "\2\33\1\130\3\uffff\1\133\1\134\10\uffff";
     static final String DFA9_eofS =
-        "\132\uffff";
+        "\140\uffff";
     static final String DFA9_minS =
-        "\1\0\1\165\1\155\1\157\1\141\1\162\1\165\1\42\1\141\1\173\1\52\7"+
+        "\1\0\1\165\1\155\1\157\1\141\1\162\1\165\1\42\1\141\1\173\1\52\11"+
         "\0\1\101\1\uffff\1\60\1\52\2\uffff\1\164\1\uffff\1\160\1\144\1\154"+
-        "\1\165\1\154\4\uffff\1\162\2\uffff\11\0\4\uffff\2\157\1\165\1\163"+
-        "\1\145\1\154\1\60\10\uffff\1\55\1\162\1\154\1\145\2\60\1\0\1\uffff"+
+        "\1\165\1\154\4\uffff\1\162\2\uffff\13\0\4\uffff\2\157\1\165\1\163"+
+        "\1\145\1\154\1\60\12\uffff\1\55\1\162\1\154\1\145\2\60\1\0\1\uffff"+
         "\1\164\1\145\1\60\2\0\1\uffff\2\60\1\0\2\uffff\2\0\3\uffff";
     static final String DFA9_maxS =
         "\1\uffff\1\165\1\155\1\157\1\141\1\162\1\165\1\134\1\141\1\173\1"+
-        "\52\7\0\1\172\1\uffff\1\71\1\57\2\uffff\1\164\1\uffff\1\160\1\144"+
-        "\1\154\1\165\1\154\4\uffff\1\162\2\uffff\11\0\4\uffff\2\157\1\165"+
-        "\1\163\1\145\1\154\1\172\10\uffff\1\55\1\162\1\154\1\145\2\172\1"+
+        "\52\11\0\1\172\1\uffff\1\71\1\57\2\uffff\1\164\1\uffff\1\160\1\144"+
+        "\1\154\1\165\1\154\4\uffff\1\162\2\uffff\13\0\4\uffff\2\157\1\165"+
+        "\1\163\1\145\1\154\1\172\12\uffff\1\55\1\162\1\154\1\145\2\172\1"+
         "\0\1\uffff\1\164\1\145\1\172\2\0\1\uffff\2\172\1\0\2\uffff\2\0\3"+
         "\uffff";
     static final String DFA9_acceptS =
-        "\23\uffff\1\26\2\uffff\1\32\1\33\1\uffff\1\26\5\uffff\1\7\1\13\1"+
-        "\14\1\15\1\uffff\1\11\1\12\11\uffff\1\27\1\30\1\31\1\32\7\uffff"+
-        "\1\20\1\16\1\17\1\21\1\22\1\23\1\24\1\25\7\uffff\1\1\5\uffff\1\10"+
-        "\3\uffff\1\5\1\6\2\uffff\1\4\1\2\1\3";
+        "\25\uffff\1\30\2\uffff\1\34\1\35\1\uffff\1\30\5\uffff\1\7\1\13\1"+
+        "\14\1\15\1\uffff\1\11\1\12\13\uffff\1\31\1\32\1\33\1\34\7\uffff"+
+        "\1\22\1\16\1\17\1\20\1\21\1\23\1\24\1\25\1\26\1\27\7\uffff\1\1\5"+
+        "\uffff\1\10\3\uffff\1\5\1\6\2\uffff\1\4\1\2\1\3";
     static final String DFA9_specialS =
-        "\1\2\11\uffff\1\23\11\uffff\1\0\1\1\20\uffff\1\14\1\12\1\13\1\15"+
-        "\1\16\1\17\1\20\1\21\1\22\23\uffff\1\3\5\uffff\1\11\4\uffff\1\7"+
-        "\1\10\3\uffff\1\6\2\uffff\1\4\1\5\3\uffff}>";
+        "\1\10\11\uffff\1\24\13\uffff\1\3\1\25\20\uffff\1\15\1\11\1\12\1"+
+        "\13\1\14\1\16\1\17\1\20\1\21\1\22\1\23\25\uffff\1\0\5\uffff\1\7"+
+        "\4\uffff\1\5\1\6\3\uffff\1\4\2\uffff\1\1\1\2\3\uffff}>";
     static final String[] DFA9_transitionS = {
-            "\11\27\2\26\2\27\1\26\22\27\1\26\1\27\1\13\1\27\1\11\2\27\1"+
-            "\14\6\27\1\12\1\25\12\24\1\15\2\27\1\16\2\27\1\17\32\23\1\27"+
-            "\1\7\1\27\1\22\1\23\1\27\1\1\4\23\1\4\2\23\1\2\3\23\1\3\1\6"+
-            "\5\23\1\5\1\23\1\10\4\23\1\20\1\27\1\21\uff82\27",
-            "\1\30",
+            "\11\31\2\30\2\31\1\30\22\31\1\30\1\31\1\13\1\31\1\11\2\31\1"+
+            "\14\3\31\1\15\1\31\1\16\1\12\1\27\12\26\1\17\2\31\1\20\2\31"+
+            "\1\21\32\25\1\31\1\7\1\31\1\24\1\25\1\31\1\1\4\25\1\4\2\25\1"+
+            "\2\3\25\1\3\1\6\5\25\1\5\1\25\1\10\4\25\1\22\1\31\1\23\uff82"+
+            "\31",
             "\1\32",
-            "\1\33",
             "\1\34",
             "\1\35",
             "\1\36",
-            "\1\40\1\uffff\1\37\2\uffff\1\41\64\uffff\1\42",
-            "\1\43",
-            "\1\44",
+            "\1\37",
+            "\1\40",
+            "\1\42\1\uffff\1\41\2\uffff\1\43\64\uffff\1\44",
             "\1\45",
+            "\1\46",
+            "\1\47",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -1171,24 +1234,26 @@ public class Mwe2ContentAssistLexer extends Lexer {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
-            "\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\uffff",
+            "\1\uffff",
+            "\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
-            "\12\57",
-            "\1\60\4\uffff\1\61",
+            "\12\63",
+            "\1\64\4\uffff\1\65",
             "",
             "",
-            "\1\63",
-            "",
-            "\1\64",
-            "\1\65",
-            "\1\66",
             "\1\67",
+            "",
             "\1\70",
-            "",
-            "",
-            "",
-            "",
             "\1\71",
+            "\1\72",
+            "\1\73",
+            "\1\74",
+            "",
+            "",
+            "",
+            "",
+            "\1\75",
             "",
             "",
             "\1\uffff",
@@ -1200,41 +1265,45 @@ public class Mwe2ContentAssistLexer extends Lexer {
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
+            "\1\uffff",
+            "\1\uffff",
             "",
             "",
             "",
             "",
-            "\1\102",
-            "\1\103",
-            "\1\104",
-            "\1\105",
-            "\1\106",
-            "\1\107",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
+            "\1\110",
             "\1\111",
             "\1\112",
             "\1\113",
             "\1\114",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\1\uffff",
+            "\1\115",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\117",
             "\1\120",
             "\1\121",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\1\122",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\1\uffff",
+            "",
+            "\1\126",
+            "\1\127",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\1\uffff",
             "\1\uffff",
             "",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
-            "\12\31\7\uffff\32\31\4\uffff\1\31\1\uffff\32\31",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
+            "\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
             "\1\uffff",
             "",
             "",
@@ -1275,45 +1344,133 @@ public class Mwe2ContentAssistLexer extends Lexer {
             this.transition = DFA9_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | PlusSign | HyphenMinus | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA9_20 = input.LA(1);
+                        int LA9_72 = input.LA(1);
 
                          
-                        int index9_20 = input.index();
+                        int index9_72 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((LA9_20>='0' && LA9_20<='9')) && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 47;}
+                        if ( (LA9_72=='-') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 79;}
 
-                        else s = 46;
+                        else s = 27;
 
                          
-                        input.seek(index9_20);
+                        input.seek(index9_72);
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA9_21 = input.LA(1);
+                        int LA9_91 = input.LA(1);
 
                          
-                        int index9_21 = input.index();
+                        int index9_91 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA9_21=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 48;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 94;}
 
-                        else if ( (LA9_21=='/') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 49;}
-
-                        else s = 23;
+                        else if ( (true) ) {s = 27;}
 
                          
-                        input.seek(index9_21);
+                        input.seek(index9_91);
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
+                        int LA9_92 = input.LA(1);
+
+                         
+                        int index9_92 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 95;}
+
+                        else if ( (true) ) {s = 27;}
+
+                         
+                        input.seek(index9_92);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA9_22 = input.LA(1);
+
+                         
+                        int index9_22 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((LA9_22>='0' && LA9_22<='9')) && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 51;}
+
+                        else s = 50;
+
+                         
+                        input.seek(index9_22);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA9_88 = input.LA(1);
+
+                         
+                        int index9_88 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 93;}
+
+                        else if ( (true) ) {s = 27;}
+
+                         
+                        input.seek(index9_88);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA9_83 = input.LA(1);
+
+                         
+                        int index9_83 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 89;}
+
+                        else if ( (true) ) {s = 27;}
+
+                         
+                        input.seek(index9_83);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA9_84 = input.LA(1);
+
+                         
+                        int index9_84 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 90;}
+
+                        else if ( (true) ) {s = 27;}
+
+                         
+                        input.seek(index9_84);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA9_78 = input.LA(1);
+
+                         
+                        int index9_78 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 85;}
+
+                        else if ( (true) ) {s = 27;}
+
+                         
+                        input.seek(index9_78);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
                         int LA9_0 = input.LA(1);
 
                         s = -1;
@@ -1341,283 +1498,229 @@ public class Mwe2ContentAssistLexer extends Lexer {
 
                         else if ( (LA9_0=='\'') ) {s = 12;}
 
-                        else if ( (LA9_0==':') ) {s = 13;}
+                        else if ( (LA9_0=='+') ) {s = 13;}
 
-                        else if ( (LA9_0=='=') ) {s = 14;}
+                        else if ( (LA9_0=='-') ) {s = 14;}
 
-                        else if ( (LA9_0=='@') ) {s = 15;}
+                        else if ( (LA9_0==':') ) {s = 15;}
 
-                        else if ( (LA9_0=='{') ) {s = 16;}
+                        else if ( (LA9_0=='=') ) {s = 16;}
 
-                        else if ( (LA9_0=='}') ) {s = 17;}
+                        else if ( (LA9_0=='@') ) {s = 17;}
 
-                        else if ( (LA9_0=='^') ) {s = 18;}
+                        else if ( (LA9_0=='{') ) {s = 18;}
 
-                        else if ( ((LA9_0>='A' && LA9_0<='Z')||LA9_0=='_'||(LA9_0>='b' && LA9_0<='e')||(LA9_0>='g' && LA9_0<='h')||(LA9_0>='j' && LA9_0<='l')||(LA9_0>='o' && LA9_0<='s')||LA9_0=='u'||(LA9_0>='w' && LA9_0<='z')) ) {s = 19;}
+                        else if ( (LA9_0=='}') ) {s = 19;}
 
-                        else if ( ((LA9_0>='0' && LA9_0<='9')) ) {s = 20;}
+                        else if ( (LA9_0=='^') ) {s = 20;}
 
-                        else if ( (LA9_0=='/') ) {s = 21;}
+                        else if ( ((LA9_0>='A' && LA9_0<='Z')||LA9_0=='_'||(LA9_0>='b' && LA9_0<='e')||(LA9_0>='g' && LA9_0<='h')||(LA9_0>='j' && LA9_0<='l')||(LA9_0>='o' && LA9_0<='s')||LA9_0=='u'||(LA9_0>='w' && LA9_0<='z')) ) {s = 21;}
 
-                        else if ( ((LA9_0>='\t' && LA9_0<='\n')||LA9_0=='\r'||LA9_0==' ') ) {s = 22;}
+                        else if ( ((LA9_0>='0' && LA9_0<='9')) ) {s = 22;}
 
-                        else if ( ((LA9_0>='\u0000' && LA9_0<='\b')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\u001F')||LA9_0=='!'||LA9_0=='#'||(LA9_0>='%' && LA9_0<='&')||(LA9_0>='(' && LA9_0<='-')||(LA9_0>=';' && LA9_0<='<')||(LA9_0>='>' && LA9_0<='?')||LA9_0=='['||LA9_0==']'||LA9_0=='`'||LA9_0=='|'||(LA9_0>='~' && LA9_0<='\uFFFF')) ) {s = 23;}
+                        else if ( (LA9_0=='/') ) {s = 23;}
 
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA9_66 = input.LA(1);
+                        else if ( ((LA9_0>='\t' && LA9_0<='\n')||LA9_0=='\r'||LA9_0==' ') ) {s = 24;}
 
-                         
-                        int index9_66 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA9_66=='-') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 73;}
+                        else if ( ((LA9_0>='\u0000' && LA9_0<='\b')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\u001F')||LA9_0=='!'||LA9_0=='#'||(LA9_0>='%' && LA9_0<='&')||(LA9_0>='(' && LA9_0<='*')||LA9_0==','||(LA9_0>=';' && LA9_0<='<')||(LA9_0>='>' && LA9_0<='?')||LA9_0=='['||LA9_0==']'||LA9_0=='`'||LA9_0=='|'||(LA9_0>='~' && LA9_0<='\uFFFF')) ) {s = 25;}
 
-                        else s = 25;
-
-                         
-                        input.seek(index9_66);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA9_85 = input.LA(1);
-
-                         
-                        int index9_85 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 88;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_85);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA9_86 = input.LA(1);
-
-                         
-                        int index9_86 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 89;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_86);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA9_82 = input.LA(1);
-
-                         
-                        int index9_82 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 87;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_82);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA9_77 = input.LA(1);
-
-                         
-                        int index9_77 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 83;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_77);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA9_78 = input.LA(1);
-
-                         
-                        int index9_78 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 84;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_78);
                         if ( s>=0 ) return s;
                         break;
                     case 9 : 
-                        int LA9_72 = input.LA(1);
-
-                         
-                        int index9_72 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 79;}
-
-                        else if ( (true) ) {s = 25;}
-
-                         
-                        input.seek(index9_72);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 10 : 
-                        int LA9_39 = input.LA(1);
-
-                         
-                        int index9_39 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString || stringVariable)) ) {s = 59;}
-
-                        else if ( (true) ) {s = 23;}
-
-                         
-                        input.seek(index9_39);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 11 : 
-                        int LA9_40 = input.LA(1);
-
-                         
-                        int index9_40 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!doubleQuotedString || stringVariable)) ) {s = 60;}
-
-                        else if ( (true) ) {s = 23;}
-
-                         
-                        input.seek(index9_40);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 12 : 
-                        int LA9_38 = input.LA(1);
-
-                         
-                        int index9_38 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 58;}
-
-                        else if ( (true) ) {s = 23;}
-
-                         
-                        input.seek(index9_38);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 13 : 
                         int LA9_41 = input.LA(1);
 
                          
                         int index9_41 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 61;}
+                        if ( ((!singleQuotedString || stringVariable)) ) {s = 63;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_41);
                         if ( s>=0 ) return s;
                         break;
-                    case 14 : 
+                    case 10 : 
                         int LA9_42 = input.LA(1);
 
                          
                         int index9_42 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 62;}
+                        if ( ((!doubleQuotedString || stringVariable)) ) {s = 64;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_42);
                         if ( s>=0 ) return s;
                         break;
-                    case 15 : 
+                    case 11 : 
                         int LA9_43 = input.LA(1);
 
                          
                         int index9_43 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 63;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 65;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_43);
                         if ( s>=0 ) return s;
                         break;
-                    case 16 : 
+                    case 12 : 
                         int LA9_44 = input.LA(1);
 
                          
                         int index9_44 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 64;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 66;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_44);
                         if ( s>=0 ) return s;
                         break;
-                    case 17 : 
+                    case 13 : 
+                        int LA9_40 = input.LA(1);
+
+                         
+                        int index9_40 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 62;}
+
+                        else if ( (true) ) {s = 25;}
+
+                         
+                        input.seek(index9_40);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 14 : 
                         int LA9_45 = input.LA(1);
 
                          
                         int index9_45 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 65;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 67;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_45);
                         if ( s>=0 ) return s;
                         break;
-                    case 18 : 
+                    case 15 : 
                         int LA9_46 = input.LA(1);
 
                          
                         int index9_46 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 47;}
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 68;}
 
-                        else if ( (true) ) {s = 23;}
+                        else if ( (true) ) {s = 25;}
 
                          
                         input.seek(index9_46);
                         if ( s>=0 ) return s;
                         break;
+                    case 16 : 
+                        int LA9_47 = input.LA(1);
+
+                         
+                        int index9_47 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 69;}
+
+                        else if ( (true) ) {s = 25;}
+
+                         
+                        input.seek(index9_47);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 17 : 
+                        int LA9_48 = input.LA(1);
+
+                         
+                        int index9_48 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 70;}
+
+                        else if ( (true) ) {s = 25;}
+
+                         
+                        input.seek(index9_48);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 18 : 
+                        int LA9_49 = input.LA(1);
+
+                         
+                        int index9_49 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 71;}
+
+                        else if ( (true) ) {s = 25;}
+
+                         
+                        input.seek(index9_49);
+                        if ( s>=0 ) return s;
+                        break;
                     case 19 : 
+                        int LA9_50 = input.LA(1);
+
+                         
+                        int index9_50 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( ((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {s = 51;}
+
+                        else if ( (true) ) {s = 25;}
+
+                         
+                        input.seek(index9_50);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 20 : 
                         int LA9_10 = input.LA(1);
 
                          
                         int index9_10 = input.index();
                         input.rewind();
                         s = -1;
-                        if ( (LA9_10=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 37;}
+                        if ( (LA9_10=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 39;}
 
-                        else s = 38;
+                        else s = 40;
 
                          
                         input.seek(index9_10);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 21 : 
+                        int LA9_23 = input.LA(1);
+
+                         
+                        int index9_23 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA9_23=='*') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 52;}
+
+                        else if ( (LA9_23=='/') && ((!singleQuotedString && !doubleQuotedString || stringVariable))) {s = 53;}
+
+                        else s = 25;
+
+                         
+                        input.seek(index9_23);
                         if ( s>=0 ) return s;
                         break;
             }

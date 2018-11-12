@@ -51,10 +51,14 @@ DoubleLiteral:
   value=DoubleValue;
 
 DoubleValue returns ecore::EDouble:
-  INT '.' INT;
+  IntValue '.' INT;
 
 IntegerLiteral:
-  value=INT;
+  value=IntValue;
+  
+IntValue returns ecore::EInt:
+  ('-'|'+')? INT
+;
 
 BooleanLiteral:
   {BooleanLiteral} (isTrue?='true'|'false');

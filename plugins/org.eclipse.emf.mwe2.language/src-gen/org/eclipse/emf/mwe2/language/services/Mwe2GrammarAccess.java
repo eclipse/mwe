@@ -476,19 +476,19 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	public class DoubleValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.DoubleValue");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cINTTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cIntValueParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
 		//DoubleValue ecore::EDouble:
-		//	INT '.' INT;
+		//	IntValue '.' INT;
 		@Override public ParserRule getRule() { return rule; }
 
-		//INT '.' INT
+		//IntValue '.' INT
 		public Group getGroup() { return cGroup; }
 
-		//INT
-		public RuleCall getINTTerminalRuleCall_0() { return cINTTerminalRuleCall_0; }
+		//IntValue
+		public RuleCall getIntValueParserRuleCall_0() { return cIntValueParserRuleCall_0; }
 
 		//'.'
 		public Keyword getFullStopKeyword_1() { return cFullStopKeyword_1; }
@@ -500,17 +500,45 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	public class IntegerLiteralElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.IntegerLiteral");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final RuleCall cValueIntValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntegerLiteral:
-		//	value=INT;
+		//	value=IntValue;
 		@Override public ParserRule getRule() { return rule; }
 
-		//value=INT
+		//value=IntValue
 		public Assignment getValueAssignment() { return cValueAssignment; }
 
+		//IntValue
+		public RuleCall getValueIntValueParserRuleCall_0() { return cValueIntValueParserRuleCall_0; }
+	}
+
+	public class IntValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.IntValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Keyword cHyphenMinusKeyword_0_0 = (Keyword)cAlternatives_0.eContents().get(0);
+		private final Keyword cPlusSignKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
+		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		
+		//IntValue ecore::EInt:
+		//	('-' | '+')? INT;
+		@Override public ParserRule getRule() { return rule; }
+
+		//('-' | '+')? INT
+		public Group getGroup() { return cGroup; }
+
+		//('-' | '+')?
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
+
+		//'-'
+		public Keyword getHyphenMinusKeyword_0_0() { return cHyphenMinusKeyword_0_0; }
+
+		//'+'
+		public Keyword getPlusSignKeyword_0_1() { return cPlusSignKeyword_0_1; }
+
 		//INT
-		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+		public RuleCall getINTTerminalRuleCall_1() { return cINTTerminalRuleCall_1; }
 	}
 
 	public class BooleanLiteralElements extends AbstractParserRuleElementFinder {
@@ -828,6 +856,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	private final DoubleLiteralElements pDoubleLiteral;
 	private final DoubleValueElements pDoubleValue;
 	private final IntegerLiteralElements pIntegerLiteral;
+	private final IntValueElements pIntValue;
 	private final BooleanLiteralElements pBooleanLiteral;
 	private final ReferenceElements pReference;
 	private final FQNElements pFQN;
@@ -860,6 +889,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		this.pDoubleLiteral = new DoubleLiteralElements();
 		this.pDoubleValue = new DoubleValueElements();
 		this.pIntegerLiteral = new IntegerLiteralElements();
+		this.pIntValue = new IntValueElements();
 		this.pBooleanLiteral = new BooleanLiteralElements();
 		this.pReference = new ReferenceElements();
 		this.pFQN = new FQNElements();
@@ -1010,7 +1040,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//DoubleValue ecore::EDouble:
-	//	INT '.' INT;
+	//	IntValue '.' INT;
 	public DoubleValueElements getDoubleValueAccess() {
 		return pDoubleValue;
 	}
@@ -1020,13 +1050,23 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//IntegerLiteral:
-	//	value=INT;
+	//	value=IntValue;
 	public IntegerLiteralElements getIntegerLiteralAccess() {
 		return pIntegerLiteral;
 	}
 	
 	public ParserRule getIntegerLiteralRule() {
 		return getIntegerLiteralAccess().getRule();
+	}
+
+	//IntValue ecore::EInt:
+	//	('-' | '+')? INT;
+	public IntValueElements getIntValueAccess() {
+		return pIntValue;
+	}
+	
+	public ParserRule getIntValueRule() {
+		return getIntValueAccess().getRule();
 	}
 
 	//BooleanLiteral:
