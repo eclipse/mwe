@@ -14,7 +14,7 @@ import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2StateBasedContainerManager;
 import org.eclipse.emf.mwe2.language.scoping.NamespaceAwareScopeProvider;
 import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
-import org.eclipse.emf.mwe2.language.validation.IntAwareRawSuperTypes;
+import org.eclipse.emf.mwe2.language.validation.MweRawSuperTypes;
 import org.eclipse.xtext.common.types.util.RawSuperTypes;
 import org.eclipse.xtext.conversion.IValueConverterService;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
@@ -74,7 +74,7 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	}
 
 	public Class<? extends RawSuperTypes> bindRawSuperTypes() {
-		return IntAwareRawSuperTypes.class;
+		return MweRawSuperTypes.class;
 	}
 	
 }

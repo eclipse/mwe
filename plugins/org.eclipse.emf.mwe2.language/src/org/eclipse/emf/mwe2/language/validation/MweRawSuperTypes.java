@@ -20,19 +20,19 @@ import org.eclipse.xtext.common.types.util.RawSuperTypes;
 import com.google.inject.Inject;
 
 @SuppressWarnings("restriction")
-public class IntAwareRawSuperTypes extends RawSuperTypes {
+public class MweRawSuperTypes extends RawSuperTypes {
 
 	@Inject 
 	private Primitives primitives;
 	
 	@Override
 	public Set<JvmType> collect(JvmType type) {
-		Set<JvmType> result = new IntAwareImplementation().collect(type);
+		Set<JvmType> result = new MyImplementation().collect(type);
 		result.remove(type);
 		return result;
 	}
 	
-	protected class IntAwareImplementation extends Implementation {
+	private class MyImplementation extends Implementation {
 		
 		@Override
 		public Boolean caseJvmPrimitiveType(JvmPrimitiveType object) {
