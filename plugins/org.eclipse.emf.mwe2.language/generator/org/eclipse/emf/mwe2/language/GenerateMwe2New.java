@@ -65,22 +65,6 @@ public class GenerateMwe2New {
 				
 				addLanguage(new StandardLanguage() {
 					{
-						/*
-						 * name = "org.xtext.example.mydsl.MyDsl"
-			fileExtensions = "mydsl"
-
-			serializer = {
-				generateStub = false
-			}
-			validator = {
-				// composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-				// Generates checks for @Deprecated grammar annotations, an IssueProvider and a corresponding PropertyPage
-				generateDeprecationValidation = true
-			}
-			junitSupport = {
-				junitVersion = "5"
-			}
-						 */
 						addReferencedResource(genModel);
 						setName("org.eclipse.emf.mwe2.language.Mwe2");
 						setFileExtensions("mwe2");
