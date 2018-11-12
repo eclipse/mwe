@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language;
 
+import java.math.BigDecimal;
 import java.util.Set;
 
 import org.eclipse.xtext.GrammarUtil;
@@ -58,6 +59,26 @@ public class Mwe2ValueConverters extends DefaultTerminalConverters {
 	@ValueConverter(rule = "FQN")
 	public IValueConverter<String> FQN() {
 		return new FQNConverter();
+	}
+	
+	@ValueConverter(rule = "DoubleValue")
+	public IValueConverter<Double> DoubleValue() {
+		return new AbstractNullSafeConverter<Double>() {
+
+			@Override
+			protected Double internalToValue(String string, INode node) {
+				try {
+					return Double.parseDouble(string);
+				} catch(NumberFormatException e) {
+					throw new ValueConverterException(e.getMessage(), node, e);
+				}
+			}
+
+			@Override
+			protected String internalToString(Double value) {
+				return BigDecimal.valueOf(value).toPlainString();
+			}
+		};
 	}
 	
 	@ValueConverter(rule = "ConstantValue")

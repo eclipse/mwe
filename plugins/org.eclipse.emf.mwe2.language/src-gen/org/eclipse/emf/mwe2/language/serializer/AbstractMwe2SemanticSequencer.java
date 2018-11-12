@@ -11,8 +11,11 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
+import org.eclipse.emf.mwe2.language.mwe2.NullLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
@@ -60,11 +63,20 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 			case Mwe2Package.DECLARED_PROPERTY:
 				sequence_DeclaredProperty(context, (DeclaredProperty) semanticObject); 
 				return; 
+			case Mwe2Package.DOUBLE_LITERAL:
+				sequence_DoubleLiteral(context, (DoubleLiteral) semanticObject); 
+				return; 
 			case Mwe2Package.IMPORT:
 				sequence_Import(context, (Import) semanticObject); 
 				return; 
+			case Mwe2Package.INTEGER_LITERAL:
+				sequence_IntegerLiteral(context, (IntegerLiteral) semanticObject); 
+				return; 
 			case Mwe2Package.MODULE:
 				sequence_Module(context, (org.eclipse.emf.mwe2.language.mwe2.Module) semanticObject); 
+				return; 
+			case Mwe2Package.NULL_LITERAL:
+				sequence_NullLiteral(context, (NullLiteral) semanticObject); 
 				return; 
 			case Mwe2Package.PLAIN_STRING:
 				sequence_PlainString(context, (PlainString) semanticObject); 
@@ -144,6 +156,25 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
+	 *     Value returns DoubleLiteral
+	 *     DoubleLiteral returns DoubleLiteral
+	 *
+	 * Constraint:
+	 *     value=DoubleValue
+	 */
+	protected void sequence_DoubleLiteral(ISerializationContext context, DoubleLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Mwe2Package.Literals.DOUBLE_LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.DOUBLE_LITERAL__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDoubleLiteralAccess().getValueDoubleValueParserRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Import returns Import
 	 *
 	 * Constraint:
@@ -162,12 +193,44 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Contexts:
+	 *     Value returns IntegerLiteral
+	 *     IntegerLiteral returns IntegerLiteral
+	 *
+	 * Constraint:
+	 *     value=IntValue
+	 */
+	protected void sequence_IntegerLiteral(ISerializationContext context, IntegerLiteral semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, Mwe2Package.Literals.INTEGER_LITERAL__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Mwe2Package.Literals.INTEGER_LITERAL__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getIntegerLiteralAccess().getValueIntValueParserRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
 	 *     Module returns Module
 	 *
 	 * Constraint:
 	 *     (canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent)
 	 */
 	protected void sequence_Module(ISerializationContext context, org.eclipse.emf.mwe2.language.mwe2.Module semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Value returns NullLiteral
+	 *     NullLiteral returns NullLiteral
+	 *
+	 * Constraint:
+	 *     {NullLiteral}
+	 */
+	protected void sequence_NullLiteral(ISerializationContext context, NullLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

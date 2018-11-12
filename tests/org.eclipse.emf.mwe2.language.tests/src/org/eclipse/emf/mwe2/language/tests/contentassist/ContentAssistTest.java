@@ -341,7 +341,7 @@ public class ContentAssistTest extends AbstractContentAssistTest {
 		.appendNl("StringBuilder {")
 		.append("length = ")
 		.assertText(
-				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
+				"zonk", "\"", "'", "@", "auto-inject", "false", "true", "null", ":", "{" );
 	}
 	
 	@Test public void testCompletePropertyValue_02() throws Exception {
@@ -351,7 +351,7 @@ public class ContentAssistTest extends AbstractContentAssistTest {
 		.appendNl("length = '1'")
 		.append("length = ")
 		.assertText(
-				"zonk", "\"", "'", "@", "auto-inject", "false", "true", ":", "{" );
+				"zonk", "\"", "'", "@", "auto-inject", "false", "true", "null", ":", "{" );
 	}
 	
 	@Override

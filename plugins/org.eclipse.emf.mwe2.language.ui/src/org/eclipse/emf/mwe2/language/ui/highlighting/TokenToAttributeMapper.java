@@ -23,6 +23,7 @@ public class TokenToAttributeMapper extends
 			"KEYWORD_FALSE", 
 			"KEYWORD_VAR", 
 			"KEYWORD_IMPORT",
+			"KEYWORD_NULL",
 			"KEYWORD_MODULE", 
 			"KEYWORD_AUTO_INJECT");
 

@@ -39,7 +39,26 @@ Value:
   Component|
   StringLiteral|
   BooleanLiteral|
+  IntegerLiteral|
+  DoubleLiteral|
+  NullLiteral|
   Reference;
+
+NullLiteral:
+  {NullLiteral} 'null';
+
+DoubleLiteral:
+  value=DoubleValue;
+
+DoubleValue returns ecore::EDouble:
+  IntValue '.' INT;
+
+IntegerLiteral:
+  value=IntValue;
+  
+IntValue returns ecore::EInt:
+  ('-'|'+')? INT
+;
 
 BooleanLiteral:
   {BooleanLiteral} (isTrue?='true'|'false');
@@ -70,7 +89,7 @@ PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMEN
 PlainString:
   value=ConstantValue;
 
-// To identify other keywords as allowed parts in a string,
+// To identify other keywords or INT as allowed parts in a string,
 // we use a customized lexer with predicates. 
 // This allows us to use e.g. single quotes without escape sequences
 // in double quoted strings and vice versa.
@@ -85,6 +104,9 @@ ConstantValue:
 
 terminal ID:
   '^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+  
+terminal INT returns ecore::EInt: 
+  ('0'..'9')+;
 
 terminal ML_COMMENT:
   '/*'->'*/';

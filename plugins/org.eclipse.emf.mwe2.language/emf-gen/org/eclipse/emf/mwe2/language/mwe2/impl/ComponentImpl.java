@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
-import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 
 /**
@@ -47,7 +46,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * @generated
 	 * @ordered
 	 */
-	protected Module module;
+	protected org.eclipse.emf.mwe2.language.mwe2.Module module;
 
 	/**
 	 * The default value of the '{@link #isAutoInject() <em>Auto Inject</em>}' attribute.
@@ -105,12 +104,12 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module getModule()
+	public org.eclipse.emf.mwe2.language.mwe2.Module getModule()
 	{
 		if (module != null && module.eIsProxy())
 		{
 			InternalEObject oldModule = (InternalEObject)module;
-			module = (Module)eResolveProxy(oldModule);
+			module = (org.eclipse.emf.mwe2.language.mwe2.Module)eResolveProxy(oldModule);
 			if (module != oldModule)
 			{
 				if (eNotificationRequired())
@@ -125,7 +124,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Module basicGetModule()
+	public org.eclipse.emf.mwe2.language.mwe2.Module basicGetModule()
 	{
 		return module;
 	}
@@ -135,9 +134,9 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setModule(Module newModule)
+	public void setModule(org.eclipse.emf.mwe2.language.mwe2.Module newModule)
 	{
-		Module oldModule = module;
+		org.eclipse.emf.mwe2.language.mwe2.Module oldModule = module;
 		module = newModule;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.COMPONENT__MODULE, oldModule, module));
@@ -229,7 +228,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 		switch (featureID)
 		{
 			case Mwe2Package.COMPONENT__MODULE:
-				setModule((Module)newValue);
+				setModule((org.eclipse.emf.mwe2.language.mwe2.Module)newValue);
 				return;
 			case Mwe2Package.COMPONENT__AUTO_INJECT:
 				setAutoInject((Boolean)newValue);
@@ -253,7 +252,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 		switch (featureID)
 		{
 			case Mwe2Package.COMPONENT__MODULE:
-				setModule((Module)null);
+				setModule((org.eclipse.emf.mwe2.language.mwe2.Module)null);
 				return;
 			case Mwe2Package.COMPONENT__AUTO_INJECT:
 				setAutoInject(AUTO_INJECT_EDEFAULT);
@@ -295,7 +294,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	{
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (autoInject: ");
 		result.append(autoInject);
 		result.append(')');

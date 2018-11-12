@@ -80,6 +80,20 @@ public class Mwe2ValidatorTest {
 		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
+	@Test public void testAssignability_5() throws Exception {
+		String textModel = "module foo "+ComponentA.class.getName()+" { b = true i = -1 d = -1.1 }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(), 0,list.size());
+	}
+	
+	@Test public void testAssignability_6() throws Exception {
+		String textModel = "module foo "+ComponentA.class.getName()+" { d = 1 }";
+		EObject model = getModel(textModel);
+		List<Issue> list = validate(model);
+		assertEquals(list.toString(), 0, list.size());
+	}
+	
 	@Test public void testAssignability_withFactory() throws Exception {
 		String textModel = "module foo "+ComponentA.class.getName()+" { x = "+ComponentAFactory.class.getName()+"{} }";
 		EObject model = getModel(textModel);

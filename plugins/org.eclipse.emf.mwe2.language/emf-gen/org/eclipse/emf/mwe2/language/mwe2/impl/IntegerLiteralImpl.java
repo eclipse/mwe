@@ -7,52 +7,51 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.mwe2.language.mwe2.Import;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Import</b></em>'.
+ * An implementation of the model object '<em><b>Integer Literal</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.ImportImpl#getImportedNamespace <em>Imported Namespace</em>}</li>
+ *   <li>{@link org.eclipse.emf.mwe2.language.mwe2.impl.IntegerLiteralImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ImportImpl extends MinimalEObjectImpl.Container implements Import
+public class IntegerLiteralImpl extends ValueImpl implements IntegerLiteral
 {
 	/**
-	 * The default value of the '{@link #getImportedNamespace() <em>Imported Namespace</em>}' attribute.
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImportedNamespace()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String IMPORTED_NAMESPACE_EDEFAULT = null;
+	protected static final int VALUE_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getImportedNamespace() <em>Imported Namespace</em>}' attribute.
+	 * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getImportedNamespace()
+	 * @see #getValue()
 	 * @generated
 	 * @ordered
 	 */
-	protected String importedNamespace = IMPORTED_NAMESPACE_EDEFAULT;
+	protected int value = VALUE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImportImpl()
+	protected IntegerLiteralImpl()
 	{
 		super();
 	}
@@ -65,7 +64,7 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	@Override
 	protected EClass eStaticClass()
 	{
-		return Mwe2Package.Literals.IMPORT;
+		return Mwe2Package.Literals.INTEGER_LITERAL;
 	}
 
 	/**
@@ -73,9 +72,9 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getImportedNamespace()
+	public int getValue()
 	{
-		return importedNamespace;
+		return value;
 	}
 
 	/**
@@ -83,12 +82,12 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportedNamespace(String newImportedNamespace)
+	public void setValue(int newValue)
 	{
-		String oldImportedNamespace = importedNamespace;
-		importedNamespace = newImportedNamespace;
+		int oldValue = value;
+		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.IMPORT__IMPORTED_NAMESPACE, oldImportedNamespace, importedNamespace));
+			eNotify(new ENotificationImpl(this, Notification.SET, Mwe2Package.INTEGER_LITERAL__VALUE, oldValue, value));
 	}
 
 	/**
@@ -101,8 +100,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	{
 		switch (featureID)
 		{
-			case Mwe2Package.IMPORT__IMPORTED_NAMESPACE:
-				return getImportedNamespace();
+			case Mwe2Package.INTEGER_LITERAL__VALUE:
+				return getValue();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -117,8 +116,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	{
 		switch (featureID)
 		{
-			case Mwe2Package.IMPORT__IMPORTED_NAMESPACE:
-				setImportedNamespace((String)newValue);
+			case Mwe2Package.INTEGER_LITERAL__VALUE:
+				setValue((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -134,8 +133,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	{
 		switch (featureID)
 		{
-			case Mwe2Package.IMPORT__IMPORTED_NAMESPACE:
-				setImportedNamespace(IMPORTED_NAMESPACE_EDEFAULT);
+			case Mwe2Package.INTEGER_LITERAL__VALUE:
+				setValue(VALUE_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -151,8 +150,8 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 	{
 		switch (featureID)
 		{
-			case Mwe2Package.IMPORT__IMPORTED_NAMESPACE:
-				return IMPORTED_NAMESPACE_EDEFAULT == null ? importedNamespace != null : !IMPORTED_NAMESPACE_EDEFAULT.equals(importedNamespace);
+			case Mwe2Package.INTEGER_LITERAL__VALUE:
+				return value != VALUE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -168,10 +167,10 @@ public class ImportImpl extends MinimalEObjectImpl.Container implements Import
 		if (eIsProxy()) return super.toString();
 
 		StringBuilder result = new StringBuilder(super.toString());
-		result.append(" (importedNamespace: ");
-		result.append(importedNamespace);
+		result.append(" (value: ");
+		result.append(value);
 		result.append(')');
 		return result.toString();
 	}
 
-} //ImportImpl
+} //IntegerLiteralImpl

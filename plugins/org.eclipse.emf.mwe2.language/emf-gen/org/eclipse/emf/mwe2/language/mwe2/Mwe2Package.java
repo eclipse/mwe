@@ -565,6 +565,81 @@ public interface Mwe2Package extends EPackage
 	 */
 	int ABSTRACT_REFERENCE_FEATURE_COUNT = 1;
 
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.NullLiteralImpl <em>Null Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.NullLiteralImpl
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getNullLiteral()
+	 * @generated
+	 */
+	int NULL_LITERAL = 14;
+
+	/**
+	 * The number of structural features of the '<em>Null Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NULL_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.DoubleLiteralImpl <em>Double Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.DoubleLiteralImpl
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getDoubleLiteral()
+	 * @generated
+	 */
+	int DOUBLE_LITERAL = 15;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Double Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DOUBLE_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.IntegerLiteralImpl
+	 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getIntegerLiteral()
+	 * @generated
+	 */
+	int INTEGER_LITERAL = 16;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL__VALUE = VALUE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Integer Literal</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_FEATURE_COUNT = VALUE_FEATURE_COUNT + 1;
+
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.Module <em>Module</em>}'.
@@ -938,6 +1013,58 @@ public interface Mwe2Package extends EPackage
 	EReference getAbstractReference_Referable();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.NullLiteral <em>Null Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Null Literal</em>'.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.NullLiteral
+	 * @generated
+	 */
+	EClass getNullLiteral();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral <em>Double Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Double Literal</em>'.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral
+	 * @generated
+	 */
+	EClass getDoubleLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral#getValue()
+	 * @see #getDoubleLiteral()
+	 * @generated
+	 */
+	EAttribute getDoubleLiteral_Value();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral <em>Integer Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Integer Literal</em>'.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral
+	 * @generated
+	 */
+	EClass getIntegerLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral#getValue()
+	 * @see #getIntegerLiteral()
+	 * @generated
+	 */
+	EAttribute getIntegerLiteral_Value();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1267,6 +1394,52 @@ public interface Mwe2Package extends EPackage
 		 * @generated
 		 */
 		EReference ABSTRACT_REFERENCE__REFERABLE = eINSTANCE.getAbstractReference_Referable();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.NullLiteralImpl <em>Null Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.NullLiteralImpl
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getNullLiteral()
+		 * @generated
+		 */
+		EClass NULL_LITERAL = eINSTANCE.getNullLiteral();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.DoubleLiteralImpl <em>Double Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.DoubleLiteralImpl
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getDoubleLiteral()
+		 * @generated
+		 */
+		EClass DOUBLE_LITERAL = eINSTANCE.getDoubleLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DOUBLE_LITERAL__VALUE = eINSTANCE.getDoubleLiteral_Value();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.emf.mwe2.language.mwe2.impl.IntegerLiteralImpl <em>Integer Literal</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.IntegerLiteralImpl
+		 * @see org.eclipse.emf.mwe2.language.mwe2.impl.Mwe2PackageImpl#getIntegerLiteral()
+		 * @generated
+		 */
+		EClass INTEGER_LITERAL = eINSTANCE.getIntegerLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INTEGER_LITERAL__VALUE = eINSTANCE.getIntegerLiteral_Value();
 
 	}
 

@@ -16,6 +16,9 @@ public class ComponentA {
 	private ComponentA x;
 	private List<String> y = Lists.newArrayList();
 	private String z;
+	private int i;
+	private double d;
+	private boolean b;
 	
 	public ComponentA getX() {
 		return x;
@@ -38,6 +41,30 @@ public class ComponentA {
 	
 	public String getZ() {
 		return z;
+	}
+	
+	public boolean isB() {
+		return b;
+	}
+	
+	public void setB(boolean b) {
+		this.b = b;
+	}
+	
+	public double getD() {
+		return d;
+	}
+	
+	public void setD(double d) {
+		this.d = d;
+	}
+	
+	public int getI() {
+		return i;
+	}
+	
+	public void setI(int i) {
+		this.i = i;
 	}
 	
 }

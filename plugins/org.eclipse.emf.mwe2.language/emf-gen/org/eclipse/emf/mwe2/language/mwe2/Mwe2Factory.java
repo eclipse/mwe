@@ -131,6 +131,33 @@ public interface Mwe2Factory extends EFactory
 	PlainString createPlainString();
 
 	/**
+	 * Returns a new object of class '<em>Null Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Null Literal</em>'.
+	 * @generated
+	 */
+	NullLiteral createNullLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Double Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Double Literal</em>'.
+	 * @generated
+	 */
+	DoubleLiteral createDoubleLiteral();
+
+	/**
+	 * Returns a new object of class '<em>Integer Literal</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Integer Literal</em>'.
+	 * @generated
+	 */
+	IntegerLiteral createIntegerLiteral();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

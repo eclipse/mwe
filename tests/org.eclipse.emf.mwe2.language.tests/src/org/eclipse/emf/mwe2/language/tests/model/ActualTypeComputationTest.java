@@ -48,6 +48,8 @@ public class ActualTypeComputationTest {
 	@Test public void testInferredLiteralTypes() throws Exception {
 		checkPropertyType("a = 'myString'", String.class);
 		checkPropertyType("a = true", boolean.class);
+		checkPropertyType("a = 1", int.class);
+		checkPropertyType("a = 1.1", double.class);
 		checkPropertyType("a = java.util.ArrayList {}", ArrayList.class);
 		checkPropertyType("a = java.util.Arrays.ArrayList {}", Class.forName("java.util.Arrays$ArrayList"));
 	}
@@ -67,6 +69,8 @@ public class ActualTypeComputationTest {
 	@Test public void testLiteralTypes() throws Exception {
 		checkPropertyType("java.lang.CharSequence a = 'myString'", CharSequence.class);
 		checkPropertyType("boolean a", boolean.class);
+		checkPropertyType("int a", int.class);
+		checkPropertyType("double a", double.class);
 		checkPropertyType("java.util.List a = java.util.ArrayList {}", List.class);
 	}
 	

@@ -14,10 +14,12 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.BooleanLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
+import org.eclipse.emf.mwe2.language.mwe2.DoubleLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
-import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.mwe2.IntegerLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Factory;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
+import org.eclipse.emf.mwe2.language.mwe2.NullLiteral;
 import org.eclipse.emf.mwe2.language.mwe2.PlainString;
 import org.eclipse.emf.mwe2.language.mwe2.PropertyReference;
 import org.eclipse.emf.mwe2.language.mwe2.Reference;
@@ -135,6 +137,27 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	private EClass abstractReferenceEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass nullLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass doubleLiteralEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass integerLiteralEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -163,7 +186,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link Mwe2Package#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -178,7 +201,8 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 		if (isInited) return (Mwe2Package)EPackage.Registry.INSTANCE.getEPackage(Mwe2Package.eNS_URI);
 
 		// Obtain or create and register package
-		Mwe2PackageImpl theMwe2Package = (Mwe2PackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof Mwe2PackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new Mwe2PackageImpl());
+		Object registeredMwe2Package = EPackage.Registry.INSTANCE.get(eNS_URI);
+		Mwe2PackageImpl theMwe2Package = registeredMwe2Package instanceof Mwe2PackageImpl ? (Mwe2PackageImpl)registeredMwe2Package : new Mwe2PackageImpl();
 
 		isInited = true;
 
@@ -194,7 +218,6 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 		// Mark meta-data to indicate it can't be changed
 		theMwe2Package.freeze();
 
-  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(Mwe2Package.eNS_URI, theMwe2Package);
 		return theMwe2Package;
@@ -555,6 +578,56 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getNullLiteral()
+	{
+		return nullLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getDoubleLiteral()
+	{
+		return doubleLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getDoubleLiteral_Value()
+	{
+		return (EAttribute)doubleLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getIntegerLiteral()
+	{
+		return integerLiteralEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getIntegerLiteral_Value()
+	{
+		return (EAttribute)integerLiteralEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Mwe2Factory getMwe2Factory()
 	{
 		return (Mwe2Factory)getEFactoryInstance();
@@ -628,6 +701,14 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
 		abstractReferenceEClass = createEClass(ABSTRACT_REFERENCE);
 		createEReference(abstractReferenceEClass, ABSTRACT_REFERENCE__REFERABLE);
+
+		nullLiteralEClass = createEClass(NULL_LITERAL);
+
+		doubleLiteralEClass = createEClass(DOUBLE_LITERAL);
+		createEAttribute(doubleLiteralEClass, DOUBLE_LITERAL__VALUE);
+
+		integerLiteralEClass = createEClass(INTEGER_LITERAL);
+		createEAttribute(integerLiteralEClass, INTEGER_LITERAL__VALUE);
 	}
 
 	/**
@@ -673,13 +754,16 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 		propertyReferenceEClass.getESuperTypes().add(this.getStringPart());
 		propertyReferenceEClass.getESuperTypes().add(this.getAbstractReference());
 		plainStringEClass.getESuperTypes().add(this.getStringPart());
+		nullLiteralEClass.getESuperTypes().add(this.getValue());
+		doubleLiteralEClass.getESuperTypes().add(this.getValue());
+		integerLiteralEClass.getESuperTypes().add(this.getValue());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(moduleEClass, Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModule_CanonicalName(), ecorePackage.getEString(), "canonicalName", null, 0, 1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_Imports(), this.getImport(), null, "imports", null, 0, -1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_DeclaredProperties(), this.getDeclaredProperty(), this.getDeclaredProperty_Module(), "declaredProperties", null, 0, -1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModule_Root(), this.getComponent(), null, "root", null, 0, 1, Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(moduleEClass, org.eclipse.emf.mwe2.language.mwe2.Module.class, "Module", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getModule_CanonicalName(), ecorePackage.getEString(), "canonicalName", null, 0, 1, org.eclipse.emf.mwe2.language.mwe2.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_Imports(), this.getImport(), null, "imports", null, 0, -1, org.eclipse.emf.mwe2.language.mwe2.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_DeclaredProperties(), this.getDeclaredProperty(), this.getDeclaredProperty_Module(), "declaredProperties", null, 0, -1, org.eclipse.emf.mwe2.language.mwe2.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModule_Root(), this.getComponent(), null, "root", null, 0, 1, org.eclipse.emf.mwe2.language.mwe2.Module.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(referrableEClass, Referrable.class, "Referrable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getReferrable_Type(), theTypesPackage.getJvmType(), null, "type", null, 0, 1, Referrable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -727,6 +811,14 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 
 		initEClass(abstractReferenceEClass, AbstractReference.class, "AbstractReference", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAbstractReference_Referable(), this.getReferrable(), null, "referable", null, 0, 1, AbstractReference.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(nullLiteralEClass, NullLiteral.class, "NullLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(doubleLiteralEClass, DoubleLiteral.class, "DoubleLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getDoubleLiteral_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DoubleLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(integerLiteralEClass, IntegerLiteral.class, "IntegerLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getIntegerLiteral_Value(), ecorePackage.getEInt(), "value", null, 0, 1, IntegerLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -14,23 +14,25 @@ import java.util.ArrayList;
 public class MweHighlightingLexer extends Lexer {
     public static final int KEYWORD_AT=7;
     public static final int KEYWORD_AUTO_INJECT=9;
-    public static final int RULE_STRING=18;
-    public static final int RULE_SL_COMMENT=20;
+    public static final int RULE_STRING=20;
+    public static final int RULE_SL_COMMENT=22;
     public static final int KEYWORD_VAR=5;
     public static final int KEYWORD_IMPORT=12;
     public static final int KEYWORD_MODULE=4;
     public static final int KEYWORD_ASSIGN=6;
     public static final int EOF=-1;
     public static final int KEYWORD_COLON=8;
-    public static final int RULE_ID=17;
+    public static final int KEYWORD_NULL=17;
+    public static final int RULE_ID=18;
     public static final int KEYWORD_TRUE=16;
-    public static final int RULE_WS=21;
+    public static final int RULE_WS=23;
     public static final int KEYWORD_STAR=14;
-    public static final int RULE_ANY_OTHER=22;
+    public static final int RULE_ANY_OTHER=24;
     public static final int KEYWORD_OPENBRACE=10;
     public static final int KEYWORD_CLOSINGBRACE=11;
     public static final int KEYWORD_DOT=13;
-    public static final int RULE_ML_COMMENT=19;
+    public static final int RULE_INT=19;
+    public static final int RULE_ML_COMMENT=21;
     public static final int KEYWORD_FALSE=15;
 
     // delegates
@@ -313,15 +315,36 @@ public class MweHighlightingLexer extends Lexer {
     }
     // $ANTLR end "KEYWORD_TRUE"
 
+    // $ANTLR start "KEYWORD_NULL"
+    public final void mKEYWORD_NULL() throws RecognitionException {
+        try {
+            int _type = KEYWORD_NULL;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:40:14: ( 'null' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:40:16: 'null'
+            {
+            match("null"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "KEYWORD_NULL"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:39:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:39:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:39:11: ( '^' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -330,7 +353,7 @@ public class MweHighlightingLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:39:11: '^'
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: '^'
                     {
                     match('^'); 
 
@@ -348,7 +371,7 @@ public class MweHighlightingLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:39:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -392,116 +415,165 @@ public class MweHighlightingLexer extends Lexer {
     }
     // $ANTLR end "RULE_ID"
 
+    // $ANTLR start "RULE_INT"
+    public final void mRULE_INT() throws RecognitionException {
+        try {
+            int _type = RULE_INT;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:10: ( ( '0' .. '9' )+ )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
+            {
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
+            int cnt3=0;
+            loop3:
+            do {
+                int alt3=2;
+                int LA3_0 = input.LA(1);
+
+                if ( ((LA3_0>='0' && LA3_0<='9')) ) {
+                    alt3=1;
+                }
+
+
+                switch (alt3) {
+            	case 1 :
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:13: '0' .. '9'
+            	    {
+            	    matchRange('0','9'); 
+
+            	    }
+            	    break;
+
+            	default :
+            	    if ( cnt3 >= 1 ) break loop3;
+                        EarlyExitException eee =
+                            new EarlyExitException(3, input);
+                        throw eee;
+                }
+                cnt3++;
+            } while (true);
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "RULE_INT"
+
     // $ANTLR start "RULE_STRING"
     public final void mRULE_STRING() throws RecognitionException {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:45:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:45:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt7=2;
-            int LA7_0 = input.LA(1);
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            int alt8=2;
+            int LA8_0 = input.LA(1);
 
-            if ( (LA7_0=='\"') ) {
-                alt7=1;
+            if ( (LA8_0=='\"') ) {
+                alt8=1;
             }
-            else if ( (LA7_0=='\'') ) {
-                alt7=2;
+            else if ( (LA8_0=='\'') ) {
+                alt8=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 7, 0, input);
+                    new NoViableAltException("", 8, 0, input);
 
                 throw nvae;
             }
-            switch (alt7) {
+            switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:5: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:5: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop4:
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    loop5:
                     do {
-                        int alt4=3;
-                        int LA4_0 = input.LA(1);
+                        int alt5=3;
+                        int LA5_0 = input.LA(1);
 
-                        if ( (LA4_0=='\\') ) {
-                            alt4=1;
+                        if ( (LA5_0=='\\') ) {
+                            alt5=1;
                         }
-                        else if ( ((LA4_0>='\u0000' && LA4_0<='!')||(LA4_0>='#' && LA4_0<='[')||(LA4_0>=']' && LA4_0<='\uFFFF')) ) {
-                            alt4=2;
+                        else if ( ((LA5_0>='\u0000' && LA5_0<='!')||(LA5_0>='#' && LA5_0<='[')||(LA5_0>=']' && LA5_0<='\uFFFF')) ) {
+                            alt5=2;
                         }
 
 
-                        switch (alt4) {
+                        switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    {
                     	    match('\\'); 
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
-                    	    int alt3=11;
-                    	    alt3 = dfa3.predict(input);
-                    	    switch (alt3) {
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    int alt4=11;
+                    	    alt4 = dfa4.predict(input);
+                    	    switch (alt4) {
                     	        case 1 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:17: 'b'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:17: 'b'
                     	            {
                     	            match('b'); 
 
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:21: 't'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:21: 't'
                     	            {
                     	            match('t'); 
 
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:25: 'n'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:25: 'n'
                     	            {
                     	            match('n'); 
 
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:29: 'f'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:29: 'f'
                     	            {
                     	            match('f'); 
 
                     	            }
                     	            break;
                     	        case 5 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:33: 'r'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:33: 'r'
                     	            {
                     	            match('r'); 
 
                     	            }
                     	            break;
                     	        case 6 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:37: '\"'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:37: '\"'
                     	            {
                     	            match('\"'); 
 
                     	            }
                     	            break;
                     	        case 7 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:41: '\\''
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:41: '\\''
                     	            {
                     	            match('\''); 
 
                     	            }
                     	            break;
                     	        case 8 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:46: '\\\\'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:46: '\\\\'
                     	            {
                     	            match('\\'); 
 
                     	            }
                     	            break;
                     	        case 9 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:51: '${'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:51: '${'
                     	            {
                     	            match("${"); 
 
@@ -509,7 +581,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 10 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:56: '//'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:56: '//'
                     	            {
                     	            match("//"); 
 
@@ -517,7 +589,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 11 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:61: '/*'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:61: '/*'
                     	            {
                     	            match("/*"); 
 
@@ -531,7 +603,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:46:69: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:69: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -547,7 +619,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop4;
+                    	    break loop5;
                         }
                     } while (true);
 
@@ -556,90 +628,90 @@ public class MweHighlightingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:5: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:5: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop6:
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    loop7:
                     do {
-                        int alt6=3;
-                        int LA6_0 = input.LA(1);
+                        int alt7=3;
+                        int LA7_0 = input.LA(1);
 
-                        if ( (LA6_0=='\\') ) {
-                            alt6=1;
+                        if ( (LA7_0=='\\') ) {
+                            alt7=1;
                         }
-                        else if ( ((LA6_0>='\u0000' && LA6_0<='&')||(LA6_0>='(' && LA6_0<='[')||(LA6_0>=']' && LA6_0<='\uFFFF')) ) {
-                            alt6=2;
+                        else if ( ((LA7_0>='\u0000' && LA7_0<='&')||(LA7_0>='(' && LA7_0<='[')||(LA7_0>=']' && LA7_0<='\uFFFF')) ) {
+                            alt7=2;
                         }
 
 
-                        switch (alt6) {
+                        switch (alt7) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    {
                     	    match('\\'); 
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
-                    	    int alt5=11;
-                    	    alt5 = dfa5.predict(input);
-                    	    switch (alt5) {
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    int alt6=11;
+                    	    alt6 = dfa6.predict(input);
+                    	    switch (alt6) {
                     	        case 1 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:17: 'b'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:17: 'b'
                     	            {
                     	            match('b'); 
 
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:21: 't'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:21: 't'
                     	            {
                     	            match('t'); 
 
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:25: 'n'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:25: 'n'
                     	            {
                     	            match('n'); 
 
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:29: 'f'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:29: 'f'
                     	            {
                     	            match('f'); 
 
                     	            }
                     	            break;
                     	        case 5 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:33: 'r'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:33: 'r'
                     	            {
                     	            match('r'); 
 
                     	            }
                     	            break;
                     	        case 6 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:37: '\"'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:37: '\"'
                     	            {
                     	            match('\"'); 
 
                     	            }
                     	            break;
                     	        case 7 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:41: '\\''
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:41: '\\''
                     	            {
                     	            match('\''); 
 
                     	            }
                     	            break;
                     	        case 8 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:46: '\\\\'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:46: '\\\\'
                     	            {
                     	            match('\\'); 
 
                     	            }
                     	            break;
                     	        case 9 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:51: '${'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:51: '${'
                     	            {
                     	            match("${"); 
 
@@ -647,7 +719,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 10 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:56: '//'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:56: '//'
                     	            {
                     	            match("//"); 
 
@@ -655,7 +727,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 11 :
-                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:61: '/*'
+                    	            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:61: '/*'
                     	            {
                     	            match("/*"); 
 
@@ -669,7 +741,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:69: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:69: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -685,7 +757,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop6;
+                    	    break loop7;
                         }
                     } while (true);
 
@@ -712,37 +784,37 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:24: ( options {greedy=false; } : . )*
-            loop8:
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:24: ( options {greedy=false; } : . )*
+            loop9:
             do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
+                int alt9=2;
+                int LA9_0 = input.LA(1);
 
-                if ( (LA8_0=='*') ) {
-                    int LA8_1 = input.LA(2);
+                if ( (LA9_0=='*') ) {
+                    int LA9_1 = input.LA(2);
 
-                    if ( (LA8_1=='/') ) {
-                        alt8=2;
+                    if ( (LA9_1=='/') ) {
+                        alt9=2;
                     }
-                    else if ( ((LA8_1>='\u0000' && LA8_1<='.')||(LA8_1>='0' && LA8_1<='\uFFFF')) ) {
-                        alt8=1;
+                    else if ( ((LA9_1>='\u0000' && LA9_1<='.')||(LA9_1>='0' && LA9_1<='\uFFFF')) ) {
+                        alt9=1;
                     }
 
 
                 }
-                else if ( ((LA8_0>='\u0000' && LA8_0<=')')||(LA8_0>='+' && LA8_0<='\uFFFF')) ) {
-                    alt8=1;
+                else if ( ((LA9_0>='\u0000' && LA9_0<=')')||(LA9_0>='+' && LA9_0<='\uFFFF')) ) {
+                    alt9=1;
                 }
 
 
-                switch (alt8) {
+                switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:52: .
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:52: .
             	    {
             	    matchAny(); 
 
@@ -750,7 +822,7 @@ public class MweHighlightingLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop8;
+            	    break loop9;
                 }
             } while (true);
 
@@ -772,25 +844,25 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop9:
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            loop10:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( ((LA9_0>='\u0000' && LA9_0<='\t')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\uFFFF')) ) {
-                    alt9=1;
+                if ( ((LA10_0>='\u0000' && LA10_0<='\t')||(LA10_0>='\u000B' && LA10_0<='\f')||(LA10_0>='\u000E' && LA10_0<='\uFFFF')) ) {
+                    alt10=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt10) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -806,31 +878,31 @@ public class MweHighlightingLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop9;
+            	    break loop10;
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:40: ( ( '\\r' )? '\\n' )?
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:40: ( ( '\\r' )? '\\n' )?
+            int alt12=2;
+            int LA12_0 = input.LA(1);
 
-            if ( (LA11_0=='\n'||LA11_0=='\r') ) {
-                alt11=1;
+            if ( (LA12_0=='\n'||LA12_0=='\r') ) {
+                alt12=1;
             }
-            switch (alt11) {
+            switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:41: ( '\\r' )? '\\n'
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:41: ( '\\r' )?
-                    int alt10=2;
-                    int LA10_0 = input.LA(1);
+                    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: ( '\\r' )?
+                    int alt11=2;
+                    int LA11_0 = input.LA(1);
 
-                    if ( (LA10_0=='\r') ) {
-                        alt10=1;
+                    if ( (LA11_0=='\r') ) {
+                        alt11=1;
                     }
-                    switch (alt10) {
+                    switch (alt11) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:52:41: '\\r'
+                            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: '\\r'
                             {
                             match('\r'); 
 
@@ -862,22 +934,22 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:54:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:54:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:54:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt12=0;
-            loop12:
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            int cnt13=0;
+            loop13:
             do {
-                int alt12=2;
-                int LA12_0 = input.LA(1);
+                int alt13=2;
+                int LA13_0 = input.LA(1);
 
-                if ( ((LA12_0>='\t' && LA12_0<='\n')||LA12_0=='\r'||LA12_0==' ') ) {
-                    alt12=1;
+                if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {
+                    alt13=1;
                 }
 
 
-                switch (alt12) {
+                switch (alt13) {
             	case 1 :
             	    // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:
             	    {
@@ -895,12 +967,12 @@ public class MweHighlightingLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt12 >= 1 ) break loop12;
+            	    if ( cnt13 >= 1 ) break loop13;
                         EarlyExitException eee =
-                            new EarlyExitException(12, input);
+                            new EarlyExitException(13, input);
                         throw eee;
                 }
-                cnt12++;
+                cnt13++;
             } while (true);
 
 
@@ -919,8 +991,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:56:16: ( . )
-            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:56:18: .
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:59:16: ( . )
+            // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:59:18: .
             {
             matchAny(); 
 
@@ -935,10 +1007,10 @@ public class MweHighlightingLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:8: ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt13=19;
-        alt13 = dfa13.predict(input);
-        switch (alt13) {
+        // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:8: ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | KEYWORD_NULL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        int alt14=21;
+        alt14 = dfa14.predict(input);
+        switch (alt14) {
             case 1 :
                 // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:10: KEYWORD_MODULE
                 {
@@ -1031,42 +1103,56 @@ public class MweHighlightingLexer extends Lexer {
                 }
                 break;
             case 14 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:203: RULE_ID
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:203: KEYWORD_NULL
+                {
+                mKEYWORD_NULL(); 
+
+                }
+                break;
+            case 15 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:216: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 15 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:211: RULE_STRING
+            case 16 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:224: RULE_INT
+                {
+                mRULE_INT(); 
+
+                }
+                break;
+            case 17 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:233: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 16 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:223: RULE_ML_COMMENT
+            case 18 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:245: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
-            case 17 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:239: RULE_SL_COMMENT
+            case 19 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:261: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
-            case 18 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:255: RULE_WS
+            case 20 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:277: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 19 :
-                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:263: RULE_ANY_OTHER
+            case 21 :
+                // ../org.eclipse.emf.mwe2.language.ui/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:285: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 
@@ -1078,22 +1164,22 @@ public class MweHighlightingLexer extends Lexer {
     }
 
 
-    protected DFA3 dfa3 = new DFA3(this);
-    protected DFA5 dfa5 = new DFA5(this);
-    protected DFA13 dfa13 = new DFA13(this);
-    static final String DFA3_eotS =
+    protected DFA4 dfa4 = new DFA4(this);
+    protected DFA6 dfa6 = new DFA6(this);
+    protected DFA14 dfa14 = new DFA14(this);
+    static final String DFA4_eotS =
         "\15\uffff";
-    static final String DFA3_eofS =
+    static final String DFA4_eofS =
         "\15\uffff";
-    static final String DFA3_minS =
+    static final String DFA4_minS =
         "\1\42\11\uffff\1\52\2\uffff";
-    static final String DFA3_maxS =
+    static final String DFA4_maxS =
         "\1\164\11\uffff\1\57\2\uffff";
-    static final String DFA3_acceptS =
+    static final String DFA4_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\uffff\1\12\1\13";
-    static final String DFA3_specialS =
+    static final String DFA4_specialS =
         "\15\uffff}>";
-    static final String[] DFA3_transitionS = {
+    static final String[] DFA4_transitionS = {
             "\1\6\1\uffff\1\11\2\uffff\1\7\7\uffff\1\12\54\uffff\1\10\5\uffff"+
             "\1\1\3\uffff\1\4\7\uffff\1\3\3\uffff\1\5\1\uffff\1\2",
             "",
@@ -1110,52 +1196,52 @@ public class MweHighlightingLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA3_eot = DFA.unpackEncodedString(DFA3_eotS);
-    static final short[] DFA3_eof = DFA.unpackEncodedString(DFA3_eofS);
-    static final char[] DFA3_min = DFA.unpackEncodedStringToUnsignedChars(DFA3_minS);
-    static final char[] DFA3_max = DFA.unpackEncodedStringToUnsignedChars(DFA3_maxS);
-    static final short[] DFA3_accept = DFA.unpackEncodedString(DFA3_acceptS);
-    static final short[] DFA3_special = DFA.unpackEncodedString(DFA3_specialS);
-    static final short[][] DFA3_transition;
+    static final short[] DFA4_eot = DFA.unpackEncodedString(DFA4_eotS);
+    static final short[] DFA4_eof = DFA.unpackEncodedString(DFA4_eofS);
+    static final char[] DFA4_min = DFA.unpackEncodedStringToUnsignedChars(DFA4_minS);
+    static final char[] DFA4_max = DFA.unpackEncodedStringToUnsignedChars(DFA4_maxS);
+    static final short[] DFA4_accept = DFA.unpackEncodedString(DFA4_acceptS);
+    static final short[] DFA4_special = DFA.unpackEncodedString(DFA4_specialS);
+    static final short[][] DFA4_transition;
 
     static {
-        int numStates = DFA3_transitionS.length;
-        DFA3_transition = new short[numStates][];
+        int numStates = DFA4_transitionS.length;
+        DFA4_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA3_transition[i] = DFA.unpackEncodedString(DFA3_transitionS[i]);
+            DFA4_transition[i] = DFA.unpackEncodedString(DFA4_transitionS[i]);
         }
     }
 
-    class DFA3 extends DFA {
+    class DFA4 extends DFA {
 
-        public DFA3(BaseRecognizer recognizer) {
+        public DFA4(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 3;
-            this.eot = DFA3_eot;
-            this.eof = DFA3_eof;
-            this.min = DFA3_min;
-            this.max = DFA3_max;
-            this.accept = DFA3_accept;
-            this.special = DFA3_special;
-            this.transition = DFA3_transition;
+            this.decisionNumber = 4;
+            this.eot = DFA4_eot;
+            this.eof = DFA4_eof;
+            this.min = DFA4_min;
+            this.max = DFA4_max;
+            this.accept = DFA4_accept;
+            this.special = DFA4_special;
+            this.transition = DFA4_transition;
         }
         public String getDescription() {
-            return "46:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )";
+            return "49:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )";
         }
     }
-    static final String DFA5_eotS =
+    static final String DFA6_eotS =
         "\15\uffff";
-    static final String DFA5_eofS =
+    static final String DFA6_eofS =
         "\15\uffff";
-    static final String DFA5_minS =
+    static final String DFA6_minS =
         "\1\42\11\uffff\1\52\2\uffff";
-    static final String DFA5_maxS =
+    static final String DFA6_maxS =
         "\1\164\11\uffff\1\57\2\uffff";
-    static final String DFA5_acceptS =
+    static final String DFA6_acceptS =
         "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\uffff\1\12\1\13";
-    static final String DFA5_specialS =
+    static final String DFA6_specialS =
         "\15\uffff}>";
-    static final String[] DFA5_transitionS = {
+    static final String[] DFA6_transitionS = {
             "\1\6\1\uffff\1\11\2\uffff\1\7\7\uffff\1\12\54\uffff\1\10\5\uffff"+
             "\1\1\3\uffff\1\4\7\uffff\1\3\3\uffff\1\5\1\uffff\1\2",
             "",
@@ -1172,234 +1258,245 @@ public class MweHighlightingLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA5_eot = DFA.unpackEncodedString(DFA5_eotS);
-    static final short[] DFA5_eof = DFA.unpackEncodedString(DFA5_eofS);
-    static final char[] DFA5_min = DFA.unpackEncodedStringToUnsignedChars(DFA5_minS);
-    static final char[] DFA5_max = DFA.unpackEncodedStringToUnsignedChars(DFA5_maxS);
-    static final short[] DFA5_accept = DFA.unpackEncodedString(DFA5_acceptS);
-    static final short[] DFA5_special = DFA.unpackEncodedString(DFA5_specialS);
-    static final short[][] DFA5_transition;
+    static final short[] DFA6_eot = DFA.unpackEncodedString(DFA6_eotS);
+    static final short[] DFA6_eof = DFA.unpackEncodedString(DFA6_eofS);
+    static final char[] DFA6_min = DFA.unpackEncodedStringToUnsignedChars(DFA6_minS);
+    static final char[] DFA6_max = DFA.unpackEncodedStringToUnsignedChars(DFA6_maxS);
+    static final short[] DFA6_accept = DFA.unpackEncodedString(DFA6_acceptS);
+    static final short[] DFA6_special = DFA.unpackEncodedString(DFA6_specialS);
+    static final short[][] DFA6_transition;
 
     static {
-        int numStates = DFA5_transitionS.length;
-        DFA5_transition = new short[numStates][];
+        int numStates = DFA6_transitionS.length;
+        DFA6_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA5_transition[i] = DFA.unpackEncodedString(DFA5_transitionS[i]);
+            DFA6_transition[i] = DFA.unpackEncodedString(DFA6_transitionS[i]);
         }
     }
 
-    class DFA5 extends DFA {
+    class DFA6 extends DFA {
 
-        public DFA5(BaseRecognizer recognizer) {
+        public DFA6(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 5;
-            this.eot = DFA5_eot;
-            this.eof = DFA5_eof;
-            this.min = DFA5_min;
-            this.max = DFA5_max;
-            this.accept = DFA5_accept;
-            this.special = DFA5_special;
-            this.transition = DFA5_transition;
+            this.decisionNumber = 6;
+            this.eot = DFA6_eot;
+            this.eof = DFA6_eof;
+            this.min = DFA6_min;
+            this.max = DFA6_max;
+            this.accept = DFA6_accept;
+            this.special = DFA6_special;
+            this.transition = DFA6_transition;
         }
         public String getDescription() {
-            return "47:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )";
+            return "50:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )";
         }
     }
-    static final String DFA13_eotS =
-        "\1\uffff\2\25\3\uffff\1\25\2\uffff\1\25\1\37\2\25\1\23\1\uffff\3"+
-        "\23\2\uffff\1\25\1\uffff\1\25\3\uffff\1\25\2\uffff\1\25\2\uffff"+
-        "\2\25\4\uffff\1\25\1\55\5\25\1\uffff\3\25\1\66\1\25\1\uffff\1\25"+
-        "\1\71\1\uffff\1\72\1\73\3\uffff";
-    static final String DFA13_eofS =
-        "\74\uffff";
-    static final String DFA13_minS =
+    static final String DFA14_eotS =
+        "\1\uffff\2\27\3\uffff\1\27\2\uffff\1\27\1\41\3\27\1\25\2\uffff\3"+
+        "\25\2\uffff\1\27\1\uffff\1\27\3\uffff\1\27\2\uffff\1\27\2\uffff"+
+        "\3\27\5\uffff\1\27\1\62\6\27\1\uffff\3\27\1\74\1\75\1\27\1\uffff"+
+        "\1\27\1\100\2\uffff\1\101\1\102\3\uffff";
+    static final String DFA14_eofS =
+        "\103\uffff";
+    static final String DFA14_minS =
         "\1\0\1\157\1\141\3\uffff\1\165\2\uffff\1\155\1\52\1\141\1\162\1"+
-        "\101\1\uffff\2\0\1\52\2\uffff\1\144\1\uffff\1\162\3\uffff\1\164"+
-        "\2\uffff\1\160\2\uffff\1\154\1\165\4\uffff\1\165\1\60\2\157\1\163"+
-        "\1\145\1\154\1\uffff\1\55\1\162\1\145\1\60\1\145\1\uffff\1\164\1"+
-        "\60\1\uffff\2\60\3\uffff";
-    static final String DFA13_maxS =
+        "\165\1\101\2\uffff\2\0\1\52\2\uffff\1\144\1\uffff\1\162\3\uffff"+
+        "\1\164\2\uffff\1\160\2\uffff\1\154\1\165\1\154\5\uffff\1\165\1\60"+
+        "\2\157\1\163\1\145\2\154\1\uffff\1\55\1\162\1\145\2\60\1\145\1\uffff"+
+        "\1\164\1\60\2\uffff\2\60\3\uffff";
+    static final String DFA14_maxS =
         "\1\uffff\1\157\1\141\3\uffff\1\165\2\uffff\1\155\1\52\1\141\1\162"+
-        "\1\172\1\uffff\2\uffff\1\57\2\uffff\1\144\1\uffff\1\162\3\uffff"+
-        "\1\164\2\uffff\1\160\2\uffff\1\154\1\165\4\uffff\1\165\1\172\2\157"+
-        "\1\163\1\145\1\154\1\uffff\1\55\1\162\1\145\1\172\1\145\1\uffff"+
-        "\1\164\1\172\1\uffff\2\172\3\uffff";
-    static final String DFA13_acceptS =
-        "\3\uffff\1\3\1\4\1\5\1\uffff\1\7\1\10\5\uffff\1\16\3\uffff\1\22"+
-        "\1\23\1\uffff\1\16\1\uffff\1\3\1\4\1\5\1\uffff\1\7\1\10\1\uffff"+
-        "\1\13\1\12\2\uffff\1\17\1\20\1\21\1\22\7\uffff\1\2\5\uffff\1\6\2"+
-        "\uffff\1\15\2\uffff\1\14\1\1\1\11";
-    static final String DFA13_specialS =
-        "\1\0\16\uffff\1\1\1\2\53\uffff}>";
-    static final String[] DFA13_transitionS = {
-            "\11\23\2\22\2\23\1\22\22\23\1\22\1\23\1\17\4\23\1\20\6\23\1"+
-            "\12\1\21\12\23\1\5\2\23\1\3\2\23\1\4\32\16\3\23\1\15\1\16\1"+
-            "\23\1\6\4\16\1\13\2\16\1\11\3\16\1\1\6\16\1\14\1\16\1\2\4\16"+
-            "\1\7\1\23\1\10\uff82\23",
-            "\1\24",
+        "\1\165\1\172\2\uffff\2\uffff\1\57\2\uffff\1\144\1\uffff\1\162\3"+
+        "\uffff\1\164\2\uffff\1\160\2\uffff\1\154\1\165\1\154\5\uffff\1\165"+
+        "\1\172\2\157\1\163\1\145\2\154\1\uffff\1\55\1\162\1\145\2\172\1"+
+        "\145\1\uffff\1\164\1\172\2\uffff\2\172\3\uffff";
+    static final String DFA14_acceptS =
+        "\3\uffff\1\3\1\4\1\5\1\uffff\1\7\1\10\6\uffff\1\17\1\20\3\uffff"+
+        "\1\24\1\25\1\uffff\1\17\1\uffff\1\3\1\4\1\5\1\uffff\1\7\1\10\1\uffff"+
+        "\1\13\1\12\3\uffff\1\20\1\21\1\22\1\23\1\24\10\uffff\1\2\6\uffff"+
+        "\1\6\2\uffff\1\15\1\16\2\uffff\1\14\1\1\1\11";
+    static final String DFA14_specialS =
+        "\1\1\20\uffff\1\0\1\2\60\uffff}>";
+    static final String[] DFA14_transitionS = {
+            "\11\25\2\24\2\25\1\24\22\25\1\24\1\25\1\21\4\25\1\22\6\25\1"+
+            "\12\1\23\12\20\1\5\2\25\1\3\2\25\1\4\32\17\3\25\1\16\1\17\1"+
+            "\25\1\6\4\17\1\13\2\17\1\11\3\17\1\1\1\15\5\17\1\14\1\17\1\2"+
+            "\4\17\1\7\1\25\1\10\uff82\25",
             "\1\26",
+            "\1\30",
             "",
             "",
             "",
-            "\1\32",
+            "\1\34",
             "",
             "",
-            "\1\35",
-            "\1\36",
+            "\1\37",
             "\1\40",
-            "\1\41",
-            "\32\25\4\uffff\1\25\1\uffff\32\25",
-            "",
-            "\0\42",
-            "\0\42",
-            "\1\43\4\uffff\1\44",
+            "\1\42",
+            "\1\43",
+            "\1\44",
+            "\32\27\4\uffff\1\27\1\uffff\32\27",
             "",
             "",
-            "\1\46",
-            "",
-            "\1\47",
-            "",
-            "",
-            "",
-            "\1\50",
-            "",
-            "",
-            "\1\51",
+            "\0\46",
+            "\0\46",
+            "\1\47\4\uffff\1\50",
             "",
             "",
             "\1\52",
+            "",
             "\1\53",
             "",
             "",
             "",
-            "",
             "\1\54",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "",
+            "",
+            "\1\55",
+            "",
+            "",
             "\1\56",
             "\1\57",
             "\1\60",
-            "\1\61",
-            "\1\62",
             "",
+            "",
+            "",
+            "",
+            "",
+            "\1\61",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "\1\63",
             "\1\64",
             "\1\65",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\66",
             "\1\67",
-            "",
             "\1\70",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
-            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\71",
+            "\1\72",
+            "\1\73",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\1\76",
+            "",
+            "\1\77",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "",
+            "",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
+            "\12\27\7\uffff\32\27\4\uffff\1\27\1\uffff\32\27",
             "",
             "",
             ""
     };
 
-    static final short[] DFA13_eot = DFA.unpackEncodedString(DFA13_eotS);
-    static final short[] DFA13_eof = DFA.unpackEncodedString(DFA13_eofS);
-    static final char[] DFA13_min = DFA.unpackEncodedStringToUnsignedChars(DFA13_minS);
-    static final char[] DFA13_max = DFA.unpackEncodedStringToUnsignedChars(DFA13_maxS);
-    static final short[] DFA13_accept = DFA.unpackEncodedString(DFA13_acceptS);
-    static final short[] DFA13_special = DFA.unpackEncodedString(DFA13_specialS);
-    static final short[][] DFA13_transition;
+    static final short[] DFA14_eot = DFA.unpackEncodedString(DFA14_eotS);
+    static final short[] DFA14_eof = DFA.unpackEncodedString(DFA14_eofS);
+    static final char[] DFA14_min = DFA.unpackEncodedStringToUnsignedChars(DFA14_minS);
+    static final char[] DFA14_max = DFA.unpackEncodedStringToUnsignedChars(DFA14_maxS);
+    static final short[] DFA14_accept = DFA.unpackEncodedString(DFA14_acceptS);
+    static final short[] DFA14_special = DFA.unpackEncodedString(DFA14_specialS);
+    static final short[][] DFA14_transition;
 
     static {
-        int numStates = DFA13_transitionS.length;
-        DFA13_transition = new short[numStates][];
+        int numStates = DFA14_transitionS.length;
+        DFA14_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA13_transition[i] = DFA.unpackEncodedString(DFA13_transitionS[i]);
+            DFA14_transition[i] = DFA.unpackEncodedString(DFA14_transitionS[i]);
         }
     }
 
-    class DFA13 extends DFA {
+    class DFA14 extends DFA {
 
-        public DFA13(BaseRecognizer recognizer) {
+        public DFA14(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 13;
-            this.eot = DFA13_eot;
-            this.eof = DFA13_eof;
-            this.min = DFA13_min;
-            this.max = DFA13_max;
-            this.accept = DFA13_accept;
-            this.special = DFA13_special;
-            this.transition = DFA13_transition;
+            this.decisionNumber = 14;
+            this.eot = DFA14_eot;
+            this.eof = DFA14_eof;
+            this.min = DFA14_min;
+            this.max = DFA14_max;
+            this.accept = DFA14_accept;
+            this.special = DFA14_special;
+            this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | RULE_ID | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
+            return "1:1: Tokens : ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | KEYWORD_NULL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA13_0 = input.LA(1);
+                        int LA14_17 = input.LA(1);
 
                         s = -1;
-                        if ( (LA13_0=='m') ) {s = 1;}
+                        if ( ((LA14_17>='\u0000' && LA14_17<='\uFFFF')) ) {s = 38;}
 
-                        else if ( (LA13_0=='v') ) {s = 2;}
-
-                        else if ( (LA13_0=='=') ) {s = 3;}
-
-                        else if ( (LA13_0=='@') ) {s = 4;}
-
-                        else if ( (LA13_0==':') ) {s = 5;}
-
-                        else if ( (LA13_0=='a') ) {s = 6;}
-
-                        else if ( (LA13_0=='{') ) {s = 7;}
-
-                        else if ( (LA13_0=='}') ) {s = 8;}
-
-                        else if ( (LA13_0=='i') ) {s = 9;}
-
-                        else if ( (LA13_0=='.') ) {s = 10;}
-
-                        else if ( (LA13_0=='f') ) {s = 11;}
-
-                        else if ( (LA13_0=='t') ) {s = 12;}
-
-                        else if ( (LA13_0=='^') ) {s = 13;}
-
-                        else if ( ((LA13_0>='A' && LA13_0<='Z')||LA13_0=='_'||(LA13_0>='b' && LA13_0<='e')||(LA13_0>='g' && LA13_0<='h')||(LA13_0>='j' && LA13_0<='l')||(LA13_0>='n' && LA13_0<='s')||LA13_0=='u'||(LA13_0>='w' && LA13_0<='z')) ) {s = 14;}
-
-                        else if ( (LA13_0=='\"') ) {s = 15;}
-
-                        else if ( (LA13_0=='\'') ) {s = 16;}
-
-                        else if ( (LA13_0=='/') ) {s = 17;}
-
-                        else if ( ((LA13_0>='\t' && LA13_0<='\n')||LA13_0=='\r'||LA13_0==' ') ) {s = 18;}
-
-                        else if ( ((LA13_0>='\u0000' && LA13_0<='\b')||(LA13_0>='\u000B' && LA13_0<='\f')||(LA13_0>='\u000E' && LA13_0<='\u001F')||LA13_0=='!'||(LA13_0>='#' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='-')||(LA13_0>='0' && LA13_0<='9')||(LA13_0>=';' && LA13_0<='<')||(LA13_0>='>' && LA13_0<='?')||(LA13_0>='[' && LA13_0<=']')||LA13_0=='`'||LA13_0=='|'||(LA13_0>='~' && LA13_0<='\uFFFF')) ) {s = 19;}
+                        else s = 21;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA13_15 = input.LA(1);
+                        int LA14_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA13_15>='\u0000' && LA13_15<='\uFFFF')) ) {s = 34;}
+                        if ( (LA14_0=='m') ) {s = 1;}
 
-                        else s = 19;
+                        else if ( (LA14_0=='v') ) {s = 2;}
+
+                        else if ( (LA14_0=='=') ) {s = 3;}
+
+                        else if ( (LA14_0=='@') ) {s = 4;}
+
+                        else if ( (LA14_0==':') ) {s = 5;}
+
+                        else if ( (LA14_0=='a') ) {s = 6;}
+
+                        else if ( (LA14_0=='{') ) {s = 7;}
+
+                        else if ( (LA14_0=='}') ) {s = 8;}
+
+                        else if ( (LA14_0=='i') ) {s = 9;}
+
+                        else if ( (LA14_0=='.') ) {s = 10;}
+
+                        else if ( (LA14_0=='f') ) {s = 11;}
+
+                        else if ( (LA14_0=='t') ) {s = 12;}
+
+                        else if ( (LA14_0=='n') ) {s = 13;}
+
+                        else if ( (LA14_0=='^') ) {s = 14;}
+
+                        else if ( ((LA14_0>='A' && LA14_0<='Z')||LA14_0=='_'||(LA14_0>='b' && LA14_0<='e')||(LA14_0>='g' && LA14_0<='h')||(LA14_0>='j' && LA14_0<='l')||(LA14_0>='o' && LA14_0<='s')||LA14_0=='u'||(LA14_0>='w' && LA14_0<='z')) ) {s = 15;}
+
+                        else if ( ((LA14_0>='0' && LA14_0<='9')) ) {s = 16;}
+
+                        else if ( (LA14_0=='\"') ) {s = 17;}
+
+                        else if ( (LA14_0=='\'') ) {s = 18;}
+
+                        else if ( (LA14_0=='/') ) {s = 19;}
+
+                        else if ( ((LA14_0>='\t' && LA14_0<='\n')||LA14_0=='\r'||LA14_0==' ') ) {s = 20;}
+
+                        else if ( ((LA14_0>='\u0000' && LA14_0<='\b')||(LA14_0>='\u000B' && LA14_0<='\f')||(LA14_0>='\u000E' && LA14_0<='\u001F')||LA14_0=='!'||(LA14_0>='#' && LA14_0<='&')||(LA14_0>='(' && LA14_0<='-')||(LA14_0>=';' && LA14_0<='<')||(LA14_0>='>' && LA14_0<='?')||(LA14_0>='[' && LA14_0<=']')||LA14_0=='`'||LA14_0=='|'||(LA14_0>='~' && LA14_0<='\uFFFF')) ) {s = 21;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA13_16 = input.LA(1);
+                        int LA14_18 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA13_16>='\u0000' && LA13_16<='\uFFFF')) ) {s = 34;}
+                        if ( ((LA14_18>='\u0000' && LA14_18<='\uFFFF')) ) {s = 38;}
 
-                        else s = 19;
+                        else s = 21;
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 13, _s, input);
+                new NoViableAltException(getDescription(), 14, _s, input);
             error(nvae);
             throw nvae;
         }

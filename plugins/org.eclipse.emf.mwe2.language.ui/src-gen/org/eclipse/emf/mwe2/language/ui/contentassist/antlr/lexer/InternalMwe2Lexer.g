@@ -24,6 +24,8 @@ Module : 'module';
 
 False : 'false';
 
+Null : 'null';
+
 True : 'true';
 
 ReverseSolidusDollarSignLeftCurlyBracket : '\\${';
@@ -44,6 +46,10 @@ QuotationMark : '"';
 
 Apostrophe : '\'';
 
+PlusSign : '+';
+
+HyphenMinus : '-';
+
 FullStop : '.';
 
 Colon : ':';
@@ -59,6 +65,8 @@ RightCurlyBracket : '}';
 
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+
+RULE_INT : ('0'..'9')+;
 
 RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
 

@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.Import;
-import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
 
 /**
@@ -41,7 +40,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Mwe2Package;
  *
  * @generated
  */
-public class ModuleImpl extends MinimalEObjectImpl.Container implements Module
+public class ModuleImpl extends MinimalEObjectImpl.Container implements org.eclipse.emf.mwe2.language.mwe2.Module
 {
 	/**
 	 * The default value of the '{@link #getCanonicalName() <em>Canonical Name</em>}' attribute.
@@ -359,7 +358,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements Module
 	{
 		if (eIsProxy()) return super.toString();
 
-		StringBuffer result = new StringBuffer(super.toString());
+		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (canonicalName: ");
 		result.append(canonicalName);
 		result.append(')');
