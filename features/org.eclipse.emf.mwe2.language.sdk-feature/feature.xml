@@ -51,6 +51,13 @@ http://www.eclipse.org/legal/epl-v10.html
          unpack="false"/>
 
    <plugin
+         id="org.eclipse.emf.mwe2.language.ide"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
          id="org.eclipse.emf.mwe2.language.ui"
          download-size="0"
          install-size="0"
@@ -70,6 +77,12 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.eclipse.emf.mwe2.language.ide.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
    <plugin
          id="org.eclipse.emf.mwe2.language.ui.source"
          download-size="0"

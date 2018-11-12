@@ -20,7 +20,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
 import org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA;
-import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
+import org.eclipse.emf.mwe2.language.validation.Mwe2Validator;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.resource.XtextResourceSet;
@@ -54,7 +54,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),1,list.size());
-		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
+		assertEquals(Mwe2Validator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
 	@Test public void testAssignability_2() throws Exception {
@@ -62,7 +62,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
-		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
+		assertEquals(Mwe2Validator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
 	@Test public void testAssignability_3() throws Exception {
@@ -77,7 +77,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
-		assertEquals(Mwe2JavaValidator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
+		assertEquals(Mwe2Validator.INCOMPATIBLE_ASSIGNMENT, list.get(0).getCode());
 	}
 	
 	@Test public void testAssignability_5() throws Exception {
@@ -146,7 +146,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
-		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Mwe2Validator.UNUSED_LOCAL, list.get(0).getCode());
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
@@ -155,7 +155,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
-		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Mwe2Validator.UNUSED_LOCAL, list.get(0).getCode());
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
@@ -178,7 +178,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(1,list.size());
-		assertEquals(Mwe2JavaValidator.UNUSED_LOCAL, list.get(0).getCode());
+		assertEquals(Mwe2Validator.UNUSED_LOCAL, list.get(0).getCode());
 		assertEquals(Severity.WARNING, list.get(0).getSeverity());
 	}
 	
@@ -211,7 +211,7 @@ public class Mwe2ValidatorTest {
 		EObject model = getModel(textModel);
 		List<Issue> list = validate(model);
 		assertEquals(list.toString(),2,list.size());
-		assertEquals(Mwe2JavaValidator.DUPLICATE_LOCAL, list.get(1).getCode());
+		assertEquals(Mwe2Validator.DUPLICATE_LOCAL, list.get(1).getCode());
 		assertEquals(Severity.ERROR, list.get(1).getSeverity());
 	}
 	
@@ -223,7 +223,7 @@ public class Mwe2ValidatorTest {
 		resource_1.load(new StringInputStream(textModel_1), null);
 		List<Issue> list = validate(resource_1.getContents().get(0));
 		assertEquals(list.toString(), 1, list.size());
-		assertEquals(Mwe2JavaValidator.MISSING_MANDATORY_FEATURE, list.get(0).getCode());
+		assertEquals(Mwe2Validator.MISSING_MANDATORY_FEATURE, list.get(0).getCode());
 		assertEquals(Severity.ERROR, list.get(0).getSeverity());
 		assertTrue(list.get(0).getMessage(), list.get(0).getMessage().contains("foo.bar"));
 	}

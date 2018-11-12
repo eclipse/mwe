@@ -19,6 +19,7 @@
 		<module>org.eclipse.emf.mwe.ui.simpleEditor</module>
 		<module>org.eclipse.emf.mwe.utils</module>
 		<module>org.eclipse.emf.mwe2.language</module>
+		<module>org.eclipse.emf.mwe2.language.ide</module>
 		<module>org.eclipse.emf.mwe2.language.ui</module>
 		<module>org.eclipse.emf.mwe2.launch</module>
 		<module>org.eclipse.emf.mwe2.launch.ui</module>

@@ -141,7 +141,15 @@
             </activeWhen>
         </handler>
     </extension>   
-
+	<extension point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="mwe2"
+			id="org.eclipse.emf.mwe2.language.Mwe2.contenttype"
+			name="Mwe2 File"
+			priority="normal">
+		</content-type>
+	</extension>
 <!-- adding resource factories -->
 
 	<extension

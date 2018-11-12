@@ -18,7 +18,7 @@ import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
 import org.eclipse.emf.mwe2.language.mwe2.impl.JvmTypeUriFactory;
-import org.eclipse.emf.mwe2.language.validation.Mwe2JavaValidator;
+import org.eclipse.emf.mwe2.language.validation.Mwe2Validator;
 import org.eclipse.emf.mwe2.runtime.IFactory;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaElement;
@@ -63,7 +63,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 	@Inject
 	private IWorkspace workspace;
 	
-	@Fix(Mwe2JavaValidator.ABSTRACT_OR_INTERFACE)
+	@Fix(Mwe2Validator.ABSTRACT_OR_INTERFACE)
 	public void assignValidType(final Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Define type explicitly", "Choose a compatible type for the component.", null, 
 				new ISemanticModification() {

@@ -49,8 +49,8 @@
 	</properties>
 	<modules>
 		<module>../org.eclipse.emf.mwe2.target</module>
-		<module>../../features/</module>
 		<module>../../plugins/</module>
+		<module>../../features/</module>
 		<module>../../tests/</module>
 		<module>../org.eclipse.emf.mwe2.repository</module>
 	</modules>
