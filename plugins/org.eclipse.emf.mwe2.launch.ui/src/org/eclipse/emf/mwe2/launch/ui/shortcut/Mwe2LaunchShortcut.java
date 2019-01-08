@@ -9,10 +9,15 @@
 
 package org.eclipse.emf.mwe2.launch.ui.shortcut;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -36,8 +41,6 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchRequestor;
-import org.eclipse.jdt.internal.core.PackageFragment;
-import org.eclipse.jdt.internal.core.PackageFragmentRoot;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -146,7 +149,15 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, Mwe2Launcher.class.getName());
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_STOP_IN_MAIN, false);
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, info.wfFile);
-		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_EXCLUDE_TEST_CODE, !info.includeTestCode);
+		
+		try {
+			Field attrExcludeTestCodeField = IJavaLaunchConfigurationConstants.class.getDeclaredField("ATTR_EXCLUDE_TEST_CODE");
+			String attrExcludeTestCode = (String) attrExcludeTestCodeField.get(null);
+			wc.setAttribute(attrExcludeTestCode, !info.includeTestCode);
+		} catch(NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+			// ok, old eclipse
+		}
+		
 		wc.setAttribute(RefreshTab.ATTR_REFRESH_SCOPE, "${workspace}");
 		wc.setAttribute(RefreshTab.ATTR_REFRESH_RECURSIVE, true);
 
@@ -185,20 +196,24 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 		if (javaProject != null) {
 			IClasspathEntry entry;
 			try {
+				Method getClasspathEntryFor = IJavaProject.class.getDeclaredMethod("getClasspathEntryFor", IPath.class);
+				Method isTest = IClasspathEntry.class.getDeclaredMethod("isTest");
+				
 				IJavaElement javaElement = JavaCore.create(file.getParent());
 				if (javaElement instanceof IPackageFragmentRoot) {
-					entry = javaProject.getClasspathEntryFor(javaElement.getPath());
+					entry = (IClasspathEntry) getClasspathEntryFor.invoke(javaProject, javaElement.getPath());
 				} else if (javaElement instanceof IPackageFragment) {
-					entry = javaProject.getClasspathEntryFor(
+					entry = (IClasspathEntry) getClasspathEntryFor.invoke(javaProject, 
 							((org.eclipse.jdt.core.IPackageFragment) javaElement).getParent().getPath());
 				} else {
 					entry = null;
 				}
-			} catch (JavaModelException e) {
+				if (entry != null && !((boolean) isTest.invoke(entry))) {
+					return false;
+				}
+			} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				// ok, old eclipse
 				return true;
-			}
-			if (entry != null && !entry.isTest()) {
-				return false;
 			}
 		}
 		return true;
