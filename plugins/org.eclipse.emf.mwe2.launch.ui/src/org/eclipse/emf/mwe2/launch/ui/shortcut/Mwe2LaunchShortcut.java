@@ -26,12 +26,18 @@ import org.eclipse.debug.ui.DebugUITools;
 import org.eclipse.debug.ui.ILaunchShortcut;
 import org.eclipse.debug.ui.RefreshTab;
 import org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher;
+import org.eclipse.jdt.core.IClasspathEntry;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchRequestor;
+import org.eclipse.jdt.internal.core.PackageFragment;
+import org.eclipse.jdt.internal.core.PackageFragmentRoot;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -140,6 +146,7 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_MAIN_TYPE_NAME, Mwe2Launcher.class.getName());
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_STOP_IN_MAIN, false);
 		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_PROGRAM_ARGUMENTS, info.wfFile);
+		wc.setAttribute(IJavaLaunchConfigurationConstants.ATTR_EXCLUDE_TEST_CODE, !info.includeTestCode);
 		wc.setAttribute(RefreshTab.ATTR_REFRESH_SCOPE, "${workspace}");
 		wc.setAttribute(RefreshTab.ATTR_REFRESH_RECURSIVE, true);
 
@@ -155,10 +162,13 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 
 		private final String wfFile;
 
+		private boolean includeTestCode;
+
 		private LaunchConfigurationInfo(final IFile file) {
 			name = file.getName();
 			project = file.getProject().getName();
 			wfFile = file.getProjectRelativePath().toString();
+			includeTestCode = isIncludeTestCode(file);
 		}
 
 		private boolean configEquals(final ILaunchConfiguration a) throws CoreException {
@@ -168,5 +178,29 @@ public class Mwe2LaunchShortcut implements ILaunchShortcut {
 				&& a.getType().getIdentifier().equals("org.eclipse.emf.mwe2.launch.Mwe2LaunchConfigurationType");
 		}
 
+	}
+
+	private static boolean isIncludeTestCode(IFile file) {
+		IJavaProject javaProject = JavaCore.create(file.getProject());
+		if (javaProject != null) {
+			IClasspathEntry entry;
+			try {
+				IJavaElement javaElement = JavaCore.create(file.getParent());
+				if (javaElement instanceof IPackageFragmentRoot) {
+					entry = javaProject.getClasspathEntryFor(javaElement.getPath());
+				} else if (javaElement instanceof IPackageFragment) {
+					entry = javaProject.getClasspathEntryFor(
+							((org.eclipse.jdt.core.IPackageFragment) javaElement).getParent().getPath());
+				} else {
+					entry = null;
+				}
+			} catch (JavaModelException e) {
+				return true;
+			}
+			if (entry != null && !entry.isTest()) {
+				return false;
+			}
+		}
+		return true;
 	}
 }
