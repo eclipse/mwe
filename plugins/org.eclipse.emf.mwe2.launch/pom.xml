@@ -9,6 +9,7 @@
 
 	<artifactId>org.eclipse.emf.mwe2.launch</artifactId>
 	<packaging>eclipse-plugin</packaging>
+	<name>org.eclipse.emf.mwe2.launch</name>
 
 	<properties>
 		<p2-deploy-only>false</p2-deploy-only>

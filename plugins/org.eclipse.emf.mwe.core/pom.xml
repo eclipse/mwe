@@ -10,6 +10,7 @@
 	<artifactId>org.eclipse.emf.mwe.core</artifactId>
 	<version>1.4.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<name>org.eclipse.emf.mwe.core</name>
 
 	<properties>
 		<p2-deploy-only>false</p2-deploy-only>

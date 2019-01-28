@@ -9,6 +9,7 @@
 
 	<artifactId>org.eclipse.emf.mwe2.language</artifactId>
 	<packaging>eclipse-plugin</packaging>
+	<name>org.eclipse.emf.mwe2.language</name>
 
 	<properties>
 		<p2-deploy-only>false</p2-deploy-only>
