@@ -49,7 +49,6 @@ public interface ElementAdapter {
 	 * Implementations can *avoid* suspension, although it would suspend otherwise, if the return value is set to
 	 * false here
 	 * 
-	 * @param lastState the consolidated decisions previously asked
 	 * @param element the element that is going to be debugged
 	 * @param flag one of the values <code>IProcessHandler.PUSH</code> or <code>IProcessHandler.POP</code>
 	 * @return whether or not to suspend the debugger process for the element

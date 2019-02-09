@@ -21,7 +21,7 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
  * Model Workflow Engine.
  * <p>
  * The Workflow Engine will call the
- * {@link #invoke(WorkflowContext, ProgressMonitor)} method at the appropriate
+ * {@link #invoke(WorkflowContext, ProgressMonitor, Issues)} method at the appropriate
  * time to execute the component's service.
  * 
  * @author Sven Efftinge (http://www.efftinge.de)

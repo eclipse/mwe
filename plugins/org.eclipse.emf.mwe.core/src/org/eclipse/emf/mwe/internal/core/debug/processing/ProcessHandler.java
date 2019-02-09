@@ -31,7 +31,7 @@ public interface ProcessHandler {
 	 * @param lastState the consolidated decisions of previously asked listeners
 	 * @param element the element that is questioned
 	 * @param flag one of the values <code>IProcessHandler.PUSH</code> or <code>IProcessHandler.POP</code>
-	 * @return
+	 * @return true if element shall be handled
 	 */
 	public boolean shallHandle(boolean lastState, Object element, int flag);
 

@@ -69,7 +69,7 @@ public interface Issues {
 	 * Adds an info message
 	 * 
 	 * @param compnent
-	 * @param string
+	 * @param msg
 	 * @param obj
 	 */
 	public void addInfo(WorkflowComponent compnent, String msg, Object obj);
@@ -83,7 +83,7 @@ public interface Issues {
 	public void addInfo(WorkflowComponent ctx, String msg);
 
 	/**
-	 * @return
+	 * @return true if has infos
 	 */
 	public boolean hasInfos();
 
@@ -120,7 +120,7 @@ public interface Issues {
 	 * @param ctx
 	 * @param msg
 	 * @param obj
-	 * @param feature
+	 * @param featureName
 	 * @param t
 	 * @param additionalData
 	 */
@@ -131,7 +131,7 @@ public interface Issues {
 	 * Adds an warn message
 	 * 
 	 * @param compnent
-	 * @param string
+	 * @param msg
 	 * @param obj
 	 */
 	public void addWarning(WorkflowComponent compnent, String msg, Object obj);
@@ -145,7 +145,7 @@ public interface Issues {
 	public void addWarning(WorkflowComponent ctx, String msg);
 
 	/**
-	 * @return
+	 * @return true if there are warnings
 	 */
 	public boolean hasWarnings();
 
@@ -184,7 +184,7 @@ public interface Issues {
 	 * @param ctx
 	 * @param msg
 	 * @param obj
-	 * @param feature
+	 * @param featureName
 	 * @param t
 	 * @param additionalData
 	 */
@@ -195,7 +195,7 @@ public interface Issues {
 	 * Adds an error message
 	 * 
 	 * @param compnent
-	 * @param string
+	 * @param msg
 	 * @param obj
 	 */
 	public void addError(WorkflowComponent compnent, String msg, Object obj);
@@ -214,7 +214,7 @@ public interface Issues {
 	public MWEDiagnostic[] getErrors();
 
 	/**
-	 * @return
+	 * @return true if has errors
 	 */
 	public boolean hasErrors();
 
