@@ -75,7 +75,7 @@ public interface ProgressMonitor {
 
 	/**
 	 * Internal method to handle scaling correctly. This method must not be
-	 * called by a client. Clients should always use the method</code>
+	 * called by a client. Clients should always use the method<code>
 	 * worked(int)</code>.
 	 * 
 	 * @param work
