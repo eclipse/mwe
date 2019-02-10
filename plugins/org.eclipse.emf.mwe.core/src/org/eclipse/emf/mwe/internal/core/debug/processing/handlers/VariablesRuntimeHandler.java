@@ -232,7 +232,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * push the syntax element onto the stack
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object, int)
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#preTask(java.lang.Object, java.lang.Object, int)
 	 */
 	@Override
 	public void preTask(final Object element, final Object context, final int state) {
@@ -248,7 +248,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * pop the peek element from the stack
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#postTask(Object)
 	 */
 	@Override
 	public void postTask(final Object context) {
@@ -267,7 +267,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#resumed()
 	 */
 	@Override
 	public void resumed() {
@@ -276,7 +276,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#suspended()
 	 */
 	@Override
 	public void suspended() {
@@ -285,7 +285,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#started()
 	 */
 	@Override
 	public void started() {
@@ -294,7 +294,7 @@ public class VariablesRuntimeHandler implements RuntimeHandler, EventHandler, Ru
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#terminated()
 	 */
 	@Override
 	public void terminated() {

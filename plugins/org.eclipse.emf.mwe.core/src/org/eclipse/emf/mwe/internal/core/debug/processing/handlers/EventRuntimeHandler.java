@@ -73,7 +73,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	/**
 	 * Send STARTED event to the debug server
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#started()
 	 */
 	@Override
 	public void started() throws IOException {
@@ -83,7 +83,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	/**
 	 * Push the element onto the stack
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#preTask(java.lang.Object,java.lang.Object,
 	 *      int)
 	 */
 	@Override
@@ -101,7 +101,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * Pop the element from the stack, adjust the cleanStackLevel value if
 	 * required
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#postTask()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#postTask(Object)
 	 */
 	@Override
 	public void postTask(final Object context) {
@@ -127,7 +127,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	 * Wait for a confirmation. In the meantime other threads could handle for
 	 * instance variable requests.
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#suspended()
 	 */
 	@Override
 	public void suspended() throws IOException {
@@ -166,7 +166,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	/**
 	 * Send RESUMED event to the debug server
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#resumed()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#resumed()
 	 */
 	@Override
 	public void resumed() throws IOException {
@@ -176,7 +176,7 @@ public class EventRuntimeHandler implements RuntimeHandler, EventHandler {
 	/**
 	 * Send TERMINATED event to the debug server
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#terminated()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#terminated()
 	 */
 	@Override
 	public void terminated() throws IOException {

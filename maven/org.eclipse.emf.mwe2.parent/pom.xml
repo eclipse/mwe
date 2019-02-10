@@ -181,6 +181,22 @@
 							</goals>
 						</execution>
 					</executions>
+					<configuration>
+						<tags>
+							<tag>
+								<name>generated</name>
+								<placement>X</placement>
+							</tag>
+							<tag>
+								<name>ordered</name>
+								<placement>X</placement>
+							</tag>
+							<tag>
+								<name>model</name>
+								<placement>X</placement>
+							</tag>
+						</tags>	
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.cbi.maven.plugins</groupId>

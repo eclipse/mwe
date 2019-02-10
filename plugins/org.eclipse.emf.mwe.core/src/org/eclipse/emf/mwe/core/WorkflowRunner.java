@@ -255,7 +255,7 @@ public class WorkflowRunner {
 	/**
 	 * Print usage information and terminate the program.
 	 * 
-	 * @param options
+	 * @param line
 	 */
 	protected void wrongCall(final CommandLine line) {
 		Options options = new Options();

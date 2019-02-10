@@ -272,8 +272,8 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * Sets the aggregated components of this composite.
 	 * 
-	 * @param components
-	 *            Components to aggregate.
+	 * @param component
+	 *            Components to add.
 	 */
 	public void addComponent(final WorkflowComponent component) {
 		components.add(component);
@@ -283,8 +283,8 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 	/**
 	 * Sets the aggregated components of this composite.
 	 * 
-	 * @param components
-	 *            Components to aggregate.
+	 * @param cartridge
+	 *            cartridge to add.
 	 */
 	public void addCartridge(final Workflow cartridge) {
 		components.add(cartridge);

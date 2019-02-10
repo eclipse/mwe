@@ -73,7 +73,7 @@ public class ReflectionUtil {
 	 * array.
 	 * 
 	 * @param element
-	 * @return
+	 * @return the list of field names
 	 */
 	public static List<String> getFieldNames(Object element) {
 		List<String> result = new ArrayList<String>();

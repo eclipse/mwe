@@ -41,9 +41,9 @@ public class WorkflowEngine {
 
 	/**
 	 * @param workFlowFile
-	 * @param monitor
-	 * @param logger
-	 * @param params
+	 * @param theMonitor
+	 * @param externalSlotContents
+	 * @param theParams
 	 */
 	public boolean run(final String workFlowFile, final ProgressMonitor theMonitor,
 			final Map<String, String> theParams, final Map<String, ?> externalSlotContents) {

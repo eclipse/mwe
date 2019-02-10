@@ -24,7 +24,7 @@ import org.eclipse.emf.mwe.internal.core.ant.Parameter;
  * <p>
  * This task specializes Ant's <tt>Java</tt> task.
  * 
- * @see http://ant.apache.org/manual/CoreTasks/java.html
+ * @see <a href="http://ant.apache.org/manual/CoreTasks/java.html">http://ant.apache.org/manual/CoreTasks/java.html</a>
  */
 public class WorkflowAntTask extends Java {
 

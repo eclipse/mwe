@@ -235,7 +235,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#started()
 	 */
 	@Override
 	public void started() {
@@ -244,7 +244,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * increment the iteration level
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#preTask(java.lang.Object,java.lang.Object,
 	 *      int)
 	 */
 	@Override
@@ -255,8 +255,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * decrement the iteration level
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#preTask(java.lang.Object,
-	 *      int)
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#postTask(java.lang.Object)
 	 */
 	@Override
 	public void postTask(final Object context) {
@@ -266,7 +265,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * reset a potential forceSuspend request
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#suspended()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#suspended()
 	 */
 	@Override
 	public void suspended() {
@@ -276,7 +275,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#resumed()
 	 */
 	@Override
 	public void resumed() {
@@ -285,7 +284,7 @@ public class CommandRuntimeHandler implements RuntimeHandler, CommandListener, P
 	/**
 	 * no contribution here
 	 * 
-	 * @see org.eclipse.emf.mwe.internal.core.debug.processing.EventHandler#started()
+	 * @see org.eclipse.emf.mwe.core.debug.processing.EventHandler#terminated()
 	 */
 	@Override
 	public void terminated() {

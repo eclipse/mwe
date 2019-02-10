@@ -60,7 +60,7 @@ public abstract class AbstractWorkflowAdvice extends AbstractWorkflowComponent {
 	 * @param issues
 	 *            facility for reporting possible issues during weaving.
 	 */
-	public abstract void weave(WorkflowComponent c, Issues issues);
+	public abstract void weave(WorkflowComponent component, Issues issues);
 
 	protected String buildList(List<String> list) {
 		StringBuilder b = new StringBuilder();
