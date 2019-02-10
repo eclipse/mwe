@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Modeling Workflow Engine 2 Runtime
+Bundle-Name: MWE2 Runtime
 Bundle-SymbolicName: org.eclipse.emf.mwe2.runtime
 Bundle-Version: 2.10.0.qualifier
 Bundle-Vendor: Eclipse Xtext
