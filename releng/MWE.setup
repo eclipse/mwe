@@ -285,9 +285,9 @@
       <requirement
           name="org.eclipse.emf.sdk.feature.group"/>
       <requirement
-           name="org.eclipse.jdt.feature.group"/>
+          name="org.eclipse.jdt.feature.group"/>
       <requirement
-           name="org.eclipse.pde.feature.group"/>
+          name="org.eclipse.pde.feature.group"/>
       <sourceLocator
           rootFolder="${git.clone.emf.mwe.location}"
           locateNestedProjects="true"/>
@@ -349,7 +349,7 @@
             project="org.eclipse.emf.mwe.core"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.10/@workingSets.1"/>
+            excludedWorkingSet="//@setupTasks.11/@workingSets.1"/>
       </predicate>
     </workingSet>
     <workingSet
