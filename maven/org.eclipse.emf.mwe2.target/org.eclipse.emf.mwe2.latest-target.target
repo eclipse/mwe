@@ -24,5 +24,10 @@
 <unit id="org.eclipse.license.feature.group" version="0.0.0"/>
 <repository location="https://download.eclipse.org/cbi/updates/license/"/>
 </location>
+<location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.junit" version="0.0.0"/>
+<unit id="com.google.guava" version="27.1.0.v20190517-1946"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/drops/I20190517220210/repository/"/>
+</location>
 </locations>
 </target>
