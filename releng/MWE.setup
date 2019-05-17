@@ -27,7 +27,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.orbit"
-      value="http://download.eclipse.org/tools/orbit/downloads/drops/R20180330011457/repository/"/>
+      value="https://download.eclipse.org/tools/orbit/downloads/drops/R20180330011457/repository/"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
@@ -68,17 +68,17 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.xtext"
-      value="http://download.eclipse.org/modeling/tmf/xtext/updates/composite/${xtext.version}"
+      value="https://download.eclipse.org/modeling/tmf/xtext/updates/composite/${xtext.version}"
       defaultValue=""
       label="Xtext p2 Respository URL"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.emf"
-      value="http://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
+      value="https://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.cbi.license"
-      value="http://download.eclipse.org/cbi/updates/license"/>
+      value="https://download.eclipse.org/cbi/updates/license"/>
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Workspace Preferences">
