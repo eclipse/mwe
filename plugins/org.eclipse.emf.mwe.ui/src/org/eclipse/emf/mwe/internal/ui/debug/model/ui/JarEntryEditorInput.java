@@ -53,10 +53,9 @@ public class JarEntryEditorInput extends org.eclipse.jdt.internal.ui.javaeditor.
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(Class adapter) {
+	public <T> T getAdapter(Class<T> adapter) {
 		if (adapter == IStorage.class)
-			return fJarEntryFile;
+			return adapter.cast(fJarEntryFile);
 		return fJarEntryFile.getAdapter(adapter);
 	}
 
