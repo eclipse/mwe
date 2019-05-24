@@ -50,22 +50,21 @@ public abstract class DebugElement extends PlatformObject implements IDebugEleme
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
-	public Object getAdapter(final Class adapter) {
+	public <T> T getAdapter(Class<T> adapter) {
 		if (adapter == IDebugElement.class) {
-			return this;
+			return adapter.cast(this);
 		}
 		if (adapter == IDebugTarget.class) {
-			return getDebugTarget();
+			return adapter.cast(getDebugTarget());
 		}
 		if (adapter == ILaunch.class) {
-			return getLaunch();
+			return adapter.cast(getLaunch());
 		}
 		if (adapter == IProcess.class) {
-			return getDebugTarget().getProcess();
+			return adapter.cast(getDebugTarget().getProcess());
 		}
 		if (adapter == ILaunchConfiguration.class) {
-			return getLaunch().getLaunchConfiguration();
+			return adapter.cast(getLaunch().getLaunchConfiguration());
 		}
 
 		return super.getAdapter(adapter);

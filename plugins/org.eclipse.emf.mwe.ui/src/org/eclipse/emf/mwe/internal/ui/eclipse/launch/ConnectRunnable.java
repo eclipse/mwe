@@ -7,12 +7,15 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.internal.ui.eclipse.launch;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
+import org.eclipse.jdt.internal.launching.LaunchingPlugin;
 import org.eclipse.jdt.launching.JavaRuntime;
 
 /**
  * @author kia7si - moved class out of MWEDebuggerLauncher.
  */
+@SuppressWarnings("restriction")
 public class ConnectRunnable implements Runnable {
 	private Connection fConnector = null;
 
@@ -27,7 +30,11 @@ public class ConnectRunnable implements Runnable {
 	@Override
 	public void run() {
 		try {
-			int timeout = JavaRuntime.getPreferences().getInt(JavaRuntime.PREF_CONNECT_TIMEOUT);
+			int timeout = Platform.getPreferencesService().getInt(
+				LaunchingPlugin.ID_PLUGIN,
+				JavaRuntime.PREF_CONNECT_TIMEOUT,
+				JavaRuntime.DEF_CONNECT_TIMEOUT,
+				null);
 			fConnector.accept(timeout);
 		} catch (Exception e) {
 			fException = e;
