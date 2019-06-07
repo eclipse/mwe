@@ -6,10 +6,10 @@ xargs_sed_inplace() {
 		xargs sed -i "$@" 
 	fi	
 }
-mwe2_from=2.10.0
-mwe2_to=2.10.1
-mwe_from=1.4.0
-mwe_to=1.4.1
+mwe2_from=2.10.1
+mwe2_to=2.11.9
+mwe_from=1.4.1
+mwe_to=1.5.0
 
 find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${mwe2_from}.qualifier/${mwe2_to}.qualifier/g"
 find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${mwe_from}.qualifier/${mwe_to}.qualifier/g"
