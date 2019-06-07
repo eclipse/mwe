@@ -35,7 +35,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.xtext.common.types" version="2.11.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.xbase" version="2.11.0" match="greaterOrEqual"/>
       <import plugin="com.google.inject" version="3.0.0" match="greaterOrEqual"/>
-      <import plugin="com.google.guava" version="21.0.0" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="27.1.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.apache.commons.cli"/>
