@@ -245,8 +245,10 @@
 		<profile>
 			<id>cbi-sign</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
-				<!-- TODO move cbi signing plugin to this profile <property> <name>sign.skip</name> <value>false</value> </property> -->
+				<property>
+					<name>sign.skip</name>
+					<value>false</value>
+				</property>
 			</activation>
 			<pluginRepositories>
 				<pluginRepository>
