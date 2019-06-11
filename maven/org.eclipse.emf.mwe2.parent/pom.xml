@@ -62,6 +62,21 @@
 			<url>http://www.eclipse.org/legal/epl-v10.html</url>
 		</license>
 	</licenses>
+	
+	<pluginRepositories>
+		<!-- for eclipse-jarsigner-plugin -->
+		<pluginRepository>
+			<id>eclipse</id>
+			<url>https://repo.eclipse.org/content/repositories/cbi/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -243,27 +258,6 @@
 		</pluginManagement>
 	</build>
 	<profiles>
-		<profile>
-			<id>cbi-sign</id>
-			<activation>
-				<property>
-					<name>sign.skip</name>
-					<value>false</value>
-				</property>
-			</activation>
-			<pluginRepositories>
-				<pluginRepository>
-					<id>eclipse</id>
-					<url>https://repo.eclipse.org/content/repositories/cbi/</url>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-					<snapshots>
-						<enabled>false</enabled>
-					</snapshots>
-				</pluginRepository>
-			</pluginRepositories>
-		</profile>
 		<!-- 
 			Profile 'release' is activated when property BUILD_TYPE is NOT 'N' (nightly).
 			For release builds strict version checking is disabled, since Maven version will be a
