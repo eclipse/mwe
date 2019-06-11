@@ -78,14 +78,6 @@
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
-				<artifactId>tycho-packaging-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<format>${tycho-qualifier}</format>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.tycho</groupId>
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
@@ -209,6 +201,15 @@
 						<excludeInnerJars>true</excludeInnerJars>
 					</configuration>
 				</plugin>
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+					<artifactId>tycho-packaging-plugin</artifactId>
+					<version>${tycho-version}</version>
+					<configuration>
+						<format>${tycho-qualifier}</format>
+						<strictVersions>true</strictVersions>
+					</configuration>
+				</plugin>
 				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself. -->
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -260,6 +261,33 @@
 					</snapshots>
 				</pluginRepository>
 			</pluginRepositories>
+		</profile>
+		<!-- 
+			Profile 'release' is activated when property BUILD_TYPE is NOT 'N' (nightly).
+			For release builds strict version checking is disabled, since Maven version will be a
+			release version, while OSGi artifacts (MANIFEST.MF, feature.xml) still contain a qualified version.
+		-->
+		<profile>
+			<id>release</id>
+			<activation>
+				<property>
+					<name>BUILD_TYPE</name>
+					<value>!N</value>
+				</property>
+			</activation>
+			<build>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.eclipse.tycho</groupId>
+							<artifactId>tycho-packaging-plugin</artifactId>
+							<configuration>
+								<strictVersions>false</strictVersions>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
+			</build>
 		</profile>
 	</profiles>
 	<scm>
