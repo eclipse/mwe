@@ -8,6 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language;
 
+import org.eclipse.emf.mwe2.language.formatting.Mwe2Formatter;
 import org.eclipse.emf.mwe2.language.resource.MweLocationInFileProvider;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
 import org.eclipse.emf.mwe2.language.resource.MweResourceSetProvider;
@@ -17,6 +18,7 @@ import org.eclipse.emf.mwe2.language.scoping.QualifiedNameProvider;
 import org.eclipse.emf.mwe2.language.validation.MweRawSuperTypes;
 import org.eclipse.xtext.common.types.util.RawSuperTypes;
 import org.eclipse.xtext.conversion.IValueConverterService;
+import org.eclipse.xtext.formatting.IFormatter;
 import org.eclipse.xtext.naming.IQualifiedNameProvider;
 import org.eclipse.xtext.resource.IContainer.Manager;
 import org.eclipse.xtext.resource.IDefaultResourceDescriptionStrategy;
@@ -76,5 +78,10 @@ public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe
 	public Class<? extends RawSuperTypes> bindRawSuperTypes() {
 		return MweRawSuperTypes.class;
 	}
-	
+
+	@Override
+	public Class<? extends IFormatter> bindIFormatter() {
+		return Mwe2Formatter.class;
+	}
+
 }
