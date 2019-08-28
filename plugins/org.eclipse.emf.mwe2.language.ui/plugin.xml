@@ -292,12 +292,18 @@
             class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="mwe2">
     </viewer>
+		<contentTypeBinding
+			contentTypeId="org.eclipse.emf.mwe2.language.Mwe2.contenttype"
+			contentViewerId="org.eclipse.emf.mwe2.language.Mwe2.compare.contentViewers" />
   </extension>
   <extension point="org.eclipse.compare.contentMergeViewers">
     <viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers"
             class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
             extensions="mwe2" label="Mwe2 Compare">
      </viewer>
+		<contentTypeBinding
+			contentTypeId="org.eclipse.emf.mwe2.language.Mwe2.contenttype"
+			contentMergeViewerId="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers" />
   </extension>
   <extension point="org.eclipse.ui.editors.documentProviders">
     <provider id="org.eclipse.emf.mwe2.language.Mwe2.editors.documentProviders"
