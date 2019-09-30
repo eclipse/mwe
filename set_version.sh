@@ -78,6 +78,10 @@ if [ "$RELEASE_QUALIFIER" == "N" ]; then
 elif [ "$RELEASE_QUALIFIER" == "GA" ]; then
   MWE2_TO=$MWE2_FROM_BASE
   MWE_TO=$MWE_FROM_BASE
+elif [ "$RELEASE_QUALIFIER" == "Beta" ]; then
+  TS=$(date "+%Y%m%d%H%M")
+  MWE2_TO=$MWE2_FROM_BASE.Beta$TS
+  MWE_TO=$MWE_FROM_BASE.Beta$TS
 else
   MWE2_TO=$(echo "$MWE2_FROM_BASE.$RELEASE_QUALIFIER")
   MWE_TO=$(echo "$MWE_FROM_BASE.$RELEASE_QUALIFIER")
@@ -107,14 +111,21 @@ if [ "$RELEASE_QUALIFIER" == "N" ]; then
   find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE2_FROM}/${MWE2_TO}-SNAPSHOT/g"
   find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE_FROM}/${MWE_TO}-SNAPSHOT/g"
 else
-  find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE2_FROM}/${MWE2_TO}/g"
-  find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE_FROM}/${MWE_TO}/g"
-  
   if [ "$RELEASE_QUALIFIER" == "GA" ]; then
     sed_inplace -e "s?<BUILD_TYPE>.*</BUILD_TYPE>?<BUILD_TYPE>R</BUILD_TYPE>?" maven/org.eclipse.emf.mwe2.parent/pom.xml
   else
     sed_inplace -e "s?<BUILD_TYPE>.*</BUILD_TYPE>?<BUILD_TYPE>S</BUILD_TYPE>?" maven/org.eclipse.emf.mwe2.parent/pom.xml
   fi
+
+  find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE2_FROM}/${MWE2_TO}/g"
+  find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE_FROM}/${MWE_TO}/g"
+  
+  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE2_FROM_BASE}.qualifier/${MWE2_TO}/g"
+  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE_FROM_BASE}.qualifier/${MWE_TO}/g"
+
+  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE2_FROM_BASE}.qualifier\"/version=\"${MWE2_TO}\"/g"
+  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE_FROM_BASE}.qualifier\"/version=\"${MWE_TO}\"/g"
+
 fi
 
 

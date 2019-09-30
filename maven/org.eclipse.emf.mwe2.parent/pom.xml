@@ -40,7 +40,7 @@
 		<project.reporting.outputEncoding>ISO-8859-1</project.reporting.outputEncoding>
 
 		<!-- sign.skip = true skips gpg and eclipse signing -->
-		<sign.skip>true</sign.skip>
+		<sign.skip>${sign.skip}</sign.skip>
 		<gpg-skip>${sign.skip}</gpg-skip>
 		<tycho.localArtifacts>ignore</tycho.localArtifacts>
 		<!-- p2-deploy-only = true skips the deploy step -->
