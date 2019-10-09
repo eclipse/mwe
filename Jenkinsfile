@@ -36,6 +36,8 @@ pipeline {
     DOWNLOAD_AREA = "$PROJECT_STORAGE_PATH/downloads/drops"
     KEYRING = credentials('11ef2671-e2bc-4da7-8f89-f4b0ba8ffa3e')
     SCRIPTS = "$WORKSPACE/git-repo/releng/jenkins/scripts"
+    RELEASE_TYPE="$params.RELEASE_TYPE"
+    FORCE_PUBLISH="$params.FORCE_PUBLISH"
   }
 
   stages {
@@ -77,7 +79,7 @@ pipeline {
         wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
           withMaven(jdk: 'adoptopenjdk-hotspot-jdk8-latest', maven: 'apache-maven-latest') {
             dir ('git-repo') {
-              sh ''' 
+              sh '''
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
                   GOALS='clean javadoc:aggregate-jar deploy'
                 else
