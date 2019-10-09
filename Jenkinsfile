@@ -116,9 +116,9 @@ pipeline {
           sh '''
             REPO_SOURCE_DIR=build-result/p2.repository
             # read properties from promote.properties & publisher.properties
-            VERSION=$($SCRIPTS/get_property.sh build-result/publisher.properties version)
-            BUILD_ID=$($SCRIPTS/get_property.sh build-result/promote.properties build.id)
-            BUILD_TYPE=$($SCRIPTS/get_build_type.sh $BUILD_ID)
+            # VERSION=$($SCRIPTS/get_property.sh build-result/publisher.properties version)
+            # BUILD_ID=$($SCRIPTS/get_property.sh build-result/promote.properties build.id)
+            # BUILD_TYPE=$($SCRIPTS/get_build_type.sh $BUILD_ID)
 
             DROP_DIR=$DOWNLOAD_AREA/$VERSION/$BUILD_ID
 
