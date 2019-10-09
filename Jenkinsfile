@@ -81,7 +81,7 @@ pipeline {
             dir ('git-repo') {
               sh '''
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
-                  GOALS='clean javadoc:aggregate-jar verify deploy'
+                  GOALS='clean javadoc:aggregate-jar test deploy'
                 else
                   GOALS='clean javadoc:aggregate-jar verify'
                 fi
