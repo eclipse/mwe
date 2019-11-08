@@ -30,10 +30,6 @@ public interface Module extends EObject
 	/**
 	 * Returns the value of the '<em><b>Canonical Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Canonical Name</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Canonical Name</em>' attribute.
 	 * @see #setCanonicalName(String)
@@ -57,10 +53,6 @@ public interface Module extends EObject
 	 * Returns the value of the '<em><b>Imports</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.mwe2.language.mwe2.Import}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Imports</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Imports</em>' containment reference list.
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getModule_Imports()
@@ -74,10 +66,6 @@ public interface Module extends EObject
 	 * The list contents are of type {@link org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty}.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty#getModule <em>Module</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Declared Properties</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Declared Properties</em>' containment reference list.
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getModule_DeclaredProperties()
@@ -90,10 +78,6 @@ public interface Module extends EObject
 	/**
 	 * Returns the value of the '<em><b>Root</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Root</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Root</em>' containment reference.
 	 * @see #setRoot(Component)

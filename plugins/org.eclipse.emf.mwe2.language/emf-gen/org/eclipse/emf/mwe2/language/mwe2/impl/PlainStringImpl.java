@@ -72,6 +72,7 @@ public class PlainStringImpl extends StringPartImpl implements PlainString
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getValue()
 	{
 		return value;
@@ -82,6 +83,7 @@ public class PlainStringImpl extends StringPartImpl implements PlainString
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(String newValue)
 	{
 		String oldValue = value;

@@ -104,6 +104,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.emf.mwe2.language.mwe2.Module createModule()
 	{
 		ModuleImpl module = new ModuleImpl();
@@ -115,6 +116,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Referrable createReferrable()
 	{
 		ReferrableImplCustom referrable = new ReferrableImplCustom();
@@ -126,6 +128,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DeclaredProperty createDeclaredProperty()
 	{
 		DeclaredPropertyImplCustom declaredProperty = new DeclaredPropertyImplCustom();
@@ -137,6 +140,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Component createComponent()
 	{
 		ComponentImplCustom component = new ComponentImplCustom();
@@ -148,6 +152,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Import createImport()
 	{
 		ImportImpl import_ = new ImportImpl();
@@ -159,6 +164,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Assignment createAssignment()
 	{
 		AssignmentImplCustom assignment = new AssignmentImplCustom();
@@ -170,6 +176,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public BooleanLiteral createBooleanLiteral()
 	{
 		BooleanLiteralImplCustom booleanLiteral = new BooleanLiteralImplCustom();
@@ -181,6 +188,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Reference createReference()
 	{
 		ReferenceImplCustom reference = new ReferenceImplCustom();
@@ -192,6 +200,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StringLiteral createStringLiteral()
 	{
 		StringLiteralImplCustom stringLiteral = new StringLiteralImplCustom();
@@ -203,6 +212,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public StringPart createStringPart()
 	{
 		StringPartImpl stringPart = new StringPartImpl();
@@ -214,6 +224,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PropertyReference createPropertyReference()
 	{
 		PropertyReferenceImpl propertyReference = new PropertyReferenceImpl();
@@ -225,6 +236,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public PlainString createPlainString()
 	{
 		PlainStringImpl plainString = new PlainStringImpl();
@@ -236,6 +248,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public NullLiteral createNullLiteral()
 	{
 		NullLiteralImplCustom nullLiteral = new NullLiteralImplCustom();
@@ -247,6 +260,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public DoubleLiteral createDoubleLiteral()
 	{
 		DoubleLiteralImplCustom doubleLiteral = new DoubleLiteralImplCustom();
@@ -258,6 +272,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public IntegerLiteral createIntegerLiteral()
 	{
 		IntegerLiteralImplCustom integerLiteral = new IntegerLiteralImplCustom();
@@ -269,6 +284,7 @@ public class Mwe2FactoryImpl extends EFactoryImpl implements Mwe2Factory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Mwe2Package getMwe2Package()
 	{
 		return (Mwe2Package)getEPackage();

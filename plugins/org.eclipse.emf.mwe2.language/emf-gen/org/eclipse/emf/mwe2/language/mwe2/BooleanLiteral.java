@@ -24,10 +24,6 @@ public interface BooleanLiteral extends Value
 	/**
 	 * Returns the value of the '<em><b>Is True</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Is True</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Is True</em>' attribute.
 	 * @see #setIsTrue(boolean)

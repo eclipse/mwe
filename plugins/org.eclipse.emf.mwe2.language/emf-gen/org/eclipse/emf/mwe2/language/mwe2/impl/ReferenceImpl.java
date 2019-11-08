@@ -65,6 +65,7 @@ public class ReferenceImpl extends ValueImpl implements Reference
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Referrable getReferable()
 	{
 		if (referable != null && referable.eIsProxy())
@@ -95,6 +96,7 @@ public class ReferenceImpl extends ValueImpl implements Reference
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setReferable(Referrable newReferable)
 	{
 		Referrable oldReferable = referable;
