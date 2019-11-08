@@ -114,6 +114,7 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getBegin()
 	{
 		return begin;
@@ -124,6 +125,7 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setBegin(String newBegin)
 	{
 		String oldBegin = begin;
@@ -137,6 +139,7 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<StringPart> getParts()
 	{
 		if (parts == null)
@@ -151,6 +154,7 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getEnd()
 	{
 		return end;
@@ -161,6 +165,7 @@ public class StringLiteralImpl extends ValueImpl implements StringLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setEnd(String newEnd)
 	{
 		String oldEnd = end;

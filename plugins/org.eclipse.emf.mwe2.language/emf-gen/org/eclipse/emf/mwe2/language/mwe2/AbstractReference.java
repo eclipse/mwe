@@ -25,10 +25,6 @@ public interface AbstractReference extends EObject
 	/**
 	 * Returns the value of the '<em><b>Referable</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Referable</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Referable</em>' reference.
 	 * @see #setReferable(Referrable)

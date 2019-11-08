@@ -27,10 +27,6 @@ public interface StringLiteral extends Value
 	/**
 	 * Returns the value of the '<em><b>Begin</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Begin</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Begin</em>' attribute.
 	 * @see #setBegin(String)
@@ -54,10 +50,6 @@ public interface StringLiteral extends Value
 	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.mwe2.language.mwe2.StringPart}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parts</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Parts</em>' containment reference list.
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getStringLiteral_Parts()
@@ -69,10 +61,6 @@ public interface StringLiteral extends Value
 	/**
 	 * Returns the value of the '<em><b>End</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>End</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End</em>' attribute.
 	 * @see #setEnd(String)

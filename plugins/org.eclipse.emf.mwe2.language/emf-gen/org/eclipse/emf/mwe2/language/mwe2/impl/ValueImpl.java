@@ -46,6 +46,7 @@ public abstract class ValueImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JvmType getActualType()
 	{
 		// TODO: implement this method

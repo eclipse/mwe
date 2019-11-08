@@ -87,6 +87,7 @@ public class ReferrableImpl extends MinimalEObjectImpl.Container implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JvmType getType()
 	{
 		if (type != null && type.eIsProxy())
@@ -117,6 +118,7 @@ public class ReferrableImpl extends MinimalEObjectImpl.Container implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setType(JvmType newType)
 	{
 		JvmType oldType = type;
@@ -130,6 +132,7 @@ public class ReferrableImpl extends MinimalEObjectImpl.Container implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getName()
 	{
 		return name;
@@ -140,6 +143,7 @@ public class ReferrableImpl extends MinimalEObjectImpl.Container implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setName(String newName)
 	{
 		String oldName = name;
@@ -153,6 +157,7 @@ public class ReferrableImpl extends MinimalEObjectImpl.Container implements Refe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JvmType getActualType()
 	{
 		// TODO: implement this method

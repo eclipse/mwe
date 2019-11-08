@@ -68,6 +68,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getDefault()
 	{
 		return default_;
@@ -95,6 +96,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setDefault(Value newDefault)
 	{
 		if (newDefault != default_)
@@ -116,6 +118,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.emf.mwe2.language.mwe2.Module getModule()
 	{
 		if (eContainerFeatureID() != Mwe2Package.DECLARED_PROPERTY__MODULE) return null;
@@ -138,6 +141,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModule(org.eclipse.emf.mwe2.language.mwe2.Module newModule)
 	{
 		if (newModule != eInternalContainer() || (eContainerFeatureID() != Mwe2Package.DECLARED_PROPERTY__MODULE && newModule != null))
@@ -161,6 +165,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getIdentifier()
 	{
 		// TODO: implement this method
@@ -173,6 +178,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getSimpleName()
 	{
 		// TODO: implement this method
@@ -185,6 +191,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedName()
 	{
 		// TODO: implement this method
@@ -197,6 +204,7 @@ public class DeclaredPropertyImpl extends ReferrableImplCustom implements Declar
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getQualifiedName(char innerClassDelimiter)
 	{
 		// TODO: implement this method
