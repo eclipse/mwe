@@ -72,6 +72,7 @@ public class BooleanLiteralImpl extends ValueImpl implements BooleanLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isIsTrue()
 	{
 		return isTrue;
@@ -82,6 +83,7 @@ public class BooleanLiteralImpl extends ValueImpl implements BooleanLiteral
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setIsTrue(boolean newIsTrue)
 	{
 		boolean oldIsTrue = isTrue;

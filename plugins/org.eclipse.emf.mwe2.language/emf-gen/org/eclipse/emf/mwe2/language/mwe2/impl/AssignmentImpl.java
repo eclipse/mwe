@@ -100,6 +100,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public JvmIdentifiableElement getFeature()
 	{
 		if (feature != null && feature.eIsProxy())
@@ -130,6 +131,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setFeature(JvmIdentifiableElement newFeature)
 	{
 		JvmIdentifiableElement oldFeature = feature;
@@ -143,6 +145,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Value getValue()
 	{
 		return value;
@@ -170,6 +173,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setValue(Value newValue)
 	{
 		if (newValue != value)
@@ -191,6 +195,7 @@ public class AssignmentImpl extends MinimalEObjectImpl.Container implements Assi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getFeatureName()
 	{
 		return featureName;

@@ -27,10 +27,6 @@ public interface Component extends Referrable, Value
 	/**
 	 * Returns the value of the '<em><b>Module</b></em>' reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Module</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' reference.
 	 * @see #setModule(org.eclipse.emf.mwe2.language.mwe2.Module)
@@ -53,10 +49,6 @@ public interface Component extends Referrable, Value
 	/**
 	 * Returns the value of the '<em><b>Auto Inject</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Auto Inject</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Auto Inject</em>' attribute.
 	 * @see #setAutoInject(boolean)
@@ -80,10 +72,6 @@ public interface Component extends Referrable, Value
 	 * Returns the value of the '<em><b>Assignment</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.emf.mwe2.language.mwe2.Assignment}.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Assignment</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Assignment</em>' containment reference list.
 	 * @see org.eclipse.emf.mwe2.language.mwe2.Mwe2Package#getComponent_Assignment()

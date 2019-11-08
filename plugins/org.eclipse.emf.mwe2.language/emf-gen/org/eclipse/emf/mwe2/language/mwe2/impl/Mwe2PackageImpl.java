@@ -228,6 +228,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getModule()
 	{
 		return moduleEClass;
@@ -238,6 +239,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getModule_CanonicalName()
 	{
 		return (EAttribute)moduleEClass.getEStructuralFeatures().get(0);
@@ -248,6 +250,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModule_Imports()
 	{
 		return (EReference)moduleEClass.getEStructuralFeatures().get(1);
@@ -258,6 +261,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModule_DeclaredProperties()
 	{
 		return (EReference)moduleEClass.getEStructuralFeatures().get(2);
@@ -268,6 +272,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getModule_Root()
 	{
 		return (EReference)moduleEClass.getEStructuralFeatures().get(3);
@@ -278,6 +283,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReferrable()
 	{
 		return referrableEClass;
@@ -288,6 +294,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getReferrable_Type()
 	{
 		return (EReference)referrableEClass.getEStructuralFeatures().get(0);
@@ -298,6 +305,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getReferrable_Name()
 	{
 		return (EAttribute)referrableEClass.getEStructuralFeatures().get(1);
@@ -308,6 +316,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDeclaredProperty()
 	{
 		return declaredPropertyEClass;
@@ -318,6 +327,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDeclaredProperty_Default()
 	{
 		return (EReference)declaredPropertyEClass.getEStructuralFeatures().get(0);
@@ -328,6 +338,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getDeclaredProperty_Module()
 	{
 		return (EReference)declaredPropertyEClass.getEStructuralFeatures().get(1);
@@ -338,6 +349,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getComponent()
 	{
 		return componentEClass;
@@ -348,6 +360,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComponent_Module()
 	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(0);
@@ -358,6 +371,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getComponent_AutoInject()
 	{
 		return (EAttribute)componentEClass.getEStructuralFeatures().get(1);
@@ -368,6 +382,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getComponent_Assignment()
 	{
 		return (EReference)componentEClass.getEStructuralFeatures().get(2);
@@ -378,6 +393,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getImport()
 	{
 		return importEClass;
@@ -388,6 +404,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getImport_ImportedNamespace()
 	{
 		return (EAttribute)importEClass.getEStructuralFeatures().get(0);
@@ -398,6 +415,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAssignment()
 	{
 		return assignmentEClass;
@@ -408,6 +426,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssignment_Feature()
 	{
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(0);
@@ -418,6 +437,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAssignment_Value()
 	{
 		return (EReference)assignmentEClass.getEStructuralFeatures().get(1);
@@ -428,6 +448,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getAssignment_FeatureName()
 	{
 		return (EAttribute)assignmentEClass.getEStructuralFeatures().get(2);
@@ -438,6 +459,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getValue()
 	{
 		return valueEClass;
@@ -448,6 +470,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getBooleanLiteral()
 	{
 		return booleanLiteralEClass;
@@ -458,6 +481,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getBooleanLiteral_IsTrue()
 	{
 		return (EAttribute)booleanLiteralEClass.getEStructuralFeatures().get(0);
@@ -468,6 +492,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getReference()
 	{
 		return referenceEClass;
@@ -478,6 +503,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStringLiteral()
 	{
 		return stringLiteralEClass;
@@ -488,6 +514,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStringLiteral_Begin()
 	{
 		return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(0);
@@ -498,6 +525,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getStringLiteral_Parts()
 	{
 		return (EReference)stringLiteralEClass.getEStructuralFeatures().get(1);
@@ -508,6 +536,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getStringLiteral_End()
 	{
 		return (EAttribute)stringLiteralEClass.getEStructuralFeatures().get(2);
@@ -518,6 +547,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getStringPart()
 	{
 		return stringPartEClass;
@@ -528,6 +558,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPropertyReference()
 	{
 		return propertyReferenceEClass;
@@ -538,6 +569,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getPlainString()
 	{
 		return plainStringEClass;
@@ -548,6 +580,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getPlainString_Value()
 	{
 		return (EAttribute)plainStringEClass.getEStructuralFeatures().get(0);
@@ -558,6 +591,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getAbstractReference()
 	{
 		return abstractReferenceEClass;
@@ -568,6 +602,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EReference getAbstractReference_Referable()
 	{
 		return (EReference)abstractReferenceEClass.getEStructuralFeatures().get(0);
@@ -578,6 +613,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getNullLiteral()
 	{
 		return nullLiteralEClass;
@@ -588,6 +624,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getDoubleLiteral()
 	{
 		return doubleLiteralEClass;
@@ -598,6 +635,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getDoubleLiteral_Value()
 	{
 		return (EAttribute)doubleLiteralEClass.getEStructuralFeatures().get(0);
@@ -608,6 +646,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EClass getIntegerLiteral()
 	{
 		return integerLiteralEClass;
@@ -618,6 +657,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EAttribute getIntegerLiteral_Value()
 	{
 		return (EAttribute)integerLiteralEClass.getEStructuralFeatures().get(0);
@@ -628,6 +668,7 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Mwe2Factory getMwe2Factory()
 	{
 		return (Mwe2Factory)getEFactoryInstance();

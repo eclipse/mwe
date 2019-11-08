@@ -104,6 +104,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public org.eclipse.emf.mwe2.language.mwe2.Module getModule()
 	{
 		if (module != null && module.eIsProxy())
@@ -134,6 +135,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setModule(org.eclipse.emf.mwe2.language.mwe2.Module newModule)
 	{
 		org.eclipse.emf.mwe2.language.mwe2.Module oldModule = module;
@@ -147,6 +149,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public boolean isAutoInject()
 	{
 		return autoInject;
@@ -157,6 +160,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setAutoInject(boolean newAutoInject)
 	{
 		boolean oldAutoInject = autoInject;
@@ -170,6 +174,7 @@ public class ComponentImpl extends ReferrableImplCustom implements Component
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Assignment> getAssignment()
 	{
 		if (assignment == null)

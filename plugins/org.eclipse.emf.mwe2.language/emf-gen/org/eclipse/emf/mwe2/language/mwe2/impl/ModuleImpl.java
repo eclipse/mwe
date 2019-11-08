@@ -118,6 +118,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public String getCanonicalName()
 	{
 		return canonicalName;
@@ -128,6 +129,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setCanonicalName(String newCanonicalName)
 	{
 		String oldCanonicalName = canonicalName;
@@ -141,6 +143,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<Import> getImports()
 	{
 		if (imports == null)
@@ -155,6 +158,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public EList<DeclaredProperty> getDeclaredProperties()
 	{
 		if (declaredProperties == null)
@@ -169,6 +173,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public Component getRoot()
 	{
 		return root;
@@ -196,6 +201,7 @@ public class ModuleImpl extends MinimalEObjectImpl.Container implements org.ecli
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
 	public void setRoot(Component newRoot)
 	{
 		if (newRoot != root)

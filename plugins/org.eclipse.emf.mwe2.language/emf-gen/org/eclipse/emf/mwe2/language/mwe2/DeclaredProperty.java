@@ -26,10 +26,6 @@ public interface DeclaredProperty extends Referrable, JvmIdentifiableElement
 	/**
 	 * Returns the value of the '<em><b>Default</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Default</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Default</em>' containment reference.
 	 * @see #setDefault(Value)
@@ -53,10 +49,6 @@ public interface DeclaredProperty extends Referrable, JvmIdentifiableElement
 	 * Returns the value of the '<em><b>Module</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.emf.mwe2.language.mwe2.Module#getDeclaredProperties <em>Declared Properties</em>}'.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Module</em>' container reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Module</em>' container reference.
 	 * @see #setModule(org.eclipse.emf.mwe2.language.mwe2.Module)
