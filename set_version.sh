@@ -120,11 +120,12 @@ else
   find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE2_FROM}/${MWE2_TO}/g"
   find . -type f -name "pom.xml" | xargs_sed_inplace -e "s/${MWE_FROM}/${MWE_TO}/g"
   
-  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE2_FROM_BASE}.qualifier/${MWE2_TO}/g"
-  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE_FROM_BASE}.qualifier/${MWE_TO}/g"
+  QUALIFIER=$(date +v%Y%m%d-%H%M)
+  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE2_FROM_BASE}.qualifier/${MWE2_FROM_BASE}.${QUALIFIER}/g"
+  find . -type f -name "MANIFEST.MF" | xargs_sed_inplace -e "s/${MWE_FROM_BASE}.qualifier/${MWE_FROM_BASE}.${QUALIFIER}/g"
 
-  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE2_FROM_BASE}.qualifier\"/version=\"${MWE2_TO}\"/g"
-  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE_FROM_BASE}.qualifier\"/version=\"${MWE_TO}\"/g"
+  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE2_FROM_BASE}.qualifier\"/version=\"${MWE2_FROM_BASE}.${QUALIFIER}\"/g"
+  find . -type f -name "feature.xml" | xargs_sed_inplace -e "s/version=\"${MWE_FROM_BASE}.qualifier\"/version=\"${MWE_FROM_BASE}.${QUALIFIER}\"/g"
 
 fi
 
