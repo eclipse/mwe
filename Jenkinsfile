@@ -53,8 +53,6 @@ pipeline {
           mkdir -p build-result/downloads/
           mkdir -p build-result/javadoc/
           mkdir -p build-result/composite/
-          # Make .mvn/extensions.xml available for the build (for tycho-pomless extension)
-          cp -r git-repo/maven/.mvn .
 
           # call the versioning script when a release is built
           # this will set the final release number for Maven artifacts according to RELEASE_TYPE
