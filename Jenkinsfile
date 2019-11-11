@@ -55,6 +55,15 @@ pipeline {
           mkdir -p build-result/composite/
           # Make .mvn/extensions.xml available for the build (for tycho-pomless extension)
           cp -r git-repo/maven/.mvn .
+
+          # call the versioning script when a release is built
+          # this will set the final release number for Maven artifacts according to RELEASE_TYPE
+          # and disable strict version checking by Tycho, so that p2 artifacts keep their qualifier
+          if [ "$RELEASE_TYPE" != "Integration" ]; then
+            pushd $(pwd) && cd git-repo
+            bash ./set_version.sh --release=$RELEASE_TYPE
+            popd
+          fi
           
           gpg --batch --import "${KEYRING}"
           for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u);
@@ -71,34 +80,18 @@ pipeline {
           withMaven(jdk: 'adoptopenjdk-hotspot-jdk8-latest', maven: 'apache-maven-latest', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               sh '''
+                if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
+                  GOALS='clean javadoc:aggregate-jar test deploy'
+                else
+                  GOALS='clean javadoc:aggregate-jar verify'
+                fi
+                
                 case "$RELEASE_TYPE" in
                   Integration) BUILD_TYPE='N' ;;
                   GA) BUILD_TYPE='R' ;;
                   *) BUILD_TYPE='S' ;;
                 esac
                 
-                if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
-                  # call the versioning script when a release is built
-                  # this will set the final release number for Maven artifacts according to RELEASE_TYPE
-                  # and disable strict version checking by Tycho, so that p2 artifacts keep their qualifier
-                  if [ "${RELEASE_TYPE}" != "Integration" ]; then
-                    bash ./set_version.sh --release=$RELEASE_TYPE
-                  fi
-                  mvn \
-                    -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
-                    -Dsign.skip=false \
-                    -DtestFailureIgnore=true \
-                    -Dmaven.javadoc.failOnError=false \
-                    -Dtycho.localArtifacts=ignore \
-                    -DBUILD_TYPE=$BUILD_TYPE \
-                    clean javadoc:aggregate-jar test deploy
-
-                  # reset version changes to build the repository with qualifiers
-                  git reset --hard
-                fi
-                
-                # Run Maven and build repository
-                # For release builds, Maven is called a second time. This is 
                 mvn \
                   -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
                   -Dsign.skip=false \
@@ -106,7 +99,7 @@ pipeline {
                   -Dmaven.javadoc.failOnError=false \
                   -Dtycho.localArtifacts=ignore \
                   -DBUILD_TYPE=$BUILD_TYPE \
-                  clean javadoc:aggregate-jar verify
+                  $GOALS
               '''
             }
           }
