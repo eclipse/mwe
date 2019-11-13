@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008,2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008,2019 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -227,7 +227,30 @@ public class Mwe2ValidatorTest {
 		assertEquals(Severity.ERROR, list.get(0).getSeverity());
 		assertTrue(list.get(0).getMessage(), list.get(0).getMessage().contains("foo.bar"));
 	}
-	
+
+	@Test public void testDeprecatedElement() throws Exception {
+		String textModel = 
+			"module m\r\n" + 
+			"\r\n" + 
+			"import org.eclipse.xtext.xtext.generator.XtextGenerator\r\n" + 
+			"import org.eclipse.xtext.xtext.generator.StandardLanguage\r\n" + 
+			"\r\n" + 
+			"Workflow {\r\n" + 
+			"	component = XtextGenerator {\r\n" + 
+			"		language = StandardLanguage {\r\n" + 
+			"			newProjectWizardForEclipse = {}\r\n" + 
+			"		}\r\n" + 
+			"	}\r\n" + 
+			"}";
+		EObject model = getModel(textModel);
+		List<Issue> issues = validate(model);
+		assertEquals(issues.toString(), 1, issues.size());
+		Issue issue = issues.get(0);
+		assertEquals(Mwe2Validator.DEPRECATED_ELEMENT, issue.getCode());
+		assertEquals(Severity.WARNING, issue.getSeverity());
+		assertEquals("The 'org.eclipse.xtext.xtext.generator.StandardLanguage.setNewProjectWizardForEclipse' is deprecated.", issue.getMessage());
+	}
+
 	private List<Issue> validate(EObject model) {
 		XtextResource res = ((XtextResource)model.eResource());
 		List<Issue> list = res.getResourceServiceProvider().getResourceValidator().validate(res, CheckMode.ALL, CancelIndicator.NullImpl);

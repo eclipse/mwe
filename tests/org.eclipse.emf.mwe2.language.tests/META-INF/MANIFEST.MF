@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.emf.mwe2.language,
  org.eclipse.ui.workbench;resolution:=optional,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.xtext.testing,
- org.eclipse.xtext.ui.testing
+ org.eclipse.xtext.ui.testing,
+ org.eclipse.xtext.xtext.generator
 Bundle-ActivationPolicy: lazy
 Import-Package: org.junit;version="4.5.0",
  org.junit.runner;version="4.5.0",

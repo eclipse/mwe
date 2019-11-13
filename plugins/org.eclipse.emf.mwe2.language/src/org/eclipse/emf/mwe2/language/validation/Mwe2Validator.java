@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008-2011 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008,2019 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -28,6 +28,7 @@ import org.eclipse.emf.mwe2.language.scoping.FactorySupport;
 import org.eclipse.emf.mwe2.language.scoping.Mwe2ScopeProvider;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.xtext.common.types.JvmAnnotationReference;
+import org.eclipse.xtext.common.types.JvmAnnotationTarget;
 import org.eclipse.xtext.common.types.JvmConstructor;
 import org.eclipse.xtext.common.types.JvmDeclaredType;
 import org.eclipse.xtext.common.types.JvmFeature;
@@ -42,6 +43,7 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.common.types.JvmVisibility;
 import org.eclipse.xtext.common.types.TypesFactory;
 import org.eclipse.xtext.common.types.TypesPackage;
+import org.eclipse.xtext.common.types.util.DeprecationUtil;
 import org.eclipse.xtext.common.types.util.Primitives;
 import org.eclipse.xtext.common.types.util.RawSuperTypes;
 import org.eclipse.xtext.naming.IQualifiedNameConverter;
@@ -182,6 +184,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 
 	public final static String UNUSED_LOCAL = "unused_local_variable";
 	public final static String DUPLICATE_LOCAL = "duplicate_local_variable";
+	public final static String DEPRECATED_ELEMENT = "deprecated_element";
 
 	@Check
 	public void checkReferables(Module referable) {
@@ -399,4 +402,30 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 		return ePackages;
 	}
 
+	@Check
+	public void checkDeprecatedComponent(Component component) {
+		JvmType type = component.getType();
+		if (type instanceof JvmAnnotationTarget && DeprecationUtil.isDeprecated((JvmAnnotationTarget) type)) {
+			warning(
+				"The '" + type.getQualifiedName() + "' is deprecated.",
+				component,
+				Mwe2Package.Literals.REFERRABLE__TYPE,
+				DEPRECATED_ELEMENT);
+		}
+	}
+
+	@Check
+	public void checkDeprecatedAssignment(Assignment assignment) {
+		JvmIdentifiableElement feature = assignment.getFeature();
+		if (feature instanceof JvmOperation) {
+			JvmOperation operation = (JvmOperation) feature;
+			if (DeprecationUtil.isDeprecated(operation)) {
+				warning(
+					"The '" + operation.getQualifiedName() + "' is deprecated.",
+					assignment,
+					Mwe2Package.Literals.ASSIGNMENT__FEATURE,
+					DEPRECATED_ELEMENT);
+			}
+		}
+	}
 }
