@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008,2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008, 2019 itemis AG (http://www.itemis.eu) and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,16 +9,14 @@
 package org.eclipse.emf.mwe2.language.ui.highlighting;
 
 import java.util.Iterator;
-import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
-import org.eclipse.xtext.common.types.JvmAnnotationReference;
 import org.eclipse.xtext.common.types.JvmAnnotationTarget;
-import org.eclipse.xtext.common.types.JvmMember;
 import org.eclipse.xtext.common.types.JvmOperation;
+import org.eclipse.xtext.common.types.util.DeprecationUtil;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.IHighlightedPositionAcceptor;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.nodemodel.ICompositeNode;
@@ -79,33 +77,18 @@ public class SemanticHighlightingCalculator implements ISemanticHighlightingCalc
 				Assignment semanticObject = (Assignment) node.getSemanticElement();
 				if (semanticObject.getFeature() instanceof JvmOperation) {
 					JvmOperation operation = (JvmOperation) semanticObject.getFeature();
-					if (isDeprecated(operation)) {
+					if (DeprecationUtil.isDeprecated(operation)) {
 						highlightNode(node, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
 					}
 				}
 			} else if (grammarElement == grammarAccess.getComponentAccess().getTypeJvmTypeCrossReference_1_0_0()
 					|| grammarElement == grammarAccess.getRootComponentAccess().getTypeJvmTypeCrossReference_1_0_0()) {
 				Component component = (Component) node.getSemanticElement();
-				if (component.getType() instanceof JvmAnnotationTarget && isDeprecated((JvmAnnotationTarget) component.getType())) {
+				if (component.getType() instanceof JvmAnnotationTarget && DeprecationUtil.isDeprecated((JvmAnnotationTarget) component.getType())) {
 					highlightNode(node, MweHighlightingConfiguration.DEPRECATED_ELEMENT, acceptor);
 				}
 			}
 		}
-	}
-
-	public boolean isDeprecated(JvmAnnotationTarget annotatable) {
-		if (annotatable == null)
-			return false;
-		List<JvmAnnotationReference> annotations = annotatable.getAnnotations();
-		for(JvmAnnotationReference annotation: annotations) {
-			if (Deprecated.class.getName().equals(annotation.getAnnotation().getIdentifier())) {
-				return true;
-			}
-		}
-		if (annotatable instanceof JvmMember) {
-			return isDeprecated(((JvmMember) annotatable).getDeclaringType());
-		}
-		return false;
 	}
 
 	private void highlightNode(INode node, String id, IHighlightedPositionAcceptor acceptor) {
