@@ -10,7 +10,6 @@ package org.eclipse.emf.mwe2.language.tests.validation;
 
 import static org.eclipse.emf.mwe2.language.mwe2.Mwe2Package.Literals.*;
 import static org.eclipse.emf.mwe2.language.validation.Mwe2Validator.*;
-import static org.junit.Assert.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
@@ -36,57 +35,57 @@ public class Mwe2ValidatorTest {
 
 	private ValidationTestHelper validationTestHelper = new ValidationTestHelper(ValidationTestHelper.Mode.EXACT);
 
-	@Test public void testAssignability() {
+	@Test public void testAssignability() throws Exception {
 		assertError("module foo " + ComponentA.class.getName() + " { y = true }", "true",
 				ASSIGNMENT, INCOMPATIBLE_ASSIGNMENT,
 				"A value of type 'boolean' can not be assigned to the feature org.eclipse.emf.mwe2.language.tests.factory.ComponentA.addY(java.lang.String)");
 	}
 
-	@Test public void testAssignability_2() {
+	@Test public void testAssignability_2() throws Exception {
 		assertError("module foo " + ComponentA.class.getName() + " { y = 'foo' x = 'bar' }", "'bar'",
 				ASSIGNMENT, INCOMPATIBLE_ASSIGNMENT,
 				"A value of type 'java.lang.String' can not be assigned to the feature org.eclipse.emf.mwe2.language.tests.factory.ComponentA.setX(org.eclipse.emf.mwe2.language.tests.factory.ComponentA)");
 	}
 
-	@Test public void testAssignability_3() {
+	@Test public void testAssignability_3() throws Exception {
 		assertNoIssues(
 				"module foo " + ComponentA.class.getName() + " { x = " + SubTypeOfComponentA.class.getName() + "{} }");
 	}
 
-	@Test public void testAssignability_4() {
+	@Test public void testAssignability_4() throws Exception {
 		assertError(
 				"module foo " + SubTypeOfComponentA.class.getName() + " { sub = " + ComponentA.class.getName() + "{} }",
 				ComponentA.class.getName() + "{}", ASSIGNMENT, INCOMPATIBLE_ASSIGNMENT,
 				"A value of type 'org.eclipse.emf.mwe2.language.tests.factory.ComponentA' can not be assigned to the feature org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA.setSub(org.eclipse.emf.mwe2.language.tests.factory.SubTypeOfComponentA)");
 	}
 
-	@Test public void testAssignability_5() {
+	@Test public void testAssignability_5() throws Exception {
 		assertNoIssues("module foo " + ComponentA.class.getName() + " { b = true i = -1 d = -1.1 }");
 	}
 
-	@Test public void testAssignability_6() {
+	@Test public void testAssignability_6() throws Exception {
 		assertNoIssues("module foo " + ComponentA.class.getName() + " { d = 1 }");
 	}
 
-	@Test public void testAssignability_withFactory() {
+	@Test public void testAssignability_withFactory() throws Exception {
 		assertNoIssues(
 				"module foo " + ComponentA.class.getName() + " { x = " + ComponentAFactory.class.getName() + "{} }");
 	}
 
-	@Test public void testVarAssignability_withFactory() {
+	@Test public void testVarAssignability_withFactory() throws Exception {
 		assertWarning(
 				"module foo var " + ComponentA.class.getName() + " x = " + ComponentAFactory.class.getName() + "{} String {}",
 				"x", DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'x' is never read locally.");
 	}
 
-	@Test public void testVarAssignability_1() {
+	@Test public void testVarAssignability_1() throws Exception {
 		assertWarning("module foo var " + String.class.getName() + " x = 'x' String {}", "x",
 				DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'x' is never read locally.");
 	}
 
-	@Test public void testVarAssignability_2() {
+	@Test public void testVarAssignability_2() throws Exception {
 		String text = "module foo var " + String.class.getName() + " x = true String {}";
 		assertWarning(text, "x", DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'x' is never read locally.");
@@ -94,13 +93,13 @@ public class Mwe2ValidatorTest {
 				"A value of type 'boolean' can not be assigned to a reference of type java.lang.String");
 	}
 
-	@Test public void testVarAssignability_3() {
+	@Test public void testVarAssignability_3() throws Exception {
 		assertWarning("module foo var " + Boolean.class.getName() + " x = true String {}", "x",
 				DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'x' is never read locally.");
 	}
 
-	@Test public void testVarAssignability_4() {
+	@Test public void testVarAssignability_4() throws Exception {
 		String text = "module foo var " + Boolean.class.getName() + " x = 'foo' String {}";
 		assertWarning(text, "x", DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'x' is never read locally.");
@@ -108,40 +107,40 @@ public class Mwe2ValidatorTest {
 				"A value of type 'java.lang.String' can not be assigned to a reference of type java.lang.Boolean");
 	}
 
-	@Test public void testUnusedLocalVariable() {
+	@Test public void testUnusedLocalVariable() throws Exception {
 		assertNoIssues("module foo var foo = 'holla' " + ComponentA.class.getName() + " : ups{ x = ups y = foo }");
 	}
 
-	@Test public void testUnusedLocalVariable_1() {
+	@Test public void testUnusedLocalVariable_1() throws Exception {
 		assertWarning("module m var foo = 'holla' " + ComponentA.class.getName() + " : ups{ x = ups }", "foo",
 				DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'foo' is never read locally.");
 	}
 
-	@Test public void testUnusedLocalVariable_2() {
+	@Test public void testUnusedLocalVariable_2() throws Exception {
 		assertWarning("module foo var foo = 'holla' " + ComponentA.class.getName() + " : ups { y = foo }", "ups",
 				COMPONENT, UNUSED_LOCAL, "The var 'ups' is never read locally.");
 	}
 
-	@Test public void testUnusedLocalVariable_3() {
+	@Test public void testUnusedLocalVariable_3() throws Exception {
 		assertNoIssues("module foo var foo = 'holla' var bar = '${foo}!' " + ComponentA.class.getName() + "{ y = bar}");
 	}
 
-	@Test public void testUnusedLocalVariable_4() {
+	@Test public void testUnusedLocalVariable_4() throws Exception {
 		assertNoIssues("module foo var y = 'holla' " + ComponentA.class.getName() + " auto-inject { }");
 	}
 
-	@Test public void testUnusedLocalVariable_5() {
+	@Test public void testUnusedLocalVariable_5() throws Exception {
 		assertWarning("module foo var y = 'holla' " + ComponentA.class.getName() + " auto-inject { y = 'zonk' }", "y",
 				DECLARED_PROPERTY, UNUSED_LOCAL,
 				"The var 'y' is never read locally.");
 	}
 
-	@Test public void testUnusedLocalVariable_6() {
+	@Test public void testUnusedLocalVariable_6() throws Exception {
 		assertNoIssues("module foo var y = 'holla' " + ComponentA.class.getName() + " auto-inject { y = y }");
 	}
 
-	@Test public void testUnusedLocalVariable_7() {
+	@Test public void testUnusedLocalVariable_7() throws Exception {
 		assertNoIssues("module foo var y = 'holla' " + ComponentA.class.getName() + " auto-inject { y = '${y}' }");
 	}
 
@@ -155,7 +154,7 @@ public class Mwe2ValidatorTest {
 		validationTestHelper.assertNoIssues(barModule);
 	}
 
-	@Test public void testDuplicateLocalVariable_1() {
+	@Test public void testDuplicateLocalVariable_1() throws Exception {
 		String text = "module m var foo = 'holla' var foo = '${foo}!' " + ComponentA.class.getName() + "{ y = foo}";
 		assertError(text, "foo", DECLARED_PROPERTY, DUPLICATE_LOCAL, "Duplicate var 'foo'.");
 		assertError(text, 31, 3, DECLARED_PROPERTY, DUPLICATE_LOCAL, "Duplicate var 'foo'.");
@@ -172,7 +171,7 @@ public class Mwe2ValidatorTest {
 		validationTestHelper.assertWarning(barModule, DECLARED_PROPERTY, UNUSED_LOCAL, "The var 'foo' is never read locally.");
 	}
 
-	@Test public void testDeprecatedElement() {
+	@Test public void testDeprecatedElement() throws Exception {
 		assertWarning(
 				"module m\r\n" + 
 				"\r\n" + 
@@ -189,34 +188,26 @@ public class Mwe2ValidatorTest {
 				"The 'org.eclipse.xtext.xtext.generator.StandardLanguage.setNewProjectWizardForEclipse' is deprecated.");
 	}
 
-	private void assertWarning(String text, String errorProneText, EClass objectType, String code, String message) {
+	private void assertWarning(String text, String errorProneText, EClass objectType, String code, String message) throws Exception {
 		validationTestHelper.assertWarning(parse(text), objectType, code, text.indexOf(errorProneText),
 				errorProneText.length(), message);
 	}
 
-	private void assertError(String text, String errorProneText, EClass objectType, String code, String message) {
+	private void assertError(String text, String errorProneText, EClass objectType, String code, String message) throws Exception {
 		validationTestHelper.assertError(parse(text), objectType, code, text.indexOf(errorProneText),
 				errorProneText.length(), message);
 	}
 
 	private void assertError(String text, int errorProneTextOffset, int errorProneTextLength, EClass objectType,
-			String code, String message) {
+			String code, String message) throws Exception {
 		validationTestHelper.assertError(parse(text), objectType, code, errorProneTextOffset, errorProneTextLength, message);
 	}
 
-	private void assertNoIssues(String text) {
+	private void assertNoIssues(String text) throws Exception {
 		validationTestHelper.assertNoIssues(parse(text));
 	}
 
-	private Module parse(String text) {
-		Module module = null;
-		try {
-			module = parser.parse(text);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail();
-		}
-		assertNotNull(module);
-		return module;
+	private Module parse(String text) throws Exception {
+		return parser.parse(text);
 	}
 }
