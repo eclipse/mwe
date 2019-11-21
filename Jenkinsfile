@@ -172,10 +172,40 @@ pipeline {
             case "$RELEASE_TYPE" in
               Integration) ;;
               GA) # Release
-                ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "releases" < $SCRIPTS/create_composite_update_site.sh ;;
+                ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "releases" < $SCRIPTS/create_composite_update_site.sh
+
+                # clean up milestone, delete all except for the last 3
+                # find directories in the milestone update location, only in one level
+                # remove all except for the last 3 ones
+                ssh genie.mwe@projects-storage.eclipse.org 'find $PROJECT_STORAGE_PATH/updates/milestones/ -maxdepth 1 -mindepth 1 -type d |sort|head -n -3 | xargs rm -rf'
+
+                # recreate the milestones composite repository
+                ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "milestones" < $SCRIPTS/create_composite_update_site.sh;;
+                ;;
               *) # Stable
-                ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "milestones" < $SCRIPTS/create_composite_update_site.sh ;;
+                ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "milestones" < $SCRIPTS/create_composite_update_site.sh;;
             esac
+
+            ssh genie.mwe@projects-storage.eclipse.org /bin/bash <<-EOF
+                # Clean up all nightly drop directories except for the last 5
+                for f in \\$(find $DOWNLOAD_AREA -type d -name N* -exec basename {} \\; |sort|head -n -5)
+                do 
+                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\; 
+                done
+
+                echo "Kept the following nightly drops:"
+                find $DOWNLOAD_AREA/ -type d -name N* | sort
+
+                # Clean up all milestone drop directories except for the last 5
+                for f in \\$(find $DOWNLOAD_AREA -type d -name S* -exec basename {} \\; |sort|head -n -5)
+                do 
+                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\; 
+                done
+
+                echo "Kept the following milestone drops:"
+                find $DOWNLOAD_AREA/ -type d -name S* | sort
+# it is important that the end statement in the next line is at the beginning of the line
+EOF
           '''
         } // END sshagent
       } // END steps
