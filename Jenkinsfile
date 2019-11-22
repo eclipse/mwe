@@ -181,7 +181,6 @@ pipeline {
 
                 # recreate the milestones composite repository
                 ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "milestones" < $SCRIPTS/create_composite_update_site.sh;;
-                ;;
               *) # Stable
                 ssh genie.mwe@projects-storage.eclipse.org 'cat | /bin/bash /dev/stdin' "milestones" < $SCRIPTS/create_composite_update_site.sh;;
             esac
