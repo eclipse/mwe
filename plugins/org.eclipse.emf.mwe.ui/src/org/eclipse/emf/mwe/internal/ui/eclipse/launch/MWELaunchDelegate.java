@@ -152,7 +152,7 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			MWEDebuggerLauncher launcher = new MWEDebuggerLauncher(vm);
 
 			// classpath
-			String[] classpath = getClasspath(configuration);
+			String[][] classpathAndModulepath = getClasspathAndModulepath(configuration);
 
 			// working dir
 			String workingDirName = null;
@@ -183,10 +183,18 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 					(String) null);
 
 			// bundle config
-			VMRunnerConfiguration runnerConfig = new VMRunnerConfiguration(wfRunnerClassName, classpath);
+			VMRunnerConfiguration runnerConfig = new VMRunnerConfiguration(wfRunnerClassName, classpathAndModulepath[0]);
 			runnerConfig.setWorkingDirectory(workingDirName);
 			runnerConfig.setProgramArguments(progArgs.toArray(new String[0]));
 			runnerConfig.setVMArguments(DebugPlugin.parseArguments(vmArgs));
+			
+			if (!JavaRuntime.isModularConfiguration(configuration)) {
+				// Bootpath
+				runnerConfig.setBootClassPath(getBootpath(configuration));
+			} else {
+				// module path
+				runnerConfig.setModulepath(classpathAndModulepath[1]);
+			}
 
 			monitor.worked(1);
 			monitor.subTask("launching debugger ...");
