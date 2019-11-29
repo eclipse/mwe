@@ -58,15 +58,15 @@ public class Mwe2Lexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g"; }
+    public String getGrammarFileName() { return "Mwe2Lexer.g"; }
 
     // $ANTLR start "AutoInject"
     public final void mAutoInject() throws RecognitionException {
         try {
             int _type = AutoInject;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:20:12: ({...}? => 'auto-inject' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:20:14: {...}? => 'auto-inject'
+            // Mwe2Lexer.g:20:12: ({...}? => 'auto-inject' )
+            // Mwe2Lexer.g:20:14: {...}? => 'auto-inject'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "AutoInject", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -89,8 +89,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Import;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:22:8: ({...}? => 'import' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:22:10: {...}? => 'import'
+            // Mwe2Lexer.g:22:8: ({...}? => 'import' )
+            // Mwe2Lexer.g:22:10: {...}? => 'import'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Import", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -113,8 +113,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Module;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:24:8: ({...}? => 'module' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:24:10: {...}? => 'module'
+            // Mwe2Lexer.g:24:8: ({...}? => 'module' )
+            // Mwe2Lexer.g:24:10: {...}? => 'module'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Module", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -137,8 +137,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = False;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:26:7: ({...}? => 'false' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:26:9: {...}? => 'false'
+            // Mwe2Lexer.g:26:7: ({...}? => 'false' )
+            // Mwe2Lexer.g:26:9: {...}? => 'false'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "False", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -161,8 +161,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = True;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:28:6: ({...}? => 'true' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:28:8: {...}? => 'true'
+            // Mwe2Lexer.g:28:6: ({...}? => 'true' )
+            // Mwe2Lexer.g:28:8: {...}? => 'true'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "True", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -185,8 +185,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Null;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:30:6: ({...}? => 'null' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:30:8: {...}? => 'null'
+            // Mwe2Lexer.g:30:6: ({...}? => 'null' )
+            // Mwe2Lexer.g:30:8: {...}? => 'null'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Null", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -209,8 +209,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusDollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:32:42: ( '\\\\${' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:32:44: '\\\\${'
+            // Mwe2Lexer.g:32:42: ( '\\\\${' )
+            // Mwe2Lexer.g:32:44: '\\\\${'
             {
             match("\\${"); 
 
@@ -230,8 +230,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Var;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:34:5: ({...}? => 'var' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:34:7: {...}? => 'var'
+            // Mwe2Lexer.g:34:5: ({...}? => 'var' )
+            // Mwe2Lexer.g:34:7: {...}? => 'var'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Var", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -254,8 +254,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = DollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:36:28: ( '${' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:36:30: '${'
+            // Mwe2Lexer.g:36:28: ( '${' )
+            // Mwe2Lexer.g:36:30: '${'
             {
             match("${"); 
 
@@ -276,8 +276,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = FullStopAsterisk;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:38:18: ({...}? => '.*' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:38:20: {...}? => '.*'
+            // Mwe2Lexer.g:38:18: ({...}? => '.*' )
+            // Mwe2Lexer.g:38:20: {...}? => '.*'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "FullStopAsterisk", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -300,8 +300,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusQuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:40:29: ( '\\\\\"' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:40:31: '\\\\\"'
+            // Mwe2Lexer.g:40:29: ( '\\\\\"' )
+            // Mwe2Lexer.g:40:31: '\\\\\"'
             {
             match("\\\""); 
 
@@ -321,8 +321,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusApostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:42:26: ( '\\\\\\'' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:42:28: '\\\\\\''
+            // Mwe2Lexer.g:42:26: ( '\\\\\\'' )
+            // Mwe2Lexer.g:42:28: '\\\\\\''
             {
             match("\\'"); 
 
@@ -342,8 +342,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusReverseSolidus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:44:30: ( '\\\\\\\\' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:44:32: '\\\\\\\\'
+            // Mwe2Lexer.g:44:30: ( '\\\\\\\\' )
+            // Mwe2Lexer.g:44:32: '\\\\\\\\'
             {
             match("\\\\"); 
 
@@ -363,8 +363,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = QuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:46:15: ({...}? => '\"' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:46:17: {...}? => '\"'
+            // Mwe2Lexer.g:46:15: ({...}? => '\"' )
+            // Mwe2Lexer.g:46:17: {...}? => '\"'
             {
             if ( !((!singleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "QuotationMark", "!singleQuotedString || stringVariable");
@@ -387,8 +387,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Apostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:48:12: ({...}? => '\\'' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:48:13: {...}? => '\\''
+            // Mwe2Lexer.g:48:12: ({...}? => '\\'' )
+            // Mwe2Lexer.g:48:13: {...}? => '\\''
             {
             if ( !((!doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Apostrophe", "!doubleQuotedString || stringVariable");
@@ -411,8 +411,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = PlusSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:50:10: ({...}? => '+' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:50:12: {...}? => '+'
+            // Mwe2Lexer.g:50:10: ({...}? => '+' )
+            // Mwe2Lexer.g:50:12: {...}? => '+'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "PlusSign", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -434,8 +434,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = HyphenMinus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:52:13: ({...}? => '-' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:52:15: {...}? => '-'
+            // Mwe2Lexer.g:52:13: ({...}? => '-' )
+            // Mwe2Lexer.g:52:15: {...}? => '-'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "HyphenMinus", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -457,8 +457,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = FullStop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:54:10: ({...}? => '.' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:54:12: {...}? => '.'
+            // Mwe2Lexer.g:54:10: ({...}? => '.' )
+            // Mwe2Lexer.g:54:12: {...}? => '.'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "FullStop", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -480,8 +480,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = Colon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:56:7: ({...}? => ':' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:56:9: {...}? => ':'
+            // Mwe2Lexer.g:56:7: ({...}? => ':' )
+            // Mwe2Lexer.g:56:9: {...}? => ':'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "Colon", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -503,8 +503,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = EqualsSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:58:12: ({...}? => '=' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:58:14: {...}? => '='
+            // Mwe2Lexer.g:58:12: ({...}? => '=' )
+            // Mwe2Lexer.g:58:14: {...}? => '='
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "EqualsSign", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -526,8 +526,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = CommercialAt;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:60:14: ({...}? => '@' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:60:16: {...}? => '@'
+            // Mwe2Lexer.g:60:14: ({...}? => '@' )
+            // Mwe2Lexer.g:60:16: {...}? => '@'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "CommercialAt", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -549,8 +549,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = LeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:62:18: ({...}? => '{' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:62:20: {...}? => '{'
+            // Mwe2Lexer.g:62:18: ({...}? => '{' )
+            // Mwe2Lexer.g:62:20: {...}? => '{'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "LeftCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -572,8 +572,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RightCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:64:19: ({...}? => '}' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:64:21: {...}? => '}'
+            // Mwe2Lexer.g:64:19: ({...}? => '}' )
+            // Mwe2Lexer.g:64:21: {...}? => '}'
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RightCurlyBracket", "!singleQuotedString && !doubleQuotedString || stringVariable");
@@ -596,10 +596,10 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:68:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:68:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Mwe2Lexer.g:68:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // Mwe2Lexer.g:68:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:68:11: ( '^' )?
+            // Mwe2Lexer.g:68:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -608,7 +608,7 @@ public class Mwe2Lexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:68:11: '^'
+                    // Mwe2Lexer.g:68:11: '^'
                     {
                     match('^'); 
 
@@ -626,7 +626,7 @@ public class Mwe2Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:68:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // Mwe2Lexer.g:68:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -639,7 +639,7 @@ public class Mwe2Lexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:
+            	    // Mwe2Lexer.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -675,13 +675,13 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:70:10: ({...}? => ( '0' .. '9' )+ )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:70:12: {...}? => ( '0' .. '9' )+
+            // Mwe2Lexer.g:70:10: ({...}? => ( '0' .. '9' )+ )
+            // Mwe2Lexer.g:70:12: {...}? => ( '0' .. '9' )+
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_INT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:70:78: ( '0' .. '9' )+
+            // Mwe2Lexer.g:70:78: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -695,7 +695,7 @@ public class Mwe2Lexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:70:79: '0' .. '9'
+            	    // Mwe2Lexer.g:70:79: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -727,18 +727,18 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:17: ({...}? => ( '/*' ( options {greedy=false; } : . )* '*/' ) )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:19: {...}? => ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // Mwe2Lexer.g:72:17: ({...}? => ( '/*' ( options {greedy=false; } : . )* '*/' ) )
+            // Mwe2Lexer.g:72:19: {...}? => ( '/*' ( options {greedy=false; } : . )* '*/' )
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_ML_COMMENT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:85: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:86: '/*' ( options {greedy=false; } : . )* '*/'
+            // Mwe2Lexer.g:72:85: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // Mwe2Lexer.g:72:86: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:91: ( options {greedy=false; } : . )*
+            // Mwe2Lexer.g:72:91: ( options {greedy=false; } : . )*
             loop4:
             do {
                 int alt4=2;
@@ -763,7 +763,7 @@ public class Mwe2Lexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:72:119: .
+            	    // Mwe2Lexer.g:72:119: .
             	    {
             	    matchAny(); 
 
@@ -796,18 +796,18 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:17: ({...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? ) )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:19: {...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // Mwe2Lexer.g:74:17: ({...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? ) )
+            // Mwe2Lexer.g:74:19: {...}? => ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
             {
             if ( !((!singleQuotedString && !doubleQuotedString || stringVariable)) ) {
                 throw new FailedPredicateException(input, "RULE_SL_COMMENT", "!singleQuotedString && !doubleQuotedString || stringVariable");
             }
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:85: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:86: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // Mwe2Lexer.g:74:85: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // Mwe2Lexer.g:74:86: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:91: (~ ( ( '\\n' | '\\r' ) ) )*
+            // Mwe2Lexer.g:74:91: (~ ( ( '\\n' | '\\r' ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -820,7 +820,7 @@ public class Mwe2Lexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:91: ~ ( ( '\\n' | '\\r' ) )
+            	    // Mwe2Lexer.g:74:91: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -840,7 +840,7 @@ public class Mwe2Lexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:107: ( ( '\\r' )? '\\n' )?
+            // Mwe2Lexer.g:74:107: ( ( '\\r' )? '\\n' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -849,9 +849,9 @@ public class Mwe2Lexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:108: ( '\\r' )? '\\n'
+                    // Mwe2Lexer.g:74:108: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:108: ( '\\r' )?
+                    // Mwe2Lexer.g:74:108: ( '\\r' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -860,7 +860,7 @@ public class Mwe2Lexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:74:108: '\\r'
+                            // Mwe2Lexer.g:74:108: '\\r'
                             {
                             match('\r'); 
 
@@ -895,10 +895,10 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:76:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // Mwe2Lexer.g:76:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // Mwe2Lexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // Mwe2Lexer.g:76:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -912,7 +912,7 @@ public class Mwe2Lexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:
+            	    // Mwe2Lexer.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -952,8 +952,8 @@ public class Mwe2Lexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:78:16: ( . )
-            // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:78:18: .
+            // Mwe2Lexer.g:78:16: ( . )
+            // Mwe2Lexer.g:78:18: .
             {
             matchAny(); 
 
@@ -968,208 +968,208 @@ public class Mwe2Lexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:8: ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | PlusSign | HyphenMinus | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // Mwe2Lexer.g:1:8: ( AutoInject | Import | Module | False | True | Null | ReverseSolidusDollarSignLeftCurlyBracket | Var | DollarSignLeftCurlyBracket | FullStopAsterisk | ReverseSolidusQuotationMark | ReverseSolidusApostrophe | ReverseSolidusReverseSolidus | QuotationMark | Apostrophe | PlusSign | HyphenMinus | FullStop | Colon | EqualsSign | CommercialAt | LeftCurlyBracket | RightCurlyBracket | RULE_ID | RULE_INT | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt9=29;
         alt9 = dfa9.predict(input);
         switch (alt9) {
             case 1 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:10: AutoInject
+                // Mwe2Lexer.g:1:10: AutoInject
                 {
                 mAutoInject(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:21: Import
+                // Mwe2Lexer.g:1:21: Import
                 {
                 mImport(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:28: Module
+                // Mwe2Lexer.g:1:28: Module
                 {
                 mModule(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:35: False
+                // Mwe2Lexer.g:1:35: False
                 {
                 mFalse(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:41: True
+                // Mwe2Lexer.g:1:41: True
                 {
                 mTrue(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:46: Null
+                // Mwe2Lexer.g:1:46: Null
                 {
                 mNull(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:51: ReverseSolidusDollarSignLeftCurlyBracket
+                // Mwe2Lexer.g:1:51: ReverseSolidusDollarSignLeftCurlyBracket
                 {
                 mReverseSolidusDollarSignLeftCurlyBracket(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:92: Var
+                // Mwe2Lexer.g:1:92: Var
                 {
                 mVar(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:96: DollarSignLeftCurlyBracket
+                // Mwe2Lexer.g:1:96: DollarSignLeftCurlyBracket
                 {
                 mDollarSignLeftCurlyBracket(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:123: FullStopAsterisk
+                // Mwe2Lexer.g:1:123: FullStopAsterisk
                 {
                 mFullStopAsterisk(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:140: ReverseSolidusQuotationMark
+                // Mwe2Lexer.g:1:140: ReverseSolidusQuotationMark
                 {
                 mReverseSolidusQuotationMark(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:168: ReverseSolidusApostrophe
+                // Mwe2Lexer.g:1:168: ReverseSolidusApostrophe
                 {
                 mReverseSolidusApostrophe(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:193: ReverseSolidusReverseSolidus
+                // Mwe2Lexer.g:1:193: ReverseSolidusReverseSolidus
                 {
                 mReverseSolidusReverseSolidus(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:222: QuotationMark
+                // Mwe2Lexer.g:1:222: QuotationMark
                 {
                 mQuotationMark(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:236: Apostrophe
+                // Mwe2Lexer.g:1:236: Apostrophe
                 {
                 mApostrophe(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:247: PlusSign
+                // Mwe2Lexer.g:1:247: PlusSign
                 {
                 mPlusSign(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:256: HyphenMinus
+                // Mwe2Lexer.g:1:256: HyphenMinus
                 {
                 mHyphenMinus(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:268: FullStop
+                // Mwe2Lexer.g:1:268: FullStop
                 {
                 mFullStop(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:277: Colon
+                // Mwe2Lexer.g:1:277: Colon
                 {
                 mColon(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:283: EqualsSign
+                // Mwe2Lexer.g:1:283: EqualsSign
                 {
                 mEqualsSign(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:294: CommercialAt
+                // Mwe2Lexer.g:1:294: CommercialAt
                 {
                 mCommercialAt(); 
 
                 }
                 break;
             case 22 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:307: LeftCurlyBracket
+                // Mwe2Lexer.g:1:307: LeftCurlyBracket
                 {
                 mLeftCurlyBracket(); 
 
                 }
                 break;
             case 23 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:324: RightCurlyBracket
+                // Mwe2Lexer.g:1:324: RightCurlyBracket
                 {
                 mRightCurlyBracket(); 
 
                 }
                 break;
             case 24 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:342: RULE_ID
+                // Mwe2Lexer.g:1:342: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 25 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:350: RULE_INT
+                // Mwe2Lexer.g:1:350: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 26 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:359: RULE_ML_COMMENT
+                // Mwe2Lexer.g:1:359: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 27 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:375: RULE_SL_COMMENT
+                // Mwe2Lexer.g:1:375: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 28 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:391: RULE_WS
+                // Mwe2Lexer.g:1:391: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 29 :
-                // ../org.eclipse.emf.mwe2.language/src/org/eclipse/emf/mwe2/language/lexer/Mwe2Lexer.g:1:399: RULE_ANY_OTHER
+                // Mwe2Lexer.g:1:399: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

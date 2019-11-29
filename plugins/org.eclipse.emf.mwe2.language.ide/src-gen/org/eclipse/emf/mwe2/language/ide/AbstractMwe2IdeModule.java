@@ -8,17 +8,13 @@
 package org.eclipse.emf.mwe2.language.ide;
 
 import com.google.inject.Binder;
-import com.google.inject.name.Names;
 import org.eclipse.emf.mwe2.language.ide.contentassist.antlr.Mwe2Parser;
-import org.eclipse.emf.mwe2.language.ide.contentassist.antlr.lexer.InternalMwe2Lexer;
 import org.eclipse.xtext.ide.DefaultIdeModule;
-import org.eclipse.xtext.ide.LexerIdeBindings;
 import org.eclipse.xtext.ide.editor.contentassist.FQNPrefixMatcher;
 import org.eclipse.xtext.ide.editor.contentassist.IPrefixMatcher;
 import org.eclipse.xtext.ide.editor.contentassist.IProposalConflictHelper;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.AntlrProposalConflictHelper;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.IContentAssistParser;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer;
 import org.eclipse.xtext.ide.refactoring.IRenameStrategy2;
 import org.eclipse.xtext.ide.server.rename.IRenameService2;
 import org.eclipse.xtext.ide.server.rename.RenameService2;
@@ -29,13 +25,6 @@ import org.eclipse.xtext.ide.server.rename.RenameService2;
 @SuppressWarnings("all")
 public abstract class AbstractMwe2IdeModule extends DefaultIdeModule {
 
-	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
-	public void configureContentAssistLexer(Binder binder) {
-		binder.bind(Lexer.class)
-			.annotatedWith(Names.named(LexerIdeBindings.CONTENT_ASSIST))
-			.to(InternalMwe2Lexer.class);
-	}
-	
 	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2
 	public Class<? extends IContentAssistParser> bindIContentAssistParser() {
 		return Mwe2Parser.class;
@@ -59,6 +48,11 @@ public abstract class AbstractMwe2IdeModule extends DefaultIdeModule {
 	// contributed by org.eclipse.xtext.xtext.generator.ui.refactoring.RefactorElementNameFragment2
 	public Class<? extends IRenameStrategy2> bindIRenameStrategy2() {
 		return IRenameStrategy2.DefaultImpl.class;
+	}
+	
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
+	public void configureContentAssistLexer(Binder binder) {
+		binder.bind(org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ide.LexerIdeBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe2.language.ide.contentassist.Mwe2ContentAssistLexer.class);
 	}
 	
 }

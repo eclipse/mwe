@@ -272,12 +272,12 @@ public abstract class AbstractMwe2UiModule extends DefaultCommonTypesUiModule {
 		return FQNPrefixMatcher.class;
 	}
 	
-	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
 	public void configureHighlightingLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ide.LexerIdeBindings.HIGHLIGHTING)).to(org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer.class);
 	}
 	
-	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
 	public void configureContentAssistLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.ide.editor.contentassist.antlr.internal.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.ide.LexerIdeBindings.CONTENT_ASSIST)).to(org.eclipse.emf.mwe2.language.ide.contentassist.Mwe2ContentAssistLexer.class);
 	}

@@ -46,15 +46,15 @@ public class MweHighlightingLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g"; }
+    public String getGrammarFileName() { return "MweHighlightingLexer.g"; }
 
     // $ANTLR start "KEYWORD_MODULE"
     public final void mKEYWORD_MODULE() throws RecognitionException {
         try {
             int _type = KEYWORD_MODULE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:15:16: ( 'module' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:15:18: 'module'
+            // MweHighlightingLexer.g:15:16: ( 'module' )
+            // MweHighlightingLexer.g:15:18: 'module'
             {
             match("module"); 
 
@@ -74,8 +74,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_VAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:18:13: ( 'var' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:18:15: 'var'
+            // MweHighlightingLexer.g:18:13: ( 'var' )
+            // MweHighlightingLexer.g:18:15: 'var'
             {
             match("var"); 
 
@@ -95,8 +95,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:19:16: ( '=' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:19:18: '='
+            // MweHighlightingLexer.g:19:16: ( '=' )
+            // MweHighlightingLexer.g:19:18: '='
             {
             match('='); 
 
@@ -115,8 +115,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_AT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:22:12: ( '@' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:22:14: '@'
+            // MweHighlightingLexer.g:22:12: ( '@' )
+            // MweHighlightingLexer.g:22:14: '@'
             {
             match('@'); 
 
@@ -135,8 +135,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:23:15: ( ':' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:23:17: ':'
+            // MweHighlightingLexer.g:23:15: ( ':' )
+            // MweHighlightingLexer.g:23:17: ':'
             {
             match(':'); 
 
@@ -155,8 +155,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_AUTO_INJECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:24:21: ( 'auto-inject' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:24:23: 'auto-inject'
+            // MweHighlightingLexer.g:24:21: ( 'auto-inject' )
+            // MweHighlightingLexer.g:24:23: 'auto-inject'
             {
             match("auto-inject"); 
 
@@ -176,8 +176,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_OPENBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:25:19: ( '{' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:25:21: '{'
+            // MweHighlightingLexer.g:25:19: ( '{' )
+            // MweHighlightingLexer.g:25:21: '{'
             {
             match('{'); 
 
@@ -196,8 +196,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_CLOSINGBRACE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:26:22: ( '}' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:26:24: '}'
+            // MweHighlightingLexer.g:26:22: ( '}' )
+            // MweHighlightingLexer.g:26:24: '}'
             {
             match('}'); 
 
@@ -216,8 +216,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_IMPORT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:29:16: ( 'import' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:29:18: 'import'
+            // MweHighlightingLexer.g:29:16: ( 'import' )
+            // MweHighlightingLexer.g:29:18: 'import'
             {
             match("import"); 
 
@@ -237,8 +237,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:32:13: ( '.' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:32:15: '.'
+            // MweHighlightingLexer.g:32:13: ( '.' )
+            // MweHighlightingLexer.g:32:15: '.'
             {
             match('.'); 
 
@@ -257,8 +257,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:33:14: ( '.*' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:33:16: '.*'
+            // MweHighlightingLexer.g:33:14: ( '.*' )
+            // MweHighlightingLexer.g:33:16: '.*'
             {
             match(".*"); 
 
@@ -278,8 +278,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:36:15: ( 'false' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:36:17: 'false'
+            // MweHighlightingLexer.g:36:15: ( 'false' )
+            // MweHighlightingLexer.g:36:17: 'false'
             {
             match("false"); 
 
@@ -299,8 +299,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:37:14: ( 'true' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:37:16: 'true'
+            // MweHighlightingLexer.g:37:14: ( 'true' )
+            // MweHighlightingLexer.g:37:16: 'true'
             {
             match("true"); 
 
@@ -320,8 +320,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = KEYWORD_NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:40:14: ( 'null' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:40:16: 'null'
+            // MweHighlightingLexer.g:40:14: ( 'null' )
+            // MweHighlightingLexer.g:40:16: 'null'
             {
             match("null"); 
 
@@ -341,10 +341,10 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // MweHighlightingLexer.g:42:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // MweHighlightingLexer.g:42:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: ( '^' )?
+            // MweHighlightingLexer.g:42:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -353,7 +353,7 @@ public class MweHighlightingLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:11: '^'
+                    // MweHighlightingLexer.g:42:11: '^'
                     {
                     match('^'); 
 
@@ -371,7 +371,7 @@ public class MweHighlightingLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:42:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // MweHighlightingLexer.g:42:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -384,7 +384,7 @@ public class MweHighlightingLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:
+            	    // MweHighlightingLexer.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
@@ -420,10 +420,10 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:10: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
+            // MweHighlightingLexer.g:44:10: ( ( '0' .. '9' )+ )
+            // MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
             {
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
+            // MweHighlightingLexer.g:44:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -437,7 +437,7 @@ public class MweHighlightingLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:44:13: '0' .. '9'
+            	    // MweHighlightingLexer.g:44:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -469,10 +469,10 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:47:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // MweHighlightingLexer.g:47:13: ( ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // MweHighlightingLexer.g:48:3: ( '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -490,10 +490,10 @@ public class MweHighlightingLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:5: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // MweHighlightingLexer.g:49:5: '\"' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // MweHighlightingLexer.g:49:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop5:
                     do {
                         int alt5=3;
@@ -509,71 +509,71 @@ public class MweHighlightingLexer extends Lexer {
 
                         switch (alt5) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // MweHighlightingLexer.g:49:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    {
                     	    match('\\'); 
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // MweHighlightingLexer.g:49:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    int alt4=11;
                     	    alt4 = dfa4.predict(input);
                     	    switch (alt4) {
                     	        case 1 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:17: 'b'
+                    	            // MweHighlightingLexer.g:49:17: 'b'
                     	            {
                     	            match('b'); 
 
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:21: 't'
+                    	            // MweHighlightingLexer.g:49:21: 't'
                     	            {
                     	            match('t'); 
 
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:25: 'n'
+                    	            // MweHighlightingLexer.g:49:25: 'n'
                     	            {
                     	            match('n'); 
 
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:29: 'f'
+                    	            // MweHighlightingLexer.g:49:29: 'f'
                     	            {
                     	            match('f'); 
 
                     	            }
                     	            break;
                     	        case 5 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:33: 'r'
+                    	            // MweHighlightingLexer.g:49:33: 'r'
                     	            {
                     	            match('r'); 
 
                     	            }
                     	            break;
                     	        case 6 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:37: '\"'
+                    	            // MweHighlightingLexer.g:49:37: '\"'
                     	            {
                     	            match('\"'); 
 
                     	            }
                     	            break;
                     	        case 7 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:41: '\\''
+                    	            // MweHighlightingLexer.g:49:41: '\\''
                     	            {
                     	            match('\''); 
 
                     	            }
                     	            break;
                     	        case 8 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:46: '\\\\'
+                    	            // MweHighlightingLexer.g:49:46: '\\\\'
                     	            {
                     	            match('\\'); 
 
                     	            }
                     	            break;
                     	        case 9 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:51: '${'
+                    	            // MweHighlightingLexer.g:49:51: '${'
                     	            {
                     	            match("${"); 
 
@@ -581,7 +581,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 10 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:56: '//'
+                    	            // MweHighlightingLexer.g:49:56: '//'
                     	            {
                     	            match("//"); 
 
@@ -589,7 +589,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 11 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:61: '/*'
+                    	            // MweHighlightingLexer.g:49:61: '/*'
                     	            {
                     	            match("/*"); 
 
@@ -603,7 +603,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:49:69: ~ ( ( '\\\\' | '\"' ) )
+                    	    // MweHighlightingLexer.g:49:69: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -628,10 +628,10 @@ public class MweHighlightingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:5: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // MweHighlightingLexer.g:50:5: '\\'' ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // MweHighlightingLexer.g:50:10: ( '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' ) | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -647,71 +647,71 @@ public class MweHighlightingLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // MweHighlightingLexer.g:50:11: '\\\\' ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    {
                     	    match('\\'); 
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
+                    	    // MweHighlightingLexer.g:50:16: ( 'b' | 't' | 'n' | 'f' | 'r' | '\"' | '\\'' | '\\\\' | '${' | '//' | '/*' )
                     	    int alt6=11;
                     	    alt6 = dfa6.predict(input);
                     	    switch (alt6) {
                     	        case 1 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:17: 'b'
+                    	            // MweHighlightingLexer.g:50:17: 'b'
                     	            {
                     	            match('b'); 
 
                     	            }
                     	            break;
                     	        case 2 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:21: 't'
+                    	            // MweHighlightingLexer.g:50:21: 't'
                     	            {
                     	            match('t'); 
 
                     	            }
                     	            break;
                     	        case 3 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:25: 'n'
+                    	            // MweHighlightingLexer.g:50:25: 'n'
                     	            {
                     	            match('n'); 
 
                     	            }
                     	            break;
                     	        case 4 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:29: 'f'
+                    	            // MweHighlightingLexer.g:50:29: 'f'
                     	            {
                     	            match('f'); 
 
                     	            }
                     	            break;
                     	        case 5 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:33: 'r'
+                    	            // MweHighlightingLexer.g:50:33: 'r'
                     	            {
                     	            match('r'); 
 
                     	            }
                     	            break;
                     	        case 6 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:37: '\"'
+                    	            // MweHighlightingLexer.g:50:37: '\"'
                     	            {
                     	            match('\"'); 
 
                     	            }
                     	            break;
                     	        case 7 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:41: '\\''
+                    	            // MweHighlightingLexer.g:50:41: '\\''
                     	            {
                     	            match('\''); 
 
                     	            }
                     	            break;
                     	        case 8 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:46: '\\\\'
+                    	            // MweHighlightingLexer.g:50:46: '\\\\'
                     	            {
                     	            match('\\'); 
 
                     	            }
                     	            break;
                     	        case 9 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:51: '${'
+                    	            // MweHighlightingLexer.g:50:51: '${'
                     	            {
                     	            match("${"); 
 
@@ -719,7 +719,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 10 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:56: '//'
+                    	            // MweHighlightingLexer.g:50:56: '//'
                     	            {
                     	            match("//"); 
 
@@ -727,7 +727,7 @@ public class MweHighlightingLexer extends Lexer {
                     	            }
                     	            break;
                     	        case 11 :
-                    	            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:61: '/*'
+                    	            // MweHighlightingLexer.g:50:61: '/*'
                     	            {
                     	            match("/*"); 
 
@@ -741,7 +741,7 @@ public class MweHighlightingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:50:69: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // MweHighlightingLexer.g:50:69: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -784,12 +784,12 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // MweHighlightingLexer.g:53:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // MweHighlightingLexer.g:53:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:24: ( options {greedy=false; } : . )*
+            // MweHighlightingLexer.g:53:24: ( options {greedy=false; } : . )*
             loop9:
             do {
                 int alt9=2;
@@ -814,7 +814,7 @@ public class MweHighlightingLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:53:52: .
+            	    // MweHighlightingLexer.g:53:52: .
             	    {
             	    matchAny(); 
 
@@ -844,12 +844,12 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // MweHighlightingLexer.g:55:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // MweHighlightingLexer.g:55:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // MweHighlightingLexer.g:55:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop10:
             do {
                 int alt10=2;
@@ -862,7 +862,7 @@ public class MweHighlightingLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // MweHighlightingLexer.g:55:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -882,7 +882,7 @@ public class MweHighlightingLexer extends Lexer {
                 }
             } while (true);
 
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:40: ( ( '\\r' )? '\\n' )?
+            // MweHighlightingLexer.g:55:40: ( ( '\\r' )? '\\n' )?
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -891,9 +891,9 @@ public class MweHighlightingLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: ( '\\r' )? '\\n'
+                    // MweHighlightingLexer.g:55:41: ( '\\r' )? '\\n'
                     {
-                    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: ( '\\r' )?
+                    // MweHighlightingLexer.g:55:41: ( '\\r' )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -902,7 +902,7 @@ public class MweHighlightingLexer extends Lexer {
                     }
                     switch (alt11) {
                         case 1 :
-                            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:55:41: '\\r'
+                            // MweHighlightingLexer.g:55:41: '\\r'
                             {
                             match('\r'); 
 
@@ -934,10 +934,10 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // MweHighlightingLexer.g:57:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // MweHighlightingLexer.g:57:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt13=0;
             loop13:
             do {
@@ -951,7 +951,7 @@ public class MweHighlightingLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:
+            	    // MweHighlightingLexer.g:
             	    {
             	    if ( (input.LA(1)>='\t' && input.LA(1)<='\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -991,8 +991,8 @@ public class MweHighlightingLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:59:16: ( . )
-            // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:59:18: .
+            // MweHighlightingLexer.g:59:16: ( . )
+            // MweHighlightingLexer.g:59:18: .
             {
             matchAny(); 
 
@@ -1007,152 +1007,152 @@ public class MweHighlightingLexer extends Lexer {
     // $ANTLR end "RULE_ANY_OTHER"
 
     public void mTokens() throws RecognitionException {
-        // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:8: ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | KEYWORD_NULL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
+        // MweHighlightingLexer.g:1:8: ( KEYWORD_MODULE | KEYWORD_VAR | KEYWORD_ASSIGN | KEYWORD_AT | KEYWORD_COLON | KEYWORD_AUTO_INJECT | KEYWORD_OPENBRACE | KEYWORD_CLOSINGBRACE | KEYWORD_IMPORT | KEYWORD_DOT | KEYWORD_STAR | KEYWORD_FALSE | KEYWORD_TRUE | KEYWORD_NULL | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
         int alt14=21;
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:10: KEYWORD_MODULE
+                // MweHighlightingLexer.g:1:10: KEYWORD_MODULE
                 {
                 mKEYWORD_MODULE(); 
 
                 }
                 break;
             case 2 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:25: KEYWORD_VAR
+                // MweHighlightingLexer.g:1:25: KEYWORD_VAR
                 {
                 mKEYWORD_VAR(); 
 
                 }
                 break;
             case 3 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:37: KEYWORD_ASSIGN
+                // MweHighlightingLexer.g:1:37: KEYWORD_ASSIGN
                 {
                 mKEYWORD_ASSIGN(); 
 
                 }
                 break;
             case 4 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:52: KEYWORD_AT
+                // MweHighlightingLexer.g:1:52: KEYWORD_AT
                 {
                 mKEYWORD_AT(); 
 
                 }
                 break;
             case 5 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:63: KEYWORD_COLON
+                // MweHighlightingLexer.g:1:63: KEYWORD_COLON
                 {
                 mKEYWORD_COLON(); 
 
                 }
                 break;
             case 6 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:77: KEYWORD_AUTO_INJECT
+                // MweHighlightingLexer.g:1:77: KEYWORD_AUTO_INJECT
                 {
                 mKEYWORD_AUTO_INJECT(); 
 
                 }
                 break;
             case 7 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:97: KEYWORD_OPENBRACE
+                // MweHighlightingLexer.g:1:97: KEYWORD_OPENBRACE
                 {
                 mKEYWORD_OPENBRACE(); 
 
                 }
                 break;
             case 8 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:115: KEYWORD_CLOSINGBRACE
+                // MweHighlightingLexer.g:1:115: KEYWORD_CLOSINGBRACE
                 {
                 mKEYWORD_CLOSINGBRACE(); 
 
                 }
                 break;
             case 9 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:136: KEYWORD_IMPORT
+                // MweHighlightingLexer.g:1:136: KEYWORD_IMPORT
                 {
                 mKEYWORD_IMPORT(); 
 
                 }
                 break;
             case 10 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:151: KEYWORD_DOT
+                // MweHighlightingLexer.g:1:151: KEYWORD_DOT
                 {
                 mKEYWORD_DOT(); 
 
                 }
                 break;
             case 11 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:163: KEYWORD_STAR
+                // MweHighlightingLexer.g:1:163: KEYWORD_STAR
                 {
                 mKEYWORD_STAR(); 
 
                 }
                 break;
             case 12 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:176: KEYWORD_FALSE
+                // MweHighlightingLexer.g:1:176: KEYWORD_FALSE
                 {
                 mKEYWORD_FALSE(); 
 
                 }
                 break;
             case 13 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:190: KEYWORD_TRUE
+                // MweHighlightingLexer.g:1:190: KEYWORD_TRUE
                 {
                 mKEYWORD_TRUE(); 
 
                 }
                 break;
             case 14 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:203: KEYWORD_NULL
+                // MweHighlightingLexer.g:1:203: KEYWORD_NULL
                 {
                 mKEYWORD_NULL(); 
 
                 }
                 break;
             case 15 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:216: RULE_ID
+                // MweHighlightingLexer.g:1:216: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
             case 16 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:224: RULE_INT
+                // MweHighlightingLexer.g:1:224: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
             case 17 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:233: RULE_STRING
+                // MweHighlightingLexer.g:1:233: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
             case 18 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:245: RULE_ML_COMMENT
+                // MweHighlightingLexer.g:1:245: RULE_ML_COMMENT
                 {
                 mRULE_ML_COMMENT(); 
 
                 }
                 break;
             case 19 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:261: RULE_SL_COMMENT
+                // MweHighlightingLexer.g:1:261: RULE_SL_COMMENT
                 {
                 mRULE_SL_COMMENT(); 
 
                 }
                 break;
             case 20 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:277: RULE_WS
+                // MweHighlightingLexer.g:1:277: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
             case 21 :
-                // ../org.eclipse.emf.mwe2.language.ide/src/org/eclipse/emf/mwe2/language/ui/highlighting/MweHighlightingLexer.g:1:285: RULE_ANY_OTHER
+                // MweHighlightingLexer.g:1:285: RULE_ANY_OTHER
                 {
                 mRULE_ANY_OTHER(); 
 

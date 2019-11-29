@@ -180,7 +180,7 @@ public abstract class AbstractMwe2RuntimeModule extends DefaultCommonTypesRuntim
 		return TypesAwareDefaultGlobalScopeProvider.class;
 	}
 	
-	// contributed by org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
+	// contributed by org.eclipse.xtext.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment
 	public void configureRuntimeLexer(Binder binder) {
 		binder.bind(org.eclipse.xtext.parser.antlr.Lexer.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.parser.antlr.LexerBindings.RUNTIME)).to(org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer.class);
 	}
