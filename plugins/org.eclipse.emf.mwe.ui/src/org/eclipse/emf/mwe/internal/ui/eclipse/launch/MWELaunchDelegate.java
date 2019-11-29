@@ -40,6 +40,7 @@ import org.eclipse.emf.mwe.internal.ui.debug.model.DebugTarget;
 import org.eclipse.emf.mwe.internal.ui.debug.model.DebugThread;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IModuleDescription;
 import org.eclipse.jdt.launching.AbstractJavaLaunchConfigurationDelegate;
 import org.eclipse.jdt.launching.IJavaLaunchConfigurationConstants;
 import org.eclipse.jdt.launching.IVMInstall;
@@ -194,6 +195,20 @@ public class MWELaunchDelegate extends AbstractJavaLaunchConfigurationDelegate {
 			} else {
 				// module path
 				runnerConfig.setModulepath(classpathAndModulepath[1]);
+				try {
+					// We do need the current project module later on - write it into the module description
+					IJavaProject proj = JavaRuntime.getJavaProject(configuration);
+					if (proj != null) {
+						IModuleDescription module = proj.getModuleDescription();
+						String modName = module == null ? null : module.getElementName();
+						if (modName != null) {
+							runnerConfig.setModuleDescription(modName);
+						}
+					}
+				}
+				catch (CoreException e) {
+					// Not a java Project so no need to set module description
+				}
 			}
 
 			monitor.worked(1);
