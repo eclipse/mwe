@@ -7,6 +7,7 @@ Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ui;singleton:=true
 Bundle-Localization: plugin
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
+ org.eclipse.emf.mwe2.runtime,
  org.eclipse.xtext.ui,
  org.eclipse.ui.editors;bundle-version="3.6.0",
  org.eclipse.ui.ide;bundle-version="3.6.0",

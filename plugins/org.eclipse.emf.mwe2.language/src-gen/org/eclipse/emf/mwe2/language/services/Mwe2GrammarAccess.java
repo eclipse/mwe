@@ -171,7 +171,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 		
-		//type=[types::JvmType|FQN] | '@' module=[Module|FQN]
+		//(type=[types::JvmType|FQN] | '@' module=[Module|FQN])
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//type=[types::JvmType|FQN]
@@ -557,7 +557,7 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//{BooleanLiteral}
 		public Action getBooleanLiteralAction_0() { return cBooleanLiteralAction_0; }
 		
-		//isTrue?='true' | 'false'
+		//(isTrue?='true' | 'false')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//isTrue?='true'
