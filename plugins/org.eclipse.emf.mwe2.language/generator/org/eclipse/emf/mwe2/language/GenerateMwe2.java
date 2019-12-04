@@ -8,8 +8,6 @@
 package org.eclipse.emf.mwe2.language;
 
 import org.eclipse.emf.mwe2.ecore.EcoreGenerator;
-import org.eclipse.xtext.generator.adapter.FragmentAdapter;
-import org.eclipse.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment;
 import org.eclipse.xtext.xtext.generator.CodeConfig;
 import org.eclipse.xtext.xtext.generator.DefaultGeneratorModule;
 import org.eclipse.xtext.xtext.generator.StandardLanguage;
@@ -18,6 +16,7 @@ import org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2;
 import org.eclipse.xtext.xtext.generator.model.project.BundleProjectConfig;
 import org.eclipse.xtext.xtext.generator.model.project.StandardProjectConfig;
 import org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2;
+import org.eclipse.xtext.xtext.generator.parser.antlr.ex.ExternalAntlrLexerFragment;
 import org.eclipse.xtext.xtext.generator.types.TypesGeneratorFragment2;
 
 /**
@@ -80,19 +79,19 @@ public class GenerateMwe2 {
 						antlrFragment1.setRuntime(true);
 						antlrFragment1.addAntlrParam("-lib");
 						antlrFragment1.addAntlrParam(""+runtimeProject+"/src-gen/org/eclipse/emf/mwe2/language/parser/antlr/lexer");
-						getFragments().add(new FragmentAdapter(antlrFragment1));
+						getFragments().add(antlrFragment1);
 						
 						ExternalAntlrLexerFragment antlrFragment2 = new ExternalAntlrLexerFragment();
 						antlrFragment2.setLexerGrammar("org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer");
 						antlrFragment2.setHighlighting(true);
-						getFragments().add(new FragmentAdapter(antlrFragment2));
+						getFragments().add(antlrFragment2);
 
 						ExternalAntlrLexerFragment antlrFragment3 = new ExternalAntlrLexerFragment();
 						antlrFragment3.setLexerGrammar("org.eclipse.emf.mwe2.language.ide.contentassist.Mwe2ContentAssistLexer");
 						antlrFragment3.setContentAssist(true);
 						antlrFragment3.addAntlrParam("-lib");
 						antlrFragment3.addAntlrParam(""+ideProject+"/src-gen/org/eclipse/emf/mwe2/language/ide/contentassist/antlr/lexer");
-						getFragments().add(new FragmentAdapter(antlrFragment3));
+						getFragments().add(antlrFragment3);
 						
 					}
 				});
