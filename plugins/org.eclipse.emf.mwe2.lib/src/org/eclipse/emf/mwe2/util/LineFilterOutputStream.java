@@ -7,7 +7,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.util;
 
-import java.io.FilterOutputStream;
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -15,7 +15,7 @@ import java.io.OutputStream;
  * Filters any line, that contains the given pattern right from the beginning.
  * @author Sebastian Zarnekow - Initial contribution and API
  */
-public class LineFilterOutputStream extends FilterOutputStream {
+public class LineFilterOutputStream extends BufferedOutputStream {
 
 	private final byte[] pattern;
 
@@ -41,7 +41,7 @@ public class LineFilterOutputStream extends FilterOutputStream {
 	}
 
 	public LineFilterOutputStream(OutputStream out, String pattern, String newLine) {
-		super(out);
+		super(out, 32768);
 		this.pattern = pattern.getBytes();
 		this.buffer = new byte[pattern.length()];
 		this.newline = newLine.getBytes();
