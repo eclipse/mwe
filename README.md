@@ -1,4 +1,5 @@
 # Modeling Workflow Engine (MWE)
+See the [MWE2 documentation](documentation/mwe2.md) for more details.
 
 ## Release Process
 
