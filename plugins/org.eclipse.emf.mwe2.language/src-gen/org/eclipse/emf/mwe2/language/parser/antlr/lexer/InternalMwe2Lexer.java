@@ -12,10 +12,11 @@ import java.util.ArrayList;
 
 /*******************************************************************************
  * Copyright (c) 2010, 2019 itemis AG (http://www.itemis.eu) and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+ * This program and the accompanying materials are made available under the
+ * terms of the Eclipse Public License 2.0 which is available at
+ * http://www.eclipse.org/legal/epl-2.0.
+ *
+ * SPDX-License-Identifier: EPL-2.0
  *******************************************************************************/
 @SuppressWarnings("all")
 public class InternalMwe2Lexer extends Lexer {
@@ -68,8 +69,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = AutoInject;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:18:12: ( 'auto-inject' )
-            // InternalMwe2Lexer.g:18:14: 'auto-inject'
+            // InternalMwe2Lexer.g:19:12: ( 'auto-inject' )
+            // InternalMwe2Lexer.g:19:14: 'auto-inject'
             {
             match("auto-inject"); 
 
@@ -89,8 +90,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Import;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:20:8: ( 'import' )
-            // InternalMwe2Lexer.g:20:10: 'import'
+            // InternalMwe2Lexer.g:21:8: ( 'import' )
+            // InternalMwe2Lexer.g:21:10: 'import'
             {
             match("import"); 
 
@@ -110,8 +111,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Module;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:22:8: ( 'module' )
-            // InternalMwe2Lexer.g:22:10: 'module'
+            // InternalMwe2Lexer.g:23:8: ( 'module' )
+            // InternalMwe2Lexer.g:23:10: 'module'
             {
             match("module"); 
 
@@ -131,8 +132,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = False;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:24:7: ( 'false' )
-            // InternalMwe2Lexer.g:24:9: 'false'
+            // InternalMwe2Lexer.g:25:7: ( 'false' )
+            // InternalMwe2Lexer.g:25:9: 'false'
             {
             match("false"); 
 
@@ -152,8 +153,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Null;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:26:6: ( 'null' )
-            // InternalMwe2Lexer.g:26:8: 'null'
+            // InternalMwe2Lexer.g:27:6: ( 'null' )
+            // InternalMwe2Lexer.g:27:8: 'null'
             {
             match("null"); 
 
@@ -173,8 +174,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = True;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:28:6: ( 'true' )
-            // InternalMwe2Lexer.g:28:8: 'true'
+            // InternalMwe2Lexer.g:29:6: ( 'true' )
+            // InternalMwe2Lexer.g:29:8: 'true'
             {
             match("true"); 
 
@@ -194,8 +195,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusDollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:30:42: ( '\\\\${' )
-            // InternalMwe2Lexer.g:30:44: '\\\\${'
+            // InternalMwe2Lexer.g:31:42: ( '\\\\${' )
+            // InternalMwe2Lexer.g:31:44: '\\\\${'
             {
             match("\\${"); 
 
@@ -215,8 +216,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Var;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:32:5: ( 'var' )
-            // InternalMwe2Lexer.g:32:7: 'var'
+            // InternalMwe2Lexer.g:33:5: ( 'var' )
+            // InternalMwe2Lexer.g:33:7: 'var'
             {
             match("var"); 
 
@@ -236,8 +237,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = DollarSignLeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:34:28: ( '${' )
-            // InternalMwe2Lexer.g:34:30: '${'
+            // InternalMwe2Lexer.g:35:28: ( '${' )
+            // InternalMwe2Lexer.g:35:30: '${'
             {
             match("${"); 
 
@@ -257,8 +258,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = FullStopAsterisk;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:36:18: ( '.*' )
-            // InternalMwe2Lexer.g:36:20: '.*'
+            // InternalMwe2Lexer.g:37:18: ( '.*' )
+            // InternalMwe2Lexer.g:37:20: '.*'
             {
             match(".*"); 
 
@@ -278,8 +279,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusQuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:38:29: ( '\\\\\"' )
-            // InternalMwe2Lexer.g:38:31: '\\\\\"'
+            // InternalMwe2Lexer.g:39:29: ( '\\\\\"' )
+            // InternalMwe2Lexer.g:39:31: '\\\\\"'
             {
             match("\\\""); 
 
@@ -299,8 +300,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusApostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:40:26: ( '\\\\\\'' )
-            // InternalMwe2Lexer.g:40:28: '\\\\\\''
+            // InternalMwe2Lexer.g:41:26: ( '\\\\\\'' )
+            // InternalMwe2Lexer.g:41:28: '\\\\\\''
             {
             match("\\'"); 
 
@@ -320,8 +321,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = ReverseSolidusReverseSolidus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:42:30: ( '\\\\\\\\' )
-            // InternalMwe2Lexer.g:42:32: '\\\\\\\\'
+            // InternalMwe2Lexer.g:43:30: ( '\\\\\\\\' )
+            // InternalMwe2Lexer.g:43:32: '\\\\\\\\'
             {
             match("\\\\"); 
 
@@ -341,8 +342,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = QuotationMark;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:44:15: ( '\"' )
-            // InternalMwe2Lexer.g:44:17: '\"'
+            // InternalMwe2Lexer.g:45:15: ( '\"' )
+            // InternalMwe2Lexer.g:45:17: '\"'
             {
             match('\"'); 
 
@@ -361,8 +362,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Apostrophe;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:46:12: ( '\\'' )
-            // InternalMwe2Lexer.g:46:14: '\\''
+            // InternalMwe2Lexer.g:47:12: ( '\\'' )
+            // InternalMwe2Lexer.g:47:14: '\\''
             {
             match('\''); 
 
@@ -381,8 +382,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = PlusSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:48:10: ( '+' )
-            // InternalMwe2Lexer.g:48:12: '+'
+            // InternalMwe2Lexer.g:49:10: ( '+' )
+            // InternalMwe2Lexer.g:49:12: '+'
             {
             match('+'); 
 
@@ -401,8 +402,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = HyphenMinus;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:50:13: ( '-' )
-            // InternalMwe2Lexer.g:50:15: '-'
+            // InternalMwe2Lexer.g:51:13: ( '-' )
+            // InternalMwe2Lexer.g:51:15: '-'
             {
             match('-'); 
 
@@ -421,8 +422,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = FullStop;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:52:10: ( '.' )
-            // InternalMwe2Lexer.g:52:12: '.'
+            // InternalMwe2Lexer.g:53:10: ( '.' )
+            // InternalMwe2Lexer.g:53:12: '.'
             {
             match('.'); 
 
@@ -441,8 +442,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = Colon;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:54:7: ( ':' )
-            // InternalMwe2Lexer.g:54:9: ':'
+            // InternalMwe2Lexer.g:55:7: ( ':' )
+            // InternalMwe2Lexer.g:55:9: ':'
             {
             match(':'); 
 
@@ -461,8 +462,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = EqualsSign;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:56:12: ( '=' )
-            // InternalMwe2Lexer.g:56:14: '='
+            // InternalMwe2Lexer.g:57:12: ( '=' )
+            // InternalMwe2Lexer.g:57:14: '='
             {
             match('='); 
 
@@ -481,8 +482,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = CommercialAt;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:58:14: ( '@' )
-            // InternalMwe2Lexer.g:58:16: '@'
+            // InternalMwe2Lexer.g:59:14: ( '@' )
+            // InternalMwe2Lexer.g:59:16: '@'
             {
             match('@'); 
 
@@ -501,8 +502,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = LeftCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:60:18: ( '{' )
-            // InternalMwe2Lexer.g:60:20: '{'
+            // InternalMwe2Lexer.g:61:18: ( '{' )
+            // InternalMwe2Lexer.g:61:20: '{'
             {
             match('{'); 
 
@@ -521,8 +522,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RightCurlyBracket;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:62:19: ( '}' )
-            // InternalMwe2Lexer.g:62:21: '}'
+            // InternalMwe2Lexer.g:63:19: ( '}' )
+            // InternalMwe2Lexer.g:63:21: '}'
             {
             match('}'); 
 
@@ -541,10 +542,10 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:64:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalMwe2Lexer.g:64:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalMwe2Lexer.g:65:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalMwe2Lexer.g:65:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalMwe2Lexer.g:64:11: ( '^' )?
+            // InternalMwe2Lexer.g:65:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -553,7 +554,7 @@ public class InternalMwe2Lexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalMwe2Lexer.g:64:11: '^'
+                    // InternalMwe2Lexer.g:65:11: '^'
                     {
                     match('^'); 
 
@@ -571,7 +572,7 @@ public class InternalMwe2Lexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalMwe2Lexer.g:64:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalMwe2Lexer.g:65:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -620,10 +621,10 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:66:10: ( ( '0' .. '9' )+ )
-            // InternalMwe2Lexer.g:66:12: ( '0' .. '9' )+
+            // InternalMwe2Lexer.g:67:10: ( ( '0' .. '9' )+ )
+            // InternalMwe2Lexer.g:67:12: ( '0' .. '9' )+
             {
-            // InternalMwe2Lexer.g:66:12: ( '0' .. '9' )+
+            // InternalMwe2Lexer.g:67:12: ( '0' .. '9' )+
             int cnt3=0;
             loop3:
             do {
@@ -637,7 +638,7 @@ public class InternalMwe2Lexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // InternalMwe2Lexer.g:66:13: '0' .. '9'
+            	    // InternalMwe2Lexer.g:67:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -669,12 +670,12 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:68:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // InternalMwe2Lexer.g:68:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // InternalMwe2Lexer.g:69:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // InternalMwe2Lexer.g:69:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // InternalMwe2Lexer.g:68:24: ( options {greedy=false; } : . )*
+            // InternalMwe2Lexer.g:69:24: ( options {greedy=false; } : . )*
             loop4:
             do {
                 int alt4=2;
@@ -699,7 +700,7 @@ public class InternalMwe2Lexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // InternalMwe2Lexer.g:68:52: .
+            	    // InternalMwe2Lexer.g:69:52: .
             	    {
             	    matchAny(); 
 
@@ -729,12 +730,12 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:70:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // InternalMwe2Lexer.g:70:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // InternalMwe2Lexer.g:71:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // InternalMwe2Lexer.g:71:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // InternalMwe2Lexer.g:70:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalMwe2Lexer.g:71:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop5:
             do {
                 int alt5=2;
@@ -747,7 +748,7 @@ public class InternalMwe2Lexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // InternalMwe2Lexer.g:70:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalMwe2Lexer.g:71:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -767,7 +768,7 @@ public class InternalMwe2Lexer extends Lexer {
                 }
             } while (true);
 
-            // InternalMwe2Lexer.g:70:40: ( ( '\\r' )? '\\n' )?
+            // InternalMwe2Lexer.g:71:40: ( ( '\\r' )? '\\n' )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -776,9 +777,9 @@ public class InternalMwe2Lexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // InternalMwe2Lexer.g:70:41: ( '\\r' )? '\\n'
+                    // InternalMwe2Lexer.g:71:41: ( '\\r' )? '\\n'
                     {
-                    // InternalMwe2Lexer.g:70:41: ( '\\r' )?
+                    // InternalMwe2Lexer.g:71:41: ( '\\r' )?
                     int alt6=2;
                     int LA6_0 = input.LA(1);
 
@@ -787,7 +788,7 @@ public class InternalMwe2Lexer extends Lexer {
                     }
                     switch (alt6) {
                         case 1 :
-                            // InternalMwe2Lexer.g:70:41: '\\r'
+                            // InternalMwe2Lexer.g:71:41: '\\r'
                             {
                             match('\r'); 
 
@@ -819,10 +820,10 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:72:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // InternalMwe2Lexer.g:72:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalMwe2Lexer.g:73:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // InternalMwe2Lexer.g:73:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // InternalMwe2Lexer.g:72:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // InternalMwe2Lexer.g:73:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt8=0;
             loop8:
             do {
@@ -876,8 +877,8 @@ public class InternalMwe2Lexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalMwe2Lexer.g:74:16: ( . )
-            // InternalMwe2Lexer.g:74:18: .
+            // InternalMwe2Lexer.g:75:16: ( . )
+            // InternalMwe2Lexer.g:75:18: .
             {
             matchAny(); 
 
