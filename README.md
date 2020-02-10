@@ -28,3 +28,7 @@ Performing a stable release has a few manual steps that are documented here:
 1. Create a SimRel contribution by replacing the update site in [emft-mwe.aggrcon](https://git.eclipse.org/c/simrel/org.eclipse.simrel.build.git/tree/emft-mwe.aggrcon) with the newly released version.
 
 1. If the release was of the type 'GA', run the `./set_version.sh` script and provide a PR to prepare the next release cycle.
+
+### Build Locally
+
+`mvn -f maven/org.eclipse.emf.mwe2.parent/pom.xml -Dtycho.localArtifacts=ignore -Dmaven.repo.local=.m2/repository clean install`
