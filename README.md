@@ -15,6 +15,8 @@ Performing a stable release has a few manual steps that are documented here:
 
 1. Start the master branch job, selecting the release type. When the job is finished, artifacts should have been uploaded to the [Sonatype Nexus](https://oss.sonatype.org) and the Eclipse download storage.
 
+1. Add a git tag (`v$MAJOR.$MINOR.$SERVICE`) to mark the commit being released.
+
 1. Check Jenkins artifacts, if Maven artifacts have the correct versions (without qualifiers!).
 
 1. Check Jenkins artifacts, if p2 artifacts have the correct version (with qualifiers!).
