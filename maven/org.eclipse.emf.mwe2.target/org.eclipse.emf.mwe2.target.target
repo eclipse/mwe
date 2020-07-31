@@ -2,25 +2,25 @@
 <?pde version="3.8"?>
 <target name="org.eclipse.emf.mwe2.target" sequenceNumber="4">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
 <repository location="https://download.eclipse.org/releases/oxygen/201804111000"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
 <repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.12"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.xtext.ui.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.xtext.junit4" version="0.0.0"/>
 <unit id="org.eclipse.xtext.testing" version="0.0.0"/>
 <unit id="org.eclipse.xtext.ui.testing" version="0.0.0"/>
 <repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0"/>
 </location>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="2.0.2.v20181016-2210"/>
 <repository location="https://download.eclipse.org/cbi/updates/license/"/>
 </location>
