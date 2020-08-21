@@ -115,6 +115,7 @@ public class Mwe2Runner {
 	}
 
 	protected Module findModule(String moduleName) {
+		System.err.println(moduleName);
 		ResourceSet resourceSet = getConfiguredResourceSet();
 		IResourceDescriptions descriptions = initializer.getDescriptions(resourceSet);
 		for (IResourceDescription desc : descriptions.getAllResourceDescriptions()) {

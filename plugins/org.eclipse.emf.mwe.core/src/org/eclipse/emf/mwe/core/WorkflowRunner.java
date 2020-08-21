@@ -98,7 +98,7 @@ public class WorkflowRunner {
 		WorkflowEngine runner = new WorkflowEngine();
 		if (line.hasOption(ENGINE)) {
 			try {
-				runner = (WorkflowEngine) Class.forName(line.getOptionValue(ENGINE)).newInstance();
+				runner = (WorkflowEngine) Class.forName(line.getOptionValue(ENGINE)).getDeclaredConstructor().newInstance();
 			}
 			catch (Exception e) {
 				throw new RuntimeException(e);
@@ -141,7 +141,7 @@ public class WorkflowRunner {
 			}
 			final Method method = cmdLineProcessor.getMethod("processCmdLine", String[].class, Map.class,
 					WorkflowContext.class);
-			method.invoke(cmdLineProcessor.newInstance(), unprocessedArgs.toArray(new String[0]), params,
+			method.invoke(cmdLineProcessor.getDeclaredConstructor().newInstance(), unprocessedArgs.toArray(new String[0]), params,
 					runner.getContext());
 		} else {
 			params = resolveParams(line.getOptionValues(PARAM));
@@ -160,7 +160,7 @@ public class WorkflowRunner {
 				if (clazz == null) {
 					throw new ClassNotFoundException("Didn't find class " + monitorOptValues[0]);
 				}
-				monitor = (ProgressMonitor) clazz.newInstance();
+				monitor = (ProgressMonitor) clazz.getDeclaredConstructor().newInstance();
 				if (monitor instanceof ProgressMonitor2) {
 					((ProgressMonitor2)monitor).init(monitorOptValues);
 				} else if(monitor instanceof DebugMonitor) {

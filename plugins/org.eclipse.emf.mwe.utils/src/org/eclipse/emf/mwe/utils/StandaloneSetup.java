@@ -486,7 +486,7 @@ public class StandaloneSetup {
 				factoryInstance = instanceField.get(null);
 			}
 			else {
-				factoryInstance = factoryClass.newInstance();
+				factoryInstance = factoryClass.getDeclaredConstructor().newInstance();
 			}
 			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(m.getFrom(), factoryInstance);
 		}
