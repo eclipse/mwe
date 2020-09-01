@@ -12,6 +12,7 @@
 
 package org.eclipse.emf.mwe.core.resources;
 
+import java.lang.reflect.InvocationTargetException;
 
 /**
  * Factory for
@@ -61,14 +62,20 @@ public class ResourceLoaderFactory {
      */
     public static ResourceLoader createResourceLoader() throws RuntimeException {
         if (current.get() != null) {
-			return current.get();
-		}
+            return current.get();
+        }
         initResourceLoaderClass();
         try {
-            return (ResourceLoader) resourceLoaderImpl.newInstance();
+            return (ResourceLoader) resourceLoaderImpl.getDeclaredConstructor().newInstance();
         } catch (final InstantiationException e) {
             throw new RuntimeException(e);
         } catch (final IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+        catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        }
+        catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
     }

@@ -156,7 +156,7 @@ public class Mwe2ExecutionEngine {
 		if (class1==null)
 			throw new IllegalStateException("Couldn't find java.lang.Class for name '"+jvmType.getIdentifier()+"'");
 		try {
-			return class1.newInstance();
+			return class1.getDeclaredConstructor().newInstance();
 		} catch (Exception e) {
 			throw new WrappedException(e);
 		}

@@ -49,7 +49,7 @@ public class Component implements WorkflowComponent {
 		this.intParam = intParam;
 	}
 
-	public Integer integerParam = new Integer(-1);
+	public Integer integerParam = Integer.valueOf(-1);
 
 	public void setIntegerParam(final Integer integerParam) {
 		this.integerParam = integerParam;

@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.internal.core.debug.processing;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -77,7 +78,7 @@ public class RuntimeHandlerManager implements Runnable {
 	}
 
 	private void listenAndRegisterClasses() throws InstantiationException, IllegalAccessException,
-			ClassNotFoundException, IOException {
+			ClassNotFoundException, IOException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException {
 
 		RegisterPackage packet = (RegisterPackage) connection.listenForPackage(RegisterPackage.class);
 
@@ -92,7 +93,7 @@ public class RuntimeHandlerManager implements Runnable {
 					System.err.println(msg);
 					throw new ClassNotFoundException(msg);
 				}
-				handler = (RuntimeHandler) clazz.newInstance();
+				handler = (RuntimeHandler) clazz.getDeclaredConstructor().newInstance();
 				handler.init(monitor, connection);
 				handler.startListener();
 			}
@@ -106,7 +107,7 @@ public class RuntimeHandlerManager implements Runnable {
 					System.err.println(msg);
 					throw new ClassNotFoundException(msg);
 				}
-				adapter = (ElementAdapter) clazz.newInstance();
+				adapter = (ElementAdapter) clazz.getDeclaredConstructor().newInstance();
 				monitor.addAdapter(adapter);
 			}
 		}
