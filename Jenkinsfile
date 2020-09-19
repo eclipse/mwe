@@ -75,7 +75,7 @@ pipeline {
     stage ('Build') {
       steps {
         wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
-          withMaven(jdk: 'adoptopenjdk-hotspot-jdk8-latest', maven: 'apache-maven-latest', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+          withMaven(jdk: 'jdk11', maven: 'apache-maven-latest', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               sh '''
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
