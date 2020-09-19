@@ -27,7 +27,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.orbit"
-      value="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+      value="https://download.eclipse.org/tools/orbit/downloads/2020-09"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
@@ -36,6 +36,9 @@
       label="Target Platform">
     <annotation
         source="http://www.eclipse.org/oomph/setup/GlobalVariable"/>
+    <choice
+        value="2020-09"
+        label="Eclipse 2020-09 - 4.17"/>
     <choice
         value="2019-12"
         label="Eclipse 2019-12 - 4.14"/>
@@ -306,6 +309,17 @@
       <sourceLocator
           rootFolder="${git.clone.emf.mwe.location}"
           locateNestedProjects="true"/>
+      <repositoryList
+          name="2020-09">
+        <repository
+            url="${p2.orbit}"/>
+        <repository
+            url="${p2.emf}"/>
+        <repository
+            url="${p2.cbi.license}"/>
+        <repository
+            url="${p2.xtext}"/>
+      </repositoryList>
       <repositoryList
           name="2019-12">
         <repository
