@@ -40,6 +40,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 		GenModelPackage.eINSTANCE.getEFactoryInstance();
 	}
 
+	private boolean generateModel = true;
 	private boolean generateEdit = false;
 	private boolean generateEditor = false;
 	private boolean generateCustomClasses = false;
@@ -65,6 +66,10 @@ public class EcoreGenerator implements IWorkflowComponent {
 	
 	private ResourceSet resourceSet;
 	
+	public void setGenerateModel(boolean generateModel) {
+		this.generateModel = generateModel;
+	}
+
 	public void setGenerateEdit(boolean generateEdit) {
 		this.generateEdit = generateEdit;
 	}
@@ -126,11 +131,13 @@ public class EcoreGenerator implements IWorkflowComponent {
 				new GeneratorAdapterDescriptor(getTypeMapper(), getLineDelimiter()));
 		generator.setInput(genModel);
 
-		Diagnostic diagnostic = generator.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
-				new BasicMonitor());
+		if (generateModel) {
+			Diagnostic diagnostic = generator.generate(genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE,
+					new BasicMonitor());
 
-		if (diagnostic.getSeverity() != Diagnostic.OK)
-			log.info(diagnostic);
+			if (diagnostic.getSeverity() != Diagnostic.OK)
+				log.info(diagnostic);
+		}
 
 		if (generateEdit) {
 			Diagnostic editDiag = generator.generate(genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE,
