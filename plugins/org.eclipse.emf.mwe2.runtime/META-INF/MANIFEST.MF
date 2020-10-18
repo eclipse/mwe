@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MWE2 Runtime
 Bundle-SymbolicName: org.eclipse.emf.mwe2.runtime
-Bundle-Version: 2.11.4.qualifier
+Bundle-Version: 2.12.0.qualifier
 Bundle-Vendor: Eclipse Xtext
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.eclipse.emf.mwe2.runtime,
