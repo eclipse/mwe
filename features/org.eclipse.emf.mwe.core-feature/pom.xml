@@ -6,7 +6,7 @@
 		<version>2.11.4-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<version>1.6.0-SNAPSHOT</version>
+	<version>1.5.4-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 	<artifactId>org.eclipse.emf.mwe.core.feature</artifactId>
 	<build>
