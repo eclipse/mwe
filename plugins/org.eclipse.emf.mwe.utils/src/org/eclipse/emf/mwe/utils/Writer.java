@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2020 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -40,7 +40,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	private boolean OPTION_SCHEMA_LOCATION_IMPLEMENTATION = true;
 
-	private String encoding = null;
+	private final String encoding = null;
 
 	private boolean multipleResourcesInCaseOfList = false;
 
@@ -48,13 +48,6 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	
 	private boolean ignoreEmptySlot = false;
 
-	/**
-	 * @since 1.6.0
-	 */
-	public void setEncoding(final String encoding) {
-		this.encoding = encoding;
-	}
-	
 	public void setIgnoreEmptySlot(boolean ignoreEmptySlot) {
 		this.ignoreEmptySlot = ignoreEmptySlot;
 	}
