@@ -67,7 +67,7 @@ public class EcoreGenerator implements IWorkflowComponent {
 	private ResourceSet resourceSet;
 
 	/**
-	 * @since 2.11.4
+	 * @since 2.12
 	 */
 	public void setGenerateModel(boolean generateModel) {
 		this.generateModel = generateModel;
