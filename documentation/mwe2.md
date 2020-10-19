@@ -471,6 +471,14 @@ Other escape sequence are illegal in MWE2 strings.
 
 MWE2 has native support for the boolean type. The literals are `true` and `false`.
 
+### Integer and Double Literals
+
+MWE2 also supports integers like `42`, `-23` and doubles like `1.2345`, `-9.876`.
+
+### Null Literal
+
+The Null Literal is `null`.
+
 ### References
 
 Each assigned value in MWE2 either as default for properties or in a component assignment can be a reference to a previously declared property or named component. The can be referenced intuitively by their name.
