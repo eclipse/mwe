@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2009 committers of openArchitectureWare and others.
+ * Copyright (c) 2005, 2020 committers of openArchitectureWare and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.utils;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -40,7 +41,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	private boolean OPTION_SCHEMA_LOCATION_IMPLEMENTATION = true;
 
-	private final String encoding = null;
+	private String encoding = null;
 
 	private boolean multipleResourcesInCaseOfList = false;
 
@@ -48,6 +49,13 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	
 	private boolean ignoreEmptySlot = false;
 
+	/**
+	 * @since 1.6
+	 */
+	public void setEncoding(final String encoding) {
+		this.encoding = encoding;
+	}
+	
 	public void setIgnoreEmptySlot(boolean ignoreEmptySlot) {
 		this.ignoreEmptySlot = ignoreEmptySlot;
 	}
@@ -62,6 +70,14 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	public void setOPTION_SCHEMA_LOCATION_IMPLEMENTATION(final boolean option_schema_location_implementation) {
 		OPTION_SCHEMA_LOCATION_IMPLEMENTATION = option_schema_location_implementation;
+	}
+	
+	@Override
+	public void checkConfiguration(Issues issues) {
+		super.checkConfiguration(issues);
+		if (encoding != null && !Charset.isSupported(encoding)) {
+			issues.addError(this, "invalid encoding value '" + encoding + "'.");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
