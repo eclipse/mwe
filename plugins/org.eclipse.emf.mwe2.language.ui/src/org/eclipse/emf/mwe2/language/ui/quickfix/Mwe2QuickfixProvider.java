@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
 import org.eclipse.emf.mwe2.language.mwe2.DeclaredProperty;
@@ -64,7 +65,7 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 	private IWorkspace workspace;
 	
 	@Fix(Mwe2Validator.ABSTRACT_OR_INTERFACE)
-	public void assignValidType(final Issue issue, IssueResolutionAcceptor acceptor) {
+	public void assignValidType(Issue issue, IssueResolutionAcceptor acceptor) {
 		acceptor.accept(issue, "Define type explicitly", "Choose a compatible type for the component.", null, 
 				new ISemanticModification() {
 					@Override
@@ -90,6 +91,16 @@ public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 						}
 					}
 				});
+	}
+	
+	@Fix(Mwe2Validator.UNUSED_LOCAL)
+	public void fixUnusedVariable(Issue issue, IssueResolutionAcceptor acceptor) {
+		acceptor.accept(issue, "Remove variable", "Remove unused variable", null, new ISemanticModification() {
+			@Override
+			public void apply(EObject element, IModificationContext context) throws Exception {
+				EcoreUtil.remove(element);
+			}
+		});
 	}
 	
 	public static JvmType findJvmType(EObject context, String type) {
