@@ -12,6 +12,7 @@
 package org.eclipse.emf.mwe.utils;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class Writer extends AbstractEMFWorkflowComponent {
 	private boolean ignoreEmptySlot = false;
 
 	/**
-	 * @since 1.6.0
+	 * @since 1.6
 	 */
 	public void setEncoding(final String encoding) {
 		this.encoding = encoding;
@@ -69,6 +70,14 @@ public class Writer extends AbstractEMFWorkflowComponent {
 
 	public void setOPTION_SCHEMA_LOCATION_IMPLEMENTATION(final boolean option_schema_location_implementation) {
 		OPTION_SCHEMA_LOCATION_IMPLEMENTATION = option_schema_location_implementation;
+	}
+	
+	@Override
+	public void checkConfiguration(Issues issues) {
+		super.checkConfiguration(issues);
+		if (encoding != null && !Charset.isSupported(encoding)) {
+			issues.addError(this, "invalid encoding value '" + encoding + "'.");
+		}
 	}
 
 	@SuppressWarnings("unchecked")
