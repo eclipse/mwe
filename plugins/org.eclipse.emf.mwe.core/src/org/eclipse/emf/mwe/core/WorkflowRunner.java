@@ -20,12 +20,11 @@ import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
-import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor2;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
@@ -193,40 +192,39 @@ public class WorkflowRunner {
 		return runner.run(wfFile, monitor, params, null);
 	}
 
-	@SuppressWarnings("static-access")
 	protected static CommandLine getCommandLine(String[] args) throws ParseException {
 		final Options options = new Options();
 
-		options.addOption(OptionBuilder
+		options.addOption(Option.builder(MONITOR)
 				.hasArgs()
-				.withArgName("className,moreArgs")
-				.withDescription(
+				.argName("className,moreArgs")
+				.desc(
 						"the name of a class that implements ProgressMonitor. More arguments can be appended that will be injected to the monitor,"
-								+ " if it has a init(String[] args) method.").withLongOpt("monitorClass")
-				.withValueSeparator(',').create(MONITOR));
+								+ " if it has a init(String[] args) method.").longOpt("monitorClass")
+				.valueSeparator(',').build());
 
-		options.addOption(OptionBuilder.withLongOpt("ant").withDescription("must be set when using in Ant context")
-				.create(ANT));
+		options.addOption(Option.builder(ANT).longOpt("ant").desc("must be set when using in Ant context")
+				.build());
 
-		final Option paramOption = OptionBuilder.withArgName("key=value")
-				.withDescription("external property that is handled as workflow property").hasArgs().create(PARAM);
+		final Option paramOption = Option.builder(PARAM).argName("key=value")
+				.desc("external property that is handled as workflow property").hasArgs().build();
 		paramOption.setLongOpt("param");
 		options.addOption(paramOption);
 
-		options.addOption(OptionBuilder
+		options.addOption(Option.builder(CMDL)
 				.hasArgs()
-				.withArgName("className")
-				.withDescription(
+				.argName("className")
+				.desc(
 						"the name of a class that implements a public method 'public void processCmdLine(String[] cmdLineArgs, Map paramsToUseInWorkflow, WorkflowContext ctx)'.")
-				.withLongOpt("cmdLineProcessor").create(CMDL));
+				.longOpt("cmdLineProcessor").build());
 
-		final Option runnerOption = OptionBuilder.withArgName("className")
-				.withDescription("WorkflowRunnerEngine class").hasArgs().create(ENGINE);
+		final Option runnerOption = Option.builder(ENGINE).argName("className")
+				.desc("WorkflowRunnerEngine class").hasArgs().build();
 		runnerOption.setLongOpt("engine");
 		options.addOption(runnerOption);
 
 		// create the parser
-		final CommandLineParser parser = new PosixParser();
+		final CommandLineParser parser = new DefaultParser();
 		CommandLine line = parser.parse(options, args);
 		return line;
 	}

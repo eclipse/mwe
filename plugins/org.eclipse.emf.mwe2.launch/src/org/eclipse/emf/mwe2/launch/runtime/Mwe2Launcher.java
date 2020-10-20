@@ -14,12 +14,11 @@ import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
-import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.commons.cli.PosixParser;
 import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.URI;
@@ -43,7 +42,7 @@ public class Mwe2Launcher {
 
 	public void run(String[] args) {
 		Options options = getOptions();
-		final CommandLineParser parser = new PosixParser();
+		final CommandLineParser parser = new DefaultParser();
 		CommandLine line = null;
 		try {
 			line = parser.parse(options, args);
@@ -95,11 +94,10 @@ public class Mwe2Launcher {
 		}
 	}
 
-	@SuppressWarnings("static-access")
 	public Options getOptions() {
 		final Options options = new Options();
-		final Option paramOption = OptionBuilder.withArgName("key=value").withDescription(
-				"external property that is handled as workflow property").hasArgs().create(PARAM);
+		final Option paramOption = Option.builder(PARAM).argName("key=value").desc(
+				"external property that is handled as workflow property").hasArgs().build();
 		paramOption.setLongOpt("param");
 		options.addOption(paramOption);
 		return options;
