@@ -27,7 +27,7 @@
   <setupTask
       xsi:type="setup:VariableTask"
       name="p2.orbit"
-      value="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+      value="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
   <setupTask
       xsi:type="setup:VariableTask"
       name="eclipse.target.platform"
@@ -302,7 +302,7 @@
           name="org.eclipse.pde.feature.group"/>
       <requirement
           name="com.google.guava"
-          versionRange="[27.1.0,28.0.0)"/>
+          versionRange="[30.1.0,31.0.0)"/>
       <sourceLocator
           rootFolder="${git.clone.emf.mwe.location}"
           locateNestedProjects="true"/>

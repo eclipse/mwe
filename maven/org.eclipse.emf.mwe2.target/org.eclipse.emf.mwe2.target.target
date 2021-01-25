@@ -11,14 +11,14 @@
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
-<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.12"/>
+<repository location="https://download.eclipse.org/modeling/emf/emf/builds/release/2.20"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.xtext.ui.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.xtext.junit4" version="0.0.0"/>
 <unit id="org.eclipse.xtext.testing" version="0.0.0"/>
 <unit id="org.eclipse.xtext.ui.testing" version="0.0.0"/>
-<repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.20.0"/>
+<repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/milestones/S202101110955/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.license.feature.group" version="2.0.2.v20181016-2210"/>
@@ -32,9 +32,9 @@
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.junit" version="0.0.0"/>
-<unit id="com.google.guava" version="27.1.0.v20190517-1946"/>
-<unit id="com.google.guava.source" version="27.1.0.v20190517-1946"/>
-<repository location="https://download.eclipse.org/tools/orbit/downloads/2019-12"/>
+<unit id="com.google.guava" version="30.1.0.v20210127-2300"/>
+<unit id="com.google.guava.source" version="30.1.0.v20210127-2300"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
 </location>
 </locations>
 </target>
