@@ -1,146 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
-
 <plugin>
 	<extension
-         point="org.eclipse.team.core.fileTypes">
-      <fileTypes
-            type="text"
-            extension="mwe2">
-      </fileTypes>
-   	</extension>
-   	<extension
-	      point = "org.eclipse.ui.newWizards">
-		 <wizard
-         category="org.eclipse.emf.mwe.ui.newWizards"
-         class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
-         hasPages="true"
-         icon="icons/workflowfile.gif"
-         id="org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
-         name="%mwe2.fileWizard.name">
-	       <description>%mwe2.fileWizard.description</description>
-		   <selection class="org.eclipse.core.resources.IResource"/>
+		point="org.eclipse.team.core.fileTypes">
+		<fileTypes
+			type="text"
+			extension="mwe2">
+		</fileTypes>
+	</extension>
+	<extension
+		point = "org.eclipse.ui.newWizards">
+		<wizard
+			category="org.eclipse.emf.mwe.ui.newWizards"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
+			hasPages="true"
+			icon="icons/workflowfile.gif"
+			id="org.eclipse.emf.mwe2.language.ui.wizard.NewMwe2FileWizard"
+			name="%mwe2.fileWizard.name">
+			<description>%mwe2.fileWizard.description</description>
+			<selection class="org.eclipse.core.resources.IResource"/>
 		</wizard>
 	</extension>
-	
-    <extension
-            point="org.eclipse.ui.editors">
-        <editor
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
-            contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
-            default="true"
-            extensions="mwe2"
-            id="org.eclipse.emf.mwe2.language.Mwe2"
-            icon="icons/workflowfile.gif"
-            name="%mwe2.editor.name">
-        </editor>
-    </extension>
-    <extension
-        point="org.eclipse.ui.handlers">
-        <handler
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
-            commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
-            <activeWhen>
-                <reference
-                    definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-                </reference>
-            </activeWhen>
-        </handler>
-        <handler
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-            commandId="org.eclipse.emf.mwe2.language.Mwe2.validate">
-         <activeWhen>
-            <reference
-                    definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-            </reference>
-         </activeWhen>
-      </handler>
-    </extension>
-    <extension point="org.eclipse.core.expressions.definitions">
-        <definition id="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-            <and>
-                <reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
-                <with variable="activeEditor">
-                    <test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName" 
-                        value="org.eclipse.emf.mwe2.language.Mwe2" 
-                        forcePluginActivation="true"/>
-                </with>        
-            </and>
-        </definition>
-    </extension>
-    <extension
-            point="org.eclipse.ui.preferencePages">
-        <page
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-            id="org.eclipse.emf.mwe2.language.Mwe2"
-            name="%mwe2.preference.root">
-            <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
-        </page>
-        <page
-            category="org.eclipse.emf.mwe2.language.Mwe2"
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-            id="org.eclipse.emf.mwe2.language.Mwe2.coloring"
-            name="%mwe2.preference.syntaxColoring">
-            <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
-        </page>
-        <page
-            category="org.eclipse.emf.mwe2.language.Mwe2"
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-            id="org.eclipse.emf.mwe2.language.Mwe2.templates"
-            name="%mwe2.preference.templates">
-            <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
-        </page>
-    </extension>
-    <extension
-        point="org.eclipse.ui.keywords">
-        <keyword
-            id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"
-            label="%mwe2.keyword"/>
-    </extension>
-    <extension
-         point="org.eclipse.ui.commands">
-      <command
-            description="%mwe2.expensiveValidation.description"
-            id="org.eclipse.emf.mwe2.language.Mwe2.validate"
-            name="%mwe2.expensiveValidation">
-      </command>
-    </extension>
-    <extension point="org.eclipse.ui.menus">
-        <menuContribution
-            locationURI="popup:#TextEditorContext?after=group.edit">
-             <command
-                 commandId="org.eclipse.emf.mwe2.language.Mwe2.validate"
-                 style="push"
-                 tooltip="%mwe2.expensiveValidation.tooltip">
-            <visibleWhen checkEnabled="false">
-                <reference
-                    definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-                </reference>
-            </visibleWhen>
-         </command>  
-         </menuContribution>
-    </extension>
-    <extension point="org.eclipse.ui.menus">
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
+			default="true"
+			extensions="mwe2"
+			id="org.eclipse.emf.mwe2.language.Mwe2"
+			icon="icons/workflowfile.gif"
+			name="%mwe2.editor.name">
+		</editor>
+	</extension>
+	<extension
+		point="org.eclipse.ui.handlers">
+		<handler
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+		<handler
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="org.eclipse.emf.mwe2.language.Mwe2.validate">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+	<extension point="org.eclipse.core.expressions.definitions">
+		<definition id="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+			<and>
+				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
+				<with variable="activeEditor">
+					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
+						value="org.eclipse.emf.mwe2.language.Mwe2"
+						forcePluginActivation="true"/>
+				</with>
+			</and>
+		</definition>
+	</extension>
+	<extension
+			point="org.eclipse.ui.preferencePages">
+		<page
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="org.eclipse.emf.mwe2.language.Mwe2"
+			name="%mwe2.preference.root">
+			<keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
+		</page>
+		<page
+			category="org.eclipse.emf.mwe2.language.Mwe2"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="org.eclipse.emf.mwe2.language.Mwe2.coloring"
+			name="%mwe2.preference.syntaxColoring">
+			<keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
+		</page>
+		<page
+			category="org.eclipse.emf.mwe2.language.Mwe2"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="org.eclipse.emf.mwe2.language.Mwe2.templates"
+			name="%mwe2.preference.templates">
+			<keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
+		</page>
+	</extension>
+	<extension
+		point="org.eclipse.ui.keywords">
+		<keyword
+			id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"
+			label="%mwe2.keyword"/>
+	</extension>
+	<extension
+		point="org.eclipse.ui.commands">
+		<command
+			description="%mwe2.expensiveValidation.description"
+			id="org.eclipse.emf.mwe2.language.Mwe2.validate"
+			name="%mwe2.expensiveValidation">
+		</command>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command
+				commandId="org.eclipse.emf.mwe2.language.Mwe2.validate"
+				style="push"
+				tooltip="%mwe2.expensiveValidation.tooltip">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.menus">
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-                	<reference definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-                	</reference>
-            	</visibleWhen>
+					<reference definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+					</reference>
+				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
-	    <handler
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
-            commandId="org.eclipse.xtext.ui.editor.FindReferences">
-            <activeWhen>
-                <reference
-                    definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-                </reference>
-            </activeWhen>
-        </handler>
-    </extension>   
+		<handler
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			commandId="org.eclipse.xtext.ui.editor.FindReferences">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
 			base-type="org.eclipse.core.runtime.text"
@@ -150,8 +148,7 @@
 			priority="normal">
 		</content-type>
 	</extension>
-<!-- adding resource factories -->
-
+	<!-- adding resource factories -->
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
@@ -160,41 +157,37 @@
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
-        <resourceServiceProvider
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-            uriExtension="mwe2">
-        </resourceServiceProvider>
-    </extension>
-
-
-    <!-- marker definitions for org.eclipse.emf.mwe2.language.Mwe2 -->
-    <extension
-            id="mwe2.check.fast"
-            name="MWE2 Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.fast"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="mwe2.check.normal"
-            name="MWE2 Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.normal"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="mwe2.check.expensive"
-            name="MWE2 Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.expensive"/>
-        <persistent value="true"/>
-    </extension>
-
-
+		<resourceServiceProvider
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="mwe2">
+		</resourceServiceProvider>
+	</extension>
+	<!-- marker definitions for org.eclipse.emf.mwe2.language.Mwe2 -->
+	<extension
+			id="mwe2.check.fast"
+			name="MWE2 Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.fast"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="mwe2.check.normal"
+			name="MWE2 Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.normal"/>
+		<persistent value="true"/>
+	</extension>
+	<extension
+			id="mwe2.check.expensive"
+			name="MWE2 Problem"
+			point="org.eclipse.core.resources.markers">
+		<super type="org.eclipse.xtext.ui.check.expensive"/>
+		<persistent value="true"/>
+	</extension>
 	<!-- Quick Outline -->
 	<extension
 		point="org.eclipse.ui.handlers">
-		<handler 
+		<handler
 			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
@@ -224,37 +217,37 @@
 			</command>
 		</menuContribution>
 	</extension>
-    <!-- quickfix marker resolution generator for org.eclipse.emf.mwe2.language.Mwe2 -->
-    <extension
-            point="org.eclipse.ui.ide.markerResolution">
-        <markerResolutionGenerator
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.fast">
-            <attribute
-                name="FIXABLE_KEY"
-                value="true">
-            </attribute>
-        </markerResolutionGenerator>
-        <markerResolutionGenerator
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.normal">
-            <attribute
-                name="FIXABLE_KEY"
-                value="true">
-            </attribute>
-        </markerResolutionGenerator>
-        <markerResolutionGenerator
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-            markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.expensive">
-            <attribute
-                name="FIXABLE_KEY"
-                value="true">
-            </attribute>
-        </markerResolutionGenerator>
-    </extension>
-   	<!-- Rename Refactoring -->
+	<!-- quickfix marker resolution generator for org.eclipse.emf.mwe2.language.Mwe2 -->
+	<extension
+			point="org.eclipse.ui.ide.markerResolution">
+		<markerResolutionGenerator
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.fast">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.normal">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+		<markerResolutionGenerator
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="org.eclipse.emf.mwe2.language.ui.mwe2.check.expensive">
+			<attribute
+				name="FIXABLE_KEY"
+				value="true">
+			</attribute>
+		</markerResolutionGenerator>
+	</extension>
+	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
-		<handler 
+		<handler
 			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
@@ -264,59 +257,57 @@
 			</activeWhen>
 		</handler>
 	</extension>
-    <extension point="org.eclipse.ui.menus">
-         <menuContribution
-            locationURI="popup:#TextEditorContext?after=group.edit">
-         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
-               style="push">
-            <visibleWhen checkEnabled="false">
-               <reference
-                     definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
-               </reference>
-            </visibleWhen>
-         </command>
-      </menuContribution>
-   </extension>
-   <extension point="org.eclipse.ui.preferencePages">
-	    <page
-	        category="org.eclipse.emf.mwe2.language.Mwe2"
-	        class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-	        id="org.eclipse.emf.mwe2.language.Mwe2.refactoring"
-	        name="Refactoring">
-	        <keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
-	    </page>
+	<extension point="org.eclipse.ui.menus">
+		<menuContribution
+			locationURI="popup:#TextEditorContext?after=group.edit">
+			<command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+				style="push">
+				<visibleWhen checkEnabled="false">
+					<reference
+						definitionId="org.eclipse.emf.mwe2.language.Mwe2.Editor.opened">
+					</reference>
+				</visibleWhen>
+			</command>
+		</menuContribution>
 	</extension>
-
-  <extension point="org.eclipse.compare.contentViewers">
-    <viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentViewers"
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="mwe2">
-    </viewer>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="org.eclipse.emf.mwe2.language.Mwe2"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="org.eclipse.emf.mwe2.language.Mwe2.refactoring"
+			name="Refactoring">
+			<keywordReference id="org.eclipse.emf.mwe2.language.ui.keyword_Mwe2"/>
+		</page>
+	</extension>
+	<extension point="org.eclipse.compare.contentViewers">
+		<viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentViewers"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="mwe2">
+		</viewer>
 		<contentTypeBinding
 			contentTypeId="org.eclipse.emf.mwe2.language.Mwe2.contenttype"
 			contentViewerId="org.eclipse.emf.mwe2.language.Mwe2.compare.contentViewers" />
-  </extension>
-  <extension point="org.eclipse.compare.contentMergeViewers">
-    <viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers"
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-            extensions="mwe2" label="Mwe2 Compare">
-     </viewer>
+	</extension>
+	<extension point="org.eclipse.compare.contentMergeViewers">
+		<viewer id="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="mwe2" label="Mwe2 Compare">
+		</viewer>
 		<contentTypeBinding
 			contentTypeId="org.eclipse.emf.mwe2.language.Mwe2.contenttype"
 			contentMergeViewerId="org.eclipse.emf.mwe2.language.Mwe2.compare.contentMergeViewers" />
-  </extension>
-  <extension point="org.eclipse.ui.editors.documentProviders">
-    <provider id="org.eclipse.emf.mwe2.language.Mwe2.editors.documentProviders"
-            class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-            extensions="mwe2">
-    </provider>
-  </extension>
-   <extension point="org.eclipse.e4.ui.css.swt.theme">	
-      <stylesheet uri="css/e4-dark_mwe2_syntaxhighlighting.css">	
-         <themeid	
-               refid="org.eclipse.e4.ui.css.theme.e4_dark">	
-         </themeid>	
-	  </stylesheet>	
-   </extension>
-  
+	</extension>
+	<extension point="org.eclipse.ui.editors.documentProviders">
+		<provider id="org.eclipse.emf.mwe2.language.Mwe2.editors.documentProviders"
+			class="org.eclipse.emf.mwe2.language.ui.Mwe2ExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="mwe2">
+		</provider>
+	</extension>
+	<extension point="org.eclipse.e4.ui.css.swt.theme">	
+		<stylesheet uri="css/e4-dark_mwe2_syntaxhighlighting.css">
+			<themeid
+				refid="org.eclipse.e4.ui.css.theme.e4_dark">
+			</themeid>
+		</stylesheet>
+	</extension>
 </plugin>
