@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2019 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2010, 2021 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -22,11 +22,11 @@ import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
+import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
 @Singleton
-public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
+public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElementFinder {
 	
 	public class ModuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.eclipse.emf.mwe2.language.Mwe2.Module");
@@ -50,7 +50,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	root=RootComponent;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Module} 'module' canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent
+		//{Module}
+		//'module' canonicalName=FQN
+		//imports+=Import*
+		//declaredProperties+=DeclaredProperty*
+		//root=RootComponent
 		public Group getGroup() { return cGroup; }
 		
 		//{Module}
@@ -165,8 +169,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'? '{'
-		//assignment+=Assignment* '}'
+		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
+		//'{'
+		//assignment+=Assignment*
+		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Component}
@@ -260,8 +266,10 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN])? (':' name=FQN)? autoInject?='auto-inject'? '{'
-		//assignment+=Assignment* '}'
+		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN])? (':' name=FQN)? autoInject?='auto-inject'?
+		//'{'
+		//assignment+=Assignment*
+		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Component}
@@ -653,11 +661,17 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	end='"';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//begin="'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="'" | begin='"' parts+=PlainString?
-		//(parts+=PropertyReference parts+=PlainString?)* end='"'
+		//begin="'"
+		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="'"
+		//| begin='"'
+		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end='"'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
-		//begin="'" parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end="'"
+		//begin="'"
+		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end="'"
 		public Group getGroup_0() { return cGroup_0; }
 		
 		//begin="'"
@@ -693,7 +707,9 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//"'"
 		public Keyword getEndApostropheKeyword_0_3_0() { return cEndApostropheKeyword_0_3_0; }
 		
-		//begin='"' parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end='"'
+		//begin='"'
+		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//end='"'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//begin='"'
@@ -809,7 +825,11 @@ public class Mwe2GrammarAccess extends AbstractGrammarElementFinder {
 		//	"\\\\")+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(WS | ANY_OTHER | ID | "\\'" | '\\"' | "\\${" | "\\\\")+
+		//(WS | ANY_OTHER | ID |
+		//"\\'" |
+		//'\\"' |
+		//"\\${" |
+		//"\\\\")+
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//WS

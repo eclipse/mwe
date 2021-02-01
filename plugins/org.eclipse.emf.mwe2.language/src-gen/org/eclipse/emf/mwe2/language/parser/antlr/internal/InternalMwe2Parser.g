@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2019 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2010, 2021 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -346,7 +346,7 @@ ruleRootComponent returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRootComponentRule());
 					}
-					setWithLastConsumed($current, "autoInject", true, "auto-inject");
+					setWithLastConsumed($current, "autoInject", lv_autoInject_6_0 != null, "auto-inject");
 				}
 			)
 		)?
@@ -479,7 +479,7 @@ ruleComponent returns [EObject current=null]
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getComponentRule());
 					}
-					setWithLastConsumed($current, "autoInject", true, "auto-inject");
+					setWithLastConsumed($current, "autoInject", lv_autoInject_6_0 != null, "auto-inject");
 				}
 			)
 		)?
@@ -946,7 +946,7 @@ ruleBooleanLiteral returns [EObject current=null]
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBooleanLiteralRule());
 						}
-						setWithLastConsumed($current, "isTrue", true, "true");
+						setWithLastConsumed($current, "isTrue", lv_isTrue_1_0 != null, "true");
 					}
 				)
 			)

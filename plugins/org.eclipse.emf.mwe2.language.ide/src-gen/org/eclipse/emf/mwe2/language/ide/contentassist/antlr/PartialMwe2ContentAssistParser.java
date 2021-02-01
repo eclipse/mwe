@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2010, 2019 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2010, 2021 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -13,10 +13,9 @@ import java.util.Collections;
 import org.eclipse.xtext.AbstractRule;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.FollowElement;
 import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
-import org.eclipse.xtext.ide.editor.partialEditing.IPartialEditingContentAssistParser;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
 
-public class PartialMwe2ContentAssistParser extends Mwe2Parser implements IPartialEditingContentAssistParser {
+public class PartialMwe2ContentAssistParser extends Mwe2Parser {
 
 	private AbstractRule rule;
 
