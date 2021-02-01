@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/eclipse/mwe)
+
 # Modeling Workflow Engine (MWE)
 See the [MWE2 documentation](documentation/mwe2.md) for more details.
 

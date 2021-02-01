@@ -1,0 +1,7 @@
+image: docker.io/eclipsecbi/jiro-agent-centos-7:remoting-4.5
+
+tasks:
+  - init: 'mvn -f maven/org.eclipse.emf.mwe2.parent/pom.xml initialize'
+    command: 'mvn -f maven/org.eclipse.emf.mwe2.parent/pom.xml -Dsign.skip=false
+      -DtestFailureIgnore=true -Dmaven.javadoc.failOnError=false
+      -Dtycho.localArtifacts=ignore clean javadoc:aggregate-jar verify'
