@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: MWE2 Language Eclipse Independent IDE
 Bundle-Vendor: Eclipse Xtext
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.ide;singleton:=true
-Bundle-Version: 2.12.1.qualifier
+Bundle-Version: 2.12.2.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Automatic-Module-Name: org.eclipse.emf.mwe2.language.ide
