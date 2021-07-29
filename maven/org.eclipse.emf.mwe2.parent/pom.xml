@@ -130,7 +130,6 @@
 							</requirement>
 						</extraRequirements>
 					</dependency-resolution>
-					<executionEnvironment>JavaSE-1.8</executionEnvironment>
 				</configuration>
 			</plugin>
 			<plugin>
