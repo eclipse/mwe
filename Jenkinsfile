@@ -81,7 +81,7 @@ pipeline {
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
                   GOALS='clean javadoc:aggregate-jar test deploy'
                 else
-                  GOALS='clean javadoc:aggregate-jar verify'
+                  GOALS='clean javadoc:aggregate-jar deploy -DaltDeploymentRepository=snapshot-repo::default::file:./my-local-snapshots-dir'
                 fi
                 
                 case "$RELEASE_TYPE" in
@@ -98,11 +98,18 @@ pipeline {
                   -Dtycho.localArtifacts=ignore \
                   -DBUILD_TYPE=$BUILD_TYPE \
                   $GOALS
+                ls -la
+                find . -name "*my-local-snapshots-dir*"
               '''
             }
           }
         }
       } // END steps
+      post {
+        success {
+          archiveArtifacts artifacts: '**/my-local-snapshots-dir/**, **/maven/org.eclipse.emf.mwe2.repository/target/repository/**, **/maven/org.eclipse.emf.mwe2.repository/target/emft-mwe-2-lang-Update-*.zip'
+        }
+      }
     } // END stage
 
     stage ('Publish') {
