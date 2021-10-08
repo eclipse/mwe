@@ -43,17 +43,17 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cRootRootComponentParserRuleCall_5_0 = (RuleCall)cRootAssignment_5.eContents().get(0);
 		
 		//Module:
-		//	{Module}
-		//	'module' canonicalName=FQN
-		//	imports+=Import*
-		//	declaredProperties+=DeclaredProperty*
-		//	root=RootComponent;
+		//  {Module}
+		//  'module' canonicalName=FQN
+		//  imports+=Import*
+		//  (declaredProperties+=DeclaredProperty)*
+		//  root=RootComponent;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Module}
 		//'module' canonicalName=FQN
 		//imports+=Import*
-		//declaredProperties+=DeclaredProperty*
+		//(declaredProperties+=DeclaredProperty)*
 		//root=RootComponent
 		public Group getGroup() { return cGroup; }
 		
@@ -75,7 +75,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//Import
 		public RuleCall getImportsImportParserRuleCall_3_0() { return cImportsImportParserRuleCall_3_0; }
 		
-		//declaredProperties+=DeclaredProperty*
+		//(declaredProperties+=DeclaredProperty)*
 		public Assignment getDeclaredPropertiesAssignment_4() { return cDeclaredPropertiesAssignment_4; }
 		
 		//DeclaredProperty
@@ -102,16 +102,16 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cDefaultValueParserRuleCall_3_1_0 = (RuleCall)cDefaultAssignment_3_1.eContents().get(0);
 		
 		//DeclaredProperty:
-		//	'var' type=[types::JvmType|FQN]? name=FQN ('=' default=Value)?;
+		//  'var' (type=[types::JvmType|FQN])? name=FQN ('=' default=Value)?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'var' type=[types::JvmType|FQN]? name=FQN ('=' default=Value)?
+		//'var' (type=[types::JvmType|FQN])? name=FQN ('=' default=Value)?
 		public Group getGroup() { return cGroup; }
 		
 		//'var'
 		public Keyword getVarKeyword_0() { return cVarKeyword_0; }
 		
-		//type=[types::JvmType|FQN]?
+		//(type=[types::JvmType|FQN])?
 		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
 		
 		//[types::JvmType|FQN]
@@ -162,23 +162,23 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cAssignmentAssignmentParserRuleCall_5_0 = (RuleCall)cAssignmentAssignment_5.eContents().get(0);
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
-		//RootComponent Component:
-		//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
-		//	'{'
-		//	assignment+=Assignment*
-		//	'}';
+		//RootComponent returns Component:
+		//  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')?
+		//  '{'
+		//    assignment+=Assignment*
+		//  '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
+		//{Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')?
 		//'{'
-		//assignment+=Assignment*
+		//  assignment+=Assignment*
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 		
-		//(type=[types::JvmType|FQN] | '@' module=[Module|FQN])
+		//(type=[types::JvmType|FQN]| '@' module=[Module|FQN])
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//type=[types::JvmType|FQN]
@@ -217,7 +217,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_2_1_0() { return cNameFQNParserRuleCall_2_1_0; }
 		
-		//autoInject?='auto-inject'?
+		//(autoInject?='auto-inject')?
 		public Assignment getAutoInjectAssignment_3() { return cAutoInjectAssignment_3; }
 		
 		//'auto-inject'
@@ -260,22 +260,22 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		
 		//Component:
-		//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN])? (':' name=FQN)? autoInject?='auto-inject'?
-		//	'{'
-		//	assignment+=Assignment*
-		//	'}';
+		//  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')?
+		//  '{'
+		//    assignment+=Assignment*
+		//  '}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN])? (':' name=FQN)? autoInject?='auto-inject'?
+		//{Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')?
 		//'{'
-		//assignment+=Assignment*
+		//  assignment+=Assignment*
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//{Component}
 		public Action getComponentAction_0() { return cComponentAction_0; }
 		
-		//(type=[types::JvmType|FQN] | '@' module=[Module|FQN])?
+		//(type=[types::JvmType|FQN]| '@' module=[Module|FQN])?
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//type=[types::JvmType|FQN]
@@ -314,7 +314,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		//FQN
 		public RuleCall getNameFQNParserRuleCall_2_1_0() { return cNameFQNParserRuleCall_2_1_0; }
 		
-		//autoInject?='auto-inject'?
+		//(autoInject?='auto-inject')?
 		public Assignment getAutoInjectAssignment_3() { return cAutoInjectAssignment_3; }
 		
 		//'auto-inject'
@@ -340,7 +340,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cImportedNamespaceImportedFQNParserRuleCall_1_0 = (RuleCall)cImportedNamespaceAssignment_1.eContents().get(0);
 		
 		//Import:
-		//	'import' importedNamespace=ImportedFQN;
+		//  'import' importedNamespace=ImportedFQN;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'import' importedNamespace=ImportedFQN
@@ -362,16 +362,16 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cFullStopAsteriskKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//ImportedFQN:
-		//	FQN '.*'?;
+		//  FQN ('.*')?;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//FQN '.*'?
+		//FQN ('.*')?
 		public Group getGroup() { return cGroup; }
 		
 		//FQN
 		public RuleCall getFQNParserRuleCall_0() { return cFQNParserRuleCall_0; }
 		
-		//'.*'?
+		//('.*')?
 		public Keyword getFullStopAsteriskKeyword_1() { return cFullStopAsteriskKeyword_1; }
 	}
 	public class AssignmentElements extends AbstractParserRuleElementFinder {
@@ -385,7 +385,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cValueValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
 		
 		//Assignment:
-		//	feature=[types::JvmIdentifiableElement|FQN] '=' value=Value;
+		//  feature=[types::JvmIdentifiableElement|FQN] '=' value=Value;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//feature=[types::JvmIdentifiableElement|FQN] '=' value=Value
@@ -421,10 +421,22 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cReferenceParserRuleCall_6 = (RuleCall)cAlternatives.eContents().get(6);
 		
 		//Value:
-		//	Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference;
+		//  Component|
+		//  StringLiteral|
+		//  BooleanLiteral|
+		//  IntegerLiteral|
+		//  DoubleLiteral|
+		//  NullLiteral|
+		//  Reference;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference
+		//Component|
+		//StringLiteral|
+		//BooleanLiteral|
+		//IntegerLiteral|
+		//DoubleLiteral|
+		//NullLiteral|
+		//Reference
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//Component
@@ -455,7 +467,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cNullKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		
 		//NullLiteral:
-		//	{NullLiteral} 'null';
+		//  {NullLiteral} 'null';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{NullLiteral} 'null'
@@ -473,7 +485,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cValueDoubleValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//DoubleLiteral:
-		//	value=DoubleValue;
+		//  value=DoubleValue;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//value=DoubleValue
@@ -489,8 +501,8 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cFullStopKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
-		//DoubleValue ecore::EDouble:
-		//	IntValue '.' INT;
+		//DoubleValue returns ecore::EDouble:
+		//  IntValue '.' INT;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//IntValue '.' INT
@@ -511,7 +523,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cValueIntValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//IntegerLiteral:
-		//	value=IntValue;
+		//  value=IntValue;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//value=IntValue
@@ -528,14 +540,15 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cPlusSignKeyword_0_1 = (Keyword)cAlternatives_0.eContents().get(1);
 		private final RuleCall cINTTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//IntValue ecore::EInt:
-		//	('-' | '+')? INT;
+		//IntValue returns ecore::EInt:
+		//  ('-'|'+')? INT
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//('-' | '+')? INT
+		//('-'|'+')? INT
 		public Group getGroup() { return cGroup; }
 		
-		//('-' | '+')?
+		//('-'|'+')?
 		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
 		//'-'
@@ -557,16 +570,16 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cFalseKeyword_1_1 = (Keyword)cAlternatives_1.eContents().get(1);
 		
 		//BooleanLiteral:
-		//	{BooleanLiteral} (isTrue?='true' | 'false');
+		//  {BooleanLiteral} (isTrue?='true'|'false');
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{BooleanLiteral} (isTrue?='true' | 'false')
+		//{BooleanLiteral} (isTrue?='true'|'false')
 		public Group getGroup() { return cGroup; }
 		
 		//{BooleanLiteral}
 		public Action getBooleanLiteralAction_0() { return cBooleanLiteralAction_0; }
 		
-		//(isTrue?='true' | 'false')
+		//(isTrue?='true'|'false')
 		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//isTrue?='true'
@@ -585,7 +598,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cReferableReferrableFQNParserRuleCall_0_1 = (RuleCall)cReferableReferrableCrossReference_0.eContents().get(1);
 		
 		//Reference:
-		//	referable=[Referrable|FQN];
+		//  referable=[Referrable|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//referable=[Referrable|FQN]
@@ -606,7 +619,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cIDTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		
 		//FQN:
-		//	ID ('.' ID)*;
+		//  ID ('.' ID)*;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ID ('.' ID)*
@@ -652,25 +665,31 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Assignment cEndAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
 		private final Keyword cEndQuotationMarkKeyword_1_3_0 = (Keyword)cEndAssignment_1_3.eContents().get(0);
 		
-		//StringLiteral hidden():
-		//	begin="'"
-		//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//	end="'"
-		//	| begin='"'
-		//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//	end='"';
+		//StringLiteral hidden ():
+		//    begin="'"
+		//      parts+=PlainString?
+		//      (parts+=PropertyReference parts+=PlainString?)*
+		//    end="'"
+		//  | begin='"'
+		//      parts+=PlainString?
+		//      (parts+=PropertyReference parts+=PlainString?)*
+		//    end='"'
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//begin="'"
-		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end="'"
+		//  begin="'"
+		//    parts+=PlainString?
+		//    (parts+=PropertyReference parts+=PlainString?)*
+		//  end="'"
 		//| begin='"'
-		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end='"'
+		//    parts+=PlainString?
+		//    (parts+=PropertyReference parts+=PlainString?)*
+		//  end='"'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//begin="'"
-		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
+		//  parts+=PlainString?
+		//  (parts+=PropertyReference parts+=PlainString?)*
 		//end="'"
 		public Group getGroup_0() { return cGroup_0; }
 		
@@ -708,8 +727,9 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		public Keyword getEndApostropheKeyword_0_3_0() { return cEndApostropheKeyword_0_3_0; }
 		
 		//begin='"'
-		//parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-		//end='"'
+		//     parts+=PlainString?
+		//     (parts+=PropertyReference parts+=PlainString?)*
+		//   end='"'
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//begin='"'
@@ -753,7 +773,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cRightCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
 		
 		//PropertyReference hidden():
-		//	'${' PropertyReferenceImpl '}';
+		//  '${' PropertyReferenceImpl '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'${' PropertyReferenceImpl '}'
@@ -774,8 +794,8 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final CrossReference cReferableDeclaredPropertyCrossReference_0 = (CrossReference)cReferableAssignment.eContents().get(0);
 		private final RuleCall cReferableDeclaredPropertyFQNParserRuleCall_0_1 = (RuleCall)cReferableDeclaredPropertyCrossReference_0.eContents().get(1);
 		
-		//PropertyReferenceImpl PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-		//	referable=[DeclaredProperty|FQN];
+		//PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+		//  referable=[DeclaredProperty|FQN];
 		@Override public ParserRule getRule() { return rule; }
 		
 		//referable=[DeclaredProperty|FQN]
@@ -793,7 +813,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final RuleCall cValueConstantValueParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
 		//PlainString:
-		//	value=ConstantValue;
+		//  value=ConstantValue;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//value=ConstantValue
@@ -814,18 +834,22 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		private final Keyword cReverseSolidusReverseSolidusKeyword_6 = (Keyword)cAlternatives.eContents().get(6);
 		
 		//// To identify other keywords or INT as allowed parts in a string,
-		//// we use a customized lexer with predicates. 
+		//// we use a customized lexer with predicates.
 		//// This allows us to use e.g. single quotes without escape sequences
 		//// in double quoted strings and vice versa.
 		//ConstantValue:
-		//	(WS | ANY_OTHER | ID |
-		//	"\\'" |
-		//	'\\"' |
-		//	"\\${" |
-		//	"\\\\")+;
+		//  (WS|
+		//  ANY_OTHER|
+		//  ID|
+		//  "\\'" |
+		//  '\\"' |
+		//  "\\${" |
+		//  "\\\\")+;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(WS | ANY_OTHER | ID |
+		//(WS|
+		//ANY_OTHER|
+		//ID|
 		//"\\'" |
 		//'\\"' |
 		//"\\${" |
@@ -941,11 +965,11 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 
 	
 	//Module:
-	//	{Module}
-	//	'module' canonicalName=FQN
-	//	imports+=Import*
-	//	declaredProperties+=DeclaredProperty*
-	//	root=RootComponent;
+	//  {Module}
+	//  'module' canonicalName=FQN
+	//  imports+=Import*
+	//  (declaredProperties+=DeclaredProperty)*
+	//  root=RootComponent;
 	public ModuleElements getModuleAccess() {
 		return pModule;
 	}
@@ -955,7 +979,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//DeclaredProperty:
-	//	'var' type=[types::JvmType|FQN]? name=FQN ('=' default=Value)?;
+	//  'var' (type=[types::JvmType|FQN])? name=FQN ('=' default=Value)?;
 	public DeclaredPropertyElements getDeclaredPropertyAccess() {
 		return pDeclaredProperty;
 	}
@@ -964,11 +988,11 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getDeclaredPropertyAccess().getRule();
 	}
 	
-	//RootComponent Component:
-	//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN]) (':' name=FQN)? autoInject?='auto-inject'?
-	//	'{'
-	//	assignment+=Assignment*
-	//	'}';
+	//RootComponent returns Component:
+	//  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN]) (':' name=FQN)? (autoInject?='auto-inject')?
+	//  '{'
+	//    assignment+=Assignment*
+	//  '}';
 	public RootComponentElements getRootComponentAccess() {
 		return pRootComponent;
 	}
@@ -978,10 +1002,10 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Component:
-	//	{Component} (type=[types::JvmType|FQN] | '@' module=[Module|FQN])? (':' name=FQN)? autoInject?='auto-inject'?
-	//	'{'
-	//	assignment+=Assignment*
-	//	'}';
+	//  {Component} (type=[types::JvmType|FQN]| '@' module=[Module|FQN])? (':' name=FQN)? (autoInject?='auto-inject')?
+	//  '{'
+	//    assignment+=Assignment*
+	//  '}';
 	public ComponentElements getComponentAccess() {
 		return pComponent;
 	}
@@ -991,7 +1015,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Import:
-	//	'import' importedNamespace=ImportedFQN;
+	//  'import' importedNamespace=ImportedFQN;
 	public ImportElements getImportAccess() {
 		return pImport;
 	}
@@ -1001,7 +1025,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//ImportedFQN:
-	//	FQN '.*'?;
+	//  FQN ('.*')?;
 	public ImportedFQNElements getImportedFQNAccess() {
 		return pImportedFQN;
 	}
@@ -1011,7 +1035,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Assignment:
-	//	feature=[types::JvmIdentifiableElement|FQN] '=' value=Value;
+	//  feature=[types::JvmIdentifiableElement|FQN] '=' value=Value;
 	public AssignmentElements getAssignmentAccess() {
 		return pAssignment;
 	}
@@ -1021,7 +1045,13 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Value:
-	//	Component | StringLiteral | BooleanLiteral | IntegerLiteral | DoubleLiteral | NullLiteral | Reference;
+	//  Component|
+	//  StringLiteral|
+	//  BooleanLiteral|
+	//  IntegerLiteral|
+	//  DoubleLiteral|
+	//  NullLiteral|
+	//  Reference;
 	public ValueElements getValueAccess() {
 		return pValue;
 	}
@@ -1031,7 +1061,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//NullLiteral:
-	//	{NullLiteral} 'null';
+	//  {NullLiteral} 'null';
 	public NullLiteralElements getNullLiteralAccess() {
 		return pNullLiteral;
 	}
@@ -1041,7 +1071,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//DoubleLiteral:
-	//	value=DoubleValue;
+	//  value=DoubleValue;
 	public DoubleLiteralElements getDoubleLiteralAccess() {
 		return pDoubleLiteral;
 	}
@@ -1050,8 +1080,8 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getDoubleLiteralAccess().getRule();
 	}
 	
-	//DoubleValue ecore::EDouble:
-	//	IntValue '.' INT;
+	//DoubleValue returns ecore::EDouble:
+	//  IntValue '.' INT;
 	public DoubleValueElements getDoubleValueAccess() {
 		return pDoubleValue;
 	}
@@ -1061,7 +1091,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//IntegerLiteral:
-	//	value=IntValue;
+	//  value=IntValue;
 	public IntegerLiteralElements getIntegerLiteralAccess() {
 		return pIntegerLiteral;
 	}
@@ -1070,8 +1100,9 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getIntegerLiteralAccess().getRule();
 	}
 	
-	//IntValue ecore::EInt:
-	//	('-' | '+')? INT;
+	//IntValue returns ecore::EInt:
+	//  ('-'|'+')? INT
+	//;
 	public IntValueElements getIntValueAccess() {
 		return pIntValue;
 	}
@@ -1081,7 +1112,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//BooleanLiteral:
-	//	{BooleanLiteral} (isTrue?='true' | 'false');
+	//  {BooleanLiteral} (isTrue?='true'|'false');
 	public BooleanLiteralElements getBooleanLiteralAccess() {
 		return pBooleanLiteral;
 	}
@@ -1091,7 +1122,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//Reference:
-	//	referable=[Referrable|FQN];
+	//  referable=[Referrable|FQN];
 	public ReferenceElements getReferenceAccess() {
 		return pReference;
 	}
@@ -1101,7 +1132,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//FQN:
-	//	ID ('.' ID)*;
+	//  ID ('.' ID)*;
 	public FQNElements getFQNAccess() {
 		return pFQN;
 	}
@@ -1110,13 +1141,16 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getFQNAccess().getRule();
 	}
 	
-	//StringLiteral hidden():
-	//	begin="'"
-	//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-	//	end="'"
-	//	| begin='"'
-	//	parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)*
-	//	end='"';
+	//StringLiteral hidden ():
+	//    begin="'"
+	//      parts+=PlainString?
+	//      (parts+=PropertyReference parts+=PlainString?)*
+	//    end="'"
+	//  | begin='"'
+	//      parts+=PlainString?
+	//      (parts+=PropertyReference parts+=PlainString?)*
+	//    end='"'
+	//;
 	public StringLiteralElements getStringLiteralAccess() {
 		return pStringLiteral;
 	}
@@ -1126,7 +1160,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//PropertyReference hidden():
-	//	'${' PropertyReferenceImpl '}';
+	//  '${' PropertyReferenceImpl '}';
 	public PropertyReferenceElements getPropertyReferenceAccess() {
 		return pPropertyReference;
 	}
@@ -1135,8 +1169,8 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 		return getPropertyReferenceAccess().getRule();
 	}
 	
-	//PropertyReferenceImpl PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
-	//	referable=[DeclaredProperty|FQN];
+	//PropertyReferenceImpl returns PropertyReference hidden(WS, ML_COMMENT, SL_COMMENT):
+	//  referable=[DeclaredProperty|FQN];
 	public PropertyReferenceImplElements getPropertyReferenceImplAccess() {
 		return pPropertyReferenceImpl;
 	}
@@ -1146,7 +1180,7 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//PlainString:
-	//	value=ConstantValue;
+	//  value=ConstantValue;
 	public PlainStringElements getPlainStringAccess() {
 		return pPlainString;
 	}
@@ -1156,15 +1190,17 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//// To identify other keywords or INT as allowed parts in a string,
-	//// we use a customized lexer with predicates. 
+	//// we use a customized lexer with predicates.
 	//// This allows us to use e.g. single quotes without escape sequences
 	//// in double quoted strings and vice versa.
 	//ConstantValue:
-	//	(WS | ANY_OTHER | ID |
-	//	"\\'" |
-	//	'\\"' |
-	//	"\\${" |
-	//	"\\\\")+;
+	//  (WS|
+	//  ANY_OTHER|
+	//  ID|
+	//  "\\'" |
+	//  '\\"' |
+	//  "\\${" |
+	//  "\\\\")+;
 	public ConstantValueElements getConstantValueAccess() {
 		return pConstantValue;
 	}
@@ -1174,37 +1210,37 @@ public class Mwe2GrammarAccess extends AbstractElementFinder.AbstractGrammarElem
 	}
 	
 	//terminal ID:
-	//	'^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
+	//  '^'? ('a'..'z' | 'A'..'Z' | '_') ('a'..'z' | 'A'..'Z' | '_' | '0'..'9')*;
 	public TerminalRule getIDRule() {
 		return tID;
 	}
 	
 	//terminal INT returns ecore::EInt:
-	//	'0'..'9'+;
+	//  ('0'..'9')+;
 	public TerminalRule getINTRule() {
 		return tINT;
 	}
 	
 	//terminal ML_COMMENT:
-	//	'/*'->'*/';
+	//  '/*'->'*/';
 	public TerminalRule getML_COMMENTRule() {
 		return tML_COMMENT;
 	}
 	
 	//terminal SL_COMMENT:
-	//	'//' !('\n' | '\r')* ('\r'? '\n')?;
+	//  '//' !('\n' | '\r')* ('\r'? '\n')?;
 	public TerminalRule getSL_COMMENTRule() {
 		return tSL_COMMENT;
 	}
 	
 	//terminal WS:
-	//	' ' | '\t' | '\r' | '\n'+;
+	//  (' ' | '\t' | '\r' | '\n')+;
 	public TerminalRule getWSRule() {
 		return tWS;
 	}
 	
 	//terminal ANY_OTHER:
-	//	.;
+	//  .;
 	public TerminalRule getANY_OTHERRule() {
 		return tANY_OTHER;
 	}

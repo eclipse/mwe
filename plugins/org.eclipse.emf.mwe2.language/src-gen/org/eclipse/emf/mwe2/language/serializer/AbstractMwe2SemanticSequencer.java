@@ -101,11 +101,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	}
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Assignment returns Assignment
 	 *
 	 * Constraint:
 	 *     (feature=[JvmIdentifiableElement|FQN] value=Value)
+	 * </pre>
 	 */
 	protected void sequence_Assignment(ISerializationContext context, Assignment semanticObject) {
 		if (errorAcceptor != null) {
@@ -122,12 +124,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns BooleanLiteral
 	 *     BooleanLiteral returns BooleanLiteral
 	 *
 	 * Constraint:
 	 *     isTrue?='true'?
+	 * </pre>
 	 */
 	protected void sequence_BooleanLiteral(ISerializationContext context, BooleanLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -135,12 +139,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Component returns Component
 	 *     Value returns Component
 	 *
 	 * Constraint:
 	 *     ((type=[JvmType|FQN] | module=[Module|FQN])? name=FQN? autoInject?='auto-inject'? assignment+=Assignment*)
+	 * </pre>
 	 */
 	protected void sequence_Component(ISerializationContext context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -148,11 +154,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     DeclaredProperty returns DeclaredProperty
 	 *
 	 * Constraint:
 	 *     (type=[JvmType|FQN]? name=FQN default=Value?)
+	 * </pre>
 	 */
 	protected void sequence_DeclaredProperty(ISerializationContext context, DeclaredProperty semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -160,12 +168,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns DoubleLiteral
 	 *     DoubleLiteral returns DoubleLiteral
 	 *
 	 * Constraint:
 	 *     value=DoubleValue
+	 * </pre>
 	 */
 	protected void sequence_DoubleLiteral(ISerializationContext context, DoubleLiteral semanticObject) {
 		if (errorAcceptor != null) {
@@ -179,11 +189,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Import returns Import
 	 *
 	 * Constraint:
 	 *     importedNamespace=ImportedFQN
+	 * </pre>
 	 */
 	protected void sequence_Import(ISerializationContext context, Import semanticObject) {
 		if (errorAcceptor != null) {
@@ -197,12 +209,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns IntegerLiteral
 	 *     IntegerLiteral returns IntegerLiteral
 	 *
 	 * Constraint:
 	 *     value=IntValue
+	 * </pre>
 	 */
 	protected void sequence_IntegerLiteral(ISerializationContext context, IntegerLiteral semanticObject) {
 		if (errorAcceptor != null) {
@@ -216,11 +230,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Module returns Module
 	 *
 	 * Constraint:
 	 *     (canonicalName=FQN imports+=Import* declaredProperties+=DeclaredProperty* root=RootComponent)
+	 * </pre>
 	 */
 	protected void sequence_Module(ISerializationContext context, org.eclipse.emf.mwe2.language.mwe2.Module semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -228,12 +244,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns NullLiteral
 	 *     NullLiteral returns NullLiteral
 	 *
 	 * Constraint:
 	 *     {NullLiteral}
+	 * </pre>
 	 */
 	protected void sequence_NullLiteral(ISerializationContext context, NullLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -241,11 +259,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     PlainString returns PlainString
 	 *
 	 * Constraint:
 	 *     value=ConstantValue
+	 * </pre>
 	 */
 	protected void sequence_PlainString(ISerializationContext context, PlainString semanticObject) {
 		if (errorAcceptor != null) {
@@ -259,12 +279,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     PropertyReference returns PropertyReference
 	 *     PropertyReferenceImpl returns PropertyReference
 	 *
 	 * Constraint:
 	 *     referable=[DeclaredProperty|FQN]
+	 * </pre>
 	 */
 	protected void sequence_PropertyReferenceImpl(ISerializationContext context, PropertyReference semanticObject) {
 		if (errorAcceptor != null) {
@@ -278,12 +300,14 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns Reference
 	 *     Reference returns Reference
 	 *
 	 * Constraint:
 	 *     referable=[Referrable|FQN]
+	 * </pre>
 	 */
 	protected void sequence_Reference(ISerializationContext context, Reference semanticObject) {
 		if (errorAcceptor != null) {
@@ -297,11 +321,13 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     RootComponent returns Component
 	 *
 	 * Constraint:
 	 *     ((type=[JvmType|FQN] | module=[Module|FQN]) name=FQN? autoInject?='auto-inject'? assignment+=Assignment*)
+	 * </pre>
 	 */
 	protected void sequence_RootComponent(ISerializationContext context, Component semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -309,6 +335,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	
 	
 	/**
+	 * <pre>
 	 * Contexts:
 	 *     Value returns StringLiteral
 	 *     StringLiteral returns StringLiteral
@@ -318,6 +345,7 @@ public abstract class AbstractMwe2SemanticSequencer extends AbstractDelegatingSe
 	 *         (begin=''' parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end=''') | 
 	 *         (begin='"' parts+=PlainString? (parts+=PropertyReference parts+=PlainString?)* end='"')
 	 *     )
+	 * </pre>
 	 */
 	protected void sequence_StringLiteral(ISerializationContext context, StringLiteral semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
