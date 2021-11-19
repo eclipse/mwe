@@ -34,7 +34,7 @@
 <unit id="org.junit" version="0.0.0"/>
 <unit id="com.google.guava" version="30.1.0.v20210127-2300"/>
 <unit id="com.google.guava.source" version="30.1.0.v20210127-2300"/>
-<repository location="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
+<repository location="https://download.eclipse.org/tools/orbit/downloads/2021-12"/>
 </location>
 </locations>
 </target>
