@@ -21,7 +21,7 @@ pipeline {
   }
   
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
+    parameterizedCron(env.BRANCH_NAME == 'cd_tycho40' ? '''H H(21-22) * * *''' : '')
   }
 
   options {

@@ -23,7 +23,7 @@
 	<properties>
 		<tycho-qualifier>yyyyMMdd-HHmm</tycho-qualifier>
 		
-		<tycho-version>2.7.5</tycho-version>
+		<tycho-version>4.0.1</tycho-version>
 		<maven.compiler.source>11</maven.compiler.source>
 		<maven.compiler.target>11</maven.compiler.target>
 		<maven-install-version>2.5.2</maven-install-version>
@@ -75,6 +75,10 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
+		</pluginRepository>
+		<pluginRepository>
+			<id>tycho-snapshots</id>
+			<url>https://repo.eclipse.org/content/repositories/tycho-snapshots/</url>
 		</pluginRepository>
 	</pluginRepositories>
 	
