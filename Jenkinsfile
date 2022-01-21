@@ -19,7 +19,7 @@ pipeline {
   }
 
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
+    parameterizedCron(env.BRANCH_NAME == 'cd_tycho50' ? '''H H(20-21) * * *''' : '')
   }
 
   options {
@@ -96,7 +96,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             withMaven(jdk: 'temurin-jdk21-latest', maven: 'apache-maven-3.9.9', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
-                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.10")
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "5.0.0-SNAPSHOT")
               }
             }
           }
