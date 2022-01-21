@@ -21,7 +21,7 @@ pipeline {
   }
   
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
+    parameterizedCron(env.BRANCH_NAME == 'cd_tycho40' ? '''H H(21-22) * * *''' : '')
   }
 
   options {
@@ -75,7 +75,7 @@ pipeline {
     stage ('Build') {
       steps {
         wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
-          withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+          withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               sh '''
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
@@ -91,8 +91,8 @@ pipeline {
                 esac
                 
                 mvn \
-                  -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
-                  -Dsign.skip=false \
+                  -e -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
+                  -Dsign.skip=false -Dtycho.resolver.classic=true \
                   -DtestFailureIgnore=true \
                   -Dmaven.javadoc.failOnError=false \
                   -Dtycho.localArtifacts=ignore \
