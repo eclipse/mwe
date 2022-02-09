@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 import java.io.StringReader;
 
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.parser.antlr.Mwe2Parser;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.xtext.ParserRule;

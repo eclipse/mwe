@@ -19,7 +19,7 @@ import org.antlr.runtime.Token;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.mwe2.language.Mwe2UiInjectorProvider;
+import org.eclipse.emf.mwe2.language.ui.tests.Mwe2UiInjectorProvider;
 import org.eclipse.emf.mwe2.language.services.Mwe2GrammarAccess;
 import org.eclipse.emf.mwe2.language.ui.highlighting.MweHighlightingLexer;
 import org.eclipse.xtext.Keyword;

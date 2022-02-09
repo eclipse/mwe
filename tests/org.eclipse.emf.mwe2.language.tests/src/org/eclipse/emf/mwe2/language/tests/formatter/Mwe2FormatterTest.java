@@ -8,7 +8,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.formatter;
 
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.xtext.formatting.INodeModelFormatter;
 import org.eclipse.xtext.nodemodel.ICompositeNode;

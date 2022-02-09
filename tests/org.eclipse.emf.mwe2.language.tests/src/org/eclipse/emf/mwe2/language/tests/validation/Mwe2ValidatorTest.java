@@ -13,7 +13,7 @@ import static org.eclipse.emf.mwe2.language.mwe2.Mwe2Package.Literals.*;
 import static org.eclipse.emf.mwe2.language.validation.Mwe2Validator.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentA;
 import org.eclipse.emf.mwe2.language.tests.factory.ComponentAFactory;
