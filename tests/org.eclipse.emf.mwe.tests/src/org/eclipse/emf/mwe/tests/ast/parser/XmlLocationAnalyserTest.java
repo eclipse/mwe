@@ -1,18 +1,11 @@
-/*
- * <copyright>
- *
- * Copyright (c) 2005-2006 Sven Efftinge (http://www.efftinge.de) and others.
+/*******************************************************************************
+ * Copyright (c) 2005, 2015 Sven Efftinge (http://www.efftinge.de) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
  *
  * SPDX-License-Identifier: EPL-2.0
- *
- * Contributors:
- *     Clemens Kadura - Initial API and implementation
- *
- * </copyright>
- */
+ *******************************************************************************/
 package org.eclipse.emf.mwe.tests.ast.parser;
 
 import java.io.ByteArrayInputStream;
