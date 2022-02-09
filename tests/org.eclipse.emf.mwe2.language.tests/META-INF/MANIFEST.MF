@@ -31,5 +31,5 @@ Import-Package: org.junit;version="4.12.0",
  org.junit.runners;version="4.12.0",
  org.junit.runners.model;version="4.12.0",
  org.hamcrest.core
-Export-Package: org.eclipse.emf.mwe2.language
+Export-Package: org.eclipse.emf.mwe2.language.tests
 Automatic-Module-Name: org.eclipse.emf.mwe2.language.tests

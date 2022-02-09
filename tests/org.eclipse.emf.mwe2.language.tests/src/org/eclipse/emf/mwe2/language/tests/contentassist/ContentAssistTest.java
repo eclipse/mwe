@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.mwe2.language.Mwe2UiInjectorProvider;
+import org.eclipse.emf.mwe2.language.ui.tests.Mwe2UiInjectorProvider;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 import org.eclipse.jface.text.source.ISourceViewer;

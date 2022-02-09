@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
 import org.eclipse.xtext.naming.QualifiedName;

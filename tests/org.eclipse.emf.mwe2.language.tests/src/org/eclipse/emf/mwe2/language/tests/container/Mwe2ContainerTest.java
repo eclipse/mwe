@@ -13,7 +13,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.xtext.mwe.ContainersStateFactory;
 import org.eclipse.xtext.resource.XtextResourceSet;

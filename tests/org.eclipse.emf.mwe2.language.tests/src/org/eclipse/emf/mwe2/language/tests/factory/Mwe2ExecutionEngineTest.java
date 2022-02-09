@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import org.eclipse.emf.mwe2.language.Mwe2InjectorProvider;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.factory.Mwe2ExecutionEngine;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.xtext.testing.InjectWith;

@@ -14,6 +14,8 @@ import org.eclipse.xtext.xtext.generator.DefaultGeneratorModule;
 import org.eclipse.xtext.xtext.generator.StandardLanguage;
 import org.eclipse.xtext.xtext.generator.XtextGenerator;
 import org.eclipse.xtext.xtext.generator.generator.GeneratorFragment2;
+import org.eclipse.xtext.xtext.generator.junit.JUnitFragment;
+import org.eclipse.xtext.xtext.generator.model.ManifestAccess;
 import org.eclipse.xtext.xtext.generator.model.project.BundleProjectConfig;
 import org.eclipse.xtext.xtext.generator.model.project.StandardProjectConfig;
 import org.eclipse.xtext.xtext.generator.parser.antlr.XtextAntlrGeneratorFragment2;
@@ -31,7 +33,7 @@ public class GenerateMwe2 {
 		final String root = "..";
 		final String projectName = "org.eclipse.emf.mwe2.language";
 		final String runtimeProject = root + "/" + projectName;
-		final String runtimeTestProject = root + "/../" + "org.eclipse.emf.mwe2.language.tests";
+		final String runtimeTestProject = root + "/../tests/" + "org.eclipse.emf.mwe2.language.tests";
 		final String ideProject = root + "/" + "org.eclipse.emf.mwe2.language.ide";
 		final String uiProject = root + "/" + "org.eclipse.emf.mwe2.language.ui";
 		final String lineDelimiter = "\n";
@@ -53,9 +55,17 @@ public class GenerateMwe2 {
 					eclipsePlugin.setEnabled(true);
 					eclipsePlugin.setRoot(uiProject);
 					BundleProjectConfig runtimeTest = getRuntimeTest();
+					runtimeTest.setEnabled(true);
 					runtimeTest.setRoot(runtimeTestProject);
+					ManifestAccess manifestAccessRuntimeTest = new ManifestAccess();
+					manifestAccessRuntimeTest.setMerge(false);
+					runtimeTest.setManifest(manifestAccessRuntimeTest);
 					BundleProjectConfig eclipsePluginTest = getEclipsePluginTest();
+					eclipsePluginTest.setEnabled(true);
 					eclipsePluginTest.setRoot(runtimeTestProject);
+					ManifestAccess manifestAccessPluginTest = new ManifestAccess();
+					manifestAccessPluginTest.setMerge(false);
+					eclipsePluginTest.setManifest(manifestAccessPluginTest);
 				}});
 				setCode(new CodeConfig() {{
 					setEncoding("ISO-8859-1");
@@ -75,6 +85,9 @@ public class GenerateMwe2 {
 						setParserGenerator(new XtextAntlrGeneratorFragment2() {{
 							setCombinedGrammar(false);
 						}});
+						JUnitFragment junitFragment = new JUnitFragment();
+						junitFragment.setGenerateStub(false);
+						setJunitSupport(junitFragment);
 						getFragments().add(new TypesGeneratorFragment2());
 						ExternalAntlrLexerFragment antlrFragment1 = new ExternalAntlrLexerFragment();
 						antlrFragment1.setLexerGrammar("org.eclipse.emf.mwe2.language.lexer.Mwe2Lexer");
@@ -94,7 +107,6 @@ public class GenerateMwe2 {
 						antlrFragment3.addAntlrParam("-lib");
 						antlrFragment3.addAntlrParam(""+ideProject+"/src-gen/org/eclipse/emf/mwe2/language/ide/contentassist/antlr/lexer");
 						getFragments().add(antlrFragment3);
-						
 					}
 				});
 			}});
