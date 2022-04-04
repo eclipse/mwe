@@ -18,7 +18,6 @@
 				<configuration>
 					<excludes>
 						<plugin id="org.apache.commons.cli" />
-						<plugin id="org.apache.commons.lang" />
 					</excludes>
 				</configuration>
 			</plugin>
