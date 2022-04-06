@@ -31,6 +31,7 @@ SPDX-License-Identifier: EPL-2.0
 
    <requires>
       <import plugin="org.eclipse.emf.mwe2.runtime" version="2.13.0" match="compatible"/>
+      <import plugin="org.apache.commons.cli" version="1.4.0" match="compatible"/>
    </requires>
 
    <plugin
@@ -42,13 +43,6 @@ SPDX-License-Identifier: EPL-2.0
 
    <plugin
          id="org.eclipse.emf.mwe.utils"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.apache.commons.cli"
          download-size="0"
          install-size="0"
          version="0.0.0"
