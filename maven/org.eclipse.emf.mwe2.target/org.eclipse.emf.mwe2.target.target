@@ -31,6 +31,7 @@
 <repository location="https://download.eclipse.org/modeling/m2t/xpand/updates/releases/R201605260315"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.apache.log4j" version="1.2.19.v20220208-1728"/>
 <unit id="org.junit" version="0.0.0"/>
 <unit id="org.apache.commons.cli" version="1.4.0.v20200417-1444"/>
 <unit id="org.apache.commons.cli.source" version="1.4.0.v20200417-1444"/>

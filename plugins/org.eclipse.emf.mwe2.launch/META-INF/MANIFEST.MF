@@ -17,5 +17,5 @@ Require-Bundle: org.eclipse.emf.mwe2.language;visibility:=reexport,
  org.eclipse.core.runtime;bundle-version="3.6.0";resolution:=optional;x-installation:=greedy,
  org.eclipse.jdt.core;bundle-version="3.6.0";resolution:=optional;x-installation:=greedy
 Export-Package: org.eclipse.emf.mwe2.launch.runtime
-Import-Package: org.apache.log4j;version="1.2.15"
+Import-Package: org.apache.log4j;version="1.2.19"
 Automatic-Module-Name: org.eclipse.emf.mwe2.launch
