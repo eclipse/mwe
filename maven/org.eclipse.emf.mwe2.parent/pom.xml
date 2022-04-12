@@ -146,6 +146,10 @@
 				<version>1.6</version>
 				<configuration>
 					<skip>${gpg-skip}</skip>
+					<gpgArguments>
+						<arg>--pinentry-mode</arg>
+						<arg>loopback</arg>
+					</gpgArguments>
 				</configuration>
 				<executions>
 					<execution>
