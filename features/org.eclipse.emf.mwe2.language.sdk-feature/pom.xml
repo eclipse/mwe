@@ -8,16 +8,4 @@
 	</parent>
 	<packaging>eclipse-feature</packaging>
 	<artifactId>org.eclipse.emf.mwe2.language.sdk</artifactId>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tycho-version}</version>
-				<configuration>
-					<skip>true</skip>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
