@@ -21,7 +21,7 @@ Performing a stable release has a few manual steps that are documented here:
 
 1. Check Jenkins artifacts, if p2 artifacts have the correct version (with qualifiers!).
 
-1. Check if the [MWE download site](https://www.eclipse.org/modeling/emft/downloads/index.php?project=mwe&showAll=1&showMax=5&sortBy=) now provides the correct artifacts.
+1. Check if the [MWE download site](https://download.eclipse.org/modeling/emft/mwe/downloads/drops/) now provides the correct artifacts.
 
 1. Check if the [MWE update site](https://download.eclipse.org/modeling/emft/mwe/updates/milestones/) now provides the correct artifacts.
 
