@@ -214,8 +214,8 @@
 					<version>${cbi-plugins.version}</version>
 					<configuration>
 						<resigningStrategy>DO_NOT_RESIGN</resigningStrategy>
-						<digestAlgorithm>SHA1</digestAlgorithm>
-						<signatureAlgorithm>SHA1withRSA</signatureAlgorithm>
+						<digestAlgorithm>SHA-256</digestAlgorithm>
+						<signatureAlgorithm>SHA384withRSA</signatureAlgorithm>
 						<excludeInnerJars>true</excludeInnerJars>
 					</configuration>
 				</plugin>
