@@ -21,7 +21,7 @@ pipeline {
   }
   
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
+    parameterizedCron(env.BRANCH_NAME == 'cd_j11' ? '''H H(0-1) * * *''' : '')
   }
 
   options {
@@ -75,7 +75,7 @@ pipeline {
     stage ('Build') {
       steps {
         wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
-          withMaven(jdk: 'temurin-jdk8-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+          withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               sh '''
                 if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
