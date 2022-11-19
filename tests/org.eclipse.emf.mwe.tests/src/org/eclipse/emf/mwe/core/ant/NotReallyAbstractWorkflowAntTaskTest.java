@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 
 import org.eclipse.ant.core.AntRunner;
 import org.junit.Assert;
@@ -48,7 +49,7 @@ public class NotReallyAbstractWorkflowAntTaskTest extends Assert{
 
 	private File createTempFileFromClasspathResource(String resourceClassPath) throws IOException {
 		InputStream istr = getClass().getClassLoader().getResourceAsStream(resourceClassPath);
-		File f = File.createTempFile(getClass().getSimpleName(), null);
+		File f = Files.createTempFile(getClass().getSimpleName(), null).toFile();
 		FileWriter fileWriter = new FileWriter(f);
 		try {
 			int i = istr.read();
