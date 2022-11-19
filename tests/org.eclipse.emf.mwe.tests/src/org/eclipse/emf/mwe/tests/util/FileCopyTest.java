@@ -11,6 +11,7 @@ package org.eclipse.emf.mwe.tests.util;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.WorkflowContextDefaultImpl;
@@ -29,8 +30,8 @@ public class FileCopyTest extends Assert {
 
 	@Before
 	public void setUp() throws Exception {
-		sourceFile = File.createTempFile("copier", "test");
-		targetFile = File.createTempFile("copier", "test");
+		sourceFile = Files.createTempFile("copier", "test").toFile();
+		targetFile = Files.createTempFile("copier", "test").toFile();
 		FileOutputStream output = new FileOutputStream(sourceFile);
 		output.write(42);
 		output.close();
