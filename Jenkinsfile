@@ -21,7 +21,7 @@ pipeline {
   }
   
   triggers {
-    parameterizedCron(env.BRANCH_NAME == 'cd_j11' ? '''H H(0-1) * * *''' : '')
+    parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
   }
 
   options {
