@@ -182,7 +182,6 @@ public class Mwe2PackageImpl extends EPackageImpl implements Mwe2Package
 	{
 		super(eNS_URI, Mwe2Factory.eINSTANCE);
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
