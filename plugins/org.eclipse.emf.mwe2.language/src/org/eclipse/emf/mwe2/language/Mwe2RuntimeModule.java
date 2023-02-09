@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008,2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008, 2023 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -31,7 +31,6 @@ import com.google.inject.Provider;
 /**
  * Use this class to register components to be used within the IDE.
  */
-@SuppressWarnings("restriction")
 public class Mwe2RuntimeModule extends org.eclipse.emf.mwe2.language.AbstractMwe2RuntimeModule {
 
 	@Override
