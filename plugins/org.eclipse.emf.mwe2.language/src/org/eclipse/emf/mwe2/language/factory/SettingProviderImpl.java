@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2008,2010 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2008, 2023 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -26,7 +26,6 @@ import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
-@SuppressWarnings("restriction") 
 public class SettingProviderImpl implements ISettingProvider {
 	
 	private IInjectableFeatureLookup injectableFeatureLookup;
