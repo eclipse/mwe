@@ -3,7 +3,7 @@ See the [MWE2 documentation](documentation/mwe2.md) for more details.
 
 ## Release Process
 
-MWE releases are performed via the master branch on [Jenkins](https://ci.eclipse.org/mwe/job/mwe2/job/master/). The job is parameterized so the release type ('Integration', 'Beta', 'M1', 'M2', 'M3', 'RC1', 'RC2', 'GA') can be configured upon starting the job.
+MWE releases are performed via the master branch on [Jenkins](https://ci.eclipse.org/mwe/job/mwe2/job/master/). The job is parameterized so the release type ('Integration', 'Beta', 'M0', 'M1', 'M2', 'M3', 'RC1', 'RC2', 'GA') can be configured upon starting the job.
 
 ### Nightly Integration Releases
 
