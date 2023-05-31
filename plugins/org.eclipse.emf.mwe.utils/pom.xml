@@ -19,7 +19,7 @@
 		<dependency>
 			<groupId>org.eclipse.emf</groupId>
 			<artifactId>org.eclipse.emf.mwe.core</artifactId>
-			<version>[${project.version}]</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 </project>
