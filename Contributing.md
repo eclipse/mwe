@@ -8,6 +8,12 @@ Eclipse Modeling Workflow Engine lets you run Workflows in an Eclipse Modeling r
 
 * https://projects.eclipse.org/projects/modeling.emf.mwe
 
+## Terms of Use
+
+This repository is subject to the Terms of Use of the Eclipse Foundation
+
+* https://www.eclipse.org/legal/termsofuse.php
+
 ## Developer resources
 
 Information regarding source code management, builds, coding standards, and
@@ -17,7 +23,6 @@ more.
 
 The project maintains the following source code repositories
 
-* http://git.eclipse.org/c/emf/org.eclipse.mwe.git
 * https://github.com/eclipse/mwe
 
 This project uses Github to track ongoing development and issues.
