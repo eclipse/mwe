@@ -6,8 +6,10 @@
    <feature id="org.eclipse.emf.mwe.sdk" version="0.0.0">
       <category name="mwe2lang"/>
    </feature>
-   <bundle id="com.google.guava" version="30.1.0.qualifier"/>
-   <bundle id="com.google.guava.source" version="30.1.0.qualifier"/>
+   <bundle id="com.google.guava" version="32.0.1.qualifier"/>
+   <bundle id="com.google.guava.source" version="32.0.1.qualifier"/>
+   <bundle id="com.google.guava.failureaccess" version="1.0.1.qualifier"/>
+   <bundle id="com.google.guava.failureaccess.source" version="1.0.1.qualifier"/>
    <bundle id="org.apache.commons.cli" version="1.4.0.qualifier"/>
    <bundle id="org.apache.commons.cli.source" version="1.4.0.qualifier"/>
    <category-def name="mwe2lang" label="MWE">
