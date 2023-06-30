@@ -10,8 +10,8 @@
    <bundle id="com.google.guava.source" version="32.0.1.qualifier"/>
    <bundle id="com.google.guava.failureaccess" version="1.0.1.qualifier"/>
    <bundle id="com.google.guava.failureaccess.source" version="1.0.1.qualifier"/>
-   <bundle id="org.apache.commons.cli" version="1.4.0.qualifier"/>
-   <bundle id="org.apache.commons.cli.source" version="1.4.0.qualifier"/>
+   <bundle id="org.apache.commons.cli" version="1.5.0"/>
+   <bundle id="org.apache.commons.cli.source" version="1.5.0"/>
    <category-def name="mwe2lang" label="MWE">
       <description>
          The configuration language used to configure Xtext&apos;s code generator.
