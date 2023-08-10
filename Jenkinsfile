@@ -251,12 +251,12 @@ EOF
               color = '#666666'
           }
 
-          slackSend (
-            message: "${lastResult} => ${curResult}: <${env.BUILD_URL}|${env.JOB_NAME}#${env.BUILD_NUMBER}>",
-            botUser: true,
-            channel: 'xtext-builds',
-            color: "${color}"
-          )
+           matrixSendMessage https: true,
+            hostname: 'matrix.eclipse.org',
+            accessTokenCredentialsId: "matrix-token",
+            roomId: '!umPMJdXBGeZgeGiPCM:matrix.eclipse.org',
+            body: "${lastResult} => ${curResult} ${env.BUILD_URL} | ${env.JOB_NAME}#${env.BUILD_NUMBER}",
+            formattedBody: "<div><font color='${color}'>${lastResult} => ${curResult}</font> | <a href='${env.BUILD_URL}' target='_blank'>${env.JOB_NAME}#${env.BUILD_NUMBER}</a></div>"
         }
       }
     }
