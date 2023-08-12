@@ -46,6 +46,9 @@ pipeline {
         dir ('git-repo') {
           checkout scm
         }
+        dir ('git-repo-nightly') {
+          checkout scm
+        }
 
         sh '''
           # Clean up the build result
@@ -77,39 +80,30 @@ pipeline {
         wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
           withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
-              sh '''
-                if [ "${BRANCH_NAME}" == "master" ] || [ "${RELEASE_TYPE}" != "Integration" ] || [ "${FORCE_PUBLISH}" == "true" ]; then
-                  GOALS='clean javadoc:aggregate-jar test deploy'
-                else
-                  GOALS='clean javadoc:aggregate-jar deploy -DaltDeploymentRepository=snapshot-repo::default::file:./my-local-snapshots-dir'
-                fi
-                
-                case "$RELEASE_TYPE" in
-                  Integration) BUILD_TYPE='N' ;;
-                  GA) BUILD_TYPE='R' ;;
-                  *) BUILD_TYPE='S' ;;
-                esac
-                
-                mvn \
-                  -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
-                  -Dsign.skip=false \
-                  -DtestFailureIgnore=true \
-                  -Dmaven.javadoc.failOnError=false \
-                  -Dtycho.localArtifacts=ignore \
-                  -DBUILD_TYPE=$BUILD_TYPE \
-                  $GOALS
-                ls -la
-                find . -name "*my-local-snapshots-dir*"
-              '''
+              buildProject("org.eclipse.emf.mwe2.target")
             }
           }
         }
       } // END steps
       post {
         success {
-          archiveArtifacts artifacts: '**/my-local-snapshots-dir/**, **/maven/org.eclipse.emf.mwe2.repository/target/repository/**, **/maven/org.eclipse.emf.mwe2.repository/target/emft-mwe-2-lang-Update-*.zip'
+          archiveArtifacts artifacts: 'git-repo/**/my-local-snapshots-dir/**, git-repo/**/maven/org.eclipse.emf.mwe2.repository/target/repository/**, git-repo/**/maven/org.eclipse.emf.mwe2.repository/target/emft-mwe-2-lang-Update-*.zip'
         }
       }
+    } // END stage
+
+    stage ('Build Nightly') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+          catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.8.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+              dir ('git-repo-nightly') {
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+              }
+            }
+          }
+        }
+      } // END steps
     } // END stage
 
     stage ('Publish') {
@@ -225,7 +219,7 @@ EOF
 
   post {
     always {
-      junit testResults: '**/surefire-reports/*.xml'
+      junit allowEmptyResults: true, testResults: '**/surefire-reports/*.xml'
     }
     cleanup {
       script {
@@ -262,4 +256,34 @@ EOF
     }
   }
 
+}
+
+def buildProject(targetPlatform, forceLocalDeployment = false) {
+  withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment"]) {
+    sh '''
+      GOALS='clean javadoc:aggregate-jar test deploy'
+      if [ "${FORCE_LOCAL_DEPLOYMENT}" == "true" ] || [ "${BRANCH_NAME}" != "master" ] && [ "${RELEASE_TYPE}" == "Integration" ] && [ "${FORCE_PUBLISH}" != "true" ]; then
+        GOALS="${GOALS} -DaltDeploymentRepository=snapshot-repo::default::file:./my-local-snapshots-dir"
+      fi
+      
+      case "$RELEASE_TYPE" in
+        Integration) BUILD_TYPE='N' ;;
+        GA) BUILD_TYPE='R' ;;
+        *) BUILD_TYPE='S' ;;
+      esac
+      
+      mvn \
+        -DskipTests=true \
+        -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
+        -Dsign.skip=true \
+        -DtestFailureIgnore=true \
+        -Dmaven.javadoc.failOnError=false \
+        -Dtycho.localArtifacts=ignore \
+        -Dtarget-platform=${TARGET_PLATFORM} \
+        -DBUILD_TYPE=$BUILD_TYPE \
+        $GOALS
+      ls -la
+      find . -name "*my-local-snapshots-dir*"
+    '''
+  }
 }
