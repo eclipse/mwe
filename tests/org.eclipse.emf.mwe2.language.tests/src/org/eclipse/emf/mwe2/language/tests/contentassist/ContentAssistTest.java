@@ -36,7 +36,6 @@ import com.google.inject.Injector;
  */
 @RunWith(XtextRunner.class)
 @InjectWith(Mwe2UiInjectorProvider.class)
-@Ignore("https://github.com/eclipse/mwe/issues/270")
 public class ContentAssistTest extends AbstractContentAssistTest {
 	
 	@Inject
