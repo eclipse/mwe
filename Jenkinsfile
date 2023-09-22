@@ -274,7 +274,7 @@ def buildProject(targetPlatform, forceLocalDeployment = false) {
       
       mvn \
         -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
-        -Dsign.skip=true \
+        -Dsign.skip=false \
         -DtestFailureIgnore=true \
         -Dmaven.javadoc.failOnError=false \
         -Dtycho.localArtifacts=ignore \
