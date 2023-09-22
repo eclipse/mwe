@@ -273,7 +273,6 @@ def buildProject(targetPlatform, forceLocalDeployment = false) {
       esac
       
       mvn \
-        -DskipTests=true \
         -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
         -Dsign.skip=true \
         -DtestFailureIgnore=true \
