@@ -26,14 +26,14 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<executions>
 					<execution>
-						<id>generate-source-feature</id>
+						<id>feature-source</id>
 						<goals>
-							<goal>source-feature</goal>
+							<goal>feature-source</goal>
 						</goals>
 					</execution>
 				</executions>
