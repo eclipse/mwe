@@ -220,6 +220,7 @@ EOF
   post {
     always {
       junit allowEmptyResults: true, testResults: '**/surefire-reports/*.xml'
+      archiveArtifacts artifacts: '**/target/work/data/.metadata/.log, **/target/work/data/.metadata/bak*.log'
     }
     cleanup {
       script {
