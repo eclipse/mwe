@@ -34,3 +34,7 @@ Performing a stable release has a few manual steps that are documented here:
 ### Build Locally
 
 `mvn -f maven/org.eclipse.emf.mwe2.parent/pom.xml -Dtycho.localArtifacts=ignore -Dmaven.repo.local=.m2/repository clean install`
+
+Build with nightly dependencies (EMF etc.)
+
+`mvn -f maven/org.eclipse.emf.mwe2.parent/pom.xml -Dtycho.localArtifacts=ignore -Dmaven.repo.local=.m2/repository -Dtarget-platform=org.eclipse.emf.mwe2.target.nightly clean install`

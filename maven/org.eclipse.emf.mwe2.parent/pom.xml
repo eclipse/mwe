@@ -39,6 +39,8 @@
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>ISO-8859-1</project.reporting.outputEncoding>
 
+		<target-platform>org.eclipse.emf.mwe2.target</target-platform>
+
 		<!-- sign.skip = true skips gpg and eclipse signing -->
 		<sign.skip>true</sign.skip>
 		<gpg-skip>${sign.skip}</gpg-skip>
@@ -49,7 +51,6 @@
 		<BUILD_ALIAS />
 	</properties>
 	<modules>
-		<module>../org.eclipse.emf.mwe2.target</module>
 		<module>../../plugins/</module>
 		<module>../../features/</module>
 		<module>../../tests/</module>
@@ -99,7 +100,7 @@
 					<target>
 						<artifact>
 							<groupId>org.eclipse.emf</groupId>
-							<artifactId>org.eclipse.emf.mwe2.target</artifactId>
+							<artifactId>${target-platform}</artifactId>
 							<version>${project.parent.version}</version>
 							<!-- Uses artifactId+.target by default -->
 						</artifact>
@@ -109,6 +110,11 @@
 							<os>macosx</os>
 							<ws>cocoa</ws>
 							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>aarch64</arch>
 						</environment>
 						<environment>
 							<os>win32</os>
@@ -260,6 +266,44 @@
 		</pluginManagement>
 	</build>
 	<profiles>
+		<profile>
+			<id>target-platform</id>
+			<activation>
+				<property>
+					<name>!target-platform</name>
+				</property>
+			</activation>
+			<properties>
+				<target-platform>org.eclipse.emf.mwe2.target</target-platform>
+			</properties>
+			<modules>
+				<module>../org.eclipse.emf.mwe2.target/org.eclipse.emf.mwe2.target</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>org.eclipse.emf.mwe2.target</id>
+			<activation>
+				<property>
+					<name>target-platform</name>
+					<value>org.eclipse.emf.mwe2.target</value>
+				</property>
+			</activation>
+			<modules>
+				<module>../org.eclipse.emf.mwe2.target/org.eclipse.emf.mwe2.target</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>org.eclipse.emf.mwe2.target.nightly</id>
+			<activation>
+				<property>
+					<name>target-platform</name>
+					<value>org.eclipse.emf.mwe2.target.nightly</value>
+				</property>
+			</activation>
+			<modules>
+				<module>../org.eclipse.emf.mwe2.target/org.eclipse.emf.mwe2.target.nightly</module>
+			</modules>
+		</profile>
 		<!-- 
 			Profile 'release' is activated when property BUILD_TYPE is NOT 'N' (nightly).
 			For release builds strict version checking is disabled, since Maven version will be a

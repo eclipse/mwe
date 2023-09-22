@@ -5,7 +5,7 @@
 		<groupId>org.eclipse.emf</groupId>
 		<artifactId>org.eclipse.emf.mwe2.parent</artifactId>
 		<version>2.16.0-SNAPSHOT</version>
-		<relativePath>../org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
+		<relativePath>../../org.eclipse.emf.mwe2.parent/pom.xml</relativePath>
 	</parent>
 
 	<packaging>eclipse-target-definition</packaging>
