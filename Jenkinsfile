@@ -106,6 +106,62 @@ pipeline {
       } // END steps
     } // END stage
 
+    stage ('Build Nightly1') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+          catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+              dir ('git-repo-nightly1') {
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+              }
+            }
+          }
+        }
+      } // END steps
+    } // END stage
+
+    stage ('Build Nightly2') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+          catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+              dir ('git-repo-nightly2') {
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+              }
+            }
+          }
+        }
+      } // END steps
+    } // END stage
+
+    stage ('Build Nightly3') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+          catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+              dir ('git-repo-nightly3') {
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+              }
+            }
+          }
+        }
+      } // END steps
+    } // END stage
+
+    stage ('Build Nightly4') {
+      steps {
+        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+          catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+              dir ('git-repo-nightly4') {
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+              }
+            }
+          }
+        }
+      } // END steps
+    } // END stage
+
     stage ('Publish') {
       when {
         expression { env.BRANCH_NAME == 'master' || params.RELEASE_TYPE != 'Integration' || params.FORCE_PUBLISH }
