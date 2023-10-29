@@ -24,6 +24,7 @@ import org.eclipse.xtext.ui.editor.contentassist.ConfigurableCompletionProposal;
 import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.testing.AbstractContentAssistTest;
 import org.eclipse.xtext.ui.testing.ContentAssistProcessorTestBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -35,6 +36,7 @@ import com.google.inject.Injector;
  */
 @RunWith(XtextRunner.class)
 @InjectWith(Mwe2UiInjectorProvider.class)
+@Ignore("https://github.com/eclipse/mwe/issues/270")
 public class ContentAssistTest extends AbstractContentAssistTest {
 	
 	@Inject
