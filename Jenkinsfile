@@ -98,7 +98,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
-                buildProject("org.eclipse.emf.mwe2.target.nightly", true)
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.3")
               }
             }
           }
@@ -259,8 +259,8 @@ EOF
 
 }
 
-def buildProject(targetPlatform, forceLocalDeployment = false) {
-  withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment"]) {
+def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "2.7.5") {
+  withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment", "TYCHO_VERSION=$tychoVersion"]) {
     sh '''
       GOALS='clean javadoc:aggregate-jar test deploy'
       if [ "${FORCE_LOCAL_DEPLOYMENT}" == "true" ] || [ "${BRANCH_NAME}" != "master" ] && [ "${RELEASE_TYPE}" == "Integration" ] && [ "${FORCE_PUBLISH}" != "true" ]; then
@@ -274,8 +274,10 @@ def buildProject(targetPlatform, forceLocalDeployment = false) {
       esac
       
       mvn \
-        -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
+        -e -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
+        -Dtycho-version=${TYCHO_VERSION} \
         -Dsign.skip=false \
+        -Dtycho.resolver.classic=true \
         -DtestFailureIgnore=true \
         -Dmaven.javadoc.failOnError=false \
         -Dtycho.localArtifacts=ignore \
