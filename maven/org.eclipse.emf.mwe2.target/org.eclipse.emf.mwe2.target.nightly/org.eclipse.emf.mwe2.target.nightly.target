@@ -6,7 +6,7 @@
 <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
-<repository location="https://download.eclipse.org/eclipse/updates/4.30-I-builds" />
+<repository location="https://download.eclipse.org/eclipse/updates/4.31-I-builds" />
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
@@ -29,11 +29,13 @@
 <unit id="org.junit" version="0.0.0"/>
 <unit id="org.apache.commons.cli" version="1.6.0"/>
 <unit id="org.apache.commons.cli.source" version="1.6.0"/>
+<unit id="org.apache.commons.logging" version="0.0.0"/>
+<unit id="org.apache.commons.logging.source" version="0.0.0"/>
 <unit id="com.google.guava" version="32.1.3.jre"/>
 <unit id="com.google.guava.source" version="32.1.3.jre"/>
 <unit id="com.google.guava.failureaccess" version="1.0.2"/>
 <unit id="com.google.guava.failureaccess.source" version="1.0.2"/>
-<repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2023-12"/>
+<repository location="https://download.eclipse.org/tools/orbit/simrel/orbit-aggregation/2024-03"/>
 </location>
 </locations>
 </target>
