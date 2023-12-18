@@ -19,17 +19,18 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.mwe2.language.Mwe2StandaloneSetup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Injector;
 
 public class Mwe2Launcher {
 	private static final String PARAM = "p";
 	
-	private static final Logger logger = Logger.getLogger(Mwe2Launcher.class);
+	private static final Logger logger = LoggerFactory.getLogger(Mwe2Launcher.class);
 
 	public static void main(String[] args) {
 		try {

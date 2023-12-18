@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This Runnable sends packages out asynchroniously as they arrive from customers.
@@ -26,7 +26,7 @@ public class PackageSender implements Runnable {
 
 	private final ArrayList<AbstractPackage> outgoingPackages;
 	
-	private static final Log logger = LogFactory.getLog(PackageSender.class);
+	private static final Logger logger = LoggerFactory.getLogger(PackageSender.class);
 
 	private final Connection connection;
 

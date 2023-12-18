@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 itemis AG (http://www.itemis.eu) and others.
+ * Copyright (c) 2015, 2024 itemis AG (http://www.itemis.eu) and others.
  * This program and the accompanying materials are made available under the
  * terms of the Eclipse Public License 2.0 which is available at
  * http://www.eclipse.org/legal/epl-2.0.
@@ -10,18 +10,22 @@ package org.eclipse.emf.mwe.tests.util;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.List;
 
-import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.Marker;
+import org.slf4j.event.Level;
+import org.slf4j.helpers.LegacyAbstractLogger;
 
-class LogTester implements Log {
-	
+class LogTester extends LegacyAbstractLogger {
+	private static final long serialVersionUID = 1L;
+
 	public LogTester(Class<?> clazz, Object object){
-		super();
 		setLog(clazz, object);
 	}
 	private void setLog(Class<?> clazz, Object object) {
 		for (Field f : clazz.getDeclaredFields()) {
-			if (f.getType().isAssignableFrom(Log.class))
+			if (f.getType().isAssignableFrom(Logger.class))
 				try {
 					f.setAccessible(true);
 					f.set(object, this);
@@ -30,16 +34,19 @@ class LogTester implements Log {
 					throw new RuntimeException(e);
 				}
 		}
-		throw new IllegalArgumentException("The class " + clazz.getName() + " does not declare field of type org.apache.commons.logging.Log.");
+		throw new IllegalArgumentException("The class " + clazz.getName() + " does not declare field of type org.slf4j.Logger.");
 	}
-	
-	
-	public ArrayList<String> getWarnings() {
+
+	public List<String> getWarnings() {
 		return warnings;
 	}
 
-	ArrayList<String> warnings = new ArrayList<String>();
-	ArrayList<String> infos = new ArrayList<String>();
+	public List<String> getInfos() {
+		return infos;
+	}
+
+	private final List<String> warnings = new ArrayList<>();
+	private final List<String> infos = new ArrayList<>();
 
 	@Override
 	public boolean isDebugEnabled() {
@@ -48,11 +55,6 @@ class LogTester implements Log {
 
 	@Override
 	public boolean isErrorEnabled() {
-		return true;
-	}
-
-	@Override
-	public boolean isFatalEnabled() {
 		return true;
 	}
 
@@ -72,63 +74,23 @@ class LogTester implements Log {
 	}
 
 	@Override
-	public void trace(Object message) {
-
+	protected String getFullyQualifiedCallerName() {
+		return null;
 	}
 
 	@Override
-	public void trace(Object message, Throwable t) {
-
-	}
-
-	@Override
-	public void debug(Object message) {
-
-	}
-
-	@Override
-	public void debug(Object message, Throwable t) {
-
-	}
-
-	@Override
-	public void info(Object message) {
-		infos.add((String) message);
-	}
-
-	@Override
-	public void info(Object message, Throwable t) {
-
-	}
-
-	@Override
-	public void warn(Object message) {
-		warnings.add((String) message);
-	}
-
-	@Override
-	public void warn(Object message, Throwable t) {
-
-	}
-
-	@Override
-	public void error(Object message) {
-
-	}
-
-	@Override
-	public void error(Object message, Throwable t) {
-
-	}
-
-	@Override
-	public void fatal(Object message) {
-
-	}
-
-	@Override
-	public void fatal(Object message, Throwable t) {
-
+	protected void handleNormalizedLoggingCall(Level level, Marker marker, String messagePattern, Object[] arguments,
+			Throwable throwable) {
+		switch (level) {
+			case INFO:
+				infos.add(messagePattern);
+				break;
+			case WARN:
+				warnings.add(messagePattern);
+				break;
+			default:
+				break;
+		}
 	}
 
 }

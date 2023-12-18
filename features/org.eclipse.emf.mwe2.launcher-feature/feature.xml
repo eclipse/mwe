@@ -40,7 +40,6 @@ SPDX-License-Identifier: EPL-2.0
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.osgi"/>
       <import plugin="org.apache.commons.cli" version="1.8.0" match="compatible"/>
-      <import plugin="org.apache.log4j"/>
    </requires>
 
    <plugin

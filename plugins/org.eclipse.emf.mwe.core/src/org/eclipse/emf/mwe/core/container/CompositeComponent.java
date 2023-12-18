@@ -16,8 +16,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.ConfigurationException;
 import org.eclipse.emf.mwe.core.WorkflowComponent;
 import org.eclipse.emf.mwe.core.WorkflowComponentWithID;
@@ -32,6 +30,8 @@ import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.util.ComponentPrinter;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A composite <tt>WorkflowComponent</tt>.
@@ -41,7 +41,7 @@ public class CompositeComponent implements WorkflowComponentWithID, IWorkflowCom
 
 	private static final String COMPONENT_NAME = "Composite component";
 
-	protected static final Log log = LogFactory.getLog(CompositeComponent.class);
+	protected static final Logger log = LoggerFactory.getLogger(CompositeComponent.class);
 
 	private final String name;
 

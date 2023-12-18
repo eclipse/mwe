@@ -8,7 +8,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.launch.shortcut;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -22,11 +21,13 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.RefreshUtil;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.jdt.launching.JavaLaunchDelegate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Mwe2LaunchDelegate extends JavaLaunchDelegate {
 
-	private static final Logger logger = Logger.getLogger(Mwe2LaunchDelegate.class);
-	private static final String ATTR_REFRESH_SCOPE =  DebugPlugin.getUniqueIdentifier() + ".ATTR_REFRESH_SCOPE"; //$NON-NLS-1$
+	private static final Logger logger = LoggerFactory.getLogger(Mwe2LaunchDelegate.class);
+	private static final String ATTR_REFRESH_SCOPE = DebugPlugin.getUniqueIdentifier() + ".ATTR_REFRESH_SCOPE"; //$NON-NLS-1$
 
 	@Override
 	public void launch(final ILaunchConfiguration configuration, String mode,

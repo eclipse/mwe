@@ -20,8 +20,6 @@ import java.util.Stack;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.internal.core.ast.AbstractASTBase;
 import org.eclipse.emf.mwe.internal.core.ast.ComponentAST;
@@ -30,12 +28,14 @@ import org.eclipse.emf.mwe.internal.core.ast.DeclaredPropertyFileAST;
 import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
 import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class WorkflowParser extends DefaultHandler {
-	private static final Log log = LogFactory.getLog(WorkflowParser.class);
+	private static final Logger log = LoggerFactory.getLogger(WorkflowParser.class);
 
 	// reserved element names
 	public final static String PROPERTY = "property";

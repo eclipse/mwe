@@ -19,14 +19,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe.internal.core.ast.parser.WorkflowParser;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DeclaredPropertyFileAST extends AbstractASTBase {
-	private final Log log = LogFactory.getLog(getClass());
+	private static final Logger log = LoggerFactory.getLogger(DeclaredPropertyFileAST.class);
 
 	private String file;
 

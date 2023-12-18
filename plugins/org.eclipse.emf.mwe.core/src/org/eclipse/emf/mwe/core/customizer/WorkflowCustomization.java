@@ -14,14 +14,14 @@ package org.eclipse.emf.mwe.core.customizer;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class WorkflowCustomization {
 
 	private static Map<String,Class<?>> keywordmapping = new HashMap<String,Class<?>>();
 
-	private static final Log logger = LogFactory.getLog(WorkflowCustomization.class);
+	private static final Logger logger = LoggerFactory.getLogger(WorkflowCustomization.class);
 
 	public static void registerKeywordMapping( String keyword, Class<?> componentClass ) {
 		keywordmapping .put( keyword, componentClass );

@@ -61,10 +61,6 @@ Apache Commons Line Interface (1.0)
 
 * License: Apache Software License 1.1
 
-Apache Commons Logging Jar (1.1.1)
-
-* License: Apache License, 2.0
-
 asm (6.2)
 
 * License: BSD-3-Clause
@@ -113,17 +109,13 @@ Guice (2.0)
 
 * License: Apache License, 2.0
 
-log4j (1.2.15)
-
-* License: Apache License, 2.0
-
 org.apache.ant (1.6.5)
 
 * License: Apache License, 2.0
 
-Apache Commons Logging (1.3.3)
+Simple Logging Facade for Java (SLF4J) (2.0.15)
 
-* License: Apache License, 2.0
+* License: MIT License
 
 ## Cryptography
 
