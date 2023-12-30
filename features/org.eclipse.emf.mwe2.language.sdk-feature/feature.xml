@@ -41,7 +41,7 @@ SPDX-License-Identifier: EPL-2.0
          version="0.0.0"/>
 
    <requires>
-      <import feature="org.eclipse.xtext.ui" version="2.32.0" match="compatible"/>
+      <import feature="org.eclipse.xtext.ui" version="2.34.0" match="compatible"/>
    </requires>
 
    <plugin
