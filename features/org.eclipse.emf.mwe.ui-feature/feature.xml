@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.mwe.ui.feature"
       label="%featureName"
-      version="1.11.0.qualifier"
+      version="1.12.0.qualifier"
       provider-name="%providerName"
       license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -42,7 +42,7 @@ SPDX-License-Identifier: EPL-2.0
       <import plugin="org.eclipse.ui.ide"/>
       <import plugin="org.eclipse.ui.views"/>
       <import plugin="org.eclipse.core.expressions"/>
-      <import feature="org.eclipse.emf.mwe.core.feature" version="1.11.0" match="greaterOrEqual"/>
+      <import feature="org.eclipse.emf.mwe.core.feature" version="1.12.0" match="greaterOrEqual"/>
    </requires>
 
    <plugin

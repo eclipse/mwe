@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.emf.mwe2.launcher"
       label="%featureName"
-      version="2.17.0.qualifier"
+      version="2.18.0.qualifier"
       provider-name="%providerName"
 	  license-feature="org.eclipse.license"
       license-feature-version="0.0.0">
@@ -29,9 +29,9 @@ SPDX-License-Identifier: EPL-2.0
    </url>
 
    <requires>
-      <import plugin="org.eclipse.emf.mwe2.runtime" version="2.17.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.mwe2.lib" version="2.17.0" match="greaterOrEqual"/>
-      <import plugin="org.eclipse.emf.mwe.utils" version="1.11.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mwe2.runtime" version="2.18.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mwe2.lib" version="2.18.0" match="greaterOrEqual"/>
+      <import plugin="org.eclipse.emf.mwe.utils" version="1.12.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext" version="2.34.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.common.types" version="2.34.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.xbase" version="2.34.0" match="greaterOrEqual"/>

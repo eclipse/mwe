@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MWE2 Language Tests
 Bundle-SymbolicName: org.eclipse.emf.mwe2.language.tests
-Bundle-Version: 2.17.0.qualifier
+Bundle-Version: 2.18.0.qualifier
 Bundle-Vendor: Eclipse Modeling
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Require-Bundle: org.eclipse.emf.mwe2.language,
