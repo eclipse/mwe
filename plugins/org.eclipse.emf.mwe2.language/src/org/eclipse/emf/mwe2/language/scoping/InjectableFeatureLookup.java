@@ -9,6 +9,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,16 +22,13 @@ import org.eclipse.xtext.common.types.JvmTypeReference;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.Strings;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-
 public class InjectableFeatureLookup implements IInjectableFeatureLookup {
 	
 	@Override
 	public Map<QualifiedName, JvmFeature> getInjectableFeatures(JvmType type) {
-		Map<QualifiedName, JvmFeature> result = Maps.newHashMap();
+		Map<QualifiedName, JvmFeature> result = new HashMap<>();
 		collectFeatures(type, result);
-		return ImmutableMap.copyOf(result);
+		return Map.copyOf(result);
 	}
 	
 	public void collectFeatures(JvmType containerType, Map<QualifiedName, JvmFeature> result) {

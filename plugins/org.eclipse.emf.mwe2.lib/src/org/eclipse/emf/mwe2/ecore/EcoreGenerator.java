@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.UnaryOperator;
 
 import org.apache.log4j.Logger;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
@@ -37,8 +38,6 @@ import org.eclipse.emf.mwe.utils.GenModelHelper;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
-
-import com.google.common.base.Function;
 
 public class EcoreGenerator implements IWorkflowComponent {
 
@@ -169,12 +168,11 @@ public class EcoreGenerator implements IWorkflowComponent {
 		return resourceSet == null ? new ResourceSetImpl() : resourceSet;
 	}
 
-	protected Function<String, String> getTypeMapper() {
+	protected UnaryOperator<String> getTypeMapper() {
 		return new mapper();
 	}
 
-	
-	protected final class mapper implements Function<String, String> {
+	protected final class mapper implements UnaryOperator<String> {
 		public String apply(String from) {
 			if (from.startsWith("org.eclipse.emf.ecore"))
 				return null;
@@ -293,13 +291,13 @@ public class EcoreGenerator implements IWorkflowComponent {
 			}
 		}
 
-		private Function<String, String> typeMapper;
+		private UnaryOperator<String> typeMapper;
 
-		protected GeneratorAdapterDescriptor(Function<String,String> typeMapper) {
+		protected GeneratorAdapterDescriptor(UnaryOperator<String> typeMapper) {
 			this.typeMapper = typeMapper;
 		}
-		
-		public GeneratorAdapterDescriptor(Function<String,String> typeMapper, String lineDelimiter) {
+
+		public GeneratorAdapterDescriptor(UnaryOperator<String> typeMapper, String lineDelimiter) {
 			super(lineDelimiter);
 			this.typeMapper = typeMapper;
 		}
@@ -312,9 +310,9 @@ public class EcoreGenerator implements IWorkflowComponent {
 
 	protected static class ImportManagerHack extends ImportManager {
 
-		private Function<String, String> typeMapper;
+		private UnaryOperator<String> typeMapper;
 
-		public ImportManagerHack(String compilationUnitPackage, Function<String,String> typeMapper) {
+		public ImportManagerHack(String compilationUnitPackage, UnaryOperator<String> typeMapper) {
 			super(compilationUnitPackage);
 			this.typeMapper = typeMapper;
 		}

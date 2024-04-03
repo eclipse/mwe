@@ -14,12 +14,10 @@ import java.util.Set;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultAntlrTokenToAttributeIdMapper;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.DefaultHighlightingConfiguration;
 
-import com.google.common.collect.ImmutableSet;
-
 public class TokenToAttributeMapper extends
 		DefaultAntlrTokenToAttributeIdMapper {
 
-	private final Set<String> keywords = ImmutableSet.of(
+	private final Set<String> keywords = Set.of(
 			"KEYWORD_TRUE",
 			"KEYWORD_FALSE", 
 			"KEYWORD_VAR", 
