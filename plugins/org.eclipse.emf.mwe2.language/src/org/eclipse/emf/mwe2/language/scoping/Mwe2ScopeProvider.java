@@ -9,6 +9,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +35,6 @@ import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
 import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
@@ -78,7 +78,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	public IScope createReferenceScopeUpTo(EObject object, boolean allowObjects) {
-		List<Referrable> result = Lists.newArrayList();
+		List<Referrable> result = new ArrayList<>();
 		collectReferablesUpTo(object, allowObjects, result);
 		return createLocalScope(result);
 	}
@@ -125,7 +125,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 			JvmType containerType = container.getActualType();
 			if (containerType == null || containerType.eIsProxy())
 				return IScope.NULLSCOPE;
-			Map<QualifiedName, JvmFeature> features = Maps.newHashMap();
+			Map<QualifiedName, JvmFeature> features = new HashMap<>();
 			JvmType createType = factorySupport.findFactoriesCreationType(containerType);
 			if (createType != null) {
 				features.putAll(featureLookup.getInjectableFeatures(createType));

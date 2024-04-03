@@ -9,6 +9,8 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.ui.contentassist;
 
+import java.util.function.Function;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.mwe2.language.mwe2.Assignment;
 import org.eclipse.emf.mwe2.language.mwe2.Component;
@@ -27,7 +29,6 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
 import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
-import com.google.common.base.Function;
 import com.google.inject.Inject;
 
 /**

@@ -16,18 +16,16 @@ import org.eclipse.xtext.parser.antlr.AntlrTokenDefProvider;
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 import org.eclipse.xtext.parser.antlr.ITokenDefProvider;
 
-import com.google.common.collect.ImmutableMap;
-
 public class TokenDefProvider implements ITokenDefProvider, IAntlrTokenFileProvider {
 
-	private ImmutableMap<Integer, String> map;
+	private Map<Integer, String> map;
 
 	@Override
 	public Map<Integer, String> getTokenDefMap() {
 		if (map == null) {
 			AntlrTokenDefProvider provider = new AntlrTokenDefProvider();
 			provider.setAntlrTokenFileProvider(this);
-			map = ImmutableMap.copyOf(provider.getTokenDefMap());
+			map = Map.copyOf(provider.getTokenDefMap());
 		}
 		return map;
 	}

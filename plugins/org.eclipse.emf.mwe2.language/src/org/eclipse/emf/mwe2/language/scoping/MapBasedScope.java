@@ -24,9 +24,6 @@ import org.eclipse.xtext.scoping.IScope;
 import org.eclipse.xtext.scoping.impl.AbstractScope;
 import org.eclipse.xtext.util.Strings;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
-
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
@@ -41,12 +38,7 @@ public class MapBasedScope extends AbstractScope {
 	
 	@Override
 	protected Iterable<IEObjectDescription> getAllLocalElements() {
-		return Iterables.transform(entries.entrySet(), new Function<Map.Entry<QualifiedName, ? extends EObject>, IEObjectDescription>() {
-			@Override
-			public IEObjectDescription apply(Map.Entry<QualifiedName, ? extends EObject> from) {
-				return new MapEntry(from);
-			}
-		});
+		return () -> entries.entrySet().stream().map(from -> (IEObjectDescription) new MapEntry(from)).iterator();
 	}
 	
 	@Override

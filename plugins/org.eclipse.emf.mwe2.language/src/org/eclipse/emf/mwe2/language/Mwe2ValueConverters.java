@@ -21,14 +21,12 @@ import org.eclipse.xtext.conversion.impl.AbstractNullSafeConverter;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.util.Strings;
 
-import com.google.common.collect.ImmutableSet;
-
 public class Mwe2ValueConverters extends DefaultTerminalConverters {
 
 	public class FQNConverter extends AbstractNullSafeConverter<String> {
-		
-		private Set<String> allKeywords = ImmutableSet.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
-		
+
+		private Set<String> allKeywords = Set.copyOf(GrammarUtil.getAllKeywords(getGrammar()));
+
 		@Override
 		protected String internalToValue(String string, INode node) {
 			return string.replaceAll("[\\^\\s]", "");

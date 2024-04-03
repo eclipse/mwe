@@ -10,12 +10,13 @@ package org.eclipse.emf.mwe2.language.tests.resource;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
 import org.eclipse.emf.mwe2.language.resource.MweResourceDescriptionStrategy;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
@@ -25,7 +26,6 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.common.collect.Lists;
 import com.google.inject.Inject;
 
 @RunWith(XtextRunner.class)
@@ -42,7 +42,7 @@ public class MweResourceDescriptionManagerTest {
 
 	@Test public void testNoProperties() throws Exception {
 		IResourceDescription description = getDescription("");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(1, exported.size());
 		IEObjectDescription module = exported.get(0);
 		assertEquals(ORG_FOO_BAR, module.getName());
@@ -51,7 +51,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testMandatoryExplicitString() throws Exception {
 		IResourceDescription description = getDescription("var String zonk");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -61,7 +61,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testMandatoryImplicitString() throws Exception {
 		IResourceDescription description = getDescription("var zonk");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -71,7 +71,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testExplicitString() throws Exception {
 		IResourceDescription description = getDescription("var String zonk = ''");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -81,7 +81,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testImplicitString() throws Exception {
 		IResourceDescription description = getDescription("var zonk = ''");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -91,7 +91,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testMandatoryExplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var boolean zonk");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -101,7 +101,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testImplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var zonk = true");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -111,7 +111,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testExplicitBoolean() throws Exception {
 		IResourceDescription description = getDescription("var boolean zonk = true");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -121,7 +121,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testImplicitComponent() throws Exception {
 		IResourceDescription description = getDescription("var zonk = @ /* comment */ org . foo . Bar {}");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -131,7 +131,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testImplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var zonk = java.util.ArrayList {}");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -141,7 +141,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testExplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var java.util.List zonk = java.util. /* comment */ ArrayList {}");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -151,7 +151,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testMandatoryExplicitClass() throws Exception {
 		IResourceDescription description = getDescription("var java.util.List zonk");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(2, exported.size());
 		IEObjectDescription zonk = exported.get(1);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -161,7 +161,7 @@ public class MweResourceDescriptionManagerTest {
 	
 	@Test public void testPropertyReference() throws Exception {
 		IResourceDescription description = getDescription("var mandatory var zonk = mandatory");
-		List<IEObjectDescription> exported = Lists.newArrayList(description.getExportedObjects());
+		List<IEObjectDescription> exported = getExportedObjects(description);
 		assertEquals(3, exported.size());
 		IEObjectDescription zonk = exported.get(2);
 		assertEquals(ORG_FOO_BAR_ZONK, zonk.getName());
@@ -179,5 +179,11 @@ public class MweResourceDescriptionManagerTest {
 	private Resource getResourceFromString(String model) throws Exception {
 		return parser.parse(model).eResource();
 	}
-	
+
+	private static List<IEObjectDescription> getExportedObjects(IResourceDescription description) {
+		List<IEObjectDescription> exported = new ArrayList<>();
+		description.getExportedObjects().forEach(exported::add);
+		return exported;
+	}
+
 }
