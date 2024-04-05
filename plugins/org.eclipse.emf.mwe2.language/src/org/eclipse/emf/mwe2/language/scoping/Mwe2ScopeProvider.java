@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -34,12 +35,11 @@ import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
-import com.google.common.base.Function;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
- * 
+ *
  */
 public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -48,7 +48,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	@Inject
 	private FactorySupport factorySupport;
-	
+
 	@Inject
 	private Provider<NameComputation> nameComputationProvider;
 
@@ -150,13 +150,13 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	protected IScope createLocalScope(List<? extends EObject> elements) {
 		return Scopes.scopeFor(elements, nameComputationProvider.get(), IScope.NULLSCOPE);
 	}
-	
+
 	protected static class NameComputation implements Function<EObject, QualifiedName> {
 		@Inject
 		private IQualifiedNameConverter qualifiedNameConverter;
 
 		private SimpleAttributeResolver<EObject, String> nameResolver = SimpleAttributeResolver.newResolver(String.class, "name");
-		
+
 		@Override
 		public QualifiedName apply(EObject from) {
 			String name = nameResolver.apply(from);
