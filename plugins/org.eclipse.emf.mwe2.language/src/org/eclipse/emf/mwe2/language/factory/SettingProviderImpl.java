@@ -11,6 +11,8 @@ package org.eclipse.emf.mwe2.language.factory;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.mwe2.language.scoping.IInjectableFeatureLookup;
@@ -21,16 +23,13 @@ import org.eclipse.xtext.common.types.JvmType;
 import org.eclipse.xtext.common.types.util.JavaReflectAccess;
 import org.eclipse.xtext.naming.QualifiedName;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 
 public class SettingProviderImpl implements ISettingProvider {
-	
+
 	private IInjectableFeatureLookup injectableFeatureLookup;
 	private JavaReflectAccess reflectAccess;
-	
+
 	@Inject
 	public void setReflectAccess(JavaReflectAccess reflectAccess) {
 		this.reflectAccess = reflectAccess;
@@ -44,8 +43,8 @@ public class SettingProviderImpl implements ISettingProvider {
 	@Override
 	public Map<QualifiedName,ISetting> getSettings(final Object obj, JvmType type) {
 		Map<QualifiedName, JvmFeature> features = injectableFeatureLookup.getInjectableFeatures(type);
-		
-		Iterable<ISetting> settings = Iterables.transform(features.entrySet(), new Function<Map.Entry<QualifiedName, JvmFeature>,ISetting>(){
+
+		return features.entrySet().stream().map(new Function<Map.Entry<QualifiedName, JvmFeature>, ISetting>() {
 			@Override
 			public ISetting apply(final Map.Entry<QualifiedName, JvmFeature> from) {
 				if (from.getValue() instanceof JvmOperation) {
@@ -59,6 +58,7 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
+
 						@Override
 						public QualifiedName getName() {
 							return from.getKey();
@@ -75,6 +75,7 @@ public class SettingProviderImpl implements ISettingProvider {
 								throw new WrappedException(e);
 							}
 						}
+
 						@Override
 						public QualifiedName getName() {
 							return from.getKey();
@@ -82,13 +83,8 @@ public class SettingProviderImpl implements ISettingProvider {
 					};
 				}
 				throw new IllegalArgumentException(from.getValue().getIdentifier() + " can not be handled.");
-			}});
-		return Maps.uniqueIndex(settings, new Function<ISetting, QualifiedName>() {
-			@Override
-			public QualifiedName apply(ISetting from) {
-				return from.getName();
 			}
-		});
+		}).collect(Collectors.toUnmodifiableMap(ISetting::getName, s -> s));
 	}
 
 }

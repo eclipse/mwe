@@ -9,8 +9,11 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.scoping;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -32,14 +35,11 @@ import org.eclipse.xtext.scoping.Scopes;
 import org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider;
 import org.eclipse.xtext.util.SimpleAttributeResolver;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
 /**
- * 
+ *
  */
 public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
@@ -48,7 +48,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	@Inject
 	private FactorySupport factorySupport;
-	
+
 	@Inject
 	private Provider<NameComputation> nameComputationProvider;
 
@@ -78,7 +78,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	}
 
 	public IScope createReferenceScopeUpTo(EObject object, boolean allowObjects) {
-		List<Referrable> result = Lists.newArrayList();
+		List<Referrable> result = new ArrayList<>();
 		collectReferablesUpTo(object, allowObjects, result);
 		return createLocalScope(result);
 	}
@@ -125,7 +125,7 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 			JvmType containerType = container.getActualType();
 			if (containerType == null || containerType.eIsProxy())
 				return IScope.NULLSCOPE;
-			Map<QualifiedName, JvmFeature> features = Maps.newHashMap();
+			Map<QualifiedName, JvmFeature> features = new HashMap<>();
 			JvmType createType = factorySupport.findFactoriesCreationType(containerType);
 			if (createType != null) {
 				features.putAll(featureLookup.getInjectableFeatures(createType));
@@ -150,13 +150,13 @@ public class Mwe2ScopeProvider extends AbstractDeclarativeScopeProvider {
 	protected IScope createLocalScope(List<? extends EObject> elements) {
 		return Scopes.scopeFor(elements, nameComputationProvider.get(), IScope.NULLSCOPE);
 	}
-	
+
 	protected static class NameComputation implements Function<EObject, QualifiedName> {
 		@Inject
 		private IQualifiedNameConverter qualifiedNameConverter;
 
 		private SimpleAttributeResolver<EObject, String> nameResolver = SimpleAttributeResolver.newResolver(String.class, "name");
-		
+
 		@Override
 		public QualifiedName apply(EObject from) {
 			String name = nameResolver.apply(from);

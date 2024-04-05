@@ -9,13 +9,12 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.factory;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.common.collect.Lists;
 
 public class ComponentA {
 	private ComponentA x;
-	private List<String> y = Lists.newArrayList();
+	private List<String> y = new ArrayList<>();
 	private String z;
 	private int i;
 	private double d;

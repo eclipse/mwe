@@ -8,8 +8,11 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.validation;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -54,11 +57,6 @@ import org.eclipse.xtext.util.Strings;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ValidationMessageAcceptor;
 
-import com.google.common.collect.HashMultimap;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Multimap;
-import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 /**
@@ -189,14 +187,14 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 	@Check
 	public void checkReferables(Module referable) {
 		TreeIterator<EObject> iterator = referable.eResource().getAllContents();
-		Set<String> referenced = Sets.newHashSet();
-		Multimap<String, Referrable> declared = HashMultimap.create();
+		Set<String> referenced = new HashSet<>();
+		Map<String, Set<Referrable>> declared = new HashMap<>();
 		while (iterator.hasNext()) {
 			EObject next = iterator.next();
 			if (next instanceof Referrable) {
 				String name = ((Referrable) next).getName();
 				if (name != null) {
-					declared.put(name, (Referrable) next);
+					declared.computeIfAbsent(name, n -> new HashSet<>()).add((Referrable) next);
 				}
 			} else if (next instanceof AbstractReference) {
 				referenced.add(((AbstractReference) next).getReferable().getName());
@@ -205,7 +203,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 				Component component = (Component) next;
 				if (component.isAutoInject()) {
 					Set<String> featureNames = collectFeatureNames(component);
-					Set<String> explicitlyAssignedFeature = Sets.newHashSet();
+					Set<String> explicitlyAssignedFeature = new HashSet<>();
 					for(Assignment assignment: component.getAssignment()) {
 						explicitlyAssignedFeature.add(assignment.getFeatureName());
 					}
@@ -215,16 +213,16 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 				}
 			}
 		}
-		Multimap<String, Referrable> copy = HashMultimap.create(declared);
+		Map<String, Set<Referrable>> copy = new HashMap<>(declared);
 		copy.keySet().removeAll(referenced);
-		for (Referrable referrable : copy.values()) {
+		copy.values().stream().flatMap(Set::stream).forEach(referrable -> {
 			warning(
 					"The var '" + referrable.getName() + "' is never read locally.",
 					referrable,
 					Mwe2Package.Literals.REFERRABLE__NAME,
 					ValidationMessageAcceptor.INSIGNIFICANT_INDEX,
 					UNUSED_LOCAL);
-		}
+		});
 		for (String name : declared.keySet()) {
 			Collection<Referrable> collection = declared.get(name);
 			if (collection.size()>1) {
@@ -241,7 +239,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 	}
 	
 	public Set<String> collectFeatureNames(Component component) {
-		Set<String> result = Sets.newHashSet();
+		Set<String> result = new HashSet<>();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
 			result.add(qualifiedNameConverter.toString(description.getName()));
@@ -307,7 +305,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 			Set<String> assignedFeatures = getAssignedFeatures(availableProperties, component);
 			mandatoryFeatures.keySet().removeAll(assignedFeatures);
 			if (!mandatoryFeatures.isEmpty()) {
-				List<String> missingAssignments = Lists.newArrayList(mandatoryFeatures.keySet());
+				List<String> missingAssignments = new ArrayList<>(mandatoryFeatures.keySet());
 				Collections.sort(missingAssignments);
 				String concatenated = Strings.concat(", ", missingAssignments);
 				EStructuralFeature feature = null;
@@ -337,7 +335,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 	
 	private Set<String> getAssignedFeatures(
 			Map<String, Referrable> availableProperties, Component component) {
-		Set<String> result = Sets.newHashSet();
+		Set<String> result = new HashSet<>();
 		if (component.isAutoInject()) {
 			result.addAll(availableProperties.keySet());
 		}
@@ -358,9 +356,9 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 	}
 
 	public Map<String, Referrable> collectReferablesUpTo(Component component) {
-		List<Referrable> result = Lists.newArrayList();
+		List<Referrable> result = new ArrayList<>();
 		scopeProvider.collectReferablesUpTo(component, true, result);
-		Map<String, Referrable> indexed = Maps.newHashMap();
+		Map<String, Referrable> indexed = new HashMap<>();
 		for(Referrable referrable: result) {
 			if (referrable.getName() != null) {
 				indexed.put(referrable.getName(), referrable);
@@ -370,7 +368,7 @@ public class Mwe2Validator extends AbstractMwe2Validator {
 	}
 	
 	public Map<String, JvmIdentifiableElement> collectMandatoryFeatures(Component component) {
-		Map<String, JvmIdentifiableElement> result = Maps.newHashMap();
+		Map<String, JvmIdentifiableElement> result = new HashMap<>();
 		IScope scope = scopeProvider.createComponentFeaturesScope(component);
 		for(IEObjectDescription description: scope.getAllElements()) {
 			JvmIdentifiableElement jvmFeature = (JvmIdentifiableElement) description.getEObjectOrProxy();
