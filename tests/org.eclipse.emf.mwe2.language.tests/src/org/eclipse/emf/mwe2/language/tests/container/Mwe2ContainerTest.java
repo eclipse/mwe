@@ -8,13 +8,14 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.tests.container;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.emf.mwe2.language.mwe2.Module;
+import org.eclipse.emf.mwe2.language.tests.Mwe2InjectorProvider;
 import org.eclipse.xtext.mwe.ContainersStateFactory;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.resource.containers.DelegatingIAllContainerAdapter;
@@ -26,8 +27,6 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.google.common.collect.Multimaps;
-import com.google.common.collect.SetMultimap;
 import com.google.inject.Inject;
 
 /**
@@ -56,9 +55,8 @@ public class Mwe2ContainerTest {
 
 		// configure container for this file
 		final String CONTAINER = "mycontainer";
-		SetMultimap<String, URI> mapped = Multimaps.forMap(Collections.singletonMap(CONTAINER, target));
-		List<String> containers = Collections.singletonList(CONTAINER);
-		IAllContainersState containersState = stateFactory.getContainersState(containers, mapped);
+		Map<String, Set<URI>> mapped = Map.of(CONTAINER, Set.of(target));
+		IAllContainersState containersState = stateFactory.getContainersState(List.of(CONTAINER), mapped);
 		rs.eAdapters().add(new DelegatingIAllContainerAdapter(containersState));
 
 		// assume we can link to the first file even though the new file is not contained in any container
