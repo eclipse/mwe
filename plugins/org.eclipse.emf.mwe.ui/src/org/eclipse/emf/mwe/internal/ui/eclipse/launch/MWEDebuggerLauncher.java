@@ -15,8 +15,10 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,6 +26,7 @@ import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.DebugPlugin;
 import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.model.IProcess;
+import org.eclipse.emf.mwe.core.WorkflowRunner;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.ui.debug.model.DebugTarget;
 import org.eclipse.emf.mwe.internal.ui.workflow.Activator;
@@ -139,22 +142,33 @@ public class MWEDebuggerLauncher extends AbstractVMRunner {
 			}
 		}
 
-		// classpath
-		String[] cp = config.getClassPath();
-		if (cp.length > 0) {
-			arguments.add("-classpath");
-			StringBuilder cpSb = new StringBuilder();
-			for (String cpEntry : cp) {
-				cpSb.append(cpEntry);
-				cpSb.append(File.pathSeparator);
+		String[] mp = config.getModulepath();
+		if (mp != null && config.getModuleDescription() != null) {
+			if (mp.length > 0) {
+				arguments.add("-p");
+				arguments.add(Arrays.stream(mp).collect(Collectors.joining(File.pathSeparator)));
 			}
-			arguments.add(cpSb.substring(0, cpSb.lastIndexOf(File.pathSeparator)));
+			String mweModuleDescription = WorkflowRunner.class.getPackage().getName();
+			// maybe add --add-reads
+			
+			arguments.add("--add-modules");
+			arguments.add(config.getModuleDescription());
+			
+			arguments.add("-m");
+			arguments.add(mweModuleDescription + "/" + config.getClassToLaunch());
+			
+		} else {
+			// classpath
+			String[] cp = config.getClassPath();
+			if (cp.length > 0) {
+				arguments.add("-classpath");
+				arguments.add(Arrays.stream(cp).collect(Collectors.joining(File.pathSeparator)));
+			}
+			// TODO: ER: make sure that all runtime classes that are provided by extensions (handlers, adapters) are in the class path
+			// the class to launch
+			arguments.add(config.getClassToLaunch());
 		}
-		// TODO: ER: make sure that all runtime classes that are provided by extensions (handlers, adapters) are in the class path
-
-		// the class to launch
-		arguments.add(config.getClassToLaunch());
-
+		
 		// programArgs
 		String[] progArgs = config.getProgramArguments();
 		for (String element : progArgs) {
