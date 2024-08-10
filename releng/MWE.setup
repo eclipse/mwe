@@ -37,58 +37,6 @@
     </content>
   </setupTask>
   <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.orbit"
-      value="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.target.platform"
-      defaultValue="Oxygen"
-      storageURI="scope://Workspace"
-      label="Target Platform">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/GlobalVariable"/>
-    <choice
-        value="2022-03"
-        label="Eclipse 2022-03 - 4.23"/>
-    <choice
-        value="2022-06"
-        label="Eclipse 2022-06 - 4.24"/>
-    <choice
-        value="2022-09"
-        label="Eclipse 2022-09 - 4.25"/>
-    <description>Choose the compatibility level of the target platform</description>
-  </setupTask>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="xtext.version"
-      defaultValue="releases"
-      label="Xtext Version">
-    <choice
-        value="latest"
-        label="Latest Successful Build"/>
-    <choice
-        value="milestones"
-        label="Latest Milestone"/>
-    <choice
-        value="releases"
-        label="Latest Release"/>
-  </setupTask>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.xtext"
-      value="https://download.eclipse.org/modeling/tmf/xtext/updates/composite/${xtext.version}"
-      defaultValue=""
-      label="Xtext p2 Respository URL"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.emf"
-      value="https://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.cbi.license"
-      value="https://download.eclipse.org/cbi/updates/license"/>
-  <setupTask
       xsi:type="setup:CompoundTask"
       name="Workspace Preferences">
     <setupTask
@@ -277,61 +225,26 @@
     <description>MWE Git Repository</description>
   </setupTask>
   <setupTask
+      xsi:type="projects:ProjectsImportTask">
+    <sourceLocator
+        rootFolder="${git.clone.emf.mwe.location}"
+        locateNestedProjects="true">
+      <predicate
+          xsi:type="predicates:AndPredicate">
+        <operand
+            xsi:type="predicates:NotPredicate">
+          <operand
+              xsi:type="predicates:LocationPredicate"
+              pattern=".*/testfiles/.*"/>
+        </operand>
+      </predicate>
+    </sourceLocator>
+    <description></description>
+  </setupTask>
+  <setupTask
       xsi:type="setup.targlets:TargletTask">
-    <targlet
-        name="MWE"
-        activeRepositoryList="${eclipse.target.platform}">
-      <requirement
-          name="*"/>
-      <requirement
-          name="org.eclipse.platform.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.jdt.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="com.google.guava"
-          versionRange="[30.1.0,31.0.0)"/>
-      <sourceLocator
-          rootFolder="${git.clone.emf.mwe.location}"
-          locateNestedProjects="true"/>
-      <repositoryList
-          name="2022-03">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="2022-06">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="2022-09">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-    </targlet>
     <description>MWE Target Platform</description>
+    <composedTarget>org.eclipse.emf.mwe2.target</composedTarget>
   </setupTask>
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
@@ -344,7 +257,7 @@
             project="org.eclipse.emf.mwe.core"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.11/@workingSets.1"/>
+            excludedWorkingSet="//@setupTasks.6/@workingSets[name='${scope.project.name}%20Releng%20%26%20Features']"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -371,23 +284,6 @@
         </operand>
       </predicate>
     </workingSet>
-  </setupTask>
-  <setupTask
-      xsi:type="projects:ProjectsImportTask">
-    <sourceLocator
-        rootFolder="${git.clone.emf.mwe.location}"
-        locateNestedProjects="true">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:NotPredicate">
-          <operand
-              xsi:type="predicates:LocationPredicate"
-              pattern=".*/testfiles/.*"/>
-        </operand>
-      </predicate>
-    </sourceLocator>
-    <description>Maven Dependencies</description>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
