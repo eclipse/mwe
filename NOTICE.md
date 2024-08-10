@@ -51,7 +51,7 @@ Apache Commons CLI (1.2.0)
 
 Apache Commons Lang (2.4)
 
-* License: Apache License, 2.0 
+* License: Apache License, 2.0
 
 Apache Commons Lang (2.6)
 
@@ -59,11 +59,11 @@ Apache Commons Lang (2.6)
 
 Apache Commons Line Interface (1.0)
 
-* License: Apache Software License 1.1 
+* License: Apache Software License 1.1
 
 Apache Commons Logging Jar (1.1.1)
 
-* License: Apache License, 2.0 
+* License: Apache License, 2.0
 
 asm (6.2)
 
@@ -121,7 +121,7 @@ org.apache.ant (1.6.5)
 
 * License: Apache License, 2.0
 
-org.apache.commons.logging (1.0.4)
+Apache Commons Logging (1.3.3)
 
 * License: Apache License, 2.0
 
