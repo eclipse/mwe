@@ -6,7 +6,6 @@
 	<packaging>pom</packaging>
 	<name>org.eclipse.emf.mwe2.parent</name>
 
-
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
@@ -22,10 +21,9 @@
 
 	<properties>
 		<tycho-qualifier>yyyyMMdd-HHmm</tycho-qualifier>
-		
+
 		<tycho-version>2.7.5</tycho-version>
-		<maven.compiler.source>11</maven.compiler.source>
-		<maven.compiler.target>11</maven.compiler.target>
+		<maven.compiler.release>11</maven.compiler.release>
 		<maven-install-version>2.5.2</maven-install-version>
 		<maven-deploy-version>2.8.2</maven-deploy-version>
 		<maven-javadoc-version>3.4.1</maven-javadoc-version>
@@ -63,7 +61,7 @@
 			<url>http://www.eclipse.org/legal/epl-2.0</url>
 		</license>
 	</licenses>
-	
+
 	<pluginRepositories>
 		<!-- for eclipse-jarsigner-plugin -->
 		<pluginRepository>
@@ -77,7 +75,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -189,6 +187,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>3.8.0</version>
 					<executions>
 						<execution>
 							<id>attach-javadocs</id>
@@ -211,7 +210,7 @@
 								<name>model</name>
 								<placement>X</placement>
 							</tag>
-						</tags>	
+						</tags>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -304,7 +303,7 @@
 				<module>../org.eclipse.emf.mwe2.target/org.eclipse.emf.mwe2.target.nightly</module>
 			</modules>
 		</profile>
-		<!-- 
+		<!--
 			Profile 'release' is activated when property BUILD_TYPE is NOT 'N' (nightly).
 			For release builds strict version checking is disabled, since Maven version will be a
 			release version, while OSGi artifacts (MANIFEST.MF, feature.xml) still contain a qualified version.
