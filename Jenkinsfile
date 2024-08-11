@@ -1,25 +1,23 @@
 pipeline {
   agent {
-    kubernetes {
-      inheritFrom 'centos-8'
-    }
+    label "centos-8"
   }
-  
+
   parameters {
     choice(name: 'RELEASE_TYPE', choices: ['Integration', 'Beta', 'M0', 'M1', 'M2', 'M3', 'RC1', 'RC2', 'GA'], description:
 '''Kind of release to build. The chosen value is dependent on the parameter BUILD_TYPE. Use value:
 <ul>
   <li><tt>Integration</tt>: Continuous Build</li>
   <li><tt>GA</tt>: Release Build</li>
-  <li>Any other: Stable/Milestone Build</tt></li>  
+  <li>Any other: Stable/Milestone Build</tt></li>
 </ul>''')
     booleanParam(
       name: 'FORCE_PUBLISH',
-      defaultValue: false, 
+      defaultValue: false,
       description: 'Force publishing of build artifacts to Eclipse project storage & OSSRH?'
     )
   }
-  
+
   triggers {
     parameterizedCron(env.BRANCH_NAME == 'master' ? '''H H(0-1) * * *''' : '')
   }
@@ -65,7 +63,7 @@ pipeline {
             bash ./set_version.sh --release=$RELEASE_TYPE
             popd
           fi
-          
+
           gpg --batch --import "${KEYRING}"
           for fpr in $(gpg --list-keys --with-colons  | awk -F: '/fpr:/ {print $10}' | sort -u);
           do
@@ -77,7 +75,7 @@ pipeline {
 
     stage ('Build') {
       steps {
-        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+        xvnc(useXauthority: true) {
           withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               buildProject("org.eclipse.emf.mwe2.target")
@@ -94,7 +92,7 @@ pipeline {
 
     stage ('Build Nightly') {
       steps {
-        wrap([$class: 'Xvnc', takeScreenshot: false, useXauthority: true]) {
+        xvnc(useXauthority: true) {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
@@ -123,7 +121,7 @@ pipeline {
 
 
             cp git-repo/maven/org.eclipse.emf.mwe2.repository/target/repository/*.properties build-result/
-            
+
             #
             # STEP 1: Get property values from publisher.properties/promote.properties
             #
@@ -132,7 +130,7 @@ pipeline {
             BUILD_ID=$($SCRIPTS/get_property.sh build-result/promote.properties build.id)
             BUILD_TYPE=$($SCRIPTS/get_build_type.sh $BUILD_ID)
             DROP_DIR=$DOWNLOAD_AREA/$VERSION/$BUILD_ID
-            
+
             #
             # STEP 2: move built repository to 'build-result' directory
             #
@@ -166,7 +164,7 @@ pipeline {
             ssh -x genie.mwe@projects-storage.eclipse.org mkdir -p $DROP_DIR
             ssh -x genie.mwe@projects-storage.eclipse.org rm -rf $DROP_DIR/*
             scp build-result/downloads/emft-mwe-*.zip genie.mwe@projects-storage.eclipse.org:$DROP_DIR/
-            
+
             #
             # STEP 5: Recreate compositeArtifacts.xml & compositeContent.xml
             #
@@ -189,8 +187,8 @@ pipeline {
             ssh genie.mwe@projects-storage.eclipse.org /bin/bash <<-EOF
                 # Clean up all nightly drop directories except for the last 5
                 for f in \\$(find $DOWNLOAD_AREA -type d -name N* -exec basename {} \\; |sort|head -n -5)
-                do 
-                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\; 
+                do
+                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\;
                 done
 
                 echo "Kept the following nightly drops:"
@@ -198,8 +196,8 @@ pipeline {
 
                 # Clean up all milestone drop directories except for the last 5
                 for f in \\$(find $DOWNLOAD_AREA -type d -name S* -exec basename {} \\; |sort|head -n -5)
-                do 
-                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\; 
+                do
+                    find $DOWNLOAD_AREA -type d -name \\$f -exec rm -rf {} \\;
                 done
 
                 echo "Kept the following milestone drops:"
@@ -262,17 +260,17 @@ EOF
 def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "2.7.5") {
   withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment", "TYCHO_VERSION=$tychoVersion"]) {
     sh '''
-      GOALS='clean javadoc:aggregate-jar test deploy'
+      GOALS='clean javadoc:aggregate-jar deploy'
       if [ "${FORCE_LOCAL_DEPLOYMENT}" == "true" ] || [ "${BRANCH_NAME}" != "master" ] && [ "${RELEASE_TYPE}" == "Integration" ] && [ "${FORCE_PUBLISH}" != "true" ]; then
         GOALS="${GOALS} -DaltDeploymentRepository=snapshot-repo::default::file:./my-local-snapshots-dir"
       fi
-      
+
       case "$RELEASE_TYPE" in
         Integration) BUILD_TYPE='N' ;;
         GA) BUILD_TYPE='R' ;;
         *) BUILD_TYPE='S' ;;
       esac
-      
+
       mvn \
         -e -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
         -Dtycho-version=${TYCHO_VERSION} \
