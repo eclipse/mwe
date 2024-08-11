@@ -58,12 +58,12 @@ public class Bug414169Test extends Assert {
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		File file = new File("./testfiles/bug414169");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
-		String rootOfProject = file.getCanonicalPath() + "/" + TESTPROJECT + "/";
-		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject));
+		File rootOfProject = new File(file.getCanonicalFile(), TESTPROJECT);
+		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject.toString()));
 		URI resolvedPath = EcorePlugin.resolvePlatformResourcePath("/" + TESTPROJECT + "/");
-		assertEquals("file:" + rootOfProject, resolvedPath.toString());
+		assertEquals(rootOfProject.toURI().toString(), resolvedPath.toString());
 	}
-	
+
 	protected ProjectMapping newProjectMapping(String projectName, String path) {
 		ProjectMapping result = new ProjectMapping();
 		result.setProjectName(projectName);
@@ -75,9 +75,9 @@ public class Bug414169Test extends Assert {
 		StandaloneSetup standaloneSetup = new StandaloneSetup();
 		File file = new File("./testfiles/bug414169_2");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
-		String rootOfProject = file.getCanonicalPath() + "/" + TESTPROJECT + "/";
-		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject));
+		File rootOfProject = new File(file.getCanonicalFile(), TESTPROJECT);
+		standaloneSetup.addProjectMapping(newProjectMapping(TESTPROJECT, rootOfProject.toString()));
 		URI resolvedPath = EcorePlugin.resolvePlatformResourcePath("/" + TESTPROJECT + "/");
-		assertEquals("file:" + rootOfProject, resolvedPath.toString());
+		assertEquals(rootOfProject.toURI().toString(), resolvedPath.toString());
 	}
 }
