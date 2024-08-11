@@ -274,6 +274,7 @@ def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "2
       mvn \
         -e -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
         -Dtycho-version=${TYCHO_VERSION} \
+        -Pstrict-jdk \
         -Dsign.skip=false \
         -Dtycho.resolver.classic=true \
         -DtestFailureIgnore=true \
