@@ -98,7 +98,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
-                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.3")
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.8")
               }
             }
           }
