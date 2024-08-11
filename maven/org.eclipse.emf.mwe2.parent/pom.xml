@@ -22,7 +22,7 @@
 	<properties>
 		<tycho-qualifier>yyyyMMdd-HHmm</tycho-qualifier>
 
-		<tycho-version>2.7.5</tycho-version>
+		<tycho-version>4.0.8</tycho-version>
 		<maven.compiler.release>11</maven.compiler.release>
 		<maven-install-version>2.5.2</maven-install-version>
 		<maven-deploy-version>2.8.2</maven-deploy-version>
