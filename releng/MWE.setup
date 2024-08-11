@@ -10,7 +10,7 @@
     xmlns:setup.targlets="http://www.eclipse.org/oomph/setup/targlets/1.0"
     xmlns:setup.workingsets="http://www.eclipse.org/oomph/setup/workingsets/1.0"
     xmlns:workingsets="http://www.eclipse.org/oomph/workingsets/1.0"
-    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 http://git.eclipse.org/c/oomph/org.eclipse.oomph.git/plain/setups/models/WorkingSets.ecore"
+    xsi:schemaLocation="http://www.eclipse.org/oomph/setup/git/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/Git.ecore http://www.eclipse.org/oomph/predicates/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/Predicates.ecore http://www.eclipse.org/oomph/setup/projects/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/Projects.ecore http://www.eclipse.org/oomph/setup/targlets/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/SetupTarglets.ecore http://www.eclipse.org/oomph/setup/workingsets/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/SetupWorkingSets.ecore http://www.eclipse.org/oomph/workingsets/1.0 https://raw.githubusercontent.com/eclipse-oomph/oomph/master/setups/models/WorkingSets.ecore"
     name="MWE"
     label="MWE">
   <setupTask
@@ -21,61 +21,21 @@
   <setupTask
       xsi:type="setup:ResourceCreationTask"
       excludedTriggers="STARTUP MANUAL"
-      content="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;section name=&quot;Workbench&quot;>&#xD;&#xA;&#x9;&lt;section name=&quot;org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart&quot;>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;true&quot; key=&quot;group_libraries&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;false&quot; key=&quot;linkWithEditor&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; key=&quot;layout&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;2&quot; key=&quot;rootMode&quot;/>&#xD;&#xA;&#x9;&#x9;&lt;item value=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;packageExplorer configured=&amp;quot;true&amp;quot; group_libraries=&amp;quot;1&amp;quot; layout=&amp;quot;2&amp;quot; linkWithEditor=&amp;quot;0&amp;quot; rootMode=&amp;quot;2&amp;quot; sortWorkingSets=&amp;quot;false&amp;quot; workingSetName=&amp;quot;&amp;quot;&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;workingSet editPageId=&amp;quot;org.eclipse.jdt.internal.ui.OthersWorkingSet&amp;quot; factoryID=&amp;quot;org.eclipse.ui.internal.WorkingSetFactory&amp;quot; id=&amp;quot;1382792884467_1&amp;quot; label=&amp;quot;Other Projects&amp;quot; name=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;activeWorkingSet workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;allWorkingSets workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/packageExplorer&amp;gt;&quot; key=&quot;memento&quot;/>&#xD;&#xA;&#x9;&lt;/section>&#xD;&#xA;&lt;/section>&#xD;&#xA;"
       targetURL="${workspace.location|uri}/.metadata/.plugins/org.eclipse.jdt.ui/dialog_settings.xml"
-      encoding="UTF-8"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.orbit"
-      value="https://download.eclipse.org/tools/orbit/downloads/2021-03"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="eclipse.target.platform"
-      defaultValue="Oxygen"
-      storageURI="scope://Workspace"
-      label="Target Platform">
-    <annotation
-        source="http://www.eclipse.org/oomph/setup/GlobalVariable"/>
-    <choice
-        value="2022-03"
-        label="Eclipse 2022-03 - 4.23"/>
-    <choice
-        value="2022-06"
-        label="Eclipse 2022-06 - 4.24"/>
-    <choice
-        value="2022-09"
-        label="Eclipse 2022-09 - 4.25"/>
-    <description>Choose the compatibility level of the target platform</description>
+      encoding="UTF-8">
+    <content>
+      &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+      &lt;section name=&quot;Workbench&quot;>
+      	&lt;section name=&quot;org.eclipse.jdt.internal.ui.packageview.PackageExplorerPart&quot;>
+      		&lt;item value=&quot;true&quot; key=&quot;group_libraries&quot;/>
+      		&lt;item value=&quot;false&quot; key=&quot;linkWithEditor&quot;/>
+      		&lt;item value=&quot;2&quot; key=&quot;layout&quot;/>
+      		&lt;item value=&quot;2&quot; key=&quot;rootMode&quot;/>
+      		&lt;item value=&quot;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;packageExplorer configured=&amp;quot;true&amp;quot; group_libraries=&amp;quot;1&amp;quot; layout=&amp;quot;2&amp;quot; linkWithEditor=&amp;quot;0&amp;quot; rootMode=&amp;quot;2&amp;quot; sortWorkingSets=&amp;quot;false&amp;quot; workingSetName=&amp;quot;&amp;quot;&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;workingSet editPageId=&amp;quot;org.eclipse.jdt.internal.ui.OthersWorkingSet&amp;quot; factoryID=&amp;quot;org.eclipse.ui.internal.WorkingSetFactory&amp;quot; id=&amp;quot;1382792884467_1&amp;quot; label=&amp;quot;Other Projects&amp;quot; name=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/localWorkingSetManager&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;activeWorkingSet workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;allWorkingSets workingSetName=&amp;quot;Other Projects&amp;quot;/&amp;gt;&amp;#x0D;&amp;#x0A;&amp;lt;/packageExplorer&amp;gt;&quot; key=&quot;memento&quot;/>
+      	&lt;/section>
+      &lt;/section>
+    </content>
   </setupTask>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="xtext.version"
-      defaultValue="releases"
-      label="Xtext Version">
-    <choice
-        value="latest"
-        label="Latest Successful Build"/>
-    <choice
-        value="milestones"
-        label="Latest Milestone"/>
-    <choice
-        value="releases"
-        label="Latest Release"/>
-  </setupTask>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.xtext"
-      value="https://download.eclipse.org/modeling/tmf/xtext/updates/composite/${xtext.version}"
-      defaultValue=""
-      label="Xtext p2 Respository URL"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.emf"
-      value="https://download.eclipse.org/modeling/emf/emf/builds/release/latest"/>
-  <setupTask
-      xsi:type="setup:VariableTask"
-      name="p2.cbi.license"
-      value="https://download.eclipse.org/cbi/updates/license"/>
   <setupTask
       xsi:type="setup:CompoundTask"
       name="Workspace Preferences">
@@ -262,70 +222,29 @@
         <value>remoteURI</value>
       </detail>
     </annotation>
-    <configSections
-        name="gerrit">
-      <properties
-          key="createchangeid"
-          value="true"/>
-    </configSections>
     <description>MWE Git Repository</description>
   </setupTask>
   <setupTask
+      xsi:type="projects:ProjectsImportTask">
+    <sourceLocator
+        rootFolder="${git.clone.emf.mwe.location}"
+        locateNestedProjects="true">
+      <predicate
+          xsi:type="predicates:AndPredicate">
+        <operand
+            xsi:type="predicates:NotPredicate">
+          <operand
+              xsi:type="predicates:LocationPredicate"
+              pattern=".*/testfiles/.*"/>
+        </operand>
+      </predicate>
+    </sourceLocator>
+    <description></description>
+  </setupTask>
+  <setupTask
       xsi:type="setup.targlets:TargletTask">
-    <targlet
-        name="MWE"
-        activeRepositoryList="${eclipse.target.platform}">
-      <requirement
-          name="*"/>
-      <requirement
-          name="org.eclipse.platform.feature.group"/>
-      <requirement
-          name="org.eclipse.emf.sdk.feature.group"/>
-      <requirement
-          name="org.eclipse.jdt.feature.group"/>
-      <requirement
-          name="org.eclipse.pde.feature.group"/>
-      <requirement
-          name="com.google.guava"
-          versionRange="[30.1.0,31.0.0)"/>
-      <sourceLocator
-          rootFolder="${git.clone.emf.mwe.location}"
-          locateNestedProjects="true"/>
-      <repositoryList
-          name="2022-03">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="2022-06">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-      <repositoryList
-          name="2022-09">
-        <repository
-            url="${p2.orbit}"/>
-        <repository
-            url="${p2.emf}"/>
-        <repository
-            url="${p2.cbi.license}"/>
-        <repository
-            url="${p2.xtext}"/>
-      </repositoryList>
-    </targlet>
     <description>MWE Target Platform</description>
+    <composedTarget>org.eclipse.emf.mwe2.target</composedTarget>
   </setupTask>
   <setupTask
       xsi:type="setup.workingsets:WorkingSetTask">
@@ -338,7 +257,7 @@
             project="org.eclipse.emf.mwe.core"/>
         <operand
             xsi:type="workingsets:ExclusionPredicate"
-            excludedWorkingSet="//@setupTasks.11/@workingSets.1"/>
+            excludedWorkingSet="//@setupTasks.6/@workingSets[name='${scope.project.name}%20Releng%20%26%20Features']"/>
       </predicate>
     </workingSet>
     <workingSet
@@ -365,23 +284,6 @@
         </operand>
       </predicate>
     </workingSet>
-  </setupTask>
-  <setupTask
-      xsi:type="projects:ProjectsImportTask">
-    <sourceLocator
-        rootFolder="${git.clone.emf.mwe.location}"
-        locateNestedProjects="true">
-      <predicate
-          xsi:type="predicates:AndPredicate">
-        <operand
-            xsi:type="predicates:NotPredicate">
-          <operand
-              xsi:type="predicates:LocationPredicate"
-              pattern=".*/testfiles/.*"/>
-        </operand>
-      </predicate>
-    </sourceLocator>
-    <description>Maven Dependencies</description>
   </setupTask>
   <setupTask
       xsi:type="setup:CompoundTask"
