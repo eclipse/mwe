@@ -14,12 +14,12 @@ package org.eclipse.emf.mwe.internal.core.debug.processing;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.debug.processing.ElementAdapter;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.debug.communication.Connection;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.RegisterPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This manager class listens for requests from the debug server to instantiate
@@ -33,7 +33,7 @@ public class RuntimeHandlerManager implements Runnable {
 
 	private final DebugMonitor monitor;
 
-	private static final Log logger = LogFactory.getLog(RuntimeHandlerManager.class);
+	private static final Logger logger = LoggerFactory.getLogger(RuntimeHandlerManager.class);
 
 	// -------------------------------------------------------------------------
 

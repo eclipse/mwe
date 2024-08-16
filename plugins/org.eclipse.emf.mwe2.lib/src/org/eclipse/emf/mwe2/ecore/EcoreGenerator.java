@@ -13,7 +13,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
@@ -37,12 +36,14 @@ import org.eclipse.emf.mwe.utils.GenModelHelper;
 import org.eclipse.emf.mwe2.runtime.Mandatory;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Function;
 
 public class EcoreGenerator implements IWorkflowComponent {
 
-	private static Logger log = Logger.getLogger(EcoreGenerator.class);
+	private static Logger log = LoggerFactory.getLogger(EcoreGenerator.class);
 	static {
 		EcorePackage.eINSTANCE.getEFactoryInstance();
 		GenModelPackage.eINSTANCE.getEFactoryInstance();
@@ -147,21 +148,21 @@ public class EcoreGenerator implements IWorkflowComponent {
 					new BasicMonitor());
 
 			if (diagnostic.getSeverity() != Diagnostic.OK)
-				log.info(diagnostic);
+				log.info("{}", diagnostic);
 		}
 
 		if (generateEdit) {
 			Diagnostic editDiag = generator.generate(genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE,
 					new BasicMonitor());
 			if (editDiag.getSeverity() != Diagnostic.OK)
-				log.info(editDiag);
+				log.info("{}", editDiag);
 		}
 
 		if (generateEditor) {
 			Diagnostic editorDiag = generator.generate(genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE,
 					new BasicMonitor());
 			if (editorDiag.getSeverity() != Diagnostic.OK)
-				log.info(editorDiag);
+				log.info("{}", editorDiag);
 		}
 	}
 

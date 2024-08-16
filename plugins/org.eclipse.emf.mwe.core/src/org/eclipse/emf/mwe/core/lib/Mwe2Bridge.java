@@ -8,22 +8,22 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core.lib;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.WorkflowComponentWithID;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
 import org.eclipse.emf.mwe.core.issues.MWEDiagnostic;
 import org.eclipse.emf.mwe.core.monitor.NullProgressMonitor;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Sebastian Zarnekow - Initial contribution and API
  */
 public class Mwe2Bridge {
 
-	private static final Log log = LogFactory.getLog(Mwe2Bridge.class); 
-	
+	private static final Logger log = LoggerFactory.getLogger(Mwe2Bridge.class);
+
 	private final WorkflowComponentWithID delegate;
 
 	public Mwe2Bridge(WorkflowComponentWithID delegate) {

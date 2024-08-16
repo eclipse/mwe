@@ -15,9 +15,9 @@ import java.io.IOException;
 import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPackage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This Runnable listens for incoming packages asynchroniously and keeps them, until they are required by
@@ -26,7 +26,7 @@ import org.eclipse.emf.mwe.internal.core.debug.communication.packages.AbstractPa
 public class PackageReceiver implements Runnable {
 	private final ArrayList<AbstractPackage> receivedPackages;
 	
-	private static final Log logger = LogFactory.getLog(PackageReceiver.class);
+	private static final Logger logger = LoggerFactory.getLogger(PackageReceiver.class);
 
 	private final Connection connection;
 

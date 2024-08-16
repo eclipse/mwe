@@ -10,7 +10,6 @@ package org.eclipse.emf.mwe2.language.ui.quickfix;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -58,13 +57,15 @@ import org.eclipse.xtext.ui.editor.quickfix.DefaultQuickfixProvider;
 import org.eclipse.xtext.ui.editor.quickfix.Fix;
 import org.eclipse.xtext.ui.editor.quickfix.IssueResolutionAcceptor;
 import org.eclipse.xtext.validation.Issue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 
 public class Mwe2QuickfixProvider extends DefaultQuickfixProvider {
 
-	private static final Logger logger = Logger.getLogger(Mwe2QuickfixProvider.class);
-	
+	private static final Logger logger = LoggerFactory.getLogger(Mwe2QuickfixProvider.class);
+
 	@Inject(optional=true)
 	private IWorkbench workbench;
 	

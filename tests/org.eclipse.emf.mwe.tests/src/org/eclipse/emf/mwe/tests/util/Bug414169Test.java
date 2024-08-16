@@ -10,6 +10,7 @@ package org.eclipse.emf.mwe.tests.util;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -32,13 +33,13 @@ public class Bug414169Test extends Assert {
 		File file = new File("./testfiles/bug414169");
 		standaloneSetup.setPlatformUri(file.getCanonicalPath());
 		System.out.println("Infos:");
-		System.out.println(dump(logTester.infos));
+		System.out.println(dump(logTester.getInfos()));
 		System.out.println("Warnings:");
-		System.out.println(dump(logTester.warnings));
+		System.out.println(dump(logTester.getWarnings()));
 		assertEquals(1, logTester.getWarnings().size());
 	}
 
-	private String dump(ArrayList<String> strings) {
+	private String dump(List<String> strings) {
 		StringBuilder sb = new StringBuilder();
 		for (String string : strings) {
 			sb.append(string);

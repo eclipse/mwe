@@ -10,7 +10,6 @@ package org.eclipse.emf.mwe2.language.ui.wizard;
 
 import java.io.InputStream;
 
-import org.apache.log4j.Logger;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -30,6 +29,8 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.ui.wizards.newresource.BasicNewResourceWizard;
 import org.eclipse.xtext.util.StringInputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -43,7 +44,7 @@ public class NewMwe2FileWizard extends BasicNewResourceWizard {
 
 	private WizardNewFileCreationPage mainPage;
 
-	private static final Logger logger = Logger.getLogger(NewMwe2FileWizard.class);
+	private static final Logger logger = LoggerFactory.getLogger(NewMwe2FileWizard.class);
 
 	@Inject
 	@Named("file.extensions")

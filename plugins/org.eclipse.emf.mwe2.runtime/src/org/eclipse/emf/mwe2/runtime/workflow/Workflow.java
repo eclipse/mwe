@@ -9,12 +9,13 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.runtime.workflow;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Workflow extends AbstractCompositeWorkflowComponent implements IWorkflow {
 
-	private static final Logger logger = Logger.getLogger(Workflow.class); 
-	
+	private static final Logger logger = LoggerFactory.getLogger(Workflow.class);
+
 	@Override
 	public void run(IWorkflowContext context) {
 		this.preInvoke();

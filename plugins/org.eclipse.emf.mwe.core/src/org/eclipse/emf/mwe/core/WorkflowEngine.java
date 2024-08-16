@@ -15,8 +15,6 @@ import java.net.URL;
 import java.util.Map;
 import java.util.jar.Manifest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.issues.IssuesImpl;
@@ -26,6 +24,8 @@ import org.eclipse.emf.mwe.internal.core.MWEPlugin;
 import org.eclipse.emf.mwe.internal.core.Workflow;
 import org.eclipse.emf.mwe.internal.core.ast.util.WorkflowFactory;
 import org.eclipse.emf.mwe.internal.core.ast.util.converter.Converter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class WorkflowEngine {
@@ -34,7 +34,7 @@ public class WorkflowEngine {
 
 	private ProgressMonitor monitor;
 
-	private static final Log logger = LogFactory.getLog(WorkflowEngine.class);
+	private static final Logger logger = LoggerFactory.getLogger(WorkflowEngine.class);
 
 	private Map<String, String> params;
 
@@ -113,7 +113,7 @@ public class WorkflowEngine {
 			}
 		}
 		catch (final ConfigurationException ex) {
-			logger.fatal(ex.getMessage(), ex);
+			logger.error(ex.getMessage(), ex);
 			logIssues(logger, issues);
 			return false;
 		}
@@ -205,7 +205,7 @@ public class WorkflowEngine {
 		}
 	}
 
-	private void logIssues(final Log logger, final Issues issues) {
+	private void logIssues(final Logger logger, final Issues issues) {
 		// log any configuration warning messages
 		final Diagnostic[] issueArray = issues.getIssues();
 		for (final Diagnostic issue : issueArray) {

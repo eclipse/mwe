@@ -16,18 +16,18 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.issues.Issues;
 import org.eclipse.emf.mwe.core.lib.AbstractWorkflowComponent2;
 import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DirectoryCleaner extends AbstractWorkflowComponent2 {
 
 	private static final String COMPONENT_NAME = "Directory Cleaner";
 
-	private static final Log LOG = LogFactory.getLog(DirectoryCleaner.class);
+	private static final Logger LOG = LoggerFactory.getLogger(DirectoryCleaner.class);
 
 	private String directory;
 

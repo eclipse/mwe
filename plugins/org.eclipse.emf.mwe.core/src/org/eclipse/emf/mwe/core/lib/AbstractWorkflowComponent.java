@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.core.lib;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.WorkflowComponentWithID;
 import org.eclipse.emf.mwe.core.WorkflowContext;
 import org.eclipse.emf.mwe.core.container.CompositeComponent;
@@ -21,6 +19,8 @@ import org.eclipse.emf.mwe.core.monitor.ProgressMonitor;
 import org.eclipse.emf.mwe.internal.core.ast.parser.Location;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowComponent;
 import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Base class useful for implementing custom WorkflowComponents.
@@ -28,7 +28,7 @@ import org.eclipse.emf.mwe2.runtime.workflow.IWorkflowContext;
  */
 public abstract class AbstractWorkflowComponent implements WorkflowComponentWithID, IWorkflowComponent {
 
-	private static final Log log = LogFactory.getLog(AbstractWorkflowComponent.class);
+	private static final Logger log = LoggerFactory.getLogger(AbstractWorkflowComponent.class);
 
 	/** The component's id */
 	private String componentID;

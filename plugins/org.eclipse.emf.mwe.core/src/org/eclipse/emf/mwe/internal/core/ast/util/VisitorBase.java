@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe.internal.core.ast.util;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.mwe.core.resources.ResourceLoader;
 import org.eclipse.emf.mwe.core.resources.ResourceLoaderFactory;
 import org.eclipse.emf.mwe.internal.core.ast.AbstractASTBase;
@@ -22,10 +20,12 @@ import org.eclipse.emf.mwe.internal.core.ast.DeclaredPropertyFileAST;
 import org.eclipse.emf.mwe.internal.core.ast.InclusionAST;
 import org.eclipse.emf.mwe.internal.core.ast.ReferenceAST;
 import org.eclipse.emf.mwe.internal.core.ast.SimpleParamAST;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class VisitorBase {
 
-	protected Log log = LogFactory.getLog(getClass());
+	protected Logger log = LoggerFactory.getLogger(getClass());
 
 	protected ResourceLoader loader = ResourceLoaderFactory.createResourceLoader();
 
