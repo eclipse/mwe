@@ -9,6 +9,9 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.factory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,9 +39,6 @@ import org.eclipse.xtext.naming.IQualifiedNameConverter;
 import org.eclipse.xtext.naming.QualifiedName;
 import org.eclipse.xtext.util.PolymorphicDispatcher;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
 import com.google.inject.Inject;
 
 public class Mwe2ExecutionEngine {
@@ -58,11 +58,11 @@ public class Mwe2ExecutionEngine {
 	private IQualifiedNameConverter qualifiedNameConverter;
 
 	public Object execute(Module m) {
-		return create(m, Maps.<QualifiedName,Object>newHashMap());
+		return create(m, new HashMap<>());
 	}
 	
 	public Object create(Module m, Map<QualifiedName, Object> params) {
-		return internalSwitch(m, Maps.newHashMap(params));
+		return internalSwitch(m, new HashMap<>(params));
 	}
 
 	protected Object internalSwitch(Object o, Map<QualifiedName, Object> variables) {
@@ -93,10 +93,9 @@ public class Mwe2ExecutionEngine {
 	}
 
 	protected Object inCase(Component comp, Map<QualifiedName, Object> variables) {
-		List<Assignment> assignments = Lists.newArrayList(comp.getAssignment());
+		List<Assignment> assignments = new ArrayList<>(comp.getAssignment());
 		if (comp.getModule() != null) {
-			Map<QualifiedName, Object> params = comp.isAutoInject() ? Maps
-					.newHashMap(variables) : Maps.<QualifiedName, Object> newHashMap();
+			Map<QualifiedName, Object> params = comp.isAutoInject() ? new HashMap<>(variables) : new HashMap<>();
 			for (Assignment ass : assignments) {
 				params.put(qualifiedNameConverter.toQualifiedName(((DeclaredProperty)ass.getFeature()).getName()), 
 						internalSwitch(ass.getValue(), variables));
@@ -127,7 +126,7 @@ public class Mwe2ExecutionEngine {
 			List<Assignment> assignments, Map<QualifiedName, Object> variables) {
 		Map<QualifiedName, ISetting> settings = settingProvider.getSettings(object, type);
 		if (isAutoInject) {
-			Set<QualifiedName> explicitAssigned = Sets.newHashSet();
+			Set<QualifiedName> explicitAssigned = new HashSet<>();
 			for(Assignment assignment: assignments) {
 				explicitAssigned.add(qualifiedNameConverter.toQualifiedName(assignment.getFeatureName()));
 			}

@@ -31,7 +31,6 @@ import org.eclipse.xtext.resource.IEObjectDescription;
 import org.eclipse.xtext.resource.IResourceDescription;
 import org.eclipse.xtext.resource.IResourceDescriptions;
 
-import com.google.common.collect.Maps;
 import com.google.inject.Inject;
 import com.google.inject.Provider;
 
@@ -107,7 +106,7 @@ public class Mwe2Runner {
 	}
 
 	protected Map<QualifiedName, Object> getRealParams(Map<String, String> params) {
-		HashMap<QualifiedName, Object> map = Maps.newHashMap();
+		HashMap<QualifiedName, Object> map = new HashMap<>();
 		for (Map.Entry<String, String> param : params.entrySet()) {
 			map.put(qualifiedNameConverter.toQualifiedName(param.getKey()), param.getValue());
 		}

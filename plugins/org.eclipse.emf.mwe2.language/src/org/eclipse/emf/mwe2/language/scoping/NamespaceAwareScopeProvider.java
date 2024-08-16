@@ -9,8 +9,7 @@
  *******************************************************************************/
 package org.eclipse.emf.mwe2.language.scoping;
 
-import static com.google.common.collect.Lists.*;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -23,7 +22,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 
 	@Override
 	protected List<ImportNormalizer> getImplicitImports(boolean ignoreCase) {
-		List<ImportNormalizer> result = newArrayList();
+		List<ImportNormalizer> result = new ArrayList<>();
 		result.add(createImportedNamespaceResolver("java.lang.*", ignoreCase));
 		result.add(createImportedNamespaceResolver(IWorkflow.class.getPackage().getName() + ".*", ignoreCase));
 		return result;
@@ -38,7 +37,7 @@ public class NamespaceAwareScopeProvider extends ImportedNamespaceAwareLocalScop
 	protected List<ImportNormalizer> internalGetImportedNamespaceResolvers(final EObject context, boolean ignoreCase) {
 		List<ImportNormalizer> list = super.internalGetImportedNamespaceResolvers(context, ignoreCase);
 		if (context instanceof Module) {
-			list = newArrayList(list);
+			list = new ArrayList<>(list);
 			String name = ((Module) context).getCanonicalName();
 			int dot = name.lastIndexOf('.');
 			if (dot >= 0) {
