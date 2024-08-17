@@ -36,10 +36,10 @@ SPDX-License-Identifier: EPL-2.0
       <import plugin="org.eclipse.xtext.common.types" version="2.34.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.xtext.xbase" version="2.34.0" match="greaterOrEqual"/>
       <import plugin="com.google.inject" version="7.0.0" match="greaterOrEqual"/>
-      <import plugin="com.google.guava" version="33.2.1" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="33.3.0" match="greaterOrEqual"/>
       <import plugin="org.eclipse.core.runtime"/>
       <import plugin="org.eclipse.osgi"/>
-      <import plugin="org.apache.commons.cli" version="1.8.0" match="compatible"/>
+      <import plugin="org.apache.commons.cli" version="1.9.0" match="compatible"/>
       <import plugin="org.apache.log4j"/>
    </requires>
 

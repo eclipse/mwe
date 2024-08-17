@@ -30,7 +30,7 @@ SPDX-License-Identifier: EPL-2.0
    </url>
 
    <requires>
-      <import plugin="com.google.guava" version="33.2.1" match="greaterOrEqual"/>
+      <import plugin="com.google.guava" version="33.3.0" match="greaterOrEqual"/>
       <import plugin="com.google.inject" version="7.0.0" match="greaterOrEqual"/>
    </requires>
 
