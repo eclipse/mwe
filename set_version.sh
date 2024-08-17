@@ -32,7 +32,7 @@ while [ "$1" != "" ]; do
       echo "Set project version"
       echo ""
       echo -e "\t-h --help"
-      echo -e "\t--release=<TYPE> (valid values: N,Beta,M0,M1,M2,M3,RC1,RC2,GA)"
+      echo -e "\t--release=<TYPE> (valid values: N,Beta,M0,M1,M2,M3,M4,M5,RC1,RC2,GA)"
       echo ""
       exit
       ;;
