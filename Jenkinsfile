@@ -4,7 +4,7 @@ pipeline {
   }
 
   parameters {
-    choice(name: 'RELEASE_TYPE', choices: ['Integration', 'Beta', 'M0', 'M1', 'M2', 'M3', 'RC1', 'RC2', 'GA'], description:
+    choice(name: 'RELEASE_TYPE', choices: ['Integration', 'Beta', 'M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'RC1', 'RC2', 'GA'], description:
 '''Kind of release to build. The chosen value is dependent on the parameter BUILD_TYPE. Use value:
 <ul>
   <li><tt>Integration</tt>: Continuous Build</li>
