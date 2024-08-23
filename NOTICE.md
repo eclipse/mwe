@@ -121,7 +121,7 @@ org.apache.ant (1.6.5)
 
 * License: Apache License, 2.0
 
-Apache Commons Logging (1.3.3)
+Apache Commons Logging (1.3.4)
 
 * License: Apache License, 2.0
 
