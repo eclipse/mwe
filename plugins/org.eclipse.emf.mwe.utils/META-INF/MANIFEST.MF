@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.emf.mwe.utils
-Bundle-Version: 1.13.0.qualifier
+Bundle-Version: 1.14.0.qualifier
 Require-Bundle: org.eclipse.emf.mwe.core,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.codegen.ecore;resolution:=optional;x-installation:=greedy
