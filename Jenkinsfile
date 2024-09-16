@@ -76,7 +76,7 @@ pipeline {
     stage ('Build') {
       steps {
         xvnc(useXauthority: true) {
-          withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+          withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.9.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               buildProject("org.eclipse.emf.mwe2.target")
             }
@@ -94,7 +94,7 @@ pipeline {
       steps {
         xvnc(useXauthority: true) {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
-            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.1', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+            withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
                 buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.3")
               }
