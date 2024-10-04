@@ -6,8 +6,8 @@
    <feature id="org.eclipse.emf.mwe.sdk" version="0.0.0">
       <category name="mwe2lang"/>
    </feature>
-   <bundle id="com.google.guava" version="33.3.0.qualifier"/>
-   <bundle id="com.google.guava.source" version="33.3.0.qualifier"/>
+   <bundle id="com.google.guava" version="33.3.1.qualifier"/>
+   <bundle id="com.google.guava.source" version="33.3.1.qualifier"/>
    <bundle id="com.google.guava.failureaccess" version="1.0.2.qualifier"/>
    <bundle id="com.google.guava.failureaccess.source" version="1.0.2.qualifier"/>
    <bundle id="org.apache.commons.cli" version="1.9.0"/>
