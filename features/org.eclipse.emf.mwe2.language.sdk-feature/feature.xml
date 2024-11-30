@@ -32,10 +32,11 @@ SPDX-License-Identifier: EPL-2.0
    <includes
          id="org.eclipse.emf.mwe2.runtime.sdk"
          version="0.0.0"/>
- 
+
    <includes
          id="org.eclipse.emf.mwe2.launcher"
          version="0.0.0"/>
+
    <includes
          id="org.eclipse.emf.mwe2.launcher.source"
          version="0.0.0"/>
@@ -46,56 +47,34 @@ SPDX-License-Identifier: EPL-2.0
 
    <plugin
          id="org.eclipse.emf.mwe2.language"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.language.ide"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.language.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.launch.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.emf.mwe2.language.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.language.ide.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
+
    <plugin
          id="org.eclipse.emf.mwe2.language.ui.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
    <plugin
          id="org.eclipse.emf.mwe2.launch.ui.source"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+         version="0.0.0"/>
 
 </feature>
