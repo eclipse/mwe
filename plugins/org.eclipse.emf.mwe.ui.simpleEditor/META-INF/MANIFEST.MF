@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.emf.mwe.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.views
 Bundle-Vendor: %providerName
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-Localization: plugin
 Export-Package: org.eclipse.emf.mwe.ui.internal.simpleEditor;x-internal:=true
 Automatic-Module-Name: org.eclipse.emf.mwe.ui.simpleEditor

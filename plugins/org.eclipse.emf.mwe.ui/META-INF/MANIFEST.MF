@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.mwe.core,
  org.eclipse.ui.ide,
  org.eclipse.core.expressions
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.eclipse.emf.mwe.internal.ui.workflow.Activator
 Export-Package: org.eclipse.emf.mwe.internal.ui.debug.breakpoint.actions;x-friends:="org.eclipse.emf.mwe.ui.editor,org.eclipse.emf.mwe.ui.simpleEditor",
