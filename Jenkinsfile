@@ -257,7 +257,7 @@ EOF
 
 }
 
-def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "2.7.5") {
+def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "4.0.3") {
   withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment", "TYCHO_VERSION=$tychoVersion"]) {
     sh '''
       GOALS='clean javadoc:aggregate-jar deploy'
