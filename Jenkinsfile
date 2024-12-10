@@ -96,7 +96,7 @@ pipeline {
           catchError(buildResult: 'UNSTABLE', stageResult: 'UNSTABLE') {
             withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
               dir ('git-repo-nightly') {
-                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.3")
+                buildProject("org.eclipse.emf.mwe2.target.nightly", true, "4.0.10")
               }
             }
           }
@@ -257,7 +257,7 @@ EOF
 
 }
 
-def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "4.0.3") {
+def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "4.0.10") {
   withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment", "TYCHO_VERSION=$tychoVersion"]) {
     sh '''
       GOALS='clean javadoc:aggregate-jar deploy'
