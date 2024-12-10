@@ -76,7 +76,7 @@ pipeline {
     stage ('Build') {
       steps {
         xvnc(useXauthority: true) {
-          withMaven(jdk: 'temurin-jdk11-latest', maven: 'apache-maven-3.9.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
+          withMaven(jdk: 'temurin-jdk17-latest', maven: 'apache-maven-3.9.6', options: [junitPublisher(disabled: true), openTasksPublisher(disabled: true)]) {
             dir ('git-repo') {
               buildProject("org.eclipse.emf.mwe2.target")
             }
