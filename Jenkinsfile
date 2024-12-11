@@ -260,7 +260,7 @@ EOF
 def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "4.0.10") {
   withEnv(["TARGET_PLATFORM=$targetPlatform", "FORCE_LOCAL_DEPLOYMENT=$forceLocalDeployment", "TYCHO_VERSION=$tychoVersion"]) {
     sh '''
-      GOALS='clean javadoc:aggregate-jar deploy'
+      GOALS='clean deploy'
       if [ "${FORCE_LOCAL_DEPLOYMENT}" == "true" ] || [ "${BRANCH_NAME}" != "master" ] && [ "${RELEASE_TYPE}" == "Integration" ] && [ "${FORCE_PUBLISH}" != "true" ]; then
         GOALS="${GOALS} -DaltDeploymentRepository=snapshot-repo::default::file:./my-local-snapshots-dir"
       fi
@@ -275,7 +275,6 @@ def buildProject(targetPlatform, forceLocalDeployment = false, tychoVersion = "4
         -e -f maven/org.eclipse.emf.mwe2.parent/pom.xml \
         -Dtycho-version=${TYCHO_VERSION} \
         -Dsign.skip=false \
-        -Dtycho.resolver.classic=true \
         -DtestFailureIgnore=true \
         -Dmaven.javadoc.failOnError=false \
         -Dtycho.localArtifacts=ignore \
