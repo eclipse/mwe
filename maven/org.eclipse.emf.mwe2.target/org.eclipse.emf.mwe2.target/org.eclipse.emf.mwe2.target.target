@@ -25,7 +25,7 @@
 <repository location="https://download.eclipse.org/cbi/updates/license/"/>
 </location>
 <location includeAllPlatforms="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.apache.log4j" version="1.2.25"/>
+<unit id="org.apache.log4j" version="1.2.26"/>
 <unit id="org.junit" version="0.0.0"/>
 <unit id="org.apache.commons.cli" version="1.9.0"/>
 <unit id="org.apache.commons.commons-logging" version="0.0.0"/>
